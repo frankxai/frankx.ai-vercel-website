@@ -1,0 +1,27 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6B4EFF"/>
+      <stop offset="50%" stop-color="#8C6CFF"/>
+      <stop offset="100%" stop-color="#00D9FF"/>
+    </linearGradient>
+    <radialGradient id="g2" cx="30%" cy="20%" r="60%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.35"/>
+      <stop offset="80%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="g3" cx="80%" cy="70%" r="50%">
+      <stop offset="0%" stop-color="#FF9CF8" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#FF9CF8" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#g1)"/>
+  <rect width="1200" height="630" fill="url(#g2)"/>
+  <rect width="1200" height="630" fill="url(#g3)"/>
+  <g transform="translate(120 90)">
+    <text x="0" y="70" font-family="'Inter', 'Segoe UI', sans-serif" font-size="60" font-weight="700" fill="#FFFFFF">The Intelligence Revolution</text>
+    <text x="0" y="130" font-family="'Inter', 'Segoe UI', sans-serif" font-size="30" font-weight="500" fill="#E4E9FF" opacity="0.85">A $10T shift in conscious technology & value creation</text>
+  </g>
+  <g transform="translate(120 470)" opacity="0.85">
+    <text x="0" y="0" font-family="'Inter', 'Segoe UI', sans-serif" font-size="22" fill="#F4F7FF">FrankX · Oracle AI Architect · Conscious Creator Systems</text>
+  </g>
+</svg>

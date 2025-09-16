@@ -90,12 +90,20 @@ const musicFeatures = [
 
 const resources = [
   {
+    icon: Sparkles,
+    title: "Soul Frequency Assessment",
+    description: "7-minute blueprint for your intelligence operating system",
+    href: "/soul-frequency-assessment",
+    tag: "New",
+    color: "text-purple-600"
+  },
+  {
     icon: Heart,
     title: "Soul Frequency Quiz",
     description: "Discover your unique creator archetype",
     href: "/soul-frequency-quiz",
     tag: "Assessment",
-    color: "text-purple-600"
+    color: "text-fuchsia-600"
   },
   {
     icon: Users,

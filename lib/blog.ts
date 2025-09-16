@@ -15,6 +15,8 @@ export interface BlogPost {
   tags: string[]
   image?: string
   readingTime: string
+  keywords?: string[]
+  readingGoal?: string
   content: string
   featured?: boolean
 }
@@ -74,3 +76,4 @@ export function getPostsByTag(tag: string): BlogPost[] {
     post.tags.some(t => t.toLowerCase() === tag.toLowerCase())
   )
 }
+

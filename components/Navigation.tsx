@@ -12,6 +12,7 @@ const navItems = [
   { name: 'Search', href: '/search' },
   { name: 'Music Lab', href: '/music-lab' },
   { name: 'Resources', href: '/resources' },
+  { name: 'Assessment', href: '/soul-frequency-assessment' },
   { name: 'Reading', href: '/reading/index.html' },
 ]
 
@@ -129,3 +130,4 @@ export default function Navigation() {
     </nav>
   )
 }
+
