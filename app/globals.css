@@ -4,13 +4,124 @@
 
 @layer base {
   :root {
+    /* Light Mode Colors - Soul-Aligned Oracle Grade */
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
+    --primary: 251 91% 60%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 240 5% 96%;
+    --secondary-foreground: 240 6% 10%;
+    --accent: 240 5% 90%;
+    --accent-foreground: 240 6% 10%;
+    --muted: 240 5% 96%;
+    --muted-foreground: 240 4% 46%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --border: 240 6% 90%;
+    --input: 240 6% 90%;
+    --ring: 251 91% 60%;
+    --radius: 0.5rem;
+    
+    /* Soul-Aligned Brand Colors */
+    --soul-purple: 276 91% 60%;
+    --soul-indigo: 234 89% 62%;
+    --soul-blue: 213 94% 68%;
+    --soul-pink: 330 81% 60%;
+    --soul-gold: 43 96% 56%;
+    
+    /* Enhanced Typography Scale */
+    --font-size-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+    --font-size-sm: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
+    --font-size-base: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+    --font-size-lg: clamp(1.125rem, 1.05rem + 0.375vw, 1.25rem);
+    --font-size-xl: clamp(1.25rem, 1.15rem + 0.5vw, 1.5rem);
+    --font-size-2xl: clamp(1.5rem, 1.35rem + 0.75vw, 1.875rem);
+    --font-size-3xl: clamp(1.875rem, 1.65rem + 1.125vw, 2.25rem);
+    --font-size-4xl: clamp(2.25rem, 1.9rem + 1.75vw, 3rem);
+    --font-size-5xl: clamp(3rem, 2.5rem + 2.5vw, 4rem);
+    --font-size-6xl: clamp(3.75rem, 3rem + 3.75vw, 5rem);
+    
+    /* Line Heights for Optimal Readability */
+    --line-height-tight: 1.25;
+    --line-height-snug: 1.375;
+    --line-height-normal: 1.5;
+    --line-height-relaxed: 1.625;
+    --line-height-loose: 2;
+    
+    /* Spacing Scale */
+    --space-0: 0;
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 0.75rem;
+    --space-4: 1rem;
+    --space-6: 1.5rem;
+    --space-8: 2rem;
+    --space-12: 3rem;
+    --space-16: 4rem;
+    --space-20: 5rem;
+    --space-24: 6rem;
+    --space-32: 8rem;
+    
+    /* Animation Durations */
+    --duration-instant: 0ms;
+    --duration-fast: 150ms;
+    --duration-normal: 300ms;
+    --duration-slow: 500ms;
+    --duration-slower: 700ms;
+    
+    /* Z-index Scale */
+    --z-dropdown: 1000;
+    --z-sticky: 1020;
+    --z-fixed: 1030;
+    --z-modal-backdrop: 1040;
+    --z-modal: 1050;
+    --z-popover: 1060;
+    --z-tooltip: 1070;
   }
 
   .dark {
+    /* Dark Mode Colors - Premium Oracle Feel */
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
+    --primary: 251 91% 65%;
+    --primary-foreground: 222.2 84% 4.9%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --card: 224 71% 4%;
+    --card-foreground: 213 31% 91%;
+    --border: 216 34% 17%;
+    --input: 216 34% 17%;
+    --ring: 251 91% 65%;
+    
+    /* Dark Mode Soul-Aligned Brand Colors */
+    --soul-purple: 276 91% 70%;
+    --soul-indigo: 234 89% 72%;
+    --soul-blue: 213 94% 78%;
+    --soul-pink: 330 81% 70%;
+    --soul-gold: 43 96% 66%;
+  }
+  
+  /* Improved Base Typography */
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+  
+  body {
+    font-feature-settings: 'rlig' 1, 'calt' 1;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Focus visible improvements */
+  *:focus-visible {
+    outline: 2px solid hsl(var(--foreground));
+    outline-offset: 2px;
   }
 }
 
@@ -19,17 +130,122 @@
     text-wrap: balance;
   }
   
+  /* Enhanced Typography Utilities */
+  .text-display-1 {
+    font-size: var(--font-size-6xl);
+    line-height: var(--line-height-tight);
+    font-weight: 800;
+    letter-spacing: -0.025em;
+  }
+  
+  .text-display-2 {
+    font-size: var(--font-size-5xl);
+    line-height: var(--line-height-tight);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+  
+  .text-heading-1 {
+    font-size: var(--font-size-4xl);
+    line-height: var(--line-height-snug);
+    font-weight: 700;
+    letter-spacing: -0.015em;
+  }
+  
+  .text-heading-2 {
+    font-size: var(--font-size-3xl);
+    line-height: var(--line-height-snug);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+  }
+  
+  .text-heading-3 {
+    font-size: var(--font-size-2xl);
+    line-height: var(--line-height-normal);
+    font-weight: 600;
+  }
+  
+  .text-body-large {
+    font-size: var(--font-size-lg);
+    line-height: var(--line-height-relaxed);
+    font-weight: 400;
+  }
+  
+  .text-body {
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-relaxed);
+    font-weight: 400;
+  }
+  
+  .text-body-small {
+    font-size: var(--font-size-sm);
+    line-height: var(--line-height-normal);
+    font-weight: 400;
+  }
+  
+  .text-caption {
+    font-size: var(--font-size-xs);
+    line-height: var(--line-height-normal);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  
+  /* Enhanced Gradient Text with better contrast */
   .gradient-text {
-    @apply bg-gradient-to-r from-primary-600 via-pink-600 to-blue-600 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent;
+    background-size: 200% 200%;
+    animation: gradientShift 8s ease-in-out infinite;
+  }
+  
+  .gradient-text-light {
+    @apply bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 bg-clip-text text-transparent;
   }
   
   .gradient-bg {
-    @apply bg-gradient-to-br from-primary-500 via-purple-600 to-pink-600;
+    @apply bg-gradient-to-br from-purple-500 via-pink-500 to-blue-500;
   }
   
+  /* Enhanced Glass Effect with better accessibility */
   .glass-effect {
     @apply bg-white/10 backdrop-blur-lg border border-white/20;
+    backdrop-filter: blur(16px) saturate(180%);
   }
+  
+  .glass-effect-light {
+    @apply bg-black/5 backdrop-blur-lg border border-black/10;
+    backdrop-filter: blur(16px) saturate(180%);
+  }
+  
+  /* Motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    .gradient-text {
+      animation: none;
+    }
+    
+    * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+  
+  /* High contrast mode support */
+  @media (prefers-contrast: high) {
+    .gradient-text {
+      @apply text-purple-600 bg-none;
+    }
+    
+    .glass-effect {
+      @apply bg-white border-2 border-purple-600;
+    }
+  }
+}
+
+/* Animations */
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
 
 /* Accessibility helpers */
@@ -43,4 +259,146 @@
   clip: rect(0, 0, 0, 0) !important;
   white-space: nowrap !important;
   border: 0 !important;
+}
+
+/* Skip to content link */
+.skip-to-content {
+  @apply sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-primary focus:text-primary-foreground focus:rounded-md;
+}
+
+/* Advanced Component Styles */
+@layer components {
+  /* Premium Button Styles */
+  .btn-primary {
+    @apply relative inline-flex items-center justify-center px-6 py-3 font-semibold text-white transition-all duration-300 bg-gradient-to-r from-purple-600 to-blue-600 rounded-lg hover:from-purple-700 hover:to-blue-700 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+  
+  .btn-secondary {
+    @apply relative inline-flex items-center justify-center px-6 py-3 font-semibold transition-all duration-300 bg-white border-2 border-gray-200 rounded-lg hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700;
+  }
+  
+  .btn-ghost {
+    @apply relative inline-flex items-center justify-center px-6 py-3 font-semibold transition-all duration-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2;
+  }
+  
+  /* Card Hover Effects */
+  .card-hover {
+    @apply transition-all duration-300 hover:scale-[1.02] hover:shadow-xl;
+  }
+  
+  .card-glow {
+    @apply relative overflow-hidden;
+  }
+  
+  .card-glow::before {
+    content: '';
+    @apply absolute inset-0 opacity-0 transition-opacity duration-300;
+    background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), 
+      rgba(147, 51, 234, 0.15), transparent 40%);
+  }
+  
+  .card-glow:hover::before {
+    @apply opacity-100;
+  }
+  
+  /* Loading States */
+  .skeleton {
+    @apply relative overflow-hidden bg-gray-200 dark:bg-gray-700;
+  }
+  
+  .skeleton::after {
+    content: '';
+    @apply absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent animate-shimmer;
+  }
+  
+  /* Pulse Animation for CTAs */
+  .pulse-ring {
+    @apply relative;
+  }
+  
+  .pulse-ring::before {
+    content: '';
+    @apply absolute inset-0 rounded-full animate-pulse-ring;
+    background: inherit;
+    opacity: 0.4;
+  }
+}
+
+/* Advanced Animations */
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(1);
+    opacity: 0.4;
+  }
+  50% {
+    transform: scale(1.3);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.3);
+    opacity: 0;
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Scroll Animations */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.6s ease-out;
+}
+
+.animate-on-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Premium Scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100 dark:bg-gray-800;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-400 rounded-full hover:bg-gray-500 dark:bg-gray-600 dark:hover:bg-gray-500;
+}
+
+/* Selection Colors */
+::selection {
+  @apply bg-purple-200 text-purple-900 dark:bg-purple-800 dark:text-purple-100;
+}
+
+/* Focus Within for Forms */
+.input-group:focus-within {
+  @apply ring-2 ring-purple-500 ring-offset-2 rounded-lg;
 }

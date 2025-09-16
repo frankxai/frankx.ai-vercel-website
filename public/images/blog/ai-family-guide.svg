@@ -1,0 +1,22 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="guide" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#022B3A"/>
+      <stop offset="60%" stop-color="#1368A6"/>
+      <stop offset="100%" stop-color="#6FFFE9"/>
+    </linearGradient>
+    <radialGradient id="halo" cx="25%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#guide)"/>
+  <rect width="1200" height="630" fill="url(#halo)"/>
+  <g transform="translate(120 120)" fill="#E8FFFF">
+    <text x="0" y="66" font-family="'Inter', 'Segoe UI', sans-serif" font-size="50" font-weight="700">Thriving with AI as Families & Professionals</text>
+    <text x="0" y="118" font-family="'Inter', 'Segoe UI', sans-serif" font-size="30" font-weight="500">Practical safety, conversations, and rituals for the new era</text>
+  </g>
+  <g transform="translate(120 500)" fill="#D6FFFF" opacity="0.85">
+    <text x="0" y="0" font-family="'Inter', 'Segoe UI', sans-serif" font-size="24">FrankX · Conscious Guidance · Actionable Checklists</text>
+  </g>
+</svg>

@@ -1,0 +1,22 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="entre" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#180C3A"/>
+      <stop offset="50%" stop-color="#5023A8"/>
+      <stop offset="100%" stop-color="#FFB457"/>
+    </linearGradient>
+    <radialGradient id="beam" cx="70%" cy="35%" r="55%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#entre)"/>
+  <rect width="1200" height="630" fill="url(#beam)"/>
+  <g transform="translate(120 120)" fill="#FFF8EE">
+    <text x="0" y="62" font-family="'Inter', 'Segoe UI', sans-serif" font-size="56" font-weight="700">Conscious Entrepreneur's AI Blueprint</text>
+    <text x="0" y="114" font-family="'Inter', 'Segoe UI', sans-serif" font-size="30" font-weight="500">Design businesses that elevate humanity and scale intelligently</text>
+  </g>
+  <g transform="translate(120 500)" fill="#FFE8D2" opacity="0.85">
+    <text x="0" y="0" font-family="'Inter', 'Segoe UI', sans-serif" font-size="24">Frameworks · Launch Maps · Ethical Automations</text>
+  </g>
+</svg>
