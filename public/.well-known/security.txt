@@ -1,0 +1,5 @@
+Contact: mailto:security@frankx.ai
+Policy: https://frankx.ai/security
+Preferred-Languages: en
+Canonical: https://frankx.ai/.well-known/security.txt
+

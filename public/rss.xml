@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+<channel>
+  <title>FrankX Feed</title>
+  <link>http://localhost:3000</link>
+  <description>Latest posts and guides</description>
+  <item>
+    <title>500 Songs Later: What AI Music Creation Taught Me About Consciousness, Creativity, and the Future</title>
+    <link>http://localhost:3000/blog/05-music-as-consciousness-technology</link>
+    <guid>http://localhost:3000/blog/05-music-as-consciousness-technology</guid>
+    <pubDate>Fri, 12 Sep 2025 19:44:13 GMT</pubDate>
+    <description> # 500 Songs Later: What AI Music Creation Taught Me About Consciousness, Creativity, and the Future *What happens when an enterprise AI architect spends three years collaborating with AI to create m…</description>
+  </item>
+  <item>
+    <title>The Family &amp; Professional's Guide to Thriving with AI (Not Just Surviving It)</title>
+    <link>http://localhost:3000/blog/03-ai-guide-for-families-and-professionals</link>
+    <guid>http://localhost:3000/blog/03-ai-guide-for-families-and-professionals</guid>
+    <pubDate>Fri, 12 Sep 2025 19:44:13 GMT</pubDate>
+    <description> # The Family &amp; Professional's Guide to Thriving with AI (Not Just Surviving It) *Real talk for real people navigating the AI revolution* --- Last week, my mom called me with a question that stoppe…</description>
+  </item>
+  <item>
+    <title>The Conscious Entrepreneur's Guide to Building AI-Powered Businesses That Actually Serve Humanity</title>
+    <link>http://localhost:3000/blog/04-conscious-ai-for-entrepreneurs</link>
+    <guid>http://localhost:3000/blog/04-conscious-ai-for-entrepreneurs</guid>
+    <pubDate>Fri, 12 Sep 2025 19:44:13 GMT</pubDate>
+    <description> # The Conscious Entrepreneur's Guide to Building AI-Powered Businesses That Actually Serve Humanity *A framework for entrepreneurs who want to harness AI's power while building businesses that eleva…</description>
+  </item>
+  <item>
+    <title>The Soul Frequency Framework: How to Find Your Authentic Creative Voice in the AI Age</title>
+    <link>http://localhost:3000/blog/02-the-soul-frequency-framework</link>
+    <guid>http://localhost:3000/blog/02-the-soul-frequency-framework</guid>
+    <pubDate>Fri, 12 Sep 2025 19:44:13 GMT</pubDate>
+    <description> # The Soul Frequency Framework: How to Find Your Authentic Creative Voice in the AI Age *A practical guide for creators, entrepreneurs, and anyone who wants to stay authentic while leveraging AI* -…</description>
+  </item>
+  <item>
+    <title>AI Doesn't Have To Be Soulless (And Here's How I Know)</title>
+    <link>http://localhost:3000/blog/01-ai-doesnt-have-to-be-soulless</link>
+    <guid>http://localhost:3000/blog/01-ai-doesnt-have-to-be-soulless</guid>
+    <pubDate>Fri, 12 Sep 2025 19:44:13 GMT</pubDate>
+    <description> # AI Doesn't Have To Be Soulless (And Here's How I Know) *A letter to my family, friends, and anyone who fears we're building a world without humanity* --- ## The Day I Realized We Were Building t…</description>
+  </item>
+  <item>
+    <title>AI Doesn't Have To Be Soulless (And Here's How I Know)</title>
+    <link>http://localhost:3000/blog/ai-doesnt-have-to-be-soulless</link>
+    <guid>http://localhost:3000/blog/ai-doesnt-have-to-be-soulless</guid>
+    <pubDate>Thu, 22 Aug 2024 00:00:00 GMT</pubDate>
+    <description>After 15 years architecting enterprise AI systems, I've discovered something profound: technology can amplify human creativity rather than replace it. Here's my story and what I've learned.</description>
+  </item>
+  <item>
+    <title>The Soul Frequency Framework: How to Find Your Authentic Creative Voice in the AI Age</title>
+    <link>http://localhost:3000/blog/soul-frequency-framework</link>
+    <guid>http://localhost:3000/blog/soul-frequency-framework</guid>
+    <pubDate>Tue, 20 Aug 2024 00:00:00 GMT</pubDate>
+    <description>Everyone has a unique creative frequency — a way of expressing that's authentically yours. Here's how to discover yours and use AI to amplify it, not mask it.</description>
+  </item>
+  <item>
+    <title>The Golden Age of Intelligence: A Modern, Practical Guide</title>
+    <link>http://localhost:3000/guides/modern-guide</link>
+    <guid>http://localhost:3000/guides/modern-guide</guid>
+    <pubDate>Fri, 12 Sep 2025 00:00:00 GMT</pubDate>
+    <description>Clarity, frameworks, and a 90-day plan to capture real value—without the hype</description>
+  </item>
+</channel>
+</rss>
