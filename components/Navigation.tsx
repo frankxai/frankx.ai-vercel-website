@@ -7,15 +7,23 @@ import { Menu, X, Sparkles, Moon, Sun } from 'lucide-react'
 import { useTheme } from 'next-themes'
 import { cn } from '@/lib/utils'
 
-const navItems = [
+type NavItem = {
+  name: string
+  href: string
+  isAnchor?: boolean
+}
+
+const navItems: NavItem[] = [
+  { name: 'Hub', href: '/' },
   { name: 'About', href: '/about' },
-  { name: 'Blog', href: '/blog' },
+  { name: 'Updates', href: '/#updates', isAnchor: true },
+  { name: 'Resources', href: '/#resources', isAnchor: true },
+  { name: 'Projects', href: '/#projects', isAnchor: true },
   { name: 'Guides', href: '/guides' },
-  { name: 'Search', href: '/search' },
+  { name: 'Blog', href: '/blog' },
   { name: 'Music Lab', href: '/music-lab' },
-  { name: 'Resources', href: '/resources' },
+  { name: 'Search', href: '/search' },
   { name: 'Assessment', href: '/soul-frequency-assessment' },
-  { name: 'Reading', href: '/reading/index.html' },
 ]
 
 export default function Navigation() {
@@ -33,7 +41,8 @@ export default function Navigation() {
     setIsOpen(false)
   }, [pathname])
 
-  const isActivePath = (href: string) => {
+  const isActivePath = (href: string, isAnchor?: boolean) => {
+    if (isAnchor) return false
     if (href === '/') return pathname === '/'
     return pathname.startsWith(href)
   }
@@ -89,11 +98,11 @@ export default function Navigation() {
                 href={item.href}
                 className={cn(
                   "px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500",
-                  isActivePath(item.href)
+                  isActivePath(item.href, item.isAnchor)
                     ? "text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-950/50"
                     : "text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-50 dark:hover:bg-white/5"
                 )}
-                aria-current={isActivePath(item.href) ? 'page' : undefined}
+                aria-current={isActivePath(item.href, item.isAnchor) ? 'page' : undefined}
               >
                 {item.name}
               </Link>
@@ -162,12 +171,12 @@ export default function Navigation() {
                 href={item.href}
                 className={cn(
                   "px-3 py-3 rounded-lg text-base font-medium transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500",
-                  isActivePath(item.href)
+                  isActivePath(item.href, item.isAnchor)
                     ? "text-primary-600 dark:text-primary-400 bg-primary-50 dark:bg-primary-950/50"
                     : "text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 hover:bg-gray-50 dark:hover:bg-white/5"
                 )}
                 onClick={() => setIsOpen(false)}
-                aria-current={isActivePath(item.href) ? 'page' : undefined}
+                aria-current={isActivePath(item.href, item.isAnchor) ? 'page' : undefined}
               >
                 {item.name}
               </Link>

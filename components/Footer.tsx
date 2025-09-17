@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Sparkles, Twitter, Youtube, Github } from 'lucide-react'
+import { Mail, Newspaper, Search, Sparkles } from 'lucide-react'
 
 export default function Footer() {
   return (
@@ -17,58 +17,58 @@ export default function Footer() {
               Bridging Technology & Soul for Conscious AI
             </p>
             <div className="flex space-x-4">
-              <a 
-                href="#" 
+              <Link
+                href="/blog"
                 className="text-gray-400 hover:text-white transition-colors"
-                aria-label="Twitter"
+                aria-label="Read the latest intelligence updates"
               >
-                <Twitter className="w-5 h-5" />
-              </a>
-              <a 
-                href="#" 
+                <Newspaper className="w-5 h-5" />
+              </Link>
+              <Link
+                href="/search"
                 className="text-gray-400 hover:text-white transition-colors"
-                aria-label="YouTube"
+                aria-label="Search the hub"
               >
-                <Youtube className="w-5 h-5" />
-              </a>
-              <a 
-                href="#" 
+                <Search className="w-5 h-5" />
+              </Link>
+              <a
+                href="mailto:hello@frankx.ai?subject=Conscious%20AI%20Collaboration"
                 className="text-gray-400 hover:text-white transition-colors"
-                aria-label="GitHub"
+                aria-label="Email FrankX"
               >
-                <Github className="w-5 h-5" />
+                <Mail className="w-5 h-5" />
               </a>
             </div>
           </div>
           
           <div>
-            <h3 className="font-semibold mb-4">Resources</h3>
+            <h3 className="font-semibold mb-4">Intelligence Hub</h3>
             <ul className="space-y-2 text-gray-400">
-              <li><Link href="/start" className="hover:text-white transition-colors">Start Here</Link></li>
-              <li><Link href="/guides" className="hover:text-white transition-colors">Guides</Link></li>
-              <li><Link href="/blog" className="hover:text-white transition-colors">Blog</Link></li>
-              <li><Link href="/resources" className="hover:text-white transition-colors">Resources</Link></li>
-              <li><Link href="/reading/index.html" className="hover:text-white transition-colors">Reading Index</Link></li>
+              <li><Link href="/#updates" className="hover:text-white transition-colors">Latest Updates</Link></li>
+              <li><Link href="/#resources" className="hover:text-white transition-colors">Resource Library</Link></li>
+              <li><Link href="/#projects" className="hover:text-white transition-colors">Project Roadmap</Link></li>
+              <li><Link href="/#agents" className="hover:text-white transition-colors">Agent Protocols</Link></li>
+              <li><Link href="/search" className="hover:text-white transition-colors">Semantic Search</Link></li>
               <li><Link href="/rss.xml" className="hover:text-white transition-colors">RSS Feed</Link></li>
             </ul>
           </div>
-          
+
           <div>
-            <h3 className="font-semibold mb-4">Connect</h3>
+            <h3 className="font-semibold mb-4">Programs & Guides</h3>
             <ul className="space-y-2 text-gray-400">
-              <li><Link href="/newsletter" className="hover:text-white transition-colors">Newsletter</Link></li>
-              <li><a href="#" className="hover:text-white transition-colors">LinkedIn</a></li>
-              <li><a href="#" className="hover:text-white transition-colors">Twitter</a></li>
-              <li><Link href="/contact" className="hover:text-white transition-colors">Contact</Link></li>
+              <li><Link href="/founder-playbook" className="hover:text-white transition-colors">Founder’s AI Playbook</Link></li>
+              <li><Link href="/family-guide" className="hover:text-white transition-colors">AI Basics for Families</Link></li>
+              <li><Link href="/music-lab" className="hover:text-white transition-colors">Music Lab</Link></li>
+              <li><Link href="/guides" className="hover:text-white transition-colors">Guides Collection</Link></li>
             </ul>
           </div>
-          
+
           <div>
-            <h3 className="font-semibold mb-4">Newsletter</h3>
-            <p className="text-gray-400 mb-4">Weekly insights on conscious AI</p>
+            <h3 className="font-semibold mb-4">Intelligence Dispatch</h3>
+            <p className="text-gray-400 mb-4">Weekly briefings on conscious AI systems, music rituals, and agent strategy.</p>
             <form className="flex gap-2" action="/api/newsletter" method="POST">
-              <input 
-                type="email" 
+              <input
+                type="email"
                 name="email"
                 placeholder="Your email"
                 className="flex-1 px-3 py-2 bg-gray-800 rounded text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500"
