@@ -4,13 +4,23 @@
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    color-scheme: dark;
+    --background: 222 47% 11%;
+    --foreground: 210 40% 96%;
+    --muted: 215 25% 25%;
+    --muted-foreground: 215 20% 80%;
+    --accent: 258 90% 66%;
+    --accent-foreground: 217 91% 12%;
+    --card: 222 50% 13%;
+    --card-foreground: 210 40% 96%;
+    --border: 222 45% 24%;
+    --input: 222 45% 26%;
+    --ring: 208 93% 58%;
   }
 
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
   }
 }
 
@@ -18,21 +28,21 @@
   .text-balance {
     text-wrap: balance;
   }
-  
+
   .gradient-text {
     background-image: linear-gradient(to right, #8b5cf6, #ec4899, #38bdf8);
     -webkit-background-clip: text;
     color: transparent;
   }
-  
+
   .gradient-bg {
-    background-image: linear-gradient(135deg, #8b5cf6, #a855f7, #ec4899);
+    background-image: linear-gradient(135deg, #161C2C, #1D1F3A, #2E1065);
   }
-  
+
   .glass-effect {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(18px);
+    border: 1px solid rgba(148, 163, 184, 0.18);
   }
 }
 
@@ -63,10 +73,10 @@
   width: auto;
   height: auto;
   padding: 0.75rem 1.5rem;
-  background-color: #8b5cf6;
+  background: linear-gradient(120deg, #7c3aed, #0ea5e9);
   color: #ffffff;
   border-radius: 0.5rem;
-  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.4);
+  box-shadow: 0 12px 40px rgba(14, 165, 233, 0.45);
   z-index: 9999;
   text-decoration: none;
 }

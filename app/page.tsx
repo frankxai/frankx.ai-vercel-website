@@ -1,11 +1,11 @@
-import type { Metadata } from 'next'
 import Script from 'next/script'
 
 import Footer from '@/components/Footer'
 import Navigation from '@/components/Navigation'
 import HomePage from '@/components/home/HomePage'
+import { createMetadata } from '@/lib/seo'
 
-export const metadata: Metadata = {
+export const metadata = createMetadata({
   title: 'FrankX Intelligence Hub | Conscious AI Voice & Resource Platform',
   description:
     'Explore the FrankX Intelligence Hub for conscious AI strategy, Suno-powered creativity, family education, and enterprise-ready systems.',
@@ -16,21 +16,10 @@ export const metadata: Metadata = {
     'ai for families',
     'ai architecture',
     'soul frequency',
-    'suno workflows'
+    'suno workflows',
   ],
-  alternates: {
-    canonical: 'https://frankx.ai/'
-  },
-  openGraph: {
-    title: 'FrankX Intelligence Hub',
-    description:
-      'Latest AI briefings, resources, and programs for creators, families, and executives building conscious intelligence systems.',
-    url: 'https://frankx.ai/',
-    siteName: 'FrankX',
-    locale: 'en_US',
-    type: 'website'
-  }
-}
+  path: '/',
+})
 
 const structuredData = {
   '@context': 'https://schema.org',
@@ -42,42 +31,47 @@ const structuredData = {
   founder: {
     '@type': 'Person',
     name: 'Frank',
-    jobTitle: 'Conscious AI Architect'
+    jobTitle: 'Conscious AI Architect',
   },
+  sameAs: [
+    'https://linkedin.com/in/frank',
+    'https://twitter.com/frankxai',
+    'https://www.youtube.com/@frankxai',
+  ],
   knowsAbout: [
     'conscious ai strategy',
     'ai governance rituals',
     'ai music workflows',
     'family ai education',
-    'ai agent orchestration'
+    'ai agent orchestration',
   ],
   hasPart: [
     {
       '@type': 'CreativeWork',
       name: 'Soul Frequency Assessment',
-      url: 'https://frankx.ai/soul-frequency-assessment'
+      url: 'https://frankx.ai/soul-frequency-assessment',
     },
     {
       '@type': 'CreativeWork',
       name: "Founder’s AI Playbook",
-      url: 'https://frankx.ai/founder-playbook'
+      url: 'https://frankx.ai/founder-playbook',
     },
     {
       '@type': 'CreativeWork',
       name: 'AI Basics for Families',
-      url: 'https://frankx.ai/family-guide'
+      url: 'https://frankx.ai/family-guide',
     },
     {
       '@type': 'CreativeWork',
       name: 'Music Lab',
-      url: 'https://frankx.ai/music-lab'
-    }
-  ]
+      url: 'https://frankx.ai/music-lab',
+    },
+  ],
 }
 
 export default function Page() {
   return (
-    <div className="min-h-screen flex flex-col bg-white dark:bg-slate-950 text-gray-900 dark:text-slate-50">
+    <div className="min-h-screen flex flex-col bg-slate-950 text-slate-100">
       <Navigation />
       <HomePage />
       <Footer />

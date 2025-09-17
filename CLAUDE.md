@@ -160,3 +160,8 @@ To activate specific agents in Claude Code:
 ---
 
 *This configuration embodies the future of human-AI collaboration through soul-aligned technology systems that serve consciousness evolution while achieving material prosperity.*
+
+## 🗓️ Daily Operating Ritual
+
+The agents collaborate through the [Daily Intelligence Operations](docs/DAILY_INTELLIGENCE_OPERATIONS.md) cadence. Review it to align sprints, SEO deliverables, and content releases before engaging the studio.
+

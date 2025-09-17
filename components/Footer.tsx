@@ -3,47 +3,55 @@ import { Mail, Newspaper, Search, Sparkles } from 'lucide-react'
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-900 text-white py-16">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid md:grid-cols-4 gap-8 mb-8">
+    <footer className="relative bg-slate-950 text-slate-200">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 bg-gradient-to-br from-primary-500/10 via-transparent to-sky-500/10"
+      />
+      <div className="relative max-w-7xl mx-auto px-6 py-16">
+        <div className="grid gap-12 lg:grid-cols-[1.4fr,1fr,1fr,1fr]">
           <div>
-            <div className="flex items-center space-x-2 mb-4">
-              <div className="w-8 h-8 bg-purple-600 rounded-lg flex items-center justify-center">
+            <div className="flex items-center space-x-3 mb-6">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-500 via-primary-600 to-sky-500 flex items-center justify-center shadow-[0_0_30px_rgba(124,58,237,0.45)]">
                 <Sparkles className="w-5 h-5 text-white" />
               </div>
-              <span className="text-xl font-bold">Frank</span>
+              <div>
+                <span className="block text-lg font-semibold text-white">FrankX Intelligence Hub</span>
+                <span className="block text-xs uppercase tracking-[0.3em] text-white/60">Conscious AI Architect</span>
+              </div>
             </div>
-            <p className="text-gray-400 mb-4">
-              Bridging Technology & Soul for Conscious AI
+            <p className="text-sm text-white/70 leading-relaxed max-w-md">
+              Architecting soulful intelligence systems that creatives, families, and executive teams trust. Every artifact here
+              is built with future-proofed AI strategy, conscious design, and musical imagination.
             </p>
-            <div className="flex space-x-4">
+            <div className="mt-6 flex space-x-4 text-slate-300">
               <Link
                 href="/blog"
-                className="text-gray-400 hover:text-white transition-colors"
+                className="rounded-lg border border-white/10 p-2 hover:bg-white/10 hover:text-white transition-colors"
                 aria-label="Read the latest intelligence updates"
               >
                 <Newspaper className="w-5 h-5" />
               </Link>
               <Link
                 href="/search"
-                className="text-gray-400 hover:text-white transition-colors"
+                className="rounded-lg border border-white/10 p-2 hover:bg-white/10 hover:text-white transition-colors"
                 aria-label="Search the hub"
               >
                 <Search className="w-5 h-5" />
               </Link>
               <a
                 href="mailto:hello@frankx.ai?subject=Conscious%20AI%20Collaboration"
-                className="text-gray-400 hover:text-white transition-colors"
+                className="rounded-lg border border-white/10 p-2 hover:bg-white/10 hover:text-white transition-colors"
                 aria-label="Email FrankX"
               >
                 <Mail className="w-5 h-5" />
               </a>
             </div>
           </div>
-          
+
           <div>
-            <h3 className="font-semibold mb-4">Intelligence Hub</h3>
-            <ul className="space-y-2 text-gray-400">
+            <h3 className="text-sm font-semibold uppercase tracking-widest text-white/70 mb-4">Intelligence Hub</h3>
+            <ul className="space-y-3 text-sm text-white/60">
               <li><Link href="/#updates" className="hover:text-white transition-colors">Latest Updates</Link></li>
               <li><Link href="/#resources" className="hover:text-white transition-colors">Resource Library</Link></li>
               <li><Link href="/#projects" className="hover:text-white transition-colors">Project Roadmap</Link></li>
@@ -54,8 +62,8 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="font-semibold mb-4">Programs & Guides</h3>
-            <ul className="space-y-2 text-gray-400">
+            <h3 className="text-sm font-semibold uppercase tracking-widest text-white/70 mb-4">Programs &amp; Guides</h3>
+            <ul className="space-y-3 text-sm text-white/60">
               <li><Link href="/founder-playbook" className="hover:text-white transition-colors">Founder’s AI Playbook</Link></li>
               <li><Link href="/family-guide" className="hover:text-white transition-colors">AI Basics for Families</Link></li>
               <li><Link href="/music-lab" className="hover:text-white transition-colors">Music Lab</Link></li>
@@ -64,29 +72,34 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="font-semibold mb-4">Intelligence Dispatch</h3>
-            <p className="text-gray-400 mb-4">Weekly briefings on conscious AI systems, music rituals, and agent strategy.</p>
+            <h3 className="text-sm font-semibold uppercase tracking-widest text-white/70 mb-4">Intelligence Dispatch</h3>
+            <p className="text-sm text-white/70 leading-relaxed mb-4">
+              Weekly briefings on conscious AI systems, musical rituals, and agent orchestration.
+            </p>
             <form className="flex gap-2" action="/api/newsletter" method="POST">
               <input
                 type="email"
                 name="email"
                 placeholder="Your email"
-                className="flex-1 px-3 py-2 bg-gray-800 rounded text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                className="flex-1 rounded-lg border border-white/10 bg-white/10 px-3 py-2 text-sm text-white placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-primary-500"
                 required
               />
               <input type="hidden" name="redirect" value="/thank-you" />
-              <button 
+              <button
                 type="submit"
-                className="px-4 py-2 bg-purple-600 rounded hover:bg-purple-700 transition-colors"
+                className="rounded-lg bg-gradient-to-r from-primary-500 via-primary-600 to-sky-500 px-4 py-2 text-sm font-semibold text-white shadow-[0_12px_35px_rgba(59,130,246,0.35)] hover:scale-[1.02] transition-transform"
               >
                 Subscribe
               </button>
             </form>
           </div>
         </div>
-        
-        <div className="border-t border-gray-800 pt-8 text-center text-gray-400">
-          <p>&copy; 2024 Frank. All rights reserved. Built with conscious AI collaboration.</p>
+
+        <div className="mt-16 rounded-3xl border border-white/10 bg-white/5 px-6 py-6 text-center text-sm text-white/70">
+          <p>
+            &copy; {new Date().getFullYear()} Frank. All rights reserved. Crafted with conscious AI collaboration and human-first
+            design.
+          </p>
         </div>
       </div>
     </footer>
