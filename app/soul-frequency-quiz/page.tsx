@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { Heart, Brain, Users, Lightbulb, ArrowRight, CheckCircle } from 'lucide-react'
 import Navigation from '@/components/Navigation'
@@ -346,13 +347,13 @@ export default function SoulFrequencyQuiz() {
                     >
                       Retake Quiz
                     </button>
-                    <a
+                    <Link
                       href="/blog/02-the-soul-frequency-framework"
                       className="inline-flex items-center px-6 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors"
                     >
                       Learn More About Your Type
                       <ArrowRight className="ml-2 w-4 h-4" />
-                    </a>
+                    </Link>
                   </div>
                 </div>
               )}

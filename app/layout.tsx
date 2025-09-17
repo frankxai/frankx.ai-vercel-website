@@ -6,9 +6,20 @@ import Script from 'next/script'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Frank - Conscious AI for Creators, Families & Professionals',
-  description: 'Transform from Tech-Overwhelmed to AI-Empowered. Learn to use AI as a tool for soul expression, not soul replacement.',
-  keywords: ['AI', 'Music Production', 'Suno', 'Conscious Creator', 'Soul-Aligned AI'],
+  title: {
+    default: 'FrankX Intelligence Hub',
+    template: '%s | FrankX'
+  },
+  description:
+    'FrankX equips creators, families, and executives with conscious AI strategy, Suno-powered creativity, and enterprise-ready systems.',
+  keywords: [
+    'conscious ai',
+    'ai strategy',
+    'soul frequency',
+    'ai music',
+    'ai governance',
+    'ai for families'
+  ],
   authors: [{ name: 'Frank' }],
   icons: {
     icon: '/favicon.svg',
@@ -20,13 +31,14 @@ export const metadata: Metadata = {
     }
   },
   openGraph: {
-    title: 'Frank - Conscious AI Systems',
-    description: 'Become a Conscious AI Creator',
-    url: 'https://frank.ai',
-    siteName: 'Frank',
+    title: 'FrankX Intelligence Hub',
+    description:
+      'Global AI voice sharing updates, resources, and programs for conscious intelligence.',
+    url: 'https://frankx.ai',
+    siteName: 'FrankX',
     locale: 'en_US',
-    type: 'website',
-  },
+    type: 'website'
+  }
 }
 
 export default function RootLayout({
