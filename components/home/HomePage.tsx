@@ -37,7 +37,7 @@ const TestimonialIcon = testimonialIcon
 
 export default function HomePage() {
   return (
-    <main id="main" className="flex-1 bg-white dark:bg-slate-950 text-gray-900 dark:text-slate-50 pt-32">
+    <main id="main" className="flex-1 bg-slate-950 text-slate-100 pt-32">
       {/* Hero Section */}
       <section id="hub" className="relative overflow-hidden pb-20">
         <div className="absolute inset-0 bg-gradient-to-br from-indigo-900 via-purple-900 to-slate-900 opacity-95" />
@@ -225,11 +225,11 @@ export default function HomePage() {
       </section>
 
       {/* Updates */}
-      <section id="updates" className="bg-white dark:bg-slate-950 py-24 px-6">
+      <section id="updates" className="bg-slate-950 py-24 px-6">
         <div className="max-w-7xl mx-auto">
           <motion.div className="max-w-3xl" {...fadeUp}>
-            <h2 className="text-4xl font-semibold text-gray-900 dark:text-white text-balance">Latest intelligence drops</h2>
-            <p className="mt-4 text-gray-600 dark:text-slate-300">
+            <h2 className="text-4xl font-semibold text-white text-balance">Latest intelligence drops</h2>
+            <p className="mt-4 text-white/70">
               Stay ahead with the newest essays, resources, and program milestones. Each update is
               designed to be actionable for you and the teams—or AI agents—you lead.
             </p>
@@ -238,20 +238,20 @@ export default function HomePage() {
             {updateEntries.map((entry) => (
               <motion.article
                 key={entry.href}
-                className="rounded-3xl border border-gray-200/60 dark:border-white/10 bg-gray-50/80 dark:bg-white/5 p-6 backdrop-blur"
+                className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur"
                 {...fadeUp}
                 transition={{ duration: 0.4 }}
               >
-                <div className="text-xs font-semibold uppercase tracking-widest text-primary-600 dark:text-sky-300">
+                <div className="text-xs font-semibold uppercase tracking-widest text-sky-300">
                   {entry.type}
                 </div>
-                <h3 className="mt-3 text-xl font-semibold text-gray-900 dark:text-white">
+                <h3 className="mt-3 text-xl font-semibold text-white">
                   <Link href={entry.href} className="hover:text-primary-600 dark:hover:text-sky-300 transition">
                     {entry.title}
                   </Link>
                 </h3>
-                <p className="mt-3 text-sm text-gray-600 dark:text-slate-300 leading-relaxed">{entry.summary}</p>
-                <div className="mt-6 flex items-center justify-between text-xs text-gray-500 dark:text-slate-400">
+                <p className="mt-3 text-sm text-white/70 leading-relaxed">{entry.summary}</p>
+                <div className="mt-6 flex items-center justify-between text-xs text-white/60">
                   <span>
                     {new Date(entry.date).toLocaleDateString('en-US', {
                       month: 'short',
@@ -315,13 +315,13 @@ export default function HomePage() {
       </section>
 
       {/* Keyword Clusters */}
-      <section id="search" className="bg-white dark:bg-slate-950 py-24 px-6">
+      <section id="search" className="bg-slate-950 py-24 px-6">
         <div className="max-w-7xl mx-auto">
           <motion.div className="max-w-3xl" {...fadeUp}>
-            <h2 className="text-4xl font-semibold text-gray-900 dark:text-white text-balance">
+            <h2 className="text-4xl font-semibold text-white text-balance">
               Built around the searches you and your agents run
             </h2>
-            <p className="mt-4 text-gray-600 dark:text-slate-300">
+            <p className="mt-4 text-white/70">
               These keyword constellations guide the site architecture, ensuring every query leads to
               depth, clarity, and an action you can take next.
             </p>
@@ -330,16 +330,16 @@ export default function HomePage() {
             {keywordClusters.map((cluster) => (
               <motion.article
                 key={cluster.cluster}
-                className="rounded-3xl border border-gray-200/60 dark:border-white/10 bg-gray-50/80 dark:bg-white/5 p-6"
+                className="rounded-3xl border border-white/10 bg-white/5 p-6"
                 {...fadeUp}
               >
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white">{cluster.cluster}</h3>
-                <p className="mt-2 text-sm text-gray-600 dark:text-slate-300 leading-relaxed">{cluster.intent}</p>
+                <h3 className="text-xl font-semibold text-white">{cluster.cluster}</h3>
+                <p className="mt-2 text-sm text-white/70 leading-relaxed">{cluster.intent}</p>
                 <div className="mt-4 text-xs text-primary-700 dark:text-sky-300 font-semibold uppercase tracking-widest">
                   Primary Keyword
                 </div>
-                <p className="text-sm text-gray-900 dark:text-white mt-1">{cluster.primaryKeyword}</p>
-                <div className="mt-4 text-xs uppercase tracking-widest text-gray-500 dark:text-slate-400">
+                <p className="text-sm text-white mt-1">{cluster.primaryKeyword}</p>
+                <div className="mt-4 text-xs uppercase tracking-widest text-white/60">
                   Supporting Signals
                 </div>
                 <div className="mt-2 flex flex-wrap gap-2">
@@ -411,13 +411,13 @@ export default function HomePage() {
       </section>
 
       {/* Agent Protocols */}
-      <section id="agents" className="bg-white dark:bg-slate-950 py-24 px-6">
+      <section id="agents" className="bg-slate-950 py-24 px-6">
         <div className="max-w-7xl mx-auto">
           <motion.div className="max-w-3xl" {...fadeUp}>
-            <h2 className="text-4xl font-semibold text-gray-900 dark:text-white text-balance">
+            <h2 className="text-4xl font-semibold text-white text-balance">
               Protocols that your AI agents can plug into today
             </h2>
-            <p className="mt-4 text-gray-600 dark:text-slate-300">
+            <p className="mt-4 text-white/70">
               Each protocol includes structures, prompts, and guardrails so human teams and automated
               agents stay in sync.
             </p>
@@ -426,7 +426,7 @@ export default function HomePage() {
             {agentProtocols.map((protocol) => (
               <motion.article
                 key={protocol.title}
-                className="rounded-3xl border border-gray-200/60 dark:border-white/10 bg-gray-50/80 dark:bg-white/5 p-6"
+                className="rounded-3xl border border-white/10 bg-white/5 p-6"
                 {...fadeUp}
               >
                 <div className="flex items-center gap-3">
@@ -434,16 +434,16 @@ export default function HomePage() {
                     <protocol.icon className="w-6 h-6" aria-hidden="true" />
                   </div>
                   <div>
-                    <h3 className="text-xl font-semibold text-gray-900 dark:text-white">{protocol.title}</h3>
-                    <p className="text-xs uppercase tracking-widest text-gray-500 dark:text-slate-400 mt-1">
+                    <h3 className="text-xl font-semibold text-white">{protocol.title}</h3>
+                    <p className="text-xs uppercase tracking-widest text-white/60 mt-1">
                       {protocol.focus}
                     </p>
                   </div>
                 </div>
-                <p className="mt-4 text-sm text-gray-600 dark:text-slate-300 leading-relaxed">{protocol.description}</p>
+                <p className="mt-4 text-sm text-white/70 leading-relaxed">{protocol.description}</p>
                 <ul className="mt-5 space-y-2 text-sm">
                   {protocol.bullets.map((bullet) => (
-                    <li key={bullet} className="flex items-start gap-2 text-gray-700 dark:text-slate-200">
+                    <li key={bullet} className="flex items-start gap-2 text-white/75">
                       <Check className="w-4 h-4 mt-0.5 text-primary-600 dark:text-sky-300" aria-hidden="true" />
                       <span>{bullet}</span>
                     </li>

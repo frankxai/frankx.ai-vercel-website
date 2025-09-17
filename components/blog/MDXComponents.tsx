@@ -3,31 +3,33 @@ import Link from 'next/link'
 import { ReactNode } from 'react'
 import { Lightbulb, AlertTriangle, Info, CheckCircle } from 'lucide-react'
 
+type CalloutKind = 'info' | 'warning' | 'tip' | 'success'
+
 interface CalloutProps {
   children: ReactNode
-  type?: 'info' | 'warning' | 'tip' | 'success'
+  type?: CalloutKind
+}
+
+const calloutStyles: Record<CalloutKind, string> = {
+  info: 'border-sky-400/40 bg-sky-400/10 text-sky-100',
+  warning: 'border-amber-400/40 bg-amber-400/10 text-amber-100',
+  tip: 'border-emerald-400/40 bg-emerald-400/10 text-emerald-100',
+  success: 'border-primary-400/40 bg-primary-500/10 text-primary-100',
+}
+
+const calloutIcons: Record<CalloutKind, JSX.Element> = {
+  info: <Info className="w-5 h-5" />,
+  warning: <AlertTriangle className="w-5 h-5" />,
+  tip: <Lightbulb className="w-5 h-5" />,
+  success: <CheckCircle className="w-5 h-5" />,
 }
 
 function Callout({ children, type = 'info' }: CalloutProps) {
-  const styles = {
-    info: 'bg-blue-50 border-blue-200 text-blue-800',
-    warning: 'bg-amber-50 border-amber-200 text-amber-800', 
-    tip: 'bg-green-50 border-green-200 text-green-800',
-    success: 'bg-emerald-50 border-emerald-200 text-emerald-800'
-  }
-
-  const icons = {
-    info: <Info className="w-5 h-5" />,
-    warning: <AlertTriangle className="w-5 h-5" />,
-    tip: <Lightbulb className="w-5 h-5" />,
-    success: <CheckCircle className="w-5 h-5" />
-  }
-
   return (
-    <div className={`p-4 rounded-lg border-l-4 ${styles[type]} my-6`}>
+    <div className={`my-8 rounded-2xl border px-5 py-4 backdrop-blur ${calloutStyles[type]}`}>
       <div className="flex items-start gap-3">
-        {icons[type]}
-        <div className="flex-1">{children}</div>
+        <span className="mt-0.5">{calloutIcons[type]}</span>
+        <div className="flex-1 text-sm leading-relaxed text-white/90">{children}</div>
       </div>
     </div>
   )
@@ -35,13 +37,13 @@ function Callout({ children, type = 'info' }: CalloutProps) {
 
 function CustomImage({ src, alt, ...props }: any) {
   return (
-    <div className="relative my-8 overflow-hidden rounded-xl">
+    <div className="relative my-10 overflow-hidden rounded-3xl border border-white/10">
       <Image
         src={src}
         alt={alt}
-        width={800}
-        height={400}
-        className="w-full h-auto"
+        width={1200}
+        height={630}
+        className="h-auto w-full"
         {...props}
       />
     </div>
@@ -49,97 +51,66 @@ function CustomImage({ src, alt, ...props }: any) {
 }
 
 export const mdxComponents = {
-  // Text elements
   h1: ({ children }: { children: ReactNode }) => (
-    <h1 className="text-4xl font-bold text-gray-900 mt-8 mb-6 pb-2 border-b border-gray-200">
-      {children}
-    </h1>
+    <h1 className="mt-10 mb-6 text-4xl font-semibold text-white">{children}</h1>
   ),
   h2: ({ children }: { children: ReactNode }) => (
-    <h2 className="text-3xl font-bold text-gray-900 mt-8 mb-4">
-      {children}
-    </h2>
+    <h2 className="mt-10 mb-4 text-3xl font-semibold text-white">{children}</h2>
   ),
   h3: ({ children }: { children: ReactNode }) => (
-    <h3 className="text-2xl font-semibold text-gray-800 mt-6 mb-3">
-      {children}
-    </h3>
+    <h3 className="mt-8 mb-3 text-2xl font-semibold text-white/90">{children}</h3>
   ),
   h4: ({ children }: { children: ReactNode }) => (
-    <h4 className="text-xl font-semibold text-gray-800 mt-4 mb-2">
-      {children}
-    </h4>
+    <h4 className="mt-6 mb-2 text-xl font-semibold text-white/80">{children}</h4>
   ),
   p: ({ children }: { children: ReactNode }) => (
-    <p className="text-lg leading-relaxed text-gray-700 mb-6">
-      {children}
-    </p>
+    <p className="mb-6 text-base leading-relaxed text-white/70">{children}</p>
   ),
-  
-  // Lists
   ul: ({ children }: { children: ReactNode }) => (
-    <ul className="list-disc list-inside text-lg text-gray-700 mb-6 space-y-2 ml-4">
-      {children}
-    </ul>
+    <ul className="mb-6 ml-5 list-disc space-y-2 text-white/75">{children}</ul>
   ),
   ol: ({ children }: { children: ReactNode }) => (
-    <ol className="list-decimal list-inside text-lg text-gray-700 mb-6 space-y-2 ml-4">
-      {children}
-    </ol>
+    <ol className="mb-6 ml-5 list-decimal space-y-2 text-white/75">{children}</ol>
   ),
   li: ({ children }: { children: ReactNode }) => (
-    <li className="text-gray-700">{children}</li>
+    <li className="text-white/75">{children}</li>
   ),
-  
-  // Links
   a: ({ href, children }: { href: string; children: ReactNode }) => (
-    <Link 
+    <Link
       href={href}
-      className="text-purple-600 hover:text-purple-700 underline font-medium transition-colors"
+      className="font-semibold text-primary-200 underline-offset-4 transition hover:text-primary-100 hover:underline"
     >
       {children}
     </Link>
   ),
-  
-  // Code
   code: ({ children }: { children: ReactNode }) => (
-    <code className="bg-gray-100 text-purple-600 px-2 py-1 rounded text-sm font-mono">
-      {children}
-    </code>
+    <code className="rounded-md bg-white/10 px-2 py-1 text-sm font-mono text-primary-100">{children}</code>
   ),
   pre: ({ children }: { children: ReactNode }) => (
-    <pre className="bg-gray-900 text-gray-100 p-6 rounded-xl overflow-x-auto my-6 text-sm">
+    <pre className="my-6 overflow-x-auto rounded-2xl border border-white/10 bg-slate-900/90 p-6 text-sm text-white/80">
       {children}
     </pre>
   ),
-  
-  // Blockquote
   blockquote: ({ children }: { children: ReactNode }) => (
-    <blockquote className="border-l-4 border-purple-500 pl-6 py-2 my-6 bg-purple-50 italic text-lg text-gray-800">
+    <blockquote className="my-8 border-l-4 border-primary-500/70 bg-primary-500/10 px-6 py-4 text-lg italic text-white/80">
       {children}
     </blockquote>
   ),
-  
-  // Table
   table: ({ children }: { children: ReactNode }) => (
-    <div className="overflow-x-auto my-6">
-      <table className="min-w-full border-collapse border border-gray-300">
+    <div className="my-8 overflow-x-auto rounded-2xl border border-white/10">
+      <table className="min-w-full border-collapse text-sm text-white/80">
         {children}
       </table>
     </div>
   ),
   th: ({ children }: { children: ReactNode }) => (
-    <th className="border border-gray-300 bg-gray-50 px-4 py-2 text-left font-semibold">
+    <th className="border border-white/10 bg-white/10 px-4 py-3 text-left text-xs font-semibold uppercase tracking-widest text-white/70">
       {children}
     </th>
   ),
   td: ({ children }: { children: ReactNode }) => (
-    <td className="border border-gray-300 px-4 py-2">
-      {children}
-    </td>
+    <td className="border border-white/10 px-4 py-3 text-white/70">{children}</td>
   ),
-  
-  // Custom components
   Image: CustomImage,
   Callout,
 }
