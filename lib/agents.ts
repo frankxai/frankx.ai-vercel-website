@@ -24,11 +24,11 @@ export const claudeAgents: ClaudeAgent[] = [
       'Scenario mapping that converts leadership goals into prioritized agent roadmaps.',
     ],
     deliverables: [
-      'Conscious AI blueprint with integration layers and escalation rituals.',
+      'Creative AI blueprint with integration layers and escalation rituals.',
       'Executive-ready governance dashboards and KPI scorecards.',
       'Implementation backlog with 30-60-90 day experiments.',
     ],
-    cta: { label: 'Review the Conscious AI Blueprint', href: '/founder-playbook' },
+    cta: { label: 'Review the Creative AI Blueprint', href: '/founder-playbook' },
   },
   {
     id: 'creation-engine',

@@ -45,7 +45,7 @@ const featuredSongs = [
   },
   {
     id: 432,
-    title: "Consciousness Rising",
+    title: "Vibe Rising",
     description: "Tuned to 432Hz healing frequency. A sonic journey representing the evolution from ego resistance to flow state.",
     genre: "Transformational",
     duration: "8:44",
@@ -152,7 +152,7 @@ export default function MusicLabPage() {
               </div>
               <div className="text-center">
                 <div className="text-4xl font-bold text-blue-400 mb-2">∞</div>
-                <div className="text-gray-400">Consciousness Shifts</div>
+                <div className="text-gray-400">Vibe Shifts</div>
               </div>
             </div>
           </motion.div>
@@ -262,7 +262,7 @@ export default function MusicLabPage() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl font-bold mb-4">The Process: How Consciousness Music Is Made</h2>
+            <h2 className="text-4xl font-bold mb-4">The Process: How Vibe Music Is Made</h2>
             <p className="text-xl text-gray-400">My framework for creating music that transforms consciousness</p>
           </motion.div>
           
@@ -294,7 +294,7 @@ export default function MusicLabPage() {
               },
               {
                 step: "5",
-                title: "Consciousness Testing",
+                title: "Vibe Testing",
                 description: "I listen with my whole being, not just my ears. Does it create the intended shift? I iterate until it feels aligned.",
                 color: "from-pink-500 to-purple-500"
               }
@@ -329,7 +329,7 @@ export default function MusicLabPage() {
             transition={{ duration: 0.5 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl font-bold mb-4">Create Your Own Consciousness Music</h2>
+            <h2 className="text-4xl font-bold mb-4">Create Your Own Vibe Music</h2>
             <p className="text-xl text-gray-300 mb-8">
               You don't need musical training to create songs that transform consciousness. 
               Learn the process I've developed through 500+ songs.
@@ -343,7 +343,7 @@ export default function MusicLabPage() {
               </div>
               <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6">
                 <Heart className="w-10 h-10 mx-auto mb-4 text-pink-400" />
-                <h3 className="font-bold mb-2">Consciousness-First Approach</h3>
+                <h3 className="font-bold mb-2">Vibe-First Approach</h3>
                 <p className="text-sm text-gray-300">Learn to create music that facilitates genuine transformation</p>
               </div>
               <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6">

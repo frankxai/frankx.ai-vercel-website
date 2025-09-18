@@ -67,11 +67,14 @@ export default function Navigation() {
                 href={item.href}
                 className={cn(
                   'px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500',
+                  'focus:ring-2 focus:ring-primary-500/70 focus:ring-offset-2 focus:ring-offset-slate-900', // Enhanced focus for accessibility
+                  'min-h-[44px] flex items-center', // Ensure adequate touch target size
                   isActivePath(item.href, item.isAnchor)
                     ? 'bg-white/10 text-white shadow-[0_10px_40px_rgba(59,130,246,0.25)]'
                     : 'text-slate-300 hover:text-white hover:bg-white/10'
                 )}
                 aria-current={isActivePath(item.href, item.isAnchor) ? 'page' : undefined}
+                aria-label={`Navigate to ${item.name} ${item.isAnchor ? 'section' : 'page'}`}
               >
                 {item.name}
               </Link>
@@ -79,7 +82,15 @@ export default function Navigation() {
 
             <Link
               href="/soul-frequency-quiz"
-              className={cn('px-5 py-2.5 rounded-xl text-sm font-semibold text-white shadow-[0_20px_40px_rgba(12,27,68,0.35)] transition-transform hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white/70', gradientPresets.buttonAurora)}
+              className={cn(
+                'px-5 py-2.5 rounded-xl text-sm font-semibold text-white shadow-[0_20px_40px_rgba(12,27,68,0.35)]',
+                'min-h-[44px] flex items-center', // Better touch targets
+                'transition-transform hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white/70',
+                'focus:ring-2 focus:ring-white/70 focus:ring-offset-2 focus:ring-offset-slate-900', // Enhanced focus
+                'active:scale-[0.96]', // Touch feedback
+                gradientPresets.buttonAurora
+              )}
+              aria-label="Take the free Soul Frequency Quiz"
             >
               Free Quiz
             </Link>
@@ -88,12 +99,13 @@ export default function Navigation() {
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsOpen((prev) => !prev)}
-              className="inline-flex items-center justify-center rounded-lg p-2 text-slate-200 hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+              className="inline-flex items-center justify-center rounded-lg p-3 text-slate-200 hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 min-h-[48px] min-w-[48px]"
               aria-label={`${isOpen ? 'Close' : 'Open'} navigation menu`}
               aria-expanded={isOpen}
               aria-controls="mobile-menu"
+              type="button"
             >
-              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {isOpen ? <X className="w-6 h-6" aria-hidden="true" /> : <Menu className="w-6 h-6" aria-hidden="true" />}
             </button>
           </div>
         </div>
@@ -112,13 +124,17 @@ export default function Navigation() {
                 key={item.name}
                 href={item.href}
                 className={cn(
-                  'px-3 py-3 rounded-xl text-base font-medium transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500',
+                  'px-3 py-4 rounded-xl text-base font-medium transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500',
+                  'focus:ring-2 focus:ring-primary-500/70 focus:ring-offset-2 focus:ring-offset-slate-900', // Enhanced focus
+                  'min-h-[52px] flex items-center', // Better touch targets for mobile
+                  'active:bg-white/20 active:scale-[0.98]', // Touch feedback
                   isActivePath(item.href, item.isAnchor)
                     ? 'bg-white/15 text-white'
                     : 'text-slate-200 hover:text-white hover:bg-white/10'
                 )}
                 onClick={() => setIsOpen(false)}
                 aria-current={isActivePath(item.href, item.isAnchor) ? 'page' : undefined}
+                aria-label={`Navigate to ${item.name} ${item.isAnchor ? 'section' : 'page'}`}
               >
                 {item.name}
               </Link>
@@ -126,8 +142,15 @@ export default function Navigation() {
 
             <Link
               href="/soul-frequency-quiz"
-              className={cn('mt-2 px-6 py-3 rounded-xl text-sm font-semibold text-white shadow-[0_12px_30px_rgba(12,27,68,0.25)]', gradientPresets.buttonAurora)}
+              className={cn(
+                'mt-2 px-6 py-4 rounded-xl text-sm font-semibold text-white shadow-[0_12px_30px_rgba(12,27,68,0.25)]',
+                'min-h-[52px] flex items-center justify-center', // Better touch targets
+                'focus:outline-none focus:ring-2 focus:ring-white/70 focus:ring-offset-2 focus:ring-offset-slate-900',
+                'active:scale-[0.96] transition-transform', // Touch feedback
+                gradientPresets.buttonAurora
+              )}
               onClick={() => setIsOpen(false)}
+              aria-label="Take the free Soul Frequency Quiz"
             >
               Free Quiz
             </Link>

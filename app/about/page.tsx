@@ -25,7 +25,7 @@ const milestones = [
 
 const operatingPillars = [
   {
-    title: 'Conscious Intelligence',
+    title: 'Creative Intelligence',
     description: 'AI should amplify human agency. Every workflow begins with ethics, clarity, and measurable human outcomes.',
   },
   {
@@ -39,7 +39,7 @@ const operatingPillars = [
 ]
 
 export const metadata = createMetadata({
-  title: 'About FrankX – Conscious AI Architect & Creator',
+  title: 'About FrankX – Creative AI Architect & Creator',
   description:
     'Discover the FrankX story, the multi-agent studio behind the Intelligence Hub, and the principles guiding conscious AI design.',
   keywords: ['frankx', 'conscious ai architect', 'oracle ai leader', 'soul frequency methodology'],

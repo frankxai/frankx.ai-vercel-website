@@ -133,7 +133,7 @@ const frequencyTypes: Record<FrequencyId, FrequencyProfile> = {
         description: 'Co-create a sonic or meditation ritual that reinforces your transformation arc.',
       },
       {
-        label: 'Download the Conscious Storytelling Kit',
+        label: 'Download the Creative Storytelling Kit',
         href: '/resources',
         description: 'Frameworks and prompts for turning lived experience into premium assets.',
       },

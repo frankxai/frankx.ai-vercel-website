@@ -6,13 +6,13 @@ import HomePage from '@/components/home/HomePage'
 import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
-  title: 'FrankX Intelligence Hub | Conscious AI Voice & Resource Platform',
+  title: 'FrankX Intelligence Hub | Creative AI Voice & Resource Platform',
   description:
-    'Explore the FrankX Intelligence Hub for conscious AI strategy, Suno-powered creativity, family education, and enterprise-ready systems.',
+    'Explore the FrankX Intelligence Hub for creative AI strategy, Suno-powered experiences, family education, and enterprise-ready systems.',
   keywords: [
-    'conscious ai',
-    'ai strategy',
-    'ai for creators',
+    'creative ai',
+    'creative ai strategy',
+    'creative workflows',
     'ai for families',
     'ai architecture',
     'soul frequency',
@@ -27,11 +27,11 @@ const structuredData = {
   name: 'FrankX',
   url: 'https://frankx.ai',
   description:
-    'FrankX is the global AI voice guiding creators, families, and executives with conscious intelligence systems, music innovation, and community rituals.',
+    'FrankX is the global AI voice guiding creators, families, and executives with creative intelligence systems, music innovation, and community rituals.',
   founder: {
     '@type': 'Person',
     name: 'Frank',
-    jobTitle: 'Conscious AI Architect',
+    jobTitle: 'Creative AI Architect',
   },
   sameAs: [
     'https://linkedin.com/in/frank',
@@ -39,11 +39,11 @@ const structuredData = {
     'https://www.youtube.com/@frankxai',
   ],
   knowsAbout: [
-    'conscious ai strategy',
-    'ai governance rituals',
-    'ai music workflows',
-    'family ai education',
-    'ai agent orchestration',
+    'creative ai systems',
+    'creative ai governance',
+    'creative music workflows',
+    'family creative ai education',
+    'agentic creation workflows',
   ],
   hasPart: [
     {
@@ -53,7 +53,7 @@ const structuredData = {
     },
     {
       '@type': 'CreativeWork',
-      name: "Founder’s AI Playbook",
+      name: "Founder's AI Playbook",
       url: 'https://frankx.ai/founder-playbook',
     },
     {

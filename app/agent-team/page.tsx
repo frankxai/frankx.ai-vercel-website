@@ -8,14 +8,14 @@ import { createMetadata, siteConfig } from '@/lib/seo'
 import { ArrowRight, ArrowUpRight, CalendarDays, Check, Sparkles } from 'lucide-react'
 
 export const metadata = createMetadata({
-  title: 'Agent Team – Claude Partners Orchestrating Conscious AI Systems',
+  title: 'Agent Team - Claude Partners Orchestrating Creative AI Systems',
   description:
-    'Meet the Claude partners powering FrankX engagements. Explore the workflows, deliverables, and engagement tiers that bring conscious AI systems to life.',
+    'Meet the Claude partners powering FrankX engagements. Explore the workflows, deliverables, and engagement tiers that bring creative AI systems to life.',
   keywords: [
     'frankx agent team',
     'claude agents',
-    'conscious ai consulting',
-    'ai strategy workshop',
+    'creative ai consulting',
+    'creative ai strategy',
     'ai retainer services',
   ],
   path: '/agent-team',
@@ -35,7 +35,7 @@ const offerPillars = [
   {
     title: 'Evidence of Progress',
     description:
-      'Scorecards, briefs, and artifacts make it simple to prove the value of conscious intelligence to stakeholders.',
+      'Scorecards, briefs, and artifacts make it simple to prove the value of creative intelligence to stakeholders.',
   },
 ]
 
@@ -179,7 +179,7 @@ export default function AgentTeamPage() {
                   Claude Agent Collective
                 </span>
                 <h1 className="text-4xl font-semibold leading-tight text-white md:text-6xl">
-                  Claude partners orchestrating conscious intelligence for your ecosystem
+                  Claude partners orchestrating creative intelligence for your ecosystem
                 </h1>
                 <p className="text-lg text-white/80 leading-relaxed">
                   Four specialized Claude agents collaborate with FrankX to architect, launch, and steward the systems your teams,
@@ -472,7 +472,7 @@ export default function AgentTeamPage() {
                 <ArrowRight className="ml-2 h-4 w-4" aria-hidden />
               </Link>
               <Link
-                href="mailto:hello@frankx.ai?subject=Conscious%20AI%20Engagement"
+                href="mailto:hello@frankx.ai?subject=Creative%20AI%20Engagement"
                 className="inline-flex items-center justify-center rounded-xl border border-white/30 px-6 py-3 text-sm font-semibold text-white/90 transition hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white"
               >
                 Email the studio

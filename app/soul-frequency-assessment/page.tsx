@@ -11,7 +11,7 @@ export const metadata = {
 const pillars = [
   {
     icon: Brain,
-    title: 'Conscious Strategy',
+    title: 'Creative Strategy',
     description: 'Clarify the outcomes you are here to create and the intelligence leverage each offer requires.'
   },
   {

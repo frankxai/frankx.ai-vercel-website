@@ -22,6 +22,18 @@ import {
   updateEntries
 } from '@/lib/hub'
 import { gradientPresets, glassCardClasses } from '@/lib/design/gradients'
+import {
+  ParallaxContainer,
+  StaggerContainer,
+  StaggerItem,
+  FloatingElement,
+  MagneticHover,
+  MorphingBackground,
+  RevealAnimation,
+  TypewriterText,
+  GlowPulse,
+  ScrollProgress
+} from '@/components/ui/AdvancedAnimations'
 
 const fadeUp = {
   initial: { opacity: 0, y: 24 },
@@ -40,26 +52,28 @@ const TestimonialIcon = testimonialIcon
 export default function HomePage() {
   return (
     <main id="main" className="flex-1 bg-midnight-950 text-white pt-32">
+      <ScrollProgress />
       {/* Hero Section */}
       <section id="hub" className="relative overflow-hidden pb-24">
+        <MorphingBackground />
         <div className={clsx('absolute inset-0', gradientPresets.heroBase)} />
         <div className={clsx('absolute inset-0 opacity-70 blur-3xl', gradientPresets.heroAurora)} />
         <div className={clsx('absolute inset-0 opacity-60', gradientPresets.heroPulse)} />
         <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-white/10 via-transparent to-transparent opacity-40" aria-hidden />
-        <div className="relative mx-auto max-w-6xl px-6">
-          <motion.div
-            className="grid gap-14 lg:grid-cols-[1fr,0.85fr]"
-            initial="initial"
-            animate="whileInView"
-            viewport={{ once: true }}
-          >
-            <motion.div variants={fadeUp} className="max-w-2xl space-y-8 text-white">
+        <ParallaxContainer offset={30}>
+          <div className="relative mx-auto max-w-6xl px-6">
+            <StaggerContainer staggerDelay={0.15}>
+              <div className="grid gap-14 lg:grid-cols-[1fr,0.85fr]">
+                <StaggerItem className="max-w-2xl space-y-8 text-white">
               <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.4em]">
                 <Sparkles className="h-4 w-4" aria-hidden="true" />
-                Conscious AI Architect
+                Creative AI Studio
               </span>
               <h1 className="text-4xl font-semibold leading-tight text-balance md:text-6xl">
-                Calm intelligence systems for creators, families, and executive circles
+                <TypewriterText
+                  text="Calm intelligence systems for creators, families, and executive circles"
+                  delay={0.8}
+                />
               </h1>
               <div className="space-y-4 text-base text-white/85 md:text-lg">
                 {heroSubtext.map((line) => (
@@ -69,23 +83,29 @@ export default function HomePage() {
                 ))}
               </div>
               <div className="flex flex-col gap-4 pt-2 sm:flex-row sm:flex-wrap">
-                <Link
-                  href={heroCta.primary.href}
-                  className={clsx(
-                    'inline-flex items-center justify-center rounded-xl px-8 py-4 font-semibold text-white shadow-glass transition-transform hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white/80',
-                    gradientPresets.buttonAurora
-                  )}
-                >
-                  {heroCta.primary.label}
-                  <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
-                </Link>
-                <Link
-                  href={heroCta.secondary.href}
-                  className="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/10 px-8 py-4 text-white/85 transition hover:bg-white/15 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white/60"
-                >
-                  {heroCta.secondary.label}
-                  <ArrowUpRight className="ml-2 h-5 w-5" aria-hidden="true" />
-                </Link>
+                <MagneticHover intensity={0.4}>
+                  <GlowPulse color="purple">
+                    <Link
+                      href={heroCta.primary.href}
+                      className={clsx(
+                        'inline-flex items-center justify-center rounded-xl px-8 py-4 font-semibold text-white shadow-glass transition-transform hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white/80',
+                        gradientPresets.buttonAurora
+                      )}
+                    >
+                      {heroCta.primary.label}
+                      <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
+                    </Link>
+                  </GlowPulse>
+                </MagneticHover>
+                <MagneticHover intensity={0.3}>
+                  <Link
+                    href={heroCta.secondary.href}
+                    className="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/10 px-8 py-4 text-white/85 transition hover:bg-white/15 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white/60"
+                  >
+                    {heroCta.secondary.label}
+                    <ArrowUpRight className="ml-2 h-5 w-5" aria-hidden="true" />
+                  </Link>
+                </MagneticHover>
                 {heroCta.tertiary ? (
                   <Link
                     href={heroCta.tertiary.href}
@@ -103,67 +123,78 @@ export default function HomePage() {
                   <ArrowUpRight className="h-4 w-4" aria-hidden="true" />
                 </Link>
               </div>
-              <div className="grid gap-4 pt-6 sm:grid-cols-3">
-                {heroStats.map((stat) => (
-                  <div key={stat.label} className={clsx(glassCardClasses, 'rounded-2xl p-5 text-sm shadow-glass')}>
-                    <div className="text-3xl font-semibold text-white">{stat.value}</div>
-                    <div className="mt-2 text-xs uppercase tracking-[0.35em] text-white/60">{stat.label}</div>
-                    <p className="mt-3 leading-relaxed text-white/70">{stat.detail}</p>
-                  </div>
-                ))}
-              </div>
-            </motion.div>
-
-            <motion.aside
-              variants={fadeUp}
-              transition={{ delay: 0.1 }}
-              className={clsx(glassCardClasses, 'relative overflow-hidden rounded-4xl p-8 text-white/80 shadow-glass')}
-            >
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/15 via-transparent to-transparent opacity-60" aria-hidden />
-              <div className="relative space-y-8">
-                <div>
-                  <h2 className="text-2xl font-semibold text-white">Start with clarity</h2>
-                  <p className="mt-3 text-sm leading-relaxed text-white/70">
-                    Every visit surfaces the newest rituals, roadmaps, and intelligence drops curated for the way you lead.
-                  </p>
-                </div>
-                <div className="grid gap-3">
-                  {quickActions.map((action) => (
-                    <Link
-                      key={action.title}
-                      href={action.href}
-                      className="group flex items-start gap-3 rounded-2xl border border-white/15 bg-white/5 px-4 py-4 transition hover:border-white/30 hover:bg-white/10"
+                </StaggerItem>
+                <StaggerItem>
+                <div className="grid gap-4 pt-6 sm:grid-cols-3">
+                  {heroStats.map((stat, index) => (
+                    <FloatingElement
+                      key={stat.label}
+                      duration={6 + index * 0.5}
+                      offset={8 + index * 2}
                     >
-                      <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/10 text-white/80">
-                        <action.icon className="h-4 w-4" aria-hidden="true" />
+                      <div className={clsx(glassCardClasses, 'rounded-2xl p-5 text-sm shadow-glass')}>
+                        <div className="text-3xl font-semibold text-white">{stat.value}</div>
+                        <div className="mt-2 text-xs uppercase tracking-[0.35em] text-white/60">{stat.label}</div>
+                        <p className="mt-3 leading-relaxed text-white/70">{stat.detail}</p>
                       </div>
-                      <div>
-                        <div className="flex items-center gap-1 text-sm font-semibold text-white">
-                          {action.title}
-                          <ArrowUpRight className="h-4 w-4 opacity-0 transition-opacity group-hover:opacity-100" aria-hidden="true" />
-                        </div>
-                        <p className="mt-1 text-xs text-white/70">{action.description}</p>
-                      </div>
-                    </Link>
+                    </FloatingElement>
                   ))}
                 </div>
-                <div className="space-y-4 border-t border-white/10 pt-6">
-                  {heroHighlights.map((highlight) => (
-                    <div key={highlight.title} className="flex items-start gap-3">
-                      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-white/80">
-                        <highlight.icon className="h-5 w-5" aria-hidden="true" />
-                      </div>
+              </StaggerItem>
+
+                <StaggerItem>
+                  <aside className={clsx(glassCardClasses, 'relative overflow-hidden rounded-4xl p-8 text-white/80 shadow-glass')}>
+                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/15 via-transparent to-transparent opacity-60" aria-hidden />
+                    <div className="relative space-y-8">
                       <div>
-                        <h3 className="text-sm font-semibold text-white">{highlight.title}</h3>
-                        <p className="mt-1 text-xs leading-relaxed text-white/70">{highlight.description}</p>
+                        <h2 className="text-2xl font-semibold text-white">Start with clarity</h2>
+                        <p className="mt-3 text-sm leading-relaxed text-white/70">
+                          Every visit surfaces the newest rituals, roadmaps, and intelligence drops curated for the way you lead.
+                        </p>
+                      </div>
+                      <div className="grid gap-3">
+                        {quickActions.map((action) => (
+                          <MagneticHover key={action.title} intensity={0.2}>
+                            <Link
+                              href={action.href}
+                              className="group flex items-start gap-3 rounded-2xl border border-white/15 bg-white/5 px-4 py-4 transition hover:border-white/30 hover:bg-white/10"
+                            >
+                              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/10 text-white/80">
+                                <action.icon className="h-4 w-4" aria-hidden="true" />
+                              </div>
+                              <div>
+                                <div className="flex items-center gap-1 text-sm font-semibold text-white">
+                                  {action.title}
+                                  <ArrowUpRight className="h-4 w-4 opacity-0 transition-opacity group-hover:opacity-100" aria-hidden="true" />
+                                </div>
+                                <p className="mt-1 text-xs text-white/70">{action.description}</p>
+                              </div>
+                            </Link>
+                          </MagneticHover>
+                        ))}
+                      </div>
+                      <div className="space-y-4 border-t border-white/10 pt-6">
+                        {heroHighlights.map((highlight) => (
+                          <RevealAnimation key={highlight.title} direction="left">
+                            <div className="flex items-start gap-3">
+                              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-white/80">
+                                <highlight.icon className="h-5 w-5" aria-hidden="true" />
+                              </div>
+                              <div>
+                                <h3 className="text-sm font-semibold text-white">{highlight.title}</h3>
+                                <p className="mt-1 text-xs leading-relaxed text-white/70">{highlight.description}</p>
+                              </div>
+                            </div>
+                          </RevealAnimation>
+                        ))}
                       </div>
                     </div>
-                  ))}
-                </div>
+                  </aside>
+                </StaggerItem>
               </div>
-            </motion.aside>
-          </motion.div>
-        </div>
+            </StaggerContainer>
+          </div>
+        </ParallaxContainer>
       </section>      {/* Segment Profiles */}
       <section id="segments" className="bg-midnight-950 py-24 px-6">
         <div className="max-w-7xl mx-auto text-white">
@@ -518,7 +549,7 @@ export default function HomePage() {
               <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
             </Link>
             <Link
-              href="mailto:hello@frankx.ai?subject=Conscious%20AI%20Collaboration"
+              href="mailto:hello@frankx.ai?subject=Creative%20AI%20Collaboration"
               className="inline-flex items-center justify-center rounded-xl border border-white/30 px-8 py-4 text-sm font-semibold text-white/85 transition hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white/30"
             >
               Request a strategy session

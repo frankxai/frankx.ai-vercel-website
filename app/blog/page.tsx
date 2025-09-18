@@ -24,7 +24,7 @@ const editorialCadence = [
 
 const seoSpotlights = [
   {
-    title: 'Conscious AI Strategy',
+    title: 'Creative AI Strategy',
     description: 'How to architect soul-aligned intelligence in the enterprise without losing velocity or trust.',
   },
   {
@@ -38,7 +38,7 @@ const seoSpotlights = [
 ]
 
 export const metadata = createMetadata({
-  title: 'FrankX Journal – Conscious AI & Creative Intelligence',
+  title: 'FrankX Journal – Creative AI & Intelligence Drops',
   description:
     'Explore the FrankX Journal for long-form insights on conscious AI architecture, Suno-powered creativity, and intelligence rituals for families, founders, and executives.',
   keywords: [

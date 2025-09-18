@@ -17,12 +17,12 @@ export default function Footer() {
               </div>
               <div>
                 <span className="block text-lg font-semibold text-white">FrankX Intelligence Hub</span>
-                <span className="block text-xs uppercase tracking-[0.3em] text-white/60">Conscious AI Architect</span>
+                <span className="block text-xs uppercase tracking-[0.3em] text-white/60">Creative AI Studio</span>
               </div>
             </div>
             <p className="text-sm text-white/70 leading-relaxed max-w-md">
-              Architecting soulful intelligence systems that creatives, families, and executive teams trust. Every artifact here
-              is built with future-proofed AI strategy, conscious design, and musical imagination.
+              Architecting avant-garde intelligence systems that creatives, families, and executive teams trust. Every artifact here
+              is built with future-proofed AI strategy, creative design, and musical imagination.
             </p>
             <div className="mt-6 flex space-x-4 text-slate-300">
               <Link
@@ -40,7 +40,7 @@ export default function Footer() {
                 <Search className="w-5 h-5" />
               </Link>
               <a
-                href="mailto:hello@frankx.ai?subject=Conscious%20AI%20Collaboration"
+                href="mailto:hello@frankx.ai?subject=Creative%20AI%20Collaboration"
                 className="rounded-lg border border-white/10 p-2 hover:bg-white/10 hover:text-white transition-colors"
                 aria-label="Email FrankX"
               >

@@ -210,7 +210,7 @@ export const segmentProfiles: SegmentProfile[] = [
     keywords: ['enterprise ai strategy', 'oracle ai architect', 'ai governance playbook'],
     ctas: [
       { label: "Founder's AI Playbook", href: '/founder-playbook' },
-      { label: 'Book a Strategy Intensive', href: 'mailto:hello@frankx.ai?subject=Conscious%20AI%20Strategy' }
+      { label: 'Book a Strategy Intensive', href: 'mailto:hello@frankx.ai?subject=Creative%20AI%20Strategy' }
     ]
   },
   {
@@ -348,7 +348,7 @@ export const projectMilestones: ProjectMilestone[] = [
 
 export const keywordClusters: KeywordCluster[] = [
   {
-    cluster: 'Conscious AI Strategy',
+    cluster: 'Creative AI Strategy',
     primaryKeyword: 'conscious ai strategy',
     intent: 'Leaders seeking a holistic operating system for AI.',
     supportingKeywords: ['ai operating system', 'enterprise ai architecture', 'ai governance rituals'],
@@ -452,8 +452,8 @@ export const testimonials = [
 export const testimonialIcon = CheckCircle2
 
 export const heroSubtext = [
-  'FrankX is the conscious AI architect who designs calm intelligence systems for families, creators, and executive circles.',
-  'Each experience merges enterprise discipline, soulful creativity, and community rituals so progress feels grounded and human.'
+  'FrankX is the creative AI architect orchestrating calm intelligence systems for families, creators, and executive circles.',
+  'Each experience merges enterprise discipline, experimental creativity, and community rituals so progress feels grounded and human.'
 ]
 
 export const heroCta = {
@@ -463,6 +463,6 @@ export const heroCta = {
 }
 
 export const heroSupportLink = {
-  label: 'Explore the Conscious AI Playbook',
+  label: 'Explore the Creative AI Playbook',
   href: '/guides'
 }
