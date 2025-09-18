@@ -71,7 +71,7 @@ export default function HomePage() {
                   </p>
                 ))}
               </div>
-              <div className="flex flex-col sm:flex-row gap-4 pt-2">
+              <div className="flex flex-col gap-4 pt-2 sm:flex-row sm:flex-wrap">
                 <Link
                   href={heroCta.primary.href}
                   className="inline-flex items-center justify-center px-8 py-4 rounded-xl bg-white text-slate-900 font-semibold shadow-lg shadow-primary-900/20 hover:bg-slate-100 transition-transform hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-slate-100"
@@ -86,6 +86,15 @@ export default function HomePage() {
                   {heroCta.secondary.label}
                   <ArrowUpRight className="w-5 h-5 ml-2" aria-hidden="true" />
                 </Link>
+                {heroCta.tertiary ? (
+                  <Link
+                    href={heroCta.tertiary.href}
+                    className="inline-flex items-center justify-center px-8 py-4 rounded-xl border border-white/20 text-white/80 hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white"
+                  >
+                    {heroCta.tertiary.label}
+                    <ArrowUpRight className="w-5 h-5 ml-2" aria-hidden="true" />
+                  </Link>
+                ) : null}
               </div>
               <div className="text-sm text-white/70">
                 <span className="font-semibold">Need a quick overview?</span>{' '}

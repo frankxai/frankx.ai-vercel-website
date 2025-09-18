@@ -457,8 +457,9 @@ export const heroSubtext = [
 ]
 
 export const heroCta = {
-  primary: { label: 'Start the Soul Frequency Assessment', href: '/soul-frequency-assessment' },
-  secondary: { label: 'Browse All Updates', href: '/#updates' }
+  primary: { label: 'Meet the Agent Team', href: '/agent-team' },
+  secondary: { label: 'Review Engagement Paths', href: '/agent-team#tiers' },
+  tertiary: { label: 'Browse All Updates', href: '/#updates' }
 }
 
 export const heroSupportLink = {

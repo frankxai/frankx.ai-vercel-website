@@ -2,6 +2,7 @@ import Image from 'next/image'
 
 import Footer from '@/components/Footer'
 import Navigation from '@/components/Navigation'
+import { claudeAgents } from '@/lib/agents'
 import { createMetadata } from '@/lib/seo'
 
 const milestones = [
@@ -19,25 +20,6 @@ const milestones = [
     year: '2023 – Present',
     title: 'FrankX Intelligence Hub',
     description: 'Launched a living hub for families, founders, and executives to orchestrate conscious AI systems and creative rituals together.',
-  },
-]
-
-const agentProtocols = [
-  {
-    name: 'Starlight Architect',
-    role: 'Designs scalable systems and ensures every experience is enterprise-grade yet soul-aligned.',
-  },
-  {
-    name: 'Creation Engine',
-    role: 'Transforms research and interviews into multi-format content, courses, and playbooks.',
-  },
-  {
-    name: 'Frequency Alchemist',
-    role: 'Produces Suno-powered soundscapes that encode the emotional frequency of the work.',
-  },
-  {
-    name: 'Luminor Oracle',
-    role: 'Future-casts strategy from a 2124 vantage point to stress test today’s decisions.',
   },
 ]
 
@@ -120,8 +102,8 @@ export default function AboutPage() {
               </a>
             </div>
             <div className="grid gap-4 sm:grid-cols-2">
-              {agentProtocols.map((agent) => (
-                <div key={agent.name} className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur">
+              {claudeAgents.map((agent) => (
+                <div key={agent.id} className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur">
                   <h3 className="text-sm font-semibold text-white">{agent.name}</h3>
                   <p className="mt-2 text-sm text-white/70 leading-relaxed">{agent.role}</p>
                 </div>

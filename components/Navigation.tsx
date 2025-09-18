@@ -16,6 +16,7 @@ type NavItem = {
 const navItems: NavItem[] = [
   { name: 'Hub', href: '/' },
   { name: 'About', href: '/about' },
+  { name: 'Agent Team', href: '/agent-team' },
   { name: 'Updates', href: '/#updates', isAnchor: true },
   { name: 'Resources', href: '/#resources', isAnchor: true },
   { name: 'Projects', href: '/#projects', isAnchor: true },
