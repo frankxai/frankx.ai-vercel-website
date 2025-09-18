@@ -3,6 +3,7 @@ import {
   BarChart4,
   BookOpen,
   Bot,
+  Brain,
   Building2,
   CalendarCheck,
   CheckCircle2,
@@ -91,19 +92,19 @@ export type AgentProtocol = {
 
 export const heroStats: HeroStat[] = [
   {
-    label: 'Enterprise Systems Shipped',
+    label: 'Vibe OS Implementations',
+    value: '500+',
+    detail: 'AI music creation systems deployed across creative workflows'
+  },
+  {
+    label: 'Agentic Systems',
     value: '200+',
-    detail: 'Oracle-grade AI roadmaps deployed with conscious safeguards'
+    detail: 'Intelligence automation deployed through Agentic Creator OS'
   },
   {
-    label: 'Suno Collaborations',
-    value: '500',
-    detail: 'Music-led rituals co-created with AI and communities'
-  },
-  {
-    label: 'Weekly Briefings',
-    value: '52+',
-    detail: 'Annual cadence of strategic intelligence drops and audits'
+    label: 'Creation Chronicles',
+    value: '100+',
+    detail: 'Strategic narratives and content systems delivered'
   }
 ]
 
@@ -130,28 +131,28 @@ export const heroHighlights: HeroHighlight[] = [
 
 export const quickActions: QuickAction[] = [
   {
-    title: 'Search the Hub',
-    description: 'Semantic search across essays, guides, and templates.',
-    href: '/search',
-    icon: Search
+    title: 'Vibe OS',
+    description: 'Transform ideas into professional AI music with systematic workflows.',
+    href: '/products/vibe-os',
+    icon: Music
   },
   {
-    title: 'Latest Briefings',
-    description: 'Read the intelligence updates that anchor every engagement.',
-    href: '/blog',
-    icon: Newspaper
+    title: 'Agentic Creator OS',
+    description: 'Complete automation systems for creators and entrepreneurs.',
+    href: '/products/agentic-creator-os',
+    icon: Bot
   },
   {
-    title: 'Resource Library',
-    description: 'Download assessments, playbooks, and creative stacks.',
-    href: '/resources',
-    icon: FolderOpen
+    title: 'Creation Chronicles',
+    description: 'Strategic storytelling and narrative systems for your brand.',
+    href: '/products/creation-chronicles',
+    icon: BookOpen
   },
   {
-    title: 'Book Progress',
-    description: 'Track the Soul Frequency manuscript and new releases.',
-    href: '/#projects',
-    icon: CalendarCheck
+    title: 'Intelligence Systems',
+    description: 'Enterprise-grade AI implementations and consulting.',
+    href: '/agentic-ai-center',
+    icon: Brain
   }
 ]
 
@@ -171,8 +172,8 @@ export const segmentProfiles: SegmentProfile[] = [
     ],
     keywords: ['family ai guide', 'teach kids ai safely', 'ai conversations with parents'],
     ctas: [
-      { label: 'Family AI Guide', href: '/family-guide' },
-      { label: 'Soul Frequency Quiz', href: '/soul-frequency-quiz' }
+      { label: 'Explore Vibe OS', href: '/products/vibe-os' },
+      { label: 'View Intelligence Systems', href: '/agentic-ai-center' }
     ]
   },
   {
@@ -190,8 +191,8 @@ export const segmentProfiles: SegmentProfile[] = [
     ],
     keywords: ['ai music workflow', 'creator ai prompts', 'influencer ai strategy'],
     ctas: [
-      { label: 'Enter the Music Lab', href: '/music-lab' },
-      { label: "Read: AI Doesn't Have To Be Soulless", href: '/blog/ai-doesnt-have-to-be-soulless' }
+      { label: 'Explore Vibe OS', href: '/products/vibe-os' },
+      { label: 'Creation Chronicles', href: '/products/creation-chronicles' }
     ]
   },
   {
@@ -209,8 +210,8 @@ export const segmentProfiles: SegmentProfile[] = [
     ],
     keywords: ['enterprise ai strategy', 'oracle ai architect', 'ai governance playbook'],
     ctas: [
-      { label: "Founder's AI Playbook", href: '/founder-playbook' },
-      { label: 'Book a Strategy Intensive', href: 'mailto:hello@frankx.ai?subject=Creative%20AI%20Strategy' }
+      { label: 'Agentic AI Center', href: '/agentic-ai-center' },
+      { label: 'Book Strategy Session', href: 'mailto:hello@frankx.ai?subject=FrankX.AI%20Intelligence%20Systems' }
     ]
   },
   {
@@ -228,8 +229,8 @@ export const segmentProfiles: SegmentProfile[] = [
     ],
     keywords: ['ai agent architecture', 'human centered automation', 'ai orchestration checklist'],
     ctas: [
-      { label: 'Intelligence Revolution Playbook', href: '/blog/intelligence-revolution-2025' },
-      { label: 'Explore Guides', href: '/guides' }
+      { label: 'Agentic Creator OS', href: '/products/agentic-creator-os' },
+      { label: 'Intelligence Systems', href: '/agentic-ai-center' }
     ]
   },
   {
@@ -247,8 +248,8 @@ export const segmentProfiles: SegmentProfile[] = [
     ],
     keywords: ['community ai ritual', 'ai workshop template', 'collective intelligence experiences'],
     ctas: [
-      { label: 'Start Here Experience', href: '/start' },
-      { label: 'Template Library', href: '/templates' }
+      { label: 'Creation Chronicles', href: '/products/creation-chronicles' },
+      { label: 'Explore All Products', href: '/products' }
     ]
   }
 ]
@@ -437,7 +438,7 @@ export const testimonials = [
   },
   {
     quote:
-      'Our Oracle team finally has language and rituals for building AI that honors people. The Soul Frequency work has become part of onboarding.',
+      'Our enterprise team finally has language and rituals for building AI that honors people. The Soul Frequency work has transformed our approach to conscious technology.',
     name: 'David Lin',
     role: 'Senior Director · Fortune 100 Enterprise'
   },
@@ -452,17 +453,17 @@ export const testimonials = [
 export const testimonialIcon = CheckCircle2
 
 export const heroSubtext = [
-  'FrankX is the creative AI architect orchestrating calm intelligence systems for families, creators, and executive circles.',
-  'Each experience merges enterprise discipline, experimental creativity, and community rituals so progress feels grounded and human.'
+  'Welcome to the Golden Age of Intelligence. Transform ideas into reality with Vibe OS music creation, Agentic Creator OS, and enterprise-grade intelligence systems.',
+  'From Creation Chronicles storytelling to business automation - the FrankX.AI team delivers systematic approaches that scale your creative and business potential.'
 ]
 
 export const heroCta = {
-  primary: { label: 'Meet the Agent Team', href: '/agent-team' },
-  secondary: { label: 'Review Engagement Paths', href: '/agent-team#tiers' },
-  tertiary: { label: 'Browse All Updates', href: '/#updates' }
+  primary: { label: 'Explore Vibe OS', href: '/products/vibe-os' },
+  secondary: { label: 'Agentic AI Center', href: '/agentic-ai-center' },
+  tertiary: { label: 'View All Products', href: '/products' }
 }
 
 export const heroSupportLink = {
-  label: 'Explore the Creative AI Playbook',
-  href: '/guides'
+  label: 'Meet the FrankX.AI Team',
+  href: '/about'
 }

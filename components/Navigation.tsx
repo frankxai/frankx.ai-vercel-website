@@ -15,17 +15,12 @@ type NavItem = {
 }
 
 const navItems: NavItem[] = [
-  { name: 'Hub', href: '/' },
-  { name: 'About', href: '/about' },
-  { name: 'Agent Team', href: '/agent-team' },
-  { name: 'Updates', href: '/#updates', isAnchor: true },
-  { name: 'Resources', href: '/#resources', isAnchor: true },
-  { name: 'Projects', href: '/#projects', isAnchor: true },
-  { name: 'Guides', href: '/guides' },
-  { name: 'Blog', href: '/blog' },
+  { name: 'Products', href: '/products' },
+  { name: 'Vibe OS', href: '/products/vibe-os' },
   { name: 'Music Lab', href: '/music-lab' },
-  { name: 'Search', href: '/search' },
-  { name: 'Assessment', href: '/soul-frequency-assessment' },
+  { name: 'Agentic AI', href: '/agentic-ai-center' },
+  { name: 'About', href: '/about' },
+  { name: 'Blog', href: '/blog' },
 ]
 
 export default function Navigation() {
@@ -44,68 +39,75 @@ export default function Navigation() {
 
   return (
     <nav
-      className="fixed top-0 w-full z-50 border-b border-white/10 bg-slate-950/80 backdrop-blur-xl"
+      className="fixed top-0 w-full z-50 border-b border-white/5 bg-slate-950/90 backdrop-blur-2xl"
       aria-label="Main navigation"
     >
-      <div className="max-w-7xl mx-auto px-6 py-4">
+      <div className="max-w-7xl mx-auto px-6 py-3">
         <div className="flex items-center justify-between">
           <Link
             href="/"
-            className="flex items-center space-x-2 rounded-lg p-1 transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 hover:scale-[1.015]"
-            aria-label="Frank - Home"
+            className="flex items-center space-x-3 rounded-xl p-2 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/50 hover:bg-white/5"
+            aria-label="FrankX.AI - Home"
           >
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-primary-500 via-primary-600 to-sky-500 flex items-center justify-center shadow-[0_0_25px_rgba(124,58,237,0.45)]">
-              <Sparkles className="w-5 h-5 text-white" />
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-400 via-blue-500 to-purple-600 flex items-center justify-center shadow-[0_0_20px_rgba(6,182,212,0.3)]">
+              <Sparkles className="w-4 h-4 text-white" />
             </div>
-            <span className="text-xl font-bold text-white tracking-wide">Frank</span>
+            <span className="text-lg font-semibold bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">FrankX.AI</span>
           </Link>
 
-          <div className="hidden md:flex items-center space-x-6">
+          <div className="hidden lg:flex items-center space-x-1">
             {navItems.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
                 className={cn(
-                  'px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500',
-                  'focus:ring-2 focus:ring-primary-500/70 focus:ring-offset-2 focus:ring-offset-slate-900', // Enhanced focus for accessibility
-                  'min-h-[44px] flex items-center', // Ensure adequate touch target size
+                  'px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/50',
+                  'min-h-[40px] flex items-center relative group',
                   isActivePath(item.href, item.isAnchor)
-                    ? 'bg-white/10 text-white shadow-[0_10px_40px_rgba(59,130,246,0.25)]'
-                    : 'text-slate-300 hover:text-white hover:bg-white/10'
+                    ? 'text-white bg-white/10 shadow-[0_0_20px_rgba(6,182,212,0.15)]'
+                    : 'text-slate-400 hover:text-white hover:bg-white/5'
                 )}
                 aria-current={isActivePath(item.href, item.isAnchor) ? 'page' : undefined}
-                aria-label={`Navigate to ${item.name} ${item.isAnchor ? 'section' : 'page'}`}
               >
                 {item.name}
+                {isActivePath(item.href, item.isAnchor) && (
+                  <div className="absolute -bottom-[1px] left-1/2 transform -translate-x-1/2 w-8 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full" />
+                )}
               </Link>
             ))}
 
-            <Link
-              href="/soul-frequency-quiz"
-              className={cn(
-                'px-5 py-2.5 rounded-xl text-sm font-semibold text-white shadow-[0_20px_40px_rgba(12,27,68,0.35)]',
-                'min-h-[44px] flex items-center', // Better touch targets
-                'transition-transform hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white/70',
-                'focus:ring-2 focus:ring-white/70 focus:ring-offset-2 focus:ring-offset-slate-900', // Enhanced focus
-                'active:scale-[0.96]', // Touch feedback
-                gradientPresets.buttonAurora
-              )}
-              aria-label="Take the free Soul Frequency Quiz"
-            >
-              Free Quiz
-            </Link>
+            <div className="flex items-center space-x-3 ml-6 pl-6 border-l border-white/10">
+              <Link
+                href="/products/vibe-os"
+                className="px-4 py-2 text-sm font-medium text-slate-300 hover:text-white transition-colors duration-300"
+              >
+                Get Started
+              </Link>
+              <Link
+                href="/products"
+                className="px-6 py-2.5 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white text-sm font-semibold rounded-lg transition-all duration-300 shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:shadow-[0_0_30px_rgba(6,182,212,0.4)] hover:-translate-y-0.5"
+              >
+                Explore Products
+              </Link>
+            </div>
           </div>
 
-          <div className="md:hidden flex items-center">
+          <div className="lg:hidden flex items-center space-x-3">
+            <Link
+              href="/products"
+              className="px-4 py-2 bg-gradient-to-r from-cyan-500 to-blue-600 text-white text-sm font-semibold rounded-lg transition-all duration-300"
+            >
+              Products
+            </Link>
             <button
               onClick={() => setIsOpen((prev) => !prev)}
-              className="inline-flex items-center justify-center rounded-lg p-3 text-slate-200 hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 min-h-[48px] min-w-[48px]"
+              className="inline-flex items-center justify-center rounded-lg p-2 text-slate-300 hover:text-white hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/50 min-h-[44px] min-w-[44px] transition-colors duration-300"
               aria-label={`${isOpen ? 'Close' : 'Open'} navigation menu`}
               aria-expanded={isOpen}
               aria-controls="mobile-menu"
               type="button"
             >
-              {isOpen ? <X className="w-6 h-6" aria-hidden="true" /> : <Menu className="w-6 h-6" aria-hidden="true" />}
+              {isOpen ? <X className="w-5 h-5" aria-hidden="true" /> : <Menu className="w-5 h-5" aria-hidden="true" />}
             </button>
           </div>
         </div>

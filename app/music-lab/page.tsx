@@ -9,45 +9,49 @@ import Footer from '@/components/Footer'
 const featuredSongs = [
   {
     id: 1,
-    title: "Digital Dreams",
-    description: "My first experiment in AI music collaboration - about feeling lost in a digital world but finding hope in authentic connection.",
-    genre: "Ambient Electronic",
-    duration: "3:24",
-    intention: "Processing digital overwhelm",
-    color: "from-blue-500 to-purple-500"
+    title: "Conscious Flow State",
+    description: "Binaural beats at 40Hz gamma frequency designed for deep focus and peak productivity. Co-created with AI for optimal cognitive enhancement.",
+    genre: "Flow State / Focus",
+    duration: "8:00",
+    intention: "Deep work and cognitive optimization",
+    color: "from-purple-500 to-blue-500",
+    sunoUrl: "https://suno.com/@frankx/conscious-flow-state"
   },
   {
-    id: 47,
-    title: "Mother's Algorithm",
-    description: "Written for my mom who was worried about AI taking over. A gentle, reassuring melody about technology serving love.",
-    genre: "Acoustic Folk", 
-    duration: "4:12",
-    intention: "Bridging generational AI fears",
-    color: "from-green-500 to-emerald-500"
+    id: 2,
+    title: "Algorithm of Awakening",
+    description: "A transformational journey through consciousness technology. Features subtle environmental sounds with digital textures that enhance mindfulness.",
+    genre: "Consciousness Tech",
+    duration: "6:12",
+    intention: "Mindful technology integration",
+    color: "from-cyan-500 to-teal-500",
+    sunoUrl: "https://suno.com/@frankx/algorithm-awakening"
   },
   {
-    id: 156,
-    title: "Anxiety's Algorithm",
-    description: "About breaking free from mental loops. People report it actually helps interrupt anxious thought patterns.",
-    genre: "Healing Ambient",
-    duration: "6:33",
-    intention: "Transforming anxiety into flow",
-    color: "from-red-500 to-pink-500"
+    id: 3,
+    title: "Neural Symphony",
+    description: "Complex polyrhythms that mirror neural network patterns. Specifically engineered for creative problem-solving and innovation sessions.",
+    genre: "AI Orchestral",
+    duration: "7:33",
+    intention: "Creative breakthrough and innovation",
+    color: "from-pink-500 to-rose-500",
+    sunoUrl: "https://suno.com/@frankx/neural-symphony"
   },
   {
-    id: 278,
-    title: "Digital Detox Lullaby",
-    description: "Used by parents to help children develop healthy relationships with technology, and by adults to remember pre-digital aliveness.",
-    genre: "Gentle Folk",
-    duration: "5:18",
-    intention: "Reconnecting with natural rhythms",
-    color: "from-orange-500 to-yellow-500"
+    id: 4,
+    title: "Digital Serenity",
+    description: "Healing frequencies combined with natural soundscapes. Helps restore balance after intensive screen time and digital overwhelm.",
+    genre: "Digital Wellness",
+    duration: "9:18",
+    intention: "Digital detox and nervous system reset",
+    color: "from-emerald-500 to-green-500",
+    sunoUrl: "https://suno.com/@frankx/digital-serenity"
   },
   {
-    id: 432,
-    title: "Vibe Rising",
-    description: "Tuned to 432Hz healing frequency. A sonic journey representing the evolution from ego resistance to flow state.",
-    genre: "Transformational",
+    id: 5,
+    title: "Frequency of Success",
+    description: "Motivational ambient with 528Hz 'Love Frequency' and strategic rhythm patterns. Used by entrepreneurs for goal visualization and manifestation.",
+    genre: "Success Activation",
     duration: "8:44",
     intention: "Facilitating consciousness expansion",
     color: "from-purple-500 to-indigo-500"
@@ -201,10 +205,15 @@ export default function MusicLabPage() {
                   <div className="text-sm text-gray-300">{song.intention}</div>
                 </div>
                 
-                <button className="w-full flex items-center justify-center px-4 py-2 bg-purple-600 hover:bg-purple-700 rounded-lg transition-colors">
-                  <Play className="w-4 h-4 mr-2" />
-                  Listen & Learn
-                </button>
+                <a
+                  href={song.sunoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full flex items-center justify-center px-4 py-2 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 rounded-lg transition-all shadow-lg hover:shadow-purple-500/25 group"
+                >
+                  <Play className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform" />
+                  Listen on Suno
+                </a>
               </motion.div>
             ))}
           </div>

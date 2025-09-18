@@ -7,19 +7,19 @@ import { createMetadata } from '@/lib/seo'
 
 const milestones = [
   {
-    year: '2009 – 2020',
-    title: 'Oracle Enterprise Architect',
-    description: 'Built large-scale intelligence systems across Oracle, learning how global organizations deploy AI safely at scale.',
+    year: 'Projects',
+    title: 'Enterprise AI Architecture',
+    description: 'Built large-scale intelligence systems for global organizations, pioneering conscious AI deployment methodologies.',
   },
   {
-    year: '2020 – 2023',
-    title: 'Suno Experimentation Era',
+    year: 'Innovation',
+    title: 'Suno AI Music Laboratory',
     description: 'Composed 500+ AI-assisted songs and codified the Soul Frequency methodology for creative collaboration with machines.',
   },
   {
-    year: '2023 – Present',
+    year: 'Current',
     title: 'FrankX Intelligence Hub',
-    description: 'Launched a living hub for families, founders, and executives to orchestrate conscious AI systems and creative rituals together.',
+    description: 'Living hub for families, founders, and executives to orchestrate conscious AI systems and creative rituals together.',
   },
 ]
 
@@ -63,7 +63,7 @@ export default function AboutPage() {
                   Architecting soulful intelligence systems for the people you lead and love.
                 </h1>
                 <p className="text-lg text-white/80 leading-relaxed">
-                  I build technology that feels like a trusted collaborator. After 15 years inside Oracle architecting global AI systems and hundreds of experiments with Suno, this hub distills the rituals, frameworks, and tools that keep creators, families, and executives aligned with their highest work.
+                  I build technology that feels like a trusted collaborator. Through extensive enterprise architecture experience and hundreds of experiments with Suno, this hub distills the rituals, frameworks, and tools that keep creators, families, and executives aligned with their highest work.
                 </p>
                 <div className="grid gap-4 sm:grid-cols-3">
                   {operatingPillars.map((pillar) => (
@@ -130,7 +130,7 @@ export default function AboutPage() {
               {[
                 {
                   title: 'Signal Scan',
-                  description: 'Research, market intelligence, and Oracle briefings flow into the Starlight Architect backlog each morning.',
+                  description: 'Research, market intelligence, and enterprise briefings flow into the Starlight Architect backlog each morning.',
                 },
                 {
                   title: 'Studio Blocks',
@@ -138,7 +138,7 @@ export default function AboutPage() {
                 },
                 {
                   title: 'Evening Sync',
-                  description: 'Luminor Oracle review ties today’s output to the long-horizon strategy and updates the public roadmap.',
+                  description: "Strategic review ties today's output to the long-horizon vision and updates the public roadmap.",
                 },
               ].map((item) => (
                 <div key={item.title} className="rounded-3xl border border-white/10 bg-white/5 p-5">
