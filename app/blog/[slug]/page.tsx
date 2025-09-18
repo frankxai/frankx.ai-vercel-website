@@ -14,14 +14,16 @@ import { createMetadata, siteConfig } from '@/lib/seo'
 export const dynamic = 'force-dynamic'
 export const dynamicParams = true
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
-  const post = getBlogPost(params.slug)
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+
+  const post = getBlogPost(slug)
 
   if (!post) {
     return createMetadata({
-      title: 'Post Not Found – FrankX Journal',
+      title: 'Post Not Found - FrankX Journal',
       description: 'The requested FrankX Journal story could not be located.',
-      path: `/blog/${params.slug}`,
+      path: `/blog/${slug}`,
     })
   }
 
@@ -37,8 +39,10 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   })
 }
 
-export default function BlogPostPage({ params }: { params: { slug: string } }) {
-  const post = getBlogPost(params.slug)
+export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+
+  const post = getBlogPost(slug)
 
   if (!post) {
     notFound()
