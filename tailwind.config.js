@@ -1,4 +1,4 @@
-/** @type {import('tailwindcss').Config} */
+﻿/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
@@ -9,21 +9,19 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        // Enhanced Primary Color Palette with Better Contrast
         primary: {
-          50: '#f8f6ff',
-          100: '#f1edff',
-          200: '#e5ddff',
-          300: '#d1c2ff',
-          400: '#b499ff',
-          500: '#9466ff',
-          600: '#7c3aed', // Main brand purple
-          700: '#6d28d9',
-          800: '#5b21b6',
-          900: '#4c1d95',
-          950: '#2e1065',
+          50: '#f7f5ff',
+          100: '#ede9ff',
+          200: '#d8d4ff',
+          300: '#beb3ff',
+          400: '#a18bff',
+          500: '#8362ff',
+          600: '#6943ff',
+          700: '#5536d6',
+          800: '#422ea9',
+          900: '#332780',
+          950: '#1d1743',
         },
-        // Soul-aligned Brand Colors
         soul: {
           50: '#fdf7f0',
           100: '#fbeee0',
@@ -37,7 +35,6 @@ module.exports = {
           900: '#703c2b',
           950: '#3c1e16',
         },
-        // Enhanced Secondary Colors
         secondary: {
           50: '#f0f9ff',
           100: '#e0f2fe',
@@ -51,14 +48,64 @@ module.exports = {
           900: '#0c4a6e',
           950: '#082f49',
         },
-        // Conscious AI Theme Colors
         conscious: {
           light: '#f8fafc',
           DEFAULT: '#64748b',
           dark: '#1e293b',
           deeper: '#0f172a',
         },
-        // Status Colors with WCAG AA Compliance
+        midnight: {
+          50: '#eef2ff',
+          100: '#dce3ff',
+          200: '#bec8ff',
+          300: '#9ca9ff',
+          400: '#7488f5',
+          500: '#556ae4',
+          600: '#3c52c6',
+          700: '#2b3b9b',
+          800: '#1c286f',
+          900: '#121a48',
+          950: '#060b24',
+        },
+        nebula: {
+          50: '#f3f3ff',
+          100: '#e6e7ff',
+          200: '#ccd0ff',
+          300: '#b0b9ff',
+          400: '#929afd',
+          500: '#747cf1',
+          600: '#5b63d4',
+          700: '#474eb0',
+          800: '#343b87',
+          900: '#20245d',
+          950: '#121333',
+        },
+        aurora: {
+          50: '#e6fbff',
+          100: '#c9f3ff',
+          200: '#9de6ff',
+          300: '#6dd5f5',
+          400: '#43bfe3',
+          500: '#29a6ca',
+          600: '#1d86a9',
+          700: '#186987',
+          800: '#125066',
+          900: '#0c3644',
+          950: '#051d25',
+        },
+        pulse: {
+          50: '#f9eaff',
+          100: '#f1d4ff',
+          200: '#e4b4ff',
+          300: '#d28cff',
+          400: '#bb63f6',
+          500: '#a148dd',
+          600: '#8533bd',
+          700: '#672693',
+          800: '#471863',
+          900: '#2c0e3c',
+          950: '#16061f',
+        },
         success: {
           50: '#f0fdf4',
           500: '#22c55e',
@@ -80,17 +127,23 @@ module.exports = {
           700: '#1d4ed8',
         },
       },
+      backgroundImage: {
+        'midnight-radial': 'radial-gradient(circle at 20% 20%, rgba(92, 136, 245, 0.18), transparent 55%)',
+        'aurora-vortex': 'radial-gradient(circle at 80% 10%, rgba(67, 191, 227, 0.22), transparent 45%)',
+        'pulse-halo': 'radial-gradient(circle at 50% 80%, rgba(171, 71, 199, 0.18), transparent 55%)',
+        'glass-light': 'linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.04) 100%)',
+      },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],
         display: ['Inter', 'system-ui', 'sans-serif'],
         mono: ['JetBrains Mono', 'Menlo', 'Monaco', 'monospace'],
       },
       fontSize: {
-        'xs': ['0.75rem', { lineHeight: '1rem' }],
-        'sm': ['0.875rem', { lineHeight: '1.25rem' }],
-        'base': ['1rem', { lineHeight: '1.5rem' }],
-        'lg': ['1.125rem', { lineHeight: '1.75rem' }],
-        'xl': ['1.25rem', { lineHeight: '1.75rem' }],
+        xs: ['0.75rem', { lineHeight: '1rem' }],
+        sm: ['0.875rem', { lineHeight: '1.25rem' }],
+        base: ['1rem', { lineHeight: '1.5rem' }],
+        lg: ['1.125rem', { lineHeight: '1.75rem' }],
+        xl: ['1.25rem', { lineHeight: '1.75rem' }],
         '2xl': ['1.5rem', { lineHeight: '2rem' }],
         '3xl': ['1.875rem', { lineHeight: '2.25rem' }],
         '4xl': ['2.25rem', { lineHeight: '2.5rem' }],
@@ -101,17 +154,17 @@ module.exports = {
         '9xl': ['8rem', { lineHeight: '1' }],
       },
       spacing: {
-        '18': '4.5rem',
-        '88': '22rem',
-        '128': '32rem',
+        18: '4.5rem',
+        88: '22rem',
+        128: '32rem',
       },
       borderRadius: {
         '4xl': '2rem',
         '5xl': '2.5rem',
       },
       boxShadow: {
-        'soul-glow': '0 0 20px rgb(124 58 237 / 0.4)',
-        'glass': '0 8px 32px rgb(0 0 0 / 0.12)',
+        'soul-glow': '0 0 40px rgb(107 70 193 / 0.45)',
+        glass: '0 20px 60px rgb(8 15 33 / 0.45)',
         'elevation-1': '0 1px 3px rgb(0 0 0 / 0.12), 0 1px 2px rgb(0 0 0 / 0.24)',
         'elevation-2': '0 3px 6px rgb(0 0 0 / 0.16), 0 3px 6px rgb(0 0 0 / 0.23)',
         'elevation-3': '0 10px 20px rgb(0 0 0 / 0.19), 0 6px 6px rgb(0 0 0 / 0.23)',
@@ -124,7 +177,7 @@ module.exports = {
         'pulse-slow': 'pulse 3s infinite',
         'bounce-gentle': 'bounceGentle 2s infinite',
         'gradient-shift': 'gradientShift 8s ease-in-out infinite',
-        'float': 'float 6s ease-in-out infinite',
+        float: 'float 6s ease-in-out infinite',
       },
       keyframes: {
         fadeIn: {
@@ -160,9 +213,9 @@ module.exports = {
         xs: '2px',
       },
       screens: {
-        'xs': '475px',
+        xs: '475px',
       },
     },
   },
-  plugins: [],
+  plugins: [require('tailwindcss-animate')],
 }

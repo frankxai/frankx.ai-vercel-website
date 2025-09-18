@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation'
 import { Menu, X, Sparkles } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
+import { gradientPresets } from '@/lib/design/gradients'
 
 type NavItem = {
   name: string
@@ -78,7 +79,7 @@ export default function Navigation() {
 
             <Link
               href="/soul-frequency-quiz"
-              className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-primary-500 via-primary-600 to-sky-500 text-sm font-semibold text-white shadow-[0_20px_40px_rgba(56,189,248,0.25)] transition-transform hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400"
+              className={cn('px-5 py-2.5 rounded-xl text-sm font-semibold text-white shadow-[0_20px_40px_rgba(12,27,68,0.35)] transition-transform hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white/70', gradientPresets.buttonAurora)}
             >
               Free Quiz
             </Link>
@@ -125,7 +126,7 @@ export default function Navigation() {
 
             <Link
               href="/soul-frequency-quiz"
-              className="mt-2 px-6 py-3 rounded-xl bg-gradient-to-r from-primary-500 via-primary-600 to-sky-500 text-center text-sm font-semibold text-white shadow-[0_20px_40px_rgba(56,189,248,0.25)]"
+              className={cn('mt-2 px-6 py-3 rounded-xl text-sm font-semibold text-white shadow-[0_12px_30px_rgba(12,27,68,0.25)]', gradientPresets.buttonAurora)}
               onClick={() => setIsOpen(false)}
             >
               Free Quiz

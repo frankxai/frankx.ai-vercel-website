@@ -1,367 +1,534 @@
 'use client'
 
 import { useState } from 'react'
+import clsx from 'clsx'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
-import { Heart, Brain, Users, Lightbulb, ArrowRight, CheckCircle } from 'lucide-react'
+import { AnimatePresence, motion } from 'framer-motion'
+import { ArrowRight, CheckCircle, Heart, Brain, Users, Lightbulb, Sparkles } from 'lucide-react'
+
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
+import { gradientPresets, glassCardClasses } from '@/lib/design/gradients'
 
-const questions = [
+type FrequencyId = 'alchemist' | 'architect' | 'connector' | 'pioneer'
+
+type QuestionOption = {
+  id: string
+  text: string
+  type: FrequencyId
+}
+
+type Question = {
+  id: number
+  question: string
+  options: QuestionOption[]
+}
+
+const questions: Question[] = [
   {
     id: 1,
-    question: "When you're at your creative best, what energizes you most?",
+    question: 'When a project finally hums, what energy sparked it first?',
     options: [
-      { id: 'a', text: "Transforming something difficult into something beautiful", type: "alchemist" },
-      { id: 'b', text: "Building systems that solve complex problems elegantly", type: "architect" },  
-      { id: 'c', text: "Bringing different people and ideas together", type: "connector" },
-      { id: 'd', text: "Exploring uncharted territories and pushing boundaries", type: "pioneer" }
-    ]
+      { id: 'a', text: 'Alchemising a lived experience into something healing and resonant.', type: 'alchemist' },
+      { id: 'b', text: 'Designing a system that solved complexity with beauty.', type: 'architect' },
+      { id: 'c', text: 'Hosting the right people in the right moment and feeling them click.', type: 'connector' },
+      { id: 'd', text: 'Breaking the format and proving a new path works.', type: 'pioneer' },
+    ],
   },
   {
-    id: 2, 
-    question: "What do people most often thank you for?",
+    id: 2,
+    question: 'What do people most often thank you for delivering?',
     options: [
-      { id: 'a', text: "Helping them heal, grow, or see their situation differently", type: "alchemist" },
-      { id: 'b', text: "Creating clarity and organization from chaos", type: "architect" },
-      { id: 'c', text: "Making them feel understood and connected", type: "connector" },
-      { id: 'd', text: "Inspiring them to think bigger or try new approaches", type: "pioneer" }
-    ]
+      { id: 'a', text: 'Perspective that helps them transform or heal.', type: 'alchemist' },
+      { id: 'b', text: 'Clarity and organisation that makes ambition feel simple.', type: 'architect' },
+      { id: 'c', text: 'Belonging and the feeling of being seen.', type: 'connector' },
+      { id: 'd', text: 'Courage to experiment and think beyond the obvious.', type: 'pioneer' },
+    ],
   },
   {
     id: 3,
-    question: "Your ideal creative project would:",
+    question: 'Your ideal release would feel like...',
     options: [
-      { id: 'a', text: "Turn personal struggles into wisdom that helps others", type: "alchemist" },
-      { id: 'b', text: "Design an elegant system that scales to serve many people", type: "architect" },
-      { id: 'c', text: "Create a space where meaningful connections can flourish", type: "connector" },
-      { id: 'd', text: "Combine existing ideas in ways no one has thought of before", type: "pioneer" }
-    ]
+      { id: 'a', text: 'A cinematic moment that turns story into medicine.', type: 'alchemist' },
+      { id: 'b', text: 'A unified operating system that scales without friction.', type: 'architect' },
+      { id: 'c', text: 'A gathering that turns strangers into collaborators.', type: 'connector' },
+      { id: 'd', text: 'A bold prototype that unlocks a new future line.', type: 'pioneer' },
+    ],
   },
   {
     id: 4,
-    question: "When facing a creative challenge, your first instinct is to:",
+    question: 'When a brief gets messy, your first instinct is to...',
     options: [
-      { id: 'a', text: "Go deep into your experience and find the emotional truth", type: "alchemist" },
-      { id: 'b', text: "Break it down into components and map the relationships", type: "architect" },
-      { id: 'c', text: "Consider how different stakeholders would be affected", type: "connector" },
-      { id: 'd', text: "Look for unconventional approaches from other domains", type: "pioneer" }
-    ]
+      { id: 'a', text: 'Sit with the emotions and translate the human need under the surface.', type: 'alchemist' },
+      { id: 'b', text: 'Map components, dependencies, and guardrails.', type: 'architect' },
+      { id: 'c', text: 'Listen to each voice and craft a shared language.', type: 'connector' },
+      { id: 'd', text: 'Scan adjacent fields for an unconventional pattern.', type: 'pioneer' },
+    ],
   },
   {
     id: 5,
-    question: "Success for you means:",
+    question: 'You know a launch worked whenÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã...Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¦',
     options: [
-      { id: 'a', text: "Creating work that facilitates genuine transformation", type: "alchemist" },
-      { id: 'b', text: "Building something beautiful, functional, and enduring", type: "architect" },
-      { id: 'c', text: "Fostering authentic connections and community", type: "connector" },
-      { id: 'd', text: "Expanding what's possible for yourself and others", type: "pioneer" }
-    ]
+      { id: 'a', text: 'Someone says their life feels different because of it.', type: 'alchemist' },
+      { id: 'b', text: 'The experience runs smoothly and scale feels effortless.', type: 'architect' },
+      { id: 'c', text: 'Community momentum grows without you pushing it.', type: 'connector' },
+      { id: 'd', text: 'The industry starts whispering about the new direction.', type: 'pioneer' },
+    ],
   },
   {
     id: 6,
-    question: "Your creative energy flows best when:",
+    question: 'You feel most alive when you areÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã...Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¦',
     options: [
-      { id: 'a', text: "Processing deep experiences into universal wisdom", type: "alchemist" },
-      { id: 'b', text: "Designing systems that work seamlessly", type: "architect" },
-      { id: 'c', text: "Facilitating collaboration and understanding", type: "connector" },
-      { id: 'd', text: "Experimenting with new ideas and possibilities", type: "pioneer" }
-    ]
-  }
+      { id: 'a', text: 'Turning pain, music, or story into collective healing.', type: 'alchemist' },
+      { id: 'b', text: 'Architecting a ritual, workflow, or product that lasts.', type: 'architect' },
+      { id: 'c', text: 'Facilitating a room where everyone relaxes into their role.', type: 'connector' },
+      { id: 'd', text: 'Exploring new combinations of ideas, tech, and art.', type: 'pioneer' },
+    ],
+  },
 ]
 
-const frequencyTypes = {
+type NextStep = {
+  label: string
+  href: string
+  description: string
+}
+
+type FrequencyProfile = {
+  title: string
+  subtitle: string
+  description: string
+  traits: string[]
+  aiCollaboration: string
+  examples: string
+  microGuide: string
+  color: string
+  icon: typeof Heart
+  nextSteps: NextStep[]
+}
+
+const frequencyTypes: Record<FrequencyId, FrequencyProfile> = {
   alchemist: {
-    title: "The Alchemist",
-    subtitle: "Transformation Frequency",
-    description: "You transform pain into beauty, problems into solutions. Your creative gift is taking raw experiences and turning them into wisdom that helps others heal and grow.",
+    title: 'The Alchemist',
+    subtitle: 'Transformation Frequency',
+    description:
+      'You metabolise lived experience into healing signals. Your work invites people to process, feel, and evolve with you.',
     traits: [
-      "Natural healer and transformer",
-      "Draws from personal experience to help others", 
-      "Creates from a place of deep authenticity",
-      "Helps others see beauty in their struggles"
+      'Guides audiences through emotional and spiritual change',
+      'Communicates with cinematic, sensory language',
+      'Spots the breakthrough moment inside every setback',
+      'Builds practices that make vulnerability feel safe',
     ],
-    aiCollaboration: "Your best AI partnerships happen when you feed it your real experiences and let it help you find universal language for personal truths.",
-    examples: "Artists who create from struggle to help others heal, therapists who use their journey to guide clients, writers who transform trauma into hope.",
-    color: "from-red-500 to-pink-500",
-    icon: Heart
+    aiCollaboration:
+      'Feed your agents voice notes, journal entries, and raw transcripts so they mirror your tone with nuance. Let AI structure the insight while you guard the integrity of the feeling.',
+    examples:
+      'Transformational storytellers, coaches, facilitators, and musicians who turn their journey into rituals for others.',
+    microGuide:
+      'Anchor every prompt with the emotion you want people to feel. It keeps your AI collaborators from sounding generic.',
+    color: 'bg-gradient-to-br from-pulse-400 via-pulse-500 to-primary-600',
+    icon: Heart,
+    nextSteps: [
+      {
+        label: 'Design your ritual blueprint',
+        href: '/music-lab',
+        description: 'Co-create a sonic or meditation ritual that reinforces your transformation arc.',
+      },
+      {
+        label: 'Download the Conscious Storytelling Kit',
+        href: '/resources',
+        description: 'Frameworks and prompts for turning lived experience into premium assets.',
+      },
+    ],
   },
   architect: {
-    title: "The Architect", 
-    subtitle: "Systems Frequency",
-    description: "You see patterns and build beautiful, functional systems that serve others. Your gift is organizing complexity into elegant solutions that scale.",
+    title: 'The Architect',
+    subtitle: 'Systems Frequency',
+    description:
+      'You translate ambition into elegant infrastructure. Your craft is designing operating systems that feel inevitable.',
     traits: [
-      "Systems thinker with aesthetic sense",
-      "Builds beautiful, functional solutions",
-      "Sees patterns others miss",
-      "Creates order from chaos elegantly"
+      'Maps dependencies and governance before momentum begins',
+      'Balances enterprise rigour with aesthetic polish',
+      'Obsesses over onboarding, documentation, and iteration loops',
+      'Measures success with dashboards, not guesswork',
     ],
-    aiCollaboration: "Your best AI collaborations happen when you use it to prototype complex visions and test system designs rapidly.",
-    examples: "Entrepreneurs who create platforms organizing chaos into clarity, developers who build beautiful user experiences, consultants who design organizational systems.",
-    color: "from-blue-500 to-indigo-500",
-    icon: Brain
+    aiCollaboration:
+      'Use AI to prototype flows, simulate edge cases, and pressure-test governance. You define the guardrails; your agents stress-test the pathways.',
+    examples:
+      'Product architects, service designers, ops leaders, and strategic consultants building scalable platforms.',
+    microGuide:
+      'Pair each AI workflow with an escalation ritual so the humans you serve always feel in control.',
+    color: 'bg-gradient-to-br from-nebula-400 via-midnight-500 to-primary-600',
+    icon: Brain,
+    nextSteps: [
+      {
+        label: 'Review the Agent Team operating tiers',
+        href: '/agent-team#tiers',
+        description: 'Choose the architecture support that matches your rollout timeline.',
+      },
+      {
+        label: 'Explore the Founder Playbook',
+        href: '/founder-playbook',
+        description: 'Systems templates and governance prompts to accelerate your build.',
+      },
+    ],
   },
   connector: {
-    title: "The Connector",
-    subtitle: "Harmony Frequency", 
-    description: "You bring people together and create belonging. Your gift is seeing what connects us and building bridges between different perspectives and communities.",
+    title: 'The Connector',
+    subtitle: 'Harmony Frequency',
+    description:
+      'You engineer belonging. Your instinct is to gather the right voices, translate between them, and sustain the bond.',
     traits: [
-      "Natural community builder",
-      "Sees common ground in differences",
-      "Creates spaces for authentic connection",
-      "Facilitates understanding between groups"
+      'Designs onboarding journeys that feel like sacred invitations',
+      'Reads the subtle dynamics inside every conversation',
+      'Sets rituals that keep communities engaged after the hype fades',
+      'Knows when to step back so others can rise',
     ],
-    aiCollaboration: "Your best AI partnerships help you create content and experiences that foster genuine connection at scale.",
-    examples: "Community builders who create spaces where people find their tribe, mediators who resolve conflicts, event planners who design meaningful gatherings.",
-    color: "from-green-500 to-emerald-500", 
-    icon: Users
+    aiCollaboration:
+      'Let AI capture community sentiment, surface unseen patterns, and draft responses that sound like your care. You add the warmth; agents maintain the cadence.',
+    examples:
+      'Community architects, partnership leads, facilitators, and membership designers who turn audiences into families.',
+    microGuide:
+      'Build a shared language doc for your agents so every interaction feels handcrafted.',
+    color: 'bg-gradient-to-br from-aurora-400 via-aurora-500 to-primary-600',
+    icon: Users,
+    nextSteps: [
+      {
+        label: 'Launch a welcome ritual',
+        href: '/start',
+        description: 'Use the Start Here experience to script your community onboarding cadence.',
+      },
+      {
+        label: 'Guide families through AI calmly',
+        href: '/family-guide',
+        description: 'Teach the people you love with explainers, scripts, and safety rituals.',
+      },
+    ],
   },
   pioneer: {
-    title: "The Pioneer",
-    subtitle: "Innovation Frequency",
-    description: "You explore new frontiers and push boundaries. Your gift is seeing possibilities others don't and combining existing elements in revolutionary ways.",
+    title: 'The Pioneer',
+    subtitle: 'Innovation Frequency',
+    description:
+      'You live on the frontier. Your genius is sensing emerging patterns and composing first-of-kind experiences.',
     traits: [
-      "Natural explorer and innovator",
-      "Comfortable with uncertainty",
-      "Combines ideas across domains",
-      "Pushes beyond established limits"
+      'Moves fast on signal before it becomes consensus',
+      'Samples across industries to remix ideas in surprising ways',
+      'Thrives in ambiguity and keeps momentum without perfect data',
+      'Invites collaborators to explore the edge with confidence',
     ],
-    aiCollaboration: "Your best AI partnerships happen when you use it to explore creative territories that neither human nor AI could access alone.",
-    examples: "Innovators who combine fields in novel ways, researchers exploring new territories, artists creating entirely new forms of expression.",
-    color: "from-purple-500 to-pink-500",
-    icon: Lightbulb
-  }
+    aiCollaboration:
+      'Let AI be your speculative lab. Prototype narratives, interfaces, and scenarios, then bring humans in to pressure-test the wildest directions.',
+    examples:
+      'Visionary founders, creative technologists, researchers, and artists building next-wave formats.',
+    microGuide:
+      'Pair every experiment with a grounding ritual so teams can follow you without burning out.',
+    color: 'bg-gradient-to-br from-primary-500 via-pulse-500 to-aurora-500',
+    icon: Lightbulb,
+    nextSteps: [
+      {
+        label: 'Reserve an activation workshop',
+        href: '/agent-team#tiers',
+        description: 'Design a near-term sprint to prove your boldest thesis with the full agent collective.',
+      },
+      {
+        label: 'Document your intelligence roadmap',
+        href: '/blog',
+        description: 'Share your field notes publicly and invite momentum around the future you see.',
+      },
+    ],
+  },
+}
+
+const questionMotion = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 },
 }
 
 export default function SoulFrequencyQuiz() {
   const [currentQuestion, setCurrentQuestion] = useState(0)
-  const [answers, setAnswers] = useState<Record<number, string>>({})
+  const [answers, setAnswers] = useState<Record<number, FrequencyId>>({})
   const [showResults, setShowResults] = useState(false)
-  const [email, setEmail] = useState('')
 
-  const handleAnswer = (questionId: number, answerType: string) => {
-    setAnswers(prev => ({ ...prev, [questionId]: answerType }))
+  const totalQuestions = questions.length
+  const activeQuestion = questions[currentQuestion]
+  const selectedType = showResults || !activeQuestion ? undefined : answers[activeQuestion.id]
+  const progress = showResults
+    ? 100
+    : Math.round(((currentQuestion + (selectedType ? 1 : 0)) / totalQuestions) * 100)
+
+  const handleAnswer = (questionId: number, type: FrequencyId) => {
+    setAnswers((prev) => ({ ...prev, [questionId]: type }))
   }
 
   const nextQuestion = () => {
-    if (currentQuestion < questions.length - 1) {
-      setCurrentQuestion(currentQuestion + 1)
+    if (currentQuestion < totalQuestions - 1) {
+      setCurrentQuestion((prev) => prev + 1)
     } else {
       setShowResults(true)
     }
   }
 
+  const previousQuestion = () => {
+    if (currentQuestion > 0) {
+      setCurrentQuestion((prev) => prev - 1)
+    }
+  }
+
+  const resetQuiz = () => {
+    setCurrentQuestion(0)
+    setAnswers({})
+    setShowResults(false)
+  }
+
   const calculateResult = () => {
-    const typeCounts = { alchemist: 0, architect: 0, connector: 0, pioneer: 0 }
-    Object.values(answers).forEach(type => {
-      typeCounts[type as keyof typeof typeCounts]++
+    const typeCounts: Record<FrequencyId, number> = {
+      alchemist: 0,
+      architect: 0,
+      connector: 0,
+      pioneer: 0,
+    }
+
+    Object.values(answers).forEach((type) => {
+      typeCounts[type] += 1
     })
-    
-    const dominantType = Object.entries(typeCounts).reduce((a, b) => 
-      typeCounts[a[0] as keyof typeof typeCounts] > typeCounts[b[0] as keyof typeof typeCounts] ? a : b
-    )[0] as keyof typeof frequencyTypes
-    
-    return frequencyTypes[dominantType]
+
+    const dominantType = (Object.keys(typeCounts) as FrequencyId[]).reduce(
+      (acc, key) => (typeCounts[key] > typeCounts[acc] ? key : acc),
+      'alchemist' as FrequencyId
+    )
+
+    const profile = frequencyTypes[dominantType]
+    return { id: dominantType, ...profile }
   }
 
   const result = showResults ? calculateResult() : null
+  const ResultIcon = result?.icon ?? Heart
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
+    <div className="min-h-screen bg-midnight-950 text-white">
       <Navigation />
-      
-      <div className="pt-32 pb-20 px-6">
-        <div className="max-w-4xl mx-auto">
-          {!showResults ? (
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              {/* Quiz Header */}
-              {currentQuestion === 0 && (
-                <div className="text-center mb-12">
-                  <h1 className="text-4xl md:text-6xl font-bold mb-6">
-                    Discover Your <span className="gradient-text">Soul Frequency</span>
+
+      <div className="relative overflow-hidden">
+        <div className={clsx('absolute inset-0 opacity-85', gradientPresets.heroBase)} />
+        <div className={clsx('absolute inset-0 opacity-60 blur-3xl', gradientPresets.heroAurora)} />
+        <div className={clsx('absolute inset-0 opacity-40', gradientPresets.heroPulse)} />
+
+        <div className="relative px-6 pt-32 pb-20">
+          <div className="mx-auto max-w-5xl">
+            {!showResults && activeQuestion ? (
+              <motion.div initial="hidden" animate="visible" variants={questionMotion} className="space-y-10">
+                <div className="text-center space-y-6">
+                  <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.4em] text-white/80">
+                    <Sparkles className="h-4 w-4" aria-hidden="true" />
+                    Soul Frequency Signal
+                  </span>
+                  <h1 className="text-4xl font-semibold text-balance md:text-5xl">
+                    Discover how your voice wants to collaborate with intelligence
                   </h1>
-                  <p className="text-xl text-gray-600 mb-8">
-                    Uncover your unique creative archetype and learn how to use AI to amplify your authentic voice
+                  <p className="text-base text-white/75 md:text-lg">
+                    Six fast prompts surface your dominant creative frequency. We will translate it into rituals, prompts,
+                    and partner workflows so every AI interaction stays soul-aligned.
                   </p>
-                  <div className="bg-primary-50 border border-primary-200 rounded-lg p-6 mb-8">
-                    <h3 className="font-semibold text-primary-900 mb-2">What You'll Discover:</h3>
-                    <ul className="text-primary-800 text-left space-y-2">
-                      <li className="flex items-start">
-                        <CheckCircle className="w-5 h-5 text-primary-600 mr-2 mt-0.5 flex-shrink-0" />
-                        Your dominant creative frequency type
-                      </li>
-                      <li className="flex items-start">
-                        <CheckCircle className="w-5 h-5 text-primary-600 mr-2 mt-0.5 flex-shrink-0" />
-                        Specific AI collaboration strategies for your type
-                      </li>
-                      <li className="flex items-start">
-                        <CheckCircle className="w-5 h-5 text-primary-600 mr-2 mt-0.5 flex-shrink-0" />
-                        Practical prompts and techniques to get started
-                      </li>
-                      <li className="flex items-start">
-                        <CheckCircle className="w-5 h-5 text-primary-600 mr-2 mt-0.5 flex-shrink-0" />
-                        A personalized development plan
-                      </li>
-                    </ul>
-                  </div>
                 </div>
-              )}
 
-              {/* Progress Bar */}
-              <div className="mb-8">
-                <div className="flex justify-between text-sm text-gray-600 mb-2">
-                  <span>Question {currentQuestion + 1} of {questions.length}</span>
-                  <span>{Math.round(((currentQuestion + 1) / questions.length) * 100)}% Complete</span>
-                </div>
-                <div className="w-full bg-gray-200 rounded-full h-2">
-                  <div 
-                    className="bg-gradient-to-r from-primary-500 to-purple-500 h-2 rounded-full transition-all duration-500"
-                    style={{ width: `${((currentQuestion + 1) / questions.length) * 100}%` }}
-                  />
-                </div>
-              </div>
-
-              {/* Question */}
-              <div className="bg-white rounded-xl shadow-lg p-8 mb-8">
-                <h2 className="text-2xl font-bold mb-8 text-gray-900">
-                  {questions[currentQuestion].question}
-                </h2>
-                
                 <div className="space-y-4">
-                  {questions[currentQuestion].options.map((option) => (
-                    <button
-                      key={option.id}
-                      onClick={() => handleAnswer(questions[currentQuestion].id, option.type)}
-                      className={`w-full p-4 text-left rounded-lg border-2 transition-all ${
-                        answers[questions[currentQuestion].id] === option.type
-                          ? 'border-primary-500 bg-primary-50' 
-                          : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
-                      }`}
-                    >
-                      <div className="flex items-start">
-                        <div className={`w-4 h-4 rounded-full border-2 mr-3 mt-1 flex-shrink-0 ${
-                          answers[questions[currentQuestion].id] === option.type
-                            ? 'border-primary-500 bg-primary-500' 
-                            : 'border-gray-300'
-                        }`}>
-                          {answers[questions[currentQuestion].id] === option.type && (
-                            <div className="w-2 h-2 bg-white rounded-full m-0.5" />
-                          )}
-                        </div>
-                        <span className="text-gray-700">{option.text}</span>
-                      </div>
-                    </button>
-                  ))}
+                  <div className="flex justify-between text-xs uppercase tracking-[0.3em] text-white/60">
+                    <span>Question {currentQuestion + (selectedType ? 1 : 0)} of {totalQuestions}</span>
+                    <span>{progress}% complete</span>
+                  </div>
+                  <div className="h-2 w-full overflow-hidden rounded-full bg-white/10">
+                    <motion.div
+                      className={clsx('h-full rounded-full', gradientPresets.buttonAurora)}
+                      initial={{ width: 0 }}
+                      animate={{ width: `${progress}%` }}
+                      transition={{ duration: 0.4, ease: 'easeOut' }}
+                    />
+                  </div>
                 </div>
 
-                {answers[questions[currentQuestion].id] && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    className="mt-8 text-center"
-                  >
-                    <button
-                      onClick={nextQuestion}
-                      className="inline-flex items-center px-8 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors font-semibold"
-                    >
-                      {currentQuestion < questions.length - 1 ? 'Next Question' : 'Get My Results'}
-                      <ArrowRight className="ml-2 w-5 h-5" />
-                    </button>
-                  </motion.div>
-                )}
-              </div>
-            </motion.div>
-          ) : (
-            /* Results */
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              className="text-center"
-            >
-              <h1 className="text-4xl md:text-5xl font-bold mb-4">
-                Your Soul Frequency:
-              </h1>
-              
-              {result && (
-                <div className="bg-white rounded-xl shadow-lg p-8 mb-8">
-                  <div className={`w-24 h-24 rounded-full bg-gradient-to-r ${result.color} flex items-center justify-center mx-auto mb-6`}>
-                    <result.icon className="w-12 h-12 text-white" />
+                <div className={clsx(glassCardClasses, 'space-y-6 rounded-3xl p-8 shadow-glass')}>
+                  <motion.h2 key={activeQuestion.question} className="text-2xl font-semibold text-white" initial="hidden" animate="visible" variants={questionMotion}>
+                    {activeQuestion.question}
+                  </motion.h2>
+
+                  <div className="space-y-3">
+                    {activeQuestion.options.map((option) => {
+                      const isSelected = selectedType === option.type
+                      return (
+                        <button
+                          type="button"
+                          key={option.id}
+                          onClick={() => handleAnswer(activeQuestion.id, option.type)}
+                          className={clsx(
+                            'w-full rounded-2xl border border-white/10 bg-white/5 p-5 text-left text-base transition-all duration-200 hover:border-white/30 hover:bg-white/10 focus:outline-none',
+                            isSelected && 'border-white/50 bg-white/10 shadow-[0_12px_40px_rgba(12,27,68,0.32)]'
+                          )}
+                        >
+                          <div className="flex items-start gap-3">
+                            <span
+                              className={clsx(
+                                'mt-1 inline-flex h-5 w-5 items-center justify-center rounded-full border border-white/40',
+                                isSelected && 'border-white bg-white text-midnight-800'
+                              )}
+                            >
+                              {isSelected ? <CheckCircle className="h-4 w-4" aria-hidden="true" /> : null}
+                            </span>
+                            <span className="text-white/85">{option.text}</span>
+                          </div>
+                        </button>
+                      )
+                    })}
                   </div>
-                  
-                  <h2 className="text-3xl font-bold text-gray-900 mb-2">{result.title}</h2>
-                  <p className="text-xl text-primary-600 font-semibold mb-6">{result.subtitle}</p>
-                  
-                  <p className="text-lg text-gray-700 mb-8 max-w-2xl mx-auto">
-                    {result.description}
-                  </p>
-                  
-                  <div className="grid md:grid-cols-2 gap-8 mb-8">
-                    <div className="text-left">
-                      <h3 className="font-bold text-gray-900 mb-4">Your Core Traits:</h3>
-                      <ul className="space-y-2">
-                        {result.traits.map((trait, index) => (
-                          <li key={index} className="flex items-start">
-                            <CheckCircle className="w-5 h-5 text-green-500 mr-2 mt-0.5 flex-shrink-0" />
-                            <span className="text-gray-700">{trait}</span>
+
+                  <AnimatePresence mode="wait">
+                    {selectedType ? (
+                      <motion.div
+                        key={selectedType}
+                        initial={{ opacity: 0, y: 12 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 12 }}
+                        className={clsx(glassCardClasses, 'rounded-2xl border-white/15 bg-white/8 p-5 text-sm text-white/75')}
+                      >
+                        {frequencyTypes[selectedType].microGuide}
+                      </motion.div>
+                    ) : null}
+                  </AnimatePresence>
+
+                  <div className="flex flex-col gap-3 pt-4 sm:flex-row sm:items-center sm:justify-between">
+                    <button
+                      type="button"
+                      onClick={previousQuestion}
+                      className="text-sm font-semibold text-white/60 transition hover:text-white"
+                      disabled={currentQuestion === 0}
+                    >
+                      {currentQuestion === 0 ? ' ' : 'Back'}
+                    </button>
+                    <button
+                      type="button"
+                      onClick={nextQuestion}
+                      disabled={!selectedType}
+                      className={clsx(
+                        'inline-flex items-center justify-center rounded-xl px-6 py-3 text-sm font-semibold transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white/70',
+                        gradientPresets.buttonAurora,
+                        selectedType
+                          ? 'hover:-translate-y-0.5 shadow-[0_14px_32px_rgba(12,27,68,0.35)]'
+                          : 'cursor-not-allowed opacity-50'
+                      )}
+                    >
+                      {currentQuestion < totalQuestions - 1 ? 'Next insight' : 'Reveal my blueprint'}
+                      <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
+                    </button>
+                  </div>
+                </div>
+              </motion.div>
+            ) : result ? (
+              <motion.div initial="hidden" animate="visible" variants={questionMotion} className="space-y-12">
+                <div className="text-center space-y-4">
+                  <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.4em] text-white/80">
+                    <Sparkles className="h-4 w-4" aria-hidden="true" />
+                    Soul Frequency Blueprint
+                  </span>
+                  <h1 className="text-5xl font-semibold text-balance">You lead with the {result.title}</h1>
+                  <p className="text-lg text-white/80">{result.subtitle}</p>
+                </div>
+
+                <div className="grid gap-8 lg:grid-cols-[1.05fr,0.95fr]">
+                  <div className={clsx(glassCardClasses, 'space-y-6 rounded-3xl p-8 shadow-glass')}>
+                    <div className="flex items-center justify-between gap-4">
+                      <div className={clsx('flex h-20 w-20 items-center justify-center rounded-3xl text-white shadow-lg shadow-black/30', result.color)}>
+                        <ResultIcon className="h-10 w-10" aria-hidden="true" />
+                      </div>
+                      <div className="text-right text-sm text-white/70">
+                        <p>{result.examples}</p>
+                      </div>
+                    </div>
+                    <p className="text-base leading-relaxed text-white/80">{result.description}</p>
+                    <div>
+                      <h3 className="text-sm font-semibold uppercase tracking-[0.35em] text-white/60">Your core traits</h3>
+                      <ul className="mt-3 space-y-2 text-sm text-white/75">
+                        {result.traits.map((trait) => (
+                          <li key={trait} className="flex items-start gap-2">
+                            <CheckCircle className="mt-0.5 h-4 w-4 text-aurora-400" aria-hidden="true" />
+                            <span>{trait}</span>
                           </li>
                         ))}
                       </ul>
                     </div>
-                    
-                    <div className="text-left">
-                      <h3 className="font-bold text-gray-900 mb-4">AI Collaboration Strategy:</h3>
-                      <p className="text-gray-700 mb-4">{result.aiCollaboration}</p>
-                      <p className="text-sm text-gray-600"><strong>Examples:</strong> {result.examples}</p>
+                    <div>
+                      <h3 className="text-sm font-semibold uppercase tracking-[0.35em] text-white/60">AI collaboration move</h3>
+                      <p className="mt-2 text-sm leading-relaxed text-white/75">{result.aiCollaboration}</p>
                     </div>
                   </div>
-                  
-                  {/* Email Capture */}
-                  <div className="bg-gray-50 rounded-lg p-6 mb-6">
-                    <h3 className="text-xl font-bold mb-4">Get Your Complete Soul Frequency Report</h3>
-                    <p className="text-gray-600 mb-4">
-                      Receive your detailed report with personalized AI prompts, development exercises, and next steps.
-                    </p>
-                    <div className="max-w-md mx-auto flex gap-2">
-                      <input
-                        type="email"
-                        placeholder="Enter your email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-primary-500"
-                      />
-                      <button className="px-6 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors font-semibold">
-                        Send Report
+
+                  <div className="space-y-6">
+                    <div className={clsx(glassCardClasses, 'rounded-3xl border-white/10 bg-white/8 p-7 shadow-glass')}>
+                      <h3 className="text-sm font-semibold uppercase tracking-[0.35em] text-white/60">Mini action plan</h3>
+                      <div className="mt-4 space-y-4 text-sm text-white/75">
+                        {result.nextSteps.map((step) => (
+                          <Link
+                            key={step.label}
+                            href={step.href}
+                            className="group block rounded-2xl border border-white/10 bg-white/5 p-4 transition hover:border-white/25 hover:bg-white/10"
+                          >
+                            <div className="flex items-center justify-between gap-3">
+                              <span className="font-semibold text-white">{step.label}</span>
+                              <ArrowRight className="h-4 w-4 opacity-0 transition-opacity group-hover:opacity-100" aria-hidden="true" />
+                            </div>
+                            <p className="mt-2 text-white/70">{step.description}</p>
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className={clsx(glassCardClasses, 'rounded-3xl border-white/10 bg-white/8 p-6 shadow-glass')}>
+                      <h3 className="text-base font-semibold text-white">Email the full report to yourself</h3>
+                      <p className="mt-2 text-sm text-white/70">
+                        Receive your detailed frequency playbook with prompts, rituals, and sample automations tuned to this profile.
+                      </p>
+                      <form action="/api/newsletter" method="POST" className="mt-4 flex flex-col gap-3 sm:flex-row">
+                        <input type="hidden" name="tag" value={`soul-frequency-${result.id}`} />
+                        <input
+                          type="email"
+                          name="email"
+                          required
+                          placeholder="Enter your email"
+                          className="flex-1 rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-sm text-white placeholder:text-white/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
+                        />
+                        <button
+                          type="submit"
+                          className={clsx(
+                            'inline-flex items-center justify-center rounded-xl px-6 py-3 text-sm font-semibold text-white transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white/70',
+                            gradientPresets.buttonAurora
+                          )}
+                        >
+                          Send report
+                        </button>
+                      </form>
+                      <p className="mt-2 text-xs text-white/50">No spam. Opt out anytime.</p>
+                    </div>
+
+                    <div className="flex flex-col gap-3 sm:flex-row sm:justify-between">
+                      <button
+                        type="button"
+                        onClick={resetQuiz}
+                        className="text-sm font-semibold text-white/70 transition hover:text-white"
+                      >
+                        Retake the quiz
                       </button>
+                      <Link
+                        href="/agent-team"
+                        className="inline-flex items-center gap-2 text-sm font-semibold text-white/80 transition hover:text-white"
+                      >
+                        Meet the agent team blueprint
+                        <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                      </Link>
                     </div>
-                  </div>
-                  
-                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    <button
-                      onClick={() => { setCurrentQuestion(0); setAnswers({}); setShowResults(false) }}
-                      className="px-6 py-3 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors"
-                    >
-                      Retake Quiz
-                    </button>
-                    <Link
-                      href="/blog/02-the-soul-frequency-framework"
-                      className="inline-flex items-center px-6 py-3 bg-primary-600 text-white rounded-lg hover:bg-primary-700 transition-colors"
-                    >
-                      Learn More About Your Type
-                      <ArrowRight className="ml-2 w-4 h-4" />
-                    </Link>
                   </div>
                 </div>
-              )}
-            </motion.div>
-          )}
+              </motion.div>
+            ) : null}
+          </div>
         </div>
       </div>
-      
+
       <Footer />
     </div>
   )

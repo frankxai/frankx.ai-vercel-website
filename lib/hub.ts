@@ -209,7 +209,7 @@ export const segmentProfiles: SegmentProfile[] = [
     ],
     keywords: ['enterprise ai strategy', 'oracle ai architect', 'ai governance playbook'],
     ctas: [
-      { label: "Founder’s AI Playbook", href: '/founder-playbook' },
+      { label: "Founder's AI Playbook", href: '/founder-playbook' },
       { label: 'Book a Strategy Intensive', href: 'mailto:hello@frankx.ai?subject=Conscious%20AI%20Strategy' }
     ]
   },
@@ -298,7 +298,7 @@ export const resourceCollections: ResourceCollection[] = [
     description: 'Hands-on guides, playbooks, and templates for shipping conscious AI systems.',
     focus: 'Best for creators, architects, and executives building multi-offer ecosystems.',
     items: [
-      { label: "Founder’s AI Playbook", href: '/founder-playbook', type: 'Playbook' },
+      { label: "Founder's AI Playbook", href: '/founder-playbook', type: 'Playbook' },
       { label: 'Template Library', href: '/templates', type: 'Templates' },
       { label: 'Guides Collection', href: '/guides', type: 'Guides' }
     ]
@@ -419,7 +419,7 @@ export const agentProtocols: AgentProtocol[] = [
     description: 'Translate experiments into executive decisions and measurable value.',
     focus: 'Bring clarity to high-value clients and leadership teams.',
     icon: BarChart4,
-    link: { href: '/founder-playbook', label: "Open Founder’s Playbook" },
+    link: { href: '/founder-playbook', label: "Open Founder's Playbook" },
     bullets: [
       'KPI scorecards for human + AI outcomes',
       'Governance cadences that satisfy security reviews',
@@ -452,8 +452,8 @@ export const testimonials = [
 export const testimonialIcon = CheckCircle2
 
 export const heroSubtext = [
-  'FrankX is the global AI voice guiding conscious creators, families, and executives.',
-  'Every insight is rooted in enterprise delivery, community rituals, and artistry.'
+  'FrankX is the conscious AI architect who designs calm intelligence systems for families, creators, and executive circles.',
+  'Each experience merges enterprise discipline, soulful creativity, and community rituals so progress feels grounded and human.'
 ]
 
 export const heroCta = {
@@ -463,6 +463,6 @@ export const heroCta = {
 }
 
 export const heroSupportLink = {
-  label: 'View Conscious AI Principles',
+  label: 'Explore the Conscious AI Playbook',
   href: '/guides'
 }
