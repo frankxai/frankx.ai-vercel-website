@@ -9,7 +9,7 @@ import Footer from '@/components/Footer'
 import Navigation from '@/components/Navigation'
 import BlogCard from '@/components/blog/BlogCard'
 import { getAllBlogPosts, getBlogPost } from '@/lib/blog'
-import { createMetadata } from '@/lib/seo'
+import { createMetadata, siteConfig } from '@/lib/seo'
 
 export const dynamic = 'force-dynamic'
 export const dynamicParams = true
