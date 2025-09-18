@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { motion } from 'framer-motion'
 import {
   Calculator,
@@ -90,7 +90,7 @@ export default function ROICalculatorPage() {
     setInputs(prev => ({ ...prev, [key]: value }))
   }
 
-  const calculateROI = (): ROIResults => {
+  const calculateROI = useCallback((): ROIResults => {
     const {
       implementationCost,
       monthlyToolCosts,
@@ -183,11 +183,11 @@ export default function ROICalculatorPage() {
       riskScore,
       confidenceLevel
     }
-  }
+  }, [inputs])
 
   useEffect(() => {
     setResults(calculateROI())
-  }, [inputs])
+  }, [calculateROI])
 
   const formatCurrency = (amount: number) => {
     return new Intl.NumberFormat('en-US', {

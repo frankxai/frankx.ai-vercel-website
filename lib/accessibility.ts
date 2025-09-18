@@ -148,7 +148,7 @@ export const patterns = {
   },
 } as const
 
-export default {
+const accessibilityUtils = {
   touchTargets,
   focusRings,
   srOnly,
@@ -162,3 +162,5 @@ export default {
   combineA11y,
   generateId,
 }
+
+export default accessibilityUtils

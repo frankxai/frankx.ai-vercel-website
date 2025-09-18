@@ -1,47 +1,24 @@
 import Link from 'next/link'
 import { ArrowRight, Home, Search, BookOpen, Sparkles } from 'lucide-react'
-import { motion } from 'framer-motion'
-import GlassmorphicCard from '@/components/ui/GlassmorphicCard'
-import PremiumButton from '@/components/ui/PremiumButton'
 
 export default function NotFound() {
   return (
     <div className="min-h-screen bg-slate-950 flex items-center justify-center px-4">
       <div className="max-w-2xl mx-auto text-center">
-        {/* Animated 404 */}
-        <motion.div
-          className="mb-8"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
-        >
+        {/* 404 */}
+        <div className="mb-8">
           <div className="text-8xl font-bold bg-gradient-to-r from-purple-400 via-blue-400 to-cyan-400 bg-clip-text text-transparent mb-4">
             404
           </div>
-          <motion.div
-            className="w-24 h-24 mx-auto mb-6"
-            animate={{
-              rotate: [0, 10, -10, 10, 0],
-              scale: [1, 1.1, 1, 1.1, 1]
-            }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              repeatType: 'reverse'
-            }}
-          >
+          <div className="w-24 h-24 mx-auto mb-6">
             <div className="w-full h-full rounded-2xl bg-gradient-to-br from-purple-500 via-blue-500 to-cyan-500 flex items-center justify-center shadow-[0_0_40px_rgba(124,58,237,0.6)]">
               <Sparkles className="w-12 h-12 text-white" />
             </div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
 
         {/* Content */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.6 }}
-        >
+        <div>
           <h1 className="text-4xl font-bold text-slate-100 mb-4">
             Intelligence Not Found
           </h1>
@@ -49,20 +26,11 @@ export default function NotFound() {
             Even our most sophisticated AI agents couldn't locate this page.
             Let's guide you back to the knowledge you're seeking.
           </p>
-        </motion.div>
+        </div>
 
         {/* Quick Actions */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4, duration: 0.6 }}
-          className="grid sm:grid-cols-2 gap-4 mb-8"
-        >
-          <GlassmorphicCard
-            variant="premium"
-            hover
-            className="p-6 group cursor-pointer"
-          >
+        <div className="grid sm:grid-cols-2 gap-4 mb-8">
+          <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 group cursor-pointer hover:bg-white/10 transition-colors">
             <Link href="/" className="block">
               <div className="flex items-center space-x-4">
                 <div className="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center group-hover:bg-purple-500/30 transition-colors">
@@ -78,13 +46,9 @@ export default function NotFound() {
                 </div>
               </div>
             </Link>
-          </GlassmorphicCard>
+          </div>
 
-          <GlassmorphicCard
-            variant="premium"
-            hover
-            className="p-6 group cursor-pointer"
-          >
+          <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 group cursor-pointer hover:bg-white/10 transition-colors">
             <Link href="/search" className="block">
               <div className="flex items-center space-x-4">
                 <div className="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center group-hover:bg-blue-500/30 transition-colors">
@@ -100,13 +64,9 @@ export default function NotFound() {
                 </div>
               </div>
             </Link>
-          </GlassmorphicCard>
+          </div>
 
-          <GlassmorphicCard
-            variant="premium"
-            hover
-            className="p-6 group cursor-pointer"
-          >
+          <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 group cursor-pointer hover:bg-white/10 transition-colors">
             <Link href="/guides" className="block">
               <div className="flex items-center space-x-4">
                 <div className="w-12 h-12 bg-cyan-500/20 rounded-xl flex items-center justify-center group-hover:bg-cyan-500/30 transition-colors">
@@ -122,60 +82,44 @@ export default function NotFound() {
                 </div>
               </div>
             </Link>
-          </GlassmorphicCard>
+          </div>
 
-          <GlassmorphicCard
-            variant="premium"
-            hover
-            className="p-6 group cursor-pointer"
-          >
-            <Link href="/products" className="block">
+          <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 group cursor-pointer hover:bg-white/10 transition-colors">
+            <Link href="/blog" className="block">
               <div className="flex items-center space-x-4">
                 <div className="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center group-hover:bg-green-500/30 transition-colors">
-                  <Sparkles className="w-6 h-6 text-green-300" />
+                  <BookOpen className="w-6 h-6 text-green-300" />
                 </div>
                 <div className="text-left">
                   <h3 className="font-semibold text-slate-100 group-hover:text-green-200 transition-colors">
-                    Products
+                    Blog
                   </h3>
                   <p className="text-sm text-slate-400">
-                    Premium resources
+                    Latest insights
                   </p>
                 </div>
               </div>
             </Link>
-          </GlassmorphicCard>
-        </motion.div>
+          </div>
+        </div>
 
         {/* CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.6, duration: 0.6 }}
-          className="space-y-4"
-        >
+        <div className="space-y-4">
           <p className="text-slate-400 mb-6">
             Or start your conscious AI journey with our free assessment
           </p>
 
-          <PremiumButton
+          <Link
             href="/soul-frequency-assessment"
-            variant="luxury"
-            size="lg"
-            glow
+            className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold rounded-xl hover:from-purple-700 hover:to-blue-700 transition-all shadow-lg"
           >
             Start AI Assessment
             <ArrowRight className="w-5 h-5 ml-2" />
-          </PremiumButton>
-        </motion.div>
+          </Link>
+        </div>
 
         {/* Support */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.8, duration: 0.6 }}
-          className="mt-12 pt-8 border-t border-slate-700/30"
-        >
+        <div className="mt-12 pt-8 border-t border-slate-700/30">
           <p className="text-sm text-slate-500">
             Still can't find what you're looking for?{' '}
             <Link
@@ -185,7 +129,7 @@ export default function NotFound() {
               Contact our team
             </Link>
           </p>
-        </motion.div>
+        </div>
       </div>
     </div>
   )

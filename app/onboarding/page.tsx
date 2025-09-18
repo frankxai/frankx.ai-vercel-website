@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowRight, ArrowLeft, CheckCircle, Star, Target, Users, Zap, Brain, Code, Palette, BarChart3, Shield, Clock, Trophy, Lightbulb, Rocket, Heart, Settings, Play, Book, MessageCircle, Award, TrendingUp, Download, ExternalLink } from 'lucide-react'
 
@@ -202,7 +202,7 @@ export default function OnboardingPage() {
     updateProfile({ interests: updatedInterests })
   }
 
-  const generateRecommendations = () => {
+  const generateRecommendations = useCallback(() => {
     const mockRecommendations: Recommendation[] = [
       {
         type: 'course',
@@ -250,13 +250,13 @@ export default function OnboardingPage() {
       }
     ]
     setRecommendations(mockRecommendations)
-  }
+  }, [userProfile.experience])
 
   useEffect(() => {
     if (currentStep === 5) { // Recommendations step
       generateRecommendations()
     }
-  }, [currentStep])
+  }, [currentStep, generateRecommendations])
 
   const currentStepData = steps[currentStep]
   const progress = ((currentStep + 1) / steps.length) * 100

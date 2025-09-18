@@ -201,7 +201,7 @@ export function getCurrentBreakpoint(): keyof typeof breakpoints | 'xs' {
   return 'xs'
 }
 
-export default {
+const responsiveUtils = {
   breakpoints,
   containers,
   typography,
@@ -216,3 +216,5 @@ export default {
   isMobile,
   getCurrentBreakpoint,
 }
+
+export default responsiveUtils
