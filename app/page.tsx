@@ -6,9 +6,9 @@ import HomePage from '@/components/home/HomePage'
 import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
-  title: 'FrankX Intelligence Hub | Conscious AI Voice & Resource Platform',
+  title: 'FrankX Intelligence Collective | Conscious AI Systems & Resource Hub',
   description:
-    'Explore the FrankX Intelligence Hub for conscious AI strategy, Suno-powered creativity, family education, and enterprise-ready systems.',
+    'Explore the FrankX agent collective hub for conscious AI strategy, Suno-powered creativity, multi-disciplinary resources, and enterprise-ready systems.',
   keywords: [
     'conscious ai',
     'ai strategy',
@@ -24,15 +24,24 @@ export const metadata = createMetadata({
 const structuredData = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
-  name: 'FrankX',
+  name: 'FrankX Agent Collective',
   url: 'https://frankx.ai',
   description:
-    'FrankX is the global AI voice guiding creators, families, and executives with conscious intelligence systems, music innovation, and community rituals.',
-  founder: {
-    '@type': 'Person',
-    name: 'Frank',
-    jobTitle: 'Conscious AI Architect',
-  },
+    'FrankX is an agent collective orchestrating conscious intelligence systems, music innovation, and community rituals for creators, families, and leadership teams.',
+  member: [
+    {
+      '@type': 'Organization',
+      name: 'FrankX Strategy Pod',
+    },
+    {
+      '@type': 'Organization',
+      name: 'FrankX Design & Story Pod',
+    },
+    {
+      '@type': 'Organization',
+      name: 'FrankX Music Lab',
+    },
+  ],
   sameAs: [
     'https://linkedin.com/in/frank',
     'https://twitter.com/frankxai',
@@ -71,7 +80,7 @@ const structuredData = {
 
 export default function Page() {
   return (
-    <div className="min-h-screen flex flex-col bg-slate-950 text-slate-100">
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-slate-950 via-[#030712] to-[#00040a] text-slate-100">
       <Navigation />
       <HomePage />
       <Footer />

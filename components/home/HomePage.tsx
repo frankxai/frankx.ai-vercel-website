@@ -37,17 +37,28 @@ const TestimonialIcon = testimonialIcon
 
 export default function HomePage() {
   return (
-    <main id="main" className="flex-1 bg-slate-950 text-slate-100 pt-32">
+    <main
+      id="main"
+      className="flex-1 bg-gradient-to-b from-slate-950 via-[#030712] to-[#01040a] text-slate-100 pt-32"
+    >
       {/* Hero Section */}
-      <section id="hub" className="relative overflow-hidden pb-20">
-        <div className="absolute inset-0 bg-gradient-to-br from-indigo-900 via-purple-900 to-slate-900 opacity-95" />
+      <section id="hub" className="relative overflow-hidden pb-24">
+        <div className="absolute inset-0 bg-gradient-to-br from-[#1e1b4b] via-[#0f172a] to-[#020617] opacity-95" />
         <div
           className="absolute inset-0"
           aria-hidden="true"
           style={{
             backgroundImage:
-              'radial-gradient(circle at 20% 20%, rgba(255,255,255,0.08), transparent 55%), radial-gradient(circle at 80% 10%, rgba(255,255,255,0.06), transparent 45%), radial-gradient(circle at 50% 80%, rgba(56,189,248,0.18), transparent 55%)'
+              'radial-gradient(circle at 18% 18%, rgba(255,255,255,0.08), transparent 55%), radial-gradient(circle at 78% 12%, rgba(255,255,255,0.05), transparent 45%), radial-gradient(circle at 48% 78%, rgba(56,189,248,0.22), transparent 60%)'
           }}
+        />
+        <div
+          aria-hidden="true"
+          className="absolute inset-x-0 -top-40 h-[420px] bg-[radial-gradient(circle,_rgba(129,140,248,0.35),_transparent_65%)] blur-3xl opacity-70"
+        />
+        <div
+          aria-hidden="true"
+          className="absolute right-[-12%] top-1/3 h-80 w-80 rounded-full bg-[radial-gradient(circle,_rgba(56,189,248,0.45),_transparent_60%)] blur-3xl opacity-70"
         />
         <div className="relative max-w-7xl mx-auto px-6">
           <motion.div
@@ -59,10 +70,10 @@ export default function HomePage() {
             <motion.div variants={fadeUp} className="space-y-6 text-white">
               <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 text-xs uppercase tracking-widest">
                 <Sparkles className="w-4 h-4" aria-hidden="true" />
-                FrankX Intelligence Hub
+                FrankX Agent Collective
               </span>
               <h1 className="text-4xl md:text-6xl font-semibold leading-tight text-balance">
-                The global AI voice guiding conscious creators, families, and enterprise leaders
+                Conscious intelligence systems built with you by the FrankX agent team
               </h1>
               <div className="space-y-3 text-lg text-slate-100/90">
                 {heroSubtext.map((line) => (
@@ -74,14 +85,14 @@ export default function HomePage() {
               <div className="flex flex-col sm:flex-row gap-4 pt-2">
                 <Link
                   href={heroCta.primary.href}
-                  className="inline-flex items-center justify-center px-8 py-4 rounded-xl bg-white text-slate-900 font-semibold shadow-lg shadow-primary-900/20 hover:bg-slate-100 transition-transform hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-slate-100"
+                  className="inline-flex items-center justify-center px-8 py-4 rounded-xl bg-gradient-to-r from-sky-400 via-indigo-500 to-fuchsia-500 text-slate-950 font-semibold shadow-[0_25px_60px_rgba(56,189,248,0.35)] hover:shadow-[0_20px_45px_rgba(168,85,247,0.35)] transition-transform hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-sky-200 focus-visible:ring-offset-slate-950"
                 >
                   {heroCta.primary.label}
                   <ArrowRight className="w-5 h-5 ml-2" aria-hidden="true" />
                 </Link>
                 <Link
                   href={heroCta.secondary.href}
-                  className="inline-flex items-center justify-center px-8 py-4 rounded-xl border border-white/40 text-white/90 hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white"
+                  className="inline-flex items-center justify-center px-8 py-4 rounded-xl border border-white/20 bg-white/5 text-white/90 hover:bg-white/10 hover:border-white/40 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white/80 focus-visible:ring-offset-slate-950"
                 >
                   {heroCta.secondary.label}
                   <ArrowUpRight className="w-5 h-5 ml-2" aria-hidden="true" />
@@ -101,7 +112,7 @@ export default function HomePage() {
                 {heroStats.map((stat) => (
                   <div
                     key={stat.label}
-                    className="bg-white/10 border border-white/15 rounded-2xl p-5 backdrop-blur text-sm"
+                    className="bg-gradient-to-br from-white/10 via-white/5 to-transparent border border-white/15 rounded-2xl p-5 backdrop-blur-xl text-sm shadow-[0_20px_45px_rgba(15,23,42,0.55)]"
                   >
                     <div className="text-3xl font-semibold text-white">{stat.value}</div>
                     <div className="uppercase tracking-widest text-white/70 mt-2 text-xs">{stat.label}</div>
@@ -114,13 +125,13 @@ export default function HomePage() {
             <motion.aside
               variants={fadeUp}
               transition={{ delay: 0.1 }}
-              className="bg-white/10 border border-white/15 rounded-3xl p-8 backdrop-blur-xl text-white space-y-10"
+              className="bg-gradient-to-br from-white/15 via-white/5 to-transparent border border-white/20 rounded-3xl p-8 backdrop-blur-2xl text-white space-y-10 shadow-[0_35px_80px_rgba(15,23,42,0.7)]"
             >
               <div>
                 <h2 className="text-2xl font-semibold">What lives here</h2>
                 <p className="mt-3 text-sm text-white/80 leading-relaxed">
-                  Every visit surfaces the newest intelligence, resources, and rituals designed for you and the
-                  agents you deploy. Start with a quick action or explore the highlights.
+                  Every visit surfaces evolving intelligence, resources, and rituals designed for you and the agents
+                  you deploy. Start with a quick action or explore the highlights.
                 </p>
               </div>
               <div className="grid gap-3">
@@ -128,7 +139,7 @@ export default function HomePage() {
                   <Link
                     key={action.title}
                     href={action.href}
-                    className="group flex items-start gap-3 rounded-2xl border border-white/15 bg-white/5 px-4 py-4 hover:bg-white/10 transition"
+                    className="group flex items-start gap-3 rounded-2xl border border-white/15 bg-white/5 px-4 py-4 hover:bg-white/10 transition shadow-[0_12px_30px_rgba(15,23,42,0.45)]"
                   >
                     <action.icon className="w-5 h-5 mt-0.5 text-white/80" aria-hidden="true" />
                     <div>
@@ -160,8 +171,16 @@ export default function HomePage() {
       </section>
 
       {/* Segment Profiles */}
-      <section id="segments" className="bg-slate-950 py-24 px-6">
-        <div className="max-w-7xl mx-auto text-white">
+      <section id="segments" className="relative overflow-hidden py-28 px-6">
+        <div
+          className="absolute inset-0 bg-gradient-to-b from-slate-950/95 via-[#030712]/95 to-[#020617]"
+          aria-hidden="true"
+        />
+        <div
+          className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(56,189,248,0.18),_transparent_60%)] opacity-60"
+          aria-hidden="true"
+        />
+        <div className="relative max-w-7xl mx-auto text-white">
           <motion.div className="max-w-3xl" {...fadeUp}>
             <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 text-xs uppercase tracking-widest">
               <Sparkles className="w-4 h-4" aria-hidden="true" />
@@ -177,7 +196,7 @@ export default function HomePage() {
             {segmentProfiles.map((profile) => (
               <motion.article
                 key={profile.id}
-                className="h-full rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur"
+                className="h-full rounded-3xl border border-white/10 bg-gradient-to-br from-white/10 via-white/5 to-transparent p-8 backdrop-blur-xl shadow-[0_25px_70px_rgba(15,23,42,0.6)]"
                 {...fadeUp}
                 transition={{ duration: 0.4 }}
               >
@@ -225,8 +244,16 @@ export default function HomePage() {
       </section>
 
       {/* Updates */}
-      <section id="updates" className="bg-slate-950 py-24 px-6">
-        <div className="max-w-7xl mx-auto">
+      <section id="updates" className="relative overflow-hidden py-28 px-6">
+        <div
+          className="absolute inset-0 bg-gradient-to-b from-[#030712] via-[#020617] to-[#01050b]"
+          aria-hidden="true"
+        />
+        <div
+          className="absolute inset-0 bg-[radial-gradient(circle_at_80%_10%,_rgba(168,85,247,0.2),_transparent_65%)] opacity-60"
+          aria-hidden="true"
+        />
+        <div className="relative max-w-7xl mx-auto">
           <motion.div className="max-w-3xl" {...fadeUp}>
             <h2 className="text-4xl font-semibold text-white text-balance">Latest intelligence drops</h2>
             <p className="mt-4 text-white/70">
@@ -238,7 +265,7 @@ export default function HomePage() {
             {updateEntries.map((entry) => (
               <motion.article
                 key={entry.href}
-                className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur"
+                className="rounded-3xl border border-white/10 bg-gradient-to-br from-white/10 via-white/5 to-transparent p-6 backdrop-blur-xl shadow-[0_22px_60px_rgba(15,23,42,0.58)]"
                 {...fadeUp}
                 transition={{ duration: 0.4 }}
               >
@@ -271,8 +298,16 @@ export default function HomePage() {
       </section>
 
       {/* Resources */}
-      <section id="resources" className="bg-slate-950 py-24 px-6">
-        <div className="max-w-7xl mx-auto text-white">
+      <section id="resources" className="relative overflow-hidden py-28 px-6">
+        <div
+          className="absolute inset-0 bg-gradient-to-b from-[#01040a] via-[#020617] to-[#030712]"
+          aria-hidden="true"
+        />
+        <div
+          className="absolute inset-0 bg-[radial-gradient(circle_at_20%_15%,_rgba(59,130,246,0.18),_transparent_60%)] opacity-60"
+          aria-hidden="true"
+        />
+        <div className="relative max-w-7xl mx-auto text-white">
           <motion.div className="max-w-3xl" {...fadeUp}>
             <h2 className="text-4xl font-semibold text-balance">Resource universes for every mission</h2>
             <p className="mt-4 text-slate-300">
@@ -284,7 +319,7 @@ export default function HomePage() {
             {resourceCollections.map((collection) => (
               <motion.article
                 key={collection.id}
-                className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur flex flex-col"
+                className="rounded-3xl border border-white/10 bg-gradient-to-br from-white/10 via-white/5 to-transparent p-8 backdrop-blur-xl flex flex-col shadow-[0_25px_70px_rgba(15,23,42,0.6)]"
                 {...fadeUp}
                 transition={{ duration: 0.3 }}
               >
@@ -295,10 +330,10 @@ export default function HomePage() {
                 <ul className="mt-6 space-y-3 text-sm">
                   {collection.items.map((item) => (
                     <li key={item.href}>
-                      <Link
-                        href={item.href}
-                        className="group flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 px-4 py-3 hover:bg-white/15 transition"
-                      >
+                    <Link
+                      href={item.href}
+                      className="group flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 px-4 py-3 hover:bg-white/15 transition shadow-[0_16px_40px_rgba(15,23,42,0.5)]"
+                    >
                         <div>
                           <p className="font-semibold text-white">{item.label}</p>
                           <p className="text-xs text-white/70">{item.type}</p>
@@ -315,8 +350,16 @@ export default function HomePage() {
       </section>
 
       {/* Keyword Clusters */}
-      <section id="search" className="bg-slate-950 py-24 px-6">
-        <div className="max-w-7xl mx-auto">
+      <section id="search" className="relative overflow-hidden py-28 px-6">
+        <div
+          className="absolute inset-0 bg-gradient-to-b from-[#030712] via-[#01040a] to-[#020617]"
+          aria-hidden="true"
+        />
+        <div
+          className="absolute inset-0 bg-[radial-gradient(circle_at_30%_80%,_rgba(14,165,233,0.18),_transparent_60%)] opacity-60"
+          aria-hidden="true"
+        />
+        <div className="relative max-w-7xl mx-auto">
           <motion.div className="max-w-3xl" {...fadeUp}>
             <h2 className="text-4xl font-semibold text-white text-balance">
               Built around the searches you and your agents run
@@ -330,7 +373,7 @@ export default function HomePage() {
             {keywordClusters.map((cluster) => (
               <motion.article
                 key={cluster.cluster}
-                className="rounded-3xl border border-white/10 bg-white/5 p-6"
+                className="rounded-3xl border border-white/10 bg-gradient-to-br from-white/10 via-white/5 to-transparent p-6 backdrop-blur-xl shadow-[0_20px_55px_rgba(15,23,42,0.55)]"
                 {...fadeUp}
               >
                 <h3 className="text-xl font-semibold text-white">{cluster.cluster}</h3>
@@ -366,8 +409,16 @@ export default function HomePage() {
       </section>
 
       {/* Projects */}
-      <section id="projects" className="bg-slate-950 py-24 px-6">
-        <div className="max-w-7xl mx-auto text-white">
+      <section id="projects" className="relative overflow-hidden py-28 px-6">
+        <div
+          className="absolute inset-0 bg-gradient-to-b from-[#01040a] via-[#020617] to-[#050a15]"
+          aria-hidden="true"
+        />
+        <div
+          className="absolute inset-0 bg-[radial-gradient(circle_at_70%_20%,_rgba(236,72,153,0.18),_transparent_65%)] opacity-60"
+          aria-hidden="true"
+        />
+        <div className="relative max-w-7xl mx-auto text-white">
           <motion.div className="max-w-3xl" {...fadeUp}>
             <h2 className="text-4xl font-semibold text-balance">Ship logs & manuscripts in motion</h2>
             <p className="mt-4 text-slate-300">
@@ -379,7 +430,7 @@ export default function HomePage() {
             {projectMilestones.map((milestone) => (
               <motion.article
                 key={milestone.title}
-                className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur"
+                className="rounded-3xl border border-white/10 bg-gradient-to-br from-white/10 via-white/5 to-transparent p-6 backdrop-blur-xl shadow-[0_24px_65px_rgba(15,23,42,0.6)]"
                 {...fadeUp}
               >
                 <span
@@ -411,8 +462,16 @@ export default function HomePage() {
       </section>
 
       {/* Agent Protocols */}
-      <section id="agents" className="bg-slate-950 py-24 px-6">
-        <div className="max-w-7xl mx-auto">
+      <section id="agents" className="relative overflow-hidden py-28 px-6">
+        <div
+          className="absolute inset-0 bg-gradient-to-b from-[#020617] via-[#030712] to-[#01040a]"
+          aria-hidden="true"
+        />
+        <div
+          className="absolute inset-0 bg-[radial-gradient(circle_at_80%_70%,_rgba(147,51,234,0.2),_transparent_60%)] opacity-60"
+          aria-hidden="true"
+        />
+        <div className="relative max-w-7xl mx-auto">
           <motion.div className="max-w-3xl" {...fadeUp}>
             <h2 className="text-4xl font-semibold text-white text-balance">
               Protocols that your AI agents can plug into today
@@ -426,7 +485,7 @@ export default function HomePage() {
             {agentProtocols.map((protocol) => (
               <motion.article
                 key={protocol.title}
-                className="rounded-3xl border border-white/10 bg-white/5 p-6"
+                className="rounded-3xl border border-white/10 bg-gradient-to-br from-white/10 via-white/5 to-transparent p-6 backdrop-blur-xl shadow-[0_24px_65px_rgba(15,23,42,0.6)]"
                 {...fadeUp}
               >
                 <div className="flex items-center gap-3">
@@ -463,8 +522,16 @@ export default function HomePage() {
       </section>
 
       {/* Testimonials */}
-      <section id="testimonials" className="bg-slate-950 py-24 px-6">
-        <div className="max-w-7xl mx-auto text-white">
+      <section id="testimonials" className="relative overflow-hidden py-28 px-6">
+        <div
+          className="absolute inset-0 bg-gradient-to-b from-[#01040a] via-[#020617] to-[#030712]"
+          aria-hidden="true"
+        />
+        <div
+          className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,_rgba(59,130,246,0.18),_transparent_65%)] opacity-60"
+          aria-hidden="true"
+        />
+        <div className="relative max-w-7xl mx-auto text-white">
           <motion.div className="max-w-3xl" {...fadeUp}>
             <h2 className="text-4xl font-semibold text-balance">Trusted across communities and boardrooms</h2>
             <p className="mt-4 text-slate-300">
@@ -476,7 +543,7 @@ export default function HomePage() {
             {testimonials.map((testimonial) => (
               <motion.article
                 key={testimonial.name}
-                className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur"
+                className="rounded-3xl border border-white/10 bg-gradient-to-br from-white/10 via-white/5 to-transparent p-6 backdrop-blur-xl shadow-[0_24px_65px_rgba(15,23,42,0.6)]"
                 {...fadeUp}
               >
                 <TestimonialIcon className="w-8 h-8 text-sky-300" aria-hidden="true" />
@@ -492,24 +559,33 @@ export default function HomePage() {
       </section>
 
       {/* Final CTA */}
-      <section className="bg-gradient-to-r from-indigo-600 via-purple-600 to-sky-500 py-24 px-6 text-white">
-        <div className="max-w-4xl mx-auto text-center space-y-6">
-          <h2 className="text-4xl font-semibold text-balance">Ready to architect your conscious intelligence era?</h2>
+      <section className="relative overflow-hidden py-28 px-6 text-white">
+        <div
+          className="absolute inset-0 bg-gradient-to-br from-[#111827] via-[#312e81] to-[#020617]"
+          aria-hidden="true"
+        />
+        <div
+          className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(59,130,246,0.28),_transparent_65%)] opacity-70"
+          aria-hidden="true"
+        />
+        <div className="relative max-w-4xl mx-auto text-center space-y-6">
+          <h2 className="text-4xl font-semibold text-balance">Ready to co-create your conscious intelligence network?</h2>
           <p className="text-lg text-white/90 leading-relaxed">
-            Bring your friends, family, executive teams, and AI agents into a shared operating system. We
-            will build the rituals, automations, and creative experiences that let everyone thrive.
+            Invite your collaborators, families, and leadership councils into an operating system that blends
+            research, music, narrative, and engineering. The FrankX agent collective builds alongside you every
+            step.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/soul-frequency-assessment"
-              className="inline-flex items-center justify-center px-8 py-4 rounded-xl bg-white text-purple-700 font-semibold hover:bg-slate-100 transition"
+              className="inline-flex items-center justify-center px-8 py-4 rounded-xl bg-gradient-to-r from-sky-400 via-indigo-500 to-fuchsia-500 text-slate-950 font-semibold shadow-[0_25px_60px_rgba(56,189,248,0.35)] hover:shadow-[0_20px_45px_rgba(168,85,247,0.35)] transition-transform hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-sky-200 focus-visible:ring-offset-slate-950"
             >
               Begin with the assessment
               <ArrowRight className="w-5 h-5 ml-2" aria-hidden="true" />
             </Link>
             <Link
               href="mailto:hello@frankx.ai?subject=Conscious%20AI%20Collaboration"
-              className="inline-flex items-center justify-center px-8 py-4 rounded-xl border border-white/60 text-white hover:bg-white/10 transition"
+              className="inline-flex items-center justify-center px-8 py-4 rounded-xl border border-white/20 bg-white/5 text-white hover:bg-white/10 hover:border-white/40 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-white/70 focus-visible:ring-offset-slate-950"
             >
               Request a strategy session
               <ArrowUpRight className="w-5 h-5 ml-2" aria-hidden="true" />

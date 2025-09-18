@@ -91,39 +91,39 @@ export type AgentProtocol = {
 
 export const heroStats: HeroStat[] = [
   {
-    label: 'Enterprise Systems Shipped',
-    value: '200+',
-    detail: 'Oracle-grade AI roadmaps deployed with conscious safeguards'
+    label: 'Intelligence Systems Activated',
+    value: '145+',
+    detail: 'Cross-pod roadmaps spanning storytelling, engineering, and education'
   },
   {
-    label: 'Suno Collaborations',
-    value: '500',
-    detail: 'Music-led rituals co-created with AI and communities'
+    label: 'Suno Sessions Engineered',
+    value: '800+',
+    detail: 'Living soundscapes and rituals produced with our Music Lab collaborators'
   },
   {
-    label: 'Weekly Briefings',
-    value: '52+',
-    detail: 'Annual cadence of strategic intelligence drops and audits'
+    label: 'Collective Briefings',
+    value: '78',
+    detail: 'Weekly intelligence cadences aligning families, creators, and executives'
   }
 ]
 
 export const heroHighlights: HeroHighlight[] = [
   {
-    title: 'Signal Over Noise',
+    title: 'Collective Signal Intelligence',
     description:
-      'Curated AI news, regulatory shifts, and capability drops filtered for strategic relevance.',
+      'Strategists, researchers, and storytellers curate the shifts that actually move your missions forward.',
     icon: Megaphone
   },
   {
-    title: 'Resource Vault',
+    title: 'Living Resource Atlas',
     description:
-      'Guides, templates, playlists, and scripts to launch conscious intelligence experiences.',
+      'Guides, templates, playlists, and scripts continually versioned with our design and education pods.',
     icon: BookOpen
   },
   {
-    title: 'Agent-Ready Blueprints',
+    title: 'Agent-Oriented Blueprints',
     description:
-      'Process maps and prompts that help your AI agents reason with the same values you hold.',
+      'Process maps and prompts that help human teams and AI agents collaborate with shared guardrails.',
     icon: Workflow
   }
 ]
@@ -131,25 +131,25 @@ export const heroHighlights: HeroHighlight[] = [
 export const quickActions: QuickAction[] = [
   {
     title: 'Search the Hub',
-    description: 'Semantic search across essays, guides, and templates.',
+    description: 'Semantic search across research, creative scores, and governance rituals.',
     href: '/search',
     icon: Search
   },
   {
     title: 'Latest Briefings',
-    description: 'Read the intelligence updates that anchor every engagement.',
+    description: 'Read the multi-pod intelligence updates anchoring each engagement.',
     href: '/blog',
     icon: Newspaper
   },
   {
     title: 'Resource Library',
-    description: 'Download assessments, playbooks, and creative stacks.',
+    description: 'Download assessments, playbooks, and creative stacks from the collective.',
     href: '/resources',
     icon: FolderOpen
   },
   {
     title: 'Book Progress',
-    description: 'Track the Soul Frequency manuscript and new releases.',
+    description: 'Track the Soul Frequency manuscript, new releases, and upcoming drops.',
     href: '/#projects',
     icon: CalendarCheck
   }
@@ -284,8 +284,8 @@ export const resourceCollections: ResourceCollection[] = [
   {
     id: 'start',
     title: 'Start Free & Grounded',
-    description: 'Orientation experiences that give immediate language, safety, and clarity.',
-    focus: 'Perfect for welcoming friends, family, and new collaborators into the hub.',
+    description: 'Orientation experiences that give immediate language, safety, and clarity crafted by every pod.',
+    focus: 'Perfect for welcoming friends, family, and new collaborators into the collective intelligence hub.',
     items: [
       { label: 'Soul Frequency Assessment', href: '/soul-frequency-assessment', type: 'Assessment' },
       { label: 'Soul Frequency Quiz', href: '/soul-frequency-quiz', type: 'Quiz' },
@@ -295,8 +295,8 @@ export const resourceCollections: ResourceCollection[] = [
   {
     id: 'deepen',
     title: 'Deepen Your Practice',
-    description: 'Hands-on guides, playbooks, and templates for shipping conscious AI systems.',
-    focus: 'Best for creators, architects, and executives building multi-offer ecosystems.',
+    description: 'Hands-on guides, playbooks, and templates co-authored by strategy, music, and engineering pods.',
+    focus: 'Best for creators, architects, and executives building multi-offer ecosystems with conscious guardrails.',
     items: [
       { label: "Founder’s AI Playbook", href: '/founder-playbook', type: 'Playbook' },
       { label: 'Template Library', href: '/templates', type: 'Templates' },
@@ -306,8 +306,8 @@ export const resourceCollections: ResourceCollection[] = [
   {
     id: 'premium',
     title: 'Premium Engagements',
-    description: 'High-touch collaborations for teams that need bespoke AI architecture and leadership.',
-    focus: 'Ideal for enterprise leaders, studios, and creators scaling conscious ecosystems.',
+    description: 'High-touch collaborations where our agent teams architect bespoke AI systems and rituals.',
+    focus: 'Ideal for enterprise leaders, studios, and creators scaling conscious ecosystems with confidence.',
     items: [
       { label: 'Strategy Intensive', href: 'mailto:hello@frankx.ai?subject=Strategy%20Intensive', type: 'Advisory' },
       { label: 'Intelligence Retainer', href: 'mailto:hello@frankx.ai?subject=Intelligence%20Retainer', type: 'Retainer' },
@@ -405,7 +405,7 @@ export const agentProtocols: AgentProtocol[] = [
   {
     title: 'Creation Engine',
     description: 'Design sonic, narrative, and visual experiences that feel alive.',
-    focus: 'Combines Suno workflows with marketing arcs and monetization plans.',
+    focus: 'Combines Suno workflows with marketing arcs and monetization plans from our creative pods.',
     icon: Music,
     link: { href: '/music-lab', label: 'Visit Music Lab' },
     bullets: [
@@ -417,7 +417,7 @@ export const agentProtocols: AgentProtocol[] = [
   {
     title: 'Executive Intelligence Dashboard',
     description: 'Translate experiments into executive decisions and measurable value.',
-    focus: 'Bring clarity to high-value clients and leadership teams.',
+    focus: 'Bring clarity to high-value clients and leadership teams with shared metrics.',
     icon: BarChart4,
     link: { href: '/founder-playbook', label: "Open Founder’s Playbook" },
     bullets: [
@@ -431,19 +431,19 @@ export const agentProtocols: AgentProtocol[] = [
 export const testimonials = [
   {
     quote:
-      'Frank helped us turn a scattered set of offers into a coherent intelligence system. We shipped a new funnel, an AI concierge, and grew revenue without burning out the team.',
+      'The FrankX agent team turned a scattered set of offers into a coherent intelligence system. We shipped a new funnel, an AI concierge, and grew revenue without burning out the team.',
     name: 'Zoe Carter',
     role: 'Founder · Conscious Leadership Lab'
   },
   {
     quote:
-      'Our Oracle team finally has language and rituals for building AI that honors people. The Soul Frequency work has become part of onboarding.',
+      'Our enterprise leadership finally has language and rituals for building AI that honors people. The Soul Frequency work from the FrankX crew is now part of onboarding.',
     name: 'David Lin',
     role: 'Senior Director · Fortune 100 Enterprise'
   },
   {
     quote:
-      'The Music Lab unlocked a new creative lane. We now release immersive drops every month with clarity on rights, monetization, and community engagement.',
+      'The Music Lab crew unlocked a new creative lane. We now release immersive drops every month with clarity on rights, monetization, and community engagement.',
     name: 'Amina Reyes',
     role: 'Artist & Community Architect'
   }
@@ -452,16 +452,17 @@ export const testimonials = [
 export const testimonialIcon = CheckCircle2
 
 export const heroSubtext = [
-  'FrankX is the global AI voice guiding conscious creators, families, and executives.',
-  'Every insight is rooted in enterprise delivery, community rituals, and artistry.'
+  'FrankX is an agent collective of strategists, designers, musicians, and engineers building conscious AI systems you can feel.',
+  'Every insight is co-created with partners so rituals, governance, and creativity stay in harmony across your ecosystems.',
+  'Tap into pods for enterprise delivery, family education, and cultural activations with measurable intelligence loops.'
 ]
 
 export const heroCta = {
-  primary: { label: 'Start the Soul Frequency Assessment', href: '/soul-frequency-assessment' },
-  secondary: { label: 'Browse All Updates', href: '/#updates' }
+  primary: { label: 'Map Your Soul Frequency Blueprint', href: '/soul-frequency-assessment' },
+  secondary: { label: 'Browse Collective Updates', href: '/#updates' }
 }
 
 export const heroSupportLink = {
-  label: 'View Conscious AI Principles',
+  label: 'Review our collective principles',
   href: '/guides'
 }

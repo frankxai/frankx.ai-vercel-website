@@ -42,20 +42,20 @@ export default function Navigation() {
 
   return (
     <nav
-      className="fixed top-0 w-full z-50 border-b border-white/10 bg-slate-950/80 backdrop-blur-xl"
+      className="fixed top-0 w-full z-50 border-b border-white/10 bg-gradient-to-b from-slate-950/95 via-slate-950/75 to-slate-950/30 backdrop-blur-2xl shadow-[0_20px_60px_rgba(2,6,23,0.65)]"
       aria-label="Main navigation"
     >
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           <Link
             href="/"
-            className="flex items-center space-x-2 rounded-lg p-1 transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 hover:scale-[1.015]"
-            aria-label="Frank - Home"
+            className="flex items-center space-x-2 rounded-xl p-1 transition-transform focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 hover:scale-[1.02]"
+            aria-label="FrankX agent collective - Home"
           >
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-primary-500 via-primary-600 to-sky-500 flex items-center justify-center shadow-[0_0_25px_rgba(124,58,237,0.45)]">
+            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-sky-400 via-indigo-500 to-fuchsia-500 flex items-center justify-center shadow-[0_0_25px_rgba(56,189,248,0.5)]">
               <Sparkles className="w-5 h-5 text-white" />
             </div>
-            <span className="text-xl font-bold text-white tracking-wide">Frank</span>
+            <span className="text-xl font-bold text-white tracking-wide">FrankX.ai</span>
           </Link>
 
           <div className="hidden md:flex items-center space-x-6">
@@ -66,8 +66,8 @@ export default function Navigation() {
                 className={cn(
                   'px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500',
                   isActivePath(item.href, item.isAnchor)
-                    ? 'bg-white/10 text-white shadow-[0_10px_40px_rgba(59,130,246,0.25)]'
-                    : 'text-slate-300 hover:text-white hover:bg-white/10'
+                    ? 'bg-white/10 text-white shadow-[0_16px_45px_rgba(56,189,248,0.28)]'
+                    : 'text-slate-200 hover:text-white hover:bg-white/10'
                 )}
                 aria-current={isActivePath(item.href, item.isAnchor) ? 'page' : undefined}
               >
@@ -77,7 +77,7 @@ export default function Navigation() {
 
             <Link
               href="/soul-frequency-quiz"
-              className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-primary-500 via-primary-600 to-sky-500 text-sm font-semibold text-white shadow-[0_20px_40px_rgba(56,189,248,0.25)] transition-transform hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-400"
+              className="px-5 py-2.5 rounded-xl bg-gradient-to-r from-sky-400 via-indigo-500 to-fuchsia-500 text-sm font-semibold text-slate-950 shadow-[0_22px_55px_rgba(56,189,248,0.3)] transition-transform hover:-translate-y-0.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-sky-200 focus-visible:ring-offset-slate-950"
             >
               Free Quiz
             </Link>
@@ -112,7 +112,7 @@ export default function Navigation() {
                 className={cn(
                   'px-3 py-3 rounded-xl text-base font-medium transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500',
                   isActivePath(item.href, item.isAnchor)
-                    ? 'bg-white/15 text-white'
+                    ? 'bg-white/15 text-white shadow-[0_12px_32px_rgba(15,23,42,0.45)]'
                     : 'text-slate-200 hover:text-white hover:bg-white/10'
                 )}
                 onClick={() => setIsOpen(false)}
@@ -124,7 +124,7 @@ export default function Navigation() {
 
             <Link
               href="/soul-frequency-quiz"
-              className="mt-2 px-6 py-3 rounded-xl bg-gradient-to-r from-primary-500 via-primary-600 to-sky-500 text-center text-sm font-semibold text-white shadow-[0_20px_40px_rgba(56,189,248,0.25)]"
+              className="mt-2 px-6 py-3 rounded-xl bg-gradient-to-r from-sky-400 via-indigo-500 to-fuchsia-500 text-center text-sm font-semibold text-slate-950 shadow-[0_22px_55px_rgba(56,189,248,0.3)]"
               onClick={() => setIsOpen(false)}
             >
               Free Quiz
