@@ -150,9 +150,17 @@ export default function HomePage() {
                     </FloatingElement>
                   ))}
                 </div>
-              </StaggerItem>
+              </div>
+            </StaggerContainer>
+          </div>
+        </ParallaxContainer>
+      </section>
 
-                <StaggerItem>
+      {/* Quick Actions Section */}
+      <section className="py-24 px-6">
+        <div className="max-w-7xl mx-auto">
+          <StaggerContainer staggerDelay={0.15}>
+            <StaggerItem>
                   <aside className={clsx(glassCardClasses, 'relative overflow-hidden rounded-4xl p-8 text-white/80 shadow-glass')}>
                     <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/15 via-transparent to-transparent opacity-60" aria-hidden />
                     <div className="relative space-y-8">
@@ -200,12 +208,12 @@ export default function HomePage() {
                       </div>
                     </div>
                   </aside>
-                </StaggerItem>
-              </div>
-            </StaggerContainer>
-          </div>
-        </ParallaxContainer>
-      </section>      {/* Segment Profiles */}
+            </StaggerItem>
+          </StaggerContainer>
+        </div>
+      </section>
+
+      {/* Segment Profiles */}
       <section id="segments" className="bg-midnight-950 py-24 px-6">
         <div className="max-w-7xl mx-auto text-white">
           <motion.div className="max-w-3xl" {...fadeUp}>
