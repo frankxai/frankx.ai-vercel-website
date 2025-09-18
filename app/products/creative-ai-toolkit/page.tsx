@@ -210,8 +210,8 @@ const productData = {
 
   cta: {
     primary: 'Get Instant Access - $47',
-    secondary: 'Join 10,000+ Creators',
-    afterPurchase: 'Continue to Agent Architecture Blueprint →'
+    secondary: 'Bundle with the Agentic Creator OS Blueprint for full system rollout',
+    afterPurchase: 'Read the Agentic Creator OS Field Guide ->'
   }
 }
 
@@ -251,3 +251,4 @@ export default function CreativeAIToolkitPage() {
     </div>
   )
 }
+
