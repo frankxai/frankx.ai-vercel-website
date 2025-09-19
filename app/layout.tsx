@@ -62,6 +62,9 @@ export default function RootLayout({
   const plausibleDomain = process.env.NEXT_PUBLIC_PLAUSIBLE_DOMAIN
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <meta charSet="utf-8" />
+      </head>
       <body
         className={cn(
           inter.className,

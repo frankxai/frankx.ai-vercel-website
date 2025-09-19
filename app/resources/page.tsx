@@ -7,6 +7,27 @@ import { createMetadata } from '@/lib/seo'
 
 const resourceSections = [
   {
+    icon: Sparkles,
+    title: 'AI Readiness Assessment',
+    description: 'Comprehensive questionnaire to assess your current AI maturity and get personalized recommendations for your transformation journey.',
+    links: [
+      {
+        href: '/ai-assessment',
+        label: 'Take Assessment',
+        icon: ExternalLink,
+      },
+    ],
+  },
+  {
+    icon: Download,
+    title: 'ROI Calculator & Tools',
+    description: 'Calculate the potential return on investment for your AI initiatives and access our suite of practical tools.',
+    links: [
+      { href: '/tools/roi-calculator', label: 'ROI Calculator', icon: ExternalLink },
+      { href: '/products/vibe-os', label: 'Vibe OS Preview', icon: ExternalLink },
+    ],
+  },
+  {
     icon: BookOpen,
     title: 'Golden Age Modern Guide',
     description: 'A practical, plain-language guide with frameworks and a 90-day plan to operationalize conscious AI.',
@@ -16,16 +37,6 @@ const resourceSections = [
         label: 'Read the guide',
         icon: ExternalLink,
       },
-    ],
-  },
-  {
-    icon: FileText,
-    title: 'Book Basis & TOC',
-    description: 'Positioning, structure, and sample chapter for “Dawn of the Golden Age.”',
-    links: [
-      { href: '/reading/GoldenAge-Modernized/book/basis.html', label: 'Basis', icon: LinkIcon },
-      { href: '/reading/GoldenAge-Modernized/book/table_of_contents.html', label: 'TOC', icon: LinkIcon },
-      { href: '/reading/GoldenAge-Modernized/book/samples/chapter_1.html', label: 'Sample', icon: LinkIcon },
     ],
   },
   {
@@ -41,11 +52,11 @@ const resourceSections = [
     ],
   },
   {
-    icon: Download,
+    icon: FileText,
     title: 'Intelligence Era One-Pager',
     description: 'Concise executive summary and checklists for immediate adoption wins.',
     links: [
-      { href: '/assets/intelligence-era-onepager.html', label: 'Open one-pager', icon: ExternalLink },
+      { href: '/assets/intelligence-era-onepager.html', label: 'Download PDF', icon: Download },
     ],
   },
 ]

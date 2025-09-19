@@ -67,7 +67,7 @@ const questions: Question[] = [
   },
   {
     id: 5,
-    question: 'You know a launch worked whenÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã...Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¦',
+    question: 'You know a launch worked when...',
     options: [
       { id: 'a', text: 'Someone says their life feels different because of it.', type: 'alchemist' },
       { id: 'b', text: 'The experience runs smoothly and scale feels effortless.', type: 'architect' },
@@ -77,7 +77,7 @@ const questions: Question[] = [
   },
   {
     id: 6,
-    question: 'You feel most alive when you areÃƒÆ’Ã†â€™Ãƒâ€šÃ‚Â¢ÃƒÆ’Ã‚Â¢ÃƒÂ¢Ã¢â€šÂ¬Ã...Â¡Ãƒâ€šÃ‚Â¬ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â¦',
+    question: 'You feel most alive when you are...',
     options: [
       { id: 'a', text: 'Turning pain, music, or story into collective healing.', type: 'alchemist' },
       { id: 'b', text: 'Architecting a ritual, workflow, or product that lasts.', type: 'architect' },

@@ -18,6 +18,8 @@ import {
   Workflow
 } from 'lucide-react'
 
+import { sanitizeDeepInPlace } from './text'
+
 export type HeroStat = {
   label: string
   value: string
@@ -467,3 +469,25 @@ export const heroSupportLink = {
   label: 'Meet the FrankX.AI Team',
   href: '/about'
 }
+
+const hubTextCollections = [
+  heroStats,
+  heroHighlights,
+  quickActions,
+  segmentProfiles,
+  updateEntries,
+  resourceCollections,
+  projectMilestones,
+  keywordClusters,
+  agentProtocols,
+  testimonials,
+  heroSubtext,
+  heroCta,
+  heroSupportLink
+] as const;
+
+hubTextCollections.forEach((entry) => {
+  sanitizeDeepInPlace(entry);
+});
+
+
