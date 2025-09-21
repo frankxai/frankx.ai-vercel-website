@@ -131,29 +131,30 @@ export default function HomePage() {
 
             {/* Stats Section */}
             <StaggerContainer staggerDelay={0.15}>
-              <div className="mt-24">
-                <div className="grid gap-6 sm:grid-cols-3 max-w-4xl mx-auto">
-                  {heroStats.map((stat, index) => (
-                    <FloatingElement
-                      key={stat.label}
-                      duration={6 + index * 0.5}
-                      offset={8 + index * 2}
-                    >
-                      <div className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm p-8 text-center transition-all duration-500 hover:bg-white/10 hover:border-white/20 hover:-translate-y-2">
-                        <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-transparent to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                        <div className="relative">
-                          <div className="text-4xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">{stat.value}</div>
-                          <div className="mt-3 text-sm font-medium text-white/80">{stat.label}</div>
-                          <p className="mt-4 text-sm leading-relaxed text-white/60">{stat.detail}</p>
+              <StaggerItem>
+                <div className="mt-24">
+                  <div className="grid gap-6 sm:grid-cols-3 max-w-4xl mx-auto">
+                    {heroStats.map((stat, index) => (
+                      <FloatingElement
+                        key={stat.label}
+                        duration={6 + index * 0.5}
+                        offset={8 + index * 2}
+                      >
+                        <div className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm p-8 text-center transition-all duration-500 hover:bg-white/10 hover:border-white/20 hover:-translate-y-2">
+                          <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-transparent to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                          <div className="relative">
+                            <div className="text-4xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">{stat.value}</div>
+                            <div className="mt-3 text-sm font-medium text-white/80">{stat.label}</div>
+                            <p className="mt-4 text-sm leading-relaxed text-white/60">{stat.detail}</p>
+                          </div>
                         </div>
-                      </div>
-                    </FloatingElement>
-                  ))}
+                      </FloatingElement>
+                    ))}
+                  </div>
                 </div>
               </StaggerItem>
-
-                <StaggerItem>
-                  <aside className={clsx(glassCardClasses, 'relative overflow-hidden rounded-4xl p-8 text-white/80 shadow-glass')}>
+              <StaggerItem>
+                <aside className={clsx(glassCardClasses, 'relative overflow-hidden rounded-4xl p-8 text-white/80 shadow-glass')}>
                     <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/15 via-transparent to-transparent opacity-60" aria-hidden />
                     <div className="relative space-y-8">
                       <div>
@@ -201,7 +202,6 @@ export default function HomePage() {
                     </div>
                   </aside>
                 </StaggerItem>
-              </div>
             </StaggerContainer>
           </div>
         </ParallaxContainer>
