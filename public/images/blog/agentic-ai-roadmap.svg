@@ -1,0 +1,27 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0EA5E9"/>
+      <stop offset="50%" stop-color="#6366F1"/>
+      <stop offset="100%" stop-color="#A855F7"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="30%" cy="25%" r="60%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#050816"/>
+  <rect width="1200" height="630" fill="url(#grad)" opacity="0.22"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <g transform="translate(120 150)">
+    <text x="0" y="0" font-family="'Inter', 'Segoe UI', sans-serif" font-size="58" font-weight="700" fill="#F8FAFC">
+      Agentic AI Roadmap 2025
+    </text>
+    <text x="0" y="70" font-family="'Inter', 'Segoe UI', sans-serif" font-size="28" font-weight="500" fill="#E0E7FF" opacity="0.9">
+      Align studios, enterprises, and families with the FrankX Intelligence Atlas cadence.
+    </text>
+  </g>
+  <g transform="translate(120 460)" fill="#C7D2FE" opacity="0.9" font-family="'Inter', 'Segoe UI', sans-serif" font-size="22">
+    <text>Monthly releases · Governance rituals · Multi-agent operating systems</text>
+  </g>
+</svg>

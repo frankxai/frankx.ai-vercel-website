@@ -1,0 +1,31 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="eiosGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0EA5E9"/>
+      <stop offset="50%" stop-color="#6366F1"/>
+      <stop offset="100%" stop-color="#22C55E"/>
+    </linearGradient>
+    <radialGradient id="eiosGlow" cx="35%" cy="25%" r="60%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#020617"/>
+  <rect width="1200" height="630" fill="url(#eiosGradient)" opacity="0.25"/>
+  <rect width="1200" height="630" fill="url(#eiosGlow)"/>
+  <g transform="translate(120 150)" font-family="'Inter', 'Segoe UI', sans-serif">
+    <text x="0" y="0" font-size="56" font-weight="700" fill="#F8FAFC">Enterprise Intelligence OS 2025</text>
+    <text x="0" y="68" font-size="28" font-weight="500" fill="#E0E7FF" opacity="0.9">
+      Strategy · Data Mesh · Agentic Automation · Governance · Workforce · Revenue
+    </text>
+  </g>
+  <g transform="translate(120 340)" font-family="'Inter', 'Segoe UI', sans-serif">
+    <rect x="0" y="0" width="960" height="210" rx="28" fill="rgba(37,99,235,0.2)" stroke="rgba(147,197,253,0.5)"/>
+    <text x="40" y="65" font-size="24" fill="#C7D2FE">Seven Domains</text>
+    <text x="40" y="105" font-size="18" fill="#E2E8F0">
+      Vision · Knowledge Mesh · Agentic Architecture · Automation · Governance · Workforce · Value
+    </text>
+    <text x="40" y="145" font-size="18" fill="#A5B4FC">Powered by FrankX Intelligence Atlas · Roadmap Hub · Daily Intelligence Ritual</text>
+    <text x="40" y="185" font-size="18" fill="#BAE6FD">Run npm run roadmap:check — Sync • Ship • Steward • Scale</text>
+  </g>
+</svg>

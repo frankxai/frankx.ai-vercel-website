@@ -7,6 +7,7 @@ tags: ["ai strategy", "conscious ai", "enterprise", "systems thinking"]
 category: "Strategy"
 readingTime: "12 min read"
 featured: true
+image: '/images/blog/intelligence-revolution-hero.svg'
 ---
 
 # The Intelligence Revolution Playbook: Building Conscious AI Systems in 2025
@@ -210,6 +211,3 @@ The question isn't whether AI will transform your organization. The question is 
 
 The future belongs to those who can orchestrate intelligence—both artificial and human—in service of outcomes that matter. The tools exist. The frameworks are proven. The only question is: Are you ready to lead the conscious intelligence revolution?
 
----
-
-*Ready to implement conscious AI systems in your organization? Start with our [AI Readiness Assessment](/soul-frequency-assessment) or explore our [Enterprise AI Transformation Toolkit](/products/agent-architecture).*

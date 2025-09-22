@@ -92,6 +92,14 @@ export type AgentProtocol = {
   bullets: string[]
 }
 
+export type HomeSpotlight = {
+  eyebrow: string
+  title: string
+  description: string
+  href: string
+  cta: string
+}
+
 export const heroStats: HeroStat[] = [
   {
     label: 'Vibe OS Implementations',
@@ -132,6 +140,18 @@ export const heroHighlights: HeroHighlight[] = [
 ]
 
 export const quickActions: QuickAction[] = [
+  {
+    title: '2025 Roadmap Hub',
+    description: 'See the live specs, rituals, and milestones guiding every FrankX release.',
+    href: '/roadmap',
+    icon: CalendarCheck
+  },
+  {
+    title: 'Intelligence Atlas',
+    description: 'Follow the ten-volume FrankX Intelligence Atlas and dive into Volume I today.',
+    href: '/intelligence-atlas',
+    icon: BarChart4
+  },
   {
     title: 'Vibe OS',
     description: 'Transform ideas into professional AI music with systematic workflows.',
@@ -258,6 +278,38 @@ export const segmentProfiles: SegmentProfile[] = [
 
 export const updateEntries: UpdateEntry[] = [
   {
+    title: 'Enterprise Intelligence Operating System 2025',
+    summary:
+      'Seven-domain operating system for scaling agentic AI across enterprise strategy, governance, automation, workforce, and revenue.',
+    type: 'Article',
+    date: '2025-01-24',
+    href: '/blog/enterprise-intelligence-operating-system-2025'
+  },
+  {
+    title: 'Conscious AI Integration OS',
+    summary:
+      'Seven-layer operating system for conscious AI adoption—covering purpose, data meshes, agents, and governance.',
+    type: 'Article',
+    date: '2025-01-23',
+    href: '/blog/conscious-ai-integration-operating-system'
+  },
+  {
+    title: 'Agentic AI Roadmap 2025',
+    summary:
+      'A master plan for deploying agentic systems across studios, enterprises, and families in sync with the FrankX roadmap.',
+    type: 'Article',
+    date: '2025-01-22',
+    href: '/blog/10-agentic-ai-roadmap-2025'
+  },
+  {
+    title: 'Intelligence Atlas Vol. I — Architecting the Agentic Era',
+    summary:
+      '10,000-word flagship report on 2025 frontier models, agentic systems, adoption metrics, and the FrankX playbook.',
+    type: 'Article',
+    date: '2025-01-21',
+    href: '/blog/frankx-intelligence-atlas-volume-1'
+  },
+  {
     title: 'The Intelligence Revolution Playbook',
     summary:
       'A systems-first guide to orchestrating conscious AI across products, teams, and experiences.',
@@ -301,6 +353,9 @@ export const resourceCollections: ResourceCollection[] = [
     description: 'Hands-on guides, playbooks, and templates for shipping conscious AI systems.',
     focus: 'Best for creators, architects, and executives building multi-offer ecosystems.',
     items: [
+      { label: 'FrankX Intelligence Atlas', href: '/intelligence-atlas', type: 'Report' },
+      { label: 'Agentic AI Roadmap 2025', href: '/blog/10-agentic-ai-roadmap-2025', type: 'Article' },
+      { label: 'Roadmap Hub', href: '/roadmap', type: 'Live roadmap' },
       { label: "Founder's AI Playbook", href: '/founder-playbook', type: 'Playbook' },
       { label: 'Template Library', href: '/templates', type: 'Templates' },
       { label: 'Guides Collection', href: '/guides', type: 'Guides' }
@@ -380,6 +435,41 @@ export const keywordClusters: KeywordCluster[] = [
   }
 ]
 
+export const homeSpotlights: HomeSpotlight[] = [
+  {
+    eyebrow: 'Launch',
+    title: 'Enterprise Intelligence OS 2025',
+    description:
+      'Seven-domain operating system for scaling agentic AI across strategy, data, automation, governance, workforce, and revenue.',
+    href: '/blog/enterprise-intelligence-operating-system-2025',
+    cta: 'Open the enterprise OS'
+  },
+  {
+    eyebrow: 'New',
+    title: 'Agentic AI Roadmap 2025',
+    description:
+      'Map the monthly releases, frameworks, and rituals that turn the Intelligence Atlas into an operating cadence for your team.',
+    href: '/blog/10-agentic-ai-roadmap-2025',
+    cta: 'Read the roadmap'
+  },
+  {
+    eyebrow: 'Live data',
+    title: 'FrankX Roadmap Hub',
+    description:
+      'Review the living specs, milestones, and delivery signals we update when you request a roadmap check.',
+    href: '/roadmap',
+    cta: 'Explore the hub'
+  },
+  {
+    eyebrow: 'Atlas',
+    title: 'Intelligence Atlas Vol. I',
+    description:
+      'Dive into the 10,000-word field report on adoption, agent readiness, and governance frameworks that anchor the Atlas series.',
+    href: '/blog/frankx-intelligence-atlas-volume-1',
+    cta: 'Open Volume I'
+  }
+]
+
 export const agentProtocols: AgentProtocol[] = [
   {
     title: 'Search & Retrieval Mesh',
@@ -455,14 +545,14 @@ export const testimonials = [
 export const testimonialIcon = CheckCircle2
 
 export const heroSubtext = [
-  'Welcome to the Golden Age of Intelligence. Transform ideas into reality with Vibe OS music creation, Agentic Creator OS, and enterprise-grade intelligence systems.',
-  'From Creation Chronicles storytelling to business automation - the FrankX.AI team delivers systematic approaches that scale your creative and business potential.'
+  'Architect the intelligence era with a unified roadmap, field-tested frameworks, and operating rituals that keep every agent and teammate aligned.',
+  'FrankX.AI synchronizes creation, governance, and growth—from Vibe OS studios to enterprise intelligence systems and daily community rituals.'
 ]
 
 export const heroCta = {
   primary: { label: 'Explore Vibe OS', href: '/products/vibe-os' },
-  secondary: { label: 'Agentic AI Center', href: '/agentic-ai-center' },
-  tertiary: { label: 'View All Products', href: '/products' }
+  secondary: { label: 'View the 2025 Roadmap', href: '/roadmap' },
+  tertiary: { label: 'Agentic AI Center', href: '/agentic-ai-center' }
 }
 
 export const heroSupportLink = {
@@ -479,6 +569,7 @@ const hubTextCollections = [
   resourceCollections,
   projectMilestones,
   keywordClusters,
+  homeSpotlights,
   agentProtocols,
   testimonials,
   heroSubtext,

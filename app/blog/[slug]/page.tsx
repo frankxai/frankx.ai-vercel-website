@@ -1,8 +1,9 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import Script from 'next/script'
 import { notFound } from 'next/navigation'
 import { MDXRemote } from 'next-mdx-remote/rsc'
-import { ArrowLeft, Calendar, Clock, Linkedin, Share2, Tag, Twitter } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Calendar, Clock, Linkedin, Share2, Tag, Twitter } from 'lucide-react'
 
 import { mdxComponents } from '@/components/blog/MDXComponents'
 import Footer from '@/components/Footer'
@@ -53,8 +54,49 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     .filter((p) => p.slug !== post.slug && p.tags.some((tag) => post.tags.includes(tag)))
     .slice(0, 3)
 
+  const canonicalUrl = `https://frankx.ai/blog/${post.slug}`
+  const wordCount = post.content.split(/\s+/).filter(Boolean).length
+  const imageUrl = post.image
+    ? new URL(post.image, 'https://frankx.ai').toString()
+    : new URL(siteConfig.ogImage, 'https://frankx.ai').toString()
+
+  const articleJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.title,
+    description: post.description,
+    image: [imageUrl],
+    author: {
+      '@type': 'Person',
+      name: post.author,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: siteConfig.name,
+      logo: {
+        '@type': 'ImageObject',
+        url: new URL(siteConfig.ogImage, 'https://frankx.ai').toString(),
+      },
+    },
+    datePublished: post.date,
+    dateModified: post.date,
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': canonicalUrl,
+    },
+    wordCount,
+    keywords: post.keywords?.join(', ') || post.tags.join(', '),
+    url: canonicalUrl,
+  }
+
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100">
+      <Script
+        id="article-jsonld"
+        type="application/ld+json"
+        strategy="afterInteractive"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
       <Navigation />
 
       <article className="pt-28 pb-24">
@@ -154,6 +196,51 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           <div className="mx-auto max-w-4xl">
             <div className="space-y-6 text-base leading-relaxed text-white/75">
               <MDXRemote source={post.content} components={mdxComponents as any} />
+            </div>
+
+            <div className="mt-12 grid gap-6 md:grid-cols-3">
+              <article className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur">
+                <span className="text-xs font-semibold uppercase tracking-[0.35em] text-white/60">Live roadmap</span>
+                <h3 className="mt-3 text-lg font-semibold text-white">See how this article powers the 2025 plan</h3>
+                <p className="mt-2 text-sm text-white/70 leading-relaxed">
+                  Review the FrankX roadmap hub for the latest milestones, rituals, and metrics connected to every Atlas release.
+                </p>
+                <Link
+                  href="/roadmap"
+                  className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary-200 underline-offset-4 hover:text-primary-100 hover:underline"
+                >
+                  Explore the roadmap
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              </article>
+              <article className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur">
+                <span className="text-xs font-semibold uppercase tracking-[0.35em] text-white/60">Resource library</span>
+                <h3 className="mt-3 text-lg font-semibold text-white">Grab the templates that accompany this drop</h3>
+                <p className="mt-2 text-sm text-white/70 leading-relaxed">
+                  Access collections of assessments, canvases, and playbooks that convert these ideas into operating rituals.
+                </p>
+                <Link
+                  href="/resources"
+                  className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary-200 underline-offset-4 hover:text-primary-100 hover:underline"
+                >
+                  Browse resources
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              </article>
+              <article className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur">
+                <span className="text-xs font-semibold uppercase tracking-[0.35em] text-white/60">Automation</span>
+                <h3 className="mt-3 text-lg font-semibold text-white">Run the daily specs check</h3>
+                <p className="mt-2 text-sm text-white/70 leading-relaxed">
+                  Execute <code className="rounded bg-white/10 px-2 py-1 text-xs">npm run roadmap:check</code> to print pillars, milestones, and next actions before your next intelligence ritual.
+                </p>
+                <Link
+                  href="/docs/ROADMAP_AUTOMATION.md"
+                  className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary-200 underline-offset-4 hover:text-primary-100 hover:underline"
+                >
+                  View instructions
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              </article>
             </div>
 
             {post.tags && post.tags.length > 0 && (

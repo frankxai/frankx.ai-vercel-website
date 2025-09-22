@@ -1,3 +1,5 @@
+'use client'
+
 import { ArrowLeft, ArrowRight, Brain, Building2, CheckCircle2, Download, Eye, Lightbulb, Play, Target, Users, Zap } from 'lucide-react'
 import Link from 'next/link'
 import { useState } from 'react'
@@ -142,7 +144,11 @@ export default function StrategyCanvasPage() {
   }
 
   const markComplete = (elementId: string) => {
-    setCompletedElements(prev => new Set([...prev, elementId]))
+    setCompletedElements((prev) => {
+      const next = new Set(prev)
+      next.add(elementId)
+      return next
+    })
   }
 
   return (

@@ -43,5 +43,12 @@ Design immersive creative intelligence systems that make bold ideas, families, a
 - **Creation Chronicles** – Behind-the-scenes build log and tutorial drops.
 - **AI Architect Newsletter** – Weekly strategic voice for executives and creators.
 
+## Version Control & Deployment Ritual
+- Pull the latest `main` branch before you start and resolve conflicts locally.
+- Run `npm run lint` and `npm run build` (or confirm the CI pipeline passes) before committing.
+- Commit with clear messages, push immediately, and verify Vercel deployments succeed.
+- Investigate any Vercel build failure locally, fix it, and document the resolution in your commit or PR notes.
+- After merging, run `npm run roadmap:check` and log highlights in `docs/DAILY_INTELLIGENCE_OPERATIONS.md` so the next agent picks up with context.
+
 ## Reminder
 Every asset is a signal that the future of creative intelligence already exists. Build with love, deliver with precision, and make the experience unforgettable.

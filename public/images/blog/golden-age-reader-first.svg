@@ -1,0 +1,27 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="readerGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8"/>
+      <stop offset="50%" stop-color="#818CF8"/>
+      <stop offset="100%" stop-color="#A855F7"/>
+    </linearGradient>
+    <radialGradient id="readerGlow" cx="25%" cy="35%" r="55%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#050b18"/>
+  <rect width="1200" height="630" fill="url(#readerGradient)" opacity="0.25"/>
+  <rect width="1200" height="630" fill="url(#readerGlow)"/>
+  <g transform="translate(120 150)">
+    <text x="0" y="0" font-family="'Inter', 'Segoe UI', sans-serif" font-size="56" font-weight="700" fill="#F8FAFC">
+      Reader-First Growth Playbook
+    </text>
+    <text x="0" y="68" font-family="'Inter', 'Segoe UI', sans-serif" font-size="28" font-weight="500" fill="#E0E7FF" opacity="0.9">
+      Translate the Golden Age narrative into audience-aware content, SEO, and distribution moves.
+    </text>
+  </g>
+  <g transform="translate(120 460)" fill="#C7D2FE" opacity="0.9" font-family="'Inter', 'Segoe UI', sans-serif" font-size="22">
+    <text>Persona research · Search intent arcs · Community feedback loops</text>
+  </g>
+</svg>

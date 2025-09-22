@@ -11,7 +11,8 @@
     "gen:html": "node scripts/generate_interlinked_html.mjs",
     "gen:feed": "node scripts/generate_feed.mjs",
     "gen:search": "node scripts/generate_search_index.mjs",
-    "prebuild": "npm run gen:html && npm run gen:feed && npm run gen:search"
+    "prebuild": "npm run gen:html && npm run gen:feed && npm run gen:search",
+    "roadmap:check": "node scripts/daily-roadmap-check.js"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.0",

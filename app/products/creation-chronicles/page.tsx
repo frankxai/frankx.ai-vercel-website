@@ -253,7 +253,7 @@ export default function CreationChroniclesPage() {
                     ))}
                   </ul>
                   <Link
-                    href="mailto:hello@frankx.ai?subject=Creation%20Chronicles%20-%20" + pkg.name
+                    href={`mailto:hello@frankx.ai?subject=Creation%20Chronicles%20-%20${encodeURIComponent(pkg.name)}`}
                     className={`block w-full text-center px-6 py-3 rounded-xl font-semibold transition-all duration-300 ${
                       pkg.featured
                         ? 'bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-400 hover:to-pink-500 text-white shadow-[0_0_20px_rgba(168,85,247,0.3)]'

@@ -19,6 +19,8 @@ const navItems: NavItem[] = [
   { name: 'Vibe OS', href: '/products/vibe-os' },
   { name: 'Music Lab', href: '/music-lab' },
   { name: 'Agentic AI', href: '/agentic-ai-center' },
+  { name: 'Intelligence Atlas', href: '/intelligence-atlas' },
+  { name: 'Roadmap', href: '/roadmap' },
   { name: 'About', href: '/about' },
   { name: 'Blog', href: '/blog' },
 ]

@@ -21,6 +21,7 @@ import {
   testimonialIcon,
   updateEntries
 } from '@/lib/hub'
+import { atlasActions, atlasMetrics, atlasVolumes } from '@/lib/intelligence-atlas'
 import { gradientPresets, glassCardClasses } from '@/lib/design/gradients'
 import {
   ParallaxContainer,
@@ -50,6 +51,9 @@ const statusStyles: Record<'shipping' | 'in-progress' | 'incubating', string> = 
 const TestimonialIcon = testimonialIcon
 
 export default function HomePage() {
+  const upcomingAtlasVolumes = atlasVolumes.filter((volume) => volume.number !== 1).slice(0, 3)
+  const { primary, secondary, tertiary } = heroCta
+
   return (
     <main id="main" className="flex-1 bg-midnight-950 text-white pt-32">
       <ScrollProgress />
@@ -83,32 +87,38 @@ export default function HomePage() {
                 </StaggerItem>
                 <StaggerItem>
                   <p className="text-xl text-white/70 max-w-4xl mx-auto leading-relaxed">
-                    Welcome to the Golden Age of Intelligence. Transform ideas into reality with Vibe OS music creation,
-                    Agentic Creator OS, and enterprise-grade intelligence systems.
+                    Architect the intelligence era with a unified roadmap, field-tested frameworks, and operating rituals that keep every agent and teammate aligned.
                   </p>
                 </StaggerItem>
                 <StaggerItem>
-                  <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
+                  <div className="flex flex-col items-center gap-4 pt-4 sm:flex-row">
                     <MagneticHover intensity={0.4}>
                       <GlowPulse color="cyan">
                         <Link
-                          href="/products/vibe-os"
+                          href={primary.href}
                           className="inline-flex items-center justify-center rounded-xl px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold text-lg shadow-[0_0_30px_rgba(6,182,212,0.4)] hover:shadow-[0_0_40px_rgba(6,182,212,0.5)] transition-all duration-300 hover:-translate-y-1"
                         >
-                          Explore Vibe OS
+                          {primary.label}
                           <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
                         </Link>
                       </GlowPulse>
                     </MagneticHover>
                     <MagneticHover intensity={0.3}>
                       <Link
-                        href="/agentic-ai-center"
+                        href={secondary.href}
                         className="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/5 backdrop-blur-sm px-8 py-4 text-white/90 font-semibold text-lg transition-all duration-300 hover:bg-white/10 hover:border-white/30 hover:-translate-y-1"
                       >
-                        Agentic AI Center
+                        {secondary.label}
                         <ArrowUpRight className="ml-2 h-5 w-5" aria-hidden="true" />
                       </Link>
                     </MagneticHover>
+                    <Link
+                      href={tertiary.href}
+                      className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 px-6 py-3 text-sm font-semibold text-white/80 transition hover:bg-white/10"
+                    >
+                      {tertiary.label}
+                      <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                    </Link>
                   </div>
                 </StaggerItem>
                 <StaggerItem>
@@ -210,6 +220,162 @@ export default function HomePage() {
                   </aside>
             </StaggerItem>
           </StaggerContainer>
+        </div>
+      </section>
+
+      {/* Strategic Spotlights */}
+      <section className="bg-midnight-950 py-24 px-6">
+        <div className="mx-auto max-w-7xl space-y-12">
+          <motion.div className="max-w-3xl" {...fadeUp}>
+            <span className="inline-flex items-center gap-2 rounded-full bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.35em] text-white/70">
+              <Sparkles className="h-4 w-4" aria-hidden="true" />
+              Operate with clarity
+            </span>
+            <h2 className="mt-4 text-3xl font-semibold text-white">Start with the latest FrankX playbooks</h2>
+            <p className="mt-3 text-sm text-white/70">
+              Each spotlight connects the Intelligence Atlas, roadmap hub, and resource stack so you can move from insight to action without losing momentum.
+            </p>
+          </motion.div>
+
+          <div className="grid gap-6 md:grid-cols-3">
+            {homeSpotlights.map((spotlight) => (
+              <motion.article
+                key={spotlight.title}
+                className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur"
+                {...fadeUp}
+              >
+                <span className="text-xs font-semibold uppercase tracking-[0.35em] text-white/60">
+                  {spotlight.eyebrow}
+                </span>
+                <h3 className="mt-3 text-xl font-semibold text-white">{spotlight.title}</h3>
+                <p className="mt-2 text-sm text-white/70 leading-relaxed">{spotlight.description}</p>
+                <Link
+                  href={spotlight.href}
+                  className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-primary-200 underline-offset-4 hover:text-primary-100 hover:underline"
+                >
+                  {spotlight.cta}
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </Link>
+              </motion.article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Intelligence Atlas Spotlight */}
+      <section id="intelligence-atlas" className="bg-midnight-950 py-24 px-6">
+        <div className="max-w-7xl mx-auto text-white">
+          <motion.div className="max-w-3xl" {...fadeUp}>
+            <span className="inline-flex items-center gap-2 rounded-full bg-white/5 px-4 py-2 text-xs uppercase tracking-widest text-white/70">
+              <Sparkles className="h-4 w-4" aria-hidden="true" />
+              Intelligence Atlas 2025
+            </span>
+            <h2 className="mt-4 text-4xl font-semibold text-balance">
+              Track the 100,000-word roadmap guiding FrankX creators, executives, and families.
+            </h2>
+            <p className="mt-4 text-white/70">
+              Volume I ships today with adoption metrics, governance rituals, and builder-ready frameworks. Nine companion volumes follow monthly, converting field research into playbooks you can deploy.
+            </p>
+          </motion.div>
+
+          <div className="mt-14 grid gap-10 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)]">
+            <motion.article
+              className="rounded-4xl border border-white/10 bg-gradient-to-br from-primary-500/15 via-slate-900 to-slate-950 p-10 backdrop-blur"
+              {...fadeUp}
+              transition={{ duration: 0.35 }}
+            >
+              <div className="text-xs font-semibold uppercase tracking-[0.35em] text-white/60">
+                Volume I — Architecting the Agentic Era
+              </div>
+              <h3 className="mt-4 text-3xl font-semibold text-white">
+                Go inside the flagship report fueling the atlas.
+              </h3>
+              <p className="mt-3 text-sm text-white/75 leading-relaxed">
+                Use the executive summary, adoption heat map, agent readiness assessments, and governance toolkits to align your team. Then keep pace with the roadmap by subscribing to atlas alerts and contribution calls.
+              </p>
+              <div className="mt-8 space-y-4">
+                {atlasActions.map((action) => {
+                  const isExternal = action.href.startsWith('http') || action.href.startsWith('mailto:')
+
+                  const actionContent = (
+                    <div className="flex items-start justify-between gap-4">
+                      <div>
+                        <p className="text-sm font-semibold text-white">{action.title}</p>
+                        <p className="mt-1 text-xs text-white/70 leading-relaxed">{action.description}</p>
+                      </div>
+                      <span className="text-[11px] font-semibold uppercase tracking-widest text-white/50 whitespace-nowrap">
+                        {action.label}
+                      </span>
+                    </div>
+                  )
+
+                  if (isExternal) {
+                    return (
+                      <a
+                        key={action.href}
+                        href={action.href}
+                        className="flex flex-col gap-2 rounded-2xl border border-white/10 bg-white/5 px-4 py-4 transition hover:border-white/25 hover:bg-white/10"
+                      >
+                        {actionContent}
+                      </a>
+                    )
+                  }
+
+                  return (
+                    <Link
+                      key={action.href}
+                      href={action.href}
+                      className="flex flex-col gap-2 rounded-2xl border border-white/10 bg-white/5 px-4 py-4 transition hover:border-white/25 hover:bg-white/10"
+                    >
+                      {actionContent}
+                    </Link>
+                  )
+                })}
+              </div>
+            </motion.article>
+
+            <motion.div className="grid gap-8" {...fadeUp} transition={{ duration: 0.4 }}>
+              <div className="grid gap-6 sm:grid-cols-3">
+                {atlasMetrics.map((metric) => (
+                  <div
+                    key={metric.label}
+                    className="rounded-3xl border border-white/10 bg-white/5 p-6 text-white/75 backdrop-blur"
+                  >
+                    <div className="text-3xl font-semibold text-white">{metric.value}</div>
+                    <div className="mt-2 text-xs uppercase tracking-[0.35em] text-white/60">{metric.label}</div>
+                    <p className="mt-3 text-xs leading-relaxed">{metric.detail}</p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="rounded-4xl border border-white/10 bg-white/5 p-6 backdrop-blur">
+                <div className="flex items-center justify-between">
+                  <h4 className="text-lg font-semibold text-white">Upcoming volumes</h4>
+                  <span className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.35em] text-white/60">
+                    <CalendarDays className="h-4 w-4" aria-hidden="true" />
+                    2025 cadence
+                  </span>
+                </div>
+                <div className="mt-4 space-y-4">
+                  {upcomingAtlasVolumes.map((volume) => (
+                    <div key={volume.number} className="rounded-2xl border border-white/10 bg-white/5 px-4 py-4">
+                      <div className="flex flex-wrap items-center justify-between gap-2">
+                        <p className="text-sm font-semibold text-white">{volume.title}</p>
+                        <span className="text-[11px] font-semibold uppercase tracking-[0.35em] text-white/50">
+                          {volume.status}
+                        </span>
+                      </div>
+                      <p className="mt-2 text-xs text-white/70 leading-relaxed">{volume.summary}</p>
+                      <div className="mt-3 flex flex-wrap gap-3 text-[11px] uppercase tracking-[0.35em] text-white/60">
+                        <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1">{volume.release}</span>
+                        <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1">{volume.wordCount}</span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
