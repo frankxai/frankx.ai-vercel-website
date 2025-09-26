@@ -75,9 +75,9 @@ export const mdxComponents = {
   li: ({ children }: { children: ReactNode }) => (
     <li className="text-white/75">{children}</li>
   ),
-  a: ({ href, children }: { href: string; children: ReactNode }) => (
+  a: ({ href, children }: { href?: string; children: ReactNode }) => (
     <Link
-      href={href}
+      href={href || '#'}
       className="font-semibold text-primary-200 underline-offset-4 transition hover:text-primary-100 hover:underline"
     >
       {children}

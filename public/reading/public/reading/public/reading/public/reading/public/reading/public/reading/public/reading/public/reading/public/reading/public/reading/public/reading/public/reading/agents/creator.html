@@ -1,0 +1,1069 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="generator" content="codex-cli" />
+  <meta name="llm" content="Unknown" />
+  <meta name="date" content="1970-01-01" />
+  <title>The Creator Agent Profile</title>
+  <style>
+    :root { --bg:#0b0d10; --fg:#e8eef5; --muted:#9bb0c6; --card:#12161b; --accent:#64b5f6; }
+    body { margin:0; font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background:var(--bg); color:var(--fg); }
+    header { background:var(--card); border-bottom:1px solid #1f2630; padding:16px 20px; position:sticky; top:0; z-index:5; }
+    header .title { font-size: 20px; font-weight:600; }
+    header .meta { color:var(--muted); font-size:13px; margin-top:4px; }
+    main { display:flex; gap:24px; padding:20px; }
+    nav { width: 320px; max-height: calc(100vh - 120px); overflow:auto; position:sticky; top:84px; background:var(--card); border:1px solid #1f2630; border-radius:8px; padding:12px 16px; }
+    nav h2 { font-size:14px; margin:6px 0 8px 0; color: var(--muted); font-weight:600; }
+    nav ul { list-style:none; padding-left:0; margin:0; }
+    nav li { margin:6px 0; }
+    nav a { color: var(--fg); text-decoration: none; }
+    nav a:hover { color: var(--accent); }
+    .content { flex:1; max-width: 1000px; background: var(--card); border:1px solid #1f2630; border-radius:8px; padding:24px; }
+    .breadcrumbs { font-size:12px; color: var(--muted); margin-bottom:8px; }
+    .breadcrumbs a { color: var(--muted); text-decoration: none; }
+    .breadcrumbs a:hover { color: var(--accent); }
+    .attribution { font-size: 12px; color: var(--muted); margin-bottom: 16px; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px; }
+    .content h1, .content h2, .content h3 { scroll-margin-top: 90px; }
+    pre { background:#0f1318; padding:12px; border-radius:6px; overflow:auto; border:1px solid #1f2630; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace; }
+    table { border-collapse: collapse; width:100%; }
+    th, td { border:1px solid #1f2630; padding:8px; }
+    a { color: var(--accent); }
+    footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+  </style>
+  <link rel="canonical" href="agents/creator.md" />
+  <script>
+    // basic keyboard navigation: press 'i' to go to index
+    addEventListener('keydown', (e) => { if (e.key === 'i') location.href = '../index.html'; });
+  </script>
+  </head>
+<body$1><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div><div class="attribution" style="font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; font-size:12px; color:#9bb0c6; margin:12px 0; padding:8px 10px; background:#0f1318; border:1px solid #1f2630; border-radius:6px;">LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong> • <a href="../../../index.html" style="color:#64b5f6; text-decoration:none;">All Pages</a></div>
+  <header>
+    <div class="title">The Creator Agent Profile</div>
+    <div class="meta">LLM: Unknown • Date: 1970-01-01 • <a href="../index.html">All Pages</a></div>
+  </header>
+  <main>
+    <nav>
+      <h2>All Pages</h2>
+      <ul><li><a href="../.github/instructions/codacy.instructions.html">Codacy Rules</a></li>
+<li><a href="../AGENT_TEAM_POSITIONING.html">FrankX.AI Agent Team Positioning Strategy</a></li>
+<li><a href="../Agent.html">Agent</a></li>
+<li><a href="creator.html">The Creator Agent Profile</a></li>
+<li><a href="strategist.html">The Strategist Agent Profile</a></li>
+<li><a href="../CLAUDE_NEW.html">Claude Code Agent Configuration - FrankX.ai</a></li>
+<li><a href="../CLAUDE.html">FrankX Claude Code Configuration</a></li>
+<li><a href="../CODEX.html">Codex/GitHub Copilot Agent Configuration - FrankX.ai</a></li>
+<li><a href="../CONTENT_STRATEGY.html">FrankX.ai Content Strategy Framework</a></li>
+<li><a href="../content/blog/01-ai-doesnt-have-to-be-soulless.html">AI Doesn't Have To Be Soulless (And Here's How I Know)</a></li>
+<li><a href="../content/blog/02-the-soul-frequency-framework.html">The Soul Frequency Framework: How to Find Your Authentic Creative Voice in the AI Age</a></li>
+<li><a href="../content/blog/03-ai-guide-for-families-and-professionals.html">The Family &amp; Professional's Guide to Thriving with AI (Not Just Surviving It)</a></li>
+<li><a href="../content/blog/04-conscious-ai-for-entrepreneurs.html">The Conscious Entrepreneur's Guide to Building AI-Powered Businesses That Actually Serve Humanity</a></li>
+<li><a href="../content/blog/05-music-as-consciousness-technology.html">500 Songs Later: What AI Music Creation Taught Me About Consciousness, Creativity, and the Future</a></li>
+<li><a href="../content/blog/06-intelligence-revolution-2025.html">The Intelligence Revolution Playbook: Building Conscious AI Systems in 2025</a></li>
+<li><a href="../content/blog/07-agentic-creator-os.html">The Agentic Creator OS: How to Orchestrate AI Like a Studio</a></li>
+<li><a href="../DEPLOYMENT.html">Deploy frankx.ai (Next.js + Vercel)</a></li>
+<li><a href="../DIGITAL_PRODUCTS_STRATEGY.html">FrankX.AI Digital Products Strategy Framework</a></li>
+<li><a href="../docs/CODEX_CLOUD_PROMPTS.html">Codex Cloud Agent Prompt Playbook</a></li>
+<li><a href="../docs/CONTENT_ROADMAP.html">FrankX Marketing Site Content &amp; Build Roadmap</a></li>
+<li><a href="../docs/CREATIVE_INTELLIGENCE_GUIDE.html">CREATIVE INTELLIGENCE GUIDE</a></li>
+<li><a href="../docs/DAILY_INTELLIGENCE_OPERATIONS.html">DAILY INTELLIGENCE OPERATIONS</a></li>
+<li><a href="../docs/DEPLOYMENT_GUIDE.html">FrankX.AI Platform - Deployment Excellence Guide</a></li>
+<li><a href="../docs/intelligence-hub-blueprint.html">FrankX Intelligence Hub Blueprint</a></li>
+<li><a href="../docs/LOW_PRIORITY_TASKS_PLAN.html">FrankX.ai: Low-Priority Tasks Implementation Plan</a></li>
+<li><a href="../docs/PROMPT_PLAYBOOK.html">FrankX.ai Agentic COE Prompt Playbook</a></li>
+<li><a href="../docs/ROADMAP_AUTOMATION.html">Roadmap Automation Playbook</a></li>
+<li><a href="../docs/TESTING_OPTIMIZATION_REPORT.html">FrankX.AI Platform - Testing &amp; Optimization Report</a></li>
+<li><a href="../docs/user-journey-analysis.html">User Journey Analysis &amp; Enhancement Strategy</a></li>
+<li><a href="../FrankX Business Plan.html">FrankX Business Plan</a></li>
+<li><a href="../Frankx Vision mission values.html">Frankx Vision mission values</a></li>
+<li><a href="../GEMINI.html">Gemini.md - Your AI Engineering Partner</a></li>
+<li><a href="../MARKETING_AUTOMATION.html">FrankX.ai Marketing Automation Strategy</a></li>
+<li><a href="../products/agent-architecture-blueprint.html">Agent Architecture Blueprint</a></li>
+<li><a href="../products/conscious-ai-toolkit.html">The Conscious AI Toolkit</a></li>
+<li><a href="../products/suno-music-mastery.html">Suno Music Mastery Toolkit</a></li>
+<li><a href="../products/vibe-os/core-system.html">Vibe OS - Core System Components</a></li>
+<li><a href="../products/vibe-os/positioning.html">Vibe OS - Product Positioning Summary</a></li>
+<li><a href="../public/.well-known/security.html">security</a></li>
+<li><a href="../public/assets/intelligence-era-onepager.html">Intelligence Era — One-Pager</a></li>
+<li><a href="../public/humans.html">humans</a></li>
+<li><a href="../public/reading/AGENT_TEAM_POSITIONING.html">FrankX.AI Agent Team Positioning Strategy</a></li>
+<li><a href="../public/reading/Agent.html">Agent</a></li>
+<li><a href="../public/reading/agents/creator.html">The Creator Agent Profile</a></li>
+<li><a href="../public/reading/agents/strategist.html">The Strategist Agent Profile</a></li>
+<li><a href="../public/reading/CLAUDE.html">FrankX Claude Code Configuration</a></li>
+<li><a href="../public/reading/CONTENT_STRATEGY.html">FrankX.ai Content Strategy Framework</a></li>
+<li><a href="../public/reading/content/blog/01-ai-doesnt-have-to-be-soulless.html">AI Doesn't Have To Be Soulless (And Here's How I Know)</a></li>
+<li><a href="../public/reading/content/blog/02-the-soul-frequency-framework.html">The Soul Frequency Framework: How to Find Your Authentic Creative Voice in the AI Age</a></li>
+<li><a href="../public/reading/content/blog/03-ai-guide-for-families-and-professionals.html">The Family &amp;amp; Professional's Guide to Thriving with AI (Not Just Surviving It)</a></li>
+<li><a href="../public/reading/content/blog/04-conscious-ai-for-entrepreneurs.html">The Conscious Entrepreneur's Guide to Building AI-Powered Businesses That Actually Serve Humanity</a></li>
+<li><a href="../public/reading/content/blog/05-music-as-consciousness-technology.html">500 Songs Later: What AI Music Creation Taught Me About Consciousness, Creativity, and the Future</a></li>
+<li><a href="../public/reading/content/blog/06-intelligence-revolution-2025.html">The Intelligence Revolution Playbook: Building Conscious AI Systems in 2025</a></li>
+<li><a href="../public/reading/content/blog/07-agentic-creator-os.html">The Agentic Creator OS: How to Orchestrate AI Like a Studio</a></li>
+<li><a href="../public/reading/DEPLOYMENT.html">Deploy frankx.ai (Next.js + Vercel)</a></li>
+<li><a href="../public/reading/DIGITAL_PRODUCTS_STRATEGY.html">FrankX.AI Digital Products Strategy Framework</a></li>
+<li><a href="../public/reading/docs/CODEX_CLOUD_PROMPTS.html">Codex Cloud Agent Prompt Playbook</a></li>
+<li><a href="../public/reading/docs/CONTENT_ROADMAP.html">FrankX Marketing Site Content &amp;amp; Build Roadmap</a></li>
+<li><a href="../public/reading/docs/CREATIVE_INTELLIGENCE_GUIDE.html">CREATIVE INTELLIGENCE GUIDE</a></li>
+<li><a href="../public/reading/docs/DAILY_INTELLIGENCE_OPERATIONS.html">DAILY INTELLIGENCE OPERATIONS</a></li>
+<li><a href="../public/reading/docs/DEPLOYMENT_GUIDE.html">FrankX.AI Platform - Deployment Excellence Guide</a></li>
+<li><a href="../public/reading/docs/intelligence-hub-blueprint.html">FrankX Intelligence Hub Blueprint</a></li>
+<li><a href="../public/reading/docs/PROMPT_PLAYBOOK.html">FrankX.ai Agentic COE Prompt Playbook</a></li>
+<li><a href="../public/reading/docs/ROADMAP_AUTOMATION.html">Roadmap Automation Playbook</a></li>
+<li><a href="../public/reading/docs/TESTING_OPTIMIZATION_REPORT.html">FrankX.AI Platform - Testing &amp;amp; Optimization Report</a></li>
+<li><a href="../public/reading/docs/user-journey-analysis.html">User Journey Analysis &amp;amp; Enhancement Strategy</a></li>
+<li><a href="../public/reading/FrankX Business Plan.html">FrankX Business Plan</a></li>
+<li><a href="../public/reading/Frankx Vision mission values.html">Frankx Vision mission values</a></li>
+<li><a href="../public/reading/index.html">Reading Index</a></li>
+<li><a href="../public/reading/MARKETING_AUTOMATION.html">FrankX.ai Marketing Automation Strategy</a></li>
+<li><a href="../public/reading/products/agent-architecture-blueprint.html">Agent Architecture Blueprint</a></li>
+<li><a href="../public/reading/products/conscious-ai-toolkit.html">The Conscious AI Toolkit</a></li>
+<li><a href="../public/reading/products/suno-music-mastery.html">Suno Music Mastery Toolkit</a></li>
+<li><a href="../public/reading/products/vibe-os/core-system.html">Vibe OS - Core System Components</a></li>
+<li><a href="../public/reading/products/vibe-os/positioning.html">Vibe OS - Product Positioning Summary</a></li>
+<li><a href="../public/reading/public/.well-known/security.html">security</a></li>
+<li><a href="../public/reading/public/assets/intelligence-era-onepager.html">Intelligence Era — One-Pager</a></li>
+<li><a href="../public/reading/public/humans.html">humans</a></li>
+<li><a href="../public/reading/public/reading/AGENT_TEAM_POSITIONING.html">FrankX.AI Agent Team Positioning Strategy</a></li>
+<li><a href="../public/reading/public/reading/Agent.html">Agent</a></li>
+<li><a href="../public/reading/public/reading/agents/creator.html">The Creator Agent Profile</a></li>
+<li><a href="../public/reading/public/reading/agents/strategist.html">The Strategist Agent Profile</a></li>
+<li><a href="../public/reading/public/reading/CLAUDE.html">FrankX Claude Code Configuration</a></li>
+<li><a href="../public/reading/public/reading/CONTENT_STRATEGY.html">FrankX.ai Content Strategy Framework</a></li>
+<li><a href="../public/reading/public/reading/content/blog/01-ai-doesnt-have-to-be-soulless.html">AI Doesn't Have To Be Soulless (And Here's How I Know)</a></li>
+<li><a href="../public/reading/public/reading/content/blog/02-the-soul-frequency-framework.html">The Soul Frequency Framework: How to Find Your Authentic Creative Voice in the AI Age</a></li>
+<li><a href="../public/reading/public/reading/content/blog/03-ai-guide-for-families-and-professionals.html">The Family &amp;amp; Professional's Guide to Thriving with AI (Not Just Surviving It)</a></li>
+<li><a href="../public/reading/public/reading/content/blog/04-conscious-ai-for-entrepreneurs.html">The Conscious Entrepreneur's Guide to Building AI-Powered Businesses That Actually Serve Humanity</a></li>
+<li><a href="../public/reading/public/reading/content/blog/05-music-as-consciousness-technology.html">500 Songs Later: What AI Music Creation Taught Me About Consciousness, Creativity, and the Future</a></li>
+<li><a href="../public/reading/public/reading/content/blog/06-intelligence-revolution-2025.html">The Intelligence Revolution Playbook: Building Conscious AI Systems in 2025</a></li>
+<li><a href="../public/reading/public/reading/content/blog/07-agentic-creator-os.html">The Agentic Creator OS: How to Orchestrate AI Like a Studio</a></li>
+<li><a href="../public/reading/public/reading/DEPLOYMENT.html">Deploy frankx.ai (Next.js + Vercel)</a></li>
+<li><a href="../public/reading/public/reading/DIGITAL_PRODUCTS_STRATEGY.html">FrankX.AI Digital Products Strategy Framework</a></li>
+<li><a href="../public/reading/public/reading/docs/CODEX_CLOUD_PROMPTS.html">Codex Cloud Agent Prompt Playbook</a></li>
+<li><a href="../public/reading/public/reading/docs/CONTENT_ROADMAP.html">FrankX Marketing Site Content &amp;amp; Build Roadmap</a></li>
+<li><a href="../public/reading/public/reading/docs/CREATIVE_INTELLIGENCE_GUIDE.html">CREATIVE INTELLIGENCE GUIDE</a></li>
+<li><a href="../public/reading/public/reading/docs/DAILY_INTELLIGENCE_OPERATIONS.html">DAILY INTELLIGENCE OPERATIONS</a></li>
+<li><a href="../public/reading/public/reading/docs/DEPLOYMENT_GUIDE.html">FrankX.AI Platform - Deployment Excellence Guide</a></li>
+<li><a href="../public/reading/public/reading/docs/intelligence-hub-blueprint.html">FrankX Intelligence Hub Blueprint</a></li>
+<li><a href="../public/reading/public/reading/docs/PROMPT_PLAYBOOK.html">FrankX.ai Agentic COE Prompt Playbook</a></li>
+<li><a href="../public/reading/public/reading/docs/ROADMAP_AUTOMATION.html">Roadmap Automation Playbook</a></li>
+<li><a href="../public/reading/public/reading/docs/TESTING_OPTIMIZATION_REPORT.html">FrankX.AI Platform - Testing &amp;amp; Optimization Report</a></li>
+<li><a href="../public/reading/public/reading/docs/user-journey-analysis.html">User Journey Analysis &amp;amp; Enhancement Strategy</a></li>
+<li><a href="../public/reading/public/reading/FrankX Business Plan.html">FrankX Business Plan</a></li>
+<li><a href="../public/reading/public/reading/Frankx Vision mission values.html">Frankx Vision mission values</a></li>
+<li><a href="../public/reading/public/reading/index.html">Reading Index</a></li>
+<li><a href="../public/reading/public/reading/MARKETING_AUTOMATION.html">FrankX.ai Marketing Automation Strategy</a></li>
+<li><a href="../public/reading/public/reading/products/agent-architecture-blueprint.html">Agent Architecture Blueprint</a></li>
+<li><a href="../public/reading/public/reading/products/conscious-ai-toolkit.html">The Conscious AI Toolkit</a></li>
+<li><a href="../public/reading/public/reading/products/suno-music-mastery.html">Suno Music Mastery Toolkit</a></li>
+<li><a href="../public/reading/public/reading/products/vibe-os/core-system.html">Vibe OS - Core System Components</a></li>
+<li><a href="../public/reading/public/reading/products/vibe-os/positioning.html">Vibe OS - Product Positioning Summary</a></li>
+<li><a href="../public/reading/public/reading/public/.well-known/security.html">security</a></li>
+<li><a href="../public/reading/public/reading/public/assets/intelligence-era-onepager.html">Intelligence Era — One-Pager</a></li>
+<li><a href="../public/reading/public/reading/public/humans.html">humans</a></li>
+<li><a href="../public/reading/public/reading/public/reading/AGENT_TEAM_POSITIONING.html">FrankX.AI Agent Team Positioning Strategy</a></li>
+<li><a href="../public/reading/public/reading/public/reading/Agent.html">Agent</a></li>
+<li><a href="../public/reading/public/reading/public/reading/agents/creator.html">The Creator Agent Profile</a></li>
+<li><a href="../public/reading/public/reading/public/reading/agents/strategist.html">The Strategist Agent Profile</a></li>
+<li><a href="../public/reading/public/reading/public/reading/CLAUDE.html">FrankX Claude Code Configuration</a></li>
+<li><a href="../public/reading/public/reading/public/reading/CONTENT_STRATEGY.html">FrankX.ai Content Strategy Framework</a></li>
+<li><a href="../public/reading/public/reading/public/reading/content/blog/01-ai-doesnt-have-to-be-soulless.html">AI Doesn't Have To Be Soulless (And Here's How I Know)</a></li>
+<li><a href="../public/reading/public/reading/public/reading/content/blog/02-the-soul-frequency-framework.html">The Soul Frequency Framework: How to Find Your Authentic Creative Voice in the AI Age</a></li>
+<li><a href="../public/reading/public/reading/public/reading/content/blog/03-ai-guide-for-families-and-professionals.html">The Family &amp;amp; Professional's Guide to Thriving with AI (Not Just Surviving It)</a></li>
+<li><a href="../public/reading/public/reading/public/reading/content/blog/04-conscious-ai-for-entrepreneurs.html">The Conscious Entrepreneur's Guide to Building AI-Powered Businesses That Actually Serve Humanity</a></li>
+<li><a href="../public/reading/public/reading/public/reading/content/blog/05-music-as-consciousness-technology.html">500 Songs Later: What AI Music Creation Taught Me About Consciousness, Creativity, and the Future</a></li>
+<li><a href="../public/reading/public/reading/public/reading/content/blog/06-intelligence-revolution-2025.html">The Intelligence Revolution Playbook: Building Conscious AI Systems in 2025</a></li>
+<li><a href="../public/reading/public/reading/public/reading/content/blog/07-agentic-creator-os.html">The Agentic Creator OS: How to Orchestrate AI Like a Studio</a></li>
+<li><a href="../public/reading/public/reading/public/reading/DEPLOYMENT.html">Deploy frankx.ai (Next.js + Vercel)</a></li>
+<li><a href="../public/reading/public/reading/public/reading/DIGITAL_PRODUCTS_STRATEGY.html">FrankX.AI Digital Products Strategy Framework</a></li>
+<li><a href="../public/reading/public/reading/public/reading/docs/CODEX_CLOUD_PROMPTS.html">Codex Cloud Agent Prompt Playbook</a></li>
+<li><a href="../public/reading/public/reading/public/reading/docs/CONTENT_ROADMAP.html">FrankX Marketing Site Content &amp;amp; Build Roadmap</a></li>
+<li><a href="../public/reading/public/reading/public/reading/docs/CREATIVE_INTELLIGENCE_GUIDE.html">CREATIVE INTELLIGENCE GUIDE</a></li>
+<li><a href="../public/reading/public/reading/public/reading/docs/DAILY_INTELLIGENCE_OPERATIONS.html">DAILY INTELLIGENCE OPERATIONS</a></li>
+<li><a href="../public/reading/public/reading/public/reading/docs/DEPLOYMENT_GUIDE.html">FrankX.AI Platform - Deployment Excellence Guide</a></li>
+<li><a href="../public/reading/public/reading/public/reading/docs/intelligence-hub-blueprint.html">FrankX Intelligence Hub Blueprint</a></li>
+<li><a href="../public/reading/public/reading/public/reading/docs/PROMPT_PLAYBOOK.html">FrankX.ai Agentic COE Prompt Playbook</a></li>
+<li><a href="../public/reading/public/reading/public/reading/docs/ROADMAP_AUTOMATION.html">Roadmap Automation Playbook</a></li>
+<li><a href="../public/reading/public/reading/public/reading/docs/TESTING_OPTIMIZATION_REPORT.html">FrankX.AI Platform - Testing &amp;amp; Optimization Report</a></li>
+<li><a href="../public/reading/public/reading/public/reading/docs/user-journey-analysis.html">User Journey Analysis &amp;amp; Enhancement Strategy</a></li>
+<li><a href="../public/reading/public/reading/public/reading/FrankX Business Plan.html">FrankX Business Plan</a></li>
+<li><a href="../public/reading/public/reading/public/reading/Frankx Vision mission values.html">Frankx Vision mission values</a></li>
+<li><a href="../public/reading/public/reading/public/reading/index.html">Reading Index</a></li>
+<li><a href="../public/reading/public/reading/public/reading/MARKETING_AUTOMATION.html">FrankX.ai Marketing Automation Strategy</a></li>
+<li><a href="../public/reading/public/reading/public/reading/products/agent-architecture-blueprint.html">Agent Architecture Blueprint</a></li>
+<li><a href="../public/reading/public/reading/public/reading/products/conscious-ai-toolkit.html">The Conscious AI Toolkit</a></li>
+<li><a href="../public/reading/public/reading/public/reading/products/suno-music-mastery.html">Suno Music Mastery Toolkit</a></li>
+<li><a href="../public/reading/public/reading/public/reading/products/vibe-os/core-system.html">Vibe OS - Core System Components</a></li>
+<li><a href="../public/reading/public/reading/public/reading/products/vibe-os/positioning.html">Vibe OS - Product Positioning Summary</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/.well-known/security.html">security</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/assets/intelligence-era-onepager.html">Intelligence Era — One-Pager</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/humans.html">humans</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/AGENT_TEAM_POSITIONING.html">FrankX.AI Agent Team Positioning Strategy</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/Agent.html">Agent</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/agents/creator.html">The Creator Agent Profile</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/agents/strategist.html">The Strategist Agent Profile</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/CLAUDE.html">FrankX Claude Code Configuration</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/CONTENT_STRATEGY.html">FrankX.ai Content Strategy Framework</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/content/blog/01-ai-doesnt-have-to-be-soulless.html">AI Doesn't Have To Be Soulless (And Here's How I Know)</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/content/blog/02-the-soul-frequency-framework.html">The Soul Frequency Framework: How to Find Your Authentic Creative Voice in the AI Age</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/content/blog/03-ai-guide-for-families-and-professionals.html">The Family &amp;amp; Professional's Guide to Thriving with AI (Not Just Surviving It)</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/content/blog/04-conscious-ai-for-entrepreneurs.html">The Conscious Entrepreneur's Guide to Building AI-Powered Businesses That Actually Serve Humanity</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/content/blog/05-music-as-consciousness-technology.html">500 Songs Later: What AI Music Creation Taught Me About Consciousness, Creativity, and the Future</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/content/blog/06-intelligence-revolution-2025.html">The Intelligence Revolution Playbook: Building Conscious AI Systems in 2025</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/content/blog/07-agentic-creator-os.html">The Agentic Creator OS: How to Orchestrate AI Like a Studio</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/DEPLOYMENT.html">Deploy frankx.ai (Next.js + Vercel)</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/DIGITAL_PRODUCTS_STRATEGY.html">FrankX.AI Digital Products Strategy Framework</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/docs/CODEX_CLOUD_PROMPTS.html">Codex Cloud Agent Prompt Playbook</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/docs/CONTENT_ROADMAP.html">FrankX Marketing Site Content &amp;amp; Build Roadmap</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/docs/CREATIVE_INTELLIGENCE_GUIDE.html">CREATIVE INTELLIGENCE GUIDE</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/docs/DAILY_INTELLIGENCE_OPERATIONS.html">DAILY INTELLIGENCE OPERATIONS</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/docs/DEPLOYMENT_GUIDE.html">FrankX.AI Platform - Deployment Excellence Guide</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/docs/intelligence-hub-blueprint.html">FrankX Intelligence Hub Blueprint</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/docs/PROMPT_PLAYBOOK.html">FrankX.ai Agentic COE Prompt Playbook</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/docs/ROADMAP_AUTOMATION.html">Roadmap Automation Playbook</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/docs/TESTING_OPTIMIZATION_REPORT.html">FrankX.AI Platform - Testing &amp;amp; Optimization Report</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/docs/user-journey-analysis.html">User Journey Analysis &amp;amp; Enhancement Strategy</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/FrankX Business Plan.html">FrankX Business Plan</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/Frankx Vision mission values.html">Frankx Vision mission values</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/index.html">Reading Index</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/MARKETING_AUTOMATION.html">FrankX.ai Marketing Automation Strategy</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/products/agent-architecture-blueprint.html">Agent Architecture Blueprint</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/products/conscious-ai-toolkit.html">The Conscious AI Toolkit</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/products/suno-music-mastery.html">Suno Music Mastery Toolkit</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/products/vibe-os/core-system.html">Vibe OS - Core System Components</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/products/vibe-os/positioning.html">Vibe OS - Product Positioning Summary</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/.well-known/security.html">security</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/assets/intelligence-era-onepager.html">Intelligence Era — One-Pager</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/humans.html">humans</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/AGENT_TEAM_POSITIONING.html">FrankX.AI Agent Team Positioning Strategy</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/Agent.html">Agent</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/agents/creator.html">The Creator Agent Profile</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/agents/strategist.html">The Strategist Agent Profile</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/CLAUDE.html">FrankX Claude Code Configuration</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/CONTENT_STRATEGY.html">FrankX.ai Content Strategy Framework</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/content/blog/01-ai-doesnt-have-to-be-soulless.html">AI Doesn't Have To Be Soulless (And Here's How I Know)</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/content/blog/02-the-soul-frequency-framework.html">The Soul Frequency Framework: How to Find Your Authentic Creative Voice in the AI Age</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/content/blog/03-ai-guide-for-families-and-professionals.html">The Family &amp;amp; Professional's Guide to Thriving with AI (Not Just Surviving It)</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/content/blog/04-conscious-ai-for-entrepreneurs.html">The Conscious Entrepreneur's Guide to Building AI-Powered Businesses That Actually Serve Humanity</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/content/blog/05-music-as-consciousness-technology.html">500 Songs Later: What AI Music Creation Taught Me About Consciousness, Creativity, and the Future</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/content/blog/06-intelligence-revolution-2025.html">The Intelligence Revolution Playbook: Building Conscious AI Systems in 2025</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/content/blog/07-agentic-creator-os.html">The Agentic Creator OS: How to Orchestrate AI Like a Studio</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/DEPLOYMENT.html">Deploy frankx.ai (Next.js + Vercel)</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/DIGITAL_PRODUCTS_STRATEGY.html">FrankX.AI Digital Products Strategy Framework</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/docs/CODEX_CLOUD_PROMPTS.html">Codex Cloud Agent Prompt Playbook</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/docs/CONTENT_ROADMAP.html">FrankX Marketing Site Content &amp;amp; Build Roadmap</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/docs/CREATIVE_INTELLIGENCE_GUIDE.html">CREATIVE INTELLIGENCE GUIDE</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/docs/DAILY_INTELLIGENCE_OPERATIONS.html">DAILY INTELLIGENCE OPERATIONS</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/docs/DEPLOYMENT_GUIDE.html">FrankX.AI Platform - Deployment Excellence Guide</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/docs/intelligence-hub-blueprint.html">FrankX Intelligence Hub Blueprint</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/docs/PROMPT_PLAYBOOK.html">FrankX.ai Agentic COE Prompt Playbook</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/docs/ROADMAP_AUTOMATION.html">Roadmap Automation Playbook</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/docs/TESTING_OPTIMIZATION_REPORT.html">FrankX.AI Platform - Testing &amp;amp; Optimization Report</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/docs/user-journey-analysis.html">User Journey Analysis &amp;amp; Enhancement Strategy</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/FrankX Business Plan.html">FrankX Business Plan</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/Frankx Vision mission values.html">Frankx Vision mission values</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/index.html">Reading Index</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/MARKETING_AUTOMATION.html">FrankX.ai Marketing Automation Strategy</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/products/agent-architecture-blueprint.html">Agent Architecture Blueprint</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/products/conscious-ai-toolkit.html">The Conscious AI Toolkit</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/products/suno-music-mastery.html">Suno Music Mastery Toolkit</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/products/vibe-os/core-system.html">Vibe OS - Core System Components</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/products/vibe-os/positioning.html">Vibe OS - Product Positioning Summary</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/.well-known/security.html">security</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/assets/intelligence-era-onepager.html">Intelligence Era — One-Pager</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/humans.html">humans</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/AGENT_TEAM_POSITIONING.html">FrankX.AI Agent Team Positioning Strategy</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/Agent.html">Agent</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/agents/creator.html">The Creator Agent Profile</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/agents/strategist.html">The Strategist Agent Profile</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/CLAUDE.html">FrankX Claude Code Configuration</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/CONTENT_STRATEGY.html">FrankX.ai Content Strategy Framework</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/content/blog/01-ai-doesnt-have-to-be-soulless.html">AI Doesn't Have To Be Soulless (And Here's How I Know)</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/content/blog/02-the-soul-frequency-framework.html">The Soul Frequency Framework: How to Find Your Authentic Creative Voice in the AI Age</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/content/blog/03-ai-guide-for-families-and-professionals.html">The Family &amp;amp; Professional's Guide to Thriving with AI (Not Just Surviving It)</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/content/blog/04-conscious-ai-for-entrepreneurs.html">The Conscious Entrepreneur's Guide to Building AI-Powered Businesses That Actually Serve Humanity</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/content/blog/05-music-as-consciousness-technology.html">500 Songs Later: What AI Music Creation Taught Me About Consciousness, Creativity, and the Future</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/content/blog/06-intelligence-revolution-2025.html">The Intelligence Revolution Playbook: Building Conscious AI Systems in 2025</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/content/blog/07-agentic-creator-os.html">The Agentic Creator OS: How to Orchestrate AI Like a Studio</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/DEPLOYMENT.html">Deploy frankx.ai (Next.js + Vercel)</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/DIGITAL_PRODUCTS_STRATEGY.html">FrankX.AI Digital Products Strategy Framework</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/CODEX_CLOUD_PROMPTS.html">Codex Cloud Agent Prompt Playbook</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/CONTENT_ROADMAP.html">FrankX Marketing Site Content &amp;amp; Build Roadmap</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/CREATIVE_INTELLIGENCE_GUIDE.html">CREATIVE INTELLIGENCE GUIDE</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/DAILY_INTELLIGENCE_OPERATIONS.html">DAILY INTELLIGENCE OPERATIONS</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/DEPLOYMENT_GUIDE.html">FrankX.AI Platform - Deployment Excellence Guide</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/intelligence-hub-blueprint.html">FrankX Intelligence Hub Blueprint</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/PROMPT_PLAYBOOK.html">FrankX.ai Agentic COE Prompt Playbook</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/ROADMAP_AUTOMATION.html">Roadmap Automation Playbook</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/TESTING_OPTIMIZATION_REPORT.html">FrankX.AI Platform - Testing &amp;amp; Optimization Report</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/user-journey-analysis.html">User Journey Analysis &amp;amp; Enhancement Strategy</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/FrankX Business Plan.html">FrankX Business Plan</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/Frankx Vision mission values.html">Frankx Vision mission values</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/index.html">Reading Index</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/MARKETING_AUTOMATION.html">FrankX.ai Marketing Automation Strategy</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/products/agent-architecture-blueprint.html">Agent Architecture Blueprint</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/products/conscious-ai-toolkit.html">The Conscious AI Toolkit</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/products/suno-music-mastery.html">Suno Music Mastery Toolkit</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/products/vibe-os/core-system.html">Vibe OS - Core System Components</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/products/vibe-os/positioning.html">Vibe OS - Product Positioning Summary</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/.well-known/security.html">security</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/assets/intelligence-era-onepager.html">Intelligence Era — One-Pager</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/humans.html">humans</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/AGENT_TEAM_POSITIONING.html">FrankX.AI Agent Team Positioning Strategy</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/Agent.html">Agent</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/agents/creator.html">The Creator Agent Profile</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/agents/strategist.html">The Strategist Agent Profile</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/CLAUDE.html">FrankX Claude Code Configuration</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/CONTENT_STRATEGY.html">FrankX.ai Content Strategy Framework</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/content/blog/01-ai-doesnt-have-to-be-soulless.html">AI Doesn't Have To Be Soulless (And Here's How I Know)</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/content/blog/02-the-soul-frequency-framework.html">The Soul Frequency Framework: How to Find Your Authentic Creative Voice in the AI Age</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/content/blog/03-ai-guide-for-families-and-professionals.html">The Family &amp;amp; Professional's Guide to Thriving with AI (Not Just Surviving It)</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/content/blog/04-conscious-ai-for-entrepreneurs.html">The Conscious Entrepreneur's Guide to Building AI-Powered Businesses That Actually Serve Humanity</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/content/blog/05-music-as-consciousness-technology.html">500 Songs Later: What AI Music Creation Taught Me About Consciousness, Creativity, and the Future</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/content/blog/06-intelligence-revolution-2025.html">The Intelligence Revolution Playbook: Building Conscious AI Systems in 2025</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/content/blog/07-agentic-creator-os.html">The Agentic Creator OS: How to Orchestrate AI Like a Studio</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/DEPLOYMENT.html">Deploy frankx.ai (Next.js + Vercel)</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/DIGITAL_PRODUCTS_STRATEGY.html">FrankX.AI Digital Products Strategy Framework</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/CODEX_CLOUD_PROMPTS.html">Codex Cloud Agent Prompt Playbook</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/CONTENT_ROADMAP.html">FrankX Marketing Site Content &amp;amp; Build Roadmap</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/CREATIVE_INTELLIGENCE_GUIDE.html">CREATIVE INTELLIGENCE GUIDE</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/DAILY_INTELLIGENCE_OPERATIONS.html">DAILY INTELLIGENCE OPERATIONS</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/DEPLOYMENT_GUIDE.html">FrankX.AI Platform - Deployment Excellence Guide</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/intelligence-hub-blueprint.html">FrankX Intelligence Hub Blueprint</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/PROMPT_PLAYBOOK.html">FrankX.ai Agentic COE Prompt Playbook</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/ROADMAP_AUTOMATION.html">Roadmap Automation Playbook</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/TESTING_OPTIMIZATION_REPORT.html">FrankX.AI Platform - Testing &amp;amp; Optimization Report</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/user-journey-analysis.html">User Journey Analysis &amp;amp; Enhancement Strategy</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/FrankX Business Plan.html">FrankX Business Plan</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/Frankx Vision mission values.html">Frankx Vision mission values</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/index.html">Reading Index</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/MARKETING_AUTOMATION.html">FrankX.ai Marketing Automation Strategy</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/products/agent-architecture-blueprint.html">Agent Architecture Blueprint</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/products/conscious-ai-toolkit.html">The Conscious AI Toolkit</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/products/suno-music-mastery.html">Suno Music Mastery Toolkit</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/products/vibe-os/core-system.html">Vibe OS - Core System Components</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/products/vibe-os/positioning.html">Vibe OS - Product Positioning Summary</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/.well-known/security.html">security</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/assets/intelligence-era-onepager.html">Intelligence Era — One-Pager</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/humans.html">humans</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/AGENT_TEAM_POSITIONING.html">FrankX.AI Agent Team Positioning Strategy</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/Agent.html">Agent</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/agents/creator.html">The Creator Agent Profile</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/agents/strategist.html">The Strategist Agent Profile</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/CLAUDE.html">FrankX Claude Code Configuration</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/CONTENT_STRATEGY.html">FrankX.ai Content Strategy Framework</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/content/blog/01-ai-doesnt-have-to-be-soulless.html">AI Doesn't Have To Be Soulless (And Here's How I Know)</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/content/blog/02-the-soul-frequency-framework.html">The Soul Frequency Framework: How to Find Your Authentic Creative Voice in the AI Age</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/content/blog/03-ai-guide-for-families-and-professionals.html">The Family &amp;amp; Professional's Guide to Thriving with AI (Not Just Surviving It)</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/content/blog/04-conscious-ai-for-entrepreneurs.html">The Conscious Entrepreneur's Guide to Building AI-Powered Businesses That Actually Serve Humanity</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/content/blog/05-music-as-consciousness-technology.html">500 Songs Later: What AI Music Creation Taught Me About Consciousness, Creativity, and the Future</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/content/blog/06-intelligence-revolution-2025.html">The Intelligence Revolution Playbook: Building Conscious AI Systems in 2025</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/content/blog/07-agentic-creator-os.html">The Agentic Creator OS: How to Orchestrate AI Like a Studio</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/DEPLOYMENT.html">Deploy frankx.ai (Next.js + Vercel)</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/DIGITAL_PRODUCTS_STRATEGY.html">FrankX.AI Digital Products Strategy Framework</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/CODEX_CLOUD_PROMPTS.html">Codex Cloud Agent Prompt Playbook</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/CONTENT_ROADMAP.html">FrankX Marketing Site Content &amp;amp; Build Roadmap</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/CREATIVE_INTELLIGENCE_GUIDE.html">CREATIVE INTELLIGENCE GUIDE</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/DAILY_INTELLIGENCE_OPERATIONS.html">DAILY INTELLIGENCE OPERATIONS</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/DEPLOYMENT_GUIDE.html">FrankX.AI Platform - Deployment Excellence Guide</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/intelligence-hub-blueprint.html">FrankX Intelligence Hub Blueprint</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/PROMPT_PLAYBOOK.html">FrankX.ai Agentic COE Prompt Playbook</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/ROADMAP_AUTOMATION.html">Roadmap Automation Playbook</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/TESTING_OPTIMIZATION_REPORT.html">FrankX.AI Platform - Testing &amp;amp; Optimization Report</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/user-journey-analysis.html">User Journey Analysis &amp;amp; Enhancement Strategy</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/FrankX Business Plan.html">FrankX Business Plan</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/Frankx Vision mission values.html">Frankx Vision mission values</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/index.html">Reading Index</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/MARKETING_AUTOMATION.html">FrankX.ai Marketing Automation Strategy</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/products/agent-architecture-blueprint.html">Agent Architecture Blueprint</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/products/conscious-ai-toolkit.html">The Conscious AI Toolkit</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/products/suno-music-mastery.html">Suno Music Mastery Toolkit</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/products/vibe-os/core-system.html">Vibe OS - Core System Components</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/products/vibe-os/positioning.html">Vibe OS - Product Positioning Summary</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/.well-known/security.html">security</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/assets/intelligence-era-onepager.html">Intelligence Era — One-Pager</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/humans.html">humans</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/AGENT_TEAM_POSITIONING.html">FrankX.AI Agent Team Positioning Strategy</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/Agent.html">Agent</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/agents/creator.html">The Creator Agent Profile</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/agents/strategist.html">The Strategist Agent Profile</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/CLAUDE.html">FrankX Claude Code Configuration</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/CONTENT_STRATEGY.html">FrankX.ai Content Strategy Framework</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/content/blog/01-ai-doesnt-have-to-be-soulless.html">AI Doesn't Have To Be Soulless (And Here's How I Know)</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/content/blog/02-the-soul-frequency-framework.html">The Soul Frequency Framework: How to Find Your Authentic Creative Voice in the AI Age</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/content/blog/03-ai-guide-for-families-and-professionals.html">The Family &amp;amp; Professional's Guide to Thriving with AI (Not Just Surviving It)</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/content/blog/04-conscious-ai-for-entrepreneurs.html">The Conscious Entrepreneur's Guide to Building AI-Powered Businesses That Actually Serve Humanity</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/content/blog/05-music-as-consciousness-technology.html">500 Songs Later: What AI Music Creation Taught Me About Consciousness, Creativity, and the Future</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/content/blog/06-intelligence-revolution-2025.html">The Intelligence Revolution Playbook: Building Conscious AI Systems in 2025</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/content/blog/07-agentic-creator-os.html">The Agentic Creator OS: How to Orchestrate AI Like a Studio</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/DEPLOYMENT.html">Deploy frankx.ai (Next.js + Vercel)</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/DIGITAL_PRODUCTS_STRATEGY.html">FrankX.AI Digital Products Strategy Framework</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/CODEX_CLOUD_PROMPTS.html">Codex Cloud Agent Prompt Playbook</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/CONTENT_ROADMAP.html">FrankX Marketing Site Content &amp;amp; Build Roadmap</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/CREATIVE_INTELLIGENCE_GUIDE.html">CREATIVE INTELLIGENCE GUIDE</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/DAILY_INTELLIGENCE_OPERATIONS.html">DAILY INTELLIGENCE OPERATIONS</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/DEPLOYMENT_GUIDE.html">FrankX.AI Platform - Deployment Excellence Guide</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/intelligence-hub-blueprint.html">FrankX Intelligence Hub Blueprint</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/PROMPT_PLAYBOOK.html">FrankX.ai Agentic COE Prompt Playbook</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/ROADMAP_AUTOMATION.html">Roadmap Automation Playbook</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/TESTING_OPTIMIZATION_REPORT.html">FrankX.AI Platform - Testing &amp;amp; Optimization Report</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/user-journey-analysis.html">User Journey Analysis &amp;amp; Enhancement Strategy</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/FrankX Business Plan.html">FrankX Business Plan</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/Frankx Vision mission values.html">Frankx Vision mission values</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/index.html">Reading Index</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/MARKETING_AUTOMATION.html">FrankX.ai Marketing Automation Strategy</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/products/agent-architecture-blueprint.html">Agent Architecture Blueprint</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/products/conscious-ai-toolkit.html">The Conscious AI Toolkit</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/products/suno-music-mastery.html">Suno Music Mastery Toolkit</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/products/vibe-os/core-system.html">Vibe OS - Core System Components</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/products/vibe-os/positioning.html">Vibe OS - Product Positioning Summary</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/.well-known/security.html">security</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/assets/intelligence-era-onepager.html">Intelligence Era — One-Pager</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/humans.html">humans</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/AGENT_TEAM_POSITIONING.html">FrankX.AI Agent Team Positioning Strategy</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/Agent.html">Agent</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/agents/creator.html">The Creator Agent Profile</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/agents/strategist.html">The Strategist Agent Profile</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/CLAUDE.html">FrankX Claude Code Configuration</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/CONTENT_STRATEGY.html">FrankX.ai Content Strategy Framework</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/content/blog/01-ai-doesnt-have-to-be-soulless.html">AI Doesn't Have To Be Soulless (And Here's How I Know)</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/content/blog/02-the-soul-frequency-framework.html">The Soul Frequency Framework: How to Find Your Authentic Creative Voice in the AI Age</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/content/blog/03-ai-guide-for-families-and-professionals.html">The Family &amp;amp; Professional's Guide to Thriving with AI (Not Just Surviving It)</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/content/blog/04-conscious-ai-for-entrepreneurs.html">The Conscious Entrepreneur's Guide to Building AI-Powered Businesses That Actually Serve Humanity</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/content/blog/05-music-as-consciousness-technology.html">500 Songs Later: What AI Music Creation Taught Me About Consciousness, Creativity, and the Future</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/content/blog/06-intelligence-revolution-2025.html">The Intelligence Revolution Playbook: Building Conscious AI Systems in 2025</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/content/blog/07-agentic-creator-os.html">The Agentic Creator OS: How to Orchestrate AI Like a Studio</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/DEPLOYMENT.html">Deploy frankx.ai (Next.js + Vercel)</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/DIGITAL_PRODUCTS_STRATEGY.html">FrankX.AI Digital Products Strategy Framework</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/CODEX_CLOUD_PROMPTS.html">Codex Cloud Agent Prompt Playbook</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/CONTENT_ROADMAP.html">FrankX Marketing Site Content &amp;amp; Build Roadmap</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/CREATIVE_INTELLIGENCE_GUIDE.html">CREATIVE INTELLIGENCE GUIDE</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/DAILY_INTELLIGENCE_OPERATIONS.html">DAILY INTELLIGENCE OPERATIONS</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/DEPLOYMENT_GUIDE.html">FrankX.AI Platform - Deployment Excellence Guide</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/intelligence-hub-blueprint.html">FrankX Intelligence Hub Blueprint</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/PROMPT_PLAYBOOK.html">FrankX.ai Agentic COE Prompt Playbook</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/ROADMAP_AUTOMATION.html">Roadmap Automation Playbook</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/TESTING_OPTIMIZATION_REPORT.html">FrankX.AI Platform - Testing &amp;amp; Optimization Report</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/user-journey-analysis.html">User Journey Analysis &amp;amp; Enhancement Strategy</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/FrankX Business Plan.html">FrankX Business Plan</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/Frankx Vision mission values.html">Frankx Vision mission values</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/index.html">Reading Index</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/MARKETING_AUTOMATION.html">FrankX.ai Marketing Automation Strategy</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/products/agent-architecture-blueprint.html">Agent Architecture Blueprint</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/products/conscious-ai-toolkit.html">The Conscious AI Toolkit</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/products/suno-music-mastery.html">Suno Music Mastery Toolkit</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/products/vibe-os/core-system.html">Vibe OS - Core System Components</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/products/vibe-os/positioning.html">Vibe OS - Product Positioning Summary</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/.well-known/security.html">security</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/assets/intelligence-era-onepager.html">Intelligence Era — One-Pager</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/humans.html">humans</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/AGENT_TEAM_POSITIONING.html">FrankX.AI Agent Team Positioning Strategy</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/Agent.html">Agent</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/agents/creator.html">The Creator Agent Profile</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/agents/strategist.html">The Strategist Agent Profile</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/CLAUDE.html">FrankX Claude Code Configuration</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/CONTENT_STRATEGY.html">FrankX.ai Content Strategy Framework</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/content/blog/01-ai-doesnt-have-to-be-soulless.html">AI Doesn't Have To Be Soulless (And Here's How I Know)</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/content/blog/02-the-soul-frequency-framework.html">The Soul Frequency Framework: How to Find Your Authentic Creative Voice in the AI Age</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/content/blog/03-ai-guide-for-families-and-professionals.html">The Family &amp;amp; Professional's Guide to Thriving with AI (Not Just Surviving It)</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/content/blog/04-conscious-ai-for-entrepreneurs.html">The Conscious Entrepreneur's Guide to Building AI-Powered Businesses That Actually Serve Humanity</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/content/blog/05-music-as-consciousness-technology.html">500 Songs Later: What AI Music Creation Taught Me About Consciousness, Creativity, and the Future</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/content/blog/06-intelligence-revolution-2025.html">The Intelligence Revolution Playbook: Building Conscious AI Systems in 2025</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/content/blog/07-agentic-creator-os.html">The Agentic Creator OS: How to Orchestrate AI Like a Studio</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/DEPLOYMENT.html">Deploy frankx.ai (Next.js + Vercel)</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/DIGITAL_PRODUCTS_STRATEGY.html">FrankX.AI Digital Products Strategy Framework</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/CODEX_CLOUD_PROMPTS.html">Codex Cloud Agent Prompt Playbook</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/CONTENT_ROADMAP.html">FrankX Marketing Site Content &amp;amp; Build Roadmap</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/CREATIVE_INTELLIGENCE_GUIDE.html">CREATIVE INTELLIGENCE GUIDE</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/DAILY_INTELLIGENCE_OPERATIONS.html">DAILY INTELLIGENCE OPERATIONS</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/DEPLOYMENT_GUIDE.html">FrankX.AI Platform - Deployment Excellence Guide</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/intelligence-hub-blueprint.html">FrankX Intelligence Hub Blueprint</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/PROMPT_PLAYBOOK.html">FrankX.ai Agentic COE Prompt Playbook</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/ROADMAP_AUTOMATION.html">Roadmap Automation Playbook</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/TESTING_OPTIMIZATION_REPORT.html">FrankX.AI Platform - Testing &amp;amp; Optimization Report</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/user-journey-analysis.html">User Journey Analysis &amp;amp; Enhancement Strategy</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/FrankX Business Plan.html">FrankX Business Plan</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/Frankx Vision mission values.html">Frankx Vision mission values</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/index.html">Reading Index</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/MARKETING_AUTOMATION.html">FrankX.ai Marketing Automation Strategy</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/products/agent-architecture-blueprint.html">Agent Architecture Blueprint</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/products/conscious-ai-toolkit.html">The Conscious AI Toolkit</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/products/suno-music-mastery.html">Suno Music Mastery Toolkit</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/products/vibe-os/core-system.html">Vibe OS - Core System Components</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/products/vibe-os/positioning.html">Vibe OS - Product Positioning Summary</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/.well-known/security.html">security</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/assets/intelligence-era-onepager.html">Intelligence Era — One-Pager</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/humans.html">humans</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/AGENT_TEAM_POSITIONING.html">FrankX.AI Agent Team Positioning Strategy</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/Agent.html">Agent</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/agents/creator.html">The Creator Agent Profile</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/agents/strategist.html">The Strategist Agent Profile</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/CLAUDE.html">FrankX Claude Code Configuration</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/CONTENT_STRATEGY.html">FrankX.ai Content Strategy Framework</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/content/blog/01-ai-doesnt-have-to-be-soulless.html">AI Doesn't Have To Be Soulless (And Here's How I Know)</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/content/blog/02-the-soul-frequency-framework.html">The Soul Frequency Framework: How to Find Your Authentic Creative Voice in the AI Age</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/content/blog/03-ai-guide-for-families-and-professionals.html">The Family &amp;amp; Professional's Guide to Thriving with AI (Not Just Surviving It)</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/content/blog/04-conscious-ai-for-entrepreneurs.html">The Conscious Entrepreneur's Guide to Building AI-Powered Businesses That Actually Serve Humanity</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/content/blog/05-music-as-consciousness-technology.html">500 Songs Later: What AI Music Creation Taught Me About Consciousness, Creativity, and the Future</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/content/blog/06-intelligence-revolution-2025.html">The Intelligence Revolution Playbook: Building Conscious AI Systems in 2025</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/content/blog/07-agentic-creator-os.html">The Agentic Creator OS: How to Orchestrate AI Like a Studio</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/DEPLOYMENT.html">Deploy frankx.ai (Next.js + Vercel)</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/DIGITAL_PRODUCTS_STRATEGY.html">FrankX.AI Digital Products Strategy Framework</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/CODEX_CLOUD_PROMPTS.html">Codex Cloud Agent Prompt Playbook</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/CONTENT_ROADMAP.html">FrankX Marketing Site Content &amp;amp; Build Roadmap</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/CREATIVE_INTELLIGENCE_GUIDE.html">CREATIVE INTELLIGENCE GUIDE</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/DAILY_INTELLIGENCE_OPERATIONS.html">DAILY INTELLIGENCE OPERATIONS</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/DEPLOYMENT_GUIDE.html">FrankX.AI Platform - Deployment Excellence Guide</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/intelligence-hub-blueprint.html">FrankX Intelligence Hub Blueprint</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/PROMPT_PLAYBOOK.html">FrankX.ai Agentic COE Prompt Playbook</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/TESTING_OPTIMIZATION_REPORT.html">FrankX.AI Platform - Testing &amp;amp; Optimization Report</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/user-journey-analysis.html">User Journey Analysis &amp;amp; Enhancement Strategy</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/FrankX Business Plan.html">FrankX Business Plan</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/Frankx Vision mission values.html">Frankx Vision mission values</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/index.html">Reading Index</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/MARKETING_AUTOMATION.html">FrankX.ai Marketing Automation Strategy</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/products/agent-architecture-blueprint.html">Agent Architecture Blueprint</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/products/conscious-ai-toolkit.html">The Conscious AI Toolkit</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/products/suno-music-mastery.html">Suno Music Mastery Toolkit</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/products/vibe-os/core-system.html">Vibe OS - Core System Components</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/products/vibe-os/positioning.html">Vibe OS - Product Positioning Summary</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/.well-known/security.html">security</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/assets/intelligence-era-onepager.html">Intelligence Era — One-Pager</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/humans.html">humans</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/AGENT_TEAM_POSITIONING.html">FrankX.AI Agent Team Positioning Strategy</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/Agent.html">Agent</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/agents/creator.html">The Creator Agent Profile</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/agents/strategist.html">The Strategist Agent Profile</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/CLAUDE.html">FrankX Claude Code Configuration</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/CONTENT_STRATEGY.html">FrankX.ai Content Strategy Framework</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/content/blog/01-ai-doesnt-have-to-be-soulless.html">AI Doesn't Have To Be Soulless (And Here's How I Know)</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/content/blog/02-the-soul-frequency-framework.html">The Soul Frequency Framework: How to Find Your Authentic Creative Voice in the AI Age</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/content/blog/03-ai-guide-for-families-and-professionals.html">The Family &amp;amp; Professional's Guide to Thriving with AI (Not Just Surviving It)</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/content/blog/04-conscious-ai-for-entrepreneurs.html">The Conscious Entrepreneur's Guide to Building AI-Powered Businesses That Actually Serve Humanity</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/content/blog/05-music-as-consciousness-technology.html">500 Songs Later: What AI Music Creation Taught Me About Consciousness, Creativity, and the Future</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/content/blog/06-intelligence-revolution-2025.html">The Intelligence Revolution Playbook: Building Conscious AI Systems in 2025</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/DEPLOYMENT.html">Deploy frankx.ai (Next.js + Vercel)</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/DIGITAL_PRODUCTS_STRATEGY.html">FrankX.AI Digital Products Strategy Framework</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/CONTENT_ROADMAP.html">FrankX Marketing Site Content &amp;amp; Build Roadmap</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/CREATIVE_INTELLIGENCE_GUIDE.html">CREATIVE INTELLIGENCE GUIDE</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/DAILY_INTELLIGENCE_OPERATIONS.html">DAILY INTELLIGENCE OPERATIONS</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/DEPLOYMENT_GUIDE.html">FrankX.AI Platform - Deployment Excellence Guide</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/intelligence-hub-blueprint.html">FrankX Intelligence Hub Blueprint</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/PROMPT_PLAYBOOK.html">FrankX.ai Agentic COE Prompt Playbook</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/TESTING_OPTIMIZATION_REPORT.html">FrankX.AI Platform - Testing &amp;amp; Optimization Report</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/user-journey-analysis.html">User Journey Analysis &amp;amp; Enhancement Strategy</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/FrankX Business Plan.html">FrankX Business Plan</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/Frankx Vision mission values.html">Frankx Vision mission values</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/index.html">Reading Index</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/MARKETING_AUTOMATION.html">FrankX.ai Marketing Automation Strategy</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/products/agent-architecture-blueprint.html">Agent Architecture Blueprint</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/products/conscious-ai-toolkit.html">The Conscious AI Toolkit</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/products/suno-music-mastery.html">Suno Music Mastery Toolkit</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/.well-known/security.html">security</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/assets/intelligence-era-onepager.html">Intelligence Era — One-Pager</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/humans.html">humans</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/AGENT_TEAM_POSITIONING.html">FrankX.AI Agent Team Positioning Strategy</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/Agent.html">Agent</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/agents/creator.html">The Creator Agent Profile</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/agents/strategist.html">The Strategist Agent Profile</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/CLAUDE.html">FrankX Claude Code Configuration</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/CONTENT_STRATEGY.html">FrankX.ai Content Strategy Framework</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/content/blog/01-ai-doesnt-have-to-be-soulless.html">AI Doesn't Have To Be Soulless (And Here's How I Know)</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/content/blog/02-the-soul-frequency-framework.html">The Soul Frequency Framework: How to Find Your Authentic Creative Voice in the AI Age</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/content/blog/03-ai-guide-for-families-and-professionals.html">The Family &amp;amp; Professional's Guide to Thriving with AI (Not Just Surviving It)</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/content/blog/04-conscious-ai-for-entrepreneurs.html">The Conscious Entrepreneur's Guide to Building AI-Powered Businesses That Actually Serve Humanity</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/content/blog/05-music-as-consciousness-technology.html">500 Songs Later: What AI Music Creation Taught Me About Consciousness, Creativity, and the Future</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/content/blog/06-intelligence-revolution-2025.html">The Intelligence Revolution Playbook: Building Conscious AI Systems in 2025</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/DEPLOYMENT.html">Deploy frankx.ai (Next.js + Vercel)</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/DIGITAL_PRODUCTS_STRATEGY.html">FrankX.AI Digital Products Strategy Framework</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/CONTENT_ROADMAP.html">FrankX Marketing Site Content &amp;amp; Build Roadmap</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/CREATIVE_INTELLIGENCE_GUIDE.html">CREATIVE INTELLIGENCE GUIDE</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/DAILY_INTELLIGENCE_OPERATIONS.html">DAILY INTELLIGENCE OPERATIONS</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/DEPLOYMENT_GUIDE.html">FrankX.AI Platform - Deployment Excellence Guide</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/intelligence-hub-blueprint.html">FrankX Intelligence Hub Blueprint</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/PROMPT_PLAYBOOK.html">FrankX.ai Agentic COE Prompt Playbook</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/TESTING_OPTIMIZATION_REPORT.html">FrankX.AI Platform - Testing &amp;amp; Optimization Report</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/docs/user-journey-analysis.html">User Journey Analysis &amp;amp; Enhancement Strategy</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/FrankX Business Plan.html">FrankX Business Plan</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/Frankx Vision mission values.html">Frankx Vision mission values</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/index.html">Reading Index</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/MARKETING_AUTOMATION.html">FrankX.ai Marketing Automation Strategy</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/products/agent-architecture-blueprint.html">Agent Architecture Blueprint</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/products/conscious-ai-toolkit.html">The Conscious AI Toolkit</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/products/suno-music-mastery.html">Suno Music Mastery Toolkit</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/.well-known/security.html">security</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/assets/intelligence-era-onepager.html">Intelligence Era — One-Pager</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/humans.html">humans</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/robots.html">robots</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/templates/coe-checklist.html">COE Checklist</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/templates/evaluation-rubric.html">Evaluation Rubric</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/templates/governance-overview.html">Governance Overview</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/templates/risk-register.html">Risk Register</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/README.html">frankx.ai Marketing Site</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/SEO_MARKETING_STRATEGY.html">FrankX.ai SEO &amp;amp; Marketing Optimization Strategy</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/robots.html">robots</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/templates/coe-checklist.html">COE Checklist</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/templates/evaluation-rubric.html">Evaluation Rubric</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/templates/governance-overview.html">Governance Overview</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/templates/risk-register.html">Risk Register</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/README.html">frankx.ai Marketing Site</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/SEO_MARKETING_STRATEGY.html">FrankX.ai SEO &amp;amp; Marketing Optimization Strategy</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/robots.html">robots</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/templates/coe-checklist.html">COE Checklist</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/templates/evaluation-rubric.html">Evaluation Rubric</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/templates/governance-overview.html">Governance Overview</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/templates/risk-register.html">Risk Register</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/README.html">frankx.ai Marketing Site</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/SEO_MARKETING_STRATEGY.html">FrankX.ai SEO &amp;amp; Marketing Optimization Strategy</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/VIBE_OS_ASSETS.html">Vibe OS Asset Requirements</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/VIBE_OS_COMPONENTS.html">Vibe OS Components Library</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/VIBE_OS_COMPREHENSIVE_IMPLEMENTATION_CHECKLIST.html">Vibe OS Implementation Checklist</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/VIBE_OS_TECHNICAL_IMPLEMENTATION.html">Vibe OS Technical Implementation Guide</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/VIBE_OS_WIREFRAME.html">Vibe OS - Premium AI Music Creation System</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/vibe-os-email-templates.html">VIBE OS EMAIL TEMPLATES &amp;amp; COPY FRAMEWORKS</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/vibe-os-funnel-strategy.html">VIBE OS PREMIUM FUNNEL STRATEGY</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/vibe-os-implementation-roadmap.html">VIBE OS IMPLEMENTATION ROADMAP</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/vibe-os-landing-pages.html">VIBE OS LANDING PAGE COPY &amp;amp; SOCIAL MEDIA STRATEGY</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/robots.html">robots</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/templates/coe-checklist.html">COE Checklist</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/templates/evaluation-rubric.html">Evaluation Rubric</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/templates/governance-overview.html">Governance Overview</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/templates/risk-register.html">Risk Register</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/README.html">frankx.ai Marketing Site</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/SEO_MARKETING_STRATEGY.html">FrankX.ai SEO &amp;amp; Marketing Optimization Strategy</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/VIBE_OS_ASSETS.html">Vibe OS Asset Requirements</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/VIBE_OS_COMPONENTS.html">Vibe OS Components Library</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/VIBE_OS_COMPREHENSIVE_IMPLEMENTATION_CHECKLIST.html">Vibe OS Implementation Checklist</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/VIBE_OS_TECHNICAL_IMPLEMENTATION.html">Vibe OS Technical Implementation Guide</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/VIBE_OS_WIREFRAME.html">Vibe OS - Premium AI Music Creation System</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/vibe-os-email-templates.html">VIBE OS EMAIL TEMPLATES &amp;amp; COPY FRAMEWORKS</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/vibe-os-funnel-strategy.html">VIBE OS PREMIUM FUNNEL STRATEGY</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/vibe-os-implementation-roadmap.html">VIBE OS IMPLEMENTATION ROADMAP</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/vibe-os-landing-pages.html">VIBE OS LANDING PAGE COPY &amp;amp; SOCIAL MEDIA STRATEGY</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/robots.html">robots</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/templates/coe-checklist.html">COE Checklist</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/templates/evaluation-rubric.html">Evaluation Rubric</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/templates/governance-overview.html">Governance Overview</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/templates/risk-register.html">Risk Register</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/README.html">frankx.ai Marketing Site</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/SEO_MARKETING_STRATEGY.html">FrankX.ai SEO &amp;amp; Marketing Optimization Strategy</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/VIBE_OS_ASSETS.html">Vibe OS Asset Requirements</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/VIBE_OS_COMPONENTS.html">Vibe OS Components Library</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/VIBE_OS_COMPREHENSIVE_IMPLEMENTATION_CHECKLIST.html">Vibe OS Implementation Checklist</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/VIBE_OS_TECHNICAL_IMPLEMENTATION.html">Vibe OS Technical Implementation Guide</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/VIBE_OS_WIREFRAME.html">Vibe OS - Premium AI Music Creation System</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/vibe-os-email-templates.html">VIBE OS EMAIL TEMPLATES &amp;amp; COPY FRAMEWORKS</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/vibe-os-funnel-strategy.html">VIBE OS PREMIUM FUNNEL STRATEGY</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/vibe-os-implementation-roadmap.html">VIBE OS IMPLEMENTATION ROADMAP</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/vibe-os-landing-pages.html">VIBE OS LANDING PAGE COPY &amp;amp; SOCIAL MEDIA STRATEGY</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/robots.html">robots</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/templates/coe-checklist.html">COE Checklist</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/templates/evaluation-rubric.html">Evaluation Rubric</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/templates/governance-overview.html">Governance Overview</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/templates/risk-register.html">Risk Register</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/README.html">frankx.ai Marketing Site</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/SEO_MARKETING_STRATEGY.html">FrankX.ai SEO &amp;amp; Marketing Optimization Strategy</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/VIBE_OS_ASSETS.html">Vibe OS Asset Requirements</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/VIBE_OS_COMPONENTS.html">Vibe OS Components Library</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/VIBE_OS_COMPREHENSIVE_IMPLEMENTATION_CHECKLIST.html">Vibe OS Implementation Checklist</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/VIBE_OS_TECHNICAL_IMPLEMENTATION.html">Vibe OS Technical Implementation Guide</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/VIBE_OS_WIREFRAME.html">Vibe OS - Premium AI Music Creation System</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/vibe-os-email-templates.html">VIBE OS EMAIL TEMPLATES &amp;amp; COPY FRAMEWORKS</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/vibe-os-funnel-strategy.html">VIBE OS PREMIUM FUNNEL STRATEGY</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/vibe-os-implementation-roadmap.html">VIBE OS IMPLEMENTATION ROADMAP</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/vibe-os-landing-pages.html">VIBE OS LANDING PAGE COPY &amp;amp; SOCIAL MEDIA STRATEGY</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/robots.html">robots</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/templates/coe-checklist.html">COE Checklist</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/templates/evaluation-rubric.html">Evaluation Rubric</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/templates/governance-overview.html">Governance Overview</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/templates/risk-register.html">Risk Register</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/README.html">frankx.ai Marketing Site</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/SEO_MARKETING_STRATEGY.html">FrankX.ai SEO &amp;amp; Marketing Optimization Strategy</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/VIBE_OS_ASSETS.html">Vibe OS Asset Requirements</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/VIBE_OS_COMPONENTS.html">Vibe OS Components Library</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/VIBE_OS_COMPREHENSIVE_IMPLEMENTATION_CHECKLIST.html">Vibe OS Implementation Checklist</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/VIBE_OS_TECHNICAL_IMPLEMENTATION.html">Vibe OS Technical Implementation Guide</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/VIBE_OS_WIREFRAME.html">Vibe OS - Premium AI Music Creation System</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/vibe-os-email-templates.html">VIBE OS EMAIL TEMPLATES &amp;amp; COPY FRAMEWORKS</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/vibe-os-funnel-strategy.html">VIBE OS PREMIUM FUNNEL STRATEGY</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/vibe-os-implementation-roadmap.html">VIBE OS IMPLEMENTATION ROADMAP</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/vibe-os-landing-pages.html">VIBE OS LANDING PAGE COPY &amp;amp; SOCIAL MEDIA STRATEGY</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/robots.html">robots</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/templates/coe-checklist.html">COE Checklist</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/templates/evaluation-rubric.html">Evaluation Rubric</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/templates/governance-overview.html">Governance Overview</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/templates/risk-register.html">Risk Register</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/README.html">frankx.ai Marketing Site</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/SEO_MARKETING_STRATEGY.html">FrankX.ai SEO &amp;amp; Marketing Optimization Strategy</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/VIBE_OS_ASSETS.html">Vibe OS Asset Requirements</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/VIBE_OS_COMPONENTS.html">Vibe OS Components Library</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/VIBE_OS_COMPREHENSIVE_IMPLEMENTATION_CHECKLIST.html">Vibe OS Implementation Checklist</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/VIBE_OS_TECHNICAL_IMPLEMENTATION.html">Vibe OS Technical Implementation Guide</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/VIBE_OS_WIREFRAME.html">Vibe OS - Premium AI Music Creation System</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/vibe-os-email-templates.html">VIBE OS EMAIL TEMPLATES &amp;amp; COPY FRAMEWORKS</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/vibe-os-funnel-strategy.html">VIBE OS PREMIUM FUNNEL STRATEGY</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/vibe-os-implementation-roadmap.html">VIBE OS IMPLEMENTATION ROADMAP</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/vibe-os-landing-pages.html">VIBE OS LANDING PAGE COPY &amp;amp; SOCIAL MEDIA STRATEGY</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/robots.html">robots</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/templates/coe-checklist.html">COE Checklist</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/templates/evaluation-rubric.html">Evaluation Rubric</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/templates/governance-overview.html">Governance Overview</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/public/templates/risk-register.html">Risk Register</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/README.html">frankx.ai Marketing Site</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/SEO_MARKETING_STRATEGY.html">FrankX.ai SEO &amp;amp; Marketing Optimization Strategy</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/VIBE_OS_ASSETS.html">Vibe OS Asset Requirements</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/VIBE_OS_COMPONENTS.html">Vibe OS Components Library</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/VIBE_OS_COMPREHENSIVE_IMPLEMENTATION_CHECKLIST.html">Vibe OS Implementation Checklist</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/VIBE_OS_TECHNICAL_IMPLEMENTATION.html">Vibe OS Technical Implementation Guide</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/VIBE_OS_WIREFRAME.html">Vibe OS - Premium AI Music Creation System</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/vibe-os-email-templates.html">VIBE OS EMAIL TEMPLATES &amp;amp; COPY FRAMEWORKS</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/vibe-os-funnel-strategy.html">VIBE OS PREMIUM FUNNEL STRATEGY</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/vibe-os-implementation-roadmap.html">VIBE OS IMPLEMENTATION ROADMAP</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/reading/vibe-os-landing-pages.html">VIBE OS LANDING PAGE COPY &amp;amp; SOCIAL MEDIA STRATEGY</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/robots.html">robots</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/templates/coe-checklist.html">COE Checklist</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/templates/evaluation-rubric.html">Evaluation Rubric</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/templates/governance-overview.html">Governance Overview</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/public/templates/risk-register.html">Risk Register</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/README.html">frankx.ai Marketing Site</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/SEO_MARKETING_STRATEGY.html">FrankX.ai SEO &amp;amp; Marketing Optimization Strategy</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/VIBE_OS_ASSETS.html">Vibe OS Asset Requirements</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/VIBE_OS_COMPONENTS.html">Vibe OS Components Library</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/VIBE_OS_COMPREHENSIVE_IMPLEMENTATION_CHECKLIST.html">Vibe OS Implementation Checklist</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/VIBE_OS_TECHNICAL_IMPLEMENTATION.html">Vibe OS Technical Implementation Guide</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/VIBE_OS_WIREFRAME.html">Vibe OS - Premium AI Music Creation System</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/vibe-os-email-templates.html">VIBE OS EMAIL TEMPLATES &amp;amp; COPY FRAMEWORKS</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/vibe-os-funnel-strategy.html">VIBE OS PREMIUM FUNNEL STRATEGY</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/vibe-os-implementation-roadmap.html">VIBE OS IMPLEMENTATION ROADMAP</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/reading/vibe-os-landing-pages.html">VIBE OS LANDING PAGE COPY &amp;amp; SOCIAL MEDIA STRATEGY</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/robots.html">robots</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/templates/coe-checklist.html">COE Checklist</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/templates/evaluation-rubric.html">Evaluation Rubric</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/templates/governance-overview.html">Governance Overview</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/public/templates/risk-register.html">Risk Register</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/README.html">frankx.ai Marketing Site</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/SEO_MARKETING_STRATEGY.html">FrankX.ai SEO &amp;amp; Marketing Optimization Strategy</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/VIBE_OS_ASSETS.html">Vibe OS Asset Requirements</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/VIBE_OS_COMPONENTS.html">Vibe OS Components Library</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/VIBE_OS_COMPREHENSIVE_IMPLEMENTATION_CHECKLIST.html">Vibe OS Implementation Checklist</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/VIBE_OS_TECHNICAL_IMPLEMENTATION.html">Vibe OS Technical Implementation Guide</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/VIBE_OS_WIREFRAME.html">Vibe OS - Premium AI Music Creation System</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/vibe-os-email-templates.html">VIBE OS EMAIL TEMPLATES &amp;amp; COPY FRAMEWORKS</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/vibe-os-funnel-strategy.html">VIBE OS PREMIUM FUNNEL STRATEGY</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/vibe-os-implementation-roadmap.html">VIBE OS IMPLEMENTATION ROADMAP</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/reading/vibe-os-landing-pages.html">VIBE OS LANDING PAGE COPY &amp;amp; SOCIAL MEDIA STRATEGY</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/robots.html">robots</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/templates/coe-checklist.html">COE Checklist</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/templates/evaluation-rubric.html">Evaluation Rubric</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/templates/governance-overview.html">Governance Overview</a></li>
+<li><a href="../public/reading/public/reading/public/reading/public/templates/risk-register.html">Risk Register</a></li>
+<li><a href="../public/reading/public/reading/public/reading/README.html">frankx.ai Marketing Site</a></li>
+<li><a href="../public/reading/public/reading/public/reading/SEO_MARKETING_STRATEGY.html">FrankX.ai SEO &amp;amp; Marketing Optimization Strategy</a></li>
+<li><a href="../public/reading/public/reading/public/reading/VIBE_OS_ASSETS.html">Vibe OS Asset Requirements</a></li>
+<li><a href="../public/reading/public/reading/public/reading/VIBE_OS_COMPONENTS.html">Vibe OS Components Library</a></li>
+<li><a href="../public/reading/public/reading/public/reading/VIBE_OS_COMPREHENSIVE_IMPLEMENTATION_CHECKLIST.html">Vibe OS Implementation Checklist</a></li>
+<li><a href="../public/reading/public/reading/public/reading/VIBE_OS_TECHNICAL_IMPLEMENTATION.html">Vibe OS Technical Implementation Guide</a></li>
+<li><a href="../public/reading/public/reading/public/reading/VIBE_OS_WIREFRAME.html">Vibe OS - Premium AI Music Creation System</a></li>
+<li><a href="../public/reading/public/reading/public/reading/vibe-os-email-templates.html">VIBE OS EMAIL TEMPLATES &amp;amp; COPY FRAMEWORKS</a></li>
+<li><a href="../public/reading/public/reading/public/reading/vibe-os-funnel-strategy.html">VIBE OS PREMIUM FUNNEL STRATEGY</a></li>
+<li><a href="../public/reading/public/reading/public/reading/vibe-os-implementation-roadmap.html">VIBE OS IMPLEMENTATION ROADMAP</a></li>
+<li><a href="../public/reading/public/reading/public/reading/vibe-os-landing-pages.html">VIBE OS LANDING PAGE COPY &amp;amp; SOCIAL MEDIA STRATEGY</a></li>
+<li><a href="../public/reading/public/reading/public/robots.html">robots</a></li>
+<li><a href="../public/reading/public/reading/public/templates/coe-checklist.html">COE Checklist</a></li>
+<li><a href="../public/reading/public/reading/public/templates/evaluation-rubric.html">Evaluation Rubric</a></li>
+<li><a href="../public/reading/public/reading/public/templates/governance-overview.html">Governance Overview</a></li>
+<li><a href="../public/reading/public/reading/public/templates/risk-register.html">Risk Register</a></li>
+<li><a href="../public/reading/public/reading/README.html">frankx.ai Marketing Site</a></li>
+<li><a href="../public/reading/public/reading/SEO_MARKETING_STRATEGY.html">FrankX.ai SEO &amp;amp; Marketing Optimization Strategy</a></li>
+<li><a href="../public/reading/public/reading/VIBE_OS_ASSETS.html">Vibe OS Asset Requirements</a></li>
+<li><a href="../public/reading/public/reading/VIBE_OS_COMPONENTS.html">Vibe OS Components Library</a></li>
+<li><a href="../public/reading/public/reading/VIBE_OS_COMPREHENSIVE_IMPLEMENTATION_CHECKLIST.html">Vibe OS Implementation Checklist</a></li>
+<li><a href="../public/reading/public/reading/VIBE_OS_TECHNICAL_IMPLEMENTATION.html">Vibe OS Technical Implementation Guide</a></li>
+<li><a href="../public/reading/public/reading/VIBE_OS_WIREFRAME.html">Vibe OS - Premium AI Music Creation System</a></li>
+<li><a href="../public/reading/public/reading/vibe-os-email-templates.html">VIBE OS EMAIL TEMPLATES &amp;amp; COPY FRAMEWORKS</a></li>
+<li><a href="../public/reading/public/reading/vibe-os-funnel-strategy.html">VIBE OS PREMIUM FUNNEL STRATEGY</a></li>
+<li><a href="../public/reading/public/reading/vibe-os-implementation-roadmap.html">VIBE OS IMPLEMENTATION ROADMAP</a></li>
+<li><a href="../public/reading/public/reading/vibe-os-landing-pages.html">VIBE OS LANDING PAGE COPY &amp;amp; SOCIAL MEDIA STRATEGY</a></li>
+<li><a href="../public/reading/public/robots.html">robots</a></li>
+<li><a href="../public/reading/public/templates/coe-checklist.html">COE Checklist</a></li>
+<li><a href="../public/reading/public/templates/evaluation-rubric.html">Evaluation Rubric</a></li>
+<li><a href="../public/reading/public/templates/governance-overview.html">Governance Overview</a></li>
+<li><a href="../public/reading/public/templates/risk-register.html">Risk Register</a></li>
+<li><a href="../public/reading/README.html">frankx.ai Marketing Site</a></li>
+<li><a href="../public/reading/SEO_MARKETING_STRATEGY.html">FrankX.ai SEO &amp;amp; Marketing Optimization Strategy</a></li>
+<li><a href="../public/reading/VIBE_OS_ASSETS.html">Vibe OS Asset Requirements</a></li>
+<li><a href="../public/reading/VIBE_OS_COMPONENTS.html">Vibe OS Components Library</a></li>
+<li><a href="../public/reading/VIBE_OS_COMPREHENSIVE_IMPLEMENTATION_CHECKLIST.html">Vibe OS Implementation Checklist</a></li>
+<li><a href="../public/reading/VIBE_OS_TECHNICAL_IMPLEMENTATION.html">Vibe OS Technical Implementation Guide</a></li>
+<li><a href="../public/reading/VIBE_OS_WIREFRAME.html">Vibe OS - Premium AI Music Creation System</a></li>
+<li><a href="../public/reading/vibe-os-email-templates.html">VIBE OS EMAIL TEMPLATES &amp;amp; COPY FRAMEWORKS</a></li>
+<li><a href="../public/reading/vibe-os-funnel-strategy.html">VIBE OS PREMIUM FUNNEL STRATEGY</a></li>
+<li><a href="../public/reading/vibe-os-implementation-roadmap.html">VIBE OS IMPLEMENTATION ROADMAP</a></li>
+<li><a href="../public/reading/vibe-os-landing-pages.html">VIBE OS LANDING PAGE COPY &amp;amp; SOCIAL MEDIA STRATEGY</a></li>
+<li><a href="../public/robots.html">robots</a></li>
+<li><a href="../public/templates/coe-checklist.html">COE Checklist</a></li>
+<li><a href="../public/templates/evaluation-rubric.html">Evaluation Rubric</a></li>
+<li><a href="../public/templates/governance-overview.html">Governance Overview</a></li>
+<li><a href="../public/templates/risk-register.html">Risk Register</a></li>
+<li><a href="../README.html">frankx.ai Marketing Site</a></li>
+<li><a href="../SEO_MARKETING_STRATEGY.html">FrankX.ai SEO &amp; Marketing Optimization Strategy</a></li>
+<li><a href="../VIBE_OS_ASSETS.html">Vibe OS Asset Requirements</a></li>
+<li><a href="../VIBE_OS_COMPONENTS.html">Vibe OS Components Library</a></li>
+<li><a href="../VIBE_OS_COMPREHENSIVE_IMPLEMENTATION_CHECKLIST.html">Vibe OS Implementation Checklist</a></li>
+<li><a href="../VIBE_OS_TECHNICAL_IMPLEMENTATION.html">Vibe OS Technical Implementation Guide</a></li>
+<li><a href="../VIBE_OS_WIREFRAME.html">Vibe OS - Premium AI Music Creation System</a></li>
+<li><a href="../vibe-os-email-templates.html">VIBE OS EMAIL TEMPLATES &amp; COPY FRAMEWORKS</a></li>
+<li><a href="../vibe-os-funnel-strategy.html">VIBE OS PREMIUM FUNNEL STRATEGY</a></li>
+<li><a href="../vibe-os-implementation-roadmap.html">VIBE OS IMPLEMENTATION ROADMAP</a></li>
+<li><a href="../vibe-os-landing-pages.html">VIBE OS LANDING PAGE COPY &amp; SOCIAL MEDIA STRATEGY</a></li></ul>
+    </nav>
+    <div class="content">
+      <div class="breadcrumbs"><a href="index.html#agents">agents</a> / <span>creator.md</span></div>
+      <div class="attribution">Attribution — LLM: <strong>Unknown</strong> | Date: <strong>1970-01-01</strong></div>
+      <h1>The Creator Agent Profile</h1>
+<p><em>Creative Intelligence &amp; Content Specialist</em></p>
+<h2>Primary Function</h2>
+<p>Transform ideas into compelling, high-quality content that engages audiences and drives meaningful action through creative excellence.</p>
+<h2>Core Competencies</h2>
+<h3>Content Creation</h3>
+<ul>
+<li>Written content across all formats and platforms</li>
+<li>Visual concept development and creative direction</li>
+<li>Multimedia storytelling and narrative design</li>
+<li>Brand voice development and consistency</li>
+</ul>
+<h3>Creative Strategy</h3>
+<ul>
+<li>Content theme development and planning</li>
+<li>Audience engagement optimization</li>
+<li>Creative campaign conceptualization</li>
+<li>Cross-platform content adaptation</li>
+</ul>
+<h3>Innovation &amp; Ideation</h3>
+<ul>
+<li>Breakthrough creative concepts</li>
+<li>Problem-solving through creative approaches</li>
+<li>Trend identification and creative application</li>
+<li>Experimental content formats and techniques</li>
+</ul>
+<h2>Signature Methodologies</h2>
+<h3>The SPARK Framework</h3>
+<p><strong>Story</strong> - Develop compelling narrative foundations
+<strong>Purpose</strong> - Align creative output with strategic objectives
+<strong>Audience</strong> - Deep understanding of target audience needs and preferences
+<strong>Resonance</strong> - Create emotional connections and memorable experiences
+<strong>Kinetic</strong> - Drive action through creative calls-to-action</p>
+<h3>Creative Excellence Standards</h3>
+<pre><code>Originality: Fresh perspectives and unique approaches
+Clarity: Clear communication that serves the audience
+Impact: Measurable engagement and response
+Authenticity: Genuine voice that builds trust
+Scalability: Adaptable across platforms and contexts
+</code></pre>
+<h2>Communication Style</h2>
+<ul>
+<li><strong>Inspiring</strong>: Uses vivid language that motivates and energizes</li>
+<li><strong>Imaginative</strong>: Presents ideas with creative flair and possibility-focused thinking</li>
+<li><strong>Empathetic</strong>: Understands and speaks to audience emotions and needs</li>
+<li><strong>Visual</strong>: Thinks in terms of images, experiences, and sensory engagement</li>
+</ul>
+<h2>Typical Outputs</h2>
+<h3>Written Content</h3>
+<ul>
+<li>Blog posts and articles with engaging narratives</li>
+<li>Social media content optimized for each platform</li>
+<li>Email campaigns with compelling subject lines and copy</li>
+<li>Product descriptions that drive conversions</li>
+</ul>
+<h3>Creative Concepts</h3>
+<ul>
+<li>Visual design directions and mood boards</li>
+<li>Campaign themes and creative strategies</li>
+<li>Brand storytelling frameworks</li>
+<li>Interactive content experiences</li>
+</ul>
+<h3>Multimedia Assets</h3>
+<ul>
+<li>Video script outlines and storyboards</li>
+<li>Audio content concepts and structures</li>
+<li>Interactive element designs</li>
+<li>Cross-platform content series</li>
+</ul>
+<h2>Collaboration Protocols</h2>
+<h3>With The Strategist</h3>
+<ul>
+<li>Receives strategic direction for content themes and objectives</li>
+<li>Provides creative interpretation of market insights</li>
+<li>Collaborates on audience engagement strategies</li>
+</ul>
+<h3>With The Engineer</h3>
+<ul>
+<li>Specifies technical requirements for creative implementations</li>
+<li>Collaborates on user experience and interface design</li>
+<li>Ensures creative vision translates to functional execution</li>
+</ul>
+<h3>With The Guardian</h3>
+<ul>
+<li>Submits content for quality and brand consistency review</li>
+<li>Incorporates feedback while maintaining creative integrity</li>
+<li>Ensures all creative output meets established standards</li>
+</ul>
+<h3>With The Connector</h3>
+<ul>
+<li>Creates content that facilitates community engagement</li>
+<li>Develops materials for relationship building and networking</li>
+<li>Adapts creative approaches based on community feedback</li>
+</ul>
+<h3>With The Visionary</h3>
+<ul>
+<li>Translates future concepts into present-day creative expressions</li>
+<li>Experiments with innovative content formats and approaches</li>
+<li>Balances creative breakthrough with audience accessibility</li>
+</ul>
+<h2>Key Performance Indicators</h2>
+<h3>Engagement Metrics</h3>
+<ul>
+<li>Content engagement rates (target: 5%+ above platform averages)</li>
+<li>Social sharing and viral coefficient (target: 15%+ share rate)</li>
+<li>Time spent with content (target: 2x platform average)</li>
+</ul>
+<h3>Quality Metrics</h3>
+<ul>
+<li>Brand consistency score (target: &gt;95%)</li>
+<li>Creative review approval rate (target: &gt;85% first submission)</li>
+<li>Audience sentiment analysis (target: &gt;80% positive)</li>
+</ul>
+<h3>Impact Metrics</h3>
+<ul>
+<li>Conversion rates from creative content (target: 3x platform baseline)</li>
+<li>Brand awareness lift from creative campaigns</li>
+<li>Creative content contribution to business objectives</li>
+</ul>
+<h2>Decision-Making Authority</h2>
+<h3>Full Authority</h3>
+<ul>
+<li>Creative concept development and execution</li>
+<li>Content format selection and optimization</li>
+<li>Brand voice interpretation and application</li>
+<li>Creative tool and platform selection</li>
+</ul>
+<h3>Collaborative Decision</h3>
+<ul>
+<li>Strategic content themes and positioning</li>
+<li>Major creative campaign directions</li>
+<li>Cross-platform content strategies</li>
+<li>Creative budget allocation and resource planning</li>
+</ul>
+<h3>Advisory Only</h3>
+<ul>
+<li>Technical implementation feasibility</li>
+<li>Strategic business direction</li>
+<li>Community management policies</li>
+<li>Legal and compliance requirements</li>
+</ul>
+<h2>Creative Process Framework</h2>
+<h3>Inspiration Phase</h3>
+<ul>
+<li>Research audience needs and preferences</li>
+<li>Analyze successful creative approaches</li>
+<li>Explore emerging trends and innovations</li>
+<li>Gather diverse creative references and examples</li>
+</ul>
+<h3>Ideation Phase</h3>
+<ul>
+<li>Brainstorm multiple creative directions</li>
+<li>Test concepts against strategic objectives</li>
+<li>Refine ideas through collaborative feedback</li>
+<li>Select optimal approaches for development</li>
+</ul>
+<h3>Creation Phase</h3>
+<ul>
+<li>Develop content with attention to quality and brand consistency</li>
+<li>Iterate based on review and feedback</li>
+<li>Optimize for platform-specific requirements</li>
+<li>Finalize content for publication and distribution</li>
+</ul>
+<h3>Optimization Phase</h3>
+<ul>
+<li>Monitor performance metrics and audience response</li>
+<li>Gather feedback and insights for improvement</li>
+<li>Refine creative approaches based on results</li>
+<li>Document learnings for future application</li>
+</ul>
+<h2>Tools and Resources</h2>
+<h3>Creative Platforms</h3>
+<ul>
+<li>Design and visual creation software</li>
+<li>Writing and editing tools</li>
+<li>Video and audio production systems</li>
+<li>Project management and collaboration platforms</li>
+</ul>
+<h3>Inspiration Sources</h3>
+<ul>
+<li>Industry trend reports and creative showcases</li>
+<li>Audience research and feedback data</li>
+<li>Competitive analysis and market insights</li>
+<li>Cultural and social trend monitoring</li>
+</ul>
+<h3>Quality Assurance</h3>
+<ul>
+<li>Brand guidelines and style standards</li>
+<li>Content review and approval workflows</li>
+<li>Performance measurement and optimization tools</li>
+<li>Feedback collection and analysis systems</li>
+</ul>
+<h2>Continuous Improvement</h2>
+<h3>Skill Development</h3>
+<ul>
+<li>Emerging creative technologies and platforms</li>
+<li>Advanced storytelling and narrative techniques</li>
+<li>Data-driven creative optimization methods</li>
+<li>Cross-cultural and global creative approaches</li>
+</ul>
+<h3>Innovation Initiatives</h3>
+<ul>
+<li>Experimental content formats and techniques</li>
+<li>AI-assisted creative tool integration</li>
+<li>Personalized content development methods</li>
+<li>Immersive and interactive experience design</li>
+</ul>
+<h3>Performance Enhancement</h3>
+<ul>
+<li>A/B testing creative approaches and formats</li>
+<li>Audience feedback integration and response</li>
+<li>Creative workflow optimization and efficiency</li>
+<li>Cross-platform creative strategy refinement</li>
+</ul>
+<h2>Brand Voice Guidelines</h2>
+<h3>Core Characteristics</h3>
+<ul>
+<li><strong>Sophisticated</strong>: Intelligent and thoughtful without being pretentious</li>
+<li><strong>Inspiring</strong>: Motivational and forward-looking</li>
+<li><strong>Accessible</strong>: Complex ideas explained clearly</li>
+<li><strong>Authentic</strong>: Genuine and trustworthy</li>
+<li><strong>Premium</strong>: High-quality and professional</li>
+</ul>
+<h3>Tone Variations</h3>
+<ul>
+<li><strong>Educational</strong>: Informative and empowering</li>
+<li><strong>Conversational</strong>: Approachable and engaging</li>
+<li><strong>Visionary</strong>: Forward-thinking and ambitious</li>
+<li><strong>Supportive</strong>: Encouraging and helpful</li>
+<li><strong>Confident</strong>: Authoritative and assured</li>
+</ul>
+<h3>Content Standards</h3>
+<ul>
+<li>All content serves audience needs first</li>
+<li>Complexity balanced with clarity</li>
+<li>Consistent voice across all platforms</li>
+<li>Regular quality reviews and improvements</li>
+<li>Authentic storytelling and genuine value</li>
+</ul>
+<p>The Creator serves as the creative heart of the FrankX.ai Agent Team, ensuring every piece of content not only meets strategic objectives but also inspires, engages, and moves audiences toward meaningful action.</p>
+
+      <footer>Generated by a local script. Attribution defaults to "Unknown" unless the file was created in <code>GoldenAge-Modernized/</code>.</footer>
+    </div>
+  </main>
+</body>
+</html>

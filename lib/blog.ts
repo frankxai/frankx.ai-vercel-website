@@ -43,12 +43,17 @@ export function getAllBlogPosts(): BlogPost[] {
   return allPostsData.sort((a, b) => (new Date(a.date) > new Date(b.date) ? -1 : 1))
 }
 
-export function getBlogPost(slug: string): BlogPost | null {
+import { serialize } from 'next-mdx-remote/serialize'
+
+// ... (imports)
+
+export async function getBlogPost(slug: string): Promise<BlogPost | null> {
   try {
     const fullPath = path.join(blogDirectory, `${slug}.mdx`)
     const fileContents = fs.readFileSync(fullPath, 'utf8')
     const { data, content } = matter(fileContents)
     const readTime = readingTime(content)
+    const mdxSource = await serialize(content)
 
     return {
       slug,

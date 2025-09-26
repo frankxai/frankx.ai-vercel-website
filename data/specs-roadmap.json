@@ -2,23 +2,23 @@
   "vision": "Make FrankX.ai the intelligence operating system for creators, families, and executives by blending conscious AI adoption, music-led expression, and enterprise-grade governance.",
   "pillars": [
     {
-      "title": "Conscious AI Integration",
-      "description": "Deploy ethical, human-centered AI systems with clear guardrails, education paths, and measurable impact across every FrankX offering.",
+      "title": "Creative AI Tools",
+      "description": "Explore the latest and greatest AI tools for creators.",
       "source": "docs/CONTENT_STRATEGY.md"
     },
     {
-      "title": "Strategic Business Intelligence",
-      "description": "Translate field research and telemetry into frameworks that accelerate transformation for founders, studios, and Fortune 500 partners.",
+      "title": "Latest AI Updates",
+      "description": "Stay up-to-date with the latest news and updates in the world of AI.",
       "source": "docs/SEO_MARKETING_STRATEGY.md"
     },
     {
-      "title": "Creative & Innovation Excellence",
-      "description": "Build Vibe OS and music rituals that keep artistry at the center while scaling with Suno, Runway, and multi-agent collaboration.",
+      "title": "Agentic Management",
+      "description": "Learn how to manage and orchestrate agentic AI systems.",
       "source": "vibe-os-implementation-roadmap.md"
     },
     {
-      "title": "Community & Collaboration",
-      "description": "Run the Intelligence Atlas and Creation Chronicles as living knowledge commons, inviting contributions and highlighting community wins.",
+      "title": "Generative AI Approach",
+      "description": "Discover new and innovative ways to use generative AI.",
       "source": "docs/PROMPT_PLAYBOOK.md"
     }
   ],

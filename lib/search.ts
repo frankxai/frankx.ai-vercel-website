@@ -8,7 +8,7 @@ export interface SearchDocument {
 }
 
 export const createSearchIndex = (documents: SearchDocument[]) => {
-  return lunr(function () {
+  return lunr(function (this: lunr.Builder) {
     this.ref('url')
     this.field('title')
     this.field('content')

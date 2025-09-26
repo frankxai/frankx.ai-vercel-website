@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Content Dashboard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-neutral-900 text-white">
+  <div class="max-w-7xl mx-auto px-6 py-16">
+    <h1 class="text-4xl font-bold text-center">Content Dashboard</h1>
+
+    <div class="mt-12">
+      <h2 class="text-2xl font-semibold">Content Strategy</h2>
+      <div id="content-strategy" class="mt-6"></div>
+    </div>
+
+    <div class="mt-12">
+      <h2 class="text-2xl font-semibold">Article Production</h2>
+      <div id="article-production" class="mt-6"></div>
+    </div>
+  </div>
+
+  <script>
+    const renderContentStrategy = async () => {
+      const response = await fetch('./data/specs-roadmap.json');
+      const roadmap = await response.json();
+
+      const contentStrategy = document.getElementById('content-strategy');
+      contentStrategy.innerHTML = `
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div class="rounded-2xl border border-neutral-800 bg-neutral-900 p-6">
+            <h3 class="text-xl font-semibold">Vision</h3>
+            <p class="mt-2 text-neutral-400">${roadmap.vision}</p>
+          </div>
+          <div class="rounded-2xl border border-neutral-800 bg-neutral-900 p-6">
+            <h3 class="text-xl font-semibold">Pillars</h3>
+            <ul class="mt-2 space-y-2">
+              ${roadmap.pillars.map(pillar => `<li>${pillar.title}</li>`).join('')}
+            </ul>
+          </div>
+        </div>
+      `;
+    };
+
+    const renderArticleProduction = async () => {
+      const response = await fetch('/api/notion');
+      const articles = await response.json();
+
+      const articleProduction = document.getElementById('article-production');
+      articleProduction.innerHTML = `
+        <table class="w-full text-left">
+          <thead>
+            <tr>
+              <th class="p-4">Title</th>
+              <th class="p-4">Status</th>
+              <th class="p-4">Date</th>
+              <th class="p-4">Pillar</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${articles.map(article => `
+              <tr>
+                <td class="p-4">${article.title}</td>
+                <td class="p-4">${article.status}</td>
+                <td class="p-4">${article.date}</td>
+                <td class="p-4">${article.pillar}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      `;
+    };
+
+    renderContentStrategy();
+    renderArticleProduction();
+  </script>
+</body>
+</html>

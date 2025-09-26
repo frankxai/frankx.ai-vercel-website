@@ -1,0 +1,51 @@
+﻿<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1400" y2="980" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#060814" />
+      <stop offset="0.5" stop-color="#101B35" />
+      <stop offset="1" stop-color="#070B18" />
+    </linearGradient>
+    <linearGradient id="glimmer" x1="320" y1="120" x2="1320" y2="780" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#38BDF8" stop-opacity="0.28" />
+      <stop offset="0.45" stop-color="#8B5CF6" stop-opacity="0.18" />
+      <stop offset="1" stop-color="#F97316" stop-opacity="0.22" />
+    </linearGradient>
+    <radialGradient id="pulse" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(820 440) rotate(90) scale(620 520)">
+      <stop offset="0" stop-color="#38BDF8" stop-opacity="0.5" />
+      <stop offset="1" stop-color="#38BDF8" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="halo" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(820 420) rotate(90) scale(420 360)">
+      <stop offset="0" stop-color="#FDE68A" stop-opacity="0.32" />
+      <stop offset="1" stop-color="#FDE68A" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)" />
+  <rect x="180" y="120" width="1240" height="660" rx="60" fill="#0B1324" fill-opacity="0.7" stroke="#1F2A44" stroke-opacity="0.55" />
+  <rect x="260" y="200" width="1080" height="520" rx="48" fill="#0E1932" fill-opacity="0.65" stroke="#1E2E51" stroke-opacity="0.6" />
+  <rect x="320" y="260" width="960" height="400" rx="36" fill="#0B1428" stroke="#1E2F52" stroke-opacity="0.65" />
+  <rect x="360" y="300" width="880" height="320" rx="28" fill="#0D172F" />
+  <rect x="420" y="340" width="360" height="240" rx="20" fill="#0F1F3A" stroke="#1D3B61" stroke-opacity="0.6" />
+  <rect x="820" y="340" width="320" height="120" rx="20" fill="#102544" stroke="#1D3B61" stroke-opacity="0.5" />
+  <rect x="820" y="480" width="320" height="100" rx="20" fill="#0F223D" stroke="#1D3B61" stroke-opacity="0.4" />
+  <path d="M440 380H740" stroke="#38BDF8" stroke-width="2" stroke-linecap="round" />
+  <path d="M440 410H660" stroke="#38BDF8" stroke-width="2" stroke-linecap="round" stroke-opacity="0.7" />
+  <path d="M440 440H700" stroke="#38BDF8" stroke-width="2" stroke-linecap="round" stroke-opacity="0.4" />
+  <path d="M860 380H1100" stroke="#F97316" stroke-width="2" stroke-linecap="round" />
+  <path d="M860 410H1140" stroke="#F97316" stroke-width="2" stroke-linecap="round" stroke-opacity="0.65" />
+  <path d="M860 440H1080" stroke="#F97316" stroke-width="2" stroke-linecap="round" stroke-opacity="0.3" />
+  <path d="M880 520C920 500 980 500 1020 520C1060 540 1120 540 1160 520" stroke="#38BDF8" stroke-width="2" stroke-linecap="round" stroke-opacity="0.65" />
+  <path d="M420 480C470 470 520 470 570 480C620 490 670 510 720 540" stroke="#A855F7" stroke-width="2" stroke-linecap="round" stroke-opacity="0.55" />
+  <circle cx="820" cy="420" r="320" fill="url(#pulse)" />
+  <circle cx="820" cy="420" r="210" fill="url(#halo)" />
+  <rect x="360" y="300" width="880" height="320" rx="28" stroke="url(#glimmer)" stroke-width="3" stroke-opacity="0.85" />
+  <g opacity="0.35">
+    <path d="M320 240H1280" stroke="#1E2F52" stroke-width="1.4" stroke-linecap="round" stroke-dasharray="4 8" />
+    <path d="M320 560H1280" stroke="#1E2F52" stroke-width="1.4" stroke-linecap="round" stroke-dasharray="4 8" />
+    <path d="M520 260V660" stroke="#1E2F52" stroke-width="1.4" stroke-linecap="round" stroke-dasharray="4 8" />
+    <path d="M1080 260V660" stroke="#1E2F52" stroke-width="1.4" stroke-linecap="round" stroke-dasharray="4 8" />
+  </g>
+  <circle cx="420" cy="300" r="10" fill="#38BDF8" />
+  <circle cx="460" cy="300" r="10" fill="#8B5CF6" />
+  <circle cx="500" cy="300" r="10" fill="#F97316" />
+  <text x="420" y="565" fill="#94A3B8" font-family="'Inter', 'Segoe UI', sans-serif" font-size="18" letter-spacing="0.28em" textLength="480">GOLDEN AGE INTELLIGENCE</text>
+</svg>

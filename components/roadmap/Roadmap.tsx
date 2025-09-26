@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import roadmap from '@/data/specs-roadmap.json'
+import { clsx } from 'clsx'
 
 export default function Roadmap() {
   return (

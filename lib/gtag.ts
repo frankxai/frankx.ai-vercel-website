@@ -1,3 +1,9 @@
+declare global {
+  interface Window {
+    gtag: (command: string, targetId: string, config?: any) => void
+  }
+}
+
 export const trackConversion = (url: string, conversionId: string) => {
   window.gtag('event', 'conversion', {
     send_to: `${process.env.NEXT_PUBLIC_GA_TRACKING_ID}/${conversionId}`,

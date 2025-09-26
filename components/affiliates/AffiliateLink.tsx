@@ -8,6 +8,7 @@ interface AffiliateLinkProps extends React.AnchorHTMLAttributes<HTMLAnchorElemen
   affiliateId: string
   trackingId: string
   children: React.ReactNode
+  'data-context'?: string
 }
 
 const AffiliateLink: React.FC<AffiliateLinkProps> = ({ affiliateId, trackingId, children, ...props }) => {

@@ -19,7 +19,7 @@ export const dynamicParams = true
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
 
-  const post = getBlogPost(slug)
+  const post = await getBlogPost(slug)
 
   if (!post) {
     return createMetadata({
@@ -48,7 +48,7 @@ export default async function BlogPostPage({
 }) {
   const { slug } = await params
 
-  const post = getBlogPost(slug)
+  const post = await getBlogPost(slug)
 
   if (!post) {
     notFound()

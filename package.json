@@ -12,7 +12,8 @@
     "gen:feed": "node scripts/generate_feed.mjs",
     "gen:search": "node scripts/generate_search_index.mjs",
     "prebuild": "npm run gen:html && npm run gen:feed && npm run gen:search",
-    "roadmap:check": "node scripts/daily-roadmap-check.js"
+    "roadmap:check": "node scripts/daily-roadmap-check.js",
+    "watch": "node scripts/watch.mjs"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.9",
@@ -23,6 +24,7 @@
     "@types/mdx": "^2.0.13",
     "@types/react-syntax-highlighter": "^15.5.13",
     "autoprefixer": "^10.4.20",
+    "chokidar": "^4.0.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "^11.15.0",
@@ -48,6 +50,7 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
+    "@types/lunr": "^2.3.7",
     "@types/node": "^22.10.2",
     "@types/react": "^18.3.17",
     "@types/react-dom": "^18.3.5",

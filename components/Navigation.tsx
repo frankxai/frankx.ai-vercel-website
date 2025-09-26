@@ -7,6 +7,7 @@ import { Menu, Transition } from '@headlessui/react'
 import { ChevronDown, Menu as MenuIcon, X, Sparkles } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
+import { gradientPresets } from '@/lib/design/gradients'
 
 type NavItem = {
   name: string
