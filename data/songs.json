@@ -1,0 +1,38 @@
+[
+  {
+    "title": "Oracle Frequency (FrankX Suno Session)",
+    "sunoUrl": "https://suno.com/s/czNLZq6xNyHvnzKH",
+    "coverImage": "/images/blog/intelligence-atlas-volume-1.svg",
+    "description": "Cinematic ritual with aurora synths and heartbeat percussion to prep founders for strategic breakthroughs.",
+    "releaseDate": "2025-09-15",
+    "tags": [
+      "ritual",
+      "strategy",
+      "suno"
+    ]
+  },
+  {
+    "title": "Golden Age Anthem",
+    "sunoUrl": "https://suno.com/s/example-golden-age",
+    "coverImage": "/images/blog/golden-age-flagship.svg",
+    "description": "Signature intelligence-era anthem used to open Creation Chronicles sessions.",
+    "releaseDate": "2025-09-08",
+    "tags": [
+      "anthem",
+      "creation",
+      "vibe-os"
+    ]
+  },
+  {
+    "title": "Nightfall Architect",
+    "sunoUrl": "https://suno.com/s/example-nightfall",
+    "coverImage": "/images/blog/agentic-ai-roadmap.svg",
+    "description": "Downtempo blueprint for architects designing after dark with layered pads, whispered vocals, and responsive bass.",
+    "releaseDate": "2025-09-01",
+    "tags": [
+      "design",
+      "downtempo",
+      "focus"
+    ]
+  }
+]
