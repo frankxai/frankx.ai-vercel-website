@@ -47,6 +47,15 @@ export function getAllBlogPosts(): BlogPost[] {
 export function getBlogPost(slug: string): BlogPost | null {
   try {
     const fullPath = path.join(blogDirectory, `${slug}.mdx`)
+
+    // Debug logging for Vercel
+    if (process.env.NODE_ENV === 'production') {
+      console.log('Blog directory:', blogDirectory)
+      console.log('Looking for file:', fullPath)
+      console.log('Blog directory exists:', fs.existsSync(blogDirectory))
+      console.log('File exists:', fs.existsSync(fullPath))
+    }
+
     const fileContents = fs.readFileSync(fullPath, 'utf8')
     const { data, content } = matter(fileContents)
     const readTime = readingTime(content)
@@ -57,7 +66,10 @@ export function getBlogPost(slug: string): BlogPost | null {
       readingTime: readTime.text,
       ...data,
     } as BlogPost
-  } catch {
+  } catch (error) {
+    if (process.env.NODE_ENV === 'production') {
+      console.error('Error in getBlogPost:', error)
+    }
     return null
   }
 }
