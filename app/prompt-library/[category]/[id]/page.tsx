@@ -4,11 +4,11 @@ import PromptDetailView from '@/components/prompt-library/PromptDetailView'
 import { CATEGORIES, getPromptById, getPromptsByCategory } from '@/lib/prompts'
 
 type PromptPageProps = {
-  params: { category: string; id: string }
+  params: Promise<{ category: string; id: string }>
 }
 
-export default function PromptPage({ params }: PromptPageProps) {
-  const { category, id } = params
+export default async function PromptPage({ params }: PromptPageProps) {
+  const { category, id } = await params
   const prompt = getPromptById(id)
 
   if (!prompt || prompt.category !== category) {

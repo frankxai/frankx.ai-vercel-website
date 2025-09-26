@@ -8,8 +8,9 @@ import Link from 'next/link'
 export const dynamic = 'force-dynamic'
 export const dynamicParams = true
 
-export async function generateMetadata({ params }: any) {
-  const guide = getGuide(params.slug)
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const guide = getGuide(slug)
   if (!guide) return { title: 'Guide Not Found' }
   return {
     title: guide.title,
@@ -27,8 +28,9 @@ export async function generateStaticParams() {
   return guides.map((g) => ({ slug: g.slug }))
 }
 
-export default function GuidePage({ params }: any) {
-  const guide = getGuide(params.slug)
+export default async function GuidePage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const guide = getGuide(slug)
   if (!guide) return notFound()
   return (
     <div className="min-h-screen bg-white">
