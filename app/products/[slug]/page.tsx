@@ -1,17 +1,12 @@
-'use client'
-
 import { products } from '@/lib/products'
-import { trackConversion } from '@/lib/gtag'
+import BuyButton from './BuyButton'
 
-export default function ProductPage({ params }: { params: { slug: string } }) {
-  const product = products.find((p) => p.id === params.slug)
+export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  const product = products.find((p) => p.id === slug)
 
   if (!product) {
     return <div>Product not found</div>
-  }
-
-  const handleBuyNow = () => {
-    trackConversion('https://checkout.example.com', 'AW-CONVERSION_ID')
   }
 
   return (
@@ -23,15 +18,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
 
       <div className="mt-12">
         <div className="flex justify-center">
-          <div className="text-center">
-            <p className="text-3xl font-bold text-white">${product.price}</p>
-            <button
-              onClick={handleBuyNow}
-              className="mt-6 px-6 py-2.5 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white text-sm font-semibold rounded-lg transition-all duration-300 shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:shadow-[0_0_30px_rgba(6,182,212,0.4)] hover:-translate-y-0.5"
-            >
-              Buy Now
-            </button>
-          </div>
+          <BuyButton price={product.price} />
         </div>
       </div>
     </div>
