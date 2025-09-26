@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowRight, ArrowLeft, CheckCircle, Star, Target, Brain, Zap, Shield, Users, BarChart3, Lightbulb, Rocket, Award, Download } from 'lucide-react'
 import Navigation from '@/components/Navigation'
@@ -416,13 +417,13 @@ export default function AIAssessmentPage() {
                   <Download className="mr-2 h-5 w-5" />
                   Get Personalized Roadmap
                 </button>
-                <a
+                <Link
                   href="/products"
                   className="inline-flex items-center justify-center px-8 py-4 border border-white/20 bg-white/5 backdrop-blur-sm text-white font-semibold rounded-xl transition-all duration-300 hover:bg-white/10 hover:border-white/30 hover:-translate-y-1"
                 >
                   Explore Products
                   <ArrowRight className="ml-2 h-5 w-5" />
-                </a>
+                </Link>
               </div>
             </motion.div>
           </div>

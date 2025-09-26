@@ -4,6 +4,7 @@ export interface SearchDocument {
   title: string
   content: string
   url: string
+  tags?: string[]
 }
 
 export const createSearchIndex = (documents: SearchDocument[]) => {
