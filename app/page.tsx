@@ -1,8 +1,6 @@
 import Script from 'next/script'
 
-import Footer from '@/components/Footer'
-import Navigation from '@/components/Navigation'
-import HomePage from '@/components/home/HomePage'
+import OptimizedHomePage from '@/components/home/OptimizedHomePage'
 import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
@@ -71,13 +69,11 @@ const structuredData = {
 
 export default function Page() {
   return (
-    <div className="min-h-screen flex flex-col bg-slate-950 text-slate-100">
-      <Navigation />
-      <HomePage />
-      <Footer />
+    <>
+      <OptimizedHomePage />
       <Script id="frankx-organization" type="application/ld+json" strategy="afterInteractive">
         {JSON.stringify(structuredData)}
       </Script>
-    </div>
+    </>
   )
 }

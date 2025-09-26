@@ -12,6 +12,7 @@ import {
   heroStats,
   heroSubtext,
   heroSupportLink,
+  homeSpotlights,
   keywordClusters,
   projectMilestones,
   quickActions,
@@ -35,6 +36,7 @@ import {
   GlowPulse,
   ScrollProgress
 } from '@/components/ui/AdvancedAnimations'
+import { Surface, SectionHeading, Pill, StatBlock } from '@/components/ui/primitives'
 
 const fadeUp = {
   initial: { opacity: 0, y: 24 },
@@ -55,7 +57,7 @@ export default function HomePage() {
   const { primary, secondary, tertiary } = heroCta
 
   return (
-    <main id="main" className="flex-1 bg-midnight-950 text-white pt-32">
+    <main id="main" className="flex-1 pt-32 text-white">
       <ScrollProgress />
       {/* Hero Section */}
       <section id="hub" className="relative overflow-hidden pt-24 pb-32">
@@ -69,10 +71,13 @@ export default function HomePage() {
             <StaggerContainer staggerDelay={0.2}>
               <div className="text-center space-y-12">
                 <StaggerItem>
-                  <span className="inline-flex items-center gap-3 rounded-full border border-cyan-400/30 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 backdrop-blur-sm px-6 py-3 text-sm font-medium text-cyan-300 shadow-[0_0_30px_rgba(6,182,212,0.2)]">
-                    <Sparkles className="h-5 w-5 text-cyan-400" aria-hidden="true" />
-                    Welcome to the Golden Age of Intelligence
-                  </span>
+                  <Pill
+                    variant="brand"
+                    icon={<Sparkles className="h-4 w-4" aria-hidden="true" />}
+                    className="mx-auto"
+                  >
+                    Golden Age Of Intelligence
+                  </Pill>
                 </StaggerItem>
                 <StaggerItem>
                   <h1 className="text-5xl font-bold leading-tight text-balance md:text-7xl xl:text-8xl max-w-6xl mx-auto">
@@ -96,7 +101,7 @@ export default function HomePage() {
                       <GlowPulse color="cyan">
                         <Link
                           href={primary.href}
-                          className="inline-flex items-center justify-center rounded-xl px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold text-lg shadow-[0_0_30px_rgba(6,182,212,0.4)] hover:shadow-[0_0_40px_rgba(6,182,212,0.5)] transition-all duration-300 hover:-translate-y-1"
+                          className="btn-primary inline-flex items-center justify-center rounded-2xl px-8 py-4 text-lg font-semibold transition-transform duration-300 hover:-translate-y-1"
                         >
                           {primary.label}
                           <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
@@ -106,7 +111,7 @@ export default function HomePage() {
                     <MagneticHover intensity={0.3}>
                       <Link
                         href={secondary.href}
-                        className="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/5 backdrop-blur-sm px-8 py-4 text-white/90 font-semibold text-lg transition-all duration-300 hover:bg-white/10 hover:border-white/30 hover:-translate-y-1"
+                        className="btn-secondary inline-flex items-center justify-center rounded-2xl px-8 py-4 text-lg font-semibold transition-transform duration-300 hover:-translate-y-1"
                       >
                         {secondary.label}
                         <ArrowUpRight className="ml-2 h-5 w-5" aria-hidden="true" />
@@ -114,7 +119,7 @@ export default function HomePage() {
                     </MagneticHover>
                     <Link
                       href={tertiary.href}
-                      className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 px-6 py-3 text-sm font-semibold text-white/80 transition hover:bg-white/10"
+                      className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/15 bg-white/10 px-6 py-3 text-sm font-semibold text-white/80 transition hover:bg-white/15 hover:-translate-y-1"
                     >
                       {tertiary.label}
                       <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -149,14 +154,13 @@ export default function HomePage() {
                       duration={6 + index * 0.5}
                       offset={8 + index * 2}
                     >
-                      <div className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm p-8 text-center transition-all duration-500 hover:bg-white/10 hover:border-white/20 hover:-translate-y-2">
-                        <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-transparent to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                        <div className="relative">
-                          <div className="text-4xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">{stat.value}</div>
-                          <div className="mt-3 text-sm font-medium text-white/80">{stat.label}</div>
-                          <p className="mt-4 text-sm leading-relaxed text-white/60">{stat.detail}</p>
-                        </div>
-                      </div>
+                      <StatBlock
+                        value={stat.value}
+                        label={stat.label}
+                        description={stat.detail}
+                        align="center"
+                        className="h-full"
+                      />
                     </FloatingElement>
                   ))}
                 </div>
@@ -226,37 +230,31 @@ export default function HomePage() {
       {/* Strategic Spotlights */}
       <section className="bg-midnight-950 py-24 px-6">
         <div className="mx-auto max-w-7xl space-y-12">
-          <motion.div className="max-w-3xl" {...fadeUp}>
-            <span className="inline-flex items-center gap-2 rounded-full bg-white/5 px-4 py-2 text-xs uppercase tracking-[0.35em] text-white/70">
-              <Sparkles className="h-4 w-4" aria-hidden="true" />
-              Operate with clarity
-            </span>
-            <h2 className="mt-4 text-3xl font-semibold text-white">Start with the latest FrankX playbooks</h2>
-            <p className="mt-3 text-sm text-white/70">
-              Each spotlight connects the Intelligence Atlas, roadmap hub, and resource stack so you can move from insight to action without losing momentum.
-            </p>
+          <motion.div {...fadeUp}>
+            <SectionHeading
+              eyebrow="Operate with clarity"
+              title="Start with the latest FrankX playbooks"
+              description="Each spotlight connects the Intelligence Atlas, roadmap hub, and resource stack so you can move from insight to action without losing momentum."
+              className="max-w-3xl"
+            />
           </motion.div>
 
           <div className="grid gap-6 md:grid-cols-3">
             {homeSpotlights.map((spotlight) => (
-              <motion.article
-                key={spotlight.title}
-                className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur"
-                {...fadeUp}
-              >
-                <span className="text-xs font-semibold uppercase tracking-[0.35em] text-white/60">
-                  {spotlight.eyebrow}
-                </span>
-                <h3 className="mt-3 text-xl font-semibold text-white">{spotlight.title}</h3>
-                <p className="mt-2 text-sm text-white/70 leading-relaxed">{spotlight.description}</p>
-                <Link
-                  href={spotlight.href}
-                  className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-primary-200 underline-offset-4 hover:text-primary-100 hover:underline"
-                >
-                  {spotlight.cta}
-                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                </Link>
-              </motion.article>
+              <motion.div key={spotlight.title} {...fadeUp}>
+                <Surface as="article" tone="glass" padding="md" className="h-full backdrop-blur-sm">
+                  <span className="eyebrow-text text-white/70">{spotlight.eyebrow}</span>
+                  <h3 className="mt-3 text-xl font-semibold text-white">{spotlight.title}</h3>
+                  <p className="mt-2 text-sm text-white/70 leading-relaxed">{spotlight.description}</p>
+                  <Link
+                    href={spotlight.href}
+                    className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-brand-200 underline-offset-4 hover:text-brand-100 hover:underline"
+                  >
+                    {spotlight.cta}
+                    <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                  </Link>
+                </Surface>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -745,3 +743,5 @@ export default function HomePage() {
     </main>
   )
 }
+
+

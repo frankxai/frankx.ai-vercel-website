@@ -5,6 +5,8 @@ import Script from 'next/script'
 
 import { cn } from '@/lib/utils'
 import { robotsConfig, siteConfig } from '@/lib/seo'
+import Navigation from '@/components/Navigation'
+import Footer from '@/components/Footer'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -85,7 +87,9 @@ export default function RootLayout({
         >
           Skip to content
         </a>
+        <Navigation />
         {children}
+        <Footer />
       </body>
     </html>
   )
