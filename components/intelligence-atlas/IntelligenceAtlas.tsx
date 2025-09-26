@@ -1,25 +1,22 @@
-﻿import { MDXRemote } from 'next-mdx-remote/rsc'
 import Link from 'next/link'
-import { mdxComponents } from '@/components/blog/MDXComponents'
-import { getBlogPost } from '@/lib/blog'
 
-export default async function IntelligenceAtlas() {
-  const post = await getBlogPost('frankx-intelligence-atlas-volume-1')
-
-  if (!post) {
-    return <div>Post not found</div>
-  }
-
+export default function IntelligenceAtlas() {
   return (
     <div className="max-w-7xl mx-auto px-6 py-16">
       <div className="text-center">
-        <h1 className="text-heading-1 font-bold text-white">{post.title}</h1>
-        <p className="mt-4 text-body text-neutral-400">{post.description}</p>
+        <h1 className="text-4xl font-bold text-white">FrankX Intelligence Atlas Vol. I: Architecting the Agentic Era</h1>
+        <p className="mt-4 text-lg text-neutral-400">A 10,000-word flagship report on the 2025 intelligence landscape, from frontier labs to open-source ecosystems, adoption metrics, and builder-ready frameworks.</p>
       </div>
 
       <div className="mt-12">
         <div className="prose prose-invert max-w-none">
-          <MDXRemote source={post.content} components={mdxComponents as any} />
+          <h2 className="text-2xl font-semibold text-white">Prologue: the intelligence atlas mission</h2>
+          <p className="mt-4 text-neutral-300">
+            The FrankX Intelligence Atlas exists because the world crossed an irreversible threshold in 2024. OpenAI DevDay 2024 reiterated that 92% of Fortune 500 companies were experimenting with its API portfolio, McKinsey's 2024 Global AI Survey confirmed that roughly two-thirds of organizations had launched at least one generative AI use case, and creative platforms like Suno and Runway turned speculative demos into mainstream studio rituals.
+          </p>
+          <p className="mt-4 text-neutral-300">
+            As a collective, FrankX straddles multiple domains: creative AI music systems, family education, enterprise architecture, and the social rituals that keep innovation human. Each field now demands a clear view of how frontier models, open-source acceleration, and agentic automation converge.
+          </p>
         </div>
       </div>
 
