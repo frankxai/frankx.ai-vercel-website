@@ -80,17 +80,18 @@ const buildFilterHref = (params: SearchParams, overrides: Partial<SearchParams>)
   return query ? `/blog?${query}` : '/blog'
 }
 
-export default function BlogPage({
-  searchParams = {},
+export default async function BlogPage({
+  searchParams
 }: {
-  searchParams?: SearchParams
+  searchParams?: Promise<SearchParams>
 }) {
+  const resolvedSearchParams = await searchParams || {}
   const allPosts = getAllBlogPosts()
   const categories = Array.from(new Set(allPosts.map((post) => post.category))).sort()
   const tags = Array.from(new Set(allPosts.flatMap((post) => post.tags.map((tag) => tag.trim())))).sort()
 
-  const selectedCategory = searchParams.category?.trim() || undefined
-  const selectedTag = searchParams.tag?.trim() || undefined
+  const selectedCategory = resolvedSearchParams.category?.trim() || undefined
+  const selectedTag = resolvedSearchParams.tag?.trim() || undefined
 
   const selectedCategoryLower = selectedCategory?.toLowerCase()
   const selectedTagLower = selectedTag?.toLowerCase()
@@ -267,7 +268,7 @@ export default function BlogPage({
                     return (
                       <Link
                         key={chip.label}
-                        href={buildFilterHref(searchParams, {
+                        href={buildFilterHref(resolvedSearchParams, {
                           category: chip.value ? chip.value : undefined,
                         })}
                         className={`rounded-full px-4 py-2 text-xs font-semibold transition ${
@@ -292,7 +293,7 @@ export default function BlogPage({
                     return (
                       <Link
                         key={tag}
-                        href={buildFilterHref(searchParams, {
+                        href={buildFilterHref(resolvedSearchParams, {
                           tag: isActive ? undefined : tag,
                         })}
                         className={`rounded-full border px-4 py-2 text-xs transition ${
