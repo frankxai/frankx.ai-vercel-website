@@ -23,8 +23,8 @@ export default function Projects() {
     <section id="projects" className="bg-midnight-950 py-24 px-6">
       <div className="max-w-7xl mx-auto text-white">
         <motion.div className="max-w-3xl" {...fadeUp}>
-          <h2 className="text-4xl font-semibold text-balance">Ship logs & manuscripts in motion</h2>
-          <p className="mt-4 text-white/70">
+          <h2 className="text-heading-2 font-semibold text-balance">Ship logs & manuscripts in motion</h2>
+          <p className="mt-4 text-body text-neutral-300">
             Track the releases, books, and platform upgrades as they move from incubation to launch.
             Every milestone includes a doorway into the work.
           </p>
@@ -33,7 +33,7 @@ export default function Projects() {
           {projectMilestones.map((milestone) => (
             <motion.article
               key={milestone.title}
-              className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur"
+              className="rounded-3xl border border-neutral-800 bg-neutral-900 p-6 backdrop-blur"
               {...fadeUp}
             >
               <span
@@ -42,8 +42,8 @@ export default function Projects() {
                 <CalendarDays className="w-4 h-4" aria-hidden="true" />
                 {milestone.status.replace('-', ' ')}
               </span>
-              <h3 className="mt-4 text-xl font-semibold text-white">{milestone.title}</h3>
-              <p className="mt-3 text-sm text-white/80 leading-relaxed">{milestone.description}</p>
+              <h3 className="mt-4 text-heading-5 font-semibold text-white">{milestone.title}</h3>
+              <p className="mt-3 text-body-sm text-neutral-300 leading-relaxed">{milestone.description}</p>
               <p className="mt-3 text-xs text-white/60 uppercase tracking-widest">Focus</p>
               <p className="text-sm text-white/75">{milestone.focus}</p>
               {milestone.eta && (

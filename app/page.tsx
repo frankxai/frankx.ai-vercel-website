@@ -2,6 +2,8 @@ import Script from 'next/script'
 
 import OptimizedHomePage from '@/components/home/OptimizedHomePage'
 import { createMetadata } from '@/lib/seo'
+import CallToAction from '@/components/funnels/CallToAction'
+import EmailCaptureForm from '@/components/funnels/EmailCaptureForm'
 
 export const metadata = createMetadata({
   title: 'FrankX Intelligence Hub | Creative AI Voice & Resource Platform',
@@ -71,6 +73,17 @@ export default function Page() {
   return (
     <>
       <OptimizedHomePage />
+      <div className="container-px my-24">
+        <CallToAction
+          title="Explore the Prompt Library"
+          description="Browse over 500 expertly crafted prompts to enhance your creative and business workflows."
+          buttonText="Explore Prompts"
+          href="/prompt-library"
+        />
+      </div>
+      <div className="container-px my-24 max-w-2xl mx-auto">
+        <EmailCaptureForm />
+      </div>
       <Script id="frankx-organization" type="application/ld+json" strategy="afterInteractive">
         {JSON.stringify(structuredData)}
       </Script>

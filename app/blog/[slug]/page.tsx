@@ -287,19 +287,48 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           </div>
         </div>
 
-        {relatedPosts.length > 0 && (
-          <div className="px-6 pt-20">
-            <div className="mx-auto max-w-7xl">
-              <h2 className="text-3xl font-semibold text-white">Related intelligence</h2>
-              <p className="mt-2 text-sm text-white/70">Explore adjacent essays calibrated to your current inquiry.</p>
-              <div className="mt-10 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-                {relatedPosts.map((relatedPost) => (
-                  <BlogCard key={relatedPost.slug} post={relatedPost} />
-                ))}
-              </div>
-            </div>
+import Recommendations from '@/components/recommendations/Recommendations'
+
+// ... (imports)
+
+export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+
+  const post = getBlogPost(slug)
+
+  if (!post) {
+    notFound()
+  }
+
+  const allPosts = getAllBlogPosts()
+  const documents = allPosts.map((p) => ({
+    title: p.title,
+    content: p.content,
+    url: `/blog/${p.slug}`,
+    tags: p.tags,
+  }))
+
+  const currentDocument = {
+    title: post.title,
+    content: post.content,
+    url: `/blog/${post.slug}`,
+    tags: post.tags,
+  }
+
+  // ... (rest of the component)
+
+        <div className="px-6 pt-20">
+          <div className="mx-auto max-w-7xl">
+            <Recommendations documents={documents} currentDocument={currentDocument} />
           </div>
-        )}
+        </div>
+      </article>
+
+      <Footer />
+    </div>
+  )
+}
+
       </article>
 
       <Footer />

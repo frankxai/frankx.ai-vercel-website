@@ -21,8 +21,8 @@ export default function SegmentProfiles() {
             <Sparkles className="w-4 h-4" aria-hidden="true" />
             Designed for every circle
           </span>
-          <h2 className="mt-4 text-4xl font-semibold text-balance">Your people, your work, your agents.</h2>
-          <p className="mt-4 text-white/70">
+          <h2 className="mt-4 text-heading-2 font-semibold text-balance">Your people, your work, your agents.</h2>
+          <p className="mt-4 text-body text-neutral-300">
             Whether you are briefing executives, hosting a family workshop, or shipping a new release, these
             pathways show you where to begin and how to integrate each experience.
           </p>
@@ -31,20 +31,20 @@ export default function SegmentProfiles() {
           {segmentProfiles.map((profile) => (
             <motion.article
               key={profile.id}
-              className="h-full rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur"
+              className="h-full rounded-3xl border border-neutral-800 bg-neutral-900 p-8 backdrop-blur"
               {...fadeUp}
               transition={{ duration: 0.4 }}
             >
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center">
+                <div className="w-12 h-12 rounded-2xl bg-neutral-800 flex items-center justify-center">
                   <profile.icon className="w-6 h-6 text-white" aria-hidden="true" />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-semibold">{profile.title}</h3>
-                  <p className="mt-2 text-sm text-white/80 leading-relaxed">{profile.description}</p>
+                  <h3 className="text-heading-4 font-semibold">{profile.title}</h3>
+                  <p className="mt-2 text-body-sm text-neutral-300 leading-relaxed">{profile.description}</p>
                 </div>
               </div>
-              <p className="mt-6 text-sm text-white/70 leading-relaxed">{profile.transformation}</p>
+              <p className="mt-6 text-body-sm text-neutral-300 leading-relaxed">{profile.transformation}</p>
               <ul className="mt-6 space-y-2 text-sm">
                 {profile.needs.map((need) => (
                   <li key={need} className="flex items-start gap-2 text-white/80">

@@ -64,18 +64,18 @@ export default function OptimizedHomePage() {
                   </Pill>
                 </StaggerItem>
                 <StaggerItem>
-                  <h1 className="text-5xl font-bold leading-tight text-balance md:text-7xl xl:text-8xl max-w-6xl mx-auto">
-                    <span className="bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent">
+                  <h1 className="text-heading-1 font-bold leading-tight text-balance max-w-6xl mx-auto">
+                    <span className="bg-gradient-to-r from-white via-neutral-100 to-white bg-clip-text text-transparent">
                       Transform Ideas Into
                     </span>
                     <br />
-                    <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent">
+                    <span className="bg-gradient-to-r from-primary-400 via-secondary-500 to-accent-600 bg-clip-text text-transparent">
                       Exponential Results
                     </span>
                   </h1>
                 </StaggerItem>
                 <StaggerItem>
-                  <p className="text-xl text-white/70 max-w-4xl mx-auto leading-relaxed">
+                  <p className="text-body text-neutral-300 max-w-4xl mx-auto leading-relaxed">
                     Architect the intelligence era with a unified roadmap, field-tested frameworks, and operating rituals that keep every agent and teammate aligned.
                   </p>
                 </StaggerItem>
@@ -103,7 +103,7 @@ export default function OptimizedHomePage() {
                     </MagneticHover>
                     <Link
                       href={tertiary.href}
-                      className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/15 bg-white/10 px-6 py-3 text-sm font-semibold text-white/80 transition hover:bg-white/15 hover:-translate-y-1"
+                      className="inline-flex items-center justify-center gap-2 rounded-2xl border border-neutral-700 bg-neutral-800 px-6 py-3 text-sm font-semibold text-neutral-300 transition hover:bg-neutral-700 hover:-translate-y-1"
                     >
                       {tertiary.label}
                       <ArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -111,15 +111,15 @@ export default function OptimizedHomePage() {
                   </div>
                 </StaggerItem>
                 <StaggerItem>
-                  <div className="flex items-center justify-center gap-8 pt-8 text-sm text-white/60">
+                  <div className="flex items-center justify-center gap-8 pt-8 text-sm text-neutral-400">
                     <span>Trusted by creators and enterprises</span>
                     <div className="flex items-center gap-6">
                       <div className="flex items-center gap-2">
-                        <div className="w-2 h-2 rounded-full bg-green-400"></div>
+                        <div className="w-2 h-2 rounded-full bg-success-500"></div>
                         <span>500+ Vibe OS users</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <div className="w-2 h-2 rounded-full bg-cyan-400"></div>
+                        <div className="w-2 h-2 rounded-full bg-info-500"></div>
                         <span>200+ Enterprise systems</span>
                       </div>
                     </div>
@@ -158,8 +158,8 @@ export default function OptimizedHomePage() {
                     <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/15 via-transparent to-transparent opacity-60" aria-hidden />
                     <div className="relative space-y-8">
                       <div>
-                        <h2 className="text-2xl font-semibold text-white">Start with clarity</h2>
-                        <p className="mt-3 text-sm leading-relaxed text-white/70">
+                        <h2 className="text-heading-4 font-semibold text-white">Start with clarity</h2>
+                        <p className="mt-3 text-body-sm leading-relaxed text-white/70">
                           Every visit surfaces the newest rituals, roadmaps, and intelligence drops curated for the way you lead.
                         </p>
                       </div>

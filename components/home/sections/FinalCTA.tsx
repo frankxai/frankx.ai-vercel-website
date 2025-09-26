@@ -13,8 +13,8 @@ export default function FinalCTA() {
       <div className={clsx('absolute inset-0 opacity-60 blur-3xl', gradientPresets.heroAurora)} />
       <div className={clsx('absolute inset-0 opacity-45', gradientPresets.heroPulse)} />
       <div className="relative mx-auto max-w-4xl space-y-6 text-center">
-        <h2 className="text-4xl font-semibold text-balance md:text-5xl">Ready to architect your conscious intelligence era?</h2>
-        <p className="text-lg leading-relaxed text-white/85">
+        <h2 className="text-heading-2 font-semibold text-balance md:text-heading-1">Ready to architect your conscious intelligence era?</h2>
+        <p className="text-lg leading-relaxed text-neutral-200">
           Bring your inner circle, leadership teams, and AI agents into a single operating rhythm. We choreograph the rituals, automations, and creative outputs that keep everyone aligned with calm precision.
         </p>
         <div className="flex flex-col justify-center gap-4 sm:flex-row">

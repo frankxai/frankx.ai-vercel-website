@@ -17,8 +17,8 @@ export default function Testimonials() {
     <section id="testimonials" className="bg-midnight-950 py-24 px-6">
       <div className="max-w-7xl mx-auto text-white">
         <motion.div className="max-w-3xl" {...fadeUp}>
-          <h2 className="text-4xl font-semibold text-balance">Trusted across communities and boardrooms</h2>
-          <p className="mt-4 text-white/70">
+          <h2 className="text-heading-2 font-semibold text-balance">Trusted across communities and boardrooms</h2>
+          <p className="mt-4 text-body text-neutral-300">
             Stories from the leaders, families, and creators who now run intelligence systems that feel
             deeply human.
           </p>
@@ -27,11 +27,11 @@ export default function Testimonials() {
           {testimonials.map((testimonial) => (
             <motion.article
               key={testimonial.name}
-              className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur"
+              className="rounded-3xl border border-neutral-800 bg-neutral-900 p-6 backdrop-blur"
               {...fadeUp}
             >
-              <TestimonialIcon className="w-8 h-8 text-sky-300" aria-hidden="true" />
-              <p className="mt-4 text-sm text-white/80 leading-relaxed">&ldquo;{testimonial.quote}&rdquo;</p>
+              <TestimonialIcon className="w-8 h-8 text-secondary-400" aria-hidden="true" />
+              <p className="mt-4 text-body-sm text-neutral-300 leading-relaxed">&ldquo;{testimonial.quote}&rdquo;</p>
               <div className="mt-6">
                 <p className="text-sm font-semibold text-white">{testimonial.name}</p>
                 <p className="text-xs text-white/70">{testimonial.role}</p>

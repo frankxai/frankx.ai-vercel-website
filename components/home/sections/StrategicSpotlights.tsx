@@ -31,11 +31,11 @@ export default function StrategicSpotlights() {
             <motion.div key={spotlight.title} {...fadeUp}>
               <Surface as="article" tone="glass" padding="md" className="h-full backdrop-blur-sm">
                 <span className="eyebrow-text text-white/70">{spotlight.eyebrow}</span>
-                <h3 className="mt-3 text-xl font-semibold text-white">{spotlight.title}</h3>
-                <p className="mt-2 text-sm text-white/70 leading-relaxed">{spotlight.description}</p>
+                <h3 className="mt-3 text-heading-5 font-semibold text-white">{spotlight.title}</h3>
+                <p className="mt-2 text-body-sm text-neutral-300 leading-relaxed">{spotlight.description}</p>
                 <Link
                   href={spotlight.href}
-                  className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-brand-200 underline-offset-4 hover:text-brand-100 hover:underline"
+                  className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-primary-400 underline-offset-4 hover:text-primary-300 hover:underline"
                 >
                   {spotlight.cta}
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />

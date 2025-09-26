@@ -63,7 +63,7 @@ export type ResourceCollection = {
   title: string
   description: string
   focus: string
-  items: Array<{ label: string; href: string; type: string }>
+  items: Array<{ label: string; href: string; type: string; affiliateId?: string; }>
 }
 
 export type ProjectMilestone = {
@@ -356,8 +356,8 @@ export const resourceCollections: ResourceCollection[] = [
       { label: 'FrankX Intelligence Atlas', href: '/intelligence-atlas', type: 'Report' },
       { label: 'Agentic AI Roadmap 2025', href: '/blog/10-agentic-ai-roadmap-2025', type: 'Article' },
       { label: 'Roadmap Hub', href: '/roadmap', type: 'Live roadmap' },
-      { label: "Founder's AI Playbook", href: '/founder-playbook', type: 'Playbook' },
-      { label: 'Template Library', href: '/templates', type: 'Templates' },
+      { label: "Founder's AI Playbook", href: '/founder-playbook', type: 'Playbook', affiliateId: 'notion' },
+      { label: 'Template Library', href: '/templates', type: 'Templates', affiliateId: 'airtable' },
       { label: 'Guides Collection', href: '/guides', type: 'Guides' }
     ]
   },
@@ -580,5 +580,3 @@ const hubTextCollections = [
 hubTextCollections.forEach((entry) => {
   sanitizeDeepInPlace(entry);
 });
-
-
