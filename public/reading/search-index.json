@@ -43,7 +43,7 @@
     {
       "title": "FrankX.ai Marketing Automation Strategy",
       "path": "/reading/MARKETING_AUTOMATION.html",
-      "snippet": "# FrankX.ai Marketing Automation Strategy *Agent Team Systematic Approach to Growth and Conversion* ## Strategic Framework ### Automation Philosophy Every marketing automation serves human connection and authentic transformation, amplifying the Agent Team's collective intelligence to deliver persona"
+      "snippet": "# FrankX.ai Marketing Automation Strategy *Agent Team Systematic Approach to Growth and Conversion* ## Strategic Framework ### Current Sprint Drops (2025-09-18) - **Creation Chronicles:** Publish *The Agentic Creator OS: How to Orchestrate AI Like a Studio* (content/blog/07-agentic-creator-os.md) wi"
     },
     {
       "title": "frankx.ai Marketing Site",
@@ -54,6 +54,31 @@
       "title": "FrankX.ai SEO & Marketing Optimization Strategy",
       "path": "/reading/SEO_MARKETING_STRATEGY.html",
       "snippet": "# FrankX.ai SEO & Marketing Optimization Strategy *Agent Team Approach to Digital Market Dominance* ## Strategic Overview ### SEO Mission Establish FrankX.ai as the definitive authority for conscious AI integration, agent team methodologies, and premium AI transformation resources through systematic"
+    },
+    {
+      "title": "Vibe OS Asset Requirements",
+      "path": "/reading/VIBE_OS_ASSETS.html",
+      "snippet": "# Vibe OS Asset Requirements ## Complete Asset Specification for Premium Landing Page ### Design System Overview - **Style**: Aurora/Glassmorphic with high-tech aesthetic - **Color Palette**: Deep midnight blues, aurora cyan/teal, pulse purple, nebula gradients - **Typography**: Inter font family (d"
+    },
+    {
+      "title": "Vibe OS Components Library",
+      "path": "/reading/VIBE_OS_COMPONENTS.html",
+      "snippet": "# Vibe OS Components Library ## Glassmorphic Aurora Design System ### Core Component Specifications --- ## 1. NAVIGATION COMPONENTS ### A. Primary Navigation Header ```tsx // components/vibe-os/NavigationHeader.tsx 'use client' import { useState } from 'react' import { motion, AnimatePresence } from"
+    },
+    {
+      "title": "Vibe OS Implementation Checklist",
+      "path": "/reading/VIBE_OS_COMPREHENSIVE_IMPLEMENTATION_CHECKLIST.html",
+      "snippet": "# Vibe OS Implementation Checklist ## Comprehensive Development Guide with FrankX.AI Codebase Integration --- ## EXECUTIVE SUMMARY This checklist provides a detailed implementation roadmap for Vibe OS, building upon the existing FrankX.AI codebase infrastructure. The implementation leverages existin"
+    },
+    {
+      "title": "Vibe OS Technical Implementation Guide",
+      "path": "/reading/VIBE_OS_TECHNICAL_IMPLEMENTATION.html",
+      "snippet": "# Vibe OS Technical Implementation Guide ## Complete Development Specifications for Premium Landing Page ### Architecture Overview - **Framework**: Next.js 14+ with App Router - **Styling**: Tailwind CSS with custom design tokens - **Animations**: Framer Motion for premium interactions - **Performan"
+    },
+    {
+      "title": "Vibe OS - Premium AI Music Creation System",
+      "path": "/reading/VIBE_OS_WIREFRAME.html",
+      "snippet": "# Vibe OS - Premium AI Music Creation System ## Landing Page Wireframe & Technical Specifications ### Brand Positioning Analysis - **Product**: Premium AI music creation operating system ($497-$1997) - **Value Proposition**: Transforms ideas into flow-state optimized music - **Workflow**: Complete i"
     },
     {
       "title": "The Creator Agent Profile",
@@ -96,6 +121,16 @@
       "snippet": "--- title: \"The Intelligence Revolution Playbook: Building Conscious AI Systems in 2025\" date: \"2025-09-16\" excerpt: \"A systems-first guide to orchestrating conscious AI across products, teams, and experiences. Transform from random AI tool usage to systematic intelligence architecture.\" author: \"Fr"
     },
     {
+      "title": "The Agentic Creator OS: How to Orchestrate AI Like a Studio",
+      "path": "/reading/content/blog/07-agentic-creator-os.html",
+      "snippet": "--- title: \"The Agentic Creator OS: How to Orchestrate AI Like a Studio\" date: \"2025-09-18\" excerpt: \"Move beyond tool chaos and build the Agentic Creator OS that powers every FrankX.ai drop. This field guide shows you how to orchestrate multi-agent workflows, score your work with music, and ship pr"
+    },
+    {
+      "title": "Codex Cloud Agent Prompt Playbook",
+      "path": "/reading/docs/CODEX_CLOUD_PROMPTS.html",
+      "snippet": "# Codex Cloud Agent Prompt Playbook Quick-drop prompts for Codex Cloud agents cooperating on the FrankX.ai repo. Keep responses concise, reference files explicitly, and surface any blockers fast. --- ## 1. Repo Snapshot ``` You are a Codex Cloud collaborator. Provide a repo status snapshot including"
+    },
+    {
       "title": "FrankX Marketing Site Content & Build Roadmap",
       "path": "/reading/docs/CONTENT_ROADMAP.html",
       "snippet": "# FrankX Marketing Site Content & Build Roadmap ## 1. Vision & Positioning Anchors - Primary audience: Oracle ecosystem technologists evolving into conscious AI creators; secondary: music facilitators seeking AI-assisted transformation tools. - Core value pillars to keep visible across site: `Enterp"
@@ -116,9 +151,9 @@
       "snippet": "# FrankX.AI Platform - Deployment Excellence Guide ## Overview This guide provides comprehensive instructions for deploying the FrankX.AI consciousness-aligned platform with Oracle-grade excellence, monitoring, and scalability. The deployment strategy honors both technical precision and spiritual al"
     },
     {
-      "title": "PROMPT PLAYBOOK",
+      "title": "FrankX.ai Agentic COE Prompt Playbook",
       "path": "/reading/docs/PROMPT_PLAYBOOK.html",
-      "snippet": "# Creative AI Studio Prompt Playbook Use these prompts as control sticks for the repo. Each one injects the mission, values, and product roadmap into future sessions so work stays aligned. --- ## 1. Brand Alignment & Voice ``` You are the FrankX.ai Creative AI Studio co-pilot. Every answer must: - R"
+      "snippet": "# FrankX.ai Agentic COE Prompt Playbook Use these prompts to drop straight into the repo as the **FrankX.ai Agentic AI Center of Excellence Superintelligence**. Every session should honor the mission, values, and multi-format roadmap (Golden Age of Intelligence, Creation Chronicles, AI Architect New"
     },
     {
       "title": "FrankX.AI Platform - Testing & Optimization Report",
@@ -149,6 +184,36 @@
       "title": "Suno Music Mastery Toolkit",
       "path": "/reading/products/suno-music-mastery.html",
       "snippet": "# Suno Music Mastery Toolkit *Unlock Your Creative Potential with AI-Powered Music Production* **Product Value: $37** **Delivers**: 50+ Suno Prompts + Creative Workflows + Production Techniques --- ## 🎵 Transform Your Music Creation Process Stop struggling with blank page syndrome and inconsistent "
+    },
+    {
+      "title": "Vibe OS - Core System Components",
+      "path": "/reading/products/vibe-os/core-system.html",
+      "snippet": "# Vibe OS - Core System Components ## 🎵 The Complete AI Music Creation Operating System Vibe OS transforms any idea into professional, flow-state optimized music through a systematic, engineered approach that produces world-class results consistently. --- ## Module 1: Prompt Engineering Library ###"
+    },
+    {
+      "title": "Vibe OS - Product Positioning Summary",
+      "path": "/reading/products/vibe-os/positioning.html",
+      "snippet": "# Vibe OS - Product Positioning Summary ## Problem-Promise-Proof Framework ### 🎯 THE PROBLEM **Current State:** AI music creation produces generic, emotionally flat content that fails to enhance productivity or create genuine flow states. Existing tools are fragmented, requiring multiple platforms "
+    },
+    {
+      "title": "VIBE OS EMAIL TEMPLATES & COPY FRAMEWORKS",
+      "path": "/reading/vibe-os-email-templates.html",
+      "snippet": "# VIBE OS EMAIL TEMPLATES & COPY FRAMEWORKS ## Ready-to-Deploy Email Sequences with Psychological Triggers --- ## WELCOME SEQUENCE TEMPLATES ### **EMAIL 1: INSTANT DELIVERY + QUICK WIN** **Subject:** [INSIDE] Your Flow State Frequency Guide + Something Unexpected **Copy:** Hey [First Name], Most pro"
+    },
+    {
+      "title": "VIBE OS PREMIUM FUNNEL STRATEGY",
+      "path": "/reading/vibe-os-funnel-strategy.html",
+      "snippet": "# VIBE OS PREMIUM FUNNEL STRATEGY ## Complete Lead-to-Advocacy Conversion System ### EXECUTIVE SUMMARY A 7-phase funnel system designed to convert 1000+ qualified leads monthly into premium Vibe OS customers, targeting entrepreneurs and creators seeking AI-enhanced productivity through music. --- ##"
+    },
+    {
+      "title": "VIBE OS IMPLEMENTATION ROADMAP",
+      "path": "/reading/vibe-os-implementation-roadmap.html",
+      "snippet": "# VIBE OS IMPLEMENTATION ROADMAP ## 90-Day Launch Strategy with Metrics & Optimization Framework --- ## PHASE 1: FOUNDATION (DAYS 1-14) ### **Week 1: Infrastructure Setup** #### **Day 1-2: Technical Foundation** - [ ] Set up email automation platform (ConvertKit/ActiveCampaign) - [ ] Install analyti"
+    },
+    {
+      "title": "VIBE OS LANDING PAGE COPY & SOCIAL MEDIA STRATEGY",
+      "path": "/reading/vibe-os-landing-pages.html",
+      "snippet": "# VIBE OS LANDING PAGE COPY & SOCIAL MEDIA STRATEGY ## High-Converting Pages with Viral Integration Points --- ## LEAD MAGNET LANDING PAGE ### **\"The Flow State Frequency Guide\"** **HEADLINE:** # The Science-Backed Audio Blueprint That Top Entrepreneurs Use to Enter Deep Focus in 3 Minutes **SUBHEAD"
     }
   ]
 }

@@ -1,54 +1,61 @@
-import { BookOpen, Boxes, Download, ExternalLink, FileText, LinkIcon, Sparkles } from 'lucide-react'
+
+import { ArrowRight, BarChart4, BookOpen, CalendarCheck, Download, FileText, LinkIcon, Sparkles } from 'lucide-react'
 import Link from 'next/link'
 
 import Footer from '@/components/Footer'
 import Navigation from '@/components/Navigation'
 import { createMetadata } from '@/lib/seo'
+import { homeSpotlights, resourceCollections, updateEntries } from '@/lib/hub'
 
-const resourceSections = [
+const featureCards = [
   {
-    icon: BookOpen,
-    title: 'Golden Age Modern Guide',
-    description: 'A practical, plain-language guide with frameworks and a 90-day plan to operationalize conscious AI.',
-    links: [
-      {
-        href: '/reading/GoldenAge-Modernized/article/Golden_Age_of_Intelligence_Modern_Guide.html',
-        label: 'Read the guide',
-        icon: ExternalLink,
-      },
-    ],
+    icon: CalendarCheck,
+    title: 'FrankX Roadmap Hub',
+    description: 'See the living specs, milestones, and rituals we maintain every time you run the roadmap check.',
+    href: '/roadmap',
+    label: 'Explore the hub'
   },
+  {
+    icon: BarChart4,
+    title: 'Intelligence Atlas Vol. I',
+    description: '10,000 words of adoption metrics, governance frameworks, and multi-agent blueprints that anchor the 2025 atlas.',
+    href: '/blog/frankx-intelligence-atlas-volume-1',
+    label: 'Read Volume I'
+  },
+  {
+    icon: Sparkles,
+    title: 'Agentic AI Roadmap 2025',
+    description: 'Align your studio, enterprise, and family initiatives with the month-by-month atlas release plan.',
+    href: '/blog/10-agentic-ai-roadmap-2025',
+    label: 'Open the roadmap'
+  }
+]
+
+const downloadCards = [
   {
     icon: FileText,
-    title: 'Book Basis & TOC',
-    description: 'Positioning, structure, and sample chapter for “Dawn of the Golden Age.”',
-    links: [
-      { href: '/reading/GoldenAge-Modernized/book/basis.html', label: 'Basis', icon: LinkIcon },
-      { href: '/reading/GoldenAge-Modernized/book/table_of_contents.html', label: 'TOC', icon: LinkIcon },
-      { href: '/reading/GoldenAge-Modernized/book/samples/chapter_1.html', label: 'Sample', icon: LinkIcon },
-    ],
+    title: 'Golden Age Modern Guide',
+    description: 'Plain-language primer with rituals and a 90-day launch plan.',
+    href: '/reading/GoldenAge-Modernized/article/Golden_Age_of_Intelligence_Modern_Guide.html',
+    label: 'Read the guide'
   },
   {
-    icon: Boxes,
-    title: 'Templates & Playbooks',
-    description: 'Capture–Orchestrate–Evaluate (COE) checklists, adoption scorecards, and agent blueprints.',
-    links: [
-      {
-        href: '/reading/Templates/MASTER_TEMPLATE_INDEX.html',
-        label: 'Browse templates',
-        icon: ExternalLink,
-      },
-    ],
+    icon: LinkIcon,
+    title: 'Template Index',
+    description: 'COE scorecards, adoption canvases, and launch scripts in one archive.',
+    href: '/reading/Templates/MASTER_TEMPLATE_INDEX.html',
+    label: 'Browse templates'
   },
   {
     icon: Download,
     title: 'Intelligence Era One-Pager',
-    description: 'Concise executive summary and checklists for immediate adoption wins.',
-    links: [
-      { href: '/assets/intelligence-era-onepager.html', label: 'Open one-pager', icon: ExternalLink },
-    ],
-  },
+    description: 'Executive checklist summarising conscious AI adoption moves.',
+    href: '/assets/intelligence-era-onepager.html',
+    label: 'Download summary'
+  }
 ]
+
+const latestInsights = updateEntries.slice(0, 3)
 
 export const metadata = createMetadata({
   title: 'FrankX Resource Library',
@@ -62,7 +69,7 @@ export default function ResourcesPage() {
     <div className="min-h-screen bg-slate-950 text-slate-100">
       <Navigation />
       <main className="px-6 pt-28 pb-20">
-        <div className="mx-auto max-w-6xl space-y-14">
+        <div className="mx-auto max-w-6xl space-y-16">
           <header className="rounded-4xl border border-white/10 bg-gradient-to-br from-primary-500/15 via-slate-900 to-slate-950 p-10">
             <div className="flex flex-col gap-4">
               <span className="inline-flex w-max items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-white/70">
@@ -71,45 +78,177 @@ export default function ResourcesPage() {
               </span>
               <h1 className="text-4xl font-semibold text-white md:text-5xl">Systems to accelerate your conscious AI practice.</h1>
               <p className="text-sm text-white/70 leading-relaxed max-w-3xl">
-                Every artifact here comes from live work with families, founders, and enterprise teams. Start with the guide that matches your mission, then integrate the templates into your stack.
+                Every artifact stems from live client work, Atlas research, and the daily intelligence ritual. Start with a spotlight below, then layer the collections, downloads, and automation to keep your stack current.
               </p>
+              <div className="flex flex-wrap gap-3 pt-2 text-sm text-white/80">
+                {homeSpotlights.map((item) => (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-4 py-2 hover:bg-white/10"
+                  >
+                    {item.cta}
+                    <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                  </Link>
+                ))}
+              </div>
             </div>
           </header>
 
-          <section className="grid gap-6 md:grid-cols-2">
-            {resourceSections.map((section) => {
-              const Icon = section.icon
-              return (
-                <article key={section.title} className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur">
+          <section className="space-y-6">
+            <div className="flex items-center justify-between gap-4">
+              <div>
+                <h2 className="text-2xl font-semibold text-white">Featured playbooks</h2>
+                <p className="text-sm text-white/70">Anchor your roadmap with the three essential guides shipping this quarter.</p>
+              </div>
+              <Link href="/roadmap" className="inline-flex items-center gap-2 text-sm font-semibold text-primary-200 underline-offset-4 hover:text-primary-100 hover:underline">
+                Check live roadmap
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
+            </div>
+            <div className="grid gap-6 md:grid-cols-3">
+              {featureCards.map((card) => (
+                <article key={card.title} className="h-full rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur">
                   <div className="flex items-center gap-3 text-white">
-                    <Icon className="h-5 w-5 text-primary-200" />
-                    <h2 className="text-xl font-semibold">{section.title}</h2>
+                    <card.icon className="h-5 w-5 text-primary-200" />
+                    <h3 className="text-lg font-semibold">{card.title}</h3>
                   </div>
-                  <p className="mt-3 text-sm text-white/70 leading-relaxed">{section.description}</p>
-                  <div className="mt-4 flex flex-wrap gap-3">
-                    {section.links.map((link) => {
-                      const LinkIconComponent = link.icon
-                      return (
-                        <Link
-                          key={link.href}
-                          href={link.href}
-                          className="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/10 px-4 py-2 text-sm font-semibold text-white hover:bg-white/15"
-                        >
-                          {link.label}
-                          <LinkIconComponent className="h-4 w-4" />
-                        </Link>
-                      )
-                    })}
-                  </div>
+                  <p className="mt-3 text-sm text-white/70 leading-relaxed">{card.description}</p>
+                  <Link
+                    href={card.href}
+                    className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-primary-200 underline-offset-4 hover:text-primary-100 hover:underline"
+                  >
+                    {card.label}
+                    <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                  </Link>
                 </article>
-              )
-            })}
+              ))}
+            </div>
           </section>
 
-          <section className="rounded-3xl border border-white/10 bg-white/5 p-8 text-sm text-white/70">
-            <p>
-              Want everything in one pass? Use the full <Link href="/reading/index.html" className="text-primary-200 underline-offset-4 hover:underline">reading index</Link> to explore the complete archive of essays, transcripts, and releases.
-            </p>
+          <section className="space-y-10">
+            <div className="max-w-3xl space-y-3">
+              <h2 className="text-2xl font-semibold text-white">Libraries grouped by mission</h2>
+              <p className="text-sm text-white/70">Choose the collection that matches your current momentum—each one links into operating rituals across the hub.</p>
+            </div>
+            <div className="grid gap-6 lg:grid-cols-3">
+              {resourceCollections.map((collection) => (
+                <article key={collection.id} className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur flex flex-col">
+                  <h3 className="text-2xl font-semibold text-white">{collection.title}</h3>
+                  <p className="mt-3 text-sm text-white/70 leading-relaxed">{collection.description}</p>
+                  <p className="mt-4 text-xs uppercase tracking-[0.35em] text-white/60">Ideal for</p>
+                  <p className="text-sm text-white/75 leading-relaxed">{collection.focus}</p>
+                  <ul className="mt-6 space-y-3 text-sm">
+                    {collection.items.map((item) => (
+                      <li key={item.href}>
+                        <Link
+                          href={item.href}
+                          className="group flex items-center justify-between rounded-2xl border border-white/10 bg-white/5 px-4 py-3 hover:bg-white/15 transition"
+                        >
+                          <div>
+                            <p className="font-semibold text-white">{item.label}</p>
+                            <p className="text-xs text-white/60">{item.type}</p>
+                          </div>
+                          <ArrowRight className="h-4 w-4 text-white/60 group-hover:text-white" aria-hidden="true" />
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </article>
+              ))}
+            </div>
+          </section>
+
+          <section className="space-y-8">
+            <div className="flex items-center justify-between gap-4">
+              <div>
+                <h2 className="text-2xl font-semibold text-white">Latest intelligence to deploy now</h2>
+                <p className="text-sm text-white/70">Fresh drops wired into the Intelligence Atlas and roadmap cadence.</p>
+              </div>
+              <Link href="/blog" className="inline-flex items-center gap-2 text-sm font-semibold text-primary-200 underline-offset-4 hover:text-primary-100 hover:underline">
+                Visit the journal
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
+            </div>
+            <div className="grid gap-6 md:grid-cols-3">
+              {latestInsights.map((entry) => (
+                <article key={entry.href} className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur">
+                  <span className="text-xs font-semibold uppercase tracking-[0.35em] text-white/60">{entry.type}</span>
+                  <h3 className="mt-3 text-lg font-semibold text-white">{entry.title}</h3>
+                  <p className="mt-2 text-sm text-white/70 leading-relaxed">{entry.summary}</p>
+                  <Link
+                    href={entry.href}
+                    className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-primary-200 underline-offset-4 hover:text-primary-100 hover:underline"
+                  >
+                    Read now
+                    <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                  </Link>
+                </article>
+              ))}
+            </div>
+          </section>
+
+          <section className="space-y-8">
+            <div className="max-w-3xl space-y-3">
+              <h2 className="text-2xl font-semibold text-white">Essential downloads</h2>
+              <p className="text-sm text-white/70">Keep these assets handy for team briefings, workshops, and offline planning.</p>
+            </div>
+            <div className="grid gap-6 md:grid-cols-3">
+              {downloadCards.map((card) => (
+                <article key={card.title} className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur">
+                  <div className="flex items-center gap-3 text-white">
+                    <card.icon className="h-5 w-5 text-primary-200" />
+                    <h3 className="text-lg font-semibold">{card.title}</h3>
+                  </div>
+                  <p className="mt-3 text-sm text-white/70 leading-relaxed">{card.description}</p>
+                  <Link
+                    href={card.href}
+                    className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-primary-200 underline-offset-4 hover:text-primary-100 hover:underline"
+                  >
+                    {card.label}
+                    <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                  </Link>
+                </article>
+              ))}
+            </div>
+          </section>
+
+          <section className="grid gap-6 lg:grid-cols-[1.1fr_1fr]">
+            <article className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur">
+              <h2 className="text-xl font-semibold text-white">Daily roadmap automation</h2>
+              <p className="mt-2 text-sm text-white/70 leading-relaxed">
+                Keep every build session aligned. Run <code className="rounded bg-white/10 px-2 py-1 text-xs">npm run roadmap:check</code> before updating docs/DAILY_INTELLIGENCE_OPERATIONS.md to surface pillars, milestones, and next actions straight from the data vault.
+              </p>
+              <Link
+                href="/docs/ROADMAP_AUTOMATION.md"
+                className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-primary-200 underline-offset-4 hover:text-primary-100 hover:underline"
+              >
+                View automation playbook
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
+            </article>
+            <article className="rounded-3xl border border-white/10 bg-gradient-to-br from-primary-500/15 via-slate-900 to-slate-950 p-8 backdrop-blur">
+              <h2 className="text-xl font-semibold text-white">Need a guided start?</h2>
+              <p className="mt-2 text-sm text-white/75 leading-relaxed">
+                Bring your inner circle or leadership team into a focused activation. We’ll co-create your intelligence stack, publish a launch plan, and train your agents.
+              </p>
+              <div className="mt-6 flex flex-wrap gap-3">
+                <Link
+                  href="mailto:hello@frankx.ai?subject=FrankX%20Intelligence%20Activation"
+                  className="inline-flex items-center gap-2 rounded-xl bg-white/10 px-4 py-2 text-sm font-semibold text-white hover:bg-white/20"
+                >
+                  Book an intensive
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </Link>
+                <Link
+                  href="/products"
+                  className="inline-flex items-center gap-2 rounded-xl border border-white/20 px-4 py-2 text-sm font-semibold text-white/80 hover:text-white"
+                >
+                  Explore products
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </Link>
+              </div>
+            </article>
           </section>
         </div>
       </main>

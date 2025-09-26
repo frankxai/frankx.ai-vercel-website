@@ -1,4 +1,4 @@
-﻿---
+---
 title: "The Agentic Creator OS: How to Orchestrate AI Like a Studio"
 date: "2025-09-18"
 excerpt: "Move beyond tool chaos and build the Agentic Creator OS that powers every FrankX.ai drop. This field guide shows you how to orchestrate multi-agent workflows, score your work with music, and ship premium experiences on repeat."
@@ -7,6 +7,7 @@ tags: ["agentic ai", "creative intelligence", "workflow design", "ai operations"
 category: "Creation Chronicles"
 readingTime: "11 min read"
 featured: false
+image: '/images/blog/agentic-creator-os.svg'
 ---
 
 # The Agentic Creator OS: How to Orchestrate AI Like a Studio

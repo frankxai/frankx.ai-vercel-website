@@ -1,5 +1,6 @@
 import Image from 'next/image'
-import { Filter, Sparkles } from 'lucide-react'
+import Link from 'next/link'
+import { ArrowRight, Filter, Sparkles, XCircle } from 'lucide-react'
 
 import { getAllBlogPosts } from '@/lib/blog'
 import BlogCard from '@/components/blog/BlogCard'
@@ -51,11 +52,59 @@ export const metadata = createMetadata({
   path: '/blog',
 })
 
-export default function BlogPage() {
-  const posts = getAllBlogPosts()
-  const featuredPosts = posts.filter((post) => post.featured)
-  const regularPosts = posts.filter((post) => !post.featured)
-  const categories = Array.from(new Set(posts.map((post) => post.category)))
+type SearchParams = {
+  tag?: string
+  category?: string
+}
+
+const buildFilterHref = (params: SearchParams, overrides: Partial<SearchParams>) => {
+  const merged: SearchParams = { ...params, ...overrides }
+  const search = new URLSearchParams()
+
+  if (merged.category) {
+    search.set('category', merged.category)
+  }
+
+  if (merged.tag) {
+    search.set('tag', merged.tag)
+  }
+
+  const query = search.toString()
+  return query ? `/blog?${query}` : '/blog'
+}
+
+export default function BlogPage({
+  searchParams = {},
+}: {
+  searchParams?: SearchParams
+}) {
+  const allPosts = getAllBlogPosts()
+  const categories = Array.from(new Set(allPosts.map((post) => post.category))).sort()
+  const tags = Array.from(
+    new Set(allPosts.flatMap((post) => post.tags.map((tag) => tag.trim())))
+  ).sort()
+
+  const selectedCategory = searchParams.category?.trim() || undefined
+  const selectedTag = searchParams.tag?.trim() || undefined
+
+  const selectedCategoryLower = selectedCategory?.toLowerCase()
+  const selectedTagLower = selectedTag?.toLowerCase()
+
+  const filteredPosts = allPosts.filter((post) => {
+    const categoryMatch = selectedCategoryLower
+      ? post.category.toLowerCase() === selectedCategoryLower
+      : true
+
+    const tagMatch = selectedTagLower
+      ? post.tags.some((tag) => tag.toLowerCase() === selectedTagLower)
+      : true
+
+    return categoryMatch && tagMatch
+  })
+
+  const featuredPosts = filteredPosts.filter((post) => post.featured)
+  const regularPosts = filteredPosts.filter((post) => !post.featured)
+  const hasActiveFilters = Boolean(selectedCategory || selectedTag)
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100">
@@ -79,12 +128,32 @@ export default function BlogPage() {
               <p className="max-w-2xl text-lg text-white/80">
                 Every article is engineered for depth and immediate application. Expect strategic briefings, creative playbooks, and rituals that keep your humanity at the center of advanced AI workflows.
               </p>
+              <Link
+                href="/blog/10-agentic-ai-roadmap-2025"
+                className="inline-flex items-center gap-2 rounded-full border border-primary-400/40 bg-primary-500/10 px-4 py-2 text-sm font-semibold text-primary-100 hover:bg-primary-500/20"
+              >
+                New: Agentic AI Roadmap 2025
+                <ArrowRight className="h-4 w-4" />
+              </Link>
               <div className="flex flex-wrap gap-3 text-xs text-white/60">
-                {categories.map((category) => (
-                  <span key={category} className="rounded-full border border-white/15 bg-white/5 px-4 py-2">
-                    {category}
-                  </span>
-                ))}
+                {categories.map((category) => {
+                  const isActive = selectedCategoryLower === category.toLowerCase()
+                  return (
+                    <Link
+                      key={category}
+                      href={buildFilterHref(searchParams, {
+                        category: isActive ? undefined : category,
+                      })}
+                      className={`rounded-full border px-4 py-2 transition ${
+                        isActive
+                          ? 'border-primary-400/60 bg-primary-500/10 text-primary-200'
+                          : 'border-white/15 bg-white/5 hover:border-white/25 hover:bg-white/10'
+                      }`}
+                    >
+                      {category}
+                    </Link>
+                  )
+                })}
               </div>
             </div>
             <div className="relative flex-1 overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
@@ -179,28 +248,75 @@ export default function BlogPage() {
           </div>
         </section>
 
+        <section className="px-6">
+          <div className="mx-auto max-w-7xl">
+            <div className="flex flex-wrap items-center justify-between gap-4 border-b border-white/10 pb-6">
+              <div>
+                <h2 className="text-sm font-semibold uppercase tracking-[0.35em] text-white/60">
+                  Filter by focus
+                </h2>
+                <p className="mt-2 text-xs text-white/60">
+                  Calibrate the journal feed to match your current mission.
+                </p>
+              </div>
+              {hasActiveFilters && (
+                <Link
+                  href="/blog"
+                  className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-xs font-semibold text-white hover:bg-white/10"
+                >
+                  <XCircle className="h-4 w-4" aria-hidden="true" />
+                  Clear filters
+                </Link>
+              )}
+            </div>
+
+            <div className="mt-6 flex flex-wrap gap-3 text-xs text-white/70">
+              {tags.map((tag) => {
+                const isActive = selectedTagLower === tag.toLowerCase()
+                return (
+                  <Link
+                    key={tag}
+                    href={buildFilterHref(searchParams, {
+                      tag: isActive ? undefined : tag,
+                    })}
+                    className={`rounded-full border px-4 py-2 transition ${
+                      isActive
+                        ? 'border-primary-400/60 bg-primary-500/10 text-primary-200'
+                        : 'border-white/15 bg-white/5 hover:border-white/25 hover:bg-white/10'
+                    }`}
+                  >
+                    #{tag}
+                  </Link>
+                )
+              })}
+            </div>
+          </div>
+        </section>
+
         <section className="px-6 pt-20">
           <div className="mx-auto max-w-7xl">
             <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
               <div>
                 <h2 className="text-3xl font-semibold text-white">Latest intelligence drops</h2>
                 <p className="mt-2 text-sm text-white/70">
-                  Fresh essays arrive weekly – tuned for depth, action, and signal clarity.
+                  {hasActiveFilters
+                    ? 'Filtered insights mapped to your selected focus areas.'
+                    : 'Fresh essays arrive weekly – tuned for depth, action, and signal clarity.'}
                 </p>
               </div>
               <span className="text-xs font-semibold uppercase tracking-[0.35em] text-white/60">
-                {posts.length} article{posts.length === 1 ? '' : 's'}
+                {filteredPosts.length} article{filteredPosts.length === 1 ? '' : 's'}
               </span>
             </div>
 
-            {posts.length === 0 ? (
+            {filteredPosts.length === 0 ? (
               <div className="mt-16 rounded-3xl border border-white/10 bg-white/5 p-12 text-center">
                 <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full border border-white/15 bg-white/5">
                   <Sparkles className="h-7 w-7 text-primary-200" />
                 </div>
-                <h3 className="mt-6 text-2xl font-semibold text-white">New stories are composing</h3>
+                <h3 className="mt-6 text-2xl font-semibold text-white">No entries match yet</h3>
                 <p className="mt-2 text-sm text-white/70">
-                  The editorial studio is sequencing the next wave of intelligence. Check back soon or subscribe to the dispatch.
+                  Adjust your filters or explore the full journal to access every intelligence drop.
                 </p>
               </div>
             ) : (

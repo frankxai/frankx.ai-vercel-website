@@ -21,6 +21,7 @@ import {
   testimonialIcon,
   updateEntries
 } from '@/lib/hub'
+import { atlasActions, atlasMetrics, atlasVolumes } from '@/lib/intelligence-atlas'
 import { gradientPresets, glassCardClasses } from '@/lib/design/gradients'
 import {
   ParallaxContainer,
@@ -50,6 +51,9 @@ const statusStyles: Record<'shipping' | 'in-progress' | 'incubating', string> = 
 const TestimonialIcon = testimonialIcon
 
 export default function HomePage() {
+  const upcomingAtlasVolumes = atlasVolumes.filter((volume) => volume.number !== 1).slice(0, 3)
+  const { primary, secondary, tertiary } = heroCta
+
   return (
     <main id="main" className="flex-1 bg-midnight-950 text-white pt-32">
       <ScrollProgress />
@@ -83,32 +87,38 @@ export default function HomePage() {
                 </StaggerItem>
                 <StaggerItem>
                   <p className="text-xl text-white/70 max-w-4xl mx-auto leading-relaxed">
-                    Welcome to the Golden Age of Intelligence. Transform ideas into reality with Vibe OS music creation,
-                    Agentic Creator OS, and enterprise-grade intelligence systems.
+                    Architect the intelligence era with a unified roadmap, field-tested frameworks, and operating rituals that keep every agent and teammate aligned.
                   </p>
                 </StaggerItem>
                 <StaggerItem>
-                  <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
+                  <div className="flex flex-col items-center gap-4 pt-4 sm:flex-row">
                     <MagneticHover intensity={0.4}>
                       <GlowPulse color="cyan">
                         <Link
-                          href="/products/vibe-os"
+                          href={primary.href}
                           className="inline-flex items-center justify-center rounded-xl px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold text-lg shadow-[0_0_30px_rgba(6,182,212,0.4)] hover:shadow-[0_0_40px_rgba(6,182,212,0.5)] transition-all duration-300 hover:-translate-y-1"
                         >
-                          Explore Vibe OS
+                          {primary.label}
                           <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
                         </Link>
                       </GlowPulse>
                     </MagneticHover>
                     <MagneticHover intensity={0.3}>
                       <Link
-                        href="/agentic-ai-center"
+                        href={secondary.href}
                         className="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/5 backdrop-blur-sm px-8 py-4 text-white/90 font-semibold text-lg transition-all duration-300 hover:bg-white/10 hover:border-white/30 hover:-translate-y-1"
                       >
-                        Agentic AI Center
+                        {secondary.label}
                         <ArrowUpRight className="ml-2 h-5 w-5" aria-hidden="true" />
                       </Link>
                     </MagneticHover>
+                    <Link
+                      href={tertiary.href}
+                      className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 px-6 py-3 text-sm font-semibold text-white/80 transition hover:bg-white/10"
+                    >
+                      {tertiary.label}
+                      <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                    </Link>
                   </div>
                 </StaggerItem>
                 <StaggerItem>
@@ -152,9 +162,6 @@ export default function HomePage() {
                     ))}
                   </div>
                 </div>
-              </StaggerItem>
-              <StaggerItem>
-                <aside className={clsx(glassCardClasses, 'relative overflow-hidden rounded-4xl p-8 text-white/80 shadow-glass')}>
                     <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/15 via-transparent to-transparent opacity-60" aria-hidden />
                     <div className="relative space-y-8">
                       <div>
@@ -201,11 +208,7 @@ export default function HomePage() {
                       </div>
                     </div>
                   </aside>
-                </StaggerItem>
-            </StaggerContainer>
-          </div>
-        </ParallaxContainer>
-      </section>      {/* Segment Profiles */}
+
       <section id="segments" className="bg-midnight-950 py-24 px-6">
         <div className="max-w-7xl mx-auto text-white">
           <motion.div className="max-w-3xl" {...fadeUp}>
