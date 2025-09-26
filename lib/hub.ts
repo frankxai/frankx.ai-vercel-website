@@ -232,7 +232,7 @@ export const segmentProfiles: SegmentProfile[] = [
     ],
     keywords: ['enterprise ai strategy', 'oracle ai architect', 'ai governance playbook'],
     ctas: [
-      { label: 'Agentic AI Center', href: '/agentic-ai-center' },
+      { label: 'Agentic Creator OS', href: '/products/agentic-creator-os' },
       { label: 'Book Strategy Session', href: 'mailto:hello@frankx.ai?subject=FrankX.AI%20Intelligence%20Systems' }
     ]
   },
@@ -294,7 +294,7 @@ export const updateEntries: UpdateEntry[] = [
     href: '/blog/conscious-ai-integration-operating-system'
   },
   {
-    title: 'Agentic AI Roadmap 2025',
+    title: 'Agentic Creator OS Roadmap 2025',
     summary:
       'A master plan for deploying agentic systems across studios, enterprises, and families in sync with the FrankX roadmap.',
     type: 'Article',
@@ -354,7 +354,7 @@ export const resourceCollections: ResourceCollection[] = [
     focus: 'Best for creators, architects, and executives building multi-offer ecosystems.',
     items: [
       { label: 'FrankX Intelligence Atlas', href: '/intelligence-atlas', type: 'Report' },
-      { label: 'Agentic AI Roadmap 2025', href: '/blog/10-agentic-ai-roadmap-2025', type: 'Article' },
+      { label: 'Agentic Creator OS Roadmap 2025', href: '/blog/10-agentic-ai-roadmap-2025', type: 'Article' },
       { label: 'Roadmap Hub', href: '/roadmap', type: 'Live roadmap' },
       { label: "Founder's AI Playbook", href: '/founder-playbook', type: 'Playbook', affiliateId: 'notion' },
       { label: 'Template Library', href: '/templates', type: 'Templates', affiliateId: 'airtable' },
@@ -446,7 +446,7 @@ export const homeSpotlights: HomeSpotlight[] = [
   },
   {
     eyebrow: 'New',
-    title: 'Agentic AI Roadmap 2025',
+    title: 'Agentic Creator OS Roadmap 2025',
     description:
       'Map the monthly releases, frameworks, and rituals that turn the Intelligence Atlas into an operating cadence for your team.',
     href: '/blog/10-agentic-ai-roadmap-2025',
@@ -552,7 +552,7 @@ export const heroSubtext = [
 export const heroCta = {
   primary: { label: 'Explore Vibe OS', href: '/products/vibe-os' },
   secondary: { label: 'View the 2025 Roadmap', href: '/roadmap' },
-  tertiary: { label: 'Agentic AI Center', href: '/agentic-ai-center' }
+  tertiary: { label: 'Agentic Creator OS Center', href: '/agentic-ai-center' }
 }
 
 export const heroSupportLink = {

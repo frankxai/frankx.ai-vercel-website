@@ -23,23 +23,24 @@ const navItems: NavItem[] = [
     href: '/products',
     subItems: [
       { name: 'All Products', href: '/products' },
+      { name: 'Agentic Creator OS', href: '/products/agentic-creator-os' },
+      { name: 'Generative Creator OS', href: '/products/generative-creator-os' },
       { name: 'Vibe OS', href: '/products/vibe-os' },
       { name: 'Music Lab', href: '/music-lab' },
-      { name: 'Agentic AI', href: '/agentic-ai-center' },
-      { name: 'Intelligence Atlas', href: '/intelligence-atlas' },
     ],
   },
+  { name: 'Blog', href: '/blog' },
   {
-    name: 'Resources',
-    href: '/resources',
+    name: 'Intelligence',
+    href: '/intelligence-atlas',
     subItems: [
+      { name: 'Intelligence Atlas', href: '/intelligence-atlas' },
+      { name: 'Intelligence Arsenal', href: '/resources' },
       { name: 'Prompt Library', href: '/prompt-library' },
-      { name: 'Blog', href: '/blog' },
       { name: 'Roadmap', href: '/roadmap' },
     ],
   },
   { name: 'About', href: '/about' },
-  { name: 'Affiliates', href: '/affiliates' },
 ]
 
 export default function Navigation() {
