@@ -254,7 +254,7 @@ export default function IntelligenceArsenal() {
 
         {/* Embedded Legal Disclosure */}
         <div className="mt-16 mx-auto max-w-4xl">
-          <GlassmorphicCard variant="subtle" className="p-6">
+          <GlassmorphicCard variant="default" className="p-6">
             <p className="text-xs text-slate-400 leading-relaxed">
               <strong className="text-slate-300">Transparency Note:</strong> Our Intelligence Arsenal represents tools we genuinely use and recommend based on performance in production environments. Some resources may include affiliate partnerships that support our research and development—these are clearly marked and never influence our technical recommendations. All expert insights reflect real implementation experience across our agentic systems.
             </p>
