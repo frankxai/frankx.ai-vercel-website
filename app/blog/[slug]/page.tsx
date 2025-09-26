@@ -1,4 +1,4 @@
-import Image from 'next/image'
+﻿import Image from 'next/image'
 import Link from 'next/link'
 import Script from 'next/script'
 import { notFound } from 'next/navigation'
@@ -40,7 +40,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   })
 }
 
-export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function BlogPostPage({
+  params
+}: {
+  params: Promise<{ slug: string }>
+}) {
   const { slug } = await params
 
   const post = getBlogPost(slug)
@@ -59,6 +63,21 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   const imageUrl = post.image
     ? new URL(post.image, 'https://frankx.ai').toString()
     : new URL(siteConfig.ogImage, 'https://frankx.ai').toString()
+
+  // Prepare data for recommendations
+  const documents = allPosts.map((p) => ({
+    title: p.title,
+    content: p.content,
+    url: `/blog/${p.slug}`,
+    tags: p.tags,
+  }))
+
+  const currentDocument = {
+    title: post.title,
+    content: post.content,
+    url: `/blog/${post.slug}`,
+    tags: post.tags,
+  }
 
   const articleJsonLd = {
     '@context': 'https://schema.org',
@@ -287,36 +306,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
           </div>
         </div>
 
-import Recommendations from '@/components/recommendations/Recommendations'
-
-// ... (imports)
-
-export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params
-
-  const post = getBlogPost(slug)
-
-  if (!post) {
-    notFound()
-  }
-
-  const allPosts = getAllBlogPosts()
-  const documents = allPosts.map((p) => ({
-    title: p.title,
-    content: p.content,
-    url: `/blog/${p.slug}`,
-    tags: p.tags,
-  }))
-
-  const currentDocument = {
-    title: post.title,
-    content: post.content,
-    url: `/blog/${post.slug}`,
-    tags: post.tags,
-  }
-
-  // ... (rest of the component)
-
+        {/* Recommendations */}
         <div className="px-6 pt-20">
           <div className="mx-auto max-w-7xl">
             <Recommendations documents={documents} currentDocument={currentDocument} />
@@ -329,9 +319,5 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
   )
 }
 
-      </article>
 
-      <Footer />
-    </div>
-  )
-}
+
