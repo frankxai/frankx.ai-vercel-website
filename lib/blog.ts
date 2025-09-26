@@ -44,7 +44,7 @@ export function getAllBlogPosts(): BlogPost[] {
 }
 
 
-export async function getBlogPost(slug: string): Promise<BlogPost | null> {
+export function getBlogPost(slug: string): BlogPost | null {
   try {
     const fullPath = path.join(blogDirectory, `${slug}.mdx`)
     const fileContents = fs.readFileSync(fullPath, 'utf8')
