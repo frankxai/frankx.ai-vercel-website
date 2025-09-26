@@ -9,6 +9,7 @@ import { mdxComponents } from '@/components/blog/MDXComponents'
 import Footer from '@/components/Footer'
 import Navigation from '@/components/Navigation'
 import BlogCard from '@/components/blog/BlogCard'
+import Recommendations from '@/components/recommendations/Recommendations'
 import { getAllBlogPosts, getBlogPost } from '@/lib/blog'
 import { createMetadata, siteConfig } from '@/lib/seo'
 
@@ -58,18 +59,11 @@ export default async function BlogPostPage({
     .filter((p) => p.slug !== post.slug && p.tags.some((tag) => post.tags.includes(tag)))
     .slice(0, 3)
 
-  const canonicalUrl = `https://frankx.ai/blog/${post.slug}`
-  const wordCount = post.content.split(/\s+/).filter(Boolean).length
-  const imageUrl = post.image
-    ? new URL(post.image, 'https://frankx.ai').toString()
-    : new URL(siteConfig.ogImage, 'https://frankx.ai').toString()
-
-  // Prepare data for recommendations
-  const documents = allPosts.map((p) => ({
-    title: p.title,
-    content: p.content,
-    url: `/blog/${p.slug}`,
-    tags: p.tags,
+  const documents = allPosts.map((postItem) => ({
+    title: postItem.title,
+    content: postItem.content,
+    url: `/blog/${postItem.slug}`,
+    tags: postItem.tags,
   }))
 
   const currentDocument = {
@@ -79,6 +73,11 @@ export default async function BlogPostPage({
     tags: post.tags,
   }
 
+  const canonicalUrl = `https://frankx.ai/blog/${post.slug}`
+  const wordCount = post.content.split(/\s+/).filter(Boolean).length
+  const imageUrl = post.image
+    ? new URL(post.image, 'https://frankx.ai').toString()
+    : new URL(siteConfig.ogImage, 'https://frankx.ai').toString()
   const articleJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -318,6 +317,7 @@ export default async function BlogPostPage({
     </div>
   )
 }
+
 
 
 
