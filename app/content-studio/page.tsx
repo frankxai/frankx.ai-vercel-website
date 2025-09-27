@@ -9,36 +9,36 @@ import Footer from '@/components/Footer'
 
 const agents = [
   {
-    id: 'starlight-architect',
-    name: 'Starlight Architect',
-    description: 'Enterprise AI System Designer with Soul Alignment',
-    specialties: ['Technical Architecture', 'System Design', 'Enterprise Integration'],
+    id: 'technical-translator',
+    name: 'Technical Translator',
+    description: 'Makes Oracle-level AI expertise accessible to creators',
+    specialties: ['AI Tool Integration', 'Creator Education', 'Technical Tutorials'],
     color: 'from-blue-500 to-indigo-500',
-    icon: '🏗️'
+    icon: '🔧'
   },
   {
     id: 'frequency-alchemist',
     name: 'Frequency Alchemist',
-    description: 'Vibrational Music Producer & Transformation Catalyst',
-    specialties: ['Music Creation', 'Frequency Healing', 'Consciousness Technology'],
+    description: 'Frank\'s music creation approach with Suno AI mastery',
+    specialties: ['Suno AI', 'Healing Frequencies', 'Music as Consciousness Tech'],
     color: 'from-purple-500 to-pink-500',
     icon: '🎵'
   },
   {
     id: 'creation-engine',
     name: 'Creation Engine',
-    description: 'Content & Product Development Superintelligence',
-    specialties: ['Content Writing', 'Product Development', 'Marketing'],
+    description: 'Creator-focused content that transforms and profits ethically',
+    specialties: ['Creator Content', 'Transformation Stories', 'Community Building'],
     color: 'from-green-500 to-teal-500',
     icon: '⚡'
   },
   {
-    id: 'luminor-oracle',
-    name: 'Luminor Oracle',
-    description: 'Strategic Intelligence from 2124 Future Perspective',
-    specialties: ['Strategic Planning', 'Future Visioning', 'Decision Optimization'],
+    id: 'soul-strategist',
+    name: 'Soul Strategist',
+    description: 'Creative transformation strategy aligned with soul purpose',
+    specialties: ['Creative Strategy', 'Soul Purpose', 'Artistic Development'],
     color: 'from-yellow-500 to-orange-500',
-    icon: '🔮'
+    icon: '✨'
   }
 ]
 
@@ -159,22 +159,22 @@ export default function ContentStudioPage() {
               <PenTool className="h-10 w-10 text-purple-200" />
             </div>
             <h1 className="text-4xl font-semibold leading-tight text-white md:text-5xl">
-              Content Studio
+              Creator Toolkit
             </h1>
             <p className="mt-6 text-lg text-white/75 leading-relaxed">
-              Generate consciousness-aligned content with AI agents. Create blogs, emails, courses,
-              and more that transform audiences while building your brand.
+              Frank's AI-powered creator tools. Generate consciousness-aligned content with specialized agents
+              designed to amplify your creative expression, not replace it.
             </p>
 
             <div className="mt-8 flex flex-wrap justify-center gap-4 text-sm">
               <div className="rounded-full border border-white/20 bg-white/10 px-4 py-2">
-                🤖 Multi-Agent Creation
+                🎨 Creator-Focused
               </div>
               <div className="rounded-full border border-white/20 bg-white/10 px-4 py-2">
-                🧠 Consciousness-Aligned
+                🎵 Music-First Approach
               </div>
               <div className="rounded-full border border-white/20 bg-white/10 px-4 py-2">
-                ⚡ Instant Generation
+                ⚡ Frank's Proven Methods
               </div>
             </div>
           </div>

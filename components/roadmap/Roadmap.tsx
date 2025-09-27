@@ -84,11 +84,10 @@ export default function Roadmap() {
                 <span
                   className={clsx(
                     'inline-flex items-center rounded-full px-3 py-1 text-sm font-medium',
-                    {
-                      'bg-error-500 text-white': action.status === 'blocked',
-                      'bg-warning-500 text-white': action.status === 'in-progress',
-                      'bg-success-500 text-white': action.status === 'shipping',
-                    }
+                    action.status === 'blocked' && 'bg-error-500 text-white',
+                    action.status === 'in-progress' && 'bg-warning-500 text-white',
+                    action.status === 'shipping' && 'bg-success-500 text-white',
+                    action.status === 'done' && 'bg-success-500 text-white'
                   )}
                 >
                   {action.status}

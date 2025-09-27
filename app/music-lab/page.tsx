@@ -137,12 +137,12 @@ export default function MusicLabPage() {
             </div>
             
             <h1 className="text-5xl md:text-7xl font-bold mb-6">
-              The <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent">Music Lab</span>
+              Frank's <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent">Music Lab</span>
             </h1>
-            
+
             <p className="text-xl text-gray-300 mb-12 max-w-3xl mx-auto">
-              Where AI meets soul. Explore my journey of creating 500+ songs through human-AI collaboration, 
-              each one a bridge between technology and consciousness.
+              Oracle AI Architect by day, consciousness musician by night. Follow my journey of creating 500+ AI songs
+              with Suno, transforming technology into healing frequencies and creative breakthroughs.
             </p>
             
             <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
