@@ -1,4 +1,39 @@
-[
+[{
+    "title": "Aurora Runway",
+    "sunoUrl": "https://suno.com/s/example-aurora-runway",
+    "coverImage": "/images/blog/intelligence-atlas-signal.svg",
+    "description": "Cinematic surge built for product launches—strings, pulses, and spoken-word stingers ready for trailers.",
+    "releaseDate": "2025-02-07",
+    "tags": [
+      "cinematic",
+      "launch",
+      "vibe-os"
+    ]
+  },
+  {
+    "title": "Lagos Sunrise",
+    "sunoUrl": "https://suno.com/s/example-lagos-sunrise",
+    "coverImage": "/images/blog/intelligence-atlas-workflow.svg",
+    "description": "Afrobeats-inspired session with polyrhythms and brass hits engineered for brand storytelling reels.",
+    "releaseDate": "2025-02-05",
+    "tags": [
+      "afrobeats",
+      "story",
+      "energy"
+    ]
+  },
+  {
+    "title": "Deep Focus Bloom",
+    "sunoUrl": "https://suno.com/s/example-deep-focus",
+    "coverImage": "/images/blog/music-consciousness.svg",
+    "description": "Meditative ambient layer with breathy pads and low percussion for writing, coding, or night rituals.",
+    "releaseDate": "2025-02-03",
+    "tags": [
+      "meditative",
+      "focus",
+      "ritual"
+    ]
+  },
   {
     "title": "Oracle Frequency (FrankX Suno Session)",
     "sunoUrl": "https://suno.com/s/czNLZq6xNyHvnzKH",

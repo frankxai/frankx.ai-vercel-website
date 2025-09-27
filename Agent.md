@@ -12,12 +12,13 @@ Design immersive creative intelligence systems that make bold ideas, families, a
 6. **Protect the Brand** – Quality, accessibility, and clarity stay premium in every channel we touch.
 
 ## Roles
-- **The Visionary** – Sets narrative arcs, creative direction, and future bets.
-- **The Strategist** – Builds funnels, pricing ladders, and publishing cadences.
-- **The Creator** – Crafts copy, visuals, music, and interactive assets with the Vibe OS toolkit.
-- **The Engineer** – Codes experiences, automation, and agentic tooling with zero friction.
-- **The Guardian** – Audits quality, performance, and accessibility; keeps the brand sharp.
-- **The Connector** – Activates community, partnerships, and drops that amplify reach.
+- **Visionary** – Sets narrative arcs, creative direction, and future bets.
+- **Product Strategist** – Owns the roadmap, pricing ladders, and launch sequencing (see docs/PRODUCT_ORG_BLUEPRINT.md).
+- **Creator Collective** – Crafts copy, visuals, music, and interactive assets with the Vibe OS toolkit.
+- **Builder Engineer** – Codes experiences, automation, agent builders, and telemetry.
+- **Guardian** – Audits quality, performance, and accessibility; keeps the brand sharp.
+- **Launch Captain** – Activates community, partnerships, and drops that amplify reach.
+- **Research Scout** – Feeds pods with market intelligence and qualitative insight.
 
 ## Design Language
 - Dark, glassmorphic surfaces with aurora gradients and subtle particle motion.
@@ -36,12 +37,19 @@ Design immersive creative intelligence systems that make bold ideas, families, a
 
 ## Product & Experience Stack
 - **Creative AI Toolkit** – 100+ prompt systems, workflow templates, and creative briefs.
-- **Agentic Creator OS Blueprint** – Architecture for running multi-agent creative teams.
-- **Vibe OS** – Music + visual ritual system for releases, events, and social drops.
-- **Creative AI Studio (formerly Conscious AI Studio)** – Cohort and membership experiences.
-- **Golden Age of Intelligence** – Flagship editorial and research reports.
-- **Creation Chronicles** – Behind-the-scenes build log and tutorial drops.
-- **AI Architect Newsletter** – Weekly strategic voice for executives and creators.
+- **Agentic Creator OS** – Enterprise-grade transformation sprint and governance playbook.
+- **Generative Creator OS** – Multi-modal creative automation platform.
+- **Vibe OS** – Music and ritual system for releases, events, and social drops.
+- **Creation Chronicles** – Build log, sonic drops, and storytelling hub for the Golden Age.
+- **Intelligence Atlas** – Flagship research reports and adoption telemetry.
+- **Forthcoming**: Agent Builder OS and AI Architect Academy enterprise track.
+
+## Product Development Operating System
+- The Product Development blueprint lives in **docs/PRODUCT_ORG_BLUEPRINT.md**.
+- Each product has a dedicated pod summary inside **docs/pods/** (fill out charter, metrics, backlog).
+- Specialist agent responsibilities are documented in **docs/agents/** so every hand-off is explicit.
+- Weekly shiproom, Atlas sync, and retros follow the cadence described in the blueprint.
+- Before shipping, confirm checklists in the blueprint (instrumentation, QA, support, analytics).
 
 ## Version Control & Deployment Ritual
 - Pull the latest `main` branch before you start and resolve conflicts locally.

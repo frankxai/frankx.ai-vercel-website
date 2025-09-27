@@ -82,17 +82,17 @@
     "bonuses": [
       {
         "title": "Quick Reference Cards",
-        "value": "7",
+        "value": "$27",
         "description": "Top 20 prompts and decision frameworks in printable format for instant access."
       },
       {
         "title": "Email Mastery Sprint",
-        "value": "7",
+        "value": "$47",
         "description": "Seven-day guided campaign to rebuild your communication rhythm with AI assistance."
       },
       {
         "title": "Agent Team Strategy Session",
-        "value": "97",
+        "value": "$197",
         "description": "45-minute collective intelligence consult to personalize your rollout."
       }
     ],
@@ -196,17 +196,17 @@
     "bonuses": [
       {
         "title": "Mood Reference Library",
-        "value": "7",
+        "value": "$27",
         "description": "25 emotion archetypes with prompt modifiers, instrumentation notes, and pacing guidance."
       },
       {
         "title": "Genre Deep-Dive Clinics",
-        "value": "7",
+        "value": "$47",
         "description": "Advanced walkthroughs for electronic, hip-hop, cinematic, and downtempo productions."
       },
       {
         "title": "Music Business Accelerator",
-        "value": "7",
+        "value": "$97",
         "description": "Revenue models, licensing templates, and release calendars to monetize your catalogue."
       }
     ],
@@ -305,24 +305,24 @@
     "bonuses": [
       {
         "title": "Launch Narrative Templates",
-        "value": "97",
+        "value": "$197",
         "description": "Swipe files for product launches, founder letters, and transformation case studies."
       },
       {
         "title": "Editorial Operations Hub",
-        "value": "7",
+        "value": "$97",
         "description": "Notion + Airtable base that tracks ideas, drafts, approvals, and analytics."
       },
       {
         "title": "Story Circle Live Lab",
-        "value": "97",
+        "value": "$297",
         "description": "Monthly critique sessions with the FrankX storytelling collective."
       }
     ],
     "pricingTiers": [
       {
         "name": "Creator Package",
-        "price": "97",
+        "price": "$497",
         "description": "Solo creators and early-stage brands establishing their foundational story.",
         "features": [
           "Brand story framework intensive",
@@ -335,7 +335,7 @@
       },
       {
         "name": "Business Package",
-        "price": "97",
+        "price": "$997",
         "description": "Growing teams ready to scale narrative-led marketing with AI-assisted workflows.",
         "features": [
           "Everything in Creator",
@@ -349,7 +349,7 @@
       },
       {
         "name": "Enterprise Package",
-        "price": ",497",
+        "price": "$2,497",
         "description": "Established organizations seeking custom storytelling operations and enablement.",
         "features": [
           "Everything in Business",
@@ -453,7 +453,7 @@
     "pricingTiers": [
       {
         "name": "Creator Studio",
-        "price": "Project from ,500",
+        "price": "Project from $7,500",
         "description": "Rapid diagnostic and pilot build for small teams proving AI-assisted creative output.",
         "features": [
           "Two-week diagnostic sprint",
@@ -466,7 +466,7 @@
       },
       {
         "name": "Guided Implementation",
-        "price": "Programs from 8,000",
+        "price": "Programs from $18,000",
         "description": "Quarter-long implementation with co-managed creative squads and measurement rituals.",
         "features": [
           "All Creator Studio deliverables",
@@ -592,7 +592,7 @@
     "pricingTiers": [
       {
         "name": "Strategy Sprint",
-        "price": "Retainers from 5k",
+        "price": "Retainers from $25k",
         "description": "Three-week diagnostic establishing roadmap, governance model, and executive alignment.",
         "features": [
           "Stakeholder interviews",
@@ -605,7 +605,7 @@
       },
       {
         "name": "Scale Program",
-        "price": "Programs from 20k",
+        "price": "Programs from $120k",
         "description": "Quarterly engagement to implement priority use cases with integrated governance.",
         "features": [
           "Pilot-to-production delivery",

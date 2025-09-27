@@ -39,6 +39,18 @@ The tasks will be implemented in the following order to ensure a logical workflo
         *   **Dependencies:** UI/UX Design.
         *   **Reasoning:** Analytics should be implemented once the main UI/UX and content structures are in place to provide meaningful data.
 
+## Living Backlog Extensions (Sept 2025 Alignment)
+
+| Theme | Task | Owner | Notes |
+| --- | --- | --- | --- |
+| Membership Realm | Wire `/realm` protected experience, seed onboarding emails, sync Supabase profile model | Growth + Platform | Reference `docs/membership-realm.md`; schedule hand-off once Supabase project provisioned |
+| Creation Chronicles | Ship `/creation-chronicles` hub (stories + Suno embeds + opt-in), migrate premium essays into tiered gating | Content Ops | Pair with music grid + analytics instrumentation (`lib/analytics.ts`) |
+| Analytics | Replace stub with PostHog wrapper, log standard events (`product_cta_click`, `segment_profile`, `realm_login`) | Engineering | Coordinate with membership telemetry to avoid duplicate schemas |
+| Satellite Strategy | Draft cross-brand linking playbook (FrankX.ai ↔ AIArchitectAcademy ↔ AIMusicAcademy) | Strategy | Outline canonical tags, nav entry points, and shared component package |
+| Support Ops | Document SLA + escalation runbook for Inner Circle & Alliance tiers | Community Success | Derived from membership realm doc |
+
+Backlog items graduate into active roadmap once a responsible owner, success metric, and delivery window are confirmed during weekly Atlas Sync.
+
 ## Next Steps
 
-This plan will be broken down into a detailed to-do list. Each item will represent a clear, actionable step towards completing these low-priority tasks. We will start with the first task: **Design enhanced UI/UX**.
+This plan will be broken down into a detailed to-do list. Each item will represent a clear, actionable step towards completing these low-priority tasks. We will start with the first task: **Design enhanced UI/UX**, while monitoring the new backlog for prioritization during roadmap reviews.

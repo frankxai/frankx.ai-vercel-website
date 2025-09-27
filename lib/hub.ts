@@ -154,26 +154,26 @@ export const quickActions: QuickAction[] = [
   },
   {
     title: 'Vibe OS',
-    description: 'Transform ideas into professional AI music with systematic workflows.',
+    description: 'Launch cinematic music and audio rituals with Suno-powered workflows.',
     href: '/products/vibe-os',
     icon: Music
   },
   {
     title: 'Agentic Creator OS',
-    description: 'Complete automation systems for creators and entrepreneurs.',
+    description: 'Install agent governance, dashboards, and executive-ready playbooks.',
     href: '/products/agentic-creator-os',
     icon: Bot
   },
   {
     title: 'Creation Chronicles',
-    description: 'Strategic storytelling and narrative systems for your brand.',
-    href: '/products/creation-chronicles',
+    description: 'Access the build log, sonic drops, and storytelling systems powering the hub.',
+    href: '/creation-chronicles',
     icon: BookOpen
   },
   {
-    title: 'Intelligence Systems',
-    description: 'Enterprise-grade AI implementations and consulting.',
-    href: '/agentic-ai-center',
+    title: 'Strategy Intensive',
+    description: 'Book a bespoke intelligence sprint for your team or organisation.',
+    href: 'mailto:hello@frankx.ai?subject=FrankX%20Strategy%20Intensive',
     icon: Brain
   }
 ]
@@ -194,8 +194,8 @@ export const segmentProfiles: SegmentProfile[] = [
     ],
     keywords: ['family ai guide', 'teach kids ai safely', 'ai conversations with parents'],
     ctas: [
-      { label: 'Explore Vibe OS', href: '/products/vibe-os' },
-      { label: 'View Intelligence Systems', href: '/agentic-ai-center' }
+      { label: 'Start with Creation Chronicles', href: '/creation-chronicles' },
+      { label: 'Download AI Basics for Families', href: '/family-guide' }
     ]
   },
   {
@@ -214,7 +214,7 @@ export const segmentProfiles: SegmentProfile[] = [
     keywords: ['ai music workflow', 'creator ai prompts', 'influencer ai strategy'],
     ctas: [
       { label: 'Explore Vibe OS', href: '/products/vibe-os' },
-      { label: 'Creation Chronicles', href: '/products/creation-chronicles' }
+      { label: 'Creation Chronicles Hub', href: '/creation-chronicles' }
     ]
   },
   {
@@ -252,7 +252,7 @@ export const segmentProfiles: SegmentProfile[] = [
     keywords: ['ai agent architecture', 'human centered automation', 'ai orchestration checklist'],
     ctas: [
       { label: 'Agentic Creator OS', href: '/products/agentic-creator-os' },
-      { label: 'Intelligence Systems', href: '/agentic-ai-center' }
+      { label: 'Generative Creator OS', href: '/products/generative-creator-os' }
     ]
   },
   {
@@ -270,9 +270,30 @@ export const segmentProfiles: SegmentProfile[] = [
     ],
     keywords: ['community ai ritual', 'ai workshop template', 'collective intelligence experiences'],
     ctas: [
-      { label: 'Creation Chronicles', href: '/products/creation-chronicles' },
+      { label: 'Creation Chronicles', href: '/creation-chronicles' },
       { label: 'Explore All Products', href: '/products' }
     ]
+  }
+]
+
+export const heroSegments = [
+  {
+    id: 'creators',
+    label: 'Creators & Studios',
+    description: 'Ship music, stories, and launches faster with your AI collaborators.',
+    href: '/products/vibe-os'
+  },
+  {
+    id: 'executives',
+    label: 'Executives & Teams',
+    description: 'Roll out agentic governance, dashboards, and delivery rituals.',
+    href: '/products/agentic-creator-os'
+  },
+  {
+    id: 'inner-circle',
+    label: 'Friends & Inner Circle',
+    description: 'Follow Creation Chronicles and join the private Realm waitlist.',
+    href: '/creation-chronicles'
   }
 ]
 
@@ -550,9 +571,9 @@ export const heroSubtext = [
 ]
 
 export const heroCta = {
-  primary: { label: 'Explore Vibe OS', href: '/products/vibe-os' },
-  secondary: { label: 'View the 2025 Roadmap', href: '/roadmap' },
-  tertiary: { label: 'Agentic Creator OS Center', href: '/agentic-ai-center' }
+  primary: { label: 'Start Creation Chronicles', href: '/creation-chronicles' },
+  secondary: { label: 'Browse the Product Stack', href: '/products' },
+  tertiary: { label: 'Join Inner Circle Waitlist', href: 'https://frankx.ck.page/realm' }
 }
 
 export const heroSupportLink = {
@@ -574,6 +595,7 @@ const hubTextCollections = [
   testimonials,
   heroSubtext,
   heroCta,
+  heroSegments,
   heroSupportLink
 ] as const;
 

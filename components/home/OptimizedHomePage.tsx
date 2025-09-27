@@ -10,6 +10,7 @@ import {
   heroCta,
   heroHighlights,
   heroStats,
+  heroSegments,
   quickActions,
 } from '@/lib/hub'
 import { gradientPresets, glassCardClasses } from '@/lib/design/gradients'
@@ -25,6 +26,7 @@ import {
   ScrollProgress
 } from '@/components/ui/AdvancedAnimations'
 import { Surface, SectionHeading, Pill, StatBlock } from '@/components/ui/primitives'
+import { trackEvent } from '@/lib/analytics'
 
 const StrategicSpotlights = dynamic(() => import('@/components/home/sections/StrategicSpotlights'))
 const IntelligenceAtlasSpotlight = dynamic(() => import('@/components/home/sections/IntelligenceAtlasSpotlight'))
@@ -85,6 +87,7 @@ export default function OptimizedHomePage() {
                       <GlowPulse color="cyan">
                         <Link
                           href={primary.href}
+                          onClick={() => trackEvent('home_primary_cta_click', { destination: primary.href })}
                           className="btn-primary inline-flex items-center justify-center rounded-2xl px-8 py-4 text-lg font-semibold transition-transform duration-300 hover:-translate-y-1"
                         >
                           {primary.label}
@@ -95,6 +98,7 @@ export default function OptimizedHomePage() {
                     <MagneticHover intensity={0.3}>
                       <Link
                         href={secondary.href}
+                        onClick={() => trackEvent('home_secondary_cta_click', { destination: secondary.href })}
                         className="btn-secondary inline-flex items-center justify-center rounded-2xl px-8 py-4 text-lg font-semibold transition-transform duration-300 hover:-translate-y-1"
                       >
                         {secondary.label}
@@ -103,11 +107,31 @@ export default function OptimizedHomePage() {
                     </MagneticHover>
                     <Link
                       href={tertiary.href}
-                      className="inline-flex items-center justify-center gap-2 rounded-2xl border border-neutral-700 bg-neutral-800 px-6 py-3 text-sm font-semibold text-neutral-300 transition hover:bg-neutral-700 hover:-translate-y-1"
+                      onClick={() => trackEvent('home_tertiary_cta_click', { destination: tertiary.href })}
+                      className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/15 bg-white/10 px-6 py-3 text-sm font-semibold text-white/80 transition hover:bg-white/15 hover:-translate-y-1"
                     >
                       {tertiary.label}
                       <ArrowRight className="h-4 w-4" aria-hidden="true" />
                     </Link>
+                  </div>
+                </StaggerItem>
+                <StaggerItem>
+                  <div className="mt-4 grid w-full gap-3 sm:grid-cols-3">
+                    {heroSegments.map((segment) => (
+                      <Link
+                        key={segment.id}
+                        href={segment.href}
+                        onClick={() => trackEvent('home_persona_select', { segment: segment.id })}
+                        className="group rounded-2xl border border-white/15 bg-white/5 px-5 py-4 text-left transition hover:border-white/30 hover:bg-white/10"
+                      >
+                        <div className="text-xs font-semibold uppercase tracking-[0.35em] text-white/50">
+                          {segment.label}
+                        </div>
+                        <p className="mt-2 text-sm text-white/70 leading-relaxed group-hover:text-white/85">
+                          {segment.description}
+                        </p>
+                      </Link>
+                    ))}
                   </div>
                 </StaggerItem>
                 <StaggerItem>

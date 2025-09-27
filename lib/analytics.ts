@@ -1,20 +1,124 @@
-// This is a mock analytics service.
-// In a real-world application, you would integrate with a service like Google Analytics, Plausible, or a custom solution.
+import { useSyncExternalStore } from 'react'
 
-interface Event {
-  name: string;
-  params?: Record<string, any>;
+type AnalyticsAdapter = {
+  track?: (event: string, properties?: Record<string, any>) => void
+  identify?: (userId: string, traits?: Record<string, any>) => void
+  group?: (groupId: string, traits?: Record<string, any>) => void
 }
 
-const eventLog: Event[] = [];
+type AnalyticsEvent = {
+  name: string
+  params: Record<string, any>
+  timestamp: number
+}
 
-export const trackEvent = (eventName: string, params: Record<string, any> = {}) => {
-  const event: Event = { name: eventName, params };
-  console.log('Analytics Event:', event);
-  eventLog.push(event);
-};
+const eventBuffer: AnalyticsEvent[] = []
+const subscribers = new Set<() => void>()
 
-// Example usage:
-// trackEvent('page_view', { page_path: '/about' });
-// trackEvent('subscribe_newsletter', { method: 'footer_form' });
-// trackEvent('affiliate_click', { affiliate_id: 'notion', tracking_id: 'resource-page-cta' });
+let adapter: AnalyticsAdapter | null = null
+
+export function configureAnalytics(customAdapter: AnalyticsAdapter) {
+  adapter = customAdapter
+}
+
+function emitUpdate() {
+  subscribers.forEach((listener) => listener())
+}
+
+export function trackEvent(name: string, params: Record<string, any> = {}) {
+  const payload: AnalyticsEvent = {
+    name,
+    params,
+    timestamp: Date.now()
+  }
+
+  eventBuffer.push(payload)
+
+  if (typeof window !== 'undefined') {
+    if (adapter?.track) {
+      adapter.track(name, params)
+    } else {
+      const posthog = (window as any).posthog
+      const segment = (window as any).analytics
+
+      if (posthog?.capture) posthog.capture(name, params)
+      if (segment?.track) segment.track(name, params)
+    }
+  } else {
+    console.log('Analytics Event:', payload)
+  }
+
+  emitUpdate()
+}
+
+export function identifyUser(userId: string, traits: Record<string, any> = {}) {
+  if (adapter?.identify) {
+    adapter.identify(userId, traits)
+    return
+  }
+
+  if (typeof window !== 'undefined') {
+    const posthog = (window as any).posthog
+    const segment = (window as any).analytics
+    if (posthog?.identify) posthog.identify(userId, traits)
+    if (segment?.identify) segment.identify(userId, traits)
+  } else {
+    console.log('Analytics Identify:', { userId, traits })
+  }
+}
+
+export function groupUser(groupId: string, traits: Record<string, any> = {}) {
+  if (adapter?.group) {
+    adapter.group(groupId, traits)
+    return
+  }
+
+  if (typeof window !== 'undefined') {
+    const posthog = (window as any).posthog
+    const segment = (window as any).analytics
+    if (posthog?.group) posthog.group(groupId, traits)
+    if (segment?.group) segment.group(groupId, traits)
+  } else {
+    console.log('Analytics Group:', { groupId, traits })
+  }
+}
+
+export function getBufferedEvents() {
+  return [...eventBuffer]
+}
+
+export function clearBufferedEvents() {
+  eventBuffer.length = 0
+  emitUpdate()
+}
+
+function subscribe(listener: () => void) {
+  subscribers.add(listener)
+  return () => {
+    subscribers.delete(listener)
+  }
+}
+
+function getSnapshot() {
+  return [...eventBuffer]
+}
+
+export function useFunnelMetrics(eventsOfInterest: string[]) {
+  return useSyncExternalStore(subscribe, () => {
+    const counts = new Map<string, number>()
+    for (const event of eventBuffer) {
+      if (eventsOfInterest.includes(event.name)) {
+        counts.set(event.name, (counts.get(event.name) ?? 0) + 1)
+      }
+    }
+    return eventsOfInterest.map((eventName) => ({
+      event: eventName,
+      count: counts.get(eventName) ?? 0
+    }))
+  }, getSnapshot)
+}
+
+export type FunnelMetric = {
+  event: string
+  count: number
+}
