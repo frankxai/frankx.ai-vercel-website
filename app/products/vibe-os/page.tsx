@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import Script from 'next/script'
 
 import products from '@/data/products.json'
@@ -6,10 +7,13 @@ import OfferStack from '@/components/products/OfferStack'
 import ProductHero from '@/components/products/ProductHero'
 import ProofRail from '@/components/products/ProofRail'
 import TransformationList from '@/components/products/TransformationList'
+import SongGrid, { SongRecord } from '@/components/music/SongGrid'
+import songs from '@/data/songs.json'
 import { createMetadata } from '@/lib/seo'
 import type { ProductRecord } from '@/types/products'
 
 const product = products.find((entry) => entry.id === 'vibe-os') as ProductRecord
+const songRecords = songs as SongRecord[]
 
 if (!product) {
   throw new Error('Vibe OS product record missing')
@@ -70,6 +74,32 @@ export default function VibeOSPage() {
         bonuses={product.bonuses}
         pricingTiers={product.pricingTiers}
       />
+
+      <section className="bg-slate-950 py-16">
+        <div className="mx-auto flex max-w-6xl flex-col gap-10 px-6 lg:flex-row">
+          <div className="flex-1 space-y-6">
+            <h2 className="text-3xl font-semibold text-white">Latest Sessions in the Studio</h2>
+            <p className="text-sm text-white/70">
+              Drop these Suno-powered sessions straight into your rituals. Each template is tuned for a different launch
+              moment—cinematic trailers, Afrobeats reels, and deep focus night work.
+            </p>
+            <SongGrid songs={songRecords} limit={3} />
+          </div>
+          <div className="flex-1 rounded-3xl border border-white/10 bg-white/5 p-8 text-sm text-white/70">
+            <h3 className="text-xl font-semibold text-white">Upgrade to the Realm</h3>
+            <p className="mt-4">
+              Inner Circle members receive every new session, stems, and live ritual labs. Join the waitlist to access the
+              private vault and monthly music sprints.
+            </p>
+            <Link
+              href="/realm"
+              className="mt-6 inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-primary-500 to-purple-600 px-5 py-3 text-xs font-semibold uppercase tracking-[0.3em] text-white transition hover:-translate-y-1"
+            >
+              Tour the Realm
+            </Link>
+          </div>
+        </div>
+      </section>
 
       <section className="bg-slate-950 py-16">
         <div className="mx-auto max-w-4xl px-6">

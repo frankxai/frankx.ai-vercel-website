@@ -165,9 +165,9 @@ export default function RealmPage() {
                   <div className="text-xs font-semibold uppercase tracking-[0.35em] text-white/50">{tier.name}</div>
                   <div className="mt-4 text-3xl font-bold text-primary-200">{tier.price}</div>
                   <p className="mt-3 text-sm text-white/70">{tier.description}</p>
-                  <ul className="mt-5 flex-1 space-y-2 text-sm text-white/70 text-left">
+                  <ul className="mt-5 flex-1 space-y-2 text-sm text-white/70 text-left list-disc list-inside">
                     {tier.perks.map((perk) => (
-                      <li key={perk}>• {perk}</li>
+                      <li key={perk}>{perk}</li>
                     ))}
                   </ul>
                   <Link
@@ -192,10 +192,11 @@ export default function RealmPage() {
             >
               Join the Waitlist
             </Link>
-            <p className="mt-3 text-xs text-white/50">No spam—just launch details and first access.</p>
+            <p className="mt-3 text-xs text-white/50">No spam - just launch details and first access.</p>
           </div>
         </section>
       </main>
     </div>
   )
 }
+

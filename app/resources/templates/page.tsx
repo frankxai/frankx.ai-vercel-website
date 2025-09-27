@@ -7,7 +7,7 @@ import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
   title: 'FrankX Template Library - Soul-Aligned AI Systems',
-  description: 'Download proven templates for conscious AI implementation, agent governance, and transformation rituals. Oracle-grade systems made accessible.',
+  description: 'Download proven templates for conscious AI implementation, agent governance, and transformation rituals. Enterprise-grade systems made accessible.',
   keywords: [
     'ai templates',
     'agent governance templates',
@@ -122,7 +122,7 @@ export default function TemplatesPage() {
               FrankX Template Library
             </h1>
             <p className="mt-6 text-lg text-white/75 leading-relaxed">
-              Oracle-grade systems made accessible. Download proven frameworks for conscious AI implementation,
+              Enterprise-grade systems made accessible. Download proven frameworks for conscious AI implementation,
               transformation rituals, and soul-aligned technology adoption.
             </p>
 

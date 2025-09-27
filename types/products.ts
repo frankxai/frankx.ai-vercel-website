@@ -55,6 +55,17 @@ export type ProductOffer = {
   note?: string
 }
 
+export type ProductCaseStudy = {
+  title: string
+  description: string
+  metric?: string
+  quote?: string
+  author?: string
+  role?: string
+  ctaLabel?: string
+  ctaHref?: string
+}
+
 export type ProductRecord = {
   id: string
   slug: string
@@ -74,6 +85,8 @@ export type ProductRecord = {
   modules: ProductModule[]
   bonuses?: ProductBonus[]
   pricingTiers?: ProductPricingTier[]
+  caseStudies?: ProductCaseStudy[]
   faq: ProductFaq[]
   analyticsId?: string
 }
+

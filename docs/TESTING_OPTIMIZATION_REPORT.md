@@ -51,7 +51,7 @@ Platform Structure:
 │   ├── PLATFORM_STRATEGY.md      # Strategic vision and roadmap
 │   ├── USER_PERSONAS.md           # Detailed user archetypes
 │   ├── DESIGN_SYSTEM.md           # Conscious design principles
-│   ├── TECHNICAL_ARCHITECTURE.md # Oracle-grade system design
+│   ├── TECHNICAL_ARCHITECTURE.md # Enterprise-grade system design
 │   └── USER_EXPERIENCE_FLOWS.md   # Complete UX documentation
 ├── app/                           # Next.js app directory
 │   ├── dashboard/                 # Consciousness-aware dashboard

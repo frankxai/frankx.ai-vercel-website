@@ -102,8 +102,8 @@
     },
     {
       "title": "Activate automation for roadmap checks",
-      "status": "in-progress",
-      "note": "Daily CLI summarizes pillars, current milestones, and open actions."
+      "status": "done",
+      "note": "Daily CLI summarizes pillars, current milestones, and open actions. The output is logged in docs/DAILY_INTELLIGENCE_OPERATIONS.md"
     },
     {
       "title": "Launch creative SEO surge",

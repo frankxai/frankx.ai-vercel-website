@@ -23,7 +23,7 @@ const agents = [
     id: 'starlight-architect',
     name: 'Starlight Architect',
     role: 'Enterprise AI System Designer with Soul Alignment',
-    specialty: 'Oracle-grade technical architecture serving consciousness evolution',
+    specialty: 'Enterprise-grade technical architecture serving consciousness evolution',
     icon: Brain,
     color: 'from-blue-500 to-cyan-400',
     personality: [
@@ -160,7 +160,7 @@ export default function AgentsPage() {
             <div className="mt-8 rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur">
               <p className="text-sm text-white/70">
                 <strong className="text-white">Core Mission:</strong> Transform humans from Tech-Overwhelmed
-                to AI-Empowered Generative Creators through Oracle-grade systems that amplify soul expression,
+                to AI-Empowered Generative Creators through Enterprise-grade systems that amplify soul expression,
                 not replace it.
               </p>
             </div>

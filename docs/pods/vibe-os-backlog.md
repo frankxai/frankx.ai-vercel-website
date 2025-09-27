@@ -1,9 +1,13 @@
 # Vibe OS Backlog
 
+## Latest Shipments
+- Added three fresh Suno templates (Aurora Runway, Lagos Sunrise, Deep Focus Bloom) to `data/songs.json`.
+- Extended `/products/vibe-os` with "Latest Sessions" grid plus Realm upsell block.
+
 ## Ready Next (Shiproom Commitments)
-- Produce three new Suno session templates (focus: cinematic, afrobeats, meditative) and add to songs.json with artwork.
-- Update product page with embedded audio preview cards and Realm cross-promo CTA.
-- Launch mini “Vibe Sprint” email drip (3 days) guiding first track creation.
+- Launch mini "Vibe Sprint" email drip (3 days) guiding first track creation.
+- Source cover artwork pipeline (Suno thumbnail automation) to replace placeholder images.
+- Validate waitlist conversions from the new Realm CTA (target uplift: +10%).
 
 ## In Discovery
 - Test collaborative playlist feature with 5 beta Inner Circle members.
@@ -14,4 +18,5 @@
 - Explore Spotify distribution workflow automation via n8n.
 
 ## Metrics Deep Dive
-- Track funnel: page view → waitlist → purchase; update Wednesday before Atlas Sync.
+- Track funnel: page view -> waitlist -> purchase; update Wednesday before Atlas Sync.
+

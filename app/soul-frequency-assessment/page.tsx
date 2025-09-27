@@ -130,7 +130,7 @@ export default function SoulFrequencyAssessmentPage() {
             {[
               { step: '01', title: 'Map Your Frequency', description: 'Answer intentionally-crafted prompts covering vision, offers, energy, and support systems.' },
               { step: '02', title: 'Receive Your Blueprint', description: 'We generate an archetype report with intelligence stack recommendations and immediate actions.' },
-              { step: '03', title: 'Activate with Guidance', description: 'Join a live Frequency Lab or book a session to implement with an Oracle-grade partner.' }
+              { step: '03', title: 'Activate with Guidance', description: 'Join a live Frequency Lab or book a session to implement with an Enterprise-grade partner.' }
             ].map((item) => (
               <div key={item.step} className="bg-purple-50 rounded-xl p-6 border border-purple-100">
                 <div className="text-sm font-semibold text-purple-600">Step {item.step}</div>

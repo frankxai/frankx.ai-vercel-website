@@ -110,7 +110,37 @@
         "answer": "Most members report tangible improvements within one week using the quick-start rituals and daily momentum prompts."
       }
     ],
-    "analyticsId": "creative-ai-toolkit"
+    "analyticsId": "creative-ai-toolkit",
+    "caseStudies": [
+      {
+        "title": "Studio Relaunch in 30 Days",
+        "metric": "6 client campaigns shipped",
+        "description": "Sarah Chen rebuilt her boutique content studio using the toolkit rituals and automated briefing loops to deliver six AI-assisted launches in one month.",
+        "quote": "The toolkit gave us a shared language with the agents. We now scope, brief, and deliver in half the time without losing creative soul.",
+        "author": "Sarah Chen",
+        "role": "Founder, Lumen Stories",
+        "ctaLabel": "See the workflow map",
+        "ctaHref": "/creation-chronicles"
+      },
+      {
+        "title": "Email List Revival",
+        "metric": "+38% open rate",
+        "description": "Marcus Rodriguez used the automation playbooks to rebuild his welcome sequence and introduce the Realm teaser without burning out.",
+        "quote": "The Day 0 to Day 7 plan kept my launch tight. The prompts even dictated exactly how to brief my human copywriter.",
+        "author": "Marcus Rodriguez",
+        "role": "Solo Entrepreneur",
+        "ctaLabel": "Download the prompt stack",
+        "ctaHref": "/resources"
+      },
+      {
+        "title": "In-House Media Team Enablement",
+        "metric": "20 hours saved per producer",
+        "description": "A hybrid media team adapted the multi-agent playbooks to their Notion HQ and now runs weekly AI-guided editorial sprints.",
+        "quote": "Our editors finally trust the AI because the guardrails are baked in. The agent desk answers feel like a creative director on call.",
+        "author": "Jamal Price",
+        "role": "Director of Content, Northstar Labs"
+      }
+    ]
   },
   {
     "id": "vibe-os",
