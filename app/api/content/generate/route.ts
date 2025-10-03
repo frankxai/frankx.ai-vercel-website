@@ -240,7 +240,7 @@ function generateSectionContent(title: string, request: ContentRequest, consciou
     'Transformation': `When ${request.topic} aligns with consciousness principles, we witness profound transformation: increased creativity, enhanced collaboration, and deeper fulfillment. This represents the future of human-AI collaboration where technology serves the highest good of all.`
   }
 
-  return frameworks[title] || `${consciousness.approach} applied to ${request.topic} creates transformational outcomes for ${request.audience}. Through ${consciousness.language}, we can implement practical solutions that honor both technical requirements and human consciousness evolution.`
+  return frameworks[title as keyof typeof frameworks] || `${consciousness.approach} applied to ${request.topic} creates transformational outcomes for ${request.audience}. Through ${consciousness.language}, we can implement practical solutions that honor both technical requirements and human consciousness evolution.`
 }
 
 function generateKeywords(topic: string, audience: string): string[] {
@@ -269,7 +269,7 @@ function generateCTA(type: string, audience: string): string {
     course: `Enroll in our comprehensive transformation program and master consciousness-aligned technology.`
   }
 
-  return ctas[type] || `Discover how consciousness technology can transform your creative potential.`
+  return ctas[type as keyof typeof ctas] || `Discover how consciousness technology can transform your creative potential.`
 }
 
 function generateSummary(title: string, topic: string, wordCount: number): string {

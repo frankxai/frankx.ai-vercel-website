@@ -126,9 +126,9 @@ export async function GET() {
       analyze: 'Analyze existing music for consciousness properties',
       transform: 'Transform music for specific consciousness effects'
     },
-    consciousness_frequencies: Object.keys(CONSCIOUSNESS_FREQUENCIES).map(freq => ({
+    consciousness_frequencies: Object.entries(CONSCIOUSNESS_FREQUENCIES).map(([freq, data]) => ({
       frequency: freq,
-      ...CONSCIOUSNESS_FREQUENCIES[freq as any]
+      ...data
     })),
     music_categories: Object.keys(MUSIC_TEMPLATES),
     timestamp: new Date().toISOString()
@@ -162,7 +162,7 @@ async function handleMusicGeneration(request: MusicRequest): Promise<NextRespons
     frequency_analysis: {
       primary_frequency: frequency,
       binaural_beats: frequency < 100 ? frequency : undefined,
-      consciousness_effect: CONSCIOUSNESS_FREQUENCIES[frequency]?.effect || 'Consciousness enhancement'
+      consciousness_effect: CONSCIOUSNESS_FREQUENCIES[frequency as keyof typeof CONSCIOUSNESS_FREQUENCIES]?.effect || 'Consciousness enhancement'
     },
     metadata: {
       duration,
