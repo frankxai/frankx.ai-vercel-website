@@ -19,9 +19,10 @@ function isExternal(href: string) {
 
 export default function ProductHero({ productId, badge, title, subtitle, promise, offer }: ProductHeroProps) {
   const handleClick = (target: 'primary' | 'secondary') => {
-    trackEvent('product_cta_click', {
+    trackEvent('creator_funnel_step', {
       productId,
       location: 'hero',
+      step: 'hero',
       target,
       href: target === 'primary' ? offer.ctaPrimaryHref : offer.ctaSecondaryHref,
       label: target === 'primary' ? offer.ctaPrimaryTracking ?? offer.ctaPrimary : offer.ctaSecondaryTracking ?? offer.ctaSecondary
@@ -99,3 +100,5 @@ export default function ProductHero({ productId, badge, title, subtitle, promise
     </section>
   )
 }
+
+

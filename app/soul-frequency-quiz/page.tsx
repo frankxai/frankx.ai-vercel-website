@@ -198,8 +198,8 @@ const frequencyTypes: Record<FrequencyId, FrequencyProfile> = {
       },
       {
         label: 'Guide families through AI calmly',
-        href: '/family-guide',
-        description: 'Teach the people you love with explainers, scripts, and safety rituals.',
+        href: '/creation-chronicles',
+        description: 'Invite the people you love to Creation Chronicles so they can follow the journey.',
       },
     ],
   },
@@ -533,3 +533,4 @@ export default function SoulFrequencyQuiz() {
     </div>
   )
 }
+

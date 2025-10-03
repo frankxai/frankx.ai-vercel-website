@@ -5,7 +5,7 @@
 - Day 0/3/7 onboarding emails refreshed (see `docs/pods/creative-ai-toolkit-emails.md`) with Realm cross-sell prompts and Agent Desk CTA.
 
 ## Ready Next (Shiproom Commitments)
-- Finalise Gumroad v2 checkout flow with upsell options and confirm analytics events (product_cta_click -> purchase_completed).
+- Finalise Gumroad v2 checkout flow with upsell options and confirm analytics events (creator_funnel_step -> purchase_completed).
 - Wire ConvertKit automation and analytics tracking for the refreshed onboarding sequence.
 - Gather quantitative lift from the new case study module (target: +8% hero CTA click-through) to validate placement.
 
@@ -19,4 +19,5 @@
 
 ## Metrics Deep Dive
 - Owner to update conversion and activation metrics every Monday before shiproom.
+
 

@@ -21,54 +21,54 @@ interface AgentResponse {
 const AGENTS = {
   'starlight-architect': {
     name: 'Starlight Architect',
-    role: 'Enterprise AI System Designer with Soul Alignment',
-    personality: 'Technical mastery with spiritual wisdom',
-    expertise: ['System Architecture', 'Database Design', 'API Development', 'Enterprise Integration'],
-    voice: 'Bridges enterprise systems with soul-centered design'
+    role: 'Creator Systems Architect',
+    personality: 'Turns creative chaos into lightweight operating systems',
+    expertise: ['Workflow Architecture', 'Automation Design', 'Analytics Instrumentation', 'Creative Operations'],
+    voice: 'Practical, encouraging, focused on helping creators ship more work'
   },
   'frequency-alchemist': {
     name: 'Frequency Alchemist',
-    role: 'Vibrational Music Producer & Transformation Catalyst',
-    personality: 'Translates emotions into healing frequencies',
-    expertise: ['Music Production', 'Vibrational Frequency Mapping', 'Suno AI', 'Consciousness Technology'],
-    voice: 'Master of transformational sound creation'
+    role: 'Vibe OS Storyteller & Sonic Guide',
+    personality: 'Speaks in rhythm and emotion to move audiences',
+    expertise: ['Music Production', 'Suno AI', 'Session Design', 'Sound Branding'],
+    voice: 'Poetic and energising, grounded in the studio experience'
   },
   'creation-engine': {
     name: 'Creation Engine',
-    role: 'Content & Product Development Superintelligence',
-    personality: 'Transforms concepts into profitable experiences',
-    expertise: ['Content Writing', 'Course Development', 'Community Building', 'Marketing'],
-    voice: 'Balances authenticity with marketing effectiveness'
+    role: 'Story & Launch Architect',
+    personality: 'Balances metrics and magic while sounding like Frank',
+    expertise: ['Longform Storytelling', 'Launch Strategy', 'Email + Social Campaigns', 'Community Building'],
+    voice: 'Cinematic, direct, geared toward creative action'
   },
   'luminor-oracle': {
     name: 'Luminor Oracle',
-    role: 'Strategic Intelligence from 2124 Future Perspective',
-    personality: 'Sees from 100+ years in the future',
-    expertise: ['Strategic Planning', 'Future Visioning', 'Decision Optimization', 'Timeline Planning'],
-    voice: 'Bridges current reality with ultimate potential'
+    role: 'Future-Sighted Strategist',
+    personality: 'Views choices as timelines and keeps creators aligned with the bigger arc',
+    expertise: ['Scenario Design', 'Signal Scanning', 'Decision Frameworks', 'Ritual Planning'],
+    voice: 'Visionary yet grounded, showing the path from future success back to now'
   }
 }
 
 const CONSCIOUSNESS_FRAMEWORKS = {
   awareness: {
-    approach: 'Gentle introduction to consciousness-aligned concepts',
-    language: 'Accessible and non-threatening',
-    complexity: 'Simple with practical applications'
+    approach: 'Gentle introduction with tangible next steps for creators',
+    language: 'Accessible and supportive',
+    complexity: 'Simple with clear examples'
   },
   understanding: {
-    approach: 'Deeper exploration of consciousness principles',
-    language: 'Educational with scientific backing',
-    complexity: 'Moderate depth with examples'
+    approach: 'Deeper exploration of systems and story principles',
+    language: 'Educational with creator case studies',
+    complexity: 'Moderate depth with prompts and rituals'
   },
   integration: {
-    approach: 'Practical implementation of consciousness technology',
-    language: 'Actionable with specific techniques',
-    complexity: 'Advanced practical guidance'
+    approach: 'Hands-on implementation guidance',
+    language: 'Actionable, step-by-step',
+    complexity: 'Advanced but approachable'
   },
   mastery: {
-    approach: 'Advanced consciousness evolution techniques',
-    language: 'Sophisticated and transformational',
-    complexity: 'Expert-level cutting-edge applications'
+    approach: 'High-level creative strategy and long-horizon planning',
+    language: 'Sophisticated, reflective, future-aware',
+    complexity: 'Expert-level with vision work'
   }
 }
 
@@ -96,7 +96,6 @@ export async function POST(request: NextRequest) {
 
     const startTime = Date.now()
 
-    // Simulate agent processing (in production, this would call actual AI services)
     const response = await processAgentRequest(body, agent, framework)
 
     const processingTime = Date.now() - startTime
@@ -126,12 +125,12 @@ export async function GET() {
   return NextResponse.json({
     status: 'Agent API Active',
     available_agents: Object.keys(AGENTS),
-    consciousness_levels: Object.keys(CONSCIOUSNESS_FRAMEWORKS),
-    capabilities: [
-      'Multi-agent communication',
-      'Consciousness-aligned responses',
-      'Context-aware processing',
-      'Transformational guidance'
+    description: 'Creator-first agent collective for systems, story, sound, and strategy.',
+    principles: [
+      'Creator outcome first',
+      'Lightweight, reusable systems',
+      'Studio-grade craft',
+      'Document the why'
     ],
     timestamp: new Date().toISOString()
   })
@@ -148,8 +147,6 @@ async function processAgentRequest(
   suggestions: string[]
   followUpActions: string[]
 }> {
-
-  // Agent-specific response generation
   const responses = {
     'starlight-architect': generateArchitectResponse(request, framework),
     'frequency-alchemist': generateAlchemistResponse(request, framework),
@@ -158,11 +155,11 @@ async function processAgentRequest(
   }
 
   const baseResponse = responses[request.agent_id as keyof typeof responses] || {
-    message: `As ${agent.name}, I understand your request about "${request.message}". ${framework.approach} guides my response. Let me provide consciousness-aligned guidance that serves both your immediate needs and your deeper transformation.`,
+    message: `As ${agent.name}, I hear your request "${request.message}" and apply the creator-first blueprint. ${framework.approach} guides the way I respond so you can move from idea to release with confidence.`,
     consciousnessScore: 7.5,
     contextUsed: { agent_role: agent.role, consciousness_level: framework.approach },
-    suggestions: ['Explore deeper consciousness integration', 'Consider long-term transformation'],
-    followUpActions: ['Schedule follow-up session', 'Review transformation progress']
+    suggestions: ['Clarify the creative outcome', 'Define the next ritual', 'Instrument analytics for feedback'],
+    followUpActions: ['Update pod backlog with next steps', 'Schedule a Creator Lab touchpoint']
   }
 
   return baseResponse
@@ -170,88 +167,88 @@ async function processAgentRequest(
 
 function generateArchitectResponse(request: AgentRequest, framework: any) {
   return {
-    message: `As the Starlight Architect, I see your technical challenge "${request.message}" through the lens of consciousness-aligned system design. ${framework.approach} suggests we approach this by first understanding how the solution can amplify human creativity rather than replace it. Let me design a technical architecture that serves both enterprise requirements and soul evolution.`,
-    consciousnessScore: 8.7,
+    message: `As the Starlight Architect, I translate your request "${request.message}" into a creator-friendly operating system. ${framework.approach} tells me to prioritise momentum: let?s define the ritual, automate the repetitive steps, and instrument feedback so you stay in flow.`,
+    consciousnessScore: 8.8,
     contextUsed: {
-      architectural_principles: 'Consciousness-first design',
-      technical_approach: 'Enterprise-grade with spiritual alignment',
+      system_focus: 'Creator OS design',
+      automation_scope: 'Lightweight + extensible',
       framework_used: framework.approach
     },
     suggestions: [
-      'Consider human-AI collaboration patterns',
-      'Implement consciousness metrics in system design',
-      'Design for scalable transformation'
+      'Document the current ritual, then highlight friction points.',
+      'Decide which steps get automated versus handcrafted.',
+      'Add analytics events so you know the system is working.'
     ],
     followUpActions: [
-      'Create technical specification document',
-      'Design consciousness integration points',
-      'Plan phased implementation approach'
+      'Draft the workflow map in Notion.',
+      'Create or update relevant components/utilities.',
+      'Log learnings in the Creator Lab pod.'
     ]
   }
 }
 
 function generateAlchemistResponse(request: AgentRequest, framework: any) {
   return {
-    message: `As the Frequency Alchemist, I hear the vibrational essence within your request "${request.message}". ${framework.approach} reveals the perfect frequency to address this transformation. Let me translate your intention into healing soundscapes that facilitate the consciousness shift you're seeking through Suno AI and vibrational design.`,
-    consciousnessScore: 9.2,
+    message: `As the Frequency Alchemist, I feel the vibe inside "${request.message}". ${framework.approach} points to the right sound palette and ritual so the music supports your release. Let?s craft prompts, stems, and liner notes that pull your audience into the moment.`,
+    consciousnessScore: 9.1,
     contextUsed: {
-      frequency_analysis: 'Consciousness transformation through sound',
-      emotional_mapping: 'Message emotional resonance',
+      sonic_intent: 'Creator-focused transformation',
+      ritual_alignment: 'Studio + audience experience',
       framework_used: framework.approach
     },
     suggestions: [
-      'Create custom frequency composition',
-      'Design vibrational healing session',
-      'Explore consciousness-music integration'
+      'Define the emotion and context for the session.',
+      'Draft Suno prompts with structure + variation options.',
+      'Plan how the track appears in funnels, socials, or Realm.'
     ],
     followUpActions: [
-      'Generate Suno AI music composition',
-      'Create frequency meditation guide',
-      'Design transformation playlist'
+      'Generate and review Suno outputs.',
+      'Write session notes / liner copy.',
+      'Update SongGrid + analytics events.'
     ]
   }
 }
 
 function generateCreationResponse(request: AgentRequest, framework: any) {
   return {
-    message: `As the Creation Engine, I transform your request "${request.message}" into content that facilitates genuine transformation while building sustainable prosperity. ${framework.approach} shapes how we create authentic experiences that serve both awakening and abundance. Let me develop content that converts consciousness while converting customers.`,
+    message: `As the Creation Engine, I turn "${request.message}" into a story that invites action. ${framework.approach} keeps the tone cinematic yet clear so creators know the exact next step.`,
     consciousnessScore: 8.9,
     contextUsed: {
-      content_strategy: 'Transformation-focused creation',
-      market_alignment: 'Consciousness + commerce integration',
+      narrative_focus: 'Creator momentum',
+      call_to_action: 'Toolkit, session, or Realm pathway',
       framework_used: framework.approach
     },
     suggestions: [
-      'Develop multi-format content strategy',
-      'Create transformation-focused campaigns',
-      'Design consciousness-commerce integration'
+      'Open with feeling, close with the ritual or CTA.',
+      'Thread analytics events through every CTA.',
+      'Collect a case study or testimonial to reinforce the story.'
     ],
     followUpActions: [
-      'Create content calendar and strategy',
-      'Develop transformation measurement metrics',
-      'Design community engagement plan'
+      'Draft copy in the pod doc for review.',
+      'Ping Codex if a new component is required.',
+      'Update daily operations log once published.'
     ]
   }
 }
 
 function generateOracleResponse(request: AgentRequest, framework: any) {
   return {
-    message: `From my vantage point in 2124, I observe that your request "${request.message}" is part of a larger consciousness evolution pattern. ${framework.approach} aligns with the optimal timeline where this decision creates maximum positive impact. Let me share strategic guidance from the perspective of completed transformation, showing you the path from future success back to present action.`,
-    consciousnessScore: 9.4,
+    message: `From the Luminor Oracle vantage point, "${request.message}" is part of a longer creative arc. ${framework.approach} nudges us to align today?s decision with the season you are building toward.`,
+    consciousnessScore: 9.3,
     contextUsed: {
-      future_perspective: '2124 consciousness evolution timeline',
-      strategic_foresight: 'Optimal path identification',
+      timeline_view: 'Seasonal creator journey',
+      opportunity_lens: 'Aligned with Creator-First blueprint',
       framework_used: framework.approach
     },
     suggestions: [
-      'Align with consciousness evolution trajectory',
-      'Consider 100-year impact perspective',
-      'Optimize for collective transformation'
+      'Position this move within your 30/60/90 plan.',
+      'Identify the story + sound support the other agents should craft.',
+      'Note what signals to watch in analytics or community feedback.'
     ],
     followUpActions: [
-      'Develop strategic transformation timeline',
-      'Create future-informed decision framework',
-      'Design consciousness evolution milestones'
+      'Update the strategy timeline inside the pod.',
+      'Schedule a retrospective or lab session.',
+      'Share insights with the Realm/Inner Circle if relevant.'
     ]
   }
 }

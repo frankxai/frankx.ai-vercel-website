@@ -17,9 +17,10 @@ function isExternal(href: string) {
 
 export default function OfferStack({ productId, offer, modules, bonuses, pricingTiers }: OfferStackProps) {
   const handleClick = (target: 'primary' | 'secondary' | string, href: string, label?: string) => {
-    trackEvent('product_cta_click', {
+    trackEvent('creator_funnel_step', {
       productId,
       location: 'offer',
+      step: 'offer',
       target,
       href,
       label: label ?? href
@@ -107,7 +108,7 @@ export default function OfferStack({ productId, offer, modules, bonuses, pricing
                 {isExternal(offer.ctaSecondaryHref) ? (
                   <a
                     href={offer.ctaSecondaryHref}
-                    onClick={() => handleClick('secondary', offer.ctaSecondaryHref, offer.ctaSecondaryTracking)}
+                    onClick={() => handleClick('secondary', offer.ctaSecondaryHref!, offer.ctaSecondaryTracking)}
                     className="underline-offset-4 hover:underline"
                     target={offer.ctaSecondaryHref.startsWith('http') ? '_blank' : undefined}
                     rel={offer.ctaSecondaryHref.startsWith('http') ? 'noreferrer' : undefined}
@@ -117,7 +118,7 @@ export default function OfferStack({ productId, offer, modules, bonuses, pricing
                 ) : (
                   <Link
                     href={offer.ctaSecondaryHref}
-                    onClick={() => handleClick('secondary', offer.ctaSecondaryHref, offer.ctaSecondaryTracking)}
+                    onClick={() => handleClick('secondary', offer.ctaSecondaryHref!, offer.ctaSecondaryTracking)}
                     className="underline-offset-4 hover:underline"
                   >
                     {offer.ctaSecondary}

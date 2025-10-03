@@ -128,7 +128,7 @@ export default function HomePage() {
                 </StaggerItem>
                 <StaggerItem>
                   <div className="flex items-center justify-center gap-8 pt-8 text-sm text-white/60">
-                    <span>Trusted by creators and enterprises</span>
+                    <span>Trusted by creators and collaborators</span>
                     <div className="flex items-center gap-6">
                       <div className="flex items-center gap-2">
                         <div className="w-2 h-2 rounded-full bg-green-400"></div>
@@ -136,7 +136,7 @@ export default function HomePage() {
                       </div>
                       <div className="flex items-center gap-2">
                         <div className="w-2 h-2 rounded-full bg-cyan-400"></div>
-                        <span>200+ Enterprise systems</span>
+                        <span>300+ Creator systems</span>
                       </div>
                     </div>
                   </div>
@@ -283,7 +283,7 @@ export default function HomePage() {
               transition={{ duration: 0.35 }}
             >
               <div className="text-xs font-semibold uppercase tracking-[0.35em] text-white/60">
-                Volume I — Architecting the Agentic Era
+                Volume I ??? Architecting the Agentic Era
               </div>
               <h3 className="mt-4 text-3xl font-semibold text-white">
                 Go inside the flagship report fueling the atlas.
@@ -743,5 +743,6 @@ export default function HomePage() {
     </main>
   )
 }
+
 
 

@@ -15,7 +15,7 @@ const featuredSongs = [
     duration: "8:00",
     intention: "Deep work and cognitive optimization",
     color: "from-purple-500 to-blue-500",
-    sunoUrl: "https://suno.com/@frankx/conscious-flow-state"
+    sunoUrl: "https://suno.com/@frankx"
   },
   {
     id: 2,
@@ -25,7 +25,7 @@ const featuredSongs = [
     duration: "6:12",
     intention: "Mindful technology integration",
     color: "from-cyan-500 to-teal-500",
-    sunoUrl: "https://suno.com/@frankx/algorithm-awakening"
+    sunoUrl: "https://suno.com/@frankx"
   },
   {
     id: 3,
@@ -35,7 +35,7 @@ const featuredSongs = [
     duration: "7:33",
     intention: "Creative breakthrough and innovation",
     color: "from-pink-500 to-rose-500",
-    sunoUrl: "https://suno.com/@frankx/neural-symphony"
+    sunoUrl: "https://suno.com/@frankx"
   },
   {
     id: 4,
@@ -45,7 +45,7 @@ const featuredSongs = [
     duration: "9:18",
     intention: "Digital detox and nervous system reset",
     color: "from-emerald-500 to-green-500",
-    sunoUrl: "https://suno.com/@frankx/digital-serenity"
+    sunoUrl: "https://suno.com/@frankx"
   },
   {
     id: 5,
@@ -54,7 +54,8 @@ const featuredSongs = [
     genre: "Success Activation",
     duration: "8:44",
     intention: "Facilitating consciousness expansion",
-    color: "from-purple-500 to-indigo-500"
+    color: "from-purple-500 to-indigo-500",
+    sunoUrl: "https://suno.com/@frankx"
   },
   {
     id: 500,
@@ -63,7 +64,8 @@ const featuredSongs = [
     genre: "Uplifting Electronic",
     duration: "4:56",
     intention: "Celebrating human-AI collaboration",
-    color: "from-pink-500 to-rose-500"
+    color: "from-pink-500 to-rose-500",
+    sunoUrl: "https://suno.com/@frankx"
   }
 ]
 
@@ -71,42 +73,42 @@ const musicCategories = [
   {
     title: "Healing & Transformation",
     description: "Music designed to facilitate emotional processing and personal growth",
-    songCount: 89,
+    songCount: "80+",
     icon: Heart,
     color: "from-red-500 to-pink-500"
   },
   {
     title: "Focus & Flow States",
     description: "Instrumental pieces that enhance creativity and concentration",
-    songCount: 67,
+    songCount: "60+",
     icon: Sparkles,
     color: "from-blue-500 to-indigo-500"
   },
   {
     title: "Meditation & Mindfulness",
     description: "Ambient soundscapes for contemplation and inner peace",
-    songCount: 92,
+    songCount: "90+",
     icon: Volume2,
     color: "from-green-500 to-emerald-500"
   },
   {
     title: "Frequency Healing",
     description: "Songs tuned to specific healing frequencies (432Hz, 528Hz, etc.)",
-    songCount: 34,
+    songCount: "30+",
     icon: Music,
     color: "from-purple-500 to-pink-500"
   },
   {
-    title: "Life Transitions", 
+    title: "Life Transitions",
     description: "Music for major life changes, celebrations, and milestones",
-    songCount: 78,
+    songCount: "70+",
     icon: Calendar,
     color: "from-orange-500 to-red-500"
   },
   {
     title: "Inspiration & Motivation",
     description: "Empowering anthems for breakthrough moments and bold action",
-    songCount: 112,
+    songCount: "100+",
     icon: ArrowRight,
     color: "from-yellow-500 to-orange-500"
   }
@@ -205,15 +207,17 @@ export default function MusicLabPage() {
                   <div className="text-sm text-gray-300">{song.intention}</div>
                 </div>
                 
-                <a
-                  href={song.sunoUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full flex items-center justify-center px-4 py-2 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 rounded-lg transition-all shadow-lg hover:shadow-purple-500/25 group"
-                >
-                  <Play className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform" />
-                  Listen on Suno
-                </a>
+                {song.sunoUrl && (
+                  <a
+                    href={song.sunoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full flex items-center justify-center px-4 py-2 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 rounded-lg transition-all shadow-lg hover:shadow-purple-500/25 group"
+                  >
+                    <Music className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform" />
+                    View All on Suno →
+                  </a>
+                )}
               </motion.div>
             ))}
           </div>

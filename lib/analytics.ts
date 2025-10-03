@@ -106,7 +106,7 @@ function getSnapshot() {
 }
 
 export function useFunnelMetrics(eventsOfInterest: string[]) {
-  return useSyncExternalStore(subscribe, () => {
+  const getMetricsSnapshot = () => {
     const counts = new Map<string, number>()
     for (const event of eventBuffer) {
       if (eventsOfInterest.includes(event.name)) {
@@ -117,7 +117,9 @@ export function useFunnelMetrics(eventsOfInterest: string[]) {
       event: eventName,
       count: counts.get(eventName) ?? 0
     }))
-  }, getSnapshot)
+  }
+
+  return useSyncExternalStore(subscribe, getMetricsSnapshot, getMetricsSnapshot)
 }
 
 export type FunnelMetric = {

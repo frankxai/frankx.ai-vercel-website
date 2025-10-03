@@ -17,9 +17,10 @@ function isExternal(href: string) {
 
 export default function FinalCTA({ productId, title, description, primaryLabel, primaryHref, primaryTracking }: FinalCTAProps) {
   const handleClick = () => {
-    trackEvent('product_cta_click', {
+    trackEvent('creator_funnel_step', {
       productId,
       location: 'final',
+      step: 'final',
       target: 'primary',
       href: primaryHref,
       label: primaryTracking ?? primaryLabel
@@ -54,3 +55,4 @@ export default function FinalCTA({ productId, title, description, primaryLabel, 
     </section>
   )
 }
+

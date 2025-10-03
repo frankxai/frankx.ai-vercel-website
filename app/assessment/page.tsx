@@ -63,26 +63,22 @@ const benefits = [
   {
     icon: Target,
     title: 'Clear Strategic Direction',
-    description: 'Get specific, actionable recommendations tailored to your organization\'s unique context and goals.',
-    stat: '95% of users report clearer AI strategy after assessment'
+    description: 'Get specific, actionable recommendations tailored to your organization\'s unique context and goals.'
   },
   {
     icon: Clock,
     title: 'Accelerated Implementation',
-    description: 'Avoid common pitfalls and accelerate your AI journey with proven frameworks and best practices.',
-    stat: '3x faster implementation with assessment-guided approach'
+    description: 'Avoid common pitfalls and accelerate your AI journey with proven frameworks and best practices.'
   },
   {
     icon: CheckCircle2,
     title: 'Risk Mitigation',
-    description: 'Identify potential challenges early and develop proactive mitigation strategies.',
-    stat: '80% reduction in AI project risks with proper assessment'
+    description: 'Identify potential challenges early and develop proactive mitigation strategies.'
   },
   {
     icon: Zap,
     title: 'Optimized Resource Allocation',
-    description: 'Focus your time, budget, and team efforts on the highest-impact AI initiatives.',
-    stat: '2x better ROI with strategic assessment guidance'
+    description: 'Focus your time, budget, and team efforts on the highest-impact AI initiatives.'
   }
 ]
 
@@ -113,29 +109,7 @@ const process = [
   }
 ]
 
-const testimonials = [
-  {
-    name: 'Sarah Chen',
-    role: 'CTO, TechVenture Inc.',
-    company: 'Series B Startup',
-    quote: 'The AI readiness assessment gave us the clarity we needed to prioritize our AI investments. Instead of trying everything, we focused on high-impact areas and saw 200% ROI in the first quarter.',
-    assessment: 'AI Readiness Assessment'
-  },
-  {
-    name: 'Michael Rodriguez',
-    role: 'Chief Strategy Officer',
-    company: 'Fortune 500 Manufacturing',
-    quote: 'The advanced assessment helped us identify hidden risks in our AI strategy that could have cost millions. The detailed implementation roadmap saved us at least 18 months of trial and error.',
-    assessment: 'Advanced Strategic Assessment'
-  },
-  {
-    name: 'Emma Thompson',
-    role: 'Creative Director',
-    company: 'Digital Marketing Agency',
-    quote: 'As a creative agency, we needed AI guidance that understood our unique challenges. The creative assessment provided actionable strategies that tripled our content output while maintaining quality.',
-    assessment: 'Creative AI Assessment'
-  }
-]
+// Testimonials will be added as real user feedback is collected
 
 export const metadata = createMetadata({
   title: 'AI Assessment Center - Evaluate Your AI Readiness | FrankX.AI',
@@ -194,10 +168,7 @@ export default function AssessmentPage() {
                   <benefit.icon className="w-6 h-6 text-cyan-400" />
                 </div>
                 <h3 className="text-lg font-semibold text-white mb-3">{benefit.title}</h3>
-                <p className="text-white/70 text-sm mb-4 leading-relaxed">{benefit.description}</p>
-                <div className="text-xs text-emerald-300 font-semibold bg-emerald-500/10 rounded-full px-3 py-1">
-                  {benefit.stat}
-                </div>
+                <p className="text-white/70 text-sm leading-relaxed">{benefit.description}</p>
               </article>
             ))}
           </section>
@@ -324,42 +295,7 @@ export default function AssessmentPage() {
             </div>
           </section>
 
-          {/* Testimonials */}
-          <section className="space-y-12">
-            <div className="text-center space-y-4">
-              <h2 className="text-4xl font-bold text-white">Success Stories</h2>
-              <p className="text-xl text-white/70 max-w-3xl mx-auto">
-                See how organizations have used our assessments to guide successful AI transformations.
-              </p>
-            </div>
-
-            <div className="grid gap-8 lg:grid-cols-3">
-              {testimonials.map((testimonial, index) => (
-                <article key={index} className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur">
-                  <div className="mb-6">
-                    <div className="flex items-center gap-3 mb-4">
-                      <div className="w-12 h-12 rounded-full bg-gradient-to-br from-cyan-500/20 to-blue-500/20 flex items-center justify-center">
-                        <Users className="w-6 h-6 text-cyan-400" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-white">{testimonial.name}</h3>
-                        <p className="text-white/60 text-sm">{testimonial.role}</p>
-                      </div>
-                    </div>
-                    <div className="text-cyan-300 text-sm mb-4">{testimonial.company}</div>
-                  </div>
-
-                  <blockquote className="text-white/80 mb-6 leading-relaxed">
-                    "{testimonial.quote}"
-                  </blockquote>
-
-                  <div className="text-xs text-purple-300 bg-purple-500/10 rounded-full px-3 py-1 inline-block">
-                    {testimonial.assessment}
-                  </div>
-                </article>
-              ))}
-            </div>
-          </section>
+          {/* Testimonials section removed - will be added when real user feedback is collected */}
 
           {/* CTA Section */}
           <section className="text-center space-y-8 py-16 px-8 rounded-4xl border border-white/10 bg-gradient-to-br from-cyan-500/5 via-slate-900 to-slate-950">

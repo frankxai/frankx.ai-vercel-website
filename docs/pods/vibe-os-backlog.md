@@ -20,3 +20,4 @@
 ## Metrics Deep Dive
 - Track funnel: page view -> waitlist -> purchase; update Wednesday before Atlas Sync.
 
+

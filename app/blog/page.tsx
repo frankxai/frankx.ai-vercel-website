@@ -11,42 +11,36 @@ import EmailCaptureForm from '@/components/funnels/EmailCaptureForm'
 
 const editorialCadence = [
   {
-    title: 'Monday - Signal Scan',
-    description:
-      'Enterprise intelligence briefings with distilled talking points you can take into teams the same day.',
+    title: 'Monday - Creator Systems Lab',
+    description: 'Blueprints, workflow breakdowns, and automation rituals to keep your creative practice shipping.'
   },
   {
-    title: 'Wednesday - Creative Lab',
-    description:
-      'Suno-powered music systems, voice design experiments, and rituals for staying in flow as automation scales.',
+    title: 'Wednesday - Vibe Sessions',
+    description: 'Fresh Suno prompts, sound design experiments, and behind-the-scenes notes from the FrankX studio.'
   },
   {
-    title: 'Friday - Community Dispatch',
-    description:
-      'Case studies, family workshops, and playbooks for the people building with you: executives, creatives, and kin.',
-  },
+    title: 'Friday - Creation Chronicles',
+    description: 'Stories, mindset riffs, and Golden Age dispatches to refuel your next drop.'
+  }
 ]
 
 const seoSpotlights = [
   {
-    title: 'Creative AI Strategy',
-    description:
-      'How to architect soul-aligned intelligence in the enterprise without losing velocity or trust.',
+    title: 'Creator Operating Systems',
+    description: 'Case studies and frameworks for designing your own Creator Lab OS.'
   },
   {
-    title: 'Creative Frequency',
-    description:
-      'Frameworks for amplifying your voice with AI, from studio rituals to shipping music with Suno.',
+    title: 'AI Music Rituals',
+    description: 'Session prompts and performance breakdowns from the Vibe OS catalog.'
   },
   {
-    title: 'Family & Society',
-    description:
-      'Guides that translate complex AI shifts for families, classrooms, and the circles you protect.',
-  },
+    title: 'Storyworld Craft',
+    description: 'Narrative arcs, launch playbooks, and community moves for modern creators.'
+  }
 ]
 
 export const metadata = createMetadata({
-  title: 'FrankX Journal - Creative AI & Intelligence Drops',
+  title: 'FrankX Journal - Creator Intelligence Dispatch',
   description:
     'Explore the FrankX Journal for long-form insights on conscious AI architecture, Suno-powered creativity, and intelligence rituals for families, founders, and executives.',
   keywords: [
@@ -368,7 +362,7 @@ export default async function BlogPage({
                 ))}
               </ul>
               <p className="text-sm text-white/70">
-                Every editorial layer mirrors the search behavior of creative technologists, Oracle leaders, and families.
+                Every editorial layer mirrors the questions creators ask while building their studio, releasing music, and nurturing community.
               </p>
             </div>
 
@@ -398,3 +392,6 @@ export default async function BlogPage({
     </div>
   )
 }
+
+
+

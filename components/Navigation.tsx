@@ -17,33 +17,27 @@ type NavItem = {
 }
 
 const navItems: NavItem[] = [
-  { name: 'Home', href: '/' },
   {
     name: 'Products',
     href: '/products',
     subItems: [
       { name: 'All Products', href: '/products' },
-      { name: 'Agentic Creator OS', href: '/products/agentic-creator-os' },
-      { name: 'Generative Creator OS', href: '/products/generative-creator-os' },
       { name: 'Vibe OS', href: '/products/vibe-os' },
+      { name: 'Creative AI Toolkit', href: '/products/creative-ai-toolkit' },
+      { name: 'Creator OS', href: '/products/agentic-creator-os' },
+    ],
+  },
+  {
+    name: 'Resources',
+    href: '/resources',
+    subItems: [
+      { name: 'Blog & Articles', href: '/blog' },
+      { name: 'Templates & Prompts', href: '/resources/templates' },
       { name: 'Music Lab', href: '/music-lab' },
     ],
   },
-  { name: 'Realm', href: '/realm' },
-  { name: 'Blog', href: '/blog' },
-  {
-    name: 'Intelligence',
-    href: '/intelligence-atlas',
-    subItems: [
-      { name: 'Intelligence Atlas', href: '/intelligence-atlas' },
-      { name: 'Agent Collective', href: '/agents' },
-      { name: 'Creation Chronicles', href: '/creation-chronicles' },
-      { name: 'Intelligence Arsenal', href: '/resources' },
-      { name: 'Templates', href: '/resources/templates' },
-      { name: 'Search', href: '/search' },
-      { name: 'Roadmap', href: '/roadmap' },
-    ],
-  },
+  { name: 'Team', href: '/team' },
+  { name: 'Community', href: '/realm' },
   { name: 'About', href: '/about' },
 ]
 
@@ -154,20 +148,20 @@ export default function Navigation() {
                 Get Started
               </Link>
               <Link
-                href="/products"
+                href="/assessment"
                 className="px-6 py-2.5 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white text-sm font-semibold rounded-lg transition-all duration-300 shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:shadow-[0_0_30px_rgba(6,182,212,0.4)] hover:-translate-y-0.5"
               >
-                Explore Products
+                Take Assessment
               </Link>
             </div>
           </div>
 
           <div className="lg:hidden flex items-center space-x-3">
             <Link
-              href="/products"
+              href="/assessment"
               className="px-4 py-2 bg-gradient-to-r from-cyan-500 to-blue-600 text-white text-sm font-semibold rounded-lg transition-all duration-300"
             >
-              Products
+              Assessment
             </Link>
             <button
               onClick={() => setIsOpen((prev) => !prev)}
@@ -232,3 +226,4 @@ export default function Navigation() {
     </nav>
   )
 }
+

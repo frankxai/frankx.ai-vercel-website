@@ -128,7 +128,7 @@ export async function GET() {
     },
     consciousness_frequencies: Object.keys(CONSCIOUSNESS_FREQUENCIES).map(freq => ({
       frequency: freq,
-      ...CONSCIOUSNESS_FREQUENCIES[freq as any]
+      ...CONSCIOUSNESS_FREQUENCIES[Number(freq) as keyof typeof CONSCIOUSNESS_FREQUENCIES]
     })),
     music_categories: Object.keys(MUSIC_TEMPLATES),
     timestamp: new Date().toISOString()
@@ -162,7 +162,7 @@ async function handleMusicGeneration(request: MusicRequest): Promise<NextRespons
     frequency_analysis: {
       primary_frequency: frequency,
       binaural_beats: frequency < 100 ? frequency : undefined,
-      consciousness_effect: CONSCIOUSNESS_FREQUENCIES[frequency]?.effect || 'Consciousness enhancement'
+      consciousness_effect: CONSCIOUSNESS_FREQUENCIES[frequency as keyof typeof CONSCIOUSNESS_FREQUENCIES]?.effect || 'Consciousness enhancement'
     },
     metadata: {
       duration,
@@ -250,7 +250,7 @@ function generateSunoPrompt(params: any): string {
     transformation: `transformational ambient, ${params.bpm} bpm, ${params.frequency}Hz consciousness expansion, spiritual awakening, profound change, transcendent journey`
   }
 
-  let prompt = basePrompts[params.consciousness_level] || basePrompts.focus
+  let prompt = basePrompts[params.consciousness_level as keyof typeof basePrompts] || basePrompts.focus
 
   if (params.genre) {
     prompt = `${params.genre} style, ${prompt}`
@@ -280,7 +280,7 @@ function generateMusicTitle(consciousnessLevel: string, frequency: number): stri
 }
 
 function generateMusicDescription(consciousnessLevel: string, frequency: number, bpm: number): string {
-  const freqInfo = CONSCIOUSNESS_FREQUENCIES[frequency]
+  const freqInfo = CONSCIOUSNESS_FREQUENCIES[frequency as keyof typeof CONSCIOUSNESS_FREQUENCIES]
   return `Consciousness-aligned music designed for ${consciousnessLevel} at ${frequency}Hz. ${freqInfo?.effect || 'Enhances awareness'} through carefully crafted ${bpm} BPM rhythms that synchronize with natural brain states.`
 }
 
@@ -296,7 +296,7 @@ function generateOptimalKey(frequency: number): string {
     963: 'B Major'
   }
 
-  return keyMappings[frequency] || 'C Major'
+  return keyMappings[frequency as keyof typeof keyMappings] || 'C Major'
 }
 
 function calculateConsciousnessMetrics(consciousnessLevel: string, frequency: number) {
@@ -310,7 +310,7 @@ function calculateConsciousnessMetrics(consciousnessLevel: string, frequency: nu
   const metrics = baseMetrics[consciousnessLevel as keyof typeof baseMetrics] || baseMetrics.focus
 
   // Adjust based on frequency
-  const freqBonus = CONSCIOUSNESS_FREQUENCIES[frequency] ? 0.5 : 0
+  const freqBonus = CONSCIOUSNESS_FREQUENCIES[frequency as keyof typeof CONSCIOUSNESS_FREQUENCIES] ? 0.5 : 0
 
   return {
     transformation_potential: Math.min(10, metrics.transformation_potential + freqBonus),

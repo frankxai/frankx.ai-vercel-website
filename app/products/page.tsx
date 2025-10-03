@@ -11,13 +11,6 @@ import { getProductCards } from '@/lib/products'
 
 const productCards = getProductCards()
 
-const stats = [
-  { number: '10,000+', label: 'Creators Transformed' },
-  { number: '500K+', label: 'Hours Saved' },
-  { number: '94%', label: 'Success Rate' },
-  { number: '4.9/5', label: 'Average Rating' }
-]
-
 export default function ProductsPage() {
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100">
@@ -47,24 +40,10 @@ export default function ProductsPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="mx-auto mb-12 max-w-4xl text-xl leading-relaxed text-slate-300 sm:text-2xl"
+              className="mx-auto mb-16 max-w-4xl text-xl leading-relaxed text-slate-300 sm:text-2xl"
             >
               Transform your reality with operating systems designed by the FrankX.ai agent collective. Every product is multi-agent validated and wired for measurable outcomes.
             </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="mb-16 grid grid-cols-2 gap-8 lg:grid-cols-4"
-            >
-              {stats.map((stat) => (
-                <div key={stat.label} className="text-center">
-                  <div className="mb-2 text-3xl font-bold text-purple-300 lg:text-4xl">{stat.number}</div>
-                  <div className="text-sm text-slate-400">{stat.label}</div>
-                </div>
-              ))}
-            </motion.div>
           </div>
 
           <div className="grid gap-8 lg:grid-cols-3">

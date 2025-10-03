@@ -1,7 +1,8 @@
 import Link from 'next/link'
 
 import songs from '@/data/songs.json'
-import SongGrid, { SongRecord } from '@/components/music/SongGrid'
+import SongGrid from '@/components/music/SongGrid'
+import { SongRecord } from '@/components/music/SongCard'
 import { createMetadata } from '@/lib/seo'
 
 const songRecords = songs as SongRecord[]

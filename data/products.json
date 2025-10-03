@@ -18,34 +18,15 @@
     "socialProof": {
       "stats": [
         {
-          "number": "10,000+",
-          "label": "Creators Transformed"
+          "number": "100+",
+          "label": "Early Adopters"
         },
         {
-          "number": "500,000+",
-          "label": "Hours Saved"
-        },
-        {
-          "number": "94%",
-          "label": "Report Breakthroughs"
-        },
-        {
-          "number": "4.9/5",
-          "label": "Rating"
+          "number": "500+",
+          "label": "Suno Sessions Created"
         }
       ],
-      "quotes": [
-        {
-          "quote": "This toolkit eliminated my AI overwhelm. The agent team approach means I'm drawing on multiple expert perspectives, not just one playbook.",
-          "author": "Sarah Chen",
-          "role": "Digital Marketing Director"
-        },
-        {
-          "quote": "The prompt library alone freed 20 hours a week. The real magic is the operating system that shows you exactly how to use it.",
-          "author": "Marcus Rodriguez",
-          "role": "Solo Entrepreneur"
-        }
-      ]
+      "quotes": []
     },
     "offer": {
       "primaryPrice": 47,
@@ -110,37 +91,7 @@
         "answer": "Most members report tangible improvements within one week using the quick-start rituals and daily momentum prompts."
       }
     ],
-    "analyticsId": "creative-ai-toolkit",
-    "caseStudies": [
-      {
-        "title": "Studio Relaunch in 30 Days",
-        "metric": "6 client campaigns shipped",
-        "description": "Sarah Chen rebuilt her boutique content studio using the toolkit rituals and automated briefing loops to deliver six AI-assisted launches in one month.",
-        "quote": "The toolkit gave us a shared language with the agents. We now scope, brief, and deliver in half the time without losing creative soul.",
-        "author": "Sarah Chen",
-        "role": "Founder, Lumen Stories",
-        "ctaLabel": "See the workflow map",
-        "ctaHref": "/creation-chronicles"
-      },
-      {
-        "title": "Email List Revival",
-        "metric": "+38% open rate",
-        "description": "Marcus Rodriguez used the automation playbooks to rebuild his welcome sequence and introduce the Realm teaser without burning out.",
-        "quote": "The Day 0 to Day 7 plan kept my launch tight. The prompts even dictated exactly how to brief my human copywriter.",
-        "author": "Marcus Rodriguez",
-        "role": "Solo Entrepreneur",
-        "ctaLabel": "Download the prompt stack",
-        "ctaHref": "/resources"
-      },
-      {
-        "title": "In-House Media Team Enablement",
-        "metric": "20 hours saved per producer",
-        "description": "A hybrid media team adapted the multi-agent playbooks to their Notion HQ and now runs weekly AI-guided editorial sprints.",
-        "quote": "Our editors finally trust the AI because the guardrails are baked in. The agent desk answers feel like a creative director on call.",
-        "author": "Jamal Price",
-        "role": "Director of Content, Northstar Labs"
-      }
-    ]
+    "analyticsId": "creative-ai-toolkit"
   },
   {
     "id": "vibe-os",
@@ -161,34 +112,15 @@
     "socialProof": {
       "stats": [
         {
-          "number": "3,000+",
-          "label": "Musicians Activated"
+          "number": "500+",
+          "label": "Suno Sessions by Frank"
         },
         {
-          "number": "15,000+",
-          "label": "Tracks Shipped"
-        },
-        {
-          "number": "92%",
-          "label": "Hit Creative Breakthrough"
-        },
-        {
-          "number": "4.8/5",
-          "label": "Experience Rating"
+          "number": "Beta",
+          "label": "Early Access Available"
         }
       ],
-      "quotes": [
-        {
-          "quote": "This toolkit transformed my production workflow. I went from sketching ideas to delivering full tracks in record time.",
-          "author": "Alex Rivera",
-          "role": "Music Producer"
-        },
-        {
-          "quote": "The emotion mapping and business playbooks helped me launch a licensing offer within two weeks.",
-          "author": "Maya Chen",
-          "role": "Content Creator"
-        }
-      ]
+      "quotes": []
     },
     "offer": {
       "primaryPrice": 37,
@@ -275,30 +207,15 @@
     "socialProof": {
       "stats": [
         {
-          "number": "340%",
-          "label": "Increase in Brand Mentions"
+          "number": "New",
+          "label": "Storytelling System"
         },
         {
-          "number": "200%",
-          "label": "Lift in Qualified Leads"
-        },
-        {
-          "number": "5x",
-          "label": "Faster Content Velocity"
+          "number": "Beta",
+          "label": "Join Early Creators"
         }
       ],
-      "quotes": [
-        {
-          "quote": "Creation Chronicles gave our team a shared language for storytelling. We publish more, with higher quality, and finally see narrative tied to revenue.",
-          "author": "Lena Ortiz",
-          "role": "VP Marketing, Growth Loop"
-        },
-        {
-          "quote": "The combination of AI workflows and human editorial rituals helped us build an engaged newsletter in six weeks.",
-          "author": "David Kim",
-          "role": "Founder, StoryCycle"
-        }
-      ]
+      "quotes": []
     },
     "offer": {
       "primaryPrice": 497,
@@ -410,130 +327,119 @@
   {
     "id": "generative-creator-os",
     "slug": "generative-creator-os",
-    "name": "Generative Creator OS",
-    "category": "Creative Intelligence",
-    "badge": "PLATFORM PLAY",
-    "headline": "Scale Creative Output with Generative AI",
-    "subheadline": "The complete operating system for AI-enhanced creative workflows across video, audio, imagery, and writing.",
-    "promise": "Deploy an AI-assisted studio that increases creative throughput, maintains brand integrity, and shortens production cycles.",
-    "summary": "Consulting and system buildout for multi-modal generative content teams.",
+    "name": "Creator Studio OS",
+    "category": "Creator Systems",
+    "badge": "CREATOR STUDIO",
+    "headline": "Scale Your Creative Output with AI",
+    "subheadline": "Build a multi-modal studio that uses AI for editing, remixing, and publishing while you stay in the creative director seat.",
+    "promise": "Set up an AI-assisted studio that multiplies your content flow without sacrificing voice, aesthetics, or creative control.",
+    "summary": "Hands-on buildout for creators and small teams who want an automated, multi-modal content engine.",
     "transformation": [
-      "Replace ad-hoc experiments with a governed creative AI pipeline",
-      "Produce modular assets that adapt to every channel automatically",
-      "Equip teams with training, guardrails, and performance analytics",
-      "Unlock rapid experimentation without sacrificing brand standards"
+      "Install a governed creative pipeline for video, audio, writing, and visuals.",
+      "Automate versioning and distribution so every idea ships across channels.",
+      "Train collaborators on prompts, review loops, and QA rituals that protect the brand.",
+      "Measure output with dashboards that track velocity, reach, and revenue."
     ],
     "socialProof": {
       "stats": [
         {
-          "number": "10x",
-          "label": "Content Velocity"
+          "number": "Custom",
+          "label": "Studio Diagnostic"
         },
         {
-          "number": "5x",
-          "label": "Campaign Speed"
-        },
-        {
-          "number": "3x",
-          "label": "Creative Throughput"
+          "number": "Beta",
+          "label": "Early Access Program"
         }
       ],
-      "quotes": [
-        {
-          "quote": "We replaced six disconnected tools with a single OS that keeps creative, marketing, and leadership aligned.",
-          "author": "Priya Nair",
-          "role": "Chief Marketing Officer, Nimbus Labs"
-        },
-        {
-          "quote": "Generative Creator OS gave us the governance we needed to scale experimentation while protecting the brand.",
-          "author": "Tom\u00e1s Aguilar",
-          "role": "Creative Director, Nova Collective"
-        }
-      ]
+      "quotes": []
     },
     "offer": {
       "primaryPrice": 0,
-      "primaryPriceDisplay": "Custom Engagement",
+      "primaryPriceDisplay": "Creator Studio Diagnostic",
       "currency": "USD",
-      "ctaPrimary": "Schedule Strategy Session",
-      "ctaPrimaryHref": "mailto:hello@frankx.ai?subject=Generative%20Creator%20OS",
+      "ctaPrimary": "Book Studio Diagnostic",
+      "ctaPrimaryHref": "mailto:hello@frankx.ai?subject=Creator%20Studio%20Diagnostic",
       "ctaPrimaryTracking": "generative-creator-os-primary",
       "ctaSecondary": "Explore Resources",
       "ctaSecondaryHref": "/resources",
       "guarantee": {
         "label": "Creative Integrity Promise",
-        "description": "We co-design a roadmap with clear KPIs before engagement. If we cannot meet the success criteria, we do not proceed."
+        "description": "We co-design workflow changes with you. If the system does not boost output within 45 days, we iterate at no cost."
       },
-      "note": "Engagements start with a diagnostic sprint to scope investment and ROI."
+      "note": "Diagnostics map your current process, gaps, and the automation plan before any build begins."
     },
     "modules": [
       {
-        "title": "Creative Content Generation",
-        "description": "Multi-modal asset generation, editing, and optimization pipelines tailored to your brand."
+        "title": "Creative Pipeline Blueprint",
+        "description": "Map every step from ideation to publish, highlighting where AI accelerates and where human craft stays in control."
       },
       {
-        "title": "Workflow Automation",
-        "description": "Automated ideation, templating, and publishing flows with collaborative review loops."
+        "title": "Automation & Templates",
+        "description": "Build prompt stacks, editing templates, caption writers, and distribution macros tailored to your channels."
       },
       {
-        "title": "Brand Intelligence System",
-        "description": "Guardrails, compliance checks, and performance insights to protect brand integrity."
+        "title": "Brand Intelligence Kit",
+        "description": "Train models on your voice, visuals, and guidelines with safety checks baked in."
+      },
+      {
+        "title": "Performance Dashboard",
+        "description": "Run a Notion/Supabase dashboard that tracks output velocity, audience signals, and monetisation."
       }
     ],
     "pricingTiers": [
       {
-        "name": "Creator Studio",
-        "price": "Project from $7,500",
-        "description": "Rapid diagnostic and pilot build for small teams proving AI-assisted creative output.",
+        "name": "Starter Studio",
+        "price": "Projects from $4,800",
+        "description": "Two-week sprint to audit your creative stack and ship a pilot workflow.",
         "features": [
-          "Two-week diagnostic sprint",
-          "Pilot workflow implementation",
-          "Team enablement workshop",
-          "Performance dashboard setup"
+          "Creative pipeline map",
+          "AI-assisted pilot workflow",
+          "Template + prompt starter kit",
+          "Retro + next-step plan"
         ],
-        "ctaLabel": "Book Diagnostic",
-        "ctaHref": "mailto:hello@frankx.ai?subject=Creator%20Studio%20Diagnostic"
+        "ctaLabel": "Start Sprint",
+        "ctaHref": "mailto:hello@frankx.ai?subject=Starter%20Studio%20Sprint"
       },
       {
-        "name": "Guided Implementation",
-        "price": "Programs from $18,000",
-        "description": "Quarter-long implementation with co-managed creative squads and measurement rituals.",
+        "name": "Creator Collective",
+        "price": "Programs from $12k",
+        "description": "Six-week engagement to roll out multi-channel automations and training.",
         "features": [
-          "All Creator Studio deliverables",
-          "Dedicated success lead",
-          "Asset library automation",
-          "Change management playbooks"
+          "All Starter Studio deliverables",
+          "Weekly build + coaching sessions",
+          "Team enablement library",
+          "Analytics + experimentation kit"
         ],
-        "ctaLabel": "Schedule Scoping Call",
-        "ctaHref": "mailto:hello@frankx.ai?subject=Guided%20Implementation",
+        "ctaLabel": "Plan Your Build",
+        "ctaHref": "mailto:hello@frankx.ai?subject=Creator%20Collective%20Program",
         "featured": true
       },
       {
-        "name": "Enterprise Platform",
-        "price": "Annual partnerships",
-        "description": "Global rollout with governance, integrations, and continuous optimization across business units.",
+        "name": "Residency",
+        "price": "Quarterly partnerships",
+        "description": "Ongoing co-building with the FrankX agent collective for launches, tours, or season arcs.",
         "features": [
-          "Enterprise governance council",
-          "Custom integrations & security",
-          "Performance experimentation lab",
-          "Quarterly innovation summits"
+          "Dedicated systems architect",
+          "Monthly experimentation labs",
+          "Release-by-release playbooks",
+          "Priority agent desk access"
         ],
-        "ctaLabel": "Request Proposal",
-        "ctaHref": "mailto:hello@frankx.ai?subject=Enterprise%20Platform"
+        "ctaLabel": "Request Residency",
+        "ctaHref": "mailto:hello@frankx.ai?subject=Creator%20Residency"
       }
     ],
     "faq": [
       {
-        "question": "How do you keep AI-generated content on-brand?",
-        "answer": "We train models on your brand voice, add approval checkpoints, and use automated compliance checks before assets publish."
+        "question": "Is this just for big teams?",
+        "answer": "No. We design for solo creators up to small crews. The system scales, but it starts creator-first."
       },
       {
-        "question": "Can you integrate with our existing tools?",
-        "answer": "Yes. We connect the OS to your current DAM, project management, and analytics stack to avoid disruption."
+        "question": "How fast will we see impact?",
+        "answer": "Most sprints unlock a new publishing rhythm within 30 days. We track output velocity and sentiment so you can see progress."
       },
       {
-        "question": "What does success look like?",
-        "answer": "We define KPIs during the diagnostic sprint\u2014typically velocity, quality scores, and campaign impact\u2014and report them weekly."
+        "question": "Do you train us on the tools?",
+        "answer": "Yes. Every build includes recorded walkthroughs, prompt decks, and live handoffs so you stay in control."
       }
     ],
     "analyticsId": "generative-creator-os"
@@ -541,140 +447,121 @@
   {
     "id": "agentic-creator-os",
     "slug": "agentic-creator-os",
-    "name": "Agentic Creator OS Center of Excellence",
-    "category": "Enterprise Intelligence",
-    "badge": "ENTERPRISE GRADE",
-    "headline": "Enterprise AI That Actually Works",
-    "subheadline": "Strategic AI implementation for Fortune 500 companies and high-growth enterprises. From governance frameworks to production systems, we architect intelligence that scales with your business.",
-    "promise": "Orchestrate strategy, implementation, governance, and enablement so enterprise AI delivers measurable ROI.",
-    "summary": "A center-of-excellence engagement aligning leadership, technology, and teams around agentic AI.",
+    "name": "Creator Lab OS",
+    "category": "Creator Systems",
+    "badge": "LAB IMMERSION",
+    "headline": "Design Your Creator Operating System",
+    "subheadline": "A guided lab where we architect the rituals, automations, and dashboards that keep your creative practice shipping.",
+    "promise": "Co-build a personal operating system that connects inspiration, production, publishing, and monetisation in one flow.",
+    "summary": "Hybrid coaching + build engagement for creators who want a repeatable launch machine.",
     "transformation": [
-      "Design an enterprise AI roadmap with governance baked in",
-      "Deploy production systems with pilot-to-scale playbooks",
-      "Institutionalize ethical and compliant AI operations",
-      "Enable teams with training, rituals, and observability"
+      "Clarify your audience, offers, and release cadence.",
+      "Install workflow automations for ideation, batching, and publishing.",
+      "Build measurement loops so you know what to double down on every week.",
+      "Create accountability rituals (with or without a team) to sustain momentum."
     ],
     "socialProof": {
       "stats": [
         {
-          "number": "200+",
-          "label": "Enterprise Systems Deployed"
+          "number": "New",
+          "label": "Lab Cohort Format"
         },
         {
-          "number": "95%",
-          "label": "Client Success Rate"
-        },
-        {
-          "number": "3x",
-          "label": "Average ROI Improvement"
-        },
-        {
-          "number": "50+",
-          "label": "Fortune 500 Engagements"
+          "number": "Apply",
+          "label": "Limited Spots Available"
         }
       ],
-      "quotes": [
-        {
-          "quote": "The FrankX agent team became an extension of our innovation office. We now ship compliant AI initiatives in weeks, not months.",
-          "author": "Elaine Porter",
-          "role": "SVP Transformation, Helios Global"
-        },
-        {
-          "quote": "Their governance frameworks satisfied our legal, risk, and security teams while keeping momentum high for delivery.",
-          "author": "Martin Adeyemi",
-          "role": "CIO, Horizon Finance"
-        }
-      ]
+      "quotes": []
     },
     "offer": {
       "primaryPrice": 0,
-      "primaryPriceDisplay": "Enterprise Engagement",
+      "primaryPriceDisplay": "Apply for the Lab",
       "currency": "USD",
-      "ctaPrimary": "Schedule Consultation",
-      "ctaPrimaryHref": "mailto:hello@frankx.ai?subject=Agentic%20Creator%20OS",
-      "ctaPrimaryTracking": "agentic-creator-os-primary",
-      "ctaSecondary": "Download Founder's Playbook",
-      "ctaSecondaryHref": "/founder-playbook",
+      "ctaPrimary": "Apply for the Lab",
+      "ctaPrimaryHref": "https://frankx.ck.page/creator-lab",
+      "ctaPrimaryTracking": "creator-lab-apply",
+      "ctaSecondary": "Download Creator Lab Overview",
+      "ctaSecondaryHref": "/creation-chronicles",
       "guarantee": {
-        "label": "Enterprise Outcome Promise",
-        "description": "We co-define success metrics and governance checkpoints. If we cannot deliver the agreed ROI plan, we adjust scope or disengage."
+        "label": "Momentum Promise",
+        "description": "If you do the work and the system does not increase your publishing cadence within 30 days of graduation, we coach you until it does."
       },
-      "note": "Engagements begin with a 3-week diagnostic to align leadership, compliance, and delivery teams."
+      "note": "Applications reviewed weekly. Cohorts are capped to keep the studio intimate."
     },
     "modules": [
       {
-        "title": "AI Strategy & Architecture",
-        "description": "Roadmapping, system design, and ROI modeling to align innovation with business objectives."
+        "title": "Creative Compass",
+        "description": "Codify your story, audience promise, and revenue focus so every ritual points to the same horizon."
       },
       {
-        "title": "Enterprise Implementation",
-        "description": "Pilot-to-production deployment, integration planning, and change management."
+        "title": "Launch Lab",
+        "description": "Design the idea-to-publish pipeline with automations, templates, and handoff notes."
       },
       {
-        "title": "AI Governance & Ethics",
-        "description": "Bias detection, privacy controls, regulatory compliance, and human oversight rituals."
+        "title": "Systems Studio",
+        "description": "Wire dashboards, automation routers, and prompt libraries that keep the lab running."
       },
       {
-        "title": "Team Enablement",
-        "description": "Leadership education, technical upskilling, and cross-functional collaboration frameworks."
+        "title": "Field Tests",
+        "description": "Ship a live release with accountability, analytics, and peer feedback."
       }
     ],
     "pricingTiers": [
       {
-        "name": "Strategy Sprint",
-        "price": "Retainers from $25k",
-        "description": "Three-week diagnostic establishing roadmap, governance model, and executive alignment.",
+        "name": "Self-Paced Starter",
+        "price": "$297",
+        "description": "Toolkit + recorded labs for creators who prefer to implement solo.",
         "features": [
-          "Stakeholder interviews",
-          "Capability maturity assessment",
-          "Prioritized initiative roadmap",
-          "Governance blueprint"
+          "Full Creator Lab OS curriculum",
+          "Automation + template library",
+          "Office hour invites",
+          "Community check-ins"
         ],
-        "ctaLabel": "Book Strategy Sprint",
-        "ctaHref": "mailto:hello@frankx.ai?subject=Agentic%20OS%20Strategy%20Sprint"
+        "ctaLabel": "Get Starter Kit",
+        "ctaHref": "https://frankx.ck.page/creator-lab-starter"
       },
       {
-        "name": "Scale Program",
-        "price": "Programs from $120k",
-        "description": "Quarterly engagement to implement priority use cases with integrated governance.",
+        "name": "Guided Cohort",
+        "price": "$997",
+        "description": "Four-week live lab with Frank + agents to build your system together.",
         "features": [
-          "Pilot-to-production delivery",
-          "Operating playbooks",
-          "Change management",
-          "Telemetry dashboards"
+          "Weekly live build sessions",
+          "1:1 agent desk feedback",
+          "Implementation sprints",
+          "Launch + analytics review"
         ],
-        "ctaLabel": "Plan Your Program",
-        "ctaHref": "mailto:hello@frankx.ai?subject=Agentic%20OS%20Program",
-        "featured": true
+        "ctaLabel": "Apply for Cohort",
+        "ctaHref": "https://frankx.ck.page/creator-lab"
       },
       {
-        "name": "Enterprise Partnership",
-        "price": "Annual alliances",
-        "description": "Embedded center-of-excellence support with joint governance council and innovation lab.",
+        "name": "Creator Residency",
+        "price": "Custom",
+        "description": "Ongoing partnership for creators scaling products, shows, or studios.",
         "features": [
-          "Dedicated agent team",
-          "Executive steering cadence",
-          "Risk & compliance integration",
-          "Innovation portfolio management"
+          "Dedicated systems architect",
+          "Monthly ritual labs",
+          "Automations + analytics upkeep",
+          "Priority agent desk support"
         ],
-        "ctaLabel": "Request Partnership",
-        "ctaHref": "mailto:hello@frankx.ai?subject=Agentic%20OS%20Partnership"
+        "ctaLabel": "Request Residency",
+        "ctaHref": "mailto:hello@frankx.ai?subject=Creator%20Residency"
       }
     ],
     "faq": [
       {
-        "question": "How quickly can we see results?",
-        "answer": "Most enterprises complete the diagnostic within three weeks and move the first initiative into pilot during the following quarter."
+        "question": "Who is the Creator Lab for?",
+        "answer": "Creators with a body of work (songs, videos, essays, products) who want a reliable system to ship and monetise consistently."
       },
       {
-        "question": "Do you work with existing vendors and teams?",
-        "answer": "Yes. We collaborate with internal IT, security, and partner vendors to orchestrate a unified execution model."
+        "question": "How much time should I budget?",
+        "answer": "Plan on 4-6 focused hours per week during the cohort. The self-paced track can flex, but momentum matters."
       },
       {
-        "question": "What industries do you specialize in?",
-        "answer": "We support finance, media, healthcare, and frontier tech organizations that require governed, high-impact AI deployment."
+        "question": "Do I need a team?",
+        "answer": "No. We design the system for solo creators first. If you have collaborators, we fold them into the rituals."
       }
     ],
     "analyticsId": "agentic-creator-os"
   }
 ]
+

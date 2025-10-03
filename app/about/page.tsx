@@ -95,10 +95,15 @@ export default function AboutPage() {
                 The hub is orchestrated with the four Claude agents defined in the operating manual. Each one mirrors part of my own craft, ensuring every project balances technical excellence, creative resonance, and strategic foresight.
               </p>
               <a
-                href="/CLAUDE.md"
+                href="https://github.com/frankxapi/frankx-website/blob/main/CLAUDE.md"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/10 px-4 py-2 text-sm font-semibold text-white hover:bg-white/15"
               >
                 View the Claude configuration
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
               </a>
             </div>
             <div className="grid gap-4 sm:grid-cols-2">
@@ -120,10 +125,15 @@ export default function AboutPage() {
                 </p>
               </div>
               <a
-                href="/docs/DAILY_INTELLIGENCE_OPERATIONS.md"
+                href="https://github.com/frankxapi/frankx-website/blob/main/docs/DAILY_INTELLIGENCE_OPERATIONS.md"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-primary-500 via-primary-600 to-sky-500 px-5 py-3 text-sm font-semibold text-white shadow-[0_20px_40px_rgba(56,189,248,0.35)] hover:-translate-y-0.5 transition-transform"
               >
                 Read the daily playbook
+                <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
               </a>
             </div>
             <div className="mt-8 grid gap-4 sm:grid-cols-3">

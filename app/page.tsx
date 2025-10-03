@@ -1,22 +1,21 @@
 import Script from 'next/script'
 
-import OptimizedHomePage from '@/components/home/OptimizedHomePage'
+import V3HomePage from '@/components/home/V3HomePage'
 import { createMetadata } from '@/lib/seo'
-import CallToAction from '@/components/funnels/CallToAction'
-import EmailCaptureForm from '@/components/funnels/EmailCaptureForm'
 
 export const metadata = createMetadata({
-  title: 'FrankX Intelligence Hub | Creative AI Voice & Resource Platform',
+  title: 'FrankX.ai | Intelligence Systems for AI Architects, Music Makers, and Generative Creators',
   description:
-    'Explore the FrankX Intelligence Hub for creative AI strategy, Suno-powered experiences, family education, and enterprise-ready systems.',
+    'Oracle-grade AI systems, Suno music workflows, and consciousness-first creator operating systems. Built by Oracle AI Architect for conscious creators.',
   keywords: [
-    'creative ai',
-    'creative ai strategy',
-    'creative workflows',
-    'ai for families',
-    'ai architecture',
-    'soul frequency',
+    'ai architect',
+    'oracle ai',
     'suno workflows',
+    'music creation ai',
+    'generative creator',
+    'creator operating system',
+    'conscious ai systems',
+    'ai music production',
   ],
   path: '/',
 })
@@ -24,47 +23,38 @@ export const metadata = createMetadata({
 const structuredData = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
-  name: 'FrankX',
+  name: 'FrankX.ai',
   url: 'https://frankx.ai',
   description:
-    'FrankX is the global AI voice guiding creators, families, and executives with creative intelligence systems, music innovation, and community rituals.',
+    'Intelligence systems for AI architects, music makers, and generative creators. Oracle-grade conscious AI systems and Suno music workflows.',
   founder: {
     '@type': 'Person',
     name: 'Frank',
-    jobTitle: 'Creative AI Architect',
+    jobTitle: 'Oracle AI Architect & Creator Systems Designer',
   },
   sameAs: [
     'https://linkedin.com/in/frank',
     'https://twitter.com/frankxai',
     'https://www.youtube.com/@frankxai',
   ],
-  knowsAbout: [
-    'creative ai systems',
-    'creative ai governance',
-    'creative music workflows',
-    'family creative ai education',
-    'agentic creation workflows',
-  ],
-  hasPart: [
+  offers: [
     {
-      '@type': 'CreativeWork',
-      name: 'Soul Frequency Assessment',
-      url: 'https://frankx.ai/soul-frequency-assessment',
+      '@type': 'Offer',
+      name: 'Vibe OS',
+      description: 'AI music creation system with 500+ Suno workflows for conscious music producers',
+      url: 'https://frankx.ai/products/vibe-os',
     },
     {
-      '@type': 'CreativeWork',
-      name: "Founder's AI Playbook",
-      url: 'https://frankx.ai/founder-playbook',
+      '@type': 'Offer',
+      name: 'Creative AI Toolkit',
+      description: 'Templates and workflows for generative content creators',
+      url: 'https://frankx.ai/products/creative-ai-toolkit',
     },
     {
-      '@type': 'CreativeWork',
-      name: 'AI Basics for Families',
-      url: 'https://frankx.ai/family-guide',
-    },
-    {
-      '@type': 'CreativeWork',
-      name: 'Music Lab',
-      url: 'https://frankx.ai/music-lab',
+      '@type': 'Offer',
+      name: 'Agentic Creator OS',
+      description: 'Custom AI systems for Oracle architects and enterprise creators',
+      url: 'https://frankx.ai/products/agentic-creator-os',
     },
   ],
 }
@@ -72,18 +62,7 @@ const structuredData = {
 export default function Page() {
   return (
     <>
-      <OptimizedHomePage />
-      <div className="container-px my-24">
-        <CallToAction
-          title="Explore the Prompt Library"
-          description="Browse over 500 expertly crafted prompts to enhance your creative and business workflows."
-          buttonText="Explore Prompts"
-          href="/prompt-library"
-        />
-      </div>
-      <div className="container-px my-24 max-w-2xl mx-auto">
-        <EmailCaptureForm />
-      </div>
+      <V3HomePage />
       <Script id="frankx-organization" type="application/ld+json" strategy="afterInteractive">
         {JSON.stringify(structuredData)}
       </Script>

@@ -44,6 +44,20 @@
     backdrop-filter: blur(18px);
     border: 1px solid rgba(148, 163, 184, 0.18);
   }
+
+  /* 3D Card Flip Effects */
+  .perspective {
+    perspective: 1000px;
+  }
+
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+
+  .backface-hidden {
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+  }
 }
 
 .sr-only {

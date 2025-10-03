@@ -42,11 +42,6 @@ const structuredData = {
     price: String(product.offer.primaryPrice),
     priceCurrency: product.offer.currency,
     availability: 'https://schema.org/InStock'
-  },
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.9',
-    reviewCount: '1247'
   }
 }
 

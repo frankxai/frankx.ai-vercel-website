@@ -21,7 +21,7 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-sm text-white/70 leading-relaxed max-w-md">
-              Architecting avant-garde intelligence systems that creatives, families, and executive teams trust. Every artifact here
+              Architecting avant-garde intelligence systems that creators and collaborators trust. Every artifact here
               is built with future-proofed AI strategy, creative design, and musical imagination.
             </p>
             <div className="mt-6 flex space-x-4 text-slate-300">
@@ -51,21 +51,19 @@ export default function Footer() {
 
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-widest text-white/70 mb-4">Intelligence Hub</h3>
-            <ul className="space-y-3 text-sm text-white/60">
-              <li><Link href="/#updates" className="hover:text-white transition-colors">Latest Updates</Link></li>
-              <li><Link href="/#resources" className="hover:text-white transition-colors">Resource Library</Link></li>
-              <li><Link href="/#projects" className="hover:text-white transition-colors">Project Roadmap</Link></li>
-              <li><Link href="/#agents" className="hover:text-white transition-colors">Agent Protocols</Link></li>
-              <li><Link href="/search" className="hover:text-white transition-colors">Semantic Search</Link></li>
-              <li><Link href="/rss.xml" className="hover:text-white transition-colors">RSS Feed</Link></li>
+                        <ul className="space-y-3 text-sm text-white/60">
+              <li><Link href="/founder-playbook" className="hover:text-white transition-colors">Creator Playbook</Link></li>
+              <li><Link href="/products/creative-ai-toolkit" className="hover:text-white transition-colors">Creative AI Toolkit</Link></li>
+              <li><Link href="/music-lab" className="hover:text-white transition-colors">Music Lab</Link></li>
+              <li><Link href="/guides" className="hover:text-white transition-colors">Guides Collection</Link></li>
             </ul>
           </div>
 
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-widest text-white/70 mb-4">Programs &amp; Guides</h3>
-            <ul className="space-y-3 text-sm text-white/60">
-              <li><Link href="/founder-playbook" className="hover:text-white transition-colors">Founder’s AI Playbook</Link></li>
-              <li><Link href="/family-guide" className="hover:text-white transition-colors">AI Basics for Families</Link></li>
+                        <ul className="space-y-3 text-sm text-white/60">
+              <li><Link href="/founder-playbook" className="hover:text-white transition-colors">Creator Playbook</Link></li>
+              <li><Link href="/products/creative-ai-toolkit" className="hover:text-white transition-colors">Creative AI Toolkit</Link></li>
               <li><Link href="/music-lab" className="hover:text-white transition-colors">Music Lab</Link></li>
               <li><Link href="/guides" className="hover:text-white transition-colors">Guides Collection</Link></li>
             </ul>
@@ -105,3 +103,5 @@ export default function Footer() {
     </footer>
   )
 }
+
+
