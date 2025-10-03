@@ -1,6 +1,6 @@
 import Script from 'next/script'
 
-import RefinedHomePage from '@/components/home/RefinedHomePage'
+import V2HomePage from '@/components/home/V2HomePage'
 import { createMetadata } from '@/lib/seo'
 import CallToAction from '@/components/funnels/CallToAction'
 import EmailCaptureForm from '@/components/funnels/EmailCaptureForm'
@@ -72,7 +72,7 @@ const structuredData = {
 export default function Page() {
   return (
     <>
-      <RefinedHomePage />
+      <V2HomePage />
       <div className="container-px my-24">
         <CallToAction
           title="Explore the Prompt Library"

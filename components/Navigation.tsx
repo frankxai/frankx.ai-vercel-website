@@ -19,31 +19,25 @@ type NavItem = {
 const navItems: NavItem[] = [
   { name: 'Home', href: '/' },
   {
+    name: 'Intelligence Hub',
+    href: '/prompts',
+    subItems: [
+      { name: 'Prompt Vault', href: '/prompts' },
+      { name: 'Tools & Frameworks', href: '/tools' },
+      { name: 'Creation Chronicles', href: '/creation-chronicles' },
+      { name: 'Intelligence Atlas', href: '/intelligence-atlas' },
+    ],
+  },
+  {
     name: 'Products',
     href: '/products',
     subItems: [
-      { name: 'All Products', href: '/products' },
-      { name: 'Agentic Creator OS', href: '/products/agentic-creator-os' },
-      { name: 'Generative Creator OS', href: '/products/generative-creator-os' },
       { name: 'Vibe OS', href: '/products/vibe-os' },
-      { name: 'Music Lab', href: '/music-lab' },
+      { name: 'Generative Creator OS', href: '/products/generative-creator-os' },
+      { name: 'Agentic Creator OS', href: '/products/agentic-creator-os' },
     ],
   },
-  { name: 'Realm', href: '/realm' },
   { name: 'Blog', href: '/blog' },
-  {
-    name: 'Intelligence',
-    href: '/intelligence-atlas',
-    subItems: [
-      { name: 'Intelligence Atlas', href: '/intelligence-atlas' },
-      { name: 'Agent Collective', href: '/agents' },
-      { name: 'Creation Chronicles', href: '/creation-chronicles' },
-      { name: 'Intelligence Arsenal', href: '/resources' },
-      { name: 'Templates', href: '/resources/templates' },
-      { name: 'Search', href: '/search' },
-      { name: 'Roadmap', href: '/roadmap' },
-    ],
-  },
   { name: 'About', href: '/about' },
 ]
 
