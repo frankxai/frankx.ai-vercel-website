@@ -142,7 +142,11 @@ export default function StrategyCanvasPage() {
   }
 
   const markComplete = (elementId: string) => {
-    setCompletedElements(prev => new Set([...prev, elementId]))
+    setCompletedElements((prev) => {
+      const next = new Set(prev)
+      next.add(elementId)
+      return next
+    })
   }
 
   return (

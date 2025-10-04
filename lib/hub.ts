@@ -133,6 +133,12 @@ export const heroHighlights: HeroHighlight[] = [
 
 export const quickActions: QuickAction[] = [
   {
+    title: 'Intelligence Atlas',
+    description: 'Follow the ten-volume FrankX Intelligence Atlas and dive into Volume I today.',
+    href: '/intelligence-atlas',
+    icon: BarChart4
+  },
+  {
     title: 'Vibe OS',
     description: 'Transform ideas into professional AI music with systematic workflows.',
     href: '/products/vibe-os',
@@ -258,6 +264,14 @@ export const segmentProfiles: SegmentProfile[] = [
 
 export const updateEntries: UpdateEntry[] = [
   {
+    title: 'Intelligence Atlas Vol. I — Architecting the Agentic Era',
+    summary:
+      '10,000-word flagship report on 2025 frontier models, agentic systems, adoption metrics, and the FrankX playbook.',
+    type: 'Article',
+    date: '2025-01-21',
+    href: '/blog/frankx-intelligence-atlas-volume-1'
+  },
+  {
     title: 'The Intelligence Revolution Playbook',
     summary:
       'A systems-first guide to orchestrating conscious AI across products, teams, and experiences.',
@@ -301,6 +315,7 @@ export const resourceCollections: ResourceCollection[] = [
     description: 'Hands-on guides, playbooks, and templates for shipping conscious AI systems.',
     focus: 'Best for creators, architects, and executives building multi-offer ecosystems.',
     items: [
+      { label: 'FrankX Intelligence Atlas', href: '/intelligence-atlas', type: 'Report' },
       { label: "Founder's AI Playbook", href: '/founder-playbook', type: 'Playbook' },
       { label: 'Template Library', href: '/templates', type: 'Templates' },
       { label: 'Guides Collection', href: '/guides', type: 'Guides' }

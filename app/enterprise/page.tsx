@@ -263,7 +263,7 @@ export default function EnterprisePage() {
           {/* Success Metrics */}
           <section className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
             {successMetrics.map((metric) => (
-              <InteractiveCard key={metric.label} glowColor="blue" className="text-center p-8">
+              <InteractiveCard key={metric.label} glowColor="cyan" className="text-center p-8">
                 <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500/20 to-purple-500/20 flex items-center justify-center mx-auto mb-6">
                   <metric.icon className="w-8 h-8 text-blue-400" />
                 </div>
