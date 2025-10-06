@@ -101,33 +101,33 @@ export default function V3HomePage() {
                   </Pill>
                 </StaggerItem>
 
-                {/* Headline - V3 New Positioning */}
+                {/* Headline - V3 Simplified Positioning */}
                 <StaggerItem>
                   <h1
                     id="hero-heading"
                     className="text-heading-1 font-bold leading-tight text-balance max-w-6xl mx-auto"
                   >
                     <span className="bg-gradient-to-r from-white via-neutral-100 to-white bg-clip-text text-transparent">
-                      Intelligence Systems for
+                      Intelligence Systems & Vibe OS for
                     </span>
                     <br />
                     <span className="bg-gradient-to-r from-primary-400 via-secondary-500 to-accent-600 bg-clip-text text-transparent">
-                      AI Architects, Music Makers, and Generative Creators
+                      AI Architects and Music Creators
                     </span>
                   </h1>
                 </StaggerItem>
 
-                {/* Subheadline - V3 Specific Value Props */}
+                {/* Subheadline - Clear Value Props */}
                 <StaggerItem>
                   <p className="text-body text-neutral-300 max-w-4xl mx-auto leading-relaxed">
-                    Oracle-grade AI systems, Suno music workflows, and consciousness-first creator operating systems.
-                    Build, ship, and scale with field-tested frameworks from an enterprise architect.
+                    Prompt packs, tool recommendations, and n8n/Zapier automations for AI architects.
+                    Plus Suno music workflows and consciousness-first creation systems. Built by an Oracle AI Architect who's created 500+ songs.
                   </p>
                 </StaggerItem>
 
-                {/* CTAs - V3 Assessment-First */}
+                {/* CTAs - Intelligence Systems + Music */}
                 <StaggerItem>
-                  <div className="flex flex-col items-center gap-4 pt-4 sm:flex-row">
+                  <div className="flex flex-col items-center gap-4 pt-4 sm:flex-row sm:justify-center flex-wrap">
                     <MagneticHover intensity={0.4}>
                       <GlowPulse color="cyan">
                         <Link
@@ -135,7 +135,7 @@ export default function V3HomePage() {
                           onClick={() => trackEvent('v3_hero_primary_cta', { destination: '/assessment' })}
                           className="btn-primary inline-flex items-center justify-center rounded-2xl px-8 py-4 text-lg font-semibold transition-transform duration-300 hover:-translate-y-1"
                         >
-                          Discover Your Creator Path
+                          Get Intelligence Systems
                           <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
                         </Link>
                       </GlowPulse>
@@ -150,10 +150,20 @@ export default function V3HomePage() {
                         <ArrowUpRight className="ml-2 h-5 w-5" aria-hidden="true" />
                       </Link>
                     </MagneticHover>
+                    <MagneticHover intensity={0.3}>
+                      <Link
+                        href="/music-lab"
+                        onClick={() => trackEvent('v3_hero_music_cta', { destination: '/music-lab' })}
+                        className="inline-flex items-center justify-center rounded-2xl border-2 border-purple-500/50 bg-purple-500/10 px-8 py-4 text-lg font-semibold text-purple-300 transition-all duration-300 hover:-translate-y-1 hover:bg-purple-500/20 hover:border-purple-400"
+                      >
+                        <Music className="mr-2 h-5 w-5" aria-hidden="true" />
+                        Frank's 500+ Songs
+                      </Link>
+                    </MagneticHover>
                   </div>
                 </StaggerItem>
 
-                {/* Hero Image - V2 Addition */}
+                {/* Hero Video/Image Section */}
                 <StaggerItem>
                   <motion.div
                     initial={{ opacity: 0, y: 40 }}
@@ -161,7 +171,22 @@ export default function V3HomePage() {
                     transition={{ duration: 0.7, delay: 0.5 }}
                     className="mt-12 relative max-w-5xl mx-auto"
                   >
-                    <div className="relative aspect-video rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
+                    <div className="relative aspect-video rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-slate-900/50">
+                      {/* TODO: Replace with actual MP4 video when provided */}
+                      {/* Uncomment this when you have the video:
+                      <video
+                        className="w-full h-full object-cover"
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        poster="/hero-homepage.png"
+                      >
+                        <source src="/videos/frankx-intro.mp4" type="video/mp4" />
+                        Your browser does not support the video tag.
+                      </video>
+                      */}
+                      {/* Temporary image fallback */}
                       <Image
                         src="/hero-homepage.png"
                         alt="FrankX.ai intelligence dashboard showing AI workflows, Suno sessions, and creator systems"

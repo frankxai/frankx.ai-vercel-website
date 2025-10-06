@@ -46,3 +46,6 @@ Thumbs.db
 .cache/
 /public/reading/
 /reading-site/
+
+# Data (subscribers, etc)
+/data/subscribers.json
