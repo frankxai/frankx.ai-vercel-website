@@ -238,7 +238,7 @@ export default function V3HomePage() {
 
           <div className="grid md:grid-cols-3 gap-8">
             {/* AI ARCHITECTS */}
-            <RevealAnimation direction="up" delay={0.1}>
+            <RevealAnimation direction="up">
               <Link
                 href="/products/agentic-creator-os"
                 onClick={() => trackEvent('v3_persona_select', { persona: 'ai-architect' })}
@@ -267,7 +267,7 @@ export default function V3HomePage() {
             </RevealAnimation>
 
             {/* MUSIC MAKERS */}
-            <RevealAnimation direction="up" delay={0.2}>
+            <RevealAnimation direction="up">
               <Link
                 href="/products/vibe-os"
                 onClick={() => trackEvent('v3_persona_select', { persona: 'music-maker' })}
@@ -296,7 +296,7 @@ export default function V3HomePage() {
             </RevealAnimation>
 
             {/* GENERATIVE CREATORS */}
-            <RevealAnimation direction="up" delay={0.3}>
+            <RevealAnimation direction="up">
               <Link
                 href="/products/creative-ai-toolkit"
                 onClick={() => trackEvent('v3_persona_select', { persona: 'generative-creator' })}
