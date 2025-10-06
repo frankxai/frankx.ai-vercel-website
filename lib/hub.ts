@@ -1,4 +1,4 @@
-import { BarChart4, BookOpen, CheckCircle2, Music, Sparkles, Users, Workflow } from 'lucide-react'
+import { BarChart4, BookOpen, CheckCircle2, Music, Sparkles, Users, Workflow, type LucideIcon } from 'lucide-react'
 import { sanitizeDeepInPlace } from './text'
 
 export type HeroStat = {
