@@ -3,7 +3,14 @@ import { Resend } from 'resend'
 import { writeFile, readFile } from 'fs/promises'
 import { join } from 'path'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+// Lazy-initialize Resend only at runtime to avoid build-time errors
+let resend: Resend | null = null
+function getResendClient() {
+  if (!resend && process.env.RESEND_API_KEY) {
+    resend = new Resend(process.env.RESEND_API_KEY)
+  }
+  return resend
+}
 
 // Simple JSON file storage for MVP (replace with proper DB later)
 const SUBSCRIBERS_FILE = join(process.cwd(), 'data', 'subscribers.json')
@@ -59,9 +66,10 @@ export async function POST(request: NextRequest) {
     }
 
     // Send welcome email via Resend
-    if (process.env.RESEND_API_KEY) {
+    const resendClient = getResendClient()
+    if (resendClient) {
       try {
-        await resend.emails.send({
+        await resendClient.emails.send({
           from: 'Frank <hello@frankx.ai>',
           to: email,
           subject: 'Welcome to FrankX Intelligence Systems',
