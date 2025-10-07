@@ -1,5 +1,7 @@
 import SongCard, { SongRecord } from './SongCard'
 
+export type { SongRecord }
+
 interface SongGridProps {
   songs: SongRecord[]
   limit?: number

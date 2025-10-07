@@ -1,3 +1,5 @@
+"use client"
+
 import Link from 'next/link'
 
 import { trackEvent } from '@/lib/analytics'
@@ -25,6 +27,10 @@ export default function OfferStack({ productId, offer, modules, bonuses, pricing
       label: label ?? href
     })
   }
+
+  const secondaryHref = offer.ctaSecondaryHref
+  const secondaryLabel = offer.ctaSecondary
+  const secondaryTracking = offer.ctaSecondaryTracking
 
   return (
     <section className="bg-slate-950 py-20">
@@ -102,25 +108,25 @@ export default function OfferStack({ productId, offer, modules, bonuses, pricing
                 </Link>
               )
             })()}
-            {offer.ctaSecondary && offer.ctaSecondaryHref ? (
+            {secondaryLabel && secondaryHref ? (
               <p className="mt-4 text-xs text-white/50">
-                {isExternal(offer.ctaSecondaryHref) ? (
+                {isExternal(secondaryHref) ? (
                   <a
-                    href={offer.ctaSecondaryHref}
-                    onClick={() => handleClick('secondary', offer.ctaSecondaryHref, offer.ctaSecondaryTracking)}
+                    href={secondaryHref}
+                    onClick={() => handleClick('secondary', secondaryHref, secondaryTracking)}
                     className="underline-offset-4 hover:underline"
-                    target={offer.ctaSecondaryHref.startsWith('http') ? '_blank' : undefined}
-                    rel={offer.ctaSecondaryHref.startsWith('http') ? 'noreferrer' : undefined}
+                    target={secondaryHref.startsWith('http') ? '_blank' : undefined}
+                    rel={secondaryHref.startsWith('http') ? 'noreferrer' : undefined}
                   >
-                    {offer.ctaSecondary}
+                    {secondaryLabel}
                   </a>
                 ) : (
                   <Link
-                    href={offer.ctaSecondaryHref}
-                    onClick={() => handleClick('secondary', offer.ctaSecondaryHref, offer.ctaSecondaryTracking)}
+                    href={secondaryHref}
+                    onClick={() => handleClick('secondary', secondaryHref, secondaryTracking)}
                     className="underline-offset-4 hover:underline"
                   >
-                    {offer.ctaSecondary}
+                    {secondaryLabel}
                   </Link>
                 )}
               </p>

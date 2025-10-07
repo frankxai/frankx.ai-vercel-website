@@ -1,12 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server'
 
+type ConsciousnessLevel = 'healing' | 'focus' | 'creativity' | 'transformation'
+
 interface MusicRequest {
   type: 'generate' | 'analyze' | 'transform'
   prompt?: string
   frequency?: number
   bpm?: number
   duration?: number
-  consciousness_level?: 'healing' | 'focus' | 'creativity' | 'transformation'
+  consciousness_level?: ConsciousnessLevel
   genre?: string
   mood?: string
   instrument_preferences?: string[]
@@ -39,7 +41,13 @@ interface MusicResponse {
   streaming_url?: string
 }
 
-const CONSCIOUSNESS_FREQUENCIES = {
+type FrequencyDetails = {
+  name: string
+  effect: string
+  consciousness: ConsciousnessLevel
+}
+
+const CONSCIOUSNESS_FREQUENCIES: Record<number, FrequencyDetails> = {
   // Solfeggio Frequencies
   396: { name: 'Liberation', effect: 'Release fear and guilt', consciousness: 'healing' },
   417: { name: 'Change', effect: 'Facilitate transformation', consciousness: 'transformation' },
@@ -57,7 +65,14 @@ const CONSCIOUSNESS_FREQUENCIES = {
   2: { name: 'Delta', effect: 'Healing sleep', consciousness: 'healing' }
 }
 
-const MUSIC_TEMPLATES = {
+type MusicTemplate = {
+  bpm_range: [number, number]
+  frequencies: number[]
+  genres: string[]
+  moods: string[]
+}
+
+const MUSIC_TEMPLATES: Record<ConsciousnessLevel, MusicTemplate> = {
   healing: {
     bpm_range: [40, 60],
     frequencies: [396, 528, 852],
@@ -126,17 +141,17 @@ export async function GET() {
       analyze: 'Analyze existing music for consciousness properties',
       transform: 'Transform music for specific consciousness effects'
     },
-    consciousness_frequencies: Object.keys(CONSCIOUSNESS_FREQUENCIES).map(freq => ({
-      frequency: freq,
-      ...CONSCIOUSNESS_FREQUENCIES[freq as any]
+    consciousness_frequencies: Object.entries(CONSCIOUSNESS_FREQUENCIES).map(([freq, data]) => ({
+      frequency: Number(freq),
+      ...data
     })),
-    music_categories: Object.keys(MUSIC_TEMPLATES),
+    music_categories: Object.keys(MUSIC_TEMPLATES) as ConsciousnessLevel[],
     timestamp: new Date().toISOString()
   })
 }
 
 async function handleMusicGeneration(request: MusicRequest): Promise<NextResponse> {
-  const consciousnessLevel = request.consciousness_level || 'focus'
+  const consciousnessLevel: ConsciousnessLevel = request.consciousness_level ?? 'focus'
   const template = MUSIC_TEMPLATES[consciousnessLevel]
 
   // Generate optimal settings based on consciousness level
@@ -226,15 +241,15 @@ async function handleMusicTransformation(request: MusicRequest): Promise<NextRes
   return NextResponse.json(transformationResponse)
 }
 
-function selectOptimalFrequency(consciousnessLevel: string): number {
-  const levelFrequencies = {
+function selectOptimalFrequency(consciousnessLevel: ConsciousnessLevel): number {
+  const levelFrequencies: Record<ConsciousnessLevel, number[]> = {
     healing: [528, 396, 852],
     focus: [10, 15, 40],
     creativity: [639, 741, 40],
     transformation: [417, 852, 963]
   }
 
-  const frequencies = levelFrequencies[consciousnessLevel as keyof typeof levelFrequencies] || [528]
+  const frequencies = levelFrequencies[consciousnessLevel] || levelFrequencies.focus
   return frequencies[Math.floor(Math.random() * frequencies.length)]
 }
 
@@ -242,15 +257,24 @@ function generateOptimalBPM(range: number[]): number {
   return Math.floor(Math.random() * (range[1] - range[0] + 1)) + range[0]
 }
 
-function generateSunoPrompt(params: any): string {
-  const basePrompts = {
+interface SunoPromptParams {
+  consciousness_level: ConsciousnessLevel
+  frequency: number
+  bpm: number
+  genre?: string
+  mood?: string
+  prompt?: string
+}
+
+function generateSunoPrompt(params: SunoPromptParams): string {
+  const basePrompts: Record<ConsciousnessLevel, string> = {
     healing: `healing ambient music, ${params.bpm} bpm, ${params.frequency}Hz frequency healing, gentle nature sounds, peaceful meditation, restoration and renewal`,
     focus: `focused instrumental music, ${params.bpm} bpm, ${params.frequency}Hz concentration enhancement, minimal percussion, sustained attention, deep work soundtrack`,
     creativity: `creative flow music, ${params.bpm} bpm, ${params.frequency}Hz inspiration, innovative soundscapes, artistic expression, breakthrough creativity`,
     transformation: `transformational ambient, ${params.bpm} bpm, ${params.frequency}Hz consciousness expansion, spiritual awakening, profound change, transcendent journey`
   }
 
-  let prompt = basePrompts[params.consciousness_level] || basePrompts.focus
+  let prompt = basePrompts[params.consciousness_level]
 
   if (params.genre) {
     prompt = `${params.genre} style, ${prompt}`
@@ -267,26 +291,26 @@ function generateSunoPrompt(params: any): string {
   return prompt
 }
 
-function generateMusicTitle(consciousnessLevel: string, frequency: number): string {
-  const titles = {
+function generateMusicTitle(consciousnessLevel: ConsciousnessLevel, frequency: number): string {
+  const titles: Record<ConsciousnessLevel, string[]> = {
     healing: [`Healing Frequency ${frequency}Hz`, `Restoration at ${frequency}Hz`, `Cellular Renewal ${frequency}Hz`],
     focus: [`Focus Flow ${frequency}Hz`, `Concentration Current ${frequency}Hz`, `Deep Work ${frequency}Hz`],
     creativity: [`Creative Catalyst ${frequency}Hz`, `Innovation Wave ${frequency}Hz`, `Artistic Flow ${frequency}Hz`],
     transformation: [`Transformation ${frequency}Hz`, `Consciousness Shift ${frequency}Hz`, `Evolution Frequency ${frequency}Hz`]
   }
 
-  const levelTitles = titles[consciousnessLevel as keyof typeof titles] || titles.focus
+  const levelTitles = titles[consciousnessLevel] || titles.focus
   return levelTitles[Math.floor(Math.random() * levelTitles.length)]
 }
 
-function generateMusicDescription(consciousnessLevel: string, frequency: number, bpm: number): string {
+function generateMusicDescription(consciousnessLevel: ConsciousnessLevel, frequency: number, bpm: number): string {
   const freqInfo = CONSCIOUSNESS_FREQUENCIES[frequency]
   return `Consciousness-aligned music designed for ${consciousnessLevel} at ${frequency}Hz. ${freqInfo?.effect || 'Enhances awareness'} through carefully crafted ${bpm} BPM rhythms that synchronize with natural brain states.`
 }
 
 function generateOptimalKey(frequency: number): string {
   // Map frequencies to musical keys for harmonic resonance
-  const keyMappings: { [key: number]: string } = {
+  const keyMappings: Record<number, string> = {
     396: 'G Major',
     417: 'A♭ Major',
     528: 'C Major',
@@ -299,15 +323,15 @@ function generateOptimalKey(frequency: number): string {
   return keyMappings[frequency] || 'C Major'
 }
 
-function calculateConsciousnessMetrics(consciousnessLevel: string, frequency: number) {
-  const baseMetrics = {
+function calculateConsciousnessMetrics(consciousnessLevel: ConsciousnessLevel, frequency: number) {
+  const baseMetrics: Record<ConsciousnessLevel, { transformation_potential: number; healing_properties: number; focus_enhancement: number; creativity_boost: number }> = {
     healing: { transformation_potential: 8.5, healing_properties: 9.5, focus_enhancement: 6.0, creativity_boost: 7.0 },
     focus: { transformation_potential: 7.0, healing_properties: 6.5, focus_enhancement: 9.5, creativity_boost: 7.5 },
     creativity: { transformation_potential: 8.0, healing_properties: 7.0, focus_enhancement: 7.5, creativity_boost: 9.5 },
     transformation: { transformation_potential: 9.5, healing_properties: 8.5, focus_enhancement: 7.0, creativity_boost: 8.5 }
   }
 
-  const metrics = baseMetrics[consciousnessLevel as keyof typeof baseMetrics] || baseMetrics.focus
+  const metrics = baseMetrics[consciousnessLevel] || baseMetrics.focus
 
   // Adjust based on frequency
   const freqBonus = CONSCIOUSNESS_FREQUENCIES[frequency] ? 0.5 : 0

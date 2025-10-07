@@ -228,7 +228,7 @@ function generateContentStructure(request: ContentRequest, template: any, consci
 
 function generateSectionContent(title: string, request: ContentRequest, consciousness: any, targetWords: number): string {
   // This would use actual AI generation in production
-  const frameworks = {
+  const frameworks: Record<string, string> = {
     'Hook': `Imagine a world where ${request.topic} transforms how we approach consciousness and technology. ${consciousness.approach} begins with understanding that every technological advancement can serve human flourishing when approached with wisdom and intention.`,
 
     'Problem': `Current approaches to ${request.topic} often prioritize efficiency over human consciousness evolution. This creates a disconnect between our technological capabilities and our deepest human values, leading to systems that automate rather than amplify our creative potential.`,
@@ -261,7 +261,7 @@ function generateMetaDescription(title: string, topic: string, audience: string)
 }
 
 function generateCTA(type: string, audience: string): string {
-  const ctas = {
+  const ctas: Record<string, string> = {
     blog: `Ready to transform your approach to consciousness technology? Join our community of ${audience} pioneering human-AI collaboration.`,
     email: `Take the next step in your consciousness technology journey. Book a transformation session today.`,
     social: `Share your transformation story and inspire others in the consciousness technology movement.`,
