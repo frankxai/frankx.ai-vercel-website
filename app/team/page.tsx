@@ -2,6 +2,7 @@ import Footer from '@/components/Footer'
 import Navigation from '@/components/Navigation'
 import { DepartmentSection } from '@/components/team/DepartmentSection'
 import { departments, getMembersByDepartment, teamMembers } from '@/lib/team-members'
+import { getIcon } from '@/lib/icon-map'
 import { createMetadata } from '@/lib/seo'
 import { ArrowRight, Bot, Sparkles, Users, Zap } from 'lucide-react'
 import Link from 'next/link'
@@ -210,7 +211,7 @@ export default function TeamPage() {
 
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 mb-12">
               {departments.map((dept) => {
-                const Icon = dept.icon
+                const Icon = getIcon(dept.icon)
                 return (
                   <a
                     key={dept.id}

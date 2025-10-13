@@ -1,6 +1,7 @@
 'use client'
 
 import { type TeamMember } from '@/lib/team-members'
+import { getIcon } from '@/lib/icon-map'
 import { motion } from 'framer-motion'
 import { ArrowUpRight, Sparkles } from 'lucide-react'
 import { useState } from 'react'
@@ -30,7 +31,7 @@ const platformBadgeColors = {
 
 export function TeamMemberCard({ member, index }: TeamMemberCardProps) {
   const [isFlipped, setIsFlipped] = useState(false)
-  const Icon = member.icon
+  const Icon = getIcon(member.icon)
 
   const gradientClass = member.gradient
 

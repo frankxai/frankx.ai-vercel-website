@@ -1,6 +1,7 @@
 'use client'
 
 import { type Department, type TeamMember } from '@/lib/team-members'
+import { getIcon } from '@/lib/icon-map'
 import { motion } from 'framer-motion'
 import { TeamMemberCard } from './TeamMemberCard'
 
@@ -11,7 +12,7 @@ interface DepartmentSectionProps {
 }
 
 export function DepartmentSection({ department, members, index }: DepartmentSectionProps) {
-  const Icon = department.icon
+  const Icon = getIcon(department.icon)
 
   return (
     <motion.section
