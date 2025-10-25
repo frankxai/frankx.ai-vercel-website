@@ -11,6 +11,10 @@ const nextConfig = {
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
   experimental: {
     mdxRs: true,
+    // Partial Prerendering for mixing static and dynamic content
+    ppr: 'incremental',
+    // Optimize package imports for faster builds
+    optimizePackageImports: ['lucide-react', 'framer-motion'],
   },
   images: {
     remotePatterns: [
@@ -24,6 +28,8 @@ const nextConfig = {
     removeConsole: process.env.NODE_ENV === 'production',
   },
   outputFileTracingRoot: __dirname,
+  // Turbopack configuration (default in Next.js 16)
+  // Use --webpack flag if you need to override
 }
 
 module.exports = withMDX(nextConfig)

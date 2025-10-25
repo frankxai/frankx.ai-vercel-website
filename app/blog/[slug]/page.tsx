@@ -12,9 +12,19 @@ import BlogCard from '@/components/blog/BlogCard'
 import Recommendations from '@/components/recommendations/Recommendations'
 import { getAllBlogPosts, getBlogPost } from '@/lib/blog'
 import { createMetadata, siteConfig } from '@/lib/seo'
+import { subscribeToNewsletter } from '@/lib/actions/newsletter'
 
-export const dynamic = 'force-dynamic'
+// ISR: Revalidate blog posts every hour
+export const revalidate = 3600
 export const dynamicParams = true
+
+// Pre-generate all blog posts at build time
+export async function generateStaticParams() {
+  const posts = getAllBlogPosts()
+  return posts.map((post) => ({
+    slug: post.slug,
+  }))
+}
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
@@ -286,7 +296,7 @@ export default async function BlogPostPage({
             <p className="mt-3 text-sm text-white/70">
               Join 1,000+ creators and executives receiving weekly field notes on conscious AI systems, music rituals, and agent strategy.
             </p>
-            <form action="/api/newsletter" method="POST" className="mt-6 flex flex-col gap-3 sm:flex-row">
+            <form action={subscribeToNewsletter} className="mt-6 flex flex-col gap-3 sm:flex-row">
               <input
                 type="email"
                 name="email"
