@@ -49,3 +49,7 @@ Thumbs.db
 
 # Data (subscribers, etc)
 /data/subscribers.json
+
+# Separate Git Repositories (managed independently)
+/FrankX.AI - Vercel Website/
+/_repo_remote_frankx_website/
