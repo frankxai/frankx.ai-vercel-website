@@ -53,3 +53,6 @@ Thumbs.db
 # Separate Git Repositories (managed independently)
 /FrankX.AI - Vercel Website/
 /_repo_remote_frankx_website/
+
+# Symlinks to global configurations
+/.claude-nextjs-skills
