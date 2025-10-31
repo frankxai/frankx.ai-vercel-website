@@ -1,0 +1,132 @@
+{
+  "unifiedThemes": {
+    "version": "1.0.0",
+    "description": "Master theme taxonomy for all FrankX content"
+  },
+  "primaryThemes": {
+    "conscious-ai-integration": {
+      "displayName": "Conscious AI Integration",
+      "description": "Ethical, mindful, and human-centered approach to AI adoption",
+      "keywords": ["consciousness", "ethics", "mindfulness", "ai-integration", "human-ai-collaboration"],
+      "contentPillars": ["conscious-ai"],
+      "targetAudience": ["creators", "entrepreneurs", "professionals", "conscious-leaders"],
+      "coreMessage": "AI amplifies human potential when approached with consciousness and intention"
+    },
+    "creator-economy": {
+      "displayName": "The Creator Economy",
+      "description": "The shift from employment to creation, enabled by AI tools",
+      "keywords": ["creator-economy", "solopreneurs", "content-creation", "monetization", "independence"],
+      "contentPillars": ["business-intelligence", "creative-innovation"],
+      "targetAudience": ["creators", "artists", "entrepreneurs", "freelancers"],
+      "coreMessage": "The future belongs to creators who leverage AI to amplify their unique voice"
+    },
+    "ai-music-production": {
+      "displayName": "AI Music Production",
+      "description": "Democratizing music creation through AI-powered tools",
+      "keywords": ["suno-ai", "music-production", "ai-creativity", "democratization", "accessibility"],
+      "contentPillars": ["creative-innovation"],
+      "targetAudience": ["musicians", "producers", "content-creators", "non-musicians"],
+      "coreMessage": "AI removes barriers to music creation, enabling anyone to express through sound"
+    },
+    "business-intelligence": {
+      "displayName": "AI-Powered Business Intelligence",
+      "description": "Strategic decision-making enhanced by AI and data",
+      "keywords": ["strategy", "analytics", "oracle", "enterprise-ai", "data-driven"],
+      "contentPillars": ["business-intelligence"],
+      "targetAudience": ["executives", "leaders", "strategists", "enterprise"],
+      "coreMessage": "AI-enhanced intelligence transforms how businesses understand and act on data"
+    },
+    "personal-transformation": {
+      "displayName": "Personal Transformation",
+      "description": "Self-development, consciousness expansion, and human potential",
+      "keywords": ["growth", "consciousness", "potential", "mindfulness", "evolution"],
+      "contentPillars": ["conscious-ai", "community"],
+      "targetAudience": ["seekers", "personal-growth", "consciousness-explorers"],
+      "coreMessage": "Technology and consciousness converge to unlock human transformation"
+    },
+    "oracle-cloud-ai": {
+      "displayName": "Oracle Cloud & AI",
+      "description": "Enterprise AI and cloud infrastructure expertise",
+      "keywords": ["oracle", "cloud", "enterprise", "infrastructure", "oci", "ai-agents"],
+      "contentPillars": ["business-intelligence"],
+      "targetAudience": ["enterprise", "developers", "cloud-architects", "ai-engineers"],
+      "coreMessage": "Oracle Cloud provides the foundation for enterprise-grade AI innovation"
+    }
+  },
+  "secondaryThemes": {
+    "agent-orchestration": {
+      "displayName": "AI Agent Orchestration",
+      "description": "Multi-agent systems, workflows, and collaboration patterns",
+      "relatedPrimary": ["conscious-ai-integration", "oracle-cloud-ai"]
+    },
+    "content-creation": {
+      "displayName": "AI-Enhanced Content Creation",
+      "description": "Writing, video, audio, and visual content with AI assistance",
+      "relatedPrimary": ["creator-economy", "ai-music-production"]
+    },
+    "spiritual-technology": {
+      "displayName": "Spiritual Technology",
+      "description": "Bridging consciousness, spirituality, and technology",
+      "relatedPrimary": ["conscious-ai-integration", "personal-transformation"]
+    },
+    "future-of-work": {
+      "displayName": "Future of Work",
+      "description": "How AI transforms employment, careers, and professional identity",
+      "relatedPrimary": ["creator-economy", "business-intelligence"]
+    },
+    "creative-tools": {
+      "displayName": "AI Creative Tools",
+      "description": "Platforms, apps, and tools for AI-powered creativity",
+      "relatedPrimary": ["ai-music-production", "creator-economy"]
+    },
+    "entrepreneurship": {
+      "displayName": "AI-Enabled Entrepreneurship",
+      "description": "Building businesses with AI as a co-founder and amplifier",
+      "relatedPrimary": ["creator-economy", "business-intelligence"]
+    }
+  },
+  "contentPillars": {
+    "conscious-ai": {
+      "displayName": "Conscious AI Integration",
+      "percentage": 40,
+      "themes": ["conscious-ai-integration", "personal-transformation", "spiritual-technology"],
+      "contentTypes": ["blogs", "books", "courses"],
+      "publishingSchedule": "Monday, Wednesday"
+    },
+    "business-intelligence": {
+      "displayName": "Strategic Business Intelligence",
+      "percentage": 25,
+      "themes": ["business-intelligence", "oracle-cloud-ai", "agent-orchestration"],
+      "contentTypes": ["blogs", "books", "social"],
+      "publishingSchedule": "Monday"
+    },
+    "creative-innovation": {
+      "displayName": "Creative & Innovation Excellence",
+      "percentage": 20,
+      "themes": ["ai-music-production", "creator-economy", "creative-tools"],
+      "contentTypes": ["blogs", "courses", "social"],
+      "publishingSchedule": "Thursday"
+    },
+    "community": {
+      "displayName": "Community & Collaboration",
+      "percentage": 15,
+      "themes": ["personal-transformation", "entrepreneurship", "future-of-work"],
+      "contentTypes": ["blogs", "social"],
+      "publishingSchedule": "Friday"
+    }
+  },
+  "themeRelationships": {
+    "strongSynergies": [
+      ["conscious-ai-integration", "personal-transformation"],
+      ["creator-economy", "ai-music-production"],
+      ["business-intelligence", "oracle-cloud-ai"],
+      ["conscious-ai-integration", "spiritual-technology"]
+    ],
+    "complementary": [
+      ["creator-economy", "entrepreneurship"],
+      ["ai-music-production", "creative-tools"],
+      ["business-intelligence", "agent-orchestration"],
+      ["personal-transformation", "future-of-work"]
+    ]
+  }
+}

@@ -1,0 +1,180 @@
+{
+  "publishingPipeline": {
+    "version": "1.0.0",
+    "description": "Automated quality gates and publishing workflows"
+  },
+  "qualityGates": {
+    "stage1-aiPatternDetection": {
+      "enabled": true,
+      "priority": "critical",
+      "checks": {
+        "forbiddenPhrases": [
+          "in today's rapidly evolving world",
+          "let's dive into",
+          "it's important to note that",
+          "interestingly enough",
+          "at the end of the day",
+          "moving forward",
+          "with that being said",
+          "let's explore",
+          "delve into",
+          "journey"
+        ],
+        "weakPatterns": {
+          "excessiveHowever": { "max": 2, "perPage": true },
+          "excessiveMoreover": { "max": 2, "perPage": true },
+          "predictableThreeLists": { "warning": true },
+          "genericConclusions": { "warning": true }
+        },
+        "action": "auto-fix-or-flag"
+      }
+    },
+    "stage2-factVerification": {
+      "enabled": true,
+      "priority": "critical",
+      "checks": {
+        "requireSourceCitations": true,
+        "flagUnverifiedClaims": true,
+        "validateStatistics": true,
+        "checkExternalLinks": true
+      },
+      "action": "flag-for-review"
+    },
+    "stage3-readability": {
+      "enabled": true,
+      "priority": "high",
+      "checks": {
+        "fleschReadingEase": {
+          "min": 60,
+          "max": 70,
+          "target": 65
+        },
+        "sentenceLengthVariety": {
+          "min": 5,
+          "max": 35,
+          "avgTarget": 18
+        },
+        "paragraphVariety": {
+          "min": 1,
+          "max": 5,
+          "avgTarget": 3
+        },
+        "activeVoicePercentage": {
+          "min": 80
+        }
+      },
+      "action": "auto-fix-or-flag"
+    },
+    "stage4-seoOptimization": {
+      "enabled": true,
+      "priority": "medium",
+      "appliesTo": ["blogs", "web-content"],
+      "checks": {
+        "metaDescription": { "required": true, "maxLength": 160 },
+        "keywords": { "min": 3, "max": 10 },
+        "headingStructure": { "validate": true },
+        "internalLinks": { "min": 2 },
+        "imageAltText": { "required": true }
+      },
+      "action": "auto-generate-suggestions"
+    },
+    "stage5-actionability": {
+      "enabled": true,
+      "priority": "high",
+      "checks": {
+        "hasFrameworks": { "min": 1 },
+        "hasConcreteExamples": { "min": 3 },
+        "hasActionableSteps": { "min": 1 },
+        "hasExercises": { "recommended": true },
+        "avoidsPlatitudes": { "enforce": true }
+      },
+      "action": "flag-for-enhancement"
+    }
+  },
+  "formatConversion": {
+    "markdown-to-pdf": {
+      "tool": "pandoc",
+      "template": "_templates/pdf-template.latex",
+      "options": {
+        "fontSize": 11,
+        "lineSpacing": 1.5,
+        "margins": "1in",
+        "fontFamily": "Palatino"
+      }
+    },
+    "markdown-to-epub": {
+      "tool": "pandoc",
+      "template": "_templates/epub-template.html",
+      "options": {
+        "tocDepth": 3,
+        "coverImage": true,
+        "metadata": true
+      }
+    },
+    "markdown-to-html": {
+      "tool": "custom-renderer",
+      "template": "_templates/web-template.html",
+      "options": {
+        "syntaxHighlighting": true,
+        "responsiveImages": true,
+        "seoMeta": true,
+        "schemaMarkup": true
+      }
+    },
+    "markdown-to-course-json": {
+      "tool": "custom-converter",
+      "structure": {
+        "lessons": true,
+        "quizzes": true,
+        "resources": true,
+        "progress-tracking": true
+      }
+    }
+  },
+  "distribution": {
+    "web": {
+      "targets": ["github-pages", "vercel", "frankx.ai"],
+      "autoPublish": false,
+      "requiresApproval": true
+    },
+    "blog-platforms": {
+      "targets": ["medium", "substack", "linkedin"],
+      "crossPost": true,
+      "canonicalUrl": "frankx.ai"
+    },
+    "ebook-stores": {
+      "targets": ["kindle-direct-publishing", "apple-books", "gumroad"],
+      "autoPublish": false,
+      "requiresApproval": true
+    },
+    "course-platforms": {
+      "targets": ["thinkific", "teachable", "custom-lms"],
+      "autoPublish": false,
+      "requiresApproval": true
+    },
+    "social-media": {
+      "autoGenerateSnippets": true,
+      "platforms": ["twitter-x", "linkedin", "instagram"],
+      "scheduleOptimization": true
+    }
+  },
+  "automation": {
+    "onContentCreated": [
+      "run-quality-gates",
+      "update-knowledge-graph",
+      "suggest-cross-pollination",
+      "generate-seo-meta"
+    ],
+    "onContentUpdated": [
+      "re-run-quality-gates",
+      "update-related-content-flags",
+      "regenerate-exports"
+    ],
+    "onContentPublished": [
+      "generate-social-snippets",
+      "update-content-status",
+      "archive-version",
+      "notify-channels"
+    ]
+  }
+}
