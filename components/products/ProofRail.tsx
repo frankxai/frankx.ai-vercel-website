@@ -20,9 +20,9 @@ export default function ProofRail({ stats, quotes }: ProofRailProps) {
         </div>
         <div className="flex-1 space-y-6">
           {quotes.map((quote) => (
-            <div key={quote.quote} className="rounded-3xl border border-slate-800 bg-slate-900/70 p-8 text-white/80">
+            <div key={quote.text} className="rounded-3xl border border-slate-800 bg-slate-900/70 p-8 text-white/80">
               <Quote className="mb-4 h-6 w-6 text-primary-300" />
-              <p className="text-lg leading-relaxed text-white/90">{quote.quote}</p>
+              <p className="text-lg leading-relaxed text-white/90">{quote.text}</p>
               <div className="mt-4 text-sm font-semibold text-primary-200">{quote.author}</div>
               {quote.role ? <div className="text-xs uppercase tracking-[0.3em] text-white/50">{quote.role}</div> : null}
             </div>
