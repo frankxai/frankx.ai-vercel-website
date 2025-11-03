@@ -4,7 +4,7 @@ export type ProductSocialProofStat = {
 }
 
 export type ProductTestimonial = {
-  quote: string
+  text: string
   author: string
   role?: string
 }

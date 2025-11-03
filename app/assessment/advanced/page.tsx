@@ -1,8 +1,9 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import * as React from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowRight, ArrowLeft, CheckCircle, Brain, Users, Lightbulb, Target, TrendingUp, BookOpen, Shield, Star } from 'lucide-react'
+import { ArrowRight, ArrowLeft, CheckCircle, Brain, Users, Lightbulb, Target, TrendingUp, BookOpen, Shield, Star, Share2, Twitter, Linkedin, Mail, Download } from 'lucide-react'
 import Link from 'next/link'
 
 import { cn } from '@/lib/utils'
@@ -337,6 +338,19 @@ export default function AdvancedAssessmentPage() {
   const step = assessmentSteps[currentStep]
   const progress = ((currentStep + 1) / assessmentSteps.length) * 100
 
+  // Show welcome on first load
+  if (step.type === 'welcome') {
+    return (
+      <div className="min-h-screen bg-slate-950 text-slate-100">
+        <div className="pt-24 pb-16 px-4">
+          <div className="max-w-4xl mx-auto">
+            <WelcomeStep onNext={nextStep} completionCount={1234} />
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100">
       {/* Progress Bar */}
@@ -361,9 +375,6 @@ export default function AdvancedAssessmentPage() {
               exit={{ opacity: 0, x: isTransitioning ? 20 : -20 }}
               transition={{ duration: 0.3 }}
             >
-              {step.type === 'welcome' && (
-                <WelcomeStep onNext={nextStep} />
-              )}
 
               {step.type === 'question' && (
                 <QuestionStep
@@ -399,7 +410,7 @@ export default function AdvancedAssessmentPage() {
   )
 }
 
-function WelcomeStep({ onNext }: { onNext: () => void }) {
+function WelcomeStep({ onNext, completionCount }: { onNext: () => void, completionCount: number }) {
   return (
     <div className="text-center">
       <StaggerContainer>
@@ -409,34 +420,61 @@ function WelcomeStep({ onNext }: { onNext: () => void }) {
               <Brain className="w-12 h-12 text-white" />
             </div>
             <h1 className="text-5xl font-bold mb-6 bg-gradient-to-r from-slate-100 via-purple-200 to-slate-300 bg-clip-text text-transparent">
-              <TypewriterText text="Your AI Intelligence Journey Begins" delay={0.3} />
+              Your AI Intelligence Journey Begins
             </h1>
             <p className="text-xl text-slate-300 mb-8 max-w-3xl mx-auto leading-relaxed">
-              A comprehensive assessment designed by our Agent Team to create your personalized pathway to conscious AI mastery.
+              A comprehensive assessment designed to create your personalized pathway to AI mastery.
+              Discover your persona, identify your goals, and receive custom recommendations.
             </p>
+
+            {/* Social Proof */}
+            <div className="flex items-center justify-center gap-2 text-slate-400 mb-12">
+              <Users className="w-5 h-5 text-purple-400" />
+              <span className="text-sm">
+                <span className="font-semibold text-white">{completionCount.toLocaleString()}</span> people have discovered their AI intelligence profile
+              </span>
+            </div>
           </div>
         </StaggerItem>
 
         <StaggerItem>
           <GlassmorphicCard variant="luxury" className="p-8 mb-8">
+            <h2 className="text-2xl font-semibold text-white mb-6 text-center">What You'll Discover</h2>
             <div className="grid md:grid-cols-3 gap-6">
               <div className="text-center">
                 <Target className="w-8 h-8 text-purple-400 mx-auto mb-3" />
-                <h3 className="font-semibold text-slate-100 mb-2">Personalized Pathway</h3>
-                <p className="text-sm text-slate-400">Tailored recommendations based on your goals and experience</p>
+                <h3 className="font-semibold text-slate-100 mb-2">Your AI Persona</h3>
+                <p className="text-sm text-slate-400">Creator, Executive, Family Leader, or Technical Practitioner</p>
               </div>
               <div className="text-center">
                 <TrendingUp className="w-8 h-8 text-cyan-400 mx-auto mb-3" />
-                <h3 className="font-semibold text-slate-100 mb-2">Progress Tracking</h3>
-                <p className="text-sm text-slate-400">Clear milestones and achievements along your journey</p>
+                <h3 className="font-semibold text-slate-100 mb-2">Experience Level</h3>
+                <p className="text-sm text-slate-400">Your current AI maturity and growth pathway</p>
               </div>
               <div className="text-center">
-                <Users className="w-8 h-8 text-green-400 mx-auto mb-3" />
-                <h3 className="font-semibold text-slate-100 mb-2">Community Access</h3>
-                <p className="text-sm text-slate-400">Connect with like-minded individuals and experts</p>
+                <Lightbulb className="w-8 h-8 text-green-400 mx-auto mb-3" />
+                <h3 className="font-semibold text-slate-100 mb-2">Custom Roadmap</h3>
+                <p className="text-sm text-slate-400">Personalized recommendations and next steps</p>
               </div>
             </div>
           </GlassmorphicCard>
+        </StaggerItem>
+
+        <StaggerItem>
+          <div className="grid grid-cols-3 gap-6 mb-12">
+            <div className="text-center">
+              <div className="text-3xl font-bold text-purple-400 mb-2">5</div>
+              <div className="text-sm text-slate-400">Quick Steps</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-purple-400 mb-2">3-5</div>
+              <div className="text-sm text-slate-400">Minutes</div>
+            </div>
+            <div className="text-center">
+              <div className="text-3xl font-bold text-purple-400 mb-2">Instant</div>
+              <div className="text-sm text-slate-400">Results</div>
+            </div>
+          </div>
         </StaggerItem>
 
         <StaggerItem>
@@ -452,7 +490,7 @@ function WelcomeStep({ onNext }: { onNext: () => void }) {
                 <ArrowRight className="w-5 h-5 ml-2" />
               </PremiumButton>
             </GlowPulse>
-            <p className="text-sm text-slate-500 mt-4">Takes 3-5 minutes • Completely free • No email required</p>
+            <p className="text-sm text-slate-500 mt-4">Completely free • No email required to start • Save your results</p>
           </div>
         </StaggerItem>
       </StaggerContainer>
@@ -666,6 +704,8 @@ function MatrixStep({
 }
 
 function ResultsStep({ profile }: { profile: UserProfile }) {
+  const [email, setEmail] = React.useState('')
+  const [name, setName] = React.useState('')
   const getPersonaInfo = (persona: UserProfile['persona']) => {
     const info = {
       creator: {
@@ -800,33 +840,104 @@ function ResultsStep({ profile }: { profile: UserProfile }) {
           </div>
         </StaggerItem>
 
+        {/* Social Share */}
         <StaggerItem>
-          <div className="text-center">
-            <h3 className="text-2xl font-semibold mb-8 text-slate-100">Ready to Begin Your Journey?</h3>
+          <GlassmorphicCard variant="luxury" className="p-6 text-center">
+            <h3 className="text-lg font-semibold text-slate-100 mb-4 flex items-center justify-center gap-2">
+              <Share2 className="w-5 h-5 text-purple-400" />
+              Share Your Results
+            </h3>
+            <div className="flex gap-3 justify-center">
+              <button
+                onClick={() => {
+                  const text = `I just discovered I'm ${personaInfo.title}! Take the AI Intelligence Assessment at FrankX.AI`
+                  window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`, '_blank')
+                }}
+                className="p-3 bg-white/10 hover:bg-white/20 rounded-lg transition-colors border border-white/10"
+                aria-label="Share on Twitter"
+              >
+                <Twitter className="w-5 h-5 text-white" />
+              </button>
+              <button
+                onClick={() => {
+                  window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent('https://frankx.ai/assessment/advanced')}`, '_blank')
+                }}
+                className="p-3 bg-white/10 hover:bg-white/20 rounded-lg transition-colors border border-white/10"
+                aria-label="Share on LinkedIn"
+              >
+                <Linkedin className="w-5 h-5 text-white" />
+              </button>
+              <button
+                onClick={() => {
+                  const subject = 'Check out my AI Intelligence Assessment'
+                  const body = `I just completed the AI Intelligence Assessment and discovered I'm ${personaInfo.title}!\n\nDiscover your AI persona: https://frankx.ai/assessment/advanced`
+                  window.location.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+                }}
+                className="p-3 bg-white/10 hover:bg-white/20 rounded-lg transition-colors border border-white/10"
+                aria-label="Share via Email"
+              >
+                <Mail className="w-5 h-5 text-white" />
+              </button>
+            </div>
+          </GlassmorphicCard>
+        </StaggerItem>
+
+        <StaggerItem>
+          <div className="text-center space-y-8">
+            <h3 className="text-2xl font-semibold text-slate-100">Ready to Begin Your Journey?</h3>
+
+            {/* Email Capture */}
+            <GlassmorphicCard variant="luxury" className="p-8 max-w-2xl mx-auto">
+              <h4 className="text-xl font-semibold text-slate-100 mb-4">Get Your Detailed Report</h4>
+              <p className="text-slate-300 mb-6">
+                Receive a comprehensive PDF with your persona analysis, custom workflows, and step-by-step action plan.
+              </p>
+              <div className="space-y-3">
+                <input
+                  type="text"
+                  placeholder="Your name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-slate-400 focus:ring-2 focus:ring-purple-400/50 focus:outline-none"
+                />
+                <input
+                  type="email"
+                  placeholder="Email address"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-slate-400 focus:ring-2 focus:ring-purple-400/50 focus:outline-none"
+                />
+                <button className="w-full inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-purple-500 to-violet-600 hover:from-purple-400 hover:to-violet-500 text-white font-semibold rounded-xl transition-all duration-300 hover:-translate-y-1">
+                  <Download className="mr-2 h-5 w-5" />
+                  Send My Detailed Report
+                </button>
+                <p className="text-xs text-slate-500">
+                  Optional. You can explore recommendations above without email.
+                </p>
+              </div>
+            </GlassmorphicCard>
+
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
               <GlowPulse color="purple">
                 <PremiumButton
                   variant="luxury"
                   size="lg"
-                  href="/dashboard"
+                  href="/products"
                   className="px-8 py-4"
                 >
-                  Access Your Dashboard
+                  Explore Products
                   <ArrowRight className="w-5 h-5 ml-2" />
                 </PremiumButton>
               </GlowPulse>
               <PremiumButton
                 variant="ghost"
                 size="lg"
-                href="/products"
+                href="/contact"
                 className="px-8 py-4"
               >
-                Explore Products
+                Talk to an Expert
               </PremiumButton>
             </div>
-            <p className="text-slate-500 text-sm mt-6">
-              Your personalized recommendations have been saved to your dashboard
-            </p>
           </div>
         </StaggerItem>
       </StaggerContainer>

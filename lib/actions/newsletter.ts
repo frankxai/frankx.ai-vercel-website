@@ -40,12 +40,13 @@ async function subscribeWebhook(email: string) {
   return { ok: res.ok, status: res.status }
 }
 
-export async function subscribeToNewsletter(formData: FormData) {
+export async function subscribeToNewsletter(formData: FormData): Promise<void> {
   const email = (formData.get('email') as string)?.trim().toLowerCase()
   const redirectTo = formData.get('redirect') as string | null
 
   if (!email || !email.includes('@')) {
-    return { error: 'Valid email address required' }
+    console.error('Newsletter signup: Invalid email address')
+    return
   }
 
   try {
@@ -67,16 +68,17 @@ export async function subscribeToNewsletter(formData: FormData) {
     }
 
     if (!outcome.ok) {
-      return { error: 'Subscription failed. Please try again.' }
+      console.error('Newsletter subscription failed for:', email)
+      return
     }
 
+    // Success - redirect to thank you page
     if (redirectTo) {
       redirect(redirectTo)
+    } else {
+      redirect('/thank-you')
     }
-
-    return { success: true, message: 'Successfully subscribed!' }
   } catch (error) {
     console.error('Newsletter signup error:', error)
-    return { error: 'Internal server error. Please try again later.' }
   }
 }

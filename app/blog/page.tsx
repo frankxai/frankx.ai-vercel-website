@@ -146,11 +146,25 @@ export default async function BlogPage({
               </span>
               <div className="space-y-4">
                 <h1 className="text-4xl font-semibold leading-tight text-white md:text-6xl">
-                  Deep practice notes for creators, families, and executives leading the intelligence era.
+                  Where Enterprise AI Meets Soul-Aligned Creation
                 </h1>
                 <p className="max-w-2xl text-sm text-white/70 md:text-base">
-                  The journal curates flagship research, publishing systems, and daily signals from the FrankX Intelligence Atlas. Every entry pairs strategic narrative with execution checklists and agent-ready automations.
+                  Real insights from an Oracle AI Architect building the bridge between enterprise excellence and conscious creativity. Deep dives into AI systems, music production with Suno, and the daily practices that transform how we create, lead, and evolve.
                 </p>
+                <div className="grid gap-3 pt-2 sm:grid-cols-3">
+                  <div className="rounded-xl border border-white/10 bg-white/5 px-4 py-3">
+                    <p className="text-xs font-semibold uppercase tracking-wider text-primary-200">AI Architecture</p>
+                    <p className="mt-1 text-xs text-white/60">Enterprise systems & agent design</p>
+                  </div>
+                  <div className="rounded-xl border border-white/10 bg-white/5 px-4 py-3">
+                    <p className="text-xs font-semibold uppercase tracking-wider text-primary-200">Music Creation</p>
+                    <p className="mt-1 text-xs text-white/60">Suno techniques & frequency work</p>
+                  </div>
+                  <div className="rounded-xl border border-white/10 bg-white/5 px-4 py-3">
+                    <p className="text-xs font-semibold uppercase tracking-wider text-primary-200">Conscious Tech</p>
+                    <p className="mt-1 text-xs text-white/60">Soul-aligned systems & rituals</p>
+                  </div>
+                </div>
               </div>
 
               <div className="grid gap-4 sm:grid-cols-2">
@@ -382,8 +396,37 @@ export default async function BlogPage({
         </section>
 
         <section className="px-6 pt-20">
-          <div className="mx-auto max-w-2xl">
-            <EmailCaptureForm />
+          <div className="mx-auto max-w-4xl rounded-3xl border border-primary-400/30 bg-gradient-to-br from-primary-500/15 via-slate-900 to-slate-950 p-10 text-center">
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary-400/40 bg-primary-500/20 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-primary-200">
+              <Sparkles className="h-4 w-4" />
+              Join 2,000+ Conscious Creators
+            </div>
+            <h2 className="text-3xl font-semibold text-white md:text-4xl">
+              Get Weekly Intelligence Drops
+            </h2>
+            <p className="mt-4 text-white/70 leading-relaxed">
+              Every Monday, get a curated dispatch with AI systems insights, Suno music techniques, and consciousness-aligned practices. No fluff, just actionable intelligence you can use immediately.
+            </p>
+            <div className="mt-6 grid gap-4 text-left sm:grid-cols-3">
+              <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+                <p className="text-sm font-semibold text-white">AI Architecture Insights</p>
+                <p className="mt-1 text-xs text-white/60">Enterprise patterns and agent design</p>
+              </div>
+              <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+                <p className="text-sm font-semibold text-white">Music Creation Techniques</p>
+                <p className="mt-1 text-xs text-white/60">Suno prompts and production tips</p>
+              </div>
+              <div className="rounded-xl border border-white/10 bg-white/5 p-4">
+                <p className="text-sm font-semibold text-white">Exclusive Templates</p>
+                <p className="mt-1 text-xs text-white/60">Systems and rituals you can deploy</p>
+              </div>
+            </div>
+            <div className="mt-8">
+              <EmailCaptureForm />
+            </div>
+            <p className="mt-4 text-xs text-white/50">
+              Join the FrankX community. Unsubscribe anytime. Your email stays sacred.
+            </p>
           </div>
         </section>
       </main>

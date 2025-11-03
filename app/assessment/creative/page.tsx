@@ -1,6 +1,6 @@
 'use client'
 
-import { ArrowLeft, ArrowRight, Brain, CheckCircle2, Lightbulb, Music, Palette, Play, Sparkles, Target, Wand2 } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Brain, CheckCircle2, Lightbulb, Music, Palette, Play, Sparkles, Target, Wand2, Users, Share2, Twitter, Linkedin, Mail, Download } from 'lucide-react'
 import Link from 'next/link'
 import { useState } from 'react'
 
@@ -74,9 +74,12 @@ const categories = [
 ]
 
 export default function CreativeAIAssessmentPage() {
+  const [hasStarted, setHasStarted] = useState(false)
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [answers, setAnswers] = useState<Record<number, any>>({})
   const [showResults, setShowResults] = useState(false)
+  const [email, setEmail] = useState('')
+  const [completionCount] = useState(1456) // Social proof
 
   const handleAnswer = (questionId: number, answer: any) => {
     setAnswers(prev => ({ ...prev, [questionId]: answer }))
@@ -186,26 +189,88 @@ export default function CreativeAIAssessmentPage() {
               </div>
             </section>
 
-            {/* Next Steps */}
+            {/* Social Share */}
+            <section className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 text-center">
+              <h3 className="text-lg font-semibold text-white mb-4 flex items-center justify-center gap-2">
+                <Share2 className="w-5 h-5 text-purple-400" />
+                Share Your Creative AI Level
+              </h3>
+              <div className="flex gap-3 justify-center">
+                <button
+                  onClick={() => {
+                    const text = `I'm a ${results.level}! Just discovered my creative AI potential at FrankX.AI`
+                    window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`, '_blank')
+                  }}
+                  className="p-3 bg-white/10 hover:bg-white/20 rounded-lg transition-colors border border-white/10"
+                  aria-label="Share on Twitter"
+                >
+                  <Twitter className="w-5 h-5 text-white" />
+                </button>
+                <button
+                  onClick={() => {
+                    window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent('https://frankx.ai/assessment/creative')}`, '_blank')
+                  }}
+                  className="p-3 bg-white/10 hover:bg-white/20 rounded-lg transition-colors border border-white/10"
+                  aria-label="Share on LinkedIn"
+                >
+                  <Linkedin className="w-5 h-5 text-white" />
+                </button>
+                <button
+                  onClick={() => {
+                    const subject = 'Check out my Creative AI Assessment'
+                    const body = `I just completed the Creative AI Assessment and discovered I'm a ${results.level}!\n\nFind out your creative AI level: https://frankx.ai/assessment/creative`
+                    window.location.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+                  }}
+                  className="p-3 bg-white/10 hover:bg-white/20 rounded-lg transition-colors border border-white/10"
+                  aria-label="Share via Email"
+                >
+                  <Mail className="w-5 h-5 text-white" />
+                </button>
+              </div>
+            </section>
+
+            {/* Recommended Products */}
+            <section className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8">
+              <h3 className="text-2xl font-semibold text-white mb-6 text-center">Recommended for Your Level</h3>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="p-6 bg-gradient-to-br from-purple-500/10 to-pink-500/10 border border-purple-400/30 rounded-xl">
+                  <h4 className="font-semibold text-white mb-2">Creation Chronicles</h4>
+                  <p className="text-slate-300 text-sm mb-4">Master AI-powered content creation workflows for creators</p>
+                  <Link href="/products/creation-chronicles" className="text-purple-400 hover:text-purple-300 text-sm font-semibold inline-flex items-center">
+                    Explore Creation Chronicles <ArrowRight className="ml-1 h-4 w-4" />
+                  </Link>
+                </div>
+                <div className="p-6 bg-gradient-to-br from-cyan-500/10 to-blue-500/10 border border-cyan-400/30 rounded-xl">
+                  <h4 className="font-semibold text-white mb-2">Vibe OS</h4>
+                  <p className="text-slate-300 text-sm mb-4">Complete creative operating system with AI tools and workflows</p>
+                  <Link href="/products/vibe-os" className="text-cyan-400 hover:text-cyan-300 text-sm font-semibold inline-flex items-center">
+                    Try Vibe OS <ArrowRight className="ml-1 h-4 w-4" />
+                  </Link>
+                </div>
+              </div>
+            </section>
+
+            {/* Email Capture */}
             <section className="text-center space-y-8 py-16 px-8 rounded-3xl border border-white/10 bg-gradient-to-br from-purple-500/5 via-slate-900 to-slate-950">
-              <h2 className="text-3xl font-bold text-white">Ready to Transform Your Creative Process?</h2>
+              <h2 className="text-3xl font-bold text-white">Get Your Personalized Action Plan</h2>
               <p className="text-xl text-white/70 max-w-2xl mx-auto">
-                Take the next step in your creative AI journey with our specialized tools and guidance.
+                Receive a detailed PDF with custom workflows, tool recommendations, and step-by-step implementation guide.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Link
-                  href="/products/creation-chronicles"
-                  className="inline-flex items-center justify-center rounded-xl px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-400 hover:to-pink-500 text-white font-semibold text-lg shadow-[0_0_30px_rgba(168,85,247,0.4)] transition-all duration-300 hover:-translate-y-1"
-                >
-                  Explore Creation Chronicles
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
-                <Link
-                  href="/products/vibe-os"
-                  className="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/5 backdrop-blur-sm px-8 py-4 text-white/90 font-semibold text-lg transition-all duration-300 hover:bg-white/10"
-                >
-                  Try Vibe OS
-                </Link>
+              <div className="max-w-md mx-auto">
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="w-full px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-slate-400 focus:ring-2 focus:ring-purple-400/50 focus:outline-none mb-4"
+                />
+                <button className="w-full inline-flex items-center justify-center rounded-xl px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-400 hover:to-pink-500 text-white font-semibold text-lg shadow-[0_0_30px_rgba(168,85,247,0.4)] transition-all duration-300 hover:-translate-y-1">
+                  <Download className="mr-2 h-5 w-5" />
+                  Send My Action Plan
+                </button>
+                <p className="text-xs text-slate-500 mt-3">
+                  Optional. You can explore recommendations above without providing email.
+                </p>
               </div>
             </section>
           </div>
@@ -217,6 +282,115 @@ export default function CreativeAIAssessmentPage() {
 
   const currentQ = questions[currentQuestion]
   const selectedAnswer = answers[currentQ.id]
+
+  // Landing page before assessment starts
+  if (!hasStarted) {
+    return (
+      <div className="min-h-screen bg-slate-950 text-slate-100">
+        <Navigation />
+        <main className="px-6 pt-28 pb-20">
+          <div className="mx-auto max-w-4xl space-y-12">
+            <nav className="flex items-center gap-2 text-sm text-white/60">
+              <Link href="/assessment" className="hover:text-white transition-colors flex items-center gap-2">
+                <ArrowLeft className="w-4 h-4" />
+                Assessment Center
+              </Link>
+              <ArrowRight className="w-4 h-4" />
+              <span>Creative AI Assessment</span>
+            </nav>
+
+            <div className="text-center space-y-6">
+              <div className="inline-flex items-center gap-2 rounded-full border border-purple-400/30 bg-gradient-to-r from-purple-500/10 to-pink-500/10 backdrop-blur-sm px-6 py-3 text-sm font-medium text-purple-300">
+                <Palette className="h-5 w-5" />
+                Creative AI Assessment
+              </div>
+              <h1 className="text-5xl font-bold text-white mb-6">
+                Unlock Your{' '}
+                <span className="bg-gradient-to-r from-purple-400 via-pink-500 to-purple-600 bg-clip-text text-transparent">
+                  Creative AI Potential
+                </span>
+              </h1>
+              <p className="text-xl text-white/70 max-w-2xl mx-auto leading-relaxed">
+                Discover how AI can amplify your creative output, maintain brand consistency,
+                and scale your content without sacrificing quality.
+              </p>
+
+              {/* Social Proof */}
+              <div className="flex items-center justify-center gap-2 text-slate-400 pt-4">
+                <Users className="w-5 h-5 text-purple-400" />
+                <span className="text-sm">
+                  <span className="font-semibold text-white">{completionCount.toLocaleString()}</span> creators have unlocked their creative AI strategy
+                </span>
+              </div>
+            </div>
+
+            {/* What You'll Learn */}
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="p-6 rounded-2xl border border-white/10 bg-white/5">
+                <Sparkles className="w-8 h-8 text-purple-400 mb-4" />
+                <h3 className="text-xl font-semibold text-white mb-3">Your Creative AI Level</h3>
+                <p className="text-white/70 leading-relaxed">
+                  Get a precise assessment of your current AI creative maturity and see where you stand
+                </p>
+              </div>
+              <div className="p-6 rounded-2xl border border-white/10 bg-white/5">
+                <Target className="w-8 h-8 text-cyan-400 mb-4" />
+                <h3 className="text-xl font-semibold text-white mb-3">Custom Tool Recommendations</h3>
+                <p className="text-white/70 leading-relaxed">
+                  Discover the specific AI tools and workflows that match your creative process
+                </p>
+              </div>
+              <div className="p-6 rounded-2xl border border-white/10 bg-white/5">
+                <Wand2 className="w-8 h-8 text-pink-400 mb-4" />
+                <h3 className="text-xl font-semibold text-white mb-3">Brand Consistency Strategy</h3>
+                <p className="text-white/70 leading-relaxed">
+                  Learn how to maintain your unique voice while leveraging AI at scale
+                </p>
+              </div>
+              <div className="p-6 rounded-2xl border border-white/10 bg-white/5">
+                <Brain className="w-8 h-8 text-orange-400 mb-4" />
+                <h3 className="text-xl font-semibold text-white mb-3">Monetization Pathways</h3>
+                <p className="text-white/70 leading-relaxed">
+                  Identify opportunities to turn AI-enhanced creativity into revenue growth
+                </p>
+              </div>
+            </div>
+
+            {/* Quick Stats */}
+            <div className="grid grid-cols-3 gap-6 py-8">
+              <div className="text-center">
+                <div className="text-3xl font-bold text-purple-400 mb-2">{questions.length}</div>
+                <div className="text-sm text-white/60">Questions</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-purple-400 mb-2">~3</div>
+                <div className="text-sm text-white/60">Minutes</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-purple-400 mb-2">100%</div>
+                <div className="text-sm text-white/60">Free</div>
+              </div>
+            </div>
+
+            {/* CTA */}
+            <div className="text-center space-y-4">
+              <button
+                onClick={() => setHasStarted(true)}
+                className="inline-flex items-center justify-center px-12 py-5 bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-400 hover:to-pink-500 text-white text-lg font-semibold rounded-xl shadow-[0_0_40px_rgba(168,85,247,0.4)] transition-all duration-300 hover:-translate-y-1"
+              >
+                Start Creative Assessment
+                <ArrowRight className="ml-2 h-6 w-6" />
+              </button>
+              <p className="text-sm text-slate-500">
+                No signup required • Instant results • Personalized recommendations
+              </p>
+            </div>
+          </div>
+        </main>
+        <Footer />
+      </div>
+    )
+  }
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100">

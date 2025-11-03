@@ -64,6 +64,34 @@ export default function CreatorLabOSPage() {
         pricingTiers={product.pricingTiers}
       />
 
+      {product.caseStudies && product.caseStudies.length > 0 && (
+        <section className="bg-slate-900/40 py-16">
+          <div className="mx-auto max-w-5xl px-6">
+            <h2 className="text-center text-3xl font-semibold text-white">Creators Who Built Systems That Ship</h2>
+            <p className="mt-4 text-center text-sm text-white/70">
+              These creators transformed inconsistency into predictable momentum with their Creator OS.
+            </p>
+            <div className="mt-10 grid gap-6 md:grid-cols-3">
+              {product.caseStudies.map((study) => (
+                <div key={study.title} className="flex h-full flex-col rounded-3xl border border-white/10 bg-slate-950/80 p-6">
+                  <span className="text-xs font-semibold uppercase tracking-[0.3em] text-primary-200">{study.metric ?? 'Case Study'}</span>
+                  <h3 className="mt-3 text-lg font-semibold text-white">{study.title}</h3>
+                  <p className="mt-3 text-sm text-white/70 leading-relaxed">{study.description}</p>
+                  {study.quote && (
+                    <blockquote className="mt-4 text-sm text-white/60">&ldquo;{study.quote}&rdquo;</blockquote>
+                  )}
+                  {(study.author || study.role) && (
+                    <p className="mt-2 text-xs uppercase tracking-[0.2em] text-white/40">
+                      {[study.author, study.role].filter(Boolean).join(' - ')}
+                    </p>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       <section className="bg-slate-950 py-16">
         <div className="mx-auto max-w-4xl px-6">
           <h2 className="text-center text-3xl font-semibold text-white">Creator FAQs</h2>

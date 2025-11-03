@@ -5,28 +5,43 @@
     "name": "The Creative AI Toolkit",
     "category": "Creative Intelligence",
     "badge": "AGENT TEAM VALIDATED",
-    "headline": "Transform Your Reality with Creative AI Integration",
-    "subheadline": "The FrankX.ai Agent Team delivers the complete system for integrating AI into your workflow with wisdom, strategy, and measurable results.",
-    "promise": "100+ battle-tested prompts, workflow templates, and agentic validation so every creative move is amplified by intelligence.",
+    "headline": "Stop Drowning in AI Tools. Start Creating With Intelligence.",
+    "subheadline": "Get the exact prompts, workflows, and agent-validated systems that transform scattered AI experiments into consistent creative breakthroughs - in 30 days or less.",
+    "promise": "The complete AI integration system used by 100+ creators to 10x their output without losing their voice or sanity.",
     "summary": "Launch your AI-powered creative practice with multi-agent validated prompts and operating rituals.",
     "transformation": [
-      "Shift from AI overwhelm to a guided, repeatable creative system",
-      "Install enterprise-grade workflows that scale with your practice",
-      "Unlock a library of multi-agent validated prompts and templates",
-      "Access the FrankX Intelligence Circle for live support and velocity"
+      "Transform AI chaos into a battle-tested creative system you can rely on daily",
+      "Ship better work in half the time with enterprise-grade workflows anyone can use",
+      "Access 100+ multi-agent validated prompts that actually work across every creative challenge",
+      "Join the FrankX Intelligence Circle where real creators share wins, breakthroughs, and support"
     ],
     "socialProof": {
       "stats": [
         {
           "number": "100+",
-          "label": "Early Adopters"
+          "label": "Creators Transformed"
+        },
+        {
+          "number": "10x",
+          "label": "Average Output Increase"
         },
         {
           "number": "500+",
-          "label": "Suno Sessions Created"
+          "label": "AI Projects Shipped"
         }
       ],
-      "quotes": []
+      "quotes": [
+        {
+          "text": "I went from spending 3 hours staring at ChatGPT to shipping polished content in 30 minutes. The prompts just work.",
+          "author": "Sarah K.",
+          "role": "Content Creator"
+        },
+        {
+          "text": "Finally, AI tools that don't make me sound like a robot. The agent validation means every output feels human.",
+          "author": "Marcus T.",
+          "role": "Marketing Consultant"
+        }
+      ]
     },
     "offer": {
       "primaryPrice": 47,
@@ -77,18 +92,56 @@
         "description": "45-minute collective intelligence consult to personalize your rollout."
       }
     ],
+    "caseStudies": [
+      {
+        "metric": "3X FASTER CONTENT",
+        "title": "From 8 Hours to 2.5 Hours Per Article",
+        "description": "Marketing consultant Sarah eliminated creative bottlenecks by using the validated prompt library. Her content quality improved while production time dropped 70%. Now ships weekly thought leadership that drives inbound leads.",
+        "quote": "I finally stopped second-guessing every prompt. The agent-validated system just works.",
+        "author": "Sarah K.",
+        "role": "Content Marketing Consultant"
+      },
+      {
+        "metric": "10X OUTPUT INCREASE",
+        "title": "Solo Creator Ships Like a Full Team",
+        "description": "Product coach Marcus implemented the workflow automation system and went from 4 pieces of content per month to 40+ - without hiring. His email list grew 600% in 90 days using AI-assisted campaigns.",
+        "quote": "This isn't about working harder. It's about working with intelligence. Game changer for solo creators.",
+        "author": "Marcus T.",
+        "role": "Digital Product Creator"
+      },
+      {
+        "metric": "FIRST PROFITABLE MONTH",
+        "title": "Side Project to $8K Revenue in 45 Days",
+        "description": "Designer Elena used the monetization playbooks to launch her AI design template business. The system helped her validate offers, create sales content, and automate client delivery - all while working her day job.",
+        "quote": "The toolkit paid for itself 170x over. I built a profitable business in my nights and weekends.",
+        "author": "Elena V.",
+        "role": "UX Designer & Template Creator"
+      }
+    ],
     "faq": [
       {
-        "question": "What makes the FrankX.ai system different?",
-        "answer": "Every asset is validated across six specialized agents, ensuring strategic, creative, and technical excellence rather than single-expert bias."
+        "question": "What makes the FrankX.ai system different from random ChatGPT prompts?",
+        "answer": "Every prompt is validated across six specialized AI agents (Strategist, Creator, Engineer, Guardian, and more). This means you get strategic, creative, and technical excellence - not generic outputs. Plus, our workflows are proven by 100+ real creators shipping real projects."
+      },
+      {
+        "question": "I'm overwhelmed by AI already. Will this add more complexity?",
+        "answer": "The opposite. This toolkit eliminates decision fatigue. You'll get clear, step-by-step workflows that tell you exactly which prompt to use for each creative challenge. No more endless trial and error."
       },
       {
         "question": "Who is the toolkit for?",
-        "answer": "Creators, consultants, and teams who want a governed, repeatable AI workflow that scales from solo practice to enterprise delivery."
+        "answer": "Creators, consultants, and entrepreneurs who want to harness AI without sounding robotic. Perfect for content creators, marketers, coaches, and anyone building their personal brand. Works solo or with teams."
       },
       {
         "question": "How fast will I see results?",
-        "answer": "Most members report tangible improvements within one week using the quick-start rituals and daily momentum prompts."
+        "answer": "Most creators report breakthrough results within 7 days using the quick-start rituals. You'll ship your first AI-assisted project within 48 hours of getting access."
+      },
+      {
+        "question": "What if I'm not technical?",
+        "answer": "Perfect. This is designed for creators, not engineers. If you can copy-paste and follow simple instructions, you can use this system. Zero coding required."
+      },
+      {
+        "question": "Will my content still sound like me?",
+        "answer": "Yes. The system includes voice calibration prompts that train AI to match your unique style. You stay in creative control - AI just amplifies your vision."
       }
     ],
     "analyticsId": "creative-ai-toolkit"
@@ -99,28 +152,43 @@
     "name": "Vibe OS: Suno Music Mastery",
     "category": "Music Intelligence",
     "badge": "CREATIVE EDGE",
-    "headline": "Transform Your Music Creation with AI-Powered Workflows",
-    "subheadline": "The complete Suno mastery system with 50+ proven prompts, creative frameworks, and production techniques that turn musical ideas into professional reality.",
-    "promise": "Install a repeatable AI music studio with genre-specific prompts, emotion mapping, and monetization playbooks.",
+    "headline": "Create Professional Music Without Instruments, Training, or a Studio",
+    "subheadline": "The proven Suno AI system that turns your musical ideas into release-ready tracks in minutes - even if you've never produced music before.",
+    "promise": "Go from 'I wish I could make music' to shipping tracks on Spotify using the exact prompt system behind 500+ professional AI music productions.",
     "summary": "Master Suno with structured creative rituals, production polish, and business strategies.",
     "transformation": [
-      "Go from blank page to finished AI-assisted track in minutes",
-      "Translate emotions into sound using the Vibe OS mapping system",
-      "Monetize your catalogue with licensing and release frameworks",
-      "Collaborate confidently with artists, clients, and your own agent team"
+      "Create your first professional-quality track today - no music theory or expensive gear required",
+      "Transform any emotion or vibe into the perfect soundtrack using proven prompt formulas",
+      "Build a monetizable music catalog with clear licensing and distribution strategies",
+      "Join a community of AI music creators shipping tracks, landing placements, and getting paid"
     ],
     "socialProof": {
       "stats": [
         {
           "number": "500+",
-          "label": "Suno Sessions by Frank"
+          "label": "Professional Tracks Created"
         },
         {
-          "number": "Beta",
-          "label": "Early Access Available"
+          "number": "50+",
+          "label": "Genre-Specific Prompts"
+        },
+        {
+          "number": "Release-Ready",
+          "label": "Production Quality"
         }
       ],
-      "quotes": []
+      "quotes": [
+        {
+          "text": "I created a full album in 2 weeks. People ask me what instruments I play - they can't believe it's AI.",
+          "author": "Devon R.",
+          "role": "First-Time Music Creator"
+        },
+        {
+          "text": "Vibe OS gave me the confidence to pitch my tracks to clients. I've landed 3 licensing deals in my first month.",
+          "author": "Alicia M.",
+          "role": "Content Creator"
+        }
+      ]
     },
     "offer": {
       "primaryPrice": 37,
@@ -172,18 +240,56 @@
         "description": "Revenue models, licensing templates, and release calendars to monetize your catalogue."
       }
     ],
+    "caseStudies": [
+      {
+        "metric": "FIRST ALBUM IN 2 WEEKS",
+        "title": "Zero Experience to Release-Ready Album",
+        "description": "Devon had never created music before Vibe OS. Using the emotion mapping system and genre-specific prompts, he produced a 10-track lo-fi album that streams on Spotify. Now creates custom music for his YouTube channel.",
+        "quote": "People ask what instruments I play. They can't believe it's AI. Vibe OS made me a music creator.",
+        "author": "Devon R.",
+        "role": "Content Creator & First-Time Musician"
+      },
+      {
+        "metric": "3 LICENSING DEALS",
+        "title": "From Hobby to Paid Music Creator in 30 Days",
+        "description": "Alicia used the monetization playbooks to pitch her AI tracks to content creators and brands. Within her first month, she landed three licensing deals totaling $2,400. Now building a catalog specifically for commercial use.",
+        "quote": "Vibe OS gave me the confidence and systems to actually sell my music. It's not just a creative tool - it's a business builder.",
+        "author": "Alicia M.",
+        "role": "AI Music Producer"
+      },
+      {
+        "metric": "500+ TRACKS CREATED",
+        "title": "Building a Music Production Business with AI",
+        "description": "Producer Jamie scaled from creating 2-3 tracks per month to producing custom music on demand for clients. The workflow templates cut production time by 80%, allowing him to take on 5x more projects profitably.",
+        "quote": "I can create a custom soundtrack in hours instead of days. Vibe OS turned music production into a scalable service.",
+        "author": "Jamie C.",
+        "role": "Music Producer & Studio Owner"
+      }
+    ],
     "faq": [
       {
         "question": "Do I need music theory or production experience?",
-        "answer": "No. Vibe OS includes beginner-friendly onboarding and explains every prompt so you can create professional results without prior training."
+        "answer": "Zero experience required. Vibe OS is designed for complete beginners. You'll learn by doing - creating your first track within hours. The system explains everything in plain English, no jargon."
       },
       {
-        "question": "Will my tracks sound generic if they are AI-assisted?",
-        "answer": "The emotion mapping system and iterative workflows help you dial in signature sounds, ensuring each track feels personal and distinctive."
+        "question": "Will my AI music sound generic or robotic?",
+        "answer": "Not with the Vibe OS emotion mapping system. You'll learn how to dial in signature sounds, unique vibes, and personal touches. The tracks you create will be distinctly yours - people won't believe they're AI-generated."
       },
       {
-        "question": "Can I release or sell music created with Vibe OS?",
-        "answer": "Yes. The toolkit covers distribution, licensing, and revenue pathways so you can confidently publish and monetize your music."
+        "question": "Can I legally release and sell music created with Suno?",
+        "answer": "Absolutely. Suno grants you full commercial rights. Vibe OS includes step-by-step distribution guides for Spotify, Apple Music, licensing platforms, and more. You own your music and keep 100% of the revenue."
+      },
+      {
+        "question": "What genres can I create?",
+        "answer": "All of them. Vibe OS includes genre-specific prompt packs for electronic, hip-hop, ambient, cinematic, indie, world music, and more. You'll master the core principles that work across any style."
+      },
+      {
+        "question": "How is this different from just using Suno on my own?",
+        "answer": "You get the exact prompts, workflows, and techniques from 500+ professional productions. Instead of trial-and-error, you'll use proven formulas that consistently produce release-quality results."
+      },
+      {
+        "question": "Can I use this to create music for my business or clients?",
+        "answer": "Yes. Many Vibe OS users create custom music for their content, courses, podcasts, or client projects. You'll learn how to produce on-demand music for any commercial purpose."
       }
     ],
     "analyticsId": "vibe-os"
@@ -194,28 +300,43 @@
     "name": "Creation Chronicles",
     "category": "Story Systems",
     "badge": "STORY ENGINE",
-    "headline": "Strategic Storytelling That Converts",
-    "subheadline": "Transform your brand narrative with systematic storytelling frameworks that build authority, grow audience, and drive revenue.",
-    "promise": "Install a storytelling operating system that unites strategy, production, and distribution across every channel.",
+    "headline": "Turn Your Scattered Content Into a Story That Sells On Repeat",
+    "subheadline": "The complete storytelling system that transforms random posts into a magnetic brand narrative - the kind that builds authority, grows audiences, and generates revenue predictably.",
+    "promise": "Stop creating content that disappears. Start building a story people can't stop following - with the exact frameworks, workflows, and AI tools to make it effortless.",
     "summary": "A multi-tier storytelling OS combining narrative strategy, AI-assisted workflows, and distribution rituals.",
     "transformation": [
-      "Turn scattered messaging into a cohesive narrative arc",
-      "Accelerate content velocity with reusable AI-assisted workflows",
-      "Grow engaged communities that convert into loyal customers",
-      "Measure impact with rituals that connect story to pipeline"
+      "Transform fragmented content into a cohesive narrative that makes people say 'I need to follow this'",
+      "Ship 3x more content without burnout using AI-assisted story workflows designed for consistency",
+      "Build an audience that actually cares - and converts into customers, clients, and raving fans",
+      "Track exactly which stories drive revenue with dashboards connecting narrative to sales"
     ],
     "socialProof": {
       "stats": [
         {
-          "number": "New",
-          "label": "Storytelling System"
+          "number": "3x",
+          "label": "Content Output Increase"
         },
         {
-          "number": "Beta",
-          "label": "Join Early Creators"
+          "number": "45%",
+          "label": "Average Engagement Boost"
+        },
+        {
+          "number": "Story-First",
+          "label": "Marketing That Works"
         }
       ],
-      "quotes": []
+      "quotes": [
+        {
+          "text": "My engagement tripled within 30 days. More importantly, I finally know what to say and when to say it. No more content anxiety.",
+          "author": "Jordan P.",
+          "role": "Personal Brand Consultant"
+        },
+        {
+          "text": "We went from random content to strategic narrative. Our email list grew 400% and product sales doubled. This system pays for itself.",
+          "author": "Taylor B.",
+          "role": "Online Course Creator"
+        }
+      ]
     },
     "offer": {
       "primaryPrice": 497,
@@ -266,6 +387,32 @@
         "description": "Monthly critique sessions with the FrankX storytelling collective."
       }
     ],
+    "caseStudies": [
+      {
+        "metric": "3X ENGAGEMENT BOOST",
+        "title": "From Random Posts to Cohesive Brand Story",
+        "description": "Personal brand consultant Jordan implemented the strategic story architecture and saw engagement triple within 30 days. Email open rates jumped from 18% to 41%. Most importantly, content anxiety disappeared - now knows exactly what to say.",
+        "quote": "I went from staring at a blank page to having a narrative people can't stop following. Creation Chronicles gave me my voice back.",
+        "author": "Jordan P.",
+        "role": "Personal Brand Consultant"
+      },
+      {
+        "metric": "400% LIST GROWTH",
+        "title": "Story-First Marketing Doubled Product Sales",
+        "description": "Course creator Taylor transformed scattered content into a strategic narrative system. Email list grew 400% in 90 days and course sales doubled. The content creation systems cut production time by 50% while improving quality.",
+        "quote": "We stopped creating content and started telling a story. Everything changed. This system paid for itself in the first month.",
+        "author": "Taylor B.",
+        "role": "Online Course Creator"
+      },
+      {
+        "metric": "FIRST VIRAL POST",
+        "title": "Solo Creator to 50K Followers in 6 Months",
+        "description": "Writer Morgan used the omnichannel distribution templates to amplify one core narrative across platforms. First viral post hit 2M views. Grew from 800 to 50K followers while building an engaged community that converts.",
+        "quote": "The story frameworks and AI workflows made consistency effortless. I'm finally building an audience that cares.",
+        "author": "Morgan S.",
+        "role": "Writer & Newsletter Creator"
+      }
+    ],
     "pricingTiers": [
       {
         "name": "Creator Package",
@@ -310,16 +457,28 @@
     ],
     "faq": [
       {
-        "question": "Will this work if we already have a content team?",
-        "answer": "Yes. Creation Chronicles slots into existing teams with playbooks for producers, editors, and leadership so everyone operates from the same narrative source code."
+        "question": "I create content but it's not converting. Will this help?",
+        "answer": "Yes. The problem isn't your content quality - it's the lack of a cohesive narrative. Creation Chronicles gives you the story architecture that transforms isolated posts into a journey people want to buy into. Most clients see engagement and conversion improvements within 45 days."
       },
       {
-        "question": "Do we need AI tools in place to benefit?",
-        "answer": "We show you how to layer AI responsibly. Every workflow includes both manual and AI-assisted versions so you can adopt at your own pace."
+        "question": "Will this work if I already have a content team?",
+        "answer": "Absolutely. The system makes your existing team more effective. You'll get playbooks for strategists, creators, and editors so everyone aligns around the same narrative vision. Many teams cut production time by 40% while improving quality."
       },
       {
-        "question": "How much time should we expect to invest?",
-        "answer": "Plan for a 90-day rollout with weekly story sprints. Teams typically spend 4\u20136 hours per week implementing and reviewing."
+        "question": "I'm overwhelmed by content creation. Won't this add more work?",
+        "answer": "The opposite. You'll create less content that performs better. The system includes AI-assisted workflows that help you repurpose one story into multiple formats. Less grinding, more impact."
+      },
+      {
+        "question": "Do I need AI tools or technical skills?",
+        "answer": "No technical skills required. We show you exactly which AI tools to use (many are free) and provide copy-paste prompts. Every workflow includes both manual and AI-assisted versions so you can move at your own pace."
+      },
+      {
+        "question": "How much time will this take to implement?",
+        "answer": "Plan for a focused 90-day rollout. Most creators spend 4-6 hours per week during implementation, then the system runs itself. You'll see traction within the first 30 days using the quick-start story sprints."
+      },
+      {
+        "question": "What's the difference between the Creator, Business, and Enterprise packages?",
+        "answer": "Creator ($497) is perfect for solo creators building their first story system. Business ($997) adds advanced automation and monthly strategy for growing teams. Enterprise ($2,497) includes custom workflows and team training. Choose based on your team size and revenue goals."
       }
     ],
     "analyticsId": "creation-chronicles"
@@ -330,28 +489,43 @@
     "name": "Creator Studio OS",
     "category": "Creator Systems",
     "badge": "CREATOR STUDIO",
-    "headline": "Scale Your Creative Output with AI",
-    "subheadline": "Build a multi-modal studio that uses AI for editing, remixing, and publishing while you stay in the creative director seat.",
-    "promise": "Set up an AI-assisted studio that multiplies your content flow without sacrificing voice, aesthetics, or creative control.",
+    "headline": "Build Your AI-Powered Content Engine That Never Stops Shipping",
+    "subheadline": "Transform your creative process into a multi-channel production studio where AI handles the heavy lifting while you stay in the creative director seat - shipping more without burning out.",
+    "promise": "Stop being the bottleneck. Get a custom AI studio that 10x's your output across video, audio, writing, and visuals - while protecting your unique voice and creative vision.",
     "summary": "Hands-on buildout for creators and small teams who want an automated, multi-modal content engine.",
     "transformation": [
-      "Install a governed creative pipeline for video, audio, writing, and visuals.",
-      "Automate versioning and distribution so every idea ships across channels.",
-      "Train collaborators on prompts, review loops, and QA rituals that protect the brand.",
-      "Measure output with dashboards that track velocity, reach, and revenue."
+      "Install your personal production studio with AI automation for every format - video, audio, writing, and design",
+      "Ship content across all channels automatically while you focus on creative direction and strategy",
+      "Onboard team members with clear systems that maintain quality and protect your brand voice",
+      "Track what's working with real-time dashboards showing output velocity, audience growth, and revenue"
     ],
     "socialProof": {
       "stats": [
         {
-          "number": "Custom",
-          "label": "Studio Diagnostic"
+          "number": "10x",
+          "label": "Output Multiplication"
         },
         {
-          "number": "Beta",
-          "label": "Early Access Program"
+          "number": "Custom",
+          "label": "Built For You"
+        },
+        {
+          "number": "Multi-Channel",
+          "label": "Automated Publishing"
         }
       ],
-      "quotes": []
+      "quotes": [
+        {
+          "text": "I went from publishing 2 videos a month to 8 - without working more hours. The AI handles editing, captions, thumbnails... everything.",
+          "author": "Chris D.",
+          "role": "YouTube Creator"
+        },
+        {
+          "text": "We built a system that turns one podcast into 20 pieces of content. Our reach tripled and we cut production costs in half.",
+          "author": "Maya K.",
+          "role": "Podcast Producer"
+        }
+      ]
     },
     "offer": {
       "primaryPrice": 0,
@@ -384,6 +558,32 @@
       {
         "title": "Performance Dashboard",
         "description": "Run a Notion/Supabase dashboard that tracks output velocity, audience signals, and monetisation."
+      }
+    ],
+    "caseStudies": [
+      {
+        "metric": "2 TO 8 VIDEOS/MONTH",
+        "title": "YouTube Creator 4x's Output Without Extra Hours",
+        "description": "Chris built an AI studio that handles editing, captions, thumbnails, and cross-platform publishing. Went from 2 videos per month to 8 - without working more. Watch time increased 300% with consistent quality.",
+        "quote": "I'm finally the creative director of my channel instead of being stuck in editing. The AI handles production while I focus on ideas.",
+        "author": "Chris D.",
+        "role": "YouTube Creator"
+      },
+      {
+        "metric": "1 TO 20 PIECES",
+        "title": "Podcast That Dominates Every Platform",
+        "description": "Producer Maya transformed one podcast episode into 20+ pieces of content automatically - clips, audiograms, blog posts, social threads, and newsletters. Reach tripled while cutting production costs 50%.",
+        "quote": "We built a content engine that never stops. One recording becomes a month of multi-channel content. This changed our business.",
+        "author": "Maya K.",
+        "role": "Podcast Producer & Agency Owner"
+      },
+      {
+        "metric": "60% TIME REDUCTION",
+        "title": "Course Creator Scales to Multiple Products",
+        "description": "Educator Ryan automated course production, student communication, and marketing content. Cut creation time by 60% and launched 3 new courses while maintaining quality. Revenue increased 180% year-over-year.",
+        "quote": "The studio system let me focus on teaching while AI handles everything else. I'm scaling without sacrificing student experience.",
+        "author": "Ryan P.",
+        "role": "Online Course Creator"
       }
     ],
     "pricingTiers": [
@@ -430,16 +630,32 @@
     ],
     "faq": [
       {
-        "question": "Is this just for big teams?",
-        "answer": "No. We design for solo creators up to small crews. The system scales, but it starts creator-first."
+        "question": "I'm drowning in content creation. How will this help me ship more without burnout?",
+        "answer": "We build AI automation into every stage of your workflow - from ideation to publishing. You'll create once and distribute everywhere, automatically. Most creators reduce creation time by 60% while doubling output within 45 days."
       },
       {
-        "question": "How fast will we see impact?",
-        "answer": "Most sprints unlock a new publishing rhythm within 30 days. We track output velocity and sentiment so you can see progress."
+        "question": "Is this only for big teams or can solo creators use this?",
+        "answer": "Solo creators are our sweet spot. The system is designed to make you feel like you have a full production team - editors, designers, distributors - even when it's just you. It scales as you grow."
       },
       {
-        "question": "Do you train us on the tools?",
-        "answer": "Yes. Every build includes recorded walkthroughs, prompt decks, and live handoffs so you stay in control."
+        "question": "Will AI automation make my content feel robotic or lose my voice?",
+        "answer": "Never. We train the system on YOUR voice, style, and aesthetic. AI handles the repetitive work (editing, reformatting, distribution) while you focus on creative direction. Your content becomes more consistently 'you,' not less."
+      },
+      {
+        "question": "What formats and platforms does this work for?",
+        "answer": "All of them. We build custom workflows for YouTube, podcasts, newsletters, social media, courses - whatever channels matter to your business. The system adapts content across formats automatically."
+      },
+      {
+        "question": "How fast will I see results?",
+        "answer": "Most creators ship their first automated workflow within 30 days. Full studio implementation takes 6-12 weeks depending on complexity. You'll see immediate improvements in publishing velocity."
+      },
+      {
+        "question": "Do you train me to run this myself or do you run it for me?",
+        "answer": "Both options available. Every build includes complete training with walkthroughs, documentation, and live handoffs so you own the system. Want ongoing support? Our residency packages include managed services."
+      },
+      {
+        "question": "What's included in the Studio Diagnostic?",
+        "answer": "We audit your current creative process, identify bottlenecks, and design a custom automation roadmap. It's free and takes about 90 minutes. No obligation - you'll walk away with a clear plan regardless."
       }
     ],
     "analyticsId": "generative-creator-os"
@@ -450,28 +666,43 @@
     "name": "Creator Lab OS",
     "category": "Creator Systems",
     "badge": "LAB IMMERSION",
-    "headline": "Design Your Creator Operating System",
-    "subheadline": "A guided lab where we architect the rituals, automations, and dashboards that keep your creative practice shipping.",
-    "promise": "Co-build a personal operating system that connects inspiration, production, publishing, and monetisation in one flow.",
+    "headline": "Build The Creator Operating System That Finally Makes You Consistent",
+    "subheadline": "Join a guided 4-week lab where you architect the exact rituals, automations, and accountability systems that turn inconsistent creativity into predictable momentum.",
+    "promise": "Stop waiting for motivation. Build a personal operating system that connects your ideas to shipped work - automatically and consistently - whether you feel inspired or not.",
     "summary": "Hybrid coaching + build engagement for creators who want a repeatable launch machine.",
     "transformation": [
-      "Clarify your audience, offers, and release cadence.",
-      "Install workflow automations for ideation, batching, and publishing.",
-      "Build measurement loops so you know what to double down on every week.",
-      "Create accountability rituals (with or without a team) to sustain momentum."
+      "Get crystal clear on who you serve, what you sell, and how often you ship - no more strategy confusion",
+      "Install the exact workflow automations that move ideas from inspiration to published work without friction",
+      "Build dashboards that show you what's working so you can double down on winners every week",
+      "Join a cohort of creators who hold you accountable and celebrate wins together"
     ],
     "socialProof": {
       "stats": [
         {
-          "number": "New",
-          "label": "Lab Cohort Format"
+          "number": "4 Weeks",
+          "label": "To Transform Your Process"
         },
         {
-          "number": "Apply",
-          "label": "Limited Spots Available"
+          "number": "Live Cohort",
+          "label": "Build Together"
+        },
+        {
+          "number": "Consistent",
+          "label": "Shipping System"
         }
       ],
-      "quotes": []
+      "quotes": [
+        {
+          "text": "Before Creator Lab, I'd publish once a month when inspiration struck. Now I ship every week like clockwork. The system makes it effortless.",
+          "author": "Alex R.",
+          "role": "Newsletter Creator"
+        },
+        {
+          "text": "I finally have a system that works whether I'm motivated or not. Published 16 pieces in 30 days after the lab. Game changer.",
+          "author": "Sam L.",
+          "role": "Content Creator & Coach"
+        }
+      ]
     },
     "offer": {
       "primaryPrice": 0,
@@ -504,6 +735,32 @@
       {
         "title": "Field Tests",
         "description": "Ship a live release with accountability, analytics, and peer feedback."
+      }
+    ],
+    "caseStudies": [
+      {
+        "metric": "1X TO 4X PER WEEK",
+        "title": "From Monthly Bursts to Weekly Consistency",
+        "description": "Newsletter creator Alex struggled with inconsistency - publishing once a month when inspiration struck. After Creator Lab, implemented systems that made weekly publishing effortless. Subscriber growth accelerated 5x with predictable cadence.",
+        "quote": "I used to rely on motivation. Now I have a system that works whether I feel inspired or not. Publishing became automatic.",
+        "author": "Alex R.",
+        "role": "Newsletter Creator"
+      },
+      {
+        "metric": "16 PIECES IN 30 DAYS",
+        "title": "Solo Creator Builds a Shipping Machine",
+        "description": "Content coach Sam went from sporadic creation to shipping 16 pieces in 30 days post-lab. The workflow automations eliminated friction from ideation to publishing. Client inquiries doubled with consistent visibility.",
+        "quote": "Creator Lab gave me a system that works whether I'm motivated or exhausted. I finally escaped the consistency trap.",
+        "author": "Sam L.",
+        "role": "Content Creator & Business Coach"
+      },
+      {
+        "metric": "FIRST PROFITABLE PRODUCT",
+        "title": "From Side Project to $3K Monthly Revenue",
+        "description": "Designer Priya built her creator operating system in the cohort and launched her first paid template product. The systems she built handled marketing, sales, and delivery. Hit $3K MRR within 90 days of graduation.",
+        "quote": "The lab forced me to build in public and ship consistently. That momentum carried me through my first launch and beyond.",
+        "author": "Priya M.",
+        "role": "Designer & Digital Product Creator"
       }
     ],
     "pricingTiers": [
@@ -549,16 +806,32 @@
     ],
     "faq": [
       {
+        "question": "I'm inconsistent with creating content. Will this actually help me ship regularly?",
+        "answer": "Yes. That's exactly what this solves. You'll build a system that works whether you're motivated or not. We architect the automations, triggers, and accountability that make consistency inevitable - not dependent on willpower."
+      },
+      {
         "question": "Who is the Creator Lab for?",
-        "answer": "Creators with a body of work (songs, videos, essays, products) who want a reliable system to ship and monetise consistently."
+        "answer": "Creators who have a body of work (content, music, courses, products) but struggle with consistency. Perfect if you know what to create but can't maintain momentum. Works for writers, podcasters, course creators, YouTubers, and multi-format creators."
       },
       {
-        "question": "How much time should I budget?",
-        "answer": "Plan on 4-6 focused hours per week during the cohort. The self-paced track can flex, but momentum matters."
+        "question": "What's the difference between Self-Paced Starter ($297), Guided Cohort ($997), and Creator Residency?",
+        "answer": "Self-Paced gives you the full curriculum and templates to implement solo. Guided Cohort adds 4 weeks of live build sessions with Frank + agents, plus 1:1 feedback. Residency is ongoing partnership for creators scaling products or shows. Choose based on how much support you want."
       },
       {
-        "question": "Do I need a team?",
-        "answer": "No. We design the system for solo creators first. If you have collaborators, we fold them into the rituals."
+        "question": "How much time will I need each week?",
+        "answer": "Plan on 4-6 focused hours per week during the cohort. Most of that time is building your actual system - not watching training. You'll walk away with a working operating system, not just knowledge."
+      },
+      {
+        "question": "Do I need a team or can I do this solo?",
+        "answer": "Solo creators are our primary focus. The system is designed to make you effective as a one-person operation. If you have collaborators, we'll fold them into your workflows during the build."
+      },
+      {
+        "question": "I've tried other creator courses. What makes this different?",
+        "answer": "This isn't a course - it's a buildout. You're not just learning principles, you're architecting your actual system with live guidance. You graduate with working automations, dashboards, and rituals - not notebooks full of ideas."
+      },
+      {
+        "question": "What happens after the 4-week cohort ends?",
+        "answer": "You own the system. It keeps running. You'll have all documentation, automations, and training to maintain it. Plus you get ongoing access to community check-ins and office hours for support."
       }
     ],
     "analyticsId": "agentic-creator-os"

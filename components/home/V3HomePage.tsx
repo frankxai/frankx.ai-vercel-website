@@ -90,29 +90,29 @@ export default function V3HomePage() {
           <div className="relative mx-auto max-w-7xl px-6">
             <StaggerContainer staggerDelay={0.2}>
               <div className="text-center space-y-10">
-                {/* Trust Badge - V3 New */}
+                {/* Trust Badge - V3 Enhanced */}
                 <StaggerItem>
                   <Pill
                     variant="brand"
-                    icon={<Sparkles className="h-4 w-4" aria-hidden="true" />}
+                    icon={<Award className="h-4 w-4" aria-hidden="true" />}
                     className="mx-auto"
                   >
-                    Built by Oracle AI Architect | 500+ Suno Sessions
+                    Oracle AI Architect | 500+ Songs Produced | Enterprise Systems Designer
                   </Pill>
                 </StaggerItem>
 
-                {/* Headline - V3 Simplified Positioning */}
+                {/* Headline - V3 Persona-Specific */}
                 <StaggerItem>
                   <h1
                     id="hero-heading"
                     className="text-heading-1 font-bold leading-tight text-balance max-w-6xl mx-auto"
                   >
                     <span className="bg-gradient-to-r from-white via-neutral-100 to-white bg-clip-text text-transparent">
-                      Intelligence Systems & Vibe OS for
+                      Build Production-Ready AI Systems.
                     </span>
                     <br />
                     <span className="bg-gradient-to-r from-primary-400 via-secondary-500 to-accent-600 bg-clip-text text-transparent">
-                      AI Architects and Music Creators
+                      Ship Content 10x Faster. Create Music Daily.
                     </span>
                   </h1>
                 </StaggerItem>
@@ -120,12 +120,15 @@ export default function V3HomePage() {
                 {/* Subheadline - Clear Value Props */}
                 <StaggerItem>
                   <p className="text-body text-neutral-300 max-w-4xl mx-auto leading-relaxed">
-                    Prompt packs, tool recommendations, and n8n/Zapier automations for AI architects.
-                    Plus Suno music workflows and consciousness-first creation systems. Built by an Oracle AI Architect who's created 500+ songs.
+                    For <strong className="text-white">AI Architects</strong>: Enterprise-grade agent frameworks, Oracle Cloud patterns, and MCP integrations.
+                    <br />
+                    For <strong className="text-white">Music Makers</strong>: 500+ battle-tested Suno workflows that turn ideas into releases in hours.
+                    <br />
+                    For <strong className="text-white">Generative Creators</strong>: AI-powered content systems that help you ship consistently without burnout.
                   </p>
                 </StaggerItem>
 
-                {/* CTAs - Intelligence Systems + Music */}
+                {/* CTAs - Benefit-Focused */}
                 <StaggerItem>
                   <div className="flex flex-col items-center gap-4 pt-4 sm:flex-row sm:justify-center flex-wrap">
                     <MagneticHover intensity={0.4}>
@@ -135,7 +138,7 @@ export default function V3HomePage() {
                           onClick={() => trackEvent('v3_hero_primary_cta', { destination: '/assessment' })}
                           className="btn-primary inline-flex items-center justify-center rounded-2xl px-8 py-4 text-lg font-semibold transition-transform duration-300 hover:-translate-y-1"
                         >
-                          Get Intelligence Systems
+                          Find Your System (Free Assessment)
                           <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
                         </Link>
                       </GlowPulse>
@@ -146,7 +149,8 @@ export default function V3HomePage() {
                         onClick={() => trackEvent('v3_hero_secondary_cta', { destination: '/products/vibe-os' })}
                         className="btn-secondary inline-flex items-center justify-center rounded-2xl px-8 py-4 text-lg font-semibold transition-transform duration-300 hover:-translate-y-1"
                       >
-                        Explore Vibe OS
+                        <Music className="mr-2 h-5 w-5" aria-hidden="true" />
+                        Suno Workflows ($97)
                         <ArrowUpRight className="ml-2 h-5 w-5" aria-hidden="true" />
                       </Link>
                     </MagneticHover>
@@ -156,8 +160,8 @@ export default function V3HomePage() {
                         onClick={() => trackEvent('v3_hero_music_cta', { destination: '/music-lab' })}
                         className="inline-flex items-center justify-center rounded-2xl border-2 border-purple-500/50 bg-purple-500/10 px-8 py-4 text-lg font-semibold text-purple-300 transition-all duration-300 hover:-translate-y-1 hover:bg-purple-500/20 hover:border-purple-400"
                       >
-                        <Music className="mr-2 h-5 w-5" aria-hidden="true" />
-                        Frank's 500+ Songs
+                        Hear the Music
+                        <ArrowUpRight className="ml-2 h-5 w-5" aria-hidden="true" />
                       </Link>
                     </MagneticHover>
                   </div>
@@ -231,8 +235,8 @@ export default function V3HomePage() {
             <SectionHeading
               id="personas-heading"
               eyebrow="Choose Your Path"
-              title="Built for Your Creator Archetype"
-              description="Whether you architect systems, create music, or ship content—we have the tools you need."
+              title="Pick the System That Fits Your Goals"
+              description="Whether you're building enterprise AI, shipping music to Spotify, or creating content that converts—get the exact frameworks you need to succeed."
             />
           </div>
 
@@ -249,18 +253,27 @@ export default function V3HomePage() {
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-3">AI Architects</h3>
                 <p className="text-lg font-medium text-cyan-400 mb-4">
-                  Build Conscious AI Systems
+                  Ship Production AI in Weeks, Not Months
                 </p>
                 <p className="text-slate-300 mb-6 leading-relaxed flex-grow">
-                  Enterprise-grade architectures for Oracle teams and conscious creators. Design systems that serve both professional excellence and human consciousness evolution.
+                  Get Oracle-tested agent patterns, MCP server blueprints, and enterprise deployment frameworks. Build agentic systems with consciousness-first architecture that scales from prototype to production.
                 </p>
-                <div className="flex flex-wrap gap-2 mb-6">
-                  <span className="text-xs px-3 py-1 rounded-full bg-white/10 text-slate-300">#Enterprise</span>
-                  <span className="text-xs px-3 py-1 rounded-full bg-white/10 text-slate-300">#Systems</span>
-                  <span className="text-xs px-3 py-1 rounded-full bg-white/10 text-slate-300">#Oracle</span>
+                <div className="space-y-2 mb-6">
+                  <div className="flex items-start gap-2 text-sm text-slate-300">
+                    <Check className="h-4 w-4 text-cyan-400 flex-shrink-0 mt-1" aria-hidden="true" />
+                    <span>LangGraph & Claude SDK patterns</span>
+                  </div>
+                  <div className="flex items-start gap-2 text-sm text-slate-300">
+                    <Check className="h-4 w-4 text-cyan-400 flex-shrink-0 mt-1" aria-hidden="true" />
+                    <span>Oracle Cloud integration guides</span>
+                  </div>
+                  <div className="flex items-start gap-2 text-sm text-slate-300">
+                    <Check className="h-4 w-4 text-cyan-400 flex-shrink-0 mt-1" aria-hidden="true" />
+                    <span>Custom system architecture design</span>
+                  </div>
                 </div>
                 <div className="flex items-center gap-2 text-cyan-400 font-medium group-hover:gap-3 transition-all">
-                  Explore Agentic Creator OS
+                  Explore Enterprise Systems
                   <ArrowRight className="h-5 w-5" aria-hidden="true" />
                 </div>
               </Link>
@@ -278,18 +291,27 @@ export default function V3HomePage() {
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-3">Music Makers</h3>
                 <p className="text-lg font-medium text-purple-400 mb-4">
-                  Create with Suno + AI
+                  From Idea to Spotify in 48 Hours
                 </p>
                 <p className="text-slate-300 mb-6 leading-relaxed flex-grow">
-                  500+ field-tested Suno workflows, release planning systems, and vibrational music creation frameworks. Go from idea to release in hours, not weeks.
+                  500+ battle-tested Suno prompt templates, release planning workflows, and distribution playbooks. Create daily, ship weekly, build a catalog that generates passive income.
                 </p>
-                <div className="flex flex-wrap gap-2 mb-6">
-                  <span className="text-xs px-3 py-1 rounded-full bg-white/10 text-slate-300">#Suno</span>
-                  <span className="text-xs px-3 py-1 rounded-full bg-white/10 text-slate-300">#Music</span>
-                  <span className="text-xs px-3 py-1 rounded-full bg-white/10 text-slate-300">#Frequency</span>
+                <div className="space-y-2 mb-6">
+                  <div className="flex items-start gap-2 text-sm text-slate-300">
+                    <Check className="h-4 w-4 text-purple-400 flex-shrink-0 mt-1" aria-hidden="true" />
+                    <span>Suno v4/v4.5 prompt engineering</span>
+                  </div>
+                  <div className="flex items-start gap-2 text-sm text-slate-300">
+                    <Check className="h-4 w-4 text-purple-400 flex-shrink-0 mt-1" aria-hidden="true" />
+                    <span>Spotify/Apple Music distribution</span>
+                  </div>
+                  <div className="flex items-start gap-2 text-sm text-slate-300">
+                    <Check className="h-4 w-4 text-purple-400 flex-shrink-0 mt-1" aria-hidden="true" />
+                    <span>Commercial licensing guidance</span>
+                  </div>
                 </div>
                 <div className="flex items-center gap-2 text-purple-400 font-medium group-hover:gap-3 transition-all">
-                  Enter Vibe OS
+                  Get Vibe OS ($97)
                   <ArrowRight className="h-5 w-5" aria-hidden="true" />
                 </div>
               </Link>
@@ -307,18 +329,27 @@ export default function V3HomePage() {
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-3">Generative Creators</h3>
                 <p className="text-lg font-medium text-amber-400 mb-4">
-                  Ship Content Weekly
+                  10x Your Content Output Without Burnout
                 </p>
                 <p className="text-slate-300 mb-6 leading-relaxed flex-grow">
-                  AI-powered content systems, course creation frameworks, and digital product workflows. Launch consistently with templates that transform and profit ethically.
+                  AI-powered workflows for newsletters, courses, and digital products. Ship consistently with prompt templates and automation blueprints that preserve your unique voice and consciousness.
                 </p>
-                <div className="flex flex-wrap gap-2 mb-6">
-                  <span className="text-xs px-3 py-1 rounded-full bg-white/10 text-slate-300">#Content</span>
-                  <span className="text-xs px-3 py-1 rounded-full bg-white/10 text-slate-300">#Courses</span>
-                  <span className="text-xs px-3 py-1 rounded-full bg-white/10 text-slate-300">#Products</span>
+                <div className="space-y-2 mb-6">
+                  <div className="flex items-start gap-2 text-sm text-slate-300">
+                    <Check className="h-4 w-4 text-amber-400 flex-shrink-0 mt-1" aria-hidden="true" />
+                    <span>Newsletter & social media templates</span>
+                  </div>
+                  <div className="flex items-start gap-2 text-sm text-slate-300">
+                    <Check className="h-4 w-4 text-amber-400 flex-shrink-0 mt-1" aria-hidden="true" />
+                    <span>Digital product launch blueprints</span>
+                  </div>
+                  <div className="flex items-start gap-2 text-sm text-slate-300">
+                    <Check className="h-4 w-4 text-amber-400 flex-shrink-0 mt-1" aria-hidden="true" />
+                    <span>AI automation workflows (n8n/Make)</span>
+                  </div>
                 </div>
                 <div className="flex items-center gap-2 text-amber-400 font-medium group-hover:gap-3 transition-all">
-                  Get Creative AI Toolkit
+                  Get Toolkit ($47)
                   <ArrowRight className="h-5 w-5" aria-hidden="true" />
                 </div>
               </Link>
@@ -341,28 +372,44 @@ export default function V3HomePage() {
             />
           </div>
 
-          {/* Stats Grid - Real metrics only */}
-          <div className="grid md:grid-cols-2 gap-8 mb-16 max-w-2xl mx-auto">
-            <div className="text-center">
+          {/* Stats Grid - Enhanced Trust Signals */}
+          <div className="grid md:grid-cols-4 gap-6 mb-16 max-w-5xl mx-auto">
+            <div className="text-center p-6 rounded-2xl bg-white/5 border border-white/10">
               <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/10 mb-4">
                 <Music className="h-6 w-6 text-purple-400" aria-hidden="true" />
               </div>
               <div className="text-3xl font-bold text-white mb-2">500+</div>
-              <div className="text-sm text-slate-400">Suno Sessions Created by Frank</div>
+              <div className="text-sm text-slate-400">Suno Songs Produced</div>
             </div>
-            <div className="text-center">
+            <div className="text-center p-6 rounded-2xl bg-white/5 border border-white/10">
               <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-cyan-500/10 mb-4">
                 <Award className="h-6 w-6 text-cyan-400" aria-hidden="true" />
               </div>
               <div className="text-3xl font-bold text-white mb-2">Oracle</div>
-              <div className="text-sm text-slate-400">AI Architect Background</div>
+              <div className="text-sm text-slate-400">AI Architect Role</div>
+            </div>
+            <div className="text-center p-6 rounded-2xl bg-white/5 border border-white/10">
+              <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/10 mb-4">
+                <Zap className="h-6 w-6 text-amber-400" aria-hidden="true" />
+              </div>
+              <div className="text-3xl font-bold text-white mb-2">5+</div>
+              <div className="text-sm text-slate-400">Years Building AI</div>
+            </div>
+            <div className="text-center p-6 rounded-2xl bg-white/5 border border-white/10">
+              <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-green-500/10 mb-4">
+                <TrendingUp className="h-6 w-6 text-green-400" aria-hidden="true" />
+              </div>
+              <div className="text-3xl font-bold text-white mb-2">Live</div>
+              <div className="text-sm text-slate-400">Production Systems</div>
             </div>
           </div>
 
-          {/* Testimonials section removed - will be added when real user feedback is collected */}
-          <div className="text-center">
-            <p className="text-slate-300 text-lg">
-              Join our growing community of early adopters building with AI consciousness and creativity.
+          <div className="text-center max-w-3xl mx-auto">
+            <p className="text-slate-300 text-lg mb-4">
+              Field-tested by an Oracle AI Architect who bridges enterprise tech and conscious creation.
+            </p>
+            <p className="text-slate-400">
+              Every template, workflow, and framework is proven in real production environments and creative projects.
             </p>
           </div>
         </div>
@@ -377,8 +424,8 @@ export default function V3HomePage() {
             <SectionHeading
               id="how-it-works-heading"
               eyebrow="Your Journey"
-              title="From Assessment to Shipping"
-              description="Three simple steps to transform your creative practice."
+              title="From Overwhelmed to AI-Empowered"
+              description="Three steps to transform your creative workflow and start shipping consistently."
             />
           </div>
 
@@ -387,22 +434,22 @@ export default function V3HomePage() {
               {
                 step: '1',
                 icon: Zap,
-                title: 'Take Assessment',
-                description: 'Discover your creator archetype and get personalized system recommendations in 2 minutes.',
+                title: 'Discover Your Path',
+                description: 'Take our 2-minute assessment to identify your creator archetype and get personalized system recommendations tailored to your goals.',
                 color: 'cyan'
               },
               {
                 step: '2',
                 icon: Grid3x3,
-                title: 'Choose Your System',
-                description: 'Select Vibe OS for music, Creative AI Toolkit for content, or Agentic Creator OS for custom architecture.',
+                title: 'Get Your System',
+                description: 'Choose Vibe OS (music), Creative AI Toolkit (content), or Agentic Creator OS (enterprise). Each includes battle-tested templates and workflows.',
                 color: 'purple'
               },
               {
                 step: '3',
                 icon: TrendingUp,
-                title: 'Ship & Scale',
-                description: 'Launch with proven templates, workflows, and support. Start creating consistently today.',
+                title: 'Ship Consistently',
+                description: 'Start creating daily with proven frameworks. Build your catalog, grow your audience, and scale what works without burnout.',
                 color: 'amber'
               }
             ].map((item) => {
@@ -619,11 +666,12 @@ export default function V3HomePage() {
             </Pill>
 
             <h2 id="final-cta-heading" className="text-4xl md:text-6xl font-bold text-white mb-6">
-              Ready to Build Intelligence Systems?
+              Ready to Ship 10x Faster with AI?
             </h2>
             <p className="text-xl text-slate-300 mb-12 leading-relaxed">
-              Start with our free assessment to discover your creator archetype and get personalized recommendations.
-              Transform from tech-overwhelmed to AI-empowered today.
+              Take our free 2-minute assessment to discover which system is perfect for you.
+              <br />
+              Get 20% off when you complete the assessment. No credit card required.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -634,18 +682,19 @@ export default function V3HomePage() {
                     onClick={() => trackEvent('v3_final_cta_primary', { destination: '/assessment' })}
                     className="inline-flex items-center justify-center gap-2 rounded-2xl bg-cyan-500 px-8 py-4 text-lg font-semibold text-slate-950 transition-all hover:bg-cyan-400 hover:shadow-lg hover:shadow-cyan-500/25 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
                   >
-                    Start Assessment
+                    Start Free Assessment
                     <ArrowRight className="h-5 w-5" aria-hidden="true" />
                   </Link>
                 </GlowPulse>
               </MagneticHover>
 
               <Link
-                href="/products/agentic-creator-os"
-                onClick={() => trackEvent('v3_final_cta_secondary', { destination: '/products/agentic-creator-os' })}
+                href="/products/vibe-os"
+                onClick={() => trackEvent('v3_final_cta_secondary', { destination: '/products/vibe-os' })}
                 className="inline-flex items-center justify-center gap-2 rounded-2xl border-2 border-white/20 bg-white/5 px-8 py-4 text-lg font-semibold text-white transition-all hover:bg-white/10 hover:border-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950"
               >
-                Book Consulting Call
+                <Music className="h-5 w-5" aria-hidden="true" />
+                Explore Products
               </Link>
             </div>
 

@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ArrowRight, ArrowLeft, CheckCircle, Star, Target, Brain, Zap, Shield, Users, BarChart3, Lightbulb, Rocket, Award, Download } from 'lucide-react'
+import { ArrowRight, ArrowLeft, CheckCircle, Star, Target, Brain, Zap, Shield, Users, BarChart3, Lightbulb, Rocket, Award, Download, Share2, Twitter, Linkedin, Mail } from 'lucide-react'
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
 
@@ -155,12 +155,14 @@ const questions: AssessmentQuestion[] = [
 ]
 
 export default function AIAssessmentPage() {
+  const [hasStarted, setHasStarted] = useState(false)
   const [currentQuestion, setCurrentQuestion] = useState(0)
   const [answers, setAnswers] = useState<Record<string, number>>({})
   const [isCompleted, setIsCompleted] = useState(false)
   const [results, setResults] = useState<AssessmentResults | null>(null)
   const [email, setEmail] = useState('')
   const [name, setName] = useState('')
+  const [completionCount] = useState(2847) // Social proof counter
 
   const handleAnswer = (questionId: string, value: number) => {
     setAnswers(prev => ({ ...prev, [questionId]: value }))
@@ -277,6 +279,128 @@ export default function AIAssessmentPage() {
   const currentAnswer = answers[currentQ?.id]
   const progress = ((currentQuestion + 1) / questions.length) * 100
 
+  // Landing page before assessment starts
+  if (!hasStarted) {
+    return (
+      <div className="min-h-screen bg-slate-950">
+        <Navigation />
+        <div className="pt-24 pb-16 px-6">
+          <div className="max-w-4xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="text-center mb-12"
+            >
+              <div className="inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 backdrop-blur-sm px-6 py-3 text-sm font-medium text-cyan-300 mb-6">
+                <Brain className="h-5 w-5" />
+                AI Readiness Assessment
+              </div>
+              <h1 className="text-5xl font-bold text-white mb-6">
+                Discover Your AI Readiness in{' '}
+                <span className="bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+                  2 Minutes
+                </span>
+              </h1>
+              <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto leading-relaxed">
+                Get a personalized AI transformation roadmap based on your current capabilities,
+                strategy, and organizational readiness.
+              </p>
+
+              {/* Social Proof */}
+              <div className="flex items-center justify-center gap-2 text-slate-400 mb-12">
+                <Users className="w-5 h-5 text-cyan-400" />
+                <span className="text-sm">
+                  Join <span className="font-semibold text-white">{completionCount.toLocaleString()}</span> professionals who have discovered their AI readiness
+                </span>
+              </div>
+            </motion.div>
+
+            {/* What You'll Discover */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2 }}
+              className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-8 mb-12"
+            >
+              <h2 className="text-2xl font-semibold text-white mb-6 text-center">What You'll Discover</h2>
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="flex gap-4">
+                  <Target className="w-6 h-6 text-cyan-400 flex-shrink-0 mt-1" />
+                  <div>
+                    <h3 className="font-semibold text-white mb-2">Your AI Readiness Score</h3>
+                    <p className="text-slate-300 text-sm">Comprehensive analysis across 5 key dimensions: readiness, strategy, implementation, governance, and culture</p>
+                  </div>
+                </div>
+                <div className="flex gap-4">
+                  <Lightbulb className="w-6 h-6 text-purple-400 flex-shrink-0 mt-1" />
+                  <div>
+                    <h3 className="font-semibold text-white mb-2">Personalized Recommendations</h3>
+                    <p className="text-slate-300 text-sm">Custom-tailored guidance based on your specific strengths and improvement opportunities</p>
+                  </div>
+                </div>
+                <div className="flex gap-4">
+                  <Rocket className="w-6 h-6 text-green-400 flex-shrink-0 mt-1" />
+                  <div>
+                    <h3 className="font-semibold text-white mb-2">Strategic Action Plan</h3>
+                    <p className="text-slate-300 text-sm">Clear next steps to accelerate your AI transformation journey</p>
+                  </div>
+                </div>
+                <div className="flex gap-4">
+                  <BarChart3 className="w-6 h-6 text-orange-400 flex-shrink-0 mt-1" />
+                  <div>
+                    <h3 className="font-semibold text-white mb-2">Category Breakdown</h3>
+                    <p className="text-slate-300 text-sm">Detailed scores showing exactly where you excel and where to focus improvements</p>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Quick Facts */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
+              className="grid md:grid-cols-3 gap-6 mb-12"
+            >
+              <div className="text-center p-6 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl">
+                <div className="text-3xl font-bold text-cyan-400 mb-2">{questions.length}</div>
+                <div className="text-sm text-slate-300">Quick Questions</div>
+              </div>
+              <div className="text-center p-6 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl">
+                <div className="text-3xl font-bold text-cyan-400 mb-2">2-3</div>
+                <div className="text-sm text-slate-300">Minutes to Complete</div>
+              </div>
+              <div className="text-center p-6 bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl">
+                <div className="text-3xl font-bold text-cyan-400 mb-2">Instant</div>
+                <div className="text-sm text-slate-300">Results & Roadmap</div>
+              </div>
+            </motion.div>
+
+            {/* CTA */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6 }}
+              className="text-center"
+            >
+              <button
+                onClick={() => setHasStarted(true)}
+                className="inline-flex items-center justify-center px-12 py-5 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white text-lg font-semibold rounded-xl shadow-[0_0_40px_rgba(6,182,212,0.4)] hover:shadow-[0_0_50px_rgba(6,182,212,0.5)] transition-all duration-300 hover:-translate-y-1"
+              >
+                Start Your Assessment
+                <ArrowRight className="ml-2 h-6 w-6" />
+              </button>
+              <p className="text-sm text-slate-500 mt-4">
+                No email required to start • Free forever • Get instant results
+              </p>
+            </motion.div>
+          </div>
+        </div>
+        <Footer />
+      </div>
+    )
+  }
+
   if (isCompleted && results) {
     return (
       <div className="min-h-screen bg-slate-950">
@@ -383,47 +507,155 @@ export default function AIAssessmentPage() {
               </div>
             </motion.div>
 
-            {/* CTA Section */}
+            {/* Social Share */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.8 }}
+              className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-6 text-center mb-12"
+            >
+              <h3 className="text-lg font-semibold text-white mb-4 flex items-center justify-center gap-2">
+                <Share2 className="w-5 h-5 text-cyan-400" />
+                Share Your Results
+              </h3>
+              <div className="flex gap-3 justify-center">
+                <button
+                  onClick={() => {
+                    const text = `I just scored ${results.overall}% on the AI Readiness Assessment! Discover your AI transformation roadmap at FrankX.AI`
+                    window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`, '_blank')
+                  }}
+                  className="p-3 bg-white/10 hover:bg-white/20 rounded-lg transition-colors border border-white/10"
+                  aria-label="Share on Twitter"
+                >
+                  <Twitter className="w-5 h-5 text-white" />
+                </button>
+                <button
+                  onClick={() => {
+                    const text = `I just scored ${results.overall}% on the AI Readiness Assessment! Discover your AI transformation roadmap.`
+                    window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent('https://frankx.ai/ai-assessment')}`, '_blank')
+                  }}
+                  className="p-3 bg-white/10 hover:bg-white/20 rounded-lg transition-colors border border-white/10"
+                  aria-label="Share on LinkedIn"
+                >
+                  <Linkedin className="w-5 h-5 text-white" />
+                </button>
+                <button
+                  onClick={() => {
+                    const subject = 'Check out my AI Readiness Assessment results'
+                    const body = `I just scored ${results.overall}% on the AI Readiness Assessment at FrankX.AI!\n\nDiscover your AI transformation roadmap: https://frankx.ai/ai-assessment`
+                    window.location.href = `mailto:?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+                  }}
+                  className="p-3 bg-white/10 hover:bg-white/20 rounded-lg transition-colors border border-white/10"
+                  aria-label="Share via Email"
+                >
+                  <Mail className="w-5 h-5 text-white" />
+                </button>
+              </div>
+            </motion.div>
+
+            {/* Product Recommendations Based on Score */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.9 }}
+              className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-8 mb-12"
+            >
+              <h3 className="text-2xl font-semibold text-white mb-6 text-center">Recommended for You</h3>
+              <div className="grid md:grid-cols-2 gap-6">
+                {results.overall < 40 && (
+                  <>
+                    <div className="p-6 bg-gradient-to-br from-cyan-500/10 to-blue-500/10 border border-cyan-400/30 rounded-xl">
+                      <h4 className="font-semibold text-white mb-2">AI Fundamentals Course</h4>
+                      <p className="text-slate-300 text-sm mb-4">Build your AI foundation with expert guidance and hands-on practice</p>
+                      <Link href="/products" className="text-cyan-400 hover:text-cyan-300 text-sm font-semibold inline-flex items-center">
+                        Learn More <ArrowRight className="ml-1 h-4 w-4" />
+                      </Link>
+                    </div>
+                    <div className="p-6 bg-gradient-to-br from-purple-500/10 to-pink-500/10 border border-purple-400/30 rounded-xl">
+                      <h4 className="font-semibold text-white mb-2">AI Readiness Community</h4>
+                      <p className="text-slate-300 text-sm mb-4">Connect with others starting their AI journey and get support</p>
+                      <Link href="/contact" className="text-purple-400 hover:text-purple-300 text-sm font-semibold inline-flex items-center">
+                        Join Now <ArrowRight className="ml-1 h-4 w-4" />
+                      </Link>
+                    </div>
+                  </>
+                )}
+                {results.overall >= 40 && results.overall < 65 && (
+                  <>
+                    <div className="p-6 bg-gradient-to-br from-cyan-500/10 to-blue-500/10 border border-cyan-400/30 rounded-xl">
+                      <h4 className="font-semibold text-white mb-2">Vibe OS</h4>
+                      <p className="text-slate-300 text-sm mb-4">Systematic AI workflows for creative professionals</p>
+                      <Link href="/products/vibe-os" className="text-cyan-400 hover:text-cyan-300 text-sm font-semibold inline-flex items-center">
+                        Explore Vibe OS <ArrowRight className="ml-1 h-4 w-4" />
+                      </Link>
+                    </div>
+                    <div className="p-6 bg-gradient-to-br from-purple-500/10 to-pink-500/10 border border-purple-400/30 rounded-xl">
+                      <h4 className="font-semibold text-white mb-2">AI Strategy Session</h4>
+                      <p className="text-slate-300 text-sm mb-4">1-on-1 consultation to develop your AI implementation roadmap</p>
+                      <Link href="/contact" className="text-purple-400 hover:text-purple-300 text-sm font-semibold inline-flex items-center">
+                        Book Session <ArrowRight className="ml-1 h-4 w-4" />
+                      </Link>
+                    </div>
+                  </>
+                )}
+                {results.overall >= 65 && (
+                  <>
+                    <div className="p-6 bg-gradient-to-br from-cyan-500/10 to-blue-500/10 border border-cyan-400/30 rounded-xl">
+                      <h4 className="font-semibold text-white mb-2">Agentic Creator OS</h4>
+                      <p className="text-slate-300 text-sm mb-4">Advanced AI architecture for enterprise transformation</p>
+                      <Link href="/products/agentic-creator-os" className="text-cyan-400 hover:text-cyan-300 text-sm font-semibold inline-flex items-center">
+                        Explore Agentic OS <ArrowRight className="ml-1 h-4 w-4" />
+                      </Link>
+                    </div>
+                    <div className="p-6 bg-gradient-to-br from-purple-500/10 to-pink-500/10 border border-purple-400/30 rounded-xl">
+                      <h4 className="font-semibold text-white mb-2">Enterprise Partnership</h4>
+                      <p className="text-slate-300 text-sm mb-4">Custom AI solutions and transformation consulting</p>
+                      <Link href="/contact" className="text-purple-400 hover:text-purple-300 text-sm font-semibold inline-flex items-center">
+                        Get in Touch <ArrowRight className="ml-1 h-4 w-4" />
+                      </Link>
+                    </div>
+                  </>
+                )}
+              </div>
+            </motion.div>
+
+            {/* Newsletter Signup - Optional */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.0 }}
               className="bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-400/30 rounded-xl p-8 text-center"
             >
-              <h3 className="text-2xl font-semibold text-white mb-4">Ready to Transform Your AI Journey?</h3>
+              <h3 className="text-2xl font-semibold text-white mb-4">Want Your Detailed Roadmap?</h3>
               <p className="text-slate-300 mb-6 max-w-2xl mx-auto">
-                Based on your assessment, we've identified specific resources and next steps to accelerate your AI transformation.
+                Get a personalized PDF report with detailed analysis, custom recommendations, and implementation timeline.
               </p>
 
-              <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
-                <input
-                  type="text"
-                  placeholder="Your name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  className="px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-slate-400 focus:ring-2 focus:ring-cyan-400/50"
-                />
-                <input
-                  type="email"
-                  placeholder="Email for personalized roadmap"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-slate-400 focus:ring-2 focus:ring-cyan-400/50"
-                />
-              </div>
+              <div className="max-w-md mx-auto">
+                <div className="flex flex-col gap-3 mb-6">
+                  <input
+                    type="text"
+                    placeholder="Your name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    className="px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-slate-400 focus:ring-2 focus:ring-cyan-400/50 focus:outline-none"
+                  />
+                  <input
+                    type="email"
+                    placeholder="Email address"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="px-4 py-3 bg-white/10 border border-white/20 rounded-lg text-white placeholder-slate-400 focus:ring-2 focus:ring-cyan-400/50 focus:outline-none"
+                  />
+                </div>
 
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <button className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold rounded-xl transition-all duration-300 hover:-translate-y-1">
+                <button className="w-full inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold rounded-xl transition-all duration-300 hover:-translate-y-1">
                   <Download className="mr-2 h-5 w-5" />
-                  Get Personalized Roadmap
+                  Send Me My Detailed Roadmap
                 </button>
-                <Link
-                  href="/products"
-                  className="inline-flex items-center justify-center px-8 py-4 border border-white/20 bg-white/5 backdrop-blur-sm text-white font-semibold rounded-xl transition-all duration-300 hover:bg-white/10 hover:border-white/30 hover:-translate-y-1"
-                >
-                  Explore Products
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Link>
+                <p className="text-xs text-slate-500 mt-3">
+                  Optional. You can explore recommendations above without providing email.
+                </p>
               </div>
             </motion.div>
           </div>
