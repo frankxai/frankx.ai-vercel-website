@@ -1,0 +1,1093 @@
+---
+title: "The Complete Guide to Model Context Protocol (MCP) Server Development"
+date: "2025-11-03"
+excerpt: "From zero to production MCP server in one guide. Build custom context providers that give AI agents superpowers, with real TypeScript implementations and enterprise patterns."
+author: "Frank"
+category: "AI Architecture"
+tags: ["mcp", "model-context-protocol", "typescript", "agent-tools", "integration-patterns"]
+readingTime: "14 min read"
+featured: true
+image: '/images/blog/mcp-server-development.svg'
+---
+
+# The Complete Guide to Model Context Protocol (MCP) Server Development
+
+I've built 12 custom MCP servers for my agentic workflows—everything from Notion content management to music generation with Suno AI. Each one transformed how my AI agents access and manipulate external systems.
+
+MCP is Anthropic's elegant solution to a messy problem: how do you give AI agents reliable, structured access to external data and tools without reinventing the integration layer every time?
+
+This guide teaches you to build production-grade MCP servers from first principles. No fluff, no "coming soon" placeholders—just battle-tested patterns that work.
+
+## What MCP Actually Solves
+
+Before MCP, every AI application rolled its own integration layer. Want to give Claude access to your Notion database? Build a custom API wrapper. Need to let GPT-4 read Slack messages? Write another integration. Want agents to orchestrate across multiple data sources? Good luck maintaining that mess.
+
+**The MCP paradigm shift:**
+
+Instead of building N integrations for M AI applications (N × M complexity), you build N MCP servers once, and any MCP-compatible client can use them (N + M complexity).
+
+```
+Before MCP:                    With MCP:
+
+┌─────────┐                    ┌─────────┐
+│Claude   │─────┐              │Claude   │─┐
+└─────────┘     │              └─────────┘ │
+                ├──→ Custom    ┌─────────┐ │
+┌─────────┐     │    Notion    │GPT-4    │─┼──→ MCP ──→ Notion
+│GPT-4    │─────┤    API       └─────────┘ │     Server
+└─────────┘     │                           │
+                ├──→ Custom    ┌─────────┐ │
+┌─────────┐     │    Slack     │Gemini   │─┘
+│Gemini   │─────┘    API       └─────────┘
+└─────────┘
+
+N×M integrations               N+M integrations
+```
+
+## MCP Architecture: The Three Primitives
+
+Every MCP server exposes three types of capabilities:
+
+### 1. Resources: Read-Only Data Access
+
+Resources are named pieces of content your server can provide. Think of them as GET endpoints that return structured data.
+
+**Example use cases:**
+- "Read the latest blog posts from my Notion database"
+- "Fetch the current stock price for AAPL"
+- "Get my calendar events for today"
+
+### 2. Tools: Actions Agents Can Take
+
+Tools are functions agents can call to perform actions. They're the POST/PUT/DELETE to Resources' GET.
+
+**Example use cases:**
+- "Create a new task in Linear"
+- "Send a Slack message to #engineering"
+- "Generate a song with Suno AI"
+
+### 3. Prompts: Templated Instruction Sets
+
+Prompts are reusable prompt templates with placeholders. They help standardize how agents interact with your data.
+
+**Example use cases:**
+- "Summarize this Notion page in 3 bullet points"
+- "Write a LinkedIn post about this blog article"
+- "Analyze sentiment of recent Slack messages"
+
+## Building Your First MCP Server: Notion Integration
+
+Let's build a real MCP server that gives AI agents access to your Notion workspace. This is production-quality code I use in my daily workflows.
+
+### Setup and Dependencies
+
+```bash
+# Create new MCP server project
+mkdir mcp-notion-server
+cd mcp-notion-server
+npm init -y
+
+# Install dependencies
+npm install @modelcontextprotocol/sdk zod @notionhq/client
+npm install -D typescript @types/node tsx
+
+# Initialize TypeScript
+npx tsc --init
+```
+
+```json
+// package.json
+{
+  "name": "mcp-notion-server",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx watch src/index.ts",
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^0.5.0",
+    "@notionhq/client": "^2.2.15",
+    "zod": "^3.22.4"
+  }
+}
+```
+
+### Core Server Implementation
+
+```typescript
+// src/index.ts
+import { Server } from "@modelcontextprotocol/sdk/server/index.js";
+import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import {
+  CallToolRequestSchema,
+  ListResourcesRequestSchema,
+  ListToolsRequestSchema,
+  ReadResourceRequestSchema,
+} from "@modelcontextprotocol/sdk/types.js";
+import { Client } from "@notionhq/client";
+import { z } from "zod";
+
+// Initialize Notion client
+const notion = new Client({
+  auth: process.env.NOTION_API_KEY,
+});
+
+// Database ID from environment
+const DATABASE_ID = process.env.NOTION_DATABASE_ID!;
+
+// Define Zod schemas for type safety
+const CreatePageArgsSchema = z.object({
+  title: z.string().describe("Title of the page"),
+  content: z.string().describe("Content in markdown format"),
+  tags: z.array(z.string()).optional().describe("Tags for the page"),
+});
+
+const QueryPagesArgsSchema = z.object({
+  filter: z.string().optional().describe("Search query to filter pages"),
+  limit: z.number().default(10).describe("Maximum number of results"),
+});
+
+// Create MCP server instance
+const server = new Server(
+  {
+    name: "notion-server",
+    version: "1.0.0",
+  },
+  {
+    capabilities: {
+      resources: {},
+      tools: {},
+      prompts: {},
+    },
+  }
+);
+
+// RESOURCES: Expose Notion pages as readable resources
+server.setRequestHandler(ListResourcesRequestSchema, async () => {
+  try {
+    const response = await notion.databases.query({
+      database_id: DATABASE_ID,
+      page_size: 100,
+    });
+
+    return {
+      resources: response.results.map((page: any) => ({
+        uri: `notion://page/${page.id}`,
+        mimeType: "text/plain",
+        name: page.properties.Name?.title[0]?.plain_text || "Untitled",
+        description: `Notion page: ${page.properties.Name?.title[0]?.plain_text}`,
+      })),
+    };
+  } catch (error) {
+    console.error("Failed to list resources:", error);
+    return { resources: [] };
+  }
+});
+
+server.setRequestHandler(ReadResourceRequestSchema, async (request) => {
+  const pageId = request.params.uri.replace("notion://page/", "");
+
+  try {
+    // Fetch page content
+    const page = await notion.pages.retrieve({ page_id: pageId });
+    const blocks = await notion.blocks.children.list({ block_id: pageId });
+
+    // Convert blocks to markdown
+    const content = blocks.results
+      .map((block: any) => blockToMarkdown(block))
+      .join("\n\n");
+
+    return {
+      contents: [
+        {
+          uri: request.params.uri,
+          mimeType: "text/plain",
+          text: content,
+        },
+      ],
+    };
+  } catch (error) {
+    throw new Error(`Failed to read page ${pageId}: ${error.message}`);
+  }
+});
+
+// TOOLS: Expose actions agents can perform
+server.setRequestHandler(ListToolsRequestSchema, async () => {
+  return {
+    tools: [
+      {
+        name: "create_notion_page",
+        description: "Create a new page in the Notion database",
+        inputSchema: {
+          type: "object",
+          properties: {
+            title: {
+              type: "string",
+              description: "Title of the page",
+            },
+            content: {
+              type: "string",
+              description: "Content in markdown format",
+            },
+            tags: {
+              type: "array",
+              items: { type: "string" },
+              description: "Tags for the page",
+            },
+          },
+          required: ["title", "content"],
+        },
+      },
+      {
+        name: "query_notion_pages",
+        description: "Search and retrieve pages from Notion database",
+        inputSchema: {
+          type: "object",
+          properties: {
+            filter: {
+              type: "string",
+              description: "Search query to filter pages",
+            },
+            limit: {
+              type: "number",
+              description: "Maximum number of results",
+              default: 10,
+            },
+          },
+        },
+      },
+      {
+        name: "update_notion_page",
+        description: "Update an existing Notion page",
+        inputSchema: {
+          type: "object",
+          properties: {
+            pageId: {
+              type: "string",
+              description: "ID of the page to update",
+            },
+            title: {
+              type: "string",
+              description: "New title (optional)",
+            },
+            content: {
+              type: "string",
+              description: "New content in markdown (optional)",
+            },
+          },
+          required: ["pageId"],
+        },
+      },
+    ],
+  };
+});
+
+server.setRequestHandler(CallToolRequestSchema, async (request) => {
+  const { name, arguments: args } = request.params;
+
+  try {
+    switch (name) {
+      case "create_notion_page": {
+        const validated = CreatePageArgsSchema.parse(args);
+        const result = await createNotionPage(validated);
+        return {
+          content: [
+            {
+              type: "text",
+              text: JSON.stringify(result, null, 2),
+            },
+          ],
+        };
+      }
+
+      case "query_notion_pages": {
+        const validated = QueryPagesArgsSchema.parse(args);
+        const results = await queryNotionPages(validated);
+        return {
+          content: [
+            {
+              type: "text",
+              text: JSON.stringify(results, null, 2),
+            },
+          ],
+        };
+      }
+
+      case "update_notion_page": {
+        const result = await updateNotionPage(args as any);
+        return {
+          content: [
+            {
+              type: "text",
+              text: JSON.stringify(result, null, 2),
+            },
+          ],
+        };
+      }
+
+      default:
+        throw new Error(`Unknown tool: ${name}`);
+    }
+  } catch (error) {
+    if (error instanceof z.ZodError) {
+      throw new Error(`Invalid arguments: ${error.message}`);
+    }
+    throw error;
+  }
+});
+
+// IMPLEMENTATION FUNCTIONS
+
+async function createNotionPage(args: z.infer<typeof CreatePageArgsSchema>) {
+  const { title, content, tags } = args;
+
+  // Convert markdown to Notion blocks
+  const blocks = markdownToBlocks(content);
+
+  const response = await notion.pages.create({
+    parent: { database_id: DATABASE_ID },
+    properties: {
+      Name: {
+        title: [{ text: { content: title } }],
+      },
+      Tags: {
+        multi_select: tags?.map((tag) => ({ name: tag })) || [],
+      },
+    },
+    children: blocks,
+  });
+
+  return {
+    pageId: response.id,
+    url: response.url,
+    message: "Page created successfully",
+  };
+}
+
+async function queryNotionPages(args: z.infer<typeof QueryPagesArgsSchema>) {
+  const { filter, limit } = args;
+
+  const query: any = {
+    database_id: DATABASE_ID,
+    page_size: limit,
+  };
+
+  if (filter) {
+    query.filter = {
+      property: "Name",
+      title: {
+        contains: filter,
+      },
+    };
+  }
+
+  const response = await notion.databases.query(query);
+
+  return response.results.map((page: any) => ({
+    pageId: page.id,
+    title: page.properties.Name?.title[0]?.plain_text || "Untitled",
+    url: page.url,
+    createdAt: page.created_time,
+    tags: page.properties.Tags?.multi_select.map((t: any) => t.name) || [],
+  }));
+}
+
+async function updateNotionPage(args: {
+  pageId: string;
+  title?: string;
+  content?: string;
+}) {
+  const { pageId, title, content } = args;
+
+  const updateData: any = {
+    page_id: pageId,
+  };
+
+  if (title) {
+    updateData.properties = {
+      Name: {
+        title: [{ text: { content: title } }],
+      },
+    };
+  }
+
+  await notion.pages.update(updateData);
+
+  if (content) {
+    // Delete existing blocks
+    const blocks = await notion.blocks.children.list({ block_id: pageId });
+    await Promise.all(
+      blocks.results.map((block: any) =>
+        notion.blocks.delete({ block_id: block.id })
+      )
+    );
+
+    // Add new blocks
+    const newBlocks = markdownToBlocks(content);
+    await notion.blocks.children.append({
+      block_id: pageId,
+      children: newBlocks,
+    });
+  }
+
+  return {
+    pageId,
+    message: "Page updated successfully",
+  };
+}
+
+// UTILITY FUNCTIONS
+
+function markdownToBlocks(markdown: string): any[] {
+  // Simple markdown parser - extend as needed
+  const lines = markdown.split("\n");
+  const blocks: any[] = [];
+
+  for (const line of lines) {
+    if (line.startsWith("# ")) {
+      blocks.push({
+        type: "heading_1",
+        heading_1: {
+          rich_text: [{ text: { content: line.slice(2) } }],
+        },
+      });
+    } else if (line.startsWith("## ")) {
+      blocks.push({
+        type: "heading_2",
+        heading_2: {
+          rich_text: [{ text: { content: line.slice(3) } }],
+        },
+      });
+    } else if (line.trim()) {
+      blocks.push({
+        type: "paragraph",
+        paragraph: {
+          rich_text: [{ text: { content: line } }],
+        },
+      });
+    }
+  }
+
+  return blocks;
+}
+
+function blockToMarkdown(block: any): string {
+  switch (block.type) {
+    case "heading_1":
+      return `# ${block.heading_1.rich_text[0]?.plain_text || ""}`;
+    case "heading_2":
+      return `## ${block.heading_2.rich_text[0]?.plain_text || ""}`;
+    case "heading_3":
+      return `### ${block.heading_3.rich_text[0]?.plain_text || ""}`;
+    case "paragraph":
+      return block.paragraph.rich_text.map((t: any) => t.plain_text).join("");
+    case "bulleted_list_item":
+      return `- ${block.bulleted_list_item.rich_text[0]?.plain_text || ""}`;
+    default:
+      return "";
+  }
+}
+
+// START SERVER
+async function main() {
+  const transport = new StdioServerTransport();
+  await server.connect(transport);
+  console.error("Notion MCP Server running on stdio");
+}
+
+main().catch((error) => {
+  console.error("Server error:", error);
+  process.exit(1);
+});
+```
+
+### Client Configuration
+
+```json
+// claude_desktop_config.json
+{
+  "mcpServers": {
+    "notion": {
+      "command": "node",
+      "args": ["/path/to/mcp-notion-server/dist/index.js"],
+      "env": {
+        "NOTION_API_KEY": "your_notion_integration_token",
+        "NOTION_DATABASE_ID": "your_database_id"
+      }
+    }
+  }
+}
+```
+
+## Advanced Pattern: Multi-Service Orchestration Server
+
+Real production systems often need to orchestrate across multiple services. Here's a pattern I use for my music generation workflow that coordinates Suno AI, Notion, and cloud storage:
+
+```typescript
+// src/music-production-server.ts
+import { Server } from "@modelcontextprotocol/sdk/server/index.js";
+import { CallToolRequestSchema } from "@modelcontextprotocol/sdk/types.js";
+import { z } from "zod";
+
+// Service clients
+import { SunoClient } from "./clients/suno.js";
+import { NotionClient } from "./clients/notion.js";
+import { StorageClient } from "./clients/storage.js";
+
+const GenerateSongSchema = z.object({
+  prompt: z.string().describe("Music generation prompt"),
+  style: z.string().describe("Musical style/genre"),
+  duration: z.number().default(180).describe("Duration in seconds"),
+  saveToNotion: z.boolean().default(true).describe("Save metadata to Notion"),
+});
+
+class MusicProductionServer {
+  private server: Server;
+  private sunoClient: SunoClient;
+  private notionClient: NotionClient;
+  private storageClient: StorageClient;
+
+  constructor() {
+    this.server = new Server(
+      { name: "music-production-server", version: "1.0.0" },
+      { capabilities: { tools: {} } }
+    );
+
+    this.sunoClient = new SunoClient(process.env.SUNO_API_KEY!);
+    this.notionClient = new NotionClient(process.env.NOTION_API_KEY!);
+    this.storageClient = new StorageClient(process.env.STORAGE_CONFIG!);
+
+    this.setupHandlers();
+  }
+
+  private setupHandlers() {
+    this.server.setRequestHandler(CallToolRequestSchema, async (request) => {
+      const { name, arguments: args } = request.params;
+
+      if (name === "generate_and_publish_song") {
+        return await this.generateAndPublishSong(args);
+      }
+
+      throw new Error(`Unknown tool: ${name}`);
+    });
+  }
+
+  private async generateAndPublishSong(args: unknown) {
+    const validated = GenerateSongSchema.parse(args);
+
+    try {
+      // Step 1: Generate music with Suno
+      const songGeneration = await this.sunoClient.generate({
+        prompt: validated.prompt,
+        style: validated.style,
+        duration: validated.duration,
+      });
+
+      // Step 2: Poll for completion (Suno is async)
+      let attempts = 0;
+      let songData;
+      while (attempts < 30) {
+        songData = await this.sunoClient.getStatus(songGeneration.id);
+        if (songData.status === "complete") break;
+
+        await new Promise((resolve) => setTimeout(resolve, 10000));
+        attempts++;
+      }
+
+      if (!songData || songData.status !== "complete") {
+        throw new Error("Song generation timed out");
+      }
+
+      // Step 3: Download and upload to permanent storage
+      const audioUrl = await this.storageClient.uploadFromUrl({
+        url: songData.audioUrl,
+        filename: `${songGeneration.id}.mp3`,
+        metadata: {
+          prompt: validated.prompt,
+          style: validated.style,
+          generatedAt: new Date().toISOString(),
+        },
+      });
+
+      // Step 4: Save metadata to Notion (if requested)
+      let notionPageUrl;
+      if (validated.saveToNotion) {
+        const notionPage = await this.notionClient.createPage({
+          database_id: process.env.NOTION_MUSIC_DATABASE_ID!,
+          properties: {
+            Name: { title: [{ text: { content: songData.title } }] },
+            Prompt: { rich_text: [{ text: { content: validated.prompt } }] },
+            Style: { select: { name: validated.style } },
+            Status: { select: { name: "Generated" } },
+            "Audio URL": { url: audioUrl },
+            "Generated At": { date: { start: new Date().toISOString() } },
+          },
+        });
+        notionPageUrl = notionPage.url;
+      }
+
+      // Step 5: Return comprehensive result
+      return {
+        content: [
+          {
+            type: "text",
+            text: JSON.stringify(
+              {
+                success: true,
+                songId: songGeneration.id,
+                title: songData.title,
+                audioUrl,
+                notionPageUrl,
+                metadata: {
+                  prompt: validated.prompt,
+                  style: validated.style,
+                  duration: songData.duration,
+                  generatedAt: songData.createdAt,
+                },
+              },
+              null,
+              2
+            ),
+          },
+        ],
+      };
+    } catch (error) {
+      return {
+        content: [
+          {
+            type: "text",
+            text: JSON.stringify({
+              success: false,
+              error: error.message,
+              step: this.identifyFailureStep(error),
+            }),
+          },
+        ],
+        isError: true,
+      };
+    }
+  }
+
+  private identifyFailureStep(error: any): string {
+    if (error.message.includes("Suno")) return "music_generation";
+    if (error.message.includes("storage")) return "file_upload";
+    if (error.message.includes("Notion")) return "metadata_save";
+    return "unknown";
+  }
+
+  async start() {
+    const transport = new StdioServerTransport();
+    await this.server.connect(transport);
+    console.error("Music Production MCP Server running");
+  }
+}
+
+// Start the server
+const server = new MusicProductionServer();
+server.start().catch(console.error);
+```
+
+## Security Best Practices
+
+MCP servers need robust security since they expose sensitive operations to AI agents:
+
+### 1. Environment-Based Configuration
+
+```typescript
+import { z } from "zod";
+
+const EnvSchema = z.object({
+  NOTION_API_KEY: z.string().min(1),
+  NOTION_DATABASE_ID: z.string().min(1),
+  ALLOWED_OPERATIONS: z.string().default("read,write"),
+  MAX_REQUESTS_PER_MINUTE: z.coerce.number().default(60),
+});
+
+const env = EnvSchema.parse(process.env);
+
+// Use throughout your server
+const isOperationAllowed = (operation: string) => {
+  return env.ALLOWED_OPERATIONS.split(",").includes(operation);
+};
+```
+
+### 2. Rate Limiting
+
+```typescript
+import { RateLimiterMemory } from "rate-limiter-flexible";
+
+const rateLimiter = new RateLimiterMemory({
+  points: 10, // 10 requests
+  duration: 60, // per 60 seconds
+});
+
+server.setRequestHandler(CallToolRequestSchema, async (request) => {
+  try {
+    await rateLimiter.consume("global", 1);
+  } catch (error) {
+    throw new Error("Rate limit exceeded. Please try again later.");
+  }
+
+  // Handle request normally
+  return await handleToolCall(request);
+});
+```
+
+### 3. Input Validation and Sanitization
+
+```typescript
+import { z } from "zod";
+import DOMPurify from "isomorphic-dompurify";
+
+const sanitizeString = (input: string): string => {
+  return DOMPurify.sanitize(input, { ALLOWED_TAGS: [] });
+};
+
+const CreatePageSchema = z.object({
+  title: z.string().min(1).max(200).transform(sanitizeString),
+  content: z.string().max(50000).transform(sanitizeString),
+  tags: z
+    .array(z.string().max(50))
+    .max(10)
+    .transform((tags) => tags.map(sanitizeString)),
+});
+```
+
+### 4. Scoped Permissions
+
+```typescript
+const PermissionSchema = z.object({
+  resource: z.enum(["pages", "databases", "users"]),
+  action: z.enum(["read", "write", "delete"]),
+});
+
+class PermissionManager {
+  private permissions: Map<string, Set<string>>;
+
+  constructor() {
+    this.permissions = new Map([
+      ["pages", new Set(["read", "write"])],
+      ["databases", new Set(["read"])],
+      ["users", new Set(["read"])],
+    ]);
+  }
+
+  canPerform(resource: string, action: string): boolean {
+    const allowedActions = this.permissions.get(resource);
+    return allowedActions?.has(action) ?? false;
+  }
+}
+
+const permissionManager = new PermissionManager();
+
+server.setRequestHandler(CallToolRequestSchema, async (request) => {
+  const { name } = request.params;
+
+  // Map tool names to permission requirements
+  const permissionMap = {
+    create_notion_page: { resource: "pages", action: "write" },
+    query_notion_pages: { resource: "pages", action: "read" },
+    delete_notion_page: { resource: "pages", action: "delete" },
+  };
+
+  const required = permissionMap[name];
+  if (!permissionManager.canPerform(required.resource, required.action)) {
+    throw new Error(`Permission denied: ${name}`);
+  }
+
+  return await handleToolCall(request);
+});
+```
+
+## Testing Your MCP Server
+
+Comprehensive testing is essential for production MCP servers:
+
+```typescript
+// tests/notion-server.test.ts
+import { describe, it, expect, beforeEach, vi } from "vitest";
+import { Client } from "@notionhq/client";
+import { createNotionPage, queryNotionPages } from "../src/handlers.js";
+
+vi.mock("@notionhq/client");
+
+describe("Notion MCP Server", () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
+
+  describe("createNotionPage", () => {
+    it("should create a page with title and content", async () => {
+      const mockCreate = vi.fn().mockResolvedValue({
+        id: "page-123",
+        url: "https://notion.so/page-123",
+      });
+
+      Client.prototype.pages = {
+        create: mockCreate,
+      } as any;
+
+      const result = await createNotionPage({
+        title: "Test Page",
+        content: "# Heading\n\nParagraph",
+        tags: ["test"],
+      });
+
+      expect(mockCreate).toHaveBeenCalledWith(
+        expect.objectContaining({
+          parent: { database_id: expect.any(String) },
+          properties: expect.objectContaining({
+            Name: {
+              title: [{ text: { content: "Test Page" } }],
+            },
+          }),
+        })
+      );
+
+      expect(result).toEqual({
+        pageId: "page-123",
+        url: "https://notion.so/page-123",
+        message: "Page created successfully",
+      });
+    });
+
+    it("should handle Notion API errors gracefully", async () => {
+      const mockCreate = vi.fn().mockRejectedValue(
+        new Error("Notion API Error: Invalid token")
+      );
+
+      Client.prototype.pages = {
+        create: mockCreate,
+      } as any;
+
+      await expect(
+        createNotionPage({
+          title: "Test",
+          content: "Content",
+        })
+      ).rejects.toThrow("Notion API Error");
+    });
+  });
+
+  describe("queryNotionPages", () => {
+    it("should return filtered results", async () => {
+      const mockQuery = vi.fn().mockResolvedValue({
+        results: [
+          {
+            id: "page-1",
+            url: "https://notion.so/page-1",
+            properties: {
+              Name: { title: [{ plain_text: "Test Page 1" }] },
+              Tags: { multi_select: [{ name: "test" }] },
+            },
+            created_time: "2025-11-03T00:00:00.000Z",
+          },
+        ],
+      });
+
+      Client.prototype.databases = {
+        query: mockQuery,
+      } as any;
+
+      const results = await queryNotionPages({
+        filter: "Test",
+        limit: 10,
+      });
+
+      expect(mockQuery).toHaveBeenCalledWith({
+        database_id: expect.any(String),
+        page_size: 10,
+        filter: {
+          property: "Name",
+          title: { contains: "Test" },
+        },
+      });
+
+      expect(results).toHaveLength(1);
+      expect(results[0]).toEqual({
+        pageId: "page-1",
+        title: "Test Page 1",
+        url: "https://notion.so/page-1",
+        createdAt: "2025-11-03T00:00:00.000Z",
+        tags: ["test"],
+      });
+    });
+  });
+});
+```
+
+## Deployment and Distribution
+
+### Option 1: NPM Package
+
+```json
+// package.json
+{
+  "name": "@yourorg/mcp-notion-server",
+  "version": "1.0.0",
+  "type": "module",
+  "bin": {
+    "mcp-notion-server": "./dist/index.js"
+  },
+  "files": ["dist"],
+  "scripts": {
+    "prepublishOnly": "npm run build"
+  }
+}
+```
+
+Users can then install and configure:
+
+```bash
+npm install -g @yourorg/mcp-notion-server
+```
+
+```json
+// claude_desktop_config.json
+{
+  "mcpServers": {
+    "notion": {
+      "command": "mcp-notion-server",
+      "env": {
+        "NOTION_API_KEY": "secret_..."
+      }
+    }
+  }
+}
+```
+
+### Option 2: Docker Container
+
+```dockerfile
+# Dockerfile
+FROM node:20-alpine
+
+WORKDIR /app
+
+COPY package*.json ./
+RUN npm ci --only=production
+
+COPY dist ./dist
+
+CMD ["node", "dist/index.js"]
+```
+
+```bash
+# Build and run
+docker build -t mcp-notion-server .
+docker run -e NOTION_API_KEY=secret_... mcp-notion-server
+```
+
+### Option 3: Standalone Binary (with pkg)
+
+```bash
+npm install -g pkg
+
+pkg package.json --targets node20-linux-x64,node20-macos-x64,node20-win-x64
+```
+
+## Production Monitoring
+
+Add observability to your MCP servers:
+
+```typescript
+import { Counter, Histogram, Registry } from "prom-client";
+
+const registry = new Registry();
+
+const requestCounter = new Counter({
+  name: "mcp_requests_total",
+  help: "Total number of MCP requests",
+  labelNames: ["tool", "status"],
+  registers: [registry],
+});
+
+const requestDuration = new Histogram({
+  name: "mcp_request_duration_seconds",
+  help: "Duration of MCP requests in seconds",
+  labelNames: ["tool"],
+  registers: [registry],
+});
+
+server.setRequestHandler(CallToolRequestSchema, async (request) => {
+  const startTime = Date.now();
+  const { name } = request.params;
+
+  try {
+    const result = await handleToolCall(request);
+
+    requestCounter.inc({ tool: name, status: "success" });
+    requestDuration.observe(
+      { tool: name },
+      (Date.now() - startTime) / 1000
+    );
+
+    return result;
+  } catch (error) {
+    requestCounter.inc({ tool: name, status: "error" });
+    throw error;
+  }
+});
+
+// Expose metrics endpoint (for servers that support HTTP)
+// or log metrics periodically
+setInterval(() => {
+  console.error(registry.metrics());
+}, 60000);
+```
+
+## Real-World MCP Server Ideas
+
+Here are MCP servers I've built or plan to build:
+
+**Data Access:**
+- Notion content management (shown above)
+- Linear issue tracking
+- GitHub repository access
+- Google Drive file management
+- Slack message reading
+
+**Creative Tools:**
+- Suno AI music generation
+- Image generation with DALL-E/Midjourney
+- Video editing with Runway
+- Voice synthesis with ElevenLabs
+
+**Business Operations:**
+- CRM data (Salesforce, HubSpot)
+- Analytics (Google Analytics, Mixpanel)
+- Email (Gmail, Outlook)
+- Calendar (Google Calendar, Outlook)
+
+**Development:**
+- CI/CD pipeline control
+- Cloud resource management (AWS, OCI, Azure)
+- Database queries and management
+- Log aggregation and search
+
+## The Path Forward
+
+MCP servers are the plumbing of the agentic future. They're not sexy, but they're essential. Every MCP server you build becomes a reusable capability that any AI agent can leverage.
+
+**Your next steps:**
+
+1. **Identify your highest-value integration** - What data or capability would 10x your agents' usefulness?
+
+2. **Build the minimal viable server** - Start with read-only resources, add tools later.
+
+3. **Test thoroughly** - MCP servers are infrastructure. Treat them like production code.
+
+4. **Share with the community** - Publish to NPM, share on GitHub, contribute to the ecosystem.
+
+5. **Iterate based on usage** - Monitor how agents use your tools and optimize accordingly.
+
+The MCP ecosystem is young. The servers you build today could become essential infrastructure for thousands of developers tomorrow.
+
+Build the bridge between AI and your most valuable systems. The future of work depends on it.
+
+---
+
+**Ready to build?** Check out the [MCP specification](https://modelcontextprotocol.io), explore my [MCP server templates on GitHub](https://github.com/frankxai/mcp-servers), and join the conversation on [LinkedIn](https://linkedin.com/in/frankxai).
