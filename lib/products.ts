@@ -46,7 +46,7 @@ export function getProductCards(): ProductCard[] {
       highlights: product.transformation.slice(0, 3),
       testimonial: firstQuote
         ? {
-            text: firstQuote.quote,
+            text: firstQuote.text,
             author: firstQuote.author,
             role: firstQuote.role
           }
