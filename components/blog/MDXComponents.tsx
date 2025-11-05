@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ReactNode } from 'react'
 import { Lightbulb, AlertTriangle, Info, CheckCircle } from 'lucide-react'
+import AffiliateLink from '@/components/affiliates/AffiliateLink'
 
 type CalloutKind = 'info' | 'warning' | 'tip' | 'success'
 
@@ -51,6 +52,7 @@ function CustomImage({ src, alt, ...props }: any) {
 }
 
 export const mdxComponents = {
+  AffiliateLink,
   h1: ({ children }: { children: ReactNode }) => (
     <h1 className="mt-10 mb-6 text-4xl font-semibold text-white">{children}</h1>
   ),
