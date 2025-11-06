@@ -14,7 +14,7 @@ const OUTPUT_DIRS = [
   path.join(ROOT, 'reading-site'),
   path.join(ROOT, 'public', 'reading'),
 ];
-const EXCLUDE_DIRS = new Set(['.git', 'node_modules', '.next', 'reading-site', path.join('public','reading')]);
+const EXCLUDE_DIRS = new Set(['.git', 'node_modules', '.next', 'reading-site', 'reading']);
 const TEXT_EXTS = new Set(['.md', '.markdown', '.txt', '.html']);
 
 function ensureDirSync(dir) {
