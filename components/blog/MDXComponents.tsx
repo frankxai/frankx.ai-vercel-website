@@ -6,6 +6,12 @@ import AffiliateLink from '@/components/affiliates/AffiliateLink'
 
 type CalloutKind = 'info' | 'warning' | 'tip' | 'success'
 
+interface VideoProps {
+  provider: 'youtube' | 'vimeo' | 'notion'
+  videoId: string
+  title?: string
+}
+
 interface CalloutProps {
   children: ReactNode
   type?: CalloutKind
@@ -51,9 +57,39 @@ function CustomImage({ src, alt, ...props }: any) {
   )
 }
 
+function Video({ provider, videoId, title }: VideoProps) {
+  const getEmbedUrl = () => {
+    switch (provider) {
+      case 'youtube':
+        return `https://www.youtube.com/embed/${videoId}`
+      case 'vimeo':
+        return `https://player.vimeo.com/video/${videoId}`
+      case 'notion':
+        return videoId // Notion provides full URL
+      default:
+        return ''
+    }
+  }
+
+  return (
+    <div className="relative my-10 overflow-hidden rounded-3xl border border-white/10 bg-black/20">
+      <div className="relative aspect-video">
+        <iframe
+          src={getEmbedUrl()}
+          title={title || 'Video'}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+          className="absolute inset-0 h-full w-full"
+        />
+      </div>
+    </div>
+  )
+}
+
 export const mdxComponents = {
   AffiliateLink,
   Link,
+  Video,
   h1: ({ children }: { children: ReactNode }) => (
     <h1 className="mt-10 mb-6 text-4xl font-semibold text-white">{children}</h1>
   ),
