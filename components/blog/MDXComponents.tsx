@@ -53,6 +53,7 @@ function CustomImage({ src, alt, ...props }: any) {
 
 export const mdxComponents = {
   AffiliateLink,
+  Link,
   h1: ({ children }: { children: ReactNode }) => (
     <h1 className="mt-10 mb-6 text-4xl font-semibold text-white">{children}</h1>
   ),
