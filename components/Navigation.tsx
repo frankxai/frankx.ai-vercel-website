@@ -207,7 +207,7 @@ export default function Navigation() {
             ))}
 
             <Link
-              href="/soul-frequency-quiz"
+              href="/assessment"
               className={cn(
                 'mt-2 px-6 py-4 rounded-xl text-sm font-semibold text-white shadow-[0_12px_30px_rgba(12,27,68,0.25)]',
                 'min-h-[52px] flex items-center justify-center', // Better touch targets
@@ -216,9 +216,9 @@ export default function Navigation() {
                 gradientPresets.buttonAurora
               )}
               onClick={() => setIsOpen(false)}
-              aria-label="Take the free Soul Frequency Quiz"
+              aria-label="Take the free assessment"
             >
-              Free Quiz
+              Free Assessment
             </Link>
           </div>
         </div>

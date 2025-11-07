@@ -101,70 +101,65 @@ export default function V3HomePage() {
                   </Pill>
                 </StaggerItem>
 
-                {/* Headline - V3 Persona-Specific */}
+                {/* Headline - Clear Value Proposition */}
                 <StaggerItem>
                   <h1
                     id="hero-heading"
                     className="text-heading-1 font-bold leading-tight text-balance max-w-6xl mx-auto"
                   >
                     <span className="bg-gradient-to-r from-white via-neutral-100 to-white bg-clip-text text-transparent">
-                      Build Production-Ready AI Systems.
+                      AI Systems, Music Workflows & Creator Tools
                     </span>
                     <br />
                     <span className="bg-gradient-to-r from-primary-400 via-secondary-500 to-accent-600 bg-clip-text text-transparent">
-                      Ship Content 10x Faster. Create Music Daily.
+                      That Help You Ship 10x Faster Without Burnout
                     </span>
                   </h1>
                 </StaggerItem>
 
                 {/* Subheadline - Clear Value Props */}
                 <StaggerItem>
-                  <p className="text-body text-neutral-300 max-w-4xl mx-auto leading-relaxed">
-                    For <strong className="text-white">AI Architects</strong>: Enterprise-grade agent frameworks, Oracle Cloud patterns, and MCP integrations.
-                    <br />
-                    For <strong className="text-white">Music Makers</strong>: 500+ battle-tested Suno workflows that turn ideas into releases in hours.
-                    <br />
-                    For <strong className="text-white">Generative Creators</strong>: AI-powered content systems that help you ship consistently without burnout.
+                  <p className="text-xl text-neutral-300 max-w-4xl mx-auto leading-relaxed space-y-2">
+                    <span className="block">
+                      <strong className="text-cyan-400">AI Architects</strong>: Enterprise agent frameworks, Oracle Cloud patterns & MCP integrations
+                    </span>
+                    <span className="block">
+                      <strong className="text-purple-400">Music Makers</strong>: 500+ battle-tested Suno workflows from idea to Spotify in 48 hours
+                    </span>
+                    <span className="block">
+                      <strong className="text-amber-400">Content Creators</strong>: AI-powered systems that help you ship daily without burnout
+                    </span>
                   </p>
                 </StaggerItem>
 
-                {/* CTAs - Benefit-Focused */}
+                {/* CTAs - Single Primary Focus */}
                 <StaggerItem>
-                  <div className="flex flex-col items-center gap-4 pt-4 sm:flex-row sm:justify-center flex-wrap">
+                  <div className="flex flex-col items-center gap-4 pt-4 sm:flex-row sm:justify-center">
                     <MagneticHover intensity={0.4}>
                       <GlowPulse color="cyan">
                         <Link
                           href="/assessment"
                           onClick={() => trackEvent('v3_hero_primary_cta', { destination: '/assessment' })}
-                          className="btn-primary inline-flex items-center justify-center rounded-2xl px-8 py-4 text-lg font-semibold transition-transform duration-300 hover:-translate-y-1"
+                          className="btn-primary inline-flex items-center justify-center rounded-2xl px-10 py-5 text-xl font-bold transition-transform duration-300 hover:-translate-y-1 shadow-[0_0_40px_rgba(6,182,212,0.3)] hover:shadow-[0_0_50px_rgba(6,182,212,0.4)]"
                         >
-                          Find Your System (Free Assessment)
-                          <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
+                          Start Free Assessment
+                          <ArrowRight className="ml-3 h-6 w-6" aria-hidden="true" />
                         </Link>
                       </GlowPulse>
                     </MagneticHover>
-                    <MagneticHover intensity={0.3}>
-                      <Link
-                        href="/products/vibe-os"
-                        onClick={() => trackEvent('v3_hero_secondary_cta', { destination: '/products/vibe-os' })}
-                        className="btn-secondary inline-flex items-center justify-center rounded-2xl px-8 py-4 text-lg font-semibold transition-transform duration-300 hover:-translate-y-1"
-                      >
-                        <Music className="mr-2 h-5 w-5" aria-hidden="true" />
-                        Suno Workflows ($97)
-                        <ArrowUpRight className="ml-2 h-5 w-5" aria-hidden="true" />
-                      </Link>
-                    </MagneticHover>
-                    <MagneticHover intensity={0.3}>
-                      <Link
-                        href="/music-lab"
-                        onClick={() => trackEvent('v3_hero_music_cta', { destination: '/music-lab' })}
-                        className="inline-flex items-center justify-center rounded-2xl border-2 border-purple-500/50 bg-purple-500/10 px-8 py-4 text-lg font-semibold text-purple-300 transition-all duration-300 hover:-translate-y-1 hover:bg-purple-500/20 hover:border-purple-400"
-                      >
-                        Hear the Music
-                        <ArrowUpRight className="ml-2 h-5 w-5" aria-hidden="true" />
-                      </Link>
-                    </MagneticHover>
+                    <Link
+                      href="/products"
+                      onClick={() => trackEvent('v3_hero_secondary_cta', { destination: '/products' })}
+                      className="inline-flex items-center justify-center rounded-2xl border-2 border-white/20 bg-white/5 px-8 py-4 text-lg font-semibold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-white/10 hover:border-white/30"
+                    >
+                      Explore All Products
+                      <ArrowUpRight className="ml-2 h-5 w-5" aria-hidden="true" />
+                    </Link>
                   </div>
+                  <p className="text-sm text-slate-400 mt-6 flex items-center justify-center gap-2">
+                    <Check className="h-4 w-4 text-cyan-400" aria-hidden="true" />
+                    No credit card • 2-minute assessment • Get 20% off
+                  </p>
                 </StaggerItem>
 
                 {/* Hero Video/Image Section */}
