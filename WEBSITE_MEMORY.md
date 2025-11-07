@@ -6,6 +6,153 @@ This file tracks all significant changes, decisions, and learnings for the frank
 
 ## Recent Changes (Latest First)
 
+### 2025-11-07 (Session 3): High-End Design Team Workflow Implementation
+
+**What**: Transformed workflow from basic development to high-end design team standards
+- **Created web-design-expert.md Skill**: Comprehensive design system and UX workflow guide
+  - Complete accessibility checklist (WCAG 2.2)
+  - Performance budgets and optimization strategies
+  - Cross-browser and device testing protocols
+  - A/B testing framework
+  - Design decision documentation templates
+  - Component patterns and design system guidelines
+
+- **Updated /frankx-website Command**: Added mandatory MCP requirements
+  - Phase 1: BEFORE changes (baseline screenshots, performance metrics, analytics)
+  - Phase 2: DURING development (GitHub PR workflow)
+  - Phase 3: AFTER changes (comparison screenshots, preview deployment, Lighthouse)
+  - Phase 4: REVIEW & DOCUMENT (visual evidence, metrics)
+  - Clear "Workflow Violations = Rejected Work" standards
+
+- **Created MCP_SETUP_GUIDE.md**: Step-by-step setup instructions
+  - Playwright MCP for screenshots and visual testing
+  - Vercel MCP for analytics and deployment
+  - GitHub MCP for proper PR workflow
+  - Notion and Linear MCP (recommended)
+  - Complete configuration examples
+  - Troubleshooting guide
+
+**Why**:
+- **Gap Identified**: Session 2 was good development but lacked design team rigor
+  - No visual mockups or screenshots
+  - No Lighthouse comparison
+  - No real analytics data (only estimates)
+  - Direct push to v3 instead of PR workflow
+  - No preview deployment testing
+
+- **Standard Elevation**: High-end design teams always provide:
+  - Before/after visual evidence
+  - Performance metrics
+  - Cross-browser testing
+  - Preview URLs for stakeholder review
+  - Data-driven decision making
+
+**Impact**:
+- **Workflow Quality**: From developer mindset → design team mindset
+  - ✅ Visual evidence required for all changes
+  - ✅ Real data over estimates
+  - ✅ Stakeholder review before merge
+  - ✅ Comprehensive testing protocols
+  - ✅ Professional documentation standards
+
+- **Future Sessions**: Every change will now include:
+  - 📸 Screenshots (before/after, 3 viewports)
+  - 📊 Lighthouse scores (before/after)
+  - 🔗 Preview URL for testing
+  - 📈 Real analytics data
+  - 🎯 A/B test hypotheses
+  - ✅ Accessibility audit
+
+**Decisions**:
+1. **MCP Usage Mandatory**: Not optional, required for every design change
+   - Playwright: Screenshots and visual testing
+   - Vercel: Analytics, performance, deployment
+   - GitHub: PR workflow (no more direct pushes)
+
+2. **"Show, Don't Tell" Philosophy**: Visual evidence is non-negotiable
+   - Every change requires screenshots
+   - Every optimization requires metrics
+   - Every improvement requires proof
+
+3. **Professional Standards**: Match agency-level quality
+   - Accessibility: WCAG 2.2 AA minimum
+   - Performance: Lighthouse 95+ target
+   - Testing: Cross-browser + device matrix
+   - Documentation: Design decision logs
+
+4. **Workflow Phases**: 4-phase process for every change
+   - Phase 1: Capture baseline (BEFORE)
+   - Phase 2: Develop with PR workflow (DURING)
+   - Phase 3: Capture results (AFTER)
+   - Phase 4: Document and review (REVIEW)
+
+**Learnings**:
+- **Self-Assessment**: Recognized own workflow gaps
+  - Previous sessions were solid development work
+  - But lacked visual design rigor
+  - No testing evidence
+  - No stakeholder review loop
+
+- **MCP Power**: MCPs enable professional workflows
+  - Playwright = visual testing capability
+  - Vercel = real data and deployment control
+  - GitHub = proper collaborative workflow
+
+- **Skill Files**: Comprehensive reference guides improve consistency
+  - web-design-expert.md provides detailed protocols
+  - Reduces decision fatigue
+  - Ensures nothing is forgotten
+  - Scalable across team members
+
+**Next Steps**:
+1. **Setup MCPs** (High Priority - Before Next Design Session)
+   - Install Playwright MCP
+   - Install Vercel MCP
+   - Install GitHub MCP
+   - Test all three work correctly
+
+2. **Retrospective on Session 2** (Next Session)
+   - Capture screenshots of changes made (retroactively)
+   - Run Lighthouse audit on current v3 deployment
+   - Create proper PR for Session 2 changes
+   - Document actual metrics vs. estimated
+
+3. **Apply New Workflow** (All Future Sessions)
+   - Start with baseline screenshots
+   - Get real analytics data
+   - Create PRs with visual evidence
+   - Deploy to preview for testing
+
+4. **Implement 301 Redirects** (Continue Phase 1 Work)
+   - Use DUPLICATE_PAGES_CONSOLIDATION.md plan
+   - Follow new workflow with screenshots
+   - Test redirects in preview environment
+
+**Files Created**:
+- `~/.claude/skills/web-design-expert.md` - Comprehensive design system guide (25KB)
+- `MCP_SETUP_GUIDE.md` - Step-by-step MCP setup instructions
+- Updated: `~/.claude/commands/frankx-website.md` - Added MCP requirements
+
+**Files Updated**:
+- `/frankx-website` command - Major workflow enhancement with MCP integration
+
+**Status**:
+- ✅ Design team workflow standards defined
+- ✅ MCP setup guide created
+- ✅ Command updated with requirements
+- ⚠️ MCPs not yet installed (needs manual setup)
+- ⏳ Waiting for MCP configuration to use new workflow
+
+**Current MCPs**:
+- ✅ Nano Banana MCP: Configured and working
+- ❌ Playwright MCP: Not configured (critical)
+- ❌ Vercel MCP: Not configured (critical)
+- ❌ GitHub MCP: Not configured (critical)
+- ⚠️ Notion MCP: Not configured (recommended)
+- ⚠️ Linear MCP: Not configured (recommended)
+
+---
+
 ### 2025-11-07 (Session 2): Homepage Hero Transformation - Phase 1 Complete
 
 **What**: Completed critical UX improvements to homepage hero and navigation
