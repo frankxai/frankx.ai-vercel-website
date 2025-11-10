@@ -2,6 +2,7 @@ import Script from 'next/script'
 
 import V4HomePage from '@/components/home/V4HomePage'
 import { createMetadata } from '@/lib/seo'
+import { getFeaturedPosts } from '@/lib/blog'
 
 export const metadata = createMetadata({
   title: 'FrankX.ai | Intelligence Systems for AI Architects, Music Makers, and Generative Creators',
@@ -60,9 +61,12 @@ const structuredData = {
 }
 
 export default function Page() {
+  // Fetch featured posts server-side
+  const featuredPosts = getFeaturedPosts()
+
   return (
     <>
-      <V4HomePage />
+      <V4HomePage featuredPosts={featuredPosts} />
       <Script id="frankx-organization" type="application/ld+json" strategy="afterInteractive">
         {JSON.stringify(structuredData)}
       </Script>

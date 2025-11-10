@@ -36,7 +36,7 @@ import {
 } from '@/components/ui/AdvancedAnimations'
 import { Surface, SectionHeading, Pill, StatBlock } from '@/components/ui/primitives'
 import { trackEvent } from '@/lib/analytics'
-import { getFeaturedPosts } from '@/lib/blog'
+import type { BlogPost } from '@/lib/blog'
 import BlogCardCompact from '@/components/blog/BlogCardCompact'
 
 /**
@@ -69,9 +69,11 @@ const staggerContainer = {
   }
 }
 
-export default function V4HomePage() {
-  const featuredPosts = getFeaturedPosts()
+interface V4HomePageProps {
+  featuredPosts: BlogPost[]
+}
 
+export default function V4HomePage({ featuredPosts }: V4HomePageProps) {
   return (
     <main id="main" className="flex-1 pt-32 text-white">
       <ScrollProgress />
