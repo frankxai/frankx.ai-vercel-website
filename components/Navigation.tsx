@@ -12,6 +12,7 @@ import { gradientPresets } from '@/lib/design/gradients'
 type NavItem = {
   name: string
   href: string
+  description?: string
   isAnchor?: boolean
   subItems?: NavItem[]
 }
@@ -21,24 +22,29 @@ const navItems: NavItem[] = [
     name: 'Products',
     href: '/products',
     subItems: [
-      { name: 'All Products', href: '/products' },
-      { name: 'Vibe OS', href: '/products/vibe-os' },
-      { name: 'Creative AI Toolkit', href: '/products/creative-ai-toolkit' },
-      { name: 'Creator OS', href: '/products/agentic-creator-os' },
+      { name: 'Vibe OS', href: '/products/vibe-os', description: 'AI music creation system ($97)' },
+      { name: 'Creative AI Toolkit', href: '/products/creative-ai-toolkit', description: 'Content templates ($47)' },
+      { name: 'Agentic Creator OS', href: '/products/agentic-creator-os', description: 'Custom AI systems' },
     ],
   },
   {
-    name: 'Resources',
-    href: '/resources',
+    name: 'Learn',
+    href: '/blog',
     subItems: [
-      { name: 'Blog & Articles', href: '/blog' },
-      { name: 'Templates & Prompts', href: '/resources/templates' },
-      { name: 'Music Lab', href: '/music-lab' },
+      { name: 'Blog & Articles', href: '/blog', description: 'AI, music, and creator insights' },
+      { name: 'Music Lab', href: '/music-lab', description: 'Suno sessions and tutorials' },
+      { name: 'Templates', href: '/resources/templates', description: 'Free prompts and workflows' },
     ],
   },
-  { name: 'Team', href: '/team' },
-  { name: 'Community', href: '/community' },
-  { name: 'About', href: '/about' },
+  { name: 'Community', href: '/community', description: 'Join creators worldwide' },
+  {
+    name: 'About',
+    href: '/about',
+    subItems: [
+      { name: 'Our Story', href: '/about', description: 'Mission and values' },
+      { name: 'Team', href: '/team', description: 'Meet the FrankX collective' },
+    ],
+  },
 ]
 
 export default function Navigation() {
@@ -98,19 +104,22 @@ export default function Navigation() {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                   >
-                    <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-slate-800 rounded-md bg-slate-900 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                      <div className="px-1 py-1 ">
+                    <Menu.Items className="absolute left-0 mt-2 w-80 origin-top-left rounded-2xl bg-slate-900/95 backdrop-blur-xl border border-white/10 shadow-2xl ring-1 ring-black/5 focus:outline-none">
+                      <div className="p-2">
                         {item.subItems.map((subItem) => (
                           <Menu.Item key={subItem.name}>
                             {({ active }) => (
                               <Link
                                 href={subItem.href}
                                 className={cn(
-                                  'group flex w-full items-center rounded-md px-2 py-2 text-sm',
-                                  active ? 'bg-slate-800 text-white' : 'text-slate-400'
+                                  'group flex flex-col gap-1 rounded-xl px-4 py-3 text-sm transition-all duration-200',
+                                  active ? 'bg-white/10' : 'hover:bg-white/5'
                                 )}
                               >
-                                {subItem.name}
+                                <span className="font-semibold text-white">{subItem.name}</span>
+                                {subItem.description && (
+                                  <span className="text-xs text-slate-400">{subItem.description}</span>
+                                )}
                               </Link>
                             )}
                           </Menu.Item>
@@ -140,18 +149,12 @@ export default function Navigation() {
               )
             )}
 
-            <div className="flex items-center space-x-3 ml-6 pl-6 border-l border-white/10">
-              <Link
-                href="/products/vibe-os"
-                className="px-4 py-2 text-sm font-medium text-slate-300 hover:text-white transition-colors duration-300"
-              >
-                Get Started
-              </Link>
+            <div className="flex items-center ml-6 pl-6 border-l border-white/10">
               <Link
                 href="/assessment"
                 className="px-6 py-2.5 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white text-sm font-semibold rounded-lg transition-all duration-300 shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:shadow-[0_0_30px_rgba(6,182,212,0.4)] hover:-translate-y-0.5"
               >
-                Take Assessment
+                Free Assessment
               </Link>
             </div>
           </div>

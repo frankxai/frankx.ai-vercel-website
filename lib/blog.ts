@@ -4,7 +4,8 @@ import matter from 'gray-matter'
 import readingTime from 'reading-time'
 import { cache } from 'react'
 
-const blogDirectory = path.join(process.cwd(), 'content/blog')
+// External content source - single source of truth
+const blogDirectory = process.env.BLOG_CONTENT_PATH || path.join(process.cwd(), 'content/blog')
 
 export interface BlogPost {
   slug: string
@@ -20,59 +21,85 @@ export interface BlogPost {
   readingGoal?: string
   content: string
   featured?: boolean
+  sourceCategory?: string  // Track subdirectory category
+}
+
+// Category display names for UI
+export const CATEGORY_DISPLAY_NAMES: Record<string, string> = {
+  'ai-tech': 'AI & Technology',
+  'conscious': 'Conscious AI',
+  'creator': 'Creator Economy',
+  'general': 'Featured',
+  'music': 'AI Music',
+  'personal-dev': 'Personal Development'
+}
+
+// Helper: Recursively scan subdirectories for MDX files
+function scanBlogDirectory(dir: string, category?: string): BlogPost[] {
+  const posts: BlogPost[] = []
+
+  try {
+    if (!fs.existsSync(dir)) {
+      console.warn(`Blog directory not found: ${dir}`)
+      return posts
+    }
+
+    const entries = fs.readdirSync(dir, { withFileTypes: true })
+
+    for (const entry of entries) {
+      const fullPath = path.join(dir, entry.name)
+
+      if (entry.isDirectory()) {
+        // Recurse into category subdirectories
+        const subCategory = category || entry.name
+        posts.push(...scanBlogDirectory(fullPath, subCategory))
+      } else if (entry.isFile() && (entry.name.endsWith('.mdx') || entry.name.endsWith('.md'))) {
+        const slug = entry.name.replace(/\.(mdx|md)$/, '')
+        const fileContents = fs.readFileSync(fullPath, 'utf8')
+        const { data, content } = matter(fileContents)
+        const readTime = readingTime(content)
+
+        // Normalize frontmatter variations
+        const post: BlogPost = {
+          slug,
+          title: data.title || slug,
+          description: data.description || data.summary || data.excerpt || '',
+          date: data.date || data.publishDate || new Date().toISOString(),
+          author: data.author || 'Frank',
+          category: data.category || category || 'general',
+          tags: Array.isArray(data.tags) ? data.tags : [],
+          image: data.image,
+          readingTime: data.readingTime || data.readTime || readTime.text,
+          keywords: data.keywords,
+          readingGoal: data.readingGoal,
+          content,
+          featured: data.featured || false,
+          sourceCategory: category  // Track which subdirectory
+        }
+
+        posts.push(post)
+      }
+    }
+  } catch (error) {
+    console.error(`Error scanning directory ${dir}:`, error)
+  }
+
+  return posts
 }
 
 export const getAllBlogPosts = cache((): BlogPost[] => {
-  const fileNames = fs.readdirSync(blogDirectory)
-  const allPostsData = fileNames
-    .filter((name) => name.endsWith('.mdx'))
-    .map((fileName) => {
-      const slug = fileName.replace(/\.mdx$/, '')
-      const fullPath = path.join(blogDirectory, fileName)
-      const fileContents = fs.readFileSync(fullPath, 'utf8')
-      const { data, content } = matter(fileContents)
-      const readTime = readingTime(content)
+  if (!fs.existsSync(blogDirectory)) {
+    console.warn(`Blog directory not found: ${blogDirectory}`)
+    return []
+  }
 
-      return {
-        slug,
-        content,
-        readingTime: readTime.text,
-        ...data,
-      } as BlogPost
-    })
-
-  return allPostsData.sort((a, b) => (new Date(a.date) > new Date(b.date) ? -1 : 1))
+  const allPosts = scanBlogDirectory(blogDirectory)
+  return allPosts.sort((a, b) => (new Date(b.date).getTime() - new Date(a.date).getTime()))
 })
 
-
 export const getBlogPost = cache((slug: string): BlogPost | null => {
-  try {
-    const fullPath = path.join(blogDirectory, `${slug}.mdx`)
-
-    // Debug logging for Vercel
-    if (process.env.NODE_ENV === 'production') {
-      console.log('Blog directory:', blogDirectory)
-      console.log('Looking for file:', fullPath)
-      console.log('Blog directory exists:', fs.existsSync(blogDirectory))
-      console.log('File exists:', fs.existsSync(fullPath))
-    }
-
-    const fileContents = fs.readFileSync(fullPath, 'utf8')
-    const { data, content } = matter(fileContents)
-    const readTime = readingTime(content)
-
-    return {
-      slug,
-      content,
-      readingTime: readTime.text,
-      ...data,
-    } as BlogPost
-  } catch (error) {
-    if (process.env.NODE_ENV === 'production') {
-      console.error('Error in getBlogPost:', error)
-    }
-    return null
-  }
+  const allPosts = getAllBlogPosts()
+  return allPosts.find(post => post.slug === slug) || null
 })
 
 export function getFeaturedPosts(): BlogPost[] {
@@ -80,14 +107,24 @@ export function getFeaturedPosts(): BlogPost[] {
 }
 
 export function getPostsByCategory(category: string): BlogPost[] {
-  return getAllBlogPosts().filter(post => 
-    post.category.toLowerCase() === category.toLowerCase()
+  return getAllBlogPosts().filter(post =>
+    post.category.toLowerCase() === category.toLowerCase() ||
+    post.sourceCategory?.toLowerCase() === category.toLowerCase()
   )
 }
 
 export function getPostsByTag(tag: string): BlogPost[] {
-  return getAllBlogPosts().filter(post => 
+  return getAllBlogPosts().filter(post =>
     post.tags.some(t => t.toLowerCase() === tag.toLowerCase())
   )
 }
 
+export function getAllCategories(): string[] {
+  const posts = getAllBlogPosts()
+  const categories = Array.from(new Set(posts.map(p => p.sourceCategory || p.category))).filter(Boolean)
+  return categories.sort()
+}
+
+export function getCategoryDisplayName(category: string): string {
+  return CATEGORY_DISPLAY_NAMES[category] || category
+}

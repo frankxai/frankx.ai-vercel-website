@@ -33,6 +33,8 @@ import {
 } from '@/components/ui/AdvancedAnimations'
 import { Surface, SectionHeading, Pill, StatBlock } from '@/components/ui/primitives'
 import { trackEvent } from '@/lib/analytics'
+import { getFeaturedPosts } from '@/lib/blog'
+import BlogCardCompact from '@/components/blog/BlogCardCompact'
 
 /**
  * V3 HomePage - The Ultimate Homepage
@@ -65,6 +67,7 @@ const staggerContainer = {
 
 export default function V3HomePage() {
   const { primary, secondary, tertiary } = heroCta
+  const featuredPosts = getFeaturedPosts()
 
   return (
     <main id="main" className="flex-1 pt-32 text-white">
@@ -101,65 +104,72 @@ export default function V3HomePage() {
                   </Pill>
                 </StaggerItem>
 
-                {/* Headline - Clear Value Proposition */}
+                {/* Headline - Ultra-Clear Value Proposition */}
                 <StaggerItem>
                   <h1
                     id="hero-heading"
-                    className="text-heading-1 font-bold leading-tight text-balance max-w-6xl mx-auto"
+                    className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] max-w-6xl mx-auto"
                   >
-                    <span className="bg-gradient-to-r from-white via-neutral-100 to-white bg-clip-text text-transparent">
-                      AI Systems, Music Workflows & Creator Tools
+                    <span className="block text-white">
+                      Build Your Creator
                     </span>
-                    <br />
-                    <span className="bg-gradient-to-r from-primary-400 via-secondary-500 to-accent-600 bg-clip-text text-transparent">
-                      That Help You Ship 10x Faster Without Burnout
+                    <span className="block text-white">
+                      Operating System
+                    </span>
+                    <span className="block bg-gradient-to-r from-cyan-400 via-purple-400 to-amber-400 bg-clip-text text-transparent mt-2">
+                      AI + Music + Workflows for Conscious Creators
                     </span>
                   </h1>
                 </StaggerItem>
 
-                {/* Subheadline - Clear Value Props */}
+                {/* Subheadline - Proof & Promise */}
                 <StaggerItem>
-                  <p className="text-xl text-neutral-300 max-w-4xl mx-auto leading-relaxed space-y-2">
-                    <span className="block">
-                      <strong className="text-cyan-400">AI Architects</strong>: Enterprise agent frameworks, Oracle Cloud patterns & MCP integrations
-                    </span>
-                    <span className="block">
-                      <strong className="text-purple-400">Music Makers</strong>: 500+ battle-tested Suno workflows from idea to Spotify in 48 hours
-                    </span>
-                    <span className="block">
-                      <strong className="text-amber-400">Content Creators</strong>: AI-powered systems that help you ship daily without burnout
-                    </span>
+                  <p className="text-xl md:text-2xl text-slate-300 mt-6 max-w-3xl mx-auto leading-relaxed">
+                    From Oracle AI Architect to 500+ songs shipped. Battle-tested systems that help you create daily without burning out.
                   </p>
                 </StaggerItem>
 
-                {/* CTAs - Single Primary Focus */}
+                {/* Single CTA Strategy - Maximum Conversion */}
                 <StaggerItem>
-                  <div className="flex flex-col items-center gap-4 pt-4 sm:flex-row sm:justify-center">
+                  <div className="flex flex-col items-center gap-4 pt-8">
                     <MagneticHover intensity={0.4}>
                       <GlowPulse color="cyan">
                         <Link
                           href="/assessment"
                           onClick={() => trackEvent('v3_hero_primary_cta', { destination: '/assessment' })}
-                          className="btn-primary inline-flex items-center justify-center rounded-2xl px-10 py-5 text-xl font-bold transition-transform duration-300 hover:-translate-y-1 shadow-[0_0_40px_rgba(6,182,212,0.3)] hover:shadow-[0_0_50px_rgba(6,182,212,0.4)]"
+                          className="btn-primary group inline-flex items-center justify-center rounded-2xl px-12 py-6 text-xl font-bold transition-all duration-300 hover:-translate-y-1 shadow-[0_0_40px_rgba(6,182,212,0.3)] hover:shadow-[0_0_60px_rgba(6,182,212,0.5)]"
+                          aria-label="Take free 2-minute assessment to discover your creator archetype and get 20% off"
                         >
-                          Start Free Assessment
-                          <ArrowRight className="ml-3 h-6 w-6" aria-hidden="true" />
+                          Discover Your Creator Path (2 min)
+                          <ArrowRight className="ml-3 h-6 w-6 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
                         </Link>
                       </GlowPulse>
                     </MagneticHover>
+
+                    {/* Trust indicators immediately below CTA */}
+                    <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6 text-sm text-slate-400 mt-2">
+                      <span className="flex items-center gap-2">
+                        <Check className="h-4 w-4 text-cyan-400" aria-hidden="true" />
+                        Free assessment
+                      </span>
+                      <span className="flex items-center gap-2">
+                        <Check className="h-4 w-4 text-cyan-400" aria-hidden="true" />
+                        Get 20% off any product
+                      </span>
+                      <span className="flex items-center gap-2">
+                        <Check className="h-4 w-4 text-cyan-400" aria-hidden="true" />
+                        2,000+ creators trust us
+                      </span>
+                    </div>
+
+                    {/* Soft alternative for browsers */}
                     <Link
-                      href="/products"
-                      onClick={() => trackEvent('v3_hero_secondary_cta', { destination: '/products' })}
-                      className="inline-flex items-center justify-center rounded-2xl border-2 border-white/20 bg-white/5 px-8 py-4 text-lg font-semibold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-white/10 hover:border-white/30"
+                      href="#creator-paths"
+                      className="text-cyan-400 hover:text-cyan-300 text-sm font-medium underline-offset-4 hover:underline mt-2 transition-colors"
                     >
-                      Explore All Products
-                      <ArrowUpRight className="ml-2 h-5 w-5" aria-hidden="true" />
+                      Or browse products by creator type
                     </Link>
                   </div>
-                  <p className="text-sm text-slate-400 mt-6 flex items-center justify-center gap-2">
-                    <Check className="h-4 w-4 text-cyan-400" aria-hidden="true" />
-                    No credit card • 2-minute assessment • Get 20% off
-                  </p>
                 </StaggerItem>
 
                 {/* Hero Video/Image Section */}
@@ -224,7 +234,7 @@ export default function V3HomePage() {
       {/* ========================================
           3 PERSONA CARDS - V3 New Positioning
       ======================================== */}
-      <section className="py-24 px-6" aria-labelledby="personas-heading">
+      <section id="creator-paths" className="py-24 px-6" aria-labelledby="personas-heading">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <SectionHeading
@@ -352,6 +362,41 @@ export default function V3HomePage() {
           </div>
         </div>
       </section>
+
+      {/* ========================================
+          FEATURED BLOG INSIGHTS
+      ======================================== */}
+      {featuredPosts.length > 0 && (
+        <section className="py-24 px-6 bg-slate-950/30" aria-labelledby="blog-heading">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-16">
+              <SectionHeading
+                id="blog-heading"
+                eyebrow="Latest Intelligence"
+                title="From the FrankX Studio"
+                description="Weekly insights on AI architecture, music creation, and conscious systems. No fluff—just actionable intelligence."
+              />
+            </div>
+
+            {/* Featured articles grid */}
+            <div className="grid md:grid-cols-3 gap-8 mb-12">
+              {featuredPosts.slice(0, 3).map((post) => (
+                <BlogCardCompact key={post.slug} post={post} />
+              ))}
+            </div>
+
+            <div className="text-center">
+              <Link
+                href="/blog"
+                className="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 focus-visible:ring-offset-2 focus-visible:ring-offset-slate-950 rounded-lg px-4 py-2"
+              >
+                Explore all articles
+                <ArrowRight className="h-5 w-5" aria-hidden="true" />
+              </Link>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* ========================================
           SOCIAL PROOF SECTION

@@ -1,18 +1,14 @@
 /** @type {import('next').NextConfig} */
-const withMDX = require('@next/mdx')({
-  extension: /\.mdx?$/,
-  options: {
-    remarkPlugins: [],
-    rehypePlugins: [],
-  },
-})
-
 const nextConfig = {
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
   experimental: {
-    mdxRs: true,
     // Optimize package imports for faster builds
     optimizePackageImports: ['lucide-react', 'framer-motion'],
+  },
+  // Include external blog content in build
+  outputFileTracingIncludes: {
+    '/blog/*': ['../../content/blog/**/*'],
+    '/blog': ['../../content/blog/**/*'],
   },
   images: {
     remotePatterns: [
@@ -83,4 +79,4 @@ const nextConfig = {
   },
 }
 
-module.exports = withMDX(nextConfig)
+module.exports = nextConfig

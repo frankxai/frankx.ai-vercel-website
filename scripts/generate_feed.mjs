@@ -1,27 +1,71 @@
 import fs from 'fs'
 import path from 'path'
-import matter from 'gray-matter'
+import { fileURLToPath } from 'url'
+import { dirname } from 'path'
+
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
 
 const ROOT = process.cwd()
-const BLOG_DIR = path.join(ROOT, 'content', 'blog')
-const GUIDES_DIR = path.join(ROOT, 'content', 'guides')
 const PUBLIC_DIR = path.join(ROOT, 'public')
 
-function readMdxDir(dir) {
-  if (!fs.existsSync(dir)) return []
-  return fs.readdirSync(dir)
-    .filter((f) => /\.(md|mdx)$/i.test(f))
-    .map((f) => {
-      const full = path.join(dir, f)
-      const slug = f.replace(/\.(md|mdx)$/i, '')
-      const raw = fs.readFileSync(full, 'utf8')
-      const { data, content } = matter(raw)
-      const title = data.title || slug
-      const date = (data.date ? new Date(data.date) : new Date())
-      const description = data.description || content.slice(0, 200).replace(/\s+/g, ' ') + '…'
-      return { slug, title, date, description, content }
-    })
-    .sort((a, b) => b.date - a.date)
+// Import blog posts using the new blog system
+// We'll use a simple approach since this is a build script
+const BLOG_DIR = process.env.BLOG_CONTENT_PATH || path.join(ROOT, 'content', 'blog')
+
+function scanBlogDirectory(dir, category) {
+  const posts = []
+
+  if (!fs.existsSync(dir)) return posts
+
+  const entries = fs.readdirSync(dir, { withFileTypes: true })
+
+  for (const entry of entries) {
+    const fullPath = path.join(dir, entry.name)
+
+    if (entry.isDirectory()) {
+      const subCategory = category || entry.name
+      posts.push(...scanBlogDirectory(fullPath, subCategory))
+    } else if (entry.isFile() && /\.(md|mdx)$/i.test(entry.name)) {
+      try {
+        const slug = entry.name.replace(/\.(md|mdx)$/i, '')
+        const raw = fs.readFileSync(fullPath, 'utf8')
+
+        // Simple frontmatter extraction (avoid gray-matter import issues)
+        const frontmatterMatch = raw.match(/^---\n([\s\S]*?)\n---/)
+        let title = slug
+        let date = new Date()
+        let description = ''
+
+        if (frontmatterMatch) {
+          const frontmatter = frontmatterMatch[1]
+          const titleMatch = frontmatter.match(/^title:\s*["']?(.+?)["']?$/m)
+          const dateMatch = frontmatter.match(/^(?:date|publishDate):\s*["']?(.+?)["']?$/m)
+          const descMatch = frontmatter.match(/^(?:description|summary|excerpt):\s*["']?(.+?)["']?$/m)
+
+          if (titleMatch) title = titleMatch[1]
+          if (dateMatch) date = new Date(dateMatch[1])
+          if (descMatch) description = descMatch[1]
+        }
+
+        if (!description) {
+          const content = raw.replace(/^---[\s\S]*?---\n/, '')
+          description = content.slice(0, 200).replace(/\s+/g, ' ').trim() + '…'
+        }
+
+        posts.push({ slug, title, date, description, category })
+      } catch (err) {
+        console.warn(`Failed to read ${fullPath}:`, err.message)
+      }
+    }
+  }
+
+  return posts
+}
+
+function readMdxDir() {
+  const posts = scanBlogDirectory(BLOG_DIR)
+  return posts.sort((a, b) => b.date - a.date)
 }
 
 function escapeXml(s) {
@@ -36,9 +80,8 @@ function buildRss({ site, items }) {
 }
 
 const site = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
-const blogItems = readMdxDir(BLOG_DIR).map((x) => ({ ...x, path: `blog/${x.slug}` }))
-const guideItems = readMdxDir(GUIDES_DIR).map((x) => ({ ...x, path: `guides/${x.slug}` }))
-const items = [...blogItems, ...guideItems].slice(0, 50)
+const blogItems = readMdxDir().map((x) => ({ ...x, path: `blog/${x.slug}` }))
+const items = [...blogItems].slice(0, 50)
 
 fs.mkdirSync(PUBLIC_DIR, { recursive: true })
 fs.writeFileSync(path.join(PUBLIC_DIR, 'rss.xml'), buildRss({ site, items }), 'utf8')
