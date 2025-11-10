@@ -37,7 +37,7 @@ const navItems: NavItem[] = [
     ],
   },
   { name: 'Team', href: '/team' },
-  { name: 'Community', href: '/realm' },
+  { name: 'Community', href: '/community' },
   { name: 'About', href: '/about' },
 ]
 

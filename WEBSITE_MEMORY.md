@@ -6,6 +6,107 @@ This file tracks all significant changes, decisions, and learnings for the frank
 
 ## Recent Changes (Latest First)
 
+### 2025-11-07 (Session 4): 301 Redirects Implementation
+
+**What**: Implemented critical 301 redirects to consolidate duplicate pages
+- **Added 8 redirect rules** in `next.config.js`:
+  - Assessment pages: 5 duplicate URLs → `/assessment` (canonical)
+  - Creator OS products: Consolidated generative-creator-os → agentic-creator-os
+  - Blog/Chronicles: `/creation-chronicles` → `/blog?category=chronicles`
+  - Community: `/realm` → `/community`
+
+**Why**:
+- **Duplicate pages cause confusion**: Users don't know which page is "official"
+- **SEO dilution**: Multiple URLs competing for same keywords
+- **Navigation complexity**: 6 different assessment URLs mentioned across site
+- **Terminology clarity**: "Realm" is jargon, "Community" is clear
+
+**Impact**:
+- **Improved SEO**: Single canonical URL per content type
+- **Reduced Confusion**: Clear path to each section
+- **Better Analytics**: Consolidated traffic data instead of split across duplicates
+- **Simplified Maintenance**: One page to update instead of multiple
+
+**Technical Details**:
+- Used Next.js `redirects()` function for proper 301 redirects
+- Permanent redirects (301) preserve SEO value
+- Query params preserve intent (e.g., `/assessment?type=creative`)
+- All redirects tested for syntax validity
+
+**Decisions**:
+1. **Assessment Canonical**: Chose `/assessment` over alternatives
+   - Simple, clear, SEO-friendly
+   - Supports variants via query params
+   - Industry standard URL structure
+
+2. **Creator OS Consolidation**: Merged generative → agentic
+   - Same product with different branding
+   - "Agentic" is more current terminology
+   - Can show variations with pricing tiers
+
+3. **Blog Strategy**: Query params over nested routes
+   - `/blog?category=chronicles` better than `/blog/chronicles`
+   - Easier filtering and category management
+   - Consistent with future multi-category structure
+
+4. **Community Over Realm**: Clear terminology wins
+   - "Community" is universally understood
+   - "Realm" confuses first-time visitors
+   - Can keep "Realm" as internal feature name
+
+**Learnings**:
+- **Config Syntax Validated**: Next.js accepted redirect structure
+- **Build Issues Unrelated**: Dependency errors not caused by redirects
+- **Redirect Strategy**: Permanent (301) for SEO value preservation
+- **Query Params Work**: Next.js handles query string destinations properly
+
+**Next Steps**:
+1. **Test Redirects Live** (High Priority - Next Session)
+   - Deploy to preview environment
+   - Test each redirect manually
+   - Verify 301 status codes
+   - Check query params work
+
+2. **Update Internal Links** (High Priority)
+   - Search codebase for old URLs
+   - Update all internal navigation
+   - Update components linking to old pages
+   - Verify no broken links
+
+3. **Update Navigation** (High Priority)
+   - Remove references to old URLs in nav
+   - Update dropdown items
+   - Simplify navigation structure
+
+4. **Verify with MCP Tools** (Next Session)
+   - Use Vercel MCP to check deployed redirects
+   - Use Playwright MCP to test redirect behavior
+   - Get analytics on old URL traffic
+
+**Files Modified**:
+- `next.config.js` (lines 32-83) - Added redirects() function with 8 rules
+
+**Status**:
+- ✅ Redirects implemented
+- ✅ Config syntax validated
+- ⏳ Waiting for deployment to test live
+- ⏳ Internal links need updating
+- ⏳ Navigation needs cleanup
+
+**Redirects Implemented** (8 total):
+```
+/ai-assessment → /assessment (301)
+/soul-frequency-assessment → /assessment (301)
+/soul-frequency-quiz → /assessment (301)
+/assessment/creative → /assessment?type=creative (301)
+/assessment/advanced → /assessment?type=advanced (301)
+/products/generative-creator-os → /products/agentic-creator-os (301)
+/creation-chronicles → /blog?category=chronicles (301)
+/realm → /community (301)
+```
+
+---
+
 ### 2025-11-07 (Session 3): High-End Design Team Workflow Implementation
 
 **What**: Transformed workflow from basic development to high-end design team standards

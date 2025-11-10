@@ -28,6 +28,59 @@ const nextConfig = {
   outputFileTracingRoot: __dirname,
   // Turbopack configuration (default in Next.js 16)
   // Use --webpack flag if you need to override
+
+  // 301 Redirects for duplicate pages consolidation
+  async redirects() {
+    return [
+      // Assessment Pages - Consolidate to /assessment
+      {
+        source: '/ai-assessment',
+        destination: '/assessment',
+        permanent: true,
+      },
+      {
+        source: '/soul-frequency-assessment',
+        destination: '/assessment',
+        permanent: true,
+      },
+      {
+        source: '/soul-frequency-quiz',
+        destination: '/assessment',
+        permanent: true,
+      },
+      {
+        source: '/assessment/creative',
+        destination: '/assessment?type=creative',
+        permanent: true,
+      },
+      {
+        source: '/assessment/advanced',
+        destination: '/assessment?type=advanced',
+        permanent: true,
+      },
+
+      // Creator OS Products - Consolidate similar products
+      {
+        source: '/products/generative-creator-os',
+        destination: '/products/agentic-creator-os',
+        permanent: true,
+      },
+
+      // Blog/Chronicles - Consolidate to /blog
+      {
+        source: '/creation-chronicles',
+        destination: '/blog?category=chronicles',
+        permanent: true,
+      },
+
+      // Community Pages - Consolidate to /community
+      {
+        source: '/realm',
+        destination: '/community',
+        permanent: true,
+      },
+    ];
+  },
 }
 
 module.exports = withMDX(nextConfig)
