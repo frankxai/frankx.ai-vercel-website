@@ -1,6 +1,6 @@
 import Script from 'next/script'
 
-import V3HomePage from '@/components/home/V3HomePage'
+import V4HomePage from '@/components/home/V4HomePage'
 import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
@@ -62,7 +62,7 @@ const structuredData = {
 export default function Page() {
   return (
     <>
-      <V3HomePage />
+      <V4HomePage />
       <Script id="frankx-organization" type="application/ld+json" strategy="afterInteractive">
         {JSON.stringify(structuredData)}
       </Script>
