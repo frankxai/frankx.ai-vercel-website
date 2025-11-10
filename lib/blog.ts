@@ -34,6 +34,16 @@ export const CATEGORY_DISPLAY_NAMES: Record<string, string> = {
   'personal-dev': 'Personal Development'
 }
 
+// Category header images - generated with Nano Banana for V4
+export const CATEGORY_HEADER_IMAGES: Record<string, string> = {
+  'ai-tech': '/images/blog-ai-tech-header.png',
+  'conscious': '/images/blog-conscious-header.png',
+  'creator': '/images/blog-creator-header.png',
+  'general': '/images/hero-ai-hub-v4.png',  // Use hero for general/featured
+  'music': '/images/blog-music-header.png',
+  'personal-dev': '/images/blog-personal-dev-header.png'
+}
+
 // Helper: Recursively scan subdirectories for MDX files
 function scanBlogDirectory(dir: string, category?: string): BlogPost[] {
   const posts: BlogPost[] = []
@@ -60,15 +70,17 @@ function scanBlogDirectory(dir: string, category?: string): BlogPost[] {
         const readTime = readingTime(content)
 
         // Normalize frontmatter variations
+        const postCategory = data.category || category || 'general'
         const post: BlogPost = {
           slug,
           title: data.title || slug,
           description: data.description || data.summary || data.excerpt || '',
           date: data.date || data.publishDate || new Date().toISOString(),
           author: data.author || 'Frank',
-          category: data.category || category || 'general',
+          category: postCategory,
           tags: Array.isArray(data.tags) ? data.tags : [],
-          image: data.image,
+          // Use custom image if provided, otherwise use category header image
+          image: data.image || CATEGORY_HEADER_IMAGES[category || postCategory] || CATEGORY_HEADER_IMAGES['general'],
           readingTime: data.readingTime || data.readTime || readTime.text,
           keywords: data.keywords,
           readingGoal: data.readingGoal,
@@ -127,4 +139,8 @@ export function getAllCategories(): string[] {
 
 export function getCategoryDisplayName(category: string): string {
   return CATEGORY_DISPLAY_NAMES[category] || category
+}
+
+export function getCategoryHeaderImage(category: string): string {
+  return CATEGORY_HEADER_IMAGES[category] || CATEGORY_HEADER_IMAGES['general']
 }

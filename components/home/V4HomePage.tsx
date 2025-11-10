@@ -88,10 +88,25 @@ export default function V4HomePage({ featuredPosts }: V4HomePageProps) {
         aria-labelledby="hero-heading"
       >
         {/* Epic Background Layers */}
+        {/* Hero Image - AI Command Center */}
+        <div className="absolute inset-0 w-full h-full">
+          <Image
+            src="/images/hero-ai-hub-v4.png"
+            alt="FrankX AI Command Center - Futuristic AI workspace"
+            fill
+            priority
+            className="object-cover object-center"
+            sizes="100vw"
+            quality={95}
+          />
+          {/* Dark overlay for text readability */}
+          <div className="absolute inset-0 bg-slate-950/60" />
+        </div>
+
         <MorphingBackground />
-        <div className={clsx('absolute inset-0', gradientPresets.heroBase)} />
-        <div className={clsx('absolute inset-0 opacity-60 blur-3xl', gradientPresets.heroAurora)} />
-        <div className={clsx('absolute inset-0 opacity-40', gradientPresets.heroPulse)} />
+        <div className={clsx('absolute inset-0', gradientPresets.heroBase, 'opacity-50')} />
+        <div className={clsx('absolute inset-0 opacity-40 blur-3xl', gradientPresets.heroAurora)} />
+        <div className={clsx('absolute inset-0 opacity-30', gradientPresets.heroPulse)} />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(6,182,212,0.1),transparent_50%)]" aria-hidden />
 
         <ParallaxContainer offset={30}>
