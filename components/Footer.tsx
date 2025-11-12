@@ -50,22 +50,22 @@ export default function Footer() {
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-widest text-white/70 mb-4">Intelligence Hub</h3>
-                        <ul className="space-y-3 text-sm text-white/60">
-              <li><Link href="/founder-playbook" className="hover:text-white transition-colors">Creator Playbook</Link></li>
-              <li><Link href="/products/creative-ai-toolkit" className="hover:text-white transition-colors">Creative AI Toolkit</Link></li>
-              <li><Link href="/music-lab" className="hover:text-white transition-colors">Music Lab</Link></li>
-              <li><Link href="/guides" className="hover:text-white transition-colors">Guides Collection</Link></li>
+            <h3 className="text-sm font-semibold uppercase tracking-widest text-white/70 mb-4">Resources</h3>
+            <ul className="space-y-3 text-sm text-white/60">
+              <li><Link href="/blog" className="hover:text-white transition-colors">Intelligence Journal</Link></li>
+              <li><Link href="/resources" className="hover:text-white transition-colors">Free Resources</Link></li>
+              <li><Link href="/roadmap" className="hover:text-white transition-colors">2025 Roadmap</Link></li>
+              <li><Link href="/assessment" className="hover:text-white transition-colors">Soul Frequency Assessment</Link></li>
             </ul>
           </div>
 
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-widest text-white/70 mb-4">Programs &amp; Guides</h3>
-                        <ul className="space-y-3 text-sm text-white/60">
-              <li><Link href="/founder-playbook" className="hover:text-white transition-colors">Creator Playbook</Link></li>
+            <h3 className="text-sm font-semibold uppercase tracking-widest text-white/70 mb-4">Products</h3>
+            <ul className="space-y-3 text-sm text-white/60">
+              <li><Link href="/products/vibe-os" className="hover:text-white transition-colors">Vibe OS Music Sessions</Link></li>
               <li><Link href="/products/creative-ai-toolkit" className="hover:text-white transition-colors">Creative AI Toolkit</Link></li>
-              <li><Link href="/music-lab" className="hover:text-white transition-colors">Music Lab</Link></li>
-              <li><Link href="/guides" className="hover:text-white transition-colors">Guides Collection</Link></li>
+              <li><Link href="/products/agentic-creator-os" className="hover:text-white transition-colors">Custom Creator OS</Link></li>
+              <li><Link href="/products" className="hover:text-white transition-colors">All Products</Link></li>
             </ul>
           </div>
 
@@ -93,11 +93,23 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-16 rounded-3xl border border-white/10 bg-white/5 px-6 py-6 text-center text-sm text-white/70">
-          <p>
-            &copy; {new Date().getFullYear()} Frank. All rights reserved. Crafted with conscious AI collaboration and human-first
-            design.
-          </p>
+        <div className="mt-16 border-t border-white/10 pt-8">
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-white/70">
+            <p>
+              &copy; {new Date().getFullYear()} FrankX.AI. All rights reserved. Crafted with conscious AI collaboration.
+            </p>
+            <nav className="flex flex-wrap items-center justify-center gap-6" aria-label="Legal">
+              <Link href="/privacy" className="hover:text-white transition-colors">
+                Privacy Policy
+              </Link>
+              <Link href="/terms" className="hover:text-white transition-colors">
+                Terms of Service
+              </Link>
+              <Link href="/contact" className="hover:text-white transition-colors">
+                Contact
+              </Link>
+            </nav>
+          </div>
         </div>
       </div>
     </footer>

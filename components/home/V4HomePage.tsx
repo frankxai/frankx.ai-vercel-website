@@ -130,23 +130,23 @@ export default function V4HomePage({ featuredPosts }: V4HomePageProps) {
                     id="hero-heading"
                     className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[1.1] max-w-6xl mx-auto"
                   >
-                    <span className="block text-white mb-2">
-                      Welcome to FrankX.AI
+                    <span className="block text-white/90 text-2xl md:text-3xl font-normal mb-4">
+                      Build AI Systems That Feel Human
                     </span>
                     <span className="block bg-gradient-to-r from-cyan-400 via-purple-400 to-amber-400 bg-clip-text text-transparent">
-                      Where Intelligence Meets Creation
+                      Intelligence Systems for Conscious Creators
                     </span>
                   </h1>
                 </StaggerItem>
 
                 {/* Subheadline - Identity & Scale */}
                 <StaggerItem>
-                  <p className="text-xl md:text-2xl text-slate-300 mt-6 max-w-4xl mx-auto leading-relaxed">
-                    An Oracle AI Architect & Music Producer's Personal Hub.
-                    <br />
-                    <span className="text-white font-semibold">500+ songs produced. 300+ AI systems built.</span>
-                    <br />
-                    All systems, tools, and frameworks shared openly.
+                  <p className="text-xl md:text-2xl text-slate-200 mt-8 max-w-4xl mx-auto leading-relaxed">
+                    Learn from an Oracle AI Architect who's shipped <span className="text-white font-semibold">300+ production AI systems</span> and produced <span className="text-white font-semibold">500+ songs with AI</span>.
+                    <br className="hidden md:block" />
+                    <span className="block mt-4 text-lg md:text-xl text-slate-300">
+                      Every workflow, prompt library, and framework shared free. No gates, no catches.
+                    </span>
                   </p>
                 </StaggerItem>
 
@@ -177,19 +177,19 @@ export default function V4HomePage({ featuredPosts }: V4HomePageProps) {
                   <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-8">
                     <MagneticHover intensity={0.4}>
                       <Link
-                        href="#latest-intelligence"
-                        onClick={() => trackEvent('v4_hero_cta', { destination: 'intelligence-feed' })}
+                        href="/resources"
+                        onClick={() => trackEvent('v4_hero_cta', { destination: 'resources' })}
                         className="btn-primary group inline-flex items-center justify-center rounded-2xl px-10 py-5 text-lg font-bold transition-all duration-300 hover:-translate-y-1 shadow-[0_0_40px_rgba(6,182,212,0.3)] hover:shadow-[0_0_60px_rgba(6,182,212,0.5)]"
                       >
-                        Explore the Hub
-                        <ArrowDown className="ml-3 h-5 w-5 group-hover:translate-y-1 transition-transform" aria-hidden="true" />
+                        Get Free Resources
+                        <Download className="ml-3 h-5 w-5 group-hover:translate-y-1 transition-transform" aria-hidden="true" />
                       </Link>
                     </MagneticHover>
                     <Link
                       href="/blog"
                       className="inline-flex items-center justify-center rounded-2xl border-2 border-white/20 bg-white/5 px-8 py-4 text-lg font-semibold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-white/10 hover:border-white/30"
                     >
-                      Read Latest Articles
+                      Read Intelligence Reports
                       <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
                     </Link>
                   </div>

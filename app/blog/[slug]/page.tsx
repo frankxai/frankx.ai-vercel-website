@@ -221,12 +221,17 @@ export default async function BlogPostPage({
         </div>
 
         <div className="px-6 pt-12">
-          <div className="mx-auto max-w-4xl">
-            <div className="space-y-6 text-base leading-relaxed text-white/75">
+          <div className="mx-auto max-w-[680px]">
+            <div className="prose prose-invert">
               <MDXRemote source={post.content} components={mdxComponents as any} />
             </div>
+          </div>
+        </div>
 
-            <div className="mt-12 grid gap-6 md:grid-cols-3">
+        {/* Post-article CTA cards */}
+        <div className="px-6 pt-12">
+          <div className="mx-auto max-w-4xl">
+            <div className="grid gap-6 md:grid-cols-3">
               <article className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur">
                 <span className="text-xs font-semibold uppercase tracking-[0.35em] text-white/60">Live roadmap</span>
                 <h3 className="mt-3 text-lg font-semibold text-white">See how this article powers the 2025 plan</h3>
@@ -271,8 +276,9 @@ export default async function BlogPostPage({
               </article>
             </div>
 
+            {/* Tags section */}
             {post.tags && post.tags.length > 0 && (
-              <div className="mt-12 border-t border-white/10 pt-8">
+              <div className="mt-16 border-t border-white/10 pt-8">
                 <h3 className="text-sm font-semibold uppercase tracking-[0.35em] text-white/60">Tags</h3>
                 <div className="mt-4 flex flex-wrap gap-2">
                   {post.tags.map((tag) => (

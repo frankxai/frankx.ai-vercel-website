@@ -94,16 +94,16 @@ export const mdxComponents = {
     <h1 className="mt-10 mb-6 text-4xl font-semibold text-white">{children}</h1>
   ),
   h2: ({ children }: { children: ReactNode }) => (
-    <h2 className="mt-10 mb-4 text-3xl font-semibold text-white">{children}</h2>
+    <h2 className="mt-16 mb-6 text-3xl font-semibold tracking-tight text-white">{children}</h2>
   ),
   h3: ({ children }: { children: ReactNode }) => (
-    <h3 className="mt-8 mb-3 text-2xl font-semibold text-white/90">{children}</h3>
+    <h3 className="mt-12 mb-4 text-2xl font-semibold text-white/95">{children}</h3>
   ),
   h4: ({ children }: { children: ReactNode }) => (
-    <h4 className="mt-6 mb-2 text-xl font-semibold text-white/80">{children}</h4>
+    <h4 className="mt-8 mb-3 text-xl font-semibold text-white/90">{children}</h4>
   ),
   p: ({ children }: { children: ReactNode }) => (
-    <p className="mb-6 text-base leading-relaxed text-white/70">{children}</p>
+    <p className="mb-8 text-lg leading-[1.75] text-slate-200">{children}</p>
   ),
   ul: ({ children }: { children: ReactNode }) => (
     <ul className="mb-6 ml-5 list-disc space-y-2 text-white/75">{children}</ul>
