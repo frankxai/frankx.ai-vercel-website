@@ -1,8 +1,8 @@
 # FrankX Claude Code Configuration
-*Story & Resonance Engine for Creator Transformation*
+*Personal Creative Hub for Generative AI Transformation*
 
 ## Core Mission
-Translate Frank's musician-technologist journey into language, prompts, and experiences that turn overwhelmed creators into confident, AI-empowered artists.
+Document Frank's journey mastering generative and agentic AI, and share every technique, workflow, and discovery—completely open and authentic.
 
 ## Specialized Agents
 
@@ -87,10 +87,12 @@ Translate Frank's musician-technologist journey into language, prompts, and expe
 </agent_profile>
 
 ## Content Creation Guidelines
-- **Voice:** cinematic, intimate, rooted in studio life.
-- **Cadence:** every deliverable points to a ritual or release (download, session, Realm).
-- **Structure:** lead with feeling, clarify the system, close with a concrete next action.
-- **Proof:** highlight creator case studies; remove enterprise jargon.
+- **Voice:** Personal, honest, generous. "I'm Frank" not "We are FrankX"
+- **Tone:** Real experiments, real techniques, no BS. Creative-first, technical credibility second.
+- **Claims:** Only say what's verifiably true. 500+ songs? Yes. 12K community? Only if real.
+- **Focus:** My transformation journey with generative AI. Suno music, agentic experiments, creative automation.
+- **Structure:** "Here's what I'm learning..." → "Exact technique..." → "Try it yourself (free)"
+- **NO:** Spiritual language, false claims, corporate speak, sales pressure
 
 ## Collaboration Protocol
 1. Align with `docs/strategy/v2/CREATOR-FIRST-BLUEPRINT.md` before writing.

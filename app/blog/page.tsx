@@ -40,17 +40,17 @@ const seoSpotlights = [
 ]
 
 export const metadata = createMetadata({
-  title: 'FrankX Journal - AI Systems, Music Production, and Creative Tech',
+  title: 'FrankX Journal - My Lab Notes on Generative AI',
   description:
-    'Technical insights from an Oracle AI Architect on production AI systems, Suno music workflows, and practical generative tools adoption. Deep dives into agentic architecture, creative automation, and music production techniques.',
+    'Raw insights from my experiments with Suno music, agentic AI, and creative automation. What I'm learning, what's working, and the techniques I'm actually using. Oracle AI Architect sharing the real journey.',
   keywords: [
-    'ai systems blog',
-    'suno music production',
-    'oracle ai architecture',
-    'agentic workflows',
-    'generative ai tutorials',
+    'suno music',
+    'generative ai',
+    'agentic ai experiments',
     'ai music production',
-    'production ai systems',
+    'creative automation',
+    'ai workflows',
+    'music creation ai',
   ],
   path: '/blog',
 })
@@ -148,10 +148,10 @@ export default async function BlogPage({
               </span>
               <div className="space-y-4">
                 <h1 className="text-4xl font-semibold leading-tight text-white md:text-6xl">
-                  AI Systems, Music Production, and Creative Tech
+                  My Lab Notes on Generative AI
                 </h1>
                 <p className="max-w-2xl text-sm text-white/70 md:text-base">
-                  Technical insights from an Oracle AI Architect building the future of generative creation. Deep dives into agentic workflows, Suno production techniques, and practical AI adoption strategies for creators and teams.
+                  Raw insights from my experiments with Suno, agentic systems, and creative automation. What's working, what's not, and the techniques I'm actually using. Oracle AI Architect by day—creative explorer always.
                 </p>
                 <div className="grid gap-3 pt-2 sm:grid-cols-3">
                   <div className="rounded-xl border border-white/10 bg-white/5 px-4 py-3">
@@ -401,13 +401,13 @@ export default async function BlogPage({
           <div className="mx-auto max-w-4xl rounded-3xl border border-primary-400/30 bg-gradient-to-br from-primary-500/15 via-slate-900 to-slate-950 p-10 text-center">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary-400/40 bg-primary-500/20 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-primary-200">
               <Sparkles className="h-4 w-4" />
-              Join 12,000+ AI Creators
+              Join the Community
             </div>
             <h2 className="text-3xl font-semibold text-white md:text-4xl">
-              Weekly AI Systems Insights
+              Get My Weekly Experiments & Breakthroughs
             </h2>
             <p className="mt-4 text-white/70 leading-relaxed">
-              Every Monday: AI architecture patterns, Suno music techniques, and production workflows you can deploy immediately. No theory—just systems that ship.
+              Every week: My latest AI experiments, Suno discoveries, and workflow breakthroughs. Real techniques I'm actually using—no fluff, no theory.
             </p>
             <div className="mt-6 grid gap-4 text-left sm:grid-cols-3">
               <div className="rounded-xl border border-white/10 bg-white/5 p-4">

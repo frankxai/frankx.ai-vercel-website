@@ -21,7 +21,7 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-sm text-white/70 leading-relaxed max-w-md">
-              Production-grade AI systems and creative workflows for modern makers. Built by an Oracle AI Architect to help creators, teams, and organizations adopt cutting-edge generative tools.
+              My personal hub for mastering generative AI. Sharing real experiments with Suno, agentic systems, and creative automation. Oracle AI Architect documenting the transformation—and giving you all the good stuff.
             </p>
             <div className="mt-6 flex space-x-4 text-slate-300">
               <Link

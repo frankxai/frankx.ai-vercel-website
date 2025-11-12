@@ -131,10 +131,10 @@ export default function V4HomePage({ featuredPosts }: V4HomePageProps) {
                     className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[1.1] max-w-6xl mx-auto"
                   >
                     <span className="block text-white/90 text-2xl md:text-3xl font-normal mb-4">
-                      Ship AI Systems That Actually Work
+                      Transforming Through AI—And Sharing Everything I Learn
                     </span>
                     <span className="block bg-gradient-to-r from-cyan-400 via-purple-400 to-amber-400 bg-clip-text text-transparent">
-                      Production-Grade Intelligence for Modern Creators
+                      My Personal Hub for Generative Creation
                     </span>
                   </h1>
                 </StaggerItem>
@@ -142,10 +142,10 @@ export default function V4HomePage({ featuredPosts }: V4HomePageProps) {
                 {/* Subheadline - Identity & Scale */}
                 <StaggerItem>
                   <p className="text-xl md:text-2xl text-slate-200 mt-8 max-w-4xl mx-auto leading-relaxed">
-                    Oracle AI Architect with <span className="text-white font-semibold">300+ deployed systems</span> and <span className="text-white font-semibold">500+ AI-generated tracks</span>.
+                    I'm Frank—Oracle AI Architect by day, creative explorer always. <span className="text-white font-semibold">500+ songs with Suno</span>, countless agentic experiments, and a mission to master generative AI.
                     <br className="hidden md:block" />
                     <span className="block mt-4 text-lg md:text-xl text-slate-300">
-                      Get the workflows, prompts, and frameworks that power enterprise AI and independent music production—completely free.
+                      This is where I document my transformation and share every workflow, prompt, and technique I discover. All free, always real.
                     </span>
                   </p>
                 </StaggerItem>
@@ -153,21 +153,17 @@ export default function V4HomePage({ featuredPosts }: V4HomePageProps) {
                 {/* Epic Stats Bar */}
                 <StaggerItem>
                   <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6 mt-8">
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-500/10 border border-purple-500/20">
-                      <Music className="h-4 w-4 text-purple-400" />
-                      <span className="text-sm font-semibold text-white">500+ Songs</span>
+                    <div className="group inline-flex items-center gap-2 px-5 py-3 rounded-full bg-gradient-to-br from-purple-500/10 to-purple-500/5 border border-purple-500/20 hover:border-purple-500/40 hover:from-purple-500/15 hover:to-purple-500/10 transition-all duration-300">
+                      <Music className="h-5 w-5 text-purple-400 group-hover:scale-110 transition-transform" />
+                      <span className="text-sm font-semibold text-white">500+ Songs Created</span>
                     </div>
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/20">
-                      <Brain className="h-4 w-4 text-cyan-400" />
-                      <span className="text-sm font-semibold text-white">300+ AI Systems</span>
+                    <div className="group inline-flex items-center gap-2 px-5 py-3 rounded-full bg-gradient-to-br from-cyan-500/10 to-cyan-500/5 border border-cyan-500/20 hover:border-cyan-500/40 hover:from-cyan-500/15 hover:to-cyan-500/10 transition-all duration-300">
+                      <Workflow className="h-5 w-5 text-cyan-400 group-hover:scale-110 transition-transform" />
+                      <span className="text-sm font-semibold text-white">Daily Experiments</span>
                     </div>
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20">
-                      <BookOpen className="h-4 w-4 text-emerald-400" />
-                      <span className="text-sm font-semibold text-white">50+ Free Resources</span>
-                    </div>
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500/10 border border-amber-500/20">
-                      <Users className="h-4 w-4 text-amber-400" />
-                      <span className="text-sm font-semibold text-white">12k+ Community</span>
+                    <div className="group inline-flex items-center gap-2 px-5 py-3 rounded-full bg-gradient-to-br from-emerald-500/10 to-emerald-500/5 border border-emerald-500/20 hover:border-emerald-500/40 hover:from-emerald-500/15 hover:to-emerald-500/10 transition-all duration-300">
+                      <BookOpen className="h-5 w-5 text-emerald-400 group-hover:scale-110 transition-transform" />
+                      <span className="text-sm font-semibold text-white">All Shared Free</span>
                     </div>
                   </div>
                 </StaggerItem>
@@ -259,8 +255,8 @@ export default function V4HomePage({ featuredPosts }: V4HomePageProps) {
             </Pill>
             <SectionHeading
               id="resources-heading"
-              title="Enterprise-Grade Resources"
-              description="Production AI systems, music workflows, and automation blueprints. Everything you need to ship with cutting-edge generative tools—completely free."
+              title="Everything I've Built & Discovered"
+              description="My Suno workflows, agentic experiments, automation setups, and music production techniques. The exact tools I use every day—all shared free because I believe in open learning."
             />
           </div>
 
@@ -349,10 +345,10 @@ export default function V4HomePage({ featuredPosts }: V4HomePageProps) {
           <div className="text-center">
             <Link
               href="/resources"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white text-lg font-bold rounded-xl transition-all duration-300 shadow-[0_0_30px_rgba(6,182,212,0.3)] hover:shadow-[0_0_40px_rgba(6,182,212,0.5)] hover:-translate-y-1"
+              className="group inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-cyan-500 via-blue-600 to-purple-600 hover:from-cyan-400 hover:via-blue-500 hover:to-purple-500 text-white text-lg font-bold rounded-2xl transition-all duration-500 shadow-[0_0_40px_rgba(6,182,212,0.4)] hover:shadow-[0_0_60px_rgba(6,182,212,0.6)] hover:-translate-y-2 hover:scale-105"
             >
-              Browse All Free Resources
-              <ExternalLink className="h-5 w-5" />
+              <span>Explore My Free Resources</span>
+              <ArrowRight className="h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
         </div>
@@ -374,8 +370,8 @@ export default function V4HomePage({ featuredPosts }: V4HomePageProps) {
             </Pill>
             <SectionHeading
               id="community-heading"
-              title="Join the Community"
-              description="12,000+ creators, AI architects, and builders shipping with cutting-edge generative tools. Learn, connect, and level up your AI game."
+              title="Learn Alongside Me"
+              description="Follow my journey mastering generative AI, creating music, and building agentic systems. Everything I learn, you learn—completely open."
             />
           </div>
 
@@ -385,13 +381,13 @@ export default function V4HomePage({ featuredPosts }: V4HomePageProps) {
               <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-cyan-500/10 text-cyan-400">
                 <Mail className="h-7 w-7" aria-hidden="true" />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-3">Weekly AI Dispatch</h3>
+              <h3 className="text-2xl font-bold text-white mb-3">Weekly Experiments</h3>
               <p className="text-slate-300 mb-4 leading-relaxed">
-                Weekly insights from the studio: AI system architecture, music production techniques, workflow blueprints, and practical tutorials.
+                Raw insights from my creative lab: what I'm building with AI, Suno techniques I'm testing, and workflows that actually work.
               </p>
               <div className="text-sm text-slate-400 mb-6">
-                <div>12,000+ readers</div>
-                <div>Weekly • Wednesday AM</div>
+                <div>No spam, just real techniques</div>
+                <div>Weekly • Wednesday</div>
               </div>
               <Link
                 href="https://frankx.ck.page/newsletter"
@@ -409,13 +405,13 @@ export default function V4HomePage({ featuredPosts }: V4HomePageProps) {
               <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-purple-500/10 text-purple-400">
                 <Award className="h-7 w-7" aria-hidden="true" />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-3">Premium Community</h3>
+              <h3 className="text-2xl font-bold text-white mb-3">Deep Dive Sessions</h3>
               <p className="text-slate-300 mb-4 leading-relaxed">
-                Private hub for advanced workshops, early access to systems, and direct collaboration on AI projects.
+                Exclusive workshops where I break down my latest experiments in detail—live walkthroughs and Q&A.
               </p>
               <div className="text-sm text-slate-400 mb-6">
-                <div>Limited access</div>
-                <div>Launching Q1 2026</div>
+                <div>Coming soon</div>
+                <div>Limited spots</div>
               </div>
               <Link
                 href="https://frankx.ck.page/realm"
@@ -423,7 +419,7 @@ export default function V4HomePage({ featuredPosts }: V4HomePageProps) {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 w-full justify-center px-6 py-3 bg-purple-500/20 hover:bg-purple-500/30 border border-purple-500/30 text-purple-400 font-semibold rounded-lg transition-all"
               >
-                Join Waitlist
+                Get Notified
                 <ExternalLink className="h-4 w-4" />
               </Link>
             </div>
