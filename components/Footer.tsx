@@ -21,8 +21,7 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-sm text-white/70 leading-relaxed max-w-md">
-              Architecting avant-garde intelligence systems that creators and collaborators trust. Every artifact here
-              is built with future-proofed AI strategy, creative design, and musical imagination.
+              Production-grade AI systems and creative workflows for modern makers. Built by an Oracle AI Architect to help creators, teams, and organizations adopt cutting-edge generative tools.
             </p>
             <div className="mt-6 flex space-x-4 text-slate-300">
               <Link
@@ -96,7 +95,7 @@ export default function Footer() {
         <div className="mt-16 border-t border-white/10 pt-8">
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-white/70">
             <p>
-              &copy; {new Date().getFullYear()} FrankX.AI. All rights reserved. Crafted with conscious AI collaboration.
+              &copy; {new Date().getFullYear()} FrankX.AI. All rights reserved. Built with AI-assisted development and generative tools.
             </p>
             <nav className="flex flex-wrap items-center justify-center gap-6" aria-label="Legal">
               <Link href="/privacy" className="hover:text-white transition-colors">

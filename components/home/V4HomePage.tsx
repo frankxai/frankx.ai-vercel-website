@@ -131,10 +131,10 @@ export default function V4HomePage({ featuredPosts }: V4HomePageProps) {
                     className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[1.1] max-w-6xl mx-auto"
                   >
                     <span className="block text-white/90 text-2xl md:text-3xl font-normal mb-4">
-                      Build AI Systems That Feel Human
+                      Ship AI Systems That Actually Work
                     </span>
                     <span className="block bg-gradient-to-r from-cyan-400 via-purple-400 to-amber-400 bg-clip-text text-transparent">
-                      Intelligence Systems for Conscious Creators
+                      Production-Grade Intelligence for Modern Creators
                     </span>
                   </h1>
                 </StaggerItem>
@@ -142,10 +142,10 @@ export default function V4HomePage({ featuredPosts }: V4HomePageProps) {
                 {/* Subheadline - Identity & Scale */}
                 <StaggerItem>
                   <p className="text-xl md:text-2xl text-slate-200 mt-8 max-w-4xl mx-auto leading-relaxed">
-                    Learn from an Oracle AI Architect who's shipped <span className="text-white font-semibold">300+ production AI systems</span> and produced <span className="text-white font-semibold">500+ songs with AI</span>.
+                    Oracle AI Architect with <span className="text-white font-semibold">300+ deployed systems</span> and <span className="text-white font-semibold">500+ AI-generated tracks</span>.
                     <br className="hidden md:block" />
                     <span className="block mt-4 text-lg md:text-xl text-slate-300">
-                      Every workflow, prompt library, and framework shared free. No gates, no catches.
+                      Get the workflows, prompts, and frameworks that power enterprise AI and independent music production—completely free.
                     </span>
                   </p>
                 </StaggerItem>
@@ -246,38 +246,41 @@ export default function V4HomePage({ featuredPosts }: V4HomePageProps) {
       ======================================== */}
       <section
         id="free-resources"
-        className="py-24 px-6"
+        className="py-32 px-6 relative overflow-hidden"
         aria-labelledby="resources-heading"
       >
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
-            <Pill variant="brand" icon={<Sparkles className="h-4 w-4" />} className="mx-auto mb-6">
-              All Free • Always Open
+        {/* Premium background gradient */}
+        <div className="absolute inset-0 bg-gradient-to-br from-primary-500/5 via-transparent to-purple-500/5" aria-hidden="true" />
+
+        <div className="max-w-7xl mx-auto relative">
+          <div className="text-center mb-20">
+            <Pill variant="brand" icon={<Sparkles className="h-4 w-4" />} className="mx-auto mb-8">
+              All Free • Production-Ready
             </Pill>
             <SectionHeading
               id="resources-heading"
-              title="Resource Universe"
-              description="Everything I build gets shared. Prompt libraries, system blueprints, music workflows, articles, Claude Code setups. No gates, no catches."
+              title="Enterprise-Grade Resources"
+              description="Production AI systems, music workflows, and automation blueprints. Everything you need to ship with cutting-edge generative tools—completely free."
             />
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
             {/* AI Systems & Tools */}
             <Link
               href="/resources#ai-systems"
-              className="group relative rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all duration-300 hover:border-cyan-500/50 hover:bg-white/10 hover:-translate-y-1 hover:shadow-xl hover:shadow-cyan-500/10"
+              className="group relative rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.07] to-white/[0.03] p-8 backdrop-blur-sm transition-all duration-500 hover:border-cyan-500/50 hover:from-cyan-500/10 hover:to-transparent hover:-translate-y-2 hover:shadow-2xl hover:shadow-cyan-500/20"
             >
-              <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-cyan-500/10 text-cyan-400 group-hover:bg-cyan-500/20 transition-colors">
-                <Brain className="h-6 w-6" aria-hidden="true" />
+              <div className="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-cyan-500/10 text-cyan-400 group-hover:bg-cyan-500/20 group-hover:scale-110 transition-all duration-300">
+                <Brain className="h-8 w-8" aria-hidden="true" />
               </div>
-              <h3 className="text-xl font-bold text-white mb-2 group-hover:text-cyan-400 transition-colors">
+              <h3 className="text-xl font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors">
                 AI Systems & Frameworks
               </h3>
-              <p className="text-sm text-slate-300 mb-4">
+              <p className="text-sm text-slate-300 leading-relaxed mb-6">
                 Production-grade agent architectures and automation blueprints
               </p>
-              <div className="text-xs text-cyan-400 font-medium flex items-center gap-1">
-                <Download className="h-3 w-3" />
+              <div className="text-xs text-cyan-400 font-semibold flex items-center gap-2">
+                <Download className="h-4 w-4" />
                 15+ resources
               </div>
             </Link>
@@ -285,7 +288,7 @@ export default function V4HomePage({ featuredPosts }: V4HomePageProps) {
             {/* Music & Audio */}
             <Link
               href="/resources#music"
-              className="group relative rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all duration-300 hover:border-purple-500/50 hover:bg-white/10 hover:-translate-y-1 hover:shadow-xl hover:shadow-purple-500/10"
+              className="group relative rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.07] to-white/[0.03] p-8 backdrop-blur-sm transition-all duration-500 hover:border-purple-500/50 hover:from-purple-500/10 hover:to-transparent hover:-translate-y-2 hover:shadow-2xl hover:shadow-purple-500/20"
             >
               <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-purple-500/10 text-purple-400 group-hover:bg-purple-500/20 transition-colors">
                 <Music className="h-6 w-6" aria-hidden="true" />
@@ -305,7 +308,7 @@ export default function V4HomePage({ featuredPosts }: V4HomePageProps) {
             {/* Creator Systems */}
             <Link
               href="/resources#creator-systems"
-              className="group relative rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all duration-300 hover:border-emerald-500/50 hover:bg-white/10 hover:-translate-y-1 hover:shadow-xl hover:shadow-emerald-500/10"
+              className="group relative rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.07] to-white/[0.03] p-8 backdrop-blur-sm transition-all duration-500 hover:border-emerald-500/50 hover:from-emerald-500/10 hover:to-transparent hover:-translate-y-2 hover:shadow-2xl hover:shadow-emerald-500/20"
             >
               <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-400 group-hover:bg-emerald-500/20 transition-colors">
                 <Workflow className="h-6 w-6" aria-hidden="true" />
@@ -325,7 +328,7 @@ export default function V4HomePage({ featuredPosts }: V4HomePageProps) {
             {/* Articles & Guides */}
             <Link
               href="/blog"
-              className="group relative rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all duration-300 hover:border-amber-500/50 hover:bg-white/10 hover:-translate-y-1 hover:shadow-xl hover:shadow-amber-500/10"
+              className="group relative rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.07] to-white/[0.03] p-8 backdrop-blur-sm transition-all duration-500 hover:border-amber-500/50 hover:from-amber-500/10 hover:to-transparent hover:-translate-y-2 hover:shadow-2xl hover:shadow-amber-500/20"
             >
               <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-amber-500/10 text-amber-400 group-hover:bg-amber-500/20 transition-colors">
                 <BookOpen className="h-6 w-6" aria-hidden="true" />
@@ -371,8 +374,8 @@ export default function V4HomePage({ featuredPosts }: V4HomePageProps) {
             </Pill>
             <SectionHeading
               id="community-heading"
-              title="You Belong Here"
-              description="12,000+ creators, architects, and conscious builders exploring intelligence systems that feel human. Connect, collaborate, grow."
+              title="Join the Community"
+              description="12,000+ creators, AI architects, and builders shipping with cutting-edge generative tools. Learn, connect, and level up your AI game."
             />
           </div>
 
@@ -382,9 +385,9 @@ export default function V4HomePage({ featuredPosts }: V4HomePageProps) {
               <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-cyan-500/10 text-cyan-400">
                 <Mail className="h-7 w-7" aria-hidden="true" />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-3">Creation Chronicles</h3>
+              <h3 className="text-2xl font-bold text-white mb-3">Weekly AI Dispatch</h3>
               <p className="text-slate-300 mb-4 leading-relaxed">
-                Weekly dispatch from the studio: new articles, music drops, system blueprints, and behind-the-scenes stories.
+                Weekly insights from the studio: AI system architecture, music production techniques, workflow blueprints, and practical tutorials.
               </p>
               <div className="text-sm text-slate-400 mb-6">
                 <div>12,000+ readers</div>
@@ -406,12 +409,12 @@ export default function V4HomePage({ featuredPosts }: V4HomePageProps) {
               <div className="mb-6 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-purple-500/10 text-purple-400">
                 <Award className="h-7 w-7" aria-hidden="true" />
               </div>
-              <h3 className="text-2xl font-bold text-white mb-3">Inner Circle</h3>
+              <h3 className="text-2xl font-bold text-white mb-3">Premium Community</h3>
               <p className="text-slate-300 mb-4 leading-relaxed">
-                Private community for live labs, early access to resources, and direct agent collective support.
+                Private hub for advanced workshops, early access to systems, and direct collaboration on AI projects.
               </p>
               <div className="text-sm text-slate-400 mb-6">
-                <div>Invite only</div>
+                <div>Limited access</div>
                 <div>Launching Q1 2026</div>
               </div>
               <Link
@@ -563,7 +566,7 @@ export default function V4HomePage({ featuredPosts }: V4HomePageProps) {
           <p className="text-center text-sm text-slate-400 mt-12">
             Not sure where to start?{' '}
             <Link href="/assessment" className="text-cyan-400 hover:text-cyan-300 underline underline-offset-4">
-              Take the Soul Frequency Assessment
+              Take the AI Readiness Assessment
             </Link>{' '}
             to find your path.
           </p>

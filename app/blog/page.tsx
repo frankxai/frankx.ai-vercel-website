@@ -40,15 +40,17 @@ const seoSpotlights = [
 ]
 
 export const metadata = createMetadata({
-  title: 'FrankX Journal - Creator Intelligence Dispatch',
+  title: 'FrankX Journal - AI Systems, Music Production, and Creative Tech',
   description:
-    'Explore the FrankX Journal for long-form insights on conscious AI architecture, Suno-powered creativity, and intelligence rituals for families, founders, and executives.',
+    'Technical insights from an Oracle AI Architect on production AI systems, Suno music workflows, and practical generative tools adoption. Deep dives into agentic architecture, creative automation, and music production techniques.',
   keywords: [
-    'conscious ai blog',
-    'ai music insights',
+    'ai systems blog',
+    'suno music production',
     'oracle ai architecture',
-    'soul frequency content',
-    'intelligence economy analysis',
+    'agentic workflows',
+    'generative ai tutorials',
+    'ai music production',
+    'production ai systems',
   ],
   path: '/blog',
 })
@@ -146,10 +148,10 @@ export default async function BlogPage({
               </span>
               <div className="space-y-4">
                 <h1 className="text-4xl font-semibold leading-tight text-white md:text-6xl">
-                  Where Enterprise AI Meets Soul-Aligned Creation
+                  AI Systems, Music Production, and Creative Tech
                 </h1>
                 <p className="max-w-2xl text-sm text-white/70 md:text-base">
-                  Real insights from an Oracle AI Architect building the bridge between enterprise excellence and conscious creativity. Deep dives into AI systems, music production with Suno, and the daily practices that transform how we create, lead, and evolve.
+                  Technical insights from an Oracle AI Architect building the future of generative creation. Deep dives into agentic workflows, Suno production techniques, and practical AI adoption strategies for creators and teams.
                 </p>
                 <div className="grid gap-3 pt-2 sm:grid-cols-3">
                   <div className="rounded-xl border border-white/10 bg-white/5 px-4 py-3">
@@ -157,12 +159,12 @@ export default async function BlogPage({
                     <p className="mt-1 text-xs text-white/60">Enterprise systems & agent design</p>
                   </div>
                   <div className="rounded-xl border border-white/10 bg-white/5 px-4 py-3">
-                    <p className="text-xs font-semibold uppercase tracking-wider text-primary-200">Music Creation</p>
-                    <p className="mt-1 text-xs text-white/60">Suno techniques & frequency work</p>
+                    <p className="text-xs font-semibold uppercase tracking-wider text-primary-200">Music Production</p>
+                    <p className="mt-1 text-xs text-white/60">Suno techniques & generative workflows</p>
                   </div>
                   <div className="rounded-xl border border-white/10 bg-white/5 px-4 py-3">
-                    <p className="text-xs font-semibold uppercase tracking-wider text-primary-200">Conscious Tech</p>
-                    <p className="mt-1 text-xs text-white/60">Soul-aligned systems & rituals</p>
+                    <p className="text-xs font-semibold uppercase tracking-wider text-primary-200">Creator Tools</p>
+                    <p className="mt-1 text-xs text-white/60">Practical systems for makers</p>
                   </div>
                 </div>
               </div>
@@ -399,26 +401,26 @@ export default async function BlogPage({
           <div className="mx-auto max-w-4xl rounded-3xl border border-primary-400/30 bg-gradient-to-br from-primary-500/15 via-slate-900 to-slate-950 p-10 text-center">
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-primary-400/40 bg-primary-500/20 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-primary-200">
               <Sparkles className="h-4 w-4" />
-              Join 2,000+ Conscious Creators
+              Join 12,000+ AI Creators
             </div>
             <h2 className="text-3xl font-semibold text-white md:text-4xl">
-              Get Weekly Intelligence Drops
+              Weekly AI Systems Insights
             </h2>
             <p className="mt-4 text-white/70 leading-relaxed">
-              Every Monday, get a curated dispatch with AI systems insights, Suno music techniques, and consciousness-aligned practices. No fluff, just actionable intelligence you can use immediately.
+              Every Monday: AI architecture patterns, Suno music techniques, and production workflows you can deploy immediately. No theory—just systems that ship.
             </p>
             <div className="mt-6 grid gap-4 text-left sm:grid-cols-3">
               <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-                <p className="text-sm font-semibold text-white">AI Architecture Insights</p>
-                <p className="mt-1 text-xs text-white/60">Enterprise patterns and agent design</p>
+                <p className="text-sm font-semibold text-white">AI Systems & Agent Design</p>
+                <p className="mt-1 text-xs text-white/60">Enterprise patterns and practical architectures</p>
               </div>
               <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-                <p className="text-sm font-semibold text-white">Music Creation Techniques</p>
-                <p className="mt-1 text-xs text-white/60">Suno prompts and production tips</p>
+                <p className="text-sm font-semibold text-white">Music Production Techniques</p>
+                <p className="mt-1 text-xs text-white/60">Suno prompts, workflow breakdowns, release strategies</p>
               </div>
               <div className="rounded-xl border border-white/10 bg-white/5 p-4">
                 <p className="text-sm font-semibold text-white">Exclusive Templates</p>
-                <p className="mt-1 text-xs text-white/60">Systems and rituals you can deploy</p>
+                <p className="mt-1 text-xs text-white/60">Prompts, dashboards, and automation blueprints</p>
               </div>
             </div>
             <div className="mt-8">

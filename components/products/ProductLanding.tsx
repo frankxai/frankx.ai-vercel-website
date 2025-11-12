@@ -379,7 +379,7 @@ export default function ProductLanding({ product }: Props) {
             Transform Your AI Workflow Today
           </h2>
           <p className="text-xl text-slate-300 mb-8">
-            Join thousands of creators who've already transformed their reality with conscious AI
+            Join thousands of creators already shipping with production-grade AI systems
           </p>
 
           <div className="bg-slate-900/50 backdrop-blur-xl border border-slate-700/50 rounded-2xl p-8 max-w-md mx-auto">

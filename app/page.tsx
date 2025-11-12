@@ -5,17 +5,19 @@ import { createMetadata } from '@/lib/seo'
 import { getFeaturedPosts } from '@/lib/blog'
 
 export const metadata = createMetadata({
-  title: 'FrankX.ai | Intelligence Systems for AI Architects, Music Makers, and Generative Creators',
+  title: 'FrankX.ai | Production AI Systems for Modern Creators',
   description:
-    'Oracle-grade AI systems, Suno music workflows, and consciousness-first creator operating systems. Built by Oracle AI Architect for conscious creators.',
+    'Enterprise-grade AI systems, Suno music workflows, and creative automation tools. Built by an Oracle AI Architect with 300+ deployed systems and 500+ AI-generated tracks. All workflows and frameworks shared free.',
   keywords: [
     'ai architect',
     'oracle ai',
-    'suno workflows',
+    'suno music production',
+    'ai workflows',
+    'generative ai',
     'music creation ai',
-    'generative creator',
-    'creator operating system',
-    'conscious ai systems',
+    'agentic systems',
+    'ai automation',
+    'production ai',
     'ai music production',
   ],
   path: '/',
@@ -27,11 +29,11 @@ const structuredData = {
   name: 'FrankX.ai',
   url: 'https://frankx.ai',
   description:
-    'Intelligence systems for AI architects, music makers, and generative creators. Oracle-grade conscious AI systems and Suno music workflows.',
+    'Production-grade AI systems and creative workflows for modern makers. Enterprise AI architecture, Suno music production, and automation tools from an Oracle AI Architect.',
   founder: {
     '@type': 'Person',
     name: 'Frank',
-    jobTitle: 'Oracle AI Architect & Creator Systems Designer',
+    jobTitle: 'Oracle AI Architect & Music Producer',
   },
   sameAs: [
     'https://linkedin.com/in/frank',
@@ -42,19 +44,19 @@ const structuredData = {
     {
       '@type': 'Offer',
       name: 'Vibe OS',
-      description: 'AI music creation system with 500+ Suno workflows for conscious music producers',
+      description: 'AI music production system with 500+ Suno workflows and premium session packs',
       url: 'https://frankx.ai/products/vibe-os',
     },
     {
       '@type': 'Offer',
       name: 'Creative AI Toolkit',
-      description: 'Templates and workflows for generative content creators',
+      description: 'Production-ready templates and workflows for generative content creators',
       url: 'https://frankx.ai/products/creative-ai-toolkit',
     },
     {
       '@type': 'Offer',
       name: 'Agentic Creator OS',
-      description: 'Custom AI systems for Oracle architects and enterprise creators',
+      description: 'Custom AI systems and automation for creators and enterprise teams',
       url: 'https://frankx.ai/products/agentic-creator-os',
     },
   ],
