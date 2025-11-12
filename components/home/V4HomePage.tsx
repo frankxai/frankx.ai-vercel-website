@@ -218,8 +218,8 @@ export default function V4HomePage({ featuredPosts }: V4HomePageProps) {
           {/* Featured articles grid */}
           {featuredPosts.length > 0 && (
             <div className="grid md:grid-cols-3 gap-8 mb-12">
-              {featuredPosts.slice(0, 3).map((post) => (
-                <BlogCardCompact key={post.slug} post={post} />
+              {featuredPosts.slice(0, 3).map((post, index) => (
+                <BlogCardCompact key={post.slug} post={post} index={index} />
               ))}
             </div>
           )}

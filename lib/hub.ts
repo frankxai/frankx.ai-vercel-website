@@ -289,36 +289,36 @@ export const updateEntries: UpdateEntry[] = [
 export const resourceCollections: ResourceCollection[] = [
   {
     id: 'starter',
-    title: 'Creator Starter Kit',
-    description: 'First steps for syncing with the FrankX studio and rituals.',
-    focus: 'Perfect for new creators and allies joining the ecosystem.',
+    title: 'Start Here',
+    description: 'The essentials I give away free. My actual workflows, prompts, and techniques.',
+    focus: 'Perfect if you are new and want my best stuff without the sales pitch.',
     items: [
-      { label: 'Creative AI Toolkit', href: '/products/creative-ai-toolkit', type: 'Product' },
-      { label: 'Creation Chronicles', href: '/creation-chronicles', type: 'Newsletter' },
-      { label: 'Soul Frequency Quiz', href: '/soul-frequency-quiz', type: 'Quiz' }
+      { label: 'Creative AI Toolkit', href: '/products/creative-ai-toolkit', type: 'Free Download' },
+      { label: 'My Lab Notes (Blog)', href: '/blog', type: 'Articles' },
+      { label: 'Suno Music Gallery', href: '/resources', type: '500+ Songs' }
     ]
   },
   {
     id: 'systems',
-    title: 'Systems & Strategy',
-    description: 'Operating guides, dashboards, and workflows to scale your studio.',
-    focus: 'Ideal for Creator Architects designing products and automation.',
+    title: 'Systems & Workflows',
+    description: 'My agent architectures, dashboards, and automation patterns. Real implementations.',
+    focus: 'For builders who want to see how I actually wire up agentic systems.',
     items: [
-      { label: 'Creator Lab OS', href: '/products/agentic-creator-os', type: 'Program' },
-      { label: 'Agentic SEO Publishing Masterplan', href: '/blog/agentic-seo-publishing-masterplan', type: 'Article' },
-      { label: 'Intelligence Atlas', href: '/intelligence-atlas', type: 'Report' },
-      { label: 'Template Library', href: '/resources/templates', type: 'Templates' }
+      { label: 'Agentic SEO Publishing', href: '/blog/agentic-seo-publishing-masterplan', type: 'Full Guide' },
+      { label: 'Intelligence Atlas Vol. I', href: '/intelligence-atlas', type: '10K Word Report' },
+      { label: 'Creator OS Patterns', href: '/blog/the-creative-os', type: 'Deep Dive' },
+      { label: 'Template Library', href: '/resources/templates', type: 'Downloads' }
     ]
   },
   {
-    id: 'sonic',
-    title: 'Sonic Rituals',
-    description: 'Music labs and session packs to energize every release.',
-    focus: 'Great for Launch Artists and performer collectives.',
+    id: 'music',
+    title: 'Suno Experiments',
+    description: '500+ songs and the prompt techniques I discovered along the way.',
+    focus: 'My Suno journey: what works, what does not, and the lessons learned.',
     items: [
-      { label: 'Vibe OS Sessions', href: '/products/vibe-os', type: 'Product' },
-      { label: 'Music Lab', href: '/music-lab', type: 'Experience' },
-      { label: 'Latest Suno Drops', href: '/resources', type: 'Gallery' }
+      { label: 'Music Creation Gallery', href: '/resources', type: '500+ Songs' },
+      { label: 'Suno Prompt Techniques', href: '/music-lab', type: 'Guide' },
+      { label: 'Latest Releases', href: '/blog?category=music', type: 'Blog Posts' }
     ]
   }
 ]
