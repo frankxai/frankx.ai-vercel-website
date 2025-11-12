@@ -42,7 +42,7 @@ const seoSpotlights = [
 export const metadata = createMetadata({
   title: 'FrankX Journal - My Lab Notes on Generative AI',
   description:
-    'Raw insights from my experiments with Suno music, agentic AI, and creative automation. What I'm learning, what's working, and the techniques I'm actually using. Oracle AI Architect sharing the real journey.',
+    "Raw insights from my experiments with Suno music, agentic AI, and creative automation. What I'm learning, what's working, and the techniques I'm actually using. Oracle AI Architect sharing the real journey.",
   keywords: [
     'suno music',
     'generative ai',

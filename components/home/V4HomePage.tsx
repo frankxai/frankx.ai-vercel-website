@@ -36,7 +36,7 @@ import {
 } from '@/components/ui/AdvancedAnimations'
 import { Surface, SectionHeading, Pill, StatBlock } from '@/components/ui/primitives'
 import { trackEvent } from '@/lib/analytics'
-import type { BlogPost } from '@/lib/blog'
+import type { BlogPost } from '@/lib/types/blog'
 import BlogCardCompact from '@/components/blog/BlogCardCompact'
 
 /**

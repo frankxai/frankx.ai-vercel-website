@@ -1,15 +1,15 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { ArrowRight, Clock, Tag } from 'lucide-react'
-import type { BlogPost } from '@/lib/blog'
-import { getCategoryDisplayName } from '@/lib/blog'
+import type { BlogPost } from '@/lib/types/blog'
+import { CATEGORY_DISPLAY_NAMES } from '@/lib/types/blog'
 
 interface BlogCardCompactProps {
   post: BlogPost
 }
 
 export default function BlogCardCompact({ post }: BlogCardCompactProps) {
-  const categoryDisplay = getCategoryDisplayName(post.sourceCategory || post.category)
+  const categoryDisplay = CATEGORY_DISPLAY_NAMES[post.sourceCategory || post.category] || post.category
 
   return (
     <article className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm transition-all duration-300 hover:border-white/20 hover:bg-white/8 hover:-translate-y-1">
