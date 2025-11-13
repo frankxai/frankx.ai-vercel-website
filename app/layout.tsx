@@ -70,7 +70,7 @@ export default function RootLayout({
       <body
         className={cn(
           inter.className,
-          'dark bg-slate-950 text-slate-100 antialiased min-h-screen'
+          'dark bg-slate-950 text-slate-100 antialiased min-h-screen scroll-smooth'
         )}
         suppressHydrationWarning
       >
