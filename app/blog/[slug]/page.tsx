@@ -10,9 +10,13 @@ import Footer from '@/components/Footer'
 import Navigation from '@/components/Navigation'
 import BlogCard from '@/components/blog/BlogCard'
 import Recommendations from '@/components/recommendations/Recommendations'
+import RelatedContent from '@/components/content/RelatedContent'
+import ContentTypeBadge, { inferContentType } from '@/components/content/ContentTypeBadge'
 import { getAllBlogPosts, getBlogPost } from '@/lib/blog'
 import { createMetadata, siteConfig } from '@/lib/seo'
 import { subscribeToNewsletter } from '@/lib/actions/newsletter'
+import { buildContentGraph, getRelatedContent, blogPostToNode } from '@/lib/content-graph'
+import { getAllResearchPages } from '@/lib/research'
 
 // ISR: Revalidate blog posts every hour
 export const revalidate = 3600
@@ -65,9 +69,12 @@ export default async function BlogPostPage({
   }
 
   const allPosts = getAllBlogPosts()
-  const relatedPosts = allPosts
-    .filter((p) => p.slug !== post.slug && p.tags.some((tag) => post.tags.includes(tag)))
-    .slice(0, 3)
+  const researchPages = getAllResearchPages()
+
+  // Build content graph for intelligent related content
+  const contentGraph = buildContentGraph(allPosts, researchPages)
+  const currentNode = blogPostToNode(post)
+  const relatedContent = getRelatedContent(currentNode, contentGraph, 6)
 
   const documents = allPosts.map((postItem) => ({
     title: postItem.title,
@@ -143,6 +150,7 @@ export default async function BlogPostPage({
 
             <header className="mt-10 space-y-6">
               <div className="flex flex-wrap items-center gap-4 text-xs font-semibold uppercase tracking-[0.35em] text-white/60">
+                <ContentTypeBadge type={inferContentType(post)} size="md" />
                 <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-3 py-1">
                   <Tag className="h-3.5 w-3.5" />
                   {post.category}
@@ -324,7 +332,20 @@ export default async function BlogPostPage({
           </div>
         </div>
 
-        {/* Recommendations */}
+        {/* Related Content - Intelligent Topic Clusters */}
+        {relatedContent.length > 0 && (
+          <div className="px-6 pt-20">
+            <div className="mx-auto max-w-7xl">
+              <RelatedContent
+                items={relatedContent}
+                title="Continue Your Journey"
+                description="Explore related content from across the blog and research library"
+              />
+            </div>
+          </div>
+        )}
+
+        {/* Recommendations - AI-powered */}
         <div className="px-6 pt-20">
           <div className="mx-auto max-w-7xl">
             <Recommendations documents={documents} currentDocument={currentDocument} />

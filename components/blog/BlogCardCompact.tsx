@@ -7,6 +7,7 @@ import Image from 'next/image'
 import { ArrowRight, Clock, Tag, Sparkles } from 'lucide-react'
 import type { BlogPost } from '@/lib/types/blog'
 import { CATEGORY_DISPLAY_NAMES } from '@/lib/types/blog'
+import ContentTypeBadge, { inferContentType } from '@/components/content/ContentTypeBadge'
 
 interface BlogCardCompactProps {
   post: BlogPost
@@ -16,6 +17,7 @@ interface BlogCardCompactProps {
 export default function BlogCardCompact({ post, index = 0 }: BlogCardCompactProps) {
   const [isHovered, setIsHovered] = useState(false)
   const categoryDisplay = CATEGORY_DISPLAY_NAMES[post.sourceCategory || post.category] || post.category
+  const contentType = inferContentType(post)
 
   return (
     <motion.article
@@ -63,15 +65,23 @@ export default function BlogCardCompact({ post, index = 0 }: BlogCardCompactProp
             transition={{ duration: 0.8, ease: "easeInOut" }}
           />
 
-          {/* Category badge with animation */}
-          <motion.span
-            animate={isHovered ? { scale: 1.05, y: -2 } : { scale: 1, y: 0 }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            className="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full border border-cyan-500/30 bg-cyan-500/10 backdrop-blur-md px-3 py-1.5 text-xs font-semibold text-cyan-300 shadow-lg"
-          >
-            <Tag className="w-3 h-3" />
-            {categoryDisplay}
-          </motion.span>
+          {/* Content type & category badges */}
+          <div className="absolute top-4 left-4 flex gap-2">
+            <motion.div
+              animate={isHovered ? { scale: 1.05, y: -2 } : { scale: 1, y: 0 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+            >
+              <ContentTypeBadge type={contentType} size="sm" className="backdrop-blur-md shadow-lg" />
+            </motion.div>
+            <motion.span
+              animate={isHovered ? { scale: 1.05, y: -2 } : { scale: 1, y: 0 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              className="inline-flex items-center gap-1.5 rounded-full border border-cyan-500/30 bg-cyan-500/10 backdrop-blur-md px-3 py-1 text-xs font-semibold text-cyan-300 shadow-lg"
+            >
+              <Tag className="w-3 h-3" />
+              {categoryDisplay}
+            </motion.span>
+          </div>
         </div>
       )}
 
