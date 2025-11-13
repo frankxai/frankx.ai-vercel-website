@@ -77,12 +77,14 @@ export function SectionHeading({
   className,
 }: SectionHeadingProps) {
   return (
-    <div className={cn('space-y-4', align === 'center' && 'text-center', className)}>
+    <div className={cn('space-y-5', align === 'center' && 'text-center', className)}>
       {eyebrow ? <span className="eyebrow-text inline-flex items-center gap-2">{eyebrow}</span> : null}
-      <div className={cn('space-y-3', align === 'center' && 'mx-auto max-w-3xl')}>
-        <h2 id={id} className="text-3xl font-semibold text-white md:text-4xl">{title}</h2>
+      <div className={cn('space-y-4', align === 'center' && 'mx-auto max-w-3xl')}>
+        <h2 id={id} className="text-3xl font-bold text-white md:text-4xl lg:text-5xl tracking-tight leading-[1.15]">
+          {title}
+        </h2>
         {description ? (
-          <p className="text-base text-white/70 md:text-lg">{description}</p>
+          <p className="text-base text-slate-300 md:text-lg leading-[1.7] tracking-wide">{description}</p>
         ) : null}
       </div>
       {actions ? (

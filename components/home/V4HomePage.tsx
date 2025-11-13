@@ -38,6 +38,9 @@ import { Surface, SectionHeading, Pill, StatBlock } from '@/components/ui/primit
 import { trackEvent } from '@/lib/analytics'
 import type { BlogPost } from '@/lib/types/blog'
 import BlogCardCompact from '@/components/blog/BlogCardCompact'
+import AnimatedMesh from '@/components/ui/AnimatedMesh'
+import ShimmerText from '@/components/ui/ShimmerText'
+import PremiumButton from '@/components/ui/PremiumButton'
 
 /**
  * V4 HomePage - Personal AI Intelligence Hub
@@ -80,14 +83,14 @@ export default function V4HomePage({ featuredPosts }: V4HomePageProps) {
 
       {/* ========================================
           HERO SECTION - Welcome to the Intelligence Hub
-          Epic, cinematic, identity-focused
+          Epic, cinematic, identity-focused with premium animations
       ======================================== */}
       <section
         id="hero"
         className="relative overflow-hidden pt-24 pb-32 min-h-[90vh] flex items-center"
         aria-labelledby="hero-heading"
       >
-        {/* Epic Background Layers */}
+        {/* Premium Background Layers */}
         {/* Hero Image - AI Command Center */}
         <div className="absolute inset-0 w-full h-full">
           <Image
@@ -100,14 +103,15 @@ export default function V4HomePage({ featuredPosts }: V4HomePageProps) {
             quality={95}
           />
           {/* Dark overlay for text readability */}
-          <div className="absolute inset-0 bg-slate-950/60" />
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-slate-950/70 to-slate-950/90" />
         </div>
 
-        <MorphingBackground />
-        <div className={clsx('absolute inset-0', gradientPresets.heroBase, 'opacity-50')} />
-        <div className={clsx('absolute inset-0 opacity-40 blur-3xl', gradientPresets.heroAurora)} />
-        <div className={clsx('absolute inset-0 opacity-30', gradientPresets.heroPulse)} />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(6,182,212,0.1),transparent_50%)]" aria-hidden />
+        {/* Animated Gradient Mesh - Premium flowing gradients */}
+        <AnimatedMesh variant="hero" speed="slow" className="opacity-60" />
+
+        {/* Additional atmospheric layers */}
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(6,182,212,0.12),transparent_50%)]" aria-hidden />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_60%,rgba(168,85,247,0.08),transparent_50%)]" aria-hidden />
 
         <ParallaxContainer offset={30}>
           <div className="relative mx-auto max-w-7xl px-6">
@@ -124,27 +128,32 @@ export default function V4HomePage({ featuredPosts }: V4HomePageProps) {
                   </Pill>
                 </StaggerItem>
 
-                {/* Epic Headline */}
+                {/* Epic Headline with Premium Typography */}
                 <StaggerItem>
                   <h1
                     id="hero-heading"
-                    className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[1.1] max-w-6xl mx-auto"
+                    className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[1.08] tracking-tight max-w-6xl mx-auto"
                   >
-                    <span className="block text-white/90 text-2xl md:text-3xl font-normal mb-4">
+                    <span className="block text-white/90 text-2xl md:text-3xl font-normal mb-6 leading-relaxed tracking-normal">
                       Transforming Through AI—And Sharing Everything I Learn
                     </span>
-                    <span className="block bg-gradient-to-r from-cyan-400 via-purple-400 to-amber-400 bg-clip-text text-transparent">
+                    <ShimmerText
+                      as="span"
+                      shimmerColor="multi"
+                      speed="slow"
+                      className="block bg-gradient-to-r from-cyan-400 via-purple-400 to-amber-400 bg-clip-text text-transparent font-extrabold"
+                    >
                       My Personal Hub for Generative Creation
-                    </span>
+                    </ShimmerText>
                   </h1>
                 </StaggerItem>
 
-                {/* Subheadline - Identity & Scale */}
+                {/* Subheadline - Identity & Scale with Enhanced Typography */}
                 <StaggerItem>
-                  <p className="text-xl md:text-2xl text-slate-200 mt-8 max-w-4xl mx-auto leading-relaxed">
+                  <p className="text-xl md:text-2xl text-slate-200 mt-8 max-w-4xl mx-auto leading-[1.6] tracking-wide">
                     I'm Frank—Oracle AI Architect by day, creative explorer always. <span className="text-white font-semibold">500+ songs with Suno</span>, countless agentic experiments, and a mission to master generative AI.
                     <br className="hidden md:block" />
-                    <span className="block mt-4 text-lg md:text-xl text-slate-300">
+                    <span className="block mt-5 text-lg md:text-xl text-slate-300 leading-[1.7] max-w-3xl mx-auto">
                       This is where I document my transformation and share every workflow, prompt, and technique I discover. All free, always real.
                     </span>
                   </p>
@@ -168,26 +177,33 @@ export default function V4HomePage({ featuredPosts }: V4HomePageProps) {
                   </div>
                 </StaggerItem>
 
-                {/* Value-First CTAs */}
+                {/* Premium CTAs with Magnetic Hover */}
                 <StaggerItem>
-                  <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-8">
-                    <MagneticHover intensity={0.4}>
-                      <Link
-                        href="/resources"
-                        onClick={() => trackEvent('v4_hero_cta', { destination: 'resources' })}
-                        className="btn-primary group inline-flex items-center justify-center rounded-2xl px-10 py-5 text-lg font-bold transition-all duration-300 hover:-translate-y-1 shadow-[0_0_40px_rgba(6,182,212,0.3)] hover:shadow-[0_0_60px_rgba(6,182,212,0.5)]"
-                      >
-                        Get Free Resources
-                        <Download className="ml-3 h-5 w-5 group-hover:translate-y-1 transition-transform" aria-hidden="true" />
-                      </Link>
-                    </MagneticHover>
-                    <Link
-                      href="/blog"
-                      className="inline-flex items-center justify-center rounded-2xl border-2 border-white/20 bg-white/5 px-8 py-4 text-lg font-semibold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-white/10 hover:border-white/30"
+                  <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-10">
+                    <PremiumButton
+                      href="/resources"
+                      variant="primary"
+                      size="lg"
+                      glow
+                      magnetic
+                      onClick={() => trackEvent('v4_hero_cta', { destination: 'resources' })}
+                      className="group shadow-[0_0_50px_rgba(6,182,212,0.25)]"
                     >
-                      Read Intelligence Reports
-                      <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
-                    </Link>
+                      Get Free Resources
+                      <Download className="ml-3 h-5 w-5 group-hover:translate-y-1 transition-transform" aria-hidden="true" />
+                    </PremiumButton>
+
+                    <PremiumButton
+                      href="/blog"
+                      variant="ghost"
+                      size="lg"
+                      magnetic
+                      onClick={() => trackEvent('v4_hero_cta', { destination: 'blog' })}
+                      className="group"
+                    >
+                      Read Lab Notes
+                      <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
+                    </PremiumButton>
                   </div>
                 </StaggerItem>
               </div>
@@ -210,7 +226,11 @@ export default function V4HomePage({ featuredPosts }: V4HomePageProps) {
             <SectionHeading
               id="intelligence-heading"
               eyebrow="Fresh from the studio"
-              title="Latest Intelligence Drops"
+              title={
+                <ShimmerText shimmerColor="cyan" speed="medium">
+                  Latest Intelligence Drops
+                </ShimmerText>
+              }
               description="New articles, music releases, AI frameworks, and system blueprints. Everything shared here is free and open."
             />
           </div>
@@ -370,7 +390,11 @@ export default function V4HomePage({ featuredPosts }: V4HomePageProps) {
             </Pill>
             <SectionHeading
               id="community-heading"
-              title="Learn Alongside Me"
+              title={
+                <ShimmerText shimmerColor="purple" speed="medium">
+                  Learn Alongside Me
+                </ShimmerText>
+              }
               description="Follow my journey mastering generative AI, creating music, and building agentic systems. Everything I learn, you learn—completely open."
             />
           </div>
