@@ -100,7 +100,7 @@ export default function Resources() {
           </div>
         </section>
 
-        <section className="px-6 py-20">
+        <section id="ai-systems" className="px-6 py-20 scroll-mt-24">
           <div className="mx-auto max-w-7xl">
             <div className="mb-12 text-center">
               <p className="text-xs font-semibold uppercase tracking-wider text-primary-200">Choose Your Path</p>
@@ -109,12 +109,14 @@ export default function Resources() {
             </div>
 
             <div className="grid gap-8 lg:grid-cols-3">
-              {resourcesByPersona.map((category) => {
+              {resourcesByPersona.map((category, index) => {
                 const IconComponent = category.icon
+                const sectionId = index === 2 ? 'creator-systems' : undefined
                 return (
                   <div
                     key={category.persona}
-                    className="group rounded-3xl border border-white/10 bg-white/5 p-8 transition-all duration-300 hover:border-primary-400/40 hover:bg-white/10"
+                    id={sectionId}
+                    className="group rounded-3xl border border-white/10 bg-white/5 p-8 transition-all duration-300 hover:border-primary-400/40 hover:bg-white/10 scroll-mt-24"
                   >
                     <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-primary-500/20 transition-transform group-hover:scale-110">
                       <IconComponent className="h-7 w-7 text-primary-200" />
@@ -156,7 +158,7 @@ export default function Resources() {
           </div>
         </section>
 
-        <section className="px-6 py-20 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
+        <section id="music" className="px-6 py-20 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 scroll-mt-24">
           <div className="mx-auto max-w-7xl">
             <div className="mb-12 text-center">
               <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-primary-400/40 bg-primary-500/20 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-primary-200">
