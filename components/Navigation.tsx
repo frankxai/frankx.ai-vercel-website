@@ -18,33 +18,17 @@ type NavItem = {
 }
 
 const navItems: NavItem[] = [
+  { name: 'Blog', href: '/blog', description: 'Real experiments, real code, real production' },
   {
-    name: 'Products',
-    href: '/products',
+    name: 'Library',
+    href: '/resources',
     subItems: [
-      { name: 'Vibe OS', href: '/products/vibe-os', description: 'AI music creation system ($97)' },
-      { name: 'Creative AI Toolkit', href: '/products/creative-ai-toolkit', description: 'Content templates ($47)' },
-      { name: 'Agentic Creator OS', href: '/products/agentic-creator-os', description: 'Custom AI systems' },
+      { name: 'Templates & Tools', href: '/resources/templates', description: 'Free prompts and workflows' },
+      { name: 'Research', href: '/library/research', description: 'Perplexity pages & deep-dives' },
+      { name: 'Music Catalog', href: '/resources', description: '500+ Suno songs & techniques' },
     ],
   },
-  {
-    name: 'Learn',
-    href: '/blog',
-    subItems: [
-      { name: 'Blog & Articles', href: '/blog', description: 'AI, music, and creator insights' },
-      { name: 'Music Lab', href: '/music-lab', description: 'Suno sessions and tutorials' },
-      { name: 'Templates', href: '/resources/templates', description: 'Free prompts and workflows' },
-    ],
-  },
-  { name: 'Community', href: '/community', description: 'Join creators worldwide' },
-  {
-    name: 'About',
-    href: '/about',
-    subItems: [
-      { name: 'Our Story', href: '/about', description: 'Mission and values' },
-      { name: 'Team', href: '/team', description: 'Meet the FrankX collective' },
-    ],
-  },
+  { name: 'About', href: '/about', description: 'Oracle AI Architect. Creative explorer.' },
 ]
 
 export default function Navigation() {

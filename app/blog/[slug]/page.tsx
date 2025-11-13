@@ -90,21 +90,21 @@ export default async function BlogPostPage({
     : new URL(siteConfig.ogImage, 'https://frankx.ai').toString()
   const articleJsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'Article',
+    '@type': 'BlogPosting',
     headline: post.title,
     description: post.description,
     image: [imageUrl],
     author: {
       '@type': 'Person',
       name: post.author,
+      url: 'https://frankx.ai/about',
+      jobTitle: 'Oracle AI Architect',
+      description: 'AI Architect specializing in generative AI, agentic systems, and music production with Suno AI'
     },
     publisher: {
-      '@type': 'Organization',
-      name: siteConfig.name,
-      logo: {
-        '@type': 'ImageObject',
-        url: new URL(siteConfig.ogImage, 'https://frankx.ai').toString(),
-      },
+      '@type': 'Person',
+      name: 'Frank',
+      url: 'https://frankx.ai'
     },
     datePublished: post.date,
     dateModified: post.date,
@@ -115,6 +115,9 @@ export default async function BlogPostPage({
     wordCount,
     keywords: post.keywords?.join(', ') || post.tags.join(', '),
     url: canonicalUrl,
+    articleSection: post.category,
+    timeRequired: post.readingTime,
+    inLanguage: 'en-US'
   }
 
   return (
