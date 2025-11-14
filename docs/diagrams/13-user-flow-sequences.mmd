@@ -1,0 +1,208 @@
+sequenceDiagram
+    %% User Interaction Sequences - Key Flows
+    %% Demonstrates time-based interactions
+
+    participant U as 👤 User
+    participant UI as 🎨 Web UI
+    participant API as ⚙️ API
+    participant AUTH as 🔐 Auth Service
+    participant DB as 🗄️ Database
+    participant AI as 🤖 AI Service
+    participant EMAIL as 📧 Email Service
+    participant STRIPE as 💳 Stripe
+
+    %% ========================================
+    %% FLOW 1: User Signup & Guardian Selection
+    %% ========================================
+
+    Note over U,STRIPE: Flow 1: User Signup & Guardian Selection
+
+    U->>UI: Visit signup page
+    UI->>U: Show signup form
+    U->>UI: Submit email & password
+    UI->>API: POST /auth/signup
+    API->>AUTH: Create user account
+    AUTH->>DB: Insert user record
+    DB-->>AUTH: User created (id: 123)
+    AUTH-->>API: Auth token + user_id
+    API->>EMAIL: Send welcome email
+    EMAIL-->>U: Welcome to FrankX! 📧
+    API-->>UI: Success + redirect
+
+    UI->>U: Show Guardian selection
+    U->>UI: Choose "Lumina" guardian
+    UI->>API: POST /guardians/select
+    API->>AI: Initialize Lumina personality
+    AI->>DB: Create guardian record
+    DB-->>AI: Guardian created
+    AI-->>API: Guardian ready
+    API-->>UI: Success
+
+    UI->>U: Show personalized dashboard
+    U->>UI: Create first post
+    UI->>API: POST /posts/create
+    API->>DB: Insert post
+    DB-->>API: Post created (id: 456)
+    API->>AI: Guardian response
+    AI-->>API: "Welcome message from Lumina"
+    API-->>UI: Post + Guardian response
+    UI->>U: Display feed with Guardian interaction
+
+    Note over U: User onboarding complete! ✅
+
+    %% ========================================
+    %% FLOW 2: Vibe OS Session Purchase
+    %% ========================================
+
+    Note over U,STRIPE: Flow 2: Vibe OS Session Purchase
+
+    U->>UI: Browse Vibe OS sessions
+    UI->>API: GET /vibe-os/sessions
+    API->>DB: Query sessions
+    DB-->>API: Session list
+    API-->>UI: Display sessions
+
+    U->>UI: Click "Courage Frequency" session
+    UI->>API: GET /vibe-os/sessions/courage-frequency
+    API->>DB: Get session details
+    DB-->>API: Session data + preview
+    API-->>UI: Show session page
+
+    UI->>U: Display: $47, includes music + guide
+    U->>UI: Click "Purchase"
+    UI->>API: POST /checkout/create
+    API->>STRIPE: Create checkout session
+    STRIPE-->>API: Checkout URL
+    API-->>UI: Redirect to Stripe
+
+    UI->>U: Stripe payment form
+    U->>STRIPE: Enter card & complete payment
+    STRIPE->>API: Webhook: payment.succeeded
+    API->>DB: Update purchase record
+    DB-->>API: Purchase confirmed
+    API->>EMAIL: Send download link
+    EMAIL-->>U: Your Vibe OS session is ready! 🎵
+
+    U->>UI: Access download page
+    UI->>API: GET /vibe-os/download/courage-frequency
+    API->>AUTH: Verify purchase
+    AUTH-->>API: Authorized
+    API-->>UI: Download links + guide PDF
+    UI->>U: Download music + guide
+
+    Note over U: Transformation begins! 🚀
+
+    %% ========================================
+    %% FLOW 3: Course Enrollment & First Module
+    %% ========================================
+
+    Note over U,STRIPE: Flow 3: AI Music Academy Enrollment
+
+    U->>UI: View course sales page
+    UI->>API: GET /courses/ai-music-academy
+    API->>DB: Get course info
+    DB-->>API: Course details + testimonials
+    API-->>UI: Render sales page
+
+    U->>UI: Click "Enroll Now - $297"
+    UI->>API: POST /checkout/course
+    API->>STRIPE: Create checkout
+    STRIPE-->>API: Checkout URL
+    API-->>UI: Redirect to Stripe
+
+    U->>STRIPE: Complete payment
+    STRIPE->>API: Webhook: payment.succeeded
+    API->>DB: Create enrollment record
+    DB-->>API: Enrollment created
+    API->>DB: Grant course access
+    API->>EMAIL: Send onboarding sequence
+    EMAIL-->>U: Welcome to AI Music Academy! 🎓
+
+    U->>UI: Click email link → course dashboard
+    UI->>API: GET /courses/dashboard
+    API->>AUTH: Verify enrollment
+    AUTH-->>API: Enrolled
+    API->>DB: Get progress
+    DB-->>API: Progress: 0%
+    API-->>UI: Show curriculum
+
+    U->>UI: Click "Module 1: Foundations"
+    UI->>API: GET /courses/modules/1
+    API->>DB: Get module content
+    DB-->>API: Videos + workbook
+    API-->>UI: Render module
+
+    U->>UI: Watch video lesson
+    U->>UI: Download workbook
+    U->>UI: Mark lesson complete
+    UI->>API: POST /progress/lesson-complete
+    API->>DB: Update progress
+    DB-->>API: Progress: 5%
+    API-->>UI: Next lesson unlocked
+
+    Note over U: Learning journey started! 📚
+
+    %% ========================================
+    %% FLOW 4: Newsletter to Product Journey
+    %% ========================================
+
+    Note over U,EMAIL: Flow 4: Newsletter → Product Conversion
+
+    U->>UI: Visit blog post
+    UI->>U: Show popup: "Get Weekly AI Insights"
+    U->>UI: Enter email
+    UI->>API: POST /newsletter/subscribe
+    API->>DB: Insert subscriber
+    DB-->>API: Subscriber added
+    API->>EMAIL: Send confirmation
+    EMAIL-->>U: Confirm your subscription 📬
+
+    U->>EMAIL: Click confirm link
+    EMAIL->>API: GET /newsletter/confirm/{token}
+    API->>DB: Update subscriber status
+    DB-->>API: Confirmed
+    API->>EMAIL: Send welcome + free toolkit
+    EMAIL-->>U: Your Creator Toolkit is ready! 🎁
+
+    Note over U: Week 1: Nurture emails...
+
+    EMAIL->>U: Day 3: "How I Created 10 Songs in a Day"
+    U->>UI: Click article link
+    UI->>U: Show case study + CTA
+
+    EMAIL->>U: Day 5: "The Vibe OS Method"
+    U->>UI: Click to learn more
+    UI->>U: Show Vibe OS landing page
+
+    EMAIL->>U: Day 7: "Special Offer: First Session $27"
+    U->>UI: Click "Get My Session"
+
+    Note over U: (Purchase flow continues as Flow 2...)
+
+    Note over U: Conversion complete! 💰
+
+    %% Styling
+    autonumber
+
+    box rgb(75, 144, 226) Frontend Layer
+    participant U
+    participant UI
+    end
+
+    box rgb(226, 74, 144) Backend Layer
+    participant API
+    participant AUTH
+    end
+
+    box rgb(144, 226, 74) Data Layer
+    participant DB
+    end
+
+    box rgb(155, 74, 226) AI Layer
+    participant AI
+    end
+
+    box rgb(74, 226, 226) External Services
+    participant EMAIL
+    participant STRIPE
+    end

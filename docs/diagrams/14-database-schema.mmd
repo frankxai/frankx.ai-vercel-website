@@ -1,0 +1,481 @@
+erDiagram
+    %% FrankX & Arcanea Database Schema
+    %% Complete entity-relationship diagram
+
+    %% ========================================
+    %% USER & AUTH
+    %% ========================================
+
+    USERS ||--o{ USER_PROFILES : has
+    USERS ||--o{ USER_SUBSCRIPTIONS : has
+    USERS ||--o{ USER_SESSIONS : creates
+    USERS ||--o{ PURCHASES : makes
+    USERS ||--o{ POSTS : creates
+    USERS ||--o{ COMMENTS : writes
+    USERS ||--o{ GUARDIANS : owns
+    USERS ||--o{ REALMS : creates
+    USERS }o--o{ CIRCLES : belongs_to
+
+    USERS {
+        uuid id PK
+        string email UK
+        string password_hash
+        timestamp email_verified_at
+        timestamp created_at
+        timestamp updated_at
+        boolean is_active
+        string role
+    }
+
+    USER_PROFILES {
+        uuid id PK
+        uuid user_id FK
+        string display_name
+        string bio
+        string avatar_url
+        string website
+        json social_links
+        json preferences
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    USER_SESSIONS {
+        uuid id PK
+        uuid user_id FK
+        string token
+        timestamp expires_at
+        string ip_address
+        string user_agent
+        timestamp created_at
+    }
+
+    %% ========================================
+    %% CONTENT & POSTS
+    %% ========================================
+
+    POSTS ||--o{ COMMENTS : has
+    POSTS ||--o{ POST_LIKES : receives
+    POSTS ||--o{ POST_MEDIA : contains
+    POSTS }o--|| REALMS : belongs_to
+    POSTS }o--|| CIRCLES : shared_in
+
+    POSTS {
+        uuid id PK
+        uuid user_id FK
+        uuid realm_id FK
+        uuid circle_id FK
+        string title
+        text content
+        string post_type
+        string visibility
+        json metadata
+        integer view_count
+        timestamp published_at
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    COMMENTS {
+        uuid id PK
+        uuid post_id FK
+        uuid user_id FK
+        uuid parent_id FK
+        text content
+        boolean is_edited
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    POST_LIKES {
+        uuid id PK
+        uuid post_id FK
+        uuid user_id FK
+        string reaction_type
+        timestamp created_at
+    }
+
+    POST_MEDIA {
+        uuid id PK
+        uuid post_id FK
+        string media_type
+        string url
+        string thumbnail_url
+        integer file_size
+        json metadata
+        timestamp created_at
+    }
+
+    %% ========================================
+    %% ARCANEA - GUARDIANS & AI
+    %% ========================================
+
+    GUARDIANS ||--o{ GUARDIAN_CONVERSATIONS : has
+    GUARDIANS }o--|| GUARDIAN_PERSONALITIES : based_on
+
+    GUARDIANS {
+        uuid id PK
+        uuid user_id FK
+        uuid personality_id FK
+        string name
+        string avatar_url
+        json custom_traits
+        json conversation_history
+        integer interaction_count
+        timestamp last_interaction_at
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    GUARDIAN_PERSONALITIES {
+        uuid id PK
+        string name
+        string description
+        text system_prompt
+        json traits
+        json example_responses
+        boolean is_active
+        timestamp created_at
+    }
+
+    GUARDIAN_CONVERSATIONS {
+        uuid id PK
+        uuid guardian_id FK
+        uuid user_id FK
+        text user_message
+        text guardian_response
+        string model_used
+        json context
+        timestamp created_at
+    }
+
+    %% ========================================
+    %% REALMS & CIRCLES
+    %% ========================================
+
+    REALMS ||--o{ REALM_MEMBERS : has
+    REALMS ||--o{ POSTS : contains
+
+    REALMS {
+        uuid id PK
+        uuid owner_id FK
+        string name
+        text description
+        string cover_image_url
+        string visibility
+        json settings
+        integer member_count
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    REALM_MEMBERS {
+        uuid id PK
+        uuid realm_id FK
+        uuid user_id FK
+        string role
+        timestamp joined_at
+    }
+
+    CIRCLES ||--o{ CIRCLE_MEMBERS : has
+    CIRCLES ||--o{ POSTS : contains
+
+    CIRCLES {
+        uuid id PK
+        uuid creator_id FK
+        string name
+        text description
+        string privacy_level
+        json permissions
+        integer member_count
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    CIRCLE_MEMBERS {
+        uuid id PK
+        uuid circle_id FK
+        uuid user_id FK
+        string role
+        boolean is_admin
+        timestamp joined_at
+    }
+
+    %% ========================================
+    %% PRODUCTS & PURCHASES
+    %% ========================================
+
+    PRODUCTS ||--o{ PURCHASES : sold_as
+    PRODUCTS ||--o{ PRODUCT_VARIANTS : has
+
+    PRODUCTS {
+        uuid id PK
+        string name
+        text description
+        string product_type
+        decimal base_price
+        json features
+        boolean is_active
+        integer stock_quantity
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    PRODUCT_VARIANTS {
+        uuid id PK
+        uuid product_id FK
+        string variant_name
+        decimal price
+        json attributes
+        integer stock_quantity
+        timestamp created_at
+    }
+
+    PURCHASES {
+        uuid id PK
+        uuid user_id FK
+        uuid product_id FK
+        string stripe_payment_id
+        decimal amount_paid
+        string currency
+        string status
+        json metadata
+        timestamp purchased_at
+        timestamp fulfilled_at
+    }
+
+    %% ========================================
+    %% SUBSCRIPTIONS
+    %% ========================================
+
+    SUBSCRIPTION_PLANS ||--o{ USER_SUBSCRIPTIONS : offered_as
+
+    SUBSCRIPTION_PLANS {
+        uuid id PK
+        string name
+        text description
+        decimal monthly_price
+        decimal annual_price
+        json features
+        integer trial_days
+        boolean is_active
+        timestamp created_at
+    }
+
+    USER_SUBSCRIPTIONS {
+        uuid id PK
+        uuid user_id FK
+        uuid plan_id FK
+        string stripe_subscription_id
+        string status
+        timestamp current_period_start
+        timestamp current_period_end
+        boolean cancel_at_period_end
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    %% ========================================
+    %% COURSES & LEARNING
+    %% ========================================
+
+    COURSES ||--o{ COURSE_MODULES : contains
+    COURSES ||--o{ COURSE_ENROLLMENTS : enrolled_in
+    COURSE_MODULES ||--o{ LESSONS : contains
+    LESSONS ||--o{ LESSON_PROGRESS : tracked_by
+
+    COURSES {
+        uuid id PK
+        string title
+        text description
+        string thumbnail_url
+        decimal price
+        integer duration_weeks
+        boolean is_published
+        integer student_count
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    COURSE_MODULES {
+        uuid id PK
+        uuid course_id FK
+        string title
+        text description
+        integer order_index
+        timestamp created_at
+    }
+
+    LESSONS {
+        uuid id PK
+        uuid module_id FK
+        string title
+        text content
+        string video_url
+        json resources
+        integer duration_minutes
+        integer order_index
+        timestamp created_at
+    }
+
+    COURSE_ENROLLMENTS {
+        uuid id PK
+        uuid user_id FK
+        uuid course_id FK
+        decimal progress_percentage
+        timestamp started_at
+        timestamp completed_at
+        timestamp last_accessed_at
+    }
+
+    LESSON_PROGRESS {
+        uuid id PK
+        uuid enrollment_id FK
+        uuid lesson_id FK
+        uuid user_id FK
+        boolean is_completed
+        integer watch_time_seconds
+        timestamp completed_at
+        timestamp last_viewed_at
+    }
+
+    %% ========================================
+    %% CONTENT LIBRARY
+    %% ========================================
+
+    BLOG_POSTS ||--o{ BLOG_CATEGORIES : tagged_with
+    BLOG_POSTS ||--o{ BLOG_COMMENTS : has
+
+    BLOG_POSTS {
+        uuid id PK
+        uuid author_id FK
+        string title
+        string slug UK
+        text content
+        text excerpt
+        string featured_image_url
+        string status
+        json seo_metadata
+        integer view_count
+        timestamp published_at
+        timestamp created_at
+        timestamp updated_at
+    }
+
+    BLOG_CATEGORIES {
+        uuid id PK
+        string name
+        string slug UK
+        text description
+        integer post_count
+    }
+
+    BLOG_COMMENTS {
+        uuid id PK
+        uuid post_id FK
+        uuid user_id FK
+        text content
+        string status
+        timestamp created_at
+    }
+
+    %% ========================================
+    %% VIBE OS & MUSIC
+    %% ========================================
+
+    VIBE_OS_SESSIONS ||--o{ VIBE_OS_TRACKS : contains
+    VIBE_OS_SESSIONS ||--o{ PURCHASES : sold_as
+
+    VIBE_OS_SESSIONS {
+        uuid id PK
+        string title
+        text description
+        string theme
+        string cover_art_url
+        decimal price
+        integer track_count
+        json metadata
+        integer download_count
+        timestamp created_at
+        timestamp published_at
+    }
+
+    VIBE_OS_TRACKS {
+        uuid id PK
+        uuid session_id FK
+        string title
+        string audio_url
+        integer duration_seconds
+        string mood
+        json suno_metadata
+        integer order_index
+        timestamp created_at
+    }
+
+    %% ========================================
+    %% NEWSLETTER & EMAIL
+    %% ========================================
+
+    NEWSLETTER_SUBSCRIBERS ||--o{ EMAIL_SENDS : receives
+
+    NEWSLETTER_SUBSCRIBERS {
+        uuid id PK
+        string email UK
+        string status
+        json preferences
+        json tags
+        timestamp subscribed_at
+        timestamp confirmed_at
+        timestamp unsubscribed_at
+    }
+
+    EMAIL_CAMPAIGNS {
+        uuid id PK
+        string name
+        string subject
+        text content
+        string status
+        integer sent_count
+        integer open_count
+        integer click_count
+        timestamp scheduled_at
+        timestamp sent_at
+    }
+
+    EMAIL_SENDS {
+        uuid id PK
+        uuid campaign_id FK
+        uuid subscriber_id FK
+        boolean opened
+        boolean clicked
+        timestamp sent_at
+        timestamp opened_at
+        timestamp clicked_at
+    }
+
+    %% ========================================
+    %% ANALYTICS & METRICS
+    %% ========================================
+
+    ANALYTICS_EVENTS {
+        uuid id PK
+        uuid user_id FK
+        string event_type
+        string event_name
+        json properties
+        string page_url
+        string referrer
+        string device_type
+        timestamp created_at
+    }
+
+    METRICS_DAILY {
+        uuid id PK
+        date metric_date
+        integer new_users
+        integer active_users
+        decimal revenue
+        integer posts_created
+        integer page_views
+        timestamp calculated_at
+    }

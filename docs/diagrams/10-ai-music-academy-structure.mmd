@@ -1,0 +1,170 @@
+graph TB
+    %% AI Music Academy Structure
+    %% Course platform and learning journey
+
+    subgraph LANDING["🎯 Landing & Enrollment"]
+        direction TB
+        LP[Landing Page<br/>Transformation Promise]:::landing
+        VSL[Video Sales Letter<br/>Frank's Story]:::landing
+        PROOF[Social Proof<br/>Student Wins]:::landing
+        CTA[Enrollment CTA<br/>Join Now]:::landing
+
+        LP --> VSL
+        VSL --> PROOF
+        PROOF --> CTA
+    end
+
+    subgraph ONBOARDING["👋 Onboarding Experience"]
+        direction TB
+        WELCOME[Welcome Video<br/>Set Expectations]:::onboard
+        SETUP[Tech Setup<br/>Suno Account + Tools]:::onboard
+        COMMUNITY[Community Access<br/>Discord Introduction]:::onboard
+        QUICK_WIN[Quick Win Module<br/>First Track in 24hrs]:::onboard
+
+        WELCOME --> SETUP
+        SETUP --> COMMUNITY
+        COMMUNITY --> QUICK_WIN
+    end
+
+    subgraph CURRICULUM["📚 Core Curriculum"]
+        direction TB
+
+        subgraph MODULE1["Module 1: AI Music Foundations"]
+            M1_1[Lesson 1: Suno AI Overview<br/>Platform Mastery]:::lesson
+            M1_2[Lesson 2: Prompt Engineering Basics<br/>Writing Effective Prompts]:::lesson
+            M1_3[Lesson 3: Genre & Style<br/>Understanding Metatags]:::lesson
+            M1_4[Lesson 4: First Track<br/>Guided Creation]:::lesson
+            M1_5[Project: Create Your Signature Sound]:::project
+
+            M1_1 --> M1_2
+            M1_2 --> M1_3
+            M1_3 --> M1_4
+            M1_4 --> M1_5
+        end
+
+        subgraph MODULE2["Module 2: Advanced Prompting"]
+            M2_1[Lesson 1: Lyric Writing<br/>Storytelling in Songs]:::lesson
+            M2_2[Lesson 2: Song Structure<br/>Verses, Chorus, Bridge]:::lesson
+            M2_3[Lesson 3: Emotional Resonance<br/>Mood & Atmosphere]:::lesson
+            M2_4[Lesson 4: Iteration & Refinement<br/>A/B Testing]:::lesson
+            M2_5[Project: Create a Full EP]:::project
+
+            M2_1 --> M2_2
+            M2_2 --> M2_3
+            M2_3 --> M2_4
+            M2_4 --> M2_5
+        end
+
+        subgraph MODULE3["Module 3: Production & Polish"]
+            M3_1[Lesson 1: Arrangement<br/>Track Ordering]:::lesson
+            M3_2[Lesson 2: Mixing Guidance<br/>Balance & EQ]:::lesson
+            M3_3[Lesson 3: Mastering Notes<br/>Final Polish]:::lesson
+            M3_4[Lesson 4: AI-Enhanced Workflow<br/>Hybrid Approach]:::lesson
+            M3_5[Project: Release-Ready Album]:::project
+
+            M3_1 --> M3_2
+            M3_2 --> M3_3
+            M3_3 --> M3_4
+            M3_4 --> M3_5
+        end
+
+        subgraph MODULE4["Module 4: Distribution & Marketing"]
+            M4_1[Lesson 1: Platform Strategy<br/>Spotify, YouTube, etc.]:::lesson
+            M4_2[Lesson 2: Release Planning<br/>Launch Strategy]:::lesson
+            M4_3[Lesson 3: Visual Assets<br/>Cover Art with AI]:::lesson
+            M4_4[Lesson 4: Social Promotion<br/>Building Audience]:::lesson
+            M4_5[Project: Full Release Campaign]:::project
+
+            M4_1 --> M4_2
+            M4_2 --> M4_3
+            M4_3 --> M4_4
+            M4_4 --> M4_5
+        end
+
+        subgraph MODULE5["Module 5: Monetization"]
+            M5_1[Lesson 1: Revenue Streams<br/>Streaming, Licensing, Sales]:::lesson
+            M5_2[Lesson 2: Music Licensing<br/>Sync Opportunities]:::lesson
+            M5_3[Lesson 3: Digital Products<br/>Sample Packs, Templates]:::lesson
+            M5_4[Lesson 4: Building Your Brand<br/>Artist Identity]:::lesson
+            M5_5[Project: Launch Your Music Business]:::project
+
+            M5_1 --> M5_2
+            M5_2 --> M5_3
+            M5_3 --> M5_4
+            M5_4 --> M5_5
+        end
+
+        MODULE1 --> MODULE2
+        MODULE2 --> MODULE3
+        MODULE3 --> MODULE4
+        MODULE4 --> MODULE5
+    end
+
+    subgraph COMMUNITY_FEATURES["💬 Community Features"]
+        direction TB
+        DISCORD[Discord Server<br/>24/7 Peer Support]:::community
+        LIVE[Weekly Live Q&A<br/>Frank + Guest Experts]:::community
+        COWORK[Co-Working Sessions<br/>Accountability]:::community
+        SHOWCASE[Student Showcase<br/>Share Your Work]:::community
+        FEEDBACK[Feedback Loops<br/>Constructive Critique]:::community
+
+        DISCORD --> LIVE
+        LIVE --> COWORK
+        COWORK --> SHOWCASE
+        SHOWCASE --> FEEDBACK
+    end
+
+    subgraph BONUSES["🎁 Bonus Content"]
+        direction TB
+        B1[Suno Prompt Templates<br/>100+ Ready-to-Use]:::bonus
+        B2[Lyric Writing Guide<br/>Comprehensive PDF]:::bonus
+        B3[Genre-Specific Workshops<br/>Deep Dives]:::bonus
+        B4[AI Tools Stack<br/>Complete Resource List]:::bonus
+        B5[Marketing Templates<br/>Social Media Kit]:::bonus
+
+        B1 --> B2
+        B2 --> B3
+        B3 --> B4
+        B4 --> B5
+    end
+
+    subgraph CERTIFICATION["🏆 Certification Path"]
+        direction TB
+        CAPSTONE[Capstone Project<br/>Full Album + Campaign]:::cert
+        REVIEW[Instructor Review<br/>Personalized Feedback]:::cert
+        CERTIFICATE[Completion Certificate<br/>LinkedIn Shareable]:::cert
+        PORTFOLIO[Portfolio Showcase<br/>Arcanea Integration]:::cert
+
+        CAPSTONE --> REVIEW
+        REVIEW --> CERTIFICATE
+        CERTIFICATE --> PORTFOLIO
+    end
+
+    subgraph POST_GRAD["🚀 Post-Graduation"]
+        direction TB
+        ALUMNI[Alumni Network<br/>Lifetime Access]:::post
+        ADVANCED[Advanced Workshops<br/>Ongoing Learning]:::post
+        COLLABS[Collaboration Opportunities<br/>Co-Creation]:::post
+        REALM[The Realm Discount<br/>Community Upgrade]:::post
+
+        ALUMNI --> ADVANCED
+        ADVANCED --> COLLABS
+        COLLABS --> REALM
+    end
+
+    %% Flow connections
+    LANDING --> ONBOARDING
+    ONBOARDING --> CURRICULUM
+    CURRICULUM -.->|supported by| COMMUNITY_FEATURES
+    CURRICULUM -.->|enhanced by| BONUSES
+    CURRICULUM --> CERTIFICATION
+    CERTIFICATION --> POST_GRAD
+
+    classDef landing fill:#FFE066,stroke:#CCB34D,stroke-width:2px,color:#333
+    classDef onboard fill:#66E0FF,stroke:#4DB3CC,stroke-width:2px,color:#333
+    classDef lesson fill:#B366FF,stroke:#8C4DCC,stroke-width:2px,color:#fff
+    classDef project fill:#FF8C66,stroke:#CC704D,stroke-width:2px,color:#fff
+    classDef community fill:#66FF8C,stroke:#4DCC70,stroke-width:2px,color:#333
+    classDef bonus fill:#FFB84D,stroke:#CC8A3D,stroke-width:2px,color:#333
+    classDef cert fill:#4A90E2,stroke:#2E5C8A,stroke-width:2px,color:#fff
+    classDef post fill:#E24A90,stroke:#8A2E5C,stroke-width:2px,color:#fff
