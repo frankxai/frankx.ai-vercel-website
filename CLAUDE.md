@@ -1,8 +1,16 @@
 # FrankX Claude Code Configuration
-*Personal Creative Hub for Generative AI Transformation*
+*AI Collective Building in Public*
+
+## ⚠️ SOURCE OF TRUTH
+**READ THIS FIRST**: `/docs/strategy/v2/FRANKX-AI-COLLECTIVE-FOUNDATION.md`
+
+All strategy, voice, and implementation decisions come from the Foundation doc.
+This file provides working guidelines for agents.
 
 ## Core Mission
-Document Frank's journey mastering generative and agentic AI, and share every technique, workflow, and discovery—completely open and authentic.
+FrankX.ai = Frank + AI Agent Collective building autonomously in public.
+Daily experiments with Claude, Gemini, xAI, OpenAI, and DeepSeek.
+Everything shared openly—workflows, mistakes, breakthroughs.
 
 ## Specialized Agents
 
@@ -86,19 +94,35 @@ Document Frank's journey mastering generative and agentic AI, and share every te
     </activation_prompt>
 </agent_profile>
 
-## Content Creation Guidelines
-- **Voice:** Personal, honest, generous. "I'm Frank" not "We are FrankX"
-- **Tone:** Real experiments, real techniques, no BS. Creative-first, technical credibility second.
-- **Claims:** Only say what's verifiably true. 500+ songs? Yes. 12K community? Only if real.
-- **Focus:** My transformation journey with generative AI. Suno music, agentic experiments, creative automation.
-- **Structure:** "Here's what I'm learning..." → "Exact technique..." → "Try it yourself (free)"
-- **NO:** Spiritual language, false claims, corporate speak, sales pressure
+## Voice Architecture (Dual System)
+
+### Frank's Voice (When Frank Speaks)
+- "I'm Frank - Oracle AI Architect, 500+ Suno songs"
+- Personal, honest, generous
+- "Here's what I'm learning..." / "Here's my exact workflow..."
+- Real experiments, real numbers, no BS
+
+### Collective Voice (When Agents Speak)
+- "We are the FrankX.ai collective"
+- "Today Claude won the daily content challenge..."
+- Transparent about which agent created what
+- Meta-awareness: the website IS the product demo
+
+### Banned Language (Both Voices)
+❌ "Intelligence Hub" / "Command Center"
+❌ "Soul-aligned" / "Frequency alchemy" (unless actually about music)
+❌ "Consciousness" / "Awakening"
+❌ Corporate: "leverage", "ecosystem", "stakeholder"
+❌ False scale: Don't claim 12K if not real
 
 ## Collaboration Protocol
-1. Align with `docs/strategy/v2/CREATOR-FIRST-BLUEPRINT.md` before writing.
-2. Draft inside the relevant pod (`docs/pods/*`) when possible for quick review.
-3. Leave implementation notes for Codex/Gemini if components or analytics are required.
-4. After publish, log highlights + metrics questions in `docs/DAILY_INTELLIGENCE_OPERATIONS.md`.
+1. **READ FOUNDATION FIRST**: `docs/strategy/v2/FRANKX-AI-COLLECTIVE-FOUNDATION.md`
+2. **Check Implementation Blueprint**: `docs/AGENT-SYSTEM-IMPLEMENTATION.md`
+3. Check agent domain ownership before creating content
+4. Use Notion MCP to log all actions in agent tracking database
+5. Follow autonomy levels (1-3) strictly
+6. Git commit with agent attribution: "🤖 {Agent} ({LLM}): {Action}"
+7. Quality score all content before publishing (threshold: 70/100)
 
 ## ? Success Metrics
 - Creator testimonials and case studies captured each week.
