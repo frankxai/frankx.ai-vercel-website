@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
-import { getAllPosts } from '@/lib/blog'
+import { getAllBlogPosts } from '@/lib/blog'
 
 export const metadata: Metadata = {
   title: 'Blog | Frank',
@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 }
 
 export default async function BlogPage() {
-  const posts = await getAllPosts()
+  const posts = await getAllBlogPosts()
 
   return (
     <main className="min-h-screen bg-slate-950 text-white">

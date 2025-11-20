@@ -1,7 +1,7 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { getPostBySlug, getAllPosts } from '@/lib/blog'
+import { getBlogPost, getAllBlogPosts } from '@/lib/blog'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import { SunoEmbed } from '@/components/music/SunoEmbed'
 
@@ -19,14 +19,14 @@ const components = {
 }
 
 export async function generateStaticParams() {
-  const posts = await getAllPosts()
+  const posts = await getAllBlogPosts()
   return posts.map((post) => ({
     slug: post.slug,
   }))
 }
 
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const post = await getPostBySlug(params.slug)
+  const post = await getBlogPost(params.slug)
 
   if (!post) {
     return {
@@ -47,7 +47,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 }
 
 export default async function BlogPostPage({ params }: { params: { slug: string } }) {
-  const post = await getPostBySlug(params.slug)
+  const post = await getBlogPost(params.slug)
 
   if (!post) {
     notFound()
