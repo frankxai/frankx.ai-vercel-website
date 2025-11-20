@@ -53,6 +53,36 @@ export default async function HomePage() {
           </div>
         </section>
 
+        {/* Tools Section */}
+        <section className="mb-16">
+          <h2 className="text-2xl font-bold mb-4 text-slate-100">Free Tools</h2>
+          <p className="text-slate-400 mb-6">
+            Utilities I've built from my own workflow. Free to use:
+          </p>
+          <div className="rounded-lg border border-slate-700 bg-slate-900/50 p-6 hover:border-cyan-500 transition-colors group">
+            <Link href="/tools/suno-prompt-generator">
+              <div className="flex items-start justify-between mb-3">
+                <span className="text-xs font-medium text-cyan-400">🎵 Music Tool</span>
+                <span className="text-slate-500 group-hover:text-cyan-400 transition-colors">→</span>
+              </div>
+              <h3 className="text-lg font-bold text-white group-hover:text-cyan-400 mb-2 transition-colors">
+                Suno Prompt Generator
+              </h3>
+              <p className="text-slate-400 text-sm">
+                Generate detailed prompts for Suno AI. Built from analyzing thousands of tracks.
+              </p>
+            </Link>
+          </div>
+          <div className="mt-4">
+            <Link
+              href="/tools"
+              className="text-cyan-400 hover:text-cyan-300 font-medium"
+            >
+              Browse all tools →
+            </Link>
+          </div>
+        </section>
+
         {/* Latest Posts */}
         <section className="mb-16">
           <h2 className="text-2xl font-bold mb-6 text-slate-100">Latest from the Blog</h2>
@@ -121,6 +151,8 @@ export default async function HomePage() {
             <Link href="/about" className="hover:text-cyan-400">About</Link>
             <Link href="/music" className="hover:text-cyan-400">Music</Link>
             <Link href="/blog" className="hover:text-cyan-400">Blog</Link>
+            <Link href="/tools" className="hover:text-cyan-400">Tools</Link>
+            <Link href="/resources" className="hover:text-cyan-400">Resources</Link>
             <a
               href="https://suno.com/@frankx"
               target="_blank"

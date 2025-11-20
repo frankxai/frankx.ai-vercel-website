@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
+import Image from 'next/image'
 import { getAllPosts } from '@/lib/blog'
 
 export const metadata: Metadata = {
@@ -21,6 +22,18 @@ export default async function BlogPage() {
             I'm learning along the way. Real experiments, real insights.
           </p>
         </header>
+
+        {/* Hero Image */}
+        <div className="mb-16 rounded-xl overflow-hidden border border-slate-800">
+          <Image
+            src="/images/blog-hero.png"
+            alt="Writing and Knowledge Sharing Visualization"
+            width={1920}
+            height={1080}
+            className="w-full h-auto"
+            priority
+          />
+        </div>
 
         {/* Posts List */}
         <div className="space-y-10">

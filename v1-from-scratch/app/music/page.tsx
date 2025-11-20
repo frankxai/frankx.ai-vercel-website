@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
 import Link from 'next/link'
+import Image from 'next/image'
 import { SunoEmbed } from '@/components/music/SunoEmbed'
 
 export const metadata: Metadata = {
@@ -50,6 +51,18 @@ export default function MusicPage() {
             </a>
           </div>
         </header>
+
+        {/* Hero Image */}
+        <div className="mb-16 rounded-xl overflow-hidden border border-slate-800">
+          <Image
+            src="/images/music-hero.png"
+            alt="AI Music Creation Visualization"
+            width={1920}
+            height={1080}
+            className="w-full h-auto"
+            priority
+          />
+        </div>
 
         {/* Featured Tracks */}
         <section className="mb-16">

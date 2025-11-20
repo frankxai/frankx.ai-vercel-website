@@ -1,28 +1,61 @@
 # SHIP IT - Deployment Checklist
 **Created**: 2025-11-19
-**Status**: READY TO DEPLOY
+**Updated**: 2025-11-20 ⭐ ADVANCED FEATURES ADDED
+**Status**: READY TO DEPLOY WITH ADVANCED FEATURES
 **Goal**: Launch THIS WEEK
+
+---
+
+## 🆕 NEW ADVANCED FEATURES (2025-11-20)
+
+### Tools & Microsites (DONE) ⭐
+- [x] Tools hub page (`/app/tools/page.tsx`)
+- [x] **Suno Prompt Generator** (`/tools/suno-prompt-generator`) - Interactive builder
+- [x] **AI Prompt Library** (`/tools/ai-prompt-library`) - 8 production prompts
+- [x] Interactive components with search, filters, copy buttons
+
+### Resources Page (DONE) ⭐
+- [x] Resources hub (`/app/resources/page.tsx`)
+- [x] 4 downloadable resources (guides, templates, checklists)
+- [x] Newsletter integration
+- [x] Request system for new resources
+
+### High-Fidelity Visuals (DONE) ⭐
+- [x] Music hero image (AI-generated via Nano Banana)
+- [x] Tools hero image (AI-generated via Nano Banana)
+- [x] Blog hero image (AI-generated via Nano Banana)
+- [x] All images integrated with Next.js Image optimization
+
+### Enhanced Pages (DONE) ⭐
+- [x] Updated homepage with Tools section
+- [x] Hero images on Music, Tools, and Blog pages
+- [x] Resources link in navigation
+- [x] Improved visual polish throughout
 
 ---
 
 ## ✅ WHAT'S BUILT
 
 ### Core Pages (DONE)
-- [x] Homepage (`/app/page.tsx`) - Simple, personal, Frank's voice
+- [x] Homepage (`/app/page.tsx`) - Simple, personal, Frank's voice + Tools section
 - [x] About page (`/app/about/page.tsx`) - Real story
-- [x] Music page (`/app/music/page.tsx`) - Suno embeds
-- [x] Blog listing (`/app/blog/page.tsx`) - All posts
+- [x] Music page (`/app/music/page.tsx`) - Suno embeds + hero image
+- [x] Blog listing (`/app/blog/page.tsx`) - All posts + hero image
 - [x] Blog post template (`/app/blog/[slug]/page.tsx`) - Individual posts
 - [x] Layout (`/app/layout.tsx`) - Geist fonts, metadata
 - [x] Global styles (`/app/globals.css`) - Clean dark theme
 
 ### Components (DONE)
 - [x] SunoEmbed component (`/components/music/SunoEmbed.tsx`)
+- [x] SunoPromptGenerator component - Interactive prompt builder
+- [x] AIPromptLibrary component - Searchable prompt collection
 - [x] MDX components for blog posts
 
 ### Content (READY)
 - [x] 18 blog posts in `/content/blog/` (9 are high-quality)
 - [x] Suno track IDs ready to embed
+- [x] 8 AI prompts for developers
+- [x] 4 downloadable resources (ready for PDF creation)
 
 ---
 
