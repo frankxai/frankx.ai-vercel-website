@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 222 47% 4%;
+    --foreground: 210 40% 98%;
+  }
+
+  * {
+    @apply border-slate-700;
+  }
+
+  body {
+    @apply bg-slate-950 text-slate-100;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+/* Suno Embed Styling */
+.suno-embed-container {
+  @apply mb-6;
+}
+
+.suno-embed-container iframe {
+  @apply rounded-lg shadow-lg;
+  @apply border border-slate-700;
+  transition: border-color 0.2s ease;
+}
+
+.suno-embed-container:hover iframe {
+  @apply border-slate-600;
+}
+
+/* Prose styling for MDX content */
+.prose {
+  @apply text-slate-300;
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4 {
+  @apply text-white font-bold;
+}
+
+.prose a {
+  @apply text-cyan-400 hover:text-cyan-300 no-underline;
+  transition: color 0.2s ease;
+}
+
+.prose code {
+  @apply text-cyan-400 bg-slate-900 px-1 py-0.5 rounded text-sm;
+}
+
+.prose pre {
+  @apply bg-slate-900 border border-slate-800 rounded-lg p-4 overflow-x-auto;
+}
+
+.prose pre code {
+  @apply bg-transparent p-0;
+}
+
+.prose strong {
+  @apply text-white font-semibold;
+}
+
+.prose ul,
+.prose ol {
+  @apply text-slate-300;
+}
+
+.prose blockquote {
+  @apply border-l-4 border-cyan-500 pl-4 italic text-slate-400;
+}
