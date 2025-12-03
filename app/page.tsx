@@ -1,6 +1,6 @@
 import Script from 'next/script'
 
-import V4HomePage from '@/components/home/V4HomePage'
+import StudentFocusHome from '@/components/home/StudentFocusHome'
 import { createMetadata } from '@/lib/seo'
 import { getFeaturedPosts } from '@/lib/blog'
 
@@ -43,7 +43,7 @@ export default function Page() {
 
   return (
     <>
-      <V4HomePage featuredPosts={featuredPosts} />
+      <StudentFocusHome featuredPosts={featuredPosts} />
       <Script id="frankx-organization" type="application/ld+json" strategy="afterInteractive">
         {JSON.stringify(structuredData)}
       </Script>

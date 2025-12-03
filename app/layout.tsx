@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils'
 import { robotsConfig, siteConfig } from '@/lib/seo'
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
+import { AuroraBackground } from '@/components/vibe-os/AuroraBackground'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -70,10 +71,11 @@ export default function RootLayout({
       <body
         className={cn(
           inter.className,
-          'dark bg-slate-950 text-slate-100 antialiased min-h-screen scroll-smooth'
+          'dark bg-midnight-950 text-slate-100 antialiased min-h-screen scroll-smooth selection:bg-aurora-500/30 selection:text-aurora-300'
         )}
         suppressHydrationWarning
       >
+        <AuroraBackground />
         {plausibleDomain && (
           <Script
             strategy="afterInteractive"
