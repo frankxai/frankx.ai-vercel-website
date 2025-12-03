@@ -30,6 +30,7 @@ const navItems: NavItem[] = [
     ],
   },
   { name: 'Realm', href: '/realm' },
+  { name: 'Students', href: '/students' },
   { name: 'Blog', href: '/blog' },
   {
     name: 'Intelligence',

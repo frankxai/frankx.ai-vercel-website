@@ -165,6 +165,12 @@ export const quickActions: QuickAction[] = [
     icon: Bot
   },
   {
+    title: 'Student Hub',
+    description: 'Workshops and resources for students navigating the Age of Intelligence.',
+    href: '/students',
+    icon: Users
+  },
+  {
     title: 'Creation Chronicles',
     description: 'Access the build log, sonic drops, and storytelling systems powering the hub.',
     href: '/creation-chronicles',
