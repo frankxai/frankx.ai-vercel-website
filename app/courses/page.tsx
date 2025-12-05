@@ -71,9 +71,9 @@ const courses: Course[] = [
   {
     id: 'conscious-ai-foundations',
     title: 'Creative AI Foundations',
-    description: 'Master the philosophical and practical foundations of conscious AI implementation, designed by our Agent Team for ethical and effective AI adoption.',
-    instructor: 'FrankX Agent Team',
-    instructorTitle: 'Collective Intelligence',
+    description: 'Learn 5 core principles of conscious AI decision-making to evaluate AI tools ethically and integrate them into your creative practice within 6 hours. For creative professionals with no AI experience seeking to understand AI beyond the hype.',
+    instructor: 'FrankX',
+    instructorTitle: 'AI Education',
     category: 'fundamentals',
     level: 'beginner',
     duration: '6 hours',
@@ -84,7 +84,7 @@ const courses: Course[] = [
     price: 0,
     thumbnail: '/images/courses/foundations.jpg',
     tags: ['Ethics', 'Philosophy', 'Strategy'],
-    skills: ['AI Ethics', 'Strategic Thinking', 'Decision Making'],
+    skills: ['AI Ethics Framework', 'Tool Evaluation', 'Decision Making Process'],
     certificateIncluded: true,
     downloadableResources: true,
     liveSupport: true,
@@ -93,10 +93,10 @@ const courses: Course[] = [
     isBestseller: true,
     completionRate: 87,
     learningObjectives: [
-      'Understand the principles of conscious AI',
-      'Develop ethical AI implementation strategies',
-      'Create responsible AI governance frameworks',
-      'Apply conscious decision-making to AI projects'
+      'Identify the 5 core principles of conscious AI decision-making',
+      'Build a personal AI tool evaluation framework',
+      'Create an ethical AI integration plan for your workflow',
+      'Recognize bias, limitations, and responsible use cases in AI tools'
     ],
     prerequisites: [],
     href: '/courses/conscious-ai-foundations'
@@ -104,9 +104,9 @@ const courses: Course[] = [
   {
     id: 'prompt-engineering-mastery',
     title: 'Prompt Engineering Mastery',
-    description: 'Advanced techniques for crafting effective AI prompts across different models and use cases. From basic commands to complex multi-agent orchestration.',
-    instructor: 'Dr. Sarah Chen',
-    instructorTitle: 'AI Researcher & Prompt Architect',
+    description: 'Master 12 prompt patterns and optimization techniques to get 3-5x better outputs from Claude, ChatGPT, and Gemini in 8 hours. For technical creators who want to move from trial-and-error prompting to systematic, reproducible results.',
+    instructor: 'FrankX',
+    instructorTitle: 'Technical Training',
     category: 'technical',
     level: 'intermediate',
     duration: '8 hours',
@@ -118,7 +118,7 @@ const courses: Course[] = [
     originalPrice: 297,
     thumbnail: '/images/courses/prompt-engineering.jpg',
     tags: ['Prompting', 'Optimization', 'Multi-model'],
-    skills: ['Prompt Design', 'Model Understanding', 'Output Optimization'],
+    skills: ['Chain-of-Thought Prompting', 'Multi-Model Optimization', 'Output Control'],
     certificateIncluded: true,
     downloadableResources: true,
     liveSupport: true,
@@ -127,20 +127,20 @@ const courses: Course[] = [
     isBestseller: false,
     completionRate: 92,
     learningObjectives: [
-      'Master advanced prompting techniques',
-      'Optimize prompts for different AI models',
-      'Design complex multi-step prompt chains',
-      'Debug and improve prompt performance'
+      'Apply 12 proven prompt patterns (chain-of-thought, few-shot, role-based, structured output)',
+      'Diagnose and fix 8 common prompt failures with debugging framework',
+      'Build reusable prompt templates for your specific workflows',
+      'Measure prompt performance and iterate for continuous improvement'
     ],
-    prerequisites: ['Basic AI familiarity', 'Completed Foundations course'],
+    prerequisites: ['Basic AI familiarity', 'Access to at least one AI model'],
     href: '/courses/prompt-engineering-mastery'
   },
   {
     id: 'ai-business-strategy',
     title: 'AI Business Strategy & Implementation',
-    description: 'Comprehensive guide to developing and executing AI strategies that drive real business value. Includes ROI frameworks, change management, and scaling principles.',
-    instructor: 'Marcus Rodriguez',
-    instructorTitle: 'Fortune 500 AI Strategy Consultant',
+    description: 'Build a 90-day AI implementation roadmap with specific ROI targets, stakeholder alignment, and risk mitigation in 12 hours. For business leaders and managers who need to execute AI initiatives with measurable outcomes and organizational buy-in.',
+    instructor: 'FrankX',
+    instructorTitle: 'Business Strategy',
     category: 'business',
     level: 'intermediate',
     duration: '12 hours',
@@ -152,7 +152,7 @@ const courses: Course[] = [
     originalPrice: 697,
     thumbnail: '/images/courses/business-strategy.jpg',
     tags: ['Strategy', 'ROI', 'Change Management'],
-    skills: ['Strategic Planning', 'ROI Analysis', 'Team Leadership'],
+    skills: ['AI Roadmapping', 'ROI Calculation', 'Change Management'],
     certificateIncluded: true,
     downloadableResources: true,
     liveSupport: true,
@@ -161,20 +161,20 @@ const courses: Course[] = [
     isBestseller: true,
     completionRate: 78,
     learningObjectives: [
-      'Develop comprehensive AI strategies',
-      'Calculate and optimize AI ROI',
-      'Lead successful AI transformations',
-      'Scale AI initiatives across organizations'
+      'Define AI use cases with 18-month ROI projections for your business',
+      'Create a prioritized 90-day implementation roadmap with milestones',
+      'Build stakeholder alignment model and manage 4 common adoption barriers',
+      'Establish AI governance framework and performance metrics'
     ],
-    prerequisites: ['Business experience', 'Leadership role'],
+    prerequisites: ['Leadership or business management experience', 'Basic understanding of business metrics'],
     href: '/courses/ai-business-strategy'
   },
   {
     id: 'agent-architecture-deep-dive',
     title: 'Agent Architecture Deep Dive',
-    description: 'Technical masterclass on designing, building, and orchestrating sophisticated AI agent systems. Based on the FrankX.ai Agent Team architecture.',
-    instructor: 'Engineering Team',
-    instructorTitle: 'FrankX.ai Core Architects',
+    description: 'Design and deploy production-grade multi-agent systems handling 10k+ requests daily with fault tolerance and orchestration in 16 hours. For software engineers with 3+ years experience ready to build advanced AI systems beyond simple chatbots.',
+    instructor: 'FrankX',
+    instructorTitle: 'Advanced Engineering',
     category: 'advanced',
     level: 'advanced',
     duration: '16 hours',
@@ -186,7 +186,7 @@ const courses: Course[] = [
     originalPrice: 1497,
     thumbnail: '/images/courses/agent-architecture.jpg',
     tags: ['Architecture', 'Systems', 'Advanced'],
-    skills: ['System Design', 'Agent Orchestration', 'Performance Optimization'],
+    skills: ['Agent Orchestration', 'State Management', 'Error Handling at Scale'],
     certificateIncluded: true,
     downloadableResources: true,
     liveSupport: true,
@@ -195,20 +195,20 @@ const courses: Course[] = [
     isBestseller: false,
     completionRate: 85,
     learningObjectives: [
-      'Design scalable agent architectures',
-      'Implement multi-agent coordination',
-      'Optimize agent performance and reliability',
-      'Deploy production-ready agent systems'
+      'Build 3-tier agent architecture: planning, execution, reflection layers',
+      'Implement routing, load balancing, and failover for multi-agent systems',
+      'Design state machines for agent conversations with proper context windows',
+      'Deploy agents with monitoring, logging, and performance profiling'
     ],
-    prerequisites: ['Programming experience', 'AI fundamentals', 'System design knowledge'],
+    prerequisites: ['Professional programming experience', 'Familiarity with async patterns', 'Basic knowledge of distributed systems'],
     href: '/courses/agent-architecture-deep-dive'
   },
   {
     id: 'ai-ethics-governance',
     title: 'AI Ethics & Governance',
-    description: 'Navigate the complex landscape of AI ethics, legal considerations, and governance frameworks. Essential for responsible AI deployment.',
-    instructor: 'Prof. Jennifer Park',
-    instructorTitle: 'AI Ethics Researcher & Policy Expert',
+    description: 'Create an AI ethics policy and governance framework for your organization covering bias, transparency, liability, and compliance in 10 hours. For compliance officers, product leaders, and enterprise teams deploying AI responsibly.',
+    instructor: 'FrankX',
+    instructorTitle: 'Governance & Compliance',
     category: 'ethics',
     level: 'intermediate',
     duration: '10 hours',
@@ -220,7 +220,7 @@ const courses: Course[] = [
     originalPrice: 397,
     thumbnail: '/images/courses/ethics-governance.jpg',
     tags: ['Ethics', 'Governance', 'Compliance'],
-    skills: ['Ethical Reasoning', 'Policy Development', 'Risk Assessment'],
+    skills: ['Ethics Framework Design', 'Risk Assessment', 'Policy Documentation'],
     certificateIncluded: true,
     downloadableResources: true,
     liveSupport: true,
@@ -229,20 +229,20 @@ const courses: Course[] = [
     isBestseller: false,
     completionRate: 91,
     learningObjectives: [
-      'Understand AI ethics frameworks',
-      'Develop governance policies',
-      'Assess and mitigate AI risks',
-      'Ensure compliant AI deployments'
+      'Audit AI systems for 6 categories of bias and build mitigation strategy',
+      'Create documentation templates for transparency, explainability, and liability',
+      'Develop internal governance process for AI model approval and monitoring',
+      'Map compliance requirements across GDPR, AI Act, and industry-specific regulations'
     ],
-    prerequisites: ['Basic AI knowledge'],
+    prerequisites: ['Basic understanding of AI capabilities', 'Organizational context (enterprise, startup, or NGO)'],
     href: '/courses/ai-ethics-governance'
   },
   {
     id: 'family-ai-education',
     title: 'Family AI Education & Safety',
-    description: 'Comprehensive guide for parents and educators on introducing AI concepts safely and effectively to children and families.',
-    instructor: 'Maya Thompson',
-    instructorTitle: 'EdTech Specialist & Parent Educator',
+    description: 'Teach children ages 7-17 about AI with 8 hands-on activities and establish family AI safety guidelines in 4 hours. For parents and educators seeking age-appropriate AI literacy without the tech jargon.',
+    instructor: 'FrankX',
+    instructorTitle: 'Family Education',
     category: 'fundamentals',
     level: 'beginner',
     duration: '4 hours',
@@ -254,7 +254,7 @@ const courses: Course[] = [
     originalPrice: 147,
     thumbnail: '/images/courses/family-education.jpg',
     tags: ['Family', 'Education', 'Safety'],
-    skills: ['Child Education', 'Safety Protocols', 'Age-appropriate Content'],
+    skills: ['Age-Appropriate Teaching', 'Digital Safety', 'Critical Thinking'],
     certificateIncluded: true,
     downloadableResources: true,
     liveSupport: true,
@@ -263,12 +263,12 @@ const courses: Course[] = [
     isBestseller: false,
     completionRate: 95,
     learningObjectives: [
-      'Introduce AI concepts to children',
-      'Establish family AI safety protocols',
-      'Create age-appropriate AI learning experiences',
-      'Foster healthy AI relationships in families'
+      'Explain what AI does and does not do using relatable examples for ages 7-17',
+      'Run 8 hands-on activities: image recognition, chatbot basics, bias detection',
+      'Create a family AI agreement covering screen time, privacy, and critical evaluation',
+      'Identify red flags: misinformation, scams, and inappropriate content related to AI'
     ],
-    prerequisites: [],
+    prerequisites: ['No technical experience required', 'Interest in raising digitally literate children'],
     href: '/courses/family-ai-education'
   }
 ]
