@@ -21,10 +21,10 @@ export default function ProductsPage() {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="mb-8 inline-flex items-center rounded-full border border-purple-500/20 bg-purple-500/10 px-4 py-2 text-sm font-medium text-purple-300"
+              className="mb-8 inline-flex items-center rounded-full border border-emerald-500/20 bg-emerald-500/10 px-4 py-2 text-sm font-medium text-emerald-300"
             >
               <Shield className="mr-2 h-4 w-4" />
-              Agent Team Validated
+              Creator-Tested & Proven
             </motion.div>
 
             <motion.h1
@@ -33,7 +33,7 @@ export default function ProductsPage() {
               transition={{ delay: 0.1 }}
               className="mb-6 text-5xl font-bold bg-gradient-to-r from-slate-100 via-purple-200 to-slate-300 bg-clip-text text-transparent sm:text-6xl lg:text-7xl"
             >
-              Premium Digital Products
+              Creator Operating Systems
             </motion.h1>
 
             <motion.p
@@ -42,7 +42,7 @@ export default function ProductsPage() {
               transition={{ delay: 0.2 }}
               className="mx-auto mb-16 max-w-4xl text-xl leading-relaxed text-slate-300 sm:text-2xl"
             >
-              Transform your reality with operating systems designed by the FrankX.ai agent collective. Every product is multi-agent validated and wired for measurable outcomes.
+              Ship faster, ship smarter, ship consistently. Each system combines battle-tested workflows, AI-powered automation, and measurable rituals so you spend less time managing tools and more time creating.
             </motion.p>
           </div>
 
@@ -122,9 +122,9 @@ export default function ProductsPage() {
         <div className="mx-auto max-w-6xl rounded-4xl border border-white/10 bg-white/5 px-8 py-12 text-white">
           <div className="grid gap-8 md:grid-cols-2">
             <div>
-              <h2 className="text-3xl font-semibold">Ready for the full Intelligence Arsenal?</h2>
+              <h2 className="text-3xl font-semibold">Need tactical resources between products?</h2>
               <p className="mt-3 text-white/70">
-                Explore the complete stack of affiliate-approved tools, FrankX music drops, and Creation Chronicles resources fueling every product on this page.
+                Free essays, AI music sessions, template drops, and a weekly dispatch curated for creators shipping real work. No corporate fluff—just tools that matter.
               </p>
             </div>
             <div className="flex items-center justify-end gap-4">
@@ -133,7 +133,7 @@ export default function ProductsPage() {
                 onClick={() => trackEvent('product_resources_cta', { location: 'products-page' })}
                 className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/10 px-6 py-3 text-sm font-semibold text-white/80 transition hover:bg-white/15"
               >
-                Explore Resources
+                Browse Resources
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <PremiumButton
@@ -142,7 +142,7 @@ export default function ProductsPage() {
                 variant="luxury"
                 glow
               >
-                Join Creation Chronicles
+                Join the Dispatch
               </PremiumButton>
             </div>
           </div>
