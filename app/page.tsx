@@ -6,17 +6,17 @@ import CallToAction from '@/components/funnels/CallToAction'
 import EmailCaptureForm from '@/components/funnels/EmailCaptureForm'
 
 export const metadata = createMetadata({
-  title: 'FrankX Intelligence Hub | Creative AI Voice & Resource Platform',
+  title: 'FrankX | Build AI Systems Aligned With Your Goals',
   description:
-    'Explore the FrankX Intelligence Hub for creative AI strategy, Suno-powered experiences, family education, and enterprise-ready systems.',
+    'Free resources, practical frameworks, and open development for creators and students building personal AI workflows. Vibe OS for music, Student Hub for learning.',
   keywords: [
-    'creative ai',
-    'creative ai strategy',
-    'creative workflows',
-    'ai for families',
-    'ai architecture',
-    'soul frequency',
-    'suno workflows',
+    'personal ai system',
+    'ai music creation',
+    'suno workflow',
+    'ai for creators',
+    'ai for students',
+    'build with ai',
+    'values aligned ai',
   ],
   path: '/',
 })
@@ -27,11 +27,11 @@ const structuredData = {
   name: 'FrankX',
   url: 'https://frankx.ai',
   description:
-    'FrankX is the global AI voice guiding creators, families, and executives with creative intelligence systems, music innovation, and community rituals.',
+    'A hub for creators and students building AI systems aligned with their unique goals and values. Free resources, practical frameworks, and transparent development.',
   founder: {
     '@type': 'Person',
     name: 'Frank',
-    jobTitle: 'Creative AI Architect',
+    jobTitle: 'AI Systems Architect',
   },
   sameAs: [
     'https://linkedin.com/in/frank',
@@ -39,32 +39,32 @@ const structuredData = {
     'https://www.youtube.com/@frankxai',
   ],
   knowsAbout: [
-    'creative ai systems',
-    'creative ai governance',
-    'creative music workflows',
-    'family creative ai education',
-    'agentic creation workflows',
+    'ai music creation',
+    'personal ai systems',
+    'ai for students',
+    'ai for creators',
+    'suno workflows',
   ],
   hasPart: [
     {
       '@type': 'CreativeWork',
-      name: 'Soul Frequency Assessment',
-      url: 'https://frankx.ai/soul-frequency-assessment',
+      name: 'Vibe OS',
+      url: 'https://frankx.ai/products/vibe-os',
     },
     {
       '@type': 'CreativeWork',
-      name: "Founder's AI Playbook",
-      url: 'https://frankx.ai/founder-playbook',
+      name: 'Student Hub',
+      url: 'https://frankx.ai/students',
     },
     {
       '@type': 'CreativeWork',
-      name: 'AI Basics for Families',
-      url: 'https://frankx.ai/family-guide',
+      name: 'Prompt Library',
+      url: 'https://frankx.ai/prompt-library',
     },
     {
       '@type': 'CreativeWork',
-      name: 'Music Lab',
-      url: 'https://frankx.ai/music-lab',
+      name: 'Creation Chronicles',
+      url: 'https://frankx.ai/creation-chronicles',
     },
   ],
 }
