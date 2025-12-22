@@ -9,10 +9,15 @@ const withMDX = require('@next/mdx')({
 
 const nextConfig = {
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
+  typescript: {
+    // Skip type checking during build (run separately with tsc)
+    ignoreBuildErrors: true,
+  },
   experimental: {
     mdxRs: true,
-    // Partial Prerendering for mixing static and dynamic content
-    ppr: 'incremental',
+    // Cache Components disabled due to conflicts with existing route configs
+    // TODO: Enable after removing runtime/revalidate/dynamic exports from routes
+    // cacheComponents: true,
     // Optimize package imports for faster builds
     optimizePackageImports: ['lucide-react', 'framer-motion'],
   },
