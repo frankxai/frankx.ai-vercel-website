@@ -19,32 +19,36 @@ type NavItem = {
 const navItems: NavItem[] = [
   { name: 'Home', href: '/' },
   {
-    name: 'Products',
-    href: '/products',
+    name: 'For Creators',
+    href: '/products/vibe-os',
     subItems: [
-      { name: 'All Products', href: '/products' },
-      { name: 'Agentic Creator OS', href: '/products/agentic-creator-os' },
-      { name: 'Generative Creator OS', href: '/products/generative-creator-os' },
-      { name: 'Vibe OS', href: '/products/vibe-os' },
+      { name: 'Vibe OS (AI Music)', href: '/products/vibe-os' },
+      { name: 'Prompt Library', href: '/prompt-library' },
       { name: 'Music Lab', href: '/music-lab' },
+      { name: 'Templates', href: '/templates' },
     ],
   },
-  { name: 'Realm', href: '/realm' },
-  { name: 'Students', href: '/students' },
-  { name: 'Blog', href: '/blog' },
   {
-    name: 'Intelligence',
-    href: '/intelligence-atlas',
+    name: 'For Students',
+    href: '/students',
     subItems: [
-      { name: 'Intelligence Atlas', href: '/intelligence-atlas' },
-      { name: 'Agent Collective', href: '/agents' },
+      { name: 'Student Hub', href: '/students' },
+      { name: 'Courses', href: '/courses' },
+      { name: 'Guides', href: '/guides' },
+    ],
+  },
+  {
+    name: 'Resources',
+    href: '/resources',
+    subItems: [
+      { name: 'Prompt Library', href: '/prompt-library' },
+      { name: 'Templates', href: '/templates' },
+      { name: 'Guides', href: '/guides' },
       { name: 'Creation Chronicles', href: '/creation-chronicles' },
-      { name: 'Intelligence Arsenal', href: '/resources' },
-      { name: 'Templates', href: '/resources/templates' },
-      { name: 'Search', href: '/search' },
       { name: 'Roadmap', href: '/roadmap' },
     ],
   },
+  { name: 'Blog', href: '/blog' },
   { name: 'About', href: '/about' },
 ]
 
@@ -74,10 +78,10 @@ export default function Navigation() {
             className="flex items-center space-x-3 rounded-xl p-2 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/50 hover:bg-white/5"
             aria-label="FrankX.AI - Home"
           >
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-400 via-blue-500 to-purple-600 flex items-center justify-center shadow-[0_0_20px_rgba(6,182,212,0.3)]">
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-400 via-blue-500 to-purple-600 flex items-center justify-center shadow-[0_0_20px_rgba(6,182,212,0.3)] border border-white/20">
               <Sparkles className="w-4 h-4 text-white" />
             </div>
-            <span className="text-lg font-semibold bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">FrankX.AI</span>
+            <span className="text-xl font-bold tracking-tight bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent">FrankX.AI</span>
           </Link>
 
           <div className="hidden lg:flex items-center space-x-1">
@@ -149,16 +153,10 @@ export default function Navigation() {
 
             <div className="flex items-center space-x-3 ml-6 pl-6 border-l border-white/10">
               <Link
-                href="/products/vibe-os"
-                className="px-4 py-2 text-sm font-medium text-slate-300 hover:text-white transition-colors duration-300"
-              >
-                Get Started
-              </Link>
-              <Link
-                href="/products"
+                href="/nexus"
                 className="px-6 py-2.5 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white text-sm font-semibold rounded-lg transition-all duration-300 shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:shadow-[0_0_30px_rgba(6,182,212,0.4)] hover:-translate-y-0.5"
               >
-                Explore Products
+                Join Nexus
               </Link>
             </div>
           </div>
