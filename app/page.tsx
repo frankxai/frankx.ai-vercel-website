@@ -1,90 +1,70 @@
 import Script from 'next/script'
 
-import OptimizedHomePage from '@/components/home/OptimizedHomePage'
+import HomePage2025 from '@/components/home/HomePage2025'
 import { createMetadata } from '@/lib/seo'
-import CallToAction from '@/components/funnels/CallToAction'
-import EmailCaptureForm from '@/components/funnels/EmailCaptureForm'
 
 export const metadata = createMetadata({
-  title: 'FrankX | Build AI Systems Aligned With Your Goals',
+  title: 'FrankX | My System for Building with AI',
   description:
-    'Free resources, practical frameworks, and open development for creators and students building personal AI workflows. Vibe OS for music, Student Hub for learning.',
+    'The system I use to create music, learn new skills, and build my life with AI. Curated resources from Oracle, Google, MIT. Everything documented, take what works.',
   keywords: [
-    'personal ai system',
     'ai music creation',
     'suno workflow',
-    'ai for creators',
-    'ai for students',
+    'ai learning resources',
+    'oracle ai certification',
+    'google ai course',
     'build with ai',
-    'values aligned ai',
+    'personal ai system',
   ],
   path: '/',
 })
 
 const structuredData = {
   '@context': 'https://schema.org',
-  '@type': 'Organization',
+  '@type': 'WebSite',
   name: 'FrankX',
   url: 'https://frankx.ai',
   description:
-    'A hub for creators and students building AI systems aligned with their unique goals and values. Free resources, practical frameworks, and transparent development.',
-  founder: {
+    'The system I use to create music, learn skills, and build with AI. Resources curated from Oracle, Google, MIT. Built in public.',
+  author: {
     '@type': 'Person',
     name: 'Frank',
-    jobTitle: 'AI Systems Architect',
+    jobTitle: 'AI Systems Builder',
+    knowsAbout: ['AI Music Creation', 'Oracle AI', 'Suno', 'Machine Learning'],
   },
-  sameAs: [
-    'https://linkedin.com/in/frank',
-    'https://twitter.com/frankxai',
-    'https://www.youtube.com/@frankxai',
-  ],
-  knowsAbout: [
-    'ai music creation',
-    'personal ai systems',
-    'ai for students',
-    'ai for creators',
-    'suno workflows',
-  ],
-  hasPart: [
-    {
-      '@type': 'CreativeWork',
-      name: 'Vibe OS',
-      url: 'https://frankx.ai/products/vibe-os',
-    },
-    {
-      '@type': 'CreativeWork',
-      name: 'Student Hub',
-      url: 'https://frankx.ai/students',
-    },
-    {
-      '@type': 'CreativeWork',
-      name: 'Prompt Library',
-      url: 'https://frankx.ai/prompt-library',
-    },
-    {
-      '@type': 'CreativeWork',
-      name: 'Creation Chronicles',
-      url: 'https://frankx.ai/creation-chronicles',
-    },
-  ],
+  mainEntity: {
+    '@type': 'ItemList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Music Lab',
+        url: 'https://frankx.ai/music-lab',
+        description: 'How I create music with Suno AI',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Learning Paths',
+        url: 'https://frankx.ai/students',
+        description: 'Curated courses from Oracle, Google, MIT',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: 'Prompt Collection',
+        url: 'https://frankx.ai/prompt-library',
+        description: 'Prompts I actually use daily',
+      },
+    ],
+  },
 }
 
 export default function Page() {
   return (
     <>
-      <OptimizedHomePage />
-      <div className="container-px my-24">
-        <CallToAction
-          title="Explore the Prompt Library"
-          description="Browse over 500 expertly crafted prompts to enhance your creative and business workflows."
-          buttonText="Explore Prompts"
-          href="/prompt-library"
-        />
-      </div>
-      <div className="container-px my-24 max-w-2xl mx-auto">
-        <EmailCaptureForm />
-      </div>
-      <Script id="frankx-organization" type="application/ld+json" strategy="afterInteractive">
+      <HomePage2025 />
+      <Script id="frankx-schema" type="application/ld+json" strategy="afterInteractive">
         {JSON.stringify(structuredData)}
       </Script>
     </>

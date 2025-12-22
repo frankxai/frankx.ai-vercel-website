@@ -4,8 +4,8 @@ import Script from 'next/script'
 
 import { cn } from '@/lib/utils'
 import { robotsConfig, siteConfig } from '@/lib/seo'
-import Navigation from '@/components/Navigation'
-import Footer from '@/components/Footer'
+import Navigation2025 from '@/components/Navigation2025'
+import Footer2025 from '@/components/Footer2025'
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  themeColor: '#0f172a',
+  themeColor: '#030712',
 }
 
 export default function RootLayout({
@@ -66,7 +66,7 @@ export default function RootLayout({
       </head>
       <body
         className={cn(
-          'font-sans dark bg-slate-950 text-slate-100 antialiased min-h-screen'
+          'font-sans dark bg-[#030712] text-white antialiased min-h-screen'
         )}
         suppressHydrationWarning
       >
@@ -83,9 +83,9 @@ export default function RootLayout({
         >
           Skip to content
         </a>
-        <Navigation />
+        <Navigation2025 />
         {children}
-        <Footer />
+        <Footer2025 />
       </body>
     </html>
   )

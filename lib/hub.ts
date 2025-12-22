@@ -102,79 +102,79 @@ export type HomeSpotlight = {
 
 export const heroStats: HeroStat[] = [
   {
-    label: 'Creators & Students',
+    label: 'AI Songs Created',
     value: '500+',
-    detail: 'Building AI systems aligned with their unique goals and values'
+    detail: 'Music I\'ve made with Suno, shared openly with the process'
   },
   {
-    label: 'Free Resources',
+    label: 'Curated Resources',
     value: '200+',
-    detail: 'Prompts, templates, and guides to accelerate your AI journey'
+    detail: 'From Oracle, Google, MIT, and creators I trust'
   },
   {
-    label: 'Open Source',
+    label: 'Built in Public',
     value: '100%',
-    detail: 'Transparent methodologies you can adapt and make your own'
+    detail: 'Every system documented as I build it'
   }
 ]
 
 export const heroHighlights: HeroHighlight[] = [
   {
-    title: 'For Creators',
+    title: 'My Music System',
     description:
-      'Build AI workflows that amplify your unique voice. Music, content, and launches—shipped faster, aligned with your vision.',
+      'How I create original songs with Suno AI. The prompts, the process, the publishing workflow—all documented.',
     icon: Music
   },
   {
-    title: 'For Students',
+    title: 'Learning Paths',
     description:
-      'Your personal AI learning lab. Master any domain with customized AI assistants built around your goals.',
+      'Resources I\'ve curated from Oracle, Google, MIT. Organized into paths that actually make sense.',
     icon: Users
   },
   {
-    title: 'Open & Collaborative',
+    title: 'Built in Public',
     description:
-      'Every framework, prompt, and system here is designed to be adapted. Built by humans and AI, for humans and AI.',
+      'This entire site is the system. Watch it evolve, take what works, adapt it to your own life.',
     icon: Brain
   }
 ]
 
 export const quickActions: QuickAction[] = [
   {
-    title: 'Vibe OS',
-    description: 'AI-powered music creation with Suno. Make tracks that sound like you.',
-    href: '/products/vibe-os',
+    title: 'Music with AI',
+    description: 'My complete Suno workflow. Prompts, generation, publishing.',
+    href: '/music-lab',
     icon: Music
   },
   {
-    title: 'Student Hub',
-    description: 'Build your personal AI learning system. Career, skills, and life domains.',
+    title: 'Learning Paths',
+    description: 'Curated courses from Google, Oracle, MIT. Organized by domain.',
     href: '/students',
     icon: Users
   },
   {
-    title: 'Prompt Library',
-    description: '200+ free prompts for creators, students, and builders.',
+    title: 'Prompt Collection',
+    description: 'Prompts I actually use. Copy them, adapt them.',
     href: '/prompt-library',
     icon: Sparkles
   },
   {
-    title: 'Creation Chronicles',
-    description: 'Behind-the-scenes: how we build this hub with AI collaboration.',
+    title: 'How I Build This',
+    description: 'The process behind this site. Every decision documented.',
     href: '/creation-chronicles',
     icon: BookOpen
   },
   {
-    title: 'Roadmap',
-    description: 'See what we\'re building. Open development, transparent progress.',
+    title: 'What\'s Next',
+    description: 'Current focus and upcoming work. Built in public.',
     href: '/roadmap',
     icon: CalendarCheck
   },
   {
-    title: 'Work With Frank',
-    description: 'Strategy sessions for creators and teams building with AI.',
-    href: 'mailto:hello@frankx.ai?subject=Strategy%20Session',
-    icon: Brain
+    title: 'Resources',
+    description: 'Tools, courses, and creators I recommend.',
+    href: '/resources',
+    icon: FolderOpen
   }
 ]
 
@@ -430,36 +430,36 @@ export const keywordClusters: KeywordCluster[] = [
 
 export const homeSpotlights: HomeSpotlight[] = [
   {
-    eyebrow: 'Featured',
-    title: 'Vibe OS: AI Music Creation',
+    eyebrow: 'Music',
+    title: 'How I Make Songs with AI',
     description:
-      'Create original music with Suno AI. Complete workflow from prompts to published tracks.',
-    href: '/products/vibe-os',
-    cta: 'Start Creating Music'
+      'My complete Suno workflow. 500+ songs created, every step documented.',
+    href: '/music-lab',
+    cta: 'See the Process'
   },
   {
-    eyebrow: 'For Students',
-    title: 'Build Your AI Learning System',
+    eyebrow: 'Learning',
+    title: 'Curated Learning Paths',
     description:
-      'Personal AI assistants for any domain—career, studies, health, finances. Your goals, your system.',
+      'The best free resources from Oracle, Google, MIT. Organized so you don\'t have to search.',
     href: '/students',
-    cta: 'Enter Student Hub'
+    cta: 'Browse Paths'
   },
   {
-    eyebrow: 'Free',
-    title: 'Prompt Library',
+    eyebrow: 'Prompts',
+    title: 'My Prompt Collection',
     description:
-      '200+ prompts for creators and students. Copy, adapt, and make them your own.',
+      'Prompts I actually use daily. For music, writing, coding, and life.',
     href: '/prompt-library',
-    cta: 'Browse Prompts'
+    cta: 'View Collection'
   },
   {
-    eyebrow: 'Open',
-    title: 'How We Build This',
+    eyebrow: 'Process',
+    title: 'Building in Public',
     description:
-      'Behind the scenes: human-AI collaboration, agent teams, and transparent development.',
+      'This site is the system. Watch me build it, learn from the process.',
     href: '/creation-chronicles',
-    cta: 'Read the Chronicles'
+    cta: 'Follow Along'
   }
 ]
 
@@ -517,39 +517,39 @@ export const agentProtocols: AgentProtocol[] = [
 export const testimonials = [
   {
     quote:
-      'The Vibe OS workflow changed how I make music. I went from struggling with AI tools to releasing tracks every week that actually sound like me.',
+      'I used Frank\'s Suno prompts as a starting point and now I release a track every week. The workflow just clicked.',
     name: 'Marcus Chen',
-    role: 'Independent Artist'
+    role: 'Musician'
   },
   {
     quote:
-      'The Student Hub helped me build a personal AI system for my MBA studies. I\'m learning faster and actually retaining more because the system fits how I think.',
+      'The curated learning paths saved me months of searching. Oracle\'s AI cert + Frank\'s notes = exactly what I needed.',
     name: 'Sarah Okonkwo',
-    role: 'Graduate Student'
+    role: 'CS Student'
   },
   {
     quote:
-      'Frank\'s approach to AI is refreshingly practical. No hype, just real systems you can actually use. The prompt library alone saved me weeks of work.',
+      'Finally, someone who shares the actual system instead of selling courses about courses. This is how it should be.',
     name: 'James Morrison',
-    role: 'Content Creator'
+    role: 'Developer'
   }
 ]
 
 export const testimonialIcon = CheckCircle2
 
 export const heroSubtext = [
-  'Build AI systems aligned with your goals. Free resources, practical frameworks, and open collaboration.',
-  'A hub for creators and students building personal AI workflows—with transparent development and real community.'
+  'The system I use to create music, learn new skills, and build my life with AI.',
+  'Everything documented. Take what works for you.'
 ]
 
 export const heroCta = {
-  primary: { label: 'Start Free', href: '/start' },
-  secondary: { label: 'Explore Vibe OS', href: '/products/vibe-os' },
-  tertiary: { label: 'How We Build This', href: '/creation-chronicles' }
+  primary: { label: 'Explore the System', href: '/start' },
+  secondary: { label: 'Listen to My Music', href: '/music-lab' },
+  tertiary: { label: 'See How I Build This', href: '/creation-chronicles' }
 }
 
 export const heroSupportLink = {
-  label: 'Meet the FrankX.AI Team',
+  label: 'About Frank',
   href: '/about'
 }
 
