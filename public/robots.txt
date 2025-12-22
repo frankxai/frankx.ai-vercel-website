@@ -1,5 +1,8 @@
 User-agent: *
 Allow: /
 
+# Private letters - personal content not for indexing
+Disallow: /letters/
+
 Sitemap: https://frankx.ai/sitemap.xml
 

@@ -92,3 +92,19 @@ export const robotsConfig: Metadata['robots'] = {
     'max-snippet': -1,
   },
 }
+
+// For private pages that should not be indexed by search engines
+export const privateRobotsConfig: Metadata['robots'] = {
+  index: false,
+  follow: false,
+  noarchive: true,
+  nosnippet: true,
+  noimageindex: true,
+  googleBot: {
+    index: false,
+    follow: false,
+    noarchive: true,
+    nosnippet: true,
+    noimageindex: true,
+  },
+}
