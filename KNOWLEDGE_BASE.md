@@ -53,14 +53,48 @@ We operate a 4-Tier Product Ladder designed to move users from "Curious" to "Age
 ---
 
 ## 4. Technical Architecture: "Vibe OS"
-**Stack**: Next.js 15 (App Router), TypeScript, Tailwind CSS, Framer Motion.
+**Stack**: Next.js 16 (App Router + Turbopack), TypeScript, Tailwind CSS, Framer Motion.
 
 ### Design System: "Glassmorphic Aurora"
-*   **Core Components**:
-    *   `MorphingBackground`: Fluid, organic background meshes.
-    *   `GlassmorphicCard`: Premium, frosted glass containers with border glows.
-    *   `StaggerContainer`: Sequential entry animations for every section.
-    *   `MagneticHover`: Buttons that pull the cursor.
+
+**Philosophy**: Use the best components from the best libraries. No single library—curate world-class UI from multiple sources.
+
+#### UI Component Sources (Priority Order)
+
+| Library | Best For | Use Cases |
+|---------|----------|-----------|
+| **Magic UI** | Animated components | Hero backgrounds, text reveals, magnetic buttons, spotlight effects |
+| **shadcn/ui** | Accessible primitives | Forms, dialogs, dropdowns, navigation, data display |
+| **Cult UI** | Premium effects | 3D cards, particle systems, advanced hover states |
+| **Aceternity UI** | Cinematic animations | Parallax, spotlight, aurora backgrounds |
+| **Framer Motion** | Custom animations | Page transitions, stagger reveals, gesture interactions |
+
+#### Component Selection Criteria
+1. **Performance**: Lightweight, tree-shakable, no bloat
+2. **Accessibility**: WCAG 2.2 AA minimum, keyboard navigable
+3. **Customizable**: Tailwind-native, easy to theme
+4. **Modern**: React 18+, TypeScript, Server Components compatible
+
+#### Core Components (Current)
+*   `MorphingBackground`: Fluid, organic background meshes (Magic UI)
+*   `GlassmorphicCard`: Premium, frosted glass containers with border glows
+*   `StaggerContainer`: Sequential entry animations for every section
+*   `MagneticHover`: Buttons that pull the cursor (Magic UI)
+*   `SplitTextReveal`: Cinematic headline animations
+*   `TiltCard`: 3D mouse-tracking cards (Cult UI pattern)
+*   `CursorSpotlight`: Premium desktop hover spotlight
+*   `ParallaxLayer`: Multi-depth scrolling backgrounds
+
+#### Component Installation Pattern
+```bash
+# shadcn/ui - use the CLI
+npx shadcn@latest add button dialog dropdown-menu
+
+# Magic UI - copy from magicui.design
+# Cult UI - copy from cult-ui.com
+# Custom - build in /components/ui/
+```
+
 *   **Typography**: Inter/Manrope (Editorial feel). Large H1s (>6xl), tight tracking.
 *   **Colors**:
     *   `Aurora`: Cyan/Purple/Blue gradients.
