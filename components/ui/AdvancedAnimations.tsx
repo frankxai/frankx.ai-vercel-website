@@ -22,7 +22,7 @@ export function ParallaxContainer({ children, offset = 50 }: { children: ReactNo
 }
 
 // Fade In Up with Stagger
-export function StaggerContainer({ children, staggerDelay = 0.1 }: { children: ReactNode; staggerDelay?: number }) {
+export function StaggerContainer({ children, staggerDelay = 0.1, className }: { children: ReactNode; staggerDelay?: number; className?: string }) {
   return (
     <motion.div
       initial="hidden"
@@ -36,6 +36,7 @@ export function StaggerContainer({ children, staggerDelay = 0.1 }: { children: R
           }
         }
       }}
+      className={className}
     >
       {children}
     </motion.div>
@@ -163,9 +164,10 @@ export function MorphingBackground() {
 }
 
 // Reveal Animation
-export function RevealAnimation({ children, direction = "up" }: {
+export function RevealAnimation({ children, direction = "up", delay = 0 }: {
   children: ReactNode;
-  direction?: "up" | "down" | "left" | "right"
+  direction?: "up" | "down" | "left" | "right";
+  delay?: number;
 }) {
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: "-100px" })
@@ -189,7 +191,7 @@ export function RevealAnimation({ children, direction = "up" }: {
       initial="hidden"
       animate={isInView ? "visible" : "hidden"}
       variants={variants}
-      transition={{ duration: 0.8, ease: "easeOut" }}
+      transition={{ duration: 0.8, ease: "easeOut", delay }}
     >
       {children}
     </motion.div>
