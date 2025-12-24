@@ -89,9 +89,10 @@ module.exports = {
         'glass-light': 'linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.04) 100%)',
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        display: ['Inter', 'system-ui', 'sans-serif'],
-        mono: ['JetBrains Mono', 'Menlo', 'Monaco', 'monospace'],
+        sans: ['var(--font-outfit)', 'system-ui', 'sans-serif'],
+        display: ['var(--font-outfit)', 'system-ui', 'sans-serif'],
+        serif: ['var(--font-crimson)', 'Georgia', 'serif'],
+        mono: ['var(--font-mono)', 'JetBrains Mono', 'Menlo', 'Monaco', 'monospace'],
       },
       fontSize: {
         'heading-1': ['4.5rem', { lineHeight: '1' }],

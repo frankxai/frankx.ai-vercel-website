@@ -1,174 +1,400 @@
 'use client'
 
 import Link from 'next/link'
-import { ArrowRight, CheckCircle, Shield, Star } from 'lucide-react'
 import { motion } from 'framer-motion'
+import {
+  ArrowRight,
+  Sparkles,
+  Music,
+  BookOpen,
+  Building2,
+  Cpu,
+  CheckCircle2,
+  Package,
+} from 'lucide-react'
 
-import GlassmorphicCard from '@/components/ui/GlassmorphicCard'
-import PremiumButton from '@/components/ui/PremiumButton'
 import { trackEvent } from '@/lib/analytics'
-import { getProductCards } from '@/lib/products'
 
-const productCards = getProductCards()
+// Premium background
+function ProductsBackground() {
+  return (
+    <div className="fixed inset-0 -z-10 overflow-hidden">
+      <div className="absolute inset-0 bg-[#030712]" />
 
-const stats = [
-  { number: '10,000+', label: 'Creators Transformed' },
-  { number: '500K+', label: 'Hours Saved' },
-  { number: '94%', label: 'Success Rate' },
-  { number: '4.9/5', label: 'Average Rating' }
+      {/* Gradient orbs */}
+      <motion.div
+        className="absolute -right-60 top-40 h-[600px] w-[600px] rounded-full opacity-25"
+        style={{
+          background: 'radial-gradient(circle, rgba(139,92,246,0.35) 0%, transparent 70%)',
+        }}
+        animate={{
+          scale: [1, 1.1, 1],
+          opacity: [0.25, 0.35, 0.25],
+        }}
+        transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
+      />
+      <motion.div
+        className="absolute -left-40 top-1/2 h-[500px] w-[500px] rounded-full opacity-20"
+        style={{
+          background: 'radial-gradient(circle, rgba(16,185,129,0.3) 0%, transparent 70%)',
+        }}
+        animate={{
+          scale: [1.1, 1, 1.1],
+          opacity: [0.2, 0.3, 0.2],
+        }}
+        transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
+      />
+      <motion.div
+        className="absolute bottom-0 right-1/4 h-[400px] w-[400px] rounded-full opacity-15"
+        style={{
+          background: 'radial-gradient(circle, rgba(6,182,212,0.3) 0%, transparent 70%)',
+        }}
+        animate={{
+          scale: [1, 1.15, 1],
+          opacity: [0.15, 0.25, 0.15],
+        }}
+        transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut' }}
+      />
+
+      {/* Subtle grid */}
+      <div
+        className="absolute inset-0 opacity-[0.015]"
+        style={{
+          backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+                           linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+          backgroundSize: '60px 60px',
+        }}
+      />
+    </div>
+  )
+}
+
+// Product data - structured for premium display
+const products = [
+  {
+    id: 'creative-ai-toolkit',
+    icon: Sparkles,
+    name: 'Creative AI Toolkit',
+    tagline: 'Your AI-powered creative system',
+    description:
+      'Launch your AI-powered creative practice with 100+ battle-tested prompts, workflow templates, and operating rituals.',
+    price: 47,
+    originalPrice: 97,
+    href: '/products/creative-ai-toolkit',
+    color: 'violet',
+    highlights: [
+      '100+ validated prompts across storytelling, marketing, and operations',
+      '12 ready-to-deploy workflow automations',
+      '30/60/90 day implementation roadmaps',
+    ],
+  },
+  {
+    id: 'vibe-os',
+    icon: Music,
+    name: 'Vibe OS',
+    tagline: 'Suno Music Mastery',
+    description:
+      'The complete system for creating AI music with Suno. Genre-specific prompts, emotion mapping, and production techniques.',
+    price: 37,
+    originalPrice: 67,
+    href: '/products/vibe-os',
+    color: 'emerald',
+    highlights: [
+      '50+ genre-specific prompts (electronic, hip-hop, ambient, cinematic)',
+      'Emotion-to-sound mapping system',
+      'Production enhancement and mastering guide',
+    ],
+  },
+  {
+    id: 'creation-chronicles',
+    icon: BookOpen,
+    name: 'Creation Chronicles',
+    tagline: 'Strategic Storytelling OS',
+    description:
+      'Transform your brand narrative with systematic storytelling frameworks that build authority and grow your audience.',
+    price: 497,
+    originalPrice: 997,
+    href: '/products/creation-chronicles',
+    color: 'cyan',
+    highlights: [
+      'Strategic story architecture and messaging frameworks',
+      'AI-assisted content creation workflows',
+      'Omnichannel distribution templates',
+    ],
+    featured: true,
+  },
+  {
+    id: 'generative-creator-os',
+    icon: Cpu,
+    name: 'Generative Creator OS',
+    tagline: 'Multi-modal AI Studio',
+    description:
+      'Deploy an AI-assisted creative studio spanning video, audio, imagery, and writing with governed workflows.',
+    price: 0,
+    priceDisplay: 'Custom',
+    href: '/products/generative-creator-os',
+    color: 'amber',
+    highlights: [
+      'Multi-modal asset generation pipelines',
+      'Brand intelligence and compliance system',
+      'Team enablement and performance analytics',
+    ],
+  },
+  {
+    id: 'agentic-creator-os',
+    icon: Building2,
+    name: 'Agentic Creator OS',
+    tagline: 'Enterprise AI Center of Excellence',
+    description:
+      'Strategic AI implementation for enterprises. Governance frameworks, production systems, and team enablement.',
+    price: 0,
+    priceDisplay: 'Enterprise',
+    href: '/products/agentic-creator-os',
+    color: 'rose',
+    highlights: [
+      'AI strategy and architecture roadmapping',
+      'Governance, ethics, and compliance frameworks',
+      'Leadership education and team upskilling',
+    ],
+  },
 ]
+
+const colorMap = {
+  violet: {
+    bg: 'bg-violet-500/10',
+    border: 'border-violet-500/20 hover:border-violet-500/40',
+    icon: 'bg-violet-500/20 text-violet-400',
+    accent: 'text-violet-400',
+    button: 'bg-violet-600 hover:bg-violet-500',
+    glow: 'group-hover:shadow-violet-500/20',
+  },
+  emerald: {
+    bg: 'bg-emerald-500/10',
+    border: 'border-emerald-500/20 hover:border-emerald-500/40',
+    icon: 'bg-emerald-500/20 text-emerald-400',
+    accent: 'text-emerald-400',
+    button: 'bg-emerald-600 hover:bg-emerald-500',
+    glow: 'group-hover:shadow-emerald-500/20',
+  },
+  cyan: {
+    bg: 'bg-cyan-500/10',
+    border: 'border-cyan-500/20 hover:border-cyan-500/40',
+    icon: 'bg-cyan-500/20 text-cyan-400',
+    accent: 'text-cyan-400',
+    button: 'bg-cyan-600 hover:bg-cyan-500',
+    glow: 'group-hover:shadow-cyan-500/20',
+  },
+  amber: {
+    bg: 'bg-amber-500/10',
+    border: 'border-amber-500/20 hover:border-amber-500/40',
+    icon: 'bg-amber-500/20 text-amber-400',
+    accent: 'text-amber-400',
+    button: 'bg-amber-600 hover:bg-amber-500',
+    glow: 'group-hover:shadow-amber-500/20',
+  },
+  rose: {
+    bg: 'bg-rose-500/10',
+    border: 'border-rose-500/20 hover:border-rose-500/40',
+    icon: 'bg-rose-500/20 text-rose-400',
+    accent: 'text-rose-400',
+    button: 'bg-rose-600 hover:bg-rose-500',
+    glow: 'group-hover:shadow-rose-500/20',
+  },
+}
 
 export default function ProductsPage() {
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100">
-      <section className="relative overflow-hidden pt-32 pb-20">
-        <div className="absolute inset-0 bg-gradient-to-br from-purple-900/20 via-slate-950 to-blue-900/20" />
-        <div className="relative mx-auto mb-12 max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
+    <>
+      <ProductsBackground />
+      <main id="main" className="relative min-h-screen">
+        {/* Hero Section */}
+        <section className="pt-32 pb-16">
+          <div className="mx-auto max-w-6xl px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="mb-8 inline-flex items-center rounded-full border border-purple-500/20 bg-purple-500/10 px-4 py-2 text-sm font-medium text-purple-300"
+              transition={{ duration: 0.6 }}
+              className="mb-8 flex items-center gap-3"
             >
-              <Shield className="mr-2 h-4 w-4" />
-              Agent Team Validated
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-500/20 text-violet-400">
+                <Package className="h-5 w-5" />
+              </div>
+              <span className="text-sm font-medium uppercase tracking-[0.2em] text-slate-400">
+                Digital Products
+              </span>
             </motion.div>
 
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="mb-6 text-5xl font-bold bg-gradient-to-r from-slate-100 via-purple-200 to-slate-300 bg-clip-text text-transparent sm:text-6xl lg:text-7xl"
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="mb-6 max-w-4xl font-display text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl"
             >
-              Premium Digital Products
+              Systems I use.
+              <span className="mt-2 block text-transparent bg-clip-text bg-gradient-to-r from-violet-400 via-cyan-400 to-emerald-400">
+                Packaged for you.
+              </span>
             </motion.h1>
 
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="mx-auto mb-12 max-w-4xl text-xl leading-relaxed text-slate-300 sm:text-2xl"
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="max-w-2xl text-lg leading-relaxed text-slate-400 sm:text-xl"
             >
-              Transform your reality with operating systems designed by the FrankX.ai agent collective. Every product is multi-agent validated and wired for measurable outcomes.
+              The exact frameworks, prompts, and workflows I use in my own creative practice
+              and enterprise work. No theory — just what actually works.
             </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="mb-16 grid grid-cols-2 gap-8 lg:grid-cols-4"
-            >
-              {stats.map((stat) => (
-                <div key={stat.label} className="text-center">
-                  <div className="mb-2 text-3xl font-bold text-purple-300 lg:text-4xl">{stat.number}</div>
-                  <div className="text-sm text-slate-400">{stat.label}</div>
-                </div>
-              ))}
-            </motion.div>
           </div>
+        </section>
 
-          <div className="grid gap-8 lg:grid-cols-3">
-            {productCards.map((product, index) => (
-              <motion.div
-                key={product.id}
-                initial={{ opacity: 0, y: 40 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 + index * 0.1 }}
-              >
-                <GlassmorphicCard variant="luxury" border="glow" hover className="flex h-full flex-col p-8">
-                  <div className="mb-6">
-                    {product.badge ? (
-                      <span className="inline-flex items-center rounded-full border border-purple-500/30 bg-purple-500/20 px-3 py-1 text-xs font-medium text-purple-200">
-                        {product.badge}
-                      </span>
-                    ) : null}
-                  </div>
+        {/* Products Grid */}
+        <section className="py-12">
+          <div className="mx-auto max-w-6xl px-6">
+            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+              {products.map((product, index) => {
+                const Icon = product.icon
+                const colors = colorMap[product.color as keyof typeof colorMap]
 
-                  <div className="flex-1">
-                    <h3 className="mb-2 text-2xl font-bold text-slate-100">{product.name}</h3>
-                    <p className="mb-4 text-sm uppercase tracking-[0.3em] text-purple-300">
-                      {product.category ?? 'FrankX Featured'}
-                    </p>
-                    <p className="mb-6 leading-relaxed text-slate-300">{product.summary}</p>
-
-                    <ul className="mb-8 space-y-3">
-                      {product.highlights.map((highlight) => (
-                        <li key={highlight} className="flex items-center text-sm text-slate-200">
-                          <CheckCircle className="mr-3 h-5 w-5 flex-shrink-0 text-emerald-400" />
-                          {highlight}
-                        </li>
-                      ))}
-                    </ul>
-
-                    {product.testimonial ? (
-                      <div className="rounded-xl border border-slate-700/30 bg-slate-800/40 p-4">
-                        <div className="mb-2 flex">
-                          {[...Array(5)].map((_, i) => (
-                            <Star key={i} className="h-4 w-4 text-yellow-400" />
-                          ))}
-                        </div>
-                        <p className="mb-3 text-sm italic text-slate-300">"{product.testimonial.text}"</p>
-                        <div className="text-xs uppercase tracking-[0.3em] text-slate-500">
-                          {product.testimonial.author}
-                          {product.testimonial.role ? ` — ${product.testimonial.role}` : ''}
-                        </div>
-                      </div>
-                    ) : null}
-                  </div>
-
-                  <div className="mt-8 flex flex-col gap-3">
-                    <div className="flex items-center justify-between">
-                      <div className="text-3xl font-bold text-purple-300">${product.price}</div>
-                      {product.originalPrice ? (
-                        <div className="text-sm text-slate-500 line-through">${product.originalPrice}</div>
-                      ) : null}
-                    </div>
+                return (
+                  <motion.div
+                    key={product.id}
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
+                    className={product.featured ? 'md:col-span-2 lg:col-span-1' : ''}
+                  >
                     <Link
                       href={product.href}
-                      onClick={() => trackEvent('product_card_click', { productId: product.id })}
-                      className="inline-flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 px-6 py-3 font-semibold text-white transition-all duration-300 hover:-translate-y-0.5 hover:from-purple-500 hover:to-indigo-500"
+                      onClick={() =>
+                        trackEvent('product_card_click', { productId: product.id })
+                      }
+                      className="group block h-full"
                     >
-                      View Product
-                      <ArrowRight className="h-4 w-4" />
-                    </Link>
-                  </div>
-                </GlassmorphicCard>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
+                      <div
+                        className={`relative flex h-full flex-col overflow-hidden rounded-2xl border ${colors.border} ${colors.bg} p-8 backdrop-blur-sm transition-all duration-500 group-hover:-translate-y-1 group-hover:shadow-xl ${colors.glow}`}
+                      >
+                        {/* Featured badge */}
+                        {product.featured && (
+                          <div className="absolute right-6 top-6">
+                            <span className="rounded-full bg-cyan-500/20 px-3 py-1 text-xs font-medium text-cyan-400">
+                              Most Popular
+                            </span>
+                          </div>
+                        )}
 
-      <section className="px-4 pb-24">
-        <div className="mx-auto max-w-6xl rounded-4xl border border-white/10 bg-white/5 px-8 py-12 text-white">
-          <div className="grid gap-8 md:grid-cols-2">
-            <div>
-              <h2 className="text-3xl font-semibold">Ready for the full Intelligence Arsenal?</h2>
-              <p className="mt-3 text-white/70">
-                Explore the complete stack of affiliate-approved tools, FrankX music drops, and Creation Chronicles resources fueling every product on this page.
-              </p>
-            </div>
-            <div className="flex items-center justify-end gap-4">
-              <Link
-                href="/resources"
-                onClick={() => trackEvent('product_resources_cta', { location: 'products-page' })}
-                className="inline-flex items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/10 px-6 py-3 text-sm font-semibold text-white/80 transition hover:bg-white/15"
-              >
-                Explore Resources
-                <ArrowRight className="h-4 w-4" />
-              </Link>
-              <PremiumButton
-                onClick={() => trackEvent('product_newsletter_cta', { location: 'products-page' })}
-                href="/creation-chronicles"
-                variant="luxury"
-                glow
-              >
-                Join Creation Chronicles
-              </PremiumButton>
+                        {/* Icon */}
+                        <div
+                          className={`mb-6 flex h-14 w-14 items-center justify-center rounded-xl ${colors.icon}`}
+                        >
+                          <Icon className="h-7 w-7" />
+                        </div>
+
+                        {/* Content */}
+                        <div className="flex-1">
+                          <p className="mb-1 text-xs font-medium uppercase tracking-[0.15em] text-slate-500">
+                            {product.tagline}
+                          </p>
+                          <h3 className="mb-3 text-2xl font-bold text-white">{product.name}</h3>
+                          <p className="mb-6 leading-relaxed text-slate-400">
+                            {product.description}
+                          </p>
+
+                          {/* Highlights */}
+                          <ul className="mb-8 space-y-3">
+                            {product.highlights.map((highlight) => (
+                              <li
+                                key={highlight}
+                                className="flex items-start gap-3 text-sm text-slate-300"
+                              >
+                                <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-emerald-400" />
+                                {highlight}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+
+                        {/* Price and CTA */}
+                        <div className="flex items-center justify-between border-t border-white/5 pt-6">
+                          <div className="flex items-baseline gap-2">
+                            {product.priceDisplay ? (
+                              <span className={`text-lg font-bold ${colors.accent}`}>
+                                {product.priceDisplay}
+                              </span>
+                            ) : (
+                              <>
+                                <span className="text-2xl font-bold text-white">
+                                  ${product.price}
+                                </span>
+                                {product.originalPrice && (
+                                  <span className="text-sm text-slate-500 line-through">
+                                    ${product.originalPrice}
+                                  </span>
+                                )}
+                              </>
+                            )}
+                          </div>
+                          <div className="flex items-center gap-2 text-slate-400 transition-colors group-hover:text-white">
+                            <span className="text-sm font-medium">View</span>
+                            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                          </div>
+                        </div>
+                      </div>
+                    </Link>
+                  </motion.div>
+                )
+              })}
             </div>
           </div>
-        </div>
-      </section>
-    </div>
+        </section>
+
+        {/* Bottom CTA */}
+        <section className="py-16 pb-24">
+          <div className="mx-auto max-w-6xl px-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-slate-900/80 via-slate-900/60 to-slate-800/40 p-10 backdrop-blur-xl"
+            >
+              {/* Decorative gradient */}
+              <div className="absolute -right-20 -top-20 h-40 w-40 rounded-full bg-gradient-to-br from-violet-500/20 to-cyan-500/20 blur-3xl" />
+
+              <div className="relative flex flex-col items-start gap-8 md:flex-row md:items-center md:justify-between">
+                <div className="max-w-xl">
+                  <h2 className="text-2xl font-bold text-white sm:text-3xl">
+                    Not sure where to start?
+                  </h2>
+                  <p className="mt-3 text-slate-400">
+                    Explore the free resources first. The prompt library and learning paths
+                    give you a taste of my approach before you invest.
+                  </p>
+                </div>
+                <div className="flex flex-wrap gap-4">
+                  <Link
+                    href="/resources"
+                    onClick={() =>
+                      trackEvent('product_resources_cta', { location: 'products-page' })
+                    }
+                    className="group flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-6 py-3 font-medium text-white transition-all hover:bg-white/10"
+                  >
+                    Free Resources
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </Link>
+                  <Link
+                    href="/start"
+                    className="group flex items-center gap-2 rounded-xl bg-white px-6 py-3 font-medium text-slate-900 transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-white/10"
+                  >
+                    Start Here
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </Link>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </section>
+      </main>
+    </>
   )
 }

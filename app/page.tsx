@@ -1,12 +1,12 @@
 import Script from 'next/script'
 
-import HomePage2025 from '@/components/home/HomePage2025'
+import HomePageElite from '@/components/home/HomePageElite'
 import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
-  title: 'FrankX | My System for Building with AI',
+  title: 'FrankX | Oracle AI Architect & Creator',
   description:
-    'The system I use to create music, learn new skills, and build my life with AI. Curated resources from Oracle, Google, MIT. Everything documented, take what works.',
+    'Senior AI Architect at Oracle\'s Center of Excellence. Creator of 500+ AI songs. Enterprise AI systems, creative workflows, and everything I learn—shared openly.',
   keywords: [
     'ai music creation',
     'suno workflow',
@@ -63,7 +63,7 @@ const structuredData = {
 export default function Page() {
   return (
     <>
-      <HomePage2025 />
+      <HomePageElite />
       <Script id="frankx-schema" type="application/ld+json" strategy="afterInteractive">
         {JSON.stringify(structuredData)}
       </Script>

@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next'
+import { Outfit, Crimson_Pro, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 import Script from 'next/script'
 
@@ -6,6 +7,28 @@ import { cn } from '@/lib/utils'
 import { robotsConfig, siteConfig } from '@/lib/seo'
 import Navigation2025 from '@/components/Navigation2025'
 import Footer2025 from '@/components/Footer2025'
+
+// Premium typography - Outfit for headlines (modern, geometric, distinctive)
+const outfit = Outfit({
+  subsets: ['latin'],
+  variable: '--font-outfit',
+  display: 'swap',
+})
+
+// Crimson Pro for editorial touches (elegant, refined)
+const crimson = Crimson_Pro({
+  subsets: ['latin'],
+  variable: '--font-crimson',
+  display: 'swap',
+  style: ['normal', 'italic'],
+})
+
+// JetBrains Mono for code/technical elements
+const jetbrains = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-mono',
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -66,6 +89,9 @@ export default function RootLayout({
       </head>
       <body
         className={cn(
+          outfit.variable,
+          crimson.variable,
+          jetbrains.variable,
           'font-sans dark bg-[#030712] text-white antialiased min-h-screen'
         )}
         suppressHydrationWarning
