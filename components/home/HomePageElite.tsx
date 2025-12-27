@@ -1,24 +1,17 @@
 'use client'
 
-import { motion, useScroll, useTransform, useSpring, AnimatePresence } from 'framer-motion'
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion'
 import Link from 'next/link'
-import Image from 'next/image'
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useState } from 'react'
 import {
   ArrowRight,
-  ArrowUpRight,
   Play,
   Pause,
-  Volume2,
   ExternalLink,
   Sparkles,
-  Zap,
   Music2,
   BookOpen,
   Code2,
-  Headphones,
-  Users,
-  Award,
   ChevronRight,
 } from 'lucide-react'
 
@@ -160,45 +153,42 @@ function Hero() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           >
-            {/* Status indicator - subtle, not in-your-face */}
+            {/* Subtle breadcrumb - editorial style */}
             <motion.div
-              className="inline-flex items-center gap-2 mb-8"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              className="mb-12"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
               transition={{ delay: 0.1 }}
             >
-              <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10">
-                <span className="relative flex h-1.5 w-1.5">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                  <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500" />
-                </span>
-                <span className="text-xs uppercase tracking-wider text-white/50">Building in public</span>
-              </div>
+              <span className="text-xs font-medium uppercase tracking-[0.3em] text-emerald-400/60">
+                AI Architect & Music Creator
+              </span>
             </motion.div>
 
-            {/* Main headline - editorial style, poetic */}
-            <h1 className="text-[clamp(2.5rem,7vw,5.5rem)] font-semibold leading-[0.95] tracking-[-0.02em] mb-8">
-              <span className="block text-white">Enterprise AI</span>
-              <span className="block text-white">by day.</span>
+            {/* Main headline - editorial typography with character */}
+            <h1 className="mb-8">
+              <span className="block text-[clamp(3rem,8vw,6rem)] font-bold leading-[0.9] tracking-[-0.03em] text-white">
+                Systems that work.
+              </span>
               <motion.span
-                className="block font-serif italic text-white/80"
+                className="block text-[clamp(2.5rem,6vw,4.5rem)] font-serif italic text-white/70 mt-2"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.3 }}
               >
-                Music by night.
+                Music that moves.
               </motion.span>
             </h1>
 
-            {/* Subtext - cleaner, less self-promotional */}
+            {/* Subtext - more personality, less corporate */}
             <motion.p
-              className="text-xl text-white/50 max-w-lg mb-10 leading-relaxed"
+              className="text-xl md:text-2xl text-white/50 max-w-xl mb-12 leading-relaxed font-light"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4 }}
             >
-              I build AI systems at Oracle and create music with Suno.
-              This is where I share what I'm learning—tools, resources, and the work itself.
+              Senior AI Architect at Oracle. Creator of thousands of songs with Suno AI.
+              Everything I learn goes here—open, documented, ready to use.
             </motion.p>
 
             {/* CTAs */}
@@ -350,34 +340,42 @@ function FeaturedMusicCard() {
 // STATS SECTION
 // ============================================================================
 
-const stats = [
-  { value: '10K+', label: 'Songs Created', detail: 'With Suno AI' },
-  { value: '5+', label: 'Years in AI', detail: 'Enterprise systems' },
-  { value: 'Open', label: 'Source', detail: 'Everything shared' },
-]
-
 function StatsSection() {
   return (
-    <section className="py-24 border-y border-white/5">
+    <section className="py-32">
       <div className="max-w-6xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8">
-          {stats.map((stat, i) => (
+        {/* Editorial quote/statement */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="max-w-4xl mx-auto text-center mb-20"
+        >
+          <blockquote className="text-2xl md:text-3xl lg:text-4xl font-serif italic text-white/70 leading-relaxed">
+            "Technology should amplify your voice, not replace it."
+          </blockquote>
+        </motion.div>
+
+        {/* Stats as horizontal flow */}
+        <div className="flex flex-wrap justify-center gap-x-16 gap-y-8 md:gap-x-24">
+          {[
+            { value: '10K+', label: 'Songs created with Suno' },
+            { value: '5+', label: 'Years building AI systems' },
+            { value: 'Open', label: 'Everything documented' },
+          ].map((stat, i) => (
             <motion.div
               key={stat.label}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: i * 0.1 }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
               className="text-center"
             >
-              <div className="text-5xl md:text-6xl font-semibold text-white mb-2 tracking-tight">
+              <div className="text-5xl md:text-7xl font-bold text-white mb-3 tracking-tighter">
                 {stat.value}
               </div>
-              <div className="text-sm uppercase tracking-[0.25em] text-emerald-400/80 mb-2">
+              <div className="text-sm text-white/40 max-w-[160px]">
                 {stat.label}
-              </div>
-              <div className="text-white/40 text-sm">
-                {stat.detail}
               </div>
             </motion.div>
           ))}
@@ -394,37 +392,45 @@ function StatsSection() {
 const capabilities = [
   {
     icon: Code2,
-    title: 'AI Architecture',
-    description: 'Enterprise AI systems at Oracle. Multi-agent orchestration, RAG pipelines, production deployments.',
+    title: 'AI Systems',
+    subtitle: 'Enterprise Architecture',
+    description: 'Multi-agent orchestration, RAG pipelines, production ML systems. Real-world AI that actually ships.',
     href: '/about',
-    accent: 'emerald',
+    color: 'from-emerald-500/20 to-emerald-500/5',
+    iconColor: 'text-emerald-400',
   },
   {
     icon: Music2,
-    title: 'AI Music Creation',
-    description: 'Thousands of songs created with Suno. Ambient, electronic, cinematic. Exploring what\'s possible.',
+    title: 'Music Lab',
+    subtitle: 'AI-Generated Music',
+    description: 'Creating with Suno AI. Ambient, electronic, cinematic—exploring the frontier of AI music.',
     href: '/music-lab',
-    accent: 'cyan',
+    color: 'from-cyan-500/20 to-cyan-500/5',
+    iconColor: 'text-cyan-400',
+  },
+  {
+    icon: Sparkles,
+    title: 'Prompt Library',
+    subtitle: 'Battle-Tested Prompts',
+    description: 'The prompts I actually use daily. Writing, coding, music, images—copy them, adapt them.',
+    href: '/prompt-library',
+    color: 'from-violet-500/20 to-violet-500/5',
+    iconColor: 'text-violet-400',
   },
   {
     icon: BookOpen,
-    title: 'Resources & Guides',
-    description: 'Curated learning paths, prompt libraries, and systems I use daily. Everything documented.',
-    href: '/resources',
-    accent: 'amber',
-  },
-  {
-    icon: Zap,
-    title: 'Products & Tools',
-    description: 'Vibe OS, prompt collections, and creative AI toolkits. Built for creators who want to level up.',
-    href: '/products',
-    accent: 'rose',
+    title: 'Learning Paths',
+    subtitle: 'Curated Courses',
+    description: 'Oracle, Google, MIT—hand-picked courses that actually matter. Start learning AI today.',
+    href: '/students',
+    color: 'from-amber-500/20 to-amber-500/5',
+    iconColor: 'text-amber-400',
   },
 ]
 
 function WhatIDo() {
   return (
-    <section className="py-32">
+    <section className="py-32 border-t border-white/5">
       <div className="max-w-6xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -432,16 +438,19 @@ function WhatIDo() {
           viewport={{ once: true }}
           className="mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-semibold text-white mb-4 tracking-tight">
-            What I Build
+          <p className="text-sm font-medium uppercase tracking-[0.25em] text-emerald-400/70 mb-4">
+            What's Here
+          </p>
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">
+            Tools, resources, and the work itself.
           </h2>
-          <p className="text-xl text-white/50 max-w-2xl">
-            The intersection of enterprise AI expertise and creative exploration.
-            Everything I create, I share.
+          <p className="text-xl text-white/50 max-w-2xl leading-relaxed">
+            Not a portfolio. Not a course. A working system for creating with AI—
+            shared openly because it's more useful that way.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {capabilities.map((item, i) => (
             <motion.div
               key={item.title}
@@ -452,18 +461,29 @@ function WhatIDo() {
             >
               <Link
                 href={item.href}
-                className="group block p-8 rounded-2xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] hover:border-white/10 transition-all duration-300 h-full"
+                className="group relative block p-8 rounded-2xl border border-white/5 overflow-hidden transition-all duration-500 hover:border-white/15 hover:-translate-y-1 h-full"
               >
-                <div className="flex items-start justify-between mb-6">
-                  <div className={`p-3 rounded-xl bg-${item.accent}-500/10 group-hover:bg-${item.accent}-500/20 transition-colors`}>
-                    <item.icon className={`w-6 h-6 text-${item.accent}-400`} />
+                {/* Gradient background on hover */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+
+                <div className="relative">
+                  <div className="flex items-start justify-between mb-6">
+                    <div className="p-3 rounded-xl bg-white/5 group-hover:bg-white/10 transition-colors">
+                      <item.icon className={`w-6 h-6 ${item.iconColor}`} />
+                    </div>
+                    <ChevronRight className="w-5 h-5 text-white/20 group-hover:text-white/60 group-hover:translate-x-1 transition-all" />
                   </div>
-                  <ArrowUpRight className="w-5 h-5 text-white/20 group-hover:text-white/50 transition-colors" />
+
+                  <p className="text-xs font-medium uppercase tracking-[0.15em] text-white/30 mb-2">
+                    {item.subtitle}
+                  </p>
+                  <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-white transition-colors">
+                    {item.title}
+                  </h3>
+                  <p className="text-white/50 leading-relaxed group-hover:text-white/60 transition-colors">
+                    {item.description}
+                  </p>
                 </div>
-                <h3 className="text-xl font-semibold text-white mb-3">{item.title}</h3>
-                <p className="text-white/50 leading-relaxed">
-                  {item.description}
-                </p>
               </Link>
             </motion.div>
           ))}
@@ -567,85 +587,76 @@ function FeaturedResources() {
 
 function AboutSection() {
   return (
-    <section className="py-32 border-t border-white/5">
+    <section className="py-32">
       <div className="max-w-6xl mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-          >
-            <p className="text-sm uppercase tracking-[0.25em] text-emerald-400/80 mb-6">
-              About
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="max-w-3xl"
+        >
+          <p className="text-sm font-medium uppercase tracking-[0.25em] text-emerald-400/70 mb-6">
+            The Story
+          </p>
+
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8 tracking-tight leading-tight">
+            By day, I architect AI systems at Oracle.
+            <span className="block mt-2 font-serif italic text-white/70">
+              By night, I make music with AI.
+            </span>
+          </h2>
+
+          <div className="space-y-6 text-lg text-white/60 leading-relaxed mb-10">
+            <p>
+              There's a gap between how AI is discussed and how it actually works.
+              The enterprise world treats it like enterprise software. The creator world
+              treats it like magic. Both miss the point.
             </p>
-            <h2 className="text-4xl md:text-5xl font-semibold text-white mb-6 tracking-tight leading-tight">
-              Building AI systems.{' '}
-              <span className="font-serif italic text-white/80">Making music.</span>
-            </h2>
-            <div className="space-y-4 text-lg text-white/60 leading-relaxed">
-              <p>
-                Senior AI Architect at Oracle's AI Center of Excellence. I design
-                enterprise AI systems—multi-agent orchestration, RAG pipelines,
-                production deployments.
-              </p>
-              <p className="text-white/70">
-                When I'm not at work, I create music with Suno AI. Thousands of songs,
-                exploring genres from ambient to cinematic. Everything I learn, I share here.
-              </p>
-            </div>
-            <div className="flex flex-wrap gap-4 mt-8">
-              <Link
-                href="/about"
-                className="inline-flex items-center gap-2 text-white font-medium hover:text-emerald-400 transition-colors"
-              >
-                Read the full story
-                <ArrowRight className="w-4 h-4" />
-              </Link>
+            <p className="text-white/70">
+              This hub is where those worlds meet. Systems that are rigorous enough
+              to scale and creative enough to matter. Everything I build gets documented.
+              Everything I learn gets shared.
+            </p>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-6">
+            <Link
+              href="/about"
+              className="group inline-flex items-center gap-2 text-white font-medium hover:text-emerald-400 transition-colors"
+            >
+              Read the full story
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            </Link>
+            <div className="flex items-center gap-4 text-white/40">
               <a
                 href="https://linkedin.com/in/frankxai"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-white/50 hover:text-white transition-colors"
+                className="hover:text-white transition-colors"
               >
                 LinkedIn
-                <ExternalLink className="w-3.5 h-3.5" />
+              </a>
+              <span>·</span>
+              <a
+                href="https://github.com/frankxai"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-white transition-colors"
+              >
+                GitHub
+              </a>
+              <span>·</span>
+              <a
+                href="https://suno.com/@frankxai"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-white transition-colors"
+              >
+                Suno
               </a>
             </div>
-          </motion.div>
-
-          {/* Achievements */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            className="space-y-4"
-          >
-            {[
-              { icon: Award, title: 'Oracle AI Center of Excellence', desc: 'Senior AI Architect designing enterprise systems' },
-              { icon: Music2, title: 'Prolific Music Creator', desc: 'Thousands of AI-generated songs across genres' },
-              { icon: Zap, title: 'Open Source Everything', desc: 'All systems, prompts, and resources shared publicly' },
-            ].map((item, i) => (
-              <motion.div
-                key={item.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="p-6 rounded-2xl bg-white/[0.02] border border-white/5"
-              >
-                <div className="flex items-start gap-4">
-                  <div className="p-3 rounded-xl bg-emerald-500/10 flex-shrink-0">
-                    <item.icon className="w-5 h-5 text-emerald-400" />
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-white mb-1">{item.title}</h4>
-                    <p className="text-sm text-white/50">{item.desc}</p>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   )
@@ -657,35 +668,42 @@ function AboutSection() {
 
 function FinalCTA() {
   return (
-    <section className="py-32">
-      <div className="max-w-4xl mx-auto px-6 text-center">
+    <section className="py-32 border-t border-white/5">
+      <div className="max-w-5xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
+          className="relative"
         >
-          <h2 className="text-4xl md:text-6xl font-semibold text-white mb-6 tracking-tight">
-            Ready to explore?
-          </h2>
-          <p className="text-xl text-white/50 mb-10 max-w-lg mx-auto">
-            Systems, music, resources—take what works for you.
-            Everything is documented, everything is open.
-          </p>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              href="/start"
-              className="group inline-flex items-center gap-3 bg-white text-black px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 hover:bg-white/90 hover:shadow-[0_0_40px_rgba(255,255,255,0.15)]"
-            >
-              Start Here
-              <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
-            </Link>
-            <Link
-              href="/music-lab"
-              className="inline-flex items-center gap-3 text-white/60 hover:text-white px-8 py-4 text-lg transition-colors"
-            >
-              <Play className="w-5 h-5" />
-              Explore Music Lab
-            </Link>
+          {/* Subtle glow */}
+          <div className="absolute -inset-x-20 -inset-y-10 bg-gradient-to-r from-emerald-500/5 via-transparent to-cyan-500/5 blur-3xl opacity-50" />
+
+          <div className="relative text-center">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight">
+              Start where you are.
+            </h2>
+            <p className="text-xl md:text-2xl text-white/50 mb-12 max-w-2xl mx-auto font-light leading-relaxed">
+              Whether you're learning AI, creating music, or building systems—
+              there's something here for you. All of it is open.
+            </p>
+
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Link
+                href="/start"
+                className="group inline-flex items-center gap-3 bg-white text-black px-8 py-4 rounded-full text-base font-semibold transition-all duration-300 hover:bg-white/90 hover:shadow-[0_0_60px_rgba(255,255,255,0.2)] hover:-translate-y-0.5"
+              >
+                Pick Your Path
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+              <Link
+                href="/resources"
+                className="group inline-flex items-center gap-3 px-8 py-4 rounded-full text-base font-medium text-white/60 hover:text-white border border-white/10 hover:border-white/20 hover:bg-white/5 transition-all"
+              >
+                Browse Resources
+                <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+              </Link>
+            </div>
           </div>
         </motion.div>
       </div>

@@ -20,21 +20,24 @@ type NavItem = {
 const navItems: NavItem[] = [
   { name: 'Home', href: '/' },
   {
-    name: 'Create',
-    href: '/music-lab',
+    name: 'For Creators',
+    href: '/products/vibe-os',
     subItems: [
-      { name: 'Music Lab', href: '/music-lab' },
+      { name: 'Vibe OS (AI Music)', href: '/products/vibe-os' },
       { name: 'Prompt Library', href: '/prompt-library' },
-      { name: 'Vibe OS', href: '/products/vibe-os' },
+      { name: 'Music Lab', href: '/music-lab' },
+      { name: 'Templates', href: '/templates' },
+      { name: 'Creation Chronicles', href: '/creation-chronicles' },
     ],
   },
   {
-    name: 'Learn',
+    name: 'For Students',
     href: '/students',
     subItems: [
       { name: 'Student Hub', href: '/students' },
       { name: 'Courses', href: '/courses' },
       { name: 'Guides', href: '/guides' },
+      { name: 'AI Assessment', href: '/ai-assessment' },
     ],
   },
   {
@@ -42,9 +45,20 @@ const navItems: NavItem[] = [
     href: '/resources',
     subItems: [
       { name: 'All Resources', href: '/resources' },
+      { name: 'Prompt Library', href: '/prompt-library' },
       { name: 'Templates', href: '/templates' },
-      { name: 'Creation Chronicles', href: '/creation-chronicles' },
+      { name: 'Guides', href: '/guides' },
       { name: 'Roadmap', href: '/roadmap' },
+    ],
+  },
+  {
+    name: 'Products',
+    href: '/products',
+    subItems: [
+      { name: 'All Products', href: '/products' },
+      { name: 'Vibe OS', href: '/products/vibe-os' },
+      { name: 'Creative AI Toolkit', href: '/products/creative-ai-toolkit' },
+      { name: 'Generative Creator OS', href: '/products/generative-creator-os' },
     ],
   },
   { name: 'Blog', href: '/blog' },
