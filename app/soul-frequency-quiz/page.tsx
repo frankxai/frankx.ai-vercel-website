@@ -6,8 +6,6 @@ import Link from 'next/link'
 import { AnimatePresence, motion } from 'framer-motion'
 import { ArrowRight, CheckCircle, Heart, Brain, Users, Lightbulb, Sparkles } from 'lucide-react'
 
-import Navigation from '@/components/Navigation'
-import Footer from '@/components/Footer'
 import { gradientPresets, glassCardClasses } from '@/lib/design/gradients'
 
 type FrequencyId = 'alchemist' | 'architect' | 'connector' | 'pioneer'
@@ -304,9 +302,7 @@ export default function SoulFrequencyQuiz() {
 
   return (
     <div className="min-h-screen bg-midnight-950 text-white">
-      <Navigation />
-
-      <div className="relative overflow-hidden">
+<div className="relative overflow-hidden">
         <div className={clsx('absolute inset-0 opacity-85', gradientPresets.heroBase)} />
         <div className={clsx('absolute inset-0 opacity-60 blur-3xl', gradientPresets.heroAurora)} />
         <div className={clsx('absolute inset-0 opacity-40', gradientPresets.heroPulse)} />
@@ -528,8 +524,6 @@ export default function SoulFrequencyQuiz() {
           </div>
         </div>
       </div>
-
-      <Footer />
-    </div>
+</div>
   )
 }

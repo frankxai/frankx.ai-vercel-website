@@ -1,12 +1,8 @@
 import Link from 'next/link'
-import Navigation from '@/components/Navigation'
-import Footer from '@/components/Footer'
-
 export default function TemplatesPage() {
   return (
     <div className="min-h-screen bg-white">
-      <Navigation />
-      <main className="pt-28 pb-20 px-6">
+<main className="pt-28 pb-20 px-6">
         <div className="max-w-5xl mx-auto">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Templates</h1>
           <p className="text-gray-700 mb-8">Prompts, evaluation sheets, agent blueprints, and scorecards.</p>
@@ -45,7 +41,6 @@ export default function TemplatesPage() {
           </div>
         </div>
       </main>
-      <Footer />
-    </div>
+</div>
   )
 }

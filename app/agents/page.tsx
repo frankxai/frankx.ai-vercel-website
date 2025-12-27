@@ -1,8 +1,6 @@
 import Link from 'next/link'
 import { Sparkles, Zap, Brain, Eye, ArrowRight } from 'lucide-react'
 
-import Navigation from '@/components/Navigation'
-import Footer from '@/components/Footer'
 import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
@@ -142,9 +140,7 @@ const collaborationFlows = [
 export default function AgentsPage() {
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100">
-      <Navigation />
-
-      <main className="pb-24 pt-28">
+<main className="pb-24 pt-28">
         <section className="relative overflow-hidden px-6 pb-16 pt-16">
           <div className="absolute inset-0 bg-gradient-to-br from-primary-500/10 via-slate-950 to-slate-950" />
 
@@ -298,8 +294,6 @@ export default function AgentsPage() {
           </div>
         </section>
       </main>
-
-      <Footer />
-    </div>
+</div>
   )
 }

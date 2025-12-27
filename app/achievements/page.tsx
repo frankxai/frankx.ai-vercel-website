@@ -1,8 +1,6 @@
 import { ArrowRight, Award, BookOpen, Building2, Calendar, CheckCircle2, Globe, Lightbulb, Music, Sparkles, Target, TrendingUp, Users, Zap } from 'lucide-react'
 import Link from 'next/link'
 
-import Footer from '@/components/Footer'
-import Navigation from '@/components/Navigation'
 import { createMetadata } from '@/lib/seo'
 
 const majorAchievements = [
@@ -179,8 +177,7 @@ export const metadata = createMetadata({
 export default function AchievementsPage() {
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100">
-      <Navigation />
-      <main className="px-6 pt-28 pb-20">
+<main className="px-6 pt-28 pb-20">
         <div className="mx-auto max-w-7xl space-y-20">
           {/* Hero Section */}
           <header className="text-center space-y-8">
@@ -392,7 +389,6 @@ export default function AchievementsPage() {
           </section>
         </div>
       </main>
-      <Footer />
-    </div>
+</div>
   )
 }

@@ -6,8 +6,6 @@ import { MDXRemote } from 'next-mdx-remote/rsc'
 import { ArrowLeft, ArrowRight, Calendar, Clock, Linkedin, Share2, Tag, Twitter } from 'lucide-react'
 
 import { mdxComponents } from '@/components/blog/MDXComponents'
-import Footer from '@/components/Footer'
-import Navigation from '@/components/Navigation'
 import BlogCard from '@/components/blog/BlogCard'
 import Recommendations from '@/components/recommendations/Recommendations'
 import { getAllBlogPosts, getBlogPost } from '@/lib/blog'
@@ -115,9 +113,7 @@ export default async function BlogPostPage({
         strategy="afterInteractive"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
       />
-      <Navigation />
-
-      <article className="pt-28 pb-24">
+<article className="pt-28 pb-24">
         <div className="px-6">
           <div className="mx-auto max-w-5xl">
             <Link
@@ -312,9 +308,7 @@ export default async function BlogPostPage({
           </div>
         </div>
       </article>
-
-      <Footer />
-    </div>
+</div>
   )
 }
 

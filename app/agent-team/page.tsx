@@ -1,7 +1,5 @@
 import Link from 'next/link'
 
-import Footer from '@/components/Footer'
-import Navigation from '@/components/Navigation'
 import { claudeAgents } from '@/lib/agents'
 import { projectMilestones, segmentProfiles, testimonials, testimonialIcon } from '@/lib/hub'
 import { createMetadata, siteConfig } from '@/lib/seo'
@@ -162,8 +160,7 @@ export default function AgentTeamPage() {
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100">
-      <Navigation />
-      <main className="px-6 pt-28 pb-20">
+<main className="px-6 pt-28 pb-20">
         <script
           type="application/ld+json"
           suppressHydrationWarning
@@ -482,7 +479,6 @@ export default function AgentTeamPage() {
           </section>
         </div>
       </main>
-      <Footer />
-    </div>
+</div>
   )
 }

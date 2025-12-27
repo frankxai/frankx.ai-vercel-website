@@ -1,5 +1,3 @@
-import Navigation from '@/components/Navigation'
-import Footer from '@/components/Footer'
 import Link from 'next/link'
 import { Sparkles, Brain, Heart, Workflow, ArrowRight, Shield, Waves, CheckCircle2 } from 'lucide-react'
 
@@ -36,9 +34,7 @@ const bonuses = [
 export default function SoulFrequencyAssessmentPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-purple-50 via-white to-blue-50">
-      <Navigation />
-
-      <main className="pt-28 pb-24 px-6">
+<main className="pt-28 pb-24 px-6">
         <section className="max-w-6xl mx-auto grid lg:grid-cols-[1.1fr,0.9fr] gap-12 items-start">
           <div>
             <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-purple-100 text-purple-700 text-sm font-semibold">
@@ -141,8 +137,6 @@ export default function SoulFrequencyAssessmentPage() {
           </div>
         </div>
       </section>
-
-      <Footer />
-    </div>
+</div>
   )
 }

@@ -1,14 +1,11 @@
 import Link from 'next/link'
-import Navigation from '@/components/Navigation'
-import Footer from '@/components/Footer'
 import { getAllGuides } from '@/lib/guides'
 
 export default function GuidesIndex() {
   const guides = getAllGuides()
   return (
     <div className="min-h-screen bg-slate-950">
-      <Navigation />
-      <main className="pt-28 pb-20 px-6">
+<main className="pt-28 pb-20 px-6">
         <div className="max-w-5xl mx-auto">
           <h1 className="text-4xl font-bold bg-gradient-to-r from-purple-400 via-blue-400 to-cyan-400 bg-clip-text text-transparent mb-6">Implementation Guides</h1>
           <p className="text-slate-300 mb-10">Systematic guides to capture exponential value in the intelligence era through conscious AI implementation.</p>
@@ -39,7 +36,6 @@ export default function GuidesIndex() {
           )}
         </div>
       </main>
-      <Footer />
-    </div>
+</div>
   )
 }

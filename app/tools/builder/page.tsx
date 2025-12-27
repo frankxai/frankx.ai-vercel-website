@@ -4,8 +4,6 @@ import { ArrowLeft, ArrowRight, Bot, Brain, CheckCircle2, Code, Cpu, Database, G
 import Link from 'next/link'
 import { useState } from 'react'
 
-import Footer from '@/components/Footer'
-import Navigation from '@/components/Navigation'
 import { createMetadata } from '@/lib/seo'
 
 const builderSteps = [
@@ -153,8 +151,7 @@ export default function AIBuilderPage() {
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100">
-      <Navigation />
-      <main className="px-6 pt-28 pb-20">
+<main className="px-6 pt-28 pb-20">
         <div className="mx-auto max-w-7xl space-y-20">
           {/* Header */}
           <header className="space-y-8">
@@ -413,7 +410,6 @@ export default function AIBuilderPage() {
           </section>
         </div>
       </main>
-      <Footer />
-    </div>
+</div>
   )
 }

@@ -1,12 +1,9 @@
-import Navigation from '@/components/Navigation'
-import Footer from '@/components/Footer'
 import Link from 'next/link'
 
 export default function FounderPlaybook() {
   return (
     <div className="min-h-screen bg-white">
-      <Navigation />
-      <main className="pt-28 pb-20 px-6">
+<main className="pt-28 pb-20 px-6">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Founder's AI Playbook</h1>
           <p className="text-gray-700 mb-6">A practical path to ship AI value without the hype.</p>
@@ -21,8 +18,7 @@ export default function FounderPlaybook() {
           </div>
         </div>
       </main>
-      <Footer />
-    </div>
+</div>
   )
 }
 

@@ -4,8 +4,6 @@ import { ArrowRight, Sparkles, XCircle } from 'lucide-react'
 
 import { getAllBlogPosts } from '@/lib/blog'
 import BlogCard from '@/components/blog/BlogCard'
-import Navigation from '@/components/Navigation'
-import Footer from '@/components/Footer'
 import { createMetadata } from '@/lib/seo'
 import EmailCaptureForm from '@/components/funnels/EmailCaptureForm'
 
@@ -124,9 +122,7 @@ export default async function BlogPage({
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100">
-      <Navigation />
-
-      <main className="pb-24 pt-28">
+<main className="pb-24 pt-28">
         <section className="relative overflow-hidden px-6 pb-24 pt-24">
           <div className="absolute inset-0">
             <div className="absolute inset-0 bg-gradient-to-br from-primary-500/15 via-slate-950 to-slate-950" />
@@ -393,8 +389,6 @@ export default async function BlogPage({
           </div>
         </section>
       </main>
-
-      <Footer />
-    </div>
+</div>
   )
 }

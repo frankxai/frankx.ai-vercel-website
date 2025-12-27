@@ -5,8 +5,8 @@ import Script from 'next/script'
 
 import { cn } from '@/lib/utils'
 import { robotsConfig, siteConfig } from '@/lib/seo'
-import Navigation2025 from '@/components/Navigation2025'
-import Footer2025 from '@/components/Footer2025'
+import Navigation from '@/components/Navigation'
+import Footer from '@/components/Footer'
 
 // Premium typography - Outfit for headlines (modern, geometric, distinctive)
 const outfit = Outfit({
@@ -109,9 +109,9 @@ export default function RootLayout({
         >
           Skip to content
         </a>
-        <Navigation2025 />
+        <Navigation />
         {children}
-        <Footer2025 />
+        <Footer />
       </body>
     </html>
   )
