@@ -1,20 +1,20 @@
-﻿import type { Affiliate } from '@/types/affiliates'
+/**
+ * Prompt Library Data
+ * Real, practical prompts for creators - no fabricated statistics.
+ * Inspired by awesome-chatgpt-prompts, God of Prompt, and Anthropic's documentation.
+ */
 
 export type PromptDifficulty = 'Beginner' | 'Intermediate' | 'Advanced'
 
 export type PromptCategory =
-  | 'task-specific'
-  | 'ai-optimization'
-  | 'business-applications'
-  | 'creative-workflows'
-  | 'technical-development'
-  | 'educational-content'
-  | 'music-audio'
-  | 'visual-design'
-  | 'data-analysis'
-  | 'communication'
+  | 'writing'
+  | 'music-creation'
+  | 'image-generation'
+  | 'coding'
+  | 'business'
+  | 'learning'
   | 'productivity'
-  | 'interactive-experiences'
+  | 'creative'
 
 export type AITool =
   | 'claude'
@@ -23,9 +23,7 @@ export type AITool =
   | 'suno'
   | 'dalle'
   | 'stable-diffusion'
-  | 'notion'
-  | 'zapier'
-  | 'make'
+  | 'cursor'
   | 'general'
 
 export interface Prompt {
@@ -38,11 +36,8 @@ export interface Prompt {
   aiTool: AITool
   difficulty: PromptDifficulty
   useCase: string
-  rating: number
-  usageCount: number
   createdAt: string
   updatedAt: string
-  affiliateId?: Affiliate['id']
 }
 
 export interface CategoryInfo {
@@ -55,616 +50,825 @@ export interface CategoryInfo {
 
 export const CATEGORIES: CategoryInfo[] = [
   {
-    id: 'task-specific',
-    name: 'Task-Specific',
-    emoji: '🛠️',
-    description: 'Operational playbooks for focused outcomes and checklists.',
+    id: 'writing',
+    name: 'Writing',
+    emoji: '✍️',
+    description: 'Blog posts, articles, scripts, and creative writing.',
     color: '#8B5CF6',
   },
   {
-    id: 'ai-optimization',
-    name: 'AI Optimization',
-    emoji: '🤖',
-    description: 'Tuning models, guardrails, and multi-agent workflows.',
-    color: '#06B6D4',
-  },
-  {
-    id: 'business-applications',
-    name: 'Business Applications',
-    emoji: '📈',
-    description: 'Strategy, finance, and go-to-market acceleration prompts.',
-    color: '#10B981',
-  },
-  {
-    id: 'creative-workflows',
-    name: 'Creative Workflows',
-    emoji: '🎨',
-    description: 'Narrative, script, and concept systems for creative teams.',
-    color: '#F59E0B',
-  },
-  {
-    id: 'technical-development',
-    name: 'Technical Dev',
-    emoji: '💻',
-    description: 'Engineering blueprints, code reviews, and QA automations.',
-    color: '#EF4444',
-  },
-  {
-    id: 'educational-content',
-    name: 'Educational Content',
-    emoji: '📚',
-    description: 'Curriculum design, cohort facilitation, and learning loops.',
-    color: '#6366F1',
-  },
-  {
-    id: 'music-audio',
-    name: 'Music & Audio',
+    id: 'music-creation',
+    name: 'Music Creation',
     emoji: '🎵',
-    description: 'Suno, DAW, and sonic identity workflows for producers.',
+    description: 'Suno prompts for AI-generated songs and soundscapes.',
     color: '#EC4899',
   },
   {
-    id: 'visual-design',
-    name: 'Visual Design',
-    emoji: '🖼️',
-    description: 'Midjourney/DALL·E art direction and brand-safe palettes.',
-    color: '#F97316',
+    id: 'image-generation',
+    name: 'Image Generation',
+    emoji: '🎨',
+    description: 'Midjourney, DALL-E, and Stable Diffusion prompts.',
+    color: '#F59E0B',
   },
   {
-    id: 'data-analysis',
-    name: 'Data Analysis',
-    emoji: '📊',
-    description: 'Dashboards, research synthesis, and model interpretation.',
+    id: 'coding',
+    name: 'Coding',
+    emoji: '💻',
+    description: 'Code generation, debugging, and technical assistance.',
+    color: '#10B981',
+  },
+  {
+    id: 'business',
+    name: 'Business',
+    emoji: '📈',
+    description: 'Strategy, marketing, and professional communication.',
     color: '#3B82F6',
   },
   {
-    id: 'communication',
-    name: 'Communication',
-    emoji: '💬',
-    description: 'Storytelling, stakeholder management, and investor updates.',
-    color: '#8B5CF6',
+    id: 'learning',
+    name: 'Learning',
+    emoji: '📚',
+    description: 'Study guides, explanations, and skill development.',
+    color: '#6366F1',
   },
   {
     id: 'productivity',
     name: 'Productivity',
     emoji: '⚡',
-    description: 'Systems for personal leverage, daily planning, and rituals.',
-    color: '#6B7280',
+    description: 'Task management, planning, and workflow optimization.',
+    color: '#06B6D4',
   },
   {
-    id: 'interactive-experiences',
-    name: 'Interactive Experiences',
-    emoji: '🎮',
-    description: 'Immersive, game, and experiential design prompt packs.',
-    color: '#10B981',
+    id: 'creative',
+    name: 'Creative',
+    emoji: '✨',
+    description: 'Brainstorming, ideation, and creative exploration.',
+    color: '#F97316',
   },
 ]
 
 export const PROMPTS: Prompt[] = [
+  // ============================================================================
+  // WRITING PROMPTS
+  // ============================================================================
   {
-    id: 'strategic-intake-briefing',
-    title: 'Executive Intelligence Intake Briefing',
-    description: 'Claude distills leadership signals, friction points, and recommended actions into a board-ready brief in five minutes.',
-    content: `You are Claude, acting as an executive strategic partner for FrankX.ai.
+    id: 'blog-post-structure',
+    title: 'Blog Post Structure Generator',
+    description: 'Create a well-structured blog post outline with hook, body, and conclusion.',
+    content: `Write a blog post about [TOPIC].
 
-Goal: Prepare a leadership intake brief for the following raw notes and metrics.
+Structure it as follows:
+1. Hook (1-2 sentences that grab attention)
+2. Introduction (set up the problem/opportunity)
+3. Main sections (3-5 key points with subheadings)
+4. Practical examples or case studies
+5. Conclusion with clear takeaway
+6. Call to action
 
-Context to ingest:
-- Audience: [executive stakeholder]
-- Primary signals surfaced this week: [signals]
-- Metrics snapshot: [metric highlights]
-- Open risks / blockers: [risks]
-- Required decision date: [deadline]
-
-Output format:
-1. Situation summary (3 bullets max)
-2. Opportunity analysis (2 short paragraphs)
-3. Action plan (3 clear directives with owners)
-4. Flagged risks & mitigation
-5. Recommended follow-up touchpoint (channel + timeline)
-
-Tone: executive, confident, intelligence-era narrative.
-Cite data when available. Keep it under 350 words.`,
-    category: 'business-applications',
-    tags: ['executive brief', 'strategy', 'ops'],
-    aiTool: 'claude',
-    difficulty: 'Intermediate',
-    useCase: 'Strategy leaders preparing weekly executive updates with precise actions.',
-    rating: 4.9,
-    usageCount: 3821,
-    createdAt: '2025-05-12T10:00:00.000Z',
-    updatedAt: '2025-08-28T12:00:00.000Z',
-    affiliateId: 'claude',
-  },
-  {
-    id: 'seo-sprint-orchestrator',
-    title: 'Agentic SEO Sprint Orchestrator',
-    description: 'ChatGPT maps a 7-day publishing sprint tied to FrankX flagship narratives with distribution and measurement hooks.',
-    content: `You are ChatGPT acting as an SEO sprint producer inside the FrankX Intelligence Atlas.
-
-Inputs:
-- Flagship narrative focus: [narrative]
-- Target keywords & intent clusters: [keywords]
-- Audience persona: [persona]
-- Available assets: [existing assets]
-
-Deliverables:
-1. 7-day publishing plan with daily objective, asset type, primary keyword, CTA mapping.
-2. Distribution plan (owned, earned, paid) with channel copy prompts.
-3. Measurement checklist: KPIs, instrumentation notes, review cadence.
-4. Risks & guardrails (compliance, accuracy, tone).
-
-Return results in a table, followed by bullet highlights.`,
-    category: 'ai-optimization',
-    tags: ['seo', 'content operations', 'automation'],
-    aiTool: 'chatgpt',
-    difficulty: 'Advanced',
-    useCase: 'Growth pods needing fast, accountable SEO sprints tied to flagship content.',
-    rating: 4.8,
-    usageCount: 2914,
-    createdAt: '2025-04-02T09:30:00.000Z',
-    updatedAt: '2025-08-10T15:00:00.000Z',
-    affiliateId: 'chatgpt',
-  },
-  {
-    id: 'creator-ritual-calendar',
-    title: 'Creator Ritual Calendar (90 Days)',
-    description: 'Design a ritualized production calendar that keeps artists shipping without burnout.',
-    content: `You are Claude composing a 90-day ritual calendar for a hybrid artist-technologist.
-
-Parameters:
-- Creative focus: [discipline]
-- Release cadence: [cadence]
-- Energy constraints: [constraints]
-- Community obligations: [community]
-
-Produce:
-1. Weekly rhythm (focus theme, anchor ritual, accountability loop).
-2. Daily micro-practices (AM/PM prompts, embodiment cues).
-3. Automation assist (agents/tools + how they reduce cognitive load).
-4. Renewal moments (rest, inspiration, collective sync).
-
-Deliver as markdown tables with bullet callouts.`,
-    category: 'creative-workflows',
-    tags: ['rituals', 'planning', 'creative systems'],
+Tone: [conversational/professional/educational]
+Target audience: [describe reader]
+Word count: approximately [NUMBER] words`,
+    category: 'writing',
+    tags: ['blog', 'content', 'structure'],
     aiTool: 'claude',
     difficulty: 'Beginner',
-    useCase: 'Creators balancing releases, community, and wellbeing inside the Vibe OS.',
-    rating: 4.7,
-    usageCount: 1987,
-    createdAt: '2025-03-18T12:00:00.000Z',
-    updatedAt: '2025-08-05T09:00:00.000Z',
-    affiliateId: 'claude',
+    useCase: 'Content creators needing consistent blog post frameworks.',
+    createdAt: '2024-12-01T00:00:00.000Z',
+    updatedAt: '2024-12-01T00:00:00.000Z',
   },
   {
-    id: 'midjourney-brand-atlas',
-    title: 'Midjourney Brand Atlas Brief',
-    description: 'Generate a cohesive Midjourney brand system with hero, detail, and motion frames.',
-    content: `You are Midjourney v6 art director for FrankX brand refresh.
+    id: 'rewrite-improve',
+    title: 'Text Rewriter & Improver',
+    description: 'Improve existing text while maintaining the original meaning.',
+    content: `Rewrite the following text to be more [clear/engaging/professional/concise]:
 
-Guidelines:
-- Brand pillars: oracle intelligence, aurora motion, soulful tech.
-- Color lanes: midnight navy, aurora cyan, pulse amber.
-- Visual motifs: particles, glassmorphism, neuro-grid.
+"""
+[PASTE YOUR TEXT HERE]
+"""
 
-Create prompt sets:
-1. Hero scene (landing hero)
-2. Detail macro (UI close-up)
-3. Motion concept (ambient video stills)
+Requirements:
+- Maintain the core message and facts
+- Improve readability and flow
+- Fix any grammatical issues
+- Make it more [specify: compelling/accessible/authoritative]
+- Keep approximately the same length unless instructed otherwise`,
+    category: 'writing',
+    tags: ['editing', 'rewriting', 'improvement'],
+    aiTool: 'general',
+    difficulty: 'Beginner',
+    useCase: 'Writers refining drafts or improving existing content.',
+    createdAt: '2024-12-01T00:00:00.000Z',
+    updatedAt: '2024-12-01T00:00:00.000Z',
+  },
+  {
+    id: 'storytelling-framework',
+    title: 'Story Framework Generator',
+    description: 'Create compelling narratives using proven storytelling structures.',
+    content: `Help me craft a story using the following framework:
 
-For each, provide:
-- Prompt short form
-- Stylization parameters (--ar, --stylize, --quality)
-- Negative prompt hints
+Story type: [personal anecdote/case study/brand story/origin story]
+Core message: [what should the reader take away?]
+Emotional arc: [what should they feel at the end?]
 
-Output as a numbered list with code blocks for easy copy.`,
-    category: 'visual-design',
-    tags: ['brand', 'midjourney', 'design system'],
-    aiTool: 'midjourney',
+Use this structure:
+1. THE HOOK - Start in the middle of the action
+2. THE CONTEXT - Just enough background
+3. THE CONFLICT - What obstacle or challenge emerged
+4. THE TURNING POINT - The moment of change
+5. THE RESOLUTION - How it worked out
+6. THE LESSON - The universal truth
+
+Keep it under [NUMBER] words. Make it specific, not generic.`,
+    category: 'writing',
+    tags: ['storytelling', 'narrative', 'copywriting'],
+    aiTool: 'claude',
     difficulty: 'Intermediate',
-    useCase: 'Design leads refreshing web/app visuals while keeping the FrankX signature.',
-    rating: 4.9,
-    usageCount: 2450,
-    createdAt: '2025-06-01T11:00:00.000Z',
-    updatedAt: '2025-08-20T14:30:00.000Z',
-    affiliateId: 'midjourney',
+    useCase: 'Marketers and writers creating compelling narratives.',
+    createdAt: '2024-12-01T00:00:00.000Z',
+    updatedAt: '2024-12-01T00:00:00.000Z',
+  },
+
+  // ============================================================================
+  // MUSIC CREATION (SUNO) PROMPTS
+  // ============================================================================
+  {
+    id: 'suno-ambient-electronic',
+    title: 'Ambient Electronic Track',
+    description: 'Create atmospheric electronic music with Suno.',
+    content: `[Ambient Electronic]
+Ethereal synth pads, gentle pulse
+Soft textures, floating melodies
+Warm bassline, subtle progression
+Cinematic atmosphere, dreamy
+
+[Verse]
+Weightless motion through digital space
+Crystalline tones, gentle embrace
+
+[Build]
+Layers growing, frequencies align
+Harmonic waves intertwine
+
+[Drop]
+Full spectrum bloom, controlled energy
+Sustained beauty, refined`,
+    category: 'music-creation',
+    tags: ['ambient', 'electronic', 'atmospheric'],
+    aiTool: 'suno',
+    difficulty: 'Beginner',
+    useCase: 'Creating focus music, meditation tracks, or background ambience.',
+    createdAt: '2024-12-01T00:00:00.000Z',
+    updatedAt: '2024-12-01T00:00:00.000Z',
   },
   {
-    id: 'suno-anthem-seed',
-    title: 'Suno Anthem Seed Pack',
-    description: 'Rapidly craft a Suno anthem brief with narrative arc, instrumentation, and vocal vibe.',
-    content: `You are Suno composing the FrankX weekly anthem.
+    id: 'suno-cinematic-epic',
+    title: 'Cinematic Epic Score',
+    description: 'Create powerful, movie-trailer-style music.',
+    content: `[Epic Cinematic Orchestral]
+Powerful strings, brass crescendo
+Thundering percussion, heroic theme
+Rising tension, triumphant release
+Film score quality, emotional depth
 
-Inputs:
-- Emotion target: [emotion]
-- BPM range: [range]
-- Genre fusion: [genres]
-- Narrative beat: [story]
+[Intro - Quiet tension]
+Distant drums echo through silence
+A single voice calls out
 
-Output:
-1. Lyric sheet (verse, chorus, bridge) with intelligence-era imagery.
-2. Arrangement notes (instrument layers, transitions, drops).
-3. Vocal treatment (timbre, effects, call-and-response prompts).
-4. Mixing checklist for engineers.
+[Verse - Building]
+Strings swell with purpose and might
+The journey unfolds tonight
 
-Return results with section headers and bullets.`,
-    category: 'music-audio',
-    tags: ['suno', 'songwriting', 'rituals'],
+[Chorus - Epic]
+Rise above the storm and flame
+Write your legend, stake your claim
+
+[Bridge - Intense]
+No retreat, no surrender now
+This is our defining hour`,
+    category: 'music-creation',
+    tags: ['cinematic', 'orchestral', 'epic'],
     aiTool: 'suno',
     difficulty: 'Intermediate',
-    useCase: 'Music ritual teams crafting branded weekly drops in alignment with campaign themes.',
-    rating: 4.8,
-    usageCount: 1732,
-    createdAt: '2025-02-10T16:00:00.000Z',
-    updatedAt: '2025-08-11T10:00:00.000Z',
-    affiliateId: 'suno',
+    useCase: 'Creating trailer music, game soundtracks, or dramatic content.',
+    createdAt: '2024-12-01T00:00:00.000Z',
+    updatedAt: '2024-12-01T00:00:00.000Z',
   },
   {
-    id: 'governance-readiness-audit',
-    title: 'AI Governance Readiness Audit',
-    description: 'Assess governance posture, surface risks, and prescribe the next maturity step.',
-    content: `You are Claude, an enterprise governance auditor for FrankX.ai clients.
+    id: 'suno-lofi-chill',
+    title: 'Lo-Fi Chill Beat',
+    description: 'Create relaxing lo-fi hip-hop beats.',
+    content: `[Lo-Fi Hip Hop, Chill, Relaxed]
+Dusty vinyl crackle, mellow keys
+Jazzy chords, soft drums
+Warm bass, lazy tempo 75bpm
+Nostalgic, cozy, late night study vibes
 
-Inputs:
-- Sector & team size: [details]
-- Current AI deployments: [systems]
-- Policies in place: [policies]
-- Pain points: [issues]
+[Intro]
+Rain on windows, coffee steam rising
 
-Deliver:
-1. Governance maturity score (1-5) with rationale.
-2. Risk register table (risk, likelihood, impact, mitigation owner).
-3. Immediate next steps (3 actions, 7-day horizon).
-4. Long-term roadmap (30/90-day initiatives).
+[Verse]
+Sunset colors through the blinds
+Easy breathing, peaceful mind
+Nothing rushing, nowhere to be
+Just this moment, feeling free
 
-Write in confident, advisory tone with bullet clarity.`,
-    category: 'business-applications',
-    tags: ['governance', 'risk', 'compliance'],
-    aiTool: 'claude',
-    difficulty: 'Advanced',
-    useCase: 'Consultants guiding enterprise partners through governance adoption.',
-    rating: 4.9,
-    usageCount: 1544,
-    createdAt: '2025-01-29T10:30:00.000Z',
-    updatedAt: '2025-09-12T08:00:00.000Z',
-    affiliateId: 'claude',
-  },
-  {
-    id: 'data-storytelling-canvas',
-    title: 'Data Storytelling Canvas',
-    description: 'Transform raw telemetry into narrative arcs with visuals and executive hooks.',
-    content: `You are ChatGPT translating FrankX telemetry ([dataset summary]) into a presentation storyboard.
-
-Deliver:
-1. Core insight statement (<=40 words).
-2. Slide outline (6 slides max) with title, key visual, narrative beat.
-3. CTA ladder (immediate, 30-day, 90-day actions).
-4. Suggested data visual types with Midjourney prompts for cover art.
-
-Tone: authoritative, action-focused.`,
-    category: 'data-analysis',
-    tags: ['storytelling', 'dashboards', 'analytics'],
-    aiTool: 'chatgpt',
-    difficulty: 'Intermediate',
-    useCase: 'Analysts converting intelligence atlas metrics into leadership briefings.',
-    rating: 4.7,
-    usageCount: 1890,
-    createdAt: '2025-07-04T09:00:00.000Z',
-    updatedAt: '2025-08-25T11:00:00.000Z',
-    affiliateId: 'chatgpt',
-  },
-  {
-    id: 'agent-architecture-blueprint',
-    title: 'Multi-Agent Architecture Blueprint',
-    description: 'Map an orchestrated agent system with triggers, guardrails, and observability.',
-    content: `You are Claude designing a multi-agent system for [workflow].
-
-Steps:
-1. Identify agents (role, core skill, fail-safes).
-2. Define orchestration timeline (trigger, dependency, success metric).
-3. Observability stack (logs, dashboards, intervention playbook).
-4. Risk mitigation (bias, hallucination, escalation path).
-
-Provide markdown tables and bullet callouts.`,
-    category: 'technical-development',
-    tags: ['agents', 'architecture', 'automation'],
-    aiTool: 'claude',
-    difficulty: 'Advanced',
-    useCase: 'Solutions architects blueprinting internal intelligence automations.',
-    rating: 4.8,
-    usageCount: 2114,
-    createdAt: '2025-06-15T13:00:00.000Z',
-    updatedAt: '2025-09-01T09:45:00.000Z',
-    affiliateId: 'claude',
-  },
-  {
-    id: 'notion-control-center',
-    title: 'Notion Control Center Generator',
-    description: 'Design a Notion HQ with dashboards, linked databases, and automation triggers.',
-    content: `You are an operations architect configuring a Notion workspace for FrankX.
-
-Inputs:
-- Core teams: [teams]
-- Ritual cadence: [cadence]
-- Key databases: [dbs]
-
-Output:
-1. Workspace map (top-level pages, permissions wrap).
-2. Database schema recommendations.
-3. Automation hooks (Notion + Zapier/Make scenarios).
-4. Rollout checklist with training modules.
-
-Return as structured markdown.`,
-    category: 'productivity',
-    tags: ['systems', 'workspace', 'automation'],
-    aiTool: 'notion',
-    difficulty: 'Intermediate',
-    useCase: 'Operators setting up a unified HQ for intelligence rituals.',
-    rating: 4.6,
-    usageCount: 1320,
-    createdAt: '2025-05-01T10:00:00.000Z',
-    updatedAt: '2025-08-30T12:15:00.000Z',
-    affiliateId: 'notion',
-  },
-  {
-    id: 'zapier-orchestration-brief',
-    title: 'Zapier Intelligence Orchestration Brief',
-    description: 'Document a reliable Zapier scenario connecting Atlas drops to CRM follow-ups.',
-    content: `You are Zapier designing an automation that syncs new Atlas drops to the CRM.
-
-Components:
-- Trigger app/event
-- Filters & branching rules
-- Data enrichment steps
-- Error handling + alerting
-
-Produce a playbook with:
-1. Scenario diagram
-2. Step-by-step build instructions
-3. Testing script
-4. Maintenance schedule
-
-Return as markdown with numbered steps.`,
-    category: 'productivity',
-    tags: ['automation', 'crm', 'operations'],
-    aiTool: 'zapier',
-    difficulty: 'Intermediate',
-    useCase: 'Ops teams automating marketing-to-revenue handoffs.',
-    rating: 4.5,
-    usageCount: 1189,
-    createdAt: '2025-04-18T11:00:00.000Z',
-    updatedAt: '2025-08-18T09:30:00.000Z',
-    affiliateId: 'zapier',
-  },
-  {
-    id: 'learning-cohort-outline',
-    title: 'Learning Cohort Outline',
-    description: 'Draft a four-week cohort experience with reflection prompts and assessment checkpoints.',
-    content: `You are Claude building a learning cohort for the Intelligence Atlas Volume I.
-
-Inputs:
-- Cohort persona: [persona]
-- Desired transformation: [outcome]
-- Weekly time commitment: [hours]
-
-Deliver:
-1. Weekly themes + learning objectives
-2. Live session agenda & assets
-3. Async assignments & reflection prompts
-4. Assessment framework & success metrics
-
-Return as markdown tables.`,
-    category: 'educational-content',
-    tags: ['curriculum', 'cohort', 'education'],
-    aiTool: 'claude',
+[Loop]
+Gentle groove keeps flowing on
+Night is young until the dawn`,
+    category: 'music-creation',
+    tags: ['lofi', 'chill', 'study'],
+    aiTool: 'suno',
     difficulty: 'Beginner',
-    useCase: 'Educators launching guided cohorts leveraging Atlas research.',
-    rating: 4.7,
-    usageCount: 1422,
-    createdAt: '2025-02-25T12:00:00.000Z',
-    updatedAt: '2025-08-17T10:30:00.000Z',
-    affiliateId: 'claude',
+    useCase: 'Creating study music, relaxation tracks, or podcast backgrounds.',
+    createdAt: '2024-12-01T00:00:00.000Z',
+    updatedAt: '2024-12-01T00:00:00.000Z',
   },
   {
-    id: 'interactive-onboarding-scenario',
-    title: 'Interactive Onboarding Scenario',
-    description: 'Build a branching onboarding experience that teaches new members the FrankX operating system.',
-    content: `You are Claude designing an interactive onboarding walkthrough.
+    id: 'suno-custom-song',
+    title: 'Custom Song Template',
+    description: 'Flexible template for creating any style of song.',
+    content: `[GENRE: specify your genre]
+[STYLE TAGS: mood, energy level, instruments]
+[TEMPO: slow/medium/fast or specific BPM]
+[VOCAL STYLE: male/female/instrumental only]
 
-Inputs:
-- Audience: [role]
-- Key narrative pillars: [pillars]
-- Critical tools to learn: [tools]
+Structure your lyrics:
 
-Produce:
-1. Branching storyline map (steps, decisions, success criteria).
-2. Dialogue + prompts for each node.
-3. Embedded media suggestions (audio, visuals, demos).
-4. Success metrics and feedback loop.
+[Intro]
+Set the scene or mood
 
-Return as markdown with diagrams described in text.`,
-    category: 'interactive-experiences',
-    tags: ['onboarding', 'experience design', 'training'],
-    aiTool: 'claude',
+[Verse 1]
+Tell the story, introduce the theme
+4-8 lines of narrative
+
+[Pre-Chorus]
+Build tension toward the chorus
+
+[Chorus]
+The hook - catchy, memorable, emotional peak
+Repeat key message
+
+[Verse 2]
+Develop the story, add new perspective
+
+[Chorus]
+
+[Bridge]
+Contrast - different melody/rhythm
+Emotional turning point
+
+[Final Chorus]
+Payoff - possibly with variation
+
+[Outro]
+Resolve and close`,
+    category: 'music-creation',
+    tags: ['template', 'songwriting', 'custom'],
+    aiTool: 'suno',
     difficulty: 'Intermediate',
-    useCase: 'Community teams making onboarding memorable and measurable.',
-    rating: 4.6,
-    usageCount: 980,
-    createdAt: '2025-05-22T12:30:00.000Z',
-    updatedAt: '2025-08-27T13:15:00.000Z',
-    affiliateId: 'claude',
+    useCase: 'Creating original songs in any genre with proper structure.',
+    createdAt: '2024-12-01T00:00:00.000Z',
+    updatedAt: '2024-12-01T00:00:00.000Z',
   },
+
+  // ============================================================================
+  // IMAGE GENERATION PROMPTS
+  // ============================================================================
   {
-    id: 'investor-narrative-brief',
-    title: 'Investor Narrative Brief',
-    description: 'Craft an investor-ready story anchored in traction, market insight, and the intelligence roadmap.',
-    content: `You are ChatGPT acting as investor narrative strategist.
+    id: 'midjourney-professional-portrait',
+    title: 'Professional Portrait Style',
+    description: 'Create high-quality professional headshot-style images.',
+    content: `Professional headshot portrait of [SUBJECT DESCRIPTION],
+studio lighting, shallow depth of field,
+clean neutral background, sharp focus on eyes,
+corporate professional style, high-end photography,
+Canon EOS R5, 85mm lens, f/1.8,
+natural skin texture, confident expression
 
-Inputs:
-- Current traction metrics: [metrics]
-- Market thesis: [thesis]
-- Upcoming catalysts: [catalysts]
-
-Deliverable:
-1. One-sentence positioning.
-2. Three-slide narrative arc with bullet headlines.
-3. FAQ prep (5 questions + answers).
-4. Follow-up materials checklist.
-
-Keep it punchy, authoritative, and rooted in data.`,
-    category: 'communication',
-    tags: ['fundraising', 'storytelling', 'pitch'],
-    aiTool: 'chatgpt',
-    difficulty: 'Intermediate',
-    useCase: 'Founders preparing investor conversations with consistent messaging.',
-    rating: 4.8,
-    usageCount: 1650,
-    createdAt: '2025-03-08T09:15:00.000Z',
-    updatedAt: '2025-08-14T16:45:00.000Z',
-    affiliateId: 'chatgpt',
-  },
-  {
-    id: 'customer-voice-compass',
-    title: 'Customer Voice Compass',
-    description: 'Synthesize interviews into a voice-of-customer compass for copywriters and product teams.',
-    content: `You are Claude analyzing customer interviews for FrankX.
-
-Inputs:
-- Interview transcripts: [transcripts]
-- Segment focus: [segment]
-
-Return:
-1. Emotional drivers matrix.
-2. Blockers & objections list with quote snippets.
-3. Copy hooks (headline, subhead, CTA) per segment.
-4. Follow-up research recommendations.
-
-Use bullet lists with bold keywords.`,
-    category: 'communication',
-    tags: ['voc', 'copywriting', 'research'],
-    aiTool: 'claude',
+--ar 3:4 --stylize 200 --quality 2`,
+    category: 'image-generation',
+    tags: ['portrait', 'professional', 'headshot'],
+    aiTool: 'midjourney',
     difficulty: 'Beginner',
-    useCase: 'Copy and product teams aligning messaging with fresh customer insight.',
-    rating: 4.6,
-    usageCount: 1483,
-    createdAt: '2025-04-12T11:00:00.000Z',
-    updatedAt: '2025-08-06T10:20:00.000Z',
-    affiliateId: 'claude',
+    useCase: 'Creating professional avatars or business imagery.',
+    createdAt: '2024-12-01T00:00:00.000Z',
+    updatedAt: '2024-12-01T00:00:00.000Z',
   },
   {
-    id: 'stable-diffusion-lighting-lab',
-    title: 'Stable Diffusion Lighting Lab',
-    description: 'Experiment with cinematic lighting setups tailored to FrankX glassmorphic scenes.',
-    content: `You are Stable Diffusion with ControlNet enabled.
+    id: 'midjourney-product-mockup',
+    title: 'Product Photography Mockup',
+    description: 'Create elegant product photography for e-commerce.',
+    content: `[PRODUCT] product photography,
+minimalist composition, soft studio lighting,
+gradient background from [COLOR1] to [COLOR2],
+subtle shadows, floating product arrangement,
+commercial advertisement quality,
+8K resolution, hyper-detailed,
+luxury brand aesthetic, clean and modern
 
-Inputs:
-- Scene description: [scene]
-- Mood palette: [mood]
+--ar 1:1 --stylize 100 --quality 2`,
+    category: 'image-generation',
+    tags: ['product', 'commercial', 'mockup'],
+    aiTool: 'midjourney',
+    difficulty: 'Intermediate',
+    useCase: 'Creating product images for websites or marketing.',
+    createdAt: '2024-12-01T00:00:00.000Z',
+    updatedAt: '2024-12-01T00:00:00.000Z',
+  },
+  {
+    id: 'midjourney-abstract-art',
+    title: 'Abstract Digital Art',
+    description: 'Create stunning abstract artwork for backgrounds or prints.',
+    content: `Abstract digital art,
+flowing organic shapes, ethereal lighting,
+color palette: [PRIMARY COLOR] and [ACCENT COLOR],
+soft gradients, subtle texture,
+cosmic and dreamy atmosphere,
+ultra-wide composition,
+inspired by James Turrell and Olafur Eliasson,
+high resolution, suitable for large print
+
+--ar 16:9 --stylize 750 --chaos 30`,
+    category: 'image-generation',
+    tags: ['abstract', 'art', 'digital'],
+    aiTool: 'midjourney',
+    difficulty: 'Beginner',
+    useCase: 'Creating backgrounds, wallpapers, or artistic content.',
+    createdAt: '2024-12-01T00:00:00.000Z',
+    updatedAt: '2024-12-01T00:00:00.000Z',
+  },
+  {
+    id: 'dalle-illustration',
+    title: 'Stylized Illustration',
+    description: 'Create consistent illustration styles for content.',
+    content: `A [SCENE DESCRIPTION] in a modern flat illustration style,
+using a limited color palette of [2-4 COLORS],
+clean lines, geometric shapes,
+subtle textures and gradients,
+suitable for website or app graphics,
+white or transparent background,
+vector art aesthetic, professional quality`,
+    category: 'image-generation',
+    tags: ['illustration', 'graphic-design', 'flat'],
+    aiTool: 'dalle',
+    difficulty: 'Beginner',
+    useCase: 'Creating consistent illustrations for websites or presentations.',
+    createdAt: '2024-12-01T00:00:00.000Z',
+    updatedAt: '2024-12-01T00:00:00.000Z',
+  },
+
+  // ============================================================================
+  // CODING PROMPTS
+  // ============================================================================
+  {
+    id: 'code-review-assistant',
+    title: 'Code Review Assistant',
+    description: 'Get thorough code reviews with actionable feedback.',
+    content: `Review the following code for:
+
+1. **Bugs & Edge Cases** - Logic errors, null checks, boundary conditions
+2. **Performance** - Inefficiencies, unnecessary operations
+3. **Security** - Vulnerabilities, input validation, data exposure
+4. **Readability** - Naming, structure, documentation
+5. **Best Practices** - Language idioms, design patterns
+
+Code:
+\`\`\`[LANGUAGE]
+[PASTE CODE HERE]
+\`\`\`
+
+For each issue found:
+- Explain the problem
+- Show the problematic code
+- Provide the fixed version
+- Rate severity (Critical/Medium/Low)`,
+    category: 'coding',
+    tags: ['review', 'debugging', 'quality'],
+    aiTool: 'claude',
+    difficulty: 'Intermediate',
+    useCase: 'Developers wanting thorough code reviews before commits.',
+    createdAt: '2024-12-01T00:00:00.000Z',
+    updatedAt: '2024-12-01T00:00:00.000Z',
+  },
+  {
+    id: 'explain-code',
+    title: 'Code Explainer',
+    description: 'Get clear explanations of complex code.',
+    content: `Explain this code in detail:
+
+\`\`\`[LANGUAGE]
+[PASTE CODE HERE]
+\`\`\`
+
+Please explain:
+1. **Overview** - What does this code accomplish?
+2. **Line by Line** - Walk through the logic step by step
+3. **Key Concepts** - What programming concepts are used?
+4. **Flow** - How does data flow through this code?
+5. **Potential Issues** - Any limitations or edge cases?
+
+Adjust explanation depth for: [beginner/intermediate/advanced] developer`,
+    category: 'coding',
+    tags: ['learning', 'explanation', 'understanding'],
+    aiTool: 'general',
+    difficulty: 'Beginner',
+    useCase: 'Developers learning new codebases or concepts.',
+    createdAt: '2024-12-01T00:00:00.000Z',
+    updatedAt: '2024-12-01T00:00:00.000Z',
+  },
+  {
+    id: 'typescript-component',
+    title: 'React TypeScript Component',
+    description: 'Generate well-typed React components with best practices.',
+    content: `Create a React TypeScript component for:
+[DESCRIBE COMPONENT FUNCTIONALITY]
+
+Requirements:
+- Functional component with hooks
+- Full TypeScript types (no 'any')
+- Props interface with JSDoc comments
+- Sensible default props where appropriate
+- Accessible (ARIA labels, keyboard navigation)
+- Mobile-responsive if relevant
+- Include example usage in comments
+
+Tech stack: [React 18+, Next.js 14+, Tailwind CSS]
+
+Optional features needed:
+- [ ] Loading state
+- [ ] Error handling
+- [ ] Animation (Framer Motion)
+- [ ] Form validation`,
+    category: 'coding',
+    tags: ['react', 'typescript', 'components'],
+    aiTool: 'claude',
+    difficulty: 'Intermediate',
+    useCase: 'Developers building React applications with TypeScript.',
+    createdAt: '2024-12-01T00:00:00.000Z',
+    updatedAt: '2024-12-01T00:00:00.000Z',
+  },
+
+  // ============================================================================
+  // BUSINESS PROMPTS
+  // ============================================================================
+  {
+    id: 'email-professional',
+    title: 'Professional Email Writer',
+    description: 'Craft clear, professional emails for any situation.',
+    content: `Write a professional email for this situation:
+
+Context: [DESCRIBE THE SITUATION]
+Recipient: [WHO ARE THEY AND YOUR RELATIONSHIP]
+Goal: [WHAT DO YOU WANT TO ACHIEVE]
+Tone: [formal/friendly-professional/casual-professional]
+
+Requirements:
+- Clear subject line
+- Appropriate greeting
+- Concise body (get to the point quickly)
+- Specific ask or next step
+- Professional sign-off
+
+Avoid: jargon, passive-aggressive tone, ambiguity`,
+    category: 'business',
+    tags: ['email', 'communication', 'professional'],
+    aiTool: 'general',
+    difficulty: 'Beginner',
+    useCase: 'Professionals needing to communicate clearly and effectively.',
+    createdAt: '2024-12-01T00:00:00.000Z',
+    updatedAt: '2024-12-01T00:00:00.000Z',
+  },
+  {
+    id: 'market-research',
+    title: 'Market Research Framework',
+    description: 'Analyze markets and competitive landscapes systematically.',
+    content: `Conduct market research analysis for:
+
+Product/Service: [DESCRIBE YOUR OFFERING]
+Target Market: [DESCRIBE IDEAL CUSTOMER]
+
+Analyze:
+
+1. **Market Size & Trends**
+   - Current market size
+   - Growth projections
+   - Key trends shaping the market
+
+2. **Customer Analysis**
+   - Primary pain points
+   - Current solutions they use
+   - Buying behavior and decision factors
+
+3. **Competitive Landscape**
+   - Direct competitors (3-5)
+   - Indirect alternatives
+   - Competitive advantages to leverage
+
+4. **Opportunities & Threats**
+   - Gaps in the market
+   - Barriers to entry
+   - Risks to consider
+
+5. **Recommendations**
+   - Go-to-market suggestions
+   - Positioning recommendations
+   - Quick wins to pursue`,
+    category: 'business',
+    tags: ['research', 'strategy', 'market'],
+    aiTool: 'claude',
+    difficulty: 'Intermediate',
+    useCase: 'Entrepreneurs and marketers validating ideas or entering markets.',
+    createdAt: '2024-12-01T00:00:00.000Z',
+    updatedAt: '2024-12-01T00:00:00.000Z',
+  },
+  {
+    id: 'social-media-strategy',
+    title: 'Social Media Content Strategy',
+    description: 'Create a content strategy for your social presence.',
+    content: `Create a social media content strategy for:
+
+Brand/Business: [DESCRIBE]
+Platform: [LinkedIn/Twitter/Instagram/TikTok]
+Goal: [awareness/engagement/leads/sales]
+Target audience: [WHO ARE THEY]
 
 Provide:
-1. Prompt formula (with lighting keywords, camera, lens info).
-2. Three lighting variations (scopes + negative prompts).
-3. Post-processing checklist (color grading, grain, glow).
 
-Return results with numbered lists and code blocks.`,
-    category: 'visual-design',
-    tags: ['stable diffusion', 'lighting', 'visuals'],
-    aiTool: 'stable-diffusion',
-    difficulty: 'Advanced',
-    useCase: 'Designers refining stills for decks, landing pages, and motion references.',
-    rating: 4.5,
-    usageCount: 1120,
-    createdAt: '2025-07-21T14:00:00.000Z',
-    updatedAt: '2025-08-29T10:30:00.000Z',
-    affiliateId: 'stable-diffusion',
-  },
-  {
-    id: 'agent-support-runbook',
-    title: 'Agent Support Runbook',
-    description: 'Document the human-in-the-loop protocol for monitoring and intervening in agent workflows.',
-    content: `You are Claude, documenting the agent support runbook.
+1. **Content Pillars** (3-5 themes to rotate)
+   - Theme name
+   - Why it resonates with audience
+   - Example post ideas
 
-Inputs:
-- Agent network overview: [agents]
-- Critical workflows: [workflows]
+2. **Content Mix**
+   - % educational vs entertaining vs promotional
+   - Format recommendations (text/image/video/carousel)
 
-Deliver:
-1. Alert taxonomy (severity, triggers, response window).
-2. Intervention playbook (step-by-step).
-3. Escalation path (roles, contact cadence).
-4. Post-mortem template.
+3. **Posting Strategy**
+   - Optimal posting frequency
+   - Best times for this audience
+   - Engagement tactics
 
-Return as bullet lists and tables.`,
-    category: 'ai-optimization',
-    tags: ['support', 'operations', 'reliability'],
-    aiTool: 'claude',
+4. **Voice & Style**
+   - Tone guidelines
+   - Do's and don'ts
+   - Example phrases to use
+
+5. **30-Day Content Calendar**
+   - Week-by-week themes
+   - Specific post ideas for each day`,
+    category: 'business',
+    tags: ['social-media', 'marketing', 'content'],
+    aiTool: 'chatgpt',
     difficulty: 'Intermediate',
-    useCase: 'Ops teams providing human oversight for automated pipelines.',
-    rating: 4.7,
-    usageCount: 1325,
-    createdAt: '2025-06-26T10:20:00.000Z',
-    updatedAt: '2025-08-16T09:50:00.000Z',
-    affiliateId: 'claude',
+    useCase: 'Marketers and creators building consistent social presence.',
+    createdAt: '2024-12-01T00:00:00.000Z',
+    updatedAt: '2024-12-01T00:00:00.000Z',
+  },
+
+  // ============================================================================
+  // LEARNING PROMPTS
+  // ============================================================================
+  {
+    id: 'explain-concept',
+    title: 'Concept Explainer (Feynman Technique)',
+    description: 'Understand any concept using the Feynman learning method.',
+    content: `Explain [CONCEPT] using the Feynman Technique:
+
+1. **Simple Explanation**
+   Explain this as if to a 12-year-old. No jargon.
+
+2. **Analogy**
+   Compare it to something from everyday life.
+
+3. **Core Components**
+   Break it down into 3-5 fundamental parts.
+
+4. **Common Misconceptions**
+   What do people often get wrong about this?
+
+5. **Practical Application**
+   Give a real-world example of this in action.
+
+6. **Test Your Understanding**
+   Provide 3 questions to verify comprehension.
+
+My current level: [beginner/intermediate/advanced]`,
+    category: 'learning',
+    tags: ['education', 'understanding', 'feynman'],
+    aiTool: 'general',
+    difficulty: 'Beginner',
+    useCase: 'Anyone learning new concepts and wanting deep understanding.',
+    createdAt: '2024-12-01T00:00:00.000Z',
+    updatedAt: '2024-12-01T00:00:00.000Z',
   },
   {
-    id: 'make-router-blueprint',
-    title: 'Make Router Blueprint',
-    description: 'Design a Make (Integromat) router scenario that directs leads to the right nurture pod.',
-    content: `You are Make.com architecting a router scenario.
+    id: 'learning-path',
+    title: 'Learning Path Generator',
+    description: 'Create a structured plan to learn any skill.',
+    content: `Create a learning path to master [SKILL/TOPIC]:
 
-Inputs:
-- Lead sources: [sources]
-- Segmentation logic: [logic]
-- Downstream tools: [tools]
+My current level: [complete beginner/some knowledge/intermediate]
+Time available: [X hours per week]
+Timeline goal: [achieve basic proficiency in X months]
+Learning style: [reading/video/hands-on projects/mix]
 
-Deliver:
-1. Router branches with conditions.
-2. Module configuration notes.
-3. Error handling path.
-4. Monitoring dashboard outline.
+Provide:
 
-Return as markdown with numbered steps and tables.`,
-    category: 'productivity',
-    tags: ['make.com', 'automation', 'routing'],
-    aiTool: 'make',
-    difficulty: 'Advanced',
-    useCase: 'Automation engineers orchestrating complex nurture paths without code.',
-    rating: 4.6,
-    usageCount: 940,
-    createdAt: '2025-05-30T12:45:00.000Z',
-    updatedAt: '2025-08-19T11:30:00.000Z',
-    affiliateId: 'make',
-  },
-  {
-    id: 'daily-ops-standup',
-    title: 'Daily Intelligence Ops Standup Prompt',
-    description: 'Keep the FrankX daily intelligence ritual on track with clear signal scans and decisions.',
-    content: `You are Claude facilitating the FrankX Daily Intelligence Operations ritual.
+1. **Prerequisites**
+   - What should I know before starting?
 
-Participants provide:
-- Yesterday's shipped assets
-- Top signal or anomaly spotted
-- Blockers or support requests
+2. **Phase 1: Foundations** (weeks 1-4)
+   - Core concepts to master
+   - Recommended resources (free and paid)
+   - Practice exercises
 
-Facilitation steps:
-1. Summarize macro signal (2 sentences).
-2. Highlight wins & telemetry (bullet list).
-3. Assign priority actions (owner, due date, metric).
-4. Capture learnings in the ritual log.
+3. **Phase 2: Building Skills** (weeks 5-8)
+   - Intermediate topics
+   - Hands-on projects to complete
+   - Common mistakes to avoid
 
-Return as a meeting script with timestamps.`,
-    category: 'task-specific',
-    tags: ['operations', 'ritual', 'standup'],
+4. **Phase 3: Advanced Application** (weeks 9-12)
+   - Advanced concepts
+   - Real-world projects
+   - How to continue growing
+
+5. **Success Metrics**
+   - How will I know I've achieved proficiency?
+   - Portfolio pieces to create
+   - Communities to join`,
+    category: 'learning',
+    tags: ['skill-development', 'planning', 'education'],
     aiTool: 'claude',
     difficulty: 'Beginner',
-    useCase: 'Daily facilitator keeping the intelligence hub aligned and accountable.',
-    rating: 4.8,
-    usageCount: 2219,
-    createdAt: '2025-01-05T08:30:00.000Z',
-    updatedAt: '2025-08-22T08:30:00.000Z',
-    affiliateId: 'claude',
+    useCase: 'Self-learners wanting structured guidance on new skills.',
+    createdAt: '2024-12-01T00:00:00.000Z',
+    updatedAt: '2024-12-01T00:00:00.000Z',
+  },
+
+  // ============================================================================
+  // PRODUCTIVITY PROMPTS
+  // ============================================================================
+  {
+    id: 'weekly-planning',
+    title: 'Weekly Planning Session',
+    description: 'Structure your week for maximum productivity.',
+    content: `Help me plan my week. Here's my context:
+
+**This week's priorities:**
+[LIST YOUR TOP 3 PRIORITIES]
+
+**Ongoing commitments:**
+[MEETINGS, RECURRING TASKS, ETC.]
+
+**Projects in progress:**
+[WHAT ARE YOU WORKING ON]
+
+**Available hours:** [X hours for deep work]
+
+Please help me:
+1. Prioritize tasks using the Eisenhower Matrix
+2. Suggest time blocks for deep work
+3. Identify tasks that could be delegated or eliminated
+4. Create a day-by-day action plan
+5. Add buffer time for unexpected issues
+6. Include breaks and renewal activities
+
+Output a clean weekly schedule I can follow.`,
+    category: 'productivity',
+    tags: ['planning', 'organization', 'time-management'],
+    aiTool: 'general',
+    difficulty: 'Beginner',
+    useCase: 'Professionals wanting to plan effective weeks.',
+    createdAt: '2024-12-01T00:00:00.000Z',
+    updatedAt: '2024-12-01T00:00:00.000Z',
+  },
+  {
+    id: 'meeting-notes',
+    title: 'Meeting Notes Processor',
+    description: 'Transform raw meeting notes into actionable summaries.',
+    content: `Process these meeting notes into an actionable summary:
+
+Raw Notes:
+"""
+[PASTE YOUR MESSY MEETING NOTES]
+"""
+
+Extract and organize:
+
+1. **Meeting Summary** (2-3 sentences)
+   - What was discussed? What was decided?
+
+2. **Key Decisions Made**
+   - List each decision clearly
+
+3. **Action Items**
+   | Task | Owner | Deadline |
+   |------|-------|----------|
+
+4. **Open Questions**
+   - Unresolved items needing follow-up
+
+5. **Next Steps**
+   - What happens next? Any follow-up meetings?
+
+Format for easy sharing with attendees.`,
+    category: 'productivity',
+    tags: ['meetings', 'notes', 'organization'],
+    aiTool: 'general',
+    difficulty: 'Beginner',
+    useCase: 'Anyone needing to turn messy notes into clear action items.',
+    createdAt: '2024-12-01T00:00:00.000Z',
+    updatedAt: '2024-12-01T00:00:00.000Z',
+  },
+
+  // ============================================================================
+  // CREATIVE PROMPTS
+  // ============================================================================
+  {
+    id: 'brainstorm-ideas',
+    title: 'Idea Brainstorming Session',
+    description: 'Generate creative ideas using multiple thinking frameworks.',
+    content: `Help me brainstorm ideas for: [YOUR CHALLENGE OR GOAL]
+
+Use these frameworks to generate ideas:
+
+1. **First Principles** (3 ideas)
+   Break down the problem to fundamentals, rebuild from there.
+
+2. **Analogy Method** (3 ideas)
+   How do other industries/domains solve similar problems?
+
+3. **Inversion** (3 ideas)
+   What's the opposite approach? What if we did it backwards?
+
+4. **Constraint Removal** (3 ideas)
+   If money/time/resources were unlimited, what would we do?
+
+5. **Combination** (3 ideas)
+   What if we combined two unrelated concepts?
+
+For each idea:
+- One sentence description
+- Key benefit
+- Biggest challenge to implement
+
+Then recommend: Which 2-3 ideas have the highest potential and why?`,
+    category: 'creative',
+    tags: ['brainstorming', 'ideation', 'creativity'],
+    aiTool: 'claude',
+    difficulty: 'Beginner',
+    useCase: 'Anyone needing fresh ideas or solutions to problems.',
+    createdAt: '2024-12-01T00:00:00.000Z',
+    updatedAt: '2024-12-01T00:00:00.000Z',
+  },
+  {
+    id: 'content-repurposing',
+    title: 'Content Repurposing Engine',
+    description: 'Transform one piece of content into multiple formats.',
+    content: `Take this content and repurpose it into multiple formats:
+
+Original Content:
+"""
+[PASTE YOUR CONTENT - BLOG POST, VIDEO SCRIPT, ETC.]
+"""
+
+Transform into:
+
+1. **Twitter/X Thread** (5-7 tweets)
+   - Hook tweet
+   - Key insights as individual tweets
+   - Call to action
+
+2. **LinkedIn Post** (150-300 words)
+   - Professional angle
+   - Storytelling format
+
+3. **Newsletter Intro** (100 words)
+   - Tease the main insight
+   - Lead to full content
+
+4. **Instagram Caption** (under 2200 characters)
+   - Engaging opening line
+   - Emoji use
+   - Hashtag suggestions
+
+5. **YouTube Description/Hook** (50 words)
+   - First sentence that makes people watch
+
+Keep the core message consistent across all formats.`,
+    category: 'creative',
+    tags: ['repurposing', 'content', 'multi-platform'],
+    aiTool: 'chatgpt',
+    difficulty: 'Intermediate',
+    useCase: 'Content creators maximizing reach from single pieces of content.',
+    createdAt: '2024-12-01T00:00:00.000Z',
+    updatedAt: '2024-12-01T00:00:00.000Z',
   },
 ]
+
+// ============================================================================
+// UTILITY FUNCTIONS
+// ============================================================================
 
 export function getPromptsByCategory(category: PromptCategory): Prompt[] {
   return PROMPTS.filter((prompt) => prompt.category === category)
@@ -693,19 +897,21 @@ export function searchPrompts(query: string): Prompt[] {
 }
 
 export function getFeaturedPrompts(): Prompt[] {
-  return PROMPTS
-    .filter((prompt) => prompt.rating >= 4.7 && prompt.usageCount >= 1500)
-    .sort((a, b) => b.rating - a.rating)
-    .slice(0, 12)
+  // Return a curated selection of prompts across categories
+  const featuredIds = [
+    'suno-ambient-electronic',
+    'blog-post-structure',
+    'midjourney-professional-portrait',
+    'code-review-assistant',
+    'brainstorm-ideas',
+    'explain-concept',
+  ]
+  return PROMPTS.filter((prompt) => featuredIds.includes(prompt.id))
 }
 
 export function getPromptStats() {
   const totalPrompts = PROMPTS.length
   const totalCategories = new Set(PROMPTS.map((prompt) => prompt.category)).size
-  const totalUsage = PROMPTS.reduce((sum, prompt) => sum + prompt.usageCount, 0)
-  const averageRating =
-    Math.round((PROMPTS.reduce((sum, prompt) => sum + prompt.rating, 0) / totalPrompts) * 10) /
-    10
   const toolsUsed = Array.from(new Set(PROMPTS.map((prompt) => prompt.aiTool)))
   const difficultyDistribution: Record<PromptDifficulty, number> = {
     Beginner: PROMPTS.filter((prompt) => prompt.difficulty === 'Beginner').length,
@@ -716,12 +922,9 @@ export function getPromptStats() {
   return {
     totalPrompts,
     totalCategories,
-    totalUsage,
-    averageRating,
     toolsUsed,
     difficultyDistribution,
   }
 }
 
 export type PromptLibraryStats = ReturnType<typeof getPromptStats>
-

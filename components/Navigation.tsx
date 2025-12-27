@@ -18,17 +18,16 @@ type NavItem = {
 const navItems: NavItem[] = [
   { name: 'Home', href: '/' },
   {
-    name: 'For Creators',
-    href: '/products/vibe-os',
+    name: 'Create',
+    href: '/music-lab',
     subItems: [
-      { name: 'Vibe OS (AI Music)', href: '/products/vibe-os' },
-      { name: 'Prompt Library', href: '/prompt-library' },
       { name: 'Music Lab', href: '/music-lab' },
-      { name: 'Templates', href: '/templates' },
+      { name: 'Prompt Library', href: '/prompt-library' },
+      { name: 'Vibe OS', href: '/products/vibe-os' },
     ],
   },
   {
-    name: 'For Students',
+    name: 'Learn',
     href: '/students',
     subItems: [
       { name: 'Student Hub', href: '/students' },
@@ -40,9 +39,8 @@ const navItems: NavItem[] = [
     name: 'Resources',
     href: '/resources',
     subItems: [
-      { name: 'Prompt Library', href: '/prompt-library' },
+      { name: 'All Resources', href: '/resources' },
       { name: 'Templates', href: '/templates' },
-      { name: 'Guides', href: '/guides' },
       { name: 'Creation Chronicles', href: '/creation-chronicles' },
       { name: 'Roadmap', href: '/roadmap' },
     ],
