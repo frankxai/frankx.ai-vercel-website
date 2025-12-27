@@ -75,10 +75,10 @@ const journeyPaths = [
     icon: Music,
     title: 'Create AI Music',
     subtitle: 'The Music Lab',
-    description: 'Explore how I create 500+ songs with Suno AI. Prompts, workflows, and the creative process.',
+    description: 'Learn how I create music with Suno AI. Prompts, workflows, and the creative process.',
     href: '/music-lab',
     color: 'emerald',
-    stats: '500+ songs',
+    stats: '10K+ songs',
   },
   {
     id: 'learn',
@@ -98,7 +98,7 @@ const journeyPaths = [
     description: 'Battle-tested prompts I actually use daily. Copy them, adapt them, make them yours.',
     href: '/prompt-library',
     color: 'violet',
-    stats: '50+ prompts',
+    stats: '22 prompts',
   },
   {
     id: 'build',
@@ -173,8 +173,8 @@ export default function StartPage() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="max-w-2xl text-lg leading-relaxed text-slate-400 sm:text-xl"
             >
-              Oracle AI Architect by day. Creator of 500+ AI songs by starlight.
-              Everything I learn and build—shared openly. No gatekeeping.
+              Oracle AI Architect by day. Music creator by night.
+              Everything I learn and build—shared openly.
             </motion.p>
           </div>
         </section>

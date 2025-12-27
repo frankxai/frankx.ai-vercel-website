@@ -4,7 +4,9 @@ import { useState, useEffect, Fragment } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Menu, Transition } from '@headlessui/react'
-import { ChevronDown, Menu as MenuIcon, X, Sparkles } from 'lucide-react'
+import { ChevronDown, Menu as MenuIcon, X } from 'lucide-react'
+
+import { LogoMarkMinimal } from '@/components/ui/LogoMark'
 
 import { cn } from '@/lib/utils'
 
@@ -75,8 +77,8 @@ export default function Navigation() {
             className="flex items-center space-x-3 rounded-xl p-2 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 hover:bg-white/5"
             aria-label="FrankX.AI - Home"
           >
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-emerald-400 via-cyan-500 to-violet-600 flex items-center justify-center shadow-[0_0_20px_rgba(16,185,129,0.3)] border border-white/20">
-              <Sparkles className="w-4 h-4 text-white" />
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-emerald-500/20 via-cyan-500/20 to-violet-500/20 flex items-center justify-center shadow-[0_0_20px_rgba(16,185,129,0.2)] border border-white/10">
+              <LogoMarkMinimal size={20} />
             </div>
             <span className="font-display text-xl font-bold tracking-tight bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent">FrankX.AI</span>
           </Link>

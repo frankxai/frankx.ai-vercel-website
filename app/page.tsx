@@ -4,17 +4,17 @@ import HomePageElite from '@/components/home/HomePageElite'
 import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
-  title: 'FrankX | Oracle AI Architect & Creator',
+  title: 'FrankX.AI | AI Systems & Music',
   description:
-    'Senior AI Architect at Oracle\'s Center of Excellence. Creator of 500+ AI songs. Enterprise AI systems, creative workflows, and everything I learn—shared openly.',
+    'Enterprise AI by day, music by night. Oracle AI architect and Suno creator sharing systems, resources, and creative AI tools.',
   keywords: [
     'ai music creation',
-    'suno workflow',
+    'suno ai',
     'ai learning resources',
-    'oracle ai certification',
-    'google ai course',
-    'build with ai',
-    'personal ai system',
+    'oracle ai',
+    'enterprise ai',
+    'prompt library',
+    'creative ai tools',
   ],
   path: '/',
 })

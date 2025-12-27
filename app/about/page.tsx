@@ -81,9 +81,9 @@ const journey = [
   },
   {
     icon: Music,
-    title: '500+ AI Songs',
+    title: 'Prolific Creator',
     description:
-      'Created hundreds of tracks with Suno AI. Not just experimenting — actually shipping music that people listen to.',
+      'Thousands of songs created with Suno AI. Not just experimenting — exploring what\'s possible with AI music.',
     color: 'cyan',
   },
   {
@@ -181,8 +181,8 @@ export default function AboutPage() {
                     enterprise AI systems for some of the world's largest organizations.
                   </p>
                   <p>
-                    By starlight, I create music. 500+ songs and counting, all made with Suno AI.
-                    Not as a hobby — as a creative practice that informs everything I build.
+                    After hours, I create music with Suno AI—thousands of songs across genres.
+                    Not as a hobby, but as a creative practice that informs everything I build.
                   </p>
                   <p>
                     This hub is where both worlds meet. Everything I learn from enterprise

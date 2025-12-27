@@ -160,49 +160,45 @@ function Hero() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           >
-            {/* Status indicator */}
+            {/* Status indicator - subtle, not in-your-face */}
             <motion.div
-              className="inline-flex items-center gap-3 mb-8"
+              className="inline-flex items-center gap-2 mb-8"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
             >
-              <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20">
-                <span className="relative flex h-2 w-2">
+              <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10">
+                <span className="relative flex h-1.5 w-1.5">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
-                  <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
+                  <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500" />
                 </span>
-                <span className="text-sm font-medium text-emerald-400">Oracle AI Architect</span>
-              </div>
-              <span className="text-white/30">×</span>
-              <div className="px-3 py-1.5 rounded-full bg-white/5 border border-white/10">
-                <span className="text-sm text-white/60">500+ AI Songs</span>
+                <span className="text-xs uppercase tracking-wider text-white/50">Building in public</span>
               </div>
             </motion.div>
 
-            {/* Main headline - editorial style */}
+            {/* Main headline - editorial style, poetic */}
             <h1 className="text-[clamp(2.5rem,7vw,5.5rem)] font-semibold leading-[0.95] tracking-[-0.02em] mb-8">
-              <span className="block text-white">I architect AI</span>
-              <span className="block text-white">systems by day.</span>
+              <span className="block text-white">Enterprise AI</span>
+              <span className="block text-white">by day.</span>
               <motion.span
                 className="block font-serif italic text-white/80"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.3 }}
               >
-                Create by starlight.
+                Music by night.
               </motion.span>
             </h1>
 
-            {/* Subtext */}
+            {/* Subtext - cleaner, less self-promotional */}
             <motion.p
               className="text-xl text-white/50 max-w-lg mb-10 leading-relaxed"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4 }}
             >
-              Senior AI architect at Oracle's Center of Excellence. Building systems
-              that matter, creating music that moves, sharing everything I learn.
+              I build AI systems at Oracle and create music with Suno.
+              This is where I share what I'm learning—tools, resources, and the work itself.
             </motion.p>
 
             {/* CTAs */}
@@ -320,22 +316,14 @@ function FeaturedMusicCard() {
         {/* Track info */}
         <div className="space-y-4">
           <div>
-            <p className="text-xs uppercase tracking-[0.2em] text-emerald-400/80 mb-1">Featured Track</p>
-            <h3 className="text-xl font-semibold text-white">The Awakening</h3>
-            <p className="text-sm text-white/50">Ambient · 3:42</p>
+            <p className="text-xs uppercase tracking-[0.2em] text-emerald-400/80 mb-1">Music Lab</p>
+            <h3 className="text-xl font-semibold text-white">AI-Generated Music</h3>
+            <p className="text-sm text-white/50">Ambient · Electronic · Cinematic</p>
           </div>
 
-          {/* Stats row */}
-          <div className="flex items-center gap-4 text-sm">
-            <div className="flex items-center gap-1.5 text-white/40">
-              <Headphones className="w-4 h-4" />
-              <span>2.1K plays</span>
-            </div>
-            <div className="flex items-center gap-1.5 text-white/40">
-              <Users className="w-4 h-4" />
-              <span>348 likes</span>
-            </div>
-          </div>
+          <p className="text-sm text-white/40 leading-relaxed">
+            Creating music with Suno AI. From healing frequencies to cinematic scores.
+          </p>
 
           {/* CTA */}
           <a
@@ -363,9 +351,9 @@ function FeaturedMusicCard() {
 // ============================================================================
 
 const stats = [
-  { value: '500+', label: 'AI Songs', detail: 'Created with Suno AI' },
-  { value: '11K+', label: 'Plays', detail: 'Across platforms' },
-  { value: '7K+', label: 'Followers', detail: 'On LinkedIn' },
+  { value: '10K+', label: 'Songs Created', detail: 'With Suno AI' },
+  { value: '5+', label: 'Years in AI', detail: 'Enterprise systems' },
+  { value: 'Open', label: 'Source', detail: 'Everything shared' },
 ]
 
 function StatsSection() {
@@ -414,7 +402,7 @@ const capabilities = [
   {
     icon: Music2,
     title: 'AI Music Creation',
-    description: '500+ songs created with Suno. Ambient, electronic, cinematic. Building the future of AI music.',
+    description: 'Thousands of songs created with Suno. Ambient, electronic, cinematic. Exploring what\'s possible.',
     href: '/music-lab',
     accent: 'cyan',
   },
@@ -426,7 +414,7 @@ const capabilities = [
     accent: 'amber',
   },
   {
-    icon: Sparkles,
+    icon: Zap,
     title: 'Products & Tools',
     description: 'Vibe OS, prompt collections, and creative AI toolkits. Built for creators who want to level up.',
     href: '/products',
@@ -591,19 +579,18 @@ function AboutSection() {
               About
             </p>
             <h2 className="text-4xl md:text-5xl font-semibold text-white mb-6 tracking-tight leading-tight">
-              Oracle Architect by Day.{' '}
-              <span className="font-serif italic text-white/80">Creator by Starlight.</span>
+              Building AI systems.{' '}
+              <span className="font-serif italic text-white/80">Making music.</span>
             </h2>
             <div className="space-y-4 text-lg text-white/60 leading-relaxed">
               <p>
-                I'm a Senior AI Architect at Oracle's AI Center of Excellence, where I design
-                enterprise AI systems that actually ship. Multi-agent orchestration, RAG pipelines,
-                production deployments—the works.
+                Senior AI Architect at Oracle's AI Center of Excellence. I design
+                enterprise AI systems—multi-agent orchestration, RAG pipelines,
+                production deployments.
               </p>
               <p className="text-white/70">
-                After hours, I create music with Suno AI—500+ songs and counting. I document
-                everything I learn and share it here. No gatekeeping, no courses to sell.
-                Just real systems, real results.
+                When I'm not at work, I create music with Suno AI. Thousands of songs,
+                exploring genres from ambient to cinematic. Everything I learn, I share here.
               </p>
             </div>
             <div className="flex flex-wrap gap-4 mt-8">
@@ -635,7 +622,7 @@ function AboutSection() {
           >
             {[
               { icon: Award, title: 'Oracle AI Center of Excellence', desc: 'Senior AI Architect designing enterprise systems' },
-              { icon: Music2, title: '500+ AI Songs Created', desc: 'Building the future of AI-generated music with Suno' },
+              { icon: Music2, title: 'Prolific Music Creator', desc: 'Thousands of AI-generated songs across genres' },
               { icon: Zap, title: 'Open Source Everything', desc: 'All systems, prompts, and resources shared publicly' },
             ].map((item, i) => (
               <motion.div
