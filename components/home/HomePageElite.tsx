@@ -165,30 +165,33 @@ function Hero() {
               </span>
             </motion.div>
 
-            {/* Main headline - editorial typography with character */}
+            {/* Main headline - authority + vision */}
             <h1 className="mb-8">
               <span className="block text-[clamp(3rem,8vw,6rem)] font-bold leading-[0.9] tracking-[-0.03em] text-white">
-                Systems that work.
+                Design intelligent systems.
               </span>
               <motion.span
-                className="block text-[clamp(2.5rem,6vw,4.5rem)] font-serif italic text-white/70 mt-2"
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
+                className="block text-[clamp(1.5rem,4vw,2.5rem)] text-white/60 mt-4 leading-relaxed max-w-2xl"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
               >
-                Music that moves.
+                Create music, art, and momentum in the{' '}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-400 to-violet-400">
+                  Golden Age of Intelligence.
+                </span>
               </motion.span>
             </h1>
 
-            {/* Subtext - more personality, less corporate */}
+            {/* Subtext - invitation to explore */}
             <motion.p
-              className="text-xl md:text-2xl text-white/50 max-w-xl mb-12 leading-relaxed font-light"
+              className="text-lg md:text-xl text-white/40 max-w-lg mb-12 leading-relaxed"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4 }}
             >
-              Senior AI Architect at Oracle. Creator of thousands of songs with Suno AI.
-              Everything I learn goes here—open, documented, ready to use.
+              AI Architect at Oracle. Creator of 10K+ songs with Suno.
+              Everything I build goes here—open, documented, yours to use.
             </motion.p>
 
             {/* CTAs */}
@@ -352,7 +355,7 @@ function StatsSection() {
           className="max-w-4xl mx-auto text-center mb-20"
         >
           <blockquote className="text-2xl md:text-3xl lg:text-4xl font-serif italic text-white/70 leading-relaxed">
-            "Technology should amplify your voice, not replace it."
+            "The future isn't something that happens to you—it's something you design."
           </blockquote>
         </motion.div>
 
@@ -596,26 +599,26 @@ function AboutSection() {
           className="max-w-3xl"
         >
           <p className="text-sm font-medium uppercase tracking-[0.25em] text-emerald-400/70 mb-6">
-            The Story
+            The Vision
           </p>
 
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8 tracking-tight leading-tight">
-            By day, I architect AI systems at Oracle.
+            We're entering the Golden Age of Intelligence.
             <span className="block mt-2 font-serif italic text-white/70">
-              By night, I make music with AI.
+              Anyone can create. Anyone can build.
             </span>
           </h2>
 
           <div className="space-y-6 text-lg text-white/60 leading-relaxed mb-10">
             <p>
-              There's a gap between how AI is discussed and how it actually works.
-              The enterprise world treats it like enterprise software. The creator world
-              treats it like magic. Both miss the point.
+              AI Architect at Oracle by day. Music creator by night. I've seen what's possible
+              when intelligent systems serve human goals—not replace them. 10,000+ songs.
+              Enterprise systems that scale. Everything documented, everything open.
             </p>
             <p className="text-white/70">
-              This hub is where those worlds meet. Systems that are rigorous enough
-              to scale and creative enough to matter. Everything I build gets documented.
-              Everything I learn gets shared.
+              This hub exists because the future isn't something that happens to you.
+              It's something you design. The tools are here. The knowledge is free.
+              What you build with it is up to you.
             </p>
           </div>
 

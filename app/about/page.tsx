@@ -164,9 +164,9 @@ export default function AboutPage() {
                   transition={{ duration: 0.6, delay: 0.1 }}
                   className="mb-6 font-display text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl"
                 >
-                  Building AI that
+                  Design intelligent systems.
                   <span className="mt-2 block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-400 to-violet-400">
-                    actually works.
+                    Learn to vibe with your goals.
                   </span>
                 </motion.h1>
 
@@ -177,16 +177,18 @@ export default function AboutPage() {
                   className="space-y-4 text-lg leading-relaxed text-slate-400"
                 >
                   <p>
-                    By day, I'm a Senior AI Architect at Oracle's Center of Excellence — designing
-                    enterprise AI systems for some of the world's largest organizations.
+                    Create music, art, content—explore with me the infinite intelligence
+                    of the golden age. By day, I architect enterprise AI systems at Oracle's
+                    Center of Excellence. By night, I create music with Suno AI.
                   </p>
                   <p>
-                    After hours, I create music with Suno AI—thousands of songs across genres.
-                    Not as a hobby, but as a creative practice that informs everything I build.
+                    10,000+ songs. Countless experiments. Everything I learn goes here—
+                    not as a portfolio, but as a living system you can use to build your own path.
                   </p>
                   <p>
-                    This hub is where both worlds meet. Everything I learn from enterprise
-                    architecture and creative experimentation, packaged into resources you can actually use.
+                    This is where enterprise rigor meets creative freedom. Where intelligent
+                    systems serve human goals. Where the future isn't something that happens to you—
+                    it's something you design.
                   </p>
                 </motion.div>
 
