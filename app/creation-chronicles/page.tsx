@@ -1,225 +1,351 @@
+'use client'
+
 import Link from 'next/link'
+import { motion } from 'framer-motion'
+import { ArrowRight, Send, Music2, BookOpen, Sparkles, ChevronRight } from 'lucide-react'
 
 import songs from '@/data/songs.json'
 import SongGrid, { SongRecord } from '@/components/music/SongGrid'
-import { createMetadata } from '@/lib/seo'
 
 const songRecords = songs as SongRecord[]
 
+// ============================================================================
+// DATA
+// ============================================================================
+
 const timeline = [
   {
-    phase: 'Signal the Era',
-    headline: 'Launch the Creation Chronicles Dispatch',
-    description:
-      'Share weekly intelligence from the FrankX field — essays, prompts, and sonic drops that help allies feel the Golden Age momentum.',
-    action: 'Subscribe to Creation Chronicles',
-    href: '#dispatch'
+    phase: 'Signal',
+    headline: 'Subscribe to Creation Chronicles',
+    description: 'Weekly intelligence from the studio—essays, prompts, and music drops that keep you in the Golden Age momentum.',
+    action: 'Join the Dispatch',
+    href: 'https://frankx.ck.page/creation-chronicles',
+    color: 'text-emerald-400',
+    gradient: 'from-emerald-500/20 to-emerald-500/5',
   },
   {
-    phase: 'Activate the Circle',
-    headline: 'Invite Allies into the Inner Realm',
-    description:
-      'Transition loyal readers into the Inner Circle where they receive vault access, live ritual labs, and rapid response from the agent team.',
-    action: 'Explore the Realm Blueprint',
-    href: '#inner-circle'
+    phase: 'Activate',
+    headline: 'Join the Inner Circle',
+    description: 'Members receive vault access, live ritual labs, and direct collaboration with the FrankX agent collective.',
+    action: 'Explore the Realm',
+    href: '/realm',
+    color: 'text-cyan-400',
+    gradient: 'from-cyan-500/20 to-cyan-500/5',
   },
   {
-    phase: 'Transform With Systems',
-    headline: 'Guide members into products and partnerships',
-    description:
-      'Orchestrate the Creative AI Toolkit, Vibe OS, and enterprise engagements as narrative arcs that keep members compounding results.',
-    action: 'Browse Agentic Systems',
-    href: '/products'
-  }
+    phase: 'Transform',
+    headline: 'Build with Systems',
+    description: 'From Creative AI Toolkit to Vibe OS—products and partnerships that compound your results.',
+    action: 'Browse Products',
+    href: '/products',
+    color: 'text-violet-400',
+    gradient: 'from-violet-500/20 to-violet-500/5',
+  },
 ]
 
 const featuredEssays = [
   {
     title: 'The Golden Age of Intelligence Manifesto',
-    summary: 'Define what the Golden Age looks like for creators, families, and enterprises — and why the Chronicles exist.',
-    href: '/blog/golden-age-of-intelligence'
+    summary: 'What the Golden Age looks like for creators, families, and enterprises—and why the Chronicles exist.',
+    href: '/blog/golden-age-of-intelligence',
   },
   {
     title: 'Agentic SEO Publishing Masterplan',
-    summary: 'Blueprint a 12-day surge that coordinates essays, satellite posts, and automation so stories flood every channel.',
-    href: '/blog/agentic-seo-publishing-masterplan'
+    summary: 'A 12-day surge that coordinates essays, satellite posts, and automation so stories flood every channel.',
+    href: '/blog/agentic-seo-publishing-masterplan',
   },
   {
     title: 'Intelligence Atlas Volume I',
-    summary: 'Show the research spine behind the Chronicles with adoption metrics, governance rituals, and drop roadmap.',
-    href: '/intelligence-atlas'
-  }
+    summary: 'The research spine behind the Chronicles—adoption metrics, governance rituals, and the drop roadmap.',
+    href: '/intelligence-atlas',
+  },
 ]
 
-export const metadata = createMetadata({
-  title: 'Creation Chronicles | FrankX.ai',
-  description:
-    'Step inside the Creation Chronicles — the storytelling, sonic, and strategic heartbeat of the FrankX.ai ecosystem.',
-  keywords: [
-    'creation chronicles',
-    'frankx newsletter',
-    'golden age of intelligence',
-    'suno drops',
-    'storytelling hub'
-  ],
-  path: '/creation-chronicles'
-})
+// ============================================================================
+// AURORA BACKGROUND
+// ============================================================================
+
+function AuroraBackground() {
+  return (
+    <div className="fixed inset-0 overflow-hidden pointer-events-none">
+      <div className="absolute inset-0 bg-[#030712]" />
+      <motion.div
+        className="absolute -top-[40%] -left-[20%] w-[80%] h-[80%]"
+        style={{
+          background: 'radial-gradient(ellipse at center, rgba(16, 185, 129, 0.06) 0%, transparent 70%)',
+          filter: 'blur(100px)',
+        }}
+        animate={{ x: [0, 100, 0], y: [0, 50, 0], scale: [1, 1.1, 1] }}
+        transition={{ duration: 30, repeat: Infinity, ease: 'easeInOut' }}
+      />
+      <motion.div
+        className="absolute -bottom-[30%] -right-[10%] w-[60%] h-[60%]"
+        style={{
+          background: 'radial-gradient(ellipse at center, rgba(6, 182, 212, 0.05) 0%, transparent 70%)',
+          filter: 'blur(100px)',
+        }}
+        animate={{ x: [0, -80, 0], y: [0, -30, 0], scale: [1, 1.15, 1] }}
+        transition={{ duration: 25, repeat: Infinity, ease: 'easeInOut' }}
+      />
+      <div
+        className="absolute inset-0 opacity-[0.015]"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
+        }}
+      />
+    </div>
+  )
+}
+
+// ============================================================================
+// MAIN PAGE
+// ============================================================================
 
 export default function CreationChroniclesPage() {
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100">
-      <header className="relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-purple-950/40 pb-24 pt-40">
-        <div className="absolute inset-0 opacity-60 blur-3xl" aria-hidden />
-        <div className="relative mx-auto max-w-4xl px-6 text-center">
-          <div className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-xs uppercase tracking-[0.35em] text-white/70">
-            Creation Chronicles
-          </div>
-          <h1 className="mt-6 text-4xl font-bold leading-tight sm:text-5xl md:text-6xl">
-            Stories, Sound, and Systems for the Golden Age of Intelligence
-          </h1>
-          <p className="mt-6 text-base text-white/70 sm:text-lg">
-            The Chronicles document everything our agents build — longform essays, ritual-ready music, and live dispatches
-            from the intelligence frontier. Use this page as your map to every drop.
-          </p>
-          <div className="mt-10 flex flex-wrap justify-center gap-4">
-            <Link
-              href="https://frankx.ck.page/creation-chronicles"
-              id="dispatch"
-              className="inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-primary-500 to-purple-600 px-6 py-3 text-sm font-semibold uppercase tracking-[0.3em] text-white shadow-[0_16px_45px_rgba(99,102,241,0.45)] transition hover:-translate-y-1"
-            >
-              Join the Dispatch
-            </Link>
-            <Link
-              href="/docs/membership-realm"
-              className="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/5 px-6 py-3 text-sm font-semibold text-white/80 transition hover:bg-white/10"
-            >
-              Realm Blueprint
-            </Link>
-          </div>
-        </div>
-      </header>
+    <main className="relative min-h-screen text-white">
+      <AuroraBackground />
 
-      <section id="inner-circle" className="bg-slate-950 py-16">
-        <div className="mx-auto max-w-4xl px-6 text-center">
-          <h2 className="text-3xl font-semibold text-white">Inner Circle & Realm Access</h2>
-          <p className="mt-4 text-sm text-white/60">
-            Members receive the Creation Chronicles vault, live ritual labs, and direct collaboration with the FrankX agent
-            collective. It is the bridge between story and execution.
-          </p>
-          <div className="mt-8 grid gap-6 md:grid-cols-2">
-            <div className="rounded-3xl border border-white/10 bg-white/5 p-6 text-left">
-              <h3 className="text-xl font-semibold text-white">What&apos;s inside</h3>
-              <ul className="mt-4 space-y-2 text-sm text-white/70">
-                <li>• Private vault with prompts, templates, and sonic assets updated weekly</li>
-                <li>• Monthly Creation Chronicles Lab with live story reviews and music rituals</li>
-                <li>• Direct line to the FrankX agent team for feedback and collaboration</li>
-              </ul>
-            </div>
-            <div className="rounded-3xl border border-primary-400/40 bg-primary-500/10 p-6 text-left">
-              <h3 className="text-xl font-semibold text-white">Become an insider</h3>
-              <p className="mt-3 text-sm text-white/70">
-                We are finalizing onboarding flows now. Join the early access list to receive pricing, launch bonuses, and a
-                personal invite to the Realm beta.
+      <div className="relative z-10">
+        {/* Hero Section */}
+        <section className="pt-32 pb-20">
+          <div className="max-w-5xl mx-auto px-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              className="text-center max-w-3xl mx-auto"
+            >
+              {/* Breadcrumb */}
+              <div className="mb-8">
+                <span className="text-xs font-medium uppercase tracking-[0.3em] text-emerald-400/60">
+                  Creation Chronicles
+                </span>
+              </div>
+
+              {/* Headline */}
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight leading-[1.1]">
+                Stories, Sound, and Systems
+                <span className="block mt-2 text-white/60">for the Golden Age.</span>
+              </h1>
+
+              {/* Subtext */}
+              <p className="text-lg text-white/50 mb-10 leading-relaxed">
+                The Chronicles document everything I build—longform essays, ritual-ready music,
+                and live dispatches from the intelligence frontier.
               </p>
-              <Link
-                href="https://frankx.ck.page/realm"
-                className="mt-6 inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-primary-500 to-purple-600 px-5 py-3 text-xs font-semibold uppercase tracking-[0.3em] text-white shadow-[0_16px_45px_rgba(99,102,241,0.45)] transition hover:-translate-y-1"
-              >
-                Join the Early Access List
-              </Link>
-              <Link
-                href="https://github.com/frankxai/frankx.ai-vercel-website/blob/main/docs/membership-realm.md"
-                className="mt-4 block text-xs font-semibold uppercase tracking-[0.3em] text-primary-200 underline-offset-4 hover:underline"
-              >
-                View Realm Blueprint
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
 
-      <section className="bg-slate-950 py-16">
-        <div className="mx-auto max-w-5xl px-6">
-          <h2 className="text-center text-3xl font-semibold text-white">Chronicles Operating Timeline</h2>
-          <p className="mt-4 text-center text-sm text-white/60">
-            Every drop reinforces these phases — signal, activate, transform. Revisit them when planning new releases.
-          </p>
-          <div className="mt-10 grid gap-6 md:grid-cols-3">
-            {timeline.map((entry) => (
-              <article key={entry.phase} className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur">
-                <div className="text-xs font-semibold uppercase tracking-[0.35em] text-white/50">{entry.phase}</div>
-                <h3 className="mt-3 text-xl font-semibold text-white">{entry.headline}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-white/70">{entry.description}</p>
-                <Link
-                  href={entry.href}
-                  className="mt-4 inline-flex items-center text-xs font-semibold uppercase tracking-[0.3em] text-primary-200 underline-offset-4 hover:underline"
+              {/* CTAs */}
+              <div className="flex flex-wrap items-center justify-center gap-4">
+                <a
+                  href="https://frankx.ck.page/creation-chronicles"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-center gap-3 bg-white text-black px-7 py-4 rounded-full font-semibold transition-all hover:bg-white/90 hover:shadow-[0_0_40px_rgba(255,255,255,0.15)]"
                 >
-                  {entry.action}
+                  <Send className="w-4 h-4" />
+                  Join the Dispatch
+                </a>
+                <Link
+                  href="/blog"
+                  className="inline-flex items-center gap-3 px-7 py-4 rounded-full font-medium text-white/70 hover:text-white border border-white/10 hover:border-white/20 transition-all"
+                >
+                  Read the Blog
+                  <ArrowRight className="w-4 h-4" />
                 </Link>
-              </article>
-            ))}
+              </div>
+            </motion.div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="bg-slate-940 py-16">
-        <div className="mx-auto max-w-6xl px-6">
-          <div className="flex flex-col gap-10 lg:flex-row">
-            <div className="flex-1 space-y-4">
-              <h2 className="text-3xl font-semibold text-white">Featured Chronicles Essays</h2>
-              <p className="text-sm text-white/60">
-                These essays anchor the lore and strategy behind the Chronicles. Share them with allies who need the full
-                context of our movement.
+        {/* Editorial Quote */}
+        <section className="py-16 border-t border-white/5">
+          <div className="max-w-4xl mx-auto px-6">
+            <motion.blockquote
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              className="text-center"
+            >
+              <p className="text-2xl md:text-3xl lg:text-4xl font-serif italic text-white/70 leading-relaxed">
+                "Each day we make some. We make something prettier."
               </p>
-              <div className="space-y-4">
-                {featuredEssays.map((essay) => (
-                  <article key={essay.title} className="rounded-2xl border border-white/10 bg-white/5 p-5">
-                    <h3 className="text-lg font-semibold text-white">{essay.title}</h3>
-                    <p className="mt-2 text-sm text-white/70">{essay.summary}</p>
-                    <Link
-                      href={essay.href}
-                      className="mt-3 inline-flex items-center text-xs font-semibold uppercase tracking-[0.3em] text-primary-200 underline-offset-4 hover:underline"
-                    >
-                      Read the drop
-                    </Link>
-                  </article>
-                ))}
-              </div>
+              <cite className="block mt-4 text-sm text-white/40 not-italic">— My father's philosophy</cite>
+            </motion.blockquote>
+          </div>
+        </section>
+
+        {/* Timeline Cards */}
+        <section className="py-16">
+          <div className="max-w-5xl mx-auto px-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-12"
+            >
+              <p className="text-xs font-medium uppercase tracking-[0.25em] text-emerald-400/70 mb-2">
+                The Journey
+              </p>
+              <h2 className="text-2xl md:text-3xl font-bold text-white">
+                Signal → Activate → Transform
+              </h2>
+            </motion.div>
+
+            <div className="grid md:grid-cols-3 gap-6">
+              {timeline.map((entry, i) => (
+                <motion.div
+                  key={entry.phase}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                >
+                  <Link
+                    href={entry.href}
+                    className="group block relative p-6 rounded-2xl border border-white/5 overflow-hidden hover:border-white/10 transition-all duration-300 hover:-translate-y-1 h-full"
+                  >
+                    <div className={`absolute inset-0 bg-gradient-to-br ${entry.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
+
+                    <div className="relative">
+                      <div className={`text-xs font-semibold uppercase tracking-[0.2em] ${entry.color} mb-4`}>
+                        {entry.phase}
+                      </div>
+                      <h3 className="text-xl font-semibold text-white mb-3">
+                        {entry.headline}
+                      </h3>
+                      <p className="text-sm text-white/50 leading-relaxed mb-4">
+                        {entry.description}
+                      </p>
+                      <span className="flex items-center gap-1 text-sm font-medium text-white/60 group-hover:text-white transition-colors">
+                        {entry.action}
+                        <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+                      </span>
+                    </div>
+                  </Link>
+                </motion.div>
+              ))}
             </div>
-            <div className="flex-1 rounded-3xl border border-white/10 bg-white/5 p-8">
-              <h3 className="text-xl font-semibold text-white">Latest Suno Sessions</h3>
-              <p className="mt-2 text-sm text-white/60">
-                Use these tracks as ritual soundtracks for writing, strategy, or launching new offers. Each one is logged in
-                the Creation Chronicles ledger.
-              </p>
-              <div className="mt-6">
-                <SongGrid songs={songRecords} limit={3} />
-              </div>
-              <Link
-                href="https://suno.com/@frankx"
-                className="mt-6 inline-flex items-center text-xs font-semibold uppercase tracking-[0.3em] text-primary-200 underline-offset-4 hover:underline"
+          </div>
+        </section>
+
+        {/* Featured Essays & Music */}
+        <section className="py-16 border-t border-white/5">
+          <div className="max-w-6xl mx-auto px-6">
+            <div className="grid lg:grid-cols-2 gap-12">
+              {/* Featured Essays */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
               >
-                Explore entire Suno archive
-              </Link>
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="p-2 rounded-lg bg-white/5">
+                    <BookOpen className="w-5 h-5 text-emerald-400" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-white">Featured Essays</h3>
+                </div>
+
+                <div className="space-y-4">
+                  {featuredEssays.map((essay, i) => (
+                    <motion.div
+                      key={essay.title}
+                      initial={{ opacity: 0, x: -10 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: i * 0.1 }}
+                    >
+                      <Link
+                        href={essay.href}
+                        className="group block p-5 rounded-xl border border-white/5 hover:border-white/10 hover:bg-white/[0.02] transition-all"
+                      >
+                        <h4 className="text-base font-semibold text-white group-hover:text-emerald-400 transition-colors mb-2">
+                          {essay.title}
+                        </h4>
+                        <p className="text-sm text-white/50 leading-relaxed">
+                          {essay.summary}
+                        </p>
+                      </Link>
+                    </motion.div>
+                  ))}
+                </div>
+
+                <Link
+                  href="/blog"
+                  className="inline-flex items-center gap-2 mt-6 text-sm font-medium text-emerald-400 hover:text-emerald-300 transition-colors"
+                >
+                  View all articles
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </motion.div>
+
+              {/* Music Section */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+              >
+                <div className="flex items-center gap-3 mb-6">
+                  <div className="p-2 rounded-lg bg-white/5">
+                    <Music2 className="w-5 h-5 text-cyan-400" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-white">Latest Suno Sessions</h3>
+                </div>
+
+                <p className="text-sm text-white/50 mb-6">
+                  Use these tracks as ritual soundtracks for writing, strategy, or launching new offers.
+                </p>
+
+                <div className="p-6 rounded-2xl border border-white/5 bg-white/[0.02]">
+                  <SongGrid songs={songRecords} limit={3} />
+                </div>
+
+                <a
+                  href="https://suno.com/@frankxai"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 mt-6 text-sm font-medium text-cyan-400 hover:text-cyan-300 transition-colors"
+                >
+                  Explore full Suno archive
+                  <ArrowRight className="w-4 h-4" />
+                </a>
+              </motion.div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <section className="bg-slate-950 py-16">
-        <div className="mx-auto max-w-3xl px-6 text-center">
-          <h2 className="text-3xl font-semibold text-white">Stay in the Signal Loop</h2>
-          <p className="mt-4 text-sm text-white/60">
-            We send one focused transmission a week. No noise — just the latest story, framework, and soundtrack we are
-            shipping with our agentic team.
-          </p>
-          <iframe
-            src="https://embeds.beehiiv.com/3dca3b4d-918d-48fe-8d02-838d92d93a08?slim=true"
-            title="Creation Chronicles Newsletter"
-            className="mt-8 h-64 w-full rounded-2xl border border-white/10 bg-white/5"
-          />
-        </div>
-      </section>
-    </div>
+        {/* Newsletter CTA */}
+        <section className="py-20 border-t border-white/5">
+          <div className="max-w-3xl mx-auto px-6 text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+            >
+              <div className="p-3 rounded-xl bg-white/5 w-fit mx-auto mb-6">
+                <Sparkles className="w-6 h-6 text-emerald-400" />
+              </div>
+
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                Stay in the Signal Loop
+              </h2>
+              <p className="text-lg text-white/50 mb-10 max-w-xl mx-auto">
+                One focused transmission a week. No noise—just the latest story, framework,
+                and soundtrack I'm shipping.
+              </p>
+
+              <div className="p-6 rounded-2xl border border-white/10 bg-white/[0.02]">
+                <iframe
+                  src="https://embeds.beehiiv.com/3dca3b4d-918d-48fe-8d02-838d92d93a08?slim=true"
+                  title="Creation Chronicles Newsletter"
+                  className="w-full h-32 rounded-xl"
+                />
+              </div>
+            </motion.div>
+          </div>
+        </section>
+      </div>
+    </main>
   )
 }
