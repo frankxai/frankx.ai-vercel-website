@@ -91,7 +91,7 @@ module.exports = {
       fontFamily: {
         sans: ['var(--font-outfit)', 'system-ui', 'sans-serif'],
         display: ['var(--font-outfit)', 'system-ui', 'sans-serif'],
-        serif: ['var(--font-crimson)', 'Georgia', 'serif'],
+        serif: ['var(--font-serif)', 'Playfair Display', 'Georgia', 'Times New Roman', 'serif'],
         mono: ['var(--font-mono)', 'JetBrains Mono', 'Menlo', 'Monaco', 'monospace'],
       },
       fontSize: {

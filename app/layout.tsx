@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Outfit, Crimson_Pro, JetBrains_Mono } from 'next/font/google'
+import { Outfit, Playfair_Display, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 import Script from 'next/script'
 
@@ -15,10 +15,10 @@ const outfit = Outfit({
   display: 'swap',
 })
 
-// Crimson Pro for editorial touches (elegant, refined)
-const crimson = Crimson_Pro({
+// Playfair Display for editorial touches (classic, elegant Times-like italics)
+const playfair = Playfair_Display({
   subsets: ['latin'],
-  variable: '--font-crimson',
+  variable: '--font-serif',
   display: 'swap',
   style: ['normal', 'italic'],
 })
@@ -90,7 +90,7 @@ export default function RootLayout({
       <body
         className={cn(
           outfit.variable,
-          crimson.variable,
+          playfair.variable,
           jetbrains.variable,
           'font-sans dark bg-[#030712] text-white antialiased min-h-screen'
         )}
