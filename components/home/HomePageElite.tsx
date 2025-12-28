@@ -609,6 +609,18 @@ function AboutSection() {
             </span>
           </h2>
 
+          {/* Philosophy callout */}
+          <motion.blockquote
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="relative pl-6 my-10 border-l-2 border-emerald-400/40"
+          >
+            <p className="text-2xl md:text-3xl font-serif italic text-white/80 leading-relaxed">
+              "Technology should amplify your voice, not replace it."
+            </p>
+          </motion.blockquote>
+
           <div className="space-y-6 text-lg text-white/60 leading-relaxed mb-10">
             <p>
               AI Architect at Oracle by day. Music creator by night. I've seen what's possible

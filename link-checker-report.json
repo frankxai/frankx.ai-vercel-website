@@ -1,0 +1,544 @@
+[
+  {
+    "page": "Homepage",
+    "link": "Subscribe",
+    "href": "/newsletter",
+    "issue": "Link returns 404 - Page not found",
+    "statusCode": 404
+  },
+  {
+    "page": "Homepage",
+    "link": "Featured GuideThe Golden Age of IntelligenceClarity, frameworks, and a 90-day plan to capture real value. No hype.30-45 min read3 frameworksRead the guide",
+    "href": "/guides/modern-guide",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Products",
+    "link": "Subscribe",
+    "href": "/newsletter",
+    "issue": "Link returns 404 - Page not found",
+    "statusCode": 404
+  },
+  {
+    "page": "Resources",
+    "link": "Subscribe",
+    "href": "/newsletter",
+    "issue": "Link returns 404 - Page not found",
+    "statusCode": 404
+  },
+  {
+    "page": "Blog",
+    "link": "Subscribe",
+    "href": "/newsletter",
+    "issue": "Link returns 404 - Page not found",
+    "statusCode": 404
+  },
+  {
+    "page": "Blog",
+    "link": "AI Doesn&#x27;t Have To Be Soulless (And Here&#x27;s How I Know)",
+    "href": "/blog/01-ai-doesnt-have-to-be-soulless",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Blog",
+    "link": "Read more",
+    "href": "/blog/01-ai-doesnt-have-to-be-soulless",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Blog",
+    "link": "The Soul Frequency Framework: How to Find Your Authentic Creative Voice in the AI Age",
+    "href": "/blog/02-the-soul-frequency-framework",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Blog",
+    "link": "Read more",
+    "href": "/blog/02-the-soul-frequency-framework",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Blog",
+    "link": "Enterprise Intelligence Briefing: Week 40, 2025 - The Suno Integration Strategy",
+    "href": "/blog/enterprise-intelligence-briefing-week-40-2025",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Blog",
+    "link": "Read more",
+    "href": "/blog/enterprise-intelligence-briefing-week-40-2025",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Blog",
+    "link": "Enterprise Intelligence Briefing: Week 39, 2025 - The Oracle AI Advantage",
+    "href": "/blog/enterprise-intelligence-briefing-week-39-2025",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Blog",
+    "link": "Read more",
+    "href": "/blog/enterprise-intelligence-briefing-week-39-2025",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Blog",
+    "link": "The Creative OS: A Guide to Building Your Creative Operating System",
+    "href": "/blog/the-creative-os",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Blog",
+    "link": "Read more",
+    "href": "/blog/the-creative-os",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Blog",
+    "link": "The Golden Age of Intelligence: Flagship Atlas for Agentic Marketing Teams",
+    "href": "/blog/08-golden-age-of-intelligence",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Blog",
+    "link": "Read more",
+    "href": "/blog/08-golden-age-of-intelligence",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Blog",
+    "link": "The Intelligence Revolution Playbook: Building Conscious AI Systems in 2025",
+    "href": "/blog/06-intelligence-revolution-2025",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Blog",
+    "link": "Read more",
+    "href": "/blog/06-intelligence-revolution-2025",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Blog",
+    "link": "Enterprise Intelligence Operating System 2025",
+    "href": "/blog/enterprise-intelligence-operating-system-2025",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Blog",
+    "link": "Read more",
+    "href": "/blog/enterprise-intelligence-operating-system-2025",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Blog",
+    "link": "Agentic AI Roadmap 2025: From Studio Rituals to Enterprise Governance",
+    "href": "/blog/10-agentic-ai-roadmap-2025",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Blog",
+    "link": "Read more",
+    "href": "/blog/10-agentic-ai-roadmap-2025",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Blog",
+    "link": "FrankX Intelligence Atlas Vol. I: Architecting the Agentic Era",
+    "href": "/blog/frankx-intelligence-atlas-volume-1",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Blog",
+    "link": "Read more",
+    "href": "/blog/frankx-intelligence-atlas-volume-1",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Blog",
+    "link": "Agentic SEO Publishing Masterplan: 12-Day Accelerator from September 19",
+    "href": "/blog/agentic-seo-publishing-masterplan",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Blog",
+    "link": "Read more",
+    "href": "/blog/agentic-seo-publishing-masterplan",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Blog",
+    "link": "AI Doesn&#x27;t Have To Be Soulless (And Here&#x27;s How I Know)",
+    "href": "/blog/ai-doesnt-have-to-be-soulless",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Blog",
+    "link": "Read more",
+    "href": "/blog/ai-doesnt-have-to-be-soulless",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Blog",
+    "link": "AI &amp; Consciousness",
+    "href": "/blog?category=AI+%26+Consciousness",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Blog",
+    "link": "AI &amp; Machine Learning",
+    "href": "/blog?category=AI+%26+Machine+Learning",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Blog",
+    "link": "Conscious AI",
+    "href": "/blog?category=Conscious+AI",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Blog",
+    "link": "Creation Chronicles",
+    "href": "/blog?category=Creation+Chronicles",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Blog",
+    "link": "Creative Intelligence",
+    "href": "/blog?category=Creative+Intelligence",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Blog",
+    "link": "Creativity &amp; Framework",
+    "href": "/blog?category=Creativity+%26+Framework",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Blog",
+    "link": "Enterprise AI",
+    "href": "/blog?category=Enterprise+AI",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Blog",
+    "link": "Enterprise Intelligence",
+    "href": "/blog?category=Enterprise+Intelligence",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Blog",
+    "link": "Flagship",
+    "href": "/blog?category=Flagship",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Blog",
+    "link": "Framework",
+    "href": "/blog?category=Framework",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Blog",
+    "link": "Intelligence Economy",
+    "href": "/blog?category=Intelligence+Economy",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Blog",
+    "link": "Personal",
+    "href": "/blog?category=Personal",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Blog",
+    "link": "Reports",
+    "href": "/blog?category=Reports",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Blog",
+    "link": "Roadmap",
+    "href": "/blog?category=Roadmap",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Blog",
+    "link": "Strategy",
+    "href": "/blog?category=Strategy",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Blog",
+    "link": "The Family &amp; Professional&#x27;s Guide to Thriving with AI (Not Just Surviving It)",
+    "href": "/blog/03-ai-guide-for-families-and-professionals",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Blog",
+    "link": "Read more",
+    "href": "/blog/03-ai-guide-for-families-and-professionals",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Blog",
+    "link": "The Conscious Entrepreneur&#x27;s Guide to Building AI-Powered Businesses That Actually Serve Humanity",
+    "href": "/blog/04-conscious-ai-for-entrepreneurs",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Blog",
+    "link": "Read more",
+    "href": "/blog/04-conscious-ai-for-entrepreneurs",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Blog",
+    "link": "500 Songs Later: What AI Music Creation Taught Me About Consciousness, Creativity, and the Future",
+    "href": "/blog/05-music-as-consciousness-technology",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Blog",
+    "link": "Read more",
+    "href": "/blog/05-music-as-consciousness-technology",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Blog",
+    "link": "Golden Age of Intelligence: Reader-First Growth Playbook",
+    "href": "/blog/09-reader-first-golden-age",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Blog",
+    "link": "Read more",
+    "href": "/blog/09-reader-first-golden-age",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Blog",
+    "link": "The Agentic Creator OS: How to Orchestrate AI Like a Studio",
+    "href": "/blog/07-agentic-creator-os",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Blog",
+    "link": "Read more",
+    "href": "/blog/07-agentic-creator-os",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Blog",
+    "link": "[No text]",
+    "href": "/blog/what-is-agentic-ai",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Blog",
+    "link": "Read more",
+    "href": "/blog/what-is-agentic-ai",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Blog",
+    "link": "Conscious AI Integration OS: 7 Layers To Align Teams, Agents, and Trust",
+    "href": "/blog/conscious-ai-integration-operating-system",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Blog",
+    "link": "Read more",
+    "href": "/blog/conscious-ai-integration-operating-system",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Blog",
+    "link": "The Golden Age of Intelligence: An Agentic SEO Operating System for Exponential Reach",
+    "href": "/blog/golden-age-of-intelligence",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Blog",
+    "link": "Read more",
+    "href": "/blog/golden-age-of-intelligence",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Blog",
+    "link": "Review the ritual playbook",
+    "href": "/docs/DAILY_INTELLIGENCE_OPERATIONS.md",
+    "issue": "Link returns 404 - Page not found",
+    "statusCode": 404
+  },
+  {
+    "page": "Assessment",
+    "link": "Subscribe",
+    "href": "/newsletter",
+    "issue": "Link returns 404 - Page not found",
+    "statusCode": 404
+  },
+  {
+    "page": "Enterprise",
+    "link": "Subscribe",
+    "href": "/newsletter",
+    "issue": "Link returns 404 - Page not found",
+    "statusCode": 404
+  },
+  {
+    "page": "Coaching",
+    "link": "Subscribe",
+    "href": "/newsletter",
+    "issue": "Link returns 404 - Page not found",
+    "statusCode": 404
+  },
+  {
+    "page": "Courses",
+    "link": "Subscribe",
+    "href": "/newsletter",
+    "issue": "Link returns 404 - Page not found",
+    "statusCode": 404
+  },
+  {
+    "page": "Courses",
+    "link": "Enroll Now",
+    "href": "/courses/ai-ethics-governance",
+    "issue": "Link returns 404 - Page not found",
+    "statusCode": 404
+  },
+  {
+    "page": "Courses",
+    "link": "Enroll Now",
+    "href": "/courses/family-ai-education",
+    "issue": "Link returns 404 - Page not found",
+    "statusCode": 404
+  },
+  {
+    "page": "Courses",
+    "link": "Enroll Now",
+    "href": "/courses/agent-architecture-deep-dive",
+    "issue": "Link returns 404 - Page not found",
+    "statusCode": 404
+  },
+  {
+    "page": "Courses",
+    "link": "Enroll Now",
+    "href": "/courses/prompt-engineering-mastery",
+    "issue": "Link returns 404 - Page not found",
+    "statusCode": 404
+  },
+  {
+    "page": "Courses",
+    "link": "Enroll Now",
+    "href": "/courses/ai-business-strategy",
+    "issue": "Link returns 404 - Page not found",
+    "statusCode": 404
+  },
+  {
+    "page": "Agentic AI Center",
+    "link": "Subscribe",
+    "href": "/newsletter",
+    "issue": "Link returns 404 - Page not found",
+    "statusCode": 404
+  },
+  {
+    "page": "Founder Playbook",
+    "link": "Subscribe",
+    "href": "/newsletter",
+    "issue": "Link returns 404 - Page not found",
+    "statusCode": 404
+  },
+  {
+    "page": "Founder Playbook",
+    "link": "Read Modern Guide",
+    "href": "/guides/modern-guide",
+    "issue": "Link returns error status: 500",
+    "statusCode": 500
+  },
+  {
+    "page": "Realm",
+    "link": "Subscribe",
+    "href": "/newsletter",
+    "issue": "Link returns 404 - Page not found",
+    "statusCode": 404
+  },
+  {
+    "page": "Realm",
+    "link": "Join the Waitlist",
+    "href": "https://frankx.ck.page/realm",
+    "issue": "External link missing target=\"_blank\""
+  },
+  {
+    "page": "Realm",
+    "link": "Join Creation Chronicles",
+    "href": "https://frankx.ck.page/creation-chronicles",
+    "issue": "External link missing target=\"_blank\""
+  },
+  {
+    "page": "Realm",
+    "link": "Join Waitlist",
+    "href": "https://frankx.ck.page/realm",
+    "issue": "External link missing target=\"_blank\""
+  },
+  {
+    "page": "Realm",
+    "link": "Join the Waitlist",
+    "href": "https://frankx.ck.page/realm",
+    "issue": "External link missing target=\"_blank\""
+  }
+]
