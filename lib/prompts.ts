@@ -1,20 +1,32 @@
 /**
- * Prompt Library Data
- * Real, practical prompts for creators - no fabricated statistics.
- * Inspired by awesome-chatgpt-prompts, God of Prompt, and Anthropic's documentation.
+ * FrankX Prompt Library
+ * Production-grade prompts for creators, developers, and conscious builders.
+ * Tier system: Free → Premium (email) → Paid (product bundles)
  */
 
 export type PromptDifficulty = 'Beginner' | 'Intermediate' | 'Advanced'
 
+export type PromptTier = 'free' | 'premium' | 'paid'
+
 export type PromptCategory =
+  // Creative
   | 'writing'
   | 'music-creation'
   | 'image-generation'
-  | 'coding'
-  | 'business'
-  | 'learning'
-  | 'productivity'
   | 'creative'
+  // Technical
+  | 'coding'
+  | 'ai-architecture'
+  | 'agent-development'
+  // Business & Marketing
+  | 'business'
+  | 'social-media'
+  | 'marketing'
+  // Personal Development
+  | 'productivity'
+  | 'personal-development'
+  | 'spiritual'
+  | 'learning'
 
 export type AITool =
   | 'claude'
@@ -24,7 +36,12 @@ export type AITool =
   | 'dalle'
   | 'stable-diffusion'
   | 'cursor'
+  | 'claude-code'
+  | 'gemini'
+  | 'copilot'
   | 'general'
+
+export type ProductBundle = 'vibe-os' | 'gencreator-os' | 'agentic-creator-os' | null
 
 export interface Prompt {
   id: string
@@ -36,74 +53,177 @@ export interface Prompt {
   aiTool: AITool
   difficulty: PromptDifficulty
   useCase: string
+  tier: PromptTier
+  productBundle: ProductBundle
+  seoKeywords?: string[]
   createdAt: string
   updatedAt: string
 }
 
+export type CategoryGroup = 'creative' | 'technical' | 'business' | 'personal'
+
 export interface CategoryInfo {
   id: PromptCategory
   name: string
-  emoji: string
+  icon: string // Lucide icon name
   description: string
   color: string
+  group: CategoryGroup
+  seoTitle: string
+  seoDescription: string
+}
+
+export const CATEGORY_GROUPS: Record<CategoryGroup, { name: string; description: string }> = {
+  creative: { name: 'Creative', description: 'Content creation, music, and visual arts' },
+  technical: { name: 'Technical', description: 'Coding, AI systems, and development' },
+  business: { name: 'Business & Marketing', description: 'Strategy, social media, and growth' },
+  personal: { name: 'Personal Development', description: 'Productivity, spirituality, and learning' },
 }
 
 export const CATEGORIES: CategoryInfo[] = [
+  // CREATIVE GROUP
   {
     id: 'writing',
     name: 'Writing',
-    emoji: '✍️',
+    icon: 'PenLine',
     description: 'Blog posts, articles, scripts, and creative writing.',
     color: '#8B5CF6',
+    group: 'creative',
+    seoTitle: 'AI Writing Prompts - Blog, Articles, Scripts',
+    seoDescription: 'Professional AI writing prompts for Claude, ChatGPT. Create blogs, articles, scripts, and creative content.',
   },
   {
     id: 'music-creation',
     name: 'Music Creation',
-    emoji: '🎵',
+    icon: 'Music',
     description: 'Suno prompts for AI-generated songs and soundscapes.',
     color: '#EC4899',
+    group: 'creative',
+    seoTitle: 'Suno AI Music Prompts - Songs, Beats, Soundscapes',
+    seoDescription: 'Professional Suno AI prompts for creating songs, beats, ambient music, and transformational soundscapes.',
   },
   {
     id: 'image-generation',
     name: 'Image Generation',
-    emoji: '🎨',
+    icon: 'Image',
     description: 'Midjourney, DALL-E, and Stable Diffusion prompts.',
     color: '#F59E0B',
+    group: 'creative',
+    seoTitle: 'AI Image Prompts - Midjourney, DALL-E, Stable Diffusion',
+    seoDescription: 'Professional AI image generation prompts for Midjourney, DALL-E, and Stable Diffusion.',
   },
+  {
+    id: 'creative',
+    name: 'Creative Ideation',
+    icon: 'Sparkles',
+    description: 'Brainstorming, ideation, and creative exploration.',
+    color: '#F97316',
+    group: 'creative',
+    seoTitle: 'AI Brainstorming Prompts - Creative Ideation',
+    seoDescription: 'AI prompts for creative brainstorming, ideation, and exploring new ideas.',
+  },
+  // TECHNICAL GROUP
   {
     id: 'coding',
     name: 'Coding',
-    emoji: '💻',
+    icon: 'Code2',
     description: 'Code generation, debugging, and technical assistance.',
     color: '#10B981',
+    group: 'technical',
+    seoTitle: 'AI Coding Prompts - Development, Debugging, Reviews',
+    seoDescription: 'Professional AI coding prompts for code generation, debugging, reviews, and technical assistance.',
   },
   {
+    id: 'ai-architecture',
+    name: 'AI Architecture',
+    icon: 'Brain',
+    description: 'System design, prompt engineering, and AI infrastructure.',
+    color: '#6366F1',
+    group: 'technical',
+    seoTitle: 'AI Architecture Prompts - System Design, Prompt Engineering',
+    seoDescription: 'Professional prompts for AI system architecture, prompt engineering, and infrastructure design.',
+  },
+  {
+    id: 'agent-development',
+    name: 'Agent Development',
+    icon: 'Bot',
+    description: 'Claude Code, Cursor, Codex, and agentic AI development.',
+    color: '#0EA5E9',
+    group: 'technical',
+    seoTitle: 'AI Agent Development Prompts - Claude Code, Cursor, Codex',
+    seoDescription: 'Professional prompts for developing AI agents with Claude Code, Cursor, Codex, and agentic systems.',
+  },
+  // BUSINESS GROUP
+  {
     id: 'business',
-    name: 'Business',
-    emoji: '📈',
-    description: 'Strategy, marketing, and professional communication.',
+    name: 'Business Strategy',
+    icon: 'TrendingUp',
+    description: 'Strategy, planning, and professional communication.',
     color: '#3B82F6',
+    group: 'business',
+    seoTitle: 'AI Business Prompts - Strategy, Planning, Communication',
+    seoDescription: 'Professional AI prompts for business strategy, planning, and professional communication.',
+  },
+  {
+    id: 'social-media',
+    name: 'Social Media',
+    icon: 'Share2',
+    description: 'LinkedIn, Twitter, Instagram, and YouTube content.',
+    color: '#E11D48',
+    group: 'business',
+    seoTitle: 'AI Social Media Prompts - LinkedIn, Twitter, Instagram',
+    seoDescription: 'AI prompts for creating viral content on LinkedIn, Twitter, Instagram, and YouTube.',
+  },
+  {
+    id: 'marketing',
+    name: 'Marketing',
+    icon: 'Megaphone',
+    description: 'Copywriting, email campaigns, and conversion optimization.',
+    color: '#D946EF',
+    group: 'business',
+    seoTitle: 'AI Marketing Prompts - Copywriting, Email, Conversion',
+    seoDescription: 'Professional AI prompts for copywriting, email campaigns, and conversion optimization.',
+  },
+  // PERSONAL GROUP
+  {
+    id: 'productivity',
+    name: 'Productivity',
+    icon: 'Zap',
+    description: 'Task management, planning, and workflow optimization.',
+    color: '#06B6D4',
+    group: 'personal',
+    seoTitle: 'AI Productivity Prompts - Task Management, Planning',
+    seoDescription: 'AI prompts for productivity, task management, planning, and workflow optimization.',
+  },
+  {
+    id: 'personal-development',
+    name: 'Personal Development',
+    icon: 'Target',
+    description: 'Goal setting, habits, Ikigai, and life design.',
+    color: '#14B8A6',
+    group: 'personal',
+    seoTitle: 'AI Personal Development Prompts - Goals, Habits, Ikigai',
+    seoDescription: 'AI prompts for personal development, goal setting, habit formation, and Ikigai discovery.',
+  },
+  {
+    id: 'spiritual',
+    name: 'Spiritual Growth',
+    icon: 'Compass',
+    description: 'Consciousness, meditation, manifestation, and inner work.',
+    color: '#A855F7',
+    group: 'personal',
+    seoTitle: 'AI Spiritual Prompts - Meditation, Manifestation, Consciousness',
+    seoDescription: 'AI prompts for spiritual growth, meditation guidance, manifestation, and consciousness expansion.',
   },
   {
     id: 'learning',
     name: 'Learning',
-    emoji: '📚',
+    icon: 'GraduationCap',
     description: 'Study guides, explanations, and skill development.',
     color: '#6366F1',
-  },
-  {
-    id: 'productivity',
-    name: 'Productivity',
-    emoji: '⚡',
-    description: 'Task management, planning, and workflow optimization.',
-    color: '#06B6D4',
-  },
-  {
-    id: 'creative',
-    name: 'Creative',
-    emoji: '✨',
-    description: 'Brainstorming, ideation, and creative exploration.',
-    color: '#F97316',
+    group: 'personal',
+    seoTitle: 'AI Learning Prompts - Study Guides, Skill Development',
+    seoDescription: 'AI prompts for learning, study guides, skill development, and knowledge acquisition.',
   },
 ]
 
@@ -133,6 +253,9 @@ Word count: approximately [NUMBER] words`,
     aiTool: 'claude',
     difficulty: 'Beginner',
     useCase: 'Content creators needing consistent blog post frameworks.',
+    tier: 'free',
+    productBundle: null,
+    seoKeywords: ['blog post prompts', 'content structure ai', 'blog writing prompts'],
     createdAt: '2024-12-01T00:00:00.000Z',
     updatedAt: '2024-12-01T00:00:00.000Z',
   },
@@ -157,6 +280,8 @@ Requirements:
     aiTool: 'general',
     difficulty: 'Beginner',
     useCase: 'Writers refining drafts or improving existing content.',
+    tier: 'free',
+    productBundle: null,
     createdAt: '2024-12-01T00:00:00.000Z',
     updatedAt: '2024-12-01T00:00:00.000Z',
   },
@@ -184,6 +309,8 @@ Keep it under [NUMBER] words. Make it specific, not generic.`,
     aiTool: 'claude',
     difficulty: 'Intermediate',
     useCase: 'Marketers and writers creating compelling narratives.',
+    tier: 'premium',
+    productBundle: 'gencreator-os',
     createdAt: '2024-12-01T00:00:00.000Z',
     updatedAt: '2024-12-01T00:00:00.000Z',
   },
@@ -217,6 +344,8 @@ Sustained beauty, refined`,
     aiTool: 'suno',
     difficulty: 'Beginner',
     useCase: 'Creating focus music, meditation tracks, or background ambience.',
+    tier: 'free',
+    productBundle: 'vibe-os',
     createdAt: '2024-12-01T00:00:00.000Z',
     updatedAt: '2024-12-01T00:00:00.000Z',
   },
@@ -250,6 +379,8 @@ This is our defining hour`,
     aiTool: 'suno',
     difficulty: 'Intermediate',
     useCase: 'Creating trailer music, game soundtracks, or dramatic content.',
+    tier: 'premium',
+    productBundle: 'vibe-os',
     createdAt: '2024-12-01T00:00:00.000Z',
     updatedAt: '2024-12-01T00:00:00.000Z',
   },
@@ -280,6 +411,8 @@ Night is young until the dawn`,
     aiTool: 'suno',
     difficulty: 'Beginner',
     useCase: 'Creating study music, relaxation tracks, or podcast backgrounds.',
+    tier: 'free',
+    productBundle: 'vibe-os',
     createdAt: '2024-12-01T00:00:00.000Z',
     updatedAt: '2024-12-01T00:00:00.000Z',
   },
@@ -327,6 +460,8 @@ Resolve and close`,
     aiTool: 'suno',
     difficulty: 'Intermediate',
     useCase: 'Creating original songs in any genre with proper structure.',
+    tier: 'paid',
+    productBundle: 'vibe-os',
     createdAt: '2024-12-01T00:00:00.000Z',
     updatedAt: '2024-12-01T00:00:00.000Z',
   },
@@ -351,6 +486,8 @@ natural skin texture, confident expression
     aiTool: 'midjourney',
     difficulty: 'Beginner',
     useCase: 'Creating professional avatars or business imagery.',
+    tier: 'free',
+    productBundle: null,
     createdAt: '2024-12-01T00:00:00.000Z',
     updatedAt: '2024-12-01T00:00:00.000Z',
   },
@@ -372,6 +509,8 @@ luxury brand aesthetic, clean and modern
     aiTool: 'midjourney',
     difficulty: 'Intermediate',
     useCase: 'Creating product images for websites or marketing.',
+    tier: 'premium',
+    productBundle: 'gencreator-os',
     createdAt: '2024-12-01T00:00:00.000Z',
     updatedAt: '2024-12-01T00:00:00.000Z',
   },
@@ -394,6 +533,8 @@ high resolution, suitable for large print
     aiTool: 'midjourney',
     difficulty: 'Beginner',
     useCase: 'Creating backgrounds, wallpapers, or artistic content.',
+    tier: 'free',
+    productBundle: null,
     createdAt: '2024-12-01T00:00:00.000Z',
     updatedAt: '2024-12-01T00:00:00.000Z',
   },
@@ -413,6 +554,8 @@ vector art aesthetic, professional quality`,
     aiTool: 'dalle',
     difficulty: 'Beginner',
     useCase: 'Creating consistent illustrations for websites or presentations.',
+    tier: 'free',
+    productBundle: null,
     createdAt: '2024-12-01T00:00:00.000Z',
     updatedAt: '2024-12-01T00:00:00.000Z',
   },
@@ -447,6 +590,8 @@ For each issue found:
     aiTool: 'claude',
     difficulty: 'Intermediate',
     useCase: 'Developers wanting thorough code reviews before commits.',
+    tier: 'free',
+    productBundle: 'agentic-creator-os',
     createdAt: '2024-12-01T00:00:00.000Z',
     updatedAt: '2024-12-01T00:00:00.000Z',
   },
@@ -473,6 +618,8 @@ Adjust explanation depth for: [beginner/intermediate/advanced] developer`,
     aiTool: 'general',
     difficulty: 'Beginner',
     useCase: 'Developers learning new codebases or concepts.',
+    tier: 'free',
+    productBundle: null,
     createdAt: '2024-12-01T00:00:00.000Z',
     updatedAt: '2024-12-01T00:00:00.000Z',
   },
@@ -504,6 +651,8 @@ Optional features needed:
     aiTool: 'claude',
     difficulty: 'Intermediate',
     useCase: 'Developers building React applications with TypeScript.',
+    tier: 'premium',
+    productBundle: 'agentic-creator-os',
     createdAt: '2024-12-01T00:00:00.000Z',
     updatedAt: '2024-12-01T00:00:00.000Z',
   },
@@ -535,6 +684,8 @@ Avoid: jargon, passive-aggressive tone, ambiguity`,
     aiTool: 'general',
     difficulty: 'Beginner',
     useCase: 'Professionals needing to communicate clearly and effectively.',
+    tier: 'free',
+    productBundle: null,
     createdAt: '2024-12-01T00:00:00.000Z',
     updatedAt: '2024-12-01T00:00:00.000Z',
   },
@@ -578,6 +729,8 @@ Analyze:
     aiTool: 'claude',
     difficulty: 'Intermediate',
     useCase: 'Entrepreneurs and marketers validating ideas or entering markets.',
+    tier: 'premium',
+    productBundle: 'gencreator-os',
     createdAt: '2024-12-01T00:00:00.000Z',
     updatedAt: '2024-12-01T00:00:00.000Z',
   },
@@ -621,6 +774,8 @@ Provide:
     aiTool: 'chatgpt',
     difficulty: 'Intermediate',
     useCase: 'Marketers and creators building consistent social presence.',
+    tier: 'paid',
+    productBundle: 'gencreator-os',
     createdAt: '2024-12-01T00:00:00.000Z',
     updatedAt: '2024-12-01T00:00:00.000Z',
   },
@@ -658,6 +813,8 @@ My current level: [beginner/intermediate/advanced]`,
     aiTool: 'general',
     difficulty: 'Beginner',
     useCase: 'Anyone learning new concepts and wanting deep understanding.',
+    tier: 'free',
+    productBundle: null,
     createdAt: '2024-12-01T00:00:00.000Z',
     updatedAt: '2024-12-01T00:00:00.000Z',
   },
@@ -701,6 +858,8 @@ Provide:
     aiTool: 'claude',
     difficulty: 'Beginner',
     useCase: 'Self-learners wanting structured guidance on new skills.',
+    tier: 'free',
+    productBundle: null,
     createdAt: '2024-12-01T00:00:00.000Z',
     updatedAt: '2024-12-01T00:00:00.000Z',
   },
@@ -739,6 +898,8 @@ Output a clean weekly schedule I can follow.`,
     aiTool: 'general',
     difficulty: 'Beginner',
     useCase: 'Professionals wanting to plan effective weeks.',
+    tier: 'free',
+    productBundle: null,
     createdAt: '2024-12-01T00:00:00.000Z',
     updatedAt: '2024-12-01T00:00:00.000Z',
   },
@@ -777,6 +938,8 @@ Format for easy sharing with attendees.`,
     aiTool: 'general',
     difficulty: 'Beginner',
     useCase: 'Anyone needing to turn messy notes into clear action items.',
+    tier: 'free',
+    productBundle: null,
     createdAt: '2024-12-01T00:00:00.000Z',
     updatedAt: '2024-12-01T00:00:00.000Z',
   },
@@ -818,6 +981,8 @@ Then recommend: Which 2-3 ideas have the highest potential and why?`,
     aiTool: 'claude',
     difficulty: 'Beginner',
     useCase: 'Anyone needing fresh ideas or solutions to problems.',
+    tier: 'free',
+    productBundle: null,
     createdAt: '2024-12-01T00:00:00.000Z',
     updatedAt: '2024-12-01T00:00:00.000Z',
   },
@@ -861,8 +1026,1641 @@ Keep the core message consistent across all formats.`,
     aiTool: 'chatgpt',
     difficulty: 'Intermediate',
     useCase: 'Content creators maximizing reach from single pieces of content.',
+    tier: 'premium',
+    productBundle: 'gencreator-os',
     createdAt: '2024-12-01T00:00:00.000Z',
     updatedAt: '2024-12-01T00:00:00.000Z',
+  },
+
+  // ============================================================================
+  // AGENT DEVELOPMENT PROMPTS
+  // ============================================================================
+  {
+    id: 'claude-code-setup',
+    title: 'Claude Code Project Setup',
+    description: 'Initialize a project with optimal CLAUDE.md configuration for autonomous development.',
+    content: `Create a CLAUDE.md configuration file for my project:
+
+**Project Type:** [web app/CLI tool/library/API/monorepo]
+**Tech Stack:** [list your technologies]
+**Main Goals:** [what should the AI agent focus on]
+
+Generate a CLAUDE.md that includes:
+
+1. **Project Mission** - Clear one-liner about what this project does
+
+2. **Code Standards**
+   - Language-specific conventions
+   - Naming patterns to follow
+   - File/folder structure rules
+   - Testing requirements
+
+3. **Specialized Agents** (define 2-3 custom agents)
+   - Name and role
+   - Personality traits
+   - Primary and secondary tools
+   - Activation prompts
+
+4. **Autonomy Guidelines**
+   - What the agent CAN do without asking
+   - What requires explicit permission
+   - Error handling expectations
+
+5. **Success Metrics**
+   - How to measure quality
+   - Definition of "done"
+
+Make it production-grade and specific to my stack.`,
+    category: 'agent-development',
+    tags: ['claude-code', 'configuration', 'setup', 'CLAUDE.md'],
+    aiTool: 'claude-code',
+    difficulty: 'Intermediate',
+    useCase: 'Developers setting up Claude Code for new projects with best practices.',
+    tier: 'free',
+    productBundle: 'agentic-creator-os',
+    seoKeywords: ['claude code setup', 'CLAUDE.md', 'ai coding agent', 'claude configuration'],
+    createdAt: '2024-12-20T00:00:00.000Z',
+    updatedAt: '2024-12-20T00:00:00.000Z',
+  },
+  {
+    id: 'cursor-rules-generator',
+    title: 'Cursor Rules File Generator',
+    description: 'Create effective .cursorrules for consistent AI-assisted development.',
+    content: `Generate a .cursorrules file for my project:
+
+**Project Context:**
+- Framework: [React/Next.js/Vue/etc.]
+- Language: [TypeScript/JavaScript/Python/etc.]
+- Style: [Tailwind/CSS Modules/styled-components]
+- State: [Redux/Zustand/Context/etc.]
+
+**Team Conventions:**
+[Describe any specific patterns or rules your team follows]
+
+Create rules that enforce:
+
+1. **Code Style**
+   - Consistent formatting preferences
+   - Import ordering rules
+   - Component structure patterns
+
+2. **TypeScript Practices**
+   - Type annotation requirements
+   - Interface vs type usage
+   - Strict null checking approach
+
+3. **Project Patterns**
+   - File naming conventions
+   - Component architecture (containers/presentational, etc.)
+   - API call patterns
+
+4. **Documentation**
+   - When to add comments
+   - JSDoc requirements
+   - README standards
+
+5. **Testing**
+   - Test file location
+   - Testing library preferences
+   - Coverage expectations
+
+Output as a complete .cursorrules file I can use immediately.`,
+    category: 'agent-development',
+    tags: ['cursor', 'rules', 'configuration', 'ai-coding'],
+    aiTool: 'cursor',
+    difficulty: 'Intermediate',
+    useCase: 'Teams standardizing their Cursor AI experience across developers.',
+    tier: 'premium',
+    productBundle: 'agentic-creator-os',
+    seoKeywords: ['cursor rules', 'cursorrules', 'cursor ai', 'ai coding assistant'],
+    createdAt: '2024-12-20T00:00:00.000Z',
+    updatedAt: '2024-12-20T00:00:00.000Z',
+  },
+  {
+    id: 'agentic-workflow-design',
+    title: 'Agentic Workflow Architecture',
+    description: 'Design multi-step autonomous workflows for complex development tasks.',
+    content: `Design an agentic workflow for: [DESCRIBE COMPLEX TASK]
+
+**Context:**
+- Current pain point: [what takes too long manually]
+- Desired outcome: [what success looks like]
+- Human checkpoints: [where you need approval]
+
+Create a workflow that includes:
+
+1. **Task Decomposition**
+   - Break the main task into autonomous sub-tasks
+   - Define clear inputs/outputs for each step
+   - Identify parallelizable vs sequential steps
+
+2. **Agent Roles**
+   - Researcher (information gathering)
+   - Implementer (code writing)
+   - Reviewer (quality checking)
+   - Documenter (capturing decisions)
+
+3. **State Management**
+   - What context needs to persist between steps
+   - How to handle failures and rollbacks
+   - Checkpoint strategy for long workflows
+
+4. **Human-in-the-Loop Points**
+   - Critical decision gates
+   - Approval requirements
+   - Feedback integration
+
+5. **Error Handling**
+   - Retry strategies
+   - Fallback approaches
+   - Escalation to human
+
+6. **Completion Criteria**
+   - Success metrics
+   - Quality gates
+   - Documentation requirements
+
+Output as an actionable workflow I can implement with Claude Code or similar tools.`,
+    category: 'agent-development',
+    tags: ['agentic', 'workflow', 'automation', 'orchestration'],
+    aiTool: 'claude-code',
+    difficulty: 'Advanced',
+    useCase: 'Developers building sophisticated autonomous development pipelines.',
+    tier: 'paid',
+    productBundle: 'agentic-creator-os',
+    seoKeywords: ['agentic workflow', 'ai automation', 'autonomous coding', 'ai orchestration'],
+    createdAt: '2024-12-20T00:00:00.000Z',
+    updatedAt: '2024-12-20T00:00:00.000Z',
+  },
+  {
+    id: 'mcp-server-design',
+    title: 'MCP Server Architecture',
+    description: 'Design a Model Context Protocol server for custom AI integrations.',
+    content: `Design an MCP (Model Context Protocol) server for: [YOUR USE CASE]
+
+**Integration Goals:**
+- Data source: [database/API/file system/etc.]
+- Key operations: [what should the AI be able to do]
+- Security requirements: [authentication, permissions]
+
+Provide a complete design:
+
+1. **Resources** (read-only data exposure)
+   - List resources to expose (URI patterns)
+   - Schema for each resource type
+   - Pagination/filtering strategies
+
+2. **Tools** (actions the AI can take)
+   - Tool definitions with input schemas
+   - Validation requirements
+   - Side effect descriptions
+
+3. **Prompts** (predefined interaction patterns)
+   - Common workflows as prompt templates
+   - Context injection patterns
+   - Dynamic prompt generation
+
+4. **Server Configuration**
+   - Transport (stdio/HTTP/WebSocket)
+   - Authentication approach
+   - Rate limiting strategy
+
+5. **Error Handling**
+   - Error response schemas
+   - Retry guidance for clients
+   - Graceful degradation
+
+6. **TypeScript Implementation Skeleton**
+   - Main server structure
+   - Handler patterns
+   - Type definitions
+
+Output as a complete architectural design I can implement.`,
+    category: 'agent-development',
+    tags: ['mcp', 'protocol', 'integration', 'server'],
+    aiTool: 'claude-code',
+    difficulty: 'Advanced',
+    useCase: 'Developers building custom MCP servers for AI integrations.',
+    tier: 'paid',
+    productBundle: 'agentic-creator-os',
+    seoKeywords: ['MCP server', 'model context protocol', 'ai integration', 'claude mcp'],
+    createdAt: '2024-12-20T00:00:00.000Z',
+    updatedAt: '2024-12-20T00:00:00.000Z',
+  },
+  {
+    id: 'ai-coding-pair-session',
+    title: 'AI Pair Programming Session',
+    description: 'Structure an effective AI pair programming session for complex features.',
+    content: `Set up an AI pair programming session for: [FEATURE/TASK]
+
+**Session Context:**
+- Feature goal: [what we're building]
+- Codebase context: [relevant files, patterns]
+- Time budget: [how long for this session]
+
+Structure the session as:
+
+1. **Context Priming** (5 min)
+   - Share relevant code files
+   - Explain current architecture
+   - Define success criteria
+
+2. **Design Discussion** (10 min)
+   - Explore implementation approaches
+   - Identify edge cases
+   - Agree on patterns to use
+
+3. **Implementation Cycles** (main work)
+   - AI generates code in chunks
+   - Human reviews and provides feedback
+   - Iterate until quality is met
+
+4. **Effective Prompting Patterns**
+   - "Implement X following the pattern in Y"
+   - "Review this for edge cases: [code]"
+   - "Refactor to improve [specific quality]"
+
+5. **Session Hygiene**
+   - Regular commits with descriptive messages
+   - Running tests after each chunk
+   - Documenting decisions
+
+6. **Wrap-up** (5 min)
+   - Summary of changes
+   - Outstanding TODOs
+   - Follow-up tasks
+
+Provide prompts I can use throughout the session.`,
+    category: 'agent-development',
+    tags: ['pair-programming', 'workflow', 'productivity', 'coding'],
+    aiTool: 'general',
+    difficulty: 'Intermediate',
+    useCase: 'Developers wanting to maximize productivity in AI coding sessions.',
+    tier: 'free',
+    productBundle: 'agentic-creator-os',
+    seoKeywords: ['ai pair programming', 'coding with ai', 'developer productivity', 'ai assistant'],
+    createdAt: '2024-12-20T00:00:00.000Z',
+    updatedAt: '2024-12-20T00:00:00.000Z',
+  },
+
+  // ============================================================================
+  // AI ARCHITECTURE PROMPTS
+  // ============================================================================
+  {
+    id: 'prompt-engineering-system',
+    title: 'Production Prompt Engineering System',
+    description: 'Design versioned, testable prompt systems for production AI applications.',
+    content: `Design a prompt engineering system for: [YOUR AI APPLICATION]
+
+**Application Context:**
+- Use case: [what the AI does]
+- Model: [Claude/GPT-4/etc.]
+- Volume: [requests per day]
+- Quality requirements: [accuracy, consistency needs]
+
+Create a system that includes:
+
+1. **Prompt Architecture**
+   - System prompt structure
+   - Dynamic context injection patterns
+   - Few-shot example management
+   - Output format specifications
+
+2. **Version Control**
+   - Prompt versioning strategy
+   - A/B testing framework
+   - Rollback procedures
+   - Changelog format
+
+3. **Testing Framework**
+   - Unit tests for prompt behavior
+   - Golden test sets
+   - Regression detection
+   - Quality metrics (accuracy, latency, cost)
+
+4. **Optimization Patterns**
+   - Token usage optimization
+   - Caching strategies
+   - Batching approaches
+   - Model routing (different models for different tasks)
+
+5. **Monitoring & Observability**
+   - Logging structure
+   - Quality dashboards
+   - Drift detection
+   - Cost tracking
+
+6. **Implementation Template**
+   - Folder structure
+   - Configuration format
+   - Deployment pipeline
+
+Output as a production-ready architecture document.`,
+    category: 'ai-architecture',
+    tags: ['prompt-engineering', 'production', 'system-design', 'llm'],
+    aiTool: 'claude',
+    difficulty: 'Advanced',
+    useCase: 'Engineers building production AI applications that need reliable prompts.',
+    tier: 'paid',
+    productBundle: 'agentic-creator-os',
+    seoKeywords: ['prompt engineering', 'ai architecture', 'llm production', 'prompt versioning'],
+    createdAt: '2024-12-20T00:00:00.000Z',
+    updatedAt: '2024-12-20T00:00:00.000Z',
+  },
+  {
+    id: 'rag-pipeline-design',
+    title: 'RAG Pipeline Architecture',
+    description: 'Design a Retrieval-Augmented Generation system for knowledge-intensive applications.',
+    content: `Design a RAG (Retrieval-Augmented Generation) pipeline for:
+
+**Use Case:** [chatbot/search/Q&A/etc.]
+**Knowledge Base:** [documents/database/API/etc.]
+**Scale:** [document count, query volume]
+**Quality Needs:** [precision, recall, latency requirements]
+
+Create a complete RAG architecture:
+
+1. **Ingestion Pipeline**
+   - Document parsing strategy
+   - Chunking approach (size, overlap, semantic)
+   - Metadata extraction
+   - Embedding model selection
+
+2. **Vector Store Design**
+   - Store selection (Pinecone/Weaviate/pgvector/etc.)
+   - Index configuration
+   - Partitioning strategy
+   - Update/refresh patterns
+
+3. **Retrieval Strategy**
+   - Query processing (expansion, rewriting)
+   - Hybrid search (vector + keyword)
+   - Re-ranking approach
+   - Context window management
+
+4. **Generation Layer**
+   - Prompt template with retrieved context
+   - Citation handling
+   - Hallucination prevention
+   - Response formatting
+
+5. **Quality Assurance**
+   - Relevance scoring
+   - Answer evaluation metrics
+   - Feedback loop design
+   - Human review integration
+
+6. **Production Considerations**
+   - Caching strategy
+   - Error handling
+   - Monitoring/logging
+   - Cost optimization
+
+Output as an implementable architecture with technology recommendations.`,
+    category: 'ai-architecture',
+    tags: ['rag', 'retrieval', 'vector-search', 'llm'],
+    aiTool: 'claude',
+    difficulty: 'Advanced',
+    useCase: 'Engineers building knowledge-grounded AI applications.',
+    tier: 'premium',
+    productBundle: 'agentic-creator-os',
+    seoKeywords: ['rag architecture', 'retrieval augmented generation', 'vector database', 'ai search'],
+    createdAt: '2024-12-20T00:00:00.000Z',
+    updatedAt: '2024-12-20T00:00:00.000Z',
+  },
+  {
+    id: 'ai-evaluation-framework',
+    title: 'AI Output Evaluation Framework',
+    description: 'Create systematic evaluation methods for AI-generated content quality.',
+    content: `Design an evaluation framework for: [YOUR AI APPLICATION]
+
+**Context:**
+- Output type: [text/code/structured data/etc.]
+- Quality dimensions: [accuracy, helpfulness, safety, style]
+- Stakeholders: [who defines "good"]
+
+Create a comprehensive framework:
+
+1. **Evaluation Dimensions**
+   - Define 5-7 quality dimensions
+   - Rubric for each (1-5 scale with descriptions)
+   - Weighting by importance
+
+2. **Automated Metrics**
+   - Programmatic checks (format, length, keywords)
+   - Reference-based metrics (BLEU, ROUGE, etc.)
+   - Model-based evaluation (LLM as judge)
+   - Consistency checks
+
+3. **Human Evaluation Protocol**
+   - Evaluator selection criteria
+   - Task instructions
+   - Annotation interface design
+   - Inter-rater reliability targets
+
+4. **Test Set Design**
+   - Coverage across use cases
+   - Edge cases and adversarial inputs
+   - Golden answer creation
+   - Periodic refresh strategy
+
+5. **Reporting & Analysis**
+   - Score aggregation methods
+   - Trend visualization
+   - Failure analysis workflow
+   - Improvement prioritization
+
+6. **Integration into Development**
+   - Pre-deployment gates
+   - Continuous monitoring
+   - Regression alerts
+   - Feedback to prompt improvement
+
+Output as an actionable evaluation plan with templates.`,
+    category: 'ai-architecture',
+    tags: ['evaluation', 'quality', 'metrics', 'testing'],
+    aiTool: 'claude',
+    difficulty: 'Intermediate',
+    useCase: 'Teams needing systematic AI quality measurement.',
+    tier: 'premium',
+    productBundle: 'agentic-creator-os',
+    seoKeywords: ['ai evaluation', 'llm testing', 'ai quality metrics', 'prompt evaluation'],
+    createdAt: '2024-12-20T00:00:00.000Z',
+    updatedAt: '2024-12-20T00:00:00.000Z',
+  },
+  {
+    id: 'system-prompt-design',
+    title: 'System Prompt Designer',
+    description: 'Craft effective system prompts that guide AI behavior precisely.',
+    content: `Design a system prompt for: [YOUR AI ASSISTANT/APPLICATION]
+
+**Role & Purpose:**
+- Primary function: [what should it do]
+- Target users: [who will interact with it]
+- Tone: [professional/friendly/expert/etc.]
+
+Create a structured system prompt with:
+
+1. **Identity & Role**
+   - Who is the AI (name, expertise, personality)
+   - What it specializes in
+   - How it should present itself
+
+2. **Capabilities & Boundaries**
+   - What it CAN do (enumerate explicitly)
+   - What it should NOT do (guardrails)
+   - How to handle edge cases
+
+3. **Response Formatting**
+   - Default output structure
+   - When to use lists vs prose
+   - Length guidelines
+   - Code/technical content handling
+
+4. **Interaction Patterns**
+   - How to ask clarifying questions
+   - How to handle ambiguity
+   - Multi-turn conversation management
+   - Error acknowledgment style
+
+5. **Knowledge & Context**
+   - Background knowledge to assume
+   - How to reference external info
+   - Handling outdated information
+   - Citation practices
+
+6. **Safety & Alignment**
+   - Content policies
+   - Bias mitigation
+   - Escalation triggers
+   - User safety considerations
+
+Output as a production-ready system prompt I can use directly.`,
+    category: 'ai-architecture',
+    tags: ['system-prompt', 'prompt-design', 'ai-behavior', 'llm'],
+    aiTool: 'general',
+    difficulty: 'Intermediate',
+    useCase: 'Developers crafting reliable AI assistant behaviors.',
+    tier: 'free',
+    productBundle: null,
+    seoKeywords: ['system prompt', 'ai prompt design', 'chatbot prompt', 'llm configuration'],
+    createdAt: '2024-12-20T00:00:00.000Z',
+    updatedAt: '2024-12-20T00:00:00.000Z',
+  },
+
+  // ============================================================================
+  // SOCIAL MEDIA PROMPTS
+  // ============================================================================
+  {
+    id: 'linkedin-thought-leadership',
+    title: 'LinkedIn Thought Leadership Post',
+    description: 'Create engaging LinkedIn posts that establish authority and drive engagement.',
+    content: `Create a LinkedIn thought leadership post about: [TOPIC]
+
+**Your Angle:**
+- Key insight: [the main point you want to make]
+- Your experience: [why you're credible on this]
+- Target reader: [who should care about this]
+
+Write a post that follows this structure:
+
+1. **Hook (first line)** - Stop the scroll
+   - Counterintuitive statement, or
+   - Bold claim, or
+   - Relatable pain point
+
+2. **Context (2-3 lines)**
+   - Why this matters now
+   - Personal connection to topic
+
+3. **Body (main content)**
+   - 3-5 key points
+   - Use line breaks for readability
+   - Include specific examples or data
+   - Tell a mini-story if relevant
+
+4. **Actionable Takeaway**
+   - What should the reader DO with this?
+   - Make it specific and achievable
+
+5. **Engagement Hook (last line)**
+   - Question to prompt comments
+   - Or invite disagreement
+   - Or ask for their experience
+
+**Format Guidelines:**
+- Total: 150-300 words
+- Short paragraphs (1-2 sentences each)
+- Use emojis sparingly (0-3 max)
+- No hashtags in body (put at end if any)
+
+Output the complete post ready to copy-paste.`,
+    category: 'social-media',
+    tags: ['linkedin', 'thought-leadership', 'personal-brand', 'engagement'],
+    aiTool: 'claude',
+    difficulty: 'Beginner',
+    useCase: 'Professionals building their personal brand on LinkedIn.',
+    tier: 'free',
+    productBundle: null,
+    seoKeywords: ['linkedin post', 'thought leadership', 'linkedin content', 'personal branding'],
+    createdAt: '2024-12-20T00:00:00.000Z',
+    updatedAt: '2024-12-20T00:00:00.000Z',
+  },
+  {
+    id: 'twitter-thread-generator',
+    title: 'Twitter/X Thread Creator',
+    description: 'Transform ideas into viral Twitter threads that educate and engage.',
+    content: `Create a Twitter/X thread about: [TOPIC]
+
+**Thread Goal:**
+- Main takeaway: [what reader should learn/feel]
+- Type: [how-to/story/breakdown/insight/prediction]
+- Tone: [educational/provocative/inspiring/casual]
+
+Structure the thread:
+
+1. **Tweet 1 (Hook)**
+   - Must work standalone
+   - Create curiosity gap
+   - Promise value ("Here's what I learned...")
+
+2. **Tweet 2-3 (Setup)**
+   - Context or story beginning
+   - Why this matters
+
+3. **Tweets 4-8 (Body)**
+   - One idea per tweet
+   - Numbered list format works well
+   - Include specific examples
+   - Add visuals ideas where relevant
+
+4. **Tweet 9 (Summary/Key Insight)**
+   - Crystallize the main point
+   - Make it quotable
+
+5. **Tweet 10 (CTA)**
+   - Follow for more
+   - Retweet to help others
+   - Drop your questions
+
+**Format Rules:**
+- Max 280 characters per tweet
+- Use "1/" numbering
+- Include 🧵 emoji in first tweet
+- Add line breaks for readability
+- Include 2-3 tweets that could standalone
+
+Output as a complete thread with tweet separators.`,
+    category: 'social-media',
+    tags: ['twitter', 'thread', 'x', 'viral'],
+    aiTool: 'chatgpt',
+    difficulty: 'Intermediate',
+    useCase: 'Creators wanting to grow their Twitter/X audience.',
+    tier: 'premium',
+    productBundle: 'gencreator-os',
+    seoKeywords: ['twitter thread', 'x thread', 'viral twitter', 'twitter growth'],
+    createdAt: '2024-12-20T00:00:00.000Z',
+    updatedAt: '2024-12-20T00:00:00.000Z',
+  },
+  {
+    id: 'instagram-carousel-script',
+    title: 'Instagram Carousel Script',
+    description: 'Create educational carousel content that gets saved and shared.',
+    content: `Create an Instagram carousel about: [TOPIC]
+
+**Content Details:**
+- Target audience: [who is this for]
+- Main value: [what will they learn/gain]
+- Your angle: [why you're the one to teach this]
+
+Design a 10-slide carousel:
+
+**Slide 1 - Cover**
+- Bold headline (5-7 words max)
+- Subheadline with promise
+- Visual style suggestion
+
+**Slide 2 - Hook/Problem**
+- Relatable pain point
+- "You're doing X wrong..." or "Stop doing Y..."
+
+**Slides 3-8 - Content**
+- One tip/point per slide
+- Headline + supporting text format
+- Specific, actionable advice
+- Include examples or mini-case studies
+
+**Slide 9 - Summary**
+- Quick recap of all points
+- Reinforce main message
+
+**Slide 10 - CTA**
+- Save for later
+- Share with a friend who needs this
+- Follow for more [topic] tips
+
+**For Each Slide Provide:**
+- Main headline
+- Supporting text (1-2 sentences)
+- Visual direction
+- Design notes
+
+**Caption (after slides):**
+- 150-200 words
+- Story or additional context
+- Question for engagement
+- 5-10 relevant hashtags`,
+    category: 'social-media',
+    tags: ['instagram', 'carousel', 'educational', 'visual-content'],
+    aiTool: 'chatgpt',
+    difficulty: 'Intermediate',
+    useCase: 'Creators building educational content on Instagram.',
+    tier: 'premium',
+    productBundle: 'gencreator-os',
+    seoKeywords: ['instagram carousel', 'instagram content', 'social media design', 'ig carousel'],
+    createdAt: '2024-12-20T00:00:00.000Z',
+    updatedAt: '2024-12-20T00:00:00.000Z',
+  },
+  {
+    id: 'youtube-script-framework',
+    title: 'YouTube Video Script Framework',
+    description: 'Write engaging YouTube scripts that keep viewers watching.',
+    content: `Create a YouTube script for: [VIDEO TOPIC]
+
+**Video Details:**
+- Target length: [5-10 min / 10-20 min / 20+ min]
+- Style: [tutorial/vlog/essay/review/story]
+- Audience: [who and what do they already know]
+- Goal: [educate/entertain/persuade/inspire]
+
+Write a complete script:
+
+**HOOK (first 30 seconds)** - CRUCIAL
+- Pattern interrupt or surprising statement
+- Promise of value ("By the end of this video...")
+- Preview of what's coming
+- Establish credibility quickly
+
+**INTRO (30-60 seconds)**
+- Brief context
+- Why this matters now
+- Your personal connection
+- "Let's dive in" transition
+
+**MAIN CONTENT (structured sections)**
+
+For each section include:
+- Section headline
+- Key teaching points
+- Examples, stories, or demonstrations
+- Transition to next section
+- Engagement prompts ("Have you ever...?")
+
+**CLIMAX/KEY INSIGHT**
+- The most important point
+- Emotional payoff
+- Make it memorable
+
+**OUTRO (60 seconds)**
+- Summary of key points
+- Call to action (specific)
+- Tease next video
+- Thanks and sign-off
+
+**Include:**
+- [B-ROLL] suggestions
+- [GRAPHIC] placeholders
+- [CUT TO] transitions
+- Estimated timestamps`,
+    category: 'social-media',
+    tags: ['youtube', 'video-script', 'content-creation', 'tutorial'],
+    aiTool: 'claude',
+    difficulty: 'Intermediate',
+    useCase: 'YouTubers wanting structured, engaging scripts.',
+    tier: 'paid',
+    productBundle: 'gencreator-os',
+    seoKeywords: ['youtube script', 'video script', 'youtube content', 'youtube tutorial'],
+    createdAt: '2024-12-20T00:00:00.000Z',
+    updatedAt: '2024-12-20T00:00:00.000Z',
+  },
+  {
+    id: 'social-content-calendar',
+    title: 'Weekly Social Content Calendar',
+    description: 'Plan a week of cohesive content across multiple platforms.',
+    content: `Create a weekly social media content calendar for:
+
+**Brand/Creator:** [describe yourself or brand]
+**Platforms:** [LinkedIn/Twitter/Instagram/YouTube/TikTok]
+**Content Pillars:** [3-5 themes you focus on]
+**Current Goal:** [awareness/engagement/leads/sales]
+
+Generate a 7-day calendar with:
+
+**For Each Day:**
+- Primary platform focus
+- Content type (post/story/reel/thread)
+- Topic and angle
+- Key message (1 sentence)
+- CTA
+- Best posting time
+- Cross-posting adaptations
+
+**Content Mix Targets:**
+- 40% Educational (teach something)
+- 30% Personal (story, behind-scenes)
+- 20% Engagement (questions, polls)
+- 10% Promotional (offers, launches)
+
+**Format:**
+| Day | Platform | Type | Topic | Key Message | CTA |
+|-----|----------|------|-------|-------------|-----|
+| Mon | LinkedIn | Post | ... | ... | ... |
+
+**Include:**
+- Content themes for each day
+- Engagement strategy (reply time, DM approach)
+- Hashtag strategy per platform
+- Story ideas to complement feed
+- One "evergreen" piece to repurpose
+
+Output as a complete, actionable calendar.`,
+    category: 'social-media',
+    tags: ['content-calendar', 'planning', 'social-strategy', 'scheduling'],
+    aiTool: 'general',
+    difficulty: 'Beginner',
+    useCase: 'Creators wanting consistent, strategic social presence.',
+    tier: 'free',
+    productBundle: null,
+    seoKeywords: ['content calendar', 'social media planning', 'content strategy', 'social schedule'],
+    createdAt: '2024-12-20T00:00:00.000Z',
+    updatedAt: '2024-12-20T00:00:00.000Z',
+  },
+
+  // ============================================================================
+  // MARKETING PROMPTS
+  // ============================================================================
+  {
+    id: 'landing-page-copy',
+    title: 'High-Converting Landing Page Copy',
+    description: 'Write persuasive landing page copy that converts visitors.',
+    content: `Write landing page copy for: [PRODUCT/SERVICE]
+
+**Product Details:**
+- What it is: [describe briefly]
+- Who it's for: [target customer]
+- Main benefit: [the transformation it provides]
+- Price point: [pricing if relevant]
+
+Create copy for each section:
+
+**1. HERO SECTION**
+- Headline (8-12 words, benefit-focused)
+- Subheadline (expand on promise)
+- CTA button text
+- Social proof snippet
+
+**2. PROBLEM SECTION**
+- 3 pain points your audience feels
+- Agitate each one (make them feel understood)
+- Hint at the solution
+
+**3. SOLUTION SECTION**
+- Introduce your product as the answer
+- 3 key benefits (not features)
+- What makes you different
+
+**4. FEATURES/HOW IT WORKS**
+- 3-5 features with benefit-focused descriptions
+- Use format: Feature → So What → Which Means
+
+**5. SOCIAL PROOF**
+- Testimonial templates (what to ask customers)
+- Stats to highlight
+- Logos/credentials to show
+
+**6. OBJECTION HANDLING**
+- FAQ section (5 common objections as questions)
+- Answers that reassure and redirect
+
+**7. FINAL CTA**
+- Headline that restates value
+- Urgency element (if authentic)
+- Risk reversal (guarantee)
+- Button text
+
+**Tone:** [specify: confident, friendly, urgent, professional]`,
+    category: 'marketing',
+    tags: ['landing-page', 'copywriting', 'conversion', 'sales'],
+    aiTool: 'claude',
+    difficulty: 'Intermediate',
+    useCase: 'Marketers and founders launching products.',
+    tier: 'premium',
+    productBundle: 'gencreator-os',
+    seoKeywords: ['landing page copy', 'copywriting', 'sales page', 'conversion copy'],
+    createdAt: '2024-12-20T00:00:00.000Z',
+    updatedAt: '2024-12-20T00:00:00.000Z',
+  },
+  {
+    id: 'email-sequence-nurture',
+    title: 'Email Nurture Sequence',
+    description: 'Create a welcome/nurture email sequence that builds trust and drives action.',
+    content: `Create an email nurture sequence for: [YOUR OFFER/PRODUCT]
+
+**Context:**
+- Lead magnet/entry point: [how they joined your list]
+- End goal: [what action should they take]
+- Sequence length: [5-7 emails over X days]
+- Brand voice: [describe tone]
+
+Write each email with:
+
+**Email 1 - Welcome (Day 0)**
+- Deliver the promised value
+- Set expectations
+- Begin the relationship
+- Simple CTA
+
+**Email 2 - Quick Win (Day 1)**
+- Provide immediate value
+- Build credibility
+- Share a story or insight
+- Soft CTA
+
+**Email 3 - The Problem (Day 3)**
+- Dig into their pain points
+- Show you understand deeply
+- Hint at transformation
+- Curiosity-building CTA
+
+**Email 4 - The Solution (Day 5)**
+- Present your approach/framework
+- Case study or proof
+- Address skepticism
+- Stronger CTA
+
+**Email 5 - Objection Handling (Day 7)**
+- Tackle the main objection
+- Social proof
+- Risk reversal
+- Clear CTA
+
+**Email 6 - Last Chance (Day 10)**
+- Create urgency (authentic)
+- Summarize value
+- Final push
+- Direct CTA
+
+**For Each Email Include:**
+- Subject line (+ 2 alternatives)
+- Preview text
+- Full copy
+- CTA link text
+- P.S. line`,
+    category: 'marketing',
+    tags: ['email-marketing', 'nurture', 'automation', 'conversion'],
+    aiTool: 'claude',
+    difficulty: 'Intermediate',
+    useCase: 'Marketers building automated email funnels.',
+    tier: 'paid',
+    productBundle: 'gencreator-os',
+    seoKeywords: ['email sequence', 'nurture sequence', 'email marketing', 'email funnel'],
+    createdAt: '2024-12-20T00:00:00.000Z',
+    updatedAt: '2024-12-20T00:00:00.000Z',
+  },
+  {
+    id: 'product-launch-plan',
+    title: 'Product Launch Strategy',
+    description: 'Plan a complete product launch with pre-launch, launch, and post-launch phases.',
+    content: `Create a product launch plan for: [YOUR PRODUCT]
+
+**Product Details:**
+- Product: [name and brief description]
+- Price: [pricing structure]
+- Launch date: [target date]
+- Audience size: [email list, social following]
+- Launch goal: [revenue target or units]
+
+Design a 3-phase launch:
+
+**PHASE 1: PRE-LAUNCH (2-4 weeks before)**
+
+Week-by-week breakdown:
+- Content themes to publish
+- Audience warming activities
+- Waitlist building tactics
+- Behind-the-scenes sharing
+- Beta tester recruitment
+
+Deliverables:
+- Launch announcement content
+- Waitlist landing page copy
+- Pre-launch email sequence (3-5 emails)
+
+**PHASE 2: LAUNCH (5-7 days)**
+
+Day-by-day breakdown:
+- Day 1: Doors open (email + social)
+- Day 2-3: Social proof push
+- Day 4-5: Objection handling
+- Day 6: Scarcity/urgency
+- Day 7: Final call
+
+Deliverables:
+- Sales page copy outline
+- Daily email templates
+- Social post calendar
+- FAQ document
+
+**PHASE 3: POST-LAUNCH (1-2 weeks after)**
+
+- Customer onboarding sequence
+- Testimonial collection
+- Upsell/cross-sell opportunities
+- Launch retrospective framework
+- Evergreen conversion strategy
+
+**Metrics to Track:**
+- List each KPI with target`,
+    category: 'marketing',
+    tags: ['launch', 'strategy', 'planning', 'sales'],
+    aiTool: 'claude',
+    difficulty: 'Advanced',
+    useCase: 'Entrepreneurs and marketers launching products.',
+    tier: 'paid',
+    productBundle: 'gencreator-os',
+    seoKeywords: ['product launch', 'launch strategy', 'product marketing', 'launch plan'],
+    createdAt: '2024-12-20T00:00:00.000Z',
+    updatedAt: '2024-12-20T00:00:00.000Z',
+  },
+  {
+    id: 'headline-variations',
+    title: 'Headline Variation Generator',
+    description: 'Generate multiple headline options using proven copywriting formulas.',
+    content: `Generate headline variations for: [WHAT YOU'RE PROMOTING]
+
+**Context:**
+- Product/Content: [describe what the headline is for]
+- Target audience: [who should click]
+- Main benefit: [the key promise]
+- Tone: [urgent/curious/professional/fun]
+
+Generate 20+ headlines using these formulas:
+
+**How-To Headlines (3)**
+- How to [achieve benefit] without [pain point]
+
+**List Headlines (3)**
+- [Number] ways to [achieve result]
+
+**Question Headlines (3)**
+- Are you making these [topic] mistakes?
+
+**Curiosity Headlines (3)**
+- The [unexpected adjective] way to [benefit]
+
+**Proof Headlines (3)**
+- [Authority/number] proves [claim]
+
+**Fear/Problem Headlines (3)**
+- Warning: [problem] is costing you [loss]
+
+**Benefit-Direct Headlines (3)**
+- Get [specific benefit] in [timeframe]
+
+**Story Headlines (2)**
+- How I [achieved result] after [struggle]
+
+For each headline:
+- Rate power (1-10)
+- Identify primary emotion triggered
+- Suggest A/B test pairing
+
+Recommend top 3 for testing with reasoning.`,
+    category: 'marketing',
+    tags: ['headlines', 'copywriting', 'a/b-testing', 'conversion'],
+    aiTool: 'general',
+    difficulty: 'Beginner',
+    useCase: 'Marketers needing attention-grabbing headlines.',
+    tier: 'free',
+    productBundle: null,
+    seoKeywords: ['headline generator', 'copywriting formulas', 'marketing headlines', 'ab testing'],
+    createdAt: '2024-12-20T00:00:00.000Z',
+    updatedAt: '2024-12-20T00:00:00.000Z',
+  },
+
+  // ============================================================================
+  // PERSONAL DEVELOPMENT PROMPTS
+  // ============================================================================
+  {
+    id: 'ikigai-discovery',
+    title: 'Ikigai Discovery Session',
+    description: 'Find your Ikigai - the intersection of passion, mission, vocation, and profession.',
+    content: `Guide me through discovering my Ikigai.
+
+**First, help me explore each dimension:**
+
+1. **What I LOVE (Passion)**
+   - What activities make me lose track of time?
+   - What would I do even if no one paid me?
+   - What topics do I naturally gravitate toward?
+
+2. **What I'm GOOD AT (Profession)**
+   - What skills come naturally to me?
+   - What do people consistently ask my help with?
+   - What have I developed expertise in?
+
+3. **What the World NEEDS (Mission)**
+   - What problems do I feel called to solve?
+   - What breaks my heart about the world?
+   - Where do I see suffering I could address?
+
+4. **What I can be PAID FOR (Vocation)**
+   - What skills have market value?
+   - What are people already paying for in this space?
+   - What business models exist here?
+
+**Based on my answers, help me find:**
+
+1. **Intersections**
+   - Passion + Mission = My Purpose
+   - Passion + Profession = My Pleasure
+   - Profession + Vocation = My Comfort
+   - Vocation + Mission = My Contribution
+
+2. **My Ikigai Statement**
+   - A clear sentence describing my sweet spot
+   - "I help [who] do [what] so that [result]"
+
+3. **Action Steps**
+   - 3 experiments to test this direction
+   - Skills to develop
+   - People to connect with
+
+Make this introspective and profound.`,
+    category: 'personal-development',
+    tags: ['ikigai', 'purpose', 'career', 'life-design'],
+    aiTool: 'claude',
+    difficulty: 'Intermediate',
+    useCase: 'Anyone seeking clarity on their life purpose and direction.',
+    tier: 'premium',
+    productBundle: null,
+    seoKeywords: ['ikigai', 'find your purpose', 'life purpose', 'career clarity'],
+    createdAt: '2024-12-20T00:00:00.000Z',
+    updatedAt: '2024-12-20T00:00:00.000Z',
+  },
+  {
+    id: 'goal-setting-framework',
+    title: 'Annual Goal Setting System',
+    description: 'Set meaningful goals using a proven framework for clarity and achievement.',
+    content: `Help me set powerful goals for the next 12 months.
+
+**Current Situation:**
+- What went well last year: [brief summary]
+- What I want to change: [brief summary]
+- Key life areas: [career/health/relationships/finances/personal growth]
+
+Guide me through:
+
+**1. VISION (Dream State)**
+- If this year goes perfectly, what does my life look like?
+- Describe a typical day in my ideal future
+- What am I most proud of achieving?
+
+**2. AUDIT (Current State)**
+For each life area, rate 1-10:
+- Career/Business:
+- Health/Energy:
+- Relationships:
+- Finances:
+- Personal Growth:
+- Fun/Recreation:
+
+**3. GOAL SETTING (The Bridge)**
+For my top 3 priorities:
+- Outcome goal (the destination)
+- Process goals (weekly/daily actions)
+- Identity shift (who I need to become)
+
+Format each goal:
+- SPECIFIC: Exactly what, measured how
+- COMPELLING: Why this matters deeply
+- ACTIONABLE: First steps this week
+- TIME-BOUND: Key milestones
+
+**4. SYSTEMS**
+- Habits to install
+- Habits to remove
+- Weekly review ritual
+- Accountability structure
+
+**5. OBSTACLES**
+- Predict top 3 obstacles
+- Pre-decide how I'll handle each
+- Identify support needed
+
+Output as a complete goal-setting document.`,
+    category: 'personal-development',
+    tags: ['goals', 'planning', 'annual-review', 'productivity'],
+    aiTool: 'claude',
+    difficulty: 'Beginner',
+    useCase: 'Anyone setting meaningful goals for a new chapter.',
+    tier: 'free',
+    productBundle: null,
+    seoKeywords: ['goal setting', 'annual goals', 'life planning', 'goal framework'],
+    createdAt: '2024-12-20T00:00:00.000Z',
+    updatedAt: '2024-12-20T00:00:00.000Z',
+  },
+  {
+    id: 'habit-design',
+    title: 'Habit Design Workshop',
+    description: 'Design new habits that stick using behavioral science principles.',
+    content: `Help me design a new habit:
+
+**The Habit I Want:**
+- Behavior: [what exactly I want to do]
+- Frequency: [daily/weekly/situational]
+- Current status: [never done/tried and failed/inconsistent]
+- Why it matters: [the deeper reason]
+
+Design this habit using behavioral science:
+
+**1. MAKE IT OBVIOUS (Cue)**
+- When and where will I do this?
+- What existing habit can I stack this onto?
+- What environmental changes support this?
+- Implementation intention: "I will [BEHAVIOR] at [TIME] in [LOCATION]"
+
+**2. MAKE IT ATTRACTIVE (Craving)**
+- How can I make this enjoyable?
+- What reward can I pair with it?
+- Who can I do this with?
+- How do I frame this as something I GET to do?
+
+**3. MAKE IT EASY (Response)**
+- What's the 2-minute version?
+- How do I reduce friction?
+- How do I prepare my environment?
+- What's the minimum viable version?
+
+**4. MAKE IT SATISFYING (Reward)**
+- How will I track progress?
+- What immediate reward follows?
+- How will I celebrate small wins?
+- What's the identity reinforcement? ("I am a person who...")
+
+**5. TROUBLESHOOTING**
+- When I miss a day, I will...
+- When I feel like skipping, I will...
+- My accountability system is...
+
+**30-Day Implementation Plan:**
+- Week 1: [focus]
+- Week 2: [focus]
+- Week 3: [focus]
+- Week 4: [focus]`,
+    category: 'personal-development',
+    tags: ['habits', 'behavior-change', 'atomic-habits', 'self-improvement'],
+    aiTool: 'claude',
+    difficulty: 'Beginner',
+    useCase: 'Anyone building new habits or breaking old ones.',
+    tier: 'free',
+    productBundle: null,
+    seoKeywords: ['habit building', 'atomic habits', 'behavior design', 'habit formation'],
+    createdAt: '2024-12-20T00:00:00.000Z',
+    updatedAt: '2024-12-20T00:00:00.000Z',
+  },
+  {
+    id: 'morning-routine-design',
+    title: 'Morning Routine Designer',
+    description: 'Design a personalized morning routine that sets you up for peak performance.',
+    content: `Design my ideal morning routine:
+
+**My Context:**
+- Wake time: [target wake time]
+- First commitment: [when I need to be somewhere]
+- Available time: [how long for morning routine]
+- Energy pattern: [am I naturally a morning person?]
+- Priorities: [what matters most: fitness/mindset/productivity/creativity]
+
+Design a routine that includes:
+
+**1. WAKE-UP RITUAL (first 5-10 min)**
+- How to wake up without hitting snooze
+- First action out of bed
+- Hydration/energy boost
+
+**2. BODY ACTIVATION (15-30 min)**
+- Movement appropriate for my level
+- Options for low-energy days
+- What to avoid
+
+**3. MIND PRIMING (10-20 min)**
+- Mindfulness/meditation suggestion
+- Journaling prompts
+- Visualization practice
+
+**4. FUEL (15-20 min)**
+- Nutrition approach
+- Prep strategies
+- What to avoid in morning
+
+**5. FOCUS BLOCK (remaining time)**
+- Most important task identification
+- Environment setup
+- How to protect this time
+
+**For Each Element Provide:**
+- Why it matters
+- How to do it
+- Minimum viable version (busy days)
+- Common mistakes to avoid
+
+**Weekly Variation:**
+- Weekday vs weekend adjustments
+- How to maintain consistency
+- Recovery days
+
+**Troubleshooting:**
+- When I oversleep...
+- When I'm traveling...
+- When motivation is low...`,
+    category: 'personal-development',
+    tags: ['morning-routine', 'productivity', 'wellness', 'habits'],
+    aiTool: 'general',
+    difficulty: 'Beginner',
+    useCase: 'Anyone wanting to start their day with intention.',
+    tier: 'free',
+    productBundle: null,
+    seoKeywords: ['morning routine', 'morning ritual', 'productivity routine', 'morning habits'],
+    createdAt: '2024-12-20T00:00:00.000Z',
+    updatedAt: '2024-12-20T00:00:00.000Z',
+  },
+
+  // ============================================================================
+  // SPIRITUAL PROMPTS
+  // ============================================================================
+  {
+    id: 'meditation-guidance',
+    title: 'Personalized Meditation Guide',
+    description: 'Create a custom meditation practice tailored to your needs and experience.',
+    content: `Design a meditation practice for me:
+
+**My Situation:**
+- Experience level: [never/beginner/intermediate/advanced]
+- Time available: [5/10/20/30+ minutes]
+- Main goal: [stress relief/focus/sleep/spiritual growth/emotional healing]
+- Challenges: [racing mind/physical discomfort/falling asleep/consistency]
+
+Create a complete meditation guide:
+
+**1. PREPARATION**
+- Best time of day for my goal
+- Environment setup
+- Posture options
+- Pre-meditation ritual
+
+**2. THE PRACTICE (step by step)**
+- Opening (settling in)
+- Main technique (detailed instructions)
+- How to handle distractions
+- Closing (returning)
+
+**3. TECHNIQUE OPTIONS**
+Based on my goal, provide 3 techniques:
+- Technique 1: [name] - best for [situation]
+- Technique 2: [name] - best for [situation]
+- Technique 3: [name] - best for [situation]
+
+For each, give exact instructions.
+
+**4. PROGRESSIVE PATH**
+- Week 1-2: Foundation
+- Week 3-4: Deepening
+- Month 2: Expanding
+- Month 3+: Advanced practices
+
+**5. COMMON CHALLENGES**
+- "I can't stop thinking" → [response]
+- "I don't have time" → [response]
+- "I keep forgetting" → [response]
+- "Nothing is happening" → [response]
+
+**6. INTEGRATION**
+- Micro-practices throughout day
+- How to bring benefits into daily life
+- Signs of progress to notice
+
+Include a sample guided meditation script.`,
+    category: 'spiritual',
+    tags: ['meditation', 'mindfulness', 'presence', 'inner-peace'],
+    aiTool: 'claude',
+    difficulty: 'Beginner',
+    useCase: 'Anyone wanting to establish or deepen a meditation practice.',
+    tier: 'free',
+    productBundle: null,
+    seoKeywords: ['meditation guide', 'how to meditate', 'meditation practice', 'mindfulness'],
+    createdAt: '2024-12-20T00:00:00.000Z',
+    updatedAt: '2024-12-20T00:00:00.000Z',
+  },
+  {
+    id: 'journaling-prompts-deep',
+    title: 'Deep Self-Discovery Journaling',
+    description: 'Profound journaling prompts for self-exploration and inner work.',
+    content: `Guide me through a deep journaling session on: [CHOOSE THEME]
+
+**Themes available:**
+- Self-understanding
+- Healing and release
+- Life purpose
+- Relationships
+- Fear and courage
+- Gratitude and abundance
+- Shadow work
+- Future self
+
+**For my chosen theme, provide:**
+
+**1. WARM-UP (5 min)**
+3 gentle prompts to start writing:
+- [prompt 1]
+- [prompt 2]
+- [prompt 3]
+
+**2. DEEP EXPLORATION (15-20 min)**
+5 profound prompts that go beneath the surface:
+- [prompt with follow-up questions]
+- [prompt with follow-up questions]
+- [prompt with follow-up questions]
+- [prompt with follow-up questions]
+- [prompt with follow-up questions]
+
+**3. INTEGRATION (5 min)**
+- What patterns do I notice in my responses?
+- What surprised me?
+- What wants attention?
+
+**4. ACTION (2 min)**
+- One small step I can take based on these insights
+- One thing I'm releasing
+- One thing I'm inviting in
+
+**Journaling Guidelines:**
+- Write without editing
+- No judgment of what emerges
+- Include emotions and body sensations
+- Date your entry
+- Return to read in [timeframe]
+
+**Optional Ritual:**
+- Creating sacred space
+- Closing practice
+- Self-compassion moment`,
+    category: 'spiritual',
+    tags: ['journaling', 'self-discovery', 'reflection', 'inner-work'],
+    aiTool: 'claude',
+    difficulty: 'Intermediate',
+    useCase: 'Those seeking deeper self-understanding through writing.',
+    tier: 'premium',
+    productBundle: null,
+    seoKeywords: ['journaling prompts', 'self discovery', 'deep journaling', 'inner work'],
+    createdAt: '2024-12-20T00:00:00.000Z',
+    updatedAt: '2024-12-20T00:00:00.000Z',
+  },
+  {
+    id: 'gratitude-practice',
+    title: 'Advanced Gratitude Practice',
+    description: 'Develop a transformative gratitude practice beyond simple lists.',
+    content: `Design an advanced gratitude practice for me:
+
+**My Current State:**
+- Current gratitude practice: [none/basic lists/inconsistent]
+- Life challenges right now: [brief description]
+- Goal: [shift perspective/increase joy/manifest/heal]
+
+Create a multi-dimensional gratitude practice:
+
+**1. MORNING GRATITUDE (5 min)**
+Not just "what am I grateful for" but:
+- What am I grateful for that I usually take for granted?
+- What challenge am I grateful for because of what it's teaching me?
+- What about my body am I grateful for today?
+
+**2. PRESENT-MOMENT GRATITUDE**
+Micro-practices throughout the day:
+- The 5-4-3-2-1 gratitude sense exercise
+- "Thank you" internal whisper practice
+- Beauty hunting habit
+
+**3. EVENING REFLECTION (5 min)**
+- What made me smile today?
+- Who contributed to my day?
+- What went "wrong" that I can find gold in?
+
+**4. DEEP GRATITUDE PRACTICES**
+
+Weekly practice:
+- Gratitude letter writing
+- Gratitude meditation script
+- Gratitude for challenges exercise
+
+Monthly practice:
+- Gratitude inventory by life area
+- Expressing gratitude to others
+- Gratitude vision boarding
+
+**5. GRATITUDE IN DIFFICULTY**
+- Finding gratitude during hard times
+- The "grateful anyway" practice
+- Transmuting pain into appreciation
+
+**6. MEASURABLE SHIFTS**
+- Signs gratitude is working
+- Journal prompts to track progress
+- When to deepen the practice`,
+    category: 'spiritual',
+    tags: ['gratitude', 'abundance', 'positivity', 'mindset'],
+    aiTool: 'general',
+    difficulty: 'Beginner',
+    useCase: 'Anyone wanting to cultivate genuine gratitude.',
+    tier: 'free',
+    productBundle: null,
+    seoKeywords: ['gratitude practice', 'gratitude journal', 'thankfulness', 'appreciation'],
+    createdAt: '2024-12-20T00:00:00.000Z',
+    updatedAt: '2024-12-20T00:00:00.000Z',
+  },
+  {
+    id: 'manifestation-framework',
+    title: 'Manifestation & Intention Setting',
+    description: 'Create a practical manifestation practice grounded in action and belief.',
+    content: `Help me create a manifestation practice for: [WHAT I WANT TO CREATE]
+
+**My Desire:**
+- What I want: [be specific]
+- Why I want it: [deeper reason]
+- Timeframe: [when by]
+- Current belief level (1-10): [honest assessment]
+
+Create a complete manifestation framework:
+
+**1. CLARITY (The Vision)**
+- Detailed description of the outcome
+- How will I FEEL when this is real?
+- Sensory details: what I'll see, hear, experience
+- Write it as if it's already true
+
+**2. BELIEF WORK (The Internal Shift)**
+- Limiting beliefs to identify and release
+- New beliefs to install
+- Evidence from the past that I can do this
+- Affirmations that feel true, not forced
+
+**3. ALIGNMENT (The Energy)**
+- Morning visualization practice (script)
+- Acting "as if" in daily life
+- Environment alignment
+- People to surround myself with
+
+**4. ACTION (The Bridge)**
+- Inspired actions to take this week
+- How to recognize opportunities
+- Saying yes and saying no
+- The balance of surrender and effort
+
+**5. RELEASE (The Letting Go)**
+- Detaching from the "how"
+- Trust practices
+- Handling doubt when it arises
+- Signs to notice along the way
+
+**6. DAILY PRACTICE**
+- Morning ritual (10 min)
+- Throughout-day anchors
+- Evening reflection
+
+**7. OBSTACLES**
+- When nothing seems to be happening
+- When old patterns return
+- When doubt overwhelms
+
+Include journaling prompts for each phase.`,
+    category: 'spiritual',
+    tags: ['manifestation', 'intention', 'law-of-attraction', 'visualization'],
+    aiTool: 'claude',
+    difficulty: 'Intermediate',
+    useCase: 'Conscious creators manifesting their desires.',
+    tier: 'premium',
+    productBundle: null,
+    seoKeywords: ['manifestation', 'law of attraction', 'visualization', 'intention setting'],
+    createdAt: '2024-12-20T00:00:00.000Z',
+    updatedAt: '2024-12-20T00:00:00.000Z',
+  },
+  {
+    id: 'shadow-work-guide',
+    title: 'Shadow Work Exploration',
+    description: 'Safely explore and integrate unconscious patterns for personal growth.',
+    content: `Guide me through shadow work exploration:
+
+**Current Trigger:**
+- What's bothering me right now: [situation or pattern]
+- Emotion I'm feeling: [name it]
+- How long has this pattern existed: [history]
+
+Create a safe shadow work session:
+
+**1. PREPARATION**
+- Creating emotional safety
+- Grounding exercise
+- Self-compassion anchor
+- Knowing when to pause
+
+**2. IDENTIFICATION**
+Prompts to find the shadow:
+- What do I judge harshly in others?
+- What am I afraid people will discover about me?
+- What patterns keep repeating in my life?
+- When do I feel shame or guilt?
+
+**3. EXPLORATION**
+For the shadow aspect identified:
+- When did I first learn to hide this part of myself?
+- What was I protecting by suppressing this?
+- How has this shadow served me?
+- What is this part of me really wanting?
+
+**4. DIALOGUE**
+A conversation with the shadow:
+- Give it a voice
+- Ask what it needs
+- Listen without judgment
+- Find the gift it carries
+
+**5. INTEGRATION**
+- Accepting this part of myself
+- Reclaiming the energy
+- New ways to express this safely
+- Commitment to self
+
+**6. CLOSING RITUAL**
+- Self-forgiveness practice
+- Grounding back to present
+- Self-care action
+- Integration support
+
+**Safety Notes:**
+- When to seek professional support
+- Signs of overwhelm
+- Gentle vs deep shadow work
+- Aftercare practices`,
+    category: 'spiritual',
+    tags: ['shadow-work', 'healing', 'psychology', 'integration'],
+    aiTool: 'claude',
+    difficulty: 'Advanced',
+    useCase: 'Those ready for deep inner work and self-integration.',
+    tier: 'paid',
+    productBundle: null,
+    seoKeywords: ['shadow work', 'inner child', 'psychological healing', 'self integration'],
+    createdAt: '2024-12-20T00:00:00.000Z',
+    updatedAt: '2024-12-20T00:00:00.000Z',
   },
 ]
 
@@ -876,6 +2674,23 @@ export function getPromptsByCategory(category: PromptCategory): Prompt[] {
 
 export function getPromptsByTool(tool: AITool): Prompt[] {
   return PROMPTS.filter((prompt) => prompt.aiTool === tool)
+}
+
+export function getPromptsByTier(tier: PromptTier): Prompt[] {
+  return PROMPTS.filter((prompt) => prompt.tier === tier)
+}
+
+export function getPromptsByProductBundle(bundle: ProductBundle): Prompt[] {
+  return PROMPTS.filter((prompt) => prompt.productBundle === bundle)
+}
+
+export function getPromptsByCategoryGroup(group: CategoryGroup): Prompt[] {
+  const categoryIds = CATEGORIES.filter((cat) => cat.group === group).map((cat) => cat.id)
+  return PROMPTS.filter((prompt) => categoryIds.includes(prompt.category))
+}
+
+export function getCategoriesByGroup(group: CategoryGroup): CategoryInfo[] {
+  return CATEGORIES.filter((cat) => cat.group === group)
 }
 
 export function getPromptById(id: string): Prompt | undefined {
@@ -918,12 +2733,25 @@ export function getPromptStats() {
     Intermediate: PROMPTS.filter((prompt) => prompt.difficulty === 'Intermediate').length,
     Advanced: PROMPTS.filter((prompt) => prompt.difficulty === 'Advanced').length,
   }
+  const tierDistribution: Record<PromptTier, number> = {
+    free: PROMPTS.filter((prompt) => prompt.tier === 'free').length,
+    premium: PROMPTS.filter((prompt) => prompt.tier === 'premium').length,
+    paid: PROMPTS.filter((prompt) => prompt.tier === 'paid').length,
+  }
+  const categoryGroupCounts: Record<CategoryGroup, number> = {
+    creative: getPromptsByCategoryGroup('creative').length,
+    technical: getPromptsByCategoryGroup('technical').length,
+    business: getPromptsByCategoryGroup('business').length,
+    personal: getPromptsByCategoryGroup('personal').length,
+  }
 
   return {
     totalPrompts,
     totalCategories,
     toolsUsed,
     difficultyDistribution,
+    tierDistribution,
+    categoryGroupCounts,
   }
 }
 

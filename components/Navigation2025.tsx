@@ -9,11 +9,11 @@ import { Menu, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 const navItems = [
-  { name: 'Music', href: '/music-lab' },
-  { name: 'Learning', href: '/students' },
+  { name: 'Creators', href: '/creators' },
+  { name: 'Developers', href: '/developers' },
   { name: 'Prompts', href: '/prompt-library' },
+  { name: 'Products', href: '/products' },
   { name: 'Blog', href: '/blog' },
-  { name: 'About', href: '/about' },
 ]
 
 export default function Navigation2025() {

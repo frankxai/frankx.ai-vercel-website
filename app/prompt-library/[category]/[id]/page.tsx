@@ -1,7 +1,39 @@
-﻿import { notFound } from 'next/navigation'
+import { notFound } from 'next/navigation'
 
 import PromptDetailView from '@/components/prompt-library/PromptDetailView'
-import { CATEGORIES, getPromptById, getPromptsByCategory } from '@/lib/prompts'
+import { CATEGORIES, PROMPTS, getPromptById, getPromptsByCategory } from '@/lib/prompts'
+import { createMetadata } from '@/lib/seo'
+
+// Generate static paths for all prompts
+export function generateStaticParams() {
+  return PROMPTS.map((prompt) => ({
+    category: prompt.category,
+    id: prompt.id,
+  }))
+}
+
+// Dynamic metadata for SEO
+export async function generateMetadata({ params }: PromptPageProps) {
+  const { category, id } = await params
+  const prompt = getPromptById(id)
+
+  if (!prompt || prompt.category !== category) {
+    return createMetadata({
+      title: 'Prompt Not Found',
+      description: 'The requested prompt was not found.',
+      path: `/prompt-library/${category}/${id}`,
+    })
+  }
+
+  const categoryInfo = CATEGORIES.find((item) => item.id === prompt.category)
+
+  return createMetadata({
+    title: `${prompt.title} - ${categoryInfo?.name || 'Prompt'} | FrankX`,
+    description: prompt.description,
+    keywords: [...prompt.tags, prompt.aiTool, prompt.category, 'prompt', 'ai prompt'],
+    path: `/prompt-library/${category}/${id}`,
+  })
+}
 
 type PromptPageProps = {
   params: Promise<{ category: string; id: string }>

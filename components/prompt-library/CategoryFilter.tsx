@@ -1,11 +1,48 @@
-﻿'use client'
+'use client'
 
 import { useMemo, useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { Filter, Search, X } from 'lucide-react'
+import {
+  Filter,
+  Search,
+  X,
+  PenLine,
+  Music,
+  Image,
+  Sparkles,
+  Code2,
+  Brain,
+  Bot,
+  TrendingUp,
+  Share2,
+  Megaphone,
+  Zap,
+  Target,
+  Compass,
+  GraduationCap,
+  LayoutGrid,
+} from 'lucide-react'
 
-import { CATEGORIES } from '@/lib/prompts'
+import { CATEGORIES, CategoryInfo } from '@/lib/prompts'
 import { cn } from '@/lib/utils'
+
+// Icon mapping for dynamic rendering
+const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
+  PenLine,
+  Music,
+  Image,
+  Sparkles,
+  Code2,
+  Brain,
+  Bot,
+  TrendingUp,
+  Share2,
+  Megaphone,
+  Zap,
+  Target,
+  Compass,
+  GraduationCap,
+}
 
 interface CategoryFilterProps {
   searchQuery: string
@@ -27,9 +64,9 @@ const TOOL_OPTIONS: Array<{ value: string; label: string }> = [
   { value: 'suno', label: 'Suno' },
   { value: 'dalle', label: 'DALL-E' },
   { value: 'stable-diffusion', label: 'Stable Diffusion' },
-  { value: 'notion', label: 'Notion' },
-  { value: 'zapier', label: 'Zapier' },
-  { value: 'make', label: 'Make.com' },
+  { value: 'claude-code', label: 'Claude Code' },
+  { value: 'cursor', label: 'Cursor' },
+  { value: 'gemini', label: 'Gemini' },
   { value: 'general', label: 'General' },
 ]
 
@@ -60,9 +97,10 @@ export default function CategoryFilter({
     onToolChange('all')
   }
 
-  const categoryOptions = hideCategorySelector
+  type CategoryOption = { id: string; name: string; icon: string; color: string }
+  const categoryOptions: CategoryOption[] = hideCategorySelector
     ? []
-    : [{ id: 'all', name: 'All Categories', emoji: 'ALL' }, ...CATEGORIES]
+    : [{ id: 'all', name: 'All Categories', icon: 'LayoutGrid', color: '#8B5CF6' }, ...CATEGORIES.map(c => ({ id: c.id, name: c.name, icon: c.icon, color: c.color }))]
 
   return (
     <div className={cn('space-y-4', className)}>
@@ -129,6 +167,7 @@ export default function CategoryFilter({
                       {categoryOptions.map((category) => {
                         const value = category.id
                         const isActive = selectedCategory === value
+                        const CategoryIcon = category.id === 'all' ? LayoutGrid : (ICON_MAP[category.icon] || Sparkles)
                         return (
                           <button
                             key={value}
@@ -138,8 +177,8 @@ export default function CategoryFilter({
                               isActive && 'bg-white/12 text-white shadow-brand-glow'
                             )}
                           >
-                            <span className="text-lg">{category.emoji}</span>
-                            <span>{category.name}</span>
+                            <CategoryIcon className="h-4 w-4 flex-shrink-0" />
+                            <span className="truncate">{category.name}</span>
                           </button>
                         )
                       })}
@@ -185,7 +224,6 @@ export default function CategoryFilter({
           {!hideCategorySelector && selectedCategory !== 'all' && (
             <span className="inline-flex items-center gap-2 rounded-full border border-white/10 px-3 py-1 text-xs text-white/80">
               <span>
-                {CATEGORIES.find((category) => category.id === selectedCategory)?.emoji}
                 {CATEGORIES.find((category) => category.id === selectedCategory)?.name}
               </span>
               <button onClick={() => onCategoryChange('all')} aria-label="Clear category filter" className="text-white/60 transition hover:text-white">

@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ============================================================================
+   TYPOGRAPHY SYSTEM
+   Primary: Inter (geometric sans-serif, variable weight)
+   Accent: Playfair Display (serif, italic emphasis only)
+   Mono: JetBrains Mono (code blocks)
+   All fonts loaded via Next.js Google Fonts optimization
+   ============================================================================ */
+
 @layer base {
   :root {
     color-scheme: dark;

@@ -78,8 +78,9 @@ const products = [
     tagline: 'Your AI-powered creative system',
     description:
       'Launch your AI-powered creative practice with 100+ battle-tested prompts, workflow templates, and operating rituals.',
-    price: 47,
-    originalPrice: 97,
+    price: 1,
+    currency: '€',
+    originalPrice: null,
     href: '/products/creative-ai-toolkit',
     color: 'violet',
     highlights: [
@@ -95,8 +96,10 @@ const products = [
     tagline: 'Suno Music Mastery',
     description:
       'The complete system for creating AI music with Suno. Genre-specific prompts, emotion mapping, and production techniques.',
-    price: 37,
-    originalPrice: 67,
+    price: 0,
+    currency: '€',
+    originalPrice: null,
+    priceDisplay: 'Free',
     href: '/products/vibe-os',
     color: 'emerald',
     highlights: [
@@ -104,6 +107,7 @@ const products = [
       'Emotion-to-sound mapping system',
       'Production enhancement and mastering guide',
     ],
+    featured: true,
   },
   {
     id: 'creation-chronicles',
@@ -112,8 +116,9 @@ const products = [
     tagline: 'Strategic Storytelling OS',
     description:
       'Transform your brand narrative with systematic storytelling frameworks that build authority and grow your audience.',
-    price: 497,
-    originalPrice: 997,
+    price: 7,
+    currency: '€',
+    originalPrice: null,
     href: '/products/creation-chronicles',
     color: 'cyan',
     highlights: [
@@ -121,7 +126,6 @@ const products = [
       'AI-assisted content creation workflows',
       'Omnichannel distribution templates',
     ],
-    featured: true,
   },
   {
     id: 'generative-creator-os',
@@ -130,8 +134,9 @@ const products = [
     tagline: 'Multi-modal AI Studio',
     description:
       'Deploy an AI-assisted creative studio spanning video, audio, imagery, and writing with governed workflows.',
-    price: 0,
-    priceDisplay: 'Custom',
+    price: 97,
+    currency: '€',
+    originalPrice: null,
     href: '/products/generative-creator-os',
     color: 'amber',
     highlights: [
@@ -144,17 +149,18 @@ const products = [
     id: 'agentic-creator-os',
     icon: Building2,
     name: 'Agentic Creator OS',
-    tagline: 'Enterprise AI Center of Excellence',
+    tagline: 'Developer AI Mastery',
     description:
-      'Strategic AI implementation for enterprises. Governance frameworks, production systems, and team enablement.',
-    price: 0,
-    priceDisplay: 'Enterprise',
+      'Master Claude Code, Cursor, Codex, and Gemini Code. Build agentic systems and autonomous workflows.',
+    price: 197,
+    currency: '€',
+    originalPrice: null,
     href: '/products/agentic-creator-os',
     color: 'rose',
     highlights: [
-      'AI strategy and architecture roadmapping',
-      'Governance, ethics, and compliance frameworks',
-      'Leadership education and team upskilling',
+      'Claude Code and Cursor mastery systems',
+      'Agentic workflow and automation patterns',
+      'Production-grade agent development',
     ],
   },
 ]
@@ -324,11 +330,11 @@ export default function ProductsPage() {
                             ) : (
                               <>
                                 <span className="text-2xl font-bold text-white">
-                                  ${product.price}
+                                  {product.currency}{product.price}
                                 </span>
                                 {product.originalPrice && (
                                   <span className="text-sm text-slate-500 line-through">
-                                    ${product.originalPrice}
+                                    {product.currency}{product.originalPrice}
                                   </span>
                                 )}
                               </>

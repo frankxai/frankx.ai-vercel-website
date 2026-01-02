@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Outfit, Playfair_Display, JetBrains_Mono } from 'next/font/google'
+import { Inter, Playfair_Display, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 import Script from 'next/script'
 
@@ -8,11 +8,12 @@ import { robotsConfig, siteConfig } from '@/lib/seo'
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
 
-// Premium typography - Outfit for headlines (modern, geometric, distinctive)
-const outfit = Outfit({
+// Inter as primary sans-serif (geometric, variable weight, screen-optimized)
+const inter = Inter({
   subsets: ['latin'],
-  variable: '--font-outfit',
+  variable: '--font-inter',
   display: 'swap',
+  weight: ['300', '400', '500', '600', '700'],
 })
 
 // Playfair Display for editorial touches (classic, elegant Times-like italics)
@@ -89,7 +90,7 @@ export default function RootLayout({
       </head>
       <body
         className={cn(
-          outfit.variable,
+          inter.variable,
           playfair.variable,
           jetbrains.variable,
           'font-sans dark bg-[#030712] text-white antialiased min-h-screen'

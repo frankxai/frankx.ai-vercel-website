@@ -2,16 +2,23 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import { Copy, Check, ArrowRight } from 'lucide-react'
+import { Copy, Check, ArrowRight, Sparkles, Crown, Lock } from 'lucide-react'
 import { motion } from 'framer-motion'
 
-import { Prompt, CATEGORIES } from '@/lib/prompts'
+import { Prompt, CATEGORIES, PromptTier } from '@/lib/prompts'
 import { cn } from '@/lib/utils'
+
+const TIER_CONFIG: Record<PromptTier, { label: string; icon: React.ComponentType<{ className?: string }>; color: string }> = {
+  free: { label: 'Free', icon: Sparkles, color: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20' },
+  premium: { label: 'Premium', icon: Crown, color: 'bg-amber-500/10 text-amber-400 border-amber-500/20' },
+  paid: { label: 'Paid', icon: Lock, color: 'bg-violet-500/10 text-violet-400 border-violet-500/20' },
+}
 
 interface PromptCardProps {
   prompt: Prompt
   variant?: 'default' | 'featured' | 'compact'
   showDescription?: boolean
+  showTier?: boolean
   className?: string
 }
 
@@ -19,6 +26,7 @@ export default function PromptCard({
   prompt,
   variant = 'default',
   showDescription = true,
+  showTier = false,
   className,
 }: PromptCardProps) {
   const [copied, setCopied] = useState(false)
@@ -80,10 +88,9 @@ export default function PromptCard({
           isHovered && 'border-white/20 bg-white/[0.04] shadow-[0_20px_60px_rgba(67,191,227,0.1)]'
         )}
       >
-        {/* Header: Category + Tool */}
+        {/* Header: Category + Tool + Tier */}
         <div className="mb-4 flex items-start justify-between">
           <div className="flex items-center gap-2">
-            <span className="text-2xl">{categoryInfo?.emoji}</span>
             <span
               className={cn(
                 'rounded-full border px-2.5 py-1 text-xs font-medium capitalize',
@@ -93,11 +100,27 @@ export default function PromptCard({
               {prompt.aiTool === 'dalle' ? 'DALL-E' : prompt.aiTool}
             </span>
           </div>
-          {variant === 'featured' && (
-            <span className="rounded-full bg-violet-500/20 px-3 py-1 text-xs font-medium text-violet-300">
-              Featured
-            </span>
-          )}
+          <div className="flex items-center gap-2">
+            {showTier && prompt.tier && (
+              <span
+                className={cn(
+                  'inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-xs font-medium',
+                  TIER_CONFIG[prompt.tier].color
+                )}
+              >
+                {(() => {
+                  const TierIcon = TIER_CONFIG[prompt.tier].icon
+                  return <TierIcon className="h-3 w-3" />
+                })()}
+                {TIER_CONFIG[prompt.tier].label}
+              </span>
+            )}
+            {variant === 'featured' && (
+              <span className="rounded-full bg-violet-500/20 px-3 py-1 text-xs font-medium text-violet-300">
+                Featured
+              </span>
+            )}
+          </div>
         </div>
 
         {/* Title */}
