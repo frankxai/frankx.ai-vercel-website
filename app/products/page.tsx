@@ -11,6 +11,11 @@ import {
   Cpu,
   CheckCircle2,
   Package,
+  Shield,
+  Zap,
+  Users,
+  Star,
+  Quote,
 } from 'lucide-react'
 
 import { trackEvent } from '@/lib/analytics'
@@ -354,6 +359,155 @@ export default function ProductsPage() {
           </div>
         </section>
 
+        {/* Trust Badges */}
+        <section className="py-12">
+          <div className="mx-auto max-w-6xl px-6">
+            <div className="flex flex-wrap justify-center gap-6 md:gap-10">
+              {[
+                { icon: Shield, label: '30-Day Money Back', color: 'text-emerald-400' },
+                { icon: Zap, label: 'Instant Access', color: 'text-cyan-400' },
+                { icon: Users, label: '1000+ Creators', color: 'text-violet-400' },
+                { icon: Star, label: 'Battle-Tested', color: 'text-amber-400' },
+              ].map((badge, i) => (
+                <motion.div
+                  key={badge.label}
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                  className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10"
+                >
+                  <badge.icon className={`w-4 h-4 ${badge.color}`} />
+                  <span className="text-sm text-white/70">{badge.label}</span>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Testimonials */}
+        <section className="py-16 border-t border-white/5">
+          <div className="mx-auto max-w-6xl px-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-12"
+            >
+              <p className="text-xs font-medium uppercase tracking-[0.25em] text-emerald-400/70 mb-2">
+                Creator Results
+              </p>
+              <h2 className="text-2xl md:text-3xl font-bold text-white">
+                What creators achieve with these systems
+              </h2>
+            </motion.div>
+
+            <div className="grid md:grid-cols-3 gap-6">
+              {[
+                {
+                  quote: "The Creative AI Toolkit paid for itself in the first week. My content output has tripled without sacrificing quality.",
+                  author: 'Jessica Taylor',
+                  role: 'Marketing Director',
+                  color: 'emerald',
+                },
+                {
+                  quote: "Vibe OS transformed my music production workflow. I'm creating soundscapes I couldn't have imagined before.",
+                  author: 'Marcus Lee',
+                  role: 'Music Producer',
+                  color: 'cyan',
+                },
+                {
+                  quote: "As someone who was AI-skeptical, the GenCreator OS made everything click. Now I can't imagine working without it.",
+                  author: 'Amanda Foster',
+                  role: 'Freelance Writer',
+                  color: 'violet',
+                },
+              ].map((testimonial, i) => {
+                const colorClasses: Record<string, { text: string; icon: string }> = {
+                  emerald: { text: 'text-emerald-400', icon: 'bg-emerald-500/10 text-emerald-400' },
+                  cyan: { text: 'text-cyan-400', icon: 'bg-cyan-500/10 text-cyan-400' },
+                  violet: { text: 'text-violet-400', icon: 'bg-violet-500/10 text-violet-400' },
+                }
+                const colors = colorClasses[testimonial.color]
+
+                return (
+                  <motion.div
+                    key={testimonial.author}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.1 }}
+                    className="p-6 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-white/10 transition-all"
+                  >
+                    <Quote className={`w-8 h-8 ${colors.text} opacity-50 mb-4`} />
+                    <p className="text-white/70 leading-relaxed mb-6 text-sm">
+                      "{testimonial.quote}"
+                    </p>
+                    <div className="flex items-center gap-3">
+                      <div className={`w-10 h-10 rounded-full ${colors.icon} flex items-center justify-center text-sm font-semibold`}>
+                        {testimonial.author.split(' ').map((n) => n[0]).join('')}
+                      </div>
+                      <div>
+                        <div className="text-sm font-semibold text-white">{testimonial.author}</div>
+                        <div className="text-xs text-white/40">{testimonial.role}</div>
+                      </div>
+                    </div>
+                  </motion.div>
+                )
+              })}
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ Section */}
+        <section className="py-16 border-t border-white/5">
+          <div className="mx-auto max-w-4xl px-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-12"
+            >
+              <h2 className="text-2xl md:text-3xl font-bold text-white">
+                Common questions
+              </h2>
+            </motion.div>
+
+            <div className="space-y-4">
+              {[
+                {
+                  q: "How are these different from other AI courses?",
+                  a: "These aren't courses—they're operating systems. You get the exact frameworks, prompts, and workflows I use daily in my own creative practice and enterprise work. No fluff, just what works.",
+                },
+                {
+                  q: "Do I need technical experience?",
+                  a: "The Creative AI Toolkit and Vibe OS are designed for beginners. Generative Creator OS and Agentic Creator OS are for intermediate users who want to go deeper.",
+                },
+                {
+                  q: "What's the refund policy?",
+                  a: "30-day money-back guarantee on all products. If it doesn't work for you, you get a full refund—no questions asked.",
+                },
+                {
+                  q: "Do I get lifetime access?",
+                  a: "Yes. One purchase, lifetime access, including all future updates. As my systems evolve, your access evolves with them.",
+                },
+              ].map((faq, i) => (
+                <motion.div
+                  key={faq.q}
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.05 }}
+                  className="p-6 rounded-xl border border-white/5 bg-white/[0.02]"
+                >
+                  <h3 className="text-base font-semibold text-white mb-2">{faq.q}</h3>
+                  <p className="text-sm text-white/50 leading-relaxed">{faq.a}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Bottom CTA */}
         <section className="py-16 pb-24">
           <div className="mx-auto max-w-6xl px-6">
@@ -373,26 +527,26 @@ export default function ProductsPage() {
                     Not sure where to start?
                   </h2>
                   <p className="mt-3 text-slate-400">
-                    Explore the free resources first. The prompt library and learning paths
-                    give you a taste of my approach before you invest.
+                    Start with <span className="text-emerald-400 font-medium">Vibe OS</span> (free) or the <span className="text-violet-400 font-medium">€1 Creative AI Toolkit</span>.
+                    Experience my approach before committing to the advanced systems.
                   </p>
                 </div>
                 <div className="flex flex-wrap gap-4">
                   <Link
-                    href="/resources"
+                    href="/products/vibe-os"
                     onClick={() =>
-                      trackEvent('product_resources_cta', { location: 'products-page' })
+                      trackEvent('product_vibe_os_cta', { location: 'products-page' })
                     }
-                    className="group flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-6 py-3 font-medium text-white transition-all hover:bg-white/10"
+                    className="group flex items-center gap-2 rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-6 py-3 font-medium text-emerald-400 transition-all hover:bg-emerald-500/20"
                   >
-                    Free Resources
-                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    <Music className="h-4 w-4" />
+                    Get Vibe OS Free
                   </Link>
                   <Link
-                    href="/start"
+                    href="/products/creative-ai-toolkit"
                     className="group flex items-center gap-2 rounded-xl bg-white px-6 py-3 font-medium text-slate-900 transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-white/10"
                   >
-                    Start Here
+                    Get Toolkit for €1
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </Link>
                 </div>

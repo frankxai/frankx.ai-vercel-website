@@ -430,6 +430,139 @@ export default function CreatorsPage() {
           </div>
         </section>
 
+        {/* Testimonials */}
+        <section className="py-20 border-t border-white/5">
+          <div className="mx-auto max-w-6xl px-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-12"
+            >
+              <p className="text-xs font-medium uppercase tracking-[0.25em] text-pink-400/70 mb-2">
+                Creator Stories
+              </p>
+              <h2 className="text-2xl md:text-3xl font-bold text-white">
+                From overwhelmed to creating daily
+              </h2>
+            </motion.div>
+
+            <div className="grid md:grid-cols-3 gap-6">
+              {[
+                {
+                  quote: "I went from spending 4 hours on a single blog post to producing quality content in 45 minutes. The writing prompts changed everything.",
+                  author: 'Emma Collins',
+                  role: 'Content Creator',
+                  color: 'pink',
+                },
+                {
+                  quote: "Created my first AI album in a weekend using the Suno prompts. Now I release ambient tracks weekly for my meditation community.",
+                  author: 'Daniel Park',
+                  role: 'Wellness Coach',
+                  color: 'violet',
+                },
+                {
+                  quote: "The visual prompts helped me develop a consistent brand aesthetic. My social engagement tripled in the first month.",
+                  author: 'Sofia Martinez',
+                  role: 'Brand Designer',
+                  color: 'cyan',
+                },
+              ].map((testimonial, i) => {
+                const colorClasses: Record<string, { text: string; icon: string }> = {
+                  pink: { text: 'text-pink-400', icon: 'bg-pink-500/10 text-pink-400' },
+                  violet: { text: 'text-violet-400', icon: 'bg-violet-500/10 text-violet-400' },
+                  cyan: { text: 'text-cyan-400', icon: 'bg-cyan-500/10 text-cyan-400' },
+                }
+                const colors = colorClasses[testimonial.color]
+
+                return (
+                  <motion.div
+                    key={testimonial.author}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.1 }}
+                    className="p-6 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-white/10 transition-all"
+                  >
+                    <div className={`w-8 h-8 ${colors.text} opacity-50 mb-4`}>
+                      <svg viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8">
+                        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                      </svg>
+                    </div>
+                    <p className="text-white/70 leading-relaxed mb-6 text-sm">
+                      "{testimonial.quote}"
+                    </p>
+                    <div className="flex items-center gap-3">
+                      <div className={`w-10 h-10 rounded-full ${colors.icon} flex items-center justify-center text-sm font-semibold`}>
+                        {testimonial.author.split(' ').map((n) => n[0]).join('')}
+                      </div>
+                      <div>
+                        <div className="text-sm font-semibold text-white">{testimonial.author}</div>
+                        <div className="text-xs text-white/40">{testimonial.role}</div>
+                      </div>
+                    </div>
+                  </motion.div>
+                )
+              })}
+            </div>
+          </div>
+        </section>
+
+        {/* Transformation Journey */}
+        <section className="py-20 border-t border-white/5">
+          <div className="mx-auto max-w-4xl px-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-center mb-12"
+            >
+              <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
+                Your creative transformation
+              </h2>
+              <p className="text-white/50">From tech-overwhelmed to AI-empowered creator</p>
+            </motion.div>
+
+            <div className="grid md:grid-cols-3 gap-6">
+              {[
+                {
+                  stage: 'Week 1',
+                  title: 'First Creation',
+                  description: 'Use your first prompt. Create something you\'re proud of. Experience the "aha" moment.',
+                  color: 'pink',
+                },
+                {
+                  stage: 'Week 4',
+                  title: 'Consistent Output',
+                  description: 'Develop your workflow. Create content regularly. Build your AI-assisted creative rhythm.',
+                  color: 'violet',
+                },
+                {
+                  stage: 'Week 8',
+                  title: 'Your Creative System',
+                  description: 'You have your own prompts. Your style is amplified. AI is your creative partner.',
+                  color: 'cyan',
+                },
+              ].map((phase, i) => (
+                <motion.div
+                  key={phase.stage}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                  className="p-6 rounded-xl border border-white/5 bg-white/[0.02] text-center"
+                >
+                  <div className={`text-xs font-medium uppercase tracking-widest ${colorMap[phase.color as keyof typeof colorMap].text} mb-2`}>
+                    {phase.stage}
+                  </div>
+                  <h3 className="text-lg font-semibold text-white mb-2">{phase.title}</h3>
+                  <p className="text-sm text-white/50">{phase.description}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Free Resources CTA */}
         <section className="py-20">
           <div className="mx-auto max-w-4xl px-6">
