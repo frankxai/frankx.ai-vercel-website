@@ -354,7 +354,7 @@ function StatsSection() {
           viewport={{ once: true }}
           className="max-w-4xl mx-auto text-center mb-20"
         >
-          <blockquote className="text-2xl md:text-3xl lg:text-4xl font-serif italic text-white/70 leading-relaxed">
+          <blockquote className="text-2xl md:text-3xl lg:text-4xl font-serif-italic text-white/70 leading-relaxed">
             "The future isn't something that happens to you—it's something you design."
           </blockquote>
         </motion.div>
@@ -604,7 +604,7 @@ function AboutSection() {
 
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8 tracking-tight leading-tight">
             We're entering the Golden Age of Intelligence.
-            <span className="block mt-2 font-serif italic text-white/70">
+            <span className="block mt-2 font-serif-italic text-white/70">
               Anyone can create. Anyone can build.
             </span>
           </h2>
@@ -616,7 +616,7 @@ function AboutSection() {
             viewport={{ once: true }}
             className="relative pl-6 my-10 border-l-2 border-emerald-400/40"
           >
-            <p className="text-2xl md:text-3xl font-serif italic text-white/80 leading-relaxed">
+            <p className="text-2xl md:text-3xl font-serif-italic text-white/80 leading-relaxed">
               "Technology should amplify your voice, not replace it."
             </p>
           </motion.blockquote>

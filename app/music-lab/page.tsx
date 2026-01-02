@@ -74,7 +74,7 @@ function HeroSection() {
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight mb-6">
               <span className="text-white">Create music with</span>
               <br />
-              <span className="font-serif italic text-white/80">artificial intelligence</span>
+              <span className="font-serif-italic text-white/80">artificial intelligence</span>
             </h1>
 
             <p className="text-xl text-white/50 mb-8 max-w-lg leading-relaxed">

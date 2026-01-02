@@ -303,7 +303,7 @@ export default function ResourcesPage() {
               className="mb-6 max-w-4xl font-display text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl"
             >
               Tools, courses, and systems.
-              <span className="block font-serif italic text-white/70 mt-2">
+              <span className="block font-serif-italic text-white/70 mt-2">
                 No filler.
               </span>
             </motion.h1>

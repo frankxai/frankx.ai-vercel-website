@@ -37,6 +37,12 @@
     text-wrap: balance;
   }
 
+  /* Times New Roman italic for elegant headings */
+  .font-serif-italic {
+    font-family: "Times New Roman", Times, Georgia, serif;
+    font-style: italic;
+  }
+
   .gradient-text {
     background-image: linear-gradient(to right, #8b5cf6, #ec4899, #38bdf8);
     -webkit-background-clip: text;

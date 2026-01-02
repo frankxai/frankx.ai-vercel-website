@@ -167,7 +167,7 @@ export default function CreationChroniclesPage() {
               viewport={{ once: true }}
               className="text-center"
             >
-              <p className="text-2xl md:text-3xl lg:text-4xl font-serif italic text-white/70 leading-relaxed">
+              <p className="text-2xl md:text-3xl lg:text-4xl font-serif-italic text-white/70 leading-relaxed">
                 "Each day we make some. We make something prettier."
               </p>
               <cite className="block mt-4 text-sm text-white/40 not-italic">— My father's philosophy</cite>

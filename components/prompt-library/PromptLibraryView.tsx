@@ -340,7 +340,7 @@ export default function PromptLibraryView({
                 <h1 className="text-4xl font-semibold tracking-tight md:text-5xl lg:text-6xl mb-4">
                   <span className="text-white">Prompts that</span>
                   <br />
-                  <span className="font-serif italic text-white/80">transform your AI workflow</span>
+                  <span className="font-serif-italic text-white/80">transform your AI workflow</span>
                 </h1>
 
                 <p className="text-lg text-white/50 max-w-2xl mx-auto mb-8">

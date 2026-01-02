@@ -170,7 +170,7 @@ export default function BlogPageClient({ posts, categories, tags }: BlogPageClie
                 transition={{ delay: 0.3 }}
                 className="relative pl-6 border-l-2 border-emerald-400/40 mb-12"
               >
-                <p className="text-xl md:text-2xl font-serif italic text-white/70 leading-relaxed">
+                <p className="text-xl md:text-2xl font-serif-italic text-white/70 leading-relaxed">
                   "Each day we make some. We make something prettier."
                 </p>
                 <cite className="block mt-2 text-sm text-white/40 not-italic">— My father's philosophy</cite>

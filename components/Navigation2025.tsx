@@ -9,8 +9,8 @@ import { Menu, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 const navItems = [
-  { name: 'Creators', href: '/creators' },
-  { name: 'Developers', href: '/developers' },
+  { name: 'For Creators', href: '/creators' },
+  { name: 'For Students', href: '/students' },
   { name: 'Prompts', href: '/prompt-library' },
   { name: 'Products', href: '/products' },
   { name: 'Blog', href: '/blog' },
