@@ -435,11 +435,11 @@ export default function ContentStudioPage() {
                   </div>
 
                   <Link
-                    href="/analytics"
+                    href="/dashboard"
                     className="mt-6 w-full inline-flex items-center justify-center gap-2 rounded-xl bg-white/10 hover:bg-white/20 px-4 py-3 text-sm font-semibold text-white transition"
                   >
                     <BarChart3 className="h-4 w-4" />
-                    View Full Analytics
+                    View Full Dashboard
                   </Link>
                 </div>
               </div>

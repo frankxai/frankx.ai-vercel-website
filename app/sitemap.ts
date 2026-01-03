@@ -105,6 +105,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/realm',
     '/testimonials',
     '/affiliates',
+    '/newsletter',
   ]
 
   // Learning and courses
@@ -126,6 +127,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/agents',
     '/agent-team',
     '/agentic-ai-center',
+    '/developers',
   ]
 
   // Utility pages

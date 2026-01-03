@@ -12,15 +12,10 @@ import {
   CheckCircle2,
   Clock,
   Sparkles,
-  Play,
-  Users,
   Zap,
   Brain,
   Rocket,
-  Star,
-  Quote,
   TrendingUp,
-  Code2,
   Palette,
   Music2,
   MessageSquare,
@@ -185,26 +180,23 @@ const quickStartResources = [
   },
 ]
 
-const testimonials = [
+const essentialReadings = [
   {
-    quote: "These curated paths saved me months of searching. Started with Oracle AI Foundations, now I'm building production ML systems.",
-    author: "Maria Chen",
-    role: "Software Engineer → ML Engineer",
-    avatar: "MC",
+    title: 'AI Doesn\'t Have to Be Soulless',
+    description: 'How to use AI as a creative partner without losing your authentic voice',
+    href: '/blog/ai-doesnt-have-to-be-soulless',
     color: 'cyan',
   },
   {
-    quote: "The Ikigai workshop helped me find my intersection of AI and creativity. Now I'm building AI tools for musicians.",
-    author: "James Rodriguez",
-    role: "Musician → AI Creator",
-    avatar: "JR",
+    title: 'The Intelligence Revolution 2025',
+    description: 'What\'s changing in AI this year and how to stay ahead',
+    href: '/blog/intelligence-revolution-2025',
     color: 'violet',
   },
   {
-    quote: "Finally, AI resources that don't feel overwhelming. The structured paths made it easy to know where to start.",
-    author: "Sarah Kim",
-    role: "Marketing Manager",
-    avatar: "SK",
+    title: 'Golden Age of Intelligence',
+    description: 'Why now is the best time in history to learn AI',
+    href: '/blog/golden-age-of-intelligence',
     color: 'emerald',
   },
 ]
@@ -609,7 +601,7 @@ export default function StudentsPage() {
           </div>
         </section>
 
-        {/* Testimonials */}
+        {/* Essential Readings */}
         <section className="py-16 border-t border-white/5">
           <div className="max-w-6xl mx-auto px-6">
             <motion.div
@@ -619,34 +611,36 @@ export default function StudentsPage() {
               className="text-center mb-12"
             >
               <p className="text-xs font-medium uppercase tracking-[0.25em] text-emerald-400/70 mb-2">
-                Success Stories
+                Essential Reading
               </p>
-              <h2 className="text-2xl md:text-3xl font-bold text-white">Learning transforms careers</h2>
+              <h2 className="text-2xl md:text-3xl font-bold text-white">Understand the landscape</h2>
             </motion.div>
 
             <div className="grid md:grid-cols-3 gap-6">
-              {testimonials.map((testimonial, i) => (
+              {essentialReadings.map((reading, i) => (
                 <motion.div
-                  key={testimonial.author}
+                  key={reading.title}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
-                  className="p-6 rounded-2xl border border-white/5 bg-white/[0.02]"
                 >
-                  <Quote className={`w-8 h-8 ${colorMap[testimonial.color].text} opacity-50 mb-4`} />
-                  <p className="text-white/70 leading-relaxed mb-6 text-sm">
-                    "{testimonial.quote}"
-                  </p>
-                  <div className="flex items-center gap-3">
-                    <div className={`w-10 h-10 rounded-full ${colorMap[testimonial.color].icon} flex items-center justify-center text-sm font-semibold`}>
-                      {testimonial.avatar}
+                  <Link
+                    href={reading.href}
+                    className="group block p-6 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-white/15 hover:bg-white/[0.04] transition-all h-full"
+                  >
+                    <BookOpen className={`w-8 h-8 ${colorMap[reading.color].text} opacity-70 mb-4`} />
+                    <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-emerald-400 transition-colors">
+                      {reading.title}
+                    </h3>
+                    <p className="text-sm text-white/50 leading-relaxed">
+                      {reading.description}
+                    </p>
+                    <div className="mt-4 flex items-center gap-1 text-xs text-white/40 group-hover:text-white/60 transition-colors">
+                      Read article
+                      <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
                     </div>
-                    <div>
-                      <div className="text-sm font-semibold text-white">{testimonial.author}</div>
-                      <div className="text-xs text-white/40">{testimonial.role}</div>
-                    </div>
-                  </div>
+                  </Link>
                 </motion.div>
               ))}
             </div>

@@ -248,10 +248,10 @@ export default async function BlogPostPage({
                   Execute <code className="rounded bg-white/10 px-2 py-1 text-xs">npm run roadmap:check</code> to print pillars, milestones, and next actions before your next intelligence ritual.
                 </p>
                 <Link
-                  href="/docs/ROADMAP_AUTOMATION.md"
+                  href="/roadmap"
                   className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-primary-200 underline-offset-4 hover:text-primary-100 hover:underline"
                 >
-                  View instructions
+                  View Roadmap
                   <ArrowRight className="h-4 w-4" />
                 </Link>
               </article>

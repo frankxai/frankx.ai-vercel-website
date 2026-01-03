@@ -2662,6 +2662,451 @@ A conversation with the shadow:
     createdAt: '2024-12-20T00:00:00.000Z',
     updatedAt: '2024-12-20T00:00:00.000Z',
   },
+
+  // ============================================================================
+  // SEO-OPTIMIZED PROMPTS (High-Volume Keywords)
+  // ============================================================================
+  {
+    id: 'chatgpt-business-email',
+    title: 'ChatGPT Business Email Writer',
+    description: 'Generate professional business emails with ChatGPT for any workplace scenario.',
+    content: `You are an expert business communication specialist. Write a professional email for this situation:
+
+**Email Purpose:** [cold outreach/follow-up/request/thank you/complaint resolution]
+**Recipient:** [their role and your relationship]
+**Key Message:** [what you need to communicate]
+**Desired Outcome:** [what action you want them to take]
+**Tone:** [formal/friendly professional/urgent]
+
+Write an email that includes:
+1. Clear, compelling subject line
+2. Appropriate greeting
+3. Opening that establishes context
+4. Body with your main points (be concise)
+5. Clear call to action
+6. Professional closing
+
+Keep it under 200 words. Make every sentence count.`,
+    category: 'business',
+    tags: ['chatgpt', 'email', 'business', 'professional'],
+    aiTool: 'chatgpt',
+    difficulty: 'Beginner',
+    useCase: 'Professionals needing to write effective business emails quickly.',
+    tier: 'free',
+    productBundle: null,
+    seoKeywords: ['chatgpt prompts for email', 'chatgpt business email', 'ai email writer', 'professional email prompts'],
+    createdAt: '2025-01-03T00:00:00.000Z',
+    updatedAt: '2025-01-03T00:00:00.000Z',
+  },
+  {
+    id: 'chatgpt-resume-optimizer',
+    title: 'ChatGPT Resume & CV Optimizer',
+    description: 'Optimize your resume for ATS systems and human recruiters using ChatGPT.',
+    content: `Act as an expert career coach and resume writer. Review and optimize my resume:
+
+**Current Resume:**
+[PASTE YOUR RESUME HERE]
+
+**Target Role:** [job title you're applying for]
+**Industry:** [your target industry]
+**Years of Experience:** [number]
+
+Provide:
+
+1. **ATS Optimization**
+   - Keyword suggestions from typical job descriptions
+   - Format improvements for ATS parsing
+   - Section ordering recommendations
+
+2. **Impact Enhancement**
+   - Rewrite bullet points using action verbs + metrics
+   - Transform duties into achievements
+   - Quantify results where possible
+
+3. **Tailoring Suggestions**
+   - What to emphasize for this role
+   - What to minimize or remove
+   - Skills to highlight
+
+4. **Revised Resume**
+   - Complete rewritten version
+   - Optimized for both ATS and human readers
+
+Focus on results, not responsibilities.`,
+    category: 'business',
+    tags: ['chatgpt', 'resume', 'career', 'job-search'],
+    aiTool: 'chatgpt',
+    difficulty: 'Beginner',
+    useCase: 'Job seekers wanting to improve their resume with AI assistance.',
+    tier: 'free',
+    productBundle: null,
+    seoKeywords: ['chatgpt resume prompt', 'ai resume optimizer', 'chatgpt for job search', 'resume writing ai'],
+    createdAt: '2025-01-03T00:00:00.000Z',
+    updatedAt: '2025-01-03T00:00:00.000Z',
+  },
+  {
+    id: 'suno-indie-folk',
+    title: 'Suno Indie Folk Song',
+    description: 'Create heartfelt indie folk songs with acoustic guitar and warm vocals.',
+    content: `[Indie Folk, Acoustic, Warm]
+Fingerpicked acoustic guitar, gentle strumming
+Warm male/female vocals, intimate recording
+Light percussion, tambourine, soft drums
+Nostalgic, authentic, heartfelt
+
+[Verse 1]
+[Write about a specific memory or moment]
+[Use concrete imagery - places, seasons, small details]
+[Keep it conversational and genuine]
+
+[Chorus]
+[The emotional core - what this memory means]
+[Singable, memorable melody]
+[Universal feeling from specific story]
+
+[Verse 2]
+[Develop the narrative]
+[Add another layer to the story]
+[Build toward the bridge]
+
+[Bridge]
+[The twist or realization]
+[Stripped back - just voice and guitar]
+[The emotional peak]
+
+[Final Chorus]
+[Return with full arrangement]
+[Slight variation in delivery]
+[Resolve the emotional journey]
+
+Style tags: indie folk, acoustic, singer-songwriter, warm, nostalgic, 90bpm`,
+    category: 'music-creation',
+    tags: ['suno', 'indie-folk', 'acoustic', 'singer-songwriter'],
+    aiTool: 'suno',
+    difficulty: 'Intermediate',
+    useCase: 'Creating authentic indie folk songs with emotional depth.',
+    tier: 'free',
+    productBundle: 'vibe-os',
+    seoKeywords: ['suno prompts', 'suno indie folk', 'ai folk music', 'suno acoustic'],
+    createdAt: '2025-01-03T00:00:00.000Z',
+    updatedAt: '2025-01-03T00:00:00.000Z',
+  },
+  {
+    id: 'suno-synthwave-retro',
+    title: 'Suno 80s Synthwave Track',
+    description: 'Create retro synthwave music with neon vibes and driving beats.',
+    content: `[Synthwave, 80s Retro, Electronic]
+Analog synths, arpeggiated bassline
+Gated reverb drums, punchy snare
+Lush pads, neon atmosphere
+Nostalgic, driving, cinematic
+
+[Intro]
+Distant synth pad swells
+Arpeggiated sequence builds
+Night city awakens
+
+[Verse - Instrumental Build]
+Driving bass pulse enters
+Snare cuts through the haze
+Synth lead dances above
+
+[Chorus - Full Power]
+All elements united
+Soaring lead melody
+Euphoric release
+
+[Breakdown]
+Strip to pads and bass
+Space and atmosphere
+Tension builds again
+
+[Final Chorus - Epic]
+Everything returns
+Maximum energy
+Triumphant finale
+
+[Outro]
+Fade into the night
+Synths echo and decay
+Credits roll
+
+Style: synthwave, retrowave, 80s, electronic, instrumental, 118bpm, neon, outrun`,
+    category: 'music-creation',
+    tags: ['suno', 'synthwave', '80s', 'retro', 'electronic'],
+    aiTool: 'suno',
+    difficulty: 'Beginner',
+    useCase: 'Creating retro synthwave tracks for content, gaming, or nostalgia.',
+    tier: 'free',
+    productBundle: 'vibe-os',
+    seoKeywords: ['suno synthwave prompt', 'suno 80s music', 'ai synthwave', 'suno retro'],
+    createdAt: '2025-01-03T00:00:00.000Z',
+    updatedAt: '2025-01-03T00:00:00.000Z',
+  },
+  {
+    id: 'suno-meditation-432hz',
+    title: 'Suno 432Hz Meditation Music',
+    description: 'Create healing meditation music tuned to 432Hz for deep relaxation.',
+    content: `[Ambient Meditation, 432Hz Healing, Spiritual]
+Crystal singing bowls, Tibetan bells
+Soft drone pads, nature sounds
+Binaural undertones, gentle breath
+Healing, transcendent, sacred space
+
+[Opening - 2 minutes]
+Silence breaks with distant bell
+Single tone establishes space
+Breath syncs with slow pulse
+Safe container created
+
+[Deepening - 4 minutes]
+Layers of harmony emerge
+Each tone supports the other
+Listener dissolves into sound
+Mind releases thought
+
+[Heart Opening - 3 minutes]
+Warmest frequencies appear
+Unconditional love vibration
+Expansion beyond body
+Connection to source
+
+[Integration - 3 minutes]
+Gently returning
+Tones simplify
+Body awareness returns
+Peace remains
+
+[Closing - 2 minutes]
+Final bell
+Silence holds the healing
+Gratitude vibration
+Return renewed
+
+Style: meditation, 432hz, healing, ambient, spiritual, tibetan, binaural, 60bpm, no drums`,
+    category: 'music-creation',
+    tags: ['suno', 'meditation', 'healing', '432hz', 'ambient'],
+    aiTool: 'suno',
+    difficulty: 'Intermediate',
+    useCase: 'Creating meditation and healing music for personal practice or wellness content.',
+    tier: 'premium',
+    productBundle: 'vibe-os',
+    seoKeywords: ['suno meditation prompt', 'suno healing music', 'ai meditation music', '432hz music ai'],
+    createdAt: '2025-01-03T00:00:00.000Z',
+    updatedAt: '2025-01-03T00:00:00.000Z',
+  },
+  {
+    id: 'claude-code-refactor',
+    title: 'Claude Code Refactoring Assistant',
+    description: 'Use Claude to refactor messy code into clean, maintainable architecture.',
+    content: `I need help refactoring this code. Act as a senior software architect.
+
+**Current Code:**
+\`\`\`[language]
+[PASTE YOUR CODE HERE]
+\`\`\`
+
+**Context:**
+- What this code does: [brief description]
+- Why it needs refactoring: [specific pain points]
+- Constraints: [what must stay the same]
+
+**Refactor for:**
+
+1. **Readability**
+   - Clear naming conventions
+   - Logical function/method organization
+   - Appropriate comments (explain WHY, not WHAT)
+
+2. **Maintainability**
+   - Single Responsibility Principle
+   - DRY (Don't Repeat Yourself)
+   - Clear interfaces between components
+
+3. **Performance** (if relevant)
+   - Identify inefficiencies
+   - Optimize hot paths
+   - Consider memory usage
+
+4. **Testability**
+   - Extract dependencies for mocking
+   - Pure functions where possible
+   - Clear input/output contracts
+
+**Output:**
+1. Refactored code with inline explanations
+2. List of changes made and why
+3. Potential future improvements
+4. Any risks or breaking changes to watch for`,
+    category: 'coding',
+    tags: ['claude', 'refactoring', 'code-quality', 'architecture'],
+    aiTool: 'claude',
+    difficulty: 'Intermediate',
+    useCase: 'Developers improving legacy code or cleaning up technical debt.',
+    tier: 'free',
+    productBundle: 'agentic-creator-os',
+    seoKeywords: ['claude code refactor', 'ai code refactoring', 'claude programming', 'code cleanup ai'],
+    createdAt: '2025-01-03T00:00:00.000Z',
+    updatedAt: '2025-01-03T00:00:00.000Z',
+  },
+  {
+    id: 'midjourney-album-cover',
+    title: 'Midjourney Album Cover Art',
+    description: 'Create professional album cover artwork for music releases.',
+    content: `Album cover art for [GENRE] music:
+
+**Album Details:**
+- Artist/Band: [name]
+- Album Title: [title]
+- Genre: [specific genre/subgenre]
+- Mood: [emotional tone of the music]
+- Era/Aesthetic: [modern/retro/futuristic/timeless]
+
+**Prompt Structure:**
+
+[VISUAL CONCEPT], album cover art,
+[GENRE] music aesthetic,
+[COLOR PALETTE] color scheme,
+[STYLE - photographic/illustrated/abstract/mixed media],
+[COMPOSITION - centered/asymmetric/minimal/complex],
+professional music industry quality,
+high contrast, bold typography space,
+[MOOD] atmosphere,
+[ADDITIONAL STYLE REFERENCES]
+
+--ar 1:1 --stylize [200-750] --quality 2
+
+**Example Prompts:**
+
+Indie Rock:
+"Abandoned motel at twilight, neon sign flickering, album cover art, indie rock aesthetic, warm orange and cool blue color scheme, cinematic photography style, rule of thirds composition, nostalgic melancholy atmosphere --ar 1:1 --stylize 350 --q 2"
+
+Electronic:
+"Abstract geometric crystal formations, album cover art, electronic music aesthetic, iridescent purple and cyan, 3D rendered style, centered symmetric composition, futuristic transcendent atmosphere --ar 1:1 --stylize 500 --q 2"`,
+    category: 'image-generation',
+    tags: ['midjourney', 'album-cover', 'music', 'art'],
+    aiTool: 'midjourney',
+    difficulty: 'Intermediate',
+    useCase: 'Musicians and artists creating professional album artwork.',
+    tier: 'premium',
+    productBundle: 'gencreator-os',
+    seoKeywords: ['midjourney album cover', 'ai album art', 'midjourney music', 'album cover generator'],
+    createdAt: '2025-01-03T00:00:00.000Z',
+    updatedAt: '2025-01-03T00:00:00.000Z',
+  },
+  {
+    id: 'chatgpt-meal-planner',
+    title: 'ChatGPT Weekly Meal Planner',
+    description: 'Create personalized weekly meal plans with shopping lists using ChatGPT.',
+    content: `Create a personalized weekly meal plan for me:
+
+**My Preferences:**
+- Diet type: [omnivore/vegetarian/vegan/keto/paleo/etc.]
+- Allergies/restrictions: [list any]
+- Cooking skill: [beginner/intermediate/advanced]
+- Time available: [quick meals only / enjoy cooking / mix]
+- Budget: [budget-friendly / moderate / no limit]
+- Household size: [number of people]
+
+**Goals:**
+- [lose weight / maintain / gain muscle / just eat healthier]
+- [meal prep friendly / fresh daily / mix]
+
+**Provide:**
+
+1. **7-Day Meal Plan**
+   For each day: Breakfast, Lunch, Dinner, Snacks
+   Include estimated calories and prep time
+
+2. **Shopping List** organized by section
+
+3. **Meal Prep Guide** - what to prep on Sunday
+
+4. **Quick Swaps** - alternatives for each meal
+
+Format as an easy-to-follow weekly guide.`,
+    category: 'productivity',
+    tags: ['chatgpt', 'meal-planning', 'nutrition', 'health'],
+    aiTool: 'chatgpt',
+    difficulty: 'Beginner',
+    useCase: 'Anyone wanting to plan healthy meals efficiently.',
+    tier: 'free',
+    productBundle: null,
+    seoKeywords: ['chatgpt meal plan', 'ai meal planner', 'chatgpt nutrition', 'weekly meal plan ai'],
+    createdAt: '2025-01-03T00:00:00.000Z',
+    updatedAt: '2025-01-03T00:00:00.000Z',
+  },
+  {
+    id: 'chatgpt-study-notes',
+    title: 'ChatGPT Study Notes Generator',
+    description: 'Transform any material into effective study notes using ChatGPT.',
+    content: `Transform this material into effective study notes:
+
+**Source Material:**
+[PASTE YOUR TEXTBOOK CHAPTER, LECTURE NOTES, OR ARTICLE]
+
+**Study Context:**
+- Subject: [the topic/course]
+- Exam type: [multiple choice/essay/practical]
+- Learning style: [visual/reading/kinesthetic]
+
+**Create study notes including:**
+
+1. **Executive Summary** - main point in plain language
+2. **Key Concepts** - bullet points with bolded terms
+3. **Visual Aid** - concept map description
+4. **Mnemonics** - memory tricks and acronyms
+5. **Practice Questions** - 5 self-test questions with answers
+6. **Quick Review Card** - 10 most important facts
+
+Make it easy to review in 10 minutes.`,
+    category: 'learning',
+    tags: ['chatgpt', 'study', 'notes', 'education'],
+    aiTool: 'chatgpt',
+    difficulty: 'Beginner',
+    useCase: 'Students wanting to create effective study materials quickly.',
+    tier: 'free',
+    productBundle: null,
+    seoKeywords: ['chatgpt study notes', 'ai study helper', 'chatgpt for students', 'study prompts ai'],
+    createdAt: '2025-01-03T00:00:00.000Z',
+    updatedAt: '2025-01-03T00:00:00.000Z',
+  },
+  {
+    id: 'dalle-social-media-graphics',
+    title: 'DALL-E Social Media Graphics',
+    description: 'Create scroll-stopping social media graphics with DALL-E.',
+    content: `Create a social media graphic:
+
+**Details:**
+- Platform: [Instagram/LinkedIn/Twitter]
+- Post type: [quote card/announcement/tutorial preview]
+- Brand colors: [list your colors]
+- Mood: [professional/playful/inspiring]
+
+**Prompt Templates:**
+
+Quote Card:
+"Minimalist [COLOR] gradient background, elegant typography space in center, subtle texture overlay, modern aesthetic, clean design, professional social media graphic --ar [ASPECT RATIO]"
+
+Announcement:
+"Dynamic [COLOR SCHEME] composition, celebratory elements, bold graphic shapes, excitement and movement, clear focal point for text overlay --ar [ASPECT RATIO]"
+
+**Aspect Ratios:**
+- Instagram Post: --ar 1:1
+- Instagram Story: --ar 9:16
+- LinkedIn: --ar 1.91:1
+- Twitter: --ar 16:9`,
+    category: 'image-generation',
+    tags: ['dalle', 'social-media', 'graphics', 'marketing'],
+    aiTool: 'dalle',
+    difficulty: 'Beginner',
+    useCase: 'Content creators making eye-catching social media visuals.',
+    tier: 'free',
+    productBundle: null,
+    seoKeywords: ['dalle social media', 'ai social graphics', 'dalle marketing', 'social media image ai'],
+    createdAt: '2025-01-03T00:00:00.000Z',
+    updatedAt: '2025-01-03T00:00:00.000Z',
+  },
 ]
 
 // ============================================================================

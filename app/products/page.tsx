@@ -15,7 +15,6 @@ import {
   Zap,
   Users,
   Star,
-  Quote,
 } from 'lucide-react'
 
 import { trackEvent } from '@/lib/analytics'
@@ -385,7 +384,7 @@ export default function ProductsPage() {
           </div>
         </section>
 
-        {/* Testimonials */}
+        {/* What's Included */}
         <section className="py-16 border-t border-white/5">
           <div className="mx-auto max-w-6xl px-6">
             <motion.div
@@ -395,63 +394,54 @@ export default function ProductsPage() {
               className="text-center mb-12"
             >
               <p className="text-xs font-medium uppercase tracking-[0.25em] text-emerald-400/70 mb-2">
-                Creator Results
+                What You Get
               </p>
               <h2 className="text-2xl md:text-3xl font-bold text-white">
-                What creators achieve with these systems
+                Real systems, not theory
               </h2>
             </motion.div>
 
             <div className="grid md:grid-cols-3 gap-6">
               {[
                 {
-                  quote: "The Creative AI Toolkit paid for itself in the first week. My content output has tripled without sacrificing quality.",
-                  author: 'Jessica Taylor',
-                  role: 'Marketing Director',
+                  title: 'Battle-Tested Prompts',
+                  description: 'Every prompt has been used in real projects. No theoretical examples—just what actually works in production.',
+                  icon: Sparkles,
                   color: 'emerald',
                 },
                 {
-                  quote: "Vibe OS transformed my music production workflow. I'm creating soundscapes I couldn't have imagined before.",
-                  author: 'Marcus Lee',
-                  role: 'Music Producer',
+                  title: 'Workflow Templates',
+                  description: 'Complete workflows you can adapt. From ideation to publishing, every step is documented and replicable.',
+                  icon: Zap,
                   color: 'cyan',
                 },
                 {
-                  quote: "As someone who was AI-skeptical, the GenCreator OS made everything click. Now I can't imagine working without it.",
-                  author: 'Amanda Foster',
-                  role: 'Freelance Writer',
+                  title: 'Continuous Updates',
+                  description: 'AI tools evolve fast. Your purchase includes all future updates as I refine and expand these systems.',
+                  icon: Star,
                   color: 'violet',
                 },
-              ].map((testimonial, i) => {
-                const colorClasses: Record<string, { text: string; icon: string }> = {
-                  emerald: { text: 'text-emerald-400', icon: 'bg-emerald-500/10 text-emerald-400' },
-                  cyan: { text: 'text-cyan-400', icon: 'bg-cyan-500/10 text-cyan-400' },
-                  violet: { text: 'text-violet-400', icon: 'bg-violet-500/10 text-violet-400' },
+              ].map((item, i) => {
+                const colorClasses: Record<string, string> = {
+                  emerald: 'bg-emerald-500/10 text-emerald-400',
+                  cyan: 'bg-cyan-500/10 text-cyan-400',
+                  violet: 'bg-violet-500/10 text-violet-400',
                 }
-                const colors = colorClasses[testimonial.color]
 
                 return (
                   <motion.div
-                    key={testimonial.author}
+                    key={item.title}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.1 }}
-                    className="p-6 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-white/10 transition-all"
+                    className="p-6 rounded-2xl border border-white/5 bg-white/[0.02]"
                   >
-                    <Quote className={`w-8 h-8 ${colors.text} opacity-50 mb-4`} />
-                    <p className="text-white/70 leading-relaxed mb-6 text-sm">
-                      "{testimonial.quote}"
-                    </p>
-                    <div className="flex items-center gap-3">
-                      <div className={`w-10 h-10 rounded-full ${colors.icon} flex items-center justify-center text-sm font-semibold`}>
-                        {testimonial.author.split(' ').map((n) => n[0]).join('')}
-                      </div>
-                      <div>
-                        <div className="text-sm font-semibold text-white">{testimonial.author}</div>
-                        <div className="text-xs text-white/40">{testimonial.role}</div>
-                      </div>
+                    <div className={`w-12 h-12 rounded-xl ${colorClasses[item.color]} flex items-center justify-center mb-4`}>
+                      <item.icon className="w-6 h-6" />
                     </div>
+                    <h3 className="text-lg font-semibold text-white mb-2">{item.title}</h3>
+                    <p className="text-sm text-white/50 leading-relaxed">{item.description}</p>
                   </motion.div>
                 )
               })}

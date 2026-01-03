@@ -504,11 +504,11 @@ export default function PromptLibraryView({
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Link
-                  href="/products/gencreator-os"
+                  href="/products/generative-creator-os"
                   className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 font-semibold text-slate-900 transition-all hover:bg-white/90"
                 >
                   <Sparkles className="h-4 w-4" />
-                  GenCreator OS
+                  Generative Creator OS
                 </Link>
                 <Link
                   href="/products/agentic-creator-os"

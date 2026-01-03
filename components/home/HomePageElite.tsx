@@ -390,86 +390,81 @@ function StatsSection() {
 }
 
 // ============================================================================
-// TESTIMONIALS SECTION
+// QUICK START SECTION - Real practical value
 // ============================================================================
 
-const testimonials = [
+const quickStartPaths = [
   {
-    quote: "FrankX's prompt library changed how I work. I went from spending hours on prompts to having a system that just works.",
-    author: 'Alex Rivera',
-    role: 'Content Creator',
-    color: 'emerald',
-  },
-  {
-    quote: "The Suno tutorials are incredible. I've created over 50 tracks for my podcast using what I learned here.",
-    author: 'Maya Johnson',
-    role: 'Podcast Host',
+    title: 'Create Music with Suno',
+    description: 'Generate your first AI song in 5 minutes',
+    href: '/music-lab',
+    time: '5 min',
     color: 'cyan',
   },
   {
-    quote: "Finally, AI resources from someone who actually builds with these tools daily. The difference shows.",
-    author: 'David Kim',
-    role: 'Indie Developer',
+    title: 'Browse Prompt Library',
+    description: '50+ battle-tested prompts across all AI tools',
+    href: '/prompt-library',
+    time: 'Browse',
+    color: 'emerald',
+  },
+  {
+    title: 'Learn AI Fundamentals',
+    description: 'Curated free courses from Oracle, Google, MIT',
+    href: '/students',
+    time: 'Free',
     color: 'violet',
   },
 ]
 
-const testimonialColors: Record<string, { text: string; icon: string }> = {
-  emerald: { text: 'text-emerald-400', icon: 'bg-emerald-500/10 text-emerald-400' },
-  cyan: { text: 'text-cyan-400', icon: 'bg-cyan-500/10 text-cyan-400' },
-  violet: { text: 'text-violet-400', icon: 'bg-violet-500/10 text-violet-400' },
-}
-
-function TestimonialsSection() {
+function QuickStartSection() {
   return (
-    <section className="py-32 border-t border-white/5">
+    <section className="py-24 border-t border-white/5">
       <div className="max-w-6xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          className="text-center mb-12"
         >
           <p className="text-sm font-medium uppercase tracking-[0.25em] text-emerald-400/70 mb-4">
-            Creator Stories
+            Quick Start
           </p>
-          <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight">
-            What creators are saying
+          <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
+            Start creating in minutes
           </h2>
         </motion.div>
 
         <div className="grid md:grid-cols-3 gap-6">
-          {testimonials.map((testimonial, i) => {
-            const colors = testimonialColors[testimonial.color]
-            return (
-              <motion.div
-                key={testimonial.author}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="p-6 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-white/10 transition-all"
+          {quickStartPaths.map((path, i) => (
+            <motion.div
+              key={path.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+            >
+              <Link
+                href={path.href}
+                className="group block p-6 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-white/15 hover:bg-white/[0.04] transition-all h-full"
               >
-                <div className={`w-8 h-8 ${colors.text} opacity-50 mb-4`}>
-                  <svg viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8">
-                    <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-                  </svg>
+                <div className="flex items-center justify-between mb-4">
+                  <span className={`text-xs font-medium px-2.5 py-1 rounded-full ${
+                    path.color === 'cyan' ? 'bg-cyan-500/10 text-cyan-400' :
+                    path.color === 'emerald' ? 'bg-emerald-500/10 text-emerald-400' :
+                    'bg-violet-500/10 text-violet-400'
+                  }`}>
+                    {path.time}
+                  </span>
+                  <ArrowRight className="w-4 h-4 text-white/30 group-hover:text-white/60 group-hover:translate-x-1 transition-all" />
                 </div>
-                <p className="text-white/70 leading-relaxed mb-6 text-sm">
-                  "{testimonial.quote}"
-                </p>
-                <div className="flex items-center gap-3">
-                  <div className={`w-10 h-10 rounded-full ${colors.icon} flex items-center justify-center text-sm font-semibold`}>
-                    {testimonial.author.split(' ').map((n) => n[0]).join('')}
-                  </div>
-                  <div>
-                    <div className="text-sm font-semibold text-white">{testimonial.author}</div>
-                    <div className="text-xs text-white/40">{testimonial.role}</div>
-                  </div>
-                </div>
-              </motion.div>
-            )
-          })}
+                <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-emerald-400 transition-colors">
+                  {path.title}
+                </h3>
+                <p className="text-sm text-white/50">{path.description}</p>
+              </Link>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
@@ -828,7 +823,7 @@ export default function HomePageElite() {
         <Hero />
         <StatsSection />
         <WhatIDo />
-        <TestimonialsSection />
+        <QuickStartSection />
         <FeaturedResources />
         <AboutSection />
         <FinalCTA />

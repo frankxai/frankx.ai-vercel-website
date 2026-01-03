@@ -202,6 +202,14 @@ const learningResources = [
     difficulty: 'Beginner',
   },
   {
+    name: 'Anthropic Prompt Engineering',
+    source: 'Anthropic',
+    type: 'Documentation',
+    description: 'Official guide to getting the best results from Claude. Essential reading.',
+    url: 'https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview',
+    difficulty: 'Beginner',
+  },
+  {
     name: 'Machine Learning Crash Course',
     source: 'Google',
     type: 'Course',
@@ -210,11 +218,27 @@ const learningResources = [
     difficulty: 'Intermediate',
   },
   {
+    name: 'DeepLearning.AI Short Courses',
+    source: 'DeepLearning.AI',
+    type: 'Course Collection',
+    description: 'Free short courses on LLMs, prompt engineering, and AI applications.',
+    url: 'https://www.deeplearning.ai/short-courses/',
+    difficulty: 'Intermediate',
+  },
+  {
     name: 'Introduction to Deep Learning',
     source: 'MIT',
     type: 'Course',
     description: 'MIT\'s official deep learning course. Theory meets implementation.',
     url: 'http://introtodeeplearning.com/',
+    difficulty: 'Advanced',
+  },
+  {
+    name: 'Stanford CS229: Machine Learning',
+    source: 'Stanford',
+    type: 'Course',
+    description: 'Andrew Ng\'s legendary ML course. Mathematical foundations of machine learning.',
+    url: 'https://cs229.stanford.edu/',
     difficulty: 'Advanced',
   },
   {
@@ -232,6 +256,14 @@ const learningResources = [
     description: 'Build Retrieval Augmented Generation systems from first principles.',
     url: 'https://www.youtube.com/playlist?list=PLfaIDFEXuae2LXbO1_PKyVJiQ23ZztA0x',
     difficulty: 'Intermediate',
+  },
+  {
+    name: 'Building AI Agents',
+    source: 'LangChain',
+    type: 'Documentation',
+    description: 'Comprehensive guide to building agentic AI systems with LangGraph.',
+    url: 'https://langchain-ai.github.io/langgraph/',
+    difficulty: 'Advanced',
   },
 ]
 

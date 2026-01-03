@@ -430,7 +430,7 @@ export default function CreatorsPage() {
           </div>
         </section>
 
-        {/* Testimonials */}
+        {/* Creator Resources - Real Content */}
         <section className="py-20 border-t border-white/5">
           <div className="mx-auto max-w-6xl px-6">
             <motion.div
@@ -440,67 +440,63 @@ export default function CreatorsPage() {
               className="text-center mb-12"
             >
               <p className="text-xs font-medium uppercase tracking-[0.25em] text-pink-400/70 mb-2">
-                Creator Stories
+                Deep Dives
               </p>
               <h2 className="text-2xl md:text-3xl font-bold text-white">
-                From overwhelmed to creating daily
+                Essential reading for AI creators
               </h2>
             </motion.div>
 
             <div className="grid md:grid-cols-3 gap-6">
               {[
                 {
-                  quote: "I went from spending 4 hours on a single blog post to producing quality content in 45 minutes. The writing prompts changed everything.",
-                  author: 'Emma Collins',
-                  role: 'Content Creator',
+                  title: 'AI Doesn\'t Have to Be Soulless',
+                  description: 'How to preserve your authentic creative voice while using AI tools. The balance between efficiency and expression.',
+                  href: '/blog/ai-doesnt-have-to-be-soulless',
                   color: 'pink',
                 },
                 {
-                  quote: "Created my first AI album in a weekend using the Suno prompts. Now I release ambient tracks weekly for my meditation community.",
-                  author: 'Daniel Park',
-                  role: 'Wellness Coach',
+                  title: 'The Suno Prompt Playbook',
+                  description: 'Master the art of AI music generation. Structure, style tags, and techniques for production-quality results.',
+                  href: '/guides/suno-prompt-playbook',
                   color: 'violet',
                 },
                 {
-                  quote: "The visual prompts helped me develop a consistent brand aesthetic. My social engagement tripled in the first month.",
-                  author: 'Sofia Martinez',
-                  role: 'Brand Designer',
+                  title: 'Building a Creative System',
+                  description: 'From one-off creations to consistent output. How to develop workflows that scale your creative capacity.',
+                  href: '/blog/creative-systems-ai',
                   color: 'cyan',
                 },
-              ].map((testimonial, i) => {
-                const colorClasses: Record<string, { text: string; icon: string }> = {
-                  pink: { text: 'text-pink-400', icon: 'bg-pink-500/10 text-pink-400' },
-                  violet: { text: 'text-violet-400', icon: 'bg-violet-500/10 text-violet-400' },
-                  cyan: { text: 'text-cyan-400', icon: 'bg-cyan-500/10 text-cyan-400' },
+              ].map((resource, i) => {
+                const colorClasses: Record<string, { border: string; text: string }> = {
+                  pink: { border: 'border-pink-500/20 hover:border-pink-500/40', text: 'text-pink-400' },
+                  violet: { border: 'border-violet-500/20 hover:border-violet-500/40', text: 'text-violet-400' },
+                  cyan: { border: 'border-cyan-500/20 hover:border-cyan-500/40', text: 'text-cyan-400' },
                 }
-                const colors = colorClasses[testimonial.color]
+                const colors = colorClasses[resource.color]
 
                 return (
                   <motion.div
-                    key={testimonial.author}
+                    key={resource.title}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.1 }}
-                    className="p-6 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-white/10 transition-all"
                   >
-                    <div className={`w-8 h-8 ${colors.text} opacity-50 mb-4`}>
-                      <svg viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8">
-                        <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
-                      </svg>
-                    </div>
-                    <p className="text-white/70 leading-relaxed mb-6 text-sm">
-                      "{testimonial.quote}"
-                    </p>
-                    <div className="flex items-center gap-3">
-                      <div className={`w-10 h-10 rounded-full ${colors.icon} flex items-center justify-center text-sm font-semibold`}>
-                        {testimonial.author.split(' ').map((n) => n[0]).join('')}
-                      </div>
-                      <div>
-                        <div className="text-sm font-semibold text-white">{testimonial.author}</div>
-                        <div className="text-xs text-white/40">{testimonial.role}</div>
-                      </div>
-                    </div>
+                    <Link
+                      href={resource.href}
+                      className={`block p-6 rounded-2xl border ${colors.border} bg-white/[0.02] hover:bg-white/[0.04] transition-all h-full`}
+                    >
+                      <h3 className="text-lg font-semibold text-white mb-3">
+                        {resource.title}
+                      </h3>
+                      <p className="text-white/50 text-sm mb-4 leading-relaxed">
+                        {resource.description}
+                      </p>
+                      <span className={`text-sm font-medium ${colors.text} inline-flex items-center gap-1`}>
+                        Read more <ArrowRight className="h-3 w-3" />
+                      </span>
+                    </Link>
                   </motion.div>
                 )
               })}
