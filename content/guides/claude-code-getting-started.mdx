@@ -1,0 +1,356 @@
+---
+title: "Getting Started with Claude Code"
+description: "A practical introduction to Anthropic's CLI tool for AI-assisted development"
+date: "2025-01-02"
+author: "Frank"
+category: "Development"
+tags: ["Claude", "Claude Code", "Development", "AI Coding"]
+---
+
+# Getting Started with Claude Code
+
+Claude Code is Anthropic's command-line interface for AI-assisted software development. This guide walks you through setup, essential commands, and workflows that make it genuinely useful.
+
+---
+
+## What Claude Code Does
+
+Claude Code brings AI directly into your terminal. Unlike web-based chat interfaces:
+
+- **Context-aware** - It understands your entire codebase
+- **Action-oriented** - It can read, write, and execute
+- **Persistent** - Sessions maintain context across tasks
+- **Integrated** - Works with your existing dev tools
+
+---
+
+## Part 1: Installation
+
+### Prerequisites
+
+- Node.js 18+ installed
+- An Anthropic API key
+- Terminal access (macOS, Linux, or WSL on Windows)
+
+### Install via npm
+
+```bash
+npm install -g @anthropic-ai/claude-code
+```
+
+### Authenticate
+
+```bash
+claude-code auth
+```
+
+This opens a browser window for authentication. Once complete, you're ready.
+
+### Verify Installation
+
+```bash
+claude-code --version
+```
+
+---
+
+## Part 2: Essential Commands
+
+### Start a Session
+
+```bash
+claude-code
+```
+
+This launches an interactive session in your current directory.
+
+### One-Shot Commands
+
+```bash
+claude-code "explain what this project does"
+claude-code "find all TODO comments in the codebase"
+claude-code "add error handling to src/api.ts"
+```
+
+### Common Flags
+
+| Flag | Purpose |
+|------|---------|
+| `--model` | Select model (opus, sonnet, haiku) |
+| `--print` | Output response and exit |
+| `--dangerously-skip-permissions` | Skip permission prompts |
+
+---
+
+## Part 3: Effective Prompting
+
+### Be Specific About Files
+
+```
+Read src/components/Button.tsx and explain the props interface
+```
+
+vs.
+
+```
+Explain the Button component
+```
+
+The first is faster because Claude doesn't need to search.
+
+### Describe the "Why"
+
+```
+Refactor the authentication flow to use JWTs instead of sessions.
+We need this because the app will be deployed to multiple regions.
+```
+
+Context about purpose leads to better decisions.
+
+### Break Down Complex Tasks
+
+Instead of:
+```
+Build a complete user authentication system
+```
+
+Try:
+```
+Let's build auth step by step:
+1. First, create the user model in prisma/schema.prisma
+2. Then we'll add the auth routes
+3. Finally, we'll add middleware
+```
+
+---
+
+## Part 4: Reading and Understanding Code
+
+### Explore a New Codebase
+
+```
+Give me an overview of this project's architecture.
+Focus on:
+1. Entry points
+2. Key abstractions
+3. Data flow
+```
+
+### Find Patterns
+
+```
+Find all places where we make API calls.
+Show me the pattern we use for error handling.
+```
+
+### Trace Execution
+
+```
+Trace what happens when a user submits the contact form.
+Start from the form component and follow through to the database.
+```
+
+---
+
+## Part 5: Writing Code
+
+### Create New Features
+
+```
+Add a dark mode toggle to the settings page.
+Use the existing useTheme hook in lib/hooks.
+Match the design system in components/ui.
+```
+
+### Fix Bugs
+
+```
+There's a bug where the cart total doesn't update after removing items.
+The issue is in components/Cart.tsx.
+Find and fix it.
+```
+
+### Refactor Safely
+
+```
+Refactor the user service to use the repository pattern.
+Keep all existing tests passing.
+Don't change the public API.
+```
+
+---
+
+## Part 6: Working with Tests
+
+### Generate Tests
+
+```
+Write unit tests for src/utils/validation.ts.
+Cover edge cases for:
+- Empty input
+- Invalid email formats
+- Special characters
+```
+
+### Debug Failing Tests
+
+```
+This test is failing:
+[paste test output]
+
+Find the bug and fix it.
+```
+
+### Run and Verify
+
+```bash
+claude-code "run the test suite and summarize any failures"
+```
+
+---
+
+## Part 7: Git Integration
+
+### Commit Workflow
+
+```
+Review my staged changes and suggest a commit message.
+Follow conventional commit format.
+```
+
+### Pull Request Prep
+
+```
+Summarize all changes since main branch.
+Write a PR description covering:
+- What changed
+- Why
+- How to test
+```
+
+### Code Review
+
+```
+Review the diff for potential issues:
+- Security vulnerabilities
+- Performance problems
+- Style inconsistencies
+```
+
+---
+
+## Part 8: Project-Specific Context
+
+### CLAUDE.md Files
+
+Create a `CLAUDE.md` file in your project root:
+
+```markdown
+# Project Context
+
+## Architecture
+This is a Next.js 14 app with App Router.
+Database is PostgreSQL via Prisma.
+
+## Conventions
+- Use server components by default
+- Keep client components in /components/client
+- All API routes go in /app/api
+
+## Important Files
+- lib/db.ts - Database client
+- lib/auth.ts - Authentication helpers
+- types/index.ts - Shared types
+```
+
+Claude Code reads this file automatically.
+
+---
+
+## Part 9: Slash Commands
+
+### Built-in Commands
+
+| Command | Action |
+|---------|--------|
+| `/help` | Show available commands |
+| `/clear` | Clear conversation |
+| `/compact` | Toggle compact output |
+| `/model` | Switch AI model |
+
+### Custom Commands
+
+Create `.claude/commands/` directory for custom commands:
+
+```markdown
+# .claude/commands/review.md
+
+Review the current file for:
+1. Security issues
+2. Performance optimizations
+3. Code style improvements
+
+Suggest fixes with code examples.
+```
+
+Then use: `/project:review`
+
+---
+
+## Part 10: Workflows That Work
+
+### Morning Standup
+
+```
+What files have I modified since yesterday?
+Summarize the changes for a standup update.
+```
+
+### End of Day
+
+```
+Review today's changes.
+Are there any incomplete features or potential issues?
+What should I tackle first tomorrow?
+```
+
+### Before Deploying
+
+```
+Run a pre-deployment check:
+1. Are there any console.logs left in?
+2. Any TODO comments that need addressing?
+3. Are all env variables documented?
+```
+
+---
+
+## Quick Reference
+
+### Model Selection
+
+| Model | Best For |
+|-------|----------|
+| Opus | Complex architecture, difficult bugs |
+| Sonnet | Daily development (default) |
+| Haiku | Quick questions, simple tasks |
+
+### Performance Tips
+
+1. **Start specific** - Give file paths when you know them
+2. **Stay focused** - One task per conversation for complex work
+3. **Use context** - Create CLAUDE.md for project conventions
+4. **Verify outputs** - Review generated code before committing
+
+---
+
+## Next Steps
+
+1. Install Claude Code in your most active project
+2. Create a `CLAUDE.md` with project context
+3. Try the morning standup workflow for a week
+4. Build custom commands for your repetitive tasks
+
+---
+
+*This guide reflects daily use of Claude Code across multiple production projects. The patterns here are what consistently improve development velocity.*
