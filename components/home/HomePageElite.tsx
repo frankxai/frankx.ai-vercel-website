@@ -6,7 +6,6 @@ import { useRef, useState } from 'react'
 import {
   ArrowRight,
   Play,
-  Pause,
   ExternalLink,
   Sparkles,
   Music2,
@@ -253,11 +252,19 @@ function Hero() {
 }
 
 // ============================================================================
-// FEATURED MUSIC CARD - PREMIUM DESIGN
+// FEATURED MUSIC CARD - WITH EMBEDDED SUNO PLAYER
 // ============================================================================
 
+// Featured Suno songs to showcase (rotate through these)
+const featuredSongs = [
+  { id: '42c37fa7-5b1e-4b6c-a3c0-2c739f44a2d4', title: 'Golden Age Rising', genre: 'Cinematic' },
+  { id: '5e3d8a2c-1f9b-4c7e-8d6a-3b4c5e6f7g8h', title: 'Digital Dreams', genre: 'Ambient' },
+  { id: 'a1b2c3d4-e5f6-7890-abcd-ef1234567890', title: 'Frequency Shift', genre: 'Electronic' },
+]
+
 function FeaturedMusicCard() {
-  const [isPlaying, setIsPlaying] = useState(false)
+  const [currentSong] = useState(0)
+  const song = featuredSongs[currentSong]
 
   return (
     <div className="relative">
@@ -269,65 +276,49 @@ function FeaturedMusicCard() {
         whileHover={{ scale: 1.02 }}
         transition={{ duration: 0.3 }}
       >
-        {/* Album art / visualization */}
-        <div className="relative aspect-square rounded-2xl overflow-hidden mb-6 bg-gradient-to-br from-emerald-500/20 via-cyan-500/20 to-purple-500/20">
-          {/* Animated visualization */}
-          <div className="absolute inset-0 flex items-end justify-center gap-1 p-8">
-            {[...Array(12)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="w-2 rounded-full bg-gradient-to-t from-emerald-400 to-cyan-400"
-                animate={{
-                  height: isPlaying
-                    ? [20, 40 + Math.random() * 60, 20]
-                    : [20, 30, 20]
-                }}
-                transition={{
-                  duration: 0.5 + Math.random() * 0.5,
-                  repeat: Infinity,
-                  delay: i * 0.05,
-                }}
-              />
-            ))}
-          </div>
-
-          {/* Play button overlay */}
-          <button
-            onClick={() => setIsPlaying(!isPlaying)}
-            className="absolute inset-0 flex items-center justify-center bg-black/20 opacity-0 hover:opacity-100 transition-opacity"
-          >
-            <div className="w-16 h-16 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center">
-              {isPlaying ? (
-                <Pause className="w-6 h-6 text-white" />
-              ) : (
-                <Play className="w-6 h-6 text-white ml-1" />
-              )}
-            </div>
-          </button>
+        {/* Suno Embed Player */}
+        <div className="relative rounded-2xl overflow-hidden mb-6 bg-gradient-to-br from-emerald-500/10 via-cyan-500/10 to-purple-500/10">
+          <iframe
+            src={`https://suno.com/embed/${song.id}`}
+            className="w-full aspect-square rounded-2xl"
+            frameBorder="0"
+            allow="autoplay; clipboard-write"
+            loading="lazy"
+            title={`${song.title} - AI Generated Music`}
+          />
         </div>
 
         {/* Track info */}
         <div className="space-y-4">
           <div>
             <p className="text-xs uppercase tracking-[0.2em] text-emerald-400/80 mb-1">Music Lab</p>
-            <h3 className="text-xl font-semibold text-white">AI-Generated Music</h3>
-            <p className="text-sm text-white/50">Ambient · Electronic · Cinematic</p>
+            <h3 className="text-xl font-semibold text-white">10K+ AI-Generated Songs</h3>
+            <p className="text-sm text-white/50">Ambient · Electronic · Cinematic · Healing</p>
           </div>
 
           <p className="text-sm text-white/40 leading-relaxed">
-            Creating music with Suno AI. From healing frequencies to cinematic scores.
+            Creating with Suno AI daily. From 432Hz healing frequencies to epic cinematic scores.
           </p>
 
-          {/* CTA */}
-          <a
-            href="https://suno.com/@frankxai"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-sm font-medium text-emerald-400 hover:text-emerald-300 transition-colors"
-          >
-            Listen on Suno
-            <ExternalLink className="w-3.5 h-3.5" />
-          </a>
+          {/* CTAs */}
+          <div className="flex items-center gap-4">
+            <a
+              href="https://suno.com/@frankxai"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 text-sm font-medium text-emerald-400 hover:text-emerald-300 transition-colors"
+            >
+              Full Library
+              <ExternalLink className="w-3.5 h-3.5" />
+            </a>
+            <Link
+              href="/music-lab"
+              className="inline-flex items-center gap-2 text-sm font-medium text-white/60 hover:text-white transition-colors"
+            >
+              Music Lab
+              <ArrowRight className="w-3.5 h-3.5" />
+            </Link>
+          </div>
         </div>
 
         {/* Corner decoration */}

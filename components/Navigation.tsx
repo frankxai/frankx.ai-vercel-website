@@ -166,8 +166,14 @@ export default function Navigation() {
 
             <div className="flex items-center space-x-3 ml-6 pl-6 border-l border-white/10">
               <Link
+                href="/free-playbook"
+                className="px-5 py-2 bg-gradient-to-r from-pink-600 to-violet-600 hover:from-pink-500 hover:to-violet-500 text-white text-sm font-semibold rounded-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-pink-500/20"
+              >
+                Free Playbooks
+              </Link>
+              <Link
                 href="/start"
-                className="px-5 py-2 bg-white hover:bg-white/90 text-slate-900 text-sm font-semibold rounded-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-white/10"
+                className="px-5 py-2 bg-white/10 hover:bg-white/20 text-white text-sm font-medium rounded-lg transition-all duration-300 border border-white/10"
               >
                 Explore
               </Link>
@@ -176,10 +182,10 @@ export default function Navigation() {
 
           <div className="lg:hidden flex items-center space-x-3">
             <Link
-              href="/start"
-              className="px-4 py-2 bg-white text-slate-900 text-sm font-semibold rounded-lg transition-all duration-300"
+              href="/free-playbook"
+              className="px-4 py-2 bg-gradient-to-r from-pink-600 to-violet-600 text-white text-sm font-semibold rounded-lg transition-all duration-300"
             >
-              Explore
+              Free
             </Link>
             <button
               onClick={() => setIsOpen((prev) => !prev)}
@@ -223,8 +229,15 @@ export default function Navigation() {
             ))}
 
             <Link
+              href="/free-playbook"
+              className="mt-3 px-6 py-3.5 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-pink-600 to-violet-600 text-center transition-all active:scale-[0.98]"
+              onClick={() => setIsOpen(false)}
+            >
+              Get Free Playbooks
+            </Link>
+            <Link
               href="/products"
-              className="mt-3 px-6 py-3.5 rounded-xl text-sm font-semibold text-slate-900 bg-white text-center transition-all active:scale-[0.98]"
+              className="mt-2 px-6 py-3 rounded-xl text-sm font-medium text-slate-300 bg-white/5 border border-white/10 text-center transition-all active:scale-[0.98]"
               onClick={() => setIsOpen(false)}
             >
               View Products

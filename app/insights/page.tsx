@@ -1,7 +1,4 @@
-'use client'
-
 import Link from 'next/link'
-import { motion } from 'framer-motion'
 import { getAllBlogPosts } from '@/lib/blog'
 import {
   ArrowRight,
@@ -12,34 +9,9 @@ import {
   Filter,
 } from 'lucide-react'
 
-// Premium dark background
-function InsightsBackground() {
-  return (
-    <div className="fixed inset-0 -z-10 overflow-hidden">
-      <div className="absolute inset-0 bg-[#030712]" />
-      <div
-        className="absolute inset-0 opacity-[0.02]"
-        style={{
-          backgroundImage: `
-            linear-gradient(rgba(139, 92, 246, 0.3) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(139, 92, 246, 0.3) 1px, transparent 1px)
-          `,
-          backgroundSize: '50px 50px',
-        }}
-      />
-      <motion.div
-        className="absolute -left-40 top-40 h-[500px] w-[500px] rounded-full opacity-15"
-        style={{
-          background: 'radial-gradient(circle, rgba(139,92,246,0.4) 0%, transparent 70%)',
-        }}
-        animate={{
-          scale: [1, 1.1, 1],
-          y: [0, 30, 0],
-        }}
-        transition={{ duration: 15, repeat: Infinity, ease: 'easeInOut' }}
-      />
-    </div>
-  )
+export const metadata = {
+  title: 'Insights | FrankX',
+  description: 'AI insights for conscious creators. Practical, hype-free perspectives on using AI to amplify creative work.',
 }
 
 // Color mapping for category badges
@@ -61,52 +33,52 @@ export default function InsightsPage() {
 
   return (
     <>
-      <InsightsBackground />
+      {/* Background */}
+      <div className="fixed inset-0 -z-10 overflow-hidden">
+        <div className="absolute inset-0 bg-[#030712]" />
+        <div
+          className="absolute inset-0 opacity-[0.02]"
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(139, 92, 246, 0.3) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(139, 92, 246, 0.3) 1px, transparent 1px)
+            `,
+            backgroundSize: '50px 50px',
+          }}
+        />
+        <div
+          className="absolute -left-40 top-40 h-[500px] w-[500px] rounded-full opacity-15 animate-pulse"
+          style={{
+            background: 'radial-gradient(circle, rgba(139,92,246,0.4) 0%, transparent 70%)',
+          }}
+        />
+      </div>
+
       <main className="relative min-h-screen">
         {/* Hero */}
         <section className="pt-32 pb-12">
           <div className="mx-auto max-w-6xl px-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="mb-6 flex items-center gap-3"
-            >
+            <div className="mb-6 flex items-center gap-3 animate-fade-in">
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-500/20 text-violet-400">
                 <Sparkles className="h-5 w-5" />
               </div>
               <span className="text-sm font-medium uppercase tracking-[0.2em] text-slate-400">
                 Weekly Insights
               </span>
-            </motion.div>
+            </div>
 
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="mb-6 max-w-3xl text-4xl font-bold leading-tight text-white sm:text-5xl"
-            >
+            <h1 className="mb-6 max-w-3xl text-4xl font-bold leading-tight text-white sm:text-5xl animate-fade-in">
               AI Insights for
               <span className="block text-violet-400">Conscious Creators</span>
-            </motion.h1>
+            </h1>
 
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="mb-8 max-w-2xl text-lg leading-relaxed text-slate-400"
-            >
+            <p className="mb-8 max-w-2xl text-lg leading-relaxed text-slate-400 animate-fade-in">
               Practical, hype-free perspectives on using AI to amplify your creative work.
               From music production to business strategy.
-            </motion.p>
+            </p>
 
             {/* Stats bar */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="flex flex-wrap gap-6 text-sm"
-            >
+            <div className="flex flex-wrap gap-6 text-sm animate-fade-in">
               <div className="flex items-center gap-2 text-slate-400">
                 <TrendingUp className="h-4 w-4 text-emerald-400" />
                 <span>{posts.length} articles</span>
@@ -115,7 +87,7 @@ export default function InsightsPage() {
                 <Calendar className="h-4 w-4 text-violet-400" />
                 <span>Updated weekly</span>
               </div>
-            </motion.div>
+            </div>
           </div>
         </section>
 
@@ -123,40 +95,34 @@ export default function InsightsPage() {
         {sortedPosts[0] && (
           <section className="py-8 border-t border-white/5">
             <div className="mx-auto max-w-6xl px-6">
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
+              <Link
+                href={`/blog/${sortedPosts[0].slug}`}
+                className="group block rounded-2xl border border-violet-500/20 bg-violet-500/5 p-8 transition-all hover:border-violet-500/40 hover:-translate-y-1"
               >
-                <Link
-                  href={`/blog/${sortedPosts[0].slug}`}
-                  className="group block rounded-2xl border border-violet-500/20 bg-violet-500/5 p-8 transition-all hover:border-violet-500/40 hover:-translate-y-1"
-                >
-                  <span className="inline-flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-violet-400 mb-4">
-                    <Sparkles className="h-3 w-3" />
-                    Latest
+                <span className="inline-flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-violet-400 mb-4">
+                  <Sparkles className="h-3 w-3" />
+                  Latest
+                </span>
+                <h2 className="text-2xl font-bold text-white mb-3 group-hover:text-violet-300 transition-colors">
+                  {sortedPosts[0].title}
+                </h2>
+                <p className="text-slate-400 mb-4 max-w-2xl">
+                  {sortedPosts[0].description}
+                </p>
+                <div className="flex items-center gap-4 text-sm text-slate-500">
+                  <span className="flex items-center gap-1">
+                    <Clock className="h-4 w-4" />
+                    {sortedPosts[0].readingTime}
                   </span>
-                  <h2 className="text-2xl font-bold text-white mb-3 group-hover:text-violet-300 transition-colors">
-                    {sortedPosts[0].title}
-                  </h2>
-                  <p className="text-slate-400 mb-4 max-w-2xl">
-                    {sortedPosts[0].description}
-                  </p>
-                  <div className="flex items-center gap-4 text-sm text-slate-500">
-                    <span className="flex items-center gap-1">
-                      <Clock className="h-4 w-4" />
-                      {sortedPosts[0].readingTime}
-                    </span>
-                    <span>
-                      {new Date(sortedPosts[0].date).toLocaleDateString('en-US', {
-                        month: 'long',
-                        day: 'numeric',
-                        year: 'numeric',
-                      })}
-                    </span>
-                  </div>
-                </Link>
-              </motion.div>
+                  <span>
+                    {new Date(sortedPosts[0].date).toLocaleDateString('en-US', {
+                      month: 'long',
+                      day: 'numeric',
+                      year: 'numeric',
+                    })}
+                  </span>
+                </div>
+              </Link>
             </div>
           </section>
         )}
@@ -173,18 +139,12 @@ export default function InsightsPage() {
             </div>
 
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {sortedPosts.slice(1).map((post, i) => {
+              {sortedPosts.slice(1).map((post) => {
                 const categoryColor =
                   categoryColors[post.category || ''] || categoryColors.default
 
                 return (
-                  <motion.article
-                    key={post.slug}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.05 }}
-                  >
+                  <article key={post.slug}>
                     <Link
                       href={`/blog/${post.slug}`}
                       className="group block h-full rounded-xl border border-white/5 bg-white/[0.02] p-6 transition-all hover:border-white/10 hover:bg-white/[0.04]"
@@ -215,7 +175,7 @@ export default function InsightsPage() {
                         </span>
                       </div>
                     </Link>
-                  </motion.article>
+                  </article>
                 )
               })}
             </div>
@@ -225,22 +185,16 @@ export default function InsightsPage() {
         {/* CTA to blog */}
         <section className="py-12 border-t border-white/5">
           <div className="mx-auto max-w-3xl px-6 text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+            <p className="text-slate-400 mb-6">
+              Want more? Visit the full blog for deep dives, tutorials, and case studies.
+            </p>
+            <Link
+              href="/blog"
+              className="group inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 font-medium text-white transition-all hover:bg-white/10"
             >
-              <p className="text-slate-400 mb-6">
-                Want more? Visit the full blog for deep dives, tutorials, and case studies.
-              </p>
-              <Link
-                href="/blog"
-                className="group inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 font-medium text-white transition-all hover:bg-white/10"
-              >
-                View Full Blog
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </Link>
-            </motion.div>
+              View Full Blog
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </Link>
           </div>
         </section>
       </main>
