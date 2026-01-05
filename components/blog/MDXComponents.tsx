@@ -1,7 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { ReactNode } from 'react'
-import { Lightbulb, AlertTriangle, Info, CheckCircle } from 'lucide-react'
 
 type CalloutKind = 'info' | 'warning' | 'tip' | 'success'
 
@@ -17,12 +16,38 @@ const calloutStyles: Record<CalloutKind, string> = {
   success: 'border-primary-400/40 bg-primary-500/10 text-primary-100',
 }
 
+// Inline SVG icons to avoid React version conflicts with lucide-react in RSC
+const InfoIcon = () => (
+  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <circle cx="12" cy="12" r="10" strokeWidth="2" />
+    <path strokeWidth="2" d="M12 16v-4m0-4h.01" />
+  </svg>
+)
+
+const WarningIcon = () => (
+  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+  </svg>
+)
+
+const LightbulbIcon = () => (
+  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeWidth="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+  </svg>
+)
+
+const CheckIcon = () => (
+  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+    <path strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+  </svg>
+)
+
 function getCalloutIcon(type: CalloutKind) {
   switch (type) {
-    case 'info': return <Info className="w-5 h-5" />
-    case 'warning': return <AlertTriangle className="w-5 h-5" />
-    case 'tip': return <Lightbulb className="w-5 h-5" />
-    case 'success': return <CheckCircle className="w-5 h-5" />
+    case 'info': return <InfoIcon />
+    case 'warning': return <WarningIcon />
+    case 'tip': return <LightbulbIcon />
+    case 'success': return <CheckIcon />
   }
 }
 
