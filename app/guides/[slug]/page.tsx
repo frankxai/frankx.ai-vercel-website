@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import { getAllGuides, getGuide } from '@/lib/guides'
+import { mdxComponents } from '@/components/blog/MDXComponents'
 import Link from 'next/link'
 
 // Static generation - content is read at build time
@@ -45,8 +46,8 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
             <span className="text-slate-600">•</span>
             <span>{guide.author}</span>
           </div>
-          <div className="prose prose-lg prose-invert max-w-none prose-headings:text-white prose-p:text-slate-300 prose-strong:text-white prose-a:text-emerald-400 hover:prose-a:text-emerald-300 prose-code:text-cyan-400 prose-pre:bg-slate-900/50 prose-pre:border prose-pre:border-white/10 prose-blockquote:border-emerald-500/50 prose-blockquote:text-slate-400 prose-li:text-slate-300">
-            <MDXRemote source={guide.content} />
+          <div className="space-y-6 text-base leading-relaxed text-white/75">
+            <MDXRemote source={guide.content} components={mdxComponents as any} />
           </div>
         </div>
       </main>

@@ -35,7 +35,7 @@ function buildRss({ site, items }) {
   return `<?xml version="1.0" encoding="UTF-8"?>\n<rss version="2.0">\n<channel>\n  <title>FrankX Feed</title>\n  <link>${site}</link>\n  <description>Latest posts and guides</description>${entries}\n</channel>\n</rss>\n`
 }
 
-const site = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
+const site = process.env.NEXT_PUBLIC_SITE_URL || 'https://frankx.ai'
 const blogItems = readMdxDir(BLOG_DIR).map((x) => ({ ...x, path: `blog/${x.slug}` }))
 const guideItems = readMdxDir(GUIDES_DIR).map((x) => ({ ...x, path: `guides/${x.slug}` }))
 const items = [...blogItems, ...guideItems].slice(0, 50)

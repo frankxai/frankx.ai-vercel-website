@@ -39,7 +39,7 @@ function BlogSkeleton() {
 export default function BlogPage() {
   const allPosts = getAllBlogPosts()
   const categories = Array.from(new Set(allPosts.map((post) => post.category))).sort()
-  const tags = Array.from(new Set(allPosts.flatMap((post) => post.tags.map((tag) => tag.trim())))).sort()
+  const tags = Array.from(new Set(allPosts.flatMap((post) => (post.tags || []).map((tag) => tag.trim())))).sort()
 
   return (
     <Suspense fallback={<BlogSkeleton />}>

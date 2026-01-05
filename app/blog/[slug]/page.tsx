@@ -59,7 +59,10 @@ export default async function BlogPostPage({
 
   const allPosts = getAllBlogPosts()
   const relatedPosts = allPosts
-    .filter((p) => p.slug !== post.slug && p.tags.some((tag) => post.tags.includes(tag)))
+    .filter((p) => {
+      if (!p.tags || !post.tags) return false
+      return p.slug !== post.slug && p.tags.some((tag) => post.tags.includes(tag))
+    })
     .slice(0, 3)
 
   const documents = allPosts.map((postItem) => ({

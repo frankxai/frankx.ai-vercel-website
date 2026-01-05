@@ -40,7 +40,7 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
 
   const filteredPosts = selectedCategory
-    ? posts.filter((post) => post.category.toLowerCase() === selectedCategory.toLowerCase())
+    ? posts.filter((post) => post.category?.toLowerCase() === selectedCategory.toLowerCase())
     : posts
 
   const featuredPosts = filteredPosts.filter((post) => post.featured).slice(0, 2)
@@ -86,7 +86,7 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
               All ({posts.length})
             </button>
             {categories.map((category) => {
-              const count = posts.filter(p => p.category.toLowerCase() === category.toLowerCase()).length
+              const count = posts.filter(p => p.category?.toLowerCase() === category.toLowerCase()).length
               const isActive = selectedCategory?.toLowerCase() === category.toLowerCase()
               return (
                 <button

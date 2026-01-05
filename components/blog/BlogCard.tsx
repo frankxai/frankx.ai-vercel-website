@@ -32,7 +32,7 @@ export default function BlogCard({ post, featured = false, className }: BlogCard
         {/* Top row: Category & Meta */}
         <div className="flex items-center justify-between mb-4">
           <span className="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-            {post.category}
+            {post.category || 'Article'}
           </span>
           <ArrowUpRight className="w-4 h-4 text-white/30 group-hover:text-white/60 transition-colors" />
         </div>
