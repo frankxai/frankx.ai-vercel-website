@@ -5,7 +5,7 @@ import Script from 'next/script'
 
 import { cn } from '@/lib/utils'
 import { robotsConfig, siteConfig } from '@/lib/seo'
-import Navigation from '@/components/Navigation'
+import NavigationMega from '@/components/NavigationMega'
 import Footer from '@/components/Footer'
 
 // Inter as primary sans-serif (geometric, variable weight, screen-optimized)
@@ -110,7 +110,7 @@ export default function RootLayout({
         >
           Skip to content
         </a>
-        <Navigation />
+        <NavigationMega />
         {children}
         <Footer />
       </body>

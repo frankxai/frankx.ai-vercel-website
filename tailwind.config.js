@@ -130,11 +130,24 @@ module.exports = {
         'bounce-gentle': 'bounceGentle 2s infinite',
         'gradient-shift': 'gradientShift 8s ease-in-out infinite',
         float: 'float 6s ease-in-out infinite',
+        // Radix Navigation animations
+        scaleIn: 'scaleIn 200ms ease',
+        scaleOut: 'scaleOut 200ms ease',
+        fadeIn: 'fadeIn 200ms ease',
+        fadeOut: 'fadeOut 200ms ease',
+        enterFromRight: 'enterFromRight 250ms ease',
+        enterFromLeft: 'enterFromLeft 250ms ease',
+        exitToRight: 'exitToRight 250ms ease',
+        exitToLeft: 'exitToLeft 250ms ease',
       },
       keyframes: {
         fadeIn: {
           '0%': { opacity: '0' },
           '100%': { opacity: '1' },
+        },
+        fadeOut: {
+          '0%': { opacity: '1' },
+          '100%': { opacity: '0' },
         },
         fadeInUp: {
           '0%': { opacity: '0', transform: 'translateY(20px)' },
@@ -159,6 +172,31 @@ module.exports = {
         float: {
           '0%, 100%': { transform: 'translateY(0px)' },
           '50%': { transform: 'translateY(-10px)' },
+        },
+        // Radix Navigation keyframes
+        scaleIn: {
+          '0%': { opacity: '0', transform: 'rotateX(-10deg) scale(0.9)' },
+          '100%': { opacity: '1', transform: 'rotateX(0deg) scale(1)' },
+        },
+        scaleOut: {
+          '0%': { opacity: '1', transform: 'rotateX(0deg) scale(1)' },
+          '100%': { opacity: '0', transform: 'rotateX(-10deg) scale(0.95)' },
+        },
+        enterFromRight: {
+          '0%': { opacity: '0', transform: 'translateX(200px)' },
+          '100%': { opacity: '1', transform: 'translateX(0)' },
+        },
+        enterFromLeft: {
+          '0%': { opacity: '0', transform: 'translateX(-200px)' },
+          '100%': { opacity: '1', transform: 'translateX(0)' },
+        },
+        exitToRight: {
+          '0%': { opacity: '1', transform: 'translateX(0)' },
+          '100%': { opacity: '0', transform: 'translateX(200px)' },
+        },
+        exitToLeft: {
+          '0%': { opacity: '1', transform: 'translateX(0)' },
+          '100%': { opacity: '0', transform: 'translateX(-200px)' },
         },
       },
       backdropBlur: {

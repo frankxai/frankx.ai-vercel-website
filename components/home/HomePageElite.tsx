@@ -257,9 +257,8 @@ function Hero() {
 
 // Featured Suno songs to showcase (rotate through these)
 const featuredSongs = [
+  { id: '9cbad174-9276-427f-9aed-1ba00c7db3db', title: 'Vibe OS', genre: 'Electronic' },
   { id: '42c37fa7-5b1e-4b6c-a3c0-2c739f44a2d4', title: 'Golden Age Rising', genre: 'Cinematic' },
-  { id: '5e3d8a2c-1f9b-4c7e-8d6a-3b4c5e6f7g8h', title: 'Digital Dreams', genre: 'Ambient' },
-  { id: 'a1b2c3d4-e5f6-7890-abcd-ef1234567890', title: 'Frequency Shift', genre: 'Electronic' },
 ]
 
 function FeaturedMusicCard() {

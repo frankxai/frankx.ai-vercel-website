@@ -23,8 +23,8 @@ function PlaybookBackground() {
         className="absolute inset-0 opacity-[0.02]"
         style={{
           backgroundImage: `
-            linear-gradient(rgba(236, 72, 153, 0.3) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(236, 72, 153, 0.3) 1px, transparent 1px)
+            linear-gradient(rgba(16, 185, 129, 0.3) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(16, 185, 129, 0.3) 1px, transparent 1px)
           `,
           backgroundSize: '40px 40px',
         }}
@@ -32,7 +32,7 @@ function PlaybookBackground() {
       <motion.div
         className="absolute -right-40 top-20 h-[600px] w-[600px] rounded-full opacity-20"
         style={{
-          background: 'radial-gradient(circle, rgba(236,72,153,0.4) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(16, 185, 129, 0.4) 0%, transparent 70%)',
         }}
         animate={{ scale: [1, 1.1, 1], x: [0, -30, 0] }}
         transition={{ duration: 15, repeat: Infinity, ease: 'easeInOut' }}
@@ -40,7 +40,7 @@ function PlaybookBackground() {
       <motion.div
         className="absolute -left-40 bottom-40 h-[500px] w-[500px] rounded-full opacity-15"
         style={{
-          background: 'radial-gradient(circle, rgba(139, 92, 246, 0.4) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(6, 182, 212, 0.4) 0%, transparent 70%)',
         }}
         animate={{ scale: [1.1, 1, 1.1], y: [0, 30, 0] }}
         transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
@@ -55,7 +55,7 @@ const playbooks = [
     title: 'The Suno AI Prompt Playbook',
     description: 'Master AI music generation with structured prompts, genre templates, and production techniques.',
     icon: Music,
-    color: 'pink',
+    color: 'emerald',
     pages: '15+',
     value: '$47',
     includes: [
@@ -71,7 +71,7 @@ const playbooks = [
     title: 'Top 50 AI Prompts Collection',
     description: 'Battle-tested prompts for ChatGPT, Claude, Midjourney, and Suno across all creative domains.',
     icon: FileText,
-    color: 'violet',
+    color: 'cyan',
     pages: '20+',
     value: '$37',
     includes: [
@@ -87,7 +87,7 @@ const playbooks = [
     title: 'Claude Code Quick Start',
     description: 'Get productive with Claude Code in 30 minutes. CLAUDE.md setup, workflows, and best practices.',
     icon: Zap,
-    color: 'cyan',
+    color: 'violet',
     pages: '12+',
     value: '$27',
     includes: [
@@ -101,23 +101,23 @@ const playbooks = [
 ]
 
 const colorMap = {
-  pink: {
-    bg: 'bg-pink-500/10',
-    border: 'border-pink-500/30 hover:border-pink-500/50',
-    icon: 'bg-pink-500/20 text-pink-400',
-    button: 'bg-pink-600 hover:bg-pink-500',
-  },
-  violet: {
-    bg: 'bg-violet-500/10',
-    border: 'border-violet-500/30 hover:border-violet-500/50',
-    icon: 'bg-violet-500/20 text-violet-400',
-    button: 'bg-violet-600 hover:bg-violet-500',
+  emerald: {
+    bg: 'bg-emerald-500/10',
+    border: 'border-emerald-500/30 hover:border-emerald-500/50',
+    icon: 'bg-emerald-500/20 text-emerald-400',
+    button: 'bg-emerald-600 hover:bg-emerald-500',
   },
   cyan: {
     bg: 'bg-cyan-500/10',
     border: 'border-cyan-500/30 hover:border-cyan-500/50',
     icon: 'bg-cyan-500/20 text-cyan-400',
     button: 'bg-cyan-600 hover:bg-cyan-500',
+  },
+  violet: {
+    bg: 'bg-violet-500/10',
+    border: 'border-violet-500/30 hover:border-violet-500/50',
+    icon: 'bg-violet-500/20 text-violet-400',
+    button: 'bg-violet-600 hover:bg-violet-500',
   },
 }
 
@@ -165,14 +165,14 @@ export default function FreePlaybookPage() {
             animate={{ opacity: 1, y: 0 }}
             className="text-center mb-12"
           >
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-pink-500/30 bg-pink-500/10 px-4 py-1.5">
-              <Gift className="h-4 w-4 text-pink-400" />
-              <span className="text-sm font-medium text-pink-400">Free Resources</span>
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-1.5">
+              <Gift className="h-4 w-4 text-emerald-400" />
+              <span className="text-sm font-medium text-emerald-400">Free Resources</span>
             </div>
 
             <h1 className="mb-6 text-4xl font-bold text-white sm:text-5xl lg:text-6xl">
               Get the complete
-              <span className="block bg-gradient-to-r from-pink-400 via-violet-400 to-cyan-400 bg-clip-text text-transparent">
+              <span className="block bg-gradient-to-r from-emerald-400 via-cyan-400 to-violet-400 bg-clip-text text-transparent">
                 AI Creator Toolkit
               </span>
             </h1>
@@ -197,13 +197,13 @@ export default function FreePlaybookPage() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="your@email.com"
-                    className="flex-1 rounded-xl border border-white/10 bg-white/5 px-5 py-4 text-white placeholder-slate-500 outline-none transition-all focus:border-pink-500/50 focus:bg-white/10"
+                    className="flex-1 rounded-xl border border-white/10 bg-white/5 px-5 py-4 text-white placeholder-slate-500 outline-none transition-all focus:border-emerald-500/50 focus:bg-white/10"
                     disabled={status === 'loading'}
                   />
                   <button
                     type="submit"
                     disabled={status === 'loading'}
-                    className="rounded-xl bg-gradient-to-r from-pink-600 to-violet-600 px-6 py-4 font-semibold text-white transition-all hover:from-pink-500 hover:to-violet-500 disabled:opacity-50"
+                    className="rounded-xl bg-gradient-to-r from-emerald-600 to-cyan-600 px-6 py-4 font-semibold text-white transition-all hover:from-emerald-500 hover:to-cyan-500 disabled:opacity-50"
                   >
                     {status === 'loading' ? '...' : 'Unlock All'}
                   </button>
@@ -275,8 +275,8 @@ export default function FreePlaybookPage() {
                       href={playbook.downloadUrl}
                       className={`flex w-full items-center justify-center gap-2 rounded-xl ${colors.button} px-4 py-3 font-semibold text-white transition-all`}
                     >
-                      <Download className="h-4 w-4" />
-                      Access Now
+                      <ArrowRight className="h-4 w-4" />
+                      Read Now
                     </Link>
                   ) : (
                     <div className="flex w-full items-center justify-center gap-2 rounded-xl bg-slate-700/50 px-4 py-3 font-semibold text-slate-400 cursor-not-allowed">
