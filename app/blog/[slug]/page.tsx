@@ -11,8 +11,8 @@ import Recommendations from '@/components/recommendations/Recommendations'
 import { getAllBlogPosts, getBlogPost } from '@/lib/blog'
 import { createMetadata, siteConfig } from '@/lib/seo'
 
-export const dynamic = 'force-dynamic'
-export const dynamicParams = true
+// Static generation - content is read at build time
+export const dynamicParams = false
 
 export async function generateStaticParams() {
   const posts = getAllBlogPosts()

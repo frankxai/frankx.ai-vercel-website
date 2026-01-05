@@ -3,8 +3,8 @@ import { MDXRemote } from 'next-mdx-remote/rsc'
 import { getAllGuides, getGuide } from '@/lib/guides'
 import Link from 'next/link'
 
-export const dynamic = 'force-dynamic'
-export const dynamicParams = true
+// Static generation - content is read at build time
+export const dynamicParams = false
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
