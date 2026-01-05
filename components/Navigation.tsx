@@ -167,7 +167,7 @@ export default function Navigation() {
             <div className="flex items-center space-x-3 ml-6 pl-6 border-l border-white/10">
               <Link
                 href="/free-playbook"
-                className="px-5 py-2 bg-gradient-to-r from-pink-600 to-violet-600 hover:from-pink-500 hover:to-violet-500 text-white text-sm font-semibold rounded-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-pink-500/20"
+                className="px-5 py-2 bg-gradient-to-r from-emerald-600 to-cyan-600 hover:from-emerald-500 hover:to-cyan-500 text-white text-sm font-semibold rounded-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-emerald-500/20"
               >
                 Free Playbooks
               </Link>
@@ -183,7 +183,7 @@ export default function Navigation() {
           <div className="lg:hidden flex items-center space-x-3">
             <Link
               href="/free-playbook"
-              className="px-4 py-2 bg-gradient-to-r from-pink-600 to-violet-600 text-white text-sm font-semibold rounded-lg transition-all duration-300"
+              className="px-4 py-2 bg-gradient-to-r from-emerald-600 to-cyan-600 text-white text-sm font-semibold rounded-lg transition-all duration-300"
             >
               Free
             </Link>
@@ -230,7 +230,7 @@ export default function Navigation() {
 
             <Link
               href="/free-playbook"
-              className="mt-3 px-6 py-3.5 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-pink-600 to-violet-600 text-center transition-all active:scale-[0.98]"
+              className="mt-3 px-6 py-3.5 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-emerald-600 to-cyan-600 text-center transition-all active:scale-[0.98]"
               onClick={() => setIsOpen(false)}
             >
               Get Free Playbooks

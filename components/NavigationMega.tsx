@@ -25,30 +25,44 @@ import {
   Zap,
   Layers,
   ArrowRight,
+  ExternalLink,
 } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
 
 // Navigation structure
 const navigation = {
+  music: {
+    label: 'Music',
+    featured: {
+      title: 'AI Music Portfolio',
+      description: '10,000+ songs created with Suno AI. Explore the catalog.',
+      href: '/music',
+      badge: '500+ Public',
+    },
+    items: [
+      { name: 'Music Showcase', href: '/music', icon: Music, description: '10K+ AI-generated tracks' },
+      { name: 'Vibe OS System', href: '/products/vibe-os', icon: Sparkles, description: 'AI music creation method' },
+      { name: 'Music Lab', href: '/music-lab', icon: Palette, description: 'Learn to create AI music' },
+      { name: 'Suno Profile', href: 'https://suno.com/@frankx', icon: Layers, description: 'Full catalog on Suno', external: true },
+    ],
+  },
   creators: {
     label: 'Creators',
     featured: {
-      title: 'Vibe OS',
-      description: 'Complete AI music creation system. 500+ songs and counting.',
-      href: '/products/vibe-os',
+      title: 'Creator Toolkit',
+      description: 'AI-powered tools for content creators and artists.',
+      href: '/products/creative-ai-toolkit',
       badge: 'Popular',
     },
     items: [
-      { name: 'AI Music Creation', href: '/products/vibe-os', icon: Music, description: 'Create music with Suno AI' },
       { name: 'Prompt Library', href: '/prompt-library', icon: Sparkles, description: '200+ curated prompts' },
-      { name: 'Music Lab', href: '/music-lab', icon: Palette, description: 'Interactive sound experiments' },
       { name: 'Templates', href: '/templates', icon: FileText, description: 'Ready-to-use workflows' },
       { name: 'Creation Chronicles', href: '/creation-chronicles', icon: BookOpen, description: 'Behind the scenes' },
     ],
   },
   students: {
-    label: 'Students',
+    label: 'Learn',
     featured: {
       title: 'Student Hub',
       description: 'AI-powered learning paths for creative professionals.',
@@ -56,9 +70,9 @@ const navigation = {
       badge: 'Free Resources',
     },
     items: [
-      { name: 'Student Hub', href: '/students', icon: Users, description: 'Your learning dashboard' },
+      { name: 'All Guides', href: '/guides', icon: BookOpen, description: 'In-depth tutorials' },
       { name: 'Courses', href: '/courses', icon: GraduationCap, description: 'Structured learning' },
-      { name: 'Guides', href: '/guides', icon: BookOpen, description: 'In-depth tutorials' },
+      { name: 'Student Hub', href: '/students', icon: Users, description: 'Your learning dashboard' },
       { name: 'AI Assessment', href: '/ai-assessment', icon: Target, description: 'Find your path' },
     ],
   },
@@ -94,37 +108,16 @@ const navigation = {
   },
 }
 
-// Logo component
+// Logo component - clean gradient wordmark
 function Logo() {
   return (
     <Link
       href="/"
-      className="flex items-center gap-2.5 rounded-lg py-1 transition-opacity hover:opacity-80"
+      className="rounded-lg px-2 py-1.5 transition-all duration-300 hover:bg-white/5"
+      aria-label="FrankX.AI - Home"
     >
-      {/* Icon */}
-      <div className="relative flex h-9 w-9 items-center justify-center rounded-lg bg-gradient-to-br from-emerald-500/20 via-cyan-500/20 to-violet-500/20 border border-white/10">
-        <svg
-          viewBox="0 0 24 24"
-          className="h-5 w-5"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <defs>
-            <linearGradient id="logo-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#10b981" />
-              <stop offset="50%" stopColor="#06b6d4" />
-              <stop offset="100%" stopColor="#8b5cf6" />
-            </linearGradient>
-          </defs>
-          <path
-            d="M4 4h10v3H7v3h6v3H7v7H4V4z"
-            fill="url(#logo-gradient)"
-          />
-        </svg>
-      </div>
-      {/* Text */}
-      <span className="text-lg font-bold tracking-tight text-white">
-        FrankX<span className="text-white/50">.AI</span>
+      <span className="font-display text-xl font-bold tracking-tight bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent">
+        FrankX.AI
       </span>
     </Link>
   )
@@ -156,21 +149,30 @@ function MegaMenuContent({ section }: { section: keyof typeof navigation }) {
       <ul className="grid grid-cols-1 gap-1">
         {data.items.map((item) => {
           const Icon = item.icon
+          const isExternal = 'external' in item && item.external
+          const LinkComponent = isExternal ? 'a' : Link
+          const linkProps = isExternal
+            ? { href: item.href, target: '_blank', rel: 'noopener noreferrer' }
+            : { href: item.href }
+
           return (
             <li key={item.name}>
               <NavigationMenu.Link asChild>
-                <Link
-                  href={item.href}
+                <LinkComponent
+                  {...linkProps}
                   className="group flex items-start gap-3 rounded-lg p-3 transition-colors hover:bg-white/5"
                 >
                   <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white/5 text-slate-400 transition-colors group-hover:bg-white/10 group-hover:text-white">
                     <Icon className="h-4 w-4" />
                   </div>
                   <div className="flex-1">
-                    <span className="text-sm font-medium text-white">{item.name}</span>
+                    <span className="flex items-center gap-1.5 text-sm font-medium text-white">
+                      {item.name}
+                      {isExternal && <ExternalLink className="h-3 w-3 text-slate-500" />}
+                    </span>
                     <p className="text-xs text-slate-500">{item.description}</p>
                   </div>
-                </Link>
+                </LinkComponent>
               </NavigationMenu.Link>
             </li>
           )
@@ -215,6 +217,14 @@ export default function NavigationMega() {
         {/* Desktop Navigation */}
         <NavigationMenu.Root className="relative hidden lg:block">
           <NavigationMenu.List className="flex items-center gap-1">
+            {/* Music - Lead with the portfolio */}
+            <NavigationMenu.Item>
+              <NavTrigger>Music</NavTrigger>
+              <NavigationMenu.Content className="absolute left-0 top-0 data-[motion=from-end]:animate-enterFromRight data-[motion=from-start]:animate-enterFromLeft data-[motion=to-end]:animate-exitToRight data-[motion=to-start]:animate-exitToLeft">
+                <MegaMenuContent section="music" />
+              </NavigationMenu.Content>
+            </NavigationMenu.Item>
+
             {/* Creators */}
             <NavigationMenu.Item>
               <NavTrigger>Creators</NavTrigger>
@@ -225,7 +235,7 @@ export default function NavigationMega() {
 
             {/* Students */}
             <NavigationMenu.Item>
-              <NavTrigger>Students</NavTrigger>
+              <NavTrigger>Learn</NavTrigger>
               <NavigationMenu.Content className="absolute left-0 top-0 data-[motion=from-end]:animate-enterFromRight data-[motion=from-start]:animate-enterFromLeft data-[motion=to-end]:animate-exitToRight data-[motion=to-start]:animate-exitToLeft">
                 <MegaMenuContent section="students" />
               </NavigationMenu.Content>
@@ -286,7 +296,7 @@ export default function NavigationMega() {
         <div className="hidden items-center gap-3 lg:flex">
           <Link
             href="/free-playbook"
-            className="rounded-lg bg-gradient-to-r from-pink-600 to-violet-600 px-4 py-2 text-sm font-semibold text-white transition-all hover:from-pink-500 hover:to-violet-500 hover:shadow-lg hover:shadow-pink-500/20"
+            className="rounded-lg bg-gradient-to-r from-emerald-600 to-cyan-600 px-4 py-2 text-sm font-semibold text-white transition-all hover:from-emerald-500 hover:to-cyan-500 hover:shadow-lg hover:shadow-emerald-500/20"
           >
             Free Playbooks
           </Link>
@@ -339,7 +349,7 @@ export default function NavigationMega() {
                 <Link
                   href="/free-playbook"
                   onClick={() => setIsOpen(false)}
-                  className="block w-full rounded-lg bg-gradient-to-r from-pink-600 to-violet-600 py-3 text-center text-sm font-semibold text-white"
+                  className="block w-full rounded-lg bg-gradient-to-r from-emerald-600 to-cyan-600 py-3 text-center text-sm font-semibold text-white"
                 >
                   Get Free Playbooks
                 </Link>
