@@ -17,18 +17,20 @@ const calloutStyles: Record<CalloutKind, string> = {
   success: 'border-primary-400/40 bg-primary-500/10 text-primary-100',
 }
 
-const calloutIcons: Record<CalloutKind, JSX.Element> = {
-  info: <Info className="w-5 h-5" />,
-  warning: <AlertTriangle className="w-5 h-5" />,
-  tip: <Lightbulb className="w-5 h-5" />,
-  success: <CheckCircle className="w-5 h-5" />,
+function getCalloutIcon(type: CalloutKind) {
+  switch (type) {
+    case 'info': return <Info className="w-5 h-5" />
+    case 'warning': return <AlertTriangle className="w-5 h-5" />
+    case 'tip': return <Lightbulb className="w-5 h-5" />
+    case 'success': return <CheckCircle className="w-5 h-5" />
+  }
 }
 
 function Callout({ children, type = 'info' }: CalloutProps) {
   return (
     <div className={`my-8 rounded-2xl border px-5 py-4 backdrop-blur ${calloutStyles[type]}`}>
       <div className="flex items-start gap-3">
-        <span className="mt-0.5">{calloutIcons[type]}</span>
+        <span className="mt-0.5">{getCalloutIcon(type)}</span>
         <div className="flex-1 text-sm leading-relaxed text-white/90">{children}</div>
       </div>
     </div>

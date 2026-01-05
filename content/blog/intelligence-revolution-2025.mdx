@@ -150,8 +150,8 @@ orchestration_rules:
     - uncertain_queries → human_expert
   
   escalation:
-    - confidence < 80% → request_human_review
-    - error_rate > 5% → alert_operations
+    - confidence below 80% → request_human_review
+    - error_rate above 5% → alert_operations
     - ethical_concern → immediate_human_takeover
   
   learning:
@@ -476,8 +476,8 @@ community_structure:
 **Leading Indicators (Weekly)**
 - Decisions automated: Target 70%
 - Response time reduction: Target 90%
-- Human escalation rate: Target <10%
-- AI confidence scores: Target >85%
+- Human escalation rate: Target under 10%
+- AI confidence scores: Target above 85%
 
 **Lagging Indicators (Monthly)**
 - Revenue per employee: Target 3x increase
