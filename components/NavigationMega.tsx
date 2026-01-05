@@ -197,6 +197,9 @@ function NavTrigger({ children }: { children: React.ReactNode }) {
 
 export default function NavigationMega() {
   const [isOpen, setIsOpen] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
+  const [isVisible, setIsVisible] = useState(true)
+  const [menuOpen, setMenuOpen] = useState(false)
   const pathname = usePathname()
 
   // Close mobile menu on route change
@@ -204,18 +207,71 @@ export default function NavigationMega() {
     setIsOpen(false)
   }, [pathname])
 
+  // Intelligent scroll behavior: hide on scroll down, show on scroll up
+  useEffect(() => {
+    let lastScrollY = window.scrollY
+    let ticking = false
+
+    const updateScrollState = () => {
+      const scrollY = window.scrollY
+
+      // Detect if we've scrolled past threshold
+      setIsScrolled(scrollY > 20)
+
+      // Show/hide logic: only hide if menus are closed and scrolled past threshold
+      if (!menuOpen && !isOpen && scrollY > 80) {
+        if (scrollY > lastScrollY) {
+          // Scrolling DOWN - hide header
+          setIsVisible(false)
+        } else if (scrollY < lastScrollY) {
+          // Scrolling UP - show header
+          setIsVisible(true)
+        }
+      } else {
+        // At top or menu open - always show
+        setIsVisible(true)
+      }
+
+      lastScrollY = scrollY
+      ticking = false
+    }
+
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateScrollState)
+        ticking = true
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [menuOpen, isOpen])
+
   const isActive = (href: string) => {
     if (href === '/') return pathname === '/'
     return pathname.startsWith(href)
   }
 
   return (
-    <header className="fixed top-0 z-50 w-full border-b border-white/5 bg-[#030712]/90 backdrop-blur-xl">
+    <header
+      className={cn(
+        'fixed top-0 z-50 w-full border-b transition-all duration-300 ease-in-out',
+        // Visibility and transform
+        isVisible ? 'translate-y-0' : '-translate-y-full',
+        // Background and border intensity based on scroll
+        isScrolled
+          ? 'border-white/10 bg-[#030712]/95 backdrop-blur-xl shadow-lg shadow-black/10'
+          : 'border-white/5 bg-[#030712]/90 backdrop-blur-xl'
+      )}
+    >
       <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
         <Logo />
 
         {/* Desktop Navigation */}
-        <NavigationMenu.Root className="relative hidden lg:block">
+        <NavigationMenu.Root
+          className="relative hidden lg:block"
+          onValueChange={(value) => setMenuOpen(!!value)}
+        >
           <NavigationMenu.List className="flex items-center gap-1">
             {/* Music - Lead with the portfolio */}
             <NavigationMenu.Item>
