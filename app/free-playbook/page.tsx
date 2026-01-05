@@ -9,7 +9,6 @@ import {
   FileText,
   CheckCircle2,
   Sparkles,
-  Download,
   Zap,
   Star,
   Gift,
