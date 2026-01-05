@@ -62,7 +62,7 @@ const navigation = {
     ],
   },
   students: {
-    label: 'Learn',
+    label: 'Students',
     featured: {
       title: 'Student Hub',
       description: 'AI-powered learning paths for creative professionals.',
@@ -235,7 +235,7 @@ export default function NavigationMega() {
 
             {/* Students */}
             <NavigationMenu.Item>
-              <NavTrigger>Learn</NavTrigger>
+              <NavTrigger>Students</NavTrigger>
               <NavigationMenu.Content className="absolute left-0 top-0 data-[motion=from-end]:animate-enterFromRight data-[motion=from-start]:animate-enterFromLeft data-[motion=to-end]:animate-exitToRight data-[motion=to-start]:animate-exitToLeft">
                 <MegaMenuContent section="students" />
               </NavigationMenu.Content>

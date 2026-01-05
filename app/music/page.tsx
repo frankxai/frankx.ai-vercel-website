@@ -51,9 +51,12 @@ function MusicBackground() {
 // SONG DATA - Your actual Suno tracks
 // ============================================================================
 
+// Verified working Suno track IDs from @frankx profile
 const featuredTracks = [
   { id: '9cbad174-9276-427f-9aed-1ba00c7db3db', title: 'Vibe O S', genre: 'Hip Hop / Bass' },
-  { id: '42c37fa7-5b1e-4b6c-a3c0-2c739f44a2d4', title: 'Golden Age of Intelligence', genre: 'EDM / Metalcore' },
+  { id: 'd1ad41a9-9239-454d-bc2c-a187f42ac30b', title: 'Golden Age of Intelligence', genre: 'Inspirational / Epic' },
+  { id: '8374d2ad-9142-4900-9028-a1e805688407', title: 'The Awakening', genre: 'Orchestral / Cinematic' },
+  { id: '1fc13c04-a7b3-427d-bff0-cac92ee524ae', title: 'Lumina', genre: 'Ambient / Electronic' },
 ]
 
 const collections = [
@@ -63,7 +66,8 @@ const collections = [
     color: 'emerald',
     tracks: [
       { id: '9cbad174-9276-427f-9aed-1ba00c7db3db', title: 'Vibe O S', style: 'Hip Hop, Bass-heavy' },
-      { id: '42c37fa7-5b1e-4b6c-a3c0-2c739f44a2d4', title: 'Golden Age of Intelligence', style: 'EDM, Metalcore' },
+      { id: 'd1ad41a9-9239-454d-bc2c-a187f42ac30b', title: 'Golden Age of Intelligence', style: 'Inspirational, Epic' },
+      { id: '66572f21-2682-41f3-9051-86446e9b9bd7', title: 'Trust in Yourself', style: 'Motivational' },
     ],
   },
   {
@@ -71,7 +75,8 @@ const collections = [
     description: '432Hz frequencies for peace and restoration',
     color: 'violet',
     tracks: [
-      // Add your meditation tracks here - using placeholder IDs for now
+      { id: '8374d2ad-9142-4900-9028-a1e805688407', title: 'The Awakening', style: 'Orchestral, Cinematic' },
+      { id: '1fc13c04-a7b3-427d-bff0-cac92ee524ae', title: 'Lumina', style: 'Ambient, Electronic' },
     ],
     playlistLink: 'https://suno.com/@frankx',
   },
@@ -79,21 +84,19 @@ const collections = [
     name: 'Electronic & EDM',
     description: 'High energy beats and festival anthems',
     color: 'cyan',
-    tracks: [],
-    playlistLink: 'https://suno.com/@frankx',
-  },
-  {
-    name: 'Orchestral & Cinematic',
-    description: 'Epic scores and sweeping compositions',
-    color: 'amber',
-    tracks: [],
+    tracks: [
+      { id: 'f4a7a0e3-5689-4f47-8100-792a73034b54', title: 'I Feel the Vibe', style: 'Electronic, Upbeat' },
+      { id: '1344780a-1a64-46ad-89f7-c62e8ed4eb87', title: 'Glow Stick Heart', style: 'Dance, Festival' },
+    ],
     playlistLink: 'https://suno.com/@frankx',
   },
   {
     name: 'Arcanea Collection',
     description: 'Fantasy-inspired tracks from the Arcanea universe',
     color: 'rose',
-    tracks: [],
+    tracks: [
+      { id: '9ff8a563-4ebf-4481-85c1-9f445cfce9e1', title: 'Arcanea (light me up)', style: 'Fantasy, Epic' },
+    ],
     playlistLink: 'https://suno.com/@frankx',
   },
 ]
@@ -302,32 +305,89 @@ function CollectionsSection() {
           <p className="text-lg text-white/50">Organized by mood, genre, and vibe</p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="space-y-12">
           {collections.slice(1).map((collection, i) => {
             const colors = colorMap[collection.color] || colorMap.emerald
             const Icon = collectionIcons[i % collectionIcons.length]
 
             return (
-              <motion.a
+              <motion.div
                 key={collection.name}
-                href={collection.playlistLink || 'https://suno.com/@frankx'}
-                target="_blank"
-                rel="noopener noreferrer"
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className={`group block p-6 rounded-2xl ${colors.bg} border ${colors.border} transition-all`}
               >
-                <div className="flex items-start justify-between mb-4">
-                  <div className={`p-3 rounded-xl bg-white/5 ${colors.icon}`}>
-                    <Icon className="w-6 h-6" />
+                {/* Collection Header */}
+                <div className="flex items-center justify-between mb-6">
+                  <div className="flex items-center gap-4">
+                    <div className={`p-3 rounded-xl ${colors.bg} ${colors.icon}`}>
+                      <Icon className="w-6 h-6" />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-semibold text-white">{collection.name}</h3>
+                      <p className="text-white/50 text-sm">{collection.description}</p>
+                    </div>
                   </div>
-                  <ExternalLink className="w-4 h-4 text-white/20 group-hover:text-white/50 transition-colors" />
+                  <a
+                    href={collection.playlistLink || 'https://suno.com/@frankx'}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-sm text-white/50 hover:text-white transition-colors"
+                  >
+                    View All
+                    <ExternalLink className="w-4 h-4" />
+                  </a>
                 </div>
-                <h3 className="text-xl font-semibold text-white mb-2">{collection.name}</h3>
-                <p className="text-white/50 text-sm">{collection.description}</p>
-              </motion.a>
+
+                {/* Track Grid */}
+                {collection.tracks && collection.tracks.length > 0 ? (
+                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    {collection.tracks.map((track) => (
+                      <div
+                        key={track.id}
+                        className={`rounded-xl border ${colors.border} ${colors.bg} p-3 transition-all`}
+                      >
+                        <div className="flex items-center justify-between mb-2 px-1">
+                          <div>
+                            <p className="text-sm font-medium text-white">{track.title}</p>
+                            <p className="text-xs text-white/40">{track.style}</p>
+                          </div>
+                          <a
+                            href={`https://suno.com/song/${track.id}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="p-1.5 rounded-full bg-white/5 hover:bg-white/10 transition-colors"
+                          >
+                            <ExternalLink className="w-3 h-3 text-white/40" />
+                          </a>
+                        </div>
+                        <iframe
+                          src={`https://suno.com/embed/${track.id}`}
+                          className="w-full aspect-[16/9] rounded-lg"
+                          frameBorder="0"
+                          allow="autoplay; clipboard-write"
+                          loading="lazy"
+                          title={track.title}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div className={`rounded-xl border ${colors.border} ${colors.bg} p-8 text-center`}>
+                    <p className="text-white/40">More tracks coming soon</p>
+                    <a
+                      href={collection.playlistLink || 'https://suno.com/@frankx'}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 mt-3 text-sm text-white/60 hover:text-white"
+                    >
+                      Browse full catalog on Suno
+                      <ExternalLink className="w-3 h-3" />
+                    </a>
+                  </div>
+                )}
+              </motion.div>
             )
           })}
         </div>

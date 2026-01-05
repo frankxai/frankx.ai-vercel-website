@@ -14,6 +14,11 @@ import { createMetadata, siteConfig } from '@/lib/seo'
 export const dynamic = 'force-dynamic'
 export const dynamicParams = true
 
+export async function generateStaticParams() {
+  const posts = getAllBlogPosts()
+  return posts.map((post) => ({ slug: post.slug }))
+}
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
 
