@@ -5,6 +5,12 @@ import readingTime from 'reading-time'
 
 const blogDirectory = path.join(process.cwd(), 'content/blog')
 
+// FAQ item for AI-extractable structured content
+export interface FAQItem {
+  q: string
+  a: string
+}
+
 export interface BlogPost {
   slug: string
   title: string
@@ -19,6 +25,12 @@ export interface BlogPost {
   readingGoal?: string
   content: string
   featured?: boolean
+
+  // AI-First Content Fields
+  tldr?: string // 50-word summary for AI extraction
+  faq?: FAQItem[] // Question-answer pairs for FAQPage schema
+  schema?: string[] // Schema types to generate (Article, FAQPage, HowTo)
+  lastUpdated?: string // Freshness signal for search engines
 }
 
 export function getAllBlogPosts(): BlogPost[] {
