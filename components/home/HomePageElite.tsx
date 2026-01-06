@@ -166,7 +166,7 @@ function Hero() {
 
             {/* Main headline - authority + vision */}
             <h1 className="mb-8">
-              <span className="block text-[clamp(3rem,8vw,6rem)] font-bold leading-[0.9] tracking-[-0.03em] text-white">
+              <span className="block text-[clamp(3rem,8vw,6rem)] font-bold leading-[0.9] tracking-[-0.01em] md:tracking-[0.01em] text-white">
                 Design intelligent systems.
               </span>
               <motion.span

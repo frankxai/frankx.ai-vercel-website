@@ -1,14 +1,14 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import Script from 'next/script'
 import { notFound } from 'next/navigation'
 import { ArrowLeft, ArrowRight, Calendar, Clock, Linkedin, Share2, Tag, Twitter } from 'lucide-react'
 
 import { MDXContent } from '@/components/blog/MDXContent'
-import BlogCard from '@/components/blog/BlogCard'
 import Recommendations from '@/components/recommendations/Recommendations'
 import { getAllBlogPosts, getBlogPost } from '@/lib/blog'
 import { createMetadata, siteConfig } from '@/lib/seo'
+import JsonLd from '@/components/seo/JsonLd'
+import Breadcrumbs from '@/components/seo/Breadcrumbs'
 
 // Static generation - content is read at build time
 export const dynamicParams = false
@@ -20,7 +20,6 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
-
   const post = getBlogPost(slug)
 
   if (!post) {
@@ -49,7 +48,6 @@ export default async function BlogPostPage({
   params: Promise<{ slug: string }>
 }) {
   const { slug } = await params
-
   const post = getBlogPost(slug)
 
   if (!post) {
@@ -57,13 +55,6 @@ export default async function BlogPostPage({
   }
 
   const allPosts = getAllBlogPosts()
-  const relatedPosts = allPosts
-    .filter((p) => {
-      if (!p.tags || !post.tags) return false
-      return p.slug !== post.slug && p.tags.some((tag) => post.tags.includes(tag))
-    })
-    .slice(0, 3)
-
   const documents = allPosts.map((postItem) => ({
     title: postItem.title,
     content: postItem.content,
@@ -83,9 +74,9 @@ export default async function BlogPostPage({
   const imageUrl = post.image
     ? new URL(post.image, 'https://frankx.ai').toString()
     : new URL(siteConfig.ogImage, 'https://frankx.ai').toString()
-  const articleJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
+
+  // Article Schema
+  const articleSchema = {
     headline: post.title,
     description: post.description,
     image: [imageUrl],
@@ -109,29 +100,23 @@ export default async function BlogPostPage({
     },
     wordCount,
     keywords: post.keywords?.join(', ') || post.tags.join(', '),
-    url: canonicalUrl,
   }
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100">
-      <Script
-        id="article-jsonld"
-        type="application/ld+json"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
-      />
-<article className="pt-28 pb-24">
+      <JsonLd type="Article" data={articleSchema} />
+      
+      <article className="pt-28 pb-24">
         <div className="px-6">
           <div className="mx-auto max-w-5xl">
-            <Link
-              href="/blog"
-              className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-4 py-2 text-sm text-white/80 transition hover:bg-white/10"
-            >
-              <ArrowLeft className="h-4 w-4" />
-              Back to Journal
-            </Link>
+            <Breadcrumbs
+              items={[
+                { label: 'Journal', href: '/blog' },
+                { label: post.title, href: `/blog/${post.slug}` },
+              ]}
+            />
 
-            <header className="mt-10 space-y-6">
+            <header className="mt-6 space-y-6">
               <div className="flex flex-wrap items-center gap-4 text-xs font-semibold uppercase tracking-[0.35em] text-white/60">
                 <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-3 py-1">
                   <Tag className="h-3.5 w-3.5" />
@@ -315,7 +300,7 @@ export default async function BlogPostPage({
           </div>
         </div>
       </article>
-</div>
+    </div>
   )
 }
 

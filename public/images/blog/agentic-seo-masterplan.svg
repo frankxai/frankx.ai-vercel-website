@@ -1,0 +1,34 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="seoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10B981"/>
+      <stop offset="50%" stop-color="#06B6D4"/>
+      <stop offset="100%" stop-color="#8B5CF6"/>
+    </linearGradient>
+    <radialGradient id="seoGlow" cx="65%" cy="30%" r="55%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#030712"/>
+  <rect width="1200" height="630" fill="url(#seoGradient)" opacity="0.2"/>
+  <rect width="1200" height="630" fill="url(#seoGlow)"/>
+  <g transform="translate(120 130)">
+    <text x="0" y="0" font-family="'Inter', 'Segoe UI', sans-serif" font-size="52" font-weight="700" fill="#F8FAFC">
+      Agentic SEO Publishing
+    </text>
+    <text x="0" y="64" font-family="'Inter', 'Segoe UI', sans-serif" font-size="52" font-weight="700" fill="#F8FAFC">
+      Masterplan
+    </text>
+    <text x="0" y="120" font-family="'Inter', 'Segoe UI', sans-serif" font-size="26" font-weight="500" fill="#A7F3D0" opacity="0.95">
+      12-Day Accelerator · Precision Content · Automated Distribution
+    </text>
+  </g>
+  <g transform="translate(120 320)" font-family="'Inter', 'Segoe UI', sans-serif">
+    <rect x="0" y="0" width="960" height="210" rx="24" fill="rgba(16,185,129,0.18)" stroke="rgba(167,243,208,0.4)"/>
+    <text x="40" y="55" font-size="22" font-weight="600" fill="#6EE7B7">Intelligence Pipeline</text>
+    <text x="40" y="95" font-size="18" fill="#E2E8F0">Flagship Essay → Supporting Posts → Link Architecture → Crawl Amplification</text>
+    <text x="40" y="135" font-size="18" fill="#CBD5E1">15,000+ words · Semantic clusters · Authority building</text>
+    <text x="40" y="175" font-size="18" fill="#A7F3D0">Powered by FrankX.ai Agent Crew</text>
+  </g>
+</svg>

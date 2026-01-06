@@ -36,6 +36,18 @@ function getGuideSlugs(): string[] {
   }
 }
 
+// Get product slugs from data/products.json
+function getProductSlugs(): string[] {
+  const productsPath = path.join(process.cwd(), 'data/products.json')
+  try {
+    const fileContent = fs.readFileSync(productsPath, 'utf8')
+    const products = JSON.parse(fileContent)
+    return products.map((p: any) => p.slug)
+  } catch {
+    return []
+  }
+}
+
 // Prompt library categories
 const PROMPT_CATEGORIES = [
   'writing',
@@ -69,15 +81,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: '/creators', priority: 0.8, changeFrequency: 'monthly' as const },
     { url: '/students', priority: 0.8, changeFrequency: 'monthly' as const },
     { url: '/music-lab', priority: 0.8, changeFrequency: 'weekly' as const },
-  ]
-
-  // Product pages
-  const productPages = [
-    '/products/vibe-os',
-    '/products/generative-creator-os',
-    '/products/agentic-creator-os',
-    '/products/creative-ai-toolkit',
-    '/products/creation-chronicles',
   ]
 
   // Tool pages
@@ -155,6 +158,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Get dynamic content
   const blogSlugs = getBlogSlugs()
   const guideSlugs = getGuideSlugs()
+  const productSlugs = getProductSlugs()
 
   // Build sitemap entries
   const entries: MetadataRoute.Sitemap = []
@@ -169,13 +173,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   })
 
-  // Product pages (high priority)
-  productPages.forEach(page => {
+  // Product pages (dynamic)
+  productSlugs.forEach(slug => {
     entries.push({
-      url: `${BASE_URL}${page}`,
+      url: `${BASE_URL}/products/${slug}`,
       lastModified: currentDate,
       changeFrequency: 'weekly',
-      priority: 0.8,
+      priority: 0.9,
     })
   })
 

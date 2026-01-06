@@ -78,27 +78,65 @@ function ResourcesBackground() {
   )
 }
 
-// Quick navigation
-const quickNav = [
+// FrankX Core Resources - TOP PRIORITY
+const frankxResources = [
   {
     title: 'Prompt Library',
-    description: '22 battle-tested prompts',
+    description: '60+ battle-tested AI prompts across 14 categories',
     href: '/prompt-library',
     icon: Sparkles,
     color: 'violet',
+    featured: true,
+  },
+  {
+    title: 'Guides & Frameworks',
+    description: 'In-depth tutorials on AI workflows and systems',
+    href: '/guides',
+    icon: BookOpen,
+    color: 'emerald',
+    featured: true,
+  },
+  {
+    title: 'Blog & Essays',
+    description: 'Creation Chronicles, AI insights, and deep dives',
+    href: '/blog',
+    icon: Lightbulb,
+    color: 'cyan',
+    featured: true,
   },
   {
     title: 'Music Lab',
-    description: 'AI music creation guide',
+    description: 'AI music creation with Suno - 500+ songs produced',
     href: '/music-lab',
     icon: Music,
-    color: 'emerald',
+    color: 'amber',
+    featured: false,
   },
   {
+    title: 'Templates',
+    description: 'Ready-to-use templates for creators',
+    href: '/templates',
+    icon: Folder,
+    color: 'violet',
+    featured: false,
+  },
+  {
+    title: 'Creation Chronicles',
+    description: 'Behind-the-scenes of AI-powered creation',
+    href: '/creation-chronicles',
+    icon: Wrench,
+    color: 'emerald',
+    featured: false,
+  },
+]
+
+// Quick navigation (secondary)
+const quickNav = [
+  {
     title: 'Learning Paths',
-    description: 'Curated courses',
+    description: 'External courses curated for creators',
     href: '/students',
-    icon: BookOpen,
+    icon: GraduationCap,
     color: 'cyan',
   },
 ]
@@ -406,29 +444,77 @@ export default function ResourcesPage() {
         {/* Regular Content (when not searching) */}
         {!filteredTools && (
           <>
-            {/* Quick Navigation */}
-            <section className="py-8">
+            {/* FrankX Resources - PRIMARY SECTION */}
+            <section className="py-12">
               <div className="mx-auto max-w-6xl px-6">
-                <div className="grid gap-4 md:grid-cols-3">
-                  {quickNav.map((link, index) => {
-                    const Icon = link.icon
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: 0.3 }}
+                  className="mb-8"
+                >
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+                    <p className="text-sm font-medium uppercase tracking-[0.25em] text-emerald-400/80">
+                      FrankX Resources
+                    </p>
+                  </div>
+                  <h2 className="text-2xl font-bold text-white sm:text-3xl">
+                    Start here. Built for creators.
+                  </h2>
+                </motion.div>
+
+                {/* Featured Resources - Large Cards */}
+                <div className="grid gap-4 md:grid-cols-3 mb-6">
+                  {frankxResources.filter(r => r.featured).map((resource, index) => {
+                    const Icon = resource.icon
                     return (
                       <motion.div
-                        key={link.title}
+                        key={resource.title}
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
+                        transition={{ duration: 0.4, delay: 0.4 + index * 0.1 }}
                       >
                         <Link
-                          href={link.href}
-                          className="group flex items-center gap-4 rounded-xl border border-white/10 bg-white/[0.02] p-5 transition-all hover:border-white/20 hover:bg-white/[0.04] hover:-translate-y-0.5"
+                          href={resource.href}
+                          className="group flex flex-col h-full rounded-2xl border border-emerald-500/20 bg-gradient-to-br from-emerald-500/10 via-transparent to-cyan-500/5 p-6 transition-all hover:border-emerald-500/40 hover:-translate-y-1 hover:shadow-lg hover:shadow-emerald-500/10"
                         >
-                          <div className={`flex h-12 w-12 items-center justify-center rounded-xl ${colorMap[link.color as keyof typeof colorMap]}`}>
+                          <div className={`flex h-12 w-12 items-center justify-center rounded-xl mb-4 ${colorMap[resource.color as keyof typeof colorMap]}`}>
                             <Icon className="h-6 w-6" />
                           </div>
+                          <h3 className="text-lg font-bold text-white mb-2">{resource.title}</h3>
+                          <p className="text-sm text-slate-400 flex-1">{resource.description}</p>
+                          <div className="flex items-center gap-2 mt-4 text-emerald-400 text-sm font-medium group-hover:gap-3 transition-all">
+                            <span>Explore</span>
+                            <ArrowRight className="h-4 w-4" />
+                          </div>
+                        </Link>
+                      </motion.div>
+                    )
+                  })}
+                </div>
+
+                {/* Secondary Resources - Smaller Cards */}
+                <div className="grid gap-4 md:grid-cols-3">
+                  {frankxResources.filter(r => !r.featured).map((resource, index) => {
+                    const Icon = resource.icon
+                    return (
+                      <motion.div
+                        key={resource.title}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.4, delay: 0.6 + index * 0.1 }}
+                      >
+                        <Link
+                          href={resource.href}
+                          className="group flex items-center gap-4 rounded-xl border border-white/10 bg-white/[0.02] p-5 transition-all hover:border-white/20 hover:bg-white/[0.04] hover:-translate-y-0.5"
+                        >
+                          <div className={`flex h-10 w-10 items-center justify-center rounded-lg ${colorMap[resource.color as keyof typeof colorMap]}`}>
+                            <Icon className="h-5 w-5" />
+                          </div>
                           <div className="flex-1">
-                            <h3 className="font-semibold text-white">{link.title}</h3>
-                            <p className="text-sm text-slate-500">{link.description}</p>
+                            <h3 className="font-semibold text-white">{resource.title}</h3>
+                            <p className="text-sm text-slate-500">{resource.description}</p>
                           </div>
                           <ChevronRight className="h-5 w-5 text-slate-500 group-hover:text-white group-hover:translate-x-0.5 transition-all" />
                         </Link>
@@ -494,13 +580,13 @@ export default function ResourcesPage() {
                   <div className="flex items-center gap-3 mb-3">
                     <Brain className="h-5 w-5 text-violet-400" />
                     <p className="text-sm font-medium uppercase tracking-[0.2em] text-violet-400/80">
-                      AI Tools
+                      Recommended AI Tools
                     </p>
                   </div>
-                  <h2 className="text-3xl font-bold text-white">AI that I use daily.</h2>
+                  <h2 className="text-3xl font-bold text-white">AI that powers my work.</h2>
                   <p className="mt-3 text-slate-400 max-w-2xl">
-                    The AI tools that power my creative and technical work. Each one
-                    earns its place by solving real problems.
+                    External AI tools I use daily. Each one earns its place by solving
+                    real creative and technical problems.
                   </p>
                 </motion.div>
 
@@ -544,13 +630,13 @@ export default function ResourcesPage() {
                   <div className="flex items-center gap-3 mb-3">
                     <Code className="h-5 w-5 text-cyan-400" />
                     <p className="text-sm font-medium uppercase tracking-[0.2em] text-cyan-400/80">
-                      Development
+                      Recommended Dev Tools
                     </p>
                   </div>
-                  <h2 className="text-3xl font-bold text-white">Build and ship tools.</h2>
+                  <h2 className="text-3xl font-bold text-white">Build and ship faster.</h2>
                   <p className="mt-3 text-slate-400 max-w-2xl">
-                    The platforms and services that run my projects. Focused on developer
-                    experience and getting things done quickly.
+                    External platforms and services I use to build projects. Focused on
+                    developer experience and shipping quickly.
                   </p>
                 </motion.div>
 
@@ -594,13 +680,13 @@ export default function ResourcesPage() {
                   <div className="flex items-center gap-3 mb-3">
                     <GraduationCap className="h-5 w-5 text-amber-400" />
                     <p className="text-sm font-medium uppercase tracking-[0.2em] text-amber-400/80">
-                      Learning
+                      External Learning Paths
                     </p>
                   </div>
-                  <h2 className="text-3xl font-bold text-white">Courses that matter.</h2>
+                  <h2 className="text-3xl font-bold text-white">Curated courses from the best.</h2>
                   <p className="mt-3 text-slate-400 max-w-2xl">
-                    Hand-picked courses from top institutions. Free or worth every penny.
-                    These are what I actually recommend.
+                    Hand-picked courses from Oracle, Google, MIT, Stanford, and leading AI labs.
+                    One of many learning paths—explore these alongside FrankX resources.
                   </p>
                 </motion.div>
 

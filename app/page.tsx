@@ -1,72 +1,65 @@
-import Script from 'next/script'
-
 import HomePageElite from '@/components/home/HomePageElite'
 import { createMetadata } from '@/lib/seo'
+import JsonLd from '@/components/seo/JsonLd'
 
 export const metadata = createMetadata({
-  title: 'FrankX.AI | AI Systems & Music',
+  title: 'FrankX.AI | Conscious AI & Agent Teams',
   description:
-    'Enterprise AI by day, music by night. Oracle AI architect and Suno creator sharing systems, resources, and creative AI tools.',
+    'The definitive authority for conscious AI integration, agent team methodologies, and premium AI transformation resources. Bridge the gap between AI potential and human achievement.',
   keywords: [
+    'conscious ai',
+    'ai agent teams',
+    'ai business transformation',
+    'ai workflow automation',
     'ai music creation',
     'suno ai',
-    'ai learning resources',
-    'oracle ai',
-    'enterprise ai',
-    'prompt library',
-    'creative ai tools',
+    'enterprise ai strategy',
   ],
   path: '/',
 })
 
-const structuredData = {
-  '@context': 'https://schema.org',
-  '@type': 'WebSite',
-  name: 'FrankX',
+const websiteSchema = {
+  name: 'FrankX.AI',
   url: 'https://frankx.ai',
   description:
-    'The system I use to create music, learn skills, and build with AI. Resources curated from Oracle, Google, MIT. Built in public.',
-  author: {
-    '@type': 'Person',
-    name: 'Frank',
-    jobTitle: 'AI Systems Builder',
-    knowsAbout: ['AI Music Creation', 'Oracle AI', 'Suno', 'Machine Learning'],
+    'FrankX equips creators, families, and executives with conscious AI strategy, Suno-powered creativity, and enterprise-ready systems.',
+  potentialAction: {
+    '@type': 'SearchAction',
+    target: 'https://frankx.ai/search?q={search_term_string}',
+    'query-input': 'required name=search_term_string',
   },
-  mainEntity: {
-    '@type': 'ItemList',
-    itemListElement: [
-      {
-        '@type': 'ListItem',
-        position: 1,
-        name: 'Music Lab',
-        url: 'https://frankx.ai/music-lab',
-        description: 'How I create music with Suno AI',
-      },
-      {
-        '@type': 'ListItem',
-        position: 2,
-        name: 'Learning Paths',
-        url: 'https://frankx.ai/students',
-        description: 'Curated courses from Oracle, Google, MIT',
-      },
-      {
-        '@type': 'ListItem',
-        position: 3,
-        name: 'Prompt Collection',
-        url: 'https://frankx.ai/prompt-library',
-        description: 'Prompts I actually use daily',
-      },
-    ],
-  },
+}
+
+const personSchema = {
+  name: 'Frank',
+  jobTitle: 'AI Systems Architect',
+  url: 'https://frankx.ai/about',
+  sameAs: ['https://twitter.com/frankxai'],
+  knowsAbout: [
+    'Conscious AI',
+    'AI Agent Teams',
+    'Suno Music Creation',
+    'Enterprise AI Strategy',
+    'Machine Learning',
+  ],
+}
+
+const organizationSchema = {
+  name: 'FrankX.AI',
+  url: 'https://frankx.ai',
+  logo: 'https://frankx.ai/assets/logo.png',
+  sameAs: ['https://twitter.com/frankxai'],
+  description:
+    'A creative intelligence collective bridging the gap between AI potential and human achievement.',
 }
 
 export default function Page() {
   return (
     <>
       <HomePageElite />
-      <Script id="frankx-schema" type="application/ld+json" strategy="afterInteractive">
-        {JSON.stringify(structuredData)}
-      </Script>
+      <JsonLd type="WebSite" data={websiteSchema} />
+      <JsonLd type="Person" data={personSchema} />
+      <JsonLd type="Organization" data={organizationSchema} />
     </>
   )
 }
