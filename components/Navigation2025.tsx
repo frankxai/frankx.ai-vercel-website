@@ -13,6 +13,7 @@ const navItems = [
   { name: 'For Students', href: '/students' },
   { name: 'Prompts', href: '/prompt-library' },
   { name: 'Products', href: '/products' },
+  { name: 'Magic', href: '/magic' },
   { name: 'Blog', href: '/blog' },
 ]
 

@@ -26,6 +26,9 @@ import {
   Layers,
   ArrowRight,
   ExternalLink,
+  Wand2,
+  Star,
+  Heart,
 } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
@@ -104,6 +107,21 @@ const navigation = {
       { name: 'Creative AI Toolkit', href: '/products/creative-ai-toolkit', icon: Sparkles, description: 'Content workflows' },
       { name: 'Generative Creator OS', href: '/products/generative-creator-os', icon: Layers, description: 'Full creator system' },
       { name: 'Agentic Creator OS', href: '/products/agentic-creator-os', icon: Bot, description: 'For developers' },
+    ],
+  },
+  magic: {
+    label: 'Magic',
+    featured: {
+      title: 'Enter Arcanea',
+      description: 'A living mythology for the age of AI-human co-creation.',
+      href: '/magic',
+      badge: 'New Realm',
+    },
+    items: [
+      { name: 'Arcanea Vision', href: '/magic', icon: Wand2, description: 'The complete mythology' },
+      { name: 'Music Lab', href: '/music-lab', icon: Music, description: 'Create AI music' },
+      { name: 'The Luminors', href: 'https://arcanea.app', icon: Star, description: 'AI companions', external: true },
+      { name: 'Arcanea Platform', href: 'https://arcanea.app', icon: Heart, description: 'Full experience', external: true },
     ],
   },
 }
