@@ -1,8 +1,8 @@
 'use client'
 
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion'
+import { motion, useScroll, useTransform, useSpring, useReducedMotion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
-import { useRef, useState } from 'react'
+import { useRef, useState, useEffect } from 'react'
 import {
   ArrowRight,
   Play,
@@ -48,6 +48,7 @@ const colors = {
 // ============================================================================
 
 function AuroraBackground() {
+  const shouldReduceMotion = useReducedMotion()
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none">
       {/* Base gradient */}
@@ -60,12 +61,16 @@ function AuroraBackground() {
           background: 'radial-gradient(ellipse at center, rgba(16, 185, 129, 0.08) 0%, transparent 70%)',
           filter: 'blur(100px)',
         }}
-        animate={{
-          x: [0, 100, 0],
-          y: [0, 50, 0],
-          scale: [1, 1.1, 1],
-        }}
-        transition={{ duration: 30, repeat: Infinity, ease: 'easeInOut' }}
+        animate={
+          shouldReduceMotion
+            ? undefined
+            : {
+                x: [0, 100, 0],
+                y: [0, 50, 0],
+                scale: [1, 1.1, 1],
+              }
+        }
+        transition={shouldReduceMotion ? undefined : { duration: 30, repeat: Infinity, ease: 'easeInOut' }}
       />
 
       <motion.div
@@ -74,12 +79,16 @@ function AuroraBackground() {
           background: 'radial-gradient(ellipse at center, rgba(6, 182, 212, 0.06) 0%, transparent 70%)',
           filter: 'blur(100px)',
         }}
-        animate={{
-          x: [0, -80, 0],
-          y: [0, -30, 0],
-          scale: [1, 1.15, 1],
-        }}
-        transition={{ duration: 25, repeat: Infinity, ease: 'easeInOut' }}
+        animate={
+          shouldReduceMotion
+            ? undefined
+            : {
+                x: [0, -80, 0],
+                y: [0, -30, 0],
+                scale: [1, 1.15, 1],
+              }
+        }
+        transition={shouldReduceMotion ? undefined : { duration: 25, repeat: Infinity, ease: 'easeInOut' }}
       />
 
       {/* Subtle grain texture */}
@@ -110,14 +119,57 @@ function AuroraBackground() {
 // ============================================================================
 
 function ScrollProgress() {
+  const shouldReduceMotion = useReducedMotion()
   const { scrollYProgress } = useScroll()
   const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30 })
 
   return (
     <motion.div
       className="fixed top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-emerald-500 via-cyan-500 to-emerald-500 origin-left z-50"
-      style={{ scaleX }}
+      style={{ scaleX: shouldReduceMotion ? 1 : scaleX }}
     />
+  )
+}
+
+// ============================================================================
+// ROTATING WORDS FOR HERO
+// ============================================================================
+
+const heroWords = ['Design', 'Create', 'Architect', 'Explore', 'Imagine']
+
+function RotatingWord() {
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const shouldReduceMotion = useReducedMotion()
+
+  useEffect(() => {
+    if (shouldReduceMotion) return
+
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % heroWords.length)
+    }, 3000)
+
+    return () => clearInterval(interval)
+  }, [shouldReduceMotion])
+
+  if (shouldReduceMotion) {
+    return <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-400 to-violet-400">{heroWords[0]}</span>
+  }
+
+  return (
+    <span className="inline-block relative">
+      <AnimatePresence mode="wait">
+        <motion.span
+          key={currentIndex}
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: -20, opacity: 0 }}
+          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+          className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-400 to-violet-400"
+        >
+          {heroWords[currentIndex]}
+        </motion.span>
+      </AnimatePresence>
+    </span>
   )
 }
 
@@ -126,6 +178,7 @@ function ScrollProgress() {
 // ============================================================================
 
 function Hero() {
+  const shouldReduceMotion = useReducedMotion()
   const ref = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
     target: ref,
@@ -143,21 +196,21 @@ function Hero() {
     >
       <motion.div
         className="relative z-10 max-w-7xl mx-auto px-6 py-20"
-        style={{ opacity, y, scale }}
+        style={shouldReduceMotion ? undefined : { opacity, y, scale }}
       >
         <div className="grid lg:grid-cols-[1.3fr,1fr] gap-16 lg:gap-24 items-center">
           {/* Left column - Text content */}
           <motion.div
-            initial={{ opacity: 0, x: -40 }}
+            initial={shouldReduceMotion ? false : { opacity: 0, x: -40 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           >
             {/* Subtle breadcrumb - editorial style */}
             <motion.div
               className="mb-12"
-              initial={{ opacity: 0 }}
+              initial={shouldReduceMotion ? false : { opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.1 }}
+              transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.1 }}
             >
               <span className="text-xs font-medium uppercase tracking-[0.3em] text-emerald-400/60">
                 AI Architect & Music Creator
@@ -166,14 +219,14 @@ function Hero() {
 
             {/* Main headline - authority + vision */}
             <h1 className="mb-8">
-              <span className="block text-[clamp(3rem,8vw,6rem)] font-bold leading-[0.9] tracking-[-0.01em] md:tracking-[0.01em] text-white">
-                Design intelligent systems.
+              <span className="block text-[clamp(2.5rem,6vw,5rem)] font-bold leading-[1.1] tracking-tight text-white whitespace-nowrap">
+                <RotatingWord /> intelligent systems.
               </span>
               <motion.span
-                className="block text-[clamp(1.5rem,4vw,2.5rem)] text-white/60 mt-4 leading-relaxed max-w-2xl"
-                initial={{ opacity: 0, y: 10 }}
+                className="block text-[clamp(1.5rem,3.5vw,2.25rem)] text-white/60 mt-6 leading-relaxed max-w-2xl"
+                initial={shouldReduceMotion ? false : { opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
+                transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.3 }}
               >
                 Create music, art, and momentum in the{' '}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-400 to-violet-400">
@@ -185,9 +238,9 @@ function Hero() {
             {/* Subtext - invitation to explore */}
             <motion.p
               className="text-lg md:text-xl text-white/40 max-w-lg mb-12 leading-relaxed"
-              initial={{ opacity: 0 }}
+              initial={shouldReduceMotion ? false : { opacity: 0 }}
               animate={{ opacity: 1 }}
-              transition={{ delay: 0.4 }}
+              transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.4 }}
             >
               AI Architect at Oracle. Creator of 10K+ songs with Suno.
               Everything I build goes here—open, documented, yours to use.
@@ -196,14 +249,14 @@ function Hero() {
             {/* CTAs */}
             <motion.div
               className="flex flex-wrap items-center gap-4"
-              initial={{ opacity: 0, y: 20 }}
+              initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
+              transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.5 }}
             >
               <Link
                 href="/start"
                 onClick={() => trackEvent('hero_cta_click', { type: 'primary' })}
-                className="group relative inline-flex items-center gap-3 bg-white text-black px-7 py-4 rounded-full font-semibold text-base transition-all duration-300 hover:bg-white/90 hover:shadow-[0_0_40px_rgba(255,255,255,0.15)]"
+                className="group relative inline-flex items-center gap-3 bg-white text-black px-7 py-4 rounded-full font-semibold text-base transition-all duration-300 hover:bg-white/90 hover:shadow-[0_0_40px_rgba(255,255,255,0.15)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98] active:shadow-[0_0_24px_rgba(255,255,255,0.2)]"
               >
                 Explore My Work
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -212,7 +265,7 @@ function Hero() {
               <Link
                 href="/music-lab"
                 onClick={() => trackEvent('hero_cta_click', { type: 'secondary' })}
-                className="group inline-flex items-center gap-3 px-7 py-4 rounded-full font-medium text-white/70 hover:text-white border border-white/10 hover:border-white/20 hover:bg-white/5 transition-all"
+                className="group inline-flex items-center gap-3 px-7 py-4 rounded-full font-medium text-white/70 hover:text-white border border-white/10 hover:border-white/20 hover:bg-white/5 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98] active:border-white/30 active:bg-white/10"
               >
                 <Play className="w-4 h-4" />
                 Listen to Music
@@ -221,7 +274,7 @@ function Hero() {
               <Link
                 href="/resources"
                 onClick={() => trackEvent('hero_cta_click', { type: 'resources' })}
-                className="group inline-flex items-center gap-3 px-7 py-4 rounded-full font-medium text-white/70 hover:text-white border border-white/10 hover:border-white/20 hover:bg-white/5 transition-all"
+                className="group inline-flex items-center gap-3 px-7 py-4 rounded-full font-medium text-white/70 hover:text-white border border-white/10 hover:border-white/20 hover:bg-white/5 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98] active:border-white/30 active:bg-white/10"
               >
                 <Sparkles className="w-4 h-4" />
                 Resource Hub
@@ -231,9 +284,9 @@ function Hero() {
 
           {/* Right column - Featured content card */}
           <motion.div
-            initial={{ opacity: 0, x: 40 }}
+            initial={shouldReduceMotion ? false : { opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             className="relative"
           >
             <FeaturedMusicCard />
@@ -244,14 +297,14 @@ function Hero() {
       {/* Scroll indicator */}
       <motion.div
         className="absolute bottom-10 left-1/2 -translate-x-1/2"
-        initial={{ opacity: 0 }}
+        initial={shouldReduceMotion ? false : { opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 1.5 }}
+        transition={shouldReduceMotion ? { duration: 0 } : { delay: 1.5 }}
       >
         <motion.div
           className="w-5 h-8 rounded-full border border-white/20 flex justify-center pt-1.5"
-          animate={{ y: [0, 6, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
+          animate={shouldReduceMotion ? undefined : { y: [0, 6, 0] }}
+          transition={shouldReduceMotion ? undefined : { duration: 2, repeat: Infinity }}
         >
           <div className="w-1 h-1.5 bg-white/40 rounded-full" />
         </motion.div>
@@ -445,7 +498,7 @@ function QuickStartSection() {
             >
               <Link
                 href={path.href}
-                className="group block p-6 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-white/15 hover:bg-white/[0.04] transition-all h-full"
+                className="group block p-6 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-white/15 hover:bg-white/[0.04] transition-all h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.99] active:border-white/20"
               >
                 <div className="flex items-center justify-between mb-4">
                   <span className={`text-xs font-medium px-2.5 py-1 rounded-full ${
@@ -546,7 +599,7 @@ function WhatIDo() {
             >
               <Link
                 href={item.href}
-                className="group relative block p-8 rounded-2xl border border-white/5 overflow-hidden transition-all duration-500 hover:border-white/15 hover:-translate-y-1 h-full"
+                className="group relative block p-8 rounded-2xl border border-white/5 overflow-hidden transition-all duration-500 hover:border-white/15 hover:-translate-y-1 h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.99] active:border-white/20"
               >
                 {/* Gradient background on hover */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
@@ -647,7 +700,7 @@ function FeaturedResources() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.05 }}
-              className="group flex items-center justify-between p-6 rounded-2xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] hover:border-white/10 transition-all"
+              className="group flex items-center justify-between p-6 rounded-2xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] hover:border-white/10 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.99] active:border-white/20"
             >
               <div>
                 <div className="text-xs uppercase tracking-[0.15em] text-white/30 mb-1">
@@ -786,17 +839,17 @@ function FinalCTA() {
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link
-                href="/start"
-                className="group inline-flex items-center gap-3 bg-white text-black px-8 py-4 rounded-full text-base font-semibold transition-all duration-300 hover:bg-white/90 hover:shadow-[0_0_60px_rgba(255,255,255,0.2)] hover:-translate-y-0.5"
-              >
-                Pick Your Path
-                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-              </Link>
-              <Link
-                href="/resources"
-                className="group inline-flex items-center gap-3 px-8 py-4 rounded-full text-base font-medium text-white/60 hover:text-white border border-white/10 hover:border-white/20 hover:bg-white/5 transition-all"
-              >
+            <Link
+              href="/start"
+              className="group inline-flex items-center gap-3 bg-white text-black px-8 py-4 rounded-full text-base font-semibold transition-all duration-300 hover:bg-white/90 hover:shadow-[0_0_60px_rgba(255,255,255,0.2)] hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98]"
+            >
+              Pick Your Path
+              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+            </Link>
+            <Link
+              href="/resources"
+              className="group inline-flex items-center gap-3 px-8 py-4 rounded-full text-base font-medium text-white/60 hover:text-white border border-white/10 hover:border-white/20 hover:bg-white/5 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98] active:border-white/30 active:bg-white/10"
+            >
                 Browse Resources
                 <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
               </Link>

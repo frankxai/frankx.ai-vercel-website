@@ -85,7 +85,7 @@ function Hero() {
           className="text-center"
         >
           {/* Main headline - massive, confident */}
-          <h1 className="text-[clamp(3rem,12vw,9rem)] font-bold leading-[0.9] tracking-tight mb-8">
+          <h1 className="text-[clamp(2.5rem,10vw,7rem)] font-bold leading-[1.1] tracking-tight mb-8">
             <span className="block text-white">My System for</span>
             <span className="block bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
               Building with AI
