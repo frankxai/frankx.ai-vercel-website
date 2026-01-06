@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { ReactNode } from 'react'
+import AffiliateLink from '@/components/affiliates/AffiliateLink'
 
 type CalloutKind = 'info' | 'warning' | 'tip' | 'success'
 
@@ -140,4 +141,6 @@ export const mdxComponents = {
   ),
   Image: CustomImage,
   Callout,
+  AffiliateLink,
+  Link,
 }

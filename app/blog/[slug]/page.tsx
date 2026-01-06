@@ -1,11 +1,10 @@
-﻿import Image from 'next/image'
+import Image from 'next/image'
 import Link from 'next/link'
 import Script from 'next/script'
 import { notFound } from 'next/navigation'
-import { MDXRemote } from 'next-mdx-remote/rsc'
 import { ArrowLeft, ArrowRight, Calendar, Clock, Linkedin, Share2, Tag, Twitter } from 'lucide-react'
 
-import { mdxComponents } from '@/components/blog/MDXComponents'
+import { MDXContent } from '@/components/blog/MDXContent'
 import BlogCard from '@/components/blog/BlogCard'
 import Recommendations from '@/components/recommendations/Recommendations'
 import { getAllBlogPosts, getBlogPost } from '@/lib/blog'
@@ -217,7 +216,7 @@ export default async function BlogPostPage({
         <div className="px-6 pt-12">
           <div className="mx-auto max-w-4xl">
             <div className="space-y-6 text-base leading-relaxed text-white/75">
-              <MDXRemote source={post.content} components={mdxComponents as any} />
+              <MDXContent source={post.content} />
             </div>
 
             <div className="mt-12 grid gap-6 md:grid-cols-3">
