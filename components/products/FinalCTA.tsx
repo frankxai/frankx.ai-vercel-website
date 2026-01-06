@@ -29,7 +29,7 @@ export default function FinalCTA({ productId, title, description, primaryLabel, 
   }
 
   return (
-    <section className="bg-gradient-to-r from-primary-900/30 via-slate-950 to-purple-900/30 py-20">
+    <section className="bg-gradient-to-r from-cyan-950/30 via-[#02030b] to-blue-950/30 py-20">
       <div className="mx-auto max-w-3xl px-6 text-center text-white">
         <h2 className="text-3xl font-bold sm:text-4xl">{title}</h2>
         <p className="mt-4 text-base text-white/70 sm:text-lg">{description}</p>
@@ -37,7 +37,7 @@ export default function FinalCTA({ productId, title, description, primaryLabel, 
           <a
             href={primaryHref}
             onClick={handleClick}
-            className="mt-10 inline-flex rounded-xl bg-gradient-to-r from-primary-500 to-purple-600 px-8 py-4 text-sm font-semibold uppercase tracking-[0.3em] text-white shadow-[0_16px_45px_rgba(99,102,241,0.5)] transition hover:-translate-y-1"
+            className="mt-10 inline-flex rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-8 py-4 text-sm font-semibold uppercase tracking-[0.3em] text-white shadow-[0_16px_45px_rgba(56,189,248,0.4)] transition hover:-translate-y-1"
             target={primaryHref.startsWith('http') ? '_blank' : undefined}
             rel={primaryHref.startsWith('http') ? 'noreferrer' : undefined}
           >
@@ -47,7 +47,7 @@ export default function FinalCTA({ productId, title, description, primaryLabel, 
           <Link
             href={primaryHref}
             onClick={handleClick}
-            className="mt-10 inline-flex rounded-xl bg-gradient-to-r from-primary-500 to-purple-600 px-8 py-4 text-sm font-semibold uppercase tracking-[0.3em] text-white shadow-[0_16px_45px_rgba(99,102,241,0.5)] transition hover:-translate-y-1"
+            className="mt-10 inline-flex rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-8 py-4 text-sm font-semibold uppercase tracking-[0.3em] text-white shadow-[0_16px_45px_rgba(56,189,248,0.4)] transition hover:-translate-y-1"
           >
             {primaryLabel}
           </Link>

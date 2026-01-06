@@ -5,7 +5,7 @@ interface TransformationListProps {
 
 export default function TransformationList({ items, title }: TransformationListProps) {
   return (
-    <section className="bg-slate-950 py-16">
+    <section className="bg-[#02030b] py-16">
       <div className="mx-auto max-w-4xl px-6">
         {title ? (
           <h2 className="text-center text-3xl font-semibold text-white">{title}</h2>
@@ -14,7 +14,7 @@ export default function TransformationList({ items, title }: TransformationListP
           {items.map((item) => (
             <div
               key={item}
-              className="rounded-2xl border border-slate-800 bg-slate-900/80 px-6 py-4 text-left text-white/80 shadow-[0_6px_24px_rgba(15,23,42,0.35)]"
+              className="rounded-2xl border border-white/10 bg-white/[0.03] px-6 py-4 text-left text-white/80 shadow-[0_8px_24px_rgba(8,15,33,0.4)]"
             >
               {item}
             </div>

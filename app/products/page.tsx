@@ -23,13 +23,13 @@ import { trackEvent } from '@/lib/analytics'
 function ProductsBackground() {
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden">
-      <div className="absolute inset-0 bg-[#030712]" />
+      <div className="absolute inset-0 bg-[#02030b]" />
 
       {/* Gradient orbs */}
       <motion.div
         className="absolute -right-60 top-40 h-[600px] w-[600px] rounded-full opacity-25"
         style={{
-          background: 'radial-gradient(circle, rgba(139,92,246,0.35) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(56,189,248,0.35) 0%, transparent 70%)',
         }}
         animate={{
           scale: [1, 1.1, 1],
@@ -40,7 +40,7 @@ function ProductsBackground() {
       <motion.div
         className="absolute -left-40 top-1/2 h-[500px] w-[500px] rounded-full opacity-20"
         style={{
-          background: 'radial-gradient(circle, rgba(16,185,129,0.3) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(20,184,166,0.28) 0%, transparent 70%)',
         }}
         animate={{
           scale: [1.1, 1, 1.1],
@@ -51,7 +51,7 @@ function ProductsBackground() {
       <motion.div
         className="absolute bottom-0 right-1/4 h-[400px] w-[400px] rounded-full opacity-15"
         style={{
-          background: 'radial-gradient(circle, rgba(6,182,212,0.3) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(59,130,246,0.3) 0%, transparent 70%)',
         }}
         animate={{
           scale: [1, 1.15, 1],
@@ -79,9 +79,9 @@ const products = [
     id: 'creative-ai-toolkit',
     icon: Sparkles,
     name: 'Creative AI Toolkit',
-    tagline: 'Your AI-powered creative system',
+    tagline: 'Prompt library + workflow rituals',
     description:
-      'Launch your AI-powered creative practice with 100+ battle-tested prompts, workflow templates, and operating rituals.',
+      'A digital kit with prompts, templates, and rollout rituals for consistent output.',
     price: 1,
     currency: '€',
     originalPrice: null,
@@ -99,7 +99,7 @@ const products = [
     name: 'Vibe OS',
     tagline: 'Suno Music Mastery',
     description:
-      'The complete system for creating AI music with Suno. Genre-specific prompts, emotion mapping, and production techniques.',
+      'Prompt packs, emotion mapping, and production checklists for Suno creators.',
     price: 0,
     currency: '€',
     originalPrice: null,
@@ -119,7 +119,7 @@ const products = [
     name: 'Creation Chronicles',
     tagline: 'Strategic Storytelling OS',
     description:
-      'Transform your brand narrative with systematic storytelling frameworks that build authority and grow your audience.',
+      'Story frameworks, editorial calendars, and prompt stacks to build authority.',
     price: 7,
     currency: '€',
     originalPrice: null,
@@ -137,7 +137,7 @@ const products = [
     name: 'Generative Creator OS',
     tagline: 'Multi-modal AI Studio',
     description:
-      'Deploy an AI-assisted creative studio spanning video, audio, imagery, and writing with governed workflows.',
+      'Multi-modal templates, prompts, and guardrails for a reliable studio system.',
     price: 97,
     currency: '€',
     originalPrice: null,
@@ -155,7 +155,7 @@ const products = [
     name: 'Agentic Creator OS',
     tagline: 'Developer AI Mastery',
     description:
-      'Master Claude Code, Cursor, Codex, and Gemini Code. Build agentic systems and autonomous workflows.',
+      'Agentic playbooks, prompt stacks, and governance checklists for builders.',
     price: 197,
     currency: '€',
     originalPrice: null,
@@ -171,44 +171,44 @@ const products = [
 
 const colorMap = {
   violet: {
-    bg: 'bg-violet-500/10',
-    border: 'border-violet-500/20 hover:border-violet-500/40',
-    icon: 'bg-violet-500/20 text-violet-400',
-    accent: 'text-violet-400',
-    button: 'bg-violet-600 hover:bg-violet-500',
-    glow: 'group-hover:shadow-violet-500/20',
+    bg: 'bg-cyan-500/10',
+    border: 'border-cyan-500/20 hover:border-cyan-500/40',
+    icon: 'bg-cyan-500/20 text-cyan-300',
+    accent: 'text-cyan-300',
+    button: 'bg-cyan-600 hover:bg-cyan-500',
+    glow: 'group-hover:shadow-cyan-500/20',
   },
   emerald: {
     bg: 'bg-emerald-500/10',
     border: 'border-emerald-500/20 hover:border-emerald-500/40',
-    icon: 'bg-emerald-500/20 text-emerald-400',
-    accent: 'text-emerald-400',
+    icon: 'bg-emerald-500/20 text-emerald-300',
+    accent: 'text-emerald-300',
     button: 'bg-emerald-600 hover:bg-emerald-500',
     glow: 'group-hover:shadow-emerald-500/20',
   },
   cyan: {
     bg: 'bg-cyan-500/10',
     border: 'border-cyan-500/20 hover:border-cyan-500/40',
-    icon: 'bg-cyan-500/20 text-cyan-400',
-    accent: 'text-cyan-400',
+    icon: 'bg-cyan-500/20 text-cyan-300',
+    accent: 'text-cyan-300',
     button: 'bg-cyan-600 hover:bg-cyan-500',
     glow: 'group-hover:shadow-cyan-500/20',
   },
   amber: {
-    bg: 'bg-amber-500/10',
-    border: 'border-amber-500/20 hover:border-amber-500/40',
-    icon: 'bg-amber-500/20 text-amber-400',
-    accent: 'text-amber-400',
-    button: 'bg-amber-600 hover:bg-amber-500',
-    glow: 'group-hover:shadow-amber-500/20',
+    bg: 'bg-blue-500/10',
+    border: 'border-blue-500/20 hover:border-blue-500/40',
+    icon: 'bg-blue-500/20 text-blue-300',
+    accent: 'text-blue-300',
+    button: 'bg-blue-600 hover:bg-blue-500',
+    glow: 'group-hover:shadow-blue-500/20',
   },
   rose: {
-    bg: 'bg-rose-500/10',
-    border: 'border-rose-500/20 hover:border-rose-500/40',
-    icon: 'bg-rose-500/20 text-rose-400',
-    accent: 'text-rose-400',
-    button: 'bg-rose-600 hover:bg-rose-500',
-    glow: 'group-hover:shadow-rose-500/20',
+    bg: 'bg-teal-500/10',
+    border: 'border-teal-500/20 hover:border-teal-500/40',
+    icon: 'bg-teal-500/20 text-teal-300',
+    accent: 'text-teal-300',
+    button: 'bg-teal-600 hover:bg-teal-500',
+    glow: 'group-hover:shadow-teal-500/20',
   },
 }
 

@@ -33,7 +33,7 @@ export default function OfferStack({ productId, offer, modules, bonuses, pricing
   const secondaryTracking = offer.ctaSecondaryTracking
 
   return (
-    <section className="bg-slate-950 py-20">
+    <section className="bg-[#02030b] py-20">
       <div className="mx-auto flex max-w-6xl flex-col gap-10 px-6 lg:flex-row">
         <div className="flex-1 space-y-6">
           <h2 className="text-3xl font-semibold text-white">What You Receive</h2>
@@ -41,7 +41,7 @@ export default function OfferStack({ productId, offer, modules, bonuses, pricing
             {modules.map((module) => (
               <div
                 key={module.title}
-                className="rounded-2xl border border-slate-800 bg-slate-900/70 p-6 text-white/85"
+                className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 text-white/85 shadow-[0_10px_30px_rgba(8,15,33,0.4)]"
               >
                 <div className="text-lg font-semibold text-white">{module.title}</div>
                 <p className="mt-2 text-sm text-white/70">{module.description}</p>
@@ -50,11 +50,11 @@ export default function OfferStack({ productId, offer, modules, bonuses, pricing
           </div>
           {bonuses && bonuses.length > 0 && (
             <div className="mt-8">
-              <h3 className="text-xl font-semibold text-primary-200">Limited Bonuses</h3>
+              <h3 className="text-xl font-semibold text-cyan-200">Limited Bonuses</h3>
               <div className="mt-4 grid gap-4 sm:grid-cols-2">
                 {bonuses.map((bonus) => (
-                  <div key={bonus.title} className="rounded-2xl border border-primary-500/40 bg-primary-500/10 p-5 text-white">
-                    <div className="text-sm uppercase tracking-[0.3em] text-primary-200">{bonus.value}</div>
+                  <div key={bonus.title} className="rounded-2xl border border-cyan-500/30 bg-cyan-500/10 p-5 text-white">
+                    <div className="text-sm uppercase tracking-[0.3em] text-cyan-200">{bonus.value}</div>
                     <div className="mt-2 text-lg font-semibold">{bonus.title}</div>
                     <p className="mt-2 text-sm text-white/70">{bonus.description}</p>
                   </div>
@@ -64,7 +64,7 @@ export default function OfferStack({ productId, offer, modules, bonuses, pricing
           )}
         </div>
         <div className="flex w-full flex-1 flex-col justify-center">
-          <div className="rounded-3xl border border-slate-800 bg-slate-900/80 p-8 text-center text-white shadow-[0_20px_60px_rgba(15,23,42,0.45)]">
+          <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-8 text-center text-white shadow-[0_20px_60px_rgba(8,15,33,0.55)]">
             <div className="text-sm uppercase tracking-[0.3em] text-white/50">One-time investment</div>
             <div className="mt-4 flex items-center justify-center gap-3">
               {offer.originalPrice ? (
@@ -72,14 +72,14 @@ export default function OfferStack({ productId, offer, modules, bonuses, pricing
                   ${offer.originalPrice}
                 </span>
               ) : null}
-              <span className="text-5xl font-bold text-primary-200">
+              <span className="text-5xl font-bold text-cyan-200">
                 {offer.primaryPriceDisplay ?? `$${offer.primaryPrice}`}
               </span>
             </div>
             {offer.note ? <p className="mt-4 text-sm text-white/60">{offer.note}</p> : <p className="mt-4 text-sm text-white/60">Lifetime updates included</p>}
             {(() => {
               const content = (
-                <span className="block w-full rounded-xl bg-gradient-to-r from-primary-500 to-purple-600 px-6 py-4 text-sm font-semibold uppercase tracking-[0.3em] text-white shadow-[0_16px_55px_rgba(99,102,241,0.45)] transition hover:-translate-y-1 hover:shadow-[0_22px_60px_rgba(99,102,241,0.55)]">
+                <span className="block w-full rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-4 text-sm font-semibold uppercase tracking-[0.3em] text-white shadow-[0_16px_55px_rgba(45,212,191,0.35)] transition hover:-translate-y-1 hover:shadow-[0_22px_60px_rgba(56,189,248,0.45)]">
                   {offer.ctaPrimary}
                 </span>
               )
@@ -131,8 +131,8 @@ export default function OfferStack({ productId, offer, modules, bonuses, pricing
                 )}
               </p>
             ) : null}
-            <div className="mt-6 rounded-2xl border border-white/10 bg-white/5 p-4 text-left text-xs text-white/70">
-              <div className="text-sm font-semibold uppercase tracking-[0.3em] text-primary-200">
+            <div className="mt-6 rounded-2xl border border-cyan-500/20 bg-cyan-500/10 p-4 text-left text-xs text-white/70">
+              <div className="text-sm font-semibold uppercase tracking-[0.3em] text-cyan-200">
                 {offer.guarantee.label}
               </div>
               <p className="mt-2 leading-relaxed">{offer.guarantee.description}</p>
@@ -147,8 +147,8 @@ export default function OfferStack({ productId, offer, modules, bonuses, pricing
           <div className="mt-8 grid gap-6 md:grid-cols-3">
             {pricingTiers.map((tier) => {
               const cardClasses = tier.featured
-                ? 'border-primary-400/50 bg-primary-500/10 shadow-[0_22px_60px_rgba(99,102,241,0.35)]'
-                : 'border-white/10 bg-slate-900/70'
+                ? 'border-cyan-400/50 bg-cyan-500/10 shadow-[0_22px_60px_rgba(56,189,248,0.25)]'
+                : 'border-white/10 bg-white/[0.03]'
 
               const body = (
                 <div className={`flex h-full flex-col rounded-3xl ${cardClasses} p-6 text-white`}> 
@@ -158,7 +158,7 @@ export default function OfferStack({ productId, offer, modules, bonuses, pricing
                   <ul className="mt-6 flex-1 space-y-2 text-sm text-white/70">
                     {tier.features.map((feature) => (
                       <li key={feature} className="flex items-start gap-2">
-                        <span className="mt-1 h-1.5 w-1.5 rounded-full bg-primary-400" />
+                        <span className="mt-1 h-1.5 w-1.5 rounded-full bg-cyan-400" />
                         <span>{feature}</span>
                       </li>
                     ))}
@@ -168,7 +168,7 @@ export default function OfferStack({ productId, offer, modules, bonuses, pricing
                       <a
                         href={tier.ctaHref}
                         onClick={() => handleClick(`tier-${tier.name}`, tier.ctaHref, tier.ctaLabel)}
-                        className="inline-flex w-full items-center justify-center rounded-xl bg-gradient-to-r from-primary-500 to-purple-600 px-4 py-3 text-sm font-semibold uppercase tracking-[0.3em] text-white transition hover:-translate-y-1"
+                        className="inline-flex w-full items-center justify-center rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-4 py-3 text-sm font-semibold uppercase tracking-[0.3em] text-white transition hover:-translate-y-1"
                         target={tier.ctaHref.startsWith('http') ? '_blank' : undefined}
                         rel={tier.ctaHref.startsWith('http') ? 'noreferrer' : undefined}
                       >
@@ -178,7 +178,7 @@ export default function OfferStack({ productId, offer, modules, bonuses, pricing
                       <Link
                         href={tier.ctaHref}
                         onClick={() => handleClick(`tier-${tier.name}`, tier.ctaHref, tier.ctaLabel)}
-                        className="inline-flex w-full items-center justify-center rounded-xl bg-gradient-to-r from-primary-500 to-purple-600 px-4 py-3 text-sm font-semibold uppercase tracking-[0.3em] text-white transition hover:-translate-y-1"
+                        className="inline-flex w-full items-center justify-center rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-4 py-3 text-sm font-semibold uppercase tracking-[0.3em] text-white transition hover:-translate-y-1"
                       >
                         {tier.ctaLabel}
                       </Link>

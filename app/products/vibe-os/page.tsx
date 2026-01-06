@@ -53,7 +53,7 @@ export default function VibeOSPage() {
   const productId = product.analyticsId ?? product.id
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100">
+    <div className="min-h-screen bg-[#02030b] text-slate-100">
       <ProductHero
         productId={productId}
         badge={product.badge}
@@ -75,7 +75,7 @@ export default function VibeOSPage() {
         pricingTiers={product.pricingTiers}
       />
 
-      <section className="bg-slate-950 py-16">
+      <section className="bg-[#02030b] py-16">
         <div className="mx-auto flex max-w-6xl flex-col gap-10 px-6 lg:flex-row">
           <div className="flex-1 space-y-6">
             <h2 className="text-3xl font-semibold text-white">Latest Sessions in the Studio</h2>
@@ -85,7 +85,7 @@ export default function VibeOSPage() {
             </p>
             <SongGrid songs={songRecords} limit={3} />
           </div>
-          <div className="flex-1 rounded-3xl border border-white/10 bg-white/5 p-8 text-sm text-white/70">
+          <div className="flex-1 rounded-3xl border border-white/10 bg-white/[0.03] p-8 text-sm text-white/70">
             <h3 className="text-xl font-semibold text-white">Upgrade to the Realm</h3>
             <p className="mt-4">
               Inner Circle members receive every new session, stems, and live ritual labs. Join the waitlist to access the
@@ -93,7 +93,7 @@ export default function VibeOSPage() {
             </p>
             <Link
               href="/realm"
-              className="mt-6 inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-primary-500 to-purple-600 px-5 py-3 text-xs font-semibold uppercase tracking-[0.3em] text-white transition hover:-translate-y-1"
+              className="mt-6 inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-5 py-3 text-xs font-semibold uppercase tracking-[0.3em] text-white transition hover:-translate-y-1"
             >
               Tour the Realm
             </Link>
@@ -101,12 +101,12 @@ export default function VibeOSPage() {
         </div>
       </section>
 
-      <section className="bg-slate-950 py-16">
+      <section className="bg-[#02030b] py-16">
         <div className="mx-auto max-w-4xl px-6">
           <h2 className="text-center text-3xl font-semibold text-white">Frequently Asked Questions</h2>
           <div className="mt-10 space-y-6">
             {product.faq.map((item) => (
-              <details key={item.question} className="rounded-2xl border border-slate-800 bg-slate-900/70 p-6 text-left">
+              <details key={item.question} className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 text-left">
                 <summary className="cursor-pointer text-lg font-semibold text-white">
                   {item.question}
                 </summary>

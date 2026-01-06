@@ -96,6 +96,60 @@ const productItems = [
   },
 ]
 
+const foundationItems = [
+  {
+    name: 'Free Playbooks',
+    description: 'Downloadable AI playbooks to get started fast.',
+    href: '/free-playbook',
+    icon: Sparkles,
+  },
+  {
+    name: 'AI Assessment',
+    description: 'Find your next step with a quick assessment.',
+    href: '/ai-assessment',
+    icon: Wand2,
+  },
+  {
+    name: 'Prompt Library',
+    description: 'Curated prompts for creators and operators.',
+    href: '/prompt-library',
+    icon: BookOpen,
+  },
+  {
+    name: 'Templates',
+    description: 'Ready-to-use workflows and checklists.',
+    href: '/templates',
+    icon: Layers,
+  },
+]
+
+const intelligenceItems = [
+  {
+    name: 'Intelligence Atlas',
+    description: 'Flagship research and frameworks.',
+    href: '/intelligence-atlas',
+    icon: Star,
+  },
+  {
+    name: 'Agentic AI Center',
+    description: 'Agent systems, playbooks, and updates.',
+    href: '/agentic-ai-center',
+    icon: Bot,
+  },
+  {
+    name: 'Creation Chronicles',
+    description: 'Strategic storytelling OS and narratives.',
+    href: '/products/creation-chronicles',
+    icon: BookOpen,
+  },
+  {
+    name: 'Vibe OS Sessions',
+    description: 'AI music experiments and studio notes.',
+    href: '/music',
+    icon: Music,
+  },
+]
+
 const arcaneaItems = [
   {
     name: 'Arcanea',
@@ -149,6 +203,12 @@ const learningItems = [
     description: 'Learning paths and community.',
     href: '/students',
     icon: GraduationCap,
+  },
+  {
+    name: 'Developers',
+    description: 'Agentic workflows for builders.',
+    href: '/developers',
+    icon: Bot,
   },
 ]
 
@@ -239,10 +299,10 @@ export default function ResourcesPage() {
                 <h1 className="mt-4 text-4xl sm:text-5xl font-bold text-white">
                   Everything you need to build with AI
                 </h1>
-                <p className="mt-5 text-lg text-slate-400">
-                  Products, Arcanea worldbuilding, and learning paths in one place.
-                  Pick your track and start creating.
-                </p>
+              <p className="mt-5 text-lg text-slate-400">
+                Intelligence systems, free resources, and creative worlds in one place.
+                Pick your track and start creating.
+              </p>
                 <div className="mt-8 flex flex-wrap gap-3">
                   <Link
                     href="/magic"
@@ -276,9 +336,11 @@ export default function ResourcesPage() {
           </div>
         </section>
 
+        <ResourceGrid title="Start Here" subtitle="Free Resources" items={foundationItems} />
         <ResourceGrid title="Products" subtitle="Systems" items={productItems} />
-        <ResourceGrid title="Arcanea" subtitle="Worldbuilding" items={arcaneaItems} />
+        <ResourceGrid title="Intelligence" subtitle="Research + Hubs" items={intelligenceItems} />
         <ResourceGrid title="Learning" subtitle="Guides" items={learningItems} />
+        <ResourceGrid title="Arcanea" subtitle="Worldbuilding" items={arcaneaItems} />
       </main>
     </>
   )

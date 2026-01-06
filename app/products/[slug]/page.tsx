@@ -71,7 +71,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   }
 
   return (
-    <div className="min-h-screen bg-[#030712] text-white selection:bg-primary-500/30">
+    <div className="min-h-screen bg-[#02030b] text-white selection:bg-cyan-500/30">
       <JsonLd type="Product" data={productSchema} />
       
       <main className="mx-auto max-w-7xl px-6 py-12 lg:px-8">
@@ -85,7 +85,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-20">
           {/* Left Column: Product Info */}
           <div>
-            <div className="inline-flex items-center rounded-full border border-primary-500/30 bg-primary-500/10 px-3 py-1 text-xs font-medium uppercase tracking-wider text-primary-300">
+            <div className="inline-flex items-center rounded-full border border-cyan-500/30 bg-cyan-500/10 px-3 py-1 text-xs font-medium uppercase tracking-wider text-cyan-300">
               {product.category}
             </div>
             
@@ -97,12 +97,12 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
               {product.headline}
             </p>
             
-            <div className="mt-8 border-l-2 border-primary-500/50 pl-6">
+            <div className="mt-8 border-l-2 border-cyan-500/50 pl-6">
               <p className="text-lg italic text-gray-400">"{product.subheadline}"</p>
             </div>
 
             <div className="mt-10">
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-500">
+              <h3 className="text-sm font-semibold uppercase tracking-wider text-cyan-300/70">
                 The Promise
               </h3>
               <p className="mt-2 text-base text-gray-300">
@@ -117,7 +117,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
                 <ul className="space-y-6">
                   {product.modules.map((module: any, idx: number) => (
                     <li key={idx} className="flex gap-4">
-                      <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary-500/20 text-xs font-bold text-primary-400">
+                      <div className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-cyan-500/20 text-xs font-bold text-cyan-300">
                         {idx + 1}
                       </div>
                       <div>
@@ -165,8 +165,8 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
               </div>
 
               {product.offer.guarantee && (
-                <div className="mt-8 rounded-xl bg-primary-500/5 p-4 text-center">
-                  <p className="text-xs font-semibold uppercase tracking-wider text-primary-400">
+                <div className="mt-8 rounded-xl bg-cyan-500/10 p-4 text-center">
+                  <p className="text-xs font-semibold uppercase tracking-wider text-cyan-300">
                     {product.offer.guarantee.label}
                   </p>
                   <p className="mt-1 text-xs text-gray-400">
@@ -180,7 +180,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
                 <div className="mt-8 grid grid-cols-2 gap-4 border-t border-white/10 pt-8">
                   {product.socialProof.stats.slice(0, 4).map((stat: any, idx: number) => (
                     <div key={idx} className="text-center">
-                      <div className="text-xl font-bold text-white">{stat.number}</div>
+                      <div className="text-xl font-bold text-cyan-200">{stat.number}</div>
                       <div className="text-[10px] uppercase tracking-wider text-gray-500">
                         {stat.label}
                       </div>

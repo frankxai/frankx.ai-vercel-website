@@ -16,7 +16,7 @@ export default function CaseStudyGrid({ productId, caseStudies, title = 'Field N
   }
 
   return (
-    <section className="bg-slate-900/40 py-16">
+    <section className="bg-[#02030b] py-16">
       <div className="mx-auto max-w-5xl px-6">
         <h2 className="text-center text-3xl font-semibold text-white">{title}</h2>
         {description ? (
@@ -32,8 +32,8 @@ export default function CaseStudyGrid({ productId, caseStudies, title = 'Field N
             }
 
             return (
-              <div key={study.title} className="flex h-full flex-col rounded-3xl border border-white/10 bg-slate-950/80 p-6">
-                <span className="text-xs font-semibold uppercase tracking-[0.3em] text-primary-200">
+              <div key={study.title} className="flex h-full flex-col rounded-3xl border border-white/10 bg-white/[0.03] p-6">
+                <span className="text-xs font-semibold uppercase tracking-[0.3em] text-cyan-200">
                   {study.metric ?? 'Case Study'}
                 </span>
                 <h3 className="mt-3 text-lg font-semibold text-white">{study.title}</h3>

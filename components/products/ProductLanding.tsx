@@ -81,14 +81,14 @@ export default function ProductLanding({ product }: Props) {
     <div className="min-h-screen bg-slate-950 text-slate-100">
       {/* Hero Section */}
       <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary-900/20 via-slate-950 to-purple-950/20" />
+        <div className="absolute inset-0 bg-gradient-to-br from-cyan-900/20 via-slate-950 to-blue-950/20" />
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-16">
           <div className="text-center">
             {product.badge && (
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                className="inline-flex items-center px-4 py-2 rounded-full bg-primary-500/10 border border-primary-500/20 text-primary-300 text-sm font-medium mb-8"
+                className="inline-flex items-center px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-300 text-sm font-medium mb-8"
               >
                 <Shield className="w-4 h-4 mr-2" />
                 {product.badge}
@@ -99,7 +99,7 @@ export default function ProductLanding({ product }: Props) {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-4xl sm:text-6xl lg:text-7xl font-bold mb-6 bg-gradient-to-r from-slate-100 via-primary-200 to-slate-300 bg-clip-text text-transparent"
+              className="text-4xl sm:text-6xl lg:text-7xl font-bold mb-6 bg-gradient-to-r from-slate-100 via-cyan-200 to-slate-300 bg-clip-text text-transparent"
             >
               {product.hero.headline}
             </motion.h1>
@@ -142,7 +142,7 @@ export default function ProductLanding({ product }: Props) {
                         ${product.originalPrice}
                       </span>
                     )}
-                    <span className="text-5xl font-bold text-primary-300">
+                    <span className="text-5xl font-bold text-cyan-300">
                       ${product.price}
                     </span>
                   </div>
@@ -156,7 +156,7 @@ export default function ProductLanding({ product }: Props) {
                     </div>
                   )}
 
-                  <button className="w-full bg-gradient-to-r from-primary-500 to-purple-600 hover:from-primary-600 hover:to-purple-700 text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl mb-4">
+                  <button className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl mb-4">
                     {product.cta.primary}
                   </button>
 
@@ -181,7 +181,7 @@ export default function ProductLanding({ product }: Props) {
                 transition={{ delay: index * 0.1 }}
                 className="text-center"
               >
-                <div className="text-3xl lg:text-4xl font-bold text-primary-300 mb-2">
+                <div className="text-3xl lg:text-4xl font-bold text-cyan-300 mb-2">
                   {stat.number}
                 </div>
                 <div className="text-slate-400">{stat.label}</div>
@@ -220,7 +220,7 @@ export default function ProductLanding({ product }: Props) {
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-slate-100 to-primary-200 bg-clip-text text-transparent">
+            <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-slate-100 to-cyan-200 bg-clip-text text-transparent">
               What You Get Inside
             </h2>
             <p className="text-xl text-slate-300 max-w-3xl mx-auto">
@@ -235,12 +235,12 @@ export default function ProductLanding({ product }: Props) {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-slate-800/30 backdrop-blur-sm border border-slate-700/30 rounded-xl p-6 hover:border-primary-500/30 transition-colors"
+                className="bg-slate-800/30 backdrop-blur-sm border border-slate-700/30 rounded-xl p-6 hover:border-cyan-500/30 transition-colors"
               >
-                <div className="w-12 h-12 bg-primary-500/10 rounded-lg flex items-center justify-center mb-4">
-                  <div className="w-6 h-6 text-primary-400">
+                <div className="w-12 h-12 bg-cyan-500/10 rounded-lg flex items-center justify-center mb-4">
+                  <div className="w-6 h-6 text-cyan-400">
                     {/* Icon would be rendered here based on feature.icon */}
-                    <div className="w-full h-full bg-primary-400 rounded" />
+                    <div className="w-full h-full bg-cyan-400 rounded" />
                   </div>
                 </div>
                 <h3 className="text-xl font-semibold mb-3 text-slate-100">{feature.title}</h3>
@@ -250,8 +250,8 @@ export default function ProductLanding({ product }: Props) {
           </div>
 
           {/* Bonuses */}
-          <div className="bg-gradient-to-r from-primary-900/20 to-purple-900/20 rounded-2xl p-8 border border-primary-500/20">
-            <h3 className="text-3xl font-bold text-center mb-8 text-primary-200">
+          <div className="bg-gradient-to-r from-cyan-900/20 to-blue-900/20 rounded-2xl p-8 border border-cyan-500/20">
+            <h3 className="text-3xl font-bold text-center mb-8 text-cyan-200">
               Exclusive Bonuses (Limited Time)
             </h3>
             <div className="grid md:grid-cols-3 gap-6">
@@ -271,7 +271,7 @@ export default function ProductLanding({ product }: Props) {
       <section className="py-20 bg-slate-900/30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-slate-100 to-primary-200 bg-clip-text text-transparent">
+            <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-slate-100 to-cyan-200 bg-clip-text text-transparent">
               Designed for Your Success
             </h2>
           </div>
@@ -285,7 +285,7 @@ export default function ProductLanding({ product }: Props) {
                 transition={{ delay: index * 0.1 }}
                 className="bg-slate-800/50 backdrop-blur-sm border border-slate-700/30 rounded-xl p-8"
               >
-                <h3 className="text-2xl font-bold mb-6 text-primary-300">{section.title}</h3>
+                <h3 className="text-2xl font-bold mb-6 text-cyan-300">{section.title}</h3>
                 <ul className="space-y-4">
                   {section.items.map((item, itemIndex) => (
                     <li key={itemIndex} className="flex items-start">
@@ -304,7 +304,7 @@ export default function ProductLanding({ product }: Props) {
       <section className="py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-slate-100 to-primary-200 bg-clip-text text-transparent">
+            <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-slate-100 to-cyan-200 bg-clip-text text-transparent">
               Common Questions Answered
             </h2>
           </div>
@@ -342,7 +342,7 @@ export default function ProductLanding({ product }: Props) {
       <section className="py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-slate-100 to-primary-200 bg-clip-text text-transparent">
+            <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-slate-100 to-cyan-200 bg-clip-text text-transparent">
               Frequently Asked Questions
             </h2>
           </div>
@@ -373,9 +373,9 @@ export default function ProductLanding({ product }: Props) {
       </section>
 
       {/* Final CTA */}
-      <section className="py-20 bg-gradient-to-r from-primary-900/30 to-purple-900/30">
+      <section className="py-20 bg-gradient-to-r from-cyan-900/30 to-blue-900/30">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-slate-100 to-primary-200 bg-clip-text text-transparent">
+          <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-slate-100 to-cyan-200 bg-clip-text text-transparent">
             Transform Your AI Workflow Today
           </h2>
           <p className="text-xl text-slate-300 mb-8">
@@ -390,12 +390,12 @@ export default function ProductLanding({ product }: Props) {
                     ${product.originalPrice}
                   </span>
                 )}
-                <span className="text-5xl font-bold text-primary-300">
+                <span className="text-5xl font-bold text-cyan-300">
                   ${product.price}
                 </span>
               </div>
 
-              <button className="w-full bg-gradient-to-r from-primary-500 to-purple-600 hover:from-primary-600 hover:to-purple-700 text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl mb-4">
+              <button className="w-full bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl mb-4">
                 {product.cta.primary}
               </button>
 

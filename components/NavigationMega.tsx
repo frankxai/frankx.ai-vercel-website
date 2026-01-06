@@ -101,14 +101,14 @@ const navigation = {
       badge: 'Explore',
     },
     items: [
-      { name: 'Vibe OS', href: '/products/vibe-os', icon: Music, description: 'AI music creation system' },
-      { name: 'Creative AI Toolkit', href: '/products/creative-ai-toolkit', icon: Sparkles, description: 'Content workflows' },
-      { name: 'Generative Creator OS', href: '/products/generative-creator-os', icon: Layers, description: 'Full creator system' },
-      { name: 'Agentic Creator OS', href: '/products/agentic-creator-os', icon: Bot, description: 'Developer-grade agents' },
-      { name: 'Arcanea', href: '/magic', icon: Wand2, description: 'Build your own magical worlds with AI' },
-      { name: 'Arcanea Academy', href: '/magic', icon: GraduationCap, description: 'Learn worldbuilding + AI creation' },
-      { name: 'The Luminors', href: 'https://arcanea.app', icon: Star, description: 'AI companions', external: true },
-      { name: 'Arcanea Platform', href: 'https://arcanea.app', icon: Heart, description: 'The full experience', external: true },
+      { name: 'Resource Hub', href: '/resources', icon: Sparkles, description: 'All systems, guides, and tools' },
+      { name: 'Free Playbooks', href: '/free-playbook', icon: FileText, description: 'Start with quick wins' },
+      { name: 'Prompt Library', href: '/prompt-library', icon: BookOpen, description: 'Curated prompt stacks' },
+      { name: 'Intelligence Atlas', href: '/intelligence-atlas', icon: Star, description: 'Flagship research' },
+      { name: 'Vibe OS', href: '/products/vibe-os', icon: Music, description: 'AI music system' },
+      { name: 'Agentic Creator OS', href: '/products/agentic-creator-os', icon: Bot, description: 'Agent workflows' },
+      { name: 'Arcanea', href: '/magic', icon: Wand2, description: 'Worldbuilding academy' },
+      { name: 'The Luminors', href: 'https://arcanea.app', icon: Heart, description: 'AI companions', external: true },
     ],
   },
 }
@@ -133,7 +133,7 @@ function MegaMenuContent({ section }: { section: keyof typeof navigation }) {
   const data = navigation[section]
 
   return (
-    <div className="grid w-[600px] gap-4 p-5 md:grid-cols-[200px_1fr]">
+    <div className="grid w-[600px] gap-4 p-4 md:grid-cols-[200px_1fr]">
       {/* Featured card */}
       <Link
         href={data.featured.href}
@@ -163,9 +163,9 @@ function MegaMenuContent({ section }: { section: keyof typeof navigation }) {
           return (
             <li key={item.name}>
               <NavigationMenu.Link asChild>
-                <LinkComponent
+        <LinkComponent
                   {...linkProps}
-                  className="group flex items-start gap-3 rounded-lg p-3 transition-colors hover:bg-white/5"
+                  className="group flex items-start gap-3 rounded-lg p-2.5 transition-colors hover:bg-white/5"
                 >
                   <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white/5 text-slate-400 transition-colors group-hover:bg-white/10 group-hover:text-white">
                     <Icon className="h-4 w-4" />
@@ -190,7 +190,7 @@ function MegaMenuContent({ section }: { section: keyof typeof navigation }) {
 // Trigger button component
 function NavTrigger({ children }: { children: React.ReactNode }) {
   return (
-    <NavigationMenu.Trigger className="group flex items-center gap-1 rounded-lg px-3 py-2 text-sm font-medium text-slate-400 outline-none transition-colors hover:text-white focus-visible:ring-2 focus-visible:ring-emerald-400/50 data-[state=open]:text-white">
+    <NavigationMenu.Trigger className="group flex items-center gap-1 rounded-md px-2.5 py-1.5 text-[13px] font-semibold text-slate-300 outline-none transition-all hover:bg-white/5 hover:text-white focus-visible:ring-2 focus-visible:ring-emerald-400/50 data-[state=open]:bg-white/5 data-[state=open]:text-white">
       {children}
       <ChevronDown
         className="h-3.5 w-3.5 transition-transform duration-200 group-data-[state=open]:rotate-180"
@@ -323,8 +323,10 @@ export default function NavigationMega() {
               <Link
                 href="/blog"
                 className={cn(
-                  'rounded-lg px-3 py-2 text-sm font-medium transition-colors',
-                  isActive('/blog') ? 'text-white' : 'text-slate-400 hover:text-white'
+                  'rounded-md px-2.5 py-1.5 text-[13px] font-semibold transition-all',
+                  isActive('/blog')
+                    ? 'text-white bg-white/5'
+                    : 'text-slate-300 hover:text-white hover:bg-white/5'
                 )}
               >
                 Blog
@@ -335,8 +337,10 @@ export default function NavigationMega() {
               <Link
                 href="/about"
                 className={cn(
-                  'rounded-lg px-3 py-2 text-sm font-medium transition-colors',
-                  isActive('/about') ? 'text-white' : 'text-slate-400 hover:text-white'
+                  'rounded-md px-2.5 py-1.5 text-[13px] font-semibold transition-all',
+                  isActive('/about')
+                    ? 'text-white bg-white/5'
+                    : 'text-slate-300 hover:text-white hover:bg-white/5'
                 )}
               >
                 About
