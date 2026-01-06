@@ -217,6 +217,15 @@ function Hero() {
                 <Play className="w-4 h-4" />
                 Listen to Music
               </Link>
+
+              <Link
+                href="/resources"
+                onClick={() => trackEvent('hero_cta_click', { type: 'resources' })}
+                className="group inline-flex items-center gap-3 px-7 py-4 rounded-full font-medium text-white/70 hover:text-white border border-white/10 hover:border-white/20 hover:bg-white/5 transition-all"
+              >
+                <Sparkles className="w-4 h-4" />
+                Resource Hub
+              </Link>
             </motion.div>
           </motion.div>
 

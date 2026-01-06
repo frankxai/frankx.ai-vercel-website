@@ -1,6 +1,7 @@
 'use client'
 
 import type { ComponentType } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import {
@@ -229,31 +230,47 @@ export default function ResourcesPage() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="max-w-3xl"
+              className="grid items-center gap-10 lg:grid-cols-[1.1fr,0.9fr]"
             >
-              <p className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-400/70">
-                Resource Hub
-              </p>
-              <h1 className="mt-4 text-4xl sm:text-5xl font-bold text-white">
-                Everything you need to build with AI
-              </h1>
-              <p className="mt-5 text-lg text-slate-400">
-                Products, Arcanea worldbuilding, and learning paths in one place.
-                Pick your track and start creating.
-              </p>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <Link
-                  href="/magic"
-                  className="rounded-full bg-gradient-to-r from-violet-600 to-pink-600 px-6 py-3 text-sm font-semibold text-white transition-all hover:shadow-lg hover:shadow-violet-500/25"
-                >
-                  Enter Arcanea
-                </Link>
-                <Link
-                  href="/products"
-                  className="rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10"
-                >
-                  Browse Products
-                </Link>
+              <div className="max-w-3xl">
+                <p className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-400/70">
+                  Resource Hub
+                </p>
+                <h1 className="mt-4 text-4xl sm:text-5xl font-bold text-white">
+                  Everything you need to build with AI
+                </h1>
+                <p className="mt-5 text-lg text-slate-400">
+                  Products, Arcanea worldbuilding, and learning paths in one place.
+                  Pick your track and start creating.
+                </p>
+                <div className="mt-8 flex flex-wrap gap-3">
+                  <Link
+                    href="/magic"
+                    className="rounded-full bg-gradient-to-r from-violet-600 to-pink-600 px-6 py-3 text-sm font-semibold text-white transition-all hover:shadow-lg hover:shadow-violet-500/25"
+                  >
+                    Enter Arcanea
+                  </Link>
+                  <Link
+                    href="/products"
+                    className="rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10"
+                  >
+                    Browse Products
+                  </Link>
+                </div>
+              </div>
+
+              <div className="relative">
+                <div className="absolute -inset-8 rounded-full bg-gradient-to-br from-emerald-500/20 via-cyan-500/10 to-violet-500/20 blur-3xl opacity-70" />
+                <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] p-6">
+                  <Image
+                    src="/images/blog/blog-hero-aurora.svg"
+                    alt="Aurora illustration representing the FrankX resource universe"
+                    width={640}
+                    height={640}
+                    className="h-auto w-full"
+                    priority
+                  />
+                </div>
               </div>
             </motion.div>
           </div>
