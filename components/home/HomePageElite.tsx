@@ -136,6 +136,18 @@ function ScrollProgress() {
 // ============================================================================
 
 const heroWords = ['Design', 'Create', 'Architect', 'Explore', 'Imagine']
+const heroConcepts = [
+  'intelligent systems',
+  'music',
+  'artificial intelligence',
+  'AGI',
+  'Personal Development',
+  'Soulbook',
+  'Vibe OS',
+  'GenCreator OS',
+  'Arcanea',
+  'Starlight Intelligence',
+]
 
 function RotatingWord() {
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -152,11 +164,15 @@ function RotatingWord() {
   }, [shouldReduceMotion])
 
   if (shouldReduceMotion) {
-    return <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-400 to-violet-400">{heroWords[0]}</span>
+    return (
+      <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-400 to-violet-400">
+        {heroWords[0]}
+      </span>
+    )
   }
 
   return (
-    <span className="inline-block relative">
+    <span className="inline-block relative py-1">
       <AnimatePresence mode="wait">
         <motion.span
           key={currentIndex}
@@ -165,8 +181,47 @@ function RotatingWord() {
           exit={{ y: -20, opacity: 0 }}
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-400 to-violet-400"
+          style={{ lineHeight: 1.3 }}
         >
           {heroWords[currentIndex]}
+        </motion.span>
+      </AnimatePresence>
+    </span>
+  )
+}
+
+function RotatingConcept() {
+  const [currentIndex, setCurrentIndex] = useState(0)
+  const shouldReduceMotion = useReducedMotion()
+
+  useEffect(() => {
+    if (shouldReduceMotion) return
+
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % heroConcepts.length)
+    }, 3500)
+
+    return () => clearInterval(interval)
+  }, [shouldReduceMotion])
+
+  if (shouldReduceMotion) {
+    return (
+      <span className="text-white/90">{heroConcepts[0]}</span>
+    )
+  }
+
+  return (
+    <span className="inline-block relative min-h-[1.3em]">
+      <AnimatePresence mode="wait">
+        <motion.span
+          key={currentIndex}
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: -20, opacity: 0 }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          className="inline-block text-white/90"
+        >
+          {heroConcepts[currentIndex]}
         </motion.span>
       </AnimatePresence>
     </span>
@@ -219,11 +274,14 @@ function Hero() {
 
             {/* Main headline - authority + vision */}
             <h1 className="mb-8">
-              <span className="block text-[clamp(2.5rem,6vw,5rem)] font-bold leading-[1.1] tracking-tight text-white whitespace-nowrap">
-                <RotatingWord /> intelligent systems.
+              <span className="block text-[clamp(3rem,7vw,6rem)] font-bold leading-[1.25] tracking-tight pb-2">
+                <RotatingWord />
+              </span>
+              <span className="block text-[clamp(2rem,5vw,4rem)] font-bold leading-[1.25] tracking-tight text-white pb-4">
+                <RotatingConcept />.
               </span>
               <motion.span
-                className="block text-[clamp(1.5rem,3.5vw,2.25rem)] text-white/60 mt-6 leading-relaxed max-w-2xl"
+                className="block text-[clamp(1.25rem,3vw,1.75rem)] text-white/60 mt-6 leading-relaxed max-w-2xl"
                 initial={shouldReduceMotion ? false : { opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.3 }}
@@ -329,19 +387,19 @@ function FeaturedMusicCard() {
 
   return (
     <div className="relative">
-      {/* Glow effect behind card */}
-      <div className="absolute -inset-4 bg-gradient-to-br from-emerald-500/20 via-cyan-500/10 to-transparent blur-3xl opacity-50" />
+      {/* Glow effect behind card - enhanced */}
+      <div className="absolute -inset-6 bg-gradient-to-br from-emerald-500/25 via-cyan-500/15 to-violet-500/10 blur-3xl opacity-60" />
 
       <motion.div
-        className="relative bg-white/[0.02] backdrop-blur-xl border border-white/10 rounded-3xl p-6 overflow-hidden"
+        className="relative bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-3xl p-8 overflow-hidden"
         whileHover={{ scale: 1.02 }}
         transition={{ duration: 0.3 }}
       >
-        {/* Suno Embed Player */}
+        {/* Suno Embed Player - LARGER */}
         <div className="relative rounded-2xl overflow-hidden mb-6 bg-gradient-to-br from-emerald-500/10 via-cyan-500/10 to-purple-500/10">
           <iframe
             src={`https://suno.com/embed/${song.id}`}
-            className="w-full aspect-square rounded-2xl"
+            className="w-full h-[380px] md:h-[440px] lg:h-[480px] rounded-2xl"
             frameBorder="0"
             allow="autoplay; clipboard-write"
             loading="lazy"
@@ -383,8 +441,8 @@ function FeaturedMusicCard() {
         </div>
 
         {/* Corner decoration */}
-        <div className="absolute top-4 right-4">
-          <Music2 className="w-5 h-5 text-white/20" />
+        <div className="absolute top-6 right-6">
+          <Music2 className="w-6 h-6 text-white/20" />
         </div>
       </motion.div>
     </div>
