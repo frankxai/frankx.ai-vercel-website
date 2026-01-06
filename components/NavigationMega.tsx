@@ -21,8 +21,6 @@ import {
   Terminal,
   Workflow,
   Bot,
-  Package,
-  Zap,
   Layers,
   ArrowRight,
   ExternalLink,
@@ -94,34 +92,23 @@ const navigation = {
       { name: 'Coding Prompts', href: '/prompt-library/coding', icon: Bot, description: 'Automation workflows' },
     ],
   },
-  products: {
-    label: 'Products',
+  resources: {
+    label: 'Resources',
     featured: {
-      title: 'All Products',
-      description: 'AI systems for creators, students, and developers.',
-      href: '/products',
-      badge: 'View All',
+      title: 'Resource Hub',
+      description: 'Products, Arcanea, and learning paths to build your creative future.',
+      href: '/resources',
+      badge: 'Explore',
     },
     items: [
-      { name: 'Vibe OS', href: '/products/vibe-os', icon: Music, description: 'AI music creation' },
+      { name: 'Vibe OS', href: '/products/vibe-os', icon: Music, description: 'AI music creation system' },
       { name: 'Creative AI Toolkit', href: '/products/creative-ai-toolkit', icon: Sparkles, description: 'Content workflows' },
       { name: 'Generative Creator OS', href: '/products/generative-creator-os', icon: Layers, description: 'Full creator system' },
-      { name: 'Agentic Creator OS', href: '/products/agentic-creator-os', icon: Bot, description: 'For developers' },
-    ],
-  },
-  magic: {
-    label: 'Magic',
-    featured: {
-      title: 'Enter Arcanea',
-      description: 'A living mythology for the age of AI-human co-creation.',
-      href: '/magic',
-      badge: 'New Realm',
-    },
-    items: [
-      { name: 'Arcanea Vision', href: '/magic', icon: Wand2, description: 'The complete mythology' },
-      { name: 'Music Lab', href: '/music-lab', icon: Music, description: 'Create AI music' },
+      { name: 'Agentic Creator OS', href: '/products/agentic-creator-os', icon: Bot, description: 'Developer-grade agents' },
+      { name: 'Arcanea', href: '/magic', icon: Wand2, description: 'Build your own magical worlds with AI' },
+      { name: 'Arcanea Academy', href: '/magic', icon: GraduationCap, description: 'Learn worldbuilding + AI creation' },
       { name: 'The Luminors', href: 'https://arcanea.app', icon: Star, description: 'AI companions', external: true },
-      { name: 'Arcanea Platform', href: 'https://arcanea.app', icon: Heart, description: 'Full experience', external: true },
+      { name: 'Arcanea Platform', href: 'https://arcanea.app', icon: Heart, description: 'The full experience', external: true },
     ],
   },
 }
@@ -323,11 +310,11 @@ export default function NavigationMega() {
               </NavigationMenu.Content>
             </NavigationMenu.Item>
 
-            {/* Products */}
+            {/* Resources */}
             <NavigationMenu.Item>
-              <NavTrigger>Products</NavTrigger>
+              <NavTrigger>Resources</NavTrigger>
               <NavigationMenu.Content className="absolute left-0 top-0 data-[motion=from-end]:animate-enterFromRight data-[motion=from-start]:animate-enterFromLeft data-[motion=to-end]:animate-exitToRight data-[motion=to-start]:animate-exitToLeft">
-                <MegaMenuContent section="products" />
+                <MegaMenuContent section="resources" />
               </NavigationMenu.Content>
             </NavigationMenu.Item>
 

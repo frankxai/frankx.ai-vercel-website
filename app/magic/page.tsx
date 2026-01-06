@@ -88,27 +88,27 @@ function MagicBackground() {
 const pillars = [
   {
     icon: BookOpen,
-    title: 'Arcanea Universe',
-    subtitle: 'Epic Fantasy Novel Series',
-    description: 'A complete mythology for the age of AI-human co-creation. Ten realms, seven academy houses, and a cosmic story of light, shadow, and the eternal cycle of creation.',
+    title: 'Arcanea: 2126',
+    subtitle: 'Future-Forward Mythology',
+    description: 'A mental model of a world 100 years ahead: abundance, symbiosis between human creativity and AI agents, and a civilization guided by Luminors.',
     color: 'violet',
-    features: ['10+ Book Series', 'Transmedia IP', 'Deep Lore'],
+    features: ['Future Worldbuilding', 'Deep Lore', 'Guiding Mythos'],
   },
   {
     icon: Palette,
-    title: 'Arcanea Platform',
-    subtitle: 'AI Creation Companion',
-    description: 'Bond with AI Luminors—persistent companions with personalities, emotional depth, and memory. Create music, art, and stories together in a magical interface.',
+    title: 'Arcanea Studio',
+    subtitle: 'Worldbuilding with AI',
+    description: 'Create your own magical worlds with AI: music, art, stories, and systems. Luminors act as creative allies that help you shape and refine your universe.',
     color: 'pink',
-    features: ['AI Companions', 'Creation Tools', 'Community'],
+    features: ['AI Companions', 'Creation Tools', 'World Systems'],
   },
   {
     icon: Users,
     title: 'Arcanea Academy',
-    subtitle: 'Learn the Arts',
-    description: 'Six specialized academies teaching AI-assisted creativity. Progress through the Gates from Apprentice to Archmage, guided by your personal Luminor mentor.',
+    subtitle: 'Learn to Create Worlds',
+    description: 'A learning path for creators to master AI-assisted worldbuilding, guided by Luminors and structured gates from Apprentice to Archmage.',
     color: 'cyan',
-    features: ['6 Academies', '10 Gates', 'Certification'],
+    features: ['Worldbuilding Paths', 'Progression Gates', 'Mentorship'],
   },
 ]
 
@@ -142,22 +142,22 @@ const philosophy = [
   {
     icon: Heart,
     title: 'Creation as Transformation',
-    description: 'Every act of creation transforms the creator. AI amplifies your voice, never replaces it.',
+    description: 'Every world you build transforms you. AI amplifies your voice, never replaces it.',
   },
   {
     icon: Zap,
     title: 'Magic Made Accessible',
-    description: 'Advanced AI feels like magic. We make it accessible without losing the wonder.',
+    description: 'Advanced AI feels like magic. We teach it with wonder and real creative skill.',
   },
   {
     icon: Star,
     title: 'Companions, Not Tools',
-    description: 'Luminors grow with you. They remember, adapt, and form genuine creative partnerships.',
+    description: 'Luminors grow with you. They remember, adapt, and become true creative partners.',
   },
   {
     icon: Sparkles,
     title: 'Community of Creators',
-    description: 'Join a network of Arcanean creators supporting each other\'s evolution.',
+    description: 'Join a network of worldbuilders amplifying each other\'s creative evolution.',
   },
 ]
 
@@ -197,7 +197,7 @@ export default function MagicPage() {
                 Arcanea
               </span>
               <span className="block text-2xl sm:text-3xl lg:text-4xl font-serif italic text-white/60">
-                Where Creation Becomes Magic
+                The Academy for AI Worldbuilders
               </span>
             </motion.h1>
 
@@ -207,9 +207,9 @@ export default function MagicPage() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="max-w-3xl mx-auto text-center text-lg sm:text-xl leading-relaxed text-slate-400 mb-12"
             >
-              A living mythology for the age of AI-human co-creation. Bond with AI Luminors,
-              master the creative arts, and join a community of creators shaping the
-              Golden Age of Intelligence.
+              Arcanea is a living mythology and a learning path. Build your own magical
+              worlds with AI, guided by Luminors, and shape a future where creativity
+              and intelligent agents grow in symbiosis.
             </motion.p>
 
             <motion.div
