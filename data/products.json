@@ -1,5 +1,86 @@
 [
   {
+    "id": "creators-soulbook",
+    "slug": "soulbook",
+    "name": "The Creator's Soulbook",
+    "category": "Life Architecture",
+    "badge": "FREE DOWNLOAD",
+    "headline": "Write the Book Your Soul Came Here to Write",
+    "subheadline": "A complete life operating system with 7 pillars, 3 life book frameworks, and AI-powered coaching prompts. Free Obsidian vault included.",
+    "promise": "Design, track, and transform every dimension of your life with a framework built for creators, artists, and visionaries.",
+    "summary": "Your personal collection of Life Books offering different lenses for transformation. Includes complete Obsidian vault, AI prompt library, and reflection templates.",
+    "transformation": [
+      "Map all 7 life pillars (Energy, Mind, Soul, Craft, Capital, Circle, Legacy) with structured reflection exercises",
+      "Choose your transformation lens: Life Symphony (for artists), Golden Path (for seekers), or 7 Pillars (for builders)",
+      "Access 25+ AI coaching prompts designed for deep self-reflection and life architecture",
+      "Download ready-to-use Obsidian vault with templates, dashboards, and pre-configured themes"
+    ],
+    "socialProof": {
+      "stats": [
+        {
+          "number": "7",
+          "label": "Life Pillars"
+        },
+        {
+          "number": "3",
+          "label": "Life Book Frameworks"
+        },
+        {
+          "number": "25+",
+          "label": "AI Coaching Prompts"
+        }
+      ],
+      "quotes": []
+    },
+    "offer": {
+      "primaryPrice": 0,
+      "primaryPriceDisplay": "Free",
+      "currency": "USD",
+      "ctaPrimary": "Download Free Vault",
+      "ctaPrimaryHref": "/soulbook/vault",
+      "ctaPrimaryTracking": "soulbook-vault-download",
+      "ctaSecondary": "Explore the Framework",
+      "ctaSecondaryHref": "/soulbook",
+      "guarantee": {
+        "label": "Open Source Forever",
+        "description": "The Creator's Soulbook is and will always be free. Open source on GitHub for the creator community."
+      }
+    },
+    "modules": [
+      {
+        "title": "The 7 Pillars Framework",
+        "description": "Energy, Mind, Soul, Craft, Capital, Circle, and Legacy - the complete architecture for an extraordinary life."
+      },
+      {
+        "title": "Three Life Book Perspectives",
+        "description": "Life Symphony (for artists), Golden Path (for seekers), and The 7 Pillars (for builders) - same wisdom, different metaphors."
+      },
+      {
+        "title": "AI Coaching Prompt Library",
+        "description": "25+ Claude-powered prompts for deep reflection, goal-setting, and transformation tracking."
+      },
+      {
+        "title": "Obsidian Vault Templates",
+        "description": "Ready-to-use daily reflection templates, weekly reviews, and progress dashboards with Dataview integration."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Do I need Obsidian to use the Soulbook?",
+        "answer": "The vault works best with Obsidian (free app), but the frameworks and prompts work in any note-taking system or even pen and paper."
+      },
+      {
+        "question": "Which Life Book should I start with?",
+        "answer": "If you're a musician or artist, start with Life Symphony. If you're a seeker or visionary, try Golden Path. If you prefer structured systems, The 7 Pillars is for you."
+      },
+      {
+        "question": "Is there a premium version?",
+        "answer": "The complete framework is free forever. Premium options include guided programs, community support, and 1:1 coaching - coming soon."
+      }
+    ],
+    "analyticsId": "creators-soulbook"
+  },
+  {
     "id": "creative-ai-toolkit",
     "slug": "creative-ai-toolkit",
     "name": "The Creative AI Toolkit",

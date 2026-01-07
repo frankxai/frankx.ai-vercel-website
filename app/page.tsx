@@ -1,37 +1,33 @@
 import Script from 'next/script'
 
-import V3HomePage from '@/components/home/V3HomePage'
+import HomePage from '@/components/home/HomePage'
 import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
-  title: 'FrankX.ai | Intelligence Systems for AI Architects, Music Makers, and Generative Creators',
+  title: 'FrankX.ai | Ship 3x Faster with AI (Without Losing Your Soul)',
   description:
-    'Oracle-grade AI systems, Suno music workflows, and consciousness-first creator operating systems. Built by Oracle AI Architect for conscious creators.',
+    "I'm Frank, a musician who found a way to ship daily with AI while staying human. Get my exact systems: 500+ Suno sessions, creative workflows, and the toolkit that changed everything.",
   keywords: [
-    'ai architect',
-    'oracle ai',
-    'suno workflows',
-    'music creation ai',
-    'generative creator',
-    'creator operating system',
-    'conscious ai systems',
+    'ai for creators',
+    'suno music ai',
+    'ship faster',
+    'creative workflows',
     'ai music production',
+    'creator operating system',
+    'generative ai tools',
+    'ai without overwhelm',
   ],
   path: '/',
 })
 
 const structuredData = {
   '@context': 'https://schema.org',
-  '@type': 'Organization',
-  name: 'FrankX.ai',
+  '@type': 'Person',
+  name: 'Frank',
   url: 'https://frankx.ai',
   description:
-    'Intelligence systems for AI architects, music makers, and generative creators. Oracle-grade conscious AI systems and Suno music workflows.',
-  founder: {
-    '@type': 'Person',
-    name: 'Frank',
-    jobTitle: 'Oracle AI Architect & Creator Systems Designer',
-  },
+    'Musician-technologist helping creators ship faster with AI. Oracle AI Architect by day, music producer by night. 500+ Suno sessions and counting.',
+  jobTitle: 'Creator & Oracle AI Architect',
   sameAs: [
     'https://linkedin.com/in/frank',
     'https://twitter.com/frankxai',
@@ -41,19 +37,19 @@ const structuredData = {
     {
       '@type': 'Offer',
       name: 'Vibe OS',
-      description: 'AI music creation system with 500+ Suno workflows for conscious music producers',
+      description: 'My complete Suno music system - 500+ tested workflows',
       url: 'https://frankx.ai/products/vibe-os',
     },
     {
       '@type': 'Offer',
       name: 'Creative AI Toolkit',
-      description: 'Templates and workflows for generative content creators',
+      description: 'Ship content weekly with my proven templates',
       url: 'https://frankx.ai/products/creative-ai-toolkit',
     },
     {
       '@type': 'Offer',
-      name: 'Agentic Creator OS',
-      description: 'Custom AI systems for Oracle architects and enterprise creators',
+      name: 'Custom Creator OS',
+      description: 'Your personalized AI system (for serious creators)',
       url: 'https://frankx.ai/products/agentic-creator-os',
     },
   ],
@@ -62,7 +58,7 @@ const structuredData = {
 export default function Page() {
   return (
     <>
-      <V3HomePage />
+      <HomePage />
       <Script id="frankx-organization" type="application/ld+json" strategy="afterInteractive">
         {JSON.stringify(structuredData)}
       </Script>

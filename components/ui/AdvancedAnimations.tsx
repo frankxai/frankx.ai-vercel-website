@@ -1,7 +1,8 @@
 'use client'
 
-import { motion, useScroll, useTransform, useSpring, useInView } from 'framer-motion'
+import { motion, useScroll, useTransform, useSpring, useInView, useReducedMotion } from 'framer-motion'
 import { useRef, ReactNode } from 'react'
+import { motionDurations, motionSpring, viewportSettings } from '@/lib/design/motion'
 
 // Parallax Scroll Animation
 export function ParallaxContainer({ children, offset = 50 }: { children: ReactNode; offset?: number }) {
@@ -21,18 +22,20 @@ export function ParallaxContainer({ children, offset = 50 }: { children: ReactNo
   )
 }
 
-// Fade In Up with Stagger
+// Fade In Up with Stagger (Accessibility-aware)
 export function StaggerContainer({ children, staggerDelay = 0.1 }: { children: ReactNode; staggerDelay?: number }) {
+  const shouldReduceMotion = useReducedMotion()
+
   return (
     <motion.div
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "-100px" }}
+      viewport={viewportSettings.once}
       variants={{
         hidden: {},
         visible: {
           transition: {
-            staggerChildren: staggerDelay
+            staggerChildren: shouldReduceMotion ? 0 : staggerDelay
           }
         }
       }}
@@ -43,13 +46,15 @@ export function StaggerContainer({ children, staggerDelay = 0.1 }: { children: R
 }
 
 export function StaggerItem({ children, className }: { children: ReactNode; className?: string }) {
+  const shouldReduceMotion = useReducedMotion()
+
   return (
     <motion.div
       variants={{
-        hidden: { opacity: 0, y: 30 },
+        hidden: { opacity: shouldReduceMotion ? 1 : 0, y: shouldReduceMotion ? 0 : 30 },
         visible: { opacity: 1, y: 0 }
       }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
+      transition={{ duration: shouldReduceMotion ? 0 : motionDurations.slow, ease: "easeOut" }}
       className={className}
     >
       {children}
@@ -57,12 +62,18 @@ export function StaggerItem({ children, className }: { children: ReactNode; clas
   )
 }
 
-// Floating Animation
+// Floating Animation (Accessibility-aware)
 export function FloatingElement({ children, duration = 6, offset = 10 }: {
   children: ReactNode;
   duration?: number;
   offset?: number
 }) {
+  const shouldReduceMotion = useReducedMotion()
+
+  if (shouldReduceMotion) {
+    return <>{children}</>
+  }
+
   return (
     <motion.div
       animate={{
@@ -289,16 +300,61 @@ export function InteractiveCard({ children }: { children: ReactNode }) {
 // Scroll Progress Indicator
 export function ScrollProgress() {
   const { scrollYProgress } = useScroll()
+  const shouldReduceMotion = useReducedMotion()
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
     restDelta: 0.001
   })
 
+  if (shouldReduceMotion) return null
+
   return (
     <motion.div
       className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-500 to-cyan-500 transform-origin-left z-50"
       style={{ scaleX }}
+      role="progressbar"
+      aria-label="Page scroll progress"
+      aria-valuenow={Math.round(scrollYProgress.get() * 100)}
+      aria-valuemin={0}
+      aria-valuemax={100}
     />
+  )
+}
+
+// Multi-Layer Parallax for Hero Sections
+export function ParallaxLayer({
+  children,
+  offset = -50,
+  blur = 0,
+  className
+}: {
+  children: ReactNode
+  offset?: number
+  blur?: number
+  className?: string
+}) {
+  const ref = useRef<HTMLDivElement>(null)
+  const shouldReduceMotion = useReducedMotion()
+
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"]
+  })
+
+  const y = useTransform(scrollYProgress, [0, 1], [0, offset])
+  const springY = useSpring(y, motionSpring.gentle)
+
+  return (
+    <motion.div
+      ref={ref}
+      className={className}
+      style={{
+        y: shouldReduceMotion ? 0 : springY,
+        filter: blur > 0 ? `blur(${blur}px)` : 'none'
+      }}
+    >
+      {children}
+    </motion.div>
   )
 }
