@@ -1,0 +1,24 @@
+# Environment files with secrets
+.env
+.env.local
+
+# Docker volumes (data managed by Docker)
+postgres_data/
+redis_data/
+storage/
+
+# Configuration with potential secrets
+config/*.json
+
+# Logs
+*.log
+logs/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.swp
+*~

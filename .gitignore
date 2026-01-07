@@ -56,3 +56,7 @@ Thumbs.db
 
 # Symlinks to global configurations
 /.claude-nextjs-skills
+
+# Large backup files
+backups/**/*.bundle
+backups/**/*.tar.gz

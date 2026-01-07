@@ -97,7 +97,9 @@ export default function ProductsPage() {
 
                   <div className="mt-8 flex flex-col gap-3">
                     <div className="flex items-center justify-between">
-                      <div className="text-3xl font-bold text-purple-300">${product.price}</div>
+                      <div className={`text-3xl font-bold ${product.price === 0 ? 'text-emerald-400' : 'text-purple-300'}`}>
+                        {product.priceDisplay ?? `$${product.price}`}
+                      </div>
                       {product.originalPrice ? (
                         <div className="text-sm text-slate-500 line-through">${product.originalPrice}</div>
                       ) : null}

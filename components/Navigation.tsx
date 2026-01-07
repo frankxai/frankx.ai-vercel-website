@@ -22,6 +22,7 @@ const navItems: NavItem[] = [
     href: '/products',
     subItems: [
       { name: 'All Products', href: '/products' },
+      { name: 'Soulbook (Free)', href: '/soulbook' },
       { name: 'Vibe OS', href: '/products/vibe-os' },
       { name: 'Creative AI Toolkit', href: '/products/creative-ai-toolkit' },
       { name: 'Creator OS', href: '/products/agentic-creator-os' },
@@ -31,9 +32,22 @@ const navItems: NavItem[] = [
     name: 'Resources',
     href: '/resources',
     subItems: [
-      { name: 'Blog & Articles', href: '/blog' },
-      { name: 'Templates & Prompts', href: '/resources/templates' },
+      { name: 'All Resources', href: '/resources' },
+      { name: 'Soulbook Framework', href: '/soulbook' },
+      { name: 'Claude Skills Library', href: '/resources/skills' },
+      { name: 'Blog & Essays', href: '/blog' },
       { name: 'Music Lab', href: '/music-lab' },
+    ],
+  },
+  {
+    name: 'Students',
+    href: '/students',
+    subItems: [
+      { name: 'Student Hub', href: '/students' },
+      { name: 'Ikigai Workshop', href: '/students/workshop' },
+      { name: 'AI CoE Builder', href: '/students/coe-builder' },
+      { name: 'Prompt Library', href: '/students/prompts' },
+      { name: 'Role Navigator', href: '/students/roles' },
     ],
   },
   { name: 'Team', href: '/team' },

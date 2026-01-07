@@ -12,6 +12,7 @@ export type ProductCard = {
   category?: string
   href: string
   price: number
+  priceDisplay?: string
   originalPrice?: number
   highlights: string[]
   testimonial?: {
@@ -42,6 +43,7 @@ export function getProductCards(): ProductCard[] {
       category: product.category,
       href: `/products/${product.slug}`,
       price: product.offer.primaryPrice,
+      priceDisplay: product.offer.primaryPriceDisplay,
       originalPrice: product.offer.originalPrice,
       highlights: product.transformation.slice(0, 3),
       testimonial: firstQuote
