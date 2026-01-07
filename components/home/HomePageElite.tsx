@@ -138,15 +138,15 @@ function ScrollProgress() {
 const heroWords = ['Design', 'Create', 'Architect', 'Explore', 'Imagine']
 const heroConcepts = [
   'intelligent systems',
-  'music',
-  'artificial intelligence',
-  'AGI',
-  'Personal Development',
+  'music empire',
+  'AI vision',
   'Soulbook',
   'Vibe OS',
   'GenCreator OS',
-  'Arcanea',
-  'Starlight Intelligence',
+  'Arcanea universe',
+  'Starlight system',
+  'creative future',
+  'golden age',
 ]
 
 function RotatingWord() {
@@ -274,11 +274,11 @@ function Hero() {
 
             {/* Main headline - authority + vision */}
             <h1 className="mb-8">
-              <span className="block text-[clamp(3rem,7vw,6rem)] font-bold leading-[1.25] tracking-tight pb-2">
-                <RotatingWord />
+              <span className="block text-[clamp(2.5rem,6vw,5rem)] font-bold leading-[1.25] tracking-tight pb-1">
+                <RotatingWord /> <span className="text-white">your</span>
               </span>
               <span className="block text-[clamp(2rem,5vw,4rem)] font-bold leading-[1.25] tracking-tight text-white pb-4">
-                <RotatingConcept />.
+                <RotatingConcept />
               </span>
               <motion.span
                 className="block text-[clamp(1.25rem,3vw,1.75rem)] text-white/60 mt-6 leading-relaxed max-w-2xl"
@@ -446,6 +446,91 @@ function FeaturedMusicCard() {
         </div>
       </motion.div>
     </div>
+  )
+}
+
+// ============================================================================
+// TOOLCHAIN MARQUEE
+// ============================================================================
+
+const toolchain = [
+  { name: 'OpenAI' },
+  { name: 'Anthropic' },
+  { name: 'Google AI' },
+  { name: 'Microsoft' },
+  { name: 'Meta AI' },
+  { name: 'Hugging Face' },
+  { name: 'LangChain' },
+  { name: 'Pinecone' },
+  { name: 'Vercel' },
+  { name: 'Suno' },
+  { name: 'Runway' },
+  { name: 'Midjourney' },
+  { name: 'Stability' },
+  { name: 'ElevenLabs' },
+]
+
+function ToolchainMarquee() {
+  const shouldReduceMotion = useReducedMotion()
+
+  return (
+    <section className="py-10 border-t border-white/5">
+      <div className="max-w-6xl mx-auto px-6">
+        <div className="flex items-center justify-between gap-6 mb-6">
+          <div>
+            <p className="text-xs uppercase tracking-[0.3em] text-emerald-400/70 mb-2">
+              Toolchain
+            </p>
+            <h2 className="text-lg md:text-2xl font-semibold text-white/80">
+              Built with the leading AI platforms
+            </h2>
+          </div>
+          <span className="hidden md:inline-flex text-xs text-white/40">
+            Live stack · rotating feed
+          </span>
+        </div>
+
+        <div
+          className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] px-6 py-4"
+          style={{
+            maskImage:
+              'linear-gradient(90deg, transparent 0%, black 12%, black 88%, transparent 100%)',
+          }}
+        >
+          {shouldReduceMotion ? (
+            <div className="flex flex-wrap gap-3">
+              {toolchain.map((item) => (
+                <span
+                  key={item.name}
+                  className="rounded-full border border-white/10 px-3 py-1 text-xs font-medium text-white/70"
+                >
+                  {item.name}
+                </span>
+              ))}
+            </div>
+          ) : (
+            <div className="flex w-[200%] items-center gap-4 animate-marquee">
+              {[0, 1].map((group) => (
+                <div
+                  key={group}
+                  className="flex w-1/2 items-center gap-4"
+                  aria-hidden={group === 1}
+                >
+                  {toolchain.map((item, index) => (
+                    <span
+                      key={`${group}-${item.name}-${index}`}
+                      className="shrink-0 rounded-full border border-white/10 px-3 py-1 text-xs font-medium text-white/70 transition-colors hover:border-emerald-400/40 hover:text-white"
+                    >
+                      {item.name}
+                    </span>
+                  ))}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+    </section>
   )
 }
 
@@ -931,6 +1016,7 @@ export default function HomePageElite() {
 
       <div className="relative z-10">
         <Hero />
+        <ToolchainMarquee />
         <StatsSection />
         <WhatIDo />
         <QuickStartSection />
