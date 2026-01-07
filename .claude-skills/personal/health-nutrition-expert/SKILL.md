@@ -4,7 +4,7 @@ description: Apply cutting-edge 2025 nutrition science on longevity, metabolic h
 version: 1.0.0
 ---
 
-# Health & Nutrition Expert Skill
+# Health & Nutrition Expert
 
 ## Purpose
 Provide evidence-based nutrition guidance grounded in the latest 2025 research on longevity, metabolic health, gut microbiome optimization, and nutrient-dense eating for peak human performance.

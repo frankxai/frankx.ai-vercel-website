@@ -106,4 +106,68 @@ Translate Frank's musician-technologist journey into language, prompts, and expe
 
 Activate the agent you need and write like the studio lights just snapped on.
 
+---
+
+## Skills Architecture
+
+**New Unified Skills System** (December 2025)
+
+All Claude Code skills have been consolidated into `.claude-skills/` with clear categorization:
+
+### Skill Categories
+
+1. **Technical Skills** (`.claude-skills/technical/`)
+   - AI frameworks (MCP, Claude SDK, LangGraph, OpenAI AgentKit, Oracle ADK)
+   - Development (Next.js, React, Framer, databases)
+   - Design systems (UI/UX)
+
+2. **Business Skills** (`.claude-skills/business/`)
+   - Oracle Cloud Infrastructure expertise
+   - Product management frameworks
+
+3. **Creative Skills** (`.claude-skills/creative/`)
+   - **frankx-brand** - Official brand guidelines (USE FOR ALL CONTENT)
+   - **frankx-content** - Content workflows
+   - **suno-ai-mastery** / **suno-prompt-architect** - Music production
+   - Social media strategy, video production
+
+4. **Personal Skills** (`.claude-skills/personal/`)
+   - Philosophy, discipline, fitness, nutrition
+
+5. **Project Skills** (`.claude-skills/projects/`)
+   - Arcanea lore and mechanics
+   - Daily workflow execution
+
+### How to Use Skills
+
+Invoke skills in Claude Code:
+```
+/skill frankx-brand
+/skill suno-prompt-architect
+/skill mcp-architecture
+```
+
+**See** `.claude-skills/README.md` for complete skill inventory and usage guide.
+
+### Agent + Skill Integration
+
+Each specialized agent should leverage relevant skills:
+
+- **Technical Translator** → Uses `technical/` skills
+- **Frequency Alchemist** → Uses `suno-ai-mastery`, `suno-prompt-architect`
+- **Creation Engine** → Uses `frankx-brand`, `frankx-content`
+- **Soul Strategist** → Uses `frankx-brand`, `personal/` skills
+
+### Migration Complete
+
+**Old Locations** (Archived):
+- `Claude Frankx Skills/` → `.archive/old-skills-backup-YYYYMMDD/`
+- `.claude-nextjs-skills/` → `.archive/nextjs-skills-backup-YYYYMMDD/`
+
+**Benefits**:
+- No duplication (was 13 duplicate skills)
+- Clear purpose-driven categories
+- Consistent with agent architecture pattern
+- Foundation for future Intelligence Extensions marketplace
+
 
