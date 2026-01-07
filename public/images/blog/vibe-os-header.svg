@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-label="Vibe OS - Music and consciousness merging">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0f172a"/>
+      <stop offset="0.5" stop-color="#1e1b4b"/>
+      <stop offset="1" stop-color="#0f172a"/>
+    </linearGradient>
+    <radialGradient id="centerGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#8b5cf6" stop-opacity="0.6"/>
+      <stop offset="0.4" stop-color="#0ea5e9" stop-opacity="0.3"/>
+      <stop offset="1" stop-color="#0f172a" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="wave1" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#0ea5e9" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#38bdf8" stop-opacity="0.8"/>
+      <stop offset="1" stop-color="#0ea5e9" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="wave2" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#8b5cf6" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#a855f7" stop-opacity="0.7"/>
+      <stop offset="1" stop-color="#8b5cf6" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="blur" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="40"/>
+    </filter>
+  </defs>
+  <!-- Background -->
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect width="1600" height="900" fill="url(#centerGlow)"/>
+
+  <!-- Sound wave layers -->
+  <g opacity="0.8">
+    <!-- Wave 1 -->
+    <path d="M0 450 Q200 350, 400 450 Q600 550, 800 450 Q1000 350, 1200 450 Q1400 550, 1600 450" fill="none" stroke="url(#wave1)" stroke-width="4"/>
+    <!-- Wave 2 -->
+    <path d="M0 400 Q200 320, 400 400 Q600 480, 800 400 Q1000 320, 1200 400 Q1400 480, 1600 400" fill="none" stroke="url(#wave2)" stroke-width="3"/>
+    <!-- Wave 3 -->
+    <path d="M0 500 Q200 420, 400 500 Q600 580, 800 500 Q1000 420, 1200 500 Q1400 580, 1600 500" fill="none" stroke="url(#wave2)" stroke-width="3"/>
+    <!-- Wave 4 -->
+    <path d="M0 350 Q200 290, 400 350 Q600 410, 800 350 Q1000 290, 1200 350 Q1400 410, 1600 350" fill="none" stroke="url(#wave1)" stroke-width="2" opacity="0.6"/>
+    <!-- Wave 5 -->
+    <path d="M0 550 Q200 490, 400 550 Q600 610, 800 550 Q1000 490, 1200 550 Q1400 610, 1600 550" fill="none" stroke="url(#wave1)" stroke-width="2" opacity="0.6"/>
+  </g>
+
+  <!-- Central consciousness symbol -->
+  <g filter="url(#blur)" opacity="0.5">
+    <circle cx="800" cy="450" r="150" fill="#8b5cf6"/>
+    <circle cx="800" cy="450" r="100" fill="#0ea5e9"/>
+  </g>
+
+  <!-- Sacred geometry ring -->
+  <g stroke="#38bdf8" stroke-width="1.5" fill="none" opacity="0.5">
+    <circle cx="800" cy="450" r="120"/>
+    <circle cx="800" cy="450" r="160"/>
+    <circle cx="800" cy="450" r="200"/>
+  </g>
+
+  <!-- Frequency bars -->
+  <g fill="#0ea5e9" opacity="0.7">
+    <rect x="200" y="380" width="8" height="140" rx="4"/>
+    <rect x="230" y="350" width="8" height="200" rx="4"/>
+    <rect x="260" y="400" width="8" height="100" rx="4"/>
+    <rect x="290" y="370" width="8" height="160" rx="4"/>
+    <rect x="320" y="390" width="8" height="120" rx="4"/>
+  </g>
+  <g fill="#8b5cf6" opacity="0.7">
+    <rect x="1280" y="390" width="8" height="120" rx="4"/>
+    <rect x="1310" y="370" width="8" height="160" rx="4"/>
+    <rect x="1340" y="400" width="8" height="100" rx="4"/>
+    <rect x="1370" y="350" width="8" height="200" rx="4"/>
+    <rect x="1400" y="380" width="8" height="140" rx="4"/>
+  </g>
+
+  <!-- Music notes floating -->
+  <g fill="#e2e8f0" opacity="0.4">
+    <text x="450" y="300" font-size="36" font-family="serif">&#9835;</text>
+    <text x="1150" y="320" font-size="28" font-family="serif">&#9833;</text>
+    <text x="550" y="620" font-size="32" font-family="serif">&#9834;</text>
+    <text x="1050" y="600" font-size="24" font-family="serif">&#9835;</text>
+  </g>
+</svg>
