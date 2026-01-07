@@ -41,6 +41,13 @@ Thumbs.db
 .idea/
 *.swp
 *.swo
+.cursor/
+.windsurf/
+.kiro/
+.roo/
+.codex/
+.gemini/
+.agent/
 
 # Misc
 .cache/

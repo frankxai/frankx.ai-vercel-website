@@ -21,6 +21,7 @@
     "@mdx-js/react": "^3.1.0",
     "@next/mdx": "^15.5.0",
     "@notionhq/client": "^5.1.0",
+    "@radix-ui/react-slot": "^1.2.4",
     "@react-email/render": "^2.0.0",
     "@types/mdx": "^2.0.13",
     "@types/react-syntax-highlighter": "^15.5.13",

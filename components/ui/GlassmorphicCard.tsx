@@ -5,10 +5,10 @@ import { ReactNode } from 'react'
 
 import { cn } from '@/lib/utils'
 
-interface GlassmorphicCardProps {
+interface GlassmorphicCardProps extends React.HTMLAttributes<HTMLDivElement> {
   children: ReactNode
   className?: string
-  variant?: 'default' | 'premium' | 'luxury'
+  variant?: 'default' | 'premium' | 'luxury' | 'subtle'
   gradient?: 'aurora' | 'midnight' | 'purple' | 'custom'
   hover?: boolean
   border?: 'subtle' | 'accent' | 'glow'
@@ -17,7 +17,8 @@ interface GlassmorphicCardProps {
 const variantStyles = {
   default: 'bg-slate-900/20 backdrop-blur-md',
   premium: 'bg-slate-900/30 backdrop-blur-xl',
-  luxury: 'bg-slate-900/40 backdrop-blur-2xl'
+  luxury: 'bg-slate-900/40 backdrop-blur-2xl',
+  subtle: 'bg-slate-900/10 backdrop-blur-sm'
 }
 
 const gradientStyles = {
@@ -41,7 +42,9 @@ export default function GlassmorphicCard({
   variant = 'default',
   gradient = 'aurora',
   hover = false,
-  border = 'subtle'
+  border = 'subtle',
+  onClick,
+  ...rest
 }: GlassmorphicCardProps) {
   return (
     <motion.div
@@ -51,8 +54,10 @@ export default function GlassmorphicCard({
         borderStyles[border],
         className
       )}
+      onClick={onClick}
       whileHover={hover ? { y: -4 } : undefined}
       transition={{ duration: 0.3, ease: 'easeOut' }}
+      {...rest}
     >
       <div className={cn('pointer-events-none absolute inset-0', gradientStyles[gradient])} aria-hidden />
       <div className="pointer-events-none absolute inset-0 opacity-30" style={{ backgroundImage: `url(${noiseTexture})` }} aria-hidden />

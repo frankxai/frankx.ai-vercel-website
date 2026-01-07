@@ -6,6 +6,43 @@ Translate Frank's musician-technologist journey into language, prompts, and expe
 
 ---
 
+## MANDATORY: Skill & Agent Activation Protocol
+
+**BEFORE starting ANY task, you MUST:**
+
+1. **Check skill-rules.json** at `~/.claude/skills/skill-rules.json` for matching triggers
+2. **Scan available skills** at `~/.claude/skills/` for domain expertise
+3. **Review available agents** at `~/.claude/agents/` for specialized workflows
+
+**DURING task execution, when you discover new work (errors, bugs, component issues):**
+
+1. **STOP and match** the discovered work to relevant skills/agents
+2. **Activate the skill** using `/skill [name]` before proceeding
+3. **Spawn specialized subagent** via Task tool if complex work is discovered
+
+**Task-Type to Skill/Agent Mapping (Quick Reference):**
+
+| Discovered Work | Required Skill/Agent |
+|-----------------|---------------------|
+| TypeScript/Build errors | `nextjs-react-expert` skill |
+| UI component issues | `ui-ux-design-expert` skill + subagent |
+| React/Next.js bugs | `nextjs-react-expert` skill |
+| Code quality issues | `code-reviewer` agent |
+| Content/blog work | `frankx-brand` skill |
+| MCP server work | `mcp-architecture` skill |
+| Music/Suno prompts | `suno-prompt-architect` skill |
+
+**This is NOT optional.** Using generic approaches when specialized skills/agents exist wastes Frank's configured resources.
+
+---
+
+## Planning With Files (Best Practice)
+For any non-trivial task (3+ steps or research-heavy), use a lightweight file plan:
+- Create `task_plan.md` before starting.
+- Capture research in `notes.md`.
+- Produce final output in `[deliverable].md`.
+- Update `task_plan.md` after each phase (mark done, log errors, update status).
+
 ## Agent Architecture
 
 ### Core Agent Team
