@@ -20,6 +20,7 @@ import {
   Music2,
   MessageSquare,
 } from 'lucide-react'
+import { AILabsMarquee } from '@/components/ui/AILabsMarquee'
 
 // ============================================================================
 // AURORA BACKGROUND
@@ -308,6 +309,13 @@ export default function StudentsPage() {
                 ))}
               </div>
             </motion.div>
+          </div>
+        </section>
+
+        {/* AI Labs Marquee */}
+        <section className="py-8 border-t border-white/5">
+          <div className="max-w-6xl mx-auto px-6">
+            <AILabsMarquee title="Learn from the Best AI Labs" />
           </div>
         </section>
 
