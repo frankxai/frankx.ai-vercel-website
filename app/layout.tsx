@@ -40,6 +40,11 @@ export const metadata: Metadata = {
   description: siteConfig.description,
   keywords: siteConfig.keywords,
   authors: [{ name: 'Frank' }],
+  icons: {
+    icon: '/favicon.svg',
+    shortcut: '/favicon.svg',
+    apple: '/favicon.svg',
+  },
   alternates: {
     canonical: siteConfig.url,
     types: {
@@ -70,7 +75,17 @@ export const metadata: Metadata = {
     images: [siteConfig.ogImage],
   },
   category: 'Technology',
-  robots: robotsConfig,
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 }
 
 export const viewport: Viewport = {
@@ -87,6 +102,8 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         <meta charSet="utf-8" />
+        <link rel="alternate" hrefLang="en" href="https://frankx.ai" />
+        <link rel="alternate" hrefLang="x-default" href="https://frankx.ai" />
       </head>
       <body
         className={cn(
@@ -111,7 +128,9 @@ export default function RootLayout({
           Skip to content
         </a>
         <NavigationMega />
-        {children}
+        <div id="main" className="min-h-screen">
+          {children}
+        </div>
         <Footer />
       </body>
     </html>
