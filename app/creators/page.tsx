@@ -6,7 +6,7 @@ import {
   ArrowRight,
   Music,
   PenLine,
-  Image,
+  Image as ImageIcon,
   Sparkles,
   Palette,
   CheckCircle2,
@@ -92,7 +92,7 @@ const creativePaths = [
     color: 'violet',
   },
   {
-    icon: Image,
+    icon: ImageIcon,
     title: 'Visual Creation',
     description: 'Generate stunning images for any creative project. Master Midjourney, DALL-E, and Stable Diffusion.',
     topics: ['Prompt engineering', 'Style control', 'Composition', 'Commercial use'],
@@ -410,7 +410,7 @@ export default function CreatorsPage() {
                     </div>
                     <div className="flex items-center gap-4">
                       <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-cyan-500/20">
-                        <Image className="h-6 w-6 text-cyan-400" />
+                        <ImageIcon className="h-6 w-6 text-cyan-400" />
                       </div>
                       <div>
                         <p className="font-semibold text-white">Visual Templates</p>
@@ -595,7 +595,7 @@ export default function CreatorsPage() {
                   href="/prompt-library/image-generation"
                   className="group flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 font-medium text-white transition-all hover:bg-white/10"
                 >
-                  <Image className="h-5 w-5" />
+                  <ImageIcon className="h-5 w-5" />
                   Image Prompts
                 </Link>
               </div>
