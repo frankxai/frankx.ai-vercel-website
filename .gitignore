@@ -46,3 +46,12 @@ Thumbs.db
 .cache/
 /public/reading/
 /reading-site/
+
+# Local agent scratch files
+notes.md
+task_plan.md
+content/**/CLAUDE.md
+components/**/CLAUDE.md
+data/**/CLAUDE.md
+lib/**/CLAUDE.md
+FrankX.AI - Vercel Website/
