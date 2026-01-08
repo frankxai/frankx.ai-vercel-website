@@ -1,4 +1,3 @@
-import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ArrowLeft, ArrowRight, Calendar, Clock, Linkedin, Share2, Tag, Twitter } from 'lucide-react'
@@ -9,6 +8,7 @@ import { getAllBlogPosts, getBlogPost } from '@/lib/blog'
 import { createMetadata, siteConfig } from '@/lib/seo'
 import JsonLd from '@/components/seo/JsonLd'
 import Breadcrumbs from '@/components/seo/Breadcrumbs'
+import HeroImage from '@/components/ui/HeroImage'
 
 // Static generation - content is read at build time
 export const dynamicParams = false
@@ -35,7 +35,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     description: post.description,
     path: `/blog/${post.slug}`,
     type: 'article',
-    image: post.image || `/api/og?title=${encodeURIComponent(post.title)}`,
+    image:
+      post.image ||
+      `/api/og?title=${encodeURIComponent(post.title)}&subtitle=${encodeURIComponent(post.description)}`,
     publishedTime: post.date,
     authors: [post.author],
     keywords: post.keywords || undefined,
@@ -175,18 +177,13 @@ export default async function BlogPostPage({
                 </div>
               </div>
 
-              {post.image && (
-                <div className="overflow-hidden rounded-3xl border border-white/10">
-                  <Image
-                    src={post.image}
-                    alt={post.title}
-                    width={1280}
-                    height={720}
-                    className="h-auto w-full"
-                    priority
-                  />
-                </div>
-              )}
+              <HeroImage
+                src={post.image}
+                title={post.title}
+                subtitle={post.description}
+                alt={post.title}
+                priority
+              />
 
               {post.readingGoal && (
                 <div className="rounded-3xl border border-white/10 bg-gradient-to-r from-primary-500/20 via-slate-900 to-slate-950 p-6 text-sm text-white/80">

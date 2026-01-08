@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import {
   User,
   Briefcase,
@@ -19,6 +19,8 @@ import {
 
 // Premium background
 function AboutBackground() {
+  const shouldReduceMotion = useReducedMotion()
+
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden">
       <div className="absolute inset-0 bg-[#030712]" />
@@ -29,33 +31,45 @@ function AboutBackground() {
         style={{
           background: 'radial-gradient(circle, rgba(16,185,129,0.35) 0%, transparent 70%)',
         }}
-        animate={{
-          scale: [1, 1.1, 1],
-          opacity: [0.25, 0.35, 0.25],
-        }}
-        transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
+        animate={
+          shouldReduceMotion
+            ? undefined
+            : {
+                scale: [1, 1.1, 1],
+                opacity: [0.25, 0.35, 0.25],
+              }
+        }
+        transition={shouldReduceMotion ? undefined : { duration: 10, repeat: Infinity, ease: 'easeInOut' }}
       />
       <motion.div
         className="absolute -right-40 top-1/3 h-[500px] w-[500px] rounded-full opacity-20"
         style={{
           background: 'radial-gradient(circle, rgba(6,182,212,0.3) 0%, transparent 70%)',
         }}
-        animate={{
-          scale: [1.1, 1, 1.1],
-          opacity: [0.2, 0.3, 0.2],
-        }}
-        transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
+        animate={
+          shouldReduceMotion
+            ? undefined
+            : {
+                scale: [1.1, 1, 1.1],
+                opacity: [0.2, 0.3, 0.2],
+              }
+        }
+        transition={shouldReduceMotion ? undefined : { duration: 12, repeat: Infinity, ease: 'easeInOut' }}
       />
       <motion.div
         className="absolute bottom-40 left-1/4 h-[400px] w-[400px] rounded-full opacity-15"
         style={{
           background: 'radial-gradient(circle, rgba(139,92,246,0.3) 0%, transparent 70%)',
         }}
-        animate={{
-          scale: [1, 1.15, 1],
-          opacity: [0.15, 0.25, 0.15],
-        }}
-        transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut' }}
+        animate={
+          shouldReduceMotion
+            ? undefined
+            : {
+                scale: [1, 1.15, 1],
+                opacity: [0.15, 0.25, 0.15],
+              }
+        }
+        transition={shouldReduceMotion ? undefined : { duration: 14, repeat: Infinity, ease: 'easeInOut' }}
       />
 
       {/* Subtle grid */}
@@ -227,18 +241,15 @@ export default function AboutPage() {
                 transition={{ duration: 0.6, delay: 0.3 }}
                 className="relative"
               >
-                <div className="relative aspect-square overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-emerald-500/10 via-cyan-500/10 to-violet-500/10">
-                  {/* Placeholder for profile image */}
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-center">
-                      <div className="mx-auto mb-4 flex h-24 w-24 items-center justify-center rounded-full bg-white/5">
-                        <User className="h-12 w-12 text-slate-400" />
-                      </div>
-                      <p className="text-sm text-slate-500">Frank</p>
-                      <p className="text-xs text-slate-600">AI Architect & Creator</p>
-                    </div>
-                  </div>
-                  {/* Decorative gradient overlay */}
+                <div className="relative aspect-square overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-emerald-500/10 via-cyan-500/10 to-amber-500/10">
+                  <Image
+                    src="/images/portraits/frank-aurora-portrait.svg"
+                    alt="Frank — AI Architect and Creator"
+                    fill
+                    sizes="(max-width: 768px) 100vw, 420px"
+                    className="object-cover"
+                    priority
+                  />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#030712] via-transparent to-transparent" />
                 </div>
               </motion.div>

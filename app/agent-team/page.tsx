@@ -37,6 +37,49 @@ const offerPillars = [
   },
 ]
 
+const operatingSystem = [
+  {
+    title: 'Core Directives',
+    description: 'The non-negotiables that keep every engagement cinematic, useful, and aligned.',
+    items: [
+      'Create momentum with launch-ready assets.',
+      'Design originality over templates.',
+      'Engineer systems and handoff notes.',
+      'Listen, iterate, and document learning.',
+    ],
+  },
+  {
+    title: 'Design Language',
+    description: 'How the experience feels on every page and in every drop.',
+    items: [
+      'Dark, glassmorphic surfaces with aurora gradients.',
+      'Motion that feels alive, never distracting.',
+      'Iconic typography and premium contrast.',
+      'Accessibility as a creative constraint.',
+    ],
+  },
+  {
+    title: 'Daily Operating Loop',
+    description: 'The repeatable cadence that keeps the collective shipping.',
+    items: [
+      'Align with the roadmap and daily drop.',
+      'Build in 90-minute focus loops.',
+      'Validate with QA and tests.',
+      'Publish, queue, and log insights.',
+    ],
+  },
+  {
+    title: 'Deployment Ritual',
+    description: 'Quality and governance checks before anything ships.',
+    items: [
+      'Pull latest, resolve conflicts, verify context.',
+      'Run lint/build checks before release.',
+      'Commit with clarity and deploy fast.',
+      'Document learnings for the next agent.',
+    ],
+  },
+]
+
 const milestoneStatusStyles: Record<'shipping' | 'in-progress' | 'incubating', string> = {
   shipping: 'border-emerald-400/50 bg-emerald-500/10 text-emerald-200',
   'in-progress': 'border-amber-400/50 bg-amber-500/10 text-amber-200',
@@ -235,6 +278,49 @@ export default function AgentTeamPage() {
                   ))}
                 </div>
               </div>
+            </div>
+          </section>
+
+          <section className="space-y-8">
+            <div className="max-w-3xl space-y-4">
+              <h2 className="text-3xl font-semibold text-white">Agent operating system</h2>
+              <p className="text-sm text-white/70 leading-relaxed">
+                The FrankX collective is guided by a shared operating system that turns strategy into shipping
+                rituals. This keeps every agent aligned with the narrative director, design director, and the
+                outcomes your audience feels.
+              </p>
+            </div>
+            <div className="grid gap-6 md:grid-cols-2">
+              {operatingSystem.map((section) => (
+                <div key={section.title} className="rounded-4xl border border-white/10 bg-white/5 p-7 backdrop-blur">
+                  <h3 className="text-lg font-semibold text-white">{section.title}</h3>
+                  <p className="mt-2 text-sm text-white/70 leading-relaxed">{section.description}</p>
+                  <ul className="mt-4 space-y-2 text-sm text-white/70">
+                    {section.items.map((item) => (
+                      <li key={item} className="flex items-start gap-2">
+                        <Check className="mt-0.5 h-4 w-4 text-primary-300" aria-hidden />
+                        <span className="leading-relaxed">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+            <div className="flex flex-wrap items-center gap-4">
+              <Link
+                href="/guides/agent-collective-operating-system"
+                className="inline-flex items-center gap-2 rounded-xl bg-white px-5 py-2.5 text-sm font-semibold text-slate-900 shadow-lg shadow-primary-900/20 transition hover:bg-slate-100"
+              >
+                Read the full agent OS guide
+                <ArrowRight className="h-4 w-4" aria-hidden />
+              </Link>
+              <Link
+                href="/guides/skills-library-playbook"
+                className="inline-flex items-center gap-2 rounded-xl border border-white/30 px-5 py-2.5 text-sm font-semibold text-white/80 transition hover:bg-white/10"
+              >
+                Explore the skills library
+                <ArrowUpRight className="h-4 w-4" aria-hidden />
+              </Link>
             </div>
           </section>
 

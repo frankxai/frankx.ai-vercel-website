@@ -267,26 +267,26 @@ export default function AgentsPage() {
           <div className="mx-auto max-w-4xl rounded-3xl border border-white/10 bg-gradient-to-br from-primary-500/10 via-slate-900 to-slate-950 p-8 text-center">
             <h3 className="text-2xl font-semibold text-white">Experience the Agent Collective</h3>
             <p className="mt-4 text-white/70">
-              Ready to transform your relationship with AI? Connect with the FrankX agents through
-              our consciousness-aligned systems and experience the future of human-AI collaboration.
+              Ready to transform your relationship with AI? Start with the operating system and skills
+              playbook, then engage the collective for custom deployments.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
               <Link
-                href="/resources/templates"
+                href="/guides/agent-collective-operating-system"
                 className="inline-flex items-center gap-2 rounded-xl bg-primary-500 px-6 py-3 text-sm font-semibold text-white transition hover:bg-primary-400"
               >
                 <Sparkles className="h-4 w-4" />
-                Download Agent Protocols
+                Read Agent OS Guide
               </Link>
               <Link
-                href="/blog"
-                className="inline-flex items-center gap-2 rounded-xl bg-white/10 border border-white/20 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/20"
+                href="/guides/skills-library-playbook"
+                className="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/10 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/20"
               >
-                Read Intelligence Briefings
+                Explore Skills Library
               </Link>
               <Link
                 href="mailto:hello@frankx.ai?subject=Agent Collaboration Inquiry"
-                className="inline-flex items-center gap-2 rounded-xl bg-white/10 border border-white/20 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/20"
+                className="inline-flex items-center gap-2 rounded-xl border border-white/20 bg-white/10 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/20"
               >
                 Custom Agent Configuration
               </Link>

@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import { BookOpen, Clock, ArrowRight, Compass } from 'lucide-react'
 
 // ============================================================================
@@ -25,6 +25,8 @@ interface GuidesPageClientProps {
 // ============================================================================
 
 function AuroraBackground() {
+  const shouldReduceMotion = useReducedMotion()
+
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none">
       <div className="absolute inset-0 bg-[#030712]" />
@@ -34,8 +36,12 @@ function AuroraBackground() {
           background: 'radial-gradient(ellipse at center, rgba(16, 185, 129, 0.06) 0%, transparent 70%)',
           filter: 'blur(100px)',
         }}
-        animate={{ x: [0, 100, 0], y: [0, 50, 0], scale: [1, 1.1, 1] }}
-        transition={{ duration: 30, repeat: Infinity, ease: 'easeInOut' }}
+        animate={
+          shouldReduceMotion
+            ? undefined
+            : { x: [0, 100, 0], y: [0, 50, 0], scale: [1, 1.1, 1] }
+        }
+        transition={shouldReduceMotion ? undefined : { duration: 30, repeat: Infinity, ease: 'easeInOut' }}
       />
       <motion.div
         className="absolute -bottom-[30%] -right-[10%] w-[60%] h-[60%]"
@@ -43,8 +49,12 @@ function AuroraBackground() {
           background: 'radial-gradient(ellipse at center, rgba(6, 182, 212, 0.05) 0%, transparent 70%)',
           filter: 'blur(100px)',
         }}
-        animate={{ x: [0, -80, 0], y: [0, -30, 0], scale: [1, 1.15, 1] }}
-        transition={{ duration: 25, repeat: Infinity, ease: 'easeInOut' }}
+        animate={
+          shouldReduceMotion
+            ? undefined
+            : { x: [0, -80, 0], y: [0, -30, 0], scale: [1, 1.15, 1] }
+        }
+        transition={shouldReduceMotion ? undefined : { duration: 25, repeat: Infinity, ease: 'easeInOut' }}
       />
       <div
         className="absolute inset-0 opacity-[0.015]"

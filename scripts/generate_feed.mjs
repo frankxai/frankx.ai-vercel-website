@@ -24,6 +24,18 @@ function readMdxDir(dir) {
     .sort((a, b) => b.date - a.date)
 }
 
+function dedupeByCanonicalSlug(items) {
+  const map = new Map()
+  items.forEach((item) => {
+    const canonical = item.slug.replace(/^\d+-/, '')
+    const existing = map.get(canonical)
+    if (!existing || item.slug === canonical) {
+      map.set(canonical, item)
+    }
+  })
+  return Array.from(map.values())
+}
+
 function escapeXml(s) {
   return s.replace(/[&<>]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[c]))
 }
@@ -36,8 +48,8 @@ function buildRss({ site, items }) {
 }
 
 const site = process.env.NEXT_PUBLIC_SITE_URL || 'https://frankx.ai'
-const blogItems = readMdxDir(BLOG_DIR).map((x) => ({ ...x, path: `blog/${x.slug}` }))
-const guideItems = readMdxDir(GUIDES_DIR).map((x) => ({ ...x, path: `guides/${x.slug}` }))
+const blogItems = dedupeByCanonicalSlug(readMdxDir(BLOG_DIR)).map((x) => ({ ...x, path: `blog/${x.slug}` }))
+const guideItems = dedupeByCanonicalSlug(readMdxDir(GUIDES_DIR)).map((x) => ({ ...x, path: `guides/${x.slug}` }))
 const items = [...blogItems, ...guideItems].slice(0, 50)
 
 fs.mkdirSync(PUBLIC_DIR, { recursive: true })

@@ -3,7 +3,7 @@
 import type { ComponentType } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import {
   ArrowRight,
   BookOpen,
@@ -19,6 +19,8 @@ import {
 } from 'lucide-react'
 
 function ResourcesBackground() {
+  const shouldReduceMotion = useReducedMotion()
+
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden">
       <div className="absolute inset-0 bg-[#030712]" />
@@ -28,33 +30,45 @@ function ResourcesBackground() {
         style={{
           background: 'radial-gradient(circle, rgba(16,185,129,0.35) 0%, transparent 70%)',
         }}
-        animate={{
-          scale: [1, 1.1, 1],
-          opacity: [0.25, 0.35, 0.25],
-        }}
-        transition={{ duration: 11, repeat: Infinity, ease: 'easeInOut' }}
+        animate={
+          shouldReduceMotion
+            ? undefined
+            : {
+                scale: [1, 1.1, 1],
+                opacity: [0.25, 0.35, 0.25],
+              }
+        }
+        transition={shouldReduceMotion ? undefined : { duration: 11, repeat: Infinity, ease: 'easeInOut' }}
       />
       <motion.div
         className="absolute -left-64 top-24 h-[560px] w-[560px] rounded-full opacity-20"
         style={{
           background: 'radial-gradient(circle, rgba(59,130,246,0.3) 0%, transparent 70%)',
         }}
-        animate={{
-          scale: [1.1, 1, 1.1],
-          opacity: [0.2, 0.3, 0.2],
-        }}
-        transition={{ duration: 13, repeat: Infinity, ease: 'easeInOut' }}
+        animate={
+          shouldReduceMotion
+            ? undefined
+            : {
+                scale: [1.1, 1, 1.1],
+                opacity: [0.2, 0.3, 0.2],
+              }
+        }
+        transition={shouldReduceMotion ? undefined : { duration: 13, repeat: Infinity, ease: 'easeInOut' }}
       />
       <motion.div
         className="absolute bottom-0 right-1/4 h-[420px] w-[420px] rounded-full opacity-15"
         style={{
           background: 'radial-gradient(circle, rgba(236,72,153,0.3) 0%, transparent 70%)',
         }}
-        animate={{
-          scale: [1, 1.15, 1],
-          opacity: [0.15, 0.25, 0.15],
-        }}
-        transition={{ duration: 15, repeat: Infinity, ease: 'easeInOut' }}
+        animate={
+          shouldReduceMotion
+            ? undefined
+            : {
+                scale: [1, 1.15, 1],
+                opacity: [0.15, 0.25, 0.15],
+              }
+        }
+        transition={shouldReduceMotion ? undefined : { duration: 15, repeat: Infinity, ease: 'easeInOut' }}
       />
 
       <div
@@ -180,6 +194,18 @@ const arcaneaItems = [
 ]
 
 const learningItems = [
+  {
+    name: 'Agent Collective OS',
+    description: 'Operating system for orchestrating multi-agent collaboration.',
+    href: '/guides/agent-collective-operating-system',
+    icon: Bot,
+  },
+  {
+    name: 'Skills Library Playbook',
+    description: 'How to activate the FrankX skill stack with precision.',
+    href: '/guides/skills-library-playbook',
+    icon: Sparkles,
+  },
   {
     name: 'Guides',
     description: 'In-depth tutorials and frameworks.',

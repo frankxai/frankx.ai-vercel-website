@@ -1,4 +1,4 @@
-﻿/** @type {import('tailwindcss').Config} */
+/** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
@@ -80,6 +80,31 @@ module.exports = {
           50: '#eff6ff',
           500: '#3b82f6',
           700: '#1d4ed8',
+        },
+        amber: {
+          50: '#fffbeb',
+          100: '#fef3c7',
+          200: '#fde68a',
+          300: '#fcd34d',
+          400: '#fbbf24',
+          500: '#f59e0b',
+          600: '#d97706',
+          700: '#b45309',
+          800: '#92400e',
+          900: '#78350f',
+          950: '#451a03',
+        },
+        gold: {
+          100: '#fbf7ef',
+          200: '#f5ebd6',
+          300: '#ebd9b0',
+          400: '#dec083',
+          500: '#d4a855',
+          600: '#c49043',
+          700: '#a37336',
+          800: '#835c30',
+          900: '#6b4d2a',
+          950: '#3a2817',
         },
       },
       backgroundImage: {

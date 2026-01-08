@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation'
 import { getAllGuides, getGuide } from '@/lib/guides'
 import { MDXContent } from '@/components/blog/MDXContent'
 import Link from 'next/link'
+import HeroImage from '@/components/ui/HeroImage'
 
 // Static generation - content is read at build time
 export const dynamicParams = false
@@ -10,13 +11,16 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params
   const guide = getGuide(slug)
   if (!guide) return { title: 'Guide Not Found' }
+  const ogImage = guide.image
+    ? guide.image
+    : `/api/og?title=${encodeURIComponent(guide.title)}&subtitle=${encodeURIComponent(guide.description)}`
   return {
     title: guide.title,
     description: guide.description,
     openGraph: {
       title: guide.title,
       description: guide.description,
-      images: [`/api/og?title=${encodeURIComponent(guide.title)}`]
+      images: [ogImage],
     }
   }
 }
@@ -45,6 +49,13 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
             <span className="text-slate-600">•</span>
             <span>{guide.author}</span>
           </div>
+          <HeroImage
+            src={guide.image || undefined}
+            title={guide.title}
+            subtitle={guide.description}
+            alt={guide.title}
+            className="mb-10"
+          />
           <div className="space-y-6 text-base leading-relaxed text-white/75">
             <MDXContent source={guide.content} />
           </div>

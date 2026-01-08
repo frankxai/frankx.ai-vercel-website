@@ -15,9 +15,12 @@ function getBlogSlugs(): string[] {
   const blogDir = path.join(process.cwd(), 'content/blog')
   try {
     const files = fs.readdirSync(blogDir)
-    return files
-      .filter(file => file.endsWith('.mdx'))
-      .map(file => getSlugFromFilename(file))
+    const slugs = new Set(
+      files
+        .filter(file => file.endsWith('.mdx'))
+        .map(file => getSlugFromFilename(file))
+    )
+    return Array.from(slugs)
   } catch {
     return []
   }
@@ -28,9 +31,12 @@ function getGuideSlugs(): string[] {
   const guidesDir = path.join(process.cwd(), 'content/guides')
   try {
     const files = fs.readdirSync(guidesDir)
-    return files
-      .filter(file => file.endsWith('.mdx'))
-      .map(file => getSlugFromFilename(file))
+    const slugs = new Set(
+      files
+        .filter(file => file.endsWith('.mdx'))
+        .map(file => getSlugFromFilename(file))
+    )
+    return Array.from(slugs)
   } catch {
     return []
   }
