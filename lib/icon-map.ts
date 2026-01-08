@@ -1,0 +1,60 @@
+import {
+  type LucideIcon,
+  Bot,
+  Brain,
+  Wand2,
+  Palette,
+  Music,
+  Video,
+  Code,
+  TrendingUp,
+  Users,
+  Target,
+  MessageSquare,
+  Zap,
+  Sparkles,
+  Mic,
+  Image,
+  Pen,
+} from 'lucide-react'
+
+export type IconName =
+  | 'Bot'
+  | 'Brain'
+  | 'Wand2'
+  | 'Palette'
+  | 'Music'
+  | 'Video'
+  | 'Code'
+  | 'TrendingUp'
+  | 'Users'
+  | 'Target'
+  | 'MessageSquare'
+  | 'Zap'
+  | 'Sparkles'
+  | 'Mic'
+  | 'Image'
+  | 'Pen'
+
+const iconMap: Record<IconName, LucideIcon> = {
+  Bot,
+  Brain,
+  Wand2,
+  Palette,
+  Music,
+  Video,
+  Code,
+  TrendingUp,
+  Users,
+  Target,
+  MessageSquare,
+  Zap,
+  Sparkles,
+  Mic,
+  Image,
+  Pen,
+}
+
+export function getIcon(name: IconName): LucideIcon {
+  return iconMap[name]
+}

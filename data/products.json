@@ -1,51 +1,113 @@
 [
   {
+    "id": "creators-soulbook",
+    "slug": "soulbook",
+    "name": "The Creator's Soulbook",
+    "category": "Life Architecture",
+    "badge": "FREE DOWNLOAD",
+    "headline": "Write the Book Your Soul Came Here to Write",
+    "subheadline": "A complete life operating system with 7 pillars, 3 life book frameworks, and AI-powered coaching prompts. Free Obsidian vault included.",
+    "promise": "Design, track, and transform every dimension of your life with a framework built for creators, artists, and visionaries.",
+    "summary": "Your personal collection of Life Books offering different lenses for transformation. Includes complete Obsidian vault, AI prompt library, and reflection templates.",
+    "transformation": [
+      "Map all 7 life pillars (Energy, Mind, Soul, Craft, Capital, Circle, Legacy) with structured reflection exercises",
+      "Choose your transformation lens: Life Symphony (for artists), Golden Path (for seekers), or 7 Pillars (for builders)",
+      "Access 25+ AI coaching prompts designed for deep self-reflection and life architecture",
+      "Download ready-to-use Obsidian vault with templates, dashboards, and pre-configured themes"
+    ],
+    "socialProof": {
+      "stats": [
+        {
+          "number": "7",
+          "label": "Life Pillars"
+        },
+        {
+          "number": "3",
+          "label": "Life Book Frameworks"
+        },
+        {
+          "number": "25+",
+          "label": "AI Coaching Prompts"
+        }
+      ],
+      "quotes": []
+    },
+    "offer": {
+      "primaryPrice": 0,
+      "primaryPriceDisplay": "Free",
+      "currency": "USD",
+      "ctaPrimary": "Download Free Vault",
+      "ctaPrimaryHref": "/soulbook/vault",
+      "ctaPrimaryTracking": "soulbook-vault-download",
+      "ctaSecondary": "Explore the Framework",
+      "ctaSecondaryHref": "/soulbook",
+      "guarantee": {
+        "label": "Open Source Forever",
+        "description": "The Creator's Soulbook is and will always be free. Open source on GitHub for the creator community."
+      }
+    },
+    "modules": [
+      {
+        "title": "The 7 Pillars Framework",
+        "description": "Energy, Mind, Soul, Craft, Capital, Circle, and Legacy - the complete architecture for an extraordinary life."
+      },
+      {
+        "title": "Three Life Book Perspectives",
+        "description": "Life Symphony (for artists), Golden Path (for seekers), and The 7 Pillars (for builders) - same wisdom, different metaphors."
+      },
+      {
+        "title": "AI Coaching Prompt Library",
+        "description": "25+ Claude-powered prompts for deep reflection, goal-setting, and transformation tracking."
+      },
+      {
+        "title": "Obsidian Vault Templates",
+        "description": "Ready-to-use daily reflection templates, weekly reviews, and progress dashboards with Dataview integration."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Do I need Obsidian to use the Soulbook?",
+        "answer": "The vault works best with Obsidian (free app), but the frameworks and prompts work in any note-taking system or even pen and paper."
+      },
+      {
+        "question": "Which Life Book should I start with?",
+        "answer": "If you're a musician or artist, start with Life Symphony. If you're a seeker or visionary, try Golden Path. If you prefer structured systems, The 7 Pillars is for you."
+      },
+      {
+        "question": "Is there a premium version?",
+        "answer": "The complete framework is free forever. Premium options include guided programs, community support, and 1:1 coaching - coming soon."
+      }
+    ],
+    "analyticsId": "creators-soulbook"
+  },
+  {
     "id": "creative-ai-toolkit",
     "slug": "creative-ai-toolkit",
-    "name": "Creative AI Toolkit",
+    "name": "The Creative AI Toolkit",
     "category": "Creative Intelligence",
-    "badge": "AGENT TEAM VALIDATED",
-    "headline": "Your prompt library + workflow rituals for consistent output.",
-    "subheadline": "Downloadable prompts, templates, and operating rituals that turn ideas into weekly releases.",
-    "promise": "100+ prompts, workflow templates, and implementation checklists for a repeatable creative intelligence system.",
-    "summary": "A practical digital kit for building a repeatable AI-powered creative system.",
+    "badge": "CREATORS SHIPPING",
+    "headline": "Replace AI Panic with Proven Workflows",
+    "subheadline": "100+ battle-tested prompts + 12 ready-to-deploy automations that cut content creation time in half while keeping your voice intact.",
+    "promise": "Go from AI overwhelm to a trusted daily ritual. One week to measurable creative velocity.",
+    "summary": "Structured prompts, workflow templates, and daily rituals that turn AI into your creative co-pilot, not a distraction.",
     "transformation": [
-      "Replace AI overwhelm with a daily creation ritual",
-      "Deploy ready-to-use templates for briefs, research, and publishing",
-      "Build a multi-agent handoff cadence that keeps momentum",
-      "Launch your first 30-day creation sprint with clear milestones"
+      "Deploy 100+ validated prompts across storytelling, marketing, content, and operations within 48 hours",
+      "Cut content creation time by 40-50% while maintaining creative voice and quality",
+      "Run 12 plug-and-play automations (email, social, drafting) that handle the mechanical stuff",
+      "Build a repeatable daily ritual that ships consistently without burnout"
     ],
     "socialProof": {
       "stats": [
         {
           "number": "100+",
-          "label": "Prompt systems"
+          "label": "Early Adopters"
         },
         {
-          "number": "12",
-          "label": "Workflow templates"
-        },
-        {
-          "number": "30-day",
-          "label": "Rollout plan"
-        },
-        {
-          "number": "6",
-          "label": "Agent roles"
+          "number": "500+",
+          "label": "Suno Sessions Created"
         }
       ],
-      "quotes": [
-        {
-          "quote": "This finally gave me a reliable weekly creation rhythm. The prompts and rituals remove the blank-page anxiety.",
-          "author": "Creator",
-          "role": "Early access cohort"
-        },
-        {
-          "quote": "The templates made it easy to brief my AI tools and ship without overthinking every step.",
-          "author": "Founder",
-          "role": "Indie studio"
-        }
-      ]
+      "quotes": []
     },
     "offer": {
       "primaryPrice": 47,
@@ -64,19 +126,19 @@
     "modules": [
       {
         "title": "Creative Intelligence Prompts",
-        "description": "100+ prompts organized by research, ideation, writing, editing, and launch."
+        "description": "100+ prompts validated by Strategist, Creator, Engineer, and Guardian agents to cover storytelling, marketing, operations, and delivery."
       },
       {
-        "title": "Workflow Templates",
-        "description": "12 step-by-step templates for briefs, content pipelines, and publishing rituals."
+        "title": "Workflow Automations",
+        "description": "12 ready-to-deploy pipelines spanning content production, client delivery, and executive decision loops."
       },
       {
         "title": "Multi-Agent Playbooks",
-        "description": "Handoff scripts and roles to orchestrate strategy, creation, and QA."
+        "description": "Learn to orchestrate the FrankX agent collective so every brief, campaign, or product ships with confidence."
       },
       {
         "title": "Implementation Roadmaps",
-        "description": "30/60/90 day rollout plans to install the system in real life."
+        "description": "30/60/90 day milestones with telemetry, KPIs, and retros so momentum stays compounding."
       }
     ],
     "bonuses": [
@@ -86,14 +148,14 @@
         "description": "Top 20 prompts and decision frameworks in printable format for instant access."
       },
       {
-        "title": "Launch Email Sprint",
+        "title": "Email Mastery Sprint",
         "value": "$47",
-        "description": "Seven-day guided sequence to ship your next release with AI support."
+        "description": "Seven-day guided campaign to rebuild your communication rhythm with AI assistance."
       },
       {
-        "title": "Implementation Walkthrough",
-        "value": "$97",
-        "description": "A short video walkthrough showing how to set up the toolkit in under 60 minutes."
+        "title": "Agent Team Strategy Session",
+        "value": "$197",
+        "description": "45-minute collective intelligence consult to personalize your rollout."
       }
     ],
     "faq": [
@@ -110,85 +172,36 @@
         "answer": "Most members report tangible improvements within one week using the quick-start rituals and daily momentum prompts."
       }
     ],
-    "analyticsId": "creative-ai-toolkit",
-    "caseStudies": [
-      {
-        "title": "Studio Relaunch in 30 Days",
-        "metric": "6 client campaigns shipped",
-        "description": "Sarah Chen rebuilt her boutique content studio using the toolkit rituals and automated briefing loops to deliver six AI-assisted launches in one month.",
-        "quote": "The toolkit gave us a shared language with the agents. We now scope, brief, and deliver in half the time without losing creative soul.",
-        "author": "Sarah Chen",
-        "role": "Founder, Lumen Stories",
-        "ctaLabel": "See the workflow map",
-        "ctaHref": "/creation-chronicles"
-      },
-      {
-        "title": "Email List Revival",
-        "metric": "+38% open rate",
-        "description": "Marcus Rodriguez used the automation playbooks to rebuild his welcome sequence and introduce the Realm teaser without burning out.",
-        "quote": "The Day 0 to Day 7 plan kept my launch tight. The prompts even dictated exactly how to brief my human copywriter.",
-        "author": "Marcus Rodriguez",
-        "role": "Solo Entrepreneur",
-        "ctaLabel": "Download the prompt stack",
-        "ctaHref": "/resources"
-      },
-      {
-        "title": "In-House Media Team Enablement",
-        "metric": "20 hours saved per producer",
-        "description": "A hybrid media team adapted the multi-agent playbooks to their Notion HQ and now runs weekly AI-guided editorial sprints.",
-        "quote": "Our editors finally trust the AI because the guardrails are baked in. The agent desk answers feel like a creative director on call.",
-        "author": "Jamal Price",
-        "role": "Director of Content, Northstar Labs"
-      }
-    ]
+    "analyticsId": "creative-ai-toolkit"
   },
   {
     "id": "vibe-os",
     "slug": "vibe-os",
     "name": "Vibe OS: Suno Music Mastery",
     "category": "Music Intelligence",
-    "badge": "CREATIVE EDGE",
-    "headline": "Suno prompt packs + workflow rituals for release-ready music.",
-    "subheadline": "A downloadable system with 50+ prompts, emotion mapping, and production checklists for consistent output.",
-    "promise": "Install a repeatable AI music studio with prompt packs, workflow rituals, and release checklists.",
-    "summary": "A focused digital playbook for Suno-powered music creation.",
+    "badge": "LAUNCH ARTISTS",
+    "headline": "From Emotional Vision to Finished Track in One Studio Session",
+    "subheadline": "50+ genre-specific Suno prompts + emotion mapping system + release playbooks. Go from blank page to a track you're proud to ship in 90 minutes.",
+    "promise": "Release consistent, high-quality music every week. Studio-tested frameworks that turn feelings into sound.",
+    "summary": "Structured sonic rituals, production polish, and monetization playbooks that make Suno your actual creative studio.",
     "transformation": [
-      "Go from blank page to structured musical drafts in minutes",
-      "Translate emotions into sound with the Vibe OS mapping system",
-      "Polish output with production checklists and mix notes",
-      "Launch with clear release and metadata templates"
+      "Ship finished tracks in 60-90 minutes instead of weeks (tested across 500+ sessions)",
+      "Translate specific emotions into sonic cues using the Vibe OS emotion lattice system",
+      "Release 1 track per week consistently with genre templates, mixing guides, and publishing checklists",
+      "Move from experimentation to monetizable releases with licensing pathways and catalog strategies"
     ],
     "socialProof": {
       "stats": [
         {
-          "number": "50+",
-          "label": "Suno prompts"
+          "number": "500+",
+          "label": "Suno Sessions by Frank"
         },
         {
-          "number": "3",
-          "label": "Stage workflow"
-        },
-        {
-          "number": "25",
-          "label": "Mood references"
-        },
-        {
-          "number": "1",
-          "label": "Release checklist"
+          "number": "Beta",
+          "label": "Early Access Available"
         }
       ],
-      "quotes": [
-        {
-          "quote": "The workflow checklist made it easy to finish tracks instead of endlessly regenerating.",
-          "author": "Producer",
-          "role": "Vibe OS lab"
-        },
-        {
-          "quote": "Emotion mapping finally gave my prompts a consistent signature sound.",
-          "author": "Creator",
-          "role": "Music cohort"
-        }
-      ]
+      "quotes": []
     },
     "offer": {
       "primaryPrice": 37,
@@ -208,36 +221,36 @@
     "modules": [
       {
         "title": "Genre-Specific Prompt Vault",
-        "description": "50+ prompts across electronic, hip-hop, ambient, cinematic, and world styles."
+        "description": "50+ prompts spanning electronic, hip-hop, ambient, cinematic, and world styles with ready-to-use variations."
       },
       {
         "title": "Creative Workflow Templates",
-        "description": "Step-by-step pipelines for ideation, drafting, polishing, and publishing."
+        "description": "Step-by-step blueprints for ideation, drafting, polishing, and publishing across different project types."
       },
       {
         "title": "Emotion Mapping System",
-        "description": "Translate feelings into sonic cues using the Vibe OS emotion lattice."
+        "description": "Translate feelings into sonic cues using the Vibe OS emotion lattice and micro-adjustment techniques."
       },
       {
         "title": "Production Enhancement Guide",
-        "description": "Post-Suno mixing, mastering, and arrangement tactics to finish tracks."
+        "description": "Post-Suno mixing, mastering, and arrangement tactics to reach label-ready quality."
       }
     ],
     "bonuses": [
       {
         "title": "Mood Reference Library",
         "value": "$27",
-        "description": "25 emotion archetypes with prompt modifiers and instrumentation notes."
+        "description": "25 emotion archetypes with prompt modifiers, instrumentation notes, and pacing guidance."
       },
       {
         "title": "Genre Deep-Dive Clinics",
         "value": "$47",
-        "description": "Walkthroughs for electronic, hip-hop, cinematic, and downtempo creation."
+        "description": "Advanced walkthroughs for electronic, hip-hop, cinematic, and downtempo productions."
       },
       {
-        "title": "Release Planner",
-        "value": "$67",
-        "description": "Release calendars, metadata templates, and distribution checklists."
+        "title": "Music Business Accelerator",
+        "value": "$97",
+        "description": "Revenue models, licensing templates, and release calendars to monetize your catalogue."
       }
     ],
     "faq": [
@@ -261,48 +274,29 @@
     "slug": "creation-chronicles",
     "name": "Creation Chronicles",
     "category": "Story Systems",
-    "badge": "STORY ENGINE",
-    "headline": "Storytelling OS for consistent publishing and authority.",
-    "subheadline": "Frameworks, templates, and prompt stacks to build a narrative universe across every channel.",
-    "promise": "Install a storytelling operating system that unites strategy, production, and distribution.",
-    "summary": "A digital storytelling OS combining narrative strategy, AI-assisted workflows, and distribution rituals.",
+    "badge": "STORYTELLER-POETS",
+    "headline": "Build Authority Through Consistent, Compelling Stories",
+    "subheadline": "From fragmented content to a unified narrative system that grows your audience 3x and converts readers into paying customers every month.",
+    "promise": "A storytelling operating system that turns your voice into a revenue engine. Clear strategy. Repeatable production. Measurable growth.",
+    "summary": "Strategic frameworks, AI-assisted workflows, and distribution rituals that ship stories consistently and build real authority.",
     "transformation": [
-      "Turn scattered messaging into a cohesive narrative arc",
-      "Publish faster with reusable story templates and prompt packs",
-      "Keep your voice consistent across launches and long-form content",
-      "Ship a 30-day editorial sprint with clear themes and CTAs"
+      "Replace scattered messaging with a core narrative arc that runs through every piece you ship (essays, videos, social)",
+      "Publish 2-3x more content with the same effort using templated AI workflows (writers report 40-60% time savings)",
+      "Grow engaged community with distribution playbooks that send your best work to the right people every week",
+      "Track revenue impact: each piece connected to pipeline milestones so you see what storytelling actually returns"
     ],
     "socialProof": {
       "stats": [
         {
-          "number": "12",
-          "label": "Story frameworks"
+          "number": "New",
+          "label": "Storytelling System"
         },
         {
-          "number": "30-day",
-          "label": "Editorial plan"
-        },
-        {
-          "number": "50+",
-          "label": "Narrative prompts"
-        },
-        {
-          "number": "6",
-          "label": "Channel playbooks"
+          "number": "Beta",
+          "label": "Join Early Creators"
         }
       ],
-      "quotes": [
-        {
-          "quote": "The narrative templates made it easy to keep our weekly cadence without losing voice.",
-          "author": "Founder",
-          "role": "Creator studio"
-        },
-        {
-          "quote": "We finally have a framework that connects launches, essays, and community updates.",
-          "author": "Operator",
-          "role": "Media team"
-        }
-      ]
+      "quotes": []
     },
     "offer": {
       "primaryPrice": 497,
@@ -321,19 +315,19 @@
     "modules": [
       {
         "title": "Strategic Story Architecture",
-        "description": "Define your story spine, message hierarchy, and emotional hooks."
+        "description": "Define your brand story spine, message hierarchy, and emotional hooks across audiences."
       },
       {
         "title": "Content Creation Systems",
-        "description": "Editorial calendars, AI prompt packs, and multi-format workflows."
+        "description": "Editorial calendars, AI prompt packs, and multi-format adaptation workflows for consistent publishing."
       },
       {
         "title": "Audience Development Engine",
-        "description": "Persona maps, community rituals, and feedback loops."
+        "description": "Persona maps, community rituals, and feedback loops to nurture devoted readers and buyers."
       },
       {
         "title": "Omnichannel Distribution",
-        "description": "Templates for SEO, social amplification, and partnerships."
+        "description": "SEO, social amplification, and partnership templates to scale reach without burnout."
       }
     ],
     "bonuses": [
@@ -345,12 +339,12 @@
       {
         "title": "Editorial Operations Hub",
         "value": "$97",
-        "description": "Notion-ready base that tracks ideas, drafts, approvals, and analytics."
+        "description": "Notion + Airtable base that tracks ideas, drafts, approvals, and analytics."
       },
       {
-        "title": "Story Circle Workshop Pack",
-        "value": "$147",
-        "description": "Recorded workshops and prompts for refining your narrative voice."
+        "title": "Story Circle Live Lab",
+        "value": "$297",
+        "description": "Monthly critique sessions with the FrankX storytelling collective."
       }
     ],
     "pricingTiers": [
@@ -362,7 +356,7 @@
           "Brand story framework intensive",
           "Content pillar blueprint",
           "Template starter library",
-          "Workshop recording pack"
+          "4 weeks of async support"
         ],
         "ctaLabel": "Start Creating",
         "ctaHref": "https://frankx.gumroad.com/l/creation-chronicles-creator"
@@ -375,7 +369,7 @@
           "Everything in Creator",
           "Advanced content systems",
           "Social amplification playbooks",
-          "Editorial ops hub"
+          "Monthly strategy calls"
         ],
         "ctaLabel": "Scale Your Story",
         "ctaHref": "https://frankx.gumroad.com/l/creation-chronicles-business",
@@ -387,9 +381,9 @@
         "description": "Established organizations seeking custom storytelling operations and enablement.",
         "features": [
           "Everything in Business",
-          "Team training recordings",
-          "Custom workflow templates",
-          "Quarterly narrative reviews"
+          "Team training and onboarding",
+          "Custom workflow development",
+          "Quarterly narrative summits"
         ],
         "ctaLabel": "Transform Your Brand",
         "ctaHref": "mailto:hello@frankx.ai?subject=Creation%20Chronicles%20Enterprise"
@@ -398,15 +392,15 @@
     "faq": [
       {
         "question": "Will this work if we already have a content team?",
-        "answer": "Yes. The system includes playbooks for producers, editors, and leadership so teams share the same narrative source code."
+        "answer": "Yes. Creation Chronicles slots into existing teams with playbooks for producers, editors, and leadership so everyone operates from the same narrative source code."
       },
       {
         "question": "Do we need AI tools in place to benefit?",
-        "answer": "No. Every workflow includes manual and AI-assisted versions so you can adopt at your own pace."
+        "answer": "We show you how to layer AI responsibly. Every workflow includes both manual and AI-assisted versions so you can adopt at your own pace."
       },
       {
         "question": "How much time should we expect to invest?",
-        "answer": "Most creators can implement the core system in a weekend, then run weekly story sprints."
+        "answer": "Plan for a 90-day rollout with weekly story sprints. Teams typically spend 4\u20136 hours per week implementing and reviewing."
       }
     ],
     "analyticsId": "creation-chronicles"
@@ -414,91 +408,119 @@
   {
     "id": "generative-creator-os",
     "slug": "generative-creator-os",
-    "name": "Generative Creator OS",
-    "category": "Creative Intelligence",
-    "badge": "STUDIO SYSTEM",
-    "headline": "Multi-modal AI studio system for creators.",
-    "subheadline": "Templates, prompt stacks, and governance checklists for video, audio, imagery, and writing.",
-    "promise": "Deploy a multi-modal studio with templates, prompts, and brand guardrails.",
-    "summary": "A digital operating system for multi-modal creative output.",
+    "name": "Creator Studio OS",
+    "category": "Creator Systems",
+    "badge": "CREATOR ARCHITECTS",
+    "headline": "Multiply Your Output. Protect Your Voice. Keep Creative Control.",
+    "subheadline": "Custom-built multi-modal studio that automates versioning, distribution, and QA while you stay in the director's chair. 2-week sprint to full deployment.",
+    "promise": "Go from 1-2 pieces per month to 3-4 per week. All channels. Same voice. Your standards.",
+    "summary": "Hands-on buildout that creates a governed AI studio pipeline for video, audio, writing, and visuals calibrated to your brand.",
     "transformation": [
-      "Replace ad-hoc experiments with a governed creative pipeline",
-      "Build modular assets that adapt across channels",
-      "Standardize prompts and review rituals for quality",
-      "Launch a multi-modal sprint with clear deliverables"
+      "Map your complete creative pipeline and identify exactly where AI accelerates (without replacing craft)",
+      "Build templated workflows so every idea automatically versions for YouTube, TikTok, podcast, email (1 creation = 6 pieces)",
+      "Ship with QA rituals and brand guidelines baked in so AI stays on-brand and collaborative",
+      "Track output velocity, audience signals, and revenue per piece on a live dashboard that shows what's actually working"
     ],
     "socialProof": {
       "stats": [
         {
-          "number": "4",
-          "label": "Modalities"
+          "number": "Custom",
+          "label": "Studio Diagnostic"
         },
         {
-          "number": "20",
-          "label": "Workflow maps"
-        },
-        {
-          "number": "1",
-          "label": "Notion hub"
-        },
-        {
-          "number": "12",
-          "label": "Guardrails"
+          "number": "Beta",
+          "label": "Early Access Program"
         }
       ],
-      "quotes": [
-        {
-          "quote": "The workflow maps made it easy to coordinate video, audio, and written content without chaos.",
-          "author": "Creative lead",
-          "role": "Studio team"
-        },
-        {
-          "quote": "Having a single hub for prompts, QA checks, and handoffs changed how we ship.",
-          "author": "Producer",
-          "role": "Agency partner"
-        }
-      ]
+      "quotes": []
     },
     "offer": {
-      "primaryPrice": 97,
+      "primaryPrice": 0,
+      "primaryPriceDisplay": "Creator Studio Diagnostic",
       "currency": "USD",
-      "ctaPrimary": "Get Instant Access",
-      "ctaPrimaryHref": "https://frankx.gumroad.com/l/generative-creator-os",
+      "ctaPrimary": "Book Studio Diagnostic",
+      "ctaPrimaryHref": "mailto:hello@frankx.ai?subject=Creator%20Studio%20Diagnostic",
       "ctaPrimaryTracking": "generative-creator-os-primary",
       "ctaSecondary": "Explore Resources",
       "ctaSecondaryHref": "/resources",
       "guarantee": {
         "label": "Creative Integrity Promise",
-        "description": "Try the workflows for 30 days. If they do not improve your creative system, we refund you in full."
+        "description": "We co-design workflow changes with you. If the system does not boost output within 45 days, we iterate at no cost."
       },
-      "note": "Instant digital access after checkout."
+      "note": "Diagnostics map your current process, gaps, and the automation plan before any build begins."
     },
     "modules": [
       {
-        "title": "Multi-Modal Prompt Packs",
-        "description": "Prompt stacks for video, audio, imagery, and writing workflows."
+        "title": "Creative Pipeline Blueprint",
+        "description": "Map every step from ideation to publish, highlighting where AI accelerates and where human craft stays in control."
       },
       {
-        "title": "Workflow Automation",
-        "description": "Templates for ideation, production, review, and publishing."
+        "title": "Automation & Templates",
+        "description": "Build prompt stacks, editing templates, caption writers, and distribution macros tailored to your channels."
       },
       {
-        "title": "Brand Intelligence System",
-        "description": "Guardrails, QA checklists, and performance notes to protect brand integrity."
+        "title": "Brand Intelligence Kit",
+        "description": "Train models on your voice, visuals, and guidelines with safety checks baked in."
+      },
+      {
+        "title": "Performance Dashboard",
+        "description": "Run a Notion/Supabase dashboard that tracks output velocity, audience signals, and monetisation."
+      }
+    ],
+    "pricingTiers": [
+      {
+        "name": "Starter Studio",
+        "price": "Projects from $4,800",
+        "description": "Two-week sprint to audit your creative stack and ship a pilot workflow.",
+        "features": [
+          "Creative pipeline map",
+          "AI-assisted pilot workflow",
+          "Template + prompt starter kit",
+          "Retro + next-step plan"
+        ],
+        "ctaLabel": "Start Sprint",
+        "ctaHref": "mailto:hello@frankx.ai?subject=Starter%20Studio%20Sprint"
+      },
+      {
+        "name": "Creator Collective",
+        "price": "Programs from $12k",
+        "description": "Six-week engagement to roll out multi-channel automations and training.",
+        "features": [
+          "All Starter Studio deliverables",
+          "Weekly build + coaching sessions",
+          "Team enablement library",
+          "Analytics + experimentation kit"
+        ],
+        "ctaLabel": "Plan Your Build",
+        "ctaHref": "mailto:hello@frankx.ai?subject=Creator%20Collective%20Program",
+        "featured": true
+      },
+      {
+        "name": "Residency",
+        "price": "Quarterly partnerships",
+        "description": "Ongoing co-building with the FrankX agent collective for launches, tours, or season arcs.",
+        "features": [
+          "Dedicated systems architect",
+          "Monthly experimentation labs",
+          "Release-by-release playbooks",
+          "Priority agent desk access"
+        ],
+        "ctaLabel": "Request Residency",
+        "ctaHref": "mailto:hello@frankx.ai?subject=Creator%20Residency"
       }
     ],
     "faq": [
       {
-        "question": "How do you keep AI-generated content on-brand?",
-        "answer": "The OS includes brand guardrails, review checklists, and prompt standards to keep output consistent."
+        "question": "Is this just for big teams?",
+        "answer": "No. We design for solo creators up to small crews. The system scales, but it starts creator-first."
       },
       {
-        "question": "Does this work with my existing tools?",
-        "answer": "Yes. The workflows are tool-agnostic and map cleanly to Notion, Google Docs, Figma, or your current stack."
+        "question": "How fast will we see impact?",
+        "answer": "Most sprints unlock a new publishing rhythm within 30 days. We track output velocity and sentiment so you can see progress."
       },
       {
-        "question": "What does success look like?",
-        "answer": "You should see faster throughput, clearer handoffs, and more consistent quality within the first sprint."
+        "question": "Do you train us on the tools?",
+        "answer": "Yes. Every build includes recorded walkthroughs, prompt decks, and live handoffs so you stay in control."
       }
     ],
     "analyticsId": "generative-creator-os"
@@ -506,97 +528,121 @@
   {
     "id": "agentic-creator-os",
     "slug": "agentic-creator-os",
-    "name": "Agentic Creator OS",
-    "category": "Agent Systems",
-    "badge": "AGENT SYSTEM",
-    "headline": "Build agent teams that ship with confidence.",
-    "subheadline": "Playbooks, prompt stacks, and governance checklists for multi-agent workflows.",
-    "promise": "Orchestrate strategy, creation, and QA with reusable agent architectures.",
-    "summary": "A digital system for building and running agentic workflows.",
+    "name": "Creator Lab OS",
+    "category": "Creator Systems",
+    "badge": "GUIDED COHORT",
+    "headline": "30-Day Lab to Ship Your Repeatable Launch Machine",
+    "subheadline": "Co-designed coaching + build sessions that architect your complete creator operating system. Idea to monetized release every single week, guaranteed.",
+    "promise": "Build the system that turns creative chaos into predictable weekly shipping. Momentum, clarity, revenue—measured from day 1.",
+    "summary": "Live cohort lab where you co-architect rituals, automations, and accountability that keep your practice consistently shipping.",
     "transformation": [
-      "Design an agent team blueprint with clear roles",
-      "Deploy multi-agent workflows with stable handoffs",
-      "Install QA and governance checks for reliable output",
-      "Ship projects faster with reusable prompt stacks"
+      "Clarify exactly who you're creating for and what offer maps to your unique strengths (1-week sprint)",
+      "Design your complete idea-to-monetized-release pipeline with automations that handle the boring stuff",
+      "Establish weekly rituals and dashboard checkpoints so you know momentum is compounding (not just hoping)",
+      "Ship one live release during the cohort with peer feedback, analytics, and your first real revenue signal"
     ],
     "socialProof": {
       "stats": [
         {
-          "number": "6",
-          "label": "Agent roles"
+          "number": "New",
+          "label": "Lab Cohort Format"
         },
         {
-          "number": "12",
-          "label": "Workflow maps"
-        },
-        {
-          "number": "20+",
-          "label": "Prompt stacks"
-        },
-        {
-          "number": "1",
-          "label": "Governance checklist"
+          "number": "Apply",
+          "label": "Limited Spots Available"
         }
       ],
-      "quotes": [
-        {
-          "quote": "The handoff templates finally made our agent workflows predictable.",
-          "author": "Builder",
-          "role": "Automation studio"
-        },
-        {
-          "quote": "The governance checklist helped us trust output without slowing down.",
-          "author": "Founder",
-          "role": "Agentic team"
-        }
-      ]
+      "quotes": []
     },
     "offer": {
-      "primaryPrice": 197,
+      "primaryPrice": 0,
+      "primaryPriceDisplay": "Apply for the Lab",
       "currency": "USD",
-      "ctaPrimary": "Get Instant Access",
-      "ctaPrimaryHref": "https://frankx.gumroad.com/l/agentic-creator-os",
-      "ctaPrimaryTracking": "agentic-creator-os-primary",
-      "ctaSecondary": "Explore Resources",
-      "ctaSecondaryHref": "/resources",
+      "ctaPrimary": "Apply for the Lab",
+      "ctaPrimaryHref": "https://frankx.ck.page/creator-lab",
+      "ctaPrimaryTracking": "creator-lab-apply",
+      "ctaSecondary": "Download Creator Lab Overview",
+      "ctaSecondaryHref": "/creation-chronicles",
       "guarantee": {
-        "label": "Agent System Promise",
-        "description": "Try the system for 30 days. If it does not improve your workflow reliability, we refund you."
+        "label": "Momentum Promise",
+        "description": "If you do the work and the system does not increase your publishing cadence within 30 days of graduation, we coach you until it does."
       },
-      "note": "Instant digital access after checkout."
+      "note": "Applications reviewed weekly. Cohorts are capped to keep the studio intimate."
     },
     "modules": [
       {
-        "title": "Agent Architecture Blueprints",
-        "description": "Role definitions, system prompts, and handoff patterns."
+        "title": "Creative Compass",
+        "description": "Codify your story, audience promise, and revenue focus so every ritual points to the same horizon."
       },
       {
-        "title": "Workflow Playbooks",
-        "description": "Step-by-step flows for research, creation, QA, and release."
+        "title": "Launch Lab",
+        "description": "Design the idea-to-publish pipeline with automations, templates, and handoff notes."
       },
       {
-        "title": "Governance & QA",
-        "description": "Risk checks, QA gates, and evaluation rituals."
+        "title": "Systems Studio",
+        "description": "Wire dashboards, automation routers, and prompt libraries that keep the lab running."
       },
       {
-        "title": "Enablement Guides",
-        "description": "Rollout plans, onboarding scripts, and training notes."
+        "title": "Field Tests",
+        "description": "Ship a live release with accountability, analytics, and peer feedback."
+      }
+    ],
+    "pricingTiers": [
+      {
+        "name": "Self-Paced Starter",
+        "price": "$297",
+        "description": "Toolkit + recorded labs for creators who prefer to implement solo.",
+        "features": [
+          "Full Creator Lab OS curriculum",
+          "Automation + template library",
+          "Office hour invites",
+          "Community check-ins"
+        ],
+        "ctaLabel": "Get Starter Kit",
+        "ctaHref": "https://frankx.ck.page/creator-lab-starter"
+      },
+      {
+        "name": "Guided Cohort",
+        "price": "$997",
+        "description": "Four-week live lab with Frank + agents to build your system together.",
+        "features": [
+          "Weekly live build sessions",
+          "1:1 agent desk feedback",
+          "Implementation sprints",
+          "Launch + analytics review"
+        ],
+        "ctaLabel": "Apply for Cohort",
+        "ctaHref": "https://frankx.ck.page/creator-lab"
+      },
+      {
+        "name": "Creator Residency",
+        "price": "Custom",
+        "description": "Ongoing partnership for creators scaling products, shows, or studios.",
+        "features": [
+          "Dedicated systems architect",
+          "Monthly ritual labs",
+          "Automations + analytics upkeep",
+          "Priority agent desk support"
+        ],
+        "ctaLabel": "Request Residency",
+        "ctaHref": "mailto:hello@frankx.ai?subject=Creator%20Residency"
       }
     ],
     "faq": [
       {
-        "question": "How quickly can we see results?",
-        "answer": "Most teams can install the first agent workflow in under a week."
+        "question": "Who is the Creator Lab for?",
+        "answer": "Creators with a body of work (songs, videos, essays, products) who want a reliable system to ship and monetise consistently."
       },
       {
-        "question": "Do you work with existing tools?",
-        "answer": "Yes. The OS is tool-agnostic and works alongside your current stack."
+        "question": "How much time should I budget?",
+        "answer": "Plan on 4-6 focused hours per week during the cohort. The self-paced track can flex, but momentum matters."
       },
       {
-        "question": "Is this for solo creators or teams?",
-        "answer": "Both. The playbooks include solo and team versions with scaled handoff rituals."
+        "question": "Do I need a team?",
+        "answer": "No. We design the system for solo creators first. If you have collaborators, we fold them into the rituals."
       }
     ],
     "analyticsId": "agentic-creator-os"
   }
 ]
+
