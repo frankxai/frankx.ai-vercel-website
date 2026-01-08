@@ -1,9 +1,11 @@
+import Image from 'next/image'
 import Link from 'next/link'
 
 import { claudeAgents } from '@/lib/agents'
 import { projectMilestones, segmentProfiles, testimonials, testimonialIcon } from '@/lib/hub'
 import { createMetadata, siteConfig } from '@/lib/seo'
 import { ArrowRight, ArrowUpRight, CalendarDays, Check, Sparkles } from 'lucide-react'
+import JsonLd from '@/components/seo/JsonLd'
 
 export const metadata = createMetadata({
   title: 'Agent Team - Claude Partners Orchestrating Creative AI Systems',
@@ -104,6 +106,20 @@ type EngagementTier = {
 const toAbsoluteUrl = (href: string) => {
   if (href.startsWith('http') || href.startsWith('mailto:')) return href
   return new URL(href, siteConfig.url).toString()
+}
+
+const agentSchema = {
+  name: 'FrankX Claude Agent Collective',
+  itemListElement: claudeAgents.map((agent, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    item: {
+      '@type': 'Thing',
+      name: agent.name,
+      description: agent.role,
+      url: `https://frankx.ai/agent-team#${agent.id}`,
+    },
+  })),
 }
 
 export default function AgentTeamPage() {
@@ -209,6 +225,7 @@ export default function AgentTeamPage() {
           suppressHydrationWarning
           dangerouslySetInnerHTML={{ __html: JSON.stringify(productStructuredData) }}
         />
+        <JsonLd type="ItemList" data={agentSchema} />
 
         <div className="mx-auto max-w-6xl space-y-20">
           <section className="relative overflow-hidden rounded-4xl border border-white/10 bg-gradient-to-br from-indigo-900/70 via-slate-950 to-slate-950 p-10">
@@ -334,11 +351,23 @@ export default function AgentTeamPage() {
             </div>
             <div className="grid gap-6">
               {claudeAgents.map((agent) => (
-                <div key={agent.id} className="rounded-4xl border border-white/10 bg-white/5 p-8 backdrop-blur">
+                <div key={agent.id} id={agent.id} className="rounded-4xl border border-white/10 bg-white/5 p-8 backdrop-blur">
                   <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
                     <div className="flex items-start gap-4">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 text-white">
-                        <agent.icon className="h-6 w-6" aria-hidden />
+                      <div className="relative h-12 w-12 overflow-hidden rounded-2xl border border-white/10 bg-slate-900">
+                        {agent.image ? (
+                          <Image
+                            src={agent.image}
+                            alt={`${agent.name} portrait`}
+                            fill
+                            sizes="48px"
+                            className="object-cover"
+                          />
+                        ) : (
+                          <div className="flex h-full w-full items-center justify-center text-white">
+                            <agent.icon className="h-6 w-6" aria-hidden />
+                          </div>
+                        )}
                       </div>
                       <div>
                         <h3 className="text-xl font-semibold text-white">{agent.name}</h3>

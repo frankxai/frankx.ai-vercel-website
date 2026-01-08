@@ -6,6 +6,7 @@ export type ClaudeAgent = {
   focus: string
   role: string
   icon: LucideIcon
+  image?: string
   workflows: string[]
   deliverables: string[]
   cta: { label: string; href: string }
@@ -18,6 +19,7 @@ export const claudeAgents: ClaudeAgent[] = [
     focus: 'Enterprise Systems & Governance',
     role: 'Designs scalable systems and ensures every experience is enterprise-grade yet soul-aligned.',
     icon: CircuitBoard,
+    image: '/images/agents/starlight-architect.svg',
     workflows: [
       'Enterprise architecture sprints aligning Claude agents with regulatory and cultural guardrails.',
       'Risk and dependency audits across data, workflow, and people layers.',
@@ -36,6 +38,7 @@ export const claudeAgents: ClaudeAgent[] = [
     focus: 'Narrative & Launch Architecture',
     role: 'Transforms research and interviews into multi-format content, courses, and playbooks.',
     icon: PenTool,
+    image: '/images/agents/creation-engine.svg',
     workflows: [
       'Story mining sessions capturing founder voice and community language.',
       'Launch arc planning across email, video, and live experiences.',
@@ -54,6 +57,7 @@ export const claudeAgents: ClaudeAgent[] = [
     focus: 'Sonic & Ritual Design',
     role: 'Produces Suno-powered soundscapes that encode the emotional frequency of the work.',
     icon: Waves,
+    image: '/images/agents/frequency-alchemist.svg',
     workflows: [
       'Immersive scoring labs translating project emotion into AI-assisted compositions.',
       'Session rituals that align teams before key launches or briefings.',
@@ -72,6 +76,7 @@ export const claudeAgents: ClaudeAgent[] = [
     focus: 'Strategic Foresight & Scenario Design',
     role: 'Future-casts strategy from a 2124 vantage point to stress test today’s decisions.',
     icon: Telescope,
+    image: '/images/agents/luminor-oracle.svg',
     workflows: [
       'Signal scanning rituals analyzing regulatory, cultural, and technology shifts.',
       'Future scenario modeling to evaluate long-horizon bets.',

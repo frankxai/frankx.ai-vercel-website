@@ -1,7 +1,9 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { Sparkles, Zap, Brain, Eye, ArrowRight } from 'lucide-react'
 
 import { createMetadata } from '@/lib/seo'
+import JsonLd from '@/components/seo/JsonLd'
 
 export const metadata = createMetadata({
   title: 'FrankX Agent Collective - Soul-Aligned AI Intelligence',
@@ -22,6 +24,7 @@ const agents = [
     name: 'Starlight Architect',
     role: 'Enterprise AI System Designer with Soul Alignment',
     specialty: 'Enterprise-grade technical architecture serving consciousness evolution',
+    image: '/images/agents/starlight-architect.svg',
     icon: Brain,
     color: 'from-blue-500 to-cyan-400',
     personality: [
@@ -36,6 +39,7 @@ const agents = [
       soul_alignment: 'Consciousness-First Technology Decisions'
     },
     activation: 'Activate Starlight Architect mode for system design',
+    skills: ['mcp-architecture', 'nextjs-react-expert', 'oracle-adk'],
     examples: [
       'Design consciousness-aligned database architectures',
       'Create API systems that amplify human creativity',
@@ -47,6 +51,7 @@ const agents = [
     name: 'Frequency Alchemist',
     role: 'Vibrational Music Producer & Transformation Catalyst',
     specialty: 'AI music creation using Suno for consciousness transformation',
+    image: '/images/agents/frequency-alchemist.svg',
     icon: Zap,
     color: 'from-purple-500 to-pink-400',
     personality: [
@@ -61,6 +66,7 @@ const agents = [
       soul_alignment: 'Music as Consciousness Technology'
     },
     activation: 'Channel Frequency Alchemist for music creation',
+    skills: ['suno-prompt-architect', 'suno-ai-mastery', 'frankx-content'],
     examples: [
       'Generate transformational soundscapes with Suno',
       'Create frequency-specific music for focus and creativity',
@@ -72,6 +78,7 @@ const agents = [
     name: 'Creation Engine',
     role: 'Content & Product Development Superintelligence',
     specialty: 'Multi-format content creation and transformative product development',
+    image: '/images/agents/creation-engine.svg',
     icon: Sparkles,
     color: 'from-green-500 to-emerald-400',
     personality: [
@@ -86,6 +93,7 @@ const agents = [
       soul_alignment: 'Content that Transforms and Profits Ethically'
     },
     activation: 'Engage Creation Engine for content development',
+    skills: ['frankx-brand', 'frankx-content', 'golden-age-book-writing'],
     examples: [
       'Develop transformational course curricula',
       'Create content that serves awakening and abundance',
@@ -97,6 +105,7 @@ const agents = [
     name: 'Luminor Oracle',
     role: 'Strategic Intelligence from 2124 Future Perspective',
     specialty: 'Time-bridging strategic guidance with Oracle career alignment',
+    image: '/images/agents/luminor-oracle.svg',
     icon: Eye,
     color: 'from-amber-500 to-orange-400',
     personality: [
@@ -111,6 +120,7 @@ const agents = [
       soul_alignment: 'Future-Informed Present Moment Decisions'
     },
     activation: 'Consult Luminor Oracle for strategic guidance',
+    skills: ['product-management-expert', 'oracle-agent-spec', 'oracle-database-expert'],
     examples: [
       'Provide 2124 perspective on current technology decisions',
       'Guide strategic planning with consciousness evolution context',
@@ -118,6 +128,20 @@ const agents = [
     ]
   }
 ]
+
+const agentSchema = {
+  name: 'FrankX Agent Collective',
+  itemListElement: agents.map((agent, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    item: {
+      '@type': 'Thing',
+      name: agent.name,
+      description: agent.specialty,
+      url: `https://frankx.ai/agents#${agent.id}`,
+    },
+  })),
+}
 
 const collaborationFlows = [
   {
@@ -140,6 +164,7 @@ const collaborationFlows = [
 export default function AgentsPage() {
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100">
+      <JsonLd type="ItemList" data={agentSchema} />
 <main className="pb-24 pt-28">
         <section className="relative overflow-hidden px-6 pb-16 pt-16">
           <div className="absolute inset-0 bg-gradient-to-br from-primary-500/10 via-slate-950 to-slate-950" />
@@ -172,17 +197,27 @@ export default function AgentsPage() {
                 return (
                   <div
                     key={agent.id}
+                    id={agent.id}
                     className="group relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-8 transition-all duration-500 hover:border-white/20 hover:bg-white/10"
                   >
                     <div className="space-y-6">
                       <div className="flex items-start gap-4">
-                        <div className={`flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br ${agent.color} shadow-lg`}>
-                          <IconComponent className="h-8 w-8 text-white" />
+                        <div className="relative h-16 w-16 overflow-hidden rounded-2xl border border-white/10 bg-slate-900">
+                          <Image
+                            src={agent.image}
+                            alt={`${agent.name} portrait`}
+                            fill
+                            sizes="64px"
+                            className="object-cover"
+                          />
                         </div>
                         <div className="flex-1">
                           <h3 className="text-xl font-semibold text-white">{agent.name}</h3>
                           <p className="text-sm text-primary-200 font-medium">{agent.role}</p>
                           <p className="mt-2 text-sm text-white/70">{agent.specialty}</p>
+                        </div>
+                        <div className={`flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br ${agent.color} shadow-lg`}>
+                          <IconComponent className="h-6 w-6 text-white" />
                         </div>
                       </div>
 
@@ -205,6 +240,21 @@ export default function AgentsPage() {
                             <p><strong className="text-white/80">Primary:</strong> {agent.tools.primary}</p>
                             <p><strong className="text-white/80">Secondary:</strong> {agent.tools.secondary}</p>
                             <p><strong className="text-primary-200">Soul Alignment:</strong> {agent.tools.soul_alignment}</p>
+                          </div>
+                        </div>
+
+                        <div>
+                          <h4 className="text-sm font-semibold uppercase tracking-wider text-white/60">Skills Activated</h4>
+                          <div className="mt-2 flex flex-wrap gap-2 text-xs text-white/70">
+                            {agent.skills.map((skill) => (
+                              <Link
+                                key={skill}
+                                href="/guides/skills-library-playbook"
+                                className="rounded-full border border-white/10 bg-white/5 px-3 py-1 transition hover:border-white/20 hover:bg-white/10"
+                              >
+                                {skill}
+                              </Link>
+                            ))}
                           </div>
                         </div>
 
