@@ -142,10 +142,10 @@ export default async function BlogPostPage({
               <div className="flex flex-col gap-4 rounded-3xl border border-white/10 bg-white/5 p-6 md:flex-row md:items-center md:justify-between">
                 <div className="flex items-center gap-3">
                   <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-primary-500 via-primary-600 to-sky-500 text-lg font-semibold text-white">
-                    {post.author[0]}
+                    {post.author?.[0] || 'F'}
                   </div>
                   <div>
-                    <div className="text-sm font-semibold text-white">{post.author}</div>
+                    <div className="text-sm font-semibold text-white">{post.author || 'Frank'}</div>
                     <div className="text-xs uppercase tracking-[0.3em] text-white/60">Oracle AI Architect</div>
                   </div>
                 </div>
