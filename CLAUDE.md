@@ -32,6 +32,20 @@ Translate Frank's musician-technologist journey into language, prompts, and expe
 | MCP server work | `mcp-architecture` skill |
 | Music/Suno prompts | `suno-prompt-architect` skill |
 
+### Web Experience Agent Team (Complete Coverage)
+
+| Domain | Agent | Trigger Keywords |
+|--------|-------|------------------|
+| **General Web Dev** | `frankx-website-builder` | website, page, layout, navigation |
+| **Next.js/Deployment** | `nextjs-vercel-deployment` | deploy, vercel, server component, api route |
+| **UI/UX Design** | `ui-ux-design-expert` | button, card, component, interface, design |
+| **Figma/Testing** | `ux-designer` | figma, prototype, playwright, browser test |
+| **SEO** | `seo-specialist` | seo, schema, metadata, sitemap, ranking |
+| **Performance** | `performance-guardian` | performance, lighthouse, speed, LCP, CLS |
+| **Accessibility** | `accessibility-auditor` | a11y, wcag, screen reader, keyboard, aria |
+
+**For "check status" or comprehensive audits, spawn ALL relevant web agents in parallel.**
+
 **This is NOT optional.** Using generic approaches when specialized skills/agents exist wastes Frank's configured resources.
 
 ---
@@ -270,6 +284,25 @@ CLAUDE.md                # This file (main config)
 ├── projects/            # 2 project skills
 └── README.md            # Skill inventory & usage guide
 ```
+
+---
+
+## Agentic Creator OS
+
+This configuration is the **FrankX instance** of the Agentic Creator OS framework.
+
+**Repository:** [github.com/frankxai/agentic-creator-os](https://github.com/frankxai/agentic-creator-os)
+
+The framework enables:
+- **One source of truth** for brand voice, agents, and skills
+- **Multi-CLI support** (Claude Code, OpenCode, Cursor)
+- **Portable configuration** that works with any AI tool
+
+See `agentic-creator-os/` folder for:
+- Framework documentation (`CREATOR-OS.md`, `ARCHITECTURE.md`)
+- Templates for brand voice and agents
+- CLI adapter configs
+- Reference implementation
 
 ---
 
