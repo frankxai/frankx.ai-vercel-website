@@ -26,9 +26,16 @@
     --ring: 208 93% 58%;
   }
 
+  /* Critical mobile fix: prevent horizontal overflow at the root level */
+  html {
+    overflow-x: hidden;
+  }
+
   body {
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
+    overflow-x: hidden;
+    position: relative;
   }
 }
 

@@ -15,7 +15,7 @@ import {
 } from 'lucide-react'
 
 import { trackEvent } from '@/lib/analytics'
-import { AILabsMarquee } from '@/components/ui/AILabsMarquee'
+import TrustedByBlock from '@/components/social-proof/TrustedByBlock'
 
 // ============================================================================
 // DESIGN SYSTEM
@@ -55,38 +55,39 @@ function AuroraBackground() {
       {/* Base gradient */}
       <div className="absolute inset-0 bg-[#0a0a0b]" />
 
-      {/* Aurora effect - subtle, sophisticated */}
+      {/* Aurora effect - contained within viewport to prevent overflow */}
+      {/* Mobile: smaller, more contained gradients */}
       <motion.div
-        className="absolute -top-[40%] -left-[20%] w-[80%] h-[80%]"
+        className="absolute top-0 left-0 w-full h-[60%] md:w-[80%] md:h-[80%]"
         style={{
-          background: 'radial-gradient(ellipse at center, rgba(16, 185, 129, 0.08) 0%, transparent 70%)',
-          filter: 'blur(100px)',
+          background: 'radial-gradient(ellipse at center, rgba(16, 185, 129, 0.06) 0%, transparent 70%)',
+          filter: 'blur(80px)',
         }}
         animate={
           shouldReduceMotion
             ? undefined
             : {
-                x: [0, 100, 0],
-                y: [0, 50, 0],
-                scale: [1, 1.1, 1],
+                x: [0, 50, 0],
+                y: [0, 30, 0],
+                scale: [1, 1.05, 1],
               }
         }
         transition={shouldReduceMotion ? undefined : { duration: 30, repeat: Infinity, ease: 'easeInOut' }}
       />
 
       <motion.div
-        className="absolute -bottom-[30%] -right-[10%] w-[60%] h-[60%]"
+        className="absolute bottom-0 right-0 w-full h-[50%] md:w-[60%] md:h-[60%]"
         style={{
-          background: 'radial-gradient(ellipse at center, rgba(6, 182, 212, 0.06) 0%, transparent 70%)',
-          filter: 'blur(100px)',
+          background: 'radial-gradient(ellipse at center, rgba(6, 182, 212, 0.05) 0%, transparent 70%)',
+          filter: 'blur(80px)',
         }}
         animate={
           shouldReduceMotion
             ? undefined
             : {
-                x: [0, -80, 0],
-                y: [0, -30, 0],
-                scale: [1, 1.15, 1],
+                x: [0, -40, 0],
+                y: [0, -20, 0],
+                scale: [1, 1.08, 1],
               }
         }
         transition={shouldReduceMotion ? undefined : { duration: 25, repeat: Infinity, ease: 'easeInOut' }}
@@ -248,13 +249,13 @@ function Hero() {
   return (
     <section
       ref={ref}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 md:pt-20"
     >
       <motion.div
-        className="relative z-10 max-w-7xl mx-auto px-6 py-20"
+        className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 py-8 md:py-20"
         style={shouldReduceMotion ? undefined : { opacity, y, scale }}
       >
-        <div className="grid lg:grid-cols-[1.3fr,1fr] gap-16 lg:gap-24 items-center">
+        <div className="grid lg:grid-cols-[1.3fr,1fr] gap-8 md:gap-16 lg:gap-24 items-center">
           {/* Left column - Text content */}
           <motion.div
             initial={shouldReduceMotion ? false : { opacity: 0, x: -40 }}
@@ -263,26 +264,26 @@ function Hero() {
           >
             {/* Subtle breadcrumb - editorial style */}
             <motion.div
-              className="mb-12"
+              className="mb-6 md:mb-12"
               initial={shouldReduceMotion ? false : { opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.1 }}
             >
-              <span className="text-xs font-medium uppercase tracking-[0.3em] text-emerald-400/60">
+              <span className="text-[10px] sm:text-xs font-medium uppercase tracking-[0.2em] sm:tracking-[0.3em] text-emerald-400/60">
                 AI Architect & Music Creator
               </span>
             </motion.div>
 
             {/* Main headline - authority + vision */}
-            <h1 className="mb-8">
-              <span className="block text-[clamp(2.5rem,6vw,5rem)] font-bold leading-[1.25] tracking-tight pb-1">
+            <h1 className="mb-6 md:mb-8">
+              <span className="block text-[clamp(2rem,8vw,5rem)] font-bold leading-[1.15] tracking-tight pb-1">
                 <RotatingWord /> <span className="text-white">your</span>
               </span>
-              <span className="block text-[clamp(2rem,5vw,4rem)] font-bold leading-[1.25] tracking-tight text-white pb-4">
+              <span className="block text-[clamp(1.5rem,6vw,4rem)] font-bold leading-[1.15] tracking-tight text-white pb-2 md:pb-4">
                 <RotatingConcept />
               </span>
               <motion.span
-                className="block text-[clamp(1.25rem,3vw,1.75rem)] text-white/60 mt-6 leading-relaxed max-w-2xl"
+                className="block text-base sm:text-lg md:text-[clamp(1.25rem,3vw,1.75rem)] text-white/60 mt-4 md:mt-6 leading-relaxed max-w-2xl"
                 initial={shouldReduceMotion ? false : { opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.3 }}
@@ -296,7 +297,7 @@ function Hero() {
 
             {/* Subtext - invitation to explore */}
             <motion.p
-              className="text-lg md:text-xl text-white/40 max-w-lg mb-12 leading-relaxed"
+              className="text-base md:text-lg lg:text-xl text-white/40 max-w-lg mb-8 md:mb-12 leading-relaxed"
               initial={shouldReduceMotion ? false : { opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.4 }}
@@ -307,7 +308,7 @@ function Hero() {
 
             {/* CTAs */}
             <motion.div
-              className="flex flex-wrap items-center gap-4"
+              className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 sm:gap-4"
               initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.5 }}
@@ -315,7 +316,7 @@ function Hero() {
               <Link
                 href="/start"
                 onClick={() => trackEvent('hero_cta_click', { type: 'primary' })}
-                className="group relative inline-flex items-center gap-3 bg-white text-black px-7 py-4 rounded-full font-semibold text-base transition-all duration-300 hover:bg-white/90 hover:shadow-[0_0_40px_rgba(255,255,255,0.15)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98] active:shadow-[0_0_24px_rgba(255,255,255,0.2)]"
+                className="group relative inline-flex items-center justify-center gap-2 sm:gap-3 bg-white text-black px-5 sm:px-7 py-3 sm:py-4 rounded-full font-semibold text-sm sm:text-base transition-all duration-300 hover:bg-white/90 hover:shadow-[0_0_40px_rgba(255,255,255,0.15)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98] active:shadow-[0_0_24px_rgba(255,255,255,0.2)]"
               >
                 Explore My Work
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -324,7 +325,7 @@ function Hero() {
               <Link
                 href="/music-lab"
                 onClick={() => trackEvent('hero_cta_click', { type: 'secondary' })}
-                className="group inline-flex items-center gap-3 px-7 py-4 rounded-full font-medium text-white/70 hover:text-white border border-white/10 hover:border-white/20 hover:bg-white/5 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98] active:border-white/30 active:bg-white/10"
+                className="group inline-flex items-center justify-center gap-2 sm:gap-3 px-5 sm:px-7 py-3 sm:py-4 rounded-full font-medium text-sm sm:text-base text-white/70 hover:text-white border border-white/10 hover:border-white/20 hover:bg-white/5 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98] active:border-white/30 active:bg-white/10"
               >
                 <Play className="w-4 h-4" />
                 Listen to Music
@@ -333,7 +334,7 @@ function Hero() {
               <Link
                 href="/resources"
                 onClick={() => trackEvent('hero_cta_click', { type: 'resources' })}
-                className="group inline-flex items-center gap-3 px-7 py-4 rounded-full font-medium text-white/70 hover:text-white border border-white/10 hover:border-white/20 hover:bg-white/5 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98] active:border-white/30 active:bg-white/10"
+                className="group inline-flex items-center justify-center gap-2 sm:gap-3 px-5 sm:px-7 py-3 sm:py-4 rounded-full font-medium text-sm sm:text-base text-white/70 hover:text-white border border-white/10 hover:border-white/20 hover:bg-white/5 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98] active:border-white/30 active:bg-white/10"
               >
                 <Sparkles className="w-4 h-4" />
                 Resource Hub
@@ -387,20 +388,20 @@ function FeaturedMusicCard() {
   const song = featuredSongs[currentSong]
 
   return (
-    <div className="relative">
-      {/* Glow effect behind card - enhanced */}
-      <div className="absolute -inset-6 bg-gradient-to-br from-emerald-500/25 via-cyan-500/15 to-violet-500/10 blur-3xl opacity-60" />
+    <div className="relative mt-8 lg:mt-0">
+      {/* Glow effect behind card - contained to prevent overflow */}
+      <div className="absolute inset-0 md:-inset-4 bg-gradient-to-br from-emerald-500/20 via-cyan-500/10 to-violet-500/8 blur-2xl md:blur-3xl opacity-50 md:opacity-60 rounded-3xl" />
 
       <motion.div
-        className="relative bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-3xl p-8 overflow-hidden"
-        whileHover={{ scale: 1.02 }}
+        className="relative bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-2xl md:rounded-3xl p-4 sm:p-6 md:p-8 overflow-hidden"
+        whileHover={{ scale: 1.01 }}
         transition={{ duration: 0.3 }}
       >
-        {/* Suno Embed Player - LARGER */}
-        <div className="relative rounded-2xl overflow-hidden mb-6 bg-gradient-to-br from-emerald-500/10 via-cyan-500/10 to-purple-500/10">
+        {/* Suno Embed Player - Responsive heights */}
+        <div className="relative rounded-xl md:rounded-2xl overflow-hidden mb-4 md:mb-6 bg-gradient-to-br from-emerald-500/10 via-cyan-500/10 to-purple-500/10">
           <iframe
             src={`https://suno.com/embed/${song.id}`}
-            className="w-full h-[380px] md:h-[440px] lg:h-[480px] rounded-2xl"
+            className="w-full h-[280px] sm:h-[320px] md:h-[380px] lg:h-[420px] rounded-xl md:rounded-2xl"
             frameBorder="0"
             allow="autoplay; clipboard-write"
             loading="lazy"
@@ -409,41 +410,41 @@ function FeaturedMusicCard() {
         </div>
 
         {/* Track info */}
-        <div className="space-y-4">
+        <div className="space-y-3 md:space-y-4">
           <div>
-            <p className="text-xs uppercase tracking-[0.2em] text-emerald-400/80 mb-1">Music Lab</p>
-            <h3 className="text-xl font-semibold text-white">10K+ AI-Generated Songs</h3>
-            <p className="text-sm text-white/50">Ambient · Electronic · Cinematic · Healing</p>
+            <p className="text-[10px] sm:text-xs uppercase tracking-[0.15em] sm:tracking-[0.2em] text-emerald-400/80 mb-1">Music Lab</p>
+            <h3 className="text-lg sm:text-xl font-semibold text-white">10K+ AI-Generated Songs</h3>
+            <p className="text-xs sm:text-sm text-white/50">Ambient · Electronic · Cinematic · Healing</p>
           </div>
 
-          <p className="text-sm text-white/40 leading-relaxed">
+          <p className="text-xs sm:text-sm text-white/40 leading-relaxed">
             Creating with Suno AI daily. From 432Hz healing frequencies to epic cinematic scores.
           </p>
 
           {/* CTAs */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3 sm:gap-4 flex-wrap">
             <a
               href="https://suno.com/@frankxai"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm font-medium text-emerald-400 hover:text-emerald-300 transition-colors"
+              className="inline-flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-medium text-emerald-400 hover:text-emerald-300 transition-colors"
             >
               Full Library
-              <ExternalLink className="w-3.5 h-3.5" />
+              <ExternalLink className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
             </a>
             <Link
               href="/music-lab"
-              className="inline-flex items-center gap-2 text-sm font-medium text-white/60 hover:text-white transition-colors"
+              className="inline-flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-medium text-white/60 hover:text-white transition-colors"
             >
               Music Lab
-              <ArrowRight className="w-3.5 h-3.5" />
+              <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
             </Link>
           </div>
         </div>
 
         {/* Corner decoration */}
-        <div className="absolute top-6 right-6">
-          <Music2 className="w-6 h-6 text-white/20" />
+        <div className="absolute top-4 right-4 sm:top-6 sm:right-6">
+          <Music2 className="w-5 h-5 sm:w-6 sm:h-6 text-white/20" />
         </div>
       </motion.div>
     </div>
@@ -454,7 +455,7 @@ function FeaturedMusicCard() {
 // TOOLCHAIN MARQUEE
 // ============================================================================
 
-// Note: ToolchainMarquee replaced with AILabsMarquee component (actual brand logos)
+// Note: ToolchainMarquee replaced with TrustedByBlock (official brand logos + case studies)
 
 // ============================================================================
 // STATS SECTION
@@ -462,22 +463,22 @@ function FeaturedMusicCard() {
 
 function StatsSection() {
   return (
-    <section className="py-32">
-      <div className="max-w-6xl mx-auto px-6">
+    <section className="py-16 md:py-24 lg:py-32">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Editorial quote/statement */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="max-w-4xl mx-auto text-center mb-20"
+          className="max-w-4xl mx-auto text-center mb-12 md:mb-20"
         >
-          <blockquote className="text-2xl md:text-3xl lg:text-4xl font-serif-italic text-white/70 leading-relaxed">
+          <blockquote className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-serif-italic text-white/70 leading-relaxed px-2">
             "The future isn't something that happens to you—it's something you design."
           </blockquote>
         </motion.div>
 
-        {/* Stats as horizontal flow */}
-        <div className="flex flex-wrap justify-center gap-x-16 gap-y-8 md:gap-x-24">
+        {/* Stats - grid on mobile, flex on larger screens */}
+        <div className="grid grid-cols-2 gap-6 sm:gap-8 md:flex md:flex-wrap md:justify-center md:gap-x-16 lg:gap-x-24 md:gap-y-8">
           {[
             { value: '10K+', label: 'Songs created with Suno' },
             { value: '5+', label: 'Years building AI systems' },
@@ -492,10 +493,10 @@ function StatsSection() {
               transition={{ duration: 0.5, delay: i * 0.1 }}
               className="text-center"
             >
-              <div className="text-5xl md:text-7xl font-bold text-white mb-3 tracking-tighter">
+              <div className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-2 md:mb-3 tracking-tighter">
                 {stat.value}
               </div>
-              <div className="text-sm text-white/40 max-w-[160px]">
+              <div className="text-xs sm:text-sm text-white/40 max-w-[140px] sm:max-w-[160px] mx-auto">
                 {stat.label}
               </div>
             </motion.div>
@@ -536,23 +537,23 @@ const quickStartPaths = [
 
 function QuickStartSection() {
   return (
-    <section className="py-24 border-t border-white/5">
-      <div className="max-w-6xl mx-auto px-6">
+    <section className="py-16 md:py-24 border-t border-white/5">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-12"
+          className="text-center mb-8 md:mb-12"
         >
-          <p className="text-sm font-medium uppercase tracking-[0.25em] text-emerald-400/70 mb-4">
+          <p className="text-xs sm:text-sm font-medium uppercase tracking-[0.2em] sm:tracking-[0.25em] text-emerald-400/70 mb-3 md:mb-4">
             Quick Start
           </p>
-          <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight">
             Start creating in minutes
           </h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
           {quickStartPaths.map((path, i) => (
             <motion.div
               key={path.title}
@@ -563,22 +564,22 @@ function QuickStartSection() {
             >
               <Link
                 href={path.href}
-                className="group block p-6 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-white/15 hover:bg-white/[0.04] transition-all h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.99] active:border-white/20"
+                className="group block p-4 sm:p-6 rounded-xl sm:rounded-2xl border border-white/5 bg-white/[0.02] hover:border-white/15 hover:bg-white/[0.04] transition-all h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.99] active:border-white/20"
               >
-                <div className="flex items-center justify-between mb-4">
-                  <span className={`text-xs font-medium px-2.5 py-1 rounded-full ${
+                <div className="flex items-center justify-between mb-3 sm:mb-4">
+                  <span className={`text-[10px] sm:text-xs font-medium px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full ${
                     path.color === 'cyan' ? 'bg-cyan-500/10 text-cyan-400' :
                     path.color === 'emerald' ? 'bg-emerald-500/10 text-emerald-400' :
                     'bg-violet-500/10 text-violet-400'
                   }`}>
                     {path.time}
                   </span>
-                  <ArrowRight className="w-4 h-4 text-white/30 group-hover:text-white/60 group-hover:translate-x-1 transition-all" />
+                  <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white/30 group-hover:text-white/60 group-hover:translate-x-1 transition-all" />
                 </div>
-                <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-emerald-400 transition-colors">
+                <h3 className="text-base sm:text-lg font-semibold text-white mb-1.5 sm:mb-2 group-hover:text-emerald-400 transition-colors">
                   {path.title}
                 </h3>
-                <p className="text-sm text-white/50">{path.description}</p>
+                <p className="text-xs sm:text-sm text-white/50">{path.description}</p>
               </Link>
             </motion.div>
           ))}
@@ -633,27 +634,27 @@ const capabilities = [
 
 function WhatIDo() {
   return (
-    <section className="py-32 border-t border-white/5">
-      <div className="max-w-6xl mx-auto px-6">
+    <section className="py-16 md:py-24 lg:py-32 border-t border-white/5">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-16"
+          className="mb-8 md:mb-16"
         >
-          <p className="text-sm font-medium uppercase tracking-[0.25em] text-emerald-400/70 mb-4">
+          <p className="text-xs sm:text-sm font-medium uppercase tracking-[0.2em] sm:tracking-[0.25em] text-emerald-400/70 mb-3 md:mb-4">
             What's Here
           </p>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 md:mb-6 tracking-tight">
             Tools, resources, and the work itself.
           </h2>
-          <p className="text-xl text-white/50 max-w-2xl leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-white/50 max-w-2xl leading-relaxed">
             Not a portfolio. Not a course. A working system for creating with AI—
             shared openly because it's more useful that way.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
           {capabilities.map((item, i) => (
             <motion.div
               key={item.title}
@@ -664,26 +665,26 @@ function WhatIDo() {
             >
               <Link
                 href={item.href}
-                className="group relative block p-8 rounded-2xl border border-white/5 overflow-hidden transition-all duration-500 hover:border-white/15 hover:-translate-y-1 h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.99] active:border-white/20"
+                className="group relative block p-5 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl border border-white/5 overflow-hidden transition-all duration-500 hover:border-white/15 hover:-translate-y-1 h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.99] active:border-white/20"
               >
                 {/* Gradient background on hover */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
 
                 <div className="relative">
-                  <div className="flex items-start justify-between mb-6">
-                    <div className="p-3 rounded-xl bg-white/5 group-hover:bg-white/10 transition-colors">
-                      <item.icon className={`w-6 h-6 ${item.iconColor}`} />
+                  <div className="flex items-start justify-between mb-4 sm:mb-6">
+                    <div className="p-2.5 sm:p-3 rounded-lg sm:rounded-xl bg-white/5 group-hover:bg-white/10 transition-colors">
+                      <item.icon className={`w-5 h-5 sm:w-6 sm:h-6 ${item.iconColor}`} />
                     </div>
-                    <ChevronRight className="w-5 h-5 text-white/20 group-hover:text-white/60 group-hover:translate-x-1 transition-all" />
+                    <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 text-white/20 group-hover:text-white/60 group-hover:translate-x-1 transition-all" />
                   </div>
 
-                  <p className="text-xs font-medium uppercase tracking-[0.15em] text-white/30 mb-2">
+                  <p className="text-[10px] sm:text-xs font-medium uppercase tracking-[0.12em] sm:tracking-[0.15em] text-white/30 mb-1.5 sm:mb-2">
                     {item.subtitle}
                   </p>
-                  <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-white transition-colors">
+                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-2 sm:mb-3 group-hover:text-white transition-colors">
                     {item.title}
                   </h3>
-                  <p className="text-white/50 leading-relaxed group-hover:text-white/60 transition-colors">
+                  <p className="text-sm sm:text-base text-white/50 leading-relaxed group-hover:text-white/60 transition-colors">
                     {item.description}
                   </p>
                 </div>
@@ -729,32 +730,32 @@ const resources = [
 
 function FeaturedResources() {
   return (
-    <section className="py-32 bg-gradient-to-b from-transparent via-white/[0.01] to-transparent">
-      <div className="max-w-6xl mx-auto px-6">
+    <section className="py-16 md:py-24 lg:py-32 bg-gradient-to-b from-transparent via-white/[0.01] to-transparent">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="flex items-end justify-between mb-12"
+          className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8 md:mb-12"
         >
           <div>
-            <h2 className="text-4xl md:text-5xl font-semibold text-white mb-4 tracking-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold text-white mb-2 sm:mb-4 tracking-tight">
               Curated Resources
             </h2>
-            <p className="text-xl text-white/50">
+            <p className="text-base sm:text-lg md:text-xl text-white/50">
               The courses and certifications I actually recommend.
             </p>
           </div>
           <Link
             href="/resources"
-            className="hidden md:inline-flex items-center gap-2 text-white/60 hover:text-white transition-colors"
+            className="inline-flex items-center gap-2 text-sm sm:text-base text-white/60 hover:text-white transition-colors self-start sm:self-auto"
           >
             View all
             <ArrowRight className="w-4 h-4" />
           </Link>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
           {resources.map((resource, i) => (
             <motion.a
               key={resource.name}
@@ -765,17 +766,17 @@ function FeaturedResources() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.05 }}
-              className="group flex items-center justify-between p-6 rounded-2xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] hover:border-white/10 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.99] active:border-white/20"
+              className="group flex items-center justify-between gap-3 p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] hover:border-white/10 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.99] active:border-white/20"
             >
-              <div>
-                <div className="text-xs uppercase tracking-[0.15em] text-white/30 mb-1">
+              <div className="min-w-0 flex-1">
+                <div className="text-[10px] sm:text-xs uppercase tracking-[0.12em] sm:tracking-[0.15em] text-white/30 mb-0.5 sm:mb-1">
                   {resource.type} · {resource.source}
                 </div>
-                <div className="text-lg font-medium text-white group-hover:text-emerald-400 transition-colors">
+                <div className="text-sm sm:text-base md:text-lg font-medium text-white group-hover:text-emerald-400 transition-colors truncate">
                   {resource.name}
                 </div>
               </div>
-              <ExternalLink className="w-4 h-4 text-white/20 group-hover:text-white/50 transition-colors flex-shrink-0" />
+              <ExternalLink className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white/20 group-hover:text-white/50 transition-colors flex-shrink-0" />
             </motion.a>
           ))}
         </div>
@@ -790,21 +791,21 @@ function FeaturedResources() {
 
 function AboutSection() {
   return (
-    <section className="py-32">
-      <div className="max-w-6xl mx-auto px-6">
+    <section className="py-16 md:py-24 lg:py-32">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="max-w-3xl"
         >
-          <p className="text-sm font-medium uppercase tracking-[0.25em] text-emerald-400/70 mb-6">
+          <p className="text-xs sm:text-sm font-medium uppercase tracking-[0.2em] sm:tracking-[0.25em] text-emerald-400/70 mb-4 sm:mb-6">
             The Vision
           </p>
 
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-8 tracking-tight leading-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 sm:mb-8 tracking-tight leading-tight">
             We're entering the Golden Age of Intelligence.
-            <span className="block mt-2 font-serif-italic text-white/70">
+            <span className="block mt-2 font-serif-italic text-white/70 text-xl sm:text-2xl md:text-3xl lg:text-4xl">
               Anyone can create. Anyone can build.
             </span>
           </h2>
@@ -814,14 +815,14 @@ function AboutSection() {
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="relative pl-6 my-10 border-l-2 border-emerald-400/40"
+            className="relative pl-4 sm:pl-6 my-6 sm:my-10 border-l-2 border-emerald-400/40"
           >
-            <p className="text-2xl md:text-3xl font-serif-italic text-white/80 leading-relaxed">
+            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-serif-italic text-white/80 leading-relaxed">
               "Technology should amplify your voice, not replace it."
             </p>
           </motion.blockquote>
 
-          <div className="space-y-6 text-lg text-white/60 leading-relaxed mb-10">
+          <div className="space-y-4 sm:space-y-6 text-base sm:text-lg text-white/60 leading-relaxed mb-8 sm:mb-10">
             <p>
               AI Architect at Oracle by day. Music creator by night. I've seen what's possible
               when intelligent systems serve human goals—not replace them. 10,000+ songs.
@@ -834,15 +835,15 @@ function AboutSection() {
             </p>
           </div>
 
-          <div className="flex flex-wrap items-center gap-6">
+          <div className="flex flex-col sm:flex-row flex-wrap items-start sm:items-center gap-4 sm:gap-6">
             <Link
               href="/about"
-              className="group inline-flex items-center gap-2 text-white font-medium hover:text-emerald-400 transition-colors"
+              className="group inline-flex items-center gap-2 text-sm sm:text-base text-white font-medium hover:text-emerald-400 transition-colors"
             >
               Read the full story
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
-            <div className="flex items-center gap-4 text-white/40">
+            <div className="flex items-center gap-3 sm:gap-4 text-sm sm:text-base text-white/40">
               <a
                 href="https://linkedin.com/in/frankxai"
                 target="_blank"
@@ -883,38 +884,38 @@ function AboutSection() {
 
 function FinalCTA() {
   return (
-    <section className="py-32 border-t border-white/5">
-      <div className="max-w-5xl mx-auto px-6">
+    <section className="py-16 md:py-24 lg:py-32 border-t border-white/5 overflow-hidden">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="relative"
         >
-          {/* Subtle glow */}
-          <div className="absolute -inset-x-20 -inset-y-10 bg-gradient-to-r from-emerald-500/5 via-transparent to-cyan-500/5 blur-3xl opacity-50" />
+          {/* Subtle glow - contained to prevent overflow */}
+          <div className="absolute inset-0 md:-inset-x-10 md:-inset-y-10 bg-gradient-to-r from-emerald-500/5 via-transparent to-cyan-500/5 blur-2xl md:blur-3xl opacity-40 md:opacity-50 rounded-3xl" />
 
-          <div className="relative text-center">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight">
+          <div className="relative text-center px-2">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-4 md:mb-6 tracking-tight">
               Start where you are.
             </h2>
-            <p className="text-xl md:text-2xl text-white/50 mb-12 max-w-2xl mx-auto font-light leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/50 mb-8 md:mb-12 max-w-2xl mx-auto font-light leading-relaxed">
               Whether you're learning AI, creating music, or building systems—
               there's something here for you. All of it is open.
             </p>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              href="/start"
-              className="group inline-flex items-center gap-3 bg-white text-black px-8 py-4 rounded-full text-base font-semibold transition-all duration-300 hover:bg-white/90 hover:shadow-[0_0_60px_rgba(255,255,255,0.2)] hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98]"
-            >
-              Pick Your Path
-              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-            </Link>
-            <Link
-              href="/resources"
-              className="group inline-flex items-center gap-3 px-8 py-4 rounded-full text-base font-medium text-white/60 hover:text-white border border-white/10 hover:border-white/20 hover:bg-white/5 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98] active:border-white/30 active:bg-white/10"
-            >
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4">
+              <Link
+                href="/start"
+                className="group inline-flex items-center justify-center gap-2 sm:gap-3 bg-white text-black px-6 sm:px-8 py-3 sm:py-4 rounded-full text-sm sm:text-base font-semibold transition-all duration-300 hover:bg-white/90 hover:shadow-[0_0_60px_rgba(255,255,255,0.2)] hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98]"
+              >
+                Pick Your Path
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+              <Link
+                href="/resources"
+                className="group inline-flex items-center justify-center gap-2 sm:gap-3 px-6 sm:px-8 py-3 sm:py-4 rounded-full text-sm sm:text-base font-medium text-white/60 hover:text-white border border-white/10 hover:border-white/20 hover:bg-white/5 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98] active:border-white/30 active:bg-white/10"
+              >
                 Browse Resources
                 <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
               </Link>
@@ -932,18 +933,13 @@ function FinalCTA() {
 
 export default function HomePageElite() {
   return (
-    <main className="relative min-h-screen text-white">
+    <main className="relative min-h-screen text-white overflow-x-hidden">
       <AuroraBackground />
       <ScrollProgress />
 
-      <div className="relative z-10">
+      <div className="relative z-10 overflow-x-hidden">
         <Hero />
-        {/* AI Labs Marquee - with actual brand logos */}
-        <section className="py-10 border-t border-white/5">
-          <div className="max-w-6xl mx-auto px-6">
-            <AILabsMarquee title="Built with Leading AI" speed={35} />
-          </div>
-        </section>
+        <TrustedByBlock />
         <StatsSection />
         <WhatIDo />
         <QuickStartSection />

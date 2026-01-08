@@ -5,9 +5,11 @@ import { spawn } from 'node:child_process'
 
 const SITE_ROOT = process.cwd()
 const SERVER_PATH = '/mnt/c/Users/Frank/MCP Server/Nano banana/nano-banana-mcp/dist/index.js'
+const CLAUDE_CODE_WINDOWS_CONFIG = '/mnt/c/Users/Frank/.mcp.json'
 const CLAUDE_CODE_CONFIG = '/home/frankx/.mcp.json'
 const CLAUDE_DESKTOP_CONFIG = '/mnt/c/Users/Frank/AppData/Roaming/Claude/claude_desktop_config.json'
 const LATEST_PROTOCOL_VERSION = '2025-06-18'
+const MCP_CONFIG_PATHS = [CLAUDE_CODE_WINDOWS_CONFIG, CLAUDE_CODE_CONFIG, CLAUDE_DESKTOP_CONFIG]
 
 const prompts = [
   {
@@ -42,45 +44,65 @@ const prompts = [
   },
 ]
 
-function parseApiKeyFromClaudeConfig(rawConfig) {
+async function readJsonFile(filePath) {
   try {
-    const config = JSON.parse(rawConfig)
-    const nanoBanana = config?.mcpServers?.['nano-banana']
-    return nanoBanana?.env?.GEMINI_API_KEY || null
+    const raw = await fs.readFile(filePath, 'utf8')
+    return JSON.parse(raw)
   } catch {
     return null
   }
 }
 
-async function resolveGeminiKey() {
-  if (process.env.GEMINI_API_KEY) {
-    return process.env.GEMINI_API_KEY
-  }
+function resolveEnvValue(value) {
+  if (typeof value !== 'string') return null
+  const match = value.match(/^\$\{(.+)\}$/)
+  if (!match) return value
+  return process.env[match[1]] || null
+}
 
-  try {
-    const rawConfig = await fs.readFile(CLAUDE_CODE_CONFIG, 'utf8')
-    const key = parseApiKeyFromClaudeConfig(rawConfig)
-    if (key && key !== '${GEMINI_API_KEY}') return key
-    if (key && key === '${GEMINI_API_KEY}' && process.env.GEMINI_API_KEY) {
-      return process.env.GEMINI_API_KEY
+function resolveEnvMap(env = {}) {
+  return Object.entries(env).reduce((acc, [key, value]) => {
+    const resolved = resolveEnvValue(value)
+    if (resolved) acc[key] = resolved
+    return acc
+  }, {})
+}
+
+async function resolveNanoBananaServer() {
+  const entries = []
+
+  for (const configPath of MCP_CONFIG_PATHS) {
+    const config = await readJsonFile(configPath)
+    const server = config?.mcpServers?.['nano-banana']
+    if (server) {
+      entries.push({ configPath, server })
     }
-  } catch {
-    // Claude Code config missing, fall back to desktop config.
   }
 
-  try {
-    const rawConfig = await fs.readFile(CLAUDE_DESKTOP_CONFIG, 'utf8')
-    const key = parseApiKeyFromClaudeConfig(rawConfig)
-    return key || null
-  } catch {
-    return null
+  const primary = entries[0]?.server
+  const mergedEnv = entries
+    .slice()
+    .reverse()
+    .reduce((acc, entry) => {
+      if (entry.server?.env) Object.assign(acc, entry.server.env)
+      return acc
+    }, {})
+
+  return {
+    command: primary?.command || 'node',
+    args: primary?.args || [SERVER_PATH],
+    cwd: primary?.cwd || SITE_ROOT,
+    env: resolveEnvMap(mergedEnv),
+    source: entries[0]?.configPath || null,
   }
 }
 
 class McpClient {
-  constructor({ serverPath, apiKey }) {
-    this.serverPath = serverPath
-    this.apiKey = apiKey
+  constructor({ command, args, env, cwd }) {
+    this.command = command
+    this.args = args
+    this.env = env
+    this.cwd = cwd
     this.nextId = 1
     this.pending = new Map()
     this.process = null
@@ -88,13 +110,12 @@ class McpClient {
   }
 
   async start() {
-    await fs.access(this.serverPath)
-    this.process = spawn('node', [this.serverPath], {
-      cwd: SITE_ROOT,
-      env: {
-        ...process.env,
-        GEMINI_API_KEY: this.apiKey,
-      },
+    if (this.command === 'node' && this.args?.[0]) {
+      await fs.access(this.args[0])
+    }
+    this.process = spawn(this.command, this.args, {
+      cwd: this.cwd,
+      env: this.env,
       stdio: ['pipe', 'pipe', 'inherit'],
     })
 
@@ -174,13 +195,22 @@ async function copyGeneratedImage(sourcePath, targetPath) {
 }
 
 async function main() {
-  const apiKey = await resolveGeminiKey()
-  if (!apiKey) {
-    console.error('Missing GEMINI_API_KEY. Set env var or configure Claude Desktop MCP settings.')
+  const serverConfig = await resolveNanoBananaServer()
+  const runtimeEnv = { ...serverConfig.env, ...process.env }
+
+  if (!runtimeEnv.GEMINI_API_KEY) {
+    console.error(
+      'Missing GEMINI_API_KEY. Set env var or configure nano-banana in C:\\Users\\Frank\\.mcp.json, /home/frankx/.mcp.json, or Claude Desktop MCP settings.'
+    )
     process.exit(1)
   }
 
-  const client = new McpClient({ serverPath: SERVER_PATH, apiKey })
+  const client = new McpClient({
+    command: serverConfig.command,
+    args: serverConfig.args,
+    env: runtimeEnv,
+    cwd: serverConfig.cwd,
+  })
   await client.start()
 
   for (const item of prompts) {

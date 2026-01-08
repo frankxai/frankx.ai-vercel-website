@@ -2,6 +2,8 @@
 
 import { motion } from 'framer-motion'
 import { LucideIcon, Music2, Code2, Users, Sparkles, BookOpen, Award } from 'lucide-react'
+import { LogoStrip } from '@/components/ui/LogoStrip'
+import { brandLogos } from '@/data/brand-logos'
 
 // ============================================================================
 // TYPES
@@ -132,34 +134,19 @@ export default function SocialProofStats({
 // ============================================================================
 
 export function LogoCloud() {
-  const logos = [
-    { name: 'Oracle', letter: 'O' },
-    { name: 'Google', letter: 'G' },
-    { name: 'MIT', letter: 'M' },
-    { name: 'Stanford', letter: 'S' },
-    { name: 'Anthropic', letter: 'A' },
-    { name: 'Suno', letter: 'S' },
-  ]
-
   return (
     <div className="py-8">
       <p className="text-xs font-medium uppercase tracking-[0.25em] text-white/30 text-center mb-6">
         Featured resources from
       </p>
-      <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12">
-        {logos.map((logo, i) => (
-          <motion.div
-            key={logo.name}
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.05 }}
-            className="text-white/20 hover:text-white/40 transition-colors"
-          >
-            <span className="text-lg font-semibold">{logo.name}</span>
-          </motion.div>
-        ))}
-      </div>
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.4 }}
+      >
+        <LogoStrip logos={brandLogos.slice(0, 6)} variant="grid" size="sm" linkMode="brand" />
+      </motion.div>
     </div>
   )
 }

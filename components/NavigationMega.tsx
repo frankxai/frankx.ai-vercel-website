@@ -213,6 +213,18 @@ export default function NavigationMega() {
     setIsOpen(false)
   }, [pathname])
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = ''
+    }
+    return () => {
+      document.body.style.overflow = ''
+    }
+  }, [isOpen])
+
   // Intelligent scroll behavior: hide on scroll down, show on scroll up
   useEffect(() => {
     let lastScrollY = window.scrollY
@@ -270,7 +282,7 @@ export default function NavigationMega() {
           : 'border-white/5 bg-[#030712]/90 backdrop-blur-xl'
       )}
     >
-      <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
+      <nav className="mx-auto flex h-14 sm:h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
         <Logo />
 
         {/* Desktop Navigation */}
@@ -386,9 +398,9 @@ export default function NavigationMega() {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
-            className="border-t border-white/5 bg-[#030712]/98 backdrop-blur-xl lg:hidden"
+            className="border-t border-white/5 bg-[#030712]/98 backdrop-blur-xl lg:hidden overflow-y-auto max-h-[calc(100vh-3.5rem)] sm:max-h-[calc(100vh-4rem)]"
           >
-            <div className="mx-auto max-w-6xl space-y-1 px-6 py-4">
+            <div className="mx-auto max-w-6xl space-y-1 px-4 sm:px-6 py-3 sm:py-4">
               {/* Mobile dropdowns */}
               {(Object.keys(navigation) as Array<keyof typeof navigation>).map((section) => (
                 <MobileSection key={section} section={section} onClose={() => setIsOpen(false)} />
@@ -398,24 +410,24 @@ export default function NavigationMega() {
               <Link
                 href="/blog"
                 onClick={() => setIsOpen(false)}
-                className="block rounded-lg px-4 py-3 text-base font-medium text-slate-300 transition-colors hover:bg-white/5 hover:text-white"
+                className="block rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base font-medium text-slate-300 transition-colors hover:bg-white/5 hover:text-white"
               >
                 Blog
               </Link>
               <Link
                 href="/about"
                 onClick={() => setIsOpen(false)}
-                className="block rounded-lg px-4 py-3 text-base font-medium text-slate-300 transition-colors hover:bg-white/5 hover:text-white"
+                className="block rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base font-medium text-slate-300 transition-colors hover:bg-white/5 hover:text-white"
               >
                 About
               </Link>
 
               {/* Mobile CTA */}
-              <div className="pt-4">
+              <div className="pt-3 sm:pt-4 pb-2">
                 <Link
                   href="/free-playbook"
                   onClick={() => setIsOpen(false)}
-                  className="block w-full rounded-lg bg-gradient-to-r from-emerald-600 to-cyan-600 py-3 text-center text-sm font-semibold text-white"
+                  className="block w-full rounded-lg bg-gradient-to-r from-emerald-600 to-cyan-600 py-2.5 sm:py-3 text-center text-sm font-semibold text-white"
                 >
                   Get Free Playbooks
                 </Link>
@@ -437,10 +449,10 @@ function MobileSection({ section, onClose }: { section: keyof typeof navigation;
     <div>
       <button
         onClick={() => setExpanded(!expanded)}
-        className="flex w-full items-center justify-between rounded-lg px-4 py-3 text-base font-medium text-slate-300 transition-colors hover:bg-white/5 hover:text-white"
+        className="flex w-full items-center justify-between rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base font-medium text-slate-300 transition-colors hover:bg-white/5 hover:text-white"
       >
         {data.label}
-        <ChevronDown className={cn('h-4 w-4 transition-transform', expanded && 'rotate-180')} />
+        <ChevronDown className={cn('h-4 w-4 transition-transform duration-200', expanded && 'rotate-180')} />
       </button>
       <AnimatePresence>
         {expanded && (
@@ -448,9 +460,10 @@ function MobileSection({ section, onClose }: { section: keyof typeof navigation;
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.15 }}
             className="overflow-hidden"
           >
-            <div className="space-y-1 pb-2 pl-4">
+            <div className="space-y-0.5 pb-2 pl-2 sm:pl-4">
               {data.items.map((item) => {
                 const Icon = item.icon
                 return (
@@ -458,10 +471,10 @@ function MobileSection({ section, onClose }: { section: keyof typeof navigation;
                     key={item.name}
                     href={item.href}
                     onClick={onClose}
-                    className="flex items-center gap-3 rounded-lg px-4 py-2.5 text-sm text-slate-400 transition-colors hover:bg-white/5 hover:text-white"
+                    className="flex items-center gap-2.5 sm:gap-3 rounded-lg px-3 sm:px-4 py-2 sm:py-2.5 text-xs sm:text-sm text-slate-400 transition-colors hover:bg-white/5 hover:text-white active:bg-white/10"
                   >
-                    <Icon className="h-4 w-4" />
-                    {item.name}
+                    <Icon className="h-3.5 w-3.5 sm:h-4 sm:w-4 flex-shrink-0" />
+                    <span className="truncate">{item.name}</span>
                   </Link>
                 )
               })}

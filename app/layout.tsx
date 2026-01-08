@@ -90,6 +90,9 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: '#030712',
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
 }
 
 export default function RootLayout({
@@ -110,7 +113,7 @@ export default function RootLayout({
           inter.variable,
           playfair.variable,
           jetbrains.variable,
-          'font-sans dark bg-[#030712] text-white antialiased min-h-screen'
+          'font-sans dark bg-[#030712] text-white antialiased min-h-screen overflow-x-hidden'
         )}
         suppressHydrationWarning
       >
@@ -123,12 +126,12 @@ export default function RootLayout({
         )}
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:bg-white focus:text-black focus:px-3 focus:py-2 focus:rounded"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:bg-white focus:text-black focus:px-3 focus:py-2 focus:rounded z-[100]"
         >
           Skip to content
         </a>
         <NavigationMega />
-        <div id="main" className="min-h-screen">
+        <div id="main" className="min-h-screen overflow-x-hidden">
           {children}
         </div>
         <Footer />

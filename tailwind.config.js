@@ -155,6 +155,7 @@ module.exports = {
         'bounce-gentle': 'bounceGentle 2s infinite',
         'gradient-shift': 'gradientShift 8s ease-in-out infinite',
         float: 'float 6s ease-in-out infinite',
+        'logo-marquee': 'logoMarquee 40s linear infinite',
         // Radix Navigation animations
         scaleIn: 'scaleIn 200ms ease',
         scaleOut: 'scaleOut 200ms ease',
@@ -197,6 +198,10 @@ module.exports = {
         float: {
           '0%, 100%': { transform: 'translateY(0px)' },
           '50%': { transform: 'translateY(-10px)' },
+        },
+        logoMarquee: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-50%)' },
         },
         // Radix Navigation keyframes
         scaleIn: {
