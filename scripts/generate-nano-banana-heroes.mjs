@@ -5,6 +5,7 @@ import { spawn } from 'node:child_process'
 
 const SITE_ROOT = process.cwd()
 const SERVER_PATH = '/mnt/c/Users/Frank/MCP Server/Nano banana/nano-banana-mcp/dist/index.js'
+const CLAUDE_CODE_CONFIG = '/home/frankx/.mcp.json'
 const CLAUDE_DESKTOP_CONFIG = '/mnt/c/Users/Frank/AppData/Roaming/Claude/claude_desktop_config.json'
 const LATEST_PROTOCOL_VERSION = '2025-06-18'
 
@@ -54,6 +55,17 @@ function parseApiKeyFromClaudeConfig(rawConfig) {
 async function resolveGeminiKey() {
   if (process.env.GEMINI_API_KEY) {
     return process.env.GEMINI_API_KEY
+  }
+
+  try {
+    const rawConfig = await fs.readFile(CLAUDE_CODE_CONFIG, 'utf8')
+    const key = parseApiKeyFromClaudeConfig(rawConfig)
+    if (key && key !== '${GEMINI_API_KEY}') return key
+    if (key && key === '${GEMINI_API_KEY}' && process.env.GEMINI_API_KEY) {
+      return process.env.GEMINI_API_KEY
+    }
+  } catch {
+    // Claude Code config missing, fall back to desktop config.
   }
 
   try {
