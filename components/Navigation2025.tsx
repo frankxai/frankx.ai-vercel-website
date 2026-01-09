@@ -23,6 +23,7 @@ export default function Navigation2025() {
   const pathname = usePathname()
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsOpen(false)
   }, [pathname])
 

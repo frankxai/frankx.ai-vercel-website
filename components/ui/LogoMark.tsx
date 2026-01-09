@@ -1,5 +1,6 @@
 'use client'
 
+import { useId } from 'react'
 import { motion } from 'framer-motion'
 
 interface LogoMarkProps {
@@ -16,7 +17,7 @@ interface LogoMarkProps {
  * Inspired by: Stripe, Linear, Vercel - minimal, iconic, premium.
  */
 export function LogoMark({ size = 32, animated = false, className = '' }: LogoMarkProps) {
-  const gradientId = `fx-gradient-${Math.random().toString(36).substr(2, 9)}`
+  const gradientId = `fx-gradient-${useId().replace(/:/g, '')}`
 
   return (
     <motion.svg
@@ -57,7 +58,7 @@ export function LogoMark({ size = 32, animated = false, className = '' }: LogoMa
  * More abstract, suggests sound waves and neural pathways
  */
 export function LogoMarkWave({ size = 32, className = '' }: Omit<LogoMarkProps, 'animated'>) {
-  const gradientId = `wave-gradient-${Math.random().toString(36).substr(2, 9)}`
+  const gradientId = `wave-gradient-${useId().replace(/:/g, '')}`
 
   return (
     <svg
@@ -94,7 +95,7 @@ export function LogoMarkWave({ size = 32, className = '' }: Omit<LogoMarkProps, 
  * Suggests light refraction, intelligence, multi-faceted expertise
  */
 export function LogoMarkCrystal({ size = 32, className = '' }: Omit<LogoMarkProps, 'animated'>) {
-  const gradientId = `crystal-gradient-${Math.random().toString(36).substr(2, 9)}`
+  const gradientId = `crystal-gradient-${useId().replace(/:/g, '')}`
 
   return (
     <svg
@@ -141,7 +142,7 @@ export function LogoMarkCrystal({ size = 32, className = '' }: Omit<LogoMarkProp
  * Ultra-minimal, works at any size, unmistakably "F"
  */
 export function LogoMarkMinimal({ size = 32, className = '' }: Omit<LogoMarkProps, 'animated'>) {
-  const gradientId = `minimal-gradient-${Math.random().toString(36).substr(2, 9)}`
+  const gradientId = `minimal-gradient-${useId().replace(/:/g, '')}`
 
   return (
     <svg

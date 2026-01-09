@@ -10,9 +10,9 @@ const main = async () => {
   const articles = await Promise.all(files.map(async (file) => {
     const fullPath = path.join(blogDirectory, file)
     const content = fs.readFileSync(fullPath, 'utf8')
-    const date = content.match(/date: "(.*?)"/) S?.[1] || ''
-    return { file, date };
-  }));
+    const date = content.match(/date: "(.*?)"/)?.[1] || ''
+    return { file, date }
+  }))
 
   let contentDashboard = fs.readFileSync(contentDashboardPath, 'utf8')
 

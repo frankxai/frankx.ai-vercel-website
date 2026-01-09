@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Zap,
@@ -20,6 +20,7 @@ import {
   RefreshCw,
   Flame,
   Award,
+  Check,
 } from 'lucide-react';
 import GlassmorphicCard from '@/components/ui/GlassmorphicCard';
 import InteractiveCard from '@/components/ui/InteractiveCard';
@@ -118,8 +119,15 @@ export default function VaultPage() {
   const [selectedPillar, setSelectedPillar] = useState('energy');
   const [newGoal, setNewGoal] = useState('');
   const [isLoading, setIsLoading] = useState(true);
+  const idCounter = useRef(0);
+
+  const getNextId = (prefix: string) => {
+    idCounter.current += 1;
+    return `${prefix}-${idCounter.current}`;
+  };
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setJournalEntries(getFromStorage(STORAGE_KEYS.JOURNAL, []));
     setGoals(getFromStorage(STORAGE_KEYS.GOALS, []));
     setProgress(getFromStorage(STORAGE_KEYS.PROGRESS, []));
@@ -155,7 +163,7 @@ export default function VaultPage() {
     if (!newJournalEntry.trim()) return;
 
     const entry: JournalEntry = {
-      id: Date.now().toString(),
+      id: getNextId(selectedPillar),
       pillarId: selectedPillar,
       content: newJournalEntry,
       date: new Date().toISOString(),
@@ -170,7 +178,7 @@ export default function VaultPage() {
     if (!newGoal.trim()) return;
 
     const goal: Goal = {
-      id: Date.now().toString(),
+      id: getNextId(selectedPillar),
       pillarId: selectedPillar,
       title: newGoal,
       completed: false,
@@ -736,7 +744,7 @@ export default function VaultPage() {
                               <button
                                 onClick={() => handleDeleteGoal(goal.id)}
                                 className="text-slate-500 hover:text-red-400 transition-colors p-2"
-                                ariaLabel="Delete goal"
+                                aria-label="Delete goal"
                               >
                                 <Settings className="w-5 h-5" />
                               </button>

@@ -25,7 +25,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     description: product.summary || product.promise,
     path: `/products/${product.slug}`,
     type: 'website', // Product pages are often 'website' or 'product' (og:type product not always standard)
-    image: `/api/og?title=${encodeURIComponent(product.name)}&subtitle=${encodeURIComponent(product.category)}`,
+    image: `/api/og?title=${encodeURIComponent(product.name)}&subtitle=${encodeURIComponent(product.category ?? 'Product')}`,
   })
 }
 
@@ -154,7 +154,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
                   trackingId={product.offer.ctaPrimaryTracking}
                 />
                 
-                {product.offer.ctaSecondary && (
+                {product.offer.ctaSecondary && product.offer.ctaSecondaryHref && (
                   <Link
                     href={product.offer.ctaSecondaryHref}
                     className="flex w-full items-center justify-center rounded-xl border border-white/10 bg-transparent px-8 py-4 text-base font-semibold text-white transition-all hover:bg-white/5"

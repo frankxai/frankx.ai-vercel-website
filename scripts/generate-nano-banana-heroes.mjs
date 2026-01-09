@@ -6,10 +6,19 @@ import { spawn } from 'node:child_process'
 const SITE_ROOT = process.cwd()
 const SERVER_PATH = '/mnt/c/Users/Frank/MCP Server/Nano banana/nano-banana-mcp/dist/index.js'
 const CLAUDE_CODE_WINDOWS_CONFIG = '/mnt/c/Users/Frank/.mcp.json'
+const CLAUDE_CODE_VSCODE_CONFIG = '/mnt/c/Users/Frank/AppData/Roaming/Code/User/mcp.json'
 const CLAUDE_CODE_CONFIG = '/home/frankx/.mcp.json'
 const CLAUDE_DESKTOP_CONFIG = '/mnt/c/Users/Frank/AppData/Roaming/Claude/claude_desktop_config.json'
+const NANO_BANANA_CLAUDE_CONFIG = '/mnt/c/Users/Frank/mcp-servers/nano-banana-mcp/claude-config.json'
 const LATEST_PROTOCOL_VERSION = '2025-06-18'
-const MCP_CONFIG_PATHS = [CLAUDE_CODE_WINDOWS_CONFIG, CLAUDE_CODE_CONFIG, CLAUDE_DESKTOP_CONFIG]
+const MCP_CONFIG_PATHS = [
+  CLAUDE_CODE_WINDOWS_CONFIG,
+  CLAUDE_CODE_VSCODE_CONFIG,
+  CLAUDE_CODE_CONFIG,
+  NANO_BANANA_CLAUDE_CONFIG,
+  CLAUDE_DESKTOP_CONFIG,
+]
+const NANO_BANANA_ENV_PATH = '/mnt/c/Users/Frank/mcp-servers/nano-banana-mcp/.env'
 
 const prompts = [
   {
@@ -53,6 +62,55 @@ async function readJsonFile(filePath) {
   }
 }
 
+async function readDotEnvValue(filePath, key) {
+  try {
+    const raw = await fs.readFile(filePath, 'utf8')
+    const match = raw.match(new RegExp(`^${key}=(.+)$`, 'm'))
+    if (!match) return null
+    return match[1].trim().replace(/^['"]|['"]$/g, '')
+  } catch {
+    return null
+  }
+}
+
+async function runCommand(command, args) {
+  return new Promise((resolve) => {
+    const child = spawn(command, args, { stdio: ['ignore', 'pipe', 'ignore'] })
+    let output = ''
+
+    child.stdout.on('data', (chunk) => {
+      output += chunk.toString()
+    })
+
+    child.on('close', () => {
+      resolve(output.trim())
+    })
+  })
+}
+
+async function readWindowsEnvVar(name) {
+  const commands = [
+    [
+      'powershell.exe',
+      ['-NoProfile', '-Command', `[Environment]::GetEnvironmentVariable('${name}','User')`],
+    ],
+    [
+      'powershell.exe',
+      ['-NoProfile', '-Command', `[Environment]::GetEnvironmentVariable('${name}','Machine')`],
+    ],
+    ['cmd.exe', ['/c', `echo %${name}%`]],
+  ]
+
+  for (const [command, args] of commands) {
+    const value = await runCommand(command, args)
+    if (value && value !== `%${name}%`) {
+      return value
+    }
+  }
+
+  return null
+}
+
 function resolveEnvValue(value) {
   if (typeof value !== 'string') return null
   const match = value.match(/^\$\{(.+)\}$/)
@@ -79,7 +137,13 @@ async function resolveNanoBananaServer() {
     }
   }
 
-  const primary = entries[0]?.server
+  const primaryEntry = entries[0]
+  const primary = primaryEntry?.server
+  const primaryArgs = primary?.args || []
+  const inferredCwd =
+    primaryEntry?.configPath && primaryArgs[0] && !path.isAbsolute(primaryArgs[0])
+      ? path.dirname(primaryEntry.configPath)
+      : SITE_ROOT
   const mergedEnv = entries
     .slice()
     .reverse()
@@ -91,7 +155,7 @@ async function resolveNanoBananaServer() {
   return {
     command: primary?.command || 'node',
     args: primary?.args || [SERVER_PATH],
-    cwd: primary?.cwd || SITE_ROOT,
+    cwd: primary?.cwd || inferredCwd,
     env: resolveEnvMap(mergedEnv),
     source: entries[0]?.configPath || null,
   }
@@ -111,12 +175,23 @@ class McpClient {
 
   async start() {
     if (this.command === 'node' && this.args?.[0]) {
-      await fs.access(this.args[0])
+      const targetPath = path.isAbsolute(this.args[0])
+        ? this.args[0]
+        : path.join(this.cwd || SITE_ROOT, this.args[0])
+      await fs.access(targetPath)
     }
     this.process = spawn(this.command, this.args, {
       cwd: this.cwd,
       env: this.env,
       stdio: ['pipe', 'pipe', 'inherit'],
+    })
+    this.process.on('error', (error) => {
+      console.error('Nano Banana MCP spawn error:', error)
+    })
+    this.process.on('exit', (code, signal) => {
+      if (code !== 0) {
+        console.error('Nano Banana MCP exited:', { code, signal })
+      }
     })
 
     this.reader = readline.createInterface({ input: this.process.stdout })
@@ -136,7 +211,7 @@ class McpClient {
       }
     })
 
-    await this.request('initialize', {
+    const initRequest = this.request('initialize', {
       protocolVersion: LATEST_PROTOCOL_VERSION,
       capabilities: {},
       clientInfo: {
@@ -144,6 +219,12 @@ class McpClient {
         version: '1.0.0',
       },
     })
+    await Promise.race([
+      initRequest,
+      new Promise((_, reject) =>
+        setTimeout(() => reject(new Error('MCP initialize timed out')), 10000)
+      ),
+    ])
 
     this.notify('notifications/initialized', {})
   }
@@ -198,6 +279,27 @@ async function main() {
   const serverConfig = await resolveNanoBananaServer()
   const runtimeEnv = { ...serverConfig.env, ...process.env }
 
+  console.log('Nano Banana MCP config:', {
+    command: serverConfig.command,
+    args: serverConfig.args,
+    cwd: serverConfig.cwd,
+    source: serverConfig.source,
+  })
+
+  if (!runtimeEnv.GEMINI_API_KEY) {
+    const windowsKey = await readWindowsEnvVar('GEMINI_API_KEY')
+    if (windowsKey) {
+      runtimeEnv.GEMINI_API_KEY = windowsKey
+    }
+  }
+
+  if (!runtimeEnv.GEMINI_API_KEY) {
+    const envKey = await readDotEnvValue(NANO_BANANA_ENV_PATH, 'GEMINI_API_KEY')
+    if (envKey) {
+      runtimeEnv.GEMINI_API_KEY = envKey
+    }
+  }
+
   if (!runtimeEnv.GEMINI_API_KEY) {
     console.error(
       'Missing GEMINI_API_KEY. Set env var or configure nano-banana in C:\\Users\\Frank\\.mcp.json, /home/frankx/.mcp.json, or Claude Desktop MCP settings.'
@@ -212,6 +314,7 @@ async function main() {
     cwd: serverConfig.cwd,
   })
   await client.start()
+  console.log('Nano Banana MCP connected.')
 
   for (const item of prompts) {
     console.log(`Generating image for ${item.slug}...`)

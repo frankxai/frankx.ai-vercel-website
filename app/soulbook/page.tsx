@@ -1,5 +1,7 @@
-import type { Metadata } from 'next'
+'use client'
+
 import { motion } from 'framer-motion'
+import Link from 'next/link'
 import SoulbookHero from '@/components/soulbook/SoulbookHero'
 import LifeBookSelector from '@/components/soulbook/LifeBookSelector'
 import PillarVisualizer from '@/components/soulbook/PillarVisualizer'
@@ -7,23 +9,6 @@ import PremiumButton from '@/components/ui/PremiumButton'
 import GlassmorphicCard from '@/components/ui/GlassmorphicCard'
 import JsonLd from '@/components/seo/JsonLd'
 import { philosophyStatements, pricingTiers } from '@/lib/soulbook/soulbook-data'
-
-export const metadata: Metadata = {
-  title: 'Soulbook | Transform Your Life Through the 7 Pillars',
-  description: 'A transformative journey through 7 pillars of conscious living. Discover who you truly are and create the life you were born to live with the Soulbook framework.',
-  openGraph: {
-    title: 'Soulbook | Transform Your Life Through the 7 Pillars',
-    description: 'A transformative journey through 7 pillars of conscious living. Discover who you truly are and create the life you were born to live.',
-    images: [
-      {
-        url: 'https://frankx.ai/assets/soulbook-og.png',
-        width: 1200,
-        height: 630,
-        alt: 'Soulbook - Transform Your Life',
-      },
-    ],
-  },
-}
 
 const websiteSchema = {
   name: 'Soulbook',
@@ -234,10 +219,10 @@ function FooterSection() {
           </div>
 
           <div className="flex items-center gap-6 text-sm text-white/60">
-            <a href="/about" className="hover:text-white transition-colors">About</a>
-            <a href="/blog" className="hover:text-white transition-colors">Blog</a>
-            <a href="/community" className="hover:text-white transition-colors">Community</a>
-            <a href="/contact" className="hover:text-white transition-colors">Contact</a>
+            <Link href="/about" className="hover:text-white transition-colors">About</Link>
+            <Link href="/blog" className="hover:text-white transition-colors">Blog</Link>
+            <Link href="/community" className="hover:text-white transition-colors">Community</Link>
+            <Link href="/contact" className="hover:text-white transition-colors">Contact</Link>
           </div>
 
           <p className="text-sm text-white/40">

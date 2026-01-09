@@ -1,3 +1,4 @@
+import { useId } from 'react'
 import Script from 'next/script'
 
 // Extended schema types for AI-first content optimization
@@ -125,7 +126,8 @@ export function buildCourseData(data: {
 
 // Main component
 export default function JsonLd({ type, data, id }: JsonLdProps) {
-  const scriptId = id || `json-ld-${type.toLowerCase()}-${Math.random().toString(36).substr(2, 9)}`
+  const reactId = useId()
+  const scriptId = id || `json-ld-${type.toLowerCase()}-${reactId.replace(/:/g, '')}`
 
   return (
     <Script
@@ -173,7 +175,8 @@ export function ArticleWithFAQJsonLd({
   id?: string
 }) {
   const schemas = buildArticleWithFAQ(article, faqs)
-  const scriptId = id || `json-ld-article-faq-${Math.random().toString(36).substr(2, 9)}`
+  const reactId = useId()
+  const scriptId = id || `json-ld-article-faq-${reactId.replace(/:/g, '')}`
 
   return (
     <Script

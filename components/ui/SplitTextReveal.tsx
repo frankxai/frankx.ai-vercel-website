@@ -1,7 +1,10 @@
 'use client'
 
 import { motion, useReducedMotion } from 'framer-motion'
-import { motionDurations, motionSpring } from '@/lib/design/motion'
+
+const motionSpring = {
+  snappy: { stiffness: 220, damping: 26 },
+}
 
 interface SplitTextRevealProps {
   text: string

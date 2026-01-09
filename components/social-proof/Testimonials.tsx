@@ -104,8 +104,9 @@ function TestimonialCard({
         "{testimonial.quote}"
       </p>
 
-      <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3">
         {testimonial.avatar ? (
+          // eslint-disable-next-line @next/next/no-img-element
           <img
             src={testimonial.avatar}
             alt={testimonial.author}
@@ -151,12 +152,13 @@ function FeaturedTestimonial({ testimonial }: { testimonial: Testimonial }) {
         </blockquote>
 
         <div className="flex items-center gap-4">
-          {testimonial.avatar ? (
-            <img
-              src={testimonial.avatar}
-              alt={testimonial.author}
-              className="w-14 h-14 rounded-full object-cover"
-            />
+        {testimonial.avatar ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={testimonial.avatar}
+            alt={testimonial.author}
+            className="w-14 h-14 rounded-full object-cover"
+          />
           ) : (
             <div className={`w-14 h-14 rounded-full ${colors.icon} flex items-center justify-center text-lg font-semibold`}>
               {testimonial.initials || testimonial.author.split(' ').map((n) => n[0]).join('')}
