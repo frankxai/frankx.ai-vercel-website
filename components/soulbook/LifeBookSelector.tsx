@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { useState } from 'react'
+import Link from 'next/link'
 import { cn } from '@/lib/utils'
 import GlassmorphicCard from '@/components/ui/GlassmorphicCard'
 import PremiumButton from '@/components/ui/PremiumButton'
@@ -254,6 +255,7 @@ export default function LifeBookSelector() {
                 size="xl"
                 glow
                 className="w-full"
+                href={lifeBooks[selectedBook].slug === 'seven-pillars' ? '/soulbook/7-pillars' : `/soulbook/${lifeBooks[selectedBook].slug}`}
               >
                 Start Your {lifeBooks[selectedBook].title} Journey — ${lifeBooks[selectedBook].price.current}
               </PremiumButton>
