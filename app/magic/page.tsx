@@ -16,6 +16,22 @@ import {
   Wand2,
 } from 'lucide-react'
 
+const seeded = (value: number) => {
+  const x = Math.sin(value) * 10000
+  return x - Math.floor(x)
+}
+
+const starField = Array.from({ length: 50 }, (_, index) => {
+  const seed = (index + 1) * 12.9898
+  return {
+    left: seeded(seed) * 100,
+    top: seeded(seed * 1.7) * 100,
+    opacity: seeded(seed * 2.3) * 0.5 + 0.1,
+    duration: 2 + seeded(seed * 0.9) * 3,
+    delay: seeded(seed * 1.1) * 2,
+  }
+})
+
 // Magical background with cosmic elements
 function MagicBackground() {
   return (
@@ -59,23 +75,23 @@ function MagicBackground() {
 
       {/* Starfield effect */}
       <div className="absolute inset-0">
-        {[...Array(50)].map((_, i) => (
+        {starField.map((star, i) => (
           <motion.div
             key={i}
             className="absolute w-1 h-1 bg-white rounded-full"
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              opacity: Math.random() * 0.5 + 0.1,
+              left: `${star.left}%`,
+              top: `${star.top}%`,
+              opacity: star.opacity,
             }}
             animate={{
               opacity: [0.1, 0.6, 0.1],
               scale: [1, 1.5, 1],
             }}
             transition={{
-              duration: 2 + Math.random() * 3,
+              duration: star.duration,
               repeat: Infinity,
-              delay: Math.random() * 2,
+              delay: star.delay,
             }}
           />
         ))}

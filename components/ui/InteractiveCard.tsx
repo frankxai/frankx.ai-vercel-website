@@ -1,7 +1,7 @@
 'use client'
 
 import { motion, useMotionValue, useTransform } from 'framer-motion'
-import { ReactNode, useRef, useState } from 'react'
+import { ReactNode, useMemo, useRef, useState } from 'react'
 
 interface InteractiveCardProps {
   children: ReactNode
@@ -39,6 +39,17 @@ export default function InteractiveCard({
     medium: '0_0_30px',
     strong: '0_0_50px'
   }
+
+  const particleSeeds = useMemo(
+    () =>
+      Array.from({ length: 5 }, (_, index) => {
+        const seed = (index + 1) * 12.9898
+        const x = (Math.sin(seed) * 0.5 + 0.5) * 300
+        const y = (Math.cos(seed * 1.3) * 0.5 + 0.5) * 200
+        return { x, y }
+      }),
+    []
+  )
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!tiltEnabled || !cardRef.current) return
@@ -103,8 +114,8 @@ export default function InteractiveCard({
                 'bg-yellow-400'
               }`}
               initial={{
-                x: Math.random() * 300,
-                y: Math.random() * 200,
+                x: particleSeeds[i]?.x ?? 0,
+                y: particleSeeds[i]?.y ?? 0,
                 opacity: 0
               }}
               animate={{

@@ -1,11 +1,11 @@
 ﻿'use client'
 
-import { motion } from 'framer-motion'
-import { ReactNode } from 'react'
+import { motion, type HTMLMotionProps } from 'framer-motion'
+import type { ReactNode } from 'react'
 
 import { cn } from '@/lib/utils'
 
-interface GlassmorphicCardProps {
+interface GlassmorphicCardProps extends HTMLMotionProps<'div'> {
   children: ReactNode
   className?: string
   variant?: 'default' | 'premium' | 'luxury'
@@ -41,7 +41,8 @@ export default function GlassmorphicCard({
   variant = 'default',
   gradient = 'aurora',
   hover = false,
-  border = 'subtle'
+  border = 'subtle',
+  ...props
 }: GlassmorphicCardProps) {
   return (
     <motion.div
@@ -53,6 +54,7 @@ export default function GlassmorphicCard({
       )}
       whileHover={hover ? { y: -4 } : undefined}
       transition={{ duration: 0.3, ease: 'easeOut' }}
+      {...props}
     >
       <div className={cn('pointer-events-none absolute inset-0', gradientStyles[gradient])} aria-hidden />
       <div className="pointer-events-none absolute inset-0 opacity-30" style={{ backgroundImage: `url(${noiseTexture})` }} aria-hidden />

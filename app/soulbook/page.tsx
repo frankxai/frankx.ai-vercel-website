@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Link from 'next/link'
 import SoulbookHero from '@/components/soulbook/SoulbookHero'
 import LifeBookSelector from '@/components/soulbook/LifeBookSelector'
 import PillarVisualizer from '@/components/soulbook/PillarVisualizer'
@@ -218,10 +219,10 @@ function FooterSection() {
           </div>
 
           <div className="flex items-center gap-6 text-sm text-white/60">
-            <a href="/about" className="hover:text-white transition-colors">About</a>
-            <a href="/blog" className="hover:text-white transition-colors">Blog</a>
-            <a href="/community" className="hover:text-white transition-colors">Community</a>
-            <a href="/contact" className="hover:text-white transition-colors">Contact</a>
+            <Link href="/about" className="hover:text-white transition-colors">About</Link>
+            <Link href="/blog" className="hover:text-white transition-colors">Blog</Link>
+            <Link href="/community" className="hover:text-white transition-colors">Community</Link>
+            <Link href="/contact" className="hover:text-white transition-colors">Contact</Link>
           </div>
 
           <p className="text-sm text-white/40">
