@@ -1,4 +1,5 @@
-import type { Metadata } from 'next'
+'use client'
+
 import { motion } from 'framer-motion'
 import SoulbookHero from '@/components/soulbook/SoulbookHero'
 import LifeBookSelector from '@/components/soulbook/LifeBookSelector'
@@ -7,23 +8,6 @@ import PremiumButton from '@/components/ui/PremiumButton'
 import GlassmorphicCard from '@/components/ui/GlassmorphicCard'
 import JsonLd from '@/components/seo/JsonLd'
 import { philosophyStatements, pricingTiers } from '@/lib/soulbook/soulbook-data'
-
-export const metadata: Metadata = {
-  title: 'Soulbook | Transform Your Life Through the 7 Pillars',
-  description: 'A transformative journey through 7 pillars of conscious living. Discover who you truly are and create the life you were born to live with the Soulbook framework.',
-  openGraph: {
-    title: 'Soulbook | Transform Your Life Through the 7 Pillars',
-    description: 'A transformative journey through 7 pillars of conscious living. Discover who you truly are and create the life you were born to live.',
-    images: [
-      {
-        url: 'https://frankx.ai/assets/soulbook-og.png',
-        width: 1200,
-        height: 630,
-        alt: 'Soulbook - Transform Your Life',
-      },
-    ],
-  },
-}
 
 const websiteSchema = {
   name: 'Soulbook',
