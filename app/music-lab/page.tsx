@@ -371,7 +371,7 @@ export default function MusicLabPage() {
                 Start with Your Frequency
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Link>
-              <Link href="/blog/05-music-as-consciousness-technology" className="inline-flex items-center px-8 py-4 bg-white/20 text-white rounded-lg hover:bg-white/30 transition-colors">
+              <Link href="/blog/music-as-consciousness-technology" className="inline-flex items-center px-8 py-4 bg-white/20 text-white rounded-lg hover:bg-white/30 transition-colors">
                 Read the Full Story
                 <Music className="ml-2 w-5 h-5" />
               </Link>

@@ -268,14 +268,14 @@ export const updateEntries: UpdateEntry[] = [
     summary: 'What three years of Suno collaborations taught us about consciousness and creative practice.',
     type: 'Article',
     date: '2025-09-26',
-    href: '/blog/05-music-as-consciousness-technology'
+    href: '/blog/music-as-consciousness-technology'
   },
   {
     title: 'Agentic Creator OS Field Notes',
     summary: 'Case studies from creators installing dashboards, automations, and launch rituals.',
     type: 'Article',
     date: '2025-09-26',
-    href: '/blog/07-agentic-creator-os'
+    href: '/blog/agentic-creator-os'
   },
   {
     title: 'Intelligence Atlas Vol. I',
