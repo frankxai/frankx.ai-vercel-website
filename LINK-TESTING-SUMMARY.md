@@ -81,14 +81,14 @@ Comprehensive link testing was performed on 11 key pages of the FrankX.AI websit
 **Broken Blog Posts:**
 1. `/blog/01-ai-doesnt-have-to-be-soulless`
 2. `/blog/02-the-soul-frequency-framework`
-3. `/blog/03-ai-guide-for-families-and-professionals`
-4. `/blog/04-conscious-ai-for-entrepreneurs`
-5. `/blog/05-music-as-consciousness-technology`
+3. `/blog/ai-guide-for-families-and-professionals`
+4. `/blog/conscious-ai-for-entrepreneurs`
+5. `/blog/music-as-consciousness-technology`
 6. `/blog/06-intelligence-revolution-2025`
-7. `/blog/07-agentic-creator-os`
+7. `/blog/agentic-creator-os`
 8. `/blog/08-golden-age-of-intelligence`
-9. `/blog/09-reader-first-golden-age`
-10. `/blog/10-agentic-ai-roadmap-2025`
+9. `/blog/reader-first-golden-age`
+10. `/blog/agentic-ai-roadmap-2025`
 11. `/blog/ai-doesnt-have-to-be-soulless` (duplicate/different slug)
 12. `/blog/agentic-seo-publishing-masterplan`
 13. `/blog/conscious-ai-integration-operating-system`

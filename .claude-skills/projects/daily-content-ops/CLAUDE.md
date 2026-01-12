@@ -8,6 +8,4 @@
 | ID | Time | T | Title | Read |
 |----|------|---|-------|------|
 | #946 | 9:44 PM | 🟣 | Created Comprehensive Daily Content Operations Skill with Four-Phase Workflow | ~835 |
-| #944 | " | ✅ | Skills README Updated with Daily Content Operations and Publishing Skills | ~470 |
-| #943 | " | 🔵 | Claude Skills System Architecture with Domain-Specific Categories and Development Guidelines | ~701 |
 </claude-mem-context>

@@ -4,7 +4,7 @@
 ## Strategic Framework
 
 ### Current Sprint Drops (2025-09-18)
-- **Creation Chronicles:** Publish *The Agentic Creator OS: How to Orchestrate AI Like a Studio* (content/blog/07-agentic-creator-os.md) with CTA blocks pointing to /products/creative-ai-toolkit and /products/agentic-creator-os.
+- **Creation Chronicles:** Publish *The Agentic Creator OS: How to Orchestrate AI Like a Studio* (content/blog/agentic-creator-os.md) with CTA blocks pointing to /products/creative-ai-toolkit and /products/agentic-creator-os.
 - **AI Architect Newsletter:** Tease the article with a three-bullet executive summary and link to the Creative AI Toolkit quickstart chapter.
 - **Vibe OS Companion:** Queue the "Agentic Sunrise" Suno track snippet and cover art for social rollout (see Vibe OS backlog).
 - **Golden Age of Intelligence Prep:** Log insights in docs/CREATIVE_INTELLIGENCE_GUIDE.md for Issue #1 metrics section.
