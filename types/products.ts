@@ -66,6 +66,27 @@ export type ProductCaseStudy = {
   ctaHref?: string
 }
 
+/**
+ * Digital file available for download
+ */
+export type ProductFile = {
+  name: string
+  format: 'pdf' | 'zip' | 'video' | 'audio' | 'notion'
+  blobKey: string // Vercel Blob storage key
+  sizeBytes?: number
+  description?: string
+}
+
+/**
+ * Delivery configuration for digital products
+ */
+export type ProductDelivery = {
+  methods: ('download' | 'email' | 'gated' | 'whop')[]
+  files?: ProductFile[]
+  requiresEmail?: boolean
+  whopProductId?: string
+}
+
 export type ProductRecord = {
   id: string
   slug: string
@@ -88,5 +109,7 @@ export type ProductRecord = {
   caseStudies?: ProductCaseStudy[]
   faq: ProductFaq[]
   analyticsId?: string
+  /** Digital delivery configuration */
+  delivery?: ProductDelivery
 }
 

@@ -29,6 +29,27 @@ export function getProductById(id: string) {
   return products.find((product) => product.id === id)
 }
 
+/**
+ * Get products with downloadable files
+ */
+export function getDownloadableProducts() {
+  return products.filter((product) => product.delivery?.files?.length)
+}
+
+/**
+ * Check if product requires email for download
+ */
+export function requiresEmailCapture(product: ProductRecord): boolean {
+  return product.delivery?.requiresEmail === true
+}
+
+/**
+ * Get delivery methods for a product
+ */
+export function getDeliveryMethods(product: ProductRecord) {
+  return product.delivery?.methods ?? []
+}
+
 export function getProductCards(): ProductCard[] {
   return products.map((product) => {
     const firstQuote = product.socialProof.quotes[0]

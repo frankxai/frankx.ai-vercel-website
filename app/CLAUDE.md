@@ -13,5 +13,7 @@
 
 | ID | Time | T | Title | Read |
 |----|------|---|-------|------|
+| #968 | 10:10 PM | 🔵 | Products Directory Contains Five Product Pages with Dynamic Slug Route | ~558 |
+| #950 | 9:47 PM | ✅ | Committed Daily Content Ops Skill and Memory Context System | ~638 |
 | #925 | 9:33 PM | ✅ | Staged Additional Modified Files Beyond Platform Guide Changes | ~361 |
 </claude-mem-context>

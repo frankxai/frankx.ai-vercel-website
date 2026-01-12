@@ -78,7 +78,25 @@
         "answer": "The complete framework is free forever. Premium options include guided programs, community support, and 1:1 coaching - coming soon."
       }
     ],
-    "analyticsId": "creators-soulbook"
+    "analyticsId": "creators-soulbook",
+    "delivery": {
+      "methods": ["download", "gated"],
+      "requiresEmail": true,
+      "files": [
+        {
+          "name": "Soulbook Complete Guide",
+          "format": "pdf",
+          "blobKey": "products/soulbook/soulbook-guide.pdf",
+          "description": "The complete Creator's Soulbook framework with all 7 pillars"
+        },
+        {
+          "name": "Obsidian Vault",
+          "format": "zip",
+          "blobKey": "products/soulbook/soulbook-vault.zip",
+          "description": "Ready-to-use Obsidian vault with templates and dashboards"
+        }
+      ]
+    }
   },
   {
     "id": "creative-ai-toolkit",
@@ -267,7 +285,32 @@
         "answer": "Yes. The toolkit covers distribution, licensing, and revenue pathways so you can confidently publish and monetize your music."
       }
     ],
-    "analyticsId": "vibe-os"
+    "analyticsId": "vibe-os",
+    "delivery": {
+      "methods": ["download", "whop"],
+      "requiresEmail": false,
+      "whopProductId": "prod_vibe_os",
+      "files": [
+        {
+          "name": "Vibe OS Complete Guide",
+          "format": "pdf",
+          "blobKey": "products/vibe-os/vibe-os-guide.pdf",
+          "description": "Complete AI music creation system with Suno workflows"
+        },
+        {
+          "name": "Genre Prompt Pack",
+          "format": "pdf",
+          "blobKey": "products/vibe-os/genre-prompts.pdf",
+          "description": "50+ genre-specific Suno prompts"
+        },
+        {
+          "name": "Emotion Mapping System",
+          "format": "pdf",
+          "blobKey": "products/vibe-os/emotion-mapping.pdf",
+          "description": "Transform feelings into sonic cues"
+        }
+      ]
+    }
   },
   {
     "id": "creation-chronicles",
