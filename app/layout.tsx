@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils'
 import { robotsConfig, siteConfig } from '@/lib/seo'
 import NavigationMega from '@/components/NavigationMega'
 import Footer from '@/components/Footer'
+import OrganizationJsonLd from '@/components/seo/OrganizationJsonLd'
 
 // Inter as primary sans-serif (geometric, variable weight, screen-optimized)
 const inter = Inter({
@@ -117,6 +118,7 @@ export default function RootLayout({
         )}
         suppressHydrationWarning
       >
+        <OrganizationJsonLd />
         {plausibleDomain && (
           <Script
             strategy="afterInteractive"
@@ -136,6 +138,6 @@ export default function RootLayout({
         </div>
         <Footer />
       </body>
-    </html>
+    </html >
   )
 }

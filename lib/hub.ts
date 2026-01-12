@@ -102,19 +102,19 @@ export type HomeSpotlight = {
 
 export const heroStats: HeroStat[] = [
   {
-    label: 'AI Songs Created',
-    value: '500+',
-    detail: 'Music I\'ve made with Suno, shared openly with the process'
+    label: 'The Journey',
+    value: 'Daily',
+    detail: 'Creating music with AI as a practice of exploration and discovery'
   },
   {
-    label: 'Curated Resources',
-    value: '200+',
-    detail: 'From Oracle, Google, MIT, and creators I trust'
+    label: 'Learning Paths',
+    value: 'Curated',
+    detail: 'Resources from Oracle, Google, MIT that actually changed how I think'
   },
   {
     label: 'Built in Public',
-    value: '100%',
-    detail: 'Every system documented as I build it'
+    value: 'Open',
+    detail: 'Every system documented so you can adapt it to your own life'
   }
 ]
 
@@ -517,21 +517,21 @@ export const agentProtocols: AgentProtocol[] = [
 export const testimonials = [
   {
     quote:
-      'I used Frank\'s Suno prompts as a starting point and now I release a track every week. The workflow just clicked.',
-    name: 'Marcus Chen',
-    role: 'Musician'
+      'What I appreciate most is the transparency. Frank shares the entire process, not just the polished results. That\'s rare and valuable.',
+    name: 'From the Community',
+    role: 'Creator'
   },
   {
     quote:
-      'The curated learning paths saved me months of searching. Oracle\'s AI cert + Frank\'s notes = exactly what I needed.',
-    name: 'Sarah Okonkwo',
-    role: 'CS Student'
+      'The learning paths cut through the noise. Instead of endless scrolling through course catalogs, I found exactly what I needed.',
+    name: 'From the Community',
+    role: 'Learner'
   },
   {
     quote:
-      'Finally, someone who shares the actual system instead of selling courses about courses. This is how it should be.',
-    name: 'James Morrison',
-    role: 'Developer'
+      'This is what documentation should look like. Real systems, real decisions, real learnings. I adapted his music workflow for my own projects.',
+    name: 'From the Community',
+    role: 'Builder'
   }
 ]
 

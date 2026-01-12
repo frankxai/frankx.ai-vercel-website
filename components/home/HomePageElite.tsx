@@ -137,18 +137,16 @@ function ScrollProgress() {
 // ROTATING WORDS FOR HERO
 // ============================================================================
 
-const heroWords = ['Design', 'Create', 'Architect', 'Explore', 'Imagine']
+const heroWords = ['Explore', 'Create', 'Learn', 'Build', 'Share']
 const heroConcepts = [
-  'intelligent systems',
-  'music empire',
-  'AI vision',
-  'Soulbook',
-  'Vibe OS',
-  'GenCreator OS',
-  'Arcanea universe',
-  'Starlight system',
-  'creative future',
-  'golden age',
+  'music with AI',
+  'new possibilities',
+  'how things work',
+  'systems that matter',
+  'the journey openly',
+  'what you discover',
+  'with intention',
+  'your own path',
 ]
 
 function RotatingWord() {
@@ -302,8 +300,8 @@ function Hero() {
               animate={{ opacity: 1 }}
               transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.4 }}
             >
-              AI Architect at Oracle. Creator of 10K+ songs with Suno.
-              Everything I build goes here—open, documented, yours to use.
+              Musician. Technologist. Father. I create to understand, to teach, to explore.
+              Everything I learn goes here—open, documented, yours to adapt.
             </motion.p>
 
             {/* CTAs */}
@@ -413,12 +411,12 @@ function FeaturedMusicCard() {
         <div className="space-y-3 md:space-y-4">
           <div>
             <p className="text-[10px] sm:text-xs uppercase tracking-[0.15em] sm:tracking-[0.2em] text-emerald-400/80 mb-1">Music Lab</p>
-            <h3 className="text-lg sm:text-xl font-semibold text-white">10K+ AI-Generated Songs</h3>
+            <h3 className="text-lg sm:text-xl font-semibold text-white">A Daily Practice of Creation</h3>
             <p className="text-xs sm:text-sm text-white/50">Ambient · Electronic · Cinematic · Healing</p>
           </div>
 
           <p className="text-xs sm:text-sm text-white/40 leading-relaxed">
-            Creating with Suno AI daily. From 432Hz healing frequencies to epic cinematic scores.
+            Music as exploration. Each session teaches me something new about sound, emotion, and the creative process.
           </p>
 
           {/* CTAs */}
@@ -473,17 +471,17 @@ function StatsSection() {
           className="max-w-4xl mx-auto text-center mb-12 md:mb-20"
         >
           <blockquote className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-serif-italic text-white/70 leading-relaxed px-2">
-            "The future isn't something that happens to you—it's something you design."
+            "I create to understand. I share to teach. I explore because the universe is too interesting not to."
           </blockquote>
         </motion.div>
 
-        {/* Stats - grid on mobile, flex on larger screens */}
-        <div className="grid grid-cols-2 gap-6 sm:gap-8 md:flex md:flex-wrap md:justify-center md:gap-x-16 lg:gap-x-24 md:gap-y-8">
+        {/* Journey markers - story-focused */}
+        <div className="grid grid-cols-2 gap-6 sm:gap-8 md:flex md:flex-wrap md-justify-center md:gap-x-16 lg:gap-x-24 md:gap-y-8">
           {[
-            { value: '10K+', label: 'Songs created with Suno' },
-            { value: '5+', label: 'Years building AI systems' },
-            { value: '50+', label: 'Battle-tested prompts' },
-            { value: 'Open', label: 'Everything documented' },
+            { value: 'Music', label: 'Daily creative practice with Suno' },
+            { value: 'Systems', label: 'Building tools that serve the work' },
+            { value: 'Teaching', label: 'Sharing the process, not just results' },
+            { value: 'Open', label: 'Everything documented for you to use' },
           ].map((stat, i) => (
             <motion.div
               key={stat.label}
@@ -595,40 +593,40 @@ function QuickStartSection() {
 
 const capabilities = [
   {
-    icon: Code2,
-    title: 'AI Systems',
-    subtitle: 'Enterprise Architecture',
-    description: 'Multi-agent orchestration, RAG pipelines, production ML systems. Real-world AI that actually ships.',
-    href: '/about',
-    color: 'from-emerald-500/20 to-emerald-500/5',
-    iconColor: 'text-emerald-400',
-  },
-  {
     icon: Music2,
     title: 'Music Lab',
-    subtitle: 'AI-Generated Music',
-    description: 'Creating with Suno AI. Ambient, electronic, cinematic—exploring the frontier of AI music.',
+    subtitle: 'Daily Creative Practice',
+    description: 'My ongoing exploration of AI music with Suno. Ambient soundscapes, electronic experiments, cinematic scores. The process documented.',
     href: '/music-lab',
     color: 'from-cyan-500/20 to-cyan-500/5',
     iconColor: 'text-cyan-400',
   },
   {
+    icon: BookOpen,
+    title: 'Learning Paths',
+    subtitle: 'What Changed How I Think',
+    description: 'Curated resources from Oracle, Google, MIT. Not everything that exists—just what actually helped me understand.',
+    href: '/students',
+    color: 'from-amber-500/20 to-amber-500/5',
+    iconColor: 'text-amber-400',
+  },
+  {
     icon: Sparkles,
-    title: 'Prompt Library',
-    subtitle: 'Battle-Tested Prompts',
-    description: 'The prompts I actually use daily. Writing, coding, music, images—copy them, adapt them.',
+    title: 'Prompt Collection',
+    subtitle: 'Tools for the Work',
+    description: 'Prompts I use daily for writing, coding, music, and exploration. Adapt them to your own projects.',
     href: '/prompt-library',
     color: 'from-violet-500/20 to-violet-500/5',
     iconColor: 'text-violet-400',
   },
   {
-    icon: BookOpen,
-    title: 'Learning Paths',
-    subtitle: 'Curated Courses',
-    description: 'Oracle, Google, MIT—hand-picked courses that actually matter. Start learning AI today.',
-    href: '/students',
-    color: 'from-amber-500/20 to-amber-500/5',
-    iconColor: 'text-amber-400',
+    icon: Code2,
+    title: 'Creation Chronicles',
+    subtitle: 'Building in Public',
+    description: 'How I built this site, my workflows, decisions made along the way. The messy process, not just the polished result.',
+    href: '/creation-chronicles',
+    color: 'from-emerald-500/20 to-emerald-500/5',
+    iconColor: 'text-emerald-400',
   },
 ]
 
@@ -643,14 +641,14 @@ function WhatIDo() {
           className="mb-8 md:mb-16"
         >
           <p className="text-xs sm:text-sm font-medium uppercase tracking-[0.2em] sm:tracking-[0.25em] text-emerald-400/70 mb-3 md:mb-4">
-            What's Here
+            The Work
           </p>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 md:mb-6 tracking-tight">
-            Tools, resources, and the work itself.
+            Four areas of exploration.
           </h2>
           <p className="text-base sm:text-lg md:text-xl text-white/50 max-w-2xl leading-relaxed">
-            Not a portfolio. Not a course. A working system for creating with AI—
-            shared openly because it's more useful that way.
+            Music. Learning. Tools. Process. Everything documented so you can see
+            how it actually works—not just the highlights.
           </p>
         </motion.div>
 
@@ -800,13 +798,13 @@ function AboutSection() {
           className="max-w-3xl"
         >
           <p className="text-xs sm:text-sm font-medium uppercase tracking-[0.2em] sm:tracking-[0.25em] text-emerald-400/70 mb-4 sm:mb-6">
-            The Vision
+            The Journey
           </p>
 
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 sm:mb-8 tracking-tight leading-tight">
-            We're entering the Golden Age of Intelligence.
+            Music, technology, family, and the endless exploration of how things work.
             <span className="block mt-2 font-serif-italic text-white/70 text-xl sm:text-2xl md:text-3xl lg:text-4xl">
-              Anyone can create. Anyone can build.
+              These are the threads that weave through everything here.
             </span>
           </h2>
 
@@ -818,20 +816,23 @@ function AboutSection() {
             className="relative pl-4 sm:pl-6 my-6 sm:my-10 border-l-2 border-emerald-400/40"
           >
             <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-serif-italic text-white/80 leading-relaxed">
-              "Technology should amplify your voice, not replace it."
+              "The best way to learn is to teach. The best way to understand is to create."
             </p>
           </motion.blockquote>
 
           <div className="space-y-4 sm:space-y-6 text-base sm:text-lg text-white/60 leading-relaxed mb-8 sm:mb-10">
             <p>
-              AI Architect at Oracle by day. Music creator by night. I've seen what's possible
-              when intelligent systems serve human goals—not replace them. 10,000+ songs.
-              Enterprise systems that scale. Everything documented, everything open.
+              By day, I architect AI systems at Oracle. By night, I make music—hundreds of songs
+              exploring what's possible when humans and AI create together. I'm a husband, a father,
+              someone who believes the universe is too interesting not to explore deeply.
             </p>
             <p className="text-white/70">
-              This hub exists because the future isn't something that happens to you.
-              It's something you design. The tools are here. The knowledge is free.
-              What you build with it is up to you.
+              This site is my workshop, my notebook, my attempt to share what I'm learning
+              with anyone curious enough to look. Not courses to sell, not followers to count.
+              Just the work itself, documented as I do it.
+            </p>
+            <p className="text-white/50">
+              Take what's useful. Adapt it to your life. That's the point.
             </p>
           </div>
 

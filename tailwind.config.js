@@ -9,6 +9,83 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        // =====================================================
+        // FRANKX UNIFIED DESIGN SYSTEM
+        // Dual-spectrum palette: Tech (emerald/cyan) + Soul (amber/gold)
+        // See /lib/design-system.ts for full documentation
+        // =====================================================
+
+        // BACKGROUNDS - Universal deep space foundation
+        void: '#0a0a0b',          // Deepest black - main background
+        space: '#111113',         // Primary elevated - cards, modals
+        elevated: '#18181b',      // Secondary elevated - hover states
+        subtle: '#1f1f23',        // Tertiary - borders, dividers
+
+        // TECH SPECTRUM - For AI/technical content (emerald/cyan)
+        tech: {
+          primary: '#10b981',     // Emerald-500 - CTAs, links
+          secondary: '#06b6d4',   // Cyan-500 - highlights
+          light: '#34d399',       // Emerald-400 - hovers
+          dark: '#059669',        // Emerald-600 - pressed
+          glow: 'rgba(16, 185, 129, 0.15)',
+        },
+
+        // SOUL SPECTRUM - For Soulbook/personal content (amber/gold)
+        soul: {
+          primary: '#f59e0b',     // Amber-500 - CTAs, links
+          secondary: '#fbbf24',   // Amber-400 - highlights
+          light: '#fcd34d',       // Amber-300 - hovers
+          dark: '#d97706',        // Amber-600 - pressed
+          glow: 'rgba(245, 158, 11, 0.15)',
+        },
+
+        // HYBRID - Strategic bridge color (purple)
+        hybrid: '#8b5cf6',        // Purple-500 - rare, intentional use
+
+        // SEMANTIC COLORS - Status and feedback
+        success: {
+          base: '#22c55e',
+          light: '#86efac',
+          dark: '#16a34a',
+          glow: 'rgba(34, 197, 94, 0.12)',
+          // Legacy compatibility
+          50: '#f0fdf4',
+          500: '#22c55e',
+          700: '#15803d',
+        },
+        warning: {
+          base: '#f59e0b',
+          light: '#fcd34d',
+          dark: '#d97706',
+          glow: 'rgba(245, 158, 11, 0.12)',
+          // Legacy compatibility
+          50: '#fffbeb',
+          500: '#f59e0b',
+          700: '#a16207',
+        },
+        error: {
+          base: '#ef4444',
+          light: '#fca5a5',
+          dark: '#dc2626',
+          glow: 'rgba(239, 68, 68, 0.12)',
+          // Legacy compatibility
+          50: '#fef2f2',
+          500: '#ef4444',
+          700: '#b91c1c',
+        },
+        info: {
+          base: '#06b6d4',
+          light: '#67e8f9',
+          dark: '#0891b2',
+          glow: 'rgba(6, 182, 212, 0.12)',
+          // Legacy compatibility
+          50: '#eff6ff',
+          500: '#3b82f6',
+          700: '#1d4ed8',
+        },
+
+        // LEGACY COLORS - Preserved for backward compatibility
+        // TODO: Migrate components to new tech/soul palette
         primary: {
           50: '#f8f7ff',
           100: '#f1efff',
@@ -21,6 +98,8 @@ module.exports = {
           800: '#5536d6',
           900: '#422ea9',
           950: '#332780',
+          DEFAULT: 'hsl(var(--primary))',
+          foreground: 'hsl(var(--primary-foreground))'
         },
         secondary: {
           50: '#f0f9ff',
@@ -34,6 +113,8 @@ module.exports = {
           800: '#075985',
           900: '#0c4a6e',
           950: '#082f49',
+          DEFAULT: 'hsl(var(--secondary))',
+          foreground: 'hsl(var(--secondary-foreground))'
         },
         neutral: {
           50: '#f8fafc',
@@ -46,7 +127,7 @@ module.exports = {
           700: '#334155',
           800: '#1e293b',
           900: '#0f172a',
-          950: '#060b24',
+          950: '#060b24'
         },
         accent: {
           50: '#fdf7f0',
@@ -60,26 +141,24 @@ module.exports = {
           800: '#8a4732',
           900: '#703c2b',
           950: '#3c1e16',
+          DEFAULT: 'hsl(var(--accent))',
+          foreground: 'hsl(var(--accent-foreground))'
         },
-        success: {
-          50: '#f0fdf4',
-          500: '#22c55e',
-          700: '#15803d',
+
+        // TAILWIND STANDARD COLORS - For tech/soul palette
+        emerald: {
+          300: '#6ee7b7',
+          400: '#34d399',
+          500: '#10b981',
+          600: '#059669',
+          700: '#047857',
         },
-        warning: {
-          50: '#fffbeb',
-          500: '#f59e0b',
-          700: '#a16207',
-        },
-        error: {
-          50: '#fef2f2',
-          500: '#ef4444',
-          700: '#b91c1c',
-        },
-        info: {
-          50: '#eff6ff',
-          500: '#3b82f6',
-          700: '#1d4ed8',
+        cyan: {
+          300: '#67e8f9',
+          400: '#22d3ee',
+          500: '#06b6d4',
+          600: '#0891b2',
+          700: '#0e7490',
         },
         amber: {
           50: '#fffbeb',
@@ -106,13 +185,54 @@ module.exports = {
           900: '#6b4d2a',
           950: '#3a2817',
         },
+
+        // SHADCN UI COMPATIBILITY
+        background: 'hsl(var(--background))',
+        foreground: 'hsl(var(--foreground))',
+        card: {
+          DEFAULT: 'hsl(var(--card))',
+          foreground: 'hsl(var(--card-foreground))'
+        },
+        popover: {
+          DEFAULT: 'hsl(var(--popover))',
+          foreground: 'hsl(var(--popover-foreground))'
+        },
+        muted: {
+          DEFAULT: 'hsl(var(--muted))',
+          foreground: 'hsl(var(--muted-foreground))'
+        },
+        destructive: {
+          DEFAULT: 'hsl(var(--destructive))',
+          foreground: 'hsl(var(--destructive-foreground))'
+        },
+        border: 'hsl(var(--border))',
+        input: 'hsl(var(--input))',
+        ring: 'hsl(var(--ring))',
+        chart: {
+          '1': 'hsl(var(--chart-1))',
+          '2': 'hsl(var(--chart-2))',
+          '3': 'hsl(var(--chart-3))',
+          '4': 'hsl(var(--chart-4))',
+          '5': 'hsl(var(--chart-5))'
+        }
       },
+
+      // =====================================================
+      // BACKGROUND GRADIENTS - Ambient effects
+      // =====================================================
       backgroundImage: {
+        'tech-aurora': 'radial-gradient(ellipse at center, rgba(16, 185, 129, 0.06) 0%, transparent 70%)',
+        'soul-aurora': 'radial-gradient(ellipse at center, rgba(245, 158, 11, 0.06) 0%, transparent 70%)',
         'midnight-radial': 'radial-gradient(circle at 20% 20%, rgba(92, 136, 245, 0.18), transparent 55%)',
         'aurora-vortex': 'radial-gradient(circle at 80% 10%, rgba(67, 191, 227, 0.22), transparent 45%)',
         'pulse-halo': 'radial-gradient(circle at 50% 80%, rgba(171, 71, 199, 0.18), transparent 55%)',
         'glass-light': 'linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.04) 100%)',
       },
+
+      // =====================================================
+      // TYPOGRAPHY - Perfect Fourth Scale (1.333)
+      // See /lib/design-system.ts for full scale
+      // =====================================================
       fontFamily: {
         sans: ['var(--font-inter)', 'Inter', 'system-ui', '-apple-system', 'sans-serif'],
         display: ['var(--font-inter)', 'Inter', 'system-ui', 'sans-serif'],
@@ -120,32 +240,72 @@ module.exports = {
         mono: ['var(--font-mono)', 'JetBrains Mono', 'Menlo', 'Monaco', 'monospace'],
       },
       fontSize: {
-        'heading-1': ['4.5rem', { lineHeight: '1' }],
-        'heading-2': ['3.75rem', { lineHeight: '1' }],
-        'heading-3': ['3rem', { lineHeight: '1' }],
-        'heading-4': ['2.25rem', { lineHeight: '2.5rem' }],
+        // Display sizes
+        'display-2xl': ['5.653rem', { lineHeight: '1', letterSpacing: '-0.02em', fontWeight: '800' }],
+        'display-xl': ['4.243rem', { lineHeight: '1', letterSpacing: '-0.02em', fontWeight: '800' }],
+        'display-lg': ['3.183rem', { lineHeight: '1.05', letterSpacing: '-0.01em', fontWeight: '700' }],
+
+        // Heading sizes (Perfect Fourth scale)
+        'heading-1': ['2.369rem', { lineHeight: '1.1', letterSpacing: '-0.01em', fontWeight: '700' }],
+        'heading-2': ['1.777rem', { lineHeight: '1.2', letterSpacing: '-0.005em', fontWeight: '600' }],
+        'heading-3': ['1.333rem', { lineHeight: '1.3', letterSpacing: '0', fontWeight: '600' }],
+        'heading-4': ['1rem', { lineHeight: '1.4', letterSpacing: '0', fontWeight: '600' }],
+
+        // Legacy heading sizes (for backward compatibility)
         'heading-5': ['1.875rem', { lineHeight: '2.25rem' }],
         'heading-6': ['1.5rem', { lineHeight: '2rem' }],
-        body: ['1rem', { lineHeight: '1.5rem' }],
-        'body-sm': ['0.875rem', { lineHeight: '1.25rem' }],
-        caption: ['0.75rem', { lineHeight: '1rem' }],
+
+        // Body sizes
+        'body-lg': ['1.125rem', { lineHeight: '1.7', letterSpacing: '0', fontWeight: '400' }],
+        body: ['1rem', { lineHeight: '1.6', letterSpacing: '0', fontWeight: '400' }],
+        'body-sm': ['0.875rem', { lineHeight: '1.5', letterSpacing: '0', fontWeight: '400' }],
+
+        // Utility sizes
+        'label-lg': ['0.875rem', { lineHeight: '1.4', letterSpacing: '0.01em', fontWeight: '500' }],
+        'label-base': ['0.813rem', { lineHeight: '1.4', letterSpacing: '0.01em', fontWeight: '500' }],
+        caption: ['0.75rem', { lineHeight: '1.3', letterSpacing: '0.01em', fontWeight: '400' }],
+        overline: ['0.688rem', { lineHeight: '1.2', letterSpacing: '0.08em', fontWeight: '600' }],
       },
+
+      // =====================================================
+      // SPACING - 4px Base Grid
+      // =====================================================
       spacing: {
-        18: '4.5rem',
-        88: '22rem',
-        128: '32rem',
+        18: '4.5rem',    // 72px
+        88: '22rem',     // 352px
+        128: '32rem',    // 512px
       },
+
+      // =====================================================
+      // BORDER RADIUS - Consistent curvature
+      // =====================================================
       borderRadius: {
-        '4xl': '2rem',
-        '5xl': '2.5rem',
+        '4xl': '2rem',    // 32px
+        '5xl': '2.5rem',  // 40px
+        lg: 'var(--radius)',
+        md: 'calc(var(--radius) - 2px)',
+        sm: 'calc(var(--radius) - 4px)'
       },
+
+      // =====================================================
+      // SHADOWS - Elevation hierarchy
+      // =====================================================
       boxShadow: {
-        'soul-glow': '0 0 40px rgb(107 70 193 / 0.45)',
+        // Glow effects
+        'glow-tech': '0 0 40px rgba(16, 185, 129, 0.35)',
+        'glow-soul': '0 0 40px rgba(245, 158, 11, 0.35)',
+        'soul-glow': '0 0 40px rgb(107 70 193 / 0.45)', // Legacy
+
+        // Standard elevation
         glass: '0 20px 60px rgb(8 15 33 / 0.45)',
         'elevation-1': '0 1px 3px rgb(0 0 0 / 0.12), 0 1px 2px rgb(0 0 0 / 0.24)',
         'elevation-2': '0 3px 6px rgb(0 0 0 / 0.16), 0 3px 6px rgb(0 0 0 / 0.23)',
         'elevation-3': '0 10px 20px rgb(0 0 0 / 0.19), 0 6px 6px rgb(0 0 0 / 0.23)',
       },
+
+      // =====================================================
+      // ANIMATIONS - Consistent motion
+      // =====================================================
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',
         'fade-in-up': 'fadeInUp 0.6s ease-out',
@@ -156,6 +316,7 @@ module.exports = {
         'gradient-shift': 'gradientShift 8s ease-in-out infinite',
         float: 'float 6s ease-in-out infinite',
         'logo-marquee': 'logoMarquee 40s linear infinite',
+
         // Radix Navigation animations
         scaleIn: 'scaleIn 200ms ease',
         scaleOut: 'scaleOut 200ms ease',
@@ -166,6 +327,7 @@ module.exports = {
         exitToRight: 'exitToRight 250ms ease',
         exitToLeft: 'exitToLeft 250ms ease',
       },
+
       keyframes: {
         fadeIn: {
           '0%': { opacity: '0' },
@@ -203,6 +365,7 @@ module.exports = {
           '0%': { transform: 'translateX(0)' },
           '100%': { transform: 'translateX(-50%)' },
         },
+
         // Radix Navigation keyframes
         scaleIn: {
           '0%': { opacity: '0', transform: 'rotateX(-10deg) scale(0.9)' },
@@ -229,6 +392,7 @@ module.exports = {
           '100%': { opacity: '0', transform: 'translateX(-200px)' },
         },
       },
+
       backdropBlur: {
         xs: '2px',
       },
