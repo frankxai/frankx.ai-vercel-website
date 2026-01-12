@@ -1,14 +1,19 @@
 import { type NextRequest, NextResponse } from 'next/server'
-import { head } from '@vercel/blob'
 import registry from '@/data/products.json'
 import type { ProductRecord } from '@/types/products'
 
 const products = registry as ProductRecord[]
 
 /**
+ * Your existing Vercel Blob storage base URL
+ * Files are publicly accessible at this URL
+ */
+const BLOB_BASE_URL = 'https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com'
+
+/**
  * Product Download API
  *
- * Handles secure file downloads from Vercel Blob storage.
+ * Handles file downloads from your existing Vercel Blob storage.
  * Supports gated downloads (email required) and direct downloads.
  *
  * GET /api/download?product={slug}&file={filename}
@@ -64,40 +69,11 @@ export async function GET(request: NextRequest) {
     )
   }
 
-  try {
-    // Get blob metadata and signed URL
-    const blobUrl = process.env.BLOB_READ_WRITE_TOKEN
-      ? `${process.env.VERCEL_BLOB_STORE_ID}/${file.blobKey}`
-      : null
+  // Construct the public blob URL
+  const blobUrl = `${BLOB_BASE_URL}/${file.blobKey}`
 
-    if (!blobUrl) {
-      // For development/preview, return product info
-      return NextResponse.json({
-        product: {
-          id: product.id,
-          name: product.name,
-          slug: product.slug
-        },
-        file: {
-          name: file.name,
-          format: file.format,
-          description: file.description
-        },
-        message: 'Vercel Blob not configured. Set BLOB_READ_WRITE_TOKEN in environment.'
-      })
-    }
-
-    const blob = await head(blobUrl)
-
-    // Redirect to blob download URL
-    return NextResponse.redirect(blob.url)
-  } catch (error) {
-    console.error('Download error:', error)
-    return NextResponse.json(
-      { error: 'Failed to retrieve file' },
-      { status: 500 }
-    )
-  }
+  // Redirect to the public blob URL for download
+  return NextResponse.redirect(blobUrl)
 }
 
 export async function POST(request: NextRequest) {
@@ -160,8 +136,8 @@ export async function POST(request: NextRequest) {
     // This would integrate with ConvertKit, Resend, or similar
     console.log(`Download request from ${email} for ${product.name}`)
 
-    // Generate download response
-    const downloadUrl = `/api/download/file?key=${encodeURIComponent(file.blobKey)}&token=${generateDownloadToken(email, file.blobKey)}`
+    // Generate direct download URL from your blob storage
+    const downloadUrl = `${BLOB_BASE_URL}/${file.blobKey}`
 
     return NextResponse.json({
       success: true,
@@ -172,10 +148,10 @@ export async function POST(request: NextRequest) {
       },
       file: {
         name: file.name,
-        format: file.format
+        format: file.format,
+        url: downloadUrl
       },
-      downloadUrl,
-      message: `Download link sent! Check your email at ${email}`
+      message: `Thanks ${email}! Your download is ready.`
     })
   } catch (error) {
     console.error('Download POST error:', error)
@@ -186,12 +162,3 @@ export async function POST(request: NextRequest) {
   }
 }
 
-/**
- * Generate a simple download token
- * In production, use JWT or similar for secure time-limited tokens
- */
-function generateDownloadToken(email: string, blobKey: string): string {
-  const timestamp = Date.now()
-  const data = `${email}:${blobKey}:${timestamp}`
-  return Buffer.from(data).toString('base64')
-}

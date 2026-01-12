@@ -86,13 +86,13 @@
         {
           "name": "Soulbook Complete Guide",
           "format": "pdf",
-          "blobKey": "products/soulbook/soulbook-guide.pdf",
+          "blobKey": "soulbook-guide.pdf",
           "description": "The complete Creator's Soulbook framework with all 7 pillars"
         },
         {
           "name": "Obsidian Vault",
           "format": "zip",
-          "blobKey": "products/soulbook/soulbook-vault.zip",
+          "blobKey": "soulbook-vault.zip",
           "description": "Ready-to-use Obsidian vault with templates and dashboards"
         }
       ]
@@ -294,19 +294,19 @@
         {
           "name": "Vibe OS Complete Guide",
           "format": "pdf",
-          "blobKey": "products/vibe-os/vibe-os-guide.pdf",
+          "blobKey": "vibe-os-guide.pdf",
           "description": "Complete AI music creation system with Suno workflows"
         },
         {
           "name": "Genre Prompt Pack",
           "format": "pdf",
-          "blobKey": "products/vibe-os/genre-prompts.pdf",
+          "blobKey": "vibe-os-genre-prompts.pdf",
           "description": "50+ genre-specific Suno prompts"
         },
         {
           "name": "Emotion Mapping System",
           "format": "pdf",
-          "blobKey": "products/vibe-os/emotion-mapping.pdf",
+          "blobKey": "vibe-os-emotion-mapping.pdf",
           "description": "Transform feelings into sonic cues"
         }
       ]
