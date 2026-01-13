@@ -227,6 +227,30 @@ To activate specific agents in Claude Code:
 
 *This configuration embodies the future of human-AI collaboration through soul-aligned technology systems that serve consciousness evolution while achieving material prosperity.*
 
+## 📦 Production Website Context
+
+This is the **production website repo** (`frankx.ai-vercel-website`), deployed via Vercel.
+
+**Relationship to Main FrankX Repo:**
+```
+FrankX (Parent Folder)         This Repo (Production)
+├── content/blog/ (draft)  →   ├── content/blog/ (live)
+├── content-universe/          ├── app/
+├── soulbook/                  └── Deploys to frankx.ai
+└── Archive / Staging          └── PRODUCTION
+```
+
+**Content flows from main FrankX repo → here → production.**
+
+**Local Commands:**
+- `/frankx-ai-deploy` - Deploy changes
+- `/frankx-ai-blog` - Create/edit blog posts
+- `/frankx-ai-content-pipeline` - Full content workflow
+
+**Branches:**
+- `main` → Production (frankx.ai)
+- `staging` → Preview testing
+
 ## 🗓️ Daily Operating Ritual
 
 The agents collaborate through the [Daily Intelligence Operations](docs/DAILY_INTELLIGENCE_OPERATIONS.md) cadence. Review it to align sprints, SEO deliverables, and content releases before engaging the studio.
