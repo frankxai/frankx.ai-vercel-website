@@ -59,7 +59,9 @@ export function LogoStrip({
         width={160}
         height={40}
         className={`w-auto object-contain ${sizeClasses[size]} ${
-          logo.treatment === 'mono' ? 'opacity-70' : 'opacity-90'
+          logo.treatment === 'mono'
+            ? 'opacity-70 brightness-0 invert'
+            : 'opacity-90'
         } transition-opacity group-hover:opacity-100`}
       />
     </a>

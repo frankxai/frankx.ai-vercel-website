@@ -1,67 +1,62 @@
 'use client'
 
-import { useRef } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
+import dynamic from 'next/dynamic'
+import { ArrowLeft } from 'lucide-react'
+import PDFEmailModal from '@/components/ui/PDFEmailModal'
+
+// Dynamic import to avoid SSR issues
+const PDFViewer = dynamic(() => import('@/components/ui/PDFViewer'), {
+  ssr: false,
+  loading: () => (
+    <div className="flex items-center justify-center min-h-[600px] bg-gray-900 rounded-2xl border border-cyan-500/20">
+      <div className="text-center">
+        <div className="w-12 h-12 border-4 border-cyan-500 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+        <p className="text-gray-400">Loading PDF viewer...</p>
+      </div>
+    </div>
+  )
+})
 
 export default function SoulbookPreviewPage() {
-  const iframeRef = useRef<HTMLIFrameElement>(null)
+  const [emailModalOpen, setEmailModalOpen] = useState(false)
 
-  const handlePrint = () => {
-    if (iframeRef.current?.contentWindow) {
-      iframeRef.current.contentWindow.print()
-    }
-  }
+  // TODO: Update with actual Blob storage URL after upload
+  const pdfUrl = '/pdfs/soulbook-guide.pdf'
 
   return (
-    <div className="min-h-screen bg-[#030712]">
-      {/* Sticky Header */}
-      <div className="fixed top-0 left-0 right-0 z-50 bg-slate-900/95 backdrop-blur-sm border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <Link
-              href="/downloads"
-              className="text-white/60 hover:text-white transition-colors"
-            >
-              ← Back to Downloads
-            </Link>
-            <span className="text-white/30">|</span>
-            <h1 className="text-white font-semibold">The Creator&apos;s Soulbook</h1>
-          </div>
-
-          <div className="flex items-center gap-3">
-            <button
-              onClick={handlePrint}
-              className="inline-flex items-center gap-2 px-5 py-2.5 bg-emerald-500 text-white font-semibold rounded-lg hover:bg-emerald-400 transition-colors"
-            >
-              <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-              </svg>
-              Download PDF
-            </button>
-          </div>
+    <div className="min-h-screen bg-gradient-to-b from-gray-950 via-gray-900 to-black">
+      {/* Header */}
+      <div className="border-b border-cyan-500/10 bg-gray-950/50 backdrop-blur-xl sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <Link
+            href="/downloads"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-800 hover:bg-gray-700 text-gray-300 hover:text-white transition-all"
+          >
+            <ArrowLeft size={18} />
+            <span>Back to Downloads</span>
+          </Link>
         </div>
       </div>
 
-      {/* Preview Frame */}
-      <div className="pt-20 pb-8 px-4">
-        <div className="max-w-[900px] mx-auto">
-          <div className="bg-white rounded-lg shadow-2xl overflow-hidden">
-            <iframe
-              ref={iframeRef}
-              src="/pdf-templates/soulbook-guide.html"
-              className="w-full h-[calc(100vh-120px)] border-0"
-              title="Soulbook Guide Preview"
-            />
-          </div>
-        </div>
+      {/* PDF Viewer */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <PDFViewer
+          url={pdfUrl}
+          title="The Creator's Soulbook"
+          description="7-pillar framework for soul-aligned creative transformation"
+          onEmailRequest={() => setEmailModalOpen(true)}
+        />
       </div>
 
-      {/* Instructions */}
-      <div className="fixed bottom-4 left-1/2 -translate-x-1/2 bg-slate-800/90 backdrop-blur-sm px-6 py-3 rounded-full border border-white/10">
-        <p className="text-sm text-white/70">
-          Click <strong className="text-emerald-400">Download PDF</strong> to save • Use Ctrl+P for print options
-        </p>
-      </div>
+      {/* Email Modal */}
+      <PDFEmailModal
+        isOpen={emailModalOpen}
+        onClose={() => setEmailModalOpen(false)}
+        pdfTitle="The Creator's Soulbook"
+        pdfUrl={pdfUrl}
+      />
     </div>
   )
 }

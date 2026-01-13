@@ -76,7 +76,9 @@ export default function TrustedByBlock() {
                         width={64}
                         height={32}
                         className={`h-6 sm:h-7 w-auto object-contain ${
-                          logo.treatment === 'mono' ? 'opacity-90' : 'opacity-95'
+                          logo.treatment === 'mono'
+                            ? 'opacity-90 brightness-0 invert'
+                            : 'opacity-95'
                         } transition-opacity group-hover:opacity-100`}
                       />
                     </div>

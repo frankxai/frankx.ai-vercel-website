@@ -79,7 +79,7 @@ export const brandLogos: BrandLogo[] = [
     name: 'Perplexity',
     logo: '/images/brands/perplexity.svg',
     brandUrl: 'https://perplexity.ai',
-    treatment: 'color',
+    treatment: 'mono',
     caseStudy: {
       anchor: 'case-perplexity',
       title: 'Research sweeps & source clustering',
@@ -93,7 +93,7 @@ export const brandLogos: BrandLogo[] = [
     name: 'Hugging Face',
     logo: '/images/brands/hugging-face.svg',
     brandUrl: 'https://huggingface.co',
-    treatment: 'color',
+    treatment: 'mono',
     caseStudy: {
       anchor: 'case-hugging-face',
       title: 'Open-model benchmarking',
@@ -149,7 +149,7 @@ export const brandLogos: BrandLogo[] = [
     name: 'Meta',
     logo: '/images/brands/meta.svg',
     brandUrl: 'https://ai.meta.com',
-    treatment: 'color',
+    treatment: 'mono',
     caseStudy: {
       anchor: 'case-meta',
       title: 'Agentic workflows with open research',
