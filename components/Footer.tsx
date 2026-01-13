@@ -25,7 +25,7 @@ export default function Footer() {
             </p>
             <div className="mt-4 sm:mt-6 flex flex-wrap items-center gap-2 sm:gap-3">
               <a
-                href="https://linkedin.com/in/frankxai"
+                href="https://linkedin.com/in/frank-x-riemer/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-xs sm:text-sm text-white/40 hover:text-white transition-colors flex items-center gap-1"
@@ -35,7 +35,7 @@ export default function Footer() {
               </a>
               <span className="text-white/20">·</span>
               <a
-                href="https://suno.com/@frankxai"
+                href="https://suno.com/@frankx"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-xs sm:text-sm text-white/40 hover:text-white transition-colors flex items-center gap-1"

@@ -424,7 +424,7 @@ function FeaturedMusicCard() {
           {/* CTAs */}
           <div className="flex items-center gap-3 sm:gap-4 flex-wrap">
             <a
-              href="https://suno.com/@frankxai"
+              href="https://suno.com/@frankx"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-medium text-emerald-400 hover:text-emerald-300 transition-colors"
@@ -845,7 +845,7 @@ function AboutSection() {
             </Link>
             <div className="flex items-center gap-3 sm:gap-4 text-sm sm:text-base text-white/40">
               <a
-                href="https://linkedin.com/in/frankxai"
+                href="https://linkedin.com/in/frank-x-riemer/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-white transition-colors"
@@ -863,7 +863,7 @@ function AboutSection() {
               </a>
               <span>·</span>
               <a
-                href="https://suno.com/@frankxai"
+                href="https://suno.com/@frankx"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-white transition-colors"

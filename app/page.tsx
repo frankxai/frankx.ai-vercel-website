@@ -34,7 +34,7 @@ const personSchema = {
   name: 'Frank',
   jobTitle: 'AI Systems Architect',
   url: 'https://frankx.ai/about',
-  sameAs: ['https://twitter.com/frankxai'],
+  sameAs: ['https://x.com/frankxeth'],
   knowsAbout: [
     'Conscious AI',
     'AI Agent Teams',
@@ -48,7 +48,7 @@ const organizationSchema = {
   name: 'FrankX.AI',
   url: 'https://frankx.ai',
   logo: 'https://frankx.ai/assets/logo.png',
-  sameAs: ['https://twitter.com/frankxai'],
+  sameAs: ['https://x.com/frankxeth'],
   description:
     'A creative intelligence collective bridging the gap between AI potential and human achievement.',
 }

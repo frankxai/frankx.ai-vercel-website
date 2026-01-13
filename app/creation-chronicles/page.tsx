@@ -302,7 +302,7 @@ export default function CreationChroniclesPage() {
                 </div>
 
                 <a
-                  href="https://suno.com/@frankxai"
+                  href="https://suno.com/@frankx"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 mt-6 text-sm font-medium text-cyan-400 hover:text-cyan-300 transition-colors"
