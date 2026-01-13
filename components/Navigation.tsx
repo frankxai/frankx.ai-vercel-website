@@ -169,7 +169,7 @@ export default function Navigation() {
             <div className="flex items-center space-x-3 ml-6 pl-6 border-l border-white/10">
               <Link
                 href="/free-playbook"
-                className="px-5 py-2 bg-gradient-to-r from-emerald-600 to-cyan-600 hover:from-emerald-500 hover:to-cyan-500 text-white text-sm font-semibold rounded-lg transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-emerald-500/20"
+                className="px-5 py-2 bg-gradient-to-r from-emerald-600 to-cyan-600 hover:from-emerald-500 hover:to-cyan-500 text-white text-sm font-semibold rounded-2xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-emerald-500/20"
               >
                 Free Playbooks
               </Link>
@@ -185,7 +185,7 @@ export default function Navigation() {
           <div className="lg:hidden flex items-center space-x-3">
             <Link
               href="/free-playbook"
-              className="px-4 py-2 bg-gradient-to-r from-emerald-600 to-cyan-600 text-white text-sm font-semibold rounded-lg transition-all duration-300"
+              className="px-4 py-2 bg-gradient-to-r from-emerald-600 to-cyan-600 text-white text-sm font-semibold rounded-2xl transition-all duration-300"
             >
               Free
             </Link>
