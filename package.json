@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "echo 'Lint disabled: ESLint 9 requires flat config migration'",
+    "lint": "next lint",
     "type-check": "tsc --noEmit",
     "gen:html": "node scripts/generate_interlinked_html.mjs",
     "gen:feed": "node scripts/generate_feed.mjs",
