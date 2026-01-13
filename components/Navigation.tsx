@@ -44,10 +44,10 @@ const navItems: NavItem[] = [
     name: 'Resources',
     href: '/resources',
     subItems: [
+      { name: 'Progress Tracker', href: '/progress' },
       { name: "The Creator's Soulbook", href: '/soulbook' },
       { name: 'All Resources', href: '/resources' },
       { name: 'Prompt Library', href: '/prompt-library' },
-      { name: 'Templates', href: '/templates' },
       { name: 'Guides', href: '/guides' },
       { name: 'Roadmap', href: '/roadmap' },
     ],

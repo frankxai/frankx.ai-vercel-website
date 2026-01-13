@@ -27,6 +27,8 @@ import {
   Wand2,
   Star,
   Heart,
+  TrendingUp,
+  Map,
 } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
@@ -95,19 +97,18 @@ const navigation = {
   resources: {
     label: 'Resources',
     featured: {
-      title: 'Resource Hub',
-      description: 'Products, Arcanea, and learning paths to build your creative future.',
-      href: '/resources',
-      badge: 'Explore',
+      title: 'Progress Tracker',
+      description: 'Track your growth across the 7 Pillars. Gamified personal development.',
+      href: '/progress',
+      badge: 'New',
     },
     items: [
-      { name: 'Resource Hub', href: '/resources', icon: Sparkles, description: 'All systems, guides, and tools' },
-      { name: "The Creator's Soulbook", href: '/soulbook', icon: BookOpen, description: 'Your life transformation system' },
-      { name: 'Free Playbooks', href: '/free-playbook', icon: FileText, description: 'Start with quick wins' },
-      { name: 'Prompt Library', href: '/prompt-library', icon: BookOpen, description: 'Curated prompt stacks' },
+      { name: 'Progress Tracker', href: '/progress', icon: TrendingUp, description: 'Track your 7 Pillars growth' },
+      { name: 'Resource Hub', href: '/resources', icon: Sparkles, description: 'All systems and guides' },
+      { name: "Creator's Soulbook", href: '/soulbook', icon: BookOpen, description: 'Life transformation system' },
+      { name: 'Prompt Library', href: '/prompt-library', icon: FileText, description: 'Curated prompts' },
       { name: 'Intelligence Atlas', href: '/intelligence-atlas', icon: Star, description: 'Flagship research' },
-      { name: 'Vibe OS', href: '/products/vibe-os', icon: Music, description: 'AI music system' },
-      { name: 'Agentic Creator OS', href: '/products/agentic-creator-os', icon: Bot, description: 'Agent workflows' },
+      { name: 'Roadmap', href: '/roadmap', icon: Map, description: 'What we are building' },
       { name: 'Arcanea', href: '/magic', icon: Wand2, description: 'Worldbuilding academy' },
       { name: 'The Luminors', href: 'https://arcanea.app', icon: Heart, description: 'AI companions', external: true },
     ],

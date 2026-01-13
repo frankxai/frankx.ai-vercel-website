@@ -1,0 +1,176 @@
+{
+  "lastUpdated": "2026-01-13",
+  "player": {
+    "name": "Frank",
+    "title": "Awakening Creator",
+    "totalXP": 2340,
+    "overallLevel": 5
+  },
+  "pillars": {
+    "energy": {
+      "name": "Energy",
+      "icon": "Zap",
+      "color": "from-orange-500 to-red-500",
+      "level": 2,
+      "xp": 340,
+      "xpToNext": 500,
+      "streak": 3,
+      "lastActivity": "2026-01-12",
+      "description": "Physical foundation - the bedrock that powers everything"
+    },
+    "mind": {
+      "name": "Mind",
+      "icon": "Brain",
+      "color": "from-blue-500 to-cyan-500",
+      "level": 3,
+      "xp": 890,
+      "xpToNext": 1500,
+      "streak": 7,
+      "lastActivity": "2026-01-13",
+      "description": "Mental clarity - the architect who draws the blueprints"
+    },
+    "soul": {
+      "name": "Soul",
+      "icon": "Heart",
+      "color": "from-pink-500 to-rose-500",
+      "level": 2,
+      "xp": 450,
+      "xpToNext": 500,
+      "streak": 0,
+      "lastActivity": "2026-01-10",
+      "description": "Values & purpose - the compass that guides construction"
+    },
+    "craft": {
+      "name": "Craft",
+      "icon": "Hammer",
+      "color": "from-purple-500 to-violet-500",
+      "level": 4,
+      "xp": 1200,
+      "xpToNext": 4000,
+      "streak": 14,
+      "lastActivity": "2026-01-13",
+      "description": "Skills & mastery - turning materials into structures"
+    },
+    "capital": {
+      "name": "Capital",
+      "icon": "Coins",
+      "color": "from-green-500 to-emerald-500",
+      "level": 1,
+      "xp": 120,
+      "xpToNext": 500,
+      "streak": 0,
+      "lastActivity": "2026-01-08",
+      "description": "Resources & freedom - the funding that makes construction possible"
+    },
+    "circle": {
+      "name": "Circle",
+      "icon": "Users",
+      "color": "from-cyan-500 to-teal-500",
+      "level": 2,
+      "xp": 280,
+      "xpToNext": 500,
+      "streak": 2,
+      "lastActivity": "2026-01-11",
+      "description": "Relationships - the crew that builds alongside you"
+    },
+    "legacy": {
+      "name": "Legacy",
+      "icon": "Crown",
+      "color": "from-yellow-500 to-amber-500",
+      "level": 1,
+      "xp": 60,
+      "xpToNext": 500,
+      "streak": 0,
+      "lastActivity": "2026-01-05",
+      "description": "Integration & impact - the structure that outlasts you"
+    }
+  },
+  "research": [
+    {
+      "id": "gamified-ai-learning",
+      "title": "Gamified AI Learning",
+      "date": "2026-01-13",
+      "status": "completed",
+      "xpEarned": 150,
+      "pillar": "mind",
+      "summary": "Explored gamification + LLM learning, proposed Creator's Quest concept"
+    }
+  ],
+  "blogs": [
+    {
+      "id": "ai-doesnt-have-to-be-soulless",
+      "title": "AI Doesn't Have To Be Soulless",
+      "publishedDate": "2025-12-15",
+      "status": "published",
+      "xpEarned": 100,
+      "pillar": "craft"
+    },
+    {
+      "id": "intelligence-revolution-2025",
+      "title": "The Intelligence Revolution 2025",
+      "publishedDate": "2025-12-20",
+      "status": "published",
+      "xpEarned": 100,
+      "pillar": "mind"
+    },
+    {
+      "id": "conscious-ai-for-entrepreneurs",
+      "title": "Conscious AI for Entrepreneurs",
+      "publishedDate": "2026-01-05",
+      "status": "published",
+      "xpEarned": 100,
+      "pillar": "craft"
+    }
+  ],
+  "achievements": [
+    {
+      "id": "first-research",
+      "title": "Curious Mind",
+      "description": "Completed your first research project",
+      "icon": "Search",
+      "earnedDate": "2026-01-13",
+      "xpBonus": 50,
+      "rarity": "common"
+    },
+    {
+      "id": "craft-journeyman",
+      "title": "Craft Journeyman",
+      "description": "Reached Level 4 in Craft",
+      "icon": "Hammer",
+      "earnedDate": "2026-01-05",
+      "xpBonus": 200,
+      "rarity": "rare"
+    },
+    {
+      "id": "week-streak",
+      "title": "Week Warrior",
+      "description": "7-day streak in any pillar",
+      "icon": "Flame",
+      "earnedDate": "2026-01-10",
+      "xpBonus": 100,
+      "rarity": "rare"
+    }
+  ],
+  "activeQuests": [
+    {
+      "id": "n8n-workflow",
+      "title": "Newsletter Automator",
+      "description": "Build n8n workflow for AI Architect Newsletter",
+      "pillar": "craft",
+      "progress": 0,
+      "maxProgress": 4,
+      "xpReward": 200,
+      "status": "active"
+    },
+    {
+      "id": "book-review",
+      "title": "Golden Age Review",
+      "description": "Review Golden Age of Creators chapters",
+      "pillar": "craft",
+      "progress": 0,
+      "maxProgress": 4,
+      "xpReward": 150,
+      "status": "active"
+    }
+  ]
+}
