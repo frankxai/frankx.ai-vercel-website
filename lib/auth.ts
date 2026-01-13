@@ -1,4 +1,4 @@
-import { NextAuthOptions } from 'next-auth'
+import type { NextAuthConfig } from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import bcrypt from 'bcryptjs'
 
@@ -22,7 +22,7 @@ const ADMIN_CREDENTIALS = {
   passwordHash: process.env.ADMIN_PASSWORD_HASH || '$2a$10$YourHashHere'
 }
 
-export const authOptions: NextAuthOptions = {
+export const authOptions: NextAuthConfig = {
   providers: [
     CredentialsProvider({
       name: 'Credentials',
@@ -71,7 +71,7 @@ export const authOptions: NextAuthOptions = {
   },
 
   callbacks: {
-    async jwt({ token, user }) {
+    async jwt({ token, user }: any) {
       if (user) {
         token.id = user.id
         token.email = user.email
@@ -79,7 +79,7 @@ export const authOptions: NextAuthOptions = {
       return token
     },
 
-    async session({ session, token }) {
+    async session({ session, token }: any) {
       if (session.user) {
         session.user.id = token.id as string
         session.user.email = token.email as string
