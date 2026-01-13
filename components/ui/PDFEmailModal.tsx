@@ -11,9 +11,10 @@ interface PDFEmailModalProps {
   pdfUrl: string
   guideSlug: string
   sessionId: string
+  htmlFallbackUrl?: string
 }
 
-export default function PDFEmailModal({ isOpen, onClose, pdfTitle, pdfUrl, guideSlug, sessionId }: PDFEmailModalProps) {
+export default function PDFEmailModal({ isOpen, onClose, pdfTitle, pdfUrl, guideSlug, sessionId, htmlFallbackUrl }: PDFEmailModalProps) {
   const [email, setEmail] = useState('')
   const [name, setName] = useState('')
   const [company, setCompany] = useState('')
@@ -48,7 +49,8 @@ export default function PDFEmailModal({ isOpen, onClose, pdfTitle, pdfUrl, guide
       })
 
       if (!response.ok) {
-        throw new Error('Failed to send email')
+        const errorData = await response.json().catch(() => ({}))
+        throw new Error(errorData.error || 'Failed to send email')
       }
 
       setIsSuccess(true)
@@ -66,7 +68,8 @@ export default function PDFEmailModal({ isOpen, onClose, pdfTitle, pdfUrl, guide
         }, 300)
       }, 2000)
     } catch (err) {
-      setError('Failed to send email. Please try downloading directly.')
+      const errorMessage = err instanceof Error ? err.message : 'Failed to send email'
+      setError(errorMessage)
       console.error('Email send error:', err)
     } finally {
       setIsLoading(false)
@@ -246,8 +249,27 @@ export default function PDFEmailModal({ isOpen, onClose, pdfTitle, pdfUrl, guide
                       </div>
 
                       {error && (
-                        <div className="p-3 rounded-lg bg-red-500/10 border border-red-500/20 text-red-400 text-sm">
-                          {error}
+                        <div className="p-4 rounded-lg bg-red-500/10 border border-red-500/20">
+                          <p className="text-red-400 text-sm mb-3">{error}</p>
+                          {htmlFallbackUrl && (
+                            <a
+                              href={htmlFallbackUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-gray-800 hover:bg-gray-700 text-white text-sm font-medium transition-all"
+                              onClick={() => {
+                                setTimeout(() => {
+                                  setError(null)
+                                  onClose()
+                                }, 100)
+                              }}
+                            >
+                              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                              </svg>
+                              <span>Download HTML Version Instead</span>
+                            </a>
+                          )}
                         </div>
                       )}
 

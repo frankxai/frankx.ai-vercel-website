@@ -22,8 +22,10 @@ const PDFViewer = dynamic(() => import('@/components/ui/PDFViewer'), {
 export default function VibeOSPreviewPage() {
   const [emailModalOpen, setEmailModalOpen] = useState(false)
 
-  // TODO: Update with actual Blob storage URL after upload
+  // Use HTML template as primary source (PDFs are empty directory)
+  // Fallback chain: PDF → HTML template → Error
   const pdfUrl = '/pdfs/vibe-os-guide.pdf'
+  const htmlFallbackUrl = '/pdf-templates/vibe-os-guide.html'
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-950 via-gray-900 to-black">
@@ -44,6 +46,7 @@ export default function VibeOSPreviewPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <PDFViewer
           url={pdfUrl}
+          htmlFallbackUrl={htmlFallbackUrl}
           title="Vibe OS"
           description="AI Music Creation System for engineering neuro-state"
           onEmailRequest={() => setEmailModalOpen(true)}
@@ -55,7 +58,10 @@ export default function VibeOSPreviewPage() {
         isOpen={emailModalOpen}
         onClose={() => setEmailModalOpen(false)}
         pdfTitle="Vibe OS"
-        pdfUrl={pdfUrl}
+        pdfUrl={htmlFallbackUrl || pdfUrl}
+        guideSlug="vibe-os"
+        sessionId={`session-${Date.now()}`}
+        htmlFallbackUrl={htmlFallbackUrl}
       />
     </div>
   )

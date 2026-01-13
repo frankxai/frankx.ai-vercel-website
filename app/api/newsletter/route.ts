@@ -68,11 +68,9 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Subscription failed' }, { status: 502 })
     }
 
-    if (redirectTo) {
-      return NextResponse.redirect(new URL(redirectTo, request.url))
-    }
-
-    return NextResponse.json({ message: 'Successfully subscribed!' }, { status: 200 })
+    // Always redirect to thank-you page for better UX
+    const thankYouUrl = new URL('/newsletter/thank-you', request.url)
+    return NextResponse.redirect(thankYouUrl, 303)
   } catch (error) {
     console.error('Newsletter signup error:', error)
     return NextResponse.json({ error: 'Internal server error' }, { status: 500 })
