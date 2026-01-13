@@ -8,6 +8,13 @@
     "start": "next start",
     "lint": "next lint",
     "type-check": "tsc --noEmit",
+    "test": "vitest",
+    "test:run": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "test:unit": "vitest run tests/unit",
+    "test:integration": "vitest run tests/integration",
+    "test:e2e": "playwright test",
+    "test:brand": "vitest run tests/unit/brand-values.test.tsx",
     "gen:html": "node scripts/generate_interlinked_html.mjs",
     "gen:feed": "node scripts/generate_feed.mjs",
     "gen:search": "node scripts/generate_search_index.mjs",
@@ -58,12 +65,18 @@
     "tinacms": "^2.2.9"
   },
   "devDependencies": {
+    "@playwright/test": "^1.40.0",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.1",
+    "@testing-library/user-event": "^14.6.1",
     "@types/lunr": "^2.3.7",
     "@types/node": "^22.10.2",
     "@types/react": "^18.3.17",
     "@types/react-dom": "^18.3.5",
     "eslint": "^9.17.0",
     "eslint-config-next": "^16.0.0",
-    "typescript": "^5.7.2"
+    "jsdom": "^27.4.0",
+    "typescript": "^5.7.2",
+    "vitest": "^4.0.17"
   }
 }
