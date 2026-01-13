@@ -9,11 +9,17 @@ interface PDFEmailModalProps {
   onClose: () => void
   pdfTitle: string
   pdfUrl: string
+  guideSlug: string
+  sessionId: string
 }
 
-export default function PDFEmailModal({ isOpen, onClose, pdfTitle, pdfUrl }: PDFEmailModalProps) {
+export default function PDFEmailModal({ isOpen, onClose, pdfTitle, pdfUrl, guideSlug, sessionId }: PDFEmailModalProps) {
   const [email, setEmail] = useState('')
   const [name, setName] = useState('')
+  const [company, setCompany] = useState('')
+  const [role, setRole] = useState('')
+  const [primaryInterest, setPrimaryInterest] = useState('')
+  const [referralSource, setReferralSource] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -31,7 +37,13 @@ export default function PDFEmailModal({ isOpen, onClose, pdfTitle, pdfUrl }: PDF
           email,
           name,
           pdfTitle,
-          pdfUrl
+          pdfUrl,
+          guideSlug,
+          sessionId,
+          company: company || undefined,
+          role: role || undefined,
+          primaryInterest: primaryInterest || undefined,
+          referralSource: referralSource || undefined
         })
       })
 
@@ -46,6 +58,10 @@ export default function PDFEmailModal({ isOpen, onClose, pdfTitle, pdfUrl }: PDF
         setTimeout(() => {
           setEmail('')
           setName('')
+          setCompany('')
+          setRole('')
+          setPrimaryInterest('')
+          setReferralSource('')
           setIsSuccess(false)
         }, 300)
       }, 2000)
@@ -148,6 +164,85 @@ export default function PDFEmailModal({ isOpen, onClose, pdfTitle, pdfUrl }: PDF
                           className="w-full px-4 py-3 rounded-lg bg-gray-800/50 border border-gray-700 text-white placeholder:text-gray-500 focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 transition-all"
                           placeholder="your@email.com"
                         />
+                      </div>
+
+                      {/* Optional fields */}
+                      <div className="grid grid-cols-2 gap-3">
+                        <div>
+                          <label htmlFor="company" className="block text-xs font-medium text-gray-400 mb-2">
+                            Company (Optional)
+                          </label>
+                          <input
+                            type="text"
+                            id="company"
+                            value={company}
+                            onChange={(e) => setCompany(e.target.value)}
+                            className="w-full px-3 py-2 text-sm rounded-lg bg-gray-800/50 border border-gray-700 text-white placeholder:text-gray-500 focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 transition-all"
+                            placeholder="Your company"
+                          />
+                        </div>
+
+                        <div>
+                          <label htmlFor="role" className="block text-xs font-medium text-gray-400 mb-2">
+                            Role (Optional)
+                          </label>
+                          <select
+                            id="role"
+                            value={role}
+                            onChange={(e) => setRole(e.target.value)}
+                            className="w-full px-3 py-2 text-sm rounded-lg bg-gray-800/50 border border-gray-700 text-white focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 transition-all"
+                          >
+                            <option value="">Select role</option>
+                            <option value="creator">Creator/Artist</option>
+                            <option value="developer">Developer</option>
+                            <option value="designer">Designer</option>
+                            <option value="marketer">Marketer</option>
+                            <option value="founder">Founder/CEO</option>
+                            <option value="student">Student</option>
+                            <option value="other">Other</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div>
+                        <label htmlFor="interest" className="block text-xs font-medium text-gray-400 mb-2">
+                          Primary Interest (Optional)
+                        </label>
+                        <select
+                          id="interest"
+                          value={primaryInterest}
+                          onChange={(e) => setPrimaryInterest(e.target.value)}
+                          className="w-full px-3 py-2 text-sm rounded-lg bg-gray-800/50 border border-gray-700 text-white focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 transition-all"
+                        >
+                          <option value="">What interests you most?</option>
+                          <option value="ai-tools">AI Tools & Workflows</option>
+                          <option value="music-creation">Music Creation with AI</option>
+                          <option value="content-creation">Content Creation</option>
+                          <option value="technical-learning">Technical Learning</option>
+                          <option value="consciousness">Consciousness & Transformation</option>
+                          <option value="community">Community & Realm</option>
+                        </select>
+                      </div>
+
+                      <div>
+                        <label htmlFor="referral" className="block text-xs font-medium text-gray-400 mb-2">
+                          How did you find us? (Optional)
+                        </label>
+                        <select
+                          id="referral"
+                          value={referralSource}
+                          onChange={(e) => setReferralSource(e.target.value)}
+                          className="w-full px-3 py-2 text-sm rounded-lg bg-gray-800/50 border border-gray-700 text-white focus:outline-none focus:border-cyan-500 focus:ring-2 focus:ring-cyan-500/20 transition-all"
+                        >
+                          <option value="">Select source</option>
+                          <option value="search">Search Engine</option>
+                          <option value="social">Social Media</option>
+                          <option value="linkedin">LinkedIn</option>
+                          <option value="twitter">Twitter/X</option>
+                          <option value="youtube">YouTube</option>
+                          <option value="referral">Friend/Colleague</option>
+                          <option value="other">Other</option>
+                        </select>
                       </div>
 
                       {error && (

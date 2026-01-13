@@ -1,64 +1,14 @@
-import { NextRequest, NextResponse } from 'next/server'
-import { Resend } from 'resend'
-import { createPDFLead, trackEmailRequest, updateEmailStatus } from '@/lib/pdf-analytics'
+// PDF Delivery Email Template (Immediate)
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+interface PDFDeliveryEmailProps {
+  name: string
+  pdfTitle: string
+  pdfUrl: string
+  guideSlug: string
+}
 
-export async function POST(request: NextRequest) {
-  try {
-    const {
-      email,
-      name,
-      pdfTitle,
-      pdfUrl,
-      guideSlug,
-      sessionId,
-      company,
-      role,
-      primaryInterest,
-      referralSource
-    } = await request.json()
-
-    // Validation
-    if (!email || !name || !pdfTitle || !pdfUrl || !guideSlug || !sessionId) {
-      return NextResponse.json(
-        { error: 'Missing required fields' },
-        { status: 400 }
-      )
-    }
-
-    // Get metadata
-    const userAgent = request.headers.get('user-agent') || 'unknown'
-    const referrer = request.headers.get('referer') || ''
-
-    // Create lead record
-    const lead = await createPDFLead({
-      email,
-      name,
-      guideSlug,
-      guideTitle: pdfTitle,
-      company,
-      role,
-      primaryInterest,
-      referralSource,
-      sessionId,
-      userAgent,
-      referrer
-    })
-
-    // Create email request record
-    const emailRequest = await trackEmailRequest({
-      leadId: lead.id,
-      guideSlug,
-      status: 'pending'
-    })
-
-    // Send email with Resend
-    const { data, error } = await resend.emails.send({
-      from: 'Frank from FrankX.AI <frank@frankx.ai>',
-      to: [email],
-      subject: `Your ${pdfTitle} Guide from FrankX.AI`,
-      html: `
+export function PDFDeliveryEmail({ name, pdfTitle, pdfUrl, guideSlug }: PDFDeliveryEmailProps) {
+  return `
 <!DOCTYPE html>
 <html>
 <head>
@@ -108,6 +58,21 @@ export async function POST(request: NextRequest) {
       </p>
     </div>
 
+    <!-- Next steps -->
+    <div style="background: linear-gradient(to bottom, #111827, #0a0f1e); border: 1.5px solid rgba(147, 51, 234, 0.2); border-radius: 16px; padding: 24px; margin-bottom: 32px;">
+      <h2 style="font-size: 20px; font-weight: 600; color: white; margin: 0 0 16px 0;">
+        What's Next?
+      </h2>
+      <p style="font-size: 14px; color: #94a3b8; line-height: 1.6; margin: 0 0 16px 0;">
+        Over the next few days, I'll share:
+      </p>
+      <ul style="margin: 0; padding-left: 24px; color: #cbd5e1; font-size: 14px;">
+        <li style="margin-bottom: 8px;">Advanced tips for implementing this framework</li>
+        <li style="margin-bottom: 8px;">Behind-the-scenes look at my AI workflow</li>
+        <li style="margin-bottom: 8px;">Exclusive resources from the FrankX community</li>
+      </ul>
+    </div>
+
     <!-- Footer -->
     <div style="text-align: center; padding-top: 32px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
       <p style="font-size: 12px; color: #64748b; margin: 0 0 16px 0;">
@@ -137,27 +102,8 @@ export async function POST(request: NextRequest) {
   </div>
 </body>
 </html>
-      `,
-    })
-
-    if (error) {
-      console.error('Resend error:', error)
-      await updateEmailStatus(emailRequest.id, 'failed', undefined, error.message)
-      return NextResponse.json(
-        { error: 'Failed to send email' },
-        { status: 500 }
-      )
-    }
-
-    // Update email status to sent
-    await updateEmailStatus(emailRequest.id, 'sent', data?.id)
-
-    return NextResponse.json({ success: true, leadId: lead.id, emailId: data?.id })
-  } catch (error) {
-    console.error('API error:', error)
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 }
-    )
-  }
+  `
 }
+
+export const pdfDeliveryEmailSubject = (pdfTitle: string) =>
+  `Your ${pdfTitle} Guide from FrankX.AI`
