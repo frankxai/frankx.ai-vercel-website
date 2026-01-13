@@ -64,6 +64,7 @@
     "@types/react-dom": "^18.3.5",
     "eslint": "^9.17.0",
     "eslint-config-next": "^16.1.1",
+    "puppeteer": "^24.35.0",
     "styled-jsx": "^5.1.7",
     "typescript": "^5.7.2"
   }
