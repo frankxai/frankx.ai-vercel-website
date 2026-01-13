@@ -1,11 +1,24 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { Resend } from 'resend'
-import { createPDFLead, trackEmailRequest, updateEmailStatus } from '@/lib/pdf-analytics'
+import { storeLead } from '@/lib/kv'
+import { emailRatelimit, getClientIdentifier } from '@/lib/ratelimit'
+import { validateLeadData } from '@/lib/validation'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
 export async function POST(request: NextRequest) {
   try {
+    // Rate limiting - 5 emails per 10 minutes per IP
+    const identifier = getClientIdentifier(request)
+    const { success: rateLimitOk } = await emailRatelimit.limit(identifier)
+
+    if (!rateLimitOk) {
+      return NextResponse.json(
+        { error: 'Too many requests. Please try again in a few minutes.' },
+        { status: 429 }
+      )
+    }
+
     // Check if RESEND_API_KEY is configured
     if (!process.env.RESEND_API_KEY) {
       console.error('RESEND_API_KEY is not configured')
@@ -36,36 +49,38 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Get metadata
-    const userAgent = request.headers.get('user-agent') || 'unknown'
-    const referrer = request.headers.get('referer') || ''
-
-    // Create lead record
-    const lead = await createPDFLead({
+    // Validate and sanitize lead data
+    const leadData = validateLeadData({
       email,
       name,
-      guideSlug,
-      guideTitle: pdfTitle,
       company,
       role,
       primaryInterest,
-      referralSource,
-      sessionId,
-      userAgent,
-      referrer
+      referralSource
     })
 
-    // Create email request record
-    const emailRequest = await trackEmailRequest({
-      leadId: lead.id,
-      guideSlug,
-      status: 'pending'
+    if (!leadData) {
+      return NextResponse.json(
+        { error: 'Invalid email or input data' },
+        { status: 400 }
+      )
+    }
+
+    // Store lead in Vercel KV
+    await storeLead({
+      email: leadData.email,
+      name: leadData.name,
+      company: leadData.company,
+      role: leadData.role,
+      primaryInterest: leadData.primaryInterest,
+      referralSource: leadData.referralSource,
+      guideId: guideSlug
     })
 
     // Send email with Resend
     const { data, error } = await resend.emails.send({
       from: 'Frank from FrankX.AI <frank@frankx.ai>',
-      to: [email],
+      to: [leadData.email],
       subject: `Your ${pdfTitle} Guide from FrankX.AI`,
       html: `
 <!DOCTYPE html>
@@ -87,7 +102,7 @@ export async function POST(request: NextRequest) {
     <!-- Main content -->
     <div style="background: linear-gradient(to bottom, #111827, #0a0f1e); border: 1.5px solid rgba(6, 182, 212, 0.2); border-radius: 16px; padding: 32px; margin-bottom: 32px;">
       <h1 style="font-size: 28px; font-weight: 700; color: white; margin: 0 0 16px 0; line-height: 1.2;">
-        Hey ${name}! 👋
+        Hey ${leadData.name}! 👋
       </h1>
 
       <p style="font-size: 16px; color: #94a3b8; line-height: 1.6; margin: 0 0 24px 0;">
@@ -151,17 +166,13 @@ export async function POST(request: NextRequest) {
 
     if (error) {
       console.error('Resend error:', error)
-      await updateEmailStatus(emailRequest.id, 'failed', undefined, error.message)
       return NextResponse.json(
-        { error: 'Failed to send email' },
+        { error: 'Failed to send email. Please try downloading directly.' },
         { status: 500 }
       )
     }
 
-    // Update email status to sent
-    await updateEmailStatus(emailRequest.id, 'sent', data?.id)
-
-    return NextResponse.json({ success: true, leadId: lead.id, emailId: data?.id })
+    return NextResponse.json({ success: true, emailId: data?.id })
   } catch (error) {
     console.error('API error:', error)
     return NextResponse.json(

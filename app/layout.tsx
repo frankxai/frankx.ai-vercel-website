@@ -8,6 +8,7 @@ import { robotsConfig, siteConfig } from '@/lib/seo'
 import NavigationMega from '@/components/NavigationMega'
 import Footer from '@/components/Footer'
 import OrganizationJsonLd from '@/components/seo/OrganizationJsonLd'
+import SessionProvider from '@/components/providers/SessionProvider'
 
 // Inter as primary sans-serif (geometric, variable weight, screen-optimized)
 const inter = Inter({
@@ -118,25 +119,27 @@ export default function RootLayout({
         )}
         suppressHydrationWarning
       >
-        <OrganizationJsonLd />
-        {plausibleDomain && (
-          <Script
-            strategy="afterInteractive"
-            data-domain={plausibleDomain}
-            src="https://plausible.io/js/script.js"
-          />
-        )}
-        <a
-          href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:bg-white focus:text-black focus:px-3 focus:py-2 focus:rounded z-[100]"
-        >
-          Skip to content
-        </a>
-        <NavigationMega />
-        <div id="main" className="min-h-screen overflow-x-hidden">
-          {children}
-        </div>
-        <Footer />
+        <SessionProvider>
+          <OrganizationJsonLd />
+          {plausibleDomain && (
+            <Script
+              strategy="afterInteractive"
+              data-domain={plausibleDomain}
+              src="https://plausible.io/js/script.js"
+            />
+          )}
+          <a
+            href="#main"
+            className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:bg-white focus:text-black focus:px-3 focus:py-2 focus:rounded z-[100]"
+          >
+            Skip to content
+          </a>
+          <NavigationMega />
+          <div id="main" className="min-h-screen overflow-x-hidden">
+            {children}
+          </div>
+          <Footer />
+        </SessionProvider>
       </body>
     </html >
   )
