@@ -6,6 +6,20 @@ Translate Frank's musician-technologist journey into language, prompts, and expe
 
 ---
 
+## 🔒 Brand Identity Ground Truth
+
+**CRITICAL: All brand identity information (social links, bios, colors, voice) is defined in:**
+- **Primary Source**: `/mnt/c/Users/Frank/FrankX/BRAND_IDENTITY.md` (IMMUTABLE)
+- **Code Config**: `/mnt/c/Users/Frank/FrankX/lib/social-links.ts` (synchronized)
+
+**Agent Protocol:**
+- NEVER hardcode social links, bios, or brand colors
+- ALWAYS import from `lib/social-links.ts` or reference `BRAND_IDENTITY.md`
+- FLAG any inconsistencies found in codebase
+- UPDATE other files to match ground truth, not vice versa
+
+---
+
 ## Personal Development Plan (Reference)
 
 Frank maintains a personal tracking document at `PERSONAL_DEVELOPMENT_PLAN.md` for his weekly goals, book progress, and research interests. Agents may reference it for context but it's Frank's personal tool, not a workflow requirement.

@@ -1,11 +1,11 @@
 ﻿'use client'
 
-import { motion } from 'framer-motion'
+import { motion, HTMLMotionProps } from 'framer-motion'
 import { ReactNode } from 'react'
 
 import { cn } from '@/lib/utils'
 
-interface GlassmorphicCardProps extends React.HTMLAttributes<HTMLDivElement> {
+interface GlassmorphicCardProps extends Omit<HTMLMotionProps<'div'>, 'ref'> {
   children: ReactNode
   className?: string
   variant?: 'default' | 'premium' | 'luxury' | 'subtle'

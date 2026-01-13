@@ -296,7 +296,10 @@ export default async function BlogPostPage({
             <p className="mt-3 text-sm text-white/70">
               Join 1,000+ creators and executives receiving weekly field notes on conscious AI systems, music rituals, and agent strategy.
             </p>
-            <form action={subscribeToNewsletter} className="mt-6 flex flex-col gap-3 sm:flex-row">
+            <form action={async (formData) => {
+              'use server'
+              await subscribeToNewsletter(formData)
+            }} className="mt-6 flex flex-col gap-3 sm:flex-row">
               <input
                 type="email"
                 name="email"
