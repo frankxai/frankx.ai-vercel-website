@@ -186,6 +186,26 @@ See `agents/AGENT_PROTOCOL.md` for:
 3. Leave implementation notes for Codex/Gemini if components or analytics are required.
 4. After publish, log highlights + metrics questions in `docs/DAILY_INTELLIGENCE_OPERATIONS.md`.
 
+## Content Workflow (Two-Repo Model)
+
+This repo serves as the **archive and staging area**. The production website lives in `FrankX.AI - Vercel Website/` (separate git repo).
+
+```
+FrankX (Main)              →    Vercel Website (Subfolder)
+├── content/blog/ (draft)  →    ├── content/blog/ (production)
+├── content-universe/           ├── app/
+├── soulbook/                   └── frankx.ai (deployed)
+└── DRAFT / STAGE               └── PRODUCTION
+```
+
+**Quick Commands:**
+- `/frankx-ai-content-pipeline` - Full workflow
+- `/frankx-ai-blog` - Create articles
+- `/frankx-ai-deploy` - Deploy to Vercel
+- `node scripts/publish-to-vercel.js --sync` - Sync content
+
+**Full workflow documentation:** `docs/CONTENT_WORKFLOW.md`
+
 ## Success Metrics
 
 - Creator testimonials and case studies captured each week.
