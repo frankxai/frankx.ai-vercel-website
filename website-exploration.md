@@ -84,7 +84,7 @@ FrankX Intelligence Hub is a comprehensive creative AI platform focused on "Arch
 
 3. **Agentic Creator OS Roadmap 2025** (Jan 22, 2025)
    - Master plan for deploying agentic systems
-   - URL: `/blog/10-agentic-ai-roadmap-2025`
+   - URL: `/blog/agentic-ai-roadmap-2025`
 
 4. **The Intelligence Revolution Playbook** (Sep 16, 2025)
    - Systems-first guide to orchestrating conscious AI

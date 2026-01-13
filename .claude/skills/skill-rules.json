@@ -585,6 +585,48 @@
           "feature.*priorit"
         ]
       }
+    },
+    "daily-content-ops": {
+      "type": "workflow",
+      "enforcement": "suggest",
+      "priority": "high",
+      "description": "Daily content research, polishing, and publishing workflow for FrankX.AI",
+      "promptTriggers": {
+        "keywords": [
+          "daily content",
+          "content ops",
+          "content operations",
+          "research topics",
+          "trending ai",
+          "polish article",
+          "polish draft",
+          "content review",
+          "content pipeline",
+          "social content",
+          "generate social",
+          "content status",
+          "what to publish",
+          "ready to ship"
+        ],
+        "intentPatterns": [
+          "daily.*content",
+          "content.*(ops|operations|workflow)",
+          "(research|find).*(topics?|trends?|ideas?)",
+          "polish.*(article|draft|content)",
+          "(review|check).*(content|drafts?|pipeline)",
+          "generate.*social",
+          "social.*from.*article",
+          "trending.*(ai|topics?)",
+          "what.*(publish|write|ship).*today",
+          "content.*(ready|status)"
+        ]
+      },
+      "fileTriggers": {
+        "pathPatterns": [
+          "**/content/drafts/**/*.mdx",
+          "**/content/drafts/**/*.md"
+        ]
+      }
     }
   },
   "agents": {

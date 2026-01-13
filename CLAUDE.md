@@ -6,13 +6,19 @@ Translate Frank's musician-technologist journey into language, prompts, and expe
 
 ---
 
+## Personal Development Plan (Reference)
+
+Frank maintains a personal tracking document at `PERSONAL_DEVELOPMENT_PLAN.md` for his weekly goals, book progress, and research interests. Agents may reference it for context but it's Frank's personal tool, not a workflow requirement.
+
+---
+
 ## MANDATORY: Skill & Agent Activation Protocol
 
 **BEFORE starting ANY task, you MUST:**
 
-1. **Check skill-rules.json** at `~/.claude/skills/skill-rules.json` for matching triggers
-2. **Scan available skills** at `~/.claude/skills/` for domain expertise
-3. **Review available agents** at `~/.claude/agents/` for specialized workflows
+1. **Check skill-rules.json** at `.claude/skills/skill-rules.json` for matching triggers
+2. **Scan available skills** at `.claude-skills/` for domain expertise
+3. **Review available agents** at `agents/` for specialized workflows
 
 **DURING task execution, when you discover new work (errors, bugs, component issues):**
 

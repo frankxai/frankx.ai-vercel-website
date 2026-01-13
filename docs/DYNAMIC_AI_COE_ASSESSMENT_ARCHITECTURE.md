@@ -224,7 +224,7 @@ const scoringMatrix = {
       'Join AI Music Academy waitlist'
     ],
     relevantPosts: [
-      '/blog/05-music-as-consciousness-technology',
+      '/blog/music-as-consciousness-technology',
       '/blog/agentic-ai-roadmap-2025'
     ]
   },
@@ -255,8 +255,8 @@ const scoringMatrix = {
       'Schedule Atlas Sync for enterprise team'
     ],
     relevantPosts: [
-      '/blog/10-agentic-ai-roadmap-2025',
-      '/blog/08-golden-age-of-intelligence'
+      '/blog/agentic-ai-roadmap-2025',
+      '/blog/golden-age-of-intelligence'
     ]
   },
 
@@ -488,7 +488,7 @@ const scoringMatrix = {
       label: 'Integration with spiritual/consciousness practices',
       scoring: { consciousness: +5, creative: +2 },
       alignment: 'Golden Age of Intelligence philosophy',
-      blogSource: '/blog/05-music-as-consciousness-technology'
+      blogSource: '/blog/music-as-consciousness-technology'
     }
   ]
 }
@@ -523,14 +523,14 @@ const scoringMatrix = {
       label: 'Fast execution with quick iterations',
       scoring: { agile: +3, velocity: +2 },
       systemFit: 'Dual-Speed Publishing Framework',
-      blogSource: '/blog/08-golden-age-of-intelligence'
+      blogSource: '/blog/golden-age-of-intelligence'
     },
     {
       value: 'strategic',
       label: 'Strategic planning with systematic implementation',
       scoring: { systemBuilder: +3, governance: +2 },
       systemFit: 'Governance Maturity Model',
-      blogSource: '/blog/10-agentic-ai-roadmap-2025'
+      blogSource: '/blog/agentic-ai-roadmap-2025'
     },
     {
       value: 'collaborative',
@@ -622,7 +622,7 @@ const scoringMatrix = {
       scoring: { beginner: +5 },
       maturityLevel: 'Aware',
       recommendation: 'Creative AI Toolkit or Vibe OS',
-      blogSource: '/blog/10-agentic-ai-roadmap-2025#governance-maturity'
+      blogSource: '/blog/agentic-ai-roadmap-2025#governance-maturity'
     },
     {
       value: 'learner',
@@ -799,15 +799,15 @@ mitigation—exactly what the FrankX Intelligence Atlas addresses.
 ## Relevant Reading
 
 Based on your profile, start with these:
-1. [Agentic AI Roadmap 2025](/blog/10-agentic-ai-roadmap-2025)
+1. [Agentic AI Roadmap 2025](/blog/agentic-ai-roadmap-2025)
    - Enterprise transformation section
    - Governance Maturity Model
 
-2. [Golden Age of Intelligence](/blog/08-golden-age-of-intelligence)
+2. [Golden Age of Intelligence](/blog/golden-age-of-intelligence)
    - Authority positioning for executives
    - Brand safety & trust frameworks
 
-3. [Intelligence Revolution 2025](/blog/06-intelligence-revolution-2025)
+3. [Intelligence Revolution 2025](/blog/intelligence-revolution-2025)
    - Market signals & opportunity map
 
 ## What's Next?

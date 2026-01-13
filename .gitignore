@@ -53,6 +53,20 @@ Thumbs.db
 .cache/
 /public/reading/
 /reading-site/
+public/admin/
+__pycache__/
+~/
+content/blog/content/
+check_imports.js
+run-tina.sh
+
+# Local agent/tooling state
+.claude/
+.claude-mem/
+.opencode/*
+!.opencode/oh-my-opencode.json
+.shared/
+.tina/
 
 # Data (subscribers, etc)
 /data/subscribers.json
@@ -60,6 +74,9 @@ Thumbs.db
 # Separate Git Repositories (managed independently)
 /FrankX.AI - Vercel Website/
 /_repo_remote_frankx_website/
+/arcanea-opencode/
+/claude-agentic-creator-os/
+/sanity-frankx/
 
 # Symlinks to global configurations
 /.claude-nextjs-skills
@@ -67,3 +84,6 @@ Thumbs.db
 # Large backup files
 backups/**/*.bundle
 backups/**/*.tar.gz
+
+# Prevent CLAUDE.md pollution
+**/CLAUDE.md

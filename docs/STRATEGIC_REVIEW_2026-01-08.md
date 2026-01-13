@@ -92,14 +92,14 @@ frankx.ai/
 | ai-doesnt-have-to-be-soulless | Consciousness | Published | 5/5 | Featured |
 | science-of-state-change-music | Vibe Sessions | Published | 4/5 | Featured |
 | agentic-seo-publishing-masterplan | Creator Systems | Published | 4/5 | Operational |
-| 10-agentic-ai-roadmap-2025 | Intelligence Dispatches | Published | 4/5 | Featured |
-| 07-agentic-creator-os | Creator Systems | Published | 4/5 | System |
+| agentic-ai-roadmap-2025 | Intelligence Dispatches | Published | 4/5 | Featured |
+| agentic-creator-os | Creator Systems | Published | 4/5 | System |
 | conscious-ai-integration-operating-system | Intelligence Dispatches | Published | 4/5 | Guide |
 | creators-life-architecture-guide | Consciousness | Published | 4/5 | Framework |
-| 05-music-as-consciousness-technology | Vibe Sessions | Published | 4/5 | Music |
-| 03-ai-guide-for-families-and-professionals | Intelligence Dispatches | Published | 3/5 | Guide |
-| 04-conscious-ai-for-entrepreneurs | Intelligence Dispatches | Published | 3/5 | Guide |
-| 09-reader-first-golden-age | Intelligence Dispatches | Published | 3/5 | Playbook |
+| music-as-consciousness-technology | Vibe Sessions | Published | 4/5 | Music |
+| ai-guide-for-families-and-professionals | Intelligence Dispatches | Published | 3/5 | Guide |
+| conscious-ai-for-entrepreneurs | Intelligence Dispatches | Published | 3/5 | Guide |
+| reader-first-golden-age | Intelligence Dispatches | Published | 3/5 | Playbook |
 | **the-creative-os** | Creator Systems | **INCOMPLETE** | 2/5 | **FIX** |
 | **what-is-agentic-ai** | Intelligence Dispatches | **NEEDS REWRITE** | 2/5 | **FIX** |
 

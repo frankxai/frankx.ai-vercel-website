@@ -54,10 +54,10 @@ This session conducted a comprehensive review of all FrankX work from the past 4
 
 **Keywords Added to 9 Articles:**
 - `creators-life-architecture-guide.mdx`
-- `03-ai-guide-for-families-and-professionals.mdx`
-- `04-conscious-ai-for-entrepreneurs.mdx`
-- `05-music-as-consciousness-technology.mdx`
-- `07-agentic-creator-os.mdx`
+- `ai-guide-for-families-and-professionals.mdx`
+- `conscious-ai-for-entrepreneurs.mdx`
+- `music-as-consciousness-technology.mdx`
+- `agentic-creator-os.mdx`
 - `ai-doesnt-have-to-be-soulless.mdx`
 - `golden-age-of-intelligence.mdx`
 - `science-of-state-change-music.mdx`
@@ -142,10 +142,10 @@ UPDATED FILES:
 ├── content/blog/the-creative-os.mdx (complete rewrite)
 ├── content/blog/what-is-agentic-ai.mdx (complete rewrite)
 ├── content/blog/creators-life-architecture-guide.mdx (keywords)
-├── content/blog/03-ai-guide-for-families-and-professionals.mdx (keywords)
-├── content/blog/04-conscious-ai-for-entrepreneurs.mdx (keywords)
-├── content/blog/05-music-as-consciousness-technology.mdx (keywords)
-├── content/blog/07-agentic-creator-os.mdx (keywords)
+├── content/blog/ai-guide-for-families-and-professionals.mdx (keywords)
+├── content/blog/conscious-ai-for-entrepreneurs.mdx (keywords)
+├── content/blog/music-as-consciousness-technology.mdx (keywords)
+├── content/blog/agentic-creator-os.mdx (keywords)
 ├── content/blog/ai-doesnt-have-to-be-soulless.mdx (keywords)
 ├── content/blog/golden-age-of-intelligence.mdx (keywords)
 ├── content/blog/science-of-state-change-music.mdx (keywords)
