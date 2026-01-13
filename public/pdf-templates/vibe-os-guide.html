@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vibe OS - AI Music Creation System</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap');
+
+    :root {
+      --primary: #0f0f23;
+      --secondary: #1a1a2e;
+      --accent-cyan: #22d3ee;
+      --accent-purple: #a855f7;
+      --accent-pink: #ec4899;
+      --accent-amber: #f59e0b;
+      --accent-emerald: #10b981;
+      --text-primary: #e2e8f0;
+      --text-secondary: #94a3b8;
+      --bg-dark: #0f0f23;
+      --bg-card: rgba(30, 30, 60, 0.5);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg-dark);
+      color: var(--text-primary);
+      line-height: 1.7;
+      font-size: 11pt;
+    }
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      padding: 20mm 25mm;
+      margin: 0 auto;
+      background: linear-gradient(180deg, var(--primary) 0%, var(--secondary) 100%);
+      page-break-after: always;
+    }
+
+    h1, h2, h3, h4 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-weight: 600;
+      color: white;
+    }
+
+    h1 {
+      font-size: 42pt;
+      line-height: 1.1;
+      margin-bottom: 0.5em;
+      background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    h2 {
+      font-size: 24pt;
+      margin: 1.5em 0 0.5em;
+      padding-bottom: 0.3em;
+      border-bottom: 2px solid var(--accent-cyan);
+    }
+
+    h3 {
+      font-size: 16pt;
+      margin: 1.2em 0 0.4em;
+      color: var(--accent-cyan);
+    }
+
+    h4 {
+      font-size: 13pt;
+      margin: 1em 0 0.3em;
+      font-style: italic;
+      color: var(--accent-purple);
+    }
+
+    p {
+      margin-bottom: 1em;
+      color: var(--text-primary);
+    }
+
+    .tagline {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 16pt;
+      font-style: italic;
+      color: var(--accent-cyan);
+      margin-bottom: 2em;
+    }
+
+    /* Cover Page */
+    .cover {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: radial-gradient(ellipse at center, rgba(34, 211, 238, 0.1) 0%, transparent 70%),
+                  linear-gradient(180deg, var(--primary) 0%, var(--secondary) 100%);
+    }
+
+    .cover h1 {
+      font-size: 56pt;
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple), var(--accent-pink));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .cover-icon {
+      font-size: 80pt;
+      margin-bottom: 0.5em;
+    }
+
+    .cover .subtitle {
+      font-size: 14pt;
+      color: var(--text-secondary);
+      margin-top: 1em;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    /* Code Blocks */
+    .code-block {
+      font-family: 'JetBrains Mono', monospace;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(34, 211, 238, 0.3);
+      border-radius: 8px;
+      padding: 1em 1.2em;
+      margin: 1em 0;
+      font-size: 10pt;
+      overflow-x: auto;
+      color: var(--accent-cyan);
+    }
+
+    .prompt-block {
+      background: linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(34, 211, 238, 0.1) 100%);
+      border: 1px solid var(--accent-purple);
+      border-radius: 8px;
+      padding: 1.2em;
+      margin: 1em 0;
+      font-style: italic;
+    }
+
+    .prompt-block::before {
+      content: "PROMPT";
+      display: block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9pt;
+      color: var(--accent-purple);
+      margin-bottom: 0.5em;
+      font-style: normal;
+      letter-spacing: 2px;
+    }
+
+    /* Cards */
+    .card {
+      background: var(--bg-card);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      padding: 1.5em;
+      margin: 1.5em 0;
+    }
+
+    .card.cyan { border-left: 4px solid var(--accent-cyan); }
+    .card.purple { border-left: 4px solid var(--accent-purple); }
+    .card.pink { border-left: 4px solid var(--accent-pink); }
+    .card.amber { border-left: 4px solid var(--accent-amber); }
+    .card.emerald { border-left: 4px solid var(--accent-emerald); }
+
+    /* Highlight */
+    .highlight {
+      background: linear-gradient(90deg, rgba(34, 211, 238, 0.15) 0%, rgba(168, 85, 247, 0.15) 100%);
+      padding: 1em 1.2em;
+      border-radius: 8px;
+      margin: 1em 0;
+      border-left: 3px solid var(--accent-cyan);
+    }
+
+    .warning {
+      background: rgba(245, 158, 11, 0.15);
+      padding: 1em 1.2em;
+      border-radius: 8px;
+      margin: 1em 0;
+      border-left: 3px solid var(--accent-amber);
+    }
+
+    /* Quote */
+    .quote {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 14pt;
+      font-style: italic;
+      text-align: center;
+      padding: 1.5em 2em;
+      margin: 2em 0;
+      border-top: 1px solid rgba(34, 211, 238, 0.3);
+      border-bottom: 1px solid rgba(34, 211, 238, 0.3);
+      color: var(--accent-cyan);
+    }
+
+    /* Lists */
+    ul, ol {
+      margin: 0.8em 0 1em 1.5em;
+      color: var(--text-primary);
+    }
+
+    li {
+      margin-bottom: 0.4em;
+    }
+
+    li strong {
+      color: var(--accent-cyan);
+    }
+
+    /* Table */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1em 0;
+    }
+
+    th, td {
+      padding: 0.8em;
+      text-align: left;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    th {
+      color: var(--accent-cyan);
+      font-weight: 600;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      font-size: 9pt;
+      color: var(--text-secondary);
+      margin-top: 3em;
+      padding-top: 1em;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* TOC */
+    .toc {
+      margin: 2em 0;
+    }
+
+    .toc-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.5em 0;
+      border-bottom: 1px dotted rgba(255, 255, 255, 0.2);
+      color: var(--text-secondary);
+    }
+
+    @media print {
+      .page { page-break-after: always; box-shadow: none; }
+      body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Cover Page -->
+  <div class="page cover">
+    <div class="cover-icon">🎵</div>
+    <h1>Vibe OS</h1>
+    <p class="tagline">AI Music Creation System</p>
+    <p class="subtitle">Engineering Neuro-State with Suno AI</p>
+    <p style="color: var(--text-secondary); margin-top: 4em; font-size: 11pt;">
+      By Frank<br>
+      <span style="font-size: 10pt;">FrankX.AI</span>
+    </p>
+  </div>
+
+  <!-- Table of Contents -->
+  <div class="page">
+    <h2>Contents</h2>
+    <div class="toc">
+      <div class="toc-item"><span>Introduction: Beyond the Slot Machine</span><span>3</span></div>
+      <div class="toc-item"><span>The RPM Model for Audio Engineering</span><span>4</span></div>
+      <div class="toc-item"><span>The Four Vectors: Time, Key, Texture, Shape</span><span>6</span></div>
+      <div class="toc-item"><span>Emotion Mapping System</span><span>8</span></div>
+      <div class="toc-item"><span>Genre Prompt Templates</span><span>10</span></div>
+      <div class="toc-item"><span>Session Formulas</span><span>14</span></div>
+      <div class="toc-item"><span>Production Workflow</span><span>18</span></div>
+      <div class="toc-item"><span>Publishing & Monetization</span><span>20</span></div>
+      <div class="toc-item"><span>The Complete Session Protocol</span><span>22</span></div>
+    </div>
+
+    <div class="quote">
+      "Stop playing the slot machine. Engineers write code. Architects design Vibe."
+    </div>
+  </div>
+
+  <!-- Introduction -->
+  <div class="page">
+    <h2>Introduction: Beyond the Slot Machine</h2>
+
+    <p>You are ignoring the most powerful variable in your tech stack.</p>
+    <p>It's not your model context window. It's not your latency.</p>
+    <p>It's <strong>Biology</strong>.</p>
+
+    <div class="highlight">
+      When a user opens your app—or when you open your creative session—their brain is vibrating at a specific frequency. Usually, it's the wrong one: fractured, anxious, high-beta noise. Your job isn't to show them a UI. Your job is to <strong>change their state</strong>.
+    </div>
+
+    <p>Most creators treat AI music (Suno, Udio) like a jukebox. You type "Lo-fi beats," hit generate, and get background muzak. That is failure.</p>
+
+    <p>Vibe OS changes this. It's a systematic approach to engineering neuro-state through audio—transforming Suno from a random music generator into a <strong>precision consciousness tool</strong>.</p>
+
+    <h3>What You'll Learn</h3>
+    <ul>
+      <li><strong>The RPM Model</strong> — A strategic framework for intentional audio creation</li>
+      <li><strong>The Four Vectors</strong> — The technical levers that shape neurological response</li>
+      <li><strong>Emotion Mapping</strong> — Translating feelings into sonic specifications</li>
+      <li><strong>50+ Prompt Templates</strong> — Genre-specific formulas that work</li>
+      <li><strong>Production Workflow</strong> — From raw generation to polished release</li>
+      <li><strong>Monetization Paths</strong> — Licensing, distribution, and revenue strategies</li>
+    </ul>
+
+    <div class="card cyan">
+      <h4>The Vibe OS Promise</h4>
+      <p>Ship finished tracks in 60-90 minutes instead of weeks. Release 1 track per week consistently. Move from experimentation to monetizable releases with licensing pathways and catalog strategies.</p>
+    </div>
+  </div>
+
+  <!-- RPM Model -->
+  <div class="page">
+    <h2>The RPM Model for Audio Engineering</h2>
+
+    <p>Tony Robbins' RPM (Result, Purpose, Map) isn't just for productivity. It's the physics of intent. Apply it to audio, and you stop getting "songs" and start getting <strong>drugs</strong>.</p>
+
+    <h3>1. Result: Define the Neuro-Target</h3>
+    <p>Don't tell the AI you want "Jazz." The AI doesn't know what Jazz <em>does</em> to a human nervous system. Tell yourself: <strong>What is the specific biological outcome?</strong></p>
+
+    <div class="card purple">
+      <h4>❌ The Bad Prompt</h4>
+      <p>"Make me upbeat coding music."</p>
+    </div>
+
+    <div class="card emerald">
+      <h4>✅ The Vibe OS Target</h4>
+      <p>"I need to drive the user's brain waves from 20Hz (Beta/Stress) down to 10Hz (Alpha/Flow) within 45 seconds to prevent rage-quitting the onboarding flow."</p>
+    </div>
+
+    <p>See the difference? One is a genre. The other is a <strong>prescription</strong>.</p>
+
+    <h3>2. Purpose: The Strategic "Why"</h3>
+    <p>Why does this audio exist? If you can't answer this, play silence.</p>
+
+    <div class="highlight">
+      <strong>Example Purpose:</strong> Urgency without anxiety.<br>
+      <strong>Scenario:</strong> Your user is in a checkout flow. You want them to move fast (Urgency) but feel safe (Trust).<br>
+      <strong>Sonic Translation:</strong> Driving tempo (110 BPM) but zero dissonance. No minor 2nds. No sharp transients. Warm, rolling forward momentum.
+    </div>
+
+    <h3>3. Map: The Topological Formula</h3>
+    <p>Now—and only now—do you write the prompt. You map your neuro-target to the four vectors the LLM understands: <strong>Time, Key, Texture, Shape</strong>.</p>
+  </div>
+
+  <!-- Four Vectors -->
+  <div class="page">
+    <h2>The Four Vectors</h2>
+
+    <p>Every audio experience can be deconstructed into four controllable dimensions. Master these, and you master the emotional impact of your music.</p>
+
+    <h3>Vector 1: Time (BPM & Rhythm)</h3>
+    <table>
+      <tr><th>BPM Range</th><th>Neuro-State</th><th>Use Case</th></tr>
+      <tr><td>60-70</td><td>Deep rest, meditation</td><td>Sleep, recovery</td></tr>
+      <tr><td>70-90</td><td>Calm focus, alpha state</td><td>Reading, reflection</td></tr>
+      <tr><td>90-110</td><td>Gentle activation</td><td>Morning routine, writing</td></tr>
+      <tr><td>110-130</td><td>Flow state, productivity</td><td>Deep work, coding</td></tr>
+      <tr><td>130-150</td><td>Energy, motivation</td><td>Exercise, creation</td></tr>
+      <tr><td>150+</td><td>Peak activation</td><td>High-intensity, performance</td></tr>
+    </table>
+
+    <div class="warning">
+      <strong>Critical:</strong> Syncopation demands attention; steady beats regulate it. For focus work, minimize syncopation. For creative play, embrace it.
+    </div>
+
+    <h3>Vector 2: Key (Mode & Harmony)</h3>
+    <table>
+      <tr><th>Mode</th><th>Emotional Quality</th><th>Use Case</th></tr>
+      <tr><td>Major</td><td>Happy, bright, resolved</td><td>Celebration, completion</td></tr>
+      <tr><td>Minor</td><td>Sad, introspective, emotional</td><td>Processing, depth</td></tr>
+      <tr><td>Dorian</td><td>Serious, focused, neutral</td><td>Deep work, study</td></tr>
+      <tr><td>Mixolydian</td><td>Hopeful, driving, open</td><td>Movement, progress</td></tr>
+      <tr><td>Phrygian</td><td>Mysterious, intense, exotic</td><td>Creativity, exploration</td></tr>
+      <tr><td>Lydian</td><td>Dreamy, ethereal, floating</td><td>Meditation, imagination</td></tr>
+    </table>
+
+    <h3>Vector 3: Texture (Timbre & Space)</h3>
+    <ul>
+      <li><strong>Brown/Pink Noise</strong> — Masks distractions, creates sonic "room"</li>
+      <li><strong>Tape Saturation</strong> — Warmth, analog feel, reduces digital harshness</li>
+      <li><strong>Low-Pass Filter</strong> — Cuts high frequencies that trigger alertness</li>
+      <li><strong>Reverb</strong> — Creates space, depth, and emotional context</li>
+      <li><strong>Compression</strong> — Smooths dynamics, creates consistency</li>
+    </ul>
+
+    <h3>Vector 4: Shape (Arrangement & Dynamics)</h3>
+    <ul>
+      <li><strong>Static</strong> — Unchanging, loop-based, background</li>
+      <li><strong>Building</strong> — Gradually increasing intensity</li>
+      <li><strong>Releasing</strong> — Gradually decreasing, wind-down</li>
+      <li><strong>Wave</strong> — Building and releasing cyclically</li>
+    </ul>
+  </div>
+
+  <!-- Formula Example -->
+  <div class="page">
+    <h2>Complete Formula: Deep Work</h2>
+
+    <div class="card cyan">
+      <h4>Neuro-Target</h4>
+      <p>Keep a developer in flow state for 4+ hours. Minimize attention demands while maintaining gentle energy.</p>
+    </div>
+
+    <h3>Vector Mapping</h3>
+    <ul>
+      <li><strong>Time:</strong> 122 BPM, steady 4/4 kick, minimal syncopation</li>
+      <li><strong>Key:</strong> D Dorian Mode (serious/focused, neither happy nor sad)</li>
+      <li><strong>Texture:</strong> Brown noise layer, tape saturation, Rhodes piano with low-pass filter at 800Hz</li>
+      <li><strong>Shape:</strong> Static, continuous loop</li>
+    </ul>
+
+    <div class="prompt-block">
+      Genre: Deep House Focus. BPM: 122. Inst: Muted kick drum, warm analog bass, rhodes chords (D Dorian), continuous brown noise bed. Texture: Lo-fi, dusty, rolled-off highs. No vocals. Continuous loop object.
+    </div>
+
+    <h3>The "Show, Don't Tell" Test</h3>
+    <p>Run that prompt. Do you feel the difference?</p>
+    <p>A generic "Study Beats" track plays a melody that <em>distracts</em> you. The Vibe OS track <strong>disappears</strong>. It becomes furniture for your mind. It holds you in the pocket.</p>
+
+    <div class="quote">
+      "Your job isn't to make a song. Your job is to engineer a state."
+    </div>
+  </div>
+
+  <!-- Emotion Mapping -->
+  <div class="page">
+    <h2>Emotion Mapping System</h2>
+
+    <p>The Vibe OS Emotion Lattice translates feelings into sonic specifications. Use this as your translation layer.</p>
+
+    <h3>High Energy States</h3>
+    <div class="card pink">
+      <h4>🔥 Motivation / Power</h4>
+      <ul>
+        <li>BPM: 130-150</li>
+        <li>Key: Major, Mixolydian</li>
+        <li>Texture: Bright, present, punchy</li>
+        <li>Elements: Strong kick, driving bass, brass stabs</li>
+      </ul>
+    </div>
+
+    <div class="card amber">
+      <h4>⚡ Excitement / Joy</h4>
+      <ul>
+        <li>BPM: 120-140</li>
+        <li>Key: Major</li>
+        <li>Texture: Bright, airy, sparkly</li>
+        <li>Elements: Uplifting synths, claps, vocal chops</li>
+      </ul>
+    </div>
+
+    <h3>Focused States</h3>
+    <div class="card cyan">
+      <h4>🎯 Flow / Concentration</h4>
+      <ul>
+        <li>BPM: 110-125</li>
+        <li>Key: Dorian, Mixolydian</li>
+        <li>Texture: Warm, muted highs, consistent</li>
+        <li>Elements: Subtle percussion, pad layers, minimal melody</li>
+      </ul>
+    </div>
+
+    <div class="card purple">
+      <h4>🧠 Deep Thinking</h4>
+      <ul>
+        <li>BPM: 70-90</li>
+        <li>Key: Minor, Dorian</li>
+        <li>Texture: Spacious, reverberant</li>
+        <li>Elements: Piano, strings, ambient pads</li>
+      </ul>
+    </div>
+
+    <h3>Calm States</h3>
+    <div class="card emerald">
+      <h4>🌿 Peace / Relaxation</h4>
+      <ul>
+        <li>BPM: 60-80</li>
+        <li>Key: Major, Lydian</li>
+        <li>Texture: Soft, warm, wide stereo</li>
+        <li>Elements: Nature sounds, soft pads, gentle piano</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Genre Templates -->
+  <div class="page">
+    <h2>Genre Prompt Templates</h2>
+
+    <h3>Electronic / Ambient</h3>
+    <div class="prompt-block">
+      Ambient electronic, 75 BPM, floating pads in C Lydian, gentle granular textures, soft tape hiss, no percussion, continuous evolving soundscape. Mood: ethereal meditation, dawn light.
+    </div>
+
+    <h3>Lo-Fi Hip Hop</h3>
+    <div class="prompt-block">
+      Lo-fi hip hop, 85 BPM, dusty boom bap drums, jazzy Rhodes chords (Dm7-G7-Cmaj7-Am7), vinyl crackle, tape wobble, muted bass, no vocals. Mood: late night study session, warm nostalgia.
+    </div>
+
+    <h3>Deep House</h3>
+    <div class="prompt-block">
+      Deep house, 122 BPM, four-on-the-floor kick, filtered disco sample chops, warm analog bass, subtle percussion, breathy vocal loops. Mood: underground club, intimate connection.
+    </div>
+
+    <h3>Cinematic / Epic</h3>
+    <div class="prompt-block">
+      Epic cinematic, 90 BPM, massive orchestral strings, timpani hits, brass fanfares, building intensity, E minor to C major resolution. Mood: hero's triumph, dawn of new era.
+    </div>
+
+    <h3>Downtempo / Chill</h3>
+    <div class="prompt-block">
+      Downtempo electronica, 95 BPM, triplet hi-hats, sub bass, atmospheric pads, reversed vocals, glitchy textures, wide stereo field. Mood: urban sunset, reflective journey.
+    </div>
+
+    <h3>Neo-Soul / R&B</h3>
+    <div class="prompt-block">
+      Neo-soul, 78 BPM, live drums feel, Wurlitzer electric piano, warm bass guitar, subtle strings, breathy vocal harmonies, Dmaj9 chord voicings. Mood: intimate confession, Sunday morning.
+    </div>
+  </div>
+
+  <!-- More Templates -->
+  <div class="page">
+    <h2>Advanced Prompt Formulas</h2>
+
+    <h3>Binaural Focus (Productivity)</h3>
+    <div class="prompt-block">
+      Binaural beats focus track, base frequency 200Hz with 10Hz alpha wave difference, layered with minimal ambient pad in A Dorian, extremely subtle rhythm at 100 BPM, no melody, designed for 4-hour work sessions. Industrial white noise undertone.
+    </div>
+
+    <h3>Morning Activation</h3>
+    <div class="prompt-block">
+      Uplifting progressive, 118 BPM, building energy over 5 minutes, starts with soft piano in G major, introduces driving beat at 1:30, adds euphoric synth leads at 3:00, full energy crescendo at 4:30. Mood: sunrise energy, possibility awakening.
+    </div>
+
+    <h3>Evening Wind-Down</h3>
+    <div class="prompt-block">
+      Ambient jazz, 65 BPM, brushed drums, upright bass, soft piano voicings in Eb major, gentle vibraphone accents, warm room reverb, gradually decreasing intensity over 6 minutes. Mood: golden hour, peaceful surrender.
+    </div>
+
+    <h3>Creative Activation</h3>
+    <div class="prompt-block">
+      Experimental electronica, 105 BPM, unusual time signature 7/8, modular synth arpeggios, unexpected chord changes (Bm - F#7 - Gmaj7 - A), found sounds, playful glitches. Mood: creative laboratory, curious exploration.
+    </div>
+
+    <h3>Emotional Processing</h3>
+    <div class="prompt-block">
+      Sad piano, 70 BPM, solo piano in A minor, sparse arrangement, long reverb tail, imperfect timing (humanized), building emotional intensity in middle section, resolution at end. Mood: allowing grief, cathartic release.
+    </div>
+
+    <div class="highlight">
+      <strong>Pro Tip:</strong> Always specify "no vocals" for focus work. Lyrics engage the language-processing part of the brain, pulling attention away from your task.
+    </div>
+  </div>
+
+  <!-- Session Protocol -->
+  <div class="page">
+    <h2>The 90-Minute Session Protocol</h2>
+
+    <p>This is the complete workflow for going from blank page to finished track in a single session.</p>
+
+    <h3>Phase 1: Intention (5 min)</h3>
+    <div class="card cyan">
+      <ul>
+        <li>Define your <strong>Result</strong> (neuro-target)</li>
+        <li>Clarify your <strong>Purpose</strong> (why this track exists)</li>
+        <li>Identify target listener state</li>
+        <li>Choose primary emotion from the mapping system</li>
+      </ul>
+    </div>
+
+    <h3>Phase 2: Vector Mapping (5 min)</h3>
+    <div class="card purple">
+      <ul>
+        <li>Set BPM based on target state</li>
+        <li>Choose mode/key for emotional quality</li>
+        <li>Define texture requirements</li>
+        <li>Plan arrangement shape</li>
+      </ul>
+    </div>
+
+    <h3>Phase 3: Generation (20 min)</h3>
+    <div class="card pink">
+      <ul>
+        <li>Write prompt using template + customization</li>
+        <li>Generate 3-5 variations in Suno</li>
+        <li>Quick-listen evaluation (30 sec each)</li>
+        <li>Select best candidate or regenerate</li>
+      </ul>
+    </div>
+
+    <h3>Phase 4: Iteration (30 min)</h3>
+    <div class="card amber">
+      <ul>
+        <li>Extend/refine selected track</li>
+        <li>Generate alternate sections if needed</li>
+        <li>Test against original intention</li>
+        <li>Fine-tune with prompt adjustments</li>
+      </ul>
+    </div>
+
+    <h3>Phase 5: Polish (20 min)</h3>
+    <div class="card emerald">
+      <ul>
+        <li>Light editing in DAW if needed</li>
+        <li>Normalize levels</li>
+        <li>Add fade in/out</li>
+        <li>Export in release format</li>
+      </ul>
+    </div>
+
+    <h3>Phase 6: Document (10 min)</h3>
+    <div class="card cyan">
+      <ul>
+        <li>Save successful prompt to your library</li>
+        <li>Note what worked and what didn't</li>
+        <li>Tag for catalog organization</li>
+        <li>Prepare metadata for distribution</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Publishing -->
+  <div class="page">
+    <h2>Publishing & Monetization</h2>
+
+    <h3>Distribution Platforms</h3>
+    <ul>
+      <li><strong>DistroKid</strong> — Best for high-volume releases, annual fee model</li>
+      <li><strong>TuneCore</strong> — Per-release fee, good analytics</li>
+      <li><strong>CD Baby</strong> — One-time fee per release, sync licensing included</li>
+      <li><strong>Amuse</strong> — Free tier available, good for beginners</li>
+    </ul>
+
+    <h3>Licensing Pathways</h3>
+    <table>
+      <tr><th>License Type</th><th>Use Case</th><th>Revenue Model</th></tr>
+      <tr><td>Streaming</td><td>Spotify, Apple Music</td><td>Per-stream royalties</td></tr>
+      <tr><td>Sync</td><td>Video, film, ads</td><td>Upfront + royalties</td></tr>
+      <tr><td>Production Music</td><td>Stock libraries</td><td>Per-license or subscription</td></tr>
+      <tr><td>Direct Sales</td><td>Bandcamp, Gumroad</td><td>Per-download</td></tr>
+    </table>
+
+    <h3>AI Music Licensing Clarity</h3>
+    <div class="warning">
+      <strong>Important:</strong> Check each platform's current policy on AI-generated music. As of this writing, most platforms accept AI-assisted music where you are the creative director. Always disclose AI usage where required.
+    </div>
+
+    <h3>Catalog Strategy</h3>
+    <ul>
+      <li><strong>Release Cadence:</strong> Aim for 1 track per week minimum</li>
+      <li><strong>Collections:</strong> Bundle related tracks into themed albums</li>
+      <li><strong>Naming:</strong> Use descriptive titles that communicate the state (e.g., "Deep Focus 122 BPM")</li>
+      <li><strong>Tagging:</strong> Comprehensive metadata improves discoverability</li>
+    </ul>
+  </div>
+
+  <!-- Closing -->
+  <div class="page">
+    <h2>Your Next Session</h2>
+
+    <p>You now have the complete Vibe OS framework. The question is: what will you create?</p>
+
+    <h3>Your First Assignment</h3>
+    <ol>
+      <li>Identify one <strong>friction point</strong> in your daily life where your state doesn't serve you</li>
+      <li>Define the <strong>target state</strong> you want to engineer</li>
+      <li>Apply the <strong>RPM Model</strong> and <strong>Four Vectors</strong></li>
+      <li>Generate your first <strong>intentional track</strong></li>
+      <li>Test it. Does it work? Iterate.</li>
+    </ol>
+
+    <div class="quote">
+      "Don't just fix the UX. Score the emotion. Prescribe the Result. Define the Purpose. Build the Map. Engineers write code. Architects design Vibe."
+    </div>
+
+    <h3>Resources</h3>
+    <ul>
+      <li><strong>Prompt Library</strong> — 50+ additional templates at FrankX.AI</li>
+      <li><strong>Community</strong> — Share your creations in the Inner Circle</li>
+      <li><strong>Feedback</strong> — Submit tracks for collaborative refinement</li>
+      <li><strong>Updates</strong> — New session packs released monthly</li>
+    </ul>
+
+    <div class="card cyan" style="margin-top: 2em;">
+      <h4>The Vibe OS Philosophy</h4>
+      <p>Sound is medicine. Every frequency carries information. When you approach music creation as <em>consciousness engineering</em> rather than entertainment production, you unlock a entirely different level of impact.</p>
+      <p>Welcome to the practice.</p>
+    </div>
+
+    <div class="footer" style="margin-top: 3em;">
+      <p>Vibe OS &copy; 2026 Frank / FrankX.AI</p>
+      <p>All rights reserved. Create with intention.</p>
+      <p style="margin-top: 1em;"><strong>frankx.ai</strong></p>
+    </div>
+  </div>
+</body>
+</html>

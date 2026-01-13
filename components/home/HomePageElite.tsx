@@ -137,16 +137,18 @@ function ScrollProgress() {
 // ROTATING WORDS FOR HERO
 // ============================================================================
 
-const heroWords = ['Explore', 'Create', 'Learn', 'Build', 'Share']
+const heroWords = ['Design', 'Create', 'Architect', 'Explore', 'Imagine']
 const heroConcepts = [
-  'music with AI',
-  'new possibilities',
-  'how things work',
-  'systems that matter',
-  'the journey openly',
-  'what you discover',
-  'with intention',
-  'your own path',
+  'intelligent systems',
+  'music empire',
+  'AI vision',
+  'Soulbook',
+  'Vibe OS',
+  'GenCreator OS',
+  'Arcanea universe',
+  'Starlight system',
+  'creative future',
+  'golden age',
 ]
 
 function RotatingWord() {
@@ -300,8 +302,8 @@ function Hero() {
               animate={{ opacity: 1 }}
               transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.4 }}
             >
-              Musician. Technologist. Father. I create to understand, to teach, to explore.
-              Everything I learn goes here—open, documented, yours to adapt.
+              AI Architect at Oracle. Creator of 10K+ songs with Suno.
+              Everything I build goes here—open, documented, yours to use.
             </motion.p>
 
             {/* CTAs */}
