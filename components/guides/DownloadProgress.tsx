@@ -51,7 +51,7 @@ export default function DownloadProgress({
       }
 
       // Create blob and download
-      const blob = new Blob(chunks)
+      const blob = new Blob(chunks as BlobPart[])
       const downloadUrl = window.URL.createObjectURL(blob)
       const link = document.createElement('a')
       link.href = downloadUrl
