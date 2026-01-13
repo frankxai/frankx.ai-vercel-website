@@ -2,20 +2,60 @@ name: CI
 
 on:
   push:
-    branches: [ main, master ]
+    branches: [main, staging]
   pull_request:
-    branches: [ main, master ]
+    branches: [main, staging]
+
+env:
+  NODE_VERSION: '20'
 
 jobs:
-  build:
+  # Type checking job
+  typecheck:
+    name: Type Check
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'
       - run: npm ci
       - run: npm run type-check
-      - run: npm run build
 
+  # Linting job
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run lint
+
+  # Build job (runs after type check and lint pass)
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    needs: [typecheck, lint]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run build
+        env:
+          # Add any required env vars for build
+          NEXT_TELEMETRY_DISABLED: 1
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        if: github.ref == 'refs/heads/main'
+        with:
+          name: build-output
+          path: .next
+          retention-days: 7
