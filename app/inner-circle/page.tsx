@@ -16,7 +16,7 @@ const pageMetadata = {
     'creative intelligence membership'
   ],
   path: '/inner-circle'
-})
+};
 
 const membershipBenefits = [
   {
