@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import { ArrowRight, Download, Music, Sparkles, BookOpen, Zap, BarChart3, Mail, ExternalLink } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { PRIMARY_SOCIAL_LINKS } from '@/lib/social-links'
+import { PRIMARY_SOCIAL_LINKS, SCHEMA_SAME_AS } from '@/lib/social-links'
 import { useState } from 'react'
 
 /**
@@ -14,8 +14,23 @@ import { useState } from 'react'
  * Performance: <1.8s LCP on 3G, <500KB total weight
  * Accessibility: WCAG AAA compliant
  *
+ * Social Links: Pulls from @/lib/social-links (BRAND_IDENTITY.md source of truth)
+ * Design System: Follows DESIGN_SYSTEM.md patterns
+ * Analytics: PostHog event tracking on all CTAs
  * Reference: /mnt/c/Users/Frank/FrankX/LINKS_PAGE_DESIGN_SPEC.md
  */
+
+// Track link click events
+const trackLinkClick = (linkTitle: string, linkHref: string, linkType: string) => {
+  if (typeof window !== 'undefined' && (window as any).posthog) {
+    (window as any).posthog.capture('link_clicked', {
+      link_title: linkTitle,
+      link_href: linkHref,
+      link_type: linkType,
+      page: 'links',
+    })
+  }
+}
 
 export default function LinksPage() {
   const [email, setEmail] = useState('')
@@ -155,7 +170,12 @@ export default function LinksPage() {
           <div className="relative w-24 h-24 mx-auto mb-4">
             <div className="absolute inset-0 bg-gradient-to-br from-conscious-purple to-tech-cyan rounded-full blur-xl opacity-60 animate-pulse" />
             <div className="relative w-full h-full rounded-full border-2 border-white/20 overflow-hidden bg-slate-800">
-              {/* Placeholder - replace with actual image */}
+              {/* TODO: Add profile photo
+                * Path: /public/images/profile/frank-x-riemer.jpg (or .webp)
+                * Dimensions: 96x96px @ 2x = 192x192px source
+                * Alt text: "Frank X. Riemer - AI Architect and Music Creator"
+                * Use Next.js Image component for optimization
+                */}
               <div className="w-full h-full bg-gradient-to-br from-conscious-purple/30 to-tech-cyan/30 flex items-center justify-center">
                 <Sparkles className="w-12 h-12 text-white" />
               </div>
@@ -193,7 +213,10 @@ export default function LinksPage() {
 
         {/* Hero Product Card (Vibe OS) */}
         <motion.div variants={itemVariants} className="mb-6">
-          <Link href={heroProduct.href}>
+          <Link
+            href={heroProduct.href}
+            onClick={() => trackLinkClick(heroProduct.title, heroProduct.href, 'hero_product')}
+          >
             <div className="group relative p-6 rounded-3xl bg-gradient-to-br from-white/10 via-white/5 to-transparent backdrop-blur-xl border-2 border-white/20 hover:border-white/30 transition-all duration-300 overflow-hidden">
               {/* Aurora gradient background */}
               <div className={`absolute inset-0 bg-gradient-to-br ${heroProduct.gradient} opacity-20 group-hover:opacity-30 transition-opacity`} />
@@ -238,7 +261,10 @@ export default function LinksPage() {
 
             return (
               <motion.div key={i} variants={itemVariants}>
-                <Component {...props}>
+                <Component
+                  {...props}
+                  onClick={() => trackLinkClick(link.title, link.href, 'primary_cta')}
+                >
                   <div className="group relative p-5 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 hover:border-white/20 hover:bg-white/10 transition-all duration-300">
                     <div className="flex items-center gap-4">
                       <div className={`p-3 rounded-xl bg-gradient-to-br ${link.gradient}`}>
@@ -272,7 +298,11 @@ export default function LinksPage() {
             {contentLinks.map((link, i) => {
               const Icon = link.icon
               return (
-                <Link key={i} href={link.href}>
+                <Link
+                  key={i}
+                  href={link.href}
+                  onClick={() => trackLinkClick(link.title, link.href, 'content_link')}
+                >
                   <div className="group p-4 rounded-xl bg-white/5 backdrop-blur-xl border border-white/10 hover:border-white/20 hover:bg-white/10 transition-all duration-300 flex items-center gap-3">
                     <div className="p-2 rounded-lg bg-white/5">
                       <Icon className="w-4 h-4 text-tech-cyan" />
@@ -313,6 +343,8 @@ export default function LinksPage() {
                 method="POST"
                 className="flex gap-2"
                 onSubmit={(e) => {
+                  e.preventDefault()
+                  trackLinkClick('Newsletter Signup', email, 'newsletter')
                   // Add your newsletter submission logic here
                   console.log('Newsletter signup:', email)
                 }}
@@ -351,6 +383,7 @@ export default function LinksPage() {
                   rel="noopener noreferrer"
                   className="group p-4 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 hover:border-white/20 hover:bg-white/10 transition-all duration-300"
                   aria-label={social.description || social.name}
+                  onClick={() => trackLinkClick(social.name, social.url, 'social_icon')}
                 >
                   {IconComponent && <IconComponent className="w-5 h-5 text-slate-400 group-hover:text-tech-cyan transition-colors" />}
                 </a>
