@@ -24,6 +24,13 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      // Realm → Inner Circle rename
+      {
+        source: '/realm',
+        destination: '/inner-circle',
+        permanent: true,
+      },
+      // Blog post legacy redirects
       {
         source: '/blog/01-ai-doesnt-have-to-be-soulless',
         destination: '/blog/ai-doesnt-have-to-be-soulless',
