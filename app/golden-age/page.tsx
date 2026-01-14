@@ -93,7 +93,7 @@ export default function GoldenAgePage() {
             >
               <Link
                 href="/golden-age/chapter-01-when-creation-calls"
-                className="group inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-xl font-semibold hover:from-amber-600 hover:to-orange-600 transition-all shadow-lg hover:shadow-xl cursor-pointer"
+                className="group inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-2xl font-semibold hover:from-amber-600 hover:to-orange-600 transition-all shadow-lg hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-amber-500/50 cursor-pointer"
               >
                 <Zap className="w-5 h-5" />
                 <span>Start Chapter 1</span>
@@ -102,7 +102,7 @@ export default function GoldenAgePage() {
 
               <Link
                 href="#chapters"
-                className="group inline-flex items-center gap-2 px-8 py-4 border-2 border-gray-300 dark:border-gray-700 text-gray-900 dark:text-white rounded-xl font-medium hover:border-gray-900 dark:hover:border-white transition-colors cursor-pointer"
+                className="group inline-flex items-center gap-2 px-8 py-4 border-2 border-gray-300 dark:border-gray-700 text-gray-900 dark:text-white rounded-2xl font-medium hover:border-gray-900 dark:hover:border-white focus:outline-none focus:ring-4 focus:ring-gray-900/50 dark:focus:ring-white/50 transition-colors cursor-pointer"
               >
                 <Book className="w-5 h-5" />
                 <span>Browse All Chapters</span>
@@ -135,7 +135,7 @@ export default function GoldenAgePage() {
                 {chapter.published ? (
                   <Link
                     href={`/golden-age/${chapter.slug}`}
-                    className="group block p-8 bg-white dark:bg-slate-900 border-2 border-gray-200 dark:border-gray-800 rounded-xl hover:border-gray-900 dark:hover:border-white transition-all cursor-pointer"
+                    className="group block p-8 bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm border-2 border-gray-200 dark:border-gray-800 rounded-2xl hover:border-amber-500 dark:hover:border-amber-500 hover:shadow-xl transition-all focus:outline-none focus:ring-4 focus:ring-amber-500/50 cursor-pointer"
                   >
                     <div className="flex items-start justify-between gap-6">
                       <div className="flex-1 space-y-3">
@@ -162,7 +162,7 @@ export default function GoldenAgePage() {
                     </div>
                   </Link>
                 ) : (
-                  <div className="p-8 bg-gray-50 dark:bg-slate-900/50 border-2 border-dashed border-gray-300 dark:border-gray-800 rounded-xl">
+                  <div className="p-8 bg-gray-50/80 dark:bg-slate-900/50 backdrop-blur-sm border-2 border-dashed border-gray-300 dark:border-gray-800 rounded-2xl">
                     <div className="flex items-start justify-between gap-6">
                       <div className="flex-1 space-y-3">
                         <div className="flex items-center gap-3">
@@ -213,7 +213,7 @@ export default function GoldenAgePage() {
               >
                 <Link
                   href={`/blog/${essay.slug}`}
-                  className="group block h-full p-6 bg-white dark:bg-slate-900 border border-gray-200 dark:border-gray-800 rounded-lg hover:border-gray-900 dark:hover:border-white transition-all cursor-pointer"
+                  className="group block h-full p-6 bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm border border-gray-200 dark:border-gray-800 rounded-2xl hover:border-indigo-500 dark:hover:border-indigo-500 hover:shadow-lg transition-all focus:outline-none focus:ring-4 focus:ring-indigo-500/50 cursor-pointer"
                 >
                   <div className="space-y-4">
                     <div className="space-y-2">
@@ -287,7 +287,7 @@ export default function GoldenAgePage() {
           </p>
           <Link
             href="/golden-age/chapter-01-when-creation-calls"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-xl font-semibold text-lg hover:from-amber-600 hover:to-orange-600 transition-all shadow-lg hover:shadow-xl cursor-pointer"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-2xl font-semibold text-lg hover:from-amber-600 hover:to-orange-600 focus:outline-none focus:ring-4 focus:ring-amber-500/50 transition-all shadow-lg hover:shadow-xl cursor-pointer"
           >
             <Zap className="w-5 h-5" />
             <span>Begin Chapter 1</span>

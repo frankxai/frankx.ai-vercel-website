@@ -55,7 +55,7 @@ export default function TableOfContents({ items }: TableOfContentsProps) {
       {/* Mobile Toggle Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="lg:hidden fixed top-24 right-6 z-40 p-3 bg-white dark:bg-slate-900 border-2 border-gray-200 dark:border-gray-800 rounded-lg shadow-lg hover:border-gray-900 dark:hover:border-white transition-colors cursor-pointer"
+        className="lg:hidden fixed top-24 right-6 z-40 p-3 bg-white/90 dark:bg-slate-900/90 backdrop-blur-md border-2 border-gray-200 dark:border-gray-800 rounded-2xl shadow-lg hover:border-amber-500 dark:hover:border-amber-500 focus:outline-none focus:ring-4 focus:ring-amber-500/50 transition-all cursor-pointer"
         aria-label="Toggle table of contents"
         aria-expanded={isOpen}
         aria-controls="toc-panel"
