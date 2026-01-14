@@ -8,6 +8,11 @@
     "start": "next start",
     "lint": "eslint .",
     "type-check": "tsc --noEmit",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "test:e2e:debug": "playwright test --debug",
+    "test:smoke": "bash scripts/verify-smoke.sh",
+    "test:smoke:prod": "bash scripts/verify-smoke.sh https://frankx.ai",
     "gen:html": "node scripts/generate_interlinked_html.mjs",
     "gen:feed": "node scripts/generate_feed.mjs",
     "gen:search": "node scripts/generate_search_index.mjs",
@@ -68,6 +73,7 @@
     "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
+    "@playwright/test": "^1.57.0",
     "@types/bcryptjs": "^2.4.6",
     "@types/lunr": "^2.3.7",
     "@types/node": "^22.10.2",
