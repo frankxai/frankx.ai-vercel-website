@@ -4,8 +4,6 @@ import { storeLead } from '@/lib/kv'
 import { emailRatelimit, getClientIdentifier } from '@/lib/ratelimit'
 import { validateLeadData } from '@/lib/validation'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
-
 export async function POST(request: NextRequest) {
   try {
     // Rate limiting - 5 emails per 10 minutes per IP
@@ -27,6 +25,9 @@ export async function POST(request: NextRequest) {
         { status: 503 }
       )
     }
+
+    // Lazy instantiation - only create Resend client when needed
+    const resend = new Resend(process.env.RESEND_API_KEY)
 
     const {
       email,
