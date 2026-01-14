@@ -89,75 +89,94 @@ export async function POST(request: NextRequest) {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>${pdfTitle}</title>
+  <title>${pdfTitle} - Your Creator Guide from FrankX.AI</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600&display=swap');
+  </style>
 </head>
-<body style="margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; background-color: #0a0f1e; color: #f1f5f9;">
+<body style="margin: 0; padding: 0; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background-color: #0F172A; color: #f1f5f9;">
   <div style="max-width: 600px; margin: 0 auto; padding: 40px 20px;">
     <!-- Header -->
     <div style="text-align: center; margin-bottom: 40px;">
-      <div style="display: inline-block; padding: 12px 24px; background: linear-gradient(135deg, #06b6d4 0%, #9333ea 100%); border-radius: 12px; margin-bottom: 24px;">
-        <span style="font-size: 24px; font-weight: 700; color: white; letter-spacing: -0.02em;">FrankX.AI</span>
+      <div style="display: inline-block; padding: 14px 28px; background: linear-gradient(135deg, #06b6d4 0%, #8B5CF6 50%, #9333ea 100%); border-radius: 16px; margin-bottom: 24px; box-shadow: 0 8px 32px rgba(6, 182, 212, 0.3);">
+        <span style="font-family: 'Poppins', sans-serif; font-size: 26px; font-weight: 700; color: white; letter-spacing: -0.02em;">FrankX.AI</span>
       </div>
+      <p style="font-size: 14px; color: #64748b; margin: 0; letter-spacing: 0.05em; text-transform: uppercase;">Creator AI Transformation</p>
     </div>
 
     <!-- Main content -->
-    <div style="background: linear-gradient(to bottom, #111827, #0a0f1e); border: 1.5px solid rgba(6, 182, 212, 0.2); border-radius: 16px; padding: 32px; margin-bottom: 32px;">
-      <h1 style="font-size: 28px; font-weight: 700; color: white; margin: 0 0 16px 0; line-height: 1.2;">
-        Hey ${leadData.name}! 👋
+    <div style="background: linear-gradient(135deg, #1E293B 0%, #0F172A 100%); border: 2px solid rgba(6, 182, 212, 0.25); border-radius: 24px; padding: 40px 32px; margin-bottom: 32px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);">
+      <h1 style="font-family: 'Poppins', sans-serif; font-size: 32px; font-weight: 700; color: white; margin: 0 0 20px 0; line-height: 1.2;">
+        Your Guide Just Landed, ${leadData.name}! ✨
       </h1>
 
-      <p style="font-size: 16px; color: #94a3b8; line-height: 1.6; margin: 0 0 24px 0;">
-        Here's your <strong style="color: white;">${pdfTitle}</strong> guide. This is the same framework I use to create transformative AI experiences.
+      <p style="font-size: 17px; color: #CBD5E1; line-height: 1.7; margin: 0 0 16px 0;">
+        Picture this: same frameworks I used to create 500+ AI songs and build enterprise systems at Oracle - now in your hands.
       </p>
 
-      <div style="background: rgba(6, 182, 212, 0.1); border: 1.5px solid rgba(6, 182, 212, 0.3); border-radius: 12px; padding: 24px; margin-bottom: 24px;">
-        <p style="font-size: 14px; color: #22d3ee; margin: 0 0 16px 0; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em;">
-          What's Inside
+      <p style="font-size: 16px; color: #94a3b8; line-height: 1.7; margin: 0 0 28px 0;">
+        <strong style="color: #22d3ee;">${pdfTitle}</strong> is the playbook. Think of it like your studio cheat sheet for AI-powered creation.
+      </p>
+
+      <div style="background: linear-gradient(135deg, rgba(6, 182, 212, 0.12) 0%, rgba(139, 92, 246, 0.08) 100%); border: 2px solid rgba(6, 182, 212, 0.3); border-radius: 16px; padding: 28px 24px; margin-bottom: 32px;">
+        <p style="font-size: 13px; color: #22d3ee; margin: 0 0 18px 0; font-weight: 600; text-transform: uppercase; letter-spacing: 0.12em;">
+          🎯 Inside This Guide
         </p>
-        <ul style="margin: 0; padding-left: 24px; color: #cbd5e1;">
-          <li style="margin-bottom: 8px;">Proven frameworks used in production</li>
-          <li style="margin-bottom: 8px;">Real-world examples and templates</li>
-          <li style="margin-bottom: 8px;">Step-by-step implementation guides</li>
+        <ul style="margin: 0; padding-left: 24px; color: #E2E8F0; line-height: 1.8;">
+          <li style="margin-bottom: 10px;"><strong style="color: white;">Battle-tested frameworks</strong> - Used in real production environments</li>
+          <li style="margin-bottom: 10px;"><strong style="color: white;">Studio-ready templates</strong> - Copy, customize, create</li>
+          <li style="margin-bottom: 10px;"><strong style="color: white;">Step-by-step walkthroughs</strong> - From zero to shipped</li>
         </ul>
       </div>
 
-      <div style="text-align: center; margin: 32px 0;">
+      <div style="text-align: center; margin: 36px 0;">
         <a href="${pdfUrl}"
-           style="display: inline-block; padding: 16px 32px; background: linear-gradient(135deg, #06b6d4 0%, #9333ea 100%); color: white; text-decoration: none; border-radius: 12px; font-weight: 600; font-size: 16px; box-shadow: 0 8px 24px rgba(6, 182, 212, 0.3);">
-          Download ${pdfTitle} →
+           style="display: inline-block; padding: 18px 40px; background: linear-gradient(135deg, #06b6d4 0%, #8B5CF6 50%, #9333ea 100%); color: white; text-decoration: none; border-radius: 16px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 17px; box-shadow: 0 12px 32px rgba(6, 182, 212, 0.4); transition: all 0.3s;">
+          Download Your Guide →
         </a>
       </div>
 
-      <p style="font-size: 14px; color: #64748b; margin: 24px 0 0 0; line-height: 1.6;">
-        Questions? Just hit reply. I read every email.
-      </p>
+      <div style="border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 24px; margin-top: 32px;">
+        <p style="font-size: 15px; color: #94a3b8; margin: 0 0 12px 0; line-height: 1.6;">
+          Quick note: Hit reply with questions. I read every message. Really.
+        </p>
+        <p style="font-size: 14px; color: #64748b; margin: 0; line-height: 1.6;">
+          Want more? Check out our <a href="https://frankx.ai/blog" style="color: #22d3ee; text-decoration: none;">creator insights</a> or explore <a href="https://frankx.ai/music" style="color: #22d3ee; text-decoration: none;">500+ AI songs</a>.
+        </p>
+      </div>
     </div>
 
     <!-- Footer -->
-    <div style="text-align: center; padding-top: 32px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
-      <p style="font-size: 12px; color: #64748b; margin: 0 0 16px 0;">
-        <strong style="color: #94a3b8;">Frank Guzman</strong><br>
-        Musician turned AI Architect at Oracle<br>
-        500+ AI songs | Enterprise AI Systems
-      </p>
+    <div style="text-align: center; padding-top: 40px; border-top: 2px solid rgba(6, 182, 212, 0.15);">
+      <div style="margin-bottom: 20px;">
+        <p style="font-family: 'Poppins', sans-serif; font-size: 15px; color: #E2E8F0; margin: 0 0 6px 0; font-weight: 600;">
+          Frank Guzman
+        </p>
+        <p style="font-size: 13px; color: #94a3b8; margin: 0; line-height: 1.6;">
+          Musician → AI Architect at Oracle<br>
+          <span style="color: #22d3ee;">500+ AI Songs</span> | <span style="color: #8B5CF6;">Enterprise AI Systems</span>
+        </p>
+      </div>
 
-      <div style="margin: 16px 0;">
-        <a href="https://frankx.ai" style="color: #22d3ee; text-decoration: none; font-size: 14px; margin: 0 12px;">
-          frankx.ai
+      <div style="margin: 24px 0; display: inline-flex; gap: 16px; align-items: center;">
+        <a href="https://frankx.ai" style="color: #22d3ee; text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s;">
+          🏠 frankx.ai
         </a>
-        <span style="color: #64748b;">|</span>
-        <a href="https://twitter.com/frankxai" style="color: #22d3ee; text-decoration: none; font-size: 14px; margin: 0 12px;">
-          Twitter
+        <span style="color: #64748b;">•</span>
+        <a href="https://twitter.com/frankxai" style="color: #22d3ee; text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s;">
+          𝕏 Twitter
         </a>
-        <span style="color: #64748b;">|</span>
-        <a href="https://linkedin.com/in/frankguzmanai" style="color: #22d3ee; text-decoration: none; font-size: 14px; margin: 0 12px;">
-          LinkedIn
+        <span style="color: #64748b;">•</span>
+        <a href="https://linkedin.com/in/frankguzmanai" style="color: #22d3ee; text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s;">
+          💼 LinkedIn
         </a>
       </div>
 
-      <p style="font-size: 11px; color: #64748b; margin: 24px 0 0 0;">
-        You're receiving this because you requested ${pdfTitle} from FrankX.AI
-      </p>
+      <div style="background: rgba(6, 182, 212, 0.05); border: 1px solid rgba(6, 182, 212, 0.15); border-radius: 12px; padding: 16px; margin: 24px auto 0; max-width: 400px;">
+        <p style="font-size: 12px; color: #94a3b8; margin: 0; line-height: 1.5;">
+          📬 You're getting this because you requested <strong style="color: #22d3ee;">${pdfTitle}</strong> from FrankX.AI
+        </p>
+      </div>
     </div>
   </div>
 </body>
