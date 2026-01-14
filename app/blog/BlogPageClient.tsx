@@ -3,9 +3,10 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { ArrowRight, Sparkles } from 'lucide-react'
+import { ArrowRight, Sparkles, Filter, TrendingUp } from 'lucide-react'
 
 import BlogCard from '@/components/blog/BlogCard'
+import CategoryDropdown from '@/components/blog/CategoryDropdown'
 import { cn } from '@/lib/utils'
 
 // ============================================================================
@@ -39,6 +40,10 @@ interface BlogPageClientProps {
 export default function BlogPageClient({ posts, categories }: BlogPageClientProps) {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
 
+  const getCategoryCount = (category: string) => {
+    return posts.filter((post) => post.category?.toLowerCase() === category.toLowerCase()).length
+  }
+
   const filteredPosts = selectedCategory
     ? posts.filter((post) => post.category?.toLowerCase() === selectedCategory.toLowerCase())
     : posts
@@ -48,79 +53,96 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
 
   return (
     <main className="min-h-screen bg-[#030712] text-white">
-      {/* Hero */}
-      <section className="pt-32 pb-16 px-6">
-        <div className="max-w-5xl mx-auto">
+      {/* Hero with Aurora Background */}
+      <section className="relative pt-32 pb-16 px-6 overflow-hidden">
+        {/* Aurora Background Effect */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl animate-pulse" />
+          <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
+          <div className="absolute bottom-0 left-1/2 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-2000" />
+        </div>
+
+        <div className="max-w-6xl mx-auto relative">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="max-w-3xl"
           >
-            <p className="text-xs font-medium uppercase tracking-[0.3em] text-emerald-400/70 mb-4">
-              Creation Chronicles
-            </p>
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-tight">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-6">
+              <Sparkles className="w-4 h-4 text-emerald-400" />
+              <span className="text-xs font-medium text-emerald-400">Creation Chronicles</span>
+            </div>
+            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 tracking-tight leading-tight">
               What I'm building.
-              <span className="block mt-2 text-white/50">What's working.</span>
+              <span className="block mt-2 bg-gradient-to-r from-white/90 to-white/40 bg-clip-text text-transparent">
+                What's working.
+              </span>
             </h1>
-            <p className="text-lg text-white/50 leading-relaxed">
-              Weekly insights on AI systems, creative workflows, and building in public.
+            <p className="text-lg md:text-xl text-white/60 leading-relaxed max-w-2xl">
+              Weekly insights on AI systems, creative workflows, and building in public. From Oracle architecture to Suno music production.
             </p>
+
+            {/* Stats */}
+            <div className="flex items-center gap-6 mt-8">
+              <div className="flex items-center gap-2">
+                <TrendingUp className="w-4 h-4 text-emerald-400" />
+                <span className="text-sm text-white/50">
+                  <span className="font-semibold text-white">{posts.length}</span> articles
+                </span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Filter className="w-4 h-4 text-cyan-400" />
+                <span className="text-sm text-white/50">
+                  <span className="font-semibold text-white">{categories.length}</span> categories
+                </span>
+              </div>
+            </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Category Tabs */}
-      <section className="pb-8 px-6">
-        <div className="max-w-5xl mx-auto">
-          <div className="flex flex-wrap gap-2">
-            <button
-              onClick={() => setSelectedCategory(null)}
-              className={cn(
-                'px-4 py-2 rounded-lg text-sm font-medium transition-all',
-                !selectedCategory
-                  ? 'bg-white text-black'
-                  : 'bg-white/5 text-white/60 hover:text-white hover:bg-white/10'
-              )}
+      {/* Category Dropdown & Filter Section */}
+      <section className="pb-8 px-6 sticky top-20 z-40 bg-[#030712]/80 backdrop-blur-xl border-b border-white/5">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex items-center justify-between py-4">
+            <CategoryDropdown
+              categories={categories}
+              selectedCategory={selectedCategory}
+              onSelectCategory={setSelectedCategory}
+              totalPosts={posts.length}
+              getCategoryCount={getCategoryCount}
+            />
+
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="hidden md:flex items-center gap-3"
             >
-              All ({posts.length})
-            </button>
-            {categories.map((category) => {
-              const count = posts.filter(p => p.category?.toLowerCase() === category.toLowerCase()).length
-              const isActive = selectedCategory?.toLowerCase() === category.toLowerCase()
-              return (
-                <button
-                  key={category}
-                  onClick={() => setSelectedCategory(isActive ? null : category)}
-                  className={cn(
-                    'px-4 py-2 rounded-lg text-sm font-medium transition-all',
-                    isActive
-                      ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
-                      : 'bg-white/5 text-white/60 hover:text-white hover:bg-white/10'
-                  )}
-                >
-                  {category} ({count})
-                </button>
-              )
-            })}
+              <span className="text-sm text-white/40">
+                {filteredPosts.length} {filteredPosts.length === 1 ? 'article' : 'articles'}
+              </span>
+            </motion.div>
           </div>
         </div>
       </section>
 
       {/* Featured Posts */}
       {!selectedCategory && featuredPosts.length > 0 && (
-        <section className="py-8 px-6">
-          <div className="max-w-5xl mx-auto">
-            <p className="text-xs font-medium uppercase tracking-[0.2em] text-white/40 mb-6">
-              Featured
-            </p>
-            <div className="grid gap-6 md:grid-cols-2">
+        <section className="py-12 px-6">
+          <div className="max-w-6xl mx-auto">
+            <div className="flex items-center gap-2 mb-8">
+              <Sparkles className="w-4 h-4 text-amber-400" />
+              <h2 className="text-sm font-medium uppercase tracking-[0.2em] text-white/60">
+                Featured Articles
+              </h2>
+            </div>
+            <div className="grid gap-6 lg:grid-cols-2">
               {featuredPosts.map((post, i) => (
                 <motion.div
                   key={post.slug}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.1 }}
+                  transition={{ delay: i * 0.15, type: 'spring', stiffness: 100 }}
                 >
                   <BlogCard post={post} featured />
                 </motion.div>
@@ -131,31 +153,61 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
       )}
 
       {/* All Posts Grid */}
-      <section className="py-8 px-6 pb-24">
-        <div className="max-w-5xl mx-auto">
-          <p className="text-xs font-medium uppercase tracking-[0.2em] text-white/40 mb-6">
-            {selectedCategory ? `${selectedCategory} Articles` : 'All Articles'} ({filteredPosts.length})
-          </p>
+      <section className="py-12 px-6 pb-24">
+        <div className="max-w-6xl mx-auto">
+          {selectedCategory && (
+            <div className="flex items-center gap-2 mb-8">
+              <h2 className="text-sm font-medium uppercase tracking-[0.2em] text-white/60">
+                {selectedCategory}
+              </h2>
+              <span className="text-xs text-white/30">
+                • {filteredPosts.length} {filteredPosts.length === 1 ? 'article' : 'articles'}
+              </span>
+            </div>
+          )}
+
+          {!selectedCategory && regularPosts.length > 0 && (
+            <div className="flex items-center gap-2 mb-8">
+              <h2 className="text-sm font-medium uppercase tracking-[0.2em] text-white/60">
+                All Articles
+              </h2>
+              <span className="text-xs text-white/30">
+                • {regularPosts.length} {regularPosts.length === 1 ? 'article' : 'articles'}
+              </span>
+            </div>
+          )}
 
           {filteredPosts.length === 0 ? (
-            <div className="py-20 text-center">
-              <p className="text-white/50 mb-4">No articles found in this category.</p>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="py-20 text-center"
+            >
+              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-white/5 border border-white/10 mb-6">
+                <Filter className="w-6 h-6 text-white/30" />
+              </div>
+              <p className="text-white/50 mb-4 text-lg">No articles found in this category.</p>
               <button
                 onClick={() => setSelectedCategory(null)}
-                className="text-emerald-400 hover:text-emerald-300 text-sm font-medium"
+                className="text-emerald-400 hover:text-emerald-300 text-sm font-medium inline-flex items-center gap-2 group"
               >
-                View all articles →
+                View all articles
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </button>
-            </div>
+            </motion.div>
           ) : (
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {(selectedCategory ? filteredPosts : regularPosts).map((post, i) => (
                 <motion.div
                   key={post.slug}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: Math.min(i * 0.05, 0.2) }}
+                  viewport={{ once: true, margin: '-50px' }}
+                  transition={{
+                    delay: Math.min(i * 0.08, 0.3),
+                    type: 'spring',
+                    stiffness: 100,
+                  }}
                 >
                   <BlogCard post={post} />
                 </motion.div>

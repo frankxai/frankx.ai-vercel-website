@@ -314,6 +314,7 @@ module.exports = {
         'pulse-slow': 'pulse 3s infinite',
         'bounce-gentle': 'bounceGentle 2s infinite',
         'gradient-shift': 'gradientShift 8s ease-in-out infinite',
+        'gradient': 'gradient 15s ease infinite',
         float: 'float 6s ease-in-out infinite',
         'logo-marquee': 'logoMarquee 40s linear infinite',
 
@@ -326,6 +327,10 @@ module.exports = {
         enterFromLeft: 'enterFromLeft 250ms ease',
         exitToRight: 'exitToRight 250ms ease',
         exitToLeft: 'exitToLeft 250ms ease',
+      },
+      animationDelay: {
+        '1000': '1000ms',
+        '2000': '2000ms',
       },
 
       keyframes: {
@@ -356,6 +361,16 @@ module.exports = {
         gradientShift: {
           '0%, 100%': { backgroundPosition: '0% 50%' },
           '50%': { backgroundPosition: '100% 50%' },
+        },
+        gradient: {
+          '0%, 100%': {
+            backgroundSize: '200% 200%',
+            backgroundPosition: 'left center',
+          },
+          '50%': {
+            backgroundSize: '200% 200%',
+            backgroundPosition: 'right center',
+          },
         },
         float: {
           '0%, 100%': { transform: 'translateY(0px)' },
