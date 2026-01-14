@@ -78,7 +78,7 @@ const currentConnections = [
   {
     title: 'LinkedIn',
     description: 'Follow for daily AI insights and behind-the-scenes updates.',
-    href: 'https://linkedin.com/in/frankzickert',
+    href: 'https://linkedin.com/in/frank-x-riemer/',
     icon: Users,
   },
   {

@@ -427,7 +427,7 @@ function CTASection() {
               <ArrowRight className="w-4 h-4" />
             </Link>
             <a
-              href="https://suno.com/@frankxai"
+              href="https://suno.com/@frankx"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 border border-white/20 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all hover:bg-white/5"
