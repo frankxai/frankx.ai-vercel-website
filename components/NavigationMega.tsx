@@ -27,6 +27,7 @@ import {
   Wand2,
   Star,
   Heart,
+  Network,
 } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
@@ -107,6 +108,7 @@ const navigation = {
       { name: 'Free Playbooks', href: '/free-playbook', icon: FileText, description: 'Start with quick wins' },
       { name: 'Prompt Library', href: '/prompt-library', icon: BookOpen, description: 'Curated prompt stacks' },
       { name: 'Intelligence Atlas', href: '/intelligence-atlas', icon: Star, description: 'Flagship research' },
+      { name: 'AI Architecture', href: '/ai-architecture/multi-cloud-comparison', icon: Network, description: 'Multi-cloud research' },
       { name: 'Vibe OS', href: '/products/vibe-os', icon: Music, description: 'AI music system' },
       { name: 'Agentic Creator OS', href: '/products/agentic-creator-os', icon: Bot, description: 'Agent workflows' },
       { name: 'Arcanea', href: '/magic', icon: Wand2, description: 'Worldbuilding academy' },
