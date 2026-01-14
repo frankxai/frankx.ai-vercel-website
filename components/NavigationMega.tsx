@@ -428,7 +428,7 @@ export default function NavigationMega() {
                 <Link
                   href="/free-playbook"
                   onClick={() => setIsOpen(false)}
-                  className="block w-full rounded-lg bg-gradient-to-r from-emerald-600 to-cyan-600 py-2.5 sm:py-3 text-center text-sm font-semibold text-white"
+                  className="block w-full rounded-2xl bg-gradient-to-r from-emerald-600 to-cyan-600 py-2.5 sm:py-3 text-center text-sm font-semibold text-white"
                 >
                   Get Free Playbooks
                 </Link>

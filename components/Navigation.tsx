@@ -232,7 +232,7 @@ export default function Navigation() {
 
             <Link
               href="/free-playbook"
-              className="mt-3 px-6 py-3.5 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-emerald-600 to-cyan-600 text-center transition-all active:scale-[0.98]"
+              className="mt-3 px-6 py-3.5 rounded-2xl text-sm font-semibold text-white bg-gradient-to-r from-emerald-600 to-cyan-600 text-center transition-all active:scale-[0.98]"
               onClick={() => setIsOpen(false)}
             >
               Get Free Playbooks
