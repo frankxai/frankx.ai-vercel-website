@@ -21,7 +21,7 @@ export default function GoldenAgePage() {
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-100 dark:bg-amber-900/30 text-amber-900 dark:text-amber-200 text-sm font-medium border border-amber-200 dark:border-amber-800">
               <Sparkles className="w-4 h-4" />
-              <span>A Book About Creative Transformation</span>
+              <span>When Creation Calls, Everything Changes</span>
             </div>
 
             <h1 className="font-serif text-5xl sm:text-6xl lg:text-7xl font-bold text-gray-900 dark:text-white leading-tight">
@@ -33,7 +33,7 @@ export default function GoldenAgePage() {
             </p>
 
             <p className="text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
-              {bookMetadata.description}
+              Picture this: 2 AM. Studio lights glow. An idea hits. That electric moment when you know something wants to be created through you. This book is for creators ready to answer that call—with AI as your amplifier, not your replacement.
             </p>
 
             <div className="flex items-center justify-center gap-4 pt-4">
@@ -63,10 +63,10 @@ export default function GoldenAgePage() {
         <div className="max-w-4xl mx-auto px-6">
           <div className="space-y-4 mb-12">
             <h2 className="font-serif text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white">
-              Book Chapters
+              The Journey
             </h2>
             <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
-              A transformative narrative about the democratization of creative capability.
+              Each chapter is a session. Read in order, or drop in where you need it most. The path unfolds as you walk it.
             </p>
           </div>
 
@@ -142,10 +142,10 @@ export default function GoldenAgePage() {
         <div className="max-w-4xl mx-auto px-6">
           <div className="space-y-4 mb-12">
             <h2 className="font-serif text-4xl sm:text-5xl font-bold text-gray-900 dark:text-white">
-              Related Essays
+              Studio Notes
             </h2>
             <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
-              Deep dives into strategy, implementation, and the intelligence era.
+              Companion essays from the creative trenches. Strategy, implementation, and real-world intelligence.
             </p>
           </div>
 
@@ -200,16 +200,16 @@ export default function GoldenAgePage() {
       <section className="py-20 border-t border-gray-200 dark:border-gray-800">
         <div className="max-w-2xl mx-auto px-6 text-center space-y-6">
           <h2 className="font-serif text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white">
-            Ready to begin your journey?
+            Your Next Session Awaits
           </h2>
           <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
-            Start with Chapter 1 and discover what it means to answer the call to creation.
+            That voice inside you? The one that knows you're meant to create something? It's time to listen. Chapter 1 starts here.
           </p>
           <Link
             href="/golden-age/chapter-01-when-creation-calls"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-lg font-medium text-lg hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors cursor-pointer"
+            className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-lg font-medium text-lg hover:from-amber-600 hover:to-orange-600 transition-all shadow-lg hover:shadow-xl cursor-pointer"
           >
-            <span>Start Reading Chapter 1</span>
+            <span>Begin Chapter 1</span>
             <ArrowRight className="w-5 h-5" />
           </Link>
         </div>

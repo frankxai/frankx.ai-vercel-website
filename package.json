@@ -41,6 +41,7 @@
     "framer-motion": "^11.15.0",
     "glob": "^10.5.0",
     "gray-matter": "^4.0.3",
+    "isomorphic-dompurify": "^2.35.0",
     "lucide-react": "^0.468.0",
     "lunr": "^2.3.9",
     "marked": "12.0.2",

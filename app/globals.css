@@ -29,6 +29,7 @@
   /* Critical mobile fix: prevent horizontal overflow at the root level */
   html {
     overflow-x: hidden;
+    scroll-behavior: smooth;
   }
 
   body {

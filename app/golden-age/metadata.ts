@@ -1,4 +1,6 @@
-export const bookMetadata = {
+import type { BookMetadata, Chapter, Essay } from './types';
+
+export const bookMetadata: BookMetadata = {
   title: 'The Golden Age of Creators',
   subtitle: 'The Democratization of Creative Capability and Distribution',
   author: 'Frank',
@@ -16,7 +18,7 @@ export const bookMetadata = {
   ],
 };
 
-export const chapters = [
+export const chapters: Chapter[] = [
   {
     slug: 'chapter-01-when-creation-calls',
     title: 'When Creation Calls',
@@ -35,7 +37,7 @@ export const chapters = [
   },
 ];
 
-export const essays = [
+export const essays: Essay[] = [
   {
     slug: '08-golden-age-of-intelligence',
     title: 'The Golden Age of Intelligence',

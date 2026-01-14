@@ -129,6 +129,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/content-studio',
     '/creation-chronicles',
     '/intelligence-atlas',
+    '/golden-age',
+    '/golden-age/chapter-01-when-creation-calls',
   ]
 
   // AI and agent pages

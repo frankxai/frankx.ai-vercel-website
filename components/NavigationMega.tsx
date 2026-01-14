@@ -102,6 +102,7 @@ const navigation = {
     },
     items: [
       { name: 'Resource Hub', href: '/resources', icon: Sparkles, description: 'All systems, guides, and tools' },
+      { name: 'The Golden Age of Creators', href: '/golden-age', icon: BookOpen, description: 'Book on creative transformation' },
       { name: "The Creator's Soulbook", href: '/soulbook', icon: BookOpen, description: 'Your life transformation system' },
       { name: 'Free Playbooks', href: '/free-playbook', icon: FileText, description: 'Start with quick wins' },
       { name: 'Prompt Library', href: '/prompt-library', icon: BookOpen, description: 'Curated prompt stacks' },
