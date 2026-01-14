@@ -6,6 +6,7 @@ import { ArrowRight, Send, Music2, BookOpen, Sparkles, ChevronRight } from 'luci
 
 import songs from '@/data/songs.json'
 import SongGrid, { SongRecord } from '@/components/music/SongGrid'
+import { EmailSignup } from '@/components/email-signup'
 
 const songRecords = songs as SongRecord[]
 
@@ -19,7 +20,7 @@ const timeline = [
     headline: 'Subscribe to Creation Chronicles',
     description: 'Weekly intelligence from the studio—essays, prompts, and music drops that keep you in the Golden Age momentum.',
     action: 'Join the Dispatch',
-    href: 'https://frankx.ck.page/creation-chronicles',
+    href: '#signup',
     color: 'text-emerald-400',
     gradient: 'from-emerald-500/20 to-emerald-500/5',
   },
@@ -27,8 +28,8 @@ const timeline = [
     phase: 'Activate',
     headline: 'Join the Inner Circle',
     description: 'Members receive vault access, live ritual labs, and direct collaboration with the FrankX agent collective.',
-    action: 'Explore the Realm',
-    href: '/realm',
+    action: 'Explore Inner Circle',
+    href: '/inner-circle',
     color: 'text-cyan-400',
     gradient: 'from-cyan-500/20 to-cyan-500/5',
   },
@@ -135,17 +136,16 @@ export default function CreationChroniclesPage() {
                 and live dispatches from the intelligence frontier.
               </p>
 
-              {/* CTAs */}
-              <div className="flex flex-wrap items-center justify-center gap-4">
-                <a
-                  href="https://frankx.ck.page/creation-chronicles"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group inline-flex items-center gap-3 bg-white text-black px-7 py-4 rounded-full font-semibold transition-all hover:bg-white/90 hover:shadow-[0_0_40px_rgba(255,255,255,0.15)]"
-                >
-                  <Send className="w-4 h-4" />
-                  Join the Dispatch
-                </a>
+              {/* Email Signup */}
+              <div className="max-w-md mx-auto">
+                <EmailSignup
+                  listType="creation-chronicles"
+                  placeholder="Enter your email"
+                  buttonText="Join the Dispatch"
+                  redirectTo="/thank-you"
+                  compact={true}
+                  className="mb-4"
+                />
                 <Link
                   href="/blog"
                   className="inline-flex items-center gap-3 px-7 py-4 rounded-full font-medium text-white/70 hover:text-white border border-white/10 hover:border-white/20 transition-all"

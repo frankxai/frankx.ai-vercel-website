@@ -1,8 +1,10 @@
+'use client'
+
 import Link from 'next/link'
+import { EmailSignup } from '@/components/email-signup'
 
-import { createMetadata } from '@/lib/seo'
-
-export const metadata = createMetadata({
+// Metadata moved to layout or static export
+const pageMetadata = {
   title: 'Inner Circle | Intelligence Vault & Creative Community',
   description:
     'Join the Inner Circle for exclusive access to intelligence vault, live ritual labs, and agentic support. Where creative pioneers build the future together.',
@@ -65,7 +67,7 @@ const tiers = [
     description: 'Full Inner Circle access with vault, labs, private soundtrack releases, and direct agent support.',
     perks: ['Creation Chronicles vault', 'Live ritual labs', 'Priority agent desk support'],
     ctaLabel: 'Join Waitlist',
-    ctaHref: 'https://frankx.ck.page/inner-circle'
+    ctaHref: '#signup'
   },
   {
     name: 'Alliance',
@@ -78,7 +80,6 @@ const tiers = [
 ]
 
 const waitlistForm = {
-  action: 'https://frankx.ck.page/inner-circle',
   description:
     'Add your email to be the first to receive Inner Circle pricing, launch bonuses, and the Inner Circle onboarding guide.'
 }
@@ -98,16 +99,17 @@ export default function RealmPage() {
             Step behind the curtain. Access the vault, sonic rituals, and agent desk that keep our closest friends, family,
             and collaborators moving faster than the frontier.
           </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Link
-              href={waitlistForm.action}
-              className="inline-flex items-center justify-center rounded-2xl bg-gradient-to-r from-primary-500 to-purple-600 px-6 py-3 text-sm font-semibold uppercase tracking-[0.3em] text-white transition hover:-translate-y-1"
-            >
-              Join the Waitlist
-            </Link>
+          <div className="max-w-md mx-auto">
+            <EmailSignup
+              listType="inner-circle"
+              placeholder="Enter your email"
+              buttonText="Join the Waitlist"
+              redirectTo="/thank-you"
+              showName={true}
+            />
             <Link
               href="/creation-chronicles"
-              className="inline-flex items-center justify-center rounded-2xl border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white/80 transition hover:bg-white/10"
+              className="mt-4 inline-flex items-center justify-center rounded-2xl border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white/80 transition hover:bg-white/10"
             >
               Explore Creation Chronicles
             </Link>
@@ -186,13 +188,15 @@ export default function RealmPage() {
           <div className="mx-auto max-w-3xl rounded-3xl border border-white/10 bg-white/5 p-8 text-center">
             <h2 className="text-3xl font-semibold text-white">Reserve Your Spot</h2>
             <p className="mt-3 text-sm text-white/70">{waitlistForm.description}</p>
-            <Link
-              href={waitlistForm.action}
-              className="mt-6 inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-primary-500 to-purple-600 px-6 py-3 text-sm font-semibold uppercase tracking-[0.3em] text-white transition hover:-translate-y-1"
-            >
-              Join the Waitlist
-            </Link>
-            <p className="mt-3 text-xs text-white/50">No spam - just launch details and first access.</p>
+            <div className="mt-6 flex justify-center">
+              <EmailSignup
+                listType="inner-circle"
+                placeholder="Enter your email"
+                buttonText="Join the Waitlist"
+                redirectTo="/thank-you"
+                showName={true}
+              />
+            </div>
           </div>
         </section>
       </main>
