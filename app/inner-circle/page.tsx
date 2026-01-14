@@ -3,17 +3,17 @@ import Link from 'next/link'
 import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
-  title: 'FrankX Realm | Inner Circle & Intelligence Vault',
+  title: 'Inner Circle | Intelligence Vault & Creative Community',
   description:
-    'Step inside the FrankX Realm to access the Inner Circle waitlist, intelligence vault, live ritual labs, and agentic support.',
+    'Join the Inner Circle for exclusive access to intelligence vault, live ritual labs, and agentic support. Where creative pioneers build the future together.',
   keywords: [
-    'frankx realm',
-    'inner circle waitlist',
+    'frankx inner circle',
+    'creative intelligence community',
     'creation chronicles vault',
     'agentic community',
     'creative intelligence membership'
   ],
-  path: '/realm'
+  path: '/inner-circle'
 })
 
 const membershipBenefits = [
@@ -62,15 +62,15 @@ const tiers = [
   {
     name: 'Inner Circle',
     price: 'Waitlist',
-    description: 'Full Realm access with vault, labs, private soundtrack releases, and direct agent support.',
+    description: 'Full Inner Circle access with vault, labs, private soundtrack releases, and direct agent support.',
     perks: ['Creation Chronicles vault', 'Live ritual labs', 'Priority agent desk support'],
     ctaLabel: 'Join Waitlist',
-    ctaHref: 'https://frankx.ck.page/realm'
+    ctaHref: 'https://frankx.ck.page/inner-circle'
   },
   {
     name: 'Alliance',
     price: 'Custom',
-    description: 'Enterprise or studio partnership integrating Realm benefits with bespoke strategy work.',
+    description: 'Enterprise or studio partnership integrating Inner Circle benefits with bespoke strategy work.',
     perks: ['Executive briefings', 'Agentic dashboards', 'Co-created launches & governance'],
     ctaLabel: 'Request Strategy Intensive',
     ctaHref: 'mailto:hello@frankx.ai?subject=FrankX%20Alliance%20Inquiry'
@@ -78,9 +78,9 @@ const tiers = [
 ]
 
 const waitlistForm = {
-  action: 'https://frankx.ck.page/realm',
+  action: 'https://frankx.ck.page/inner-circle',
   description:
-    'Add your email to be the first to receive Inner Circle pricing, launch bonuses, and the Realm onboarding guide.'
+    'Add your email to be the first to receive Inner Circle pricing, launch bonuses, and the Inner Circle onboarding guide.'
 }
 
 export default function RealmPage() {
@@ -89,7 +89,7 @@ export default function RealmPage() {
       <header className="relative overflow-hidden border-b border-white/10 bg-gradient-to-br from-primary-900/40 via-slate-950 to-purple-900/30">
         <div className="mx-auto flex max-w-5xl flex-col gap-6 px-6 py-24 text-center">
           <span className="self-center rounded-full border border-white/15 bg-white/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.35em] text-white/70">
-            FrankX Realm
+            Inner Circle
           </span>
           <h1 className="text-4xl font-bold leading-tight sm:text-5xl md:text-6xl">
             The Inner Circle for Creative Intelligence Pioneers
@@ -118,7 +118,7 @@ export default function RealmPage() {
       <main className="space-y-20 py-16">
         <section className="px-6">
           <div className="mx-auto max-w-5xl">
-            <h2 className="text-3xl font-semibold text-white">Why the Realm Exists</h2>
+            <h2 className="text-3xl font-semibold text-white">Why the Inner Circle Exists</h2>
             <p className="mt-4 text-sm text-white/70">
               The Inner Circle packages everything we build so you can launch the Golden Age in your own world: daily stories,
               sonic frequency shifts, governance-ready playbooks, and direct access to the agent collective.

@@ -498,7 +498,7 @@
         {
           "type": "community",
           "title": "Energy Mastery Circle",
-          "url": "/realm",
+          "url": "/inner-circle",
           "description": "Join high-performers optimizing energy together"
         }
       ]
@@ -530,7 +530,7 @@
         {
           "type": "community",
           "title": "Creator Intelligence Network",
-          "url": "/realm",
+          "url": "/inner-circle",
           "description": "Continuous learning with fellow creators"
         }
       ]
@@ -568,7 +568,7 @@
         {
           "type": "community",
           "title": "Craft Mastery Lab",
-          "url": "/realm",
+          "url": "/inner-circle",
           "description": "Advanced creators sharing techniques"
         }
       ]
@@ -600,7 +600,7 @@
         {
           "type": "community",
           "title": "Flow State Collective",
-          "url": "/realm",
+          "url": "/inner-circle",
           "description": "Creators mastering flow together"
         }
       ]
@@ -632,7 +632,7 @@
         {
           "type": "community",
           "title": "Prosperous Creators Circle",
-          "url": "/realm",
+          "url": "/inner-circle",
           "description": "Scaling creator businesses together"
         }
       ]
@@ -656,7 +656,7 @@
         {
           "type": "community",
           "title": "The Realm",
-          "url": "/realm",
+          "url": "/inner-circle",
           "description": "Join the FrankX creator community"
         }
       ],
@@ -696,7 +696,7 @@
         {
           "type": "community",
           "title": "Purpose Council",
-          "url": "/realm",
+          "url": "/inner-circle",
           "description": "Creators living their purpose together"
         }
       ]
