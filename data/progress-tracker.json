@@ -1,0 +1,705 @@
+{
+  "frankStats": {
+    "lastUpdated": "2026-01-14",
+    "pillars": {
+      "energy": {
+        "name": "Energy",
+        "icon": "⚡",
+        "color": "from-amber-500 to-orange-600",
+        "stats": [
+          {
+            "metric": "Meditation Practice",
+            "value": "Daily",
+            "context": "Morning consciousness work",
+            "verifiable": false
+          },
+          {
+            "metric": "Workout Consistency",
+            "value": "5x/week",
+            "context": "Gym sessions logged",
+            "verifiable": false
+          },
+          {
+            "metric": "Sleep Optimization",
+            "value": "7.5 hrs avg",
+            "context": "Tracked via sleep routine",
+            "verifiable": false
+          }
+        ],
+        "journey": "Building sustainable creative energy through consistent physical and mental practices. The foundation for everything else."
+      },
+      "mind": {
+        "name": "Mind",
+        "icon": "🧠",
+        "color": "from-purple-500 to-indigo-600",
+        "stats": [
+          {
+            "metric": "Books Completed",
+            "value": "12+ in 2025",
+            "context": "Currently reading The Master and His Emissary",
+            "verifiable": true,
+            "source": "Reading list documented"
+          },
+          {
+            "metric": "Courses Finished",
+            "value": "8+",
+            "context": "AI, music production, systems thinking",
+            "verifiable": true,
+            "source": "Certificates earned"
+          },
+          {
+            "metric": "Daily Learning",
+            "value": "2 hrs avg",
+            "context": "Technical research, creative exploration",
+            "verifiable": false
+          }
+        ],
+        "journey": "Continuous expansion through books, courses, and deep technical exploration. Learning as a creative practice."
+      },
+      "craft": {
+        "name": "Craft",
+        "icon": "⚙️",
+        "color": "from-blue-500 to-cyan-600",
+        "stats": [
+          {
+            "metric": "GitHub Projects",
+            "value": "50+",
+            "context": "Open source AI tools, creative systems",
+            "verifiable": true,
+            "source": "github.com/frankxai"
+          },
+          {
+            "metric": "Blog Posts",
+            "value": "100+",
+            "context": "AI tutorials, creator guides, transformation stories",
+            "verifiable": true,
+            "source": "frankx.ai/blog"
+          },
+          {
+            "metric": "Code Commits",
+            "value": "1000+ in 2025",
+            "context": "Building in public, everything documented",
+            "verifiable": true,
+            "source": "GitHub activity"
+          }
+        ],
+        "journey": "Building tools and systems that serve the creative work. Everything open, documented, and yours to use."
+      },
+      "flow": {
+        "name": "Flow",
+        "icon": "🎵",
+        "color": "from-emerald-500 to-teal-600",
+        "stats": [
+          {
+            "metric": "Songs Created",
+            "value": "500+",
+            "context": "AI-powered music with Suno",
+            "verifiable": true,
+            "source": "Suno library"
+          },
+          {
+            "metric": "Creative Sessions",
+            "value": "Daily",
+            "context": "Morning studio time, pure creation",
+            "verifiable": false
+          },
+          {
+            "metric": "Albums Released",
+            "value": "10+",
+            "context": "Transformational soundscapes, commercial tracks",
+            "verifiable": true,
+            "source": "Music platforms"
+          }
+        ],
+        "journey": "Daily creative practice with AI music. 500+ songs later, still discovering new frequencies and possibilities."
+      },
+      "prosperity": {
+        "name": "Prosperity",
+        "icon": "💎",
+        "color": "from-rose-500 to-pink-600",
+        "stats": [
+          {
+            "metric": "Products Launched",
+            "value": "8+",
+            "context": "Vibe OS, courses, guides, tools",
+            "verifiable": true,
+            "source": "Product catalog"
+          },
+          {
+            "metric": "Community Size",
+            "value": "5K+",
+            "context": "Email subscribers, social following",
+            "verifiable": true,
+            "source": "Platform analytics"
+          },
+          {
+            "metric": "Creator Transformations",
+            "value": "100+",
+            "context": "Testimonials from AI-empowered creators",
+            "verifiable": true,
+            "source": "Testimonials page"
+          }
+        ],
+        "journey": "Building sustainable prosperity through products that genuinely transform creators. Abundance through service."
+      },
+      "connection": {
+        "name": "Connection",
+        "icon": "🤝",
+        "color": "from-violet-500 to-purple-600",
+        "stats": [
+          {
+            "metric": "Collaborations",
+            "value": "20+",
+            "context": "Musicians, developers, creators, orgs",
+            "verifiable": true,
+            "source": "Project credits"
+          },
+          {
+            "metric": "Oracle Impact",
+            "value": "Enterprise AI",
+            "context": "AI Architect bringing cloud intelligence to Fortune 500",
+            "verifiable": true,
+            "source": "Professional role"
+          },
+          {
+            "metric": "Community Engagement",
+            "value": "Weekly",
+            "context": "Live calls, Q&A, creator support",
+            "verifiable": false
+          }
+        ],
+        "journey": "Building bridges between enterprise AI and independent creators. Oracle expertise made accessible."
+      },
+      "purpose": {
+        "name": "Purpose",
+        "icon": "🌟",
+        "color": "from-yellow-500 to-amber-600",
+        "stats": [
+          {
+            "metric": "Mission Alignment",
+            "value": "100%",
+            "context": "Every project serves creator AI transformation",
+            "verifiable": false
+          },
+          {
+            "metric": "Open Source Contributions",
+            "value": "All projects",
+            "context": "Everything documented and shared",
+            "verifiable": true,
+            "source": "GitHub repos"
+          },
+          {
+            "metric": "Creator Empowerment",
+            "value": "Core mission",
+            "context": "Tech-overwhelmed to AI-empowered",
+            "verifiable": false
+          }
+        ],
+        "journey": "Every song, every tool, every course serves one purpose: empowering creators to thrive in the AI age."
+      }
+    }
+  },
+  "assessment": {
+    "instructions": "Answer honestly. This isn't about perfection—it's about understanding where you are and where you want to grow.",
+    "questions": [
+      {
+        "id": "energy",
+        "pillar": "energy",
+        "question": "How would you describe your current energy management?",
+        "options": [
+          {
+            "text": "Exhausted and burned out—running on fumes",
+            "score": 1,
+            "archetype": "depleted"
+          },
+          {
+            "text": "Inconsistent—some days great, some days terrible",
+            "score": 2,
+            "archetype": "fluctuating"
+          },
+          {
+            "text": "Decent—I have routines but they're not optimized",
+            "score": 3,
+            "archetype": "building"
+          },
+          {
+            "text": "Strong—consistent practices fuel my creative work",
+            "score": 4,
+            "archetype": "thriving"
+          },
+          {
+            "text": "Exceptional—energy is my superpower and foundation",
+            "score": 5,
+            "archetype": "master"
+          }
+        ]
+      },
+      {
+        "id": "mind",
+        "pillar": "mind",
+        "question": "How actively are you expanding your knowledge and skills?",
+        "options": [
+          {
+            "text": "Stagnant—haven't learned anything new in months",
+            "score": 1,
+            "archetype": "dormant"
+          },
+          {
+            "text": "Occasional—I learn when something catches my interest",
+            "score": 2,
+            "archetype": "reactive"
+          },
+          {
+            "text": "Regular—reading books, taking some courses",
+            "score": 3,
+            "archetype": "growing"
+          },
+          {
+            "text": "Intentional—dedicated learning time, strategic skill-building",
+            "score": 4,
+            "archetype": "expanding"
+          },
+          {
+            "text": "Insatiable—learning is a core daily practice for me",
+            "score": 5,
+            "archetype": "scholar"
+          }
+        ]
+      },
+      {
+        "id": "craft",
+        "pillar": "craft",
+        "question": "Where are you in developing your technical/creative skills?",
+        "options": [
+          {
+            "text": "Beginner—just starting to explore tools and techniques",
+            "score": 1,
+            "archetype": "novice"
+          },
+          {
+            "text": "Learning—actively building skills but not shipping much",
+            "score": 2,
+            "archetype": "student"
+          },
+          {
+            "text": "Competent—creating regularly, building my portfolio",
+            "score": 3,
+            "archetype": "practitioner"
+          },
+          {
+            "text": "Advanced—shipping quality work consistently",
+            "score": 4,
+            "archetype": "craftsperson"
+          },
+          {
+            "text": "Mastery—my craft is a powerful expression of who I am",
+            "score": 5,
+            "archetype": "master"
+          }
+        ]
+      },
+      {
+        "id": "flow",
+        "pillar": "flow",
+        "question": "How often do you experience deep creative flow states?",
+        "options": [
+          {
+            "text": "Rarely—I'm usually distracted and scattered",
+            "score": 1,
+            "archetype": "scattered"
+          },
+          {
+            "text": "Occasionally—flow happens by accident sometimes",
+            "score": 2,
+            "archetype": "sporadic"
+          },
+          {
+            "text": "Weekly—I have flow moments in my creative work",
+            "score": 3,
+            "archetype": "emerging"
+          },
+          {
+            "text": "Daily—I've built rituals that reliably create flow",
+            "score": 4,
+            "archetype": "flowing"
+          },
+          {
+            "text": "Consistently—flow is my natural creative state",
+            "score": 5,
+            "archetype": "channeling"
+          }
+        ]
+      },
+      {
+        "id": "prosperity",
+        "pillar": "prosperity",
+        "question": "Where are you in monetizing your creative work?",
+        "options": [
+          {
+            "text": "Not monetized—pure hobby, no income",
+            "score": 1,
+            "archetype": "aspiring"
+          },
+          {
+            "text": "Exploring—thinking about offers but haven't launched",
+            "score": 2,
+            "archetype": "planning"
+          },
+          {
+            "text": "Early revenue—first products launched, some sales",
+            "score": 3,
+            "archetype": "launching"
+          },
+          {
+            "text": "Growing income—sustainable side income or scaling",
+            "score": 4,
+            "archetype": "building"
+          },
+          {
+            "text": "Thriving business—creative work fully supports my life",
+            "score": 5,
+            "archetype": "prosperous"
+          }
+        ]
+      },
+      {
+        "id": "connection",
+        "pillar": "connection",
+        "question": "How strong is your creative community and network?",
+        "options": [
+          {
+            "text": "Isolated—creating alone, no community",
+            "score": 1,
+            "archetype": "solitary"
+          },
+          {
+            "text": "Limited—a few creative friends but not a real network",
+            "score": 2,
+            "archetype": "beginning"
+          },
+          {
+            "text": "Developing—actively building community and connections",
+            "score": 3,
+            "archetype": "connecting"
+          },
+          {
+            "text": "Strong network—regular collaborations and mutual support",
+            "score": 4,
+            "archetype": "networked"
+          },
+          {
+            "text": "Powerful ecosystem—community amplifies my creative impact",
+            "score": 5,
+            "archetype": "catalyst"
+          }
+        ]
+      },
+      {
+        "id": "purpose",
+        "pillar": "purpose",
+        "question": "How aligned is your creative work with your deeper purpose?",
+        "options": [
+          {
+            "text": "Lost—not sure what my purpose even is",
+            "score": 1,
+            "archetype": "seeking"
+          },
+          {
+            "text": "Unclear—I have ideas but no clear direction",
+            "score": 2,
+            "archetype": "exploring"
+          },
+          {
+            "text": "Emerging—my purpose is becoming clearer",
+            "score": 3,
+            "archetype": "discovering"
+          },
+          {
+            "text": "Aligned—I know my why and most work serves it",
+            "score": 4,
+            "archetype": "aligned"
+          },
+          {
+            "text": "Living it—my creative work IS my purpose in action",
+            "score": 5,
+            "archetype": "embodied"
+          }
+        ]
+      }
+    ]
+  },
+  "archetypes": {
+    "awakening_creator": {
+      "name": "Awakening Creator",
+      "range": [7, 14],
+      "description": "You're at the beginning of a powerful transformation. The fact that you're here shows you're ready to evolve beyond where you are. Every master was once where you are now.",
+      "strengths": "Open to growth, willing to learn, potential is unlimited",
+      "nextSteps": "Focus on building Energy and Mind foundations. Start with small daily practices.",
+      "emoji": "🌱"
+    },
+    "emerging_builder": {
+      "name": "Emerging Builder",
+      "range": [15, 21],
+      "description": "You're actively building your creative systems and skills. You've moved past beginner and you're establishing real practices. This is where consistency becomes your superpower.",
+      "strengths": "Building momentum, developing discipline, growing skillset",
+      "nextSteps": "Strengthen your Craft and Flow practices. Ship more work, create more often.",
+      "emoji": "🔨"
+    },
+    "rising_creator": {
+      "name": "Rising Creator",
+      "range": [22, 28],
+      "description": "You're in your power. Solid foundations, regular creative output, and you're finding your rhythm. The path is becoming clear, and you're walking it with intention.",
+      "strengths": "Consistent execution, clear direction, balanced growth",
+      "nextSteps": "Focus on Prosperity and Connection. Start monetizing, build your tribe.",
+      "emoji": "🚀"
+    },
+    "seasoned_creator": {
+      "name": "Seasoned Creator",
+      "range": [29, 33],
+      "description": "You've built something real. Your creative practice sustains you, your skills are sharp, and you're making genuine impact. You know the journey never ends—there's always another level.",
+      "strengths": "Proven track record, sustainable systems, authentic impact",
+      "nextSteps": "Deepen Purpose alignment. Share your knowledge, mentor others.",
+      "emoji": "⚡"
+    },
+    "master_creator": {
+      "name": "Master Creator",
+      "range": [34, 35],
+      "description": "You've achieved what most only dream of—mastery across all dimensions of creative life. Your work transforms others, your systems are optimized, and you're living your purpose. Now the mission is to lift others up.",
+      "strengths": "Complete integration, powerful impact, embodied mastery",
+      "nextSteps": "Lead the transformation. Build the systems that empower the next generation.",
+      "emoji": "👑"
+    }
+  },
+  "recommendations": {
+    "energy": {
+      "low": [
+        {
+          "type": "blog",
+          "title": "The Creator Energy System",
+          "url": "/blog/creator-energy-system",
+          "description": "Build sustainable energy for long-term creative work"
+        },
+        {
+          "type": "free",
+          "title": "Morning Ritual Template",
+          "url": "/resources/morning-ritual",
+          "description": "Downloadable template for energy-optimized mornings"
+        }
+      ],
+      "medium": [
+        {
+          "type": "course",
+          "title": "Peak Creative Energy Course",
+          "url": "/courses/creative-energy",
+          "description": "Advanced protocols for sustained high performance"
+        }
+      ],
+      "high": [
+        {
+          "type": "community",
+          "title": "Energy Mastery Circle",
+          "url": "/realm",
+          "description": "Join high-performers optimizing energy together"
+        }
+      ]
+    },
+    "mind": {
+      "low": [
+        {
+          "type": "blog",
+          "title": "Learning Systems for Creators",
+          "url": "/blog/learning-systems",
+          "description": "How to learn effectively in the AI age"
+        },
+        {
+          "type": "free",
+          "title": "Reading List & Book Notes",
+          "url": "/resources/reading-list",
+          "description": "What Frank reads and why"
+        }
+      ],
+      "medium": [
+        {
+          "type": "course",
+          "title": "AI Mastery for Creators",
+          "url": "/courses/ai-mastery",
+          "description": "Master the AI tools transforming creative work"
+        }
+      ],
+      "high": [
+        {
+          "type": "community",
+          "title": "Creator Intelligence Network",
+          "url": "/realm",
+          "description": "Continuous learning with fellow creators"
+        }
+      ]
+    },
+    "craft": {
+      "low": [
+        {
+          "type": "blog",
+          "title": "Getting Started with AI Music",
+          "url": "/blog/ai-music-getting-started",
+          "description": "Your first steps into AI-powered creation"
+        },
+        {
+          "type": "free",
+          "title": "Creator Toolkit",
+          "url": "/resources/toolkit",
+          "description": "Essential tools for AI-empowered creators"
+        }
+      ],
+      "medium": [
+        {
+          "type": "course",
+          "title": "Suno Mastery Course",
+          "url": "/courses/suno-mastery",
+          "description": "Create professional music with AI"
+        },
+        {
+          "type": "product",
+          "title": "Vibe OS",
+          "url": "/vibe-os",
+          "description": "Your AI music production operating system"
+        }
+      ],
+      "high": [
+        {
+          "type": "community",
+          "title": "Craft Mastery Lab",
+          "url": "/realm",
+          "description": "Advanced creators sharing techniques"
+        }
+      ]
+    },
+    "flow": {
+      "low": [
+        {
+          "type": "blog",
+          "title": "Engineering Creative Flow States",
+          "url": "/blog/creative-flow",
+          "description": "Science-backed methods for entering flow"
+        },
+        {
+          "type": "free",
+          "title": "Flow State Playlist",
+          "url": "/resources/flow-music",
+          "description": "Music engineered for deep creative work"
+        }
+      ],
+      "medium": [
+        {
+          "type": "product",
+          "title": "Vibe OS Sessions",
+          "url": "/vibe-os",
+          "description": "Curated soundscapes for creative flow"
+        }
+      ],
+      "high": [
+        {
+          "type": "community",
+          "title": "Flow State Collective",
+          "url": "/realm",
+          "description": "Creators mastering flow together"
+        }
+      ]
+    },
+    "prosperity": {
+      "low": [
+        {
+          "type": "blog",
+          "title": "Monetizing Creative Work in 2026",
+          "url": "/blog/creative-monetization",
+          "description": "From passion project to sustainable income"
+        },
+        {
+          "type": "free",
+          "title": "Product Launch Template",
+          "url": "/resources/launch-template",
+          "description": "Launch your first creative product"
+        }
+      ],
+      "medium": [
+        {
+          "type": "course",
+          "title": "Creator Business Foundations",
+          "url": "/courses/creator-business",
+          "description": "Build sustainable prosperity from your art"
+        }
+      ],
+      "high": [
+        {
+          "type": "community",
+          "title": "Prosperous Creators Circle",
+          "url": "/realm",
+          "description": "Scaling creator businesses together"
+        }
+      ]
+    },
+    "connection": {
+      "low": [
+        {
+          "type": "blog",
+          "title": "Building Your Creator Network",
+          "url": "/blog/creator-network",
+          "description": "From isolated to connected creator"
+        },
+        {
+          "type": "free",
+          "title": "Collaboration Templates",
+          "url": "/resources/collaboration",
+          "description": "Tools for creative partnerships"
+        }
+      ],
+      "medium": [
+        {
+          "type": "community",
+          "title": "The Realm",
+          "url": "/realm",
+          "description": "Join the FrankX creator community"
+        }
+      ],
+      "high": [
+        {
+          "type": "opportunity",
+          "title": "Lead a Creator Circle",
+          "url": "/opportunities/lead-circle",
+          "description": "Facilitate transformation for others"
+        }
+      ]
+    },
+    "purpose": {
+      "low": [
+        {
+          "type": "blog",
+          "title": "Finding Your Creative Purpose",
+          "url": "/blog/creative-purpose",
+          "description": "Discovering what you're meant to create"
+        },
+        {
+          "type": "free",
+          "title": "Purpose Discovery Workbook",
+          "url": "/resources/purpose-workbook",
+          "description": "Guided exercises to clarify your mission"
+        }
+      ],
+      "medium": [
+        {
+          "type": "course",
+          "title": "Purpose-Driven Creation",
+          "url": "/courses/purpose-driven",
+          "description": "Align your creative work with your soul"
+        }
+      ],
+      "high": [
+        {
+          "type": "community",
+          "title": "Purpose Council",
+          "url": "/realm",
+          "description": "Creators living their purpose together"
+        }
+      ]
+    }
+  }
+}
