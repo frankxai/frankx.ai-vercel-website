@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Claude Skills Dashboard - FrankX</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --secondary: #8b5cf6;
+            --accent: #ec4899;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --gray: #64748b;
+            --success: #10b981;
+            --warning: #f59e0b;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem;
+            color: var(--dark);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        .header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #ffffff 0%, #e0e7ff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 0 30px rgba(255,255,255,0.3);
+        }
+
+        .header p {
+            color: #e0e7ff;
+            font-size: 1.25rem;
+            font-weight: 300;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .stat-label {
+            color: var(--gray);
+            font-size: 0.875rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .category-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease 0.4s both;
+        }
+
+        .tab-btn {
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            padding: 0.75rem 1.5rem;
+            border-radius: 2rem;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .tab-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+            animation: fadeInUp 0.8s ease 0.6s both;
+        }
+
+        .skill-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s ease;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+        }
+
+        .skill-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .skill-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .skill-name {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+
+        .skill-description {
+            color: var(--gray);
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .skill-category {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .skill-version {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: rgba(0,0,0,0.05);
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.5rem;
+            font-size: 0.75rem;
+            color: var(--gray);
+            font-weight: 600;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 1.5rem;
+            max-width: 900px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 2.5rem;
+            position: relative;
+            animation: slideInUp 0.4s ease;
+        }
+
+        .modal-close {
+            position: sticky;
+            top: 0;
+            right: 0;
+            background: var(--dark);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            float: right;
+            transition: all 0.3s ease;
+            z-index: 10;
+        }
+
+        .modal-close:hover {
+            background: var(--primary);
+            transform: rotate(90deg);
+        }
+
+        .skill-content {
+            clear: both;
+            padding-top: 1rem;
+        }
+
+        .skill-content h1, .skill-content h2, .skill-content h3 {
+            color: var(--dark);
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .skill-content code {
+            background: #f1f5f9;
+            padding: 0.2rem 0.4rem;
+            border-radius: 0.25rem;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        .skill-content pre {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+
+        .skill-content pre code {
+            background: none;
+            color: inherit;
+        }
+
+        .search-box {
+            width: 100%;
+            padding: 1rem 1.5rem;
+            border-radius: 2rem;
+            border: none;
+            background: rgba(255, 255, 255, 0.95);
+            font-size: 1rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.8s ease 0.5s both;
+        }
+
+        .search-box:focus {
+            outline: none;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .modal-content {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🧠 Claude Skills Dashboard</h1>
+            <p>Your Complete AI & Personal Development Skillset</p>
+        </div>
+
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-number">13</div>
+                <div class="stat-label">Total Skills</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">6</div>
+                <div class="stat-label">AI Architecture</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">3</div>
+                <div class="stat-label">Personal/Project</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">4</div>
+                <div class="stat-label">Wisdom/Wellness</div>
+            </div>
+        </div>
+
+        <input type="text" class="search-box" id="searchBox" placeholder="🔍 Search skills...">
+
+        <div class="category-tabs">
+            <button class="tab-btn active" data-category="all">All Skills</button>
+            <button class="tab-btn" data-category="ai-architecture">AI Architecture</button>
+            <button class="tab-btn" data-category="personal">Personal/Project</button>
+            <button class="tab-btn" data-category="wisdom">Wisdom/Wellness</button>
+        </div>
+
+        <div class="skills-grid" id="skillsGrid"></div>
+    </div>
+
+    <div class="modal" id="skillModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">×</button>
+            <div class="skill-content" id="modalContent"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+        const skills = [
+            {
+                name: "OpenAI AgentKit Expert",
+                icon: "🤖",
+                description: "Build production-ready multi-agent systems using OpenAI AgentKit and Agents SDK with routines, handoffs, and orchestration patterns",
+                category: "ai-architecture",
+                version: "1.0.0",
+                file: "openai-agentkit/SKILL.md"
+            },
+            {
+                name: "Claude SDK Expert",
+                icon: "🧠",
+                description: "Build autonomous AI agents using Claude Agent SDK with computer use capabilities, MCP integration, and iterative refinement patterns",
+                category: "ai-architecture",
+                version: "1.0.0",
+                file: "claude-sdk/SKILL.md"
+            },
+            {
+                name: "Oracle ADK Expert",
+                icon: "☁️",
+                description: "Build enterprise agentic applications on OCI using Oracle Agent Development Kit with multi-agent orchestration and OCI integration",
+                category: "ai-architecture",
+                version: "1.0.0",
+                file: "oracle-adk/SKILL.md"
+            },
+            {
+                name: "Oracle Agent Spec Expert",
+                icon: "📋",
+                description: "Design framework-agnostic AI agents using declarative JSON/YAML specifications with the Oracle Agent Spec standard",
+                category: "ai-architecture",
+                version: "1.0.0",
+                file: "oracle-agent-spec/SKILL.md"
+            },
+            {
+                name: "LangGraph Patterns Expert",
+                icon: "🔄",
+                description: "Build production-grade agentic workflows with graph-based orchestration, state machines, and human-in-the-loop patterns",
+                category: "ai-architecture",
+                version: "1.0.0",
+                file: "langgraph-patterns/SKILL.md"
+            },
+            {
+                name: "MCP Architecture Expert",
+                icon: "🔌",
+                description: "Design and implement Model Context Protocol servers for standardized AI-to-data integration with resources, tools, and prompts",
+                category: "ai-architecture",
+                version: "1.0.0",
+                file: "mcp-architecture/SKILL.md"
+            },
+            {
+                name: "FrankX Content Creator",
+                icon: "✨",
+                description: "Creates expert positioning content, social media posts, and marketing materials for Frank's personal brand and AI coaching business",
+                category: "personal",
+                version: "1.0.0",
+                file: "frankx-content/SKILL.md"
+            },
+            {
+                name: "Arcanea Lore Master",
+                icon: "🏛️",
+                description: "Maintains world-building consistency for the Arcanea platform with proper terminology, mythology, and creative guidelines",
+                category: "personal",
+                version: "1.0.0",
+                file: "arcanea-lore/SKILL.md"
+            },
+            {
+                name: "FrankX Daily Execution",
+                icon: "⚡",
+                description: "Your complete daily productivity system with Starlight Intelligence, 4-agent framework, and soul-aligned consciousness protocols",
+                category: "personal",
+                version: "1.0.0",
+                file: "frankx-daily-execution/SKILL.md"
+            },
+            {
+                name: "Greek Philosopher",
+                icon: "🏺",
+                description: "Channel ancient wisdom through Socratic questioning, Stoic principles, and philosophical inquiry with poetic eloquence",
+                category: "wisdom",
+                version: "1.0.0",
+                file: "greek-philosopher/SKILL.md"
+            },
+            {
+                name: "Spartan Warrior",
+                icon: "⚔️",
+                description: "Embody the unbreakable Spartan ethos of discipline, courage, and relentless excellence through laconic wisdom",
+                category: "wisdom",
+                version: "1.0.0",
+                file: "spartan-warrior/SKILL.md"
+            },
+            {
+                name: "Gym & Training Expert",
+                icon: "💪",
+                description: "Apply cutting-edge exercise science from 2025 research on hypertrophy, progressive overload, and evidence-based training",
+                category: "wisdom",
+                version: "1.0.0",
+                file: "gym-training-expert/SKILL.md"
+            },
+            {
+                name: "Health & Nutrition Expert",
+                icon: "🥗",
+                description: "Apply 2025 nutrition science on longevity, metabolic health, gut microbiome, and evidence-based dietary patterns",
+                category: "wisdom",
+                version: "1.0.0",
+                file: "health-nutrition-expert/SKILL.md"
+            }
+        ];
+
+        function renderSkills(filteredSkills = skills) {
+            const grid = document.getElementById('skillsGrid');
+            grid.innerHTML = filteredSkills.map(skill => `
+                <div class="skill-card" onclick="openSkill('${skill.file}', '${skill.name}')">
+                    <span class="skill-version">v${skill.version}</span>
+                    <span class="skill-icon">${skill.icon}</span>
+                    <h3 class="skill-name">${skill.name}</h3>
+                    <p class="skill-description">${skill.description}</p>
+                    <span class="skill-category">${skill.category}</span>
+                </div>
+            `).join('');
+        }
+
+        // Category filtering
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const category = btn.dataset.category;
+                const filtered = category === 'all'
+                    ? skills
+                    : skills.filter(s => s.category === category);
+
+                renderSkills(filtered);
+            });
+        });
+
+        // Search functionality
+        document.getElementById('searchBox').addEventListener('input', (e) => {
+            const search = e.target.value.toLowerCase();
+            const filtered = skills.filter(skill =>
+                skill.name.toLowerCase().includes(search) ||
+                skill.description.toLowerCase().includes(search)
+            );
+            renderSkills(filtered);
+        });
+
+        // Modal functionality
+        async function openSkill(file, name) {
+            const modal = document.getElementById('skillModal');
+            const content = document.getElementById('modalContent');
+
+            try {
+                const response = await fetch(file);
+                const markdown = await response.text();
+                content.innerHTML = `<h1>${name}</h1>` + marked.parse(markdown);
+                modal.classList.add('active');
+            } catch (error) {
+                content.innerHTML = `<h1>${name}</h1><p>Error loading skill content.</p>`;
+                modal.classList.add('active');
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('skillModal').classList.remove('active');
+        }
+
+        // Close modal on background click
+        document.getElementById('skillModal').addEventListener('click', (e) => {
+            if (e.target.id === 'skillModal') {
+                closeModal();
+            }
+        });
+
+        // Close modal on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // Initial render
+        renderSkills();
+    </script>
+</body>
+</html>

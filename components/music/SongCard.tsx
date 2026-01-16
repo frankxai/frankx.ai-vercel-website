@@ -1,5 +1,9 @@
+'use client'
+
 import Image from 'next/image'
 import Link from 'next/link'
+
+import { trackEvent } from '@/lib/analytics'
 
 export type SongRecord = {
   title: string
@@ -54,6 +58,7 @@ export default function SongCard({ song }: SongCardProps) {
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 rounded-full border border-primary-400/60 px-4 py-2 text-primary-200 transition hover:bg-primary-500/10"
+            onClick={() => trackEvent('music_session_play', { title: song.title, url: song.sunoUrl })}
           >
             Listen on Suno
           </Link>

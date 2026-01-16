@@ -1,0 +1,132 @@
+graph TB
+    %% Agentic AI Architecture
+    %% FrankX Superintelligent Agent System
+
+    subgraph USER["👤 User Interface"]
+        direction TB
+        CLI[Claude Code CLI<br/>Primary Interface]:::ui
+        SLASH[Slash Commands<br/>Quick Workflows]:::ui
+        SKILLS[Skills Library<br/>Specialized Knowledge]:::ui
+
+        CLI --> SLASH
+        CLI --> SKILLS
+    end
+
+    subgraph ORCHESTRATION["🎭 Orchestration Layer"]
+        direction TB
+        COUNCIL[FrankX Council<br/>4 Tier 1 Orchestrators]:::orchestrator
+
+        COUNCIL --> STARLIGHT[Starlight Intelligence<br/>Strategic AI & Soul-Aligned Design]:::orchestrator
+        COUNCIL --> LUMINOR[Luminor Oracle<br/>Future Visioning & Business Intelligence]:::orchestrator
+        COUNCIL --> CREATION[Creation Engine<br/>Content & Product Superintelligence]:::orchestrator
+        COUNCIL --> FREQ_ORCH[Frequency Alchemist<br/>Vibrational Music & Consciousness]:::orchestrator
+    end
+
+    subgraph SPECIALIZED["🔧 Specialized Agents"]
+        direction TB
+
+        subgraph CONTENT_AGENTS["Content Agents"]
+            SOCIAL[Social Content<br/>Generator]:::agent
+            POLISH[Content<br/>Polisher]:::agent
+            VIRAL[Viral Content<br/>Strategist]:::agent
+            IMAGES[Image<br/>Creator]:::agent
+        end
+
+        subgraph DEV_AGENTS["Development Agents"]
+            ARC_FE[Arcanea<br/>Frontend]:::agent
+            ARC_BE[Arcanea<br/>Backend]:::agent
+            ARC_AI[Arcanea<br/>AI Specialist]:::agent
+            ARC_OPS[Arcanea<br/>DevOps]:::agent
+            NEXT_DEP[Next.js<br/>Deployment]:::agent
+        end
+
+        subgraph WRITING_AGENTS["Writing Agents"]
+            CONSCIOUS[Conscious<br/>Fiction]:::agent
+            GOLDEN[Golden Age<br/>Visionary]:::agent
+            CREATOR_BOOK[Creator<br/>Books]:::agent
+            FANTASY[Fantasy &<br/>Sci-Fi]:::agent
+            BUSINESS[Business<br/>Parables]:::agent
+        end
+
+        subgraph STRATEGY_AGENTS["Strategy Agents"]
+            DISCUSS[Discussion-Based<br/>Planning]:::agent
+            COACH[Coaching Program<br/>Designer]:::agent
+            TEMPLATE[Template Design<br/>Experts]:::agent
+            UIUX[UI/UX Design<br/>Expert]:::agent
+        end
+
+        subgraph MUSIC_AGENTS["Music & Audio"]
+            SUNO_PROMPT[Suno Prompt<br/>Architect]:::agent
+            MUSIC_PROD[Music<br/>Producer]:::agent
+        end
+    end
+
+    subgraph MCP_LAYER["🔌 MCP Integration Layer"]
+        direction TB
+        MCP_PROTO[MCP Protocol<br/>Standard Interface]:::mcp
+
+        MCP_PROTO --> MCP_NANO[Nano Banana<br/>Image Generation]:::mcp
+        MCP_PROTO --> MCP_LYRIC[Lyric Genius<br/>Lyrics API]:::mcp
+        MCP_PROTO --> MCP_GH[GitHub<br/>Repository Access]:::mcp
+        MCP_PROTO --> MCP_LINEAR[Linear<br/>Project Management]:::mcp
+        MCP_PROTO --> MCP_NOTION[Notion<br/>Documentation]:::mcp
+        MCP_PROTO --> MCP_FIGMA[Figma<br/>Design System]:::mcp
+        MCP_PROTO --> MCP_FRAMER[Framer<br/>Prototyping]:::mcp
+        MCP_PROTO --> MCP_NEXT[Next.js DevTools<br/>Runtime Inspection]:::mcp
+        MCP_PROTO --> MCP_PLAY[Playwright<br/>Browser Automation]:::mcp
+    end
+
+    subgraph AI_MODELS["🧠 AI Model Layer"]
+        direction TB
+        CLAUDE[Claude Sonnet 4.5<br/>Primary Intelligence]:::model
+        GEMINI_M[Gemini Flash<br/>Vision & Processing]:::model
+        SUNO_M[Suno AI v4.5<br/>Music Generation]:::model
+        IMAGEN_M[Imagen 3<br/>Image Generation]:::model
+        OCI_M[Oracle AI<br/>Enterprise Models]:::model
+    end
+
+    subgraph KNOWLEDGE["📚 Knowledge Layer"]
+        direction TB
+        CLAUDE_MD[CLAUDE.md<br/>Project Instructions]:::knowledge
+        GLOBAL_MD[Global Instructions<br/>Cross-Project]:::knowledge
+        DOCS[Documentation<br/>Strategy & Guides]:::knowledge
+        SKILLS_LIB[Skills Library<br/>Domain Expertise]:::knowledge
+
+        CLAUDE_MD --> DOCS
+        GLOBAL_MD --> DOCS
+        SKILLS_LIB --> DOCS
+    end
+
+    subgraph AUTOMATION["⚡ Automation Layer"]
+        direction TB
+        HOOKS[Shell Hooks<br/>Event Triggers]:::auto
+        CICD_AUTO[CI/CD Pipeline<br/>Automated Deploy]:::auto
+        WEBHOOKS[Webhooks<br/>External Integration]:::auto
+
+        HOOKS --> CICD_AUTO
+        WEBHOOKS --> CICD_AUTO
+    end
+
+    %% Flow connections
+    USER --> ORCHESTRATION
+    ORCHESTRATION --> SPECIALIZED
+    SPECIALIZED --> MCP_LAYER
+    MCP_LAYER --> AI_MODELS
+    KNOWLEDGE -.->|informs| ORCHESTRATION
+    KNOWLEDGE -.->|informs| SPECIALIZED
+    AUTOMATION -.->|triggers| SPECIALIZED
+
+    %% Cross-connections
+    STARLIGHT -.->|guides| DEV_AGENTS
+    CREATION -.->|guides| CONTENT_AGENTS
+    CREATION -.->|guides| WRITING_AGENTS
+    FREQ_ORCH -.->|guides| MUSIC_AGENTS
+    LUMINOR -.->|guides| STRATEGY_AGENTS
+
+    classDef ui fill:#4A90E2,stroke:#2E5C8A,stroke-width:3px,color:#fff
+    classDef orchestrator fill:#E24A90,stroke:#8A2E5C,stroke-width:3px,color:#fff,font-weight:bold
+    classDef agent fill:#90E24A,stroke:#5C8A2E,stroke-width:2px,color:#333
+    classDef mcp fill:#E2904A,stroke:#8A5C2E,stroke-width:2px,color:#fff
+    classDef model fill:#9B4AE2,stroke:#5C2E8A,stroke-width:2px,color:#fff
+    classDef knowledge fill:#4AE2E2,stroke:#2E8A8A,stroke-width:2px,color:#333
+    classDef auto fill:#FFB84D,stroke:#CC8A3D,stroke-width:2px,color:#333

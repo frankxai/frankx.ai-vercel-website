@@ -45,7 +45,7 @@ The tasks will be implemented in the following order to ensure a logical workflo
 | --- | --- | --- | --- |
 | Membership Realm | Wire `/realm` protected experience, seed onboarding emails, sync Supabase profile model | Growth + Platform | Reference `docs/membership-realm.md`; schedule hand-off once Supabase project provisioned |
 | Creation Chronicles | Ship `/creation-chronicles` hub (stories + Suno embeds + opt-in), migrate premium essays into tiered gating | Content Ops | Pair with music grid + analytics instrumentation (`lib/analytics.ts`) |
-| Analytics | Replace stub with PostHog wrapper, log standard events (`product_cta_click`, `segment_profile`, `realm_login`) | Engineering | Coordinate with membership telemetry to avoid duplicate schemas |
+| Analytics | Replace stub with PostHog wrapper, log standard events (`creator_funnel_step`, `segment_profile`, `realm_login`) | Engineering | Coordinate with membership telemetry to avoid duplicate schemas |
 | Satellite Strategy | Draft cross-brand linking playbook (FrankX.ai ↔ AIArchitectAcademy ↔ AIMusicAcademy) | Strategy | Outline canonical tags, nav entry points, and shared component package |
 | Support Ops | Document SLA + escalation runbook for Inner Circle & Alliance tiers | Community Success | Derived from membership realm doc |
 

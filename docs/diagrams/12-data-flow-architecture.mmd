@@ -1,0 +1,190 @@
+graph TB
+    %% Data Flow Architecture
+    %% System-wide data movement and processing
+
+    subgraph USER_INPUT["👤 User Input Layer"]
+        direction TB
+        WEB_UI[Web Interface<br/>Browser Interactions]:::input
+        API_CLIENT[API Clients<br/>Mobile/Desktop Apps]:::input
+        WEBHOOKS_IN[Incoming Webhooks<br/>External Services]:::input
+        CLI_INPUT[CLI Commands<br/>Admin Tools]:::input
+
+        WEB_UI --> API_CLIENT
+        API_CLIENT --> WEBHOOKS_IN
+    end
+
+    subgraph API_GATEWAY["🚪 API Gateway"]
+        direction TB
+        NEXT_API[Next.js API Routes<br/>Request Router]:::gateway
+        VALIDATION[Input Validation<br/>Schema Checking]:::gateway
+        AUTH_CHECK[Authentication<br/>JWT Verification]:::gateway
+        RATE_LIMIT[Rate Limiting<br/>Request Throttling]:::gateway
+
+        NEXT_API --> VALIDATION
+        VALIDATION --> AUTH_CHECK
+        AUTH_CHECK --> RATE_LIMIT
+    end
+
+    subgraph SERVICE_LAYER["⚙️ Service Layer"]
+        direction TB
+
+        subgraph CORE_SERVICES["Core Services"]
+            USER_SERVICE[User Service<br/>Profile & Preferences]:::service
+            CONTENT_SERVICE[Content Service<br/>Posts & Media]:::service
+            AUTH_SERVICE[Auth Service<br/>Session Management]:::service
+            SEARCH_SERVICE[Search Service<br/>Full-Text Query]:::service
+        end
+
+        subgraph AI_SERVICES["AI Services"]
+            AI_GUARDIAN[Guardian Service<br/>AI Personalities]:::ai_service
+            AI_CONTENT[Content AI<br/>Generation & Polish]:::ai_service
+            AI_IMAGE[Image AI<br/>Imagen 3 Integration]:::ai_service
+            AI_MUSIC[Music AI<br/>Suno Integration]:::ai_service
+        end
+
+        subgraph EXTERNAL_SERVICES["External Services"]
+            PAYMENT_SERVICE[Payment Service<br/>Stripe Integration]:::ext_service
+            EMAIL_SERVICE[Email Service<br/>Resend API]:::ext_service
+            ANALYTICS_SERVICE[Analytics Service<br/>Tracking & Metrics]:::ext_service
+        end
+
+        CORE_SERVICES -.->|uses| AI_SERVICES
+        CORE_SERVICES -.->|uses| EXTERNAL_SERVICES
+    end
+
+    subgraph DATA_ACCESS["🗄️ Data Access Layer"]
+        direction TB
+
+        subgraph ORM["ORM/Query Builder"]
+            SUPABASE_CLIENT[Supabase Client<br/>Database Queries]:::data
+            QUERY_BUILDER[Query Builder<br/>SQL Construction]:::data
+            CACHE_LAYER[Cache Layer<br/>Redis/Memory]:::data
+        end
+
+        subgraph REPOSITORIES["Repositories"]
+            USER_REPO[User Repository<br/>User Data CRUD]:::repo
+            POST_REPO[Post Repository<br/>Content CRUD]:::repo
+            MEDIA_REPO[Media Repository<br/>File Management]:::repo
+            GUARDIAN_REPO[Guardian Repository<br/>AI Data CRUD]:::repo
+        end
+
+        ORM --> REPOSITORIES
+    end
+
+    subgraph DATABASE["💾 Database Layer"]
+        direction TB
+
+        subgraph PRIMARY_DB["Primary Database"]
+            PG[PostgreSQL<br/>Supabase]:::database
+            RLS_ENGINE[RLS Engine<br/>Security Enforcement]:::database
+            TRIGGERS[Database Triggers<br/>Automated Actions]:::database
+        end
+
+        subgraph STORAGE_DB["Storage"]
+            OBJECT_STORE[Object Storage<br/>Media Files]:::storage
+            CDN_CACHE[CDN Cache<br/>Edge Distribution]:::storage
+        end
+
+        subgraph SEARCH_DB["Search Index"]
+            FULL_TEXT[Full-Text Search<br/>PostgreSQL FTS]:::search
+            VECTOR_SEARCH[Vector Search<br/>Embeddings]:::search
+        end
+
+        PRIMARY_DB --> STORAGE_DB
+        PRIMARY_DB --> SEARCH_DB
+    end
+
+    subgraph REALTIME["⚡ Real-time Layer"]
+        direction TB
+        WS_SERVER[WebSocket Server<br/>Supabase Realtime]:::realtime
+        PRESENCE[Presence System<br/>Online Status]:::realtime
+        BROADCAST[Broadcast Channels<br/>Live Updates]:::realtime
+        SUBSCRIPTIONS[Subscriptions<br/>Change Notifications]:::realtime
+
+        WS_SERVER --> PRESENCE
+        WS_SERVER --> BROADCAST
+        WS_SERVER --> SUBSCRIPTIONS
+    end
+
+    subgraph EXTERNAL_APIS["🌐 External APIs"]
+        direction TB
+        ANTHROPIC[Anthropic API<br/>Claude AI]:::external
+        GOOGLE_AI[Google AI<br/>Gemini & Imagen]:::external
+        SUNO_API[Suno API<br/>Music Generation]:::external
+        STRIPE_API[Stripe API<br/>Payments]:::external
+        RESEND_API[Resend API<br/>Email Delivery]:::external
+
+        ANTHROPIC --> GOOGLE_AI
+        GOOGLE_AI --> SUNO_API
+    end
+
+    subgraph EVENTS["📡 Event System"]
+        direction TB
+        EVENT_BUS[Event Bus<br/>Pub/Sub Pattern]:::events
+        EVENT_HANDLERS[Event Handlers<br/>Async Processing]:::events
+        QUEUE[Job Queue<br/>Background Tasks]:::events
+
+        EVENT_BUS --> EVENT_HANDLERS
+        EVENT_HANDLERS --> QUEUE
+    end
+
+    subgraph CACHING["🚀 Caching Strategy"]
+        direction TB
+        EDGE_CACHE[Edge Cache<br/>Vercel CDN]:::cache
+        APP_CACHE[Application Cache<br/>In-Memory]:::cache
+        DB_CACHE[Database Cache<br/>Query Results]:::cache
+
+        EDGE_CACHE --> APP_CACHE
+        APP_CACHE --> DB_CACHE
+    end
+
+    subgraph MONITORING["📊 Monitoring & Logging"]
+        direction TB
+        APP_LOGS[Application Logs<br/>Structured Logging]:::monitor
+        ERROR_TRACK[Error Tracking<br/>Sentry]:::monitor
+        PERF_MONITOR[Performance Monitoring<br/>Vercel Analytics]:::monitor
+        AUDIT_LOG[Audit Logs<br/>User Actions]:::monitor
+
+        APP_LOGS --> ERROR_TRACK
+        ERROR_TRACK --> PERF_MONITOR
+        PERF_MONITOR --> AUDIT_LOG
+    end
+
+    %% Main data flow
+    USER_INPUT --> API_GATEWAY
+    API_GATEWAY --> SERVICE_LAYER
+    SERVICE_LAYER --> DATA_ACCESS
+    DATA_ACCESS --> DATABASE
+    DATABASE --> REALTIME
+
+    %% External integrations
+    SERVICE_LAYER --> EXTERNAL_APIS
+    SERVICE_LAYER --> EVENTS
+
+    %% Caching integration
+    API_GATEWAY -.->|checks| CACHING
+    DATA_ACCESS -.->|uses| CACHING
+
+    %% Monitoring integration
+    API_GATEWAY -.->|logs| MONITORING
+    SERVICE_LAYER -.->|logs| MONITORING
+    DATABASE -.->|logs| MONITORING
+
+    %% Realtime pushes back to users
+    REALTIME -.->|pushes to| USER_INPUT
+
+    classDef input fill:#4A90E2,stroke:#2E5C8A,stroke-width:2px,color:#fff
+    classDef gateway fill:#E24A90,stroke:#8A2E5C,stroke-width:2px,color:#fff
+    classDef service fill:#90E24A,stroke:#5C8A2E,stroke-width:2px,color:#333
+    classDef ai_service fill:#9B4AE2,stroke:#5C2E8A,stroke-width:2px,color:#fff
+    classDef ext_service fill:#4AE2E2,stroke:#2E8A8A,stroke-width:2px,color:#333
+    classDef data fill:#E2904A,stroke:#8A5C2E,stroke-width:2px,color:#fff
+    classDef repo fill:#FFB84D,stroke:#CC8A3D,stroke-width:2px,color:#333
+    classDef database fill:#B366FF,stroke:#8C4DCC,stroke-width:2px,color:#fff
+    classDef storage fill:#FF8C66,stroke:#CC704D,stroke-width:2px,color:#fff
+    classDef search fill:#66FF8C,stroke:#4DCC70,stroke-width:2px,color:#333
+    classDef realtime fill:#FFE066,stroke:#CCB34D,stroke-width:2px,color:#333
+    classDef external fill:#E24AE2,stroke:#8A2E8A,stroke-width:2px,color:#fff
+    classDef events fill:#66E0FF,stroke:#4DB3CC,stroke-width:2px,color:#333
+    classDef cache fill:#FF66E0,stroke:#CC4DB3,stroke-width:2px,color:#fff
+    classDef monitor fill:#8CC9E2,stroke:#70A3B3,stroke-width:2px,color:#333

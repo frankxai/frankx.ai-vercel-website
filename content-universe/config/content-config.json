@@ -1,0 +1,149 @@
+{
+  "contentUniverse": {
+    "version": "1.0.0",
+    "author": "Frank",
+    "created": "2025-10-31",
+    "description": "Superintelligent content creation system for FrankX"
+  },
+  "contentTypes": {
+    "books": {
+      "path": "books/",
+      "template": "_templates/book-template.json",
+      "defaultStatus": "planning",
+      "statusFlow": ["planning", "research", "drafting", "editing", "polishing", "complete"],
+      "qualityGates": {
+        "fleschReadingEase": { "min": 60, "max": 70 },
+        "activeVoicePercentage": { "min": 80 },
+        "aiPatternDetection": true,
+        "factVerification": true
+      },
+      "publishTargets": ["kindle", "pdf", "epub", "web"],
+      "canRepurposeFrom": ["blogs", "courses"],
+      "canRepurposeTo": ["courses", "social"]
+    },
+    "blogs": {
+      "path": "blogs/",
+      "template": "_templates/blog-template.json",
+      "defaultStatus": "draft",
+      "statusFlow": ["draft", "review", "seo-optimize", "published"],
+      "pillars": [
+        "conscious-ai",
+        "business-intelligence",
+        "creative-innovation",
+        "community"
+      ],
+      "targetLength": { "min": 1200, "max": 2500 },
+      "seoEnabled": true,
+      "publishTargets": ["frankx.ai", "medium", "linkedin"],
+      "canRepurposeFrom": ["books", "courses"],
+      "canRepurposeTo": ["books", "social", "courses"]
+    },
+    "social": {
+      "path": "social/",
+      "template": "_templates/social-template.json",
+      "types": {
+        "threads": {
+          "platform": "twitter-x",
+          "maxThreadLength": 15,
+          "characterLimit": 280,
+          "hookRequired": true
+        },
+        "linkedin": {
+          "platform": "linkedin",
+          "maxLength": 3000,
+          "hashtagLimit": 5,
+          "engagementOptimized": true
+        }
+      },
+      "viralityScore": {
+        "hookStrength": 0.3,
+        "clarity": 0.2,
+        "actionability": 0.2,
+        "emotionalResonance": 0.15,
+        "shareability": 0.15
+      },
+      "canRepurposeFrom": ["blogs", "books", "courses"],
+      "canRepurposeTo": ["blogs"]
+    },
+    "courses": {
+      "path": "courses/",
+      "template": "_templates/course-template.json",
+      "defaultStatus": "planning",
+      "statusFlow": ["planning", "curriculum-design", "module-creation", "review", "complete"],
+      "structure": {
+        "hasModules": true,
+        "hasLessons": true,
+        "hasExercises": true,
+        "hasAssessments": true
+      },
+      "deliveryFormats": ["video-script", "text-lesson", "interactive-exercise", "workbook"],
+      "publishTargets": ["thinkific", "teachable", "custom-lms"],
+      "canRepurposeFrom": ["books", "blogs"],
+      "canRepurposeTo": ["books", "blogs", "social"]
+    }
+  },
+  "crossPollinationRules": {
+    "blogToBook": {
+      "enabled": true,
+      "thresholds": {
+        "minLikes": 1000,
+        "minShares": 100,
+        "minComments": 50
+      },
+      "autoSuggest": true,
+      "requiresApproval": true
+    },
+    "bookChapterToCourse": {
+      "enabled": true,
+      "conditions": {
+        "hasActionableFrameworks": true,
+        "hasExercises": true,
+        "minLength": 3000
+      },
+      "autoCreateModule": false,
+      "requiresApproval": true
+    },
+    "blogToSocial": {
+      "enabled": true,
+      "autoExtractHooks": true,
+      "maxThreadsPerBlog": 3,
+      "requiresApproval": false
+    }
+  },
+  "unifiedThemes": {
+    "primary": [
+      "conscious-ai-integration",
+      "creator-economy",
+      "ai-music-production",
+      "business-intelligence",
+      "personal-transformation",
+      "oracle-cloud-ai"
+    ],
+    "secondary": [
+      "agent-orchestration",
+      "content-creation",
+      "spiritual-technology",
+      "future-of-work",
+      "creative-tools",
+      "entrepreneurship"
+    ]
+  },
+  "contentAgents": {
+    "tier1-core-writing": [
+      "literary-architect",
+      "truth-weaver",
+      "voice-alchemist",
+      "impact-engineer"
+    ],
+    "tier2-specialized": [
+      "blog-master",
+      "social-media-strategist",
+      "course-architect",
+      "content-repurposer"
+    ],
+    "tier3-orchestration": [
+      "content-universe-oracle",
+      "publishing-pipeline"
+    ]
+  }
+}

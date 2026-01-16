@@ -1,22 +1,32 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ReactNode } from 'react'
+import { ReactNode, AnchorHTMLAttributes, ButtonHTMLAttributes } from 'react'
 import { cn } from '@/lib/utils'
 
-interface PremiumButtonProps {
+// Base props shared by both button and anchor variants
+interface BasePremiumButtonProps {
   children: ReactNode
   variant?: 'primary' | 'secondary' | 'ghost' | 'luxury'
   size?: 'sm' | 'md' | 'lg' | 'xl'
   glow?: boolean
   className?: string
-  onClick?: () => void
-  href?: string
-  disabled?: boolean
   ariaLabel?: string
   ariaDescribedBy?: string
-  type?: 'button' | 'submit' | 'reset'
 }
+
+// Button-specific props
+interface PremiumButtonAsButton extends BasePremiumButtonProps, Omit<ButtonHTMLAttributes<HTMLButtonElement>, keyof BasePremiumButtonProps> {
+  href?: never
+}
+
+// Anchor-specific props
+interface PremiumButtonAsAnchor extends BasePremiumButtonProps, Omit<AnchorHTMLAttributes<HTMLAnchorElement>, keyof BasePremiumButtonProps> {
+  href: string
+}
+
+// Union type for polymorphic behavior
+type PremiumButtonProps = PremiumButtonAsButton | PremiumButtonAsAnchor
 
 const variantStyles = {
   primary: 'bg-gradient-to-r from-purple-600 via-blue-600 to-cyan-600 text-white shadow-lg shadow-purple-500/25',
@@ -45,13 +55,12 @@ export default function PremiumButton({
   size = 'md',
   glow = false,
   className,
-  onClick,
-  href,
-  disabled = false,
   ariaLabel,
   ariaDescribedBy,
-  type = 'button'
+  ...props
 }: PremiumButtonProps) {
+  const { href } = props as PremiumButtonAsAnchor
+  const disabled = (props as PremiumButtonAsButton).disabled ?? false
   const baseClasses = cn(
     'relative overflow-hidden font-semibold transition-all duration-300',
     // Mobile-optimized hover states - reduced transforms on touch devices
@@ -92,9 +101,20 @@ export default function PremiumButton({
   }
 
   if (href) {
+    // Extract anchor-specific props
+    const { target, rel, download, ...anchorProps } = props as PremiumButtonAsAnchor
+
+    // Automatically add rel="noopener noreferrer" for external links with target="_blank"
+    const safeRel = target === '_blank'
+      ? rel ? `${rel} noopener noreferrer` : 'noopener noreferrer'
+      : rel
+
     return (
       <motion.a
         href={href}
+        target={target}
+        rel={safeRel}
+        download={download}
         className={baseClasses}
         aria-label={ariaLabel}
         aria-describedby={ariaDescribedBy}
@@ -105,6 +125,9 @@ export default function PremiumButton({
       </motion.a>
     )
   }
+
+  // Extract button-specific props
+  const { type = 'button', onClick, disabled: buttonDisabled, ...buttonProps } = props as PremiumButtonAsButton
 
   return (
     <motion.button

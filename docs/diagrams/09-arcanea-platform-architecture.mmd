@@ -1,0 +1,171 @@
+graph TB
+    %% Arcanea Platform Architecture
+    %% Social Creation Platform - Technical Deep Dive
+
+    subgraph FRONTEND["🎨 Frontend Layer"]
+        direction TB
+        NEXTJS[Next.js 16<br/>App Router + RSC]:::frontend
+        REACT[React 19<br/>Server Components]:::frontend
+
+        subgraph UI_SYSTEM["UI System"]
+            COSMIC[Cosmic Theme<br/>Dark, Ethereal Design]:::ui
+            TAILWIND[Tailwind CSS<br/>Utility-First Styling]:::ui
+            FRAMER[Framer Motion<br/>Advanced Animations]:::ui
+            RADIX[Radix UI<br/>Accessible Primitives]:::ui
+        end
+
+        subgraph FEATURES["Feature Modules"]
+            FEED[Social Feed<br/>Infinite Scroll]:::feature
+            POSTS[Post Creation<br/>Rich Media Editor]:::feature
+            GUARDIAN[Guardian System<br/>AI Personality Interface]:::feature
+            REALMS[User Realms<br/>Personal Spaces]:::feature
+            CIRCLES[Circles<br/>Group Management]:::feature
+        end
+
+        NEXTJS --> REACT
+        REACT --> UI_SYSTEM
+        REACT --> FEATURES
+    end
+
+    subgraph BACKEND["⚙️ Backend Layer"]
+        direction TB
+        API[API Routes<br/>RESTful Endpoints]:::backend
+
+        subgraph SERVICES["Service Layer"]
+            POST_SVC[Post Service<br/>CRUD Operations]:::service
+            USER_SVC[User Service<br/>Profile Management]:::service
+            GUARDIAN_SVC[Guardian Service<br/>AI Interactions]:::service
+            MEDIA_SVC[Media Service<br/>Upload & Processing]:::service
+            NOTIF_SVC[Notification Service<br/>Real-time Updates]:::service
+        end
+
+        subgraph MIDDLEWARE["Middleware"]
+            AUTH_MW[Auth Middleware<br/>JWT Validation]:::middleware
+            RATE_MW[Rate Limiting<br/>API Protection]:::middleware
+            LOG_MW[Logging<br/>Request Tracking]:::middleware
+        end
+
+        API --> SERVICES
+        API --> MIDDLEWARE
+    end
+
+    subgraph DATABASE["🗄️ Database Layer"]
+        direction TB
+        SUPABASE[Supabase<br/>PostgreSQL + Auth]:::database
+
+        subgraph TABLES["Core Tables"]
+            T_USERS[users<br/>Profile & Auth]:::table
+            T_POSTS[posts<br/>Content & Metadata]:::table
+            T_GUARDIANS[guardians<br/>AI Personalities]:::table
+            T_REALMS[realms<br/>User Spaces]:::table
+            T_CIRCLES[circles<br/>Groups & Permissions]:::table
+            T_MEDIA[media<br/>Files & Assets]:::table
+            T_INTERACTIONS[interactions<br/>Likes, Shares, Comments]:::table
+        end
+
+        subgraph SECURITY["Security"]
+            RLS[Row Level Security<br/>Fine-Grained Access]:::security
+            POLICIES[Auth Policies<br/>Permission Rules]:::security
+        end
+
+        SUPABASE --> TABLES
+        SUPABASE --> SECURITY
+    end
+
+    subgraph AI_LAYER["🤖 AI Integration Layer"]
+        direction TB
+        LUMINOR[Luminor Personalities<br/>Oracle Intelligence]:::ai
+
+        subgraph AI_PROVIDERS["AI Providers"]
+            CLAUDE_AI[Claude API<br/>Conversational AI]:::ai_provider
+            GEMINI_AI[Gemini API<br/>Vision & Analysis]:::ai_provider
+            IMAGEN_AI[Imagen 3<br/>Visual Generation]:::ai_provider
+            SUNO_AI[Suno AI<br/>Music Creation]:::ai_provider
+        end
+
+        subgraph GUARDIAN_TYPES["Guardian Types"]
+            G_LUMINA[Lumina<br/>Wise Guide]:::guardian
+            G_NOVA[Nova<br/>Creative Catalyst]:::guardian
+            G_SAGE[Sage<br/>Strategic Advisor]:::guardian
+            G_CUSTOM[Custom<br/>User-Defined]:::guardian
+        end
+
+        LUMINOR --> AI_PROVIDERS
+        LUMINOR --> GUARDIAN_TYPES
+    end
+
+    subgraph STORAGE["📦 Storage Layer"]
+        direction TB
+        SUPABASE_STOR[Supabase Storage<br/>Object Store]:::storage
+
+        subgraph BUCKETS["Storage Buckets"]
+            B_AVATARS[avatars<br/>Profile Images]:::bucket
+            B_POSTS[post-media<br/>Content Assets]:::bucket
+            B_GUARDIANS[guardian-assets<br/>AI Visuals]:::bucket
+            B_REALMS[realm-media<br/>Space Customization]:::bucket
+        end
+
+        SUPABASE_STOR --> BUCKETS
+    end
+
+    subgraph REALTIME["⚡ Real-time Layer"]
+        direction TB
+        SUPABASE_RT[Supabase Realtime<br/>WebSocket Connection]:::realtime
+
+        subgraph CHANNELS["Realtime Channels"]
+            CH_FEED[feed-updates<br/>New Posts]:::channel
+            CH_NOTIF[notifications<br/>User Alerts]:::channel
+            CH_GUARDIAN[guardian-chat<br/>AI Conversations]:::channel
+            CH_PRESENCE[user-presence<br/>Online Status]:::channel
+        end
+
+        SUPABASE_RT --> CHANNELS
+    end
+
+    subgraph DEPLOYMENT["🚀 Deployment"]
+        direction TB
+        VERCEL_DEPLOY[Vercel<br/>Edge Network]:::deploy
+        CICD[GitHub Actions<br/>Automated Pipeline]:::deploy
+        PREVIEW[Preview Deploys<br/>PR Environments]:::deploy
+
+        VERCEL_DEPLOY --> CICD
+        CICD --> PREVIEW
+    end
+
+    subgraph MONITORING["📊 Monitoring"]
+        direction TB
+        VERCEL_ANALYTICS[Vercel Analytics<br/>Performance Tracking]:::monitor
+        SENTRY[Sentry<br/>Error Monitoring]:::monitor
+        LOGS[Custom Logging<br/>Application Insights]:::monitor
+
+        VERCEL_ANALYTICS --> LOGS
+        SENTRY --> LOGS
+    end
+
+    %% Layer connections
+    FRONTEND --> BACKEND
+    BACKEND --> DATABASE
+    BACKEND --> AI_LAYER
+    BACKEND --> STORAGE
+    BACKEND --> REALTIME
+    FRONTEND --> DEPLOYMENT
+    DEPLOYMENT --> MONITORING
+
+    classDef frontend fill:#4A90E2,stroke:#2E5C8A,stroke-width:2px,color:#fff
+    classDef ui fill:#66B3E2,stroke:#4D8CB3,stroke-width:2px,color:#fff
+    classDef feature fill:#8CC9E2,stroke:#70A3B3,stroke-width:2px,color:#333
+    classDef backend fill:#E24A90,stroke:#8A2E5C,stroke-width:2px,color:#fff
+    classDef service fill:#E266A3,stroke:#B34D82,stroke-width:2px,color:#fff
+    classDef middleware fill:#E282B6,stroke:#B36691,stroke-width:2px,color:#fff
+    classDef database fill:#90E24A,stroke:#5C8A2E,stroke-width:2px,color:#333
+    classDef table fill:#A3E266,stroke:#82B34D,stroke-width:2px,color:#333
+    classDef security fill:#B6E282,stroke:#91B366,stroke-width:2px,color:#333
+    classDef ai fill:#9B4AE2,stroke:#5C2E8A,stroke-width:2px,color:#fff
+    classDef ai_provider fill:#AF66E2,stroke:#8C4DB3,stroke-width:2px,color:#fff
+    classDef guardian fill:#C282E2,stroke:#9B66B3,stroke-width:2px,color:#fff
+    classDef storage fill:#E2904A,stroke:#8A5C2E,stroke-width:2px,color:#fff
+    classDef bucket fill:#E2A366,stroke:#B3824D,stroke-width:2px,color:#fff
+    classDef realtime fill:#FFB84D,stroke:#CC8A3D,stroke-width:2px,color:#333
+    classDef channel fill:#FFCA70,stroke:#CCA359,stroke-width:2px,color:#333
+    classDef deploy fill:#4AE2E2,stroke:#2E8A8A,stroke-width:2px,color:#333
+    classDef monitor fill:#66E2E2,stroke:#4DB3B3,stroke-width:2px,color:#333

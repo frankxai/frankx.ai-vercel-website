@@ -26,6 +26,7 @@ import { atlasActions, atlasMetrics, atlasVolumes } from '@/lib/intelligence-atl
 import { gradientPresets, glassCardClasses } from '@/lib/design/gradients'
 import {
   ParallaxContainer,
+  ParallaxLayer,
   StaggerContainer,
   StaggerItem,
   FloatingElement,
@@ -37,6 +38,9 @@ import {
   ScrollProgress
 } from '@/components/ui/AdvancedAnimations'
 import { Surface, SectionHeading, Pill, StatBlock } from '@/components/ui/primitives'
+import { SplitTextReveal } from '@/components/ui/SplitTextReveal'
+import { CursorSpotlight } from '@/components/ui/CursorSpotlight'
+import { TiltCard } from '@/components/ui/TiltCard'
 
 const fadeUp = {
   initial: { opacity: 0, y: 24 },
@@ -59,11 +63,17 @@ export default function HomePage() {
   return (
     <main id="main" className="flex-1 pt-32 text-white">
       <ScrollProgress />
+      <CursorSpotlight />
       {/* Hero Section */}
       <section id="hub" className="relative overflow-hidden pt-24 pb-32">
-        <MorphingBackground />
-        <div className={clsx('absolute inset-0', gradientPresets.heroBase)} />
-        <div className={clsx('absolute inset-0 opacity-60 blur-3xl', gradientPresets.heroAurora)} />
+        {/* Multi-layer parallax background */}
+        <ParallaxLayer offset={-80} blur={3} className="absolute inset-0">
+          <MorphingBackground />
+        </ParallaxLayer>
+        <ParallaxLayer offset={-40} blur={1} className="absolute inset-0">
+          <div className={clsx('absolute inset-0', gradientPresets.heroBase)} />
+          <div className={clsx('absolute inset-0 opacity-60 blur-3xl', gradientPresets.heroAurora)} />
+        </ParallaxLayer>
         <div className={clsx('absolute inset-0 opacity-40', gradientPresets.heroPulse)} />
         <div className="absolute inset-x-0 top-0 h-64 bg-gradient-to-b from-white/5 via-transparent to-transparent opacity-60" aria-hidden />
         <ParallaxContainer offset={30}>
@@ -80,18 +90,21 @@ export default function HomePage() {
                   </Pill>
                 </StaggerItem>
                 <StaggerItem>
-                  <h1 className="text-5xl font-bold leading-tight text-balance md:text-7xl xl:text-8xl max-w-6xl mx-auto">
-                    <span className="bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent">
-                      Transform Ideas Into
-                    </span>
-                    <br />
-                    <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent">
-                      Exponential Results
-                    </span>
-                  </h1>
+                  <div className="max-w-6xl mx-auto">
+                    <SplitTextReveal
+                      text="Transform Ideas Into"
+                      className="text-5xl font-bold leading-tight text-balance md:text-7xl xl:text-8xl bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent"
+                      delay={0.2}
+                    />
+                    <SplitTextReveal
+                      text="Exponential Results"
+                      className="text-5xl font-bold leading-tight text-balance md:text-7xl xl:text-8xl bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 bg-clip-text text-transparent"
+                      delay={0.6}
+                    />
+                  </div>
                 </StaggerItem>
                 <StaggerItem>
-                  <p className="text-xl text-white/70 max-w-4xl mx-auto leading-relaxed">
+                  <p className="text-xl text-slate-200 max-w-4xl mx-auto leading-relaxed">
                     Architect the intelligence era with a unified roadmap, field-tested frameworks, and operating rituals that keep every agent and teammate aligned.
                   </p>
                 </StaggerItem>
@@ -128,7 +141,7 @@ export default function HomePage() {
                 </StaggerItem>
                 <StaggerItem>
                   <div className="flex items-center justify-center gap-8 pt-8 text-sm text-white/60">
-                    <span>Trusted by creators and enterprises</span>
+                    <span>Trusted by creators and collaborators</span>
                     <div className="flex items-center gap-6">
                       <div className="flex items-center gap-2">
                         <div className="w-2 h-2 rounded-full bg-green-400"></div>
@@ -136,7 +149,7 @@ export default function HomePage() {
                       </div>
                       <div className="flex items-center gap-2">
                         <div className="w-2 h-2 rounded-full bg-cyan-400"></div>
-                        <span>200+ Enterprise systems</span>
+                        <span>300+ Creator systems</span>
                       </div>
                     </div>
                   </div>
@@ -240,20 +253,22 @@ export default function HomePage() {
           </motion.div>
 
           <div className="grid gap-6 md:grid-cols-3">
-            {homeSpotlights.map((spotlight) => (
-              <motion.div key={spotlight.title} {...fadeUp}>
-                <Surface as="article" tone="glass" padding="md" className="h-full backdrop-blur-sm">
-                  <span className="eyebrow-text text-white/70">{spotlight.eyebrow}</span>
-                  <h3 className="mt-3 text-xl font-semibold text-white">{spotlight.title}</h3>
-                  <p className="mt-2 text-sm text-white/70 leading-relaxed">{spotlight.description}</p>
-                  <Link
-                    href={spotlight.href}
-                    className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-brand-200 underline-offset-4 hover:text-brand-100 hover:underline"
-                  >
-                    {spotlight.cta}
-                    <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                  </Link>
-                </Surface>
+            {homeSpotlights.map((spotlight, index) => (
+              <motion.div key={spotlight.title} {...fadeUp} transition={{ delay: index * 0.1 }}>
+                <TiltCard className="h-full group">
+                  <Surface as="article" tone="glass" padding="md" className="h-full backdrop-blur-sm">
+                    <span className="eyebrow-text text-slate-400">{spotlight.eyebrow}</span>
+                    <h3 className="mt-3 text-xl font-semibold text-white">{spotlight.title}</h3>
+                    <p className="mt-2 text-sm text-slate-300 leading-relaxed">{spotlight.description}</p>
+                    <Link
+                      href={spotlight.href}
+                      className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-cyan-300 underline-offset-4 hover:text-cyan-200 hover:underline"
+                    >
+                      {spotlight.cta}
+                      <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                    </Link>
+                  </Surface>
+                </TiltCard>
               </motion.div>
             ))}
           </div>
@@ -283,7 +298,7 @@ export default function HomePage() {
               transition={{ duration: 0.35 }}
             >
               <div className="text-xs font-semibold uppercase tracking-[0.35em] text-white/60">
-                Volume I — Architecting the Agentic Era
+                Volume I ??? Architecting the Agentic Era
               </div>
               <h3 className="mt-4 text-3xl font-semibold text-white">
                 Go inside the flagship report fueling the atlas.
@@ -743,5 +758,6 @@ export default function HomePage() {
     </main>
   )
 }
+
 
 

@@ -2,6 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import readingTime from 'reading-time'
+import { cache } from 'react'
 
 const blogDirectory = path.join(process.cwd(), 'content/blog')
 
@@ -33,7 +34,7 @@ export interface BlogPost {
   lastUpdated?: string // Freshness signal for search engines
 }
 
-export function getAllBlogPosts(): BlogPost[] {
+export const getAllBlogPosts = cache((): BlogPost[] => {
   const fileNames = fs.readdirSync(blogDirectory)
   const allPostsData = fileNames
     .filter((name) => name.endsWith('.mdx'))
@@ -53,10 +54,10 @@ export function getAllBlogPosts(): BlogPost[] {
     })
 
   return allPostsData.sort((a, b) => (new Date(a.date) > new Date(b.date) ? -1 : 1))
-}
+})
 
 
-export function getBlogPost(slug: string): BlogPost | null {
+export const getBlogPost = cache((slug: string): BlogPost | null => {
   try {
     const fullPath = path.join(blogDirectory, `${slug}.mdx`)
 
@@ -73,7 +74,7 @@ export function getBlogPost(slug: string): BlogPost | null {
   } catch {
     return null
   }
-}
+})
 
 export function getFeaturedPosts(): BlogPost[] {
   return getAllBlogPosts().filter(post => post.featured).slice(0, 3)

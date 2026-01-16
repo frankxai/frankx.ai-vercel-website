@@ -14,7 +14,17 @@ const OUTPUT_DIRS = [
   path.join(ROOT, 'reading-site'),
   path.join(ROOT, 'public', 'reading'),
 ];
-const EXCLUDE_DIRS = new Set(['.git', 'node_modules', '.next', 'reading-site', path.join('public','reading')]);
+const EXCLUDE_DIRS = new Set([
+  '.git', 'node_modules', '.next', 'reading-site',
+  path.join('public','reading'),
+  // Large content folders that cause memory issues
+  'content-universe', '.archive', '.obsidian', 'backups',
+  'docs', 'affine-workspace', '_repo_remote_frankx_website',
+  'FrankX.AI - Vercel Website.CORRUPTED.20251106_152801',
+  'keystatic-frankx', 'sanity-frankx', 'tina-frankx',
+  'Student Workshops - University Visits',
+  '.claude-skills', 'Claude-Code-AI-Architect-Skills'
+]);
 const TEXT_EXTS = new Set(['.md', '.markdown', '.txt', '.html']);
 
 function ensureDirSync(dir) {

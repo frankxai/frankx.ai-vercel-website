@@ -1,0 +1,127 @@
+graph LR
+    %% Vibe OS Music Production Flow
+    %% From inspiration to release
+
+    subgraph INSPIRATION["💫 Inspiration Phase"]
+        direction TB
+        THEME[Session Theme<br/>Emotional Intent]:::inspire
+        VISION[Creative Vision<br/>Sonic Landscape]:::inspire
+        RESEARCH[Reference Tracks<br/>Genre Study]:::inspire
+
+        THEME --> VISION
+        VISION --> RESEARCH
+    end
+
+    subgraph PROMPT["✍️ Prompt Engineering"]
+        direction TB
+        SUNO_ARCH[Suno Prompt Architect<br/>Expert Crafting]:::prompt
+        LYRICS[Lyric Writing<br/>Lyric Genius API]:::prompt
+        META[Metatags & Style<br/>Genre Definition]:::prompt
+        STRUCT[Song Structure<br/>Verses, Chorus, Bridge]:::prompt
+
+        SUNO_ARCH --> LYRICS
+        SUNO_ARCH --> META
+        SUNO_ARCH --> STRUCT
+    end
+
+    subgraph GENERATION["🎵 AI Generation"]
+        direction TB
+        SUNO[Suno AI v4.5<br/>Music Generation]:::generate
+        MULTI[Multiple Variations<br/>A/B Testing]:::generate
+        SELECT[Best Take Selection<br/>Quality Control]:::generate
+
+        SUNO --> MULTI
+        MULTI --> SELECT
+    end
+
+    subgraph PRODUCTION["🎛️ Production Phase"]
+        direction TB
+        ARRANGE[Arrangement<br/>Track Ordering]:::produce
+        MIX[Mixing Guidance<br/>Balance & EQ]:::produce
+        MASTER[Mastering Notes<br/>Final Polish]:::produce
+
+        ARRANGE --> MIX
+        MIX --> MASTER
+    end
+
+    subgraph PACKAGING["📦 Packaging & Storytelling"]
+        direction TB
+        NARRATIVE[Session Narrative<br/>Transformation Story]:::package
+        VISUALS[Cover Art<br/>Imagen 3]:::package
+        METADATA[Metadata & Tags<br/>SEO Optimization]:::package
+
+        NARRATIVE --> VISUALS
+        VISUALS --> METADATA
+    end
+
+    subgraph DISTRIBUTION["🌐 Distribution"]
+        direction TB
+        SPOTIFY_DIST[Spotify<br/>Streaming]:::dist
+        GUMROAD_DIST[Gumroad<br/>Digital Download]:::dist
+        YT_DIST[YouTube<br/>Visual Experience]:::dist
+        WEBSITE[frankxhq.com<br/>Session Archive]:::dist
+
+        SPOTIFY_DIST --> WEBSITE
+        GUMROAD_DIST --> WEBSITE
+        YT_DIST --> WEBSITE
+    end
+
+    subgraph PROMOTION["📢 Promotion Strategy"]
+        direction TB
+        SOCIAL_ANN[Social Announcement<br/>X, LinkedIn]:::promo
+        EMAIL_ANN[Email Campaign<br/>Subscriber Blast]:::promo
+        BLOG_POST[Blog Post<br/>Behind the Scenes]:::promo
+        COMMUNITY[Community Share<br/>The Realm]:::promo
+
+        SOCIAL_ANN --> COMMUNITY
+        EMAIL_ANN --> COMMUNITY
+        BLOG_POST --> COMMUNITY
+    end
+
+    subgraph ANALYTICS["📊 Performance Analytics"]
+        direction TB
+        STREAMS[Streaming Data<br/>Spotify Metrics]:::analytics
+        SALES[Sales Tracking<br/>Gumroad Revenue]:::analytics
+        ENGAGE[Engagement<br/>Social Response]:::analytics
+        FEEDBACK_LOOP[Creator Feedback<br/>Iteration]:::analytics
+
+        STREAMS --> FEEDBACK_LOOP
+        SALES --> FEEDBACK_LOOP
+        ENGAGE --> FEEDBACK_LOOP
+    end
+
+    subgraph PRODUCTS["🎁 Product Ladder"]
+        direction TB
+        FREE_SESSION[Free Sample<br/>Lead Magnet]:::product
+        SINGLE[Single Session<br/>$27-47]:::product
+        BUNDLE[Session Bundle<br/>$97]:::product
+        REALM_ACCESS[Realm Exclusive<br/>Early Access]:::product
+
+        FREE_SESSION --> SINGLE
+        SINGLE --> BUNDLE
+        BUNDLE --> REALM_ACCESS
+    end
+
+    %% Phase flow
+    INSPIRATION --> PROMPT
+    PROMPT --> GENERATION
+    GENERATION --> PRODUCTION
+    PRODUCTION --> PACKAGING
+    PACKAGING --> DISTRIBUTION
+    DISTRIBUTION --> PROMOTION
+    PROMOTION --> ANALYTICS
+    ANALYTICS -.->|informs next| INSPIRATION
+
+    %% Product integration
+    PACKAGING -.-> PRODUCTS
+    DISTRIBUTION -.-> PRODUCTS
+
+    classDef inspire fill:#FFE066,stroke:#CCB34D,stroke-width:2px,color:#333
+    classDef prompt fill:#66E0FF,stroke:#4DB3CC,stroke-width:2px,color:#333
+    classDef generate fill:#B366FF,stroke:#8C4DCC,stroke-width:2px,color:#fff
+    classDef produce fill:#66FF8C,stroke:#4DCC70,stroke-width:2px,color:#333
+    classDef package fill:#FF8C66,stroke:#CC704D,stroke-width:2px,color:#fff
+    classDef dist fill:#FF66E0,stroke:#CC4DB3,stroke-width:2px,color:#fff
+    classDef promo fill:#4A90E2,stroke:#2E5C8A,stroke-width:2px,color:#fff
+    classDef analytics fill:#90E24A,stroke:#5C8A2E,stroke-width:2px,color:#333
+    classDef product fill:#E2904A,stroke:#8A5C2E,stroke-width:2px,color:#fff

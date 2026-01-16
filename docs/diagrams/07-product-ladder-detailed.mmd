@@ -1,0 +1,121 @@
+graph TB
+    %% Detailed Product Ladder
+    %% Complete offering structure with pricing and positioning
+
+    subgraph FREE["🎁 Free Tier - Lead Generation"]
+        direction TB
+        F1[Newsletter Subscription<br/>Weekly Insights & Tips<br/>$0]:::free
+        F2[Content Toolkit<br/>Creator Resources<br/>$0]:::free
+        F3[Blog Essays<br/>AI & Creator Guides<br/>$0]:::free
+        F4[Free Session Sample<br/>Vibe OS Preview<br/>$0]:::free
+        F5[Mini Course<br/>AI Quick Start<br/>$0]:::free
+
+        F1 -.->|nurtures| F2
+        F2 -.->|educates| F3
+        F3 -.->|inspires| F4
+        F4 -.->|demonstrates| F5
+    end
+
+    subgraph LOW["💰 Low Ticket - $27-$97"]
+        direction TB
+        L1[Vibe OS Session<br/>Single Track + Narrative<br/>$27-47]:::low
+        L2[Session Bundle<br/>3 Sessions Pack<br/>$77]:::low
+        L3[Mini Workshop<br/>90-Min Deep Dive<br/>$47-67]:::low
+        L4[Template Pack<br/>Ready-to-Use Resources<br/>$37-57]:::low
+
+        L1 -->|upsell| L2
+        L3 -->|complements| L4
+    end
+
+    subgraph MID["🎯 Mid Ticket - $97-$497"]
+        direction TB
+        M1[AI Music Academy<br/>Full Course + Community<br/>$297]:::mid
+        M2[Creator Bootcamp<br/>4-Week Intensive<br/>$197]:::mid
+        M3[Vibe OS Masterclass<br/>Production Mastery<br/>$147]:::mid
+        M4[Done-For-You Package<br/>Custom Session Creation<br/>$397-497]:::mid
+        M5[Book Purchase<br/>Physical + Digital<br/>$27-47]:::mid
+
+        M1 -.->|includes| M3
+        M2 -.->|leads to| M1
+        M4 -.->|premium option| M3
+    end
+
+    subgraph RECURRING["🔄 Recurring - Monthly/Annual"]
+        direction TB
+        R1[The Realm<br/>Community Membership<br/>$47/month or $470/year]:::recurring
+        R2[Inner Circle<br/>Small Group Coaching<br/>$497/month or $4970/year]:::recurring
+        R3[Arcanea Pro<br/>Platform Subscription<br/>$27/month or $270/year]:::recurring
+
+        R1 -->|upgrade path| R2
+        R3 -.->|integrates| R1
+    end
+
+    subgraph HIGH["👑 High Ticket - $997-$5000+"]
+        direction TB
+        H1[1-on-1 Consulting<br/>Custom Strategy<br/>$997-2997]:::high
+        H2[VIP Day<br/>Intensive Deep Dive<br/>$2997]:::high
+        H3[Done-With-You Program<br/>6-Month Transformation<br/>$4997]:::high
+        H4[Enterprise Training<br/>Team Workshops<br/>$5000+]:::high
+        H5[White Label Solution<br/>Custom Platform Build<br/>$10000+]:::high
+
+        H1 -.->|scales to| H2
+        H2 -.->|extends to| H3
+        H4 -.->|corporate| H5
+    end
+
+    subgraph REALM_BENEFITS["✨ The Realm Benefits"]
+        direction TB
+        RB1[Weekly Live Sessions<br/>Q&A + Workshops]:::benefit
+        RB2[Private Discord<br/>Peer Community]:::benefit
+        RB3[Exclusive Content<br/>Early Access]:::benefit
+        RB4[Monthly Vibe OS<br/>Member-Only Tracks]:::benefit
+        RB5[Resource Library<br/>Templates & Tools]:::benefit
+        RB6[Co-Working Sessions<br/>Accountability]:::benefit
+
+        RB1 --> RB2
+        RB2 --> RB3
+        RB3 --> RB4
+        RB4 --> RB5
+        RB5 --> RB6
+    end
+
+    subgraph ASCENSION["🪜 Ascension Path"]
+        direction TB
+        PATH1[Free Newsletter]:::path
+        PATH2[Low Ticket Entry]:::path
+        PATH3[Mid Ticket Core]:::path
+        PATH4[Realm Membership]:::path
+        PATH5[Inner Circle]:::path
+        PATH6[High Ticket Custom]:::path
+
+        PATH1 --> PATH2
+        PATH2 --> PATH3
+        PATH3 --> PATH4
+        PATH4 --> PATH5
+        PATH5 --> PATH6
+    end
+
+    %% Cross-tier connections
+    FREE --> LOW
+    LOW --> MID
+    MID --> RECURRING
+    RECURRING --> HIGH
+
+    %% Realm integration
+    MID -.->|included in| REALM_BENEFITS
+    RECURRING --> REALM_BENEFITS
+
+    %% Ascension path connections
+    FREE -.-> PATH1
+    LOW -.-> PATH2
+    MID -.-> PATH3
+    RECURRING -.-> PATH4
+    HIGH -.-> PATH6
+
+    classDef free fill:#90E24A,stroke:#5C8A2E,stroke-width:2px,color:#333
+    classDef low fill:#FFB84D,stroke:#CC8A3D,stroke-width:2px,color:#333
+    classDef mid fill:#4A90E2,stroke:#2E5C8A,stroke-width:2px,color:#fff
+    classDef recurring fill:#E24A90,stroke:#8A2E5C,stroke-width:2px,color:#fff
+    classDef high fill:#9B4AE2,stroke:#5C2E8A,stroke-width:2px,color:#fff
+    classDef benefit fill:#4AE2E2,stroke:#2E8A8A,stroke-width:2px,color:#333
+    classDef path fill:#E2904A,stroke:#8A5C2E,stroke-width:2px,color:#fff

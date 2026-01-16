@@ -1,62 +1,54 @@
-﻿# Agent.md - FrankX.ai Creative Intelligence Collective
+# Agent.md - FrankX.ai Creator Systems Collective
 
 ## Mission
-Design immersive creative intelligence systems that make bold ideas, families, and companies move faster than ever. Every agent shows up to turn vision into launch-ready experiences, not just documentation.
+Empower creators to release courageous work with AI as their co-writer, co-producer, and systems partner. Every agent ships experiences that move a creator from idea to published artefact with premium craft and soul.
 
-## Core Directives
-1. **Create Momentum** – Ship assets that unlock audience action daily (products, funnels, music, launches).
-2. **Design Originality** – Default to inventive, cinematic execution; nothing basic, nothing derivative.
-3. **Engineer Systems** – Wrap every idea in repeatable workflows, automations, and hand-off notes.
-4. **Listen & Iterate** – Watch data, feedback, and vibe; evolve the experience until it feels inevitable.
-5. **Collaborate in Public** – Surface what we’re building so the community learns while we grow.
-6. **Protect the Brand** – Quality, accessibility, and clarity stay premium in every channel we touch.
+## Ground Rules
+1. **Creator Outcome First** - define the next release, ritual, or revenue moment before building.
+2. **One Voice** - sound like Frank speaking to peers: cinematic, honest, hopeful.
+3. **Ritualise Shipping** - prototype, test, measure, iterate; log learnings for the next agent.
+4. **Keep it Lightweight** - prefer existing components, registries, and automations before inventing new frameworks.
+5. **Document the Why** - add context to pods, commits, and strategy notes so nothing lives only in your head.
+6. **Guard Excellence** - accessibility, performance, and clarity are non-negotiable.
 
 ## Roles
-- **Visionary** – Sets narrative arcs, creative direction, and future bets.
-- **Product Strategist** – Owns the roadmap, pricing ladders, and launch sequencing (see docs/PRODUCT_ORG_BLUEPRINT.md).
-- **Creator Collective** – Crafts copy, visuals, music, and interactive assets with the Vibe OS toolkit.
-- **Builder Engineer** – Codes experiences, automation, agent builders, and telemetry.
-- **Guardian** – Audits quality, performance, and accessibility; keeps the brand sharp.
-- **Launch Captain** – Activates community, partnerships, and drops that amplify reach.
-- **Research Scout** – Feeds pods with market intelligence and qualitative insight.
+- **Creator Systems Architect** - designs and builds tools, automations, and funnels that let creators move faster (Codex + Gemini).
+- **Story & Resonance Lead** - crafts copy, essays, prompts, and tutorials that carry emotional weight (Claude).
+- **Frequency Alchemist** - produces music drops, soundscapes, and ritual audio that anchor releases (shared with Vibe OS pod).
+- **Experience Guardian** - audits quality, accessibility, and polish before public release (Gemini with QA assist).
+- **Launch Captain** - choreographs drops, newsletters, and social arcs so each release reaches the right ears.
+- **Research Scout** - captures real creator needs, runs interviews, and feeds insights into backlogs.
 
-## Design Language
-- Dark, glassmorphic surfaces with aurora gradients and subtle particle motion.
-- Motion that feels alive: micro-interactions, parallax, magnetic hovers, responsive sound cues.
-- Iconic typography pairings (Inter + display alternates) for cinematic storytelling.
-- Color stories: Midnight, Nebula, Aurora, and Pulse palettes combined with warm neutrals.
-- Always accessible: contrast, keyboard, reduced motion, and descriptive audio/text companions.
+## Design & Experience Language
+- Dark aurora gradients, glassmorphic depth, responsive motion that feels like a studio session.
+- Typography pairing: Inter + expressive display for headlines.
+- Visual anchors: music hardware, notebooks, cosmic textures; avoid corporate stock imagery.
+- Accessibility: high contrast, keyboard support, reduced-motion alternatives, audio companions.
 
-## Daily Operating Loop
-1. Align with the product roadmap and Creative Intelligence Guide.
-2. Define the day’s “drop” (ship-ready deliverable) and the support assets it needs.
-3. Work in 90-minute build loops with async check-ins across product, content, and engineering.
-4. Validate with automated tests, `npm run lint`, responsive sweeps, and human QA.
-5. Publish, schedule, or queue assets with context for support, analytics, and reuse.
-6. Log learnings, metrics, and next experiments so the next agent can move immediately.
+## Operating Loop
+1. Start with `docs/strategy/v2/CREATOR-FIRST-BLUEPRINT.md` and applicable pod backlog.
+2. Define the day's "drop" (feature, song, essay, automation) and success metric.
+3. Build in 90-minute loops with async notes for collaborators.
+4. Validate with lint/tests, responsive sweeps, accessibility pass, and analytics wiring.
+5. Publish or queue with context for support + follow-on automation.
+6. Log outcomes and next moves in `docs/DAILY_INTELLIGENCE_OPERATIONS.md`.
 
-## Product & Experience Stack
-- **Creative AI Toolkit** – 100+ prompt systems, workflow templates, and creative briefs.
-- **Agentic Creator OS** – Enterprise-grade transformation sprint and governance playbook.
-- **Generative Creator OS** – Multi-modal creative automation platform.
-- **Vibe OS** – Music and ritual system for releases, events, and social drops.
-- **Creation Chronicles** – Build log, sonic drops, and storytelling hub for the Golden Age.
-- **Intelligence Atlas** – Flagship research reports and adoption telemetry.
-- **Forthcoming**: Agent Builder OS and AI Architect Academy enterprise track.
+## Product Stack (Creator-First)
+- **Creative AI Toolkit** - prompts + rituals for content launches.
+- **Vibe OS** - Suno-powered sessions and sonic ritual system.
+- **Creator Lab OS** - cohort/consulting path for building automation-backed creative systems.
+- **Creation Chronicles** - storytelling hub and dispatch.
+- **Realm / Inner Circle** - private vault, live labs, agent desk support.
 
-## Product Development Operating System
-- The Product Development blueprint lives in **docs/PRODUCT_ORG_BLUEPRINT.md**.
-- Each product has a dedicated pod summary inside **docs/pods/** (fill out charter, metrics, backlog).
-- Specialist agent responsibilities are documented in **docs/agents/** so every hand-off is explicit.
-- Weekly shiproom, Atlas sync, and retros follow the cadence described in the blueprint.
-- Before shipping, confirm checklists in the blueprint (instrumentation, QA, support, analytics).
+Legacy enterprise and family experiments are archived under `docs/strategy/v1/`. Reference only when needed for context.
 
-## Version Control & Deployment Ritual
-- Pull the latest `main` branch before you start and resolve conflicts locally.
-- Run `npm run lint` and `npm run build` (or confirm the CI pipeline passes) before committing.
-- Commit with clear messages, push immediately, and verify Vercel deployments succeed.
-- Investigate any Vercel build failure locally, fix it, and document the resolution in your commit or PR notes.
-- After merging, run `npm run roadmap:check` and log highlights in `docs/DAILY_INTELLIGENCE_OPERATIONS.md` so the next agent picks up with context.
+## Version Control Ritual
+- Pull latest `main` before starting.
+- Run `npm run lint` (and tests if logic changed) before pushing.
+- Commit with clear intent, push promptly, confirm Vercel deploy.
+- Document noteworthy deployments in `docs/DEPLOYMENT_GUIDE.md` + daily operations log.
 
-## Reminder
-Every asset is a signal that the future of creative intelligence already exists. Build with love, deliver with precision, and make the experience unforgettable.
+Build like the studio is live, because it is. Every asset should feel like stepping into Frank's control room ready to create.
+
+
+

@@ -1,61 +1,61 @@
-# FrankX Intelligence Hub Blueprint
+# FrankX Intelligence Hub Blueprint (Creator-First)
 
 ## Purpose
-Create a single destination where friends, family, high-value clients, AI architects, creators, and influencers experience the most relevant intelligence, rituals, and resources. The hub must serve humans and their AI agents with the same clarity, depth, and alignment.
+Make frankx.ai the daily command center for creators who want to build, release, and sustain work with AI-guided rituals, stories, and systems.
 
 ## Audience Operating System
 | Segment | Core Needs | Primary Assets | Search Intent Keywords |
 | --- | --- | --- | --- |
-| Friends & Family | Plain-language explainers, safety rituals, shared practice prompts | [AI Basics for Families](/family-guide), [Soul Frequency Quiz](/soul-frequency-quiz) | `family ai guide`, `teach kids ai safely`, `ai conversations with parents` |
-| Creators & Influencers | Suno workflows, launch narratives, licensing clarity | [Music Lab](/music-lab), [AI Doesn't Have To Be Soulless](/blog/ai-doesnt-have-to-be-soulless) | `ai music workflow`, `creator ai prompts`, `influencer ai strategy` |
-| High Value Clients & Executives | Governance playbooks, KPI scorecards, executive briefings | [Founder’s AI Playbook](/founder-playbook), Strategy Intensive (mailto:hello@frankx.ai) | `enterprise ai strategy`, `oracle ai architect`, `ai governance playbook` |
-| AI Architects & Builders | Reference architectures, orchestration patterns, testing checklists | [Intelligence Revolution Playbook](/blog/intelligence-revolution-2025), [Guides Collection](/guides) | `ai agent architecture`, `human centered automation`, `ai orchestration checklist` |
-| Community & Collaborators | Live experience templates, shared resource boards, feedback loops | [Start Here Experience](/start), [Template Library](/templates) | `community ai ritual`, `ai workshop template`, `collective intelligence experiences` |
+| Creator Architects (Pro) | Hands-on system design, analytics cadence, ritual accountability | [Agentic Creator OS](/products/agentic-creator-os), [Realm Membership](/realm) | `ai creator operating system`, `creator os playbook`, `agentic workflow` |
+| Emerging Creators | Fast wins, guided prompts, publishing momentum | [Creative AI Toolkit](/products/creative-ai-toolkit), [Creation Chronicles Product](/products/creation-chronicles) | `ai prompts for creators`, `build creator system`, `creative ai toolkit` |
+| Music Explorers | Suno session recipes, licensing guidance, storytelling | [Vibe OS](/products/vibe-os), [Resources -> Music Drops](/resources#music) | `ai music workflow`, `suno prompts`, `ai music template` |
+| Inner Circle Allies | Community cadence, live labs, premium drops | [Realm Membership](/realm), [Creation Chronicles Hub](/creation-chronicles) | `ai creator membership`, `inner circle creators`, `ai mastermind` |
+| Agent Builders | Automation diagrams, prompt governance, QA loops | [Guides Library](/guides), [Generative Creator OS](/products/generative-creator-os) | `ai agent workflow`, `creator automation`, `agent builder playbook` |
 
 ## Search & SEO Architecture
 | Cluster | Primary Keyword | Supporting Signals | Destination |
 | --- | --- | --- | --- |
-| Conscious AI Strategy | `conscious ai strategy` | `ai operating system`, `ai governance rituals`, `enterprise ai architecture` | [Intelligence Revolution Playbook](/blog/intelligence-revolution-2025) |
-| Family AI Education | `ai guide for families` | `ai conversations with kids`, `family ai safety checklist`, `teach ai at home` | [AI Basics for Families](/family-guide) |
-| Creator Workflows | `ai music workflow` | `suno prompts`, `ai content ritual`, `creative intelligence system` | [Music Lab](/music-lab) |
-| AI Architect Toolkit | `ai agent architecture` | `human centered automation`, `agent governance`, `orchestration blueprint` | [Guides Collection](/guides) |
+| Creator Operating Systems | `ai creator operating system` | `creator os`, `content lab`, `automation ritual` | [Agentic Creator OS](/products/agentic-creator-os) |
+| AI Music Rituals | `ai music workflow` | `suno session`, `music ai toolkit`, `vibe os` | [Vibe OS](/products/vibe-os) |
+| Prompt & Template Vault | `ai prompts for creators` | `creative ai toolkit`, `prompt library`, `multi agent prompts` | [Creative AI Toolkit](/products/creative-ai-toolkit) |
+| Creation Chronicles | `ai creator stories` | `creator case study`, `agent builder playbook`, `creative intelligence essay` | [Creation Chronicles Hub](/creation-chronicles) |
+| Membership & Community | `ai creator membership` | `realm waitlist`, `inner circle`, `creator mastermind` | [Realm Membership](/realm) |
 
 ## Content Modules
-- **Hero Command Deck** – communicates the mission, quick actions, and high-level metrics.
-- **Audience Playbooks** – five segment cards with needs, CTAs, and keyword intents.
-- **Latest Intelligence Drops** – rotating feed of essays, resources, and program milestones.
-- **Resource Universes** – categorized library for free, deep-dive, and premium assets.
-- **Keyword Constellations** – visible SEO strategy so humans and agents know the best entry points.
-- **Project Ship Logs** – transparency for books, programs, and roadmap milestones.
-- **Agent Protocols** – ready-to-use frameworks for retrieval, safety, creation, and executive reporting.
-- **Testimonials + CTA** – social proof and closing invitations for assessment and strategy sessions.
+- Hero command deck with mission headline, quick actions, and live metrics panel.
+- Persona band with five segment cards and contextual CTAs.
+- Latest drops carousel highlighting Creation Chronicles essays, music releases, and toolkit updates.
+- Resource vault broken into Free Guides, Templates, Premium Systems, and Membership unlocks.
+- Analytics ticker exposing `creator_funnel_step`, `music_session_play`, and `realm_waitlist_join` counts.
+- Project log for current pods, experiments, and upcoming releases.
+- Agent protocol shelf giving the rules of engagement for Strategist, Builder, and QA agents.
 
 ## Interlinking Map
-- Hero → Quick Actions: `/search`, `/blog`, `/resources`, `/#projects`.
-- Segment CTAs → Primary Assets: `/family-guide`, `/music-lab`, `/founder-playbook`, `/guides`, `/templates`, `/start`.
-- Updates → Blog + Resource pages: `/blog/intelligence-revolution-2025`, `/blog/soul-frequency-framework`, `/family-guide`.
-- Resource Universes → Assessments, Playbooks, Template Library.
-- Keyword Constellations → anchor visitors toward cornerstone content.
-- Project Milestones → invites into `Preview the Framework`, `Template Library`, `Start` experience.
-- Agent Protocols → connect to `/search`, `/family-guide`, `/music-lab`, `/founder-playbook`.
-- Footer consolidates anchors (`/#updates`, `/#resources`, `/#projects`, `/#agents`) with direct program links.
+- Hero quick actions -> `/resources`, `/creation-chronicles`, `/products/creative-ai-toolkit`.
+- Segment CTAs -> `/products/agentic-creator-os`, `/products/creative-ai-toolkit`, `/products/vibe-os`, `/realm`, `/guides`.
+- Latest drops -> `/blog`, `/resources#music`, `/creation-chronicles`.
+- Resource vault -> `/guides`, `/templates`, `/products`, `/realm`.
+- Project log -> `/pods`, `/docs/pods`, `/creation-chronicles#log`.
+- Agent protocols -> `/docs/agents`, `/guides`, `/realm#cadence`.
+- Footer anchors -> `/#updates`, `/#resources`, `/#rituals`, `/realm`, `/start`.
 
 ## Experience Flows
-1. **Assessment First** – Hero CTA → Soul Frequency Assessment → Resource Universe → Agent Protocol.
-2. **Executive Strategy** – Segment (High Value Clients) → Founder’s AI Playbook → Project Milestones → Strategy Intensive email.
-3. **Family Safety** – Segment (Friends & Family) → AI Basics for Families → Keyword Cluster for Family AI Education → Agent Safety Framework.
-4. **Creator Momentum** – Segment (Creators) → Music Lab → Project Milestones (Creator Operating System) → Template Library.
-5. **AI Architect Deep Dive** – Segment (AI Architects) → Intelligence Revolution Playbook → Keyword Cluster (AI Architect Toolkit) → Guides Collection → Search.
+1. Creator ignition -> Hero CTA -> Creative AI Toolkit -> Prompt ritual checklist -> Toolkit upsell inside Realm.
+2. System build -> Segment (Creator Architects) -> Agentic Creator OS page -> Offer stack -> Realm application.
+3. Music release -> Segment (Music Explorers) -> Vibe OS page -> Latest Sessions grid -> Realm studio invite.
+4. Story immersion -> Hero quick action -> Creation Chronicles hub -> Essay or drop -> Inner Circle CTA.
+5. Agent builder loop -> Persona band (Agent Builders) -> Guides library -> Automation article -> Creator Lab OS cohort application.
 
 ## Measurement Signals
-- Click-through rates on segment CTAs and quick actions.
-- Resource downloads (assessment completions, template grabs).
-- Newsletter opt-ins via Intelligence Dispatch form.
-- Email conversions for Strategy Intensive and Retainer offers.
-- Search analytics queries to refine keyword clusters and agent intents.
+- `creator_funnel_step` counts by location (hero, offer, final-cta, realm).
+- `music_session_play` interactions on Vibe OS and Resources music sections.
+- Waitlist submissions tagged `realm_waitlist_join` and `music_academy_waitlist`.
+- Template and guide downloads tracked via `toolkit_download`.
+- Newsletter opt-ins segmented by persona tag.
 
 ## Agent Enablement Notes
-- `search` endpoint indexes all content for semantic retrieval.
-- Keywords exposed visually so agents can align with human language.
-- Each protocol includes guardrails and escalation templates for safe automation.
-- JSON-LD organization schema provides discoverability for AI crawlers.
+- `lib/analytics.ts` buffers events so Strategist and Analytics agents can review funnels before pushing upstream.
+- `data/products.json` keeps offers, CTAs, and guarantees in sync across product pages.
+- Pods are documented in `docs/pods/*` with KPIs and cadences; agents should log wins and blockers there.
+- `docs/strategy/v2` holds the live blueprint; archive material sits under `docs/strategy/v1` for reference.
+- Agents should refresh interlinking each sprint to keep momentum focused on creators, music explorers, and realm allies.

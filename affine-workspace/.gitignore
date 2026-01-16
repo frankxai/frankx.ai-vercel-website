@@ -1,0 +1,100 @@
+# AFFiNE Workspace - Git Ignore Configuration
+
+# ==========================================
+# Environment & Secrets
+# ==========================================
+.env
+.env.local
+.env.*.local
+*.key
+*.pem
+
+# ==========================================
+# Docker Volumes & Runtime Data
+# ==========================================
+# These are managed by Docker and shouldn't be in Git
+infra/postgres_data/
+infra/redis_data/
+infra/storage/
+infra/config/*.json
+
+# ==========================================
+# MCP Server Dependencies
+# ==========================================
+mcp/*/node_modules/
+mcp/*/.npm/
+mcp/*/package-lock.json
+mcp/*/.env
+mcp/*/.env.local
+
+# Python MCP servers (if any)
+mcp/*/__pycache__/
+mcp/*/.venv/
+mcp/*/venv/
+mcp/*/*.pyc
+
+# ==========================================
+# Excalidraw Diagrams
+# ==========================================
+# Keep diagram source files, but ignore build artifacts
+mcp/excalidraw-mcp/dist/
+mcp/excalidraw-mcp/.cache/
+# KEEP: mcp/excalidraw-mcp/diagrams/*.json
+
+# ==========================================
+# Backups
+# ==========================================
+# Backup exports are too large for Git
+# Use external backup solution (S3, Dropbox, etc.)
+affine-backups/exports/*.tar.gz
+affine-backups/exports/*/storage/
+affine-backups/exports/*/database.sql
+
+# Keep backup metadata
+!affine-backups/exports/*/backup-info.txt
+
+# ==========================================
+# Logs & Temporary Files
+# ==========================================
+*.log
+logs/
+*.tmp
+*.swp
+*~
+.DS_Store
+Thumbs.db
+
+# ==========================================
+# IDE & Editor
+# ==========================================
+.vscode/
+.idea/
+*.sublime-*
+.code-workspace
+
+# ==========================================
+# Operating System
+# ==========================================
+# macOS
+.AppleDouble
+.LSOverride
+Icon
+
+# Windows
+desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+.directory
+.Trash-*
+
+# ==========================================
+# What TO commit (examples):
+# ==========================================
+# ✓ infra/docker-compose.yml
+# ✓ infra/.env.example
+# ✓ infra/scripts/*.sh
+# ✓ mcp/README.md
+# ✓ mcp/*/SETUP.md
+# ✓ docs/*.md
+# ✓ affine-backups/exports/*/backup-info.txt (metadata only)
