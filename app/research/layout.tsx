@@ -22,7 +22,7 @@ export const metadata: Metadata = {
     url: 'https://frankx.ai/research',
     images: [
       {
-        url: '/images/og/research-hub.png',
+        url: '/images/og-image.png',
         width: 1200,
         height: 630,
         alt: 'FrankX Research Intelligence Hub',
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Research Intelligence Hub | FrankX.AI',
     description: 'Multi-agent research system for AI, consciousness, and human potential.',
-    images: ['/images/og/research-hub.png'],
+    images: ['/images/og-image.png'],
   },
   alternates: {
     canonical: 'https://frankx.ai/research',
