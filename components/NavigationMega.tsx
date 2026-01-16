@@ -28,6 +28,8 @@ import {
   Star,
   Heart,
   Network,
+  Microscope,
+  Building,
 } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
@@ -81,15 +83,17 @@ const navigation = {
   developers: {
     label: 'Developers',
     featured: {
-      title: 'Agentic Creator OS',
-      description: 'Master Claude Code, MCP servers, and autonomous agents.',
-      href: '/products/agentic-creator-os',
+      title: 'AI Architect Academy',
+      description: 'Master enterprise AI patterns, Claude Code skills, and production architectures.',
+      href: '/ai-architect-academy',
       badge: 'New',
     },
     items: [
+      { name: 'AI Architect Academy', href: '/ai-architect-academy', icon: Building, description: '80+ skills, 20+ patterns' },
       { name: 'Developer Hub', href: '/developers', icon: Code2, description: 'Ship 10x faster with AI' },
+      { name: 'Architecture Prototypes', href: '/prototypes', icon: Layers, description: 'Production blueprints' },
       { name: 'Claude Code Mastery', href: '/prompt-library/agent-development', icon: Terminal, description: 'Prompts & patterns' },
-      { name: 'Agentic Patterns', href: '/prompt-library/ai-architecture', icon: Workflow, description: 'MCP & multi-agent' },
+      { name: 'AI Patterns', href: '/ai-architect-academy/patterns', icon: Workflow, description: 'Enterprise design patterns' },
       { name: 'Coding Prompts', href: '/prompt-library/coding', icon: Bot, description: 'Automation workflows' },
     ],
   },
@@ -107,6 +111,7 @@ const navigation = {
       { name: "The Creator's Soulbook", href: '/soulbook', icon: BookOpen, description: 'Your life transformation system' },
       { name: 'Free Playbooks', href: '/free-playbook', icon: FileText, description: 'Start with quick wins' },
       { name: 'Prompt Library', href: '/prompt-library', icon: BookOpen, description: 'Curated prompt stacks' },
+      { name: 'Research Hub', href: '/research', icon: Microscope, description: 'Daily intelligence operations' },
       { name: 'Intelligence Atlas', href: '/intelligence-atlas', icon: Star, description: 'Flagship research' },
       { name: 'AI Architecture', href: '/ai-architecture/multi-cloud-comparison', icon: Network, description: 'Multi-cloud research' },
       { name: 'Vibe OS', href: '/products/vibe-os', icon: Music, description: 'AI music system' },
