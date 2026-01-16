@@ -35,6 +35,7 @@ const navItems: NavItem[] = [
     href: '/students',
     subItems: [
       { name: 'Student Hub', href: '/students' },
+      { name: 'Workshops', href: '/workshops' },
       { name: 'Courses', href: '/courses' },
       { name: 'Guides', href: '/guides' },
       { name: 'AI Assessment', href: '/ai-assessment' },
@@ -45,6 +46,7 @@ const navItems: NavItem[] = [
     href: '/resources',
     subItems: [
       { name: "The Creator's Soulbook", href: '/soulbook' },
+      { name: 'Workshops', href: '/workshops' },
       { name: 'All Resources', href: '/resources' },
       { name: 'Prompt Library', href: '/prompt-library' },
       { name: 'Templates', href: '/templates' },

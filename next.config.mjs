@@ -12,6 +12,13 @@ const nextConfig = {
     ignoreBuildErrors: true,
   },
   images: {
+    // Enable modern image formats for better compression
+    formats: ['image/avif', 'image/webp'],
+    // Optimize device sizes for responsive images
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    // Cache optimized images for 1 year
+    minimumCacheTTL: 31536000,
     remotePatterns: [
       {
         protocol: 'https',
@@ -73,6 +80,38 @@ const nextConfig = {
         source: '/blog/10-agentic-ai-roadmap-2025',
         destination: '/blog/agentic-ai-roadmap-2025',
         permanent: true,
+      },
+      // Newsletter redirect - consolidate to main signup flow
+      {
+        source: '/newsletter',
+        destination: '/start',
+        permanent: false, // Use temporary redirect in case we create dedicated page later
+      },
+      // Course redirects - redirect to courses hub until individual pages are built
+      {
+        source: '/courses/ai-ethics-governance',
+        destination: '/courses?highlight=ai-ethics-governance',
+        permanent: false,
+      },
+      {
+        source: '/courses/family-ai-education',
+        destination: '/courses?highlight=family-ai-education',
+        permanent: false,
+      },
+      {
+        source: '/courses/agent-architecture-deep-dive',
+        destination: '/courses?highlight=agent-architecture-deep-dive',
+        permanent: false,
+      },
+      {
+        source: '/courses/prompt-engineering-mastery',
+        destination: '/courses?highlight=prompt-engineering-mastery',
+        permanent: false,
+      },
+      {
+        source: '/courses/ai-business-strategy',
+        destination: '/courses?highlight=ai-business-strategy',
+        permanent: false,
       },
     ]
   },

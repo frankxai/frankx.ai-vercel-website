@@ -2,7 +2,48 @@
 
 Local slash commands for the FrankX.AI website project. These commands are specific to website development and content creation.
 
-## Command Overview
+## Command Hierarchy
+
+```
+/factory                    # Publishing Factory (Agentic Creator OS)
+├── /factory-seo            # SEO optimization
+├── /factory-aeo            # AI Engine Optimization (FAQ, schema)
+├── /factory-qa             # Quality gate checks
+└── /factory-pdf            # PDF lead magnet creation
+
+/log-session                # Global session logging (cross-project)
+
+/frankx-ai-*                # Website-specific operations
+├── /frankx-ai-daily        # Daily intelligence ops
+├── /frankx-ai-build        # Comprehensive build
+├── /frankx-ai-blog         # Blog article creation
+├── /frankx-ai-seo          # Site-wide SEO
+├── /frankx-ai-deploy       # Vercel deployment
+└── ...more
+```
+
+## Publishing Factory Commands (NEW)
+
+| Command | Purpose | Use When |
+|---------|---------|----------|
+| `/factory` | Full publishing orchestrator | Creating any content |
+| `/factory-seo` | SEO optimization | Optimizing for search |
+| `/factory-aeo` | AI Engine Optimization | Optimizing for ChatGPT/Perplexity citations |
+| `/factory-qa` | Quality gatekeeper | Pre-publish validation |
+| `/factory-pdf` | PDF lead magnet builder | Creating downloadable guides |
+| `/log-session` | Global session logging | Recording work across projects |
+
+## Global Session Logging
+
+All sessions log to: `/mnt/c/Users/Frank/docs/AI_GLOBAL_SESSIONS.md`
+
+| Magic Word | Action |
+|------------|--------|
+| "Log this to global" | Appends session entry |
+| "What did we publish?" | Reads FrankX entries |
+| "Show today's sessions" | Filters by date |
+
+## Website Operations Commands
 
 | Command | Purpose | Primary Agent |
 |---------|---------|---------------|
@@ -20,6 +61,35 @@ Local slash commands for the FrankX.AI website project. These commands are speci
 
 ## Workflow Combinations
 
+### Publishing Factory (Recommended)
+```
+/factory             → Create content with full pipeline
+/factory-qa          → Validate before publish
+/frankx-ai-deploy    → Ship to production
+```
+
+### Article Creation
+```
+/factory             → Research → Write → Edit → SEO → AEO
+/factory-qa          → Check Voice, Claims, SEO, AEO, Schema
+/frankx-ai-deploy    → Publish
+/generate-social     → Distribution angles
+```
+
+### PDF Lead Magnet
+```
+/factory-pdf         → Create PDF guide
+/factory-qa          → Validate
+/frankx-ai-deploy    → Upload + landing page
+```
+
+### SEO + AEO Optimization
+```
+/factory-seo         → Traditional search optimization
+/factory-aeo         → AI citation optimization
+/factory-qa          → Verify all checks pass
+```
+
 ### Daily Website Work
 ```
 /frankx-ai-daily     → Start your day
@@ -27,9 +97,9 @@ Local slash commands for the FrankX.AI website project. These commands are speci
 /frankx-ai-deploy    → Ship changes
 ```
 
-### Content Creation
+### Legacy Content Creation
 ```
-/frankx-ai-blog      → Write article
+/frankx-ai-blog      → Write article (simpler workflow)
 /polish-content      → Refine voice (global command)
 /generate-images     → Create visuals (global command)
 /frankx-ai-deploy    → Publish

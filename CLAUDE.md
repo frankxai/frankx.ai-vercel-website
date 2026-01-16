@@ -255,3 +255,64 @@ FrankX (Parent Folder)         This Repo (Production)
 
 The agents collaborate through the [Daily Intelligence Operations](docs/DAILY_INTELLIGENCE_OPERATIONS.md) cadence. Review it to align sprints, SEO deliverables, and content releases before engaging the studio.
 
+## 📝 MANDATORY: Automatic Session Logging
+
+**CRITICAL REQUIREMENT**: All agents MUST automatically log significant work to the global sessions file.
+
+### Global Log Location
+```
+/mnt/c/Users/Frank/docs/AI_GLOBAL_SESSIONS.md
+```
+
+### When to Auto-Log (Required)
+- ✅ Content published (articles, PDFs, products)
+- ✅ Files created or significantly modified (3+ files)
+- ✅ Pipelines completed (`/factory`, `/factory-pdf`, etc.)
+- ✅ Major architectural decisions made
+- ✅ Bugs fixed or features implemented
+- ✅ Research sessions with actionable findings
+
+### Log Entry Format
+```markdown
+---
+
+## SESSION: FrankX - [Brief Action Description]
+**Project**: FrankX
+**Date**: [YYYY-MM-DD HH:MM]
+**Agent**: Claude Code
+
+### Summary
+[1-3 sentences describing what was accomplished]
+
+### Artifacts
+- `path/to/file.md` - Description
+- `path/to/file.ts` - Description
+
+### Key Decisions
+- **[Decision]**: [Brief rationale]
+
+### Next Actions
+- [ ] Follow-up item 1
+- [ ] Follow-up item 2
+```
+
+### How to Log
+At the END of completing significant work, append to the global log:
+
+```bash
+# Option 1: Use script
+node scripts/log-session.mjs "FrankX" "Action" "Summary" "artifacts"
+
+# Option 2: Direct append (for agents)
+# Read current log, append entry, write back
+```
+
+### DO NOT Skip Logging
+This is not optional. Every coding session that produces deliverables MUST be logged for:
+- Cross-project continuity
+- Work tracking
+- Knowledge preservation
+- Handoff documentation
+
+**No manual prompting required** - agents log automatically as part of completing work.
+
