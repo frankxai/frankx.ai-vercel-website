@@ -1,0 +1,132 @@
+---
+title: "Build Your First MCP Server: The Model Context Protocol Workshop"
+description: "Learn to build production-grade MCP servers that connect AI to your data. Master resources, tools, and prompts with the open standard revolutionizing AI integration."
+author: "Frank"
+publishedAt: "2026-01-16"
+updatedAt: "2026-01-16"
+category: "Workshops"
+tags: ["MCP", "Model Context Protocol", "AI Integration", "Claude Code", "Developer Tools", "Workshops"]
+image: "/blog/mcp-workshop/og.png"
+featured: true
+readingTime: "12 min"
+tldr: "The MCP Server Architecture Workshop teaches you to build production-grade Model Context Protocol servers. MCP is the open standard connecting AI to your data through resources, tools, and prompts. Learn to create servers from scratch, implement security, and deploy to production."
+seo:
+  keywords:
+    - "MCP server tutorial"
+    - "Model Context Protocol"
+    - "AI data integration"
+    - "build MCP server"
+    - "MCP workshop"
+    - "Claude Code MCP"
+---
+
+# Build Your First MCP Server: The Model Context Protocol Workshop
+
+**TL;DR**: MCP (Model Context Protocol) is the open standard connecting AI to your data. This workshop teaches you to build production-grade MCP servers with resources, tools, and prompts.
+
+---
+
+## The MCP Revolution
+
+Before MCP, every AI integration was custom. Now there's a standard:
+
+| Before MCP | After MCP |
+|------------|-----------|
+| Custom integrations | Standard protocol |
+| One-off solutions | Reusable servers |
+| Security per integration | Built-in security |
+| Vendor lock-in | Universal compatibility |
+
+## What is MCP?
+
+MCP lets AI models connect to your data through three primitives:
+
+### Resources
+Data exposed to the model:
+- Database schemas
+- File contents
+- API responses
+
+### Tools
+Actions the model can take:
+- Query databases
+- Send messages
+- Execute commands
+
+### Prompts
+Reusable templates:
+- Code review prompt
+- Documentation template
+- Analysis framework
+
+## Building Your First Server
+
+Here's the basic structure:
+
+```typescript
+import { Server } from "@modelcontextprotocol/sdk/server/index.js";
+
+const server = new Server({
+  name: "my-server",
+  version: "1.0.0",
+});
+
+// Implement resources
+server.setRequestHandler("resources/list", async () => ({
+  resources: [{
+    uri: "notes://all",
+    name: "All Notes",
+    mimeType: "application/json"
+  }]
+}));
+
+// Implement tools
+server.setRequestHandler("tools/list", async () => ({
+  tools: [{
+    name: "create_note",
+    description: "Create a new note",
+    inputSchema: {
+      type: "object",
+      properties: {
+        title: { type: "string" },
+        content: { type: "string" }
+      }
+    }
+  }]
+}));
+```
+
+## Workshop Modules
+
+1. **Fundamentals** - Protocol architecture
+2. **First Server** - Build a notes server
+3. **Advanced Patterns** - Resource templates, validation
+4. **Production** - Security, deployment, monitoring
+
+## Popular MCP Servers
+
+The ecosystem is growing fast:
+
+| Server | Purpose |
+|--------|---------|
+| **PostgreSQL** | Query databases naturally |
+| **GitHub** | Manage repos and PRs |
+| **Slack** | Send messages, manage channels |
+| **Filesystem** | Read and write files |
+
+## Why Learn MCP?
+
+- **Standard protocol** - Write once, use everywhere
+- **Growing ecosystem** - Hundreds of servers
+- **Enterprise-ready** - Security built in
+- **Future-proof** - The direction of AI integration
+
+## Start Building
+
+Ready to build your first MCP server?
+
+**[Start the Free Workshop →](/workshops/mcp-server-mastery)**
+
+---
+
+*The infrastructure layer of the AI age. Build the bridges.*
