@@ -38,6 +38,15 @@
   ],
   "exclude": [
     "node_modules",
-    "tests"
+    "tests",
+    "Claude-Code-AI-Architect-Skills",
+    "new-landing-page-backup",
+    "sanity-frankx",
+    "tina-frankx",
+    "tina",
+    "keystatic-frankx",
+    "playwright.config.ts",
+    "vitest.config.ts",
+    "vitest.setup.ts"
   ]
 }

@@ -26,7 +26,6 @@ import { atlasActions, atlasMetrics, atlasVolumes } from '@/lib/intelligence-atl
 import { gradientPresets, glassCardClasses } from '@/lib/design/gradients'
 import {
   ParallaxContainer,
-  ParallaxLayer,
   StaggerContainer,
   StaggerItem,
   FloatingElement,

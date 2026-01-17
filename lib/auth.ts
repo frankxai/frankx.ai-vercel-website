@@ -16,7 +16,10 @@ import bcrypt from 'bcryptjs'
  */
 
 // Admin credentials (in production, move to database)
-const ADMIN_CREDENTIALS = {
+const ADMIN_CREDENTIALS: {
+  email: string
+  passwordHash: string
+} = {
   email: process.env.ADMIN_EMAIL || 'admin@frankx.ai',
   // Hash generated from: await bcrypt.hash('your-password', 10)
   // Default password: 'changeme123' (MUST change in production)
