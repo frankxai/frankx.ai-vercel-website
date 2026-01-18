@@ -498,6 +498,83 @@ export const designGuidelines = {
 } as const
 
 // ============================================================================
+// LIGHT MODE COLORS - Inverted Dual-Spectrum Palette
+// ============================================================================
+
+export const lightColors = {
+  // Light mode backgrounds - Clean, bright foundation
+  bg: {
+    base: '#ffffff',        // Pure white - main background
+    elevated: '#f8f9fa',    // Subtle gray - cards, modals
+    subtle: '#f1f3f5',      // Light gray - hover states
+    muted: '#e9ecef',       // Medium gray - borders, dividers
+  },
+
+  // Accent system remains but adjusted for light backgrounds
+  accent: {
+    tech: {
+      primary: '#059669',     // Emerald-600 (darker for light bg)
+      secondary: '#0891b2',   // Cyan-600
+      light: '#10b981',       // Emerald-500
+      dark: '#047857',        // Emerald-700
+      glow: 'rgba(5, 150, 105, 0.1)',
+    },
+    soul: {
+      primary: '#d97706',     // Amber-600
+      secondary: '#ea580c',   // Orange-600
+      light: '#f59e0b',       // Amber-500
+      dark: '#b45309',        // Amber-700
+      glow: 'rgba(217, 119, 6, 0.1)',
+    },
+  },
+
+  // Text colors for light mode
+  text: {
+    primary: 'rgba(0, 0, 0, 0.95)',      // Near-black primary text
+    secondary: 'rgba(0, 0, 0, 0.75)',    // Dark gray body text
+    tertiary: 'rgba(0, 0, 0, 0.55)',     // Medium gray supporting text
+    muted: 'rgba(0, 0, 0, 0.35)',        // Light gray muted text
+    faint: 'rgba(0, 0, 0, 0.15)',        // Very light decorative
+  },
+
+  // Semantic colors adjusted for light backgrounds
+  semantic: {
+    success: {
+      base: '#16a34a',      // Green-600
+      light: '#22c55e',     // Green-500
+      dark: '#15803d',      // Green-700
+      bg: 'rgba(34, 197, 94, 0.1)',
+    },
+    warning: {
+      base: '#d97706',      // Amber-600
+      light: '#f59e0b',     // Amber-500
+      dark: '#b45309',      // Amber-700
+      bg: 'rgba(217, 119, 6, 0.1)',
+    },
+    error: {
+      base: '#dc2626',      // Red-600
+      light: '#ef4444',     // Red-500
+      dark: '#b91c1c',      // Red-700
+      bg: 'rgba(220, 38, 38, 0.1)',
+    },
+    info: {
+      base: '#0891b2',      // Cyan-600
+      light: '#06b6d4',     // Cyan-500
+      dark: '#0e7490',      // Cyan-700
+      bg: 'rgba(8, 145, 178, 0.1)',
+    },
+  },
+
+  // Border colors for light mode
+  border: {
+    subtle: 'rgba(0, 0, 0, 0.08)',
+    default: 'rgba(0, 0, 0, 0.12)',
+    strong: 'rgba(0, 0, 0, 0.18)',
+    accent: 'rgba(5, 150, 105, 0.25)',
+  },
+} as const
+
+// ============================================================================
 // TYPE EXPORTS - For TypeScript autocomplete
 // ============================================================================
 
