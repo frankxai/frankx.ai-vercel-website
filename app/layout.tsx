@@ -9,6 +9,9 @@ import NavigationMega from '@/components/NavigationMega'
 import Footer from '@/components/Footer'
 import OrganizationJsonLd from '@/components/seo/OrganizationJsonLd'
 import SessionProvider from '@/components/providers/SessionProvider'
+import { Toaster } from '@/components/ui/Toaster'
+import { Analytics } from '@vercel/analytics/react'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 
 // Inter as primary sans-serif (geometric, variable weight, screen-optimized)
 const inter = Inter({
@@ -139,6 +142,9 @@ export default function RootLayout({
             {children}
           </div>
           <Footer />
+          <Toaster />
+          <Analytics />
+          <SpeedInsights />
         </SessionProvider>
       </body>
     </html >
