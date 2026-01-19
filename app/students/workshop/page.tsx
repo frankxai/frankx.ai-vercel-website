@@ -61,6 +61,14 @@ const ikigaiCircles = [
   },
 ]
 
+// Color class mapping to prevent Tailwind purging
+const colorClasses = {
+  rose: { text: 'text-rose-400', bg: 'bg-rose-400' },
+  blue: { text: 'text-blue-400', bg: 'bg-blue-400' },
+  emerald: { text: 'text-emerald-400', bg: 'bg-emerald-400' },
+  purple: { text: 'text-purple-400', bg: 'bg-purple-400' },
+} as const
+
 const workshopSections = [
   {
     title: '3Cs Framework',
@@ -151,12 +159,11 @@ export default function WorkshopPage() {
               className="flex flex-col items-center justify-center gap-4 sm:flex-row"
             >
               <PremiumButton
-                href="/Student Workshops - University Visits/index.html"
-                target="_blank"
+                href="/workshops"
                 size="lg"
                 className="text-lg px-8 py-4"
               >
-                Launch Workshop
+                Explore Workshops
                 <BookOpen className="ml-2 h-5 w-5" />
               </PremiumButton>
             </motion.div>
@@ -211,13 +218,13 @@ export default function WorkshopPage() {
                 transition={{ delay: index * 0.15 }}
               >
                 <GlassmorphicCard variant="luxury" border="glow" className="h-full p-8">
-                  <circle.icon className={`mb-4 h-12 w-12 text-${circle.color}-400`} />
+                  <circle.icon className={`mb-4 h-12 w-12 ${colorClasses[circle.color as keyof typeof colorClasses].text}`} />
                   <h3 className="mb-4 text-2xl font-bold text-slate-100">{circle.title}</h3>
 
                   <ul className="space-y-3">
                     {circle.prompts.map((prompt) => (
                       <li key={prompt} className="flex items-start text-base text-slate-200">
-                        <span className={`mr-3 mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-${circle.color}-400`} />
+                        <span className={`mr-3 mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full ${colorClasses[circle.color as keyof typeof colorClasses].bg}`} />
                         <span>{prompt}</span>
                       </li>
                     ))}
@@ -274,12 +281,11 @@ export default function WorkshopPage() {
             Launch the workshop and complete it at your own pace. Most students finish in 90-120 minutes.
           </p>
           <PremiumButton
-            href="/Student Workshops - University Visits/index.html"
-            target="_blank"
+            href="/workshops"
             size="lg"
             className="text-lg px-8 py-4"
           >
-            Launch Ikigai Workshop
+            Start Your Journey
             <BookOpen className="ml-2 h-5 w-5" />
           </PremiumButton>
         </div>

@@ -1,5 +1,14 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  // Safelist for dynamic color classes in student pages
+  safelist: [
+    // Text colors
+    { pattern: /text-(rose|blue|emerald|purple|cyan|amber|violet|indigo)-(300|400|500)/ },
+    // Background colors
+    { pattern: /bg-(rose|blue|emerald|purple|cyan|amber|violet|indigo)-(400|500|500\/10)/ },
+    // Border colors
+    { pattern: /border-(rose|blue|emerald|purple|cyan|amber|violet|indigo)-(400|500)/ },
+  ],
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
