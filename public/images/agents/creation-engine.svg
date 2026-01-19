@@ -1,0 +1,25 @@
+<svg width="900" height="900" viewBox="0 0 900 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="900" rx="120" fill="#0B1120" />
+  <rect width="900" height="900" rx="120" fill="url(#bg)" opacity="0.9" />
+  <circle cx="450" cy="360" r="230" fill="url(#halo)" opacity="0.8" />
+  <circle cx="450" cy="360" r="92" fill="#0F172A" opacity="0.9" />
+  <path d="M300 690C332 586 386 532 450 532C514 532 568 586 600 690V770H300V690Z" fill="#0F172A" opacity="0.9" />
+  <rect x="150" y="150" width="600" height="600" rx="96" stroke="url(#frame)" stroke-width="2" opacity="0.6" />
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="900" y2="900" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0F172A" />
+      <stop offset="0.6" stop-color="#020617" />
+      <stop offset="1" stop-color="#0B1120" />
+    </linearGradient>
+    <radialGradient id="halo" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(450 330) rotate(90) scale(250)">
+      <stop offset="0" stop-color="#34D399" />
+      <stop offset="0.55" stop-color="#10B981" stop-opacity="0.6" />
+      <stop offset="1" stop-color="#0B1120" stop-opacity="0" />
+    </radialGradient>
+    <linearGradient id="frame" x1="150" y1="150" x2="750" y2="750" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#34D399" />
+      <stop offset="0.5" stop-color="#10B981" />
+      <stop offset="1" stop-color="#059669" />
+    </linearGradient>
+  </defs>
+</svg>

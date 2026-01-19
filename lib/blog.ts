@@ -6,6 +6,12 @@ import { cache } from 'react'
 
 const blogDirectory = path.join(process.cwd(), 'content/blog')
 
+// FAQ item for AI-extractable structured content
+export interface FAQItem {
+  q: string
+  a: string
+}
+
 export interface BlogPost {
   slug: string
   title: string
@@ -20,6 +26,12 @@ export interface BlogPost {
   readingGoal?: string
   content: string
   featured?: boolean
+
+  // AI-First Content Fields
+  tldr?: string // 50-word summary for AI extraction
+  faq?: FAQItem[] // Question-answer pairs for FAQPage schema
+  schema?: string[] // Schema types to generate (Article, FAQPage, HowTo)
+  lastUpdated?: string // Freshness signal for search engines
 }
 
 export const getAllBlogPosts = cache((): BlogPost[] => {
@@ -49,14 +61,6 @@ export const getBlogPost = cache((slug: string): BlogPost | null => {
   try {
     const fullPath = path.join(blogDirectory, `${slug}.mdx`)
 
-    // Debug logging for Vercel
-    if (process.env.NODE_ENV === 'production') {
-      console.log('Blog directory:', blogDirectory)
-      console.log('Looking for file:', fullPath)
-      console.log('Blog directory exists:', fs.existsSync(blogDirectory))
-      console.log('File exists:', fs.existsSync(fullPath))
-    }
-
     const fileContents = fs.readFileSync(fullPath, 'utf8')
     const { data, content } = matter(fileContents)
     const readTime = readingTime(content)
@@ -67,10 +71,7 @@ export const getBlogPost = cache((slug: string): BlogPost | null => {
       readingTime: readTime.text,
       ...data,
     } as BlogPost
-  } catch (error) {
-    if (process.env.NODE_ENV === 'production') {
-      console.error('Error in getBlogPost:', error)
-    }
+  } catch {
     return null
   }
 })

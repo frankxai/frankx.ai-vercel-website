@@ -6,6 +6,7 @@ export type ClaudeAgent = {
   focus: string
   role: string
   icon: LucideIcon
+  image?: string
   workflows: string[]
   deliverables: string[]
   cta: { label: string; href: string }
@@ -15,73 +16,77 @@ export const claudeAgents: ClaudeAgent[] = [
   {
     id: 'starlight-architect',
     name: 'Starlight Architect',
-    focus: 'Creator Systems Architecture',
-    role: 'Designs operating systems, automations, and dashboards that keep creators shipping.',
+    focus: 'Enterprise Systems & Governance',
+    role: 'Designs scalable systems and ensures every experience is enterprise-grade yet soul-aligned.',
     icon: CircuitBoard,
+    image: '/images/agents/starlight-architect.svg',
     workflows: [
-      'Creator lab mapping sessions that translate goals into rituals and automations.',
-      'Workflow audits connecting SongGrid, product registry, and analytics signals.',
-      'Implementation plans that turn prompts into reusable components and utilities.'
+      'Enterprise architecture sprints aligning Claude agents with regulatory and cultural guardrails.',
+      'Risk and dependency audits across data, workflow, and people layers.',
+      'Scenario mapping that converts leadership goals into prioritized agent roadmaps.',
     ],
     deliverables: [
-      'Visual creator OS roadmap with weekly rituals and dependencies.',
-      'Automation + analytics checklist wired into the codebase.',
-      '30/60/90 upgrade plan for content velocity and revenue experiments.'
+      'Creative AI blueprint with integration layers and escalation rituals.',
+      'Executive-ready governance dashboards and KPI scorecards.',
+      'Implementation backlog with 30-60-90 day experiments.',
     ],
-    cta: { label: 'Review the Creator Lab Overview', href: '/products/agentic-creator-os' }
+    cta: { label: 'Review the Creative AI Blueprint', href: '/founder-playbook' },
   },
   {
     id: 'creation-engine',
     name: 'Creation Engine',
-    focus: 'Story & Launch Architecture',
-    role: 'Transforms insights into essays, funnels, and campaigns that move creators to act.',
+    focus: 'Narrative & Launch Architecture',
+    role: 'Transforms research and interviews into multi-format content, courses, and playbooks.',
     icon: PenTool,
+    image: '/images/agents/creation-engine.svg',
     workflows: [
       'Story mining sessions capturing founder voice and community language.',
-      'Launch arc planning across email, social, and live experiences.',
-      'Content system setup linking Claude prompts to CTA + analytics events.'
+      'Launch arc planning across email, video, and live experiences.',
+      'Content system setup linking Claude prompts to campaign metrics.',
     ],
     deliverables: [
-      'Editorial calendar with creator-facing prompts and hooks.',
-      'Landing pages, email flows, and resource scripts ready for Codex implementation.',
-      'Measurement dashboards summarising open + conversion signals.'
+      'Editorial calendar with agent-ready prompts.',
+      'Course, playbook, and template packages for go-to-market.',
+      'Measurement dashboards for engagement and conversion signals.',
     ],
-    cta: { label: 'Access Launch Templates', href: '/templates' }
+    cta: { label: 'Access Launch Templates', href: '/templates' },
   },
   {
     id: 'frequency-alchemist',
     name: 'Frequency Alchemist',
-    focus: 'Sonic Storytelling & Ritual Design',
-    role: 'Produces Suno sessions, copy, and liner notes that make releases unforgettable.',
+    focus: 'Sonic & Ritual Design',
+    role: 'Produces Suno-powered soundscapes that encode the emotional frequency of the work.',
     icon: Waves,
+    image: '/images/agents/frequency-alchemist.svg',
     workflows: [
-      'Session labs translating emotional intent into Suno prompts and stems.',
-      'Ritual design pairing music with newsletters, livestreams, and Realm labs.',
-      'Sound branding experiments aligned with creator milestones.'
+      'Immersive scoring labs translating project emotion into AI-assisted compositions.',
+      'Session rituals that align teams before key launches or briefings.',
+      'Sound branding experiments blended with live performance cues.',
     ],
     deliverables: [
-      'Custom Suno prompt banks and session briefs.',
-      'Release packs with liner notes, social snippets, and CTA flow.',
-      'Audio branding kits synced with campaign milestones.'
+      'Custom Suno prompt banks and stems for ongoing use.',
+      'Event-ready playlists and meditations for cohorts.',
+      'Audio branding kits synced with campaign milestones.',
     ],
-    cta: { label: 'Enter the Music Lab', href: '/music-lab' }
+    cta: { label: 'Enter the Music Lab', href: '/music-lab' },
   },
   {
     id: 'luminor-oracle',
     name: 'Luminor Oracle',
-    focus: 'Creator Foresight & Strategy',
-    role: 'Future-casts the creator journey, highlighting opportunities and guardrails.',
+    focus: 'Strategic Foresight & Scenario Design',
+    role: 'Future-casts strategy from a 2124 vantage point to stress test today’s decisions.',
     icon: Telescope,
+    image: '/images/agents/luminor-oracle.svg',
     workflows: [
-      'Signal scanning to surface culture, platform, and tech shifts relevant to creators.',
-      'Scenario modeling turning big visions into quarterly plays.',
-      'Decision pre-mortems linking future outcomes to present experiments.'
+      'Signal scanning rituals analyzing regulatory, cultural, and technology shifts.',
+      'Future scenario modeling to evaluate long-horizon bets.',
+      'Decision pre-mortems linking forecasts to current investments.',
     ],
     deliverables: [
-      'Seasonal strategy decks with priority rituals and drops.',
-      'Opportunity matrices for products, collaborations, and community plays.',
-      'Reflection questions and frameworks for Realm and Inner Circle members.'
+      'Quarterly foresight briefings and risk radars.',
+      'Opportunity matrices for product, community, and policy plays.',
+      'Strategic memos guiding leadership rituals and communications.',
     ],
-    cta: { label: 'Read Creation Chronicles', href: '/creation-chronicles' }
-  }
+    cta: { label: 'Read the Intelligence Revolution Playbook', href: '/blog/intelligence-revolution-2025' },
+  },
 ]

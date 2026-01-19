@@ -1,18 +1,61 @@
-﻿'use client'
+'use client'
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { vscDarkPlus } from 'react-syntax-highlighter/dist/cjs/styles/prism'
-import { Copy, Check, Star, Tag, Lightbulb } from 'lucide-react'
-import { useMemo, useState } from 'react'
+import {
+  Copy,
+  Check,
+  Tag,
+  Lightbulb,
+  Sparkles,
+  Crown,
+  Lock,
+  PenLine,
+  Music,
+  Image,
+  Code2,
+  Brain,
+  Bot,
+  TrendingUp,
+  Share2,
+  Megaphone,
+  Zap,
+  Target,
+  Compass,
+  GraduationCap,
+} from 'lucide-react'
+import { useState } from 'react'
 
-import type { CategoryInfo, Prompt } from '@/lib/prompts'
-import { getAffiliate } from '@/lib/affiliates/affiliate-manager'
-import AffiliateDisclosure from '../affiliates/AffiliateDisclosure'
-import AffiliateCard from '../affiliates/AffiliateCard'
+import type { CategoryInfo, Prompt, PromptTier } from '@/lib/prompts'
 import { Pill, SectionHeading, Surface, StatBlock } from '@/components/ui/primitives'
 import PromptCard from './PromptCard'
+import { cn } from '@/lib/utils'
+
+// Icon mapping for dynamic rendering
+const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
+  PenLine,
+  Music,
+  Image,
+  Sparkles,
+  Code2,
+  Brain,
+  Bot,
+  TrendingUp,
+  Share2,
+  Megaphone,
+  Zap,
+  Target,
+  Compass,
+  GraduationCap,
+}
+
+const TIER_CONFIG: Record<PromptTier, { label: string; icon: React.ComponentType<{ className?: string }>; color: string }> = {
+  free: { label: 'Free', icon: Sparkles, color: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20' },
+  premium: { label: 'Premium', icon: Crown, color: 'bg-amber-500/10 text-amber-400 border-amber-500/20' },
+  paid: { label: 'Paid', icon: Lock, color: 'bg-violet-500/10 text-violet-400 border-violet-500/20' },
+}
 
 interface PromptDetailViewProps {
   prompt: Prompt
@@ -22,7 +65,6 @@ interface PromptDetailViewProps {
 
 export default function PromptDetailView({ prompt, category, relatedPrompts }: PromptDetailViewProps) {
   const [copied, setCopied] = useState(false)
-  const affiliate = useMemo(() => (prompt.affiliateId ? getAffiliate(prompt.affiliateId) : undefined), [prompt.affiliateId])
 
   const handleCopy = () => {
     navigator.clipboard.writeText(prompt.content)
@@ -40,9 +82,34 @@ export default function PromptDetailView({ prompt, category, relatedPrompts }: P
                 href={`/prompt-library/${category.id}`}
                 className="inline-flex items-center gap-2 rounded-2xl border border-white/10 px-3 py-1 text-xs font-semibold text-white/60 transition hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500/60"
               >
-                <span className="text-lg">{category.emoji}</span>
+                {(() => {
+                  const CategoryIcon = ICON_MAP[category.icon] || Sparkles
+                  return (
+                    <span style={{ color: category.color }}>
+                      <CategoryIcon className="h-4 w-4" />
+                    </span>
+                  )
+                })()}
                 Back to {category.name}
               </Link>
+            </div>
+          )}
+
+          {/* Tier Badge */}
+          {prompt.tier && (
+            <div className="flex justify-center">
+              <span
+                className={cn(
+                  'inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-medium',
+                  TIER_CONFIG[prompt.tier].color
+                )}
+              >
+                {(() => {
+                  const TierIcon = TIER_CONFIG[prompt.tier].icon
+                  return <TierIcon className="h-4 w-4" />
+                })()}
+                {TIER_CONFIG[prompt.tier].label} Prompt
+              </span>
             </div>
           )}
 
@@ -58,11 +125,10 @@ export default function PromptDetailView({ prompt, category, relatedPrompts }: P
             />
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            <StatBlock value={String(prompt.rating)} label="Rating" description="Community score" align="center" />
-            <StatBlock value={prompt.usageCount.toLocaleString()} label="Usage" description="Applied in the field" align="center" />
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <StatBlock value={prompt.difficulty} label="Difficulty" description="Skill level required" align="center" />
             <StatBlock value={new Date(prompt.createdAt).toLocaleDateString()} label="Published" description="Creation date" align="center" />
-            <StatBlock value={new Date(prompt.updatedAt).toLocaleDateString()} label="Last Updated" description="Most recent version" align="center" />
+            <StatBlock value={prompt.aiTool.toUpperCase()} label="AI Tool" description="Recommended platform" align="center" />
           </div>
 
           <Surface tone="glass" padding="lg" className="relative">
@@ -113,16 +179,6 @@ export default function PromptDetailView({ prompt, category, relatedPrompts }: P
             </Surface>
           </div>
 
-          {affiliate && (
-            <div className="mt-12">
-              <h3 className="mb-6 text-center text-2xl font-bold text-white">Recommended Tool</h3>
-              <div className="mx-auto max-w-md">
-                <AffiliateCard affiliate={affiliate} trackingId={`prompt-detail-${prompt.id}`} />
-              </div>
-            </div>
-          )}
-
-          <AffiliateDisclosure />
         </div>
       </section>
 

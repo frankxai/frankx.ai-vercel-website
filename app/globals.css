@@ -2,71 +2,113 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ============================================================================
+   TYPOGRAPHY SYSTEM
+   Primary: Inter (geometric sans-serif, variable weight)
+   Accent: Playfair Display (serif, italic emphasis only)
+   Mono: JetBrains Mono (code blocks)
+   All fonts loaded via Next.js Google Fonts optimization
+   ============================================================================ */
+
 @layer base {
   :root {
     color-scheme: dark;
-    --background: 0 0% 100%;
-    --foreground: 0 0% 3.9%;
-    --muted: 0 0% 96.1%;
-    --muted-foreground: 0 0% 45.1%;
-    --accent: 0 0% 96.1%;
-    --accent-foreground: 0 0% 9%;
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 3.9%;
-    --border: 0 0% 89.8%;
-    --input: 0 0% 89.8%;
-    --ring: 0 0% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 3.9%;
-    --primary: 0 0% 9%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 0 0% 96.1%;
-    --secondary-foreground: 0 0% 9%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
-    --radius: 0.5rem;
+
+    /* =========================================================================
+       FRANKX BRAND COLORS - Official Brand Identity (from BRAND_IDENTITY.md)
+       ========================================================================= */
+
+    /* Core Brand - Conscious Purple Spectrum */
+    --brand-purple: #8B5CF6;
+    --brand-purple-deep: #6D28D9;
+    --brand-purple-light: #C4B5FD;
+
+    /* Tech Spectrum - Cyan/Emerald */
+    --brand-cyan: #06B6D4;
+    --brand-cyan-electric: #0891B2;
+    --brand-cyan-bright: #67E8F9;
+    --brand-emerald: #10B981;
+    --brand-emerald-light: #34D399;
+    --brand-emerald-dark: #059669;
+
+    /* Soul Spectrum - Amber/Gold */
+    --brand-amber: #F59E0B;
+    --brand-amber-vibrant: #EA580C;
+    --brand-amber-warm: #FDBA74;
+
+    /* Growth Spectrum - Green */
+    --brand-green: #10B981;
+    --brand-green-forest: #059669;
+    --brand-green-fresh: #6EE7B7;
+
+    /* =========================================================================
+       SEMANTIC DESIGN TOKENS
+       ========================================================================= */
+
+    /* Backgrounds - Deep Space Foundation */
+    --bg-void: #0a0a0b;
+    --bg-space: #111113;
+    --bg-elevated: #18181b;
+    --bg-subtle: #1f1f23;
+
+    /* Text Hierarchy - WCAG AAA compliant */
+    --text-primary: #fafafa;
+    --text-secondary: rgba(250, 250, 250, 0.85);
+    --text-tertiary: rgba(250, 250, 250, 0.65);
+    --text-muted: rgba(250, 250, 250, 0.45);
+
+    /* Border System */
+    --border-subtle: rgba(255, 255, 255, 0.05);
+    --border-default: rgba(255, 255, 255, 0.1);
+    --border-strong: rgba(255, 255, 255, 0.15);
+
+    /* =========================================================================
+       SHADCN/UI COMPATIBLE TOKENS
+       ========================================================================= */
+    --background: 222 83% 4%;
+    --foreground: 210 40% 96%;
+    --muted: 215 28% 17%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 258 90% 66%;
+    --accent-foreground: 217 91% 12%;
+    --card: 222 83% 9%;
+    --card-foreground: 210 40% 96%;
+    --border: 215 28% 27%;
+    --input: 215 28% 22%;
+    --ring: 208 93% 58%;
+
+    /* Primary accent mapped to brand emerald */
+    --primary: var(--brand-emerald);
+    --primary-foreground: var(--bg-void);
+
+    /* Secondary accent mapped to brand cyan */
+    --secondary: var(--brand-cyan);
+    --secondary-foreground: var(--bg-void);
+  }
+
+  /* Critical mobile fix: prevent horizontal overflow at the root level */
+  html {
+    overflow-x: hidden;
+    scroll-behavior: smooth;
   }
 
   body {
     background-color: hsl(var(--background));
     color: hsl(var(--foreground));
-  }
-  .dark {
-    --background: 0 0% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 0 0% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 9%;
-    --secondary: 0 0% 14.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
-    --accent: 0 0% 14.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 14.9%;
-    --input: 0 0% 14.9%;
-    --ring: 0 0% 83.1%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
+    overflow-x: hidden;
+    position: relative;
   }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+
+  /* Times New Roman italic for elegant headings */
+  .font-serif-italic {
+    font-family: "Times New Roman", Times, Georgia, serif;
+    font-style: italic;
   }
 
   .gradient-text {
@@ -83,20 +125,6 @@
     background: rgba(15, 23, 42, 0.6);
     backdrop-filter: blur(18px);
     border: 1px solid rgba(148, 163, 184, 0.18);
-  }
-
-  /* 3D Card Flip Effects */
-  .perspective {
-    perspective: 1000px;
-  }
-
-  .preserve-3d {
-    transform-style: preserve-3d;
-  }
-
-  .backface-hidden {
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
   }
 }
 
@@ -135,13 +163,14 @@
   text-decoration: none;
 }
 
-
-
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
+/* Accessibility: Respect reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

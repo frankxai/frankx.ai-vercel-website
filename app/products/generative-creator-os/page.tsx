@@ -43,7 +43,7 @@ export default function GenerativeCreatorOSPage() {
   const productId = product.analyticsId ?? product.id
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100">
+    <div className="min-h-screen bg-[#02030b] text-slate-100">
       <ProductHero
         productId={productId}
         badge={product.badge}
@@ -64,12 +64,12 @@ export default function GenerativeCreatorOSPage() {
         pricingTiers={product.pricingTiers}
       />
 
-      <section className="bg-slate-950 py-16">
+      <section className="bg-[#02030b] py-16">
         <div className="mx-auto max-w-4xl px-6">
           <h2 className="text-center text-3xl font-semibold text-white">Frequently Asked by Creative Teams</h2>
           <div className="mt-10 space-y-6">
             {product.faq.map((item) => (
-              <details key={item.question} className="rounded-2xl border border-slate-800 bg-slate-900/70 p-6 text-left">
+              <details key={item.question} className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 text-left">
                 <summary className="cursor-pointer text-lg font-semibold text-white">
                   {item.question}
                 </summary>
@@ -83,7 +83,7 @@ export default function GenerativeCreatorOSPage() {
       <FinalCTA
         productId={productId}
         title="Build Your Generative Command Center"
-        description="Bring the FrankX agent collective into your studio and scale creative momentum with governance built in."
+        description="Deploy the templates, prompts, and guardrails that keep multi-modal creation consistent."
         primaryLabel={product.offer.ctaPrimary}
         primaryHref={product.offer.ctaPrimaryHref}
         primaryTracking={product.offer.ctaPrimaryTracking}

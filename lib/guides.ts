@@ -13,6 +13,7 @@ export interface GuideDoc {
   author: string
   category?: string
   tags?: string[]
+  image?: string
   readingTime: string
   content: string
 }
@@ -38,6 +39,7 @@ export function getAllGuides(): GuideDoc[] {
         author: data.author || 'Frank',
         category: data.category || 'Guide',
         tags: data.tags || [],
+        image: data.image || '',
       } as GuideDoc
     })
     .sort((a, b) => (new Date(a.date) > new Date(b.date) ? -1 : 1))
@@ -59,6 +61,7 @@ export function getGuide(slug: string): GuideDoc | null {
       author: data.author || 'Frank',
       category: data.category || 'Guide',
       tags: data.tags || [],
+      image: data.image || '',
     } as GuideDoc
   } catch {
     return null

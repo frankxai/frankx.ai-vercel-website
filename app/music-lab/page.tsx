@@ -2,385 +2,468 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { Play, Headphones, Heart, Sparkles, Music, ArrowRight, Volume2, Calendar } from 'lucide-react'
-import Navigation from '@/components/Navigation'
-import Footer from '@/components/Footer'
+import {
+  Play,
+  ExternalLink,
+  Music2,
+  Sparkles,
+  ArrowRight,
+  Wand2,
+  Zap,
+  Headphones,
+  Music,
+  FileAudio,
+  Layers,
+  Target,
+  BookOpen,
+  ArrowUpRight,
+} from 'lucide-react'
 
-const featuredSongs = [
-  {
-    id: 1,
-    title: "Conscious Flow State",
-    description: "Binaural beats at 40Hz gamma frequency designed for deep focus and peak productivity. Co-created with AI for optimal cognitive enhancement.",
-    genre: "Flow State / Focus",
-    duration: "8:00",
-    intention: "Deep work and cognitive optimization",
-    color: "from-purple-500 to-blue-500",
-    sunoUrl: "https://suno.com/@frankx"
-  },
-  {
-    id: 2,
-    title: "Algorithm of Awakening",
-    description: "A transformational journey through consciousness technology. Features subtle environmental sounds with digital textures that enhance mindfulness.",
-    genre: "Consciousness Tech",
-    duration: "6:12",
-    intention: "Mindful technology integration",
-    color: "from-cyan-500 to-teal-500",
-    sunoUrl: "https://suno.com/@frankx"
-  },
-  {
-    id: 3,
-    title: "Neural Symphony",
-    description: "Complex polyrhythms that mirror neural network patterns. Specifically engineered for creative problem-solving and innovation sessions.",
-    genre: "AI Orchestral",
-    duration: "7:33",
-    intention: "Creative breakthrough and innovation",
-    color: "from-pink-500 to-rose-500",
-    sunoUrl: "https://suno.com/@frankx"
-  },
-  {
-    id: 4,
-    title: "Digital Serenity",
-    description: "Healing frequencies combined with natural soundscapes. Helps restore balance after intensive screen time and digital overwhelm.",
-    genre: "Digital Wellness",
-    duration: "9:18",
-    intention: "Digital detox and nervous system reset",
-    color: "from-emerald-500 to-green-500",
-    sunoUrl: "https://suno.com/@frankx"
-  },
-  {
-    id: 5,
-    title: "Frequency of Success",
-    description: "Motivational ambient with 528Hz 'Love Frequency' and strategic rhythm patterns. Used by entrepreneurs for goal visualization and manifestation.",
-    genre: "Success Activation",
-    duration: "8:44",
-    intention: "Facilitating consciousness expansion",
-    color: "from-purple-500 to-indigo-500",
-    sunoUrl: "https://suno.com/@frankx"
-  },
-  {
-    id: 500,
-    title: "The Bridge We Built",
-    description: "My 500th song - a celebration of what becomes possible when human creativity and AI dance together consciously.",
-    genre: "Uplifting Electronic",
-    duration: "4:56",
-    intention: "Celebrating human-AI collaboration",
-    color: "from-pink-500 to-rose-500",
-    sunoUrl: "https://suno.com/@frankx"
-  }
-]
+// ============================================================================
+// BACKGROUND
+// ============================================================================
 
-const musicCategories = [
-  {
-    title: "Healing & Transformation",
-    description: "Music designed to facilitate emotional processing and personal growth",
-    songCount: "80+",
-    icon: Heart,
-    color: "from-red-500 to-pink-500"
-  },
-  {
-    title: "Focus & Flow States",
-    description: "Instrumental pieces that enhance creativity and concentration",
-    songCount: "60+",
-    icon: Sparkles,
-    color: "from-blue-500 to-indigo-500"
-  },
-  {
-    title: "Meditation & Mindfulness",
-    description: "Ambient soundscapes for contemplation and inner peace",
-    songCount: "90+",
-    icon: Volume2,
-    color: "from-green-500 to-emerald-500"
-  },
-  {
-    title: "Frequency Healing",
-    description: "Songs tuned to specific healing frequencies (432Hz, 528Hz, etc.)",
-    songCount: "30+",
-    icon: Music,
-    color: "from-purple-500 to-pink-500"
-  },
-  {
-    title: "Life Transitions",
-    description: "Music for major life changes, celebrations, and milestones",
-    songCount: "70+",
-    icon: Calendar,
-    color: "from-orange-500 to-red-500"
-  },
-  {
-    title: "Inspiration & Motivation",
-    description: "Empowering anthems for breakthrough moments and bold action",
-    songCount: "100+",
-    icon: ArrowRight,
-    color: "from-yellow-500 to-orange-500"
-  }
-]
+function MusicLabBackground() {
+  return (
+    <div className="fixed inset-0 overflow-hidden pointer-events-none">
+      <div className="absolute inset-0 bg-[#030712]" />
+
+      <motion.div
+        className="absolute top-0 -right-[20%] w-[60%] h-[60%]"
+        style={{
+          background: 'radial-gradient(ellipse at center, rgba(236, 72, 153, 0.08) 0%, transparent 70%)',
+          filter: 'blur(100px)',
+        }}
+        animate={{ x: [0, -50, 0], y: [0, 30, 0] }}
+        transition={{ duration: 25, repeat: Infinity, ease: 'easeInOut' }}
+      />
+
+      <motion.div
+        className="absolute -bottom-[20%] -left-[10%] w-[50%] h-[50%]"
+        style={{
+          background: 'radial-gradient(ellipse at center, rgba(139, 92, 246, 0.06) 0%, transparent 70%)',
+          filter: 'blur(100px)',
+        }}
+        animate={{ x: [0, 40, 0], y: [0, -20, 0] }}
+        transition={{ duration: 30, repeat: Infinity, ease: 'easeInOut' }}
+      />
+    </div>
+  )
+}
+
+// ============================================================================
+// HERO
+// ============================================================================
+
+function HeroSection() {
+  return (
+    <section className="relative pt-32 pb-20 px-6">
+      <div className="max-w-5xl mx-auto">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          {/* Left - Text */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-pink-500/10 border border-pink-500/20 mb-8">
+              <Music2 className="w-4 h-4 text-pink-400" />
+              <span className="text-sm font-medium text-pink-300">AI Music Creation</span>
+            </div>
+
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight mb-6">
+              <span className="text-white">Create music with</span>
+              <br />
+              <span className="font-serif-italic text-white/80">artificial intelligence</span>
+            </h1>
+
+            <p className="text-xl text-white/50 mb-8 max-w-lg leading-relaxed">
+              From idea to finished song in minutes. Learn how to use Suno AI
+              to create professional-quality music—no instruments or production
+              experience required.
+            </p>
+
+            <div className="flex flex-wrap gap-4">
+              <Link
+                href="/products/vibe-os"
+                className="group inline-flex items-center gap-3 bg-white text-black px-7 py-4 rounded-full font-semibold transition-all hover:bg-white/90 hover:shadow-[0_0_40px_rgba(255,255,255,0.15)]"
+              >
+                <Sparkles className="w-5 h-5" />
+                Explore Vibe OS
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+              <a
+                href="https://suno.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-3 border border-white/20 text-white px-7 py-4 rounded-full font-semibold transition-all hover:bg-white/5"
+              >
+                Try Suno Free
+                <ExternalLink className="w-4 h-4" />
+              </a>
+            </div>
+          </motion.div>
+
+          {/* Right - Visual */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="relative hidden lg:block"
+          >
+            <div className="relative aspect-square">
+              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-pink-500/20 via-violet-500/10 to-cyan-500/20 blur-3xl" />
+
+              <div className="absolute inset-8 rounded-3xl bg-white/[0.02] border border-white/10 backdrop-blur-sm p-8 flex flex-col justify-center">
+                <div className="space-y-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-lg bg-pink-500/20 flex items-center justify-center">
+                      <Wand2 className="w-5 h-5 text-pink-400" />
+                    </div>
+                    <div>
+                      <p className="text-white font-medium">Describe your song</p>
+                      <p className="text-white/40 text-sm">Genre, mood, lyrics</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-lg bg-violet-500/20 flex items-center justify-center">
+                      <Zap className="w-5 h-5 text-violet-400" />
+                    </div>
+                    <div>
+                      <p className="text-white font-medium">AI generates music</p>
+                      <p className="text-white/40 text-sm">Full production in seconds</p>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-lg bg-cyan-500/20 flex items-center justify-center">
+                      <Headphones className="w-5 h-5 text-cyan-400" />
+                    </div>
+                    <div>
+                      <p className="text-white font-medium">Download & share</p>
+                      <p className="text-white/40 text-sm">Own your creations</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// ============================================================================
+// WHAT IS AI MUSIC
+// ============================================================================
+
+function WhatIsSection() {
+  return (
+    <section className="py-24 border-y border-white/5">
+      <div className="max-w-5xl mx-auto px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-3xl md:text-4xl font-semibold text-white mb-4">
+            What is AI music creation?
+          </h2>
+          <p className="text-lg text-white/50 max-w-2xl mx-auto">
+            Tools like Suno use artificial intelligence to generate complete songs
+            from text descriptions. You describe what you want, and AI creates
+            the music, vocals, and production.
+          </p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-3 gap-6">
+          {[
+            {
+              icon: FileAudio,
+              title: 'Full songs in minutes',
+              description: 'Generate complete tracks with vocals, instruments, and professional mixing—not just loops or samples.',
+            },
+            {
+              icon: Layers,
+              title: 'No technical skills needed',
+              description: 'If you can describe music in words, you can create it. No DAW, no instruments, no music theory required.',
+            },
+            {
+              icon: Target,
+              title: 'Commercial-ready output',
+              description: 'Modern AI music tools produce release-quality audio you can actually use for content, products, or personal enjoyment.',
+            },
+          ].map((item, i) => (
+            <motion.div
+              key={item.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              className="p-6 rounded-2xl bg-white/[0.02] border border-white/10"
+            >
+              <div className="w-12 h-12 rounded-xl bg-pink-500/10 flex items-center justify-center mb-4">
+                <item.icon className="w-6 h-6 text-pink-400" />
+              </div>
+              <h3 className="text-lg font-semibold text-white mb-2">{item.title}</h3>
+              <p className="text-white/50">{item.description}</p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// ============================================================================
+// HOW TO GET STARTED
+// ============================================================================
+
+function GetStartedSection() {
+  const steps = [
+    {
+      number: '01',
+      title: 'Open Suno',
+      description: 'Go to suno.com and create a free account. New users get 50 free credits to start.',
+      action: { label: 'Open Suno', href: 'https://suno.com', external: true },
+    },
+    {
+      number: '02',
+      title: 'Describe your song',
+      description: 'Enter a genre, mood, and optional lyrics. Example: "Uplifting electronic, 120bpm, about chasing dreams"',
+      action: { label: 'See Prompt Examples', href: '/prompt-library?category=music-creation' },
+    },
+    {
+      number: '03',
+      title: 'Generate & iterate',
+      description: 'Click Create and wait 30-60 seconds. Generate variations until you find what you love.',
+    },
+    {
+      number: '04',
+      title: 'Download & use',
+      description: 'Download your MP3 or video. Use for content, share online, or build your music catalog.',
+    },
+  ]
+
+  return (
+    <section className="py-24">
+      <div className="max-w-5xl mx-auto px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-3xl md:text-4xl font-semibold text-white mb-4">
+            How to get started
+          </h2>
+          <p className="text-lg text-white/50 max-w-2xl mx-auto">
+            Create your first AI-generated song in under 5 minutes.
+          </p>
+        </motion.div>
+
+        <div className="space-y-6">
+          {steps.map((step, i) => (
+            <motion.div
+              key={step.number}
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              className="flex gap-6 p-6 rounded-2xl bg-white/[0.02] border border-white/10"
+            >
+              <div className="flex-shrink-0">
+                <span className="text-3xl font-bold text-pink-400/30">{step.number}</span>
+              </div>
+              <div className="flex-grow">
+                <h3 className="text-xl font-semibold text-white mb-2">{step.title}</h3>
+                <p className="text-white/50 mb-4">{step.description}</p>
+                {step.action && (
+                  step.action.external ? (
+                    <a
+                      href={step.action.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-pink-400 hover:text-pink-300 transition-colors"
+                    >
+                      {step.action.label}
+                      <ExternalLink className="w-4 h-4" />
+                    </a>
+                  ) : (
+                    <Link
+                      href={step.action.href}
+                      className="inline-flex items-center gap-2 text-pink-400 hover:text-pink-300 transition-colors"
+                    >
+                      {step.action.label}
+                      <ArrowRight className="w-4 h-4" />
+                    </Link>
+                  )
+                )}
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// ============================================================================
+// PROMPT EXAMPLES
+// ============================================================================
+
+function PromptExamplesSection() {
+  const examples = [
+    {
+      genre: 'Lo-Fi Chill',
+      prompt: '[Lo-Fi Hip Hop, Chill, Relaxed] Dusty vinyl crackle, mellow keys, jazzy chords, soft drums, cozy late night vibes',
+      useCase: 'Study music, background audio',
+    },
+    {
+      genre: 'Epic Cinematic',
+      prompt: '[Orchestral, Epic, Powerful] Sweeping strings, heroic brass, thundering drums, film score quality',
+      useCase: 'Video content, trailers',
+    },
+    {
+      genre: 'Ambient Electronic',
+      prompt: '[Ambient, Ethereal, Dreamy] Floating synth pads, gentle pulse, atmospheric textures, meditative',
+      useCase: 'Focus music, meditation',
+    },
+  ]
+
+  return (
+    <section className="py-24 bg-gradient-to-b from-transparent via-white/[0.01] to-transparent">
+      <div className="max-w-5xl mx-auto px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-12"
+        >
+          <h2 className="text-3xl md:text-4xl font-semibold text-white mb-4">
+            Prompt examples
+          </h2>
+          <p className="text-lg text-white/50 max-w-2xl mx-auto">
+            Copy these prompts into Suno to create different styles of music.
+          </p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-3 gap-6">
+          {examples.map((example, i) => (
+            <motion.div
+              key={example.genre}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+              className="p-6 rounded-2xl bg-white/[0.02] border border-white/10"
+            >
+              <div className="flex items-center justify-between mb-4">
+                <span className="text-lg font-semibold text-white">{example.genre}</span>
+                <span className="text-xs text-white/40">{example.useCase}</span>
+              </div>
+              <p className="text-sm text-white/60 font-mono bg-white/5 rounded-lg p-3 mb-4">
+                {example.prompt}
+              </p>
+              <button
+                onClick={() => navigator.clipboard.writeText(example.prompt)}
+                className="w-full py-2 rounded-lg border border-white/10 text-sm text-white/60 hover:bg-white/5 hover:text-white transition-all"
+              >
+                Copy Prompt
+              </button>
+            </motion.div>
+          ))}
+        </div>
+
+        <div className="text-center mt-8">
+          <Link
+            href="/prompt-library?category=music-creation"
+            className="inline-flex items-center gap-2 text-pink-400 hover:text-pink-300 transition-colors"
+          >
+            <BookOpen className="w-4 h-4" />
+            Browse all music prompts
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// ============================================================================
+// CTA - VIBE OS
+// ============================================================================
+
+function CTASection() {
+  return (
+    <section className="py-24 border-t border-white/5">
+      <div className="max-w-4xl mx-auto px-6 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-violet-500/10 border border-violet-500/20 mb-6">
+            <Sparkles className="w-4 h-4 text-violet-400" />
+            <span className="text-sm font-medium text-violet-300">Go Deeper</span>
+          </div>
+
+          <h2 className="text-3xl md:text-4xl font-semibold text-white mb-4">
+            Ready to master AI music creation?
+          </h2>
+          <p className="text-xl text-white/50 mb-8 max-w-2xl mx-auto">
+            Vibe OS is a complete system for creating transformative music with AI.
+            Prompt templates, workflows, and techniques refined over 500+ songs.
+          </p>
+
+          <div className="flex flex-wrap justify-center gap-4">
+            <Link
+              href="/products/vibe-os"
+              className="inline-flex items-center gap-3 bg-white text-black px-8 py-4 rounded-full text-lg font-semibold transition-all hover:bg-white/90 hover:shadow-[0_0_40px_rgba(255,255,255,0.15)]"
+            >
+              <Sparkles className="w-5 h-5" />
+              Explore Vibe OS
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+            <a
+              href="https://suno.com/@frankx"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 border border-white/20 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all hover:bg-white/5"
+            >
+              <Music className="w-5 h-5" />
+              Hear Frank's Music
+              <ArrowUpRight className="w-4 h-4" />
+            </a>
+          </div>
+
+          <p className="text-sm text-white/30 mt-8">
+            Frank has created 500+ songs using Suno AI, exploring ambient,
+            electronic, cinematic, and healing frequencies.
+          </p>
+        </motion.div>
+      </div>
+    </section>
+  )
+}
+
+// ============================================================================
+// MAIN
+// ============================================================================
 
 export default function MusicLabPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-black to-gray-900 text-white">
-      <Navigation />
-      
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-20 px-6 overflow-hidden">
-        <div className="absolute inset-0 -z-10">
-          <div className="absolute top-20 left-10 w-96 h-96 bg-purple-600 rounded-full mix-blend-screen filter blur-3xl opacity-20 animate-pulse"></div>
-          <div className="absolute top-40 right-10 w-96 h-96 bg-blue-600 rounded-full mix-blend-screen filter blur-3xl opacity-20 animate-pulse animation-delay-2000"></div>
-          <div className="absolute bottom-20 left-1/2 w-96 h-96 bg-pink-600 rounded-full mix-blend-screen filter blur-3xl opacity-20 animate-pulse animation-delay-4000"></div>
-        </div>
-        
-        <div className="max-w-7xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            <div className="inline-flex items-center px-4 py-2 bg-purple-500/20 rounded-full mb-6">
-              <Music className="w-4 h-4 text-purple-400 mr-2" />
-              <span className="text-sm font-medium text-purple-300">500+ Songs Created</span>
-            </div>
-            
-            <h1 className="text-5xl md:text-7xl font-bold mb-6">
-              Frank's <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent">Music Lab</span>
-            </h1>
+    <main className="relative min-h-screen text-white">
+      <MusicLabBackground />
 
-            <p className="text-xl text-gray-300 mb-12 max-w-3xl mx-auto">
-              Oracle AI Architect by day, consciousness musician by night. Follow my journey of creating 500+ AI songs
-              with Suno, transforming technology into healing frequencies and creative breakthroughs.
-            </p>
-            
-            <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-              <div className="text-center">
-                <div className="text-4xl font-bold text-purple-400 mb-2">500+</div>
-                <div className="text-gray-400">Songs Created</div>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl font-bold text-pink-400 mb-2">6</div>
-                <div className="text-gray-400">Healing Categories</div>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl font-bold text-blue-400 mb-2">∞</div>
-                <div className="text-gray-400">Vibe Shifts</div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Featured Songs */}
-      <section className="py-20 px-6">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl font-bold mb-4">Featured Songs</h2>
-            <p className="text-xl text-gray-400">Milestone tracks that taught me the most about human-AI musical collaboration</p>
-          </motion.div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {featuredSongs.map((song, index) => (
-              <motion.div
-                key={song.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="bg-gradient-to-br from-gray-800 to-gray-900 rounded-xl p-6 hover:from-gray-700 hover:to-gray-800 transition-all cursor-pointer"
-              >
-                <div className={`w-16 h-16 rounded-full bg-gradient-to-r ${song.color} flex items-center justify-center mb-4`}>
-                  <Music className="w-8 h-8 text-white" />
-                </div>
-                
-                <div className="text-sm text-gray-400 mb-2">Song #{song.id}</div>
-                <h3 className="text-xl font-bold mb-2">{song.title}</h3>
-                <p className="text-gray-400 mb-4">{song.description}</p>
-                
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-sm text-purple-400">{song.genre}</span>
-                  <span className="text-sm text-gray-400">{song.duration}</span>
-                </div>
-                
-                <div className="bg-gray-700/50 rounded-lg p-3 mb-4">
-                  <div className="text-xs text-gray-400 mb-1">Intention:</div>
-                  <div className="text-sm text-gray-300">{song.intention}</div>
-                </div>
-                
-                {song.sunoUrl && (
-                  <a
-                    href={song.sunoUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full flex items-center justify-center px-4 py-2 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 rounded-lg transition-all shadow-lg hover:shadow-purple-500/25 group"
-                  >
-                    <Music className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform" />
-                    View All on Suno →
-                  </a>
-                )}
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Music Categories */}
-      <section className="py-20 px-6 bg-gray-800/50">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl font-bold mb-4">Explore by Category</h2>
-            <p className="text-xl text-gray-400">Music organized by intention and consciousness effect</p>
-          </motion.div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {musicCategories.map((category, index) => (
-              <motion.div
-                key={category.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="bg-gray-900/70 rounded-xl p-6 hover:bg-gray-800/70 transition-all cursor-pointer"
-              >
-                <div className={`w-12 h-12 rounded-lg bg-gradient-to-r ${category.color} flex items-center justify-center mb-4`}>
-                  <category.icon className="w-6 h-6 text-white" />
-                </div>
-                
-                <h3 className="text-xl font-bold mb-2">{category.title}</h3>
-                <p className="text-gray-400 mb-4">{category.description}</p>
-                
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-gray-500">{category.songCount} songs</span>
-                  <ArrowRight className="w-4 h-4 text-gray-400" />
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* The Process */}
-      <section className="py-20 px-6">
-        <div className="max-w-4xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl font-bold mb-4">The Process: How Vibe Music Is Made</h2>
-            <p className="text-xl text-gray-400">My framework for creating music that transforms consciousness</p>
-          </motion.div>
-          
-          <div className="space-y-8">
-            {[
-              {
-                step: "1",
-                title: "Intention Setting",
-                description: "Every song begins with a clear intention. What transformation do I want this music to facilitate? What emotional journey should it create?",
-                color: "from-purple-500 to-pink-500"
-              },
-              {
-                step: "2", 
-                title: "Emotional Mapping",
-                description: "I map the emotional arc - where does the listener start, what do they experience, and where do they end up? This becomes the musical structure.",
-                color: "from-blue-500 to-purple-500"
-              },
-              {
-                step: "3",
-                title: "Frequency Alignment", 
-                description: "I choose specific frequencies (432Hz for healing, 528Hz for love) and BPM ranges that support the intended brainwave states.",
-                color: "from-green-500 to-blue-500"
-              },
-              {
-                step: "4",
-                title: "AI Collaboration",
-                description: "I craft prompts that communicate both the technical requirements and the consciousness intention to the AI, then we co-create.",
-                color: "from-orange-500 to-red-500"
-              },
-              {
-                step: "5",
-                title: "Vibe Testing",
-                description: "I listen with my whole being, not just my ears. Does it create the intended shift? I iterate until it feels aligned.",
-                color: "from-pink-500 to-purple-500"
-              }
-            ].map((step, index) => (
-              <motion.div
-                key={step.step}
-                initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="flex items-start space-x-6"
-              >
-                <div className={`w-12 h-12 rounded-full bg-gradient-to-r ${step.color} flex items-center justify-center flex-shrink-0`}>
-                  <span className="text-white font-bold">{step.step}</span>
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold mb-2">{step.title}</h3>
-                  <p className="text-gray-400">{step.description}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Learn to Create */}
-      <section className="py-20 px-6 bg-gradient-to-r from-purple-900/50 to-pink-900/50">
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl font-bold mb-4">Create Your Own Vibe Music</h2>
-            <p className="text-xl text-gray-300 mb-8">
-              You don't need musical training to create songs that transform consciousness. 
-              Learn the process I've developed through 500+ songs.
-            </p>
-            
-            <div className="grid md:grid-cols-3 gap-6 mb-12">
-              <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6">
-                <Headphones className="w-10 h-10 mx-auto mb-4 text-purple-400" />
-                <h3 className="font-bold mb-2">No Musical Background Needed</h3>
-                <p className="text-sm text-gray-300">AI helps you express through sound what you feel but can't articulate</p>
-              </div>
-              <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6">
-                <Heart className="w-10 h-10 mx-auto mb-4 text-pink-400" />
-                <h3 className="font-bold mb-2">Vibe-First Approach</h3>
-                <p className="text-sm text-gray-300">Learn to create music that facilitates genuine transformation</p>
-              </div>
-              <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6">
-                <Sparkles className="w-10 h-10 mx-auto mb-4 text-blue-400" />
-                <h3 className="font-bold mb-2">Proven Framework</h3>
-                <p className="text-sm text-gray-300">Step-by-step process refined through 500+ song creations</p>
-              </div>
-            </div>
-            
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/soul-frequency-quiz" className="inline-flex items-center px-8 py-4 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors">
-                Start with Your Frequency
-                <ArrowRight className="ml-2 w-5 h-5" />
-              </Link>
-              <Link href="/blog/music-as-consciousness-technology" className="inline-flex items-center px-8 py-4 bg-white/20 text-white rounded-lg hover:bg-white/30 transition-colors">
-                Read the Full Story
-                <Music className="ml-2 w-5 h-5" />
-              </Link>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      <Footer />
-    </div>
+      <div className="relative z-10">
+        <HeroSection />
+        <WhatIsSection />
+        <GetStartedSection />
+        <PromptExamplesSection />
+        <CTASection />
+      </div>
+    </main>
   )
 }

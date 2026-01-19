@@ -1,14 +1,37 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter } from 'next/font/google'
+import { Inter, Playfair_Display, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 import Script from 'next/script'
 
 import { cn } from '@/lib/utils'
 import { robotsConfig, siteConfig } from '@/lib/seo'
-import Navigation from '@/components/Navigation'
+import NavigationMega from '@/components/NavigationMega'
 import Footer from '@/components/Footer'
+import OrganizationJsonLd from '@/components/seo/OrganizationJsonLd'
+import SessionProvider from '@/components/providers/SessionProvider'
 
-const inter = Inter({ subsets: ['latin'] })
+// Inter as primary sans-serif (geometric, variable weight, screen-optimized)
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  display: 'swap',
+  weight: ['300', '400', '500', '600', '700'],
+})
+
+// Playfair Display for editorial touches (classic, elegant Times-like italics)
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  variable: '--font-serif',
+  display: 'swap',
+  style: ['normal', 'italic'],
+})
+
+// JetBrains Mono for code/technical elements
+const jetbrains = JetBrains_Mono({
+  subsets: ['latin'],
+  variable: '--font-mono',
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
@@ -19,6 +42,11 @@ export const metadata: Metadata = {
   description: siteConfig.description,
   keywords: siteConfig.keywords,
   authors: [{ name: 'Frank' }],
+  icons: {
+    icon: '/favicon.svg',
+    shortcut: '/favicon.svg',
+    apple: '/favicon.svg',
+  },
   alternates: {
     canonical: siteConfig.url,
     types: {
@@ -49,11 +77,24 @@ export const metadata: Metadata = {
     images: [siteConfig.ogImage],
   },
   category: 'Technology',
-  robots: robotsConfig,
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 }
 
 export const viewport: Viewport = {
-  themeColor: '#0f172a',
+  themeColor: '#030712',
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 5,
 }
 
 export default function RootLayout({
@@ -66,31 +107,40 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         <meta charSet="utf-8" />
+        <link rel="alternate" hrefLang="en" href="https://frankx.ai" />
+        <link rel="alternate" hrefLang="x-default" href="https://frankx.ai" />
       </head>
       <body
         className={cn(
-          inter.className,
-          'dark bg-slate-950 text-slate-100 antialiased min-h-screen'
+          inter.variable,
+          playfair.variable,
+          jetbrains.variable,
+          'font-sans dark bg-[#030712] text-white antialiased min-h-screen overflow-x-hidden'
         )}
         suppressHydrationWarning
       >
-        {plausibleDomain && (
-          <Script
-            strategy="afterInteractive"
-            data-domain={plausibleDomain}
-            src="https://plausible.io/js/script.js"
-          />
-        )}
-        <a
-          href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:bg-white focus:text-black focus:px-3 focus:py-2 focus:rounded"
-        >
-          Skip to content
-        </a>
-        <Navigation />
-        {children}
-        <Footer />
+        <SessionProvider>
+          <OrganizationJsonLd />
+          {plausibleDomain && (
+            <Script
+              strategy="afterInteractive"
+              data-domain={plausibleDomain}
+              src="https://plausible.io/js/script.js"
+            />
+          )}
+          <a
+            href="#main"
+            className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:bg-white focus:text-black focus:px-3 focus:py-2 focus:rounded z-[100]"
+          >
+            Skip to content
+          </a>
+          <NavigationMega />
+          <div id="main" className="min-h-screen overflow-x-hidden">
+            {children}
+          </div>
+          <Footer />
+        </SessionProvider>
       </body>
-    </html>
+    </html >
   )
 }

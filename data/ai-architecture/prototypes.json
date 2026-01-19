@@ -1,0 +1,499 @@
+[
+  {
+    "id": "enterprise-rag-platform",
+    "slug": "enterprise-rag-platform",
+    "title": "Enterprise RAG Platform",
+    "subtitle": "Production-grade document Q&A system for enterprises",
+    "category": "rag-production",
+    "status": "published",
+    "difficulty": "advanced",
+    "overview": "A complete enterprise RAG platform that enables employees to query internal documents, policies, and knowledge bases with AI-powered natural language search and answers with source citations.",
+    "problem": "Enterprises have vast amounts of knowledge trapped in documents, wikis, and internal systems. Employees waste hours searching for information, and critical knowledge is often lost or inaccessible.",
+    "solution": "Deploy a RAG platform with secure document ingestion, semantic search, and conversational AI that provides accurate answers with source citations while respecting access controls.",
+    "architecture": {
+      "diagramType": "mermaid",
+      "diagram": "graph TB\n    subgraph Ingestion\n        A[Document Sources] --> B[Ingestion Pipeline]\n        B --> C[Chunker]\n        C --> D[Embedder]\n    end\n    subgraph Storage\n        D --> E[Vector DB]\n        B --> F[Metadata Store]\n    end\n    subgraph Query\n        G[User Query] --> H[Query Processor]\n        H --> I[Retriever]\n        I --> E\n        I --> J[Reranker]\n        J --> K[LLM]\n        K --> L[Response + Citations]\n    end",
+      "components": [
+        {
+          "id": "ingestion",
+          "name": "Document Ingestion Pipeline",
+          "type": "compute",
+          "description": "Processes documents from various sources (SharePoint, Confluence, S3)",
+          "cloudService": "AWS Lambda / OCI Functions"
+        },
+        {
+          "id": "chunker",
+          "name": "Semantic Chunker",
+          "type": "compute",
+          "description": "Splits documents into meaningful chunks preserving context",
+          "cloudService": "LangChain / LlamaIndex"
+        },
+        {
+          "id": "vectordb",
+          "name": "Vector Database",
+          "type": "database",
+          "description": "Stores embeddings for semantic search",
+          "cloudService": "Pinecone / Weaviate / pgvector"
+        },
+        {
+          "id": "llm",
+          "name": "LLM Service",
+          "type": "ai-service",
+          "description": "Generates answers from retrieved context",
+          "cloudService": "Claude / GPT-4 / OCI GenAI"
+        }
+      ],
+      "flows": [
+        { "id": "f1", "from": "ingestion", "to": "chunker", "label": "Raw documents", "dataType": "Files" },
+        { "id": "f2", "from": "chunker", "to": "vectordb", "label": "Embeddings", "dataType": "Vectors" },
+        { "id": "f3", "from": "vectordb", "to": "llm", "label": "Retrieved chunks", "dataType": "Text" }
+      ]
+    },
+    "implementationSteps": [
+      {
+        "phase": 1,
+        "title": "Foundation Setup",
+        "description": "Set up infrastructure and basic pipeline",
+        "tasks": [
+          "Deploy vector database infrastructure",
+          "Configure document source connectors",
+          "Set up embedding service",
+          "Implement basic ingestion pipeline"
+        ],
+        "deliverables": ["Working ingestion pipeline", "Vector DB with initial documents"],
+        "estimatedDuration": "2 weeks"
+      },
+      {
+        "phase": 2,
+        "title": "Query Pipeline",
+        "description": "Build the retrieval and generation pipeline",
+        "tasks": [
+          "Implement query processing",
+          "Build retrieval with reranking",
+          "Configure LLM with RAG prompt",
+          "Add citation extraction"
+        ],
+        "deliverables": ["Functional Q&A endpoint", "Citation support"],
+        "estimatedDuration": "2 weeks"
+      },
+      {
+        "phase": 3,
+        "title": "Production Hardening",
+        "description": "Make it production-ready",
+        "tasks": [
+          "Add authentication and access controls",
+          "Implement caching layer",
+          "Set up monitoring and logging",
+          "Performance optimization"
+        ],
+        "deliverables": ["Production-ready system", "Monitoring dashboard"],
+        "estimatedDuration": "2 weeks"
+      }
+    ],
+    "codeExamples": [
+      {
+        "id": "rag-query",
+        "title": "RAG Query Implementation",
+        "language": "python",
+        "code": "from langchain.vectorstores import Pinecone\nfrom langchain.chat_models import ChatAnthropic\n\ndef query_rag(question: str, top_k: int = 5):\n    # Retrieve relevant documents\n    docs = vectorstore.similarity_search(question, k=top_k)\n    \n    # Build context from retrieved docs\n    context = \"\\n\\n\".join([d.page_content for d in docs])\n    \n    # Generate answer with citations\n    response = llm.invoke(\n        f\"Based on the following context, answer the question.\\n\\n\"\n        f\"Context:\\n{context}\\n\\n\"\n        f\"Question: {question}\\n\\n\"\n        f\"Provide the answer with source citations.\"\n    )\n    \n    return response, docs",
+        "description": "Basic RAG query with citation support"
+      }
+    ],
+    "relatedPatterns": ["rag-production", "vector-database-selection", "ai-gateway"],
+    "cloudProviders": ["aws", "gcp", "azure", "oci"],
+    "technologies": ["LangChain", "Pinecone", "Claude", "Python"],
+    "estimatedCost": {
+      "monthly": 2500,
+      "annual": 30000,
+      "currency": "USD",
+      "breakdown": [
+        { "category": "Vector Database", "amount": 800, "percentage": 32 },
+        { "category": "LLM API", "amount": 1000, "percentage": 40 },
+        { "category": "Compute", "amount": 500, "percentage": 20 },
+        { "category": "Storage", "amount": 200, "percentage": 8 }
+      ],
+      "assumptions": ["100K queries/month", "10K documents indexed", "GPT-4 for generation"]
+    },
+    "timeToImplement": "6-8 weeks",
+    "useCases": [
+      "Internal knowledge base Q&A",
+      "HR policy assistant",
+      "Technical documentation search",
+      "Customer support knowledge base"
+    ],
+    "createdAt": "2026-01-01T00:00:00Z",
+    "updatedAt": "2026-01-16T00:00:00Z",
+    "publishedAt": "2026-01-10T00:00:00Z",
+    "metaDescription": "Build a production-grade enterprise RAG platform for document Q&A with source citations",
+    "keywords": ["RAG", "enterprise AI", "document Q&A", "vector database", "LLM"]
+  },
+  {
+    "id": "multi-agent-code-assistant",
+    "slug": "multi-agent-code-assistant",
+    "title": "Multi-Agent Code Assistant",
+    "subtitle": "Autonomous coding system with specialized agents",
+    "category": "multi-agent-orchestration",
+    "status": "published",
+    "difficulty": "expert",
+    "overview": "A multi-agent system for autonomous code development featuring specialized agents for planning, coding, reviewing, and testing that coordinate to complete complex development tasks.",
+    "problem": "Single-prompt code generation struggles with complex, multi-file changes that require planning, implementation, testing, and review - capabilities that exceed what one LLM call can handle.",
+    "solution": "Deploy a coordinated multi-agent system with an orchestrator that delegates to specialized agents (Planner, Coder, Reviewer, Tester) for comprehensive development workflow automation.",
+    "architecture": {
+      "diagramType": "mermaid",
+      "diagram": "graph TB\n    A[User Request] --> B[Orchestrator Agent]\n    B --> C[Planner Agent]\n    C --> D[Coder Agent]\n    D --> E[Reviewer Agent]\n    E --> F{Approved?}\n    F -->|No| D\n    F -->|Yes| G[Tester Agent]\n    G --> H{Tests Pass?}\n    H -->|No| D\n    H -->|Yes| I[Complete]",
+      "components": [
+        {
+          "id": "orchestrator",
+          "name": "Orchestrator Agent",
+          "type": "ai-service",
+          "description": "Coordinates workflow and manages handoffs between agents"
+        },
+        {
+          "id": "planner",
+          "name": "Planner Agent",
+          "type": "ai-service",
+          "description": "Analyzes requirements and creates implementation plans"
+        },
+        {
+          "id": "coder",
+          "name": "Coder Agent",
+          "type": "ai-service",
+          "description": "Implements code based on plans"
+        },
+        {
+          "id": "reviewer",
+          "name": "Reviewer Agent",
+          "type": "ai-service",
+          "description": "Reviews code for quality, security, and best practices"
+        },
+        {
+          "id": "tester",
+          "name": "Tester Agent",
+          "type": "ai-service",
+          "description": "Generates and runs tests"
+        }
+      ],
+      "flows": []
+    },
+    "implementationSteps": [
+      {
+        "phase": 1,
+        "title": "Agent Design",
+        "description": "Design and implement individual agents",
+        "tasks": [
+          "Define agent prompts and personalities",
+          "Implement orchestrator state machine",
+          "Build tool integrations (file system, git)"
+        ],
+        "deliverables": ["Agent specifications", "Orchestrator implementation"],
+        "estimatedDuration": "2 weeks"
+      }
+    ],
+    "codeExamples": [],
+    "relatedPatterns": ["multi-agent-orchestration", "mcp-server-architecture"],
+    "cloudProviders": ["multi-cloud"],
+    "technologies": ["LangGraph", "Claude Agent SDK", "Python"],
+    "timeToImplement": "4-6 weeks",
+    "useCases": [
+      "Autonomous feature development",
+      "Code refactoring at scale",
+      "Bug fixing with testing"
+    ],
+    "createdAt": "2026-01-01T00:00:00Z",
+    "updatedAt": "2026-01-16T00:00:00Z",
+    "publishedAt": "2026-01-10T00:00:00Z"
+  },
+  {
+    "id": "frankx-ai-platform",
+    "slug": "frankx-ai-platform",
+    "title": "FrankX.AI Content Platform",
+    "subtitle": "AI-powered content creation and publishing system",
+    "category": "llm-ops",
+    "status": "published",
+    "difficulty": "advanced",
+    "overview": "A comprehensive AI-powered content creation platform that combines Claude Code with MCP servers, SEO engines, and voice synthesis to enable rapid content creation, optimization, and multi-channel distribution.",
+    "problem": "Content creators spend excessive time on repetitive tasks: writing, SEO optimization, formatting, and cross-platform publishing. This creates a bottleneck that limits content velocity and quality.",
+    "solution": "Deploy an AI-first content platform where Claude Code orchestrates 15+ MCP servers for research, writing, SEO, voice synthesis, and automated publishing - enabling 10x content velocity with maintained quality.",
+    "architecture": {
+      "diagramType": "xyflow",
+      "diagramPreset": "frankxAI",
+      "components": [
+        {
+          "id": "claude-code",
+          "name": "Claude Code",
+          "type": "ai-service",
+          "description": "AI content generation using Opus/Sonnet models",
+          "cloudService": "Anthropic API"
+        },
+        {
+          "id": "mcp-servers",
+          "name": "MCP Server Network",
+          "type": "service",
+          "description": "15+ specialized tools for publishing, SEO, research, and social",
+          "cloudService": "Custom MCP"
+        },
+        {
+          "id": "content-pipeline",
+          "name": "Publishing Pipeline",
+          "type": "compute",
+          "description": "MDX processing, schema generation, and content optimization",
+          "cloudService": "Next.js + Custom"
+        },
+        {
+          "id": "seo-engine",
+          "name": "SEO Engine",
+          "type": "ai-service",
+          "description": "Schema markup, AEO optimization, and search enhancement",
+          "cloudService": "Custom + AI"
+        },
+        {
+          "id": "voice-synth",
+          "name": "Voice Synthesis",
+          "type": "ai-service",
+          "description": "Text-to-speech for podcast and audio content",
+          "cloudService": "ElevenLabs"
+        },
+        {
+          "id": "vercel",
+          "name": "Vercel Edge",
+          "type": "compute",
+          "description": "Next.js 16 deployment with edge functions",
+          "cloudService": "Vercel"
+        },
+        {
+          "id": "neon-postgres",
+          "name": "Neon Postgres",
+          "type": "database",
+          "description": "Serverless PostgreSQL for content and analytics",
+          "cloudService": "Neon"
+        }
+      ],
+      "flows": [
+        { "id": "f1", "from": "claude-code", "to": "content-pipeline", "label": "Generated content", "dataType": "MDX" },
+        { "id": "f2", "from": "mcp-servers", "to": "content-pipeline", "label": "Tools & data", "dataType": "API" },
+        { "id": "f3", "from": "content-pipeline", "to": "seo-engine", "label": "Optimization", "dataType": "JSON" },
+        { "id": "f4", "from": "content-pipeline", "to": "vercel", "label": "Deploy", "dataType": "Build" }
+      ]
+    },
+    "implementationSteps": [
+      {
+        "phase": 1,
+        "title": "Claude Code Setup",
+        "description": "Configure Claude Code with project context and MCP servers",
+        "tasks": [
+          "Install and configure Claude Code CLI",
+          "Set up CLAUDE.md with project instructions",
+          "Configure MCP server connections",
+          "Create custom skills and commands"
+        ],
+        "deliverables": ["Working Claude Code environment", "MCP integration"],
+        "estimatedDuration": "1 week"
+      },
+      {
+        "phase": 2,
+        "title": "Content Pipeline",
+        "description": "Build the MDX publishing pipeline with SEO automation",
+        "tasks": [
+          "MDX processing with frontmatter extraction",
+          "Schema markup generation (Article, FAQ, HowTo)",
+          "Voice-optimized content formatting",
+          "Automated internal linking"
+        ],
+        "deliverables": ["Publishing pipeline", "SEO automation"],
+        "estimatedDuration": "2 weeks"
+      },
+      {
+        "phase": 3,
+        "title": "Distribution Automation",
+        "description": "Set up multi-channel distribution and analytics",
+        "tasks": [
+          "Social media content generation",
+          "Voice synthesis integration",
+          "Analytics dashboard",
+          "Performance monitoring"
+        ],
+        "deliverables": ["Distribution system", "Analytics"],
+        "estimatedDuration": "2 weeks"
+      }
+    ],
+    "codeExamples": [
+      {
+        "id": "mcp-config",
+        "title": "MCP Server Configuration",
+        "language": "json",
+        "code": "{\n  \"mcpServers\": {\n    \"memory\": { \"command\": \"npx @modelcontextprotocol/server-memory\" },\n    \"playwright\": { \"command\": \"npx @anthropic/mcp-playwright\" },\n    \"nano-banana\": { \"command\": \"npx nano-banana-mcp\" },\n    \"sequential-thinking\": { \"command\": \"npx @smithery/mcp-sequential-thinking\" }\n  }\n}",
+        "description": "Example MCP server configuration for content creation"
+      }
+    ],
+    "relatedPatterns": ["ai-gateway", "mcp-server-architecture", "llmops"],
+    "cloudProviders": ["multi-cloud"],
+    "technologies": ["Next.js 16", "Claude Code", "MCP", "ElevenLabs", "TypeScript"],
+    "estimatedCost": {
+      "monthly": 500,
+      "annual": 6000,
+      "currency": "USD",
+      "breakdown": [
+        { "category": "Claude API", "amount": 200, "percentage": 40 },
+        { "category": "Vercel Pro", "amount": 100, "percentage": 20 },
+        { "category": "ElevenLabs", "amount": 100, "percentage": 20 },
+        { "category": "Neon + Other", "amount": 100, "percentage": 20 }
+      ],
+      "assumptions": ["~500 content pieces/month", "Voice generation for key content", "Pro tier services"]
+    },
+    "timeToImplement": "4-5 weeks",
+    "useCases": [
+      "Personal brand content creation",
+      "Technical blog publishing",
+      "Podcast content generation",
+      "Social media automation"
+    ],
+    "createdAt": "2026-01-01T00:00:00Z",
+    "updatedAt": "2026-01-16T00:00:00Z",
+    "publishedAt": "2026-01-16T00:00:00Z",
+    "metaDescription": "Build an AI-powered content creation platform with Claude Code, MCP servers, and automated publishing",
+    "keywords": ["AI content creation", "Claude Code", "MCP", "content automation", "publishing platform"]
+  },
+  {
+    "id": "arcanea-game-engine",
+    "slug": "arcanea-game-engine",
+    "title": "Arcanea Game Platform",
+    "subtitle": "AI-driven narrative game with dynamic world generation",
+    "category": "multi-agent-orchestration",
+    "status": "published",
+    "difficulty": "expert",
+    "overview": "An immersive AI-powered game platform featuring dynamic narrative generation, procedural quest creation, and adaptive music synthesis - creating unique experiences for each player through Claude Opus storytelling.",
+    "problem": "Traditional games have static narratives and limited replayability. Players experience the same story, quests, and world regardless of their choices, reducing engagement and longevity.",
+    "solution": "Build an AI-native game engine where Claude Opus acts as a living narrator, dynamically generating quests, adapting the world state, and creating personalized storylines based on player actions and preferences.",
+    "architecture": {
+      "diagramType": "xyflow",
+      "diagramPreset": "arcanea",
+      "components": [
+        {
+          "id": "ai-narrator",
+          "name": "AI Narrator",
+          "type": "ai-service",
+          "description": "Claude Opus for dynamic storytelling and world generation",
+          "cloudService": "Anthropic API"
+        },
+        {
+          "id": "realm-manager",
+          "name": "Realm Manager",
+          "type": "compute",
+          "description": "State machine controlling world state and player progression",
+          "cloudService": "Custom Engine"
+        },
+        {
+          "id": "quest-engine",
+          "name": "Quest Engine",
+          "type": "compute",
+          "description": "Procedural quest generation and tracking system",
+          "cloudService": "Event System"
+        },
+        {
+          "id": "lore-db",
+          "name": "Lore Database",
+          "type": "database",
+          "description": "Vector database for world lore and semantic search",
+          "cloudService": "Pinecone/pgvector"
+        },
+        {
+          "id": "music-gen",
+          "name": "Music Generator",
+          "type": "ai-service",
+          "description": "Adaptive soundtrack generation based on game state",
+          "cloudService": "Suno AI"
+        },
+        {
+          "id": "character-db",
+          "name": "Character Database",
+          "type": "database",
+          "description": "Player profiles, NPCs, and relationship graphs",
+          "cloudService": "PostgreSQL"
+        }
+      ],
+      "flows": [
+        { "id": "a1", "from": "realm-manager", "to": "ai-narrator", "label": "World state", "dataType": "State" },
+        { "id": "a2", "from": "ai-narrator", "to": "quest-engine", "label": "Generated quests", "dataType": "Quest" },
+        { "id": "a3", "from": "quest-engine", "to": "music-gen", "label": "Scene triggers", "dataType": "Events" },
+        { "id": "a4", "from": "ai-narrator", "to": "lore-db", "label": "Lore queries", "dataType": "Vector" }
+      ]
+    },
+    "implementationSteps": [
+      {
+        "phase": 1,
+        "title": "Core Engine & State Management",
+        "description": "Build the realm management and state machine foundation",
+        "tasks": [
+          "Implement realm state machine",
+          "Design player progression system",
+          "Build character relationship graph",
+          "Create event broadcasting system"
+        ],
+        "deliverables": ["Realm engine", "State management"],
+        "estimatedDuration": "3 weeks"
+      },
+      {
+        "phase": 2,
+        "title": "AI Narrator Integration",
+        "description": "Connect Claude Opus as the dynamic storyteller",
+        "tasks": [
+          "Design narrator prompt architecture",
+          "Build lore database with vector search",
+          "Implement context window management",
+          "Create quest generation pipeline"
+        ],
+        "deliverables": ["AI narrator", "Quest generation"],
+        "estimatedDuration": "4 weeks"
+      },
+      {
+        "phase": 3,
+        "title": "Adaptive Systems",
+        "description": "Add music generation and dynamic content",
+        "tasks": [
+          "Integrate Suno AI for adaptive music",
+          "Build NPC dialogue system",
+          "Implement consequence tracking",
+          "Create world evolution mechanics"
+        ],
+        "deliverables": ["Adaptive music", "Living world"],
+        "estimatedDuration": "4 weeks"
+      }
+    ],
+    "codeExamples": [
+      {
+        "id": "narrator-prompt",
+        "title": "AI Narrator System Prompt",
+        "language": "typescript",
+        "code": "const narratorPrompt = `\nYou are the Narrator of Arcanea, a living world where your words shape reality.\n\nCurrent World State:\n${worldState.serialize()}\n\nPlayer History:\n${player.recentActions.join('\\n')}\n\nGenerate the next narrative beat, considering:\n1. Player's recent choices and their consequences\n2. Active quests and their progress\n3. NPC relationships and faction standings\n4. World events currently unfolding\n\nRespond in immersive second-person narrative.\n`",
+        "description": "System prompt for the AI narrator"
+      }
+    ],
+    "relatedPatterns": ["multi-agent-orchestration", "rag-production", "ai-gateway"],
+    "cloudProviders": ["multi-cloud"],
+    "technologies": ["Phaser/Unity", "Claude Opus", "Vector DB", "Redis", "Suno AI", "TypeScript"],
+    "estimatedCost": {
+      "monthly": 2000,
+      "annual": 24000,
+      "currency": "USD",
+      "breakdown": [
+        { "category": "Claude API", "amount": 1000, "percentage": 50 },
+        { "category": "Suno AI", "amount": 400, "percentage": 20 },
+        { "category": "Infrastructure", "amount": 400, "percentage": 20 },
+        { "category": "Vector DB", "amount": 200, "percentage": 10 }
+      ],
+      "assumptions": ["~10K active players", "Moderate API usage per session", "Premium AI models"]
+    },
+    "timeToImplement": "10-12 weeks",
+    "useCases": [
+      "Narrative RPG games",
+      "Interactive storytelling",
+      "Educational simulations",
+      "AI-powered adventure games"
+    ],
+    "createdAt": "2026-01-01T00:00:00Z",
+    "updatedAt": "2026-01-16T00:00:00Z",
+    "publishedAt": "2026-01-16T00:00:00Z",
+    "metaDescription": "Build an AI-driven game platform with dynamic narrative generation, procedural quests, and adaptive music",
+    "keywords": ["AI gaming", "dynamic narrative", "procedural generation", "Claude Opus", "game engine"]
+  }
+]

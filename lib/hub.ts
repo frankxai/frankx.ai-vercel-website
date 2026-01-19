@@ -1,4 +1,23 @@
-import { BarChart4, BookOpen, CheckCircle2, Music, Sparkles, Users, Workflow, type LucideIcon } from 'lucide-react'
+import { type LucideIcon } from 'lucide-react'
+import {
+  BarChart4,
+  BookOpen,
+  Bot,
+  Brain,
+  Building2,
+  CalendarCheck,
+  CheckCircle2,
+  FolderOpen,
+  Megaphone,
+  Music,
+  Newspaper,
+  Search,
+  ShieldCheck,
+  Sparkles,
+  Users,
+  Workflow
+} from 'lucide-react'
+
 import { sanitizeDeepInPlace } from './text'
 
 export type HeroStat = {
@@ -83,412 +102,454 @@ export type HomeSpotlight = {
 
 export const heroStats: HeroStat[] = [
   {
-    label: 'Creators in the lab',
-    value: '12k+',
-    detail: 'Artists, writers, and builders following the Creation Chronicles dispatch'
+    label: 'The Journey',
+    value: 'Daily',
+    detail: 'Creating music with AI as a practice of exploration and discovery'
   },
   {
-    label: 'Suno sessions shared',
-    value: '500+',
-    detail: 'Vibe OS templates tuned for launches, rituals, and deep focus blocks'
+    label: 'Learning Paths',
+    value: 'Curated',
+    detail: 'Resources from Oracle, Google, MIT that actually changed how I think'
   },
   {
-    label: 'Systems shipped',
-    value: '300+',
-    detail: 'Creator operating systems designed with the FrankX agent collective'
+    label: 'Built in Public',
+    value: 'Open',
+    detail: 'Every system documented so you can adapt it to your own life'
   }
 ]
 
 export const heroHighlights: HeroHighlight[] = [
   {
-    title: 'Creator Systems',
-    description: 'Operating rituals, dashboards, and automations that keep every release on schedule.',
-    icon: Workflow
-  },
-  {
-    title: 'Sonic Rituals',
-    description: 'Ready-to-play Suno sessions and music labs that charge every launch timeline.',
+    title: 'My Music System',
+    description:
+      'How I create original songs with Suno AI. The prompts, the process, the publishing workflow—all documented.',
     icon: Music
   },
   {
-    title: 'Storyworld Signals',
-    description: 'Creation Chronicles essays and prompts to nurture your community and offers.',
-    icon: BookOpen
+    title: 'Learning Paths',
+    description:
+      'Resources I\'ve curated from Oracle, Google, MIT. Organized into paths that actually make sense.',
+    icon: Users
+  },
+  {
+    title: 'Built in Public',
+    description:
+      'This entire site is the system. Watch it evolve, take what works, adapt it to your own life.',
+    icon: Brain
   }
 ]
 
 export const quickActions: QuickAction[] = [
   {
-    title: 'Download Creative AI Toolkit',
-    description: 'Grab the prompt systems and launch rituals creators use to ship daily.',
-    href: '/products/creative-ai-toolkit',
-    icon: Sparkles
-  },
-  {
-    title: 'Book Creator Lab Session',
-    description: 'Design your operating system with Frank and the agent collective.',
-    href: '/products/agentic-creator-os',
-    icon: Workflow
-  },
-  {
-    title: 'Spin Up a Vibe Session',
-    description: 'Drop a Suno-powered soundtrack tailored for your next release.',
-    href: '/products/vibe-os',
+    title: 'Music with AI',
+    description: 'My complete Suno workflow. Prompts, generation, publishing.',
+    href: '/music-lab',
     icon: Music
   },
   {
-    title: 'Read Creation Chronicles',
-    description: 'Catch the latest stories, playbooks, and weekly studio dispatch.',
+    title: 'Learning Paths',
+    description: 'Curated courses from Google, Oracle, MIT. Organized by domain.',
+    href: '/students',
+    icon: Users
+  },
+  {
+    title: 'Prompt Collection',
+    description: 'Prompts I actually use. Copy them, adapt them.',
+    href: '/prompt-library',
+    icon: Sparkles
+  },
+  {
+    title: 'How I Build This',
+    description: 'The process behind this site. Every decision documented.',
     href: '/creation-chronicles',
     icon: BookOpen
   },
   {
-    title: 'Join Inner Circle Waitlist',
-    description: 'Reserve your spot in the Realm for live labs, private drops, and agent support.',
-    href: 'https://frankx.ck.page/realm',
-    icon: Users
+    title: 'What\'s Next',
+    description: 'Current focus and upcoming work. Built in public.',
+    href: '/roadmap',
+    icon: CalendarCheck
+  },
+  {
+    title: 'Resources',
+    description: 'Tools, courses, and creators I recommend.',
+    href: '/resources',
+    icon: FolderOpen
   }
 ]
 
 export const segmentProfiles: SegmentProfile[] = [
   {
-    id: 'launch-artists',
-    title: 'Launch Artists',
-    description: 'Producers, vocalists, and performers building consistent release rituals.',
-    transformation: 'Turn raw ideas into Suno sessions, release calendars, and monetised drops.',
+    id: 'creators',
+    title: 'Creators',
+    description:
+      'Build AI systems that amplify your creative voice—not replace it.',
+    transformation:
+      'Ship music, content, and products faster while staying true to your unique style.',
     icon: Music,
     needs: [
-      'Session prompts tuned to emotion and genre',
-      'Release cadences with content + promo beats',
-      'Rights, publishing, and monetisation checklists'
+      'Suno workflows and prompts for AI music creation',
+      'Content systems that maintain your authentic voice',
+      'Launch frameworks that scale without burning out'
     ],
-    keywords: ['suno launch prompts', 'release ritual plan', 'ai music workflow'],
+    keywords: ['ai music workflow', 'creator ai tools', 'ai content creation'],
     ctas: [
       { label: 'Explore Vibe OS', href: '/products/vibe-os' },
-      { label: 'Join the Music Lab', href: '/music-lab' }
+      { label: 'Browse Free Prompts', href: '/prompt-library' }
     ]
   },
   {
-    id: 'creator-architects',
-    title: 'Creator Architects',
-    description: 'Builders crafting content systems, digital products, and studio automations.',
-    transformation: 'Design a Creator Lab OS that runs ideation, batching, publishing, and review loops.',
-    icon: Workflow,
+    id: 'students',
+    title: 'Students & Learners',
+    description:
+      'Build your personal AI learning system across any domain you want to master.',
+    transformation:
+      'Learn faster with AI assistants customized to your goals, schedule, and learning style.',
+    icon: Users,
     needs: [
-      'Operating templates for weekly sprints',
-      'Automations that keep content and offers shipping',
-      'Dashboards that surface signals and next moves'
+      'AI study systems for any subject or skill',
+      'Career planning with personalized AI guidance',
+      'Life domain frameworks (health, finances, relationships)'
     ],
-    keywords: ['creator lab os', 'creator operating system', 'automation ritual'],
+    keywords: ['ai learning system', 'student ai tools', 'personal ai assistant'],
     ctas: [
-      { label: 'Book Creator Lab OS', href: '/products/agentic-creator-os' },
-      { label: 'Download Creative AI Toolkit', href: '/products/creative-ai-toolkit' }
+      { label: 'Enter Student Hub', href: '/students' },
+      { label: 'Start Learning', href: '/courses' }
     ]
   },
   {
-    id: 'story-guides',
-    title: 'Story Guides',
-    description: 'Writers, educators, and community hosts weaving story-driven ecosystems.',
-    transformation: 'Build Creation Chronicle arcs, nurture emails, and narrative funnels that convert.',
-    icon: BookOpen,
+    id: 'enterprise',
+    title: 'Teams & Executives',
+    description:
+      'Deploy AI systems that align with your organization\'s values and goals.',
+    transformation:
+      'Teams ship faster with AI workflows that match your culture and quality standards.',
+    icon: Building2,
     needs: [
-      'Editorial calendars paired with prompts',
-      'Launch blueprints for courses, memberships, and cohorts',
-      'Community rituals that keep people engaged'
+      'AI governance frameworks that match your values',
+      'Team workflows for collaborative AI usage',
+      'Measurement systems to track real impact'
     ],
-    keywords: ['creation chronicles prompts', 'storyworld launch plan', 'community ritual roadmap'],
+    keywords: ['enterprise ai strategy', 'team ai workflows', 'ai governance'],
     ctas: [
-      { label: 'Read Creation Chronicles', href: '/creation-chronicles' },
-      { label: 'Explore Templates', href: '/resources/templates' }
+      { label: 'See Enterprise Solutions', href: '/enterprise' },
+      { label: 'Book Strategy Session', href: 'mailto:hello@frankx.ai?subject=Strategy%20Session' }
     ]
   },
   {
-    id: 'allies',
-    title: 'Allies & Patrons',
-    description: 'Friends, collaborators, and supporters who amplify the work.',
-    transformation: 'Stay close to the studio, access private drops, and support the Inner Circle.',
-    icon: Sparkles,
+    id: 'builders',
+    title: 'Builders & Developers',
+    description:
+      'Design AI agent systems that are practical, maintainable, and human-centered.',
+    transformation:
+      'Move from experimenting with tools to shipping real AI-powered products.',
+    icon: Bot,
     needs: [
-      'A clear path into the Realm waitlist',
-      'Backstage stories to share with their audience',
-      'Ways to commission custom experiences and systems'
+      'Agent architecture patterns and reference designs',
+      'Testing frameworks for AI systems',
+      'Integration guides for common platforms'
     ],
-    keywords: ['frankx realm waitlist', 'inner circle access', 'custom creator system'],
+    keywords: ['ai agent architecture', 'ai development', 'agent design patterns'],
     ctas: [
-      { label: 'Creation Chronicles', href: '/creation-chronicles' },
-      { label: 'Join Inner Circle Waitlist', href: 'https://frankx.ck.page/realm' }
+      { label: 'View Architecture Guides', href: '/guides' },
+      { label: 'Explore Templates', href: '/templates' }
     ]
   }
-];
+]
 
 export const heroSegments = [
   {
-    id: 'artists',
-    label: 'Launch Artists',
-    description: 'Spin up Suno sessions, plan your releases, and keep the music flowing.',
+    id: 'creators',
+    label: 'Creators',
+    description: 'AI music, content systems, and launch frameworks that match your style.',
     href: '/products/vibe-os'
   },
   {
-    id: 'architects',
-    label: 'Creator Architects',
-    description: 'Design operating systems, automations, and dashboards for your studio.',
-    href: '/products/agentic-creator-os'
+    id: 'students',
+    label: 'Students',
+    description: 'Personal AI learning systems for any domain you want to master.',
+    href: '/students'
   },
   {
-    id: 'story-guides',
-    label: 'Story Guides',
-    description: 'Build Creation Chronicle arcs, nurture sequences, and community rituals.',
-    href: '/creation-chronicles'
-  },
-  {
-    id: 'inner-circle',
-    label: 'Allies & Patrons',
-    description: 'Step into the Realm for live labs, private drops, and agent desk support.',
-    href: '/realm'
+    id: 'teams',
+    label: 'Teams & Executives',
+    description: 'AI workflows aligned with your organization\'s values and goals.',
+    href: '/enterprise'
   }
 ]
 
 export const updateEntries: UpdateEntry[] = [
   {
-    title: 'The Creative OS Playbook',
-    summary: 'A step-by-step guide to building your own Creator Operating System with FrankX rituals.',
+    title: 'Building Your Personal AI System',
+    summary:
+      'A practical guide to creating AI workflows that align with your unique goals, values, and working style.',
     type: 'Article',
-    date: '2025-09-27',
-    href: '/blog/the-creative-os'
+    date: '2025-01-24',
+    href: '/blog/building-personal-ai-system'
   },
   {
-    title: 'Agentic SEO Publishing Masterplan',
-    summary: 'How the Creation Chronicles team ships a daily intelligence loop without burning out.',
+    title: 'AI Music Creation with Suno',
+    summary:
+      'Complete workflow for creating original music with AI—from prompts to production to publishing.',
     type: 'Article',
-    date: '2025-09-26',
-    href: '/blog/agentic-seo-publishing-masterplan'
+    date: '2025-01-23',
+    href: '/blog/ai-music-creation-suno'
   },
   {
-    title: '500 Songs Later',
-    summary: 'What three years of Suno collaborations taught us about consciousness and creative practice.',
+    title: 'The Student AI Toolkit',
+    summary:
+      'How to build AI study systems, career planning assistants, and life domain frameworks.',
     type: 'Article',
-    date: '2025-09-26',
-    href: '/blog/music-as-consciousness-technology'
+    date: '2025-01-22',
+    href: '/blog/student-ai-toolkit'
   },
   {
-    title: 'Agentic Creator OS Field Notes',
-    summary: 'Case studies from creators installing dashboards, automations, and launch rituals.',
-    type: 'Article',
-    date: '2025-09-26',
-    href: '/blog/agentic-creator-os'
-  },
-  {
-    title: 'Intelligence Atlas Vol. I',
-    summary: 'The 10,000-word flagship report on adoption signals, agent readiness, and creator economics.',
+    title: 'Creator Launch Framework',
+    summary:
+      'Ship products and content faster with AI-assisted planning, writing, and distribution.',
     type: 'Article',
     date: '2025-01-21',
-    href: '/blog/frankx-intelligence-atlas-volume-1'
+    href: '/blog/creator-launch-framework'
+  },
+  {
+    title: 'Values-Aligned AI Development',
+    summary:
+      'How to build AI systems that reflect your principles—not generic defaults.',
+    type: 'Article',
+    date: '2025-01-20',
+    href: '/blog/values-aligned-ai'
+  },
+  {
+    title: 'How We Build This Hub',
+    summary:
+      'Behind the scenes: human-AI collaboration, agent teams, and open development.',
+    type: 'Article',
+    date: '2025-01-19',
+    href: '/creation-chronicles'
   }
 ]
 
 export const resourceCollections: ResourceCollection[] = [
   {
-    id: 'starter',
-    title: 'Creator Starter Kit',
-    description: 'First steps for syncing with the FrankX studio and rituals.',
-    focus: 'Perfect for new creators and allies joining the ecosystem.',
+    id: 'start',
+    title: 'Start Here (Free)',
+    description: 'Quick-start resources to begin building your personal AI system today.',
+    focus: 'Perfect for creators and students just getting started.',
     items: [
-      { label: 'Creative AI Toolkit', href: '/products/creative-ai-toolkit', type: 'Product' },
-      { label: 'Creation Chronicles', href: '/creation-chronicles', type: 'Newsletter' },
-      { label: 'Soul Frequency Quiz', href: '/soul-frequency-quiz', type: 'Quiz' }
+      { label: 'AI Readiness Assessment', href: '/assessment', type: 'Assessment' },
+      { label: 'Prompt Library', href: '/prompt-library', type: 'Prompts' },
+      { label: 'Getting Started Guide', href: '/start', type: 'Guide' }
     ]
   },
   {
-    id: 'systems',
-    title: 'Systems & Strategy',
-    description: 'Operating guides, dashboards, and workflows to scale your studio.',
-    focus: 'Ideal for Creator Architects designing products and automation.',
+    id: 'deepen',
+    title: 'Go Deeper',
+    description: 'Comprehensive guides and templates for building real AI systems.',
+    focus: 'For creators and students ready to build serious workflows.',
     items: [
-      { label: 'Creator Lab OS', href: '/products/agentic-creator-os', type: 'Program' },
-      { label: 'Agentic SEO Publishing Masterplan', href: '/blog/agentic-seo-publishing-masterplan', type: 'Article' },
-      { label: 'Intelligence Atlas', href: '/intelligence-atlas', type: 'Report' },
-      { label: 'Template Library', href: '/resources/templates', type: 'Templates' }
+      { label: 'Vibe OS (AI Music)', href: '/products/vibe-os', type: 'Product' },
+      { label: 'Student Hub', href: '/students', type: 'Platform' },
+      { label: 'Template Library', href: '/templates', type: 'Templates' },
+      { label: 'Guides Collection', href: '/guides', type: 'Guides' },
+      { label: 'Roadmap', href: '/roadmap', type: 'Live roadmap' }
     ]
   },
   {
-    id: 'sonic',
-    title: 'Sonic Rituals',
-    description: 'Music labs and session packs to energize every release.',
-    focus: 'Great for Launch Artists and performer collectives.',
+    id: 'premium',
+    title: 'Work Together',
+    description: 'Direct collaboration for teams and creators building at scale.',
+    focus: 'For those who want personalized guidance and strategy.',
     items: [
-      { label: 'Vibe OS Sessions', href: '/products/vibe-os', type: 'Product' },
-      { label: 'Music Lab', href: '/music-lab', type: 'Experience' },
-      { label: 'Latest Suno Drops', href: '/resources', type: 'Gallery' }
+      { label: 'Strategy Session', href: 'mailto:hello@frankx.ai?subject=Strategy%20Session', type: 'Advisory' },
+      { label: 'Team Training', href: 'mailto:hello@frankx.ai?subject=Team%20Training', type: 'Training' },
+      { label: 'Music Lab', href: '/music-lab', type: 'Experience' }
     ]
   }
 ]
 
 export const projectMilestones: ProjectMilestone[] = [
   {
-    title: 'Creator Lab OS Cohort 04',
+    title: 'Vibe OS 2.0',
     status: 'shipping',
-    description: 'Live build cohort focused on launch cadences, automation wiring, and analytics dashboards.',
-    focus: 'Weekly labs, peer reviews, and agent desk support for 20 creators.',
-    eta: 'Applications close Oct 15',
-    cta: { label: 'Apply for the Lab', href: '/products/agentic-creator-os' }
+    description:
+      'Next-generation AI music creation system with advanced Suno workflows and publishing tools.',
+    focus: 'Complete workflow from idea to published track.',
+    eta: 'Rolling releases',
+    cta: { label: 'Try Vibe OS', href: '/products/vibe-os' }
   },
   {
-    title: 'Vibe OS Session Vault',
+    title: 'Student Hub Expansion',
     status: 'in-progress',
-    description: 'Expanding the Suno session library with cinematic, ambient, and kinetic packs.',
-    focus: 'Each pack includes stems, prompt notes, and integration tips for reels & livestreams.',
-    eta: 'Next drop lands October 5',
-    cta: { label: 'Preview the Sessions', href: '/products/vibe-os' }
+    description:
+      'Personal AI learning systems for career planning, skill development, and life domains.',
+    focus: 'Interactive workshops and domain-specific AI assistants.',
+    eta: 'Q1 2025',
+    cta: { label: 'Explore Student Hub', href: '/students' }
   },
   {
-    title: 'Creation Chronicles Companion App',
+    title: 'Creator Launch System',
     status: 'incubating',
-    description: 'A lightweight hub for daily prompts, ritual tracking, and drop notifications.',
-    focus: 'Prototype testing with Inner Circle members before public beta.',
-    eta: 'Private beta Winter 2025',
-    cta: { label: 'Join Inner Circle Waitlist', href: '/realm' }
+    description:
+      'End-to-end framework for shipping products with AI-assisted planning and execution.',
+    focus: 'From idea to launch with collaborative AI agents.',
+    eta: 'Q2 2025',
+    cta: { label: 'Join Waitlist', href: '/waitlist' }
   }
 ]
 
 export const keywordClusters: KeywordCluster[] = [
   {
-    cluster: 'Creator Operating System',
-    primaryKeyword: 'creator operating system',
-    intent: 'Creators searching for rituals, automations, and dashboards to run their studio.',
-    supportingKeywords: ['creator lab os', 'content automation workflow', 'creator dashboard template'],
-    link: '/blog/the-creative-os'
-  },
-  {
-    cluster: 'AI Music Rituals',
-    primaryKeyword: 'suno music prompts',
-    intent: 'Artists wanting ready-to-use Suno prompts and release workflows.',
-    supportingKeywords: ['vibe os session', 'suno release plan', 'ai music ritual'],
+    cluster: 'AI Music Creation',
+    primaryKeyword: 'ai music workflow suno',
+    intent: 'Creators wanting to make original music with AI.',
+    supportingKeywords: ['suno prompts', 'ai music production', 'ai song creation'],
     link: '/products/vibe-os'
   },
   {
-    cluster: 'Creation Chronicles Stories',
-    primaryKeyword: 'creation chronicles newsletter',
-    intent: 'Writers and community builders looking for narrative frameworks and prompts.',
-    supportingKeywords: ['ai storytelling prompts', 'creator newsletter strategy', 'storyworld launch plan'],
-    link: '/creation-chronicles'
+    cluster: 'Student AI Systems',
+    primaryKeyword: 'ai learning system',
+    intent: 'Students building personalized AI study and career tools.',
+    supportingKeywords: ['ai study assistant', 'personal ai tutor', 'ai career planning'],
+    link: '/students'
+  },
+  {
+    cluster: 'Creator Workflows',
+    primaryKeyword: 'creator ai tools',
+    intent: 'Creators looking for AI systems that match their style.',
+    supportingKeywords: ['ai content creation', 'creator productivity', 'ai launch framework'],
+    link: '/prompt-library'
+  },
+  {
+    cluster: 'Values-Aligned AI',
+    primaryKeyword: 'build personal ai system',
+    intent: 'People who want AI that reflects their values and goals.',
+    supportingKeywords: ['custom ai assistant', 'ai aligned with values', 'personal ai workflow'],
+    link: '/guides'
   }
 ]
 
 export const homeSpotlights: HomeSpotlight[] = [
   {
-    eyebrow: 'Guide',
-    title: 'The Creative OS Playbook',
-    description: 'Build a creator operating system that pairs AI workflows with soulful rituals.',
-    href: '/blog/the-creative-os',
-    cta: 'Read the playbook'
+    eyebrow: 'Music',
+    title: 'How I Make Songs with AI',
+    description:
+      'My complete Suno workflow. 500+ songs created, every step documented.',
+    href: '/music-lab',
+    cta: 'See the Process'
   },
   {
-    eyebrow: 'Sessions',
-    title: 'Vibe OS Session Vault',
-    description: 'Download the latest Suno session packs with stems, prompts, and launch notes.',
-    href: '/products/vibe-os',
-    cta: 'Preview the vault'
+    eyebrow: 'Learning',
+    title: 'Curated Learning Paths',
+    description:
+      'The best free resources from Oracle, Google, MIT. Organized so you don\'t have to search.',
+    href: '/students',
+    cta: 'Browse Paths'
   },
   {
-    eyebrow: 'Dispatch',
-    title: 'Creation Chronicles',
-    description: 'Weekly stories, prompts, and strategy notes straight from the FrankX studio.',
+    eyebrow: 'Prompts',
+    title: 'My Prompt Collection',
+    description:
+      'Prompts I actually use daily. For music, writing, coding, and life.',
+    href: '/prompt-library',
+    cta: 'View Collection'
+  },
+  {
+    eyebrow: 'Process',
+    title: 'Building in Public',
+    description:
+      'This site is the system. Watch me build it, learn from the process.',
     href: '/creation-chronicles',
-    cta: 'Subscribe free'
-  },
-  {
-    eyebrow: 'Program',
-    title: 'Creator Lab OS Cohort',
-    description: 'Work with FrankX agents to map your rituals, automations, and growth dashboard.',
-    href: '/products/agentic-creator-os',
-    cta: 'Apply for the lab'
+    cta: 'Follow Along'
   }
 ]
 
 export const agentProtocols: AgentProtocol[] = [
   {
-    title: 'Creator OS Ritual Mesh',
-    description: 'Blueprint your weekly and monthly loops before you automate them.',
-    focus: 'Map ideation, batching, publishing, and review cadences into one dashboard.',
-    icon: Workflow,
-    link: { href: '/products/agentic-creator-os', label: 'Start Creator Lab OS' },
-    bullets: [
-      'Ritual templates for planning, making, and shipping',
-      'Automation triggers with guardrails and fallback paths',
-      'Analytics hooks that surface the next high-leverage move'
-    ]
-  },
-  {
-    title: 'Vibe Session Engine',
-    description: 'Turn emotions into Suno prompts, stems, and release-ready packs.',
-    focus: 'Pair session design with publishing checklists and monetisation routes.',
+    title: 'Vibe OS',
+    description: 'AI-powered music creation with Suno. From prompts to published tracks.',
+    focus: 'For creators who want to make original music with AI.',
     icon: Music,
-    link: { href: '/products/vibe-os', label: 'Explore Vibe OS' },
+    link: { href: '/products/vibe-os', label: 'Start Creating' },
     bullets: [
-      'Prompt recipes tuned to genre, mood, and intent',
-      'Launch timelines with content + promo beats',
-      'Rights and distribution notes for each drop'
+      'Complete Suno workflow: prompts, generation, editing',
+      'Publishing guides for streaming platforms',
+      'Licensing clarity for AI-created music'
     ]
   },
   {
-    title: 'Story Launch Arc',
-    description: 'Design narratives, funnels, and community rituals around every offer.',
-    focus: 'Translate Creation Chronicle insights into campaigns that feel human.',
+    title: 'Student Learning System',
+    description: 'Build AI assistants customized to your learning goals and style.',
+    focus: 'Personal AI tutors, career planning, and life domain mastery.',
+    icon: Users,
+    link: { href: '/students', label: 'Enter Student Hub' },
+    bullets: [
+      'Domain-specific AI assistants you can customize',
+      'Career planning and skill development frameworks',
+      'Study systems that adapt to how you learn'
+    ]
+  },
+  {
+    title: 'Prompt Library',
+    description: 'Ready-to-use prompts for creators, students, and builders.',
+    focus: 'Copy, adapt, and build on proven templates.',
+    icon: Sparkles,
+    link: { href: '/prompt-library', label: 'Browse Prompts' },
+    bullets: [
+      '200+ prompts across multiple categories',
+      'Each prompt designed to be customized',
+      'New prompts added regularly from the community'
+    ]
+  },
+  {
+    title: 'Creation Chronicles',
+    description: 'Behind-the-scenes of how we build this hub with AI collaboration.',
+    focus: 'Open development, agent teams, and transparent methodology.',
     icon: BookOpen,
     link: { href: '/creation-chronicles', label: 'Read the Chronicles' },
     bullets: [
-      'Story scaffolds for essays, videos, and live sessions',
-      'Email + social sequences with clear CTAs',
-      'Community prompts that turn readers into collaborators'
-    ]
-  },
-  {
-    title: 'Analytics Pulse',
-    description: 'Keep eyes on the signals that prove your system is working.',
-    focus: 'Tie creator_funnel_step events to dashboards for fast iteration.',
-    icon: BarChart4,
-    link: { href: '/products/agentic-creator-os', label: 'See measurement stack' },
-    bullets: [
-      'Pre-built dashboards for content, revenue, and community',
-      'Tagging plan for creator_funnel_step, music_session_play, and realm_waitlist_joined',
-      'Weekly review ritual to decide the next experiment'
+      'Real examples of human-AI collaboration',
+      'Agent architectures you can learn from',
+      'Honest reflection on what works and what doesn\'t'
     ]
   }
 ]
 
 export const testimonials = [
   {
-    quote: 'Creator Lab OS gave me a weekly release ritual and the analytics to prove what was resonating.',
-    name: 'Zoe Carter',
-    role: 'Artist & Creator Coach'
+    quote:
+      'What I appreciate most is the transparency. Frank shares the entire process, not just the polished results. That\'s rare and valuable.',
+    name: 'From the Community',
+    role: 'Creator'
   },
   {
-    quote: 'Vibe OS helped our duo produce a monthly drop without losing the soul of the performance.',
-    name: 'David Lin',
-    role: 'Producer, Frequency Club'
+    quote:
+      'The learning paths cut through the noise. Instead of endless scrolling through course catalogs, I found exactly what I needed.',
+    name: 'From the Community',
+    role: 'Learner'
   },
   {
-    quote: 'Creation Chronicles keeps my community fed with stories, prompts, and experiments the moment they launch.',
-    name: 'Amina Reyes',
-    role: 'Writer & Community Architect'
+    quote:
+      'This is what documentation should look like. Real systems, real decisions, real learnings. I adapted his music workflow for my own projects.',
+    name: 'From the Community',
+    role: 'Builder'
   }
 ]
 
 export const testimonialIcon = CheckCircle2
 
 export const heroSubtext = [
-  'Build a creator operating system with rituals, automations, and music that keep your work flowing.',
-  'FrankX.AI is the studio where AI co-produces with you?Creation Chronicles, Vibe OS, and Creator Lab in one orbit.'
+  'The system I use to create music, learn new skills, and build my life with AI.',
+  'Everything documented. Take what works for you.'
 ]
 
 export const heroCta = {
-  primary: { label: 'Download Creative AI Toolkit', href: '/products/creative-ai-toolkit' },
-  secondary: { label: 'Explore Creator Lab OS', href: '/products/agentic-creator-os' },
-  tertiary: { label: 'Join Inner Circle Waitlist', href: 'https://frankx.ck.page/realm' }
-};
+  primary: { label: 'Explore the System', href: '/start' },
+  secondary: { label: 'Listen to My Music', href: '/music-lab' },
+  tertiary: { label: 'See How I Build This', href: '/creation-chronicles' }
+}
 
 export const heroSupportLink = {
-  label: 'Meet the FrankX.AI Team',
+  label: 'About Frank',
   href: '/about'
 }
 
@@ -513,21 +574,3 @@ const hubTextCollections = [
 hubTextCollections.forEach((entry) => {
   sanitizeDeepInPlace(entry);
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -1,0 +1,1261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Vibe OS - AI Music Creation System</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Clash+Display:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+    :root {
+      --primary-dark: #030712;
+      --primary: #0a0f1e;
+      --secondary: #111827;
+      --accent-cyan: #06b6d4;
+      --accent-cyan-light: #22d3ee;
+      --accent-cyan-glow: #67e8f9;
+      --accent-purple: #9333ea;
+      --accent-purple-light: #a855f7;
+      --accent-purple-glow: #c084fc;
+      --accent-pink: #db2777;
+      --accent-pink-light: #ec4899;
+      --accent-amber: #ea580c;
+      --accent-emerald: #059669;
+      --accent-blue: #2563eb;
+      --text-primary: #f1f5f9;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      --bg-card: rgba(17, 24, 39, 0.7);
+      --border-glow: rgba(6, 182, 212, 0.35);
+      --gradient-cyan-purple: linear-gradient(135deg, #06b6d4 0%, #9333ea 100%);
+      --gradient-cyan-pink: linear-gradient(135deg, #06b6d4 0%, #db2777 100%);
+      --gradient-purple-pink: linear-gradient(135deg, #9333ea 0%, #db2777 100%);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--primary-dark);
+      color: var(--text-primary);
+      line-height: 1.8;
+      font-size: 10.5pt;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    .page {
+      width: 210mm;
+      min-height: 297mm;
+      padding: 20mm 24mm;
+      margin: 0 auto;
+      background:
+        radial-gradient(ellipse at 15% 20%, rgba(6, 182, 212, 0.08) 0%, transparent 45%),
+        radial-gradient(ellipse at 85% 80%, rgba(147, 51, 234, 0.06) 0%, transparent 45%),
+        linear-gradient(180deg, var(--primary-dark) 0%, var(--primary) 50%, var(--secondary) 100%);
+      page-break-after: always;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Typography */
+    h1, h2, h3 {
+      font-family: 'Clash Display', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-weight: 600;
+      color: white;
+      letter-spacing: -0.03em;
+      line-height: 1.2;
+    }
+
+    h1 { font-size: 48pt; line-height: 1.1; }
+    h2 {
+      font-size: 24pt;
+      margin: 0 0 1em;
+      position: relative;
+      padding-bottom: 0.6em;
+      font-weight: 700;
+    }
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 80px;
+      height: 4px;
+      background: var(--gradient-cyan-purple);
+      border-radius: 3px;
+      box-shadow: 0 2px 12px rgba(6, 182, 212, 0.4);
+    }
+    h3 {
+      font-size: 14pt;
+      margin: 1.5em 0 0.5em;
+      color: var(--accent-cyan);
+    }
+    h4 {
+      font-size: 10pt;
+      margin: 1.2em 0 0.4em;
+      font-weight: 600;
+      font-family: 'JetBrains Mono', monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+    }
+
+    p { margin-bottom: 1em; }
+    strong { color: var(--accent-cyan); }
+
+    /* Cover Page */
+    .cover {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+    }
+    .cover::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 30% 30%, rgba(34, 211, 238, 0.12) 0%, transparent 50%),
+        radial-gradient(ellipse at 70% 70%, rgba(168, 85, 247, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 50%, rgba(236, 72, 153, 0.05) 0%, transparent 60%);
+    }
+    .cover-content {
+      position: relative;
+      z-index: 1;
+    }
+    .cover h1 {
+      font-size: 72pt;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--accent-cyan-glow) 0%, var(--accent-purple-light) 50%, var(--accent-pink-light) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.3em;
+      text-shadow: 0 0 40px rgba(6, 182, 212, 0.3);
+    }
+    .cover-tagline {
+      font-family: 'Clash Display', sans-serif;
+      font-size: 18pt;
+      font-weight: 400;
+      color: var(--accent-cyan-light);
+      margin-bottom: 0.5em;
+      letter-spacing: -0.01em;
+    }
+    .cover-subtitle {
+      font-size: 10.5pt;
+      font-weight: 500;
+      color: var(--text-secondary);
+      margin-top: 2.5em;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+    }
+    .cover-author {
+      margin-top: 1.2em;
+      font-size: 11.5pt;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+
+    /* Cover Icon */
+    .cover-icon {
+      width: 140px;
+      height: 140px;
+      margin-bottom: 2em;
+    }
+
+    /* Cards */
+    .card {
+      background: var(--bg-card);
+      backdrop-filter: blur(16px);
+      border: 1.5px solid var(--border-glow);
+      border-radius: 18px;
+      padding: 1.6em 1.8em;
+      margin: 1.5em 0;
+      position: relative;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 5px;
+      border-radius: 18px 0 0 18px;
+    }
+    .card.cyan::before {
+      background: var(--gradient-cyan-purple);
+      box-shadow: -2px 0 16px rgba(6, 182, 212, 0.4);
+    }
+    .card.purple::before {
+      background: var(--gradient-purple-pink);
+      box-shadow: -2px 0 16px rgba(147, 51, 234, 0.4);
+    }
+    .card.pink::before {
+      background: var(--gradient-cyan-pink);
+      box-shadow: -2px 0 16px rgba(219, 39, 119, 0.4);
+    }
+    .card.amber::before {
+      background: linear-gradient(180deg, #ea580c 0%, #f59e0b 100%);
+      box-shadow: -2px 0 16px rgba(234, 88, 12, 0.4);
+    }
+    .card.emerald::before {
+      background: linear-gradient(180deg, #059669 0%, #10b981 100%);
+      box-shadow: -2px 0 16px rgba(5, 150, 105, 0.4);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 1em;
+      margin-bottom: 0.6em;
+    }
+    .card-icon {
+      width: 40px;
+      height: 40px;
+      flex-shrink: 0;
+    }
+    .card-label {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9pt;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+    }
+    .card-title {
+      font-family: 'Clash Display', sans-serif;
+      font-size: 14.5pt;
+      font-weight: 600;
+      color: white;
+      margin: 0;
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+    }
+
+    /* Prompt Block */
+    .prompt-block {
+      background:
+        linear-gradient(135deg, rgba(147, 51, 234, 0.15) 0%, rgba(6, 182, 212, 0.1) 100%);
+      border: 1.5px solid rgba(147, 51, 234, 0.45);
+      border-radius: 14px;
+      padding: 1.4em 1.6em;
+      margin: 1.4em 0;
+      font-size: 10pt;
+      font-style: italic;
+      line-height: 1.7;
+      color: var(--text-primary);
+      position: relative;
+      box-shadow: 0 4px 16px rgba(147, 51, 234, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    }
+    .prompt-block::before {
+      content: "PROMPT";
+      display: block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 8.5pt;
+      font-weight: 600;
+      font-style: normal;
+      color: var(--accent-purple-light);
+      margin-bottom: 0.7em;
+      letter-spacing: 0.18em;
+      text-shadow: 0 0 8px rgba(147, 51, 234, 0.5);
+    }
+
+    /* Code Block */
+    .code-block {
+      font-family: 'JetBrains Mono', monospace;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid var(--border-glow);
+      border-radius: 10px;
+      padding: 1em 1.2em;
+      margin: 1em 0;
+      font-size: 9.5pt;
+      color: var(--accent-cyan);
+    }
+
+    /* Highlight Box */
+    .highlight {
+      background: linear-gradient(90deg, rgba(34, 211, 238, 0.12) 0%, rgba(34, 211, 238, 0.04) 100%);
+      padding: 1.2em 1.4em;
+      border-radius: 10px;
+      margin: 1.2em 0;
+      border-left: 3px solid var(--accent-cyan);
+    }
+
+    /* Warning Box */
+    .warning {
+      background: linear-gradient(90deg, rgba(245, 158, 11, 0.12) 0%, rgba(245, 158, 11, 0.04) 100%);
+      padding: 1.2em 1.4em;
+      border-radius: 10px;
+      margin: 1.2em 0;
+      border-left: 3px solid var(--accent-amber);
+    }
+
+    /* Quote */
+    .quote {
+      font-family: 'Clash Display', sans-serif;
+      font-size: 13.5pt;
+      font-weight: 400;
+      text-align: center;
+      padding: 2em 3em;
+      margin: 2.2em 0;
+      color: var(--accent-cyan-light);
+      position: relative;
+      background:
+        linear-gradient(135deg, rgba(6, 182, 212, 0.08) 0%, rgba(147, 51, 234, 0.05) 100%);
+      border-radius: 16px;
+      border: 1px solid rgba(6, 182, 212, 0.2);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+      letter-spacing: -0.01em;
+      line-height: 1.6;
+    }
+    .quote::before,
+    .quote::after {
+      content: '';
+      position: absolute;
+      width: 60px;
+      height: 3px;
+      background: var(--gradient-cyan-purple);
+      border-radius: 3px;
+    }
+    .quote::before {
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      box-shadow: 0 2px 8px rgba(6, 182, 212, 0.4);
+    }
+    .quote::after {
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      box-shadow: 0 2px 8px rgba(6, 182, 212, 0.4);
+    }
+
+    /* Lists */
+    ul, ol {
+      margin: 0.8em 0 1.2em 0;
+      padding-left: 0;
+      list-style: none;
+    }
+    li {
+      margin-bottom: 0.5em;
+      padding-left: 1.8em;
+      position: relative;
+    }
+    ul li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.55em;
+      width: 7px;
+      height: 7px;
+      background: var(--gradient-cyan-purple);
+      border-radius: 50%;
+      box-shadow: 0 0 8px rgba(6, 182, 212, 0.5);
+    }
+    ol { counter-reset: list-counter; }
+    ol li { counter-increment: list-counter; }
+    ol li::before {
+      content: counter(list-counter);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 22px;
+      height: 22px;
+      background: var(--gradient-cyan-purple);
+      border-radius: 50%;
+      font-size: 9.5pt;
+      font-weight: 700;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+      box-shadow: 0 2px 12px rgba(6, 182, 212, 0.4);
+    }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1em 0;
+      font-size: 10pt;
+    }
+    th, td {
+      padding: 0.7em 1em;
+      text-align: left;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    th {
+      color: var(--accent-cyan);
+      font-weight: 600;
+      font-size: 9pt;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    tr:hover td { background: rgba(34, 211, 238, 0.05); }
+
+    /* TOC */
+    .toc { margin: 1.5em 0; }
+    .toc-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 0.6em 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 10.5pt;
+    }
+    .toc-item:last-child { border-bottom: none; }
+    .toc-item span:last-child {
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--text-muted);
+      font-size: 9pt;
+    }
+
+    /* Page Number */
+    .page-number {
+      position: absolute;
+      bottom: 12mm;
+      right: 22mm;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9pt;
+      color: var(--text-muted);
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      font-size: 9pt;
+      color: var(--text-secondary);
+      margin-top: 3em;
+      padding-top: 1.5em;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* Phase Cards */
+    .phase-card {
+      background: var(--bg-card);
+      border: 1.5px solid var(--border-glow);
+      border-radius: 16px;
+      padding: 1.3em 1.5em;
+      margin: 1.2em 0;
+      display: flex;
+      gap: 1.2em;
+      align-items: flex-start;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    }
+    .phase-icon {
+      width: 40px;
+      height: 40px;
+      flex-shrink: 0;
+    }
+    .phase-content { flex: 1; }
+    .phase-title {
+      font-family: 'Clash Display', sans-serif;
+      font-size: 12.5pt;
+      font-weight: 600;
+      color: white;
+      margin-bottom: 0.4em;
+      letter-spacing: -0.02em;
+    }
+    .phase-time {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9.5pt;
+      font-weight: 600;
+      color: var(--accent-cyan-light);
+      margin-bottom: 0.5em;
+      text-shadow: 0 0 8px rgba(6, 182, 212, 0.4);
+    }
+    .phase-card ul { margin: 0; }
+    .phase-card li { font-size: 10pt; margin-bottom: 0.35em; }
+
+    /* Decorative Grid */
+    .grid-decoration {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 200px;
+      height: 200px;
+      opacity: 0.03;
+      background-image:
+        linear-gradient(var(--accent-cyan) 1px, transparent 1px),
+        linear-gradient(90deg, var(--accent-cyan) 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+
+    @media print {
+      .page {
+        page-break-after: always;
+        box-shadow: none;
+        margin: 0;
+      }
+      body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Cover Page -->
+  <div class="page cover">
+    <div class="cover-content">
+      <!-- Sophisticated Frequency Visualization SVG -->
+      <svg class="cover-icon" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Outer orbital rings -->
+        <circle cx="80" cy="80" r="72" stroke="url(#cover-grad-1)" stroke-width="0.5" opacity="0.15"/>
+        <circle cx="80" cy="80" r="62" stroke="url(#cover-grad-1)" stroke-width="0.8" opacity="0.25"/>
+
+        <!-- Frequency waves (sine wave visualization) -->
+        <path d="M 35 80 Q 42 60, 50 80 T 65 80 T 80 80 T 95 80 T 110 80 T 125 80"
+              stroke="url(#cover-grad-1)" stroke-width="2.5" fill="none" opacity="0.5"/>
+        <path d="M 35 80 Q 42 68, 50 80 T 65 80 T 80 80 T 95 80 T 110 80 T 125 80"
+              stroke="url(#cover-grad-2)" stroke-width="2" fill="none" opacity="0.6"/>
+        <path d="M 35 80 Q 42 75, 50 80 T 65 80 T 80 80 T 95 80 T 110 80 T 125 80"
+              stroke="url(#cover-grad-3)" stroke-width="1.5" fill="none" opacity="0.7"/>
+
+        <!-- Waveform bars with gradient fills -->
+        <rect x="38" y="62" width="5" height="36" rx="2.5" fill="url(#cover-grad-1)" opacity="0.5"/>
+        <rect x="47" y="50" width="5" height="60" rx="2.5" fill="url(#cover-grad-1)" opacity="0.65"/>
+        <rect x="56" y="42" width="5" height="76" rx="2.5" fill="url(#cover-grad-1)" opacity="0.75"/>
+        <rect x="65" y="35" width="6" height="90" rx="3" fill="url(#cover-grad-2)" opacity="0.85"/>
+        <rect x="75" y="28" width="7" height="104" rx="3.5" fill="url(#cover-grad-2)"/>
+        <rect x="86" y="35" width="6" height="90" rx="3" fill="url(#cover-grad-3)" opacity="0.85"/>
+        <rect x="96" y="42" width="5" height="76" rx="2.5" fill="url(#cover-grad-3)" opacity="0.75"/>
+        <rect x="105" y="50" width="5" height="60" rx="2.5" fill="url(#cover-grad-3)" opacity="0.65"/>
+        <rect x="114" y="62" width="5" height="36" rx="2.5" fill="url(#cover-grad-3)" opacity="0.5"/>
+
+        <!-- Central frequency dot -->
+        <circle cx="80" cy="80" r="4" fill="url(#cover-grad-2)"/>
+        <circle cx="80" cy="80" r="8" fill="url(#cover-grad-2)" opacity="0.2"/>
+
+        <!-- Concentric frequency rings (dashed) -->
+        <circle cx="80" cy="80" r="42" stroke="url(#cover-grad-2)" stroke-width="1"
+                stroke-dasharray="3 5" fill="none" opacity="0.35"/>
+        <circle cx="80" cy="80" r="30" stroke="url(#cover-grad-2)" stroke-width="1"
+                stroke-dasharray="2 4" fill="none" opacity="0.4"/>
+
+        <defs>
+          <linearGradient id="cover-grad-1" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#06b6d4"/>
+            <stop offset="100%" stop-color="#22d3ee"/>
+          </linearGradient>
+          <linearGradient id="cover-grad-2" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#22d3ee"/>
+            <stop offset="50%" stop-color="#9333ea"/>
+            <stop offset="100%" stop-color="#db2777"/>
+          </linearGradient>
+          <linearGradient id="cover-grad-3" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#9333ea"/>
+            <stop offset="100%" stop-color="#db2777"/>
+          </linearGradient>
+        </defs>
+      </svg>
+
+      <h1>Vibe OS</h1>
+      <p class="cover-tagline">AI Music Creation System</p>
+      <p class="cover-subtitle">Engineering Neuro-State with Suno AI</p>
+      <p class="cover-author">By Frank · FrankX.AI</p>
+    </div>
+  </div>
+
+  <!-- Table of Contents -->
+  <div class="page">
+    <div class="grid-decoration"></div>
+    <h2>Contents</h2>
+    <div class="toc">
+      <div class="toc-item"><span>Introduction: Beyond the Slot Machine</span><span>03</span></div>
+      <div class="toc-item"><span>The RPM Model for Audio Engineering</span><span>04</span></div>
+      <div class="toc-item"><span>The Four Vectors: Time, Key, Texture, Shape</span><span>06</span></div>
+      <div class="toc-item"><span>Emotion Mapping System</span><span>08</span></div>
+      <div class="toc-item"><span>Genre Prompt Templates</span><span>10</span></div>
+      <div class="toc-item"><span>Advanced Prompt Formulas</span><span>12</span></div>
+      <div class="toc-item"><span>The 90-Minute Session Protocol</span><span>14</span></div>
+      <div class="toc-item"><span>Publishing & Monetization</span><span>16</span></div>
+      <div class="toc-item"><span>Your Next Session</span><span>18</span></div>
+    </div>
+
+    <div class="quote">
+      "Stop playing the slot machine. Engineers write code. Architects design Vibe."
+    </div>
+
+    <span class="page-number">02</span>
+  </div>
+
+  <!-- Introduction -->
+  <div class="page">
+    <h2>Introduction</h2>
+    <h3 style="margin-top: 0;">Beyond the Slot Machine</h3>
+
+    <p>You are ignoring the most powerful variable in your tech stack.</p>
+    <p>It's not your model context window. It's not your latency.</p>
+    <p>It's <strong>Biology</strong>.</p>
+
+    <div class="highlight">
+      When a user opens your app—or when you open your creative session—their brain is vibrating at a specific frequency. Usually, it's the wrong one: fractured, anxious, high-beta noise. Your job isn't to show them a UI. Your job is to <strong>change their state</strong>.
+    </div>
+
+    <p>Most creators treat AI music (Suno, Udio) like a jukebox. You type "Lo-fi beats," hit generate, and get background muzak. That is failure.</p>
+
+    <p>Vibe OS changes this. It's a systematic approach to engineering neuro-state through audio—transforming Suno from a random music generator into a <strong>precision consciousness tool</strong>.</p>
+
+    <h3>What You'll Master</h3>
+    <ul>
+      <li><strong>The RPM Model</strong> — A strategic framework for intentional audio creation</li>
+      <li><strong>The Four Vectors</strong> — The technical levers that shape neurological response</li>
+      <li><strong>Emotion Mapping</strong> — Translating feelings into sonic specifications</li>
+      <li><strong>50+ Prompt Templates</strong> — Genre-specific formulas that work</li>
+      <li><strong>Production Workflow</strong> — From raw generation to polished release</li>
+      <li><strong>Monetization Paths</strong> — Licensing, distribution, and revenue strategies</li>
+    </ul>
+
+    <div class="card cyan">
+      <div class="card-header">
+        <svg class="card-icon" viewBox="0 0 44 44" fill="none">
+          <circle cx="22" cy="22" r="18" stroke="url(#icon-grad-cyan-1)" stroke-width="2.5" fill="none" opacity="0.3"/>
+          <circle cx="22" cy="22" r="18" stroke="url(#icon-grad-cyan-2)" stroke-width="2" fill="none"/>
+          <circle cx="22" cy="22" r="4" fill="url(#icon-grad-cyan-2)"/>
+          <path d="M22 10V22L30 26" stroke="url(#icon-grad-cyan-2)" stroke-width="2.5" stroke-linecap="round"/>
+          <defs>
+            <linearGradient id="icon-grad-cyan-1" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#06b6d4"/>
+              <stop offset="100%" stop-color="#22d3ee"/>
+            </linearGradient>
+            <linearGradient id="icon-grad-cyan-2" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#22d3ee"/>
+              <stop offset="100%" stop-color="#9333ea"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <div>
+          <div class="card-label">The Promise</div>
+          <div class="card-title">Ship finished tracks in 60-90 minutes</div>
+        </div>
+      </div>
+      <p style="margin: 0; color: var(--text-secondary);">Release 1 track per week consistently. Move from experimentation to monetizable releases with licensing pathways and catalog strategies.</p>
+    </div>
+
+    <span class="page-number">03</span>
+  </div>
+
+  <!-- RPM Model -->
+  <div class="page">
+    <h2>The RPM Model</h2>
+    <h3 style="margin-top: 0;">Audio Engineering Framework</h3>
+
+    <p>Tony Robbins' RPM (Result, Purpose, Map) isn't just for productivity. It's the physics of intent. Apply it to audio, and you stop getting "songs" and start getting <strong>precision neuro-tools</strong>.</p>
+
+    <div class="card cyan">
+      <div class="card-header">
+        <svg class="card-icon" viewBox="0 0 44 44" fill="none">
+          <circle cx="22" cy="22" r="16" stroke="url(#rpm-grad-1)" stroke-width="2.5" fill="none" opacity="0.25"/>
+          <circle cx="22" cy="22" r="16" stroke="url(#rpm-grad-2)" stroke-width="2" fill="none"/>
+          <circle cx="22" cy="22" r="10" stroke="url(#rpm-grad-2)" stroke-width="1.8" fill="none" opacity="0.5"/>
+          <circle cx="22" cy="22" r="4" fill="url(#rpm-grad-2)"/>
+          <circle cx="22" cy="22" r="8" fill="url(#rpm-grad-2)" opacity="0.15"/>
+          <defs>
+            <linearGradient id="rpm-grad-1" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#06b6d4"/>
+              <stop offset="100%" stop-color="#22d3ee"/>
+            </linearGradient>
+            <linearGradient id="rpm-grad-2" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#22d3ee"/>
+              <stop offset="100%" stop-color="#9333ea"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <div>
+          <div class="card-label">Step 1</div>
+          <div class="card-title">Result: Define the Neuro-Target</div>
+        </div>
+      </div>
+      <p style="margin: 0; color: var(--text-secondary);">Don't tell the AI you want "Jazz." The AI doesn't know what Jazz <em>does</em> to a human nervous system. Ask yourself: <strong>What is the specific biological outcome?</strong></p>
+    </div>
+
+    <div class="card purple">
+      <div class="card-header">
+        <svg class="card-icon" viewBox="0 0 44 44" fill="none">
+          <path d="M10 36L22 10L34 36H10Z" stroke="url(#warn-grad)" stroke-width="2.5" fill="none"/>
+          <circle cx="22" cy="24" r="4" fill="url(#warn-grad)"/>
+          <circle cx="22" cy="24" r="8" fill="url(#warn-grad)" opacity="0.15"/>
+          <defs>
+            <linearGradient id="warn-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#9333ea"/>
+              <stop offset="100%" stop-color="#db2777"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <div>
+          <div class="card-label">Bad Prompt</div>
+          <div class="card-title">"Make me upbeat coding music."</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card emerald">
+      <div class="card-header">
+        <svg class="card-icon" viewBox="0 0 44 44" fill="none">
+          <circle cx="22" cy="22" r="16" stroke="url(#check-grad)" stroke-width="2.5" fill="none" opacity="0.25"/>
+          <circle cx="22" cy="22" r="16" stroke="url(#check-grad)" stroke-width="2" fill="none"/>
+          <path d="M16 22L20 26L28 18" stroke="url(#check-grad)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <defs>
+            <linearGradient id="check-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#059669"/>
+              <stop offset="100%" stop-color="#10b981"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <div>
+          <div class="card-label">Vibe OS Target</div>
+          <div class="card-title">"Drive brain waves from 20Hz (Beta/Stress) to 10Hz (Alpha/Flow) within 45 seconds."</div>
+        </div>
+      </div>
+    </div>
+
+    <p>See the difference? One is a genre. The other is a <strong>prescription</strong>.</p>
+
+    <h3>Step 2: Purpose — The Strategic "Why"</h3>
+    <p>Why does this audio exist? If you can't answer this, play silence.</p>
+
+    <div class="highlight">
+      <strong>Example:</strong> Urgency without anxiety. Your user is in a checkout flow. You want them to move fast (Urgency) but feel safe (Trust).<br><br>
+      <strong>Sonic Translation:</strong> Driving tempo (110 BPM) but zero dissonance. No minor 2nds. No sharp transients. Warm, rolling forward momentum.
+    </div>
+
+    <h3>Step 3: Map — The Topological Formula</h3>
+    <p>Now—and only now—do you write the prompt. You map your neuro-target to the four vectors: <strong>Time, Key, Texture, Shape</strong>.</p>
+
+    <span class="page-number">04</span>
+  </div>
+
+  <!-- Four Vectors -->
+  <div class="page">
+    <h2>The Four Vectors</h2>
+
+    <p>Every audio experience can be deconstructed into four controllable dimensions. Master these, and you master the emotional impact of your music.</p>
+
+    <div class="card cyan">
+      <div class="card-header">
+        <svg class="card-icon" viewBox="0 0 44 44" fill="none">
+          <circle cx="22" cy="22" r="16" stroke="url(#time-vector-1)" stroke-width="2.5" fill="none" opacity="0.25"/>
+          <circle cx="22" cy="22" r="16" stroke="url(#time-vector-2)" stroke-width="2" fill="none"/>
+          <path d="M22 10V22L16 26" stroke="url(#time-vector-2)" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="22" cy="22" r="3" fill="url(#time-vector-2)"/>
+          <line x1="22" y1="6" x2="22" y2="9" stroke="url(#time-vector-2)" stroke-width="1.5" opacity="0.5"/>
+          <line x1="38" y1="22" x2="35" y2="22" stroke="url(#time-vector-2)" stroke-width="1.5" opacity="0.5"/>
+          <defs>
+            <linearGradient id="time-vector-1" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#06b6d4"/>
+              <stop offset="100%" stop-color="#22d3ee"/>
+            </linearGradient>
+            <linearGradient id="time-vector-2" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#22d3ee"/>
+              <stop offset="100%" stop-color="#9333ea"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <div>
+          <div class="card-label">Vector 1</div>
+          <div class="card-title">Time (BPM & Rhythm)</div>
+        </div>
+      </div>
+    </div>
+
+    <table>
+      <tr><th>BPM Range</th><th>Neuro-State</th><th>Use Case</th></tr>
+      <tr><td>60-70</td><td>Deep rest, meditation</td><td>Sleep, recovery</td></tr>
+      <tr><td>70-90</td><td>Calm focus, alpha state</td><td>Reading, reflection</td></tr>
+      <tr><td>90-110</td><td>Gentle activation</td><td>Morning routine, writing</td></tr>
+      <tr><td>110-130</td><td>Flow state, productivity</td><td>Deep work, coding</td></tr>
+      <tr><td>130-150</td><td>Energy, motivation</td><td>Exercise, creation</td></tr>
+      <tr><td>150+</td><td>Peak activation</td><td>High-intensity, performance</td></tr>
+    </table>
+
+    <div class="warning">
+      <strong>Critical:</strong> Syncopation demands attention; steady beats regulate it. For focus work, minimize syncopation. For creative play, embrace it.
+    </div>
+
+    <div class="card purple">
+      <div class="card-header">
+        <svg class="card-icon" viewBox="0 0 44 44" fill="none">
+          <rect x="7" y="16" width="5.5" height="12" rx="2" fill="url(#key-vector)" opacity="0.6"/>
+          <rect x="14.5" y="12" width="5.5" height="20" rx="2" fill="url(#key-vector)" opacity="0.75"/>
+          <rect x="22" y="9" width="6" height="26" rx="2.5" fill="url(#key-vector)" opacity="0.9"/>
+          <rect x="30" y="14" width="5.5" height="16" rx="2" fill="url(#key-vector)" opacity="0.7"/>
+          <circle cx="22" cy="22" r="18" stroke="url(#key-vector)" stroke-width="1.5" opacity="0.15" fill="none"/>
+          <defs>
+            <linearGradient id="key-vector" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#9333ea"/>
+              <stop offset="100%" stop-color="#db2777"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <div>
+          <div class="card-label">Vector 2</div>
+          <div class="card-title">Key (Mode & Harmony)</div>
+        </div>
+      </div>
+    </div>
+
+    <table>
+      <tr><th>Mode</th><th>Emotional Quality</th><th>Use Case</th></tr>
+      <tr><td>Major</td><td>Happy, bright, resolved</td><td>Celebration, completion</td></tr>
+      <tr><td>Minor</td><td>Sad, introspective</td><td>Processing, depth</td></tr>
+      <tr><td>Dorian</td><td>Serious, focused</td><td>Deep work, study</td></tr>
+      <tr><td>Mixolydian</td><td>Hopeful, driving</td><td>Movement, progress</td></tr>
+      <tr><td>Phrygian</td><td>Mysterious, intense</td><td>Creativity, exploration</td></tr>
+      <tr><td>Lydian</td><td>Dreamy, ethereal</td><td>Meditation, imagination</td></tr>
+    </table>
+
+    <span class="page-number">06</span>
+  </div>
+
+  <!-- Vectors continued -->
+  <div class="page">
+    <div class="card pink">
+      <div class="card-header">
+        <svg class="card-icon" viewBox="0 0 40 40" fill="none">
+          <path d="M4 20C4 20 10 12 20 12C30 12 36 20 36 20C36 20 30 28 20 28C10 28 4 20 4 20Z" stroke="#ec4899" stroke-width="2" fill="none"/>
+          <path d="M4 28C4 28 10 20 20 20C30 20 36 28 36 28" stroke="#ec4899" stroke-width="1.5" opacity="0.5" fill="none"/>
+          <path d="M4 12C4 12 10 20 20 20C30 20 36 12 36 12" stroke="#ec4899" stroke-width="1.5" opacity="0.5" fill="none"/>
+        </svg>
+        <div>
+          <div class="card-label">Vector 3</div>
+          <div class="card-title">Texture (Timbre & Space)</div>
+        </div>
+      </div>
+    </div>
+
+    <ul>
+      <li><strong>Brown/Pink Noise</strong> — Masks distractions, creates sonic "room"</li>
+      <li><strong>Tape Saturation</strong> — Warmth, analog feel, reduces digital harshness</li>
+      <li><strong>Low-Pass Filter</strong> — Cuts high frequencies that trigger alertness</li>
+      <li><strong>Reverb</strong> — Creates space, depth, and emotional context</li>
+      <li><strong>Compression</strong> — Smooths dynamics, creates consistency</li>
+    </ul>
+
+    <div class="card amber">
+      <div class="card-header">
+        <svg class="card-icon" viewBox="0 0 40 40" fill="none">
+          <path d="M8 30L14 20L20 24L26 14L32 18" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          <circle cx="8" cy="30" r="2" fill="#f59e0b"/>
+          <circle cx="14" cy="20" r="2" fill="#f59e0b"/>
+          <circle cx="20" cy="24" r="2" fill="#f59e0b"/>
+          <circle cx="26" cy="14" r="2" fill="#f59e0b"/>
+          <circle cx="32" cy="18" r="2" fill="#f59e0b"/>
+        </svg>
+        <div>
+          <div class="card-label">Vector 4</div>
+          <div class="card-title">Shape (Arrangement & Dynamics)</div>
+        </div>
+      </div>
+    </div>
+
+    <ul>
+      <li><strong>Static</strong> — Unchanging, loop-based, background</li>
+      <li><strong>Building</strong> — Gradually increasing intensity</li>
+      <li><strong>Releasing</strong> — Gradually decreasing, wind-down</li>
+      <li><strong>Wave</strong> — Building and releasing cyclically</li>
+    </ul>
+
+    <h3>Complete Formula: Deep Work</h3>
+
+    <div class="highlight">
+      <strong>Neuro-Target:</strong> Keep a developer in flow state for 4+ hours. Minimize attention demands while maintaining gentle energy.
+    </div>
+
+    <ul>
+      <li><strong>Time:</strong> 122 BPM, steady 4/4 kick, minimal syncopation</li>
+      <li><strong>Key:</strong> D Dorian Mode (serious/focused, neither happy nor sad)</li>
+      <li><strong>Texture:</strong> Brown noise layer, tape saturation, Rhodes with low-pass at 800Hz</li>
+      <li><strong>Shape:</strong> Static, continuous loop</li>
+    </ul>
+
+    <div class="prompt-block">
+      Genre: Deep House Focus. BPM: 122. Inst: Muted kick drum, warm analog bass, rhodes chords (D Dorian), continuous brown noise bed. Texture: Lo-fi, dusty, rolled-off highs. No vocals. Continuous loop object.
+    </div>
+
+    <span class="page-number">07</span>
+  </div>
+
+  <!-- Emotion Mapping -->
+  <div class="page">
+    <h2>Emotion Mapping System</h2>
+
+    <p>The Vibe OS Emotion Lattice translates feelings into sonic specifications. Use this as your translation layer.</p>
+
+    <h3>High Energy States</h3>
+
+    <div class="card pink">
+      <div class="card-header">
+        <svg class="card-icon" viewBox="0 0 40 40" fill="none">
+          <path d="M20 6L24 14L32 14L26 20L28 28L20 24L12 28L14 20L8 14L16 14L20 6Z" stroke="#ec4899" stroke-width="2" fill="none"/>
+          <circle cx="20" cy="18" r="4" fill="#ec4899" opacity="0.3"/>
+        </svg>
+        <div>
+          <div class="card-label">High Energy</div>
+          <div class="card-title">Motivation / Power</div>
+        </div>
+      </div>
+      <ul style="margin: 0;">
+        <li>BPM: 130-150</li>
+        <li>Key: Major, Mixolydian</li>
+        <li>Texture: Bright, present, punchy</li>
+        <li>Elements: Strong kick, driving bass, brass stabs</li>
+      </ul>
+    </div>
+
+    <div class="card amber">
+      <div class="card-header">
+        <svg class="card-icon" viewBox="0 0 40 40" fill="none">
+          <path d="M20 6L22 16L20 18L18 16L20 6Z" fill="#f59e0b"/>
+          <path d="M14 12L18 18L16 20L12 16L14 12Z" fill="#f59e0b" opacity="0.8"/>
+          <path d="M26 12L22 18L24 20L28 16L26 12Z" fill="#f59e0b" opacity="0.8"/>
+          <path d="M20 20L24 28L20 34L16 28L20 20Z" fill="#f59e0b" opacity="0.6"/>
+        </svg>
+        <div>
+          <div class="card-label">High Energy</div>
+          <div class="card-title">Excitement / Joy</div>
+        </div>
+      </div>
+      <ul style="margin: 0;">
+        <li>BPM: 120-140</li>
+        <li>Key: Major</li>
+        <li>Texture: Bright, airy, sparkly</li>
+        <li>Elements: Uplifting synths, claps, vocal chops</li>
+      </ul>
+    </div>
+
+    <h3>Focused States</h3>
+
+    <div class="card cyan">
+      <div class="card-header">
+        <svg class="card-icon" viewBox="0 0 40 40" fill="none">
+          <circle cx="20" cy="20" r="14" stroke="#22d3ee" stroke-width="2" fill="none"/>
+          <circle cx="20" cy="20" r="8" stroke="#22d3ee" stroke-width="1.5" fill="none"/>
+          <circle cx="20" cy="20" r="3" fill="#22d3ee"/>
+        </svg>
+        <div>
+          <div class="card-label">Focused</div>
+          <div class="card-title">Flow / Concentration</div>
+        </div>
+      </div>
+      <ul style="margin: 0;">
+        <li>BPM: 110-125</li>
+        <li>Key: Dorian, Mixolydian</li>
+        <li>Texture: Warm, muted highs, consistent</li>
+        <li>Elements: Subtle percussion, pad layers, minimal melody</li>
+      </ul>
+    </div>
+
+    <div class="card purple">
+      <div class="card-header">
+        <svg class="card-icon" viewBox="0 0 40 40" fill="none">
+          <ellipse cx="20" cy="22" rx="12" ry="10" stroke="#a855f7" stroke-width="2" fill="none"/>
+          <path d="M14 18C14 18 16 14 20 14C24 14 26 18 26 18" stroke="#a855f7" stroke-width="1.5" fill="none"/>
+          <path d="M12 22C12 22 16 26 20 26C24 26 28 22 28 22" stroke="#a855f7" stroke-width="1" opacity="0.5" fill="none"/>
+        </svg>
+        <div>
+          <div class="card-label">Focused</div>
+          <div class="card-title">Deep Thinking</div>
+        </div>
+      </div>
+      <ul style="margin: 0;">
+        <li>BPM: 70-90</li>
+        <li>Key: Minor, Dorian</li>
+        <li>Texture: Spacious, reverberant</li>
+        <li>Elements: Piano, strings, ambient pads</li>
+      </ul>
+    </div>
+
+    <div class="card emerald">
+      <div class="card-header">
+        <svg class="card-icon" viewBox="0 0 40 40" fill="none">
+          <path d="M20 8C20 8 8 18 8 26C8 32 13 36 20 36C27 36 32 32 32 26C32 18 20 8 20 8Z" stroke="#10b981" stroke-width="2" fill="none"/>
+          <path d="M20 16V28" stroke="#10b981" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M16 24L20 28L24 24" stroke="#10b981" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div>
+          <div class="card-label">Calm</div>
+          <div class="card-title">Peace / Relaxation</div>
+        </div>
+      </div>
+      <ul style="margin: 0;">
+        <li>BPM: 60-80</li>
+        <li>Key: Major, Lydian</li>
+        <li>Texture: Soft, warm, wide stereo</li>
+        <li>Elements: Nature sounds, soft pads, gentle piano</li>
+      </ul>
+    </div>
+
+    <span class="page-number">08</span>
+  </div>
+
+  <!-- Genre Templates -->
+  <div class="page">
+    <h2>Genre Prompt Templates</h2>
+
+    <h3>Electronic / Ambient</h3>
+    <div class="prompt-block">
+      Ambient electronic, 75 BPM, floating pads in C Lydian, gentle granular textures, soft tape hiss, no percussion, continuous evolving soundscape. Mood: ethereal meditation, dawn light.
+    </div>
+
+    <h3>Lo-Fi Hip Hop</h3>
+    <div class="prompt-block">
+      Lo-fi hip hop, 85 BPM, dusty boom bap drums, jazzy Rhodes chords (Dm7-G7-Cmaj7-Am7), vinyl crackle, tape wobble, muted bass, no vocals. Mood: late night study session, warm nostalgia.
+    </div>
+
+    <h3>Deep House</h3>
+    <div class="prompt-block">
+      Deep house, 122 BPM, four-on-the-floor kick, filtered disco sample chops, warm analog bass, subtle percussion, breathy vocal loops. Mood: underground club, intimate connection.
+    </div>
+
+    <h3>Cinematic / Epic</h3>
+    <div class="prompt-block">
+      Epic cinematic, 90 BPM, massive orchestral strings, timpani hits, brass fanfares, building intensity, E minor to C major resolution. Mood: hero's triumph, dawn of new era.
+    </div>
+
+    <h3>Downtempo / Chill</h3>
+    <div class="prompt-block">
+      Downtempo electronica, 95 BPM, triplet hi-hats, sub bass, atmospheric pads, reversed vocals, glitchy textures, wide stereo field. Mood: urban sunset, reflective journey.
+    </div>
+
+    <h3>Neo-Soul / R&B</h3>
+    <div class="prompt-block">
+      Neo-soul, 78 BPM, live drums feel, Wurlitzer electric piano, warm bass guitar, subtle strings, breathy vocal harmonies, Dmaj9 chord voicings. Mood: intimate confession, Sunday morning.
+    </div>
+
+    <div class="highlight">
+      <strong>Pro Tip:</strong> Always specify "no vocals" for focus work. Lyrics engage the language-processing part of the brain, pulling attention away from your task.
+    </div>
+
+    <span class="page-number">10</span>
+  </div>
+
+  <!-- Advanced Formulas -->
+  <div class="page">
+    <h2>Advanced Prompt Formulas</h2>
+
+    <h3>Binaural Focus (Productivity)</h3>
+    <div class="prompt-block">
+      Binaural beats focus track, base frequency 200Hz with 10Hz alpha wave difference, layered with minimal ambient pad in A Dorian, extremely subtle rhythm at 100 BPM, no melody, designed for 4-hour work sessions. Industrial white noise undertone.
+    </div>
+
+    <h3>Morning Activation</h3>
+    <div class="prompt-block">
+      Uplifting progressive, 118 BPM, building energy over 5 minutes, starts with soft piano in G major, introduces driving beat at 1:30, adds euphoric synth leads at 3:00, full energy crescendo at 4:30. Mood: sunrise energy, possibility awakening.
+    </div>
+
+    <h3>Evening Wind-Down</h3>
+    <div class="prompt-block">
+      Ambient jazz, 65 BPM, brushed drums, upright bass, soft piano voicings in Eb major, gentle vibraphone accents, warm room reverb, gradually decreasing intensity over 6 minutes. Mood: golden hour, peaceful surrender.
+    </div>
+
+    <h3>Creative Activation</h3>
+    <div class="prompt-block">
+      Experimental electronica, 105 BPM, unusual time signature 7/8, modular synth arpeggios, unexpected chord changes (Bm - F#7 - Gmaj7 - A), found sounds, playful glitches. Mood: creative laboratory, curious exploration.
+    </div>
+
+    <h3>Emotional Processing</h3>
+    <div class="prompt-block">
+      Sad piano, 70 BPM, solo piano in A minor, sparse arrangement, long reverb tail, imperfect timing (humanized), building emotional intensity in middle section, resolution at end. Mood: allowing grief, cathartic release.
+    </div>
+
+    <div class="quote">
+      "Your job isn't to make a song. Your job is to engineer a state."
+    </div>
+
+    <span class="page-number">12</span>
+  </div>
+
+  <!-- Session Protocol -->
+  <div class="page">
+    <h2>The 90-Minute Session Protocol</h2>
+
+    <p>This is the complete workflow for going from blank page to finished track in a single session.</p>
+
+    <div class="phase-card">
+      <svg class="phase-icon" viewBox="0 0 36 36" fill="none">
+        <circle cx="18" cy="18" r="14" stroke="#22d3ee" stroke-width="2" fill="none"/>
+        <circle cx="18" cy="18" r="6" fill="#22d3ee" opacity="0.3"/>
+        <circle cx="18" cy="18" r="2" fill="#22d3ee"/>
+      </svg>
+      <div class="phase-content">
+        <div class="phase-title">Phase 1: Intention</div>
+        <div class="phase-time">5 minutes</div>
+        <ul>
+          <li>Define your <strong>Result</strong> (neuro-target)</li>
+          <li>Clarify your <strong>Purpose</strong> (why this track exists)</li>
+          <li>Identify target listener state</li>
+          <li>Choose primary emotion from the mapping system</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="phase-card">
+      <svg class="phase-icon" viewBox="0 0 36 36" fill="none">
+        <rect x="6" y="6" width="24" height="24" rx="2" stroke="#a855f7" stroke-width="2" fill="none"/>
+        <path d="M12 18H24M18 12V24" stroke="#a855f7" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      <div class="phase-content">
+        <div class="phase-title">Phase 2: Vector Mapping</div>
+        <div class="phase-time">5 minutes</div>
+        <ul>
+          <li>Set BPM based on target state</li>
+          <li>Choose mode/key for emotional quality</li>
+          <li>Define texture requirements</li>
+          <li>Plan arrangement shape</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="phase-card">
+      <svg class="phase-icon" viewBox="0 0 36 36" fill="none">
+        <path d="M8 28L14 18L20 22L26 12L28 14" stroke="#ec4899" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="8" cy="28" r="2" fill="#ec4899"/>
+        <circle cx="28" cy="14" r="2" fill="#ec4899"/>
+      </svg>
+      <div class="phase-content">
+        <div class="phase-title">Phase 3: Generation</div>
+        <div class="phase-time">20 minutes</div>
+        <ul>
+          <li>Write prompt using template + customization</li>
+          <li>Generate 3-5 variations in Suno</li>
+          <li>Quick-listen evaluation (30 sec each)</li>
+          <li>Select best candidate or regenerate</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="phase-card">
+      <svg class="phase-icon" viewBox="0 0 36 36" fill="none">
+        <circle cx="18" cy="18" r="12" stroke="#f59e0b" stroke-width="2" fill="none"/>
+        <path d="M18 10V18L24 22" stroke="#f59e0b" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      <div class="phase-content">
+        <div class="phase-title">Phase 4: Iteration</div>
+        <div class="phase-time">30 minutes</div>
+        <ul>
+          <li>Extend/refine selected track</li>
+          <li>Generate alternate sections if needed</li>
+          <li>Test against original intention</li>
+          <li>Fine-tune with prompt adjustments</li>
+        </ul>
+      </div>
+    </div>
+
+    <span class="page-number">14</span>
+  </div>
+
+  <!-- Session Protocol continued -->
+  <div class="page">
+    <div class="phase-card">
+      <svg class="phase-icon" viewBox="0 0 36 36" fill="none">
+        <rect x="8" y="8" width="20" height="20" rx="2" stroke="#10b981" stroke-width="2" fill="none"/>
+        <path d="M14 18L17 21L22 15" stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      <div class="phase-content">
+        <div class="phase-title">Phase 5: Polish</div>
+        <div class="phase-time">20 minutes</div>
+        <ul>
+          <li>Light editing in DAW if needed</li>
+          <li>Normalize levels</li>
+          <li>Add fade in/out</li>
+          <li>Export in release format</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="phase-card">
+      <svg class="phase-icon" viewBox="0 0 36 36" fill="none">
+        <rect x="8" y="10" width="20" height="16" rx="2" stroke="#3b82f6" stroke-width="2" fill="none"/>
+        <path d="M12 16H24M12 20H20" stroke="#3b82f6" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+      <div class="phase-content">
+        <div class="phase-title">Phase 6: Document</div>
+        <div class="phase-time">10 minutes</div>
+        <ul>
+          <li>Save successful prompt to your library</li>
+          <li>Note what worked and what didn't</li>
+          <li>Tag for catalog organization</li>
+          <li>Prepare metadata for distribution</li>
+        </ul>
+      </div>
+    </div>
+
+    <h2 style="margin-top: 1.5em;">Publishing & Monetization</h2>
+
+    <h3>Distribution Platforms</h3>
+    <ul>
+      <li><strong>DistroKid</strong> — Best for high-volume releases, annual fee model</li>
+      <li><strong>TuneCore</strong> — Per-release fee, good analytics</li>
+      <li><strong>CD Baby</strong> — One-time fee per release, sync licensing included</li>
+      <li><strong>Amuse</strong> — Free tier available, good for beginners</li>
+    </ul>
+
+    <h3>Licensing Pathways</h3>
+    <table>
+      <tr><th>License Type</th><th>Use Case</th><th>Revenue Model</th></tr>
+      <tr><td>Streaming</td><td>Spotify, Apple Music</td><td>Per-stream royalties</td></tr>
+      <tr><td>Sync</td><td>Video, film, ads</td><td>Upfront + royalties</td></tr>
+      <tr><td>Production Music</td><td>Stock libraries</td><td>Per-license or subscription</td></tr>
+      <tr><td>Direct Sales</td><td>Bandcamp, Gumroad</td><td>Per-download</td></tr>
+    </table>
+
+    <div class="warning">
+      <strong>Important:</strong> Check each platform's current policy on AI-generated music. Most platforms accept AI-assisted music where you are the creative director. Always disclose AI usage where required.
+    </div>
+
+    <span class="page-number">16</span>
+  </div>
+
+  <!-- Closing -->
+  <div class="page">
+    <h2>Your Next Session</h2>
+
+    <p>You now have the complete Vibe OS framework. The question is: what will you create?</p>
+
+    <h3>Your First Assignment</h3>
+    <ol>
+      <li>Identify one <strong>friction point</strong> in your daily life where your state doesn't serve you</li>
+      <li>Define the <strong>target state</strong> you want to engineer</li>
+      <li>Apply the <strong>RPM Model</strong> and <strong>Four Vectors</strong></li>
+      <li>Generate your first <strong>intentional track</strong></li>
+      <li>Test it. Does it work? Iterate.</li>
+    </ol>
+
+    <div class="quote">
+      "Don't just fix the UX. Score the emotion. Prescribe the Result. Define the Purpose. Build the Map. Engineers write code. Architects design Vibe."
+    </div>
+
+    <h3>Resources</h3>
+    <ul>
+      <li><strong>Prompt Library</strong> — 50+ additional templates at FrankX.AI</li>
+      <li><strong>Community</strong> — Share your creations in the Inner Circle</li>
+      <li><strong>Feedback</strong> — Submit tracks for collaborative refinement</li>
+      <li><strong>Updates</strong> — New session packs released monthly</li>
+    </ul>
+
+    <div class="card cyan" style="margin-top: 2em; text-align: center;">
+      <p style="font-family: 'Space Grotesk', sans-serif; font-size: 15pt; margin: 0; color: white;">
+        Sound is medicine. Every frequency carries information.
+      </p>
+      <p style="color: var(--text-secondary); margin: 0.8em 0 0 0;">
+        When you approach music creation as <em>consciousness engineering</em> rather than entertainment production, you unlock an entirely different level of impact.
+      </p>
+      <p style="color: var(--accent-cyan); font-weight: 600; margin: 1em 0 0 0;">
+        Welcome to the practice.
+      </p>
+    </div>
+
+    <div class="footer" style="margin-top: 3em;">
+      <p style="font-family: 'Space Grotesk', sans-serif; font-size: 11pt; margin-bottom: 0.5em;">Vibe OS</p>
+      <p>&copy; 2026 Frank · FrankX.AI</p>
+      <p style="margin-top: 1em;">
+        <span style="background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: 600;">frankx.ai</span>
+      </p>
+    </div>
+
+    <span class="page-number">18</span>
+  </div>
+</body>
+</html>

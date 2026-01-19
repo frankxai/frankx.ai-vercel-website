@@ -4,9 +4,6 @@ import { useState } from 'react'
 import Link from 'next/link'
 import { PenTool, Sparkles, Download, Send, BarChart3, Settings, Wand2, FileText, Mail, MessageSquare, BookOpen, GraduationCap } from 'lucide-react'
 
-import Navigation from '@/components/Navigation'
-import Footer from '@/components/Footer'
-
 const agents = [
   {
     id: 'technical-translator',
@@ -148,9 +145,7 @@ export default function ContentStudioPage() {
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100">
-      <Navigation />
-
-      <main className="pb-24 pt-28">
+<main className="pb-24 pt-28">
         <section className="relative overflow-hidden px-6 pb-16 pt-16">
           <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 via-slate-950 to-slate-950" />
 
@@ -440,11 +435,11 @@ export default function ContentStudioPage() {
                   </div>
 
                   <Link
-                    href="/analytics"
+                    href="/dashboard"
                     className="mt-6 w-full inline-flex items-center justify-center gap-2 rounded-xl bg-white/10 hover:bg-white/20 px-4 py-3 text-sm font-semibold text-white transition"
                   >
                     <BarChart3 className="h-4 w-4" />
-                    View Full Analytics
+                    View Full Dashboard
                   </Link>
                 </div>
               </div>
@@ -493,8 +488,6 @@ export default function ContentStudioPage() {
           </section>
         )}
       </main>
-
-      <Footer />
-    </div>
+</div>
   )
 }

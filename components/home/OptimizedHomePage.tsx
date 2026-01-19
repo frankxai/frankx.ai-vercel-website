@@ -3,14 +3,13 @@
 import clsx from 'clsx'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
-import { ArrowRight, ArrowUpRight, Sparkles } from 'lucide-react'
+import { ArrowRight, ArrowUpRight, Sparkles, Zap, Star } from 'lucide-react'
 import dynamic from 'next/dynamic'
 
 import {
   heroCta,
   heroHighlights,
   heroStats,
-  heroSegments,
   quickActions,
 } from '@/lib/hub'
 import { gradientPresets, glassCardClasses } from '@/lib/design/gradients'
@@ -18,24 +17,19 @@ import {
   ParallaxContainer,
   StaggerContainer,
   StaggerItem,
-  FloatingElement,
   MagneticHover,
   MorphingBackground,
-  RevealAnimation,
   GlowPulse,
-  ScrollProgress
+  ScrollProgress,
+  RevealAnimation
 } from '@/components/ui/AdvancedAnimations'
-import { Surface, SectionHeading, Pill, StatBlock } from '@/components/ui/primitives'
+import { Pill, StatBlock, SectionHeading } from '@/components/ui/primitives'
 import { trackEvent } from '@/lib/analytics'
 
+// Keep some sections if they provide value, otherwise comment out or remove
 const StrategicSpotlights = dynamic(() => import('@/components/home/sections/StrategicSpotlights'))
-const IntelligenceAtlasSpotlight = dynamic(() => import('@/components/home/sections/IntelligenceAtlasSpotlight'))
-const SegmentProfiles = dynamic(() => import('@/components/home/sections/SegmentProfiles'))
 const Updates = dynamic(() => import('@/components/home/sections/Updates'))
 const Resources = dynamic(() => import('@/components/home/sections/Resources'))
-const KeywordClusters = dynamic(() => import('@/components/home/sections/KeywordClusters'))
-const Projects = dynamic(() => import('@/components/home/sections/Projects'))
-const AgentProtocols = dynamic(() => import('@/components/home/sections/AgentProtocols'))
 const Testimonials = dynamic(() => import('@/components/home/sections/Testimonials'))
 const FinalCTA = dynamic(() => import('@/components/home/sections/FinalCTA'))
 
@@ -43,204 +37,163 @@ export default function OptimizedHomePage() {
   const { primary, secondary, tertiary } = heroCta
 
   return (
-    <main id="main" className="flex-1 pt-32 text-white">
+    <main id="main" className="flex-1 pt-20 text-white selection:bg-primary-500/30">
       <ScrollProgress />
+
       {/* Hero Section */}
-      <section id="hub" className="relative overflow-hidden pt-24 pb-32">
+      <section id="hub" className="relative overflow-hidden min-h-[90vh] flex items-center justify-center">
         <MorphingBackground />
         <div className={clsx('absolute inset-0', gradientPresets.heroBase)} />
-        <div className={clsx('absolute inset-0 opacity-60 blur-3xl', gradientPresets.heroAurora)} />
-        <div className={clsx('absolute inset-0 opacity-40', gradientPresets.heroPulse)} />
-        <div className="absolute inset-x-0 top-0 h-64 bg-gradient-to-b from-white/5 via-transparent to-transparent opacity-60" aria-hidden />
-        <ParallaxContainer offset={30}>
-          <div className="relative mx-auto max-w-7xl px-6">
-            <StaggerContainer staggerDelay={0.2}>
-              <div className="text-center space-y-12">
+        <div className={clsx('absolute inset-0 opacity-40 blur-3xl', gradientPresets.heroAurora)} />
+
+        <ParallaxContainer offset={50}>
+          <div className="relative mx-auto max-w-7xl px-6 z-10">
+            <StaggerContainer staggerDelay={0.15}>
+              <div className="text-center space-y-10">
+
+                {/* Main Title */}
                 <StaggerItem>
-                  <Pill
-                    variant="brand"
-                    icon={<Sparkles className="h-4 w-4" aria-hidden="true" />}
-                    className="mx-auto"
-                  >
-                    Golden Age Of Intelligence
-                  </Pill>
-                </StaggerItem>
-                <StaggerItem>
-                  <h1 className="text-heading-1 font-bold leading-tight text-balance max-w-6xl mx-auto">
-                    <span className="bg-gradient-to-r from-white via-neutral-100 to-white bg-clip-text text-transparent">
-                      Transform Ideas Into
+                  <div className="flex flex-col items-center justify-center mb-6">
+                    <span className="text-sm md:text-base font-medium tracking-[0.4em] uppercase text-white/40 mb-4 hover:text-white/60 transition-colors cursor-default">
+                      FrankX
                     </span>
-                    <br />
-                    <span className="bg-gradient-to-r from-primary-400 via-secondary-500 to-accent-600 bg-clip-text text-transparent">
-                      Exponential Results
-                    </span>
-                  </h1>
+                    <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white text-center">
+                      <span className="block bg-gradient-to-b from-white via-white to-white/70 bg-clip-text text-transparent">
+                        Build AI Systems
+                      </span>
+                      <span className="block bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
+                        Aligned With Your Goals
+                      </span>
+                    </h1>
+                  </div>
                 </StaggerItem>
+
+                {/* Subtitle */}
                 <StaggerItem>
-                  <p className="text-body text-neutral-300 max-w-4xl mx-auto leading-relaxed">
-                    Architect the intelligence era with a unified roadmap, field-tested frameworks, and operating rituals that keep every agent and teammate aligned.
+                  <p className="text-xl md:text-2xl text-neutral-300 max-w-3xl mx-auto leading-relaxed font-light">
+                    Free resources for <span className="text-white font-medium">creators</span> and <span className="text-white font-medium">students</span>.
+                    <br className="hidden md:block" />
+                    Practical frameworks. Open development. Real community.
                   </p>
                 </StaggerItem>
+
+                {/* CTAs */}
                 <StaggerItem>
-                  <div className="flex flex-col items-center gap-4 pt-4 sm:flex-row">
-                    <MagneticHover intensity={0.4}>
+                  <div className="flex flex-col items-center justify-center gap-6 pt-8 sm:flex-row">
+                    <MagneticHover intensity={0.5}>
                       <GlowPulse color="cyan">
                         <Link
                           href={primary.href}
                           onClick={() => trackEvent('home_primary_cta_click', { destination: primary.href })}
-                          className="btn-primary inline-flex items-center justify-center rounded-2xl px-8 py-4 text-lg font-semibold transition-transform duration-300 hover:-translate-y-1"
+                          className="group relative inline-flex items-center justify-center rounded-full bg-white px-8 py-4 text-lg font-bold text-black transition-all hover:bg-neutral-200 hover:scale-105"
                         >
                           {primary.label}
-                          <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
+                          <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
                         </Link>
                       </GlowPulse>
                     </MagneticHover>
+
                     <MagneticHover intensity={0.3}>
                       <Link
                         href={secondary.href}
                         onClick={() => trackEvent('home_secondary_cta_click', { destination: secondary.href })}
-                        className="btn-secondary inline-flex items-center justify-center rounded-2xl px-8 py-4 text-lg font-semibold transition-transform duration-300 hover:-translate-y-1"
+                        className="group inline-flex items-center justify-center rounded-full border border-white/20 bg-white/5 px-8 py-4 text-lg font-semibold text-white backdrop-blur-sm transition-all hover:bg-white/10 hover:border-white/40"
                       >
                         {secondary.label}
-                        <ArrowUpRight className="ml-2 h-5 w-5" aria-hidden="true" />
+                        <Sparkles className="ml-2 h-5 w-5 text-yellow-400" />
                       </Link>
                     </MagneticHover>
+                  </div>
+
+                  <div className="mt-8">
                     <Link
                       href={tertiary.href}
-                      onClick={() => trackEvent('home_tertiary_cta_click', { destination: tertiary.href })}
-                      className="inline-flex items-center justify-center gap-2 rounded-2xl border border-white/15 bg-white/10 px-6 py-3 text-sm font-semibold text-white/80 transition hover:bg-white/15 hover:-translate-y-1"
+                      className="text-sm text-white/40 hover:text-white transition-colors border-b border-transparent hover:border-white/40 pb-0.5"
                     >
                       {tertiary.label}
-                      <ArrowRight className="h-4 w-4" aria-hidden="true" />
                     </Link>
                   </div>
                 </StaggerItem>
+
+                {/* Stats */}
                 <StaggerItem>
-                  <div className="mt-4 grid w-full gap-3 sm:grid-cols-3">
-                    {heroSegments.map((segment) => (
-                      <Link
-                        key={segment.id}
-                        href={segment.href}
-                        onClick={() => trackEvent('home_persona_select', { segment: segment.id })}
-                        className="group rounded-2xl border border-white/15 bg-white/5 px-5 py-4 text-left transition hover:border-white/30 hover:bg-white/10"
-                      >
-                        <div className="text-xs font-semibold uppercase tracking-[0.35em] text-white/50">
-                          {segment.label}
-                        </div>
-                        <p className="mt-2 text-sm text-white/70 leading-relaxed group-hover:text-white/85">
-                          {segment.description}
-                        </p>
-                      </Link>
+                  <div className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+                    {heroStats.map((stat) => (
+                      <div key={stat.label} className="p-6 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-sm hover:bg-white/10 transition-colors">
+                        <div className="text-4xl font-bold text-white mb-2">{stat.value}</div>
+                        <div className="text-xs uppercase tracking-widest text-white/50 mb-2">{stat.label}</div>
+                        <div className="text-sm text-white/70">{stat.detail}</div>
+                      </div>
                     ))}
                   </div>
                 </StaggerItem>
-                <StaggerItem>
-                  <div className="flex items-center justify-center gap-8 pt-8 text-sm text-neutral-400">
-                    <span>Trusted by creators and collaborators</span>
-                    <div className="flex items-center gap-6">
-                      <div className="flex items-center gap-2">
-                        <div className="w-2 h-2 rounded-full bg-success-500"></div>
-                        <span>500+ Vibe OS users</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <div className="w-2 h-2 rounded-full bg-info-500"></div>
-                        <span>300+ Creator systems</span>
-                      </div>
-                    </div>
-                  </div>
-                </StaggerItem>
-              </div>
-            </StaggerContainer>
 
-            {/* Stats Section */}
-            <StaggerContainer staggerDelay={0.15}>
-              <div className="mt-24">
-                <div className="grid gap-6 sm:grid-cols-3 max-w-4xl mx-auto">
-                  {heroStats.map((stat, index) => (
-                      <StatBlock
-                        key={stat.label}
-                        value={stat.value}
-                        label={stat.label}
-                        description={stat.detail}
-                        align="center"
-                        className="h-full"
-                      />
-                  ))}
-                </div>
               </div>
             </StaggerContainer>
           </div>
         </ParallaxContainer>
       </section>
 
-      {/* Quick Actions Section */}
-      <section className="py-24 px-6">
+      {/* Highlights Section */}
+      <section className="py-32 px-6 relative">
         <div className="max-w-7xl mx-auto">
-          <StaggerContainer staggerDelay={0.15}>
-            <StaggerItem>
-                  <aside className={clsx(glassCardClasses, 'relative overflow-hidden rounded-4xl p-8 text-white/80 shadow-glass')}>
-                    <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-white/15 via-transparent to-transparent opacity-60" aria-hidden />
-                    <div className="relative space-y-8">
-                      <div>
-                        <h2 className="text-heading-4 font-semibold text-white">Start with clarity</h2>
-                        <p className="mt-3 text-body-sm leading-relaxed text-white/70">
-                          Every visit surfaces the newest rituals, roadmaps, and intelligence drops curated for the way you lead.
-                        </p>
-                      </div>
-                      <div className="grid gap-3">
-                        {quickActions.map((action) => (
-                            <Link
-                              key={action.title}
-                              href={action.href}
-                              className="group flex items-start gap-3 rounded-2xl border border-white/15 bg-white/5 px-4 py-4 transition hover:border-white/30 hover:bg-white/10"
-                            >
-                              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/10 text-white/80">
-                                <action.icon className="h-4 w-4" aria-hidden="true" />
-                              </div>
-                              <div>
-                                <div className="flex items-center gap-1 text-sm font-semibold text-white">
-                                  {action.title}
-                                  <ArrowUpRight className="h-4 w-4 opacity-0 transition-opacity group-hover:opacity-100" aria-hidden="true" />
-                                </div>
-                                <p className="mt-1 text-xs text-white/70">{action.description}</p>
-                              </div>
-                            </Link>
-                        ))}
-                      </div>
-                      <div className="space-y-4 border-t border-white/10 pt-6">
-                        {heroHighlights.map((highlight) => (
-                          <RevealAnimation key={highlight.title} direction="left">
-                            <div className="flex items-start gap-3">
-                              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-white/80">
-                                <highlight.icon className="h-5 w-5" aria-hidden="true" />
-                              </div>
-                              <div>
-                                <h3 className="text-sm font-semibold text-white">{highlight.title}</h3>
-                                <p className="mt-1 text-xs leading-relaxed text-white/70">{highlight.description}</p>
-                              </div>
-                            </div>
-                          </RevealAnimation>
-                        ))}
-                      </div>
-                    </div>
-                  </aside>
-            </StaggerItem>
-          </StaggerContainer>
+          <div className="grid md:grid-cols-3 gap-8">
+            {heroHighlights.map((highlight, i) => (
+              <RevealAnimation key={highlight.title} direction="up">
+                <div className="group p-8 rounded-3xl bg-white/5 border border-white/10 hover:border-white/20 transition-all hover:-translate-y-2 duration-300">
+                  <div className="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center mb-6 group-hover:bg-white/20 transition-colors">
+                    <highlight.icon className="w-6 h-6 text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-white mb-3">{highlight.title}</h3>
+                  <p className="text-white/60 leading-relaxed">
+                    {highlight.description}
+                  </p>
+                </div>
+              </RevealAnimation>
+            ))}
+          </div>
         </div>
       </section>
 
+      {/* Quick Actions Grid */}
+      <section className="py-24 px-6 bg-black/20">
+        <div className="max-w-7xl mx-auto">
+          <SectionHeading
+            title="Start Here"
+            description="Pick your path. Everything is free to explore."
+            align="center"
+            className="mb-16"
+          />
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {quickActions.map((action) => (
+              <Link
+                key={action.title}
+                href={action.href}
+                className="group relative overflow-hidden p-6 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all"
+              >
+                <div className="flex items-start justify-between mb-4">
+                  <div className="p-3 rounded-xl bg-white/5 group-hover:bg-white/10 transition-colors">
+                    <action.icon className="w-6 h-6 text-white/80" />
+                  </div>
+                  <ArrowUpRight className="w-5 h-5 text-white/20 group-hover:text-white transition-colors" />
+                </div>
+                <h3 className="text-lg font-bold text-white mb-2">{action.title}</h3>
+                <p className="text-sm text-white/50 group-hover:text-white/70 transition-colors">
+                  {action.description}
+                </p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Keep selected sections */}
       <StrategicSpotlights />
-      <IntelligenceAtlasSpotlight />
-      <SegmentProfiles />
-      <Updates />
       <Resources />
-      <KeywordClusters />
-      <Projects />
-      <AgentProtocols />
       <Testimonials />
       <FinalCTA />
 
     </main>
   )
 }
-

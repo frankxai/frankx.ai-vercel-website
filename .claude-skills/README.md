@@ -212,8 +212,10 @@ Skills use their directory name as identifier:
 |-------|-------------|----------|
 | `arcanea-lore` | Arcanea world-building, game mechanics, lore | Working on Arcanea project |
 | `frankx-daily-execution` | Daily workflow using FRANKX system and productivity methods | Daily planning and execution |
+| `daily-content-ops` | Research trending topics, polish drafts, generate social content | Daily content workflow |
+| `daily-publishing-ops` | Full publishing operations cadence with agent handoffs | Publishing and distribution |
 
-**Most Used**: `frankx-daily-execution`
+**Most Used**: `frankx-daily-execution`, `daily-content-ops`
 
 ---
 

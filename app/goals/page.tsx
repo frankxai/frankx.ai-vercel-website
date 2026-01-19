@@ -1,8 +1,6 @@
 import { ArrowRight, Calendar, CheckCircle2, Clock, Compass, Flag, Globe, Lightbulb, Rocket, Sparkles, Target, TrendingUp, Users, Zap } from 'lucide-react'
 import Link from 'next/link'
 
-import Footer from '@/components/Footer'
-import Navigation from '@/components/Navigation'
 import { createMetadata } from '@/lib/seo'
 
 const shortTermGoals = [
@@ -21,7 +19,7 @@ const shortTermGoals = [
   {
     icon: Users,
     title: 'Community Growth',
-    timeline: 'Q1-Q2 2025',
+    timeline: 'Next 6 Months',
     objectives: [
       'Reach 10,000 active creators using Vibe OS',
       'Establish 100+ enterprise partnerships',
@@ -33,7 +31,7 @@ const shortTermGoals = [
   {
     icon: Globe,
     title: 'Global Expansion',
-    timeline: 'Q2-Q3 2025',
+    timeline: 'This Year',
     objectives: [
       'Expand to European and Asian markets',
       'Localize platform for 5 major languages',
@@ -187,8 +185,7 @@ export const metadata = createMetadata({
 export default function GoalsPage() {
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100">
-      <Navigation />
-      <main className="px-6 pt-28 pb-20">
+<main className="px-6 pt-28 pb-20">
         <div className="mx-auto max-w-7xl space-y-20">
           {/* Hero Section */}
           <header className="text-center space-y-8">
@@ -407,7 +404,7 @@ export default function GoalsPage() {
                   <div className="w-16 h-16 rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 flex items-center justify-center mb-4 mx-auto">
                     <Clock className="w-8 h-8 text-white" />
                   </div>
-                  <div className="text-2xl font-bold text-cyan-400">2025</div>
+                  <div className="text-2xl font-bold text-cyan-400">2026</div>
                   <div className="text-white/60 text-sm">Platform Excellence</div>
                 </div>
 
@@ -417,7 +414,7 @@ export default function GoalsPage() {
                   <div className="w-16 h-16 rounded-full bg-gradient-to-r from-purple-500 to-pink-600 flex items-center justify-center mb-4 mx-auto">
                     <TrendingUp className="w-8 h-8 text-white" />
                   </div>
-                  <div className="text-2xl font-bold text-purple-400">2027</div>
+                  <div className="text-2xl font-bold text-purple-400">2028</div>
                   <div className="text-white/60 text-sm">Market Leadership</div>
                 </div>
 
@@ -459,7 +456,6 @@ export default function GoalsPage() {
           </section>
         </div>
       </main>
-      <Footer />
-    </div>
+</div>
   )
 }

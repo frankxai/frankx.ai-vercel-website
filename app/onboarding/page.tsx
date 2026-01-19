@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowRight, ArrowLeft, CheckCircle, Star, Target, Users, Zap, Brain, Code, Palette, BarChart3, Shield, Clock, Trophy, Lightbulb, Rocket, Heart, Settings, Play, Book, MessageCircle, Award, TrendingUp, Download, ExternalLink } from 'lucide-react'
 
@@ -168,9 +168,15 @@ export default function OnboardingPage() {
     }
   ]
 
+  const recommendationsStepIndex = steps.findIndex((step) => step.component === 'recommendations')
+
   const nextStep = () => {
     if (currentStep < steps.length - 1) {
-      setCurrentStep(currentStep + 1)
+      const next = currentStep + 1
+      if (next === recommendationsStepIndex) {
+        generateRecommendations()
+      }
+      setCurrentStep(next)
     } else {
       setIsCompleted(true)
     }
@@ -251,12 +257,6 @@ export default function OnboardingPage() {
     ]
     setRecommendations(mockRecommendations)
   }, [userProfile.experience])
-
-  useEffect(() => {
-    if (currentStep === 5) { // Recommendations step
-      generateRecommendations()
-    }
-  }, [currentStep, generateRecommendations])
 
   const currentStepData = steps[currentStep]
   const progress = ((currentStep + 1) / steps.length) * 100

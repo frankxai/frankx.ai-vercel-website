@@ -4,9 +4,6 @@ import { ArrowLeft, ArrowRight, Brain, CheckCircle2, Lightbulb, Music, Palette, 
 import Link from 'next/link'
 import { useState } from 'react'
 
-import Footer from '@/components/Footer'
-import Navigation from '@/components/Navigation'
-
 const questions = [
   {
     id: 1,
@@ -149,8 +146,7 @@ export default function CreativeAIAssessmentPage() {
 
     return (
       <div className="min-h-screen bg-slate-950 text-slate-100">
-        <Navigation />
-        <main className="px-6 pt-28 pb-20">
+<main className="px-6 pt-28 pb-20">
           <div className="mx-auto max-w-4xl space-y-12">
             {/* Results Header */}
             <header className="text-center space-y-6">
@@ -210,8 +206,7 @@ export default function CreativeAIAssessmentPage() {
             </section>
           </div>
         </main>
-        <Footer />
-      </div>
+</div>
     )
   }
 
@@ -220,8 +215,7 @@ export default function CreativeAIAssessmentPage() {
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100">
-      <Navigation />
-      <main className="px-6 pt-28 pb-20">
+<main className="px-6 pt-28 pb-20">
         <div className="mx-auto max-w-4xl space-y-12">
           {/* Header */}
           <header className="space-y-6">
@@ -315,7 +309,6 @@ export default function CreativeAIAssessmentPage() {
           </section>
         </div>
       </main>
-      <Footer />
-    </div>
+</div>
   )
 }

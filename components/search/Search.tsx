@@ -1,12 +1,12 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
+import Link from 'next/link'
 import lunr from 'lunr'
 import { SearchDocument } from '@/lib/search'
 
 export default function Search() {
   const [searchQuery, setSearchQuery] = useState('')
-  const [searchResults, setSearchResults] = useState<lunr.Index.Result[]>([])
   const [searchIndex, setSearchIndex] = useState<lunr.Index | null>(null)
   const [documents, setDocuments] = useState<SearchDocument[]>([])
 
@@ -24,13 +24,9 @@ export default function Search() {
     fetchSearchIndex()
   }, [])
 
-  useEffect(() => {
-    if (searchQuery && searchIndex) {
-      const results = searchIndex.search(searchQuery)
-      setSearchResults(results)
-    } else {
-      setSearchResults([])
-    }
+  const searchResults = useMemo(() => {
+    if (!searchQuery || !searchIndex) return []
+    return searchIndex.search(searchQuery)
   }, [searchQuery, searchIndex])
 
   return (
@@ -55,11 +51,19 @@ export default function Search() {
       <div className="mt-12">
         {searchResults.map((result) => {
           const document = documents.find((doc) => doc.url === result.ref)
+          if (!document?.url) return null
+          const isExternal = document.url.startsWith('http')
           return (
             <div key={result.ref} className="rounded-2xl border border-neutral-800 bg-neutral-900 p-6 mb-4">
-              <a href={document?.url}>
-                <h2 className="text-heading-5 font-semibold text-white">{document?.title}</h2>
-              </a>
+              {isExternal ? (
+                <a href={document.url} className="hover:text-white" rel="noreferrer">
+                  <h2 className="text-heading-5 font-semibold text-white">{document.title}</h2>
+                </a>
+              ) : (
+                <Link href={document.url} className="hover:text-white">
+                  <h2 className="text-heading-5 font-semibold text-white">{document.title}</h2>
+                </Link>
+              )}
             </div>
           )
         })}

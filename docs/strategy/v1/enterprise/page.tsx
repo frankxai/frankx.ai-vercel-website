@@ -1,8 +1,6 @@
 import { ArrowRight, Award, Building2, CheckCircle2, Globe, LineChart, Lock, Shield, Star, Target, TrendingUp, Users, Zap } from 'lucide-react'
 import Link from 'next/link'
 
-import Footer from '@/components/Footer'
-import Navigation from '@/components/Navigation'
 import AnimatedBackground from '@/components/ui/AnimatedBackground'
 import InteractiveCard from '@/components/ui/InteractiveCard'
 import { createMetadata } from '@/lib/seo'
@@ -205,8 +203,7 @@ export default function EnterprisePage() {
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100 relative">
       <AnimatedBackground variant="gradient" intensity="medium" />
-      <Navigation />
-      <main className="px-6 pt-28 pb-20 relative">
+<main className="px-6 pt-28 pb-20 relative">
         <div className="mx-auto max-w-7xl space-y-20">
           {/* Hero Section */}
           <header className="text-center space-y-8 relative">
@@ -464,7 +461,6 @@ export default function EnterprisePage() {
           </section>
         </div>
       </main>
-      <Footer />
-    </div>
+</div>
   )
 }

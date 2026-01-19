@@ -159,6 +159,8 @@ function generateAnalyticsResponse(query: AnalyticsQuery): AnalyticsResponse {
 
 function generateConsciousnessAnalytics(query: AnalyticsQuery, data: any): AnalyticsResponse {
   const timeframeData = data.consciousness_metrics[query.timeframe] || data.consciousness_metrics['30d']
+  const metrics = timeframeData as Record<string, number>
+  const metricValues = Object.values(metrics)
 
   return {
     metric: 'consciousness',
@@ -170,8 +172,8 @@ function generateConsciousnessAnalytics(query: AnalyticsQuery, data: any): Analy
       { dimension: 'Wisdom Integration', value: timeframeData.wisdom_integration }
     ],
     summary: {
-      total: Object.values(timeframeData).reduce((a: number, b: number) => a + b, 0),
-      average: Object.values(timeframeData).reduce((a: number, b: number) => a + b, 0) / 4,
+      total: metricValues.reduce((a: number, b: number) => a + b, 0),
+      average: metricValues.reduce((a: number, b: number) => a + b, 0) / metricValues.length,
       trend: 'up',
       change_percentage: 3.2
     },

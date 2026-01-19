@@ -39,10 +39,10 @@ export default function IntelligenceAtlas() {
         <div className="mt-6 prose prose-invert max-w-none">
           <p>Ready to install the OS? Start with:</p>
           <ul>
-            <li><Link href="/products/1" className="text-primary-200 hover:text-primary-100 underline-offset-4 hover:underline">Creative AI Toolkit</Link> - prompts, workflows, and quick wins.</li>
-            <li><Link href="/products/2" className="text-primary-200 hover:text-primary-100 underline-offset-4 hover:underline">Agentic Creator OS Blueprint</Link> - the full system we use internally to ship Golden Age of Intelligence and more.</li>
+            <li><Link href="/products/creative-ai-toolkit" className="text-primary-200 hover:text-primary-100 underline-offset-4 hover:underline">Creative AI Toolkit</Link> - prompts, workflows, and quick wins.</li>
+            <li><Link href="/products/agentic-creator-os" className="text-primary-200 hover:text-primary-100 underline-offset-4 hover:underline">Agentic Creator OS Blueprint</Link> - the full system we use internally to ship Golden Age of Intelligence and more.</li>
           </ul>
-          <p>Bundle them and youâ€™ll have your Agentic Creator OS running in weeks, not quarters.</p>
+          <p>Bundle them and you'll have your Agentic Creator OS running in weeks, not quarters.</p>
         </div>
       </div>
     </div>

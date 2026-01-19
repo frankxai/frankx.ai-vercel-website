@@ -1,0 +1,834 @@
+FrankX.AI Link Checker Report
+================================================================================
+Generated: 2025-12-24T21:52:39.288Z
+Total Issues Found: 78
+================================================================================
+
+=== ISSUES BY TYPE ===
+
+404 - Not Found: 17 issues
+--------------------------------------------------------------------------------
+
+1. Page: Homepage
+   Href: /newsletter
+   Link text: "Subscribe"
+   Status code: 404
+
+2. Page: Products
+   Href: /newsletter
+   Link text: "Subscribe"
+   Status code: 404
+
+3. Page: Resources
+   Href: /newsletter
+   Link text: "Subscribe"
+   Status code: 404
+
+4. Page: Blog
+   Href: /newsletter
+   Link text: "Subscribe"
+   Status code: 404
+
+5. Page: Blog
+   Href: /docs/DAILY_INTELLIGENCE_OPERATIONS.md
+   Link text: "Review the ritual playbook"
+   Status code: 404
+
+6. Page: Assessment
+   Href: /newsletter
+   Link text: "Subscribe"
+   Status code: 404
+
+7. Page: Enterprise
+   Href: /newsletter
+   Link text: "Subscribe"
+   Status code: 404
+
+8. Page: Coaching
+   Href: /newsletter
+   Link text: "Subscribe"
+   Status code: 404
+
+9. Page: Courses
+   Href: /newsletter
+   Link text: "Subscribe"
+   Status code: 404
+
+10. Page: Courses
+   Href: /courses/ai-ethics-governance
+   Link text: "Enroll Now"
+   Status code: 404
+
+11. Page: Courses
+   Href: /courses/family-ai-education
+   Link text: "Enroll Now"
+   Status code: 404
+
+12. Page: Courses
+   Href: /courses/agent-architecture-deep-dive
+   Link text: "Enroll Now"
+   Status code: 404
+
+13. Page: Courses
+   Href: /courses/prompt-engineering-mastery
+   Link text: "Enroll Now"
+   Status code: 404
+
+14. Page: Courses
+   Href: /courses/ai-business-strategy
+   Link text: "Enroll Now"
+   Status code: 404
+
+15. Page: Agentic AI Center
+   Href: /newsletter
+   Link text: "Subscribe"
+   Status code: 404
+
+16. Page: Founder Playbook
+   Href: /newsletter
+   Link text: "Subscribe"
+   Status code: 404
+
+17. Page: Realm
+   Href: /newsletter
+   Link text: "Subscribe"
+   Status code: 404
+
+External link missing target: 4 issues
+--------------------------------------------------------------------------------
+
+1. Page: Realm
+   Href: https://frankx.ck.page/realm
+   Link text: "Join the Waitlist"
+
+2. Page: Realm
+   Href: https://frankx.ck.page/creation-chronicles
+   Link text: "Join Creation Chronicles"
+
+3. Page: Realm
+   Href: https://frankx.ck.page/realm
+   Link text: "Join Waitlist"
+
+4. Page: Realm
+   Href: https://frankx.ck.page/realm
+   Link text: "Join the Waitlist"
+
+Other errors: 57 issues
+--------------------------------------------------------------------------------
+
+1. Page: Homepage
+   Href: /guides/modern-guide
+   Link text: "Featured GuideThe Golden Age of IntelligenceClarity, frameworks, and a 90-day plan to capture real v..."
+   Status code: 500
+
+2. Page: Blog
+   Href: /blog/01-ai-doesnt-have-to-be-soulless
+   Link text: "AI Doesn&#x27;t Have To Be Soulless (And Here&#x27;s How I Know)"
+   Status code: 500
+
+3. Page: Blog
+   Href: /blog/01-ai-doesnt-have-to-be-soulless
+   Link text: "Read more"
+   Status code: 500
+
+4. Page: Blog
+   Href: /blog/02-the-soul-frequency-framework
+   Link text: "The Soul Frequency Framework: How to Find Your Authentic Creative Voice in the AI Age"
+   Status code: 500
+
+5. Page: Blog
+   Href: /blog/02-the-soul-frequency-framework
+   Link text: "Read more"
+   Status code: 500
+
+6. Page: Blog
+   Href: /blog/enterprise-intelligence-briefing-week-40-2025
+   Link text: "Enterprise Intelligence Briefing: Week 40, 2025 - The Suno Integration Strategy"
+   Status code: 500
+
+7. Page: Blog
+   Href: /blog/enterprise-intelligence-briefing-week-40-2025
+   Link text: "Read more"
+   Status code: 500
+
+8. Page: Blog
+   Href: /blog/enterprise-intelligence-briefing-week-39-2025
+   Link text: "Enterprise Intelligence Briefing: Week 39, 2025 - The Oracle AI Advantage"
+   Status code: 500
+
+9. Page: Blog
+   Href: /blog/enterprise-intelligence-briefing-week-39-2025
+   Link text: "Read more"
+   Status code: 500
+
+10. Page: Blog
+   Href: /blog/the-creative-os
+   Link text: "The Creative OS: A Guide to Building Your Creative Operating System"
+   Status code: 500
+
+11. Page: Blog
+   Href: /blog/the-creative-os
+   Link text: "Read more"
+   Status code: 500
+
+12. Page: Blog
+   Href: /blog/08-golden-age-of-intelligence
+   Link text: "The Golden Age of Intelligence: Flagship Atlas for Agentic Marketing Teams"
+   Status code: 500
+
+13. Page: Blog
+   Href: /blog/08-golden-age-of-intelligence
+   Link text: "Read more"
+   Status code: 500
+
+14. Page: Blog
+   Href: /blog/06-intelligence-revolution-2025
+   Link text: "The Intelligence Revolution Playbook: Building Conscious AI Systems in 2025"
+   Status code: 500
+
+15. Page: Blog
+   Href: /blog/06-intelligence-revolution-2025
+   Link text: "Read more"
+   Status code: 500
+
+16. Page: Blog
+   Href: /blog/enterprise-intelligence-operating-system-2025
+   Link text: "Enterprise Intelligence Operating System 2025"
+   Status code: 500
+
+17. Page: Blog
+   Href: /blog/enterprise-intelligence-operating-system-2025
+   Link text: "Read more"
+   Status code: 500
+
+18. Page: Blog
+   Href: /blog/10-agentic-ai-roadmap-2025
+   Link text: "Agentic AI Roadmap 2025: From Studio Rituals to Enterprise Governance"
+   Status code: 500
+
+19. Page: Blog
+   Href: /blog/10-agentic-ai-roadmap-2025
+   Link text: "Read more"
+   Status code: 500
+
+20. Page: Blog
+   Href: /blog/frankx-intelligence-atlas-volume-1
+   Link text: "FrankX Intelligence Atlas Vol. I: Architecting the Agentic Era"
+   Status code: 500
+
+21. Page: Blog
+   Href: /blog/frankx-intelligence-atlas-volume-1
+   Link text: "Read more"
+   Status code: 500
+
+22. Page: Blog
+   Href: /blog/agentic-seo-publishing-masterplan
+   Link text: "Agentic SEO Publishing Masterplan: 12-Day Accelerator from September 19"
+   Status code: 500
+
+23. Page: Blog
+   Href: /blog/agentic-seo-publishing-masterplan
+   Link text: "Read more"
+   Status code: 500
+
+24. Page: Blog
+   Href: /blog/ai-doesnt-have-to-be-soulless
+   Link text: "AI Doesn&#x27;t Have To Be Soulless (And Here&#x27;s How I Know)"
+   Status code: 500
+
+25. Page: Blog
+   Href: /blog/ai-doesnt-have-to-be-soulless
+   Link text: "Read more"
+   Status code: 500
+
+26. Page: Blog
+   Href: /blog?category=AI+%26+Consciousness
+   Link text: "AI &amp; Consciousness"
+   Status code: 500
+
+27. Page: Blog
+   Href: /blog?category=AI+%26+Machine+Learning
+   Link text: "AI &amp; Machine Learning"
+   Status code: 500
+
+28. Page: Blog
+   Href: /blog?category=Conscious+AI
+   Link text: "Conscious AI"
+   Status code: 500
+
+29. Page: Blog
+   Href: /blog?category=Creation+Chronicles
+   Link text: "Creation Chronicles"
+   Status code: 500
+
+30. Page: Blog
+   Href: /blog?category=Creative+Intelligence
+   Link text: "Creative Intelligence"
+   Status code: 500
+
+31. Page: Blog
+   Href: /blog?category=Creativity+%26+Framework
+   Link text: "Creativity &amp; Framework"
+   Status code: 500
+
+32. Page: Blog
+   Href: /blog?category=Enterprise+AI
+   Link text: "Enterprise AI"
+   Status code: 500
+
+33. Page: Blog
+   Href: /blog?category=Enterprise+Intelligence
+   Link text: "Enterprise Intelligence"
+   Status code: 500
+
+34. Page: Blog
+   Href: /blog?category=Flagship
+   Link text: "Flagship"
+   Status code: 500
+
+35. Page: Blog
+   Href: /blog?category=Framework
+   Link text: "Framework"
+   Status code: 500
+
+36. Page: Blog
+   Href: /blog?category=Intelligence+Economy
+   Link text: "Intelligence Economy"
+   Status code: 500
+
+37. Page: Blog
+   Href: /blog?category=Personal
+   Link text: "Personal"
+   Status code: 500
+
+38. Page: Blog
+   Href: /blog?category=Reports
+   Link text: "Reports"
+   Status code: 500
+
+39. Page: Blog
+   Href: /blog?category=Roadmap
+   Link text: "Roadmap"
+   Status code: 500
+
+40. Page: Blog
+   Href: /blog?category=Strategy
+   Link text: "Strategy"
+   Status code: 500
+
+41. Page: Blog
+   Href: /blog/03-ai-guide-for-families-and-professionals
+   Link text: "The Family &amp; Professional&#x27;s Guide to Thriving with AI (Not Just Surviving It)"
+   Status code: 500
+
+42. Page: Blog
+   Href: /blog/03-ai-guide-for-families-and-professionals
+   Link text: "Read more"
+   Status code: 500
+
+43. Page: Blog
+   Href: /blog/04-conscious-ai-for-entrepreneurs
+   Link text: "The Conscious Entrepreneur&#x27;s Guide to Building AI-Powered Businesses That Actually Serve Humani..."
+   Status code: 500
+
+44. Page: Blog
+   Href: /blog/04-conscious-ai-for-entrepreneurs
+   Link text: "Read more"
+   Status code: 500
+
+45. Page: Blog
+   Href: /blog/05-music-as-consciousness-technology
+   Link text: "500 Songs Later: What AI Music Creation Taught Me About Consciousness, Creativity, and the Future"
+   Status code: 500
+
+46. Page: Blog
+   Href: /blog/05-music-as-consciousness-technology
+   Link text: "Read more"
+   Status code: 500
+
+47. Page: Blog
+   Href: /blog/09-reader-first-golden-age
+   Link text: "Golden Age of Intelligence: Reader-First Growth Playbook"
+   Status code: 500
+
+48. Page: Blog
+   Href: /blog/09-reader-first-golden-age
+   Link text: "Read more"
+   Status code: 500
+
+49. Page: Blog
+   Href: /blog/07-agentic-creator-os
+   Link text: "The Agentic Creator OS: How to Orchestrate AI Like a Studio"
+   Status code: 500
+
+50. Page: Blog
+   Href: /blog/07-agentic-creator-os
+   Link text: "Read more"
+   Status code: 500
+
+51. Page: Blog
+   Href: /blog/what-is-agentic-ai
+   Link text: "[No text]"
+   Status code: 500
+
+52. Page: Blog
+   Href: /blog/what-is-agentic-ai
+   Link text: "Read more"
+   Status code: 500
+
+53. Page: Blog
+   Href: /blog/conscious-ai-integration-operating-system
+   Link text: "Conscious AI Integration OS: 7 Layers To Align Teams, Agents, and Trust"
+   Status code: 500
+
+54. Page: Blog
+   Href: /blog/conscious-ai-integration-operating-system
+   Link text: "Read more"
+   Status code: 500
+
+55. Page: Blog
+   Href: /blog/golden-age-of-intelligence
+   Link text: "The Golden Age of Intelligence: An Agentic SEO Operating System for Exponential Reach"
+   Status code: 500
+
+56. Page: Blog
+   Href: /blog/golden-age-of-intelligence
+   Link text: "Read more"
+   Status code: 500
+
+57. Page: Founder Playbook
+   Href: /guides/modern-guide
+   Link text: "Read Modern Guide"
+   Status code: 500
+
+
+=== ISSUES BY PAGE ===
+
+Homepage: 2 issues
+--------------------------------------------------------------------------------
+
+1. Link returns 404 - Page not found
+   Href: /newsletter
+   Link text: "Subscribe"
+   Status code: 404
+
+2. Link returns error status: 500
+   Href: /guides/modern-guide
+   Link text: "Featured GuideThe Golden Age of IntelligenceClarity, frameworks, and a 90-day plan to capture real v..."
+   Status code: 500
+
+Products: 1 issues
+--------------------------------------------------------------------------------
+
+1. Link returns 404 - Page not found
+   Href: /newsletter
+   Link text: "Subscribe"
+   Status code: 404
+
+Resources: 1 issues
+--------------------------------------------------------------------------------
+
+1. Link returns 404 - Page not found
+   Href: /newsletter
+   Link text: "Subscribe"
+   Status code: 404
+
+Blog: 57 issues
+--------------------------------------------------------------------------------
+
+1. Link returns 404 - Page not found
+   Href: /newsletter
+   Link text: "Subscribe"
+   Status code: 404
+
+2. Link returns error status: 500
+   Href: /blog/01-ai-doesnt-have-to-be-soulless
+   Link text: "AI Doesn&#x27;t Have To Be Soulless (And Here&#x27;s How I Know)"
+   Status code: 500
+
+3. Link returns error status: 500
+   Href: /blog/01-ai-doesnt-have-to-be-soulless
+   Link text: "Read more"
+   Status code: 500
+
+4. Link returns error status: 500
+   Href: /blog/02-the-soul-frequency-framework
+   Link text: "The Soul Frequency Framework: How to Find Your Authentic Creative Voice in the AI Age"
+   Status code: 500
+
+5. Link returns error status: 500
+   Href: /blog/02-the-soul-frequency-framework
+   Link text: "Read more"
+   Status code: 500
+
+6. Link returns error status: 500
+   Href: /blog/enterprise-intelligence-briefing-week-40-2025
+   Link text: "Enterprise Intelligence Briefing: Week 40, 2025 - The Suno Integration Strategy"
+   Status code: 500
+
+7. Link returns error status: 500
+   Href: /blog/enterprise-intelligence-briefing-week-40-2025
+   Link text: "Read more"
+   Status code: 500
+
+8. Link returns error status: 500
+   Href: /blog/enterprise-intelligence-briefing-week-39-2025
+   Link text: "Enterprise Intelligence Briefing: Week 39, 2025 - The Oracle AI Advantage"
+   Status code: 500
+
+9. Link returns error status: 500
+   Href: /blog/enterprise-intelligence-briefing-week-39-2025
+   Link text: "Read more"
+   Status code: 500
+
+10. Link returns error status: 500
+   Href: /blog/the-creative-os
+   Link text: "The Creative OS: A Guide to Building Your Creative Operating System"
+   Status code: 500
+
+11. Link returns error status: 500
+   Href: /blog/the-creative-os
+   Link text: "Read more"
+   Status code: 500
+
+12. Link returns error status: 500
+   Href: /blog/08-golden-age-of-intelligence
+   Link text: "The Golden Age of Intelligence: Flagship Atlas for Agentic Marketing Teams"
+   Status code: 500
+
+13. Link returns error status: 500
+   Href: /blog/08-golden-age-of-intelligence
+   Link text: "Read more"
+   Status code: 500
+
+14. Link returns error status: 500
+   Href: /blog/06-intelligence-revolution-2025
+   Link text: "The Intelligence Revolution Playbook: Building Conscious AI Systems in 2025"
+   Status code: 500
+
+15. Link returns error status: 500
+   Href: /blog/06-intelligence-revolution-2025
+   Link text: "Read more"
+   Status code: 500
+
+16. Link returns error status: 500
+   Href: /blog/enterprise-intelligence-operating-system-2025
+   Link text: "Enterprise Intelligence Operating System 2025"
+   Status code: 500
+
+17. Link returns error status: 500
+   Href: /blog/enterprise-intelligence-operating-system-2025
+   Link text: "Read more"
+   Status code: 500
+
+18. Link returns error status: 500
+   Href: /blog/10-agentic-ai-roadmap-2025
+   Link text: "Agentic AI Roadmap 2025: From Studio Rituals to Enterprise Governance"
+   Status code: 500
+
+19. Link returns error status: 500
+   Href: /blog/10-agentic-ai-roadmap-2025
+   Link text: "Read more"
+   Status code: 500
+
+20. Link returns error status: 500
+   Href: /blog/frankx-intelligence-atlas-volume-1
+   Link text: "FrankX Intelligence Atlas Vol. I: Architecting the Agentic Era"
+   Status code: 500
+
+21. Link returns error status: 500
+   Href: /blog/frankx-intelligence-atlas-volume-1
+   Link text: "Read more"
+   Status code: 500
+
+22. Link returns error status: 500
+   Href: /blog/agentic-seo-publishing-masterplan
+   Link text: "Agentic SEO Publishing Masterplan: 12-Day Accelerator from September 19"
+   Status code: 500
+
+23. Link returns error status: 500
+   Href: /blog/agentic-seo-publishing-masterplan
+   Link text: "Read more"
+   Status code: 500
+
+24. Link returns error status: 500
+   Href: /blog/ai-doesnt-have-to-be-soulless
+   Link text: "AI Doesn&#x27;t Have To Be Soulless (And Here&#x27;s How I Know)"
+   Status code: 500
+
+25. Link returns error status: 500
+   Href: /blog/ai-doesnt-have-to-be-soulless
+   Link text: "Read more"
+   Status code: 500
+
+26. Link returns error status: 500
+   Href: /blog?category=AI+%26+Consciousness
+   Link text: "AI &amp; Consciousness"
+   Status code: 500
+
+27. Link returns error status: 500
+   Href: /blog?category=AI+%26+Machine+Learning
+   Link text: "AI &amp; Machine Learning"
+   Status code: 500
+
+28. Link returns error status: 500
+   Href: /blog?category=Conscious+AI
+   Link text: "Conscious AI"
+   Status code: 500
+
+29. Link returns error status: 500
+   Href: /blog?category=Creation+Chronicles
+   Link text: "Creation Chronicles"
+   Status code: 500
+
+30. Link returns error status: 500
+   Href: /blog?category=Creative+Intelligence
+   Link text: "Creative Intelligence"
+   Status code: 500
+
+31. Link returns error status: 500
+   Href: /blog?category=Creativity+%26+Framework
+   Link text: "Creativity &amp; Framework"
+   Status code: 500
+
+32. Link returns error status: 500
+   Href: /blog?category=Enterprise+AI
+   Link text: "Enterprise AI"
+   Status code: 500
+
+33. Link returns error status: 500
+   Href: /blog?category=Enterprise+Intelligence
+   Link text: "Enterprise Intelligence"
+   Status code: 500
+
+34. Link returns error status: 500
+   Href: /blog?category=Flagship
+   Link text: "Flagship"
+   Status code: 500
+
+35. Link returns error status: 500
+   Href: /blog?category=Framework
+   Link text: "Framework"
+   Status code: 500
+
+36. Link returns error status: 500
+   Href: /blog?category=Intelligence+Economy
+   Link text: "Intelligence Economy"
+   Status code: 500
+
+37. Link returns error status: 500
+   Href: /blog?category=Personal
+   Link text: "Personal"
+   Status code: 500
+
+38. Link returns error status: 500
+   Href: /blog?category=Reports
+   Link text: "Reports"
+   Status code: 500
+
+39. Link returns error status: 500
+   Href: /blog?category=Roadmap
+   Link text: "Roadmap"
+   Status code: 500
+
+40. Link returns error status: 500
+   Href: /blog?category=Strategy
+   Link text: "Strategy"
+   Status code: 500
+
+41. Link returns error status: 500
+   Href: /blog/03-ai-guide-for-families-and-professionals
+   Link text: "The Family &amp; Professional&#x27;s Guide to Thriving with AI (Not Just Surviving It)"
+   Status code: 500
+
+42. Link returns error status: 500
+   Href: /blog/03-ai-guide-for-families-and-professionals
+   Link text: "Read more"
+   Status code: 500
+
+43. Link returns error status: 500
+   Href: /blog/04-conscious-ai-for-entrepreneurs
+   Link text: "The Conscious Entrepreneur&#x27;s Guide to Building AI-Powered Businesses That Actually Serve Humani..."
+   Status code: 500
+
+44. Link returns error status: 500
+   Href: /blog/04-conscious-ai-for-entrepreneurs
+   Link text: "Read more"
+   Status code: 500
+
+45. Link returns error status: 500
+   Href: /blog/05-music-as-consciousness-technology
+   Link text: "500 Songs Later: What AI Music Creation Taught Me About Consciousness, Creativity, and the Future"
+   Status code: 500
+
+46. Link returns error status: 500
+   Href: /blog/05-music-as-consciousness-technology
+   Link text: "Read more"
+   Status code: 500
+
+47. Link returns error status: 500
+   Href: /blog/09-reader-first-golden-age
+   Link text: "Golden Age of Intelligence: Reader-First Growth Playbook"
+   Status code: 500
+
+48. Link returns error status: 500
+   Href: /blog/09-reader-first-golden-age
+   Link text: "Read more"
+   Status code: 500
+
+49. Link returns error status: 500
+   Href: /blog/07-agentic-creator-os
+   Link text: "The Agentic Creator OS: How to Orchestrate AI Like a Studio"
+   Status code: 500
+
+50. Link returns error status: 500
+   Href: /blog/07-agentic-creator-os
+   Link text: "Read more"
+   Status code: 500
+
+51. Link returns error status: 500
+   Href: /blog/what-is-agentic-ai
+   Link text: "[No text]"
+   Status code: 500
+
+52. Link returns error status: 500
+   Href: /blog/what-is-agentic-ai
+   Link text: "Read more"
+   Status code: 500
+
+53. Link returns error status: 500
+   Href: /blog/conscious-ai-integration-operating-system
+   Link text: "Conscious AI Integration OS: 7 Layers To Align Teams, Agents, and Trust"
+   Status code: 500
+
+54. Link returns error status: 500
+   Href: /blog/conscious-ai-integration-operating-system
+   Link text: "Read more"
+   Status code: 500
+
+55. Link returns error status: 500
+   Href: /blog/golden-age-of-intelligence
+   Link text: "The Golden Age of Intelligence: An Agentic SEO Operating System for Exponential Reach"
+   Status code: 500
+
+56. Link returns error status: 500
+   Href: /blog/golden-age-of-intelligence
+   Link text: "Read more"
+   Status code: 500
+
+57. Link returns 404 - Page not found
+   Href: /docs/DAILY_INTELLIGENCE_OPERATIONS.md
+   Link text: "Review the ritual playbook"
+   Status code: 404
+
+Assessment: 1 issues
+--------------------------------------------------------------------------------
+
+1. Link returns 404 - Page not found
+   Href: /newsletter
+   Link text: "Subscribe"
+   Status code: 404
+
+Enterprise: 1 issues
+--------------------------------------------------------------------------------
+
+1. Link returns 404 - Page not found
+   Href: /newsletter
+   Link text: "Subscribe"
+   Status code: 404
+
+Coaching: 1 issues
+--------------------------------------------------------------------------------
+
+1. Link returns 404 - Page not found
+   Href: /newsletter
+   Link text: "Subscribe"
+   Status code: 404
+
+Courses: 6 issues
+--------------------------------------------------------------------------------
+
+1. Link returns 404 - Page not found
+   Href: /newsletter
+   Link text: "Subscribe"
+   Status code: 404
+
+2. Link returns 404 - Page not found
+   Href: /courses/ai-ethics-governance
+   Link text: "Enroll Now"
+   Status code: 404
+
+3. Link returns 404 - Page not found
+   Href: /courses/family-ai-education
+   Link text: "Enroll Now"
+   Status code: 404
+
+4. Link returns 404 - Page not found
+   Href: /courses/agent-architecture-deep-dive
+   Link text: "Enroll Now"
+   Status code: 404
+
+5. Link returns 404 - Page not found
+   Href: /courses/prompt-engineering-mastery
+   Link text: "Enroll Now"
+   Status code: 404
+
+6. Link returns 404 - Page not found
+   Href: /courses/ai-business-strategy
+   Link text: "Enroll Now"
+   Status code: 404
+
+Agentic AI Center: 1 issues
+--------------------------------------------------------------------------------
+
+1. Link returns 404 - Page not found
+   Href: /newsletter
+   Link text: "Subscribe"
+   Status code: 404
+
+Founder Playbook: 2 issues
+--------------------------------------------------------------------------------
+
+1. Link returns 404 - Page not found
+   Href: /newsletter
+   Link text: "Subscribe"
+   Status code: 404
+
+2. Link returns error status: 500
+   Href: /guides/modern-guide
+   Link text: "Read Modern Guide"
+   Status code: 500
+
+Realm: 5 issues
+--------------------------------------------------------------------------------
+
+1. Link returns 404 - Page not found
+   Href: /newsletter
+   Link text: "Subscribe"
+   Status code: 404
+
+2. External link missing target="_blank"
+   Href: https://frankx.ck.page/realm
+   Link text: "Join the Waitlist"
+
+3. External link missing target="_blank"
+   Href: https://frankx.ck.page/creation-chronicles
+   Link text: "Join Creation Chronicles"
+
+4. External link missing target="_blank"
+   Href: https://frankx.ck.page/realm
+   Link text: "Join Waitlist"
+
+5. External link missing target="_blank"
+   Href: https://frankx.ck.page/realm
+   Link text: "Join the Waitlist"
+
+
+=== SUMMARY ===
+Total pages tested: 11
+Total unique internal URLs checked: 146
+Total issues found: 78
+  - 404 errors: 17
+  - External link issues: 4
+  - Redirects: 0
+  - Other errors: 57

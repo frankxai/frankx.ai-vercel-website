@@ -31,22 +31,6 @@ function ensureDirSync(dir) {
   fs.mkdirSync(dir, { recursive: true });
 }
 
-function walk(dir, list = []) {
-  const ents = fs.readdirSync(dir, { withFileTypes: true });
-  for (const ent of ents) {
-    if (ent.name.startsWith('.DS_Store')) continue;
-    const full = path.join(dir, ent.name);
-    if (ent.isDirectory()) {
-      if (EXCLUDE_DIRS.has(ent.name)) continue;
-      list = walk(full, list);
-    } else if (ent.isFile()) {
-      const ext = path.extname(ent.name).toLowerCase();
-      if (TEXT_EXTS.has(ext)) list.push(full);
-    }
-  }
-  return list;
-}
-
 function htmlEscape(s) {
   return s
     .replace(/&/g, '&amp;')
@@ -226,21 +210,61 @@ function outPathFor(file) {
 }
 
 // Collect files
+function walk(dir, list = []) {
+  try {
+    const ents = fs.readdirSync(dir, { withFileTypes: true });
+    for (const ent of ents) {
+      if (ent.name.startsWith('.DS_Store')) continue;
+      const full = path.join(dir, ent.name);
+      if (ent.isDirectory()) {
+        if (EXCLUDE_DIRS.has(ent.name)) {
+             // console.log(`Skipping ${full}`);
+             continue;
+        }
+        // Special check for nested excludes if needed, but name-based is usually enough for node_modules
+        list = walk(full, list);
+      } else if (ent.isFile()) {
+        const ext = path.extname(ent.name).toLowerCase();
+        if (TEXT_EXTS.has(ext)) list.push(full);
+      }
+    }
+  } catch (e) {
+    console.warn(`Could not read dir ${dir}: ${e.message}`);
+  }
+  return list;
+}
+
 const files = walk(ROOT).sort((a, b) => a.localeCompare(b));
+console.log(`Found ${files.length} files to process.`);
 
 // Build link list relative to each output root
-const allLinksRoot = files.map((f) => {
+const allLinksRoot = files.map((f, idx) => {
+  if (idx % 1000 === 0) console.log(`Indexing file ${idx}/${files.length}`);
   const rel = relativeOutputPath(f);
   const ext = path.extname(f).toLowerCase();
-  const raw = fs.readFileSync(f, 'utf8');
-  const title = titleFromContent(f, raw, ext);
+  
+  // Optimization: Read only first 2KB for title
+  let title = path.basename(f, ext).replace(/[_-]+/g, ' ');
+  try {
+      const fd = fs.openSync(f, 'r');
+      const buffer = Buffer.alloc(2048);
+      const bytesRead = fs.readSync(fd, buffer, 0, 2048, 0);
+      fs.closeSync(fd);
+      const partial = buffer.toString('utf8', 0, bytesRead);
+      title = titleFromContent(f, partial, ext);
+  } catch (e) {
+      // fallback to filename
+  }
+
   const outs = outPathFor(f);
   const outRels = outs.map((out, i) => path.relative(OUTPUT_DIRS[i], out).replace(/\\/g, '/'));
   return { outRels, text: title, src: rel };
 });
 
 // Write each page
+let processedCount = 0;
 for (const file of files) {
+  if (++processedCount % 1000 === 0) console.log(`Writing file ${processedCount}/${files.length}`);
   const rel = relativeOutputPath(file);
   const ext = path.extname(file).toLowerCase();
   const content = fs.readFileSync(file, 'utf8');
@@ -248,16 +272,19 @@ for (const file of files) {
   const attribution = getAttribution(rel, stat.mtime, stat.birthtime);
   const title = titleFromContent(file, content, ext);
   const outs = outPathFor(file);
+  
   for (let i = 0; i < outs.length; i++) {
     const out = outs[i];
     ensureDirSync(path.dirname(out));
 
     const crumbs = breadcrumbsFor(rel);
+    // OPTIMIZATION: Do not generate full 15k link list for every page.
     const currentOutRel = path.relative(OUTPUT_DIRS[i], out).replace(/\\/g, '/');
-    const linksForThis = allLinksRoot.map((l) => ({
-      href: path.relative(path.join(OUTPUT_DIRS[i], path.dirname(currentOutRel)), path.join(OUTPUT_DIRS[i], l.outRels[i])).replace(/\\/g, '/'),
-      text: l.text,
-    }));
+    const parts = currentOutRel.split('/');
+    const ups = Math.max(parts.length - 1, 0);
+    const indexHref = (ups > 0 ? '../'.repeat(ups) : '') + 'index.html';
+    
+    const linksForThis = [{ href: indexHref, text: '← Back to Index (All Pages)' }];
 
     let htmlBody;
     if (ext === '.md' || ext === '.markdown') {

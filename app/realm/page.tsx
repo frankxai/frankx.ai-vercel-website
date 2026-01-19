@@ -1,202 +1,81 @@
+'use client'
+
 import Link from 'next/link'
-
-import { createMetadata } from '@/lib/seo'
-
-export const metadata = createMetadata({
-  title: 'FrankX Realm | Inner Circle & Intelligence Vault',
-  description:
-    'Step inside the FrankX Realm to access the Inner Circle waitlist, intelligence vault, live ritual labs, and agentic support.',
-  keywords: [
-    'frankx realm',
-    'inner circle waitlist',
-    'creation chronicles vault',
-    'agentic community',
-    'creative intelligence membership'
-  ],
-  path: '/realm'
-})
-
-const membershipBenefits = [
-  {
-    title: 'Creation Chronicles Vault',
-    description:
-      'Private library of prompt packs, templates, sonic drops, and behind-the-scenes tutorials updated weekly.'
-  },
-  {
-    title: 'Live Ritual Labs',
-    description: 'Monthly activation sessions for music, storytelling, and agent orchestration with the FrankX team.'
-  },
-  {
-    title: 'Agent Desk Support',
-    description: 'Submit prompts, workflows, or governance questions and receive guided responses from specialist agents.'
-  }
-]
-
-const cadence = [
-  {
-    label: 'Weekly',
-    title: 'Creation Chronicles Dispatch',
-    description: 'Story + soundtrack + system drop to keep you building the Golden Age with momentum.'
-  },
-  {
-    label: 'Monthly',
-    title: 'Inner Circle Lab',
-    description: 'Live run-through of new frameworks, Q&A, and breakout sessions with fellow members.'
-  },
-  {
-    label: 'Quarterly',
-    title: 'Strategy Intensives',
-    description: 'Optional upgrade: deep-dive with the Agent Collective to recalibrate launches and governance.'
-  }
-]
-
-const tiers = [
-  {
-    name: 'Signal',
-    price: 'Free',
-    description: 'Creation Chronicles newsletter + public drops to stay aligned with FrankX intelligence.',
-    perks: ['Weekly dispatch', 'Early product notices', 'Selected Creation Chronicles essays'],
-    ctaLabel: 'Join Creation Chronicles',
-    ctaHref: 'https://frankx.ck.page/creation-chronicles'
-  },
-  {
-    name: 'Inner Circle',
-    price: 'Waitlist',
-    description: 'Full Realm access with vault, labs, private soundtrack releases, and direct agent support.',
-    perks: ['Creation Chronicles vault', 'Live ritual labs', 'Priority agent desk support'],
-    ctaLabel: 'Join Waitlist',
-    ctaHref: 'https://frankx.ck.page/realm'
-  },
-  {
-    name: 'Alliance',
-    price: 'Custom',
-    description: 'Enterprise or studio partnership integrating Realm benefits with bespoke strategy work.',
-    perks: ['Executive briefings', 'Agentic dashboards', 'Co-created launches & governance'],
-    ctaLabel: 'Request Strategy Intensive',
-    ctaHref: 'mailto:hello@frankx.ai?subject=FrankX%20Alliance%20Inquiry'
-  }
-]
-
-const waitlistForm = {
-  action: 'https://frankx.ck.page/realm',
-  description:
-    'Add your email to be the first to receive Inner Circle pricing, launch bonuses, and the Realm onboarding guide.'
-}
+import { motion } from 'framer-motion'
+import { Sparkles, Crown, ArrowRight, Mail } from 'lucide-react'
 
 export default function RealmPage() {
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100">
-      <header className="relative overflow-hidden border-b border-white/10 bg-gradient-to-br from-primary-900/40 via-slate-950 to-purple-900/30">
-        <div className="mx-auto flex max-w-5xl flex-col gap-6 px-6 py-24 text-center">
-          <span className="self-center rounded-full border border-white/15 bg-white/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.35em] text-white/70">
-            FrankX Realm
-          </span>
-          <h1 className="text-4xl font-bold leading-tight sm:text-5xl md:text-6xl">
-            The Inner Circle for Creative Intelligence Pioneers
+    <main className="min-h-screen bg-[#02030b] text-white">
+      {/* Background */}
+      <div className="fixed inset-0 -z-10">
+        <div className="absolute inset-0 bg-gradient-to-br from-amber-950/20 via-[#02030b] to-violet-950/20" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(245,158,11,0.08),transparent_50%)]" />
+      </div>
+
+      <div className="relative mx-auto max-w-4xl px-6 py-24 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500/10 text-amber-400 text-sm font-medium mb-8">
+            <Sparkles className="w-4 h-4" />
+            Coming Soon
+          </div>
+
+          {/* Icon */}
+          <div className="mx-auto mb-8 flex h-20 w-20 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-500/20 to-violet-500/20 border border-amber-500/20">
+            <Crown className="h-10 w-10 text-amber-400" />
+          </div>
+
+          {/* Title */}
+          <h1 className="text-4xl font-bold leading-tight sm:text-5xl md:text-6xl mb-6">
+            <span className="bg-gradient-to-r from-amber-200 via-amber-100 to-white bg-clip-text text-transparent">
+              The FrankX Realm
+            </span>
           </h1>
-          <p className="text-sm text-white/70 sm:text-base">
-            Step behind the curtain. Access the vault, sonic rituals, and agent desk that keep our closest friends, family,
-            and collaborators moving faster than the frontier.
+
+          {/* Subtitle */}
+          <p className="text-lg text-white/70 max-w-2xl mx-auto mb-8 leading-relaxed">
+            An exclusive community for creators who want to master AI, build transformative systems,
+            and connect with others on the same journey. Inner Circle membership coming soon.
           </p>
-          <div className="flex flex-wrap justify-center gap-4">
+
+          {/* Features Preview */}
+          <div className="grid sm:grid-cols-3 gap-4 mb-12 max-w-2xl mx-auto">
+            {[
+              { title: 'Live Sessions', desc: 'Weekly calls with Frank' },
+              { title: 'Private Vault', desc: 'Exclusive resources' },
+              { title: 'Community', desc: 'Connect with creators' },
+            ].map((feature) => (
+              <div key={feature.title} className="p-4 rounded-xl bg-white/[0.03] border border-white/10">
+                <div className="text-sm font-semibold text-amber-400 mb-1">{feature.title}</div>
+                <div className="text-xs text-white/50">{feature.desc}</div>
+              </div>
+            ))}
+          </div>
+
+          {/* CTA */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <Link
-              href={waitlistForm.action}
-              className="inline-flex items-center justify-center rounded-2xl bg-gradient-to-r from-primary-500 to-purple-600 px-6 py-3 text-sm font-semibold uppercase tracking-[0.3em] text-white transition hover:-translate-y-1"
+              href="/newsletter"
+              className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 px-6 py-3 text-sm font-semibold uppercase tracking-wider text-white shadow-[0_16px_50px_rgba(245,158,11,0.3)] transition hover:-translate-y-1"
             >
+              <Mail className="w-4 h-4" />
               Join the Waitlist
             </Link>
             <Link
-              href="/creation-chronicles"
-              className="inline-flex items-center justify-center rounded-2xl border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white/80 transition hover:bg-white/10"
+              href="/"
+              className="inline-flex items-center gap-2 text-sm text-white/60 hover:text-white transition-colors"
             >
-              Explore Creation Chronicles
+              Back to Home
+              <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
-        </div>
-      </header>
-
-      <main className="space-y-20 py-16">
-        <section className="px-6">
-          <div className="mx-auto max-w-5xl">
-            <h2 className="text-3xl font-semibold text-white">Why the Realm Exists</h2>
-            <p className="mt-4 text-sm text-white/70">
-              The Inner Circle packages everything we build so you can launch the Golden Age in your own world: daily stories,
-              sonic frequency shifts, governance-ready playbooks, and direct access to the agent collective.
-            </p>
-            <div className="mt-10 grid gap-6 md:grid-cols-3">
-              {membershipBenefits.map((benefit) => (
-                <div key={benefit.title} className="rounded-3xl border border-white/10 bg-white/5 p-6">
-                  <h3 className="text-lg font-semibold text-white">{benefit.title}</h3>
-                  <p className="mt-3 text-sm text-white/70">{benefit.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="px-6">
-          <div className="mx-auto max-w-4xl rounded-3xl border border-white/10 bg-white/5 p-8">
-            <h2 className="text-3xl font-semibold text-white">Cadence & Rituals</h2>
-            <p className="mt-3 text-sm text-white/70">
-              Expect a rhythm that balances momentum with reflection. Every touchpoint is designed to inspire action and
-              provide support.
-            </p>
-            <div className="mt-8 grid gap-6 sm:grid-cols-3">
-              {cadence.map((item) => (
-                <div key={item.label} className="rounded-2xl border border-white/10 bg-white/5 p-5 text-left">
-                  <div className="text-xs font-semibold uppercase tracking-[0.35em] text-white/50">{item.label}</div>
-                  <h3 className="mt-2 text-lg font-semibold text-white">{item.title}</h3>
-                  <p className="mt-2 text-sm text-white/70 leading-relaxed">{item.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="px-6">
-          <div className="mx-auto max-w-5xl">
-            <h2 className="text-3xl font-semibold text-white text-center">Membership Pathway</h2>
-            <div className="mt-10 grid gap-6 md:grid-cols-3">
-              {tiers.map((tier) => (
-                <div
-                  key={tier.name}
-                  className="flex h-full flex-col rounded-3xl border border-white/10 bg-white/5 p-6 text-center"
-                >
-                  <div className="text-xs font-semibold uppercase tracking-[0.35em] text-white/50">{tier.name}</div>
-                  <div className="mt-4 text-3xl font-bold text-primary-200">{tier.price}</div>
-                  <p className="mt-3 text-sm text-white/70">{tier.description}</p>
-                  <ul className="mt-5 flex-1 space-y-2 text-sm text-white/70 text-left list-disc list-inside">
-                    {tier.perks.map((perk) => (
-                      <li key={perk}>{perk}</li>
-                    ))}
-                  </ul>
-                  <Link
-                    href={tier.ctaHref}
-                    className="mt-6 inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-primary-500 to-purple-600 px-5 py-3 text-xs font-semibold uppercase tracking-[0.3em] text-white transition hover:-translate-y-1"
-                  >
-                    {tier.ctaLabel}
-                  </Link>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="px-6">
-          <div className="mx-auto max-w-3xl rounded-3xl border border-white/10 bg-white/5 p-8 text-center">
-            <h2 className="text-3xl font-semibold text-white">Reserve Your Spot</h2>
-            <p className="mt-3 text-sm text-white/70">{waitlistForm.description}</p>
-            <Link
-              href={waitlistForm.action}
-              className="mt-6 inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-primary-500 to-purple-600 px-6 py-3 text-sm font-semibold uppercase tracking-[0.3em] text-white transition hover:-translate-y-1"
-            >
-              Join the Waitlist
-            </Link>
-            <p className="mt-3 text-xs text-white/50">No spam - just launch details and first access.</p>
-          </div>
-        </section>
-      </main>
-    </div>
+        </motion.div>
+      </div>
+    </main>
   )
 }
-

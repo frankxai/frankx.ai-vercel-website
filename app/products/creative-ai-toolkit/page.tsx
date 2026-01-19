@@ -6,7 +6,7 @@ import TransformationList from '@/components/products/TransformationList'
 import ProofRail from '@/components/products/ProofRail'
 import OfferStack from '@/components/products/OfferStack'
 import FinalCTA from '@/components/products/FinalCTA'
-import { trackEvent } from '@/lib/analytics'
+import CaseStudyGrid from '@/components/products/CaseStudyGrid'
 import type { ProductRecord } from '@/types/products'
 
 const product = products.find((entry) => entry.id === 'creative-ai-toolkit') as ProductRecord
@@ -47,7 +47,7 @@ const structuredData = {
 
 export default function CreativeAIToolkitPage() {
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100">
+    <div className="min-h-screen bg-[#02030b] text-slate-100">
       <ProductHero
         productId={product.analyticsId ?? product.id}
         badge={product.badge}
@@ -69,54 +69,17 @@ export default function CreativeAIToolkitPage() {
         pricingTiers={product.pricingTiers}
       />
 
-      {product.caseStudies && product.caseStudies.length > 0 && (
-        <section className="bg-slate-900/40 py-16">
-          <div className="mx-auto max-w-5xl px-6">
-            <h2 className="text-center text-3xl font-semibold text-white">Field Notes From the Collective</h2>
-            <p className="mt-4 text-center text-sm text-white/70">
-              These makers pressed the toolkit into production and reported back on the shifts they experienced.
-            </p>
-            <div className="mt-10 grid gap-6 md:grid-cols-3">
-              {product.caseStudies.map((study) => (
-                <div key={study.title} className="flex h-full flex-col rounded-3xl border border-white/10 bg-slate-950/80 p-6">
-                  <span className="text-xs font-semibold uppercase tracking-[0.3em] text-primary-200">{study.metric ?? 'Case Study'}</span>
-                  <h3 className="mt-3 text-lg font-semibold text-white">{study.title}</h3>
-                  <p className="mt-3 text-sm text-white/70 leading-relaxed">{study.description}</p>
-                  {study.quote && (
-                    <blockquote className="mt-4 text-sm text-white/60">&ldquo;{study.quote}&rdquo;</blockquote>
-                  )}
-                  {(study.author || study.role) && (
-                    <p className="mt-2 text-xs uppercase tracking-[0.2em] text-white/40">
-                      {[study.author, study.role].filter(Boolean).join(' - ')}
-                    </p>
-                  )}
-                  {study.ctaHref && study.ctaLabel && (
-                    <a
-                      href={study.ctaHref}
-                      onClick={() =>
-                        trackEvent('product_case_study_click', {
-                          productId: product.analyticsId ?? product.id,
-                          title: study.title
-                        })
-                      }
-                      className="mt-6 inline-flex items-center justify-center rounded-xl border border-white/20 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-white transition hover:border-white/40"
-                    >
-                      {study.ctaLabel}
-                    </a>
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
+      <CaseStudyGrid
+        productId={product.analyticsId ?? product.id}
+        caseStudies={product.caseStudies ?? []}
+      />
 
-      <section className="bg-slate-950 py-16">
+      <section className="bg-[#02030b] py-16">
         <div className="mx-auto max-w-4xl px-6">
           <h2 className="text-center text-3xl font-semibold text-white">Questions, Answered</h2>
           <div className="mt-10 space-y-6">
             {product.faq.map((item) => (
-              <details key={item.question} className="rounded-2xl border border-slate-800 bg-slate-900/70 p-6 text-left">
+              <details key={item.question} className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 text-left">
                 <summary className="cursor-pointer text-lg font-semibold text-white">
                   {item.question}
                 </summary>

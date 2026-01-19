@@ -1,6 +1,5 @@
 import SongCard, { SongRecord } from './SongCard'
 
-// Re-export SongRecord for convenience
 export type { SongRecord }
 
 interface SongGridProps {

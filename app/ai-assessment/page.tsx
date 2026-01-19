@@ -4,9 +4,6 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ArrowRight, ArrowLeft, CheckCircle, Star, Target, Brain, Zap, Shield, Users, BarChart3, Lightbulb, Rocket, Award, Download } from 'lucide-react'
-import Navigation from '@/components/Navigation'
-import Footer from '@/components/Footer'
-
 interface AssessmentQuestion {
   id: string
   category: string
@@ -280,8 +277,7 @@ export default function AIAssessmentPage() {
   if (isCompleted && results) {
     return (
       <div className="min-h-screen bg-slate-950">
-        <Navigation />
-        <div className="pt-24 pb-16 px-6">
+<div className="pt-24 pb-16 px-6">
           <div className="max-w-4xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -428,16 +424,13 @@ export default function AIAssessmentPage() {
             </motion.div>
           </div>
         </div>
-        <Footer />
-      </div>
+</div>
     )
   }
 
   return (
     <div className="min-h-screen bg-slate-950">
-      <Navigation />
-
-      <div className="pt-24 pb-16 px-6">
+<div className="pt-24 pb-16 px-6">
         <div className="max-w-4xl mx-auto">
           {/* Progress Bar */}
           <div className="mb-8">

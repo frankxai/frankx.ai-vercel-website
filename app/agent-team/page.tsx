@@ -1,11 +1,11 @@
+import Image from 'next/image'
 import Link from 'next/link'
 
-import Footer from '@/components/Footer'
-import Navigation from '@/components/Navigation'
 import { claudeAgents } from '@/lib/agents'
 import { projectMilestones, segmentProfiles, testimonials, testimonialIcon } from '@/lib/hub'
 import { createMetadata, siteConfig } from '@/lib/seo'
 import { ArrowRight, ArrowUpRight, CalendarDays, Check, Sparkles } from 'lucide-react'
+import JsonLd from '@/components/seo/JsonLd'
 
 export const metadata = createMetadata({
   title: 'Agent Team - Claude Partners Orchestrating Creative AI Systems',
@@ -39,6 +39,49 @@ const offerPillars = [
   },
 ]
 
+const operatingSystem = [
+  {
+    title: 'Core Directives',
+    description: 'The non-negotiables that keep every engagement cinematic, useful, and aligned.',
+    items: [
+      'Create momentum with launch-ready assets.',
+      'Design originality over templates.',
+      'Engineer systems and handoff notes.',
+      'Listen, iterate, and document learning.',
+    ],
+  },
+  {
+    title: 'Design Language',
+    description: 'How the experience feels on every page and in every drop.',
+    items: [
+      'Dark, glassmorphic surfaces with aurora gradients.',
+      'Motion that feels alive, never distracting.',
+      'Iconic typography and premium contrast.',
+      'Accessibility as a creative constraint.',
+    ],
+  },
+  {
+    title: 'Daily Operating Loop',
+    description: 'The repeatable cadence that keeps the collective shipping.',
+    items: [
+      'Align with the roadmap and daily drop.',
+      'Build in 90-minute focus loops.',
+      'Validate with QA and tests.',
+      'Publish, queue, and log insights.',
+    ],
+  },
+  {
+    title: 'Deployment Ritual',
+    description: 'Quality and governance checks before anything ships.',
+    items: [
+      'Pull latest, resolve conflicts, verify context.',
+      'Run lint/build checks before release.',
+      'Commit with clarity and deploy fast.',
+      'Document learnings for the next agent.',
+    ],
+  },
+]
+
 const milestoneStatusStyles: Record<'shipping' | 'in-progress' | 'incubating', string> = {
   shipping: 'border-emerald-400/50 bg-emerald-500/10 text-emerald-200',
   'in-progress': 'border-amber-400/50 bg-amber-500/10 text-amber-200',
@@ -63,6 +106,20 @@ type EngagementTier = {
 const toAbsoluteUrl = (href: string) => {
   if (href.startsWith('http') || href.startsWith('mailto:')) return href
   return new URL(href, siteConfig.url).toString()
+}
+
+const agentSchema = {
+  name: 'FrankX Claude Agent Collective',
+  itemListElement: claudeAgents.map((agent, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    item: {
+      '@type': 'Thing',
+      name: agent.name,
+      description: agent.role,
+      url: `https://frankx.ai/agent-team#${agent.id}`,
+    },
+  })),
 }
 
 export default function AgentTeamPage() {
@@ -162,13 +219,13 @@ export default function AgentTeamPage() {
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100">
-      <Navigation />
-      <main className="px-6 pt-28 pb-20">
+<main className="px-6 pt-28 pb-20">
         <script
           type="application/ld+json"
           suppressHydrationWarning
           dangerouslySetInnerHTML={{ __html: JSON.stringify(productStructuredData) }}
         />
+        <JsonLd type="ItemList" data={agentSchema} />
 
         <div className="mx-auto max-w-6xl space-y-20">
           <section className="relative overflow-hidden rounded-4xl border border-white/10 bg-gradient-to-br from-indigo-900/70 via-slate-950 to-slate-950 p-10">
@@ -243,6 +300,49 @@ export default function AgentTeamPage() {
 
           <section className="space-y-8">
             <div className="max-w-3xl space-y-4">
+              <h2 className="text-3xl font-semibold text-white">Agent operating system</h2>
+              <p className="text-sm text-white/70 leading-relaxed">
+                The FrankX collective is guided by a shared operating system that turns strategy into shipping
+                rituals. This keeps every agent aligned with the narrative director, design director, and the
+                outcomes your audience feels.
+              </p>
+            </div>
+            <div className="grid gap-6 md:grid-cols-2">
+              {operatingSystem.map((section) => (
+                <div key={section.title} className="rounded-4xl border border-white/10 bg-white/5 p-7 backdrop-blur">
+                  <h3 className="text-lg font-semibold text-white">{section.title}</h3>
+                  <p className="mt-2 text-sm text-white/70 leading-relaxed">{section.description}</p>
+                  <ul className="mt-4 space-y-2 text-sm text-white/70">
+                    {section.items.map((item) => (
+                      <li key={item} className="flex items-start gap-2">
+                        <Check className="mt-0.5 h-4 w-4 text-primary-300" aria-hidden />
+                        <span className="leading-relaxed">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+            <div className="flex flex-wrap items-center gap-4">
+              <Link
+                href="/guides/agent-collective-operating-system"
+                className="inline-flex items-center gap-2 rounded-xl bg-white px-5 py-2.5 text-sm font-semibold text-slate-900 shadow-lg shadow-primary-900/20 transition hover:bg-slate-100"
+              >
+                Read the full agent OS guide
+                <ArrowRight className="h-4 w-4" aria-hidden />
+              </Link>
+              <Link
+                href="/guides/skills-library-playbook"
+                className="inline-flex items-center gap-2 rounded-xl border border-white/30 px-5 py-2.5 text-sm font-semibold text-white/80 transition hover:bg-white/10"
+              >
+                Explore the skills library
+                <ArrowUpRight className="h-4 w-4" aria-hidden />
+              </Link>
+            </div>
+          </section>
+
+          <section className="space-y-8">
+            <div className="max-w-3xl space-y-4">
               <h2 className="text-3xl font-semibold text-white">Meet the Claude partners in your corner</h2>
               <p className="text-sm text-white/70 leading-relaxed">
                 Every agent mirrors a dimension of the FrankX practice—system architecture, storytelling, sonic identity, and foresight.
@@ -251,11 +351,23 @@ export default function AgentTeamPage() {
             </div>
             <div className="grid gap-6">
               {claudeAgents.map((agent) => (
-                <div key={agent.id} className="rounded-4xl border border-white/10 bg-white/5 p-8 backdrop-blur">
+                <div key={agent.id} id={agent.id} className="rounded-4xl border border-white/10 bg-white/5 p-8 backdrop-blur">
                   <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
                     <div className="flex items-start gap-4">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 text-white">
-                        <agent.icon className="h-6 w-6" aria-hidden />
+                      <div className="relative h-12 w-12 overflow-hidden rounded-2xl border border-white/10 bg-slate-900">
+                        {agent.image ? (
+                          <Image
+                            src={agent.image}
+                            alt={`${agent.name} portrait`}
+                            fill
+                            sizes="48px"
+                            className="object-cover"
+                          />
+                        ) : (
+                          <div className="flex h-full w-full items-center justify-center text-white">
+                            <agent.icon className="h-6 w-6" aria-hidden />
+                          </div>
+                        )}
                       </div>
                       <div>
                         <h3 className="text-xl font-semibold text-white">{agent.name}</h3>
@@ -482,7 +594,6 @@ export default function AgentTeamPage() {
           </section>
         </div>
       </main>
-      <Footer />
-    </div>
+</div>
   )
 }

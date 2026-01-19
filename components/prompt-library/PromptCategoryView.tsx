@@ -3,12 +3,46 @@
 import { useMemo, useState } from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { Home } from 'lucide-react'
+import {
+  Home,
+  PenLine,
+  Music,
+  Image,
+  Sparkles,
+  Code2,
+  Brain,
+  Bot,
+  TrendingUp,
+  Share2,
+  Megaphone,
+  Zap,
+  Target,
+  Compass,
+  GraduationCap,
+} from 'lucide-react'
 
 import type { CategoryInfo, Prompt } from '@/lib/prompts'
 import PromptCard from '@/components/prompt-library/PromptCard'
 import CategoryFilter from '@/components/prompt-library/CategoryFilter'
 import { Pill, SectionHeading, StatBlock, Surface } from '@/components/ui/primitives'
+
+// Icon mapping for dynamic rendering
+const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
+  PenLine,
+  Music,
+  Image,
+  Sparkles,
+  Code2,
+  Brain,
+  Bot,
+  TrendingUp,
+  Share2,
+  Megaphone,
+  Zap,
+  Target,
+  Compass,
+  GraduationCap,
+}
 
 type PromptCategoryViewProps = {
   category: CategoryInfo
@@ -41,12 +75,15 @@ export default function PromptCategoryView({ category, prompts, otherCategories 
   }, [prompts, searchQuery, selectedTool])
 
   const toolsUsed = useMemo(() => new Set(prompts.map((prompt) => prompt.aiTool)), [prompts])
-  const totalUsage = useMemo(() => prompts.reduce((sum, prompt) => sum + prompt.usageCount, 0), [prompts])
-  const averageRating = useMemo(() => {
-    if (prompts.length === 0) return 0
-    const total = prompts.reduce((sum, prompt) => sum + prompt.rating, 0)
-    return Math.round((total / prompts.length) * 10) / 10
-  }, [prompts])
+
+  // Get tier distribution
+  const tierCounts = useMemo(() => ({
+    free: prompts.filter((p) => p.tier === 'free').length,
+    premium: prompts.filter((p) => p.tier === 'premium').length,
+    paid: prompts.filter((p) => p.tier === 'paid').length,
+  }), [prompts])
+
+  const CategoryIcon = ICON_MAP[category.icon] || Sparkles
 
   return (
     <main className='min-h-screen pt-28 pb-24 text-white'>
@@ -62,19 +99,29 @@ export default function PromptCategoryView({ category, prompts, otherCategories 
             </Link>
           </div>
           <div className='space-y-6'>
+            <div className='flex justify-center'>
+              <div
+                className='inline-flex items-center justify-center w-16 h-16 rounded-2xl'
+                style={{ backgroundColor: `${category.color}20` }}
+              >
+                <span style={{ color: category.color }}>
+                  <CategoryIcon className='h-8 w-8' />
+                </span>
+              </div>
+            </div>
             <Pill variant='brand' className='mx-auto'>Category Spotlight</Pill>
             <SectionHeading
               align='center'
-              eyebrow={`${category.emoji} ${category.name}`}
-              title={`Prompts for ${category.name}`}
+              eyebrow={category.name}
+              title={`${category.name} Prompts`}
               description={category.description}
             />
           </div>
           <div className='grid gap-4 sm:grid-cols-2 lg:grid-cols-4'>
             <StatBlock value={String(prompts.length)} label='Total Prompts' description='Ready-to-use templates' align='center' />
-            <StatBlock value={String(toolsUsed.size)} label='AI Tools' description='Optimised configurations' align='center' />
-            <StatBlock value={`${averageRating.toFixed(1)}`} label='Average Rating' description='Community score' align='center' />
-            <StatBlock value={totalUsage.toLocaleString()} label='Total Usage' description='Applied in the field' align='center' />
+            <StatBlock value={String(toolsUsed.size)} label='AI Tools' description='Supported platforms' align='center' />
+            <StatBlock value={String(tierCounts.free)} label='Free Prompts' description='No account needed' align='center' />
+            <StatBlock value={String(tierCounts.premium + tierCounts.paid)} label='Premium' description='With product bundles' align='center' />
           </div>
         </div>
       </section>
@@ -117,7 +164,7 @@ export default function PromptCategoryView({ category, prompts, otherCategories 
             <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4 }} className='grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3'>
               {filteredPrompts.map((prompt, index) => (
                 <motion.div key={prompt.id} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.05 * index }}>
-                  <PromptCard prompt={prompt} showDescription />
+                  <PromptCard prompt={prompt} showDescription showTier />
                 </motion.div>
               ))}
             </motion.div>
@@ -131,16 +178,28 @@ export default function PromptCategoryView({ category, prompts, otherCategories 
             <SectionHeading
               align='center'
               eyebrow='Explore more'
-              title='Adjacent prompt categories'
-              description='Continue your exploration across the full FrankX prompt atlas.'
+              title='Related Categories'
+              description='Continue exploring prompts across the FrankX library.'
             />
             <div className='grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5'>
-              {otherCategories.map((item) => (
-                <Surface key={item.id} as={Link} href={`/prompt-library/${item.id}`} tone='glass' padding='sm' className='flex h-full flex-col items-center gap-1 text-white/80 transition hover:-translate-y-1 hover:shadow-brand-glow'>
-                  <span className='text-2xl'>{item.emoji}</span>
-                  <span className='text-sm font-semibold'>{item.name}</span>
-                </Surface>
-              ))}
+              {otherCategories.slice(0, 5).map((item) => {
+                const ItemIcon = ICON_MAP[item.icon] || Sparkles
+                return (
+                  <Surface
+                    key={item.id}
+                    as={Link}
+                    href={`/prompt-library/${item.id}`}
+                    tone='glass'
+                    padding='sm'
+                    className='flex h-full flex-col items-center gap-2 text-white/80 transition hover:-translate-y-1 hover:shadow-brand-glow'
+                  >
+                    <span style={{ color: item.color }}>
+                      <ItemIcon className='h-6 w-6' />
+                    </span>
+                    <span className='text-sm font-semibold'>{item.name}</span>
+                  </Surface>
+                )
+              })}
             </div>
           </div>
         </section>

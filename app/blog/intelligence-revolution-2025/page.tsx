@@ -2,9 +2,6 @@ import { ArrowLeft, ArrowRight, BookOpen, Brain, CheckCircle2, Clock, Share, Use
 import Link from 'next/link'
 import { Metadata } from 'next'
 
-import Footer from '@/components/Footer'
-import Navigation from '@/components/Navigation'
-
 export const metadata: Metadata = {
   title: 'The Intelligence Revolution Playbook 2025 | FrankX.AI',
   description: 'A systems-first guide to orchestrating conscious AI across products, teams, and experiences. Transform your organization for the intelligence age.',
@@ -57,8 +54,7 @@ const sections = [
 export default function IntelligenceRevolutionPlaybook() {
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100">
-      <Navigation />
-      <main className="px-6 pt-28 pb-20">
+<main className="px-6 pt-28 pb-20">
         <div className="mx-auto max-w-4xl space-y-12">
           {/* Breadcrumb */}
           <nav className="flex items-center gap-2 text-sm text-white/60">
@@ -215,7 +211,6 @@ export default function IntelligenceRevolutionPlaybook() {
           </nav>
         </div>
       </main>
-      <Footer />
-    </div>
+</div>
   )
 }

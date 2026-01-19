@@ -1,323 +1,378 @@
-'use client'
+'use client';
 
-import Link from 'next/link'
-import { ArrowRight, ArrowLeft, Building2, Layers } from 'lucide-react'
-import { motion } from 'framer-motion'
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import {
+  Zap,
+  Brain,
+  Sparkles,
+  Wrench,
+  TrendingUp,
+  Users,
+  Archive,
+  ChevronDown,
+  ChevronUp,
+  BookOpen,
+  Target,
+  ArrowRight,
+} from 'lucide-react';
+import GlassmorphicCard from '@/components/ui/GlassmorphicCard';
+import InteractiveCard from '@/components/ui/InteractiveCard';
+import PremiumButton from '@/components/ui/PremiumButton';
+import { cn } from '@/lib/utils';
 
-import GlassmorphicCard from '@/components/ui/GlassmorphicCard'
-import PremiumButton from '@/components/ui/PremiumButton'
+interface Pillar {
+  id: string;
+  title: string;
+  icon: typeof Zap;
+  description: string;
+  fullDescription: string;
+  assessmentQuestion: string;
+  resources: string[];
+  color: string;
+}
 
-const pillars = [
+const pillars: Pillar[] = [
   {
-    number: 1,
-    name: 'Energy',
-    theme: 'The foundation that powers everything',
-    description: 'Energy is the bedrock of your life architecture. Without it, no structure stands. Sleep, nutrition, movement, recovery - these are your building materials.',
-    color: 'red',
-    keyQuestion: 'Do you have the energy to build?',
+    id: 'energy',
+    title: 'Energy',
+    icon: Zap,
+    description: 'Master your physical and vital energy through breathwork, nutrition, and movement.',
+    fullDescription: 'Energy is the foundation of all achievement. This pillar covers your physical vitality, sleep quality, exercise routines, and the biochemical rhythms that govern your daily performance. By optimizing your energy systems, you unlock unprecedented capacity for creative and intellectual work.',
+    assessmentQuestion: 'How would you rate your current energy levels throughout the day?',
+    resources: [
+      'Morning Energy Ritual Guide',
+      'Sleep Optimization Protocol',
+      'Breathwork Techniques for Focus',
+      'Nutritional Guidelines for Cognitive Performance',
+    ],
+    color: 'amber',
   },
   {
-    number: 2,
-    name: 'Mind',
-    theme: 'The architect who designs the blueprint',
-    description: 'Your mind is the architect. It designs before you build. Clarity of thought, mental models, learning systems - these shape every decision.',
-    color: 'orange',
-    keyQuestion: 'Is your architect sharp and clear?',
+    id: 'mind',
+    title: 'Mind',
+    icon: Brain,
+    description: 'Develop mental clarity, cognitive edge, and psychological resilience.',
+    fullDescription: 'The Mind pillar encompasses your cognitive capabilities, thought patterns, and mental models. It includes meditation practices, mindfulness techniques, cognitive training exercises, and strategies for managing stress, anxiety, and psychological blocks that limit your potential.',
+    assessmentQuestion: 'What mental patterns most frequently hold you back from peak performance?',
+    resources: [
+      'Meditation Foundation Course',
+      'Cognitive Reframing Techniques',
+      'Focus Enhancement Strategies',
+      'Stress Management Toolkit',
+    ],
+    color: 'gold',
   },
   {
-    number: 3,
-    name: 'Soul',
-    theme: 'The compass that guides construction',
-    description: 'Soul is your true north - values, purpose, alignment. Build without soul and you create empty structures. Build with soul and you create sanctuaries.',
-    color: 'yellow',
-    keyQuestion: 'Are you building what truly matters?',
+    id: 'soul',
+    title: 'Soul',
+    icon: Sparkles,
+    description: 'Connect with your deeper purpose and spiritual essence.',
+    fullDescription: 'The Soul pillar addresses your connection to meaning, purpose, and the transcendent. It explores your values, your sense of mission, and the alignment between your actions and your deepest convictions. This is where lasting fulfillment and inner peace are cultivated.',
+    assessmentQuestion: 'What activities make you lose track of time and feel most alive?',
+    resources: [
+      'Values Discovery Workbook',
+      'Purpose Alignment Framework',
+      'Gratitude Practice Guide',
+      'Spiritual Growth Meditation Series',
+    ],
+    color: 'amber',
   },
   {
-    number: 4,
-    name: 'Craft',
-    theme: 'The skills that shape raw materials',
-    description: 'Craft is your ability to build - the skills, expertise, and mastery you bring to your work. It turns vision into reality, one brick at a time.',
-    color: 'green',
-    keyQuestion: 'Do you have the skills to build what you envision?',
+    id: 'craft',
+    title: 'Craft',
+    icon: Wrench,
+    description: 'Build mastery in your skills and professional capabilities.',
+    fullDescription: 'Craft represents your professional competence and skill development. This pillar focuses on deliberate practice, continuous learning, and the pursuit of mastery in your chosen field. It encompasses technical skills, soft skills, and the habits that compound into exceptional performance.',
+    assessmentQuestion: 'What skill, if mastered, would most transform your life and work?',
+    resources: [
+      'Deliberate Practice Framework',
+      'Skill Acquisition Roadmap',
+      'Professional Development Plan',
+      'Mastery Tracking System',
+    ],
+    color: 'gold',
   },
   {
-    number: 5,
-    name: 'Capital',
-    theme: 'The resources that fund the project',
-    description: 'Capital is what fuels construction - money, time, attention, opportunity. Without resources, blueprints remain dreams. With them, dreams become buildings.',
-    color: 'blue',
-    keyQuestion: 'Do you have the resources to sustain the build?',
+    id: 'capital',
+    title: 'Capital',
+    icon: TrendingUp,
+    description: 'Build and manage financial, social, and intellectual capital.',
+    fullDescription: 'Capital encompasses all forms of wealth generation and preservation. This includes financial assets, social capital (your network and relationships), intellectual capital (knowledge and ideas), and the skills required to multiply and protect these resources across all dimensions.',
+    assessmentQuestion: 'What aspect of capital building feels most neglected in your current life?',
+    resources: [
+      'Financial Freedom Blueprint',
+      'Network Building Playbook',
+      'Intellectual Property Strategy',
+      'Investment Fundamentals Guide',
+    ],
+    color: 'amber',
   },
   {
-    number: 6,
-    name: 'Circle',
-    theme: 'The team that builds together',
-    description: 'No one builds alone. Circle is your construction crew - partners, mentors, community. The right team multiplies your capacity.',
-    color: 'indigo',
-    keyQuestion: 'Who is building alongside you?',
+    id: 'circle',
+    title: 'Circle',
+    icon: Users,
+    description: 'Cultivate meaningful relationships and community connections.',
+    fullDescription: 'The Circle pillar addresses your most important relationships and community. It covers romantic partnerships, friendships, family dynamics, professional networks, and your broader community involvement. Quality relationships are among the strongest predictors of happiness and success.',
+    assessmentQuestion: 'Which relationships deserve more of your intentional investment?',
+    resources: [
+      'Relationship Investment Framework',
+      'Communication Mastery Guide',
+      'Community Building Strategy',
+      'Boundary Setting Protocol',
+    ],
+    color: 'gold',
   },
   {
-    number: 7,
-    name: 'Legacy',
-    theme: 'The structure that outlasts you',
-    description: 'Legacy is what remains when you step away. It is the integrated architecture of all pillars - a life built so well it serves others long after you are gone.',
-    color: 'emerald',
-    keyQuestion: 'What will your architecture leave behind?',
+    id: 'legacy',
+    title: 'Legacy',
+    icon: Archive,
+    description: 'Create lasting impact and contribute to future generations.',
+    fullDescription: 'Legacy encompasses your contribution to future generations and the mark you will leave on the world. This pillar explores your impact on others, your creative output, your mentorship of others, and the systems and structures that will continue your work long after you are gone.',
+    assessmentQuestion: 'What do you want people to say about your life and work at your memorial?',
+    resources: [
+      'Impact Mapping Workshop',
+      'Mentorship Program Design',
+      'Creative Output Strategy',
+      'Generativity Planning Guide',
+    ],
+    color: 'amber',
   },
-]
+];
 
-export default function SevenPillarsPage() {
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 },
+};
+
+function PillarCard({
+  pillar,
+  isExpanded,
+  onToggle,
+}: {
+  pillar: Pillar;
+  isExpanded: boolean;
+  onToggle: () => void;
+}) {
+  const Icon = pillar.icon;
+
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden pt-32 pb-20">
-        <div className="absolute inset-0 bg-gradient-to-br from-emerald-900/30 via-slate-950 to-teal-900/20" />
-
-        {/* Architectural grid decoration */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute inset-0" style={{
-            backgroundImage: `
-              linear-gradient(to right, rgba(16, 185, 129, 0.3) 1px, transparent 1px),
-              linear-gradient(to bottom, rgba(16, 185, 129, 0.3) 1px, transparent 1px)
-            `,
-            backgroundSize: '60px 60px'
-          }} />
-        </div>
-
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <Link
-            href="/soulbook"
-            className="inline-flex items-center text-slate-400 hover:text-slate-200 mb-8 transition-colors"
-          >
-            <ArrowLeft className="mr-2 h-4 w-4" />
-            Back to Soulbook
-          </Link>
-
-          <div className="text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="mb-8 inline-flex items-center rounded-full border border-emerald-500/20 bg-emerald-500/10 px-4 py-2 text-sm font-medium text-emerald-300"
+    <motion.div variants={itemVariants}>
+      <InteractiveCard
+        glowColor={pillar.color === 'amber' ? 'yellow' : 'cyan'}
+        intensity="medium"
+        className="h-full"
+      >
+        <GlassmorphicCard
+          variant="premium"
+          gradient={pillar.color === 'amber' ? 'aurora' : 'purple'}
+          border="subtle"
+          className="h-full"
+        >
+          <div className="p-6">
+            {/* Header */}
+            <div
+              className="flex items-start justify-between cursor-pointer"
+              onClick={onToggle}
             >
-              <Building2 className="mr-2 h-4 w-4" />
-              Life Book for Builders & Architects
-            </motion.div>
-
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="mb-6 text-5xl font-bold bg-gradient-to-r from-emerald-200 via-slate-100 to-teal-200 bg-clip-text text-transparent sm:text-6xl lg:text-7xl"
-            >
-              The 7 Pillars
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="mx-auto mb-4 max-w-2xl text-2xl text-emerald-200 font-light italic"
-            >
-              &quot;Build Your Life Architecture&quot;
-            </motion.p>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="mx-auto mb-8 max-w-3xl text-lg leading-relaxed text-slate-400"
-            >
-              Your life is a building. Some build shacks. Some build skyscrapers.
-              The difference isn&apos;t luck - it&apos;s architecture. The 7 Pillars are
-              the structural elements of an extraordinary life. Each must be strong.
-              Each must connect to the others.
-            </motion.p>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-            >
-              <PremiumButton href="#pillars" variant="primary" size="lg">
-                <Layers className="mr-2 h-5 w-5" />
-                Explore the Pillars
-              </PremiumButton>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* The 7 Pillars */}
-      <section id="pillars" className="py-20 px-4">
-        <div className="mx-auto max-w-7xl">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl font-bold text-slate-100 mb-4">The 7 Pillars of Life Architecture</h2>
-            <p className="text-xl text-slate-400 max-w-2xl mx-auto">
-              Each pillar is a load-bearing element of your life. Neglect one, and the
-              structure weakens. Strengthen all, and you build something that lasts.
-            </p>
-          </motion.div>
-
-          {/* Pillar grid - architectural layout */}
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {pillars.slice(0, 6).map((pillar, index) => (
-              <motion.div
-                key={pillar.number}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-              >
-                <GlassmorphicCard variant="luxury" border="glow" hover className="h-full p-6">
-                  <div className="flex items-start gap-4">
-                    <div className="flex-shrink-0">
-                      <div className={`w-12 h-12 rounded-lg bg-emerald-500/20 flex items-center justify-center`}>
-                        <span className="text-lg font-bold text-emerald-400">{pillar.number}</span>
-                      </div>
-                    </div>
-
-                    <div className="flex-grow">
-                      <h3 className="text-xl font-bold text-slate-100 mb-1">{pillar.name}</h3>
-                      <p className="text-emerald-300 text-sm font-medium mb-3">&quot;{pillar.theme}&quot;</p>
-                      <p className="text-slate-400 text-sm mb-4">{pillar.description}</p>
-                      <p className="text-slate-500 text-xs italic">{pillar.keyQuestion}</p>
-                    </div>
-                  </div>
-                </GlassmorphicCard>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Legacy pillar - featured */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mt-8"
-          >
-            <GlassmorphicCard variant="luxury" border="glow" hover className="p-8 bg-gradient-to-br from-emerald-950/50 to-slate-950">
-              <div className="flex flex-col md:flex-row md:items-center gap-6">
-                <div className="flex-shrink-0">
-                  <div className="w-20 h-20 rounded-xl bg-emerald-500/20 flex items-center justify-center">
-                    <span className="text-3xl font-bold text-emerald-400">7</span>
-                  </div>
+              <div className="flex items-center gap-4">
+                <div
+                  className={cn(
+                    'p-3 rounded-xl',
+                    pillar.color === 'amber'
+                      ? 'bg-amber-500/20 text-amber-400'
+                      : 'bg-gold-500/20 text-gold-400'
+                  )}
+                >
+                  <Icon className="w-6 h-6" />
                 </div>
-
-                <div className="flex-grow">
-                  <div className="flex flex-wrap items-center gap-3 mb-2">
-                    <h3 className="text-3xl font-bold text-slate-100">{pillars[6].name}</h3>
-                    <span className="text-sm px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300">
-                      The Capstone
-                    </span>
-                  </div>
-                  <p className="text-emerald-300 font-medium mb-3">&quot;{pillars[6].theme}&quot;</p>
-                  <p className="text-slate-400 mb-4">{pillars[6].description}</p>
-                  <p className="text-slate-500 italic">{pillars[6].keyQuestion}</p>
-                </div>
-
-                <div className="flex-shrink-0">
-                  <PremiumButton href="/soulbook/7-pillars/legacy" variant="ghost" size="sm">
-                    Explore Legacy
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </PremiumButton>
+                <div>
+                  <h3 className="text-xl font-semibold text-white">{pillar.title}</h3>
+                  <p className="text-sm text-slate-400 mt-1">{pillar.description}</p>
                 </div>
               </div>
-            </GlassmorphicCard>
-          </motion.div>
-        </div>
-      </section>
+              <motion.div
+                animate={{ rotate: isExpanded ? 180 : 0 }}
+                transition={{ duration: 0.2 }}
+                className="text-slate-400"
+              >
+                <ChevronDown className="w-5 h-5" />
+              </motion.div>
+            </div>
 
-      {/* Architecture Diagram */}
-      <section className="py-20 px-4 bg-gradient-to-b from-slate-950 to-emerald-950/20">
-        <div className="mx-auto max-w-4xl">
+            {/* Expanded Content */}
+            <AnimatePresence>
+              {isExpanded && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: 'auto' }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="overflow-hidden"
+                >
+                  <div className="pt-6 mt-6 border-t border-slate-700/50">
+                    <p className="text-slate-300 leading-relaxed mb-6">
+                      {pillar.fullDescription}
+                    </p>
+
+                    {/* Assessment Question Preview */}
+                    <div className="bg-slate-800/50 rounded-lg p-4 mb-6">
+                      <div className="flex items-center gap-2 mb-2">
+                        <BookOpen className="w-4 h-4 text-amber-400" />
+                        <span className="text-sm font-medium text-amber-400">
+                          Assessment Question
+                        </span>
+                      </div>
+                      <p className="text-sm text-slate-300 italic">
+                        {pillar.assessmentQuestion}
+                      </p>
+                    </div>
+
+                    {/* Resources */}
+                    <div className="mb-6">
+                      <div className="flex items-center gap-2 mb-3">
+                        <Target className="w-4 h-4 text-gold-400" />
+                        <span className="text-sm font-medium text-gold-400">
+                          Resources
+                        </span>
+                      </div>
+                      <ul className="space-y-2">
+                        {pillar.resources.map((resource, idx) => (
+                          <li
+                            key={idx}
+                            className="flex items-center gap-2 text-sm text-slate-400"
+                          >
+                            <div className="w-1.5 h-1.5 rounded-full bg-amber-500" />
+                            {resource}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* CTA */}
+                    <PremiumButton
+                      variant="ghost"
+                      size="sm"
+                      className="w-full group"
+                      ariaLabel={`Explore ${pillar.title} pillar in depth`}
+                    >
+                      Explore {pillar.title} in Depth
+                      <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                    </PremiumButton>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        </GlassmorphicCard>
+      </InteractiveCard>
+    </motion.div>
+  );
+}
+
+export default function SevenPillarsPage() {
+  const [expandedPillar, setExpandedPillar] = useState<string | null>(null);
+
+  const handleToggle = (pillarId: string) => {
+    setExpandedPillar(expandedPillar === pillarId ? null : pillarId);
+  };
+
+  return (
+    <div className="min-h-screen bg-[#030712]">
+      {/* Hero Section */}
+      <section className="relative py-20 px-4 overflow-hidden">
+        {/* Background Effects */}
+        <div className="absolute inset-0 bg-gradient-to-b from-amber-500/5 via-transparent to-transparent" />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gold-500/10 rounded-full blur-3xl" />
+
+        <div className="relative max-w-6xl mx-auto text-center">
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
           >
-            <h2 className="text-3xl font-bold text-slate-100 mb-4">The Architecture</h2>
-            <p className="text-slate-400">How the 7 Pillars connect to form your life structure</p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-          >
-            <GlassmorphicCard variant="luxury" border="glow" className="p-8 font-mono text-sm">
-              <pre className="text-slate-300 overflow-x-auto">
-{`                    ╔═══════════════════════╗
-                    ║       LEGACY          ║
-                    ║    (The Capstone)     ║
-                    ╚═══════════════════════╝
-                              │
-              ┌───────────────┼───────────────┐
-              │               │               │
-         ┌────┴────┐    ┌────┴────┐    ┌────┴────┐
-         │  CRAFT  │    │ CAPITAL │    │  CIRCLE │
-         │ (Build) │    │ (Fund)  │    │ (Team)  │
-         └────┬────┘    └────┬────┘    └────┬────┘
-              │               │               │
-              └───────────────┼───────────────┘
-                              │
-    ═══════════════════════════════════════════════
-    ║   ENERGY   ║    MIND    ║     SOUL      ║
-    ║ (Foundation)  (Architect)  (Compass)    ║
-    ═══════════════════════════════════════════════`}
-              </pre>
-            </GlassmorphicCard>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Quote Section */}
-      <section className="py-20 px-4">
-        <div className="mx-auto max-w-4xl text-center">
-          <motion.blockquote
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="text-3xl md:text-4xl font-light text-slate-200 italic leading-relaxed"
-          >
-            &quot;Every pillar you strengthen raises the ceiling
-            <br />
-            <span className="text-emerald-400">of what your life can become.</span>&quot;
-          </motion.blockquote>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20 px-4">
-        <div className="mx-auto max-w-4xl text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl font-bold text-slate-100 mb-6">
-              Ready to Build Your Life Architecture?
-            </h2>
-            <p className="text-xl text-slate-400 mb-8">
-              Begin with the 30-day Pillars program and strengthen your foundation one pillar at a time.
+            <span className="inline-block px-4 py-2 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-sm font-medium mb-6">
+              The Soulbook Framework
+            </span>
+            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
+              The 7 Pillars of{' '}
+              <span className="bg-gradient-to-r from-amber-400 via-gold-400 to-amber-400 bg-clip-text text-transparent">
+                Conscious Living
+              </span>
+            </h1>
+            <p className="text-xl text-slate-400 max-w-3xl mx-auto mb-8">
+              A comprehensive framework for building an extraordinary life through
+              intentional development across seven interconnected dimensions of human
+              excellence.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <PremiumButton href="/soulbook/assessment" variant="primary" size="lg">
-                Start Free Assessment
-                <ArrowRight className="ml-2 h-5 w-5" />
+              <PremiumButton variant="primary" size="lg">
+                Take the Assessment
               </PremiumButton>
-              <PremiumButton href="/products/soulbook" variant="ghost" size="lg">
-                Get Full Program
+              <PremiumButton variant="ghost" size="lg">
+                Explore the Vault
               </PremiumButton>
             </div>
           </motion.div>
         </div>
       </section>
+
+      {/* Pillar Cards Grid */}
+      <section className="py-16 px-4">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
+            {pillars.map((pillar) => (
+              <PillarCard
+                key={pillar.id}
+                pillar={pillar}
+                isExpanded={expandedPillar === pillar.id}
+                onToggle={() => handleToggle(pillar.id)}
+              />
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Bottom CTA */}
+      <section className="py-20 px-4">
+        <div className="max-w-4xl mx-auto">
+          <GlassmorphicCard variant="luxury" gradient="aurora" border="glow" className="p-12 text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+                Ready to Transform Your Life?
+              </h2>
+              <p className="text-slate-400 mb-8 max-w-2xl mx-auto">
+                Start your journey today by taking our comprehensive assessment and
+                discovering which pillars need your immediate attention.
+              </p>
+              <PremiumButton variant="primary" size="lg">
+                Begin Your Assessment
+              </PremiumButton>
+            </motion.div>
+          </GlassmorphicCard>
+        </div>
+      </section>
     </div>
-  )
+  );
 }

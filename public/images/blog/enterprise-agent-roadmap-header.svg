@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-label="Enterprise Agent Roadmap - strategic AI adoption pathway">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f172a"/>
+      <stop offset="1" stop-color="#1e293b"/>
+    </linearGradient>
+    <linearGradient id="pathGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#0ea5e9"/>
+      <stop offset="0.5" stop-color="#8b5cf6"/>
+      <stop offset="1" stop-color="#ec4899"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8"/>
+    </filter>
+  </defs>
+  <!-- Background -->
+  <rect width="1600" height="900" fill="url(#bg)"/>
+
+  <!-- Grid overlay -->
+  <g stroke="#1e3a5f" stroke-width="0.5" opacity="0.2">
+    <line x1="0" y1="200" x2="1600" y2="200"/>
+    <line x1="0" y1="400" x2="1600" y2="400"/>
+    <line x1="0" y1="600" x2="1600" y2="600"/>
+    <line x1="300" y1="0" x2="300" y2="900"/>
+    <line x1="600" y1="0" x2="600" y2="900"/>
+    <line x1="900" y1="0" x2="900" y2="900"/>
+    <line x1="1200" y1="0" x2="1200" y2="900"/>
+  </g>
+
+  <!-- Main roadmap path -->
+  <path d="M150 650 Q400 650, 500 500 Q600 350, 800 350 Q1000 350, 1100 500 Q1200 650, 1450 400"
+        fill="none" stroke="url(#pathGrad)" stroke-width="6" stroke-linecap="round"/>
+
+  <!-- Glowing path overlay -->
+  <g filter="url(#glow)" opacity="0.5">
+    <path d="M150 650 Q400 650, 500 500 Q600 350, 800 350 Q1000 350, 1100 500 Q1200 650, 1450 400"
+          fill="none" stroke="url(#pathGrad)" stroke-width="12"/>
+  </g>
+
+  <!-- Milestone 1: Foundation -->
+  <g>
+    <circle cx="200" cy="650" r="40" fill="#0f172a" stroke="#0ea5e9" stroke-width="3"/>
+    <g filter="url(#glow)">
+      <circle cx="200" cy="650" r="20" fill="#0ea5e9"/>
+    </g>
+    <text x="200" y="720" fill="#e2e8f0" font-size="16" font-family="system-ui" font-weight="bold" text-anchor="middle">Foundation</text>
+    <text x="200" y="740" fill="#94a3b8" font-size="12" font-family="system-ui" text-anchor="middle">Q1</text>
+  </g>
+
+  <!-- Milestone 2: Pilot -->
+  <g>
+    <circle cx="500" cy="500" r="40" fill="#0f172a" stroke="#38bdf8" stroke-width="3"/>
+    <g filter="url(#glow)">
+      <circle cx="500" cy="500" r="20" fill="#38bdf8"/>
+    </g>
+    <text x="500" y="570" fill="#e2e8f0" font-size="16" font-family="system-ui" font-weight="bold" text-anchor="middle">Pilot</text>
+    <text x="500" y="590" fill="#94a3b8" font-size="12" font-family="system-ui" text-anchor="middle">Q2</text>
+  </g>
+
+  <!-- Milestone 3: Scale -->
+  <g>
+    <circle cx="800" cy="350" r="50" fill="#0f172a" stroke="#8b5cf6" stroke-width="3"/>
+    <g filter="url(#glow)">
+      <circle cx="800" cy="350" r="25" fill="#8b5cf6"/>
+    </g>
+    <text x="800" y="280" fill="#e2e8f0" font-size="18" font-family="system-ui" font-weight="bold" text-anchor="middle">Scale</text>
+    <text x="800" y="300" fill="#94a3b8" font-size="12" font-family="system-ui" text-anchor="middle">Q3</text>
+  </g>
+
+  <!-- Milestone 4: Optimize -->
+  <g>
+    <circle cx="1100" cy="500" r="40" fill="#0f172a" stroke="#a855f7" stroke-width="3"/>
+    <g filter="url(#glow)">
+      <circle cx="1100" cy="500" r="20" fill="#a855f7"/>
+    </g>
+    <text x="1100" y="570" fill="#e2e8f0" font-size="16" font-family="system-ui" font-weight="bold" text-anchor="middle">Optimize</text>
+    <text x="1100" y="590" fill="#94a3b8" font-size="12" font-family="system-ui" text-anchor="middle">Q4</text>
+  </g>
+
+  <!-- Milestone 5: Transform -->
+  <g>
+    <circle cx="1400" cy="400" r="50" fill="#0f172a" stroke="#ec4899" stroke-width="3"/>
+    <g filter="url(#glow)">
+      <circle cx="1400" cy="400" r="25" fill="#ec4899"/>
+    </g>
+    <text x="1400" y="330" fill="#e2e8f0" font-size="18" font-family="system-ui" font-weight="bold" text-anchor="middle">Transform</text>
+    <text x="1400" y="350" fill="#94a3b8" font-size="12" font-family="system-ui" text-anchor="middle">2026</text>
+  </g>
+
+  <!-- Decorative elements -->
+  <g opacity="0.4">
+    <rect x="150" y="150" width="200" height="80" rx="10" fill="none" stroke="#0ea5e9" stroke-width="1"/>
+    <text x="250" y="195" fill="#94a3b8" font-size="12" font-family="system-ui" text-anchor="middle">ASSESS</text>
+
+    <rect x="700" y="150" width="200" height="80" rx="10" fill="none" stroke="#8b5cf6" stroke-width="1"/>
+    <text x="800" y="195" fill="#94a3b8" font-size="12" font-family="system-ui" text-anchor="middle">BUILD</text>
+
+    <rect x="1250" y="550" width="200" height="80" rx="10" fill="none" stroke="#ec4899" stroke-width="1"/>
+    <text x="1350" y="595" fill="#94a3b8" font-size="12" font-family="system-ui" text-anchor="middle">DEPLOY</text>
+  </g>
+</svg>

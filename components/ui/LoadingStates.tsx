@@ -11,7 +11,7 @@ export function SkeletonText({ className, lines = 1 }: { className?: string; lin
         <motion.div
           key={i}
           className="h-4 bg-slate-700/30 rounded animate-pulse"
-          style={{ width: `${Math.random() * 40 + 60}%` }}
+          style={{ width: `${60 + ((i * 17) % 35)}%` }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: i * 0.1 }}

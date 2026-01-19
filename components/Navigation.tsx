@@ -4,10 +4,11 @@ import { useState, useEffect, Fragment } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Menu, Transition } from '@headlessui/react'
-import { ChevronDown, Menu as MenuIcon, X, Sparkles } from 'lucide-react'
+import { ChevronDown, Menu as MenuIcon, X } from 'lucide-react'
+
+import { LogoMarkMinimal } from '@/components/ui/LogoMark'
 
 import { cn } from '@/lib/utils'
-import { gradientPresets } from '@/lib/design/gradients'
 
 type NavItem = {
   name: string
@@ -17,41 +18,53 @@ type NavItem = {
 }
 
 const navItems: NavItem[] = [
+  { name: 'Home', href: '/' },
   {
-    name: 'Products',
-    href: '/products',
+    name: 'For Creators',
+    href: '/products/vibe-os',
     subItems: [
-      { name: 'All Products', href: '/products' },
-      { name: 'Soulbook (Free)', href: '/soulbook' },
-      { name: 'Vibe OS', href: '/products/vibe-os' },
-      { name: 'Creative AI Toolkit', href: '/products/creative-ai-toolkit' },
-      { name: 'Creator OS', href: '/products/agentic-creator-os' },
+      { name: 'Vibe OS (AI Music)', href: '/products/vibe-os' },
+      { name: 'Prompt Library', href: '/prompt-library' },
+      { name: 'Music Lab', href: '/music-lab' },
+      { name: 'Templates', href: '/templates' },
+      { name: 'Creation Chronicles', href: '/creation-chronicles' },
+    ],
+  },
+  {
+    name: 'For Students',
+    href: '/students',
+    subItems: [
+      { name: 'Student Hub', href: '/students' },
+      { name: 'Workshops', href: '/workshops' },
+      { name: 'Courses', href: '/courses' },
+      { name: 'Guides', href: '/guides' },
+      { name: 'AI Assessment', href: '/ai-assessment' },
     ],
   },
   {
     name: 'Resources',
     href: '/resources',
     subItems: [
+      { name: "The Creator's Soulbook", href: '/soulbook' },
+      { name: 'Workshops', href: '/workshops' },
       { name: 'All Resources', href: '/resources' },
-      { name: 'Soulbook Framework', href: '/soulbook' },
-      { name: 'Claude Skills Library', href: '/resources/skills' },
-      { name: 'Blog & Essays', href: '/blog' },
-      { name: 'Music Lab', href: '/music-lab' },
+      { name: 'Prompt Library', href: '/prompt-library' },
+      { name: 'Templates', href: '/templates' },
+      { name: 'Guides', href: '/guides' },
+      { name: 'Roadmap', href: '/roadmap' },
     ],
   },
   {
-    name: 'Students',
-    href: '/students',
+    name: 'Products',
+    href: '/products',
     subItems: [
-      { name: 'Student Hub', href: '/students' },
-      { name: 'Ikigai Workshop', href: '/students/workshop' },
-      { name: 'AI CoE Builder', href: '/students/coe-builder' },
-      { name: 'Prompt Library', href: '/students/prompts' },
-      { name: 'Role Navigator', href: '/students/roles' },
+      { name: 'All Products', href: '/products' },
+      { name: 'Vibe OS', href: '/products/vibe-os' },
+      { name: 'Creative AI Toolkit', href: '/products/creative-ai-toolkit' },
+      { name: 'Generative Creator OS', href: '/products/generative-creator-os' },
     ],
   },
-  { name: 'Team', href: '/team' },
-  { name: 'Community', href: '/realm' },
+  { name: 'Blog', href: '/blog' },
   { name: 'About', href: '/about' },
 ]
 
@@ -60,6 +73,7 @@ export default function Navigation() {
   const pathname = usePathname()
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsOpen(false)
   }, [pathname])
 
@@ -71,20 +85,20 @@ export default function Navigation() {
 
   return (
     <nav
-      className="fixed top-0 w-full z-50 border-b border-white/5 bg-slate-950/90 backdrop-blur-2xl"
+      className="fixed top-0 w-full z-50 border-b border-white/5 bg-[#030712]/90 backdrop-blur-2xl"
       aria-label="Main navigation"
     >
-      <div className="max-w-7xl mx-auto px-6 py-3">
+      <div className="max-w-6xl mx-auto px-6 py-3">
         <div className="flex items-center justify-between">
           <Link
             href="/"
-            className="flex items-center space-x-3 rounded-xl p-2 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/50 hover:bg-white/5"
+            className="flex items-center space-x-3 rounded-xl p-2 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 hover:bg-white/5"
             aria-label="FrankX.AI - Home"
           >
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-cyan-400 via-blue-500 to-purple-600 flex items-center justify-center shadow-[0_0_20px_rgba(6,182,212,0.3)]">
-              <Sparkles className="w-4 h-4 text-white" />
+            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-emerald-500/20 via-cyan-500/20 to-violet-500/20 flex items-center justify-center shadow-[0_0_20px_rgba(16,185,129,0.2)] border border-white/10">
+              <LogoMarkMinimal size={20} />
             </div>
-            <span className="text-lg font-semibold bg-gradient-to-r from-white to-gray-200 bg-clip-text text-transparent">FrankX.AI</span>
+            <span className="font-display text-xl font-bold tracking-tight bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent">FrankX.AI</span>
           </Link>
 
           <div className="hidden lg:flex items-center space-x-1">
@@ -93,10 +107,10 @@ export default function Navigation() {
                 <Menu as="div" className="relative" key={item.name}>
                   <Menu.Button
                     className={cn(
-                      'px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/50',
+                      'px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50',
                       'min-h-[40px] flex items-center relative group',
                       isActivePath(item.href, item.isAnchor)
-                        ? 'text-white bg-white/10 shadow-[0_0_20px_rgba(6,182,212,0.15)]'
+                        ? 'text-white bg-white/10 shadow-[0_0_20px_rgba(16,185,129,0.15)]'
                         : 'text-slate-400 hover:text-white hover:bg-white/5'
                     )}
                   >
@@ -112,7 +126,7 @@ export default function Navigation() {
                     leaveFrom="transform opacity-100 scale-100"
                     leaveTo="transform opacity-0 scale-95"
                   >
-                    <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-slate-800 rounded-md bg-slate-900 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                    <Menu.Items className="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-white/5 rounded-xl bg-[#0a0a0f] border border-white/10 shadow-lg shadow-black/50 focus:outline-none">
                       <div className="px-1 py-1 ">
                         {item.subItems.map((subItem) => (
                           <Menu.Item key={subItem.name}>
@@ -120,8 +134,8 @@ export default function Navigation() {
                               <Link
                                 href={subItem.href}
                                 className={cn(
-                                  'group flex w-full items-center rounded-md px-2 py-2 text-sm',
-                                  active ? 'bg-slate-800 text-white' : 'text-slate-400'
+                                  'group flex w-full items-center rounded-lg px-3 py-2.5 text-sm transition-colors',
+                                  active ? 'bg-white/10 text-white' : 'text-slate-400 hover:text-white'
                                 )}
                               >
                                 {subItem.name}
@@ -138,17 +152,17 @@ export default function Navigation() {
                   key={item.name}
                   href={item.href}
                   className={cn(
-                    'px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/50',
+                    'px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50',
                     'min-h-[40px] flex items-center relative group',
                     isActivePath(item.href, item.isAnchor)
-                      ? 'text-white bg-white/10 shadow-[0_0_20px_rgba(6,182,212,0.15)]'
+                      ? 'text-white bg-white/10 shadow-[0_0_20px_rgba(16,185,129,0.15)]'
                       : 'text-slate-400 hover:text-white hover:bg-white/5'
                   )}
                   aria-current={isActivePath(item.href, item.isAnchor) ? 'page' : undefined}
                 >
                   {item.name}
                   {isActivePath(item.href, item.isAnchor) && (
-                    <div className="absolute -bottom-[1px] left-1/2 transform -translate-x-1/2 w-8 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full" />
+                    <div className="absolute -bottom-[1px] left-1/2 transform -translate-x-1/2 w-8 h-0.5 bg-gradient-to-r from-emerald-400 to-cyan-500 rounded-full" />
                   )}
                 </Link>
               )
@@ -156,30 +170,30 @@ export default function Navigation() {
 
             <div className="flex items-center space-x-3 ml-6 pl-6 border-l border-white/10">
               <Link
-                href="/products/vibe-os"
-                className="px-4 py-2 text-sm font-medium text-slate-300 hover:text-white transition-colors duration-300"
+                href="/free-playbook"
+                className="px-5 py-2 bg-gradient-to-r from-emerald-600 to-cyan-600 hover:from-emerald-500 hover:to-cyan-500 text-white text-sm font-semibold rounded-full transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg hover:shadow-emerald-500/20"
               >
-                Get Started
+                Free Playbooks
               </Link>
               <Link
-                href="/assessment"
-                className="px-6 py-2.5 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white text-sm font-semibold rounded-lg transition-all duration-300 shadow-[0_0_20px_rgba(6,182,212,0.3)] hover:shadow-[0_0_30px_rgba(6,182,212,0.4)] hover:-translate-y-0.5"
+                href="/start"
+                className="px-5 py-2 bg-white/10 hover:bg-white/20 text-white text-sm font-medium rounded-full transition-all duration-300 border border-white/10"
               >
-                Take Assessment
+                Explore
               </Link>
             </div>
           </div>
 
           <div className="lg:hidden flex items-center space-x-3">
             <Link
-              href="/assessment"
-              className="px-4 py-2 bg-gradient-to-r from-cyan-500 to-blue-600 text-white text-sm font-semibold rounded-lg transition-all duration-300"
+              href="/free-playbook"
+              className="px-4 py-2 bg-gradient-to-r from-emerald-600 to-cyan-600 text-white text-sm font-semibold rounded-full transition-all duration-300"
             >
-              Assessment
+              Free
             </Link>
             <button
               onClick={() => setIsOpen((prev) => !prev)}
-              className="inline-flex items-center justify-center rounded-lg p-2 text-slate-300 hover:text-white hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/50 min-h-[44px] min-w-[44px] transition-colors duration-300"
+              className="inline-flex items-center justify-center rounded-lg p-2 text-slate-300 hover:text-white hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 min-h-[44px] min-w-[44px] transition-colors duration-300"
               aria-label={`${isOpen ? 'Close' : 'Open'} navigation menu`}
               aria-expanded={isOpen}
               aria-controls="mobile-menu"
@@ -193,46 +207,44 @@ export default function Navigation() {
         <div
           id="mobile-menu"
           className={cn(
-            'md:hidden transition-all duration-300 ease-in-out overflow-hidden',
+            'lg:hidden transition-all duration-300 ease-in-out overflow-hidden',
             isOpen ? 'max-h-[540px] opacity-100 mt-4 pb-4' : 'max-h-0 opacity-0'
           )}
           aria-hidden={!isOpen}
         >
-          <div className="flex flex-col space-y-2 rounded-2xl border border-white/10 bg-white/5 px-3 py-4">
+          <div className="flex flex-col space-y-1 rounded-2xl border border-white/10 bg-[#0a0a0f] px-3 py-4">
             {navItems.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
                 className={cn(
-                  'px-3 py-4 rounded-xl text-base font-medium transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500',
-                  'focus:ring-2 focus:ring-primary-500/70 focus:ring-offset-2 focus:ring-offset-slate-900', // Enhanced focus
-                  'min-h-[52px] flex items-center', // Better touch targets for mobile
-                  'active:bg-white/20 active:scale-[0.98]', // Touch feedback
+                  'px-4 py-3 rounded-xl text-base font-medium transition-all duration-200',
+                  'min-h-[48px] flex items-center',
+                  'active:bg-white/20 active:scale-[0.98]',
                   isActivePath(item.href, item.isAnchor)
-                    ? 'bg-white/15 text-white'
-                    : 'text-slate-200 hover:text-white hover:bg-white/10'
+                    ? 'bg-white/10 text-white'
+                    : 'text-slate-300 hover:text-white hover:bg-white/5'
                 )}
                 onClick={() => setIsOpen(false)}
                 aria-current={isActivePath(item.href, item.isAnchor) ? 'page' : undefined}
-                aria-label={`Navigate to ${item.name} ${item.isAnchor ? 'section' : 'page'}`}
               >
                 {item.name}
               </Link>
             ))}
 
             <Link
-              href="/soul-frequency-quiz"
-              className={cn(
-                'mt-2 px-6 py-4 rounded-xl text-sm font-semibold text-white shadow-[0_12px_30px_rgba(12,27,68,0.25)]',
-                'min-h-[52px] flex items-center justify-center', // Better touch targets
-                'focus:outline-none focus:ring-2 focus:ring-white/70 focus:ring-offset-2 focus:ring-offset-slate-900',
-                'active:scale-[0.96] transition-transform', // Touch feedback
-                gradientPresets.buttonAurora
-              )}
+              href="/free-playbook"
+              className="mt-3 px-6 py-3.5 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-emerald-600 to-cyan-600 text-center transition-all active:scale-[0.98]"
               onClick={() => setIsOpen(false)}
-              aria-label="Take the free Soul Frequency Quiz"
             >
-              Free Quiz
+              Get Free Playbooks
+            </Link>
+            <Link
+              href="/products"
+              className="mt-2 px-6 py-3 rounded-xl text-sm font-medium text-slate-300 bg-white/5 border border-white/10 text-center transition-all active:scale-[0.98]"
+              onClick={() => setIsOpen(false)}
+            >
+              View Products
             </Link>
           </div>
         </div>
@@ -240,4 +252,3 @@ export default function Navigation() {
     </nav>
   )
 }
-

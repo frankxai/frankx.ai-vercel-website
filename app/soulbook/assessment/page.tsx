@@ -1,342 +1,472 @@
-'use client'
+'use client';
 
-import { useState } from 'react'
-import Link from 'next/link'
-import { ArrowRight, ArrowLeft, CheckCircle, RotateCcw } from 'lucide-react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import {
+  ChevronRight,
+  ChevronLeft,
+  Sparkles,
+  Brain,
+  Zap,
+  Heart,
+  TrendingUp,
+  Users,
+  Archive,
+  Check,
+  ArrowRight,
+} from 'lucide-react';
+import GlassmorphicCard from '@/components/ui/GlassmorphicCard';
+import InteractiveCard from '@/components/ui/InteractiveCard';
+import PremiumButton from '@/components/ui/PremiumButton';
+import { cn } from '@/lib/utils';
 
-import GlassmorphicCard from '@/components/ui/GlassmorphicCard'
-import PremiumButton from '@/components/ui/PremiumButton'
-
-const pillars = ['Energy', 'Mind', 'Soul', 'Craft', 'Capital', 'Circle', 'Legacy']
-
-const questions = [
-  // Energy (3 questions)
-  { pillar: 'Energy', text: 'I wake up feeling rested and energized most days', id: 1 },
-  { pillar: 'Energy', text: 'I maintain consistent energy throughout the day', id: 2 },
-  { pillar: 'Energy', text: 'I prioritize sleep, nutrition, and movement', id: 3 },
-  // Mind (3 questions)
-  { pillar: 'Mind', text: 'My mind feels clear and focused when I need it to be', id: 4 },
-  { pillar: 'Mind', text: 'I can manage my emotions effectively under stress', id: 5 },
-  { pillar: 'Mind', text: 'I actively learn and grow my knowledge regularly', id: 6 },
-  // Soul (3 questions)
-  { pillar: 'Soul', text: 'I have clarity on my core values and live by them', id: 7 },
-  { pillar: 'Soul', text: 'I feel aligned with my purpose most of the time', id: 8 },
-  { pillar: 'Soul', text: 'My actions reflect what truly matters to me', id: 9 },
-  // Craft (3 questions)
-  { pillar: 'Craft', text: 'I am actively developing and mastering my skills', id: 10 },
-  { pillar: 'Craft', text: 'I create meaningful work that I am proud of', id: 11 },
-  { pillar: 'Craft', text: 'I have a clear path to expertise in my domain', id: 12 },
-  // Capital (3 questions)
-  { pillar: 'Capital', text: 'I have financial stability and room to breathe', id: 13 },
-  { pillar: 'Capital', text: 'My income supports my goals and lifestyle', id: 14 },
-  { pillar: 'Capital', text: 'I am building assets and financial freedom', id: 15 },
-  // Circle (3 questions)
-  { pillar: 'Circle', text: 'I have deep, meaningful relationships in my life', id: 16 },
-  { pillar: 'Circle', text: 'I am surrounded by people who support my growth', id: 17 },
-  { pillar: 'Circle', text: 'I actively nurture my important relationships', id: 18 },
-  // Legacy (3 questions)
-  { pillar: 'Legacy', text: 'I have a clear vision for what I want to build', id: 19 },
-  { pillar: 'Legacy', text: 'My daily actions contribute to my larger purpose', id: 20 },
-  { pillar: 'Legacy', text: 'I am creating something that will outlast me', id: 21 },
-]
-
-const pillarColors: Record<string, string> = {
-  Energy: 'from-red-500 to-orange-500',
-  Mind: 'from-orange-500 to-amber-500',
-  Soul: 'from-amber-500 to-yellow-500',
-  Craft: 'from-green-500 to-emerald-500',
-  Capital: 'from-blue-500 to-cyan-500',
-  Circle: 'from-indigo-500 to-purple-500',
-  Legacy: 'from-purple-500 to-pink-500',
+interface Question {
+  id: number;
+  question: string;
+  options: {
+    label: string;
+    value: string;
+    pillarScores: Record<string, number>;
+  }[];
 }
 
+const questions: Question[] = [
+  {
+    id: 1,
+    question: 'When do you feel most alive and energized?',
+    options: [
+      {
+        label: 'After a great workout or physical activity',
+        value: 'physical',
+        pillarScores: { energy: 3, mind: 1, soul: 1, craft: 0, capital: 0, circle: 0, legacy: 0 },
+      },
+      {
+        label: 'When solving complex problems or learning something new',
+        value: 'mental',
+        pillarScores: { energy: 0, mind: 3, soul: 1, craft: 2, capital: 1, circle: 0, legacy: 0 },
+      },
+      {
+        label: 'When connecting deeply with someone I care about',
+        value: 'relational',
+        pillarScores: { energy: 0, mind: 0, soul: 2, craft: 0, capital: 0, circle: 3, legacy: 1 },
+      },
+      {
+        label: 'When creating something meaningful that will outlast me',
+        value: 'legacy',
+        pillarScores: { energy: 1, mind: 1, soul: 3, craft: 2, capital: 1, circle: 1, legacy: 3 },
+      },
+    ],
+  },
+  {
+    id: 2,
+    question: 'What keeps you up at night?',
+    options: [
+      {
+        label: 'Not enough time to accomplish everything I want',
+        value: 'time',
+        pillarScores: { energy: 2, mind: 1, soul: 1, craft: 3, capital: 2, circle: 1, legacy: 1 },
+      },
+      {
+        label: 'Financial worries and not building enough wealth',
+        value: 'financial',
+        pillarScores: { energy: 1, mind: 1, soul: 0, craft: 2, capital: 3, circle: 1, legacy: 1 },
+      },
+      {
+        label: 'Feeling disconnected from my purpose or meaning',
+        value: 'purpose',
+        pillarScores: { energy: 1, mind: 2, soul: 3, craft: 1, capital: 0, circle: 1, legacy: 2 },
+      },
+      {
+        label: 'Relationships that need attention and repair',
+        value: 'relationships',
+        pillarScores: { energy: 0, mind: 1, soul: 2, craft: 0, capital: 0, circle: 3, legacy: 1 },
+      },
+    ],
+  },
+  {
+    id: 3,
+    question: 'If you could improve one area of your life immediately, what would it be?',
+    options: [
+      {
+        label: 'My physical health and energy levels',
+        value: 'health',
+        pillarScores: { energy: 3, mind: 1, soul: 1, craft: 1, capital: 1, circle: 1, legacy: 0 },
+      },
+      {
+        label: 'My mental clarity and focus',
+        value: 'clarity',
+        pillarScores: { energy: 1, mind: 3, soul: 1, craft: 2, capital: 1, circle: 0, legacy: 0 },
+      },
+      {
+        label: 'My sense of purpose and fulfillment',
+        value: 'purpose',
+        pillarScores: { energy: 1, mind: 1, soul: 3, craft: 1, capital: 0, circle: 1, legacy: 2 },
+      },
+      {
+        label: 'My relationships and community',
+        value: 'community',
+        pillarScores: { energy: 0, mind: 0, soul: 2, craft: 0, capital: 0, circle: 3, legacy: 1 },
+      },
+    ],
+  },
+  {
+    id: 4,
+    question: 'How do you typically spend your free time?',
+    options: [
+      {
+        label: 'Working on passion projects or skill development',
+        value: 'work',
+        pillarScores: { energy: 1, mind: 2, soul: 2, craft: 3, capital: 2, circle: 0, legacy: 1 },
+      },
+      {
+        label: 'With friends, family, or in community',
+        value: 'social',
+        pillarScores: { energy: 1, mind: 0, soul: 2, craft: 0, capital: 1, circle: 3, legacy: 1 },
+      },
+      {
+        label: 'Learning, reading, or personal growth activities',
+        value: 'learning',
+        pillarScores: { energy: 1, mind: 3, soul: 1, craft: 2, capital: 1, circle: 0, legacy: 1 },
+      },
+      {
+        label: 'Spiritual practices, meditation, or self-reflection',
+        value: 'spiritual',
+        pillarScores: { energy: 2, mind: 2, soul: 3, craft: 0, capital: 0, circle: 1, legacy: 1 },
+      },
+    ],
+  },
+  {
+    id: 5,
+    question: 'What does success look like for you?',
+    options: [
+      {
+        label: 'Financial abundance and freedom',
+        value: 'financial',
+        pillarScores: { energy: 1, mind: 1, soul: 0, craft: 2, capital: 3, circle: 1, legacy: 1 },
+      },
+      {
+        label: 'Mastery and recognition in my field',
+        value: 'mastery',
+        pillarScores: { energy: 1, mind: 2, soul: 1, craft: 3, capital: 1, circle: 1, legacy: 2 },
+      },
+      {
+        label: 'Making a meaningful impact on others',
+        value: 'impact',
+        pillarScores: { energy: 1, mind: 1, soul: 3, craft: 1, capital: 1, circle: 2, legacy: 3 },
+      },
+      {
+        label: 'Inner peace and living in alignment with my values',
+        value: 'peace',
+        pillarScores: { energy: 2, mind: 2, soul: 3, craft: 1, capital: 0, circle: 1, legacy: 1 },
+      },
+    ],
+  },
+];
+
+interface LifeBookResult {
+  id: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  pillars: string[];
+  icon: typeof Sparkles;
+  color: string;
+}
+
+const lifeBooks: LifeBookResult[] = [
+  {
+    id: 'creator',
+    title: 'The Creator\'s Path',
+    subtitle: 'Mastery Through Making',
+    description:
+      'You are driven by the need to create and build. Your Life Book focuses on developing your craft, leaving a legacy through your work, and achieving mastery that inspires others.',
+    pillars: ['craft', 'legacy', 'soul'],
+    icon: Sparkles,
+    color: 'amber',
+  },
+  {
+    id: 'connector',
+    title: 'The Connector\'s Way',
+    subtitle: 'Strength Through Relationships',
+    description:
+      'You thrive on meaningful connections and community. Your Life Book emphasizes building your circle, nurturing relationships, and creating value through collaboration.',
+    pillars: ['circle', 'soul', 'legacy'],
+    icon: Heart,
+    color: 'gold',
+  },
+  {
+    id: 'builder',
+    title: 'The Builder\'s Blueprint',
+    subtitle: 'Wealth Through Systems',
+    description:
+      'You are focused on building tangible results and wealth. Your Life Book centers on capital accumulation, creating systems that generate value, and financial freedom.',
+    pillars: ['capital', 'craft', 'energy'],
+    icon: TrendingUp,
+    color: 'amber',
+  },
+  {
+    id: 'sage',
+    title: 'The Sage\'s Journey',
+    subtitle: 'Wisdom Through Understanding',
+    description:
+      'You seek understanding and mental clarity above all. Your Life Book prioritizes mind development, continuous learning, and sharing wisdom with others.',
+    pillars: ['mind', 'soul', 'legacy'],
+    icon: Brain,
+    color: 'gold',
+  },
+  {
+    id: 'warrior',
+    title: 'The Warrior\'s Code',
+    subtitle: 'Power Through Discipline',
+    description:
+      'You believe in disciplined action and physical excellence. Your Life Book focuses on energy mastery, mental toughness, and achieving goals through consistent effort.',
+    pillars: ['energy', 'mind', 'craft'],
+    icon: Zap,
+    color: 'amber',
+  },
+  {
+    id: 'guardian',
+    title: 'The Guardian\'s Legacy',
+    subtitle: 'Protection Through Stewardship',
+    description:
+      'You are called to protect, guide, and leave something for future generations. Your Life Book emphasizes legacy building, mentorship, and creating lasting systems.',
+    pillars: ['legacy', 'circle', 'capital'],
+    icon: Archive,
+    color: 'gold',
+  },
+];
+
+const calculateResult = (answers: Record<number, string>): LifeBookResult => {
+  const scores: Record<string, number> = {
+    energy: 0,
+    mind: 0,
+    soul: 0,
+    craft: 0,
+    capital: 0,
+    circle: 0,
+    legacy: 0,
+  };
+
+  Object.entries(answers).forEach(([questionId, answerValue]) => {
+    const question = questions.find((q) => q.id === parseInt(questionId));
+    if (question) {
+      const selectedOption = question.options.find((o) => o.value === answerValue);
+      if (selectedOption) {
+        Object.entries(selectedOption.pillarScores).forEach(([pillar, score]) => {
+          scores[pillar] += score;
+        });
+      }
+    }
+  });
+
+  const pillarScores = Object.entries(scores)
+    .sort(([, a], [, b]) => b - a)
+    .slice(0, 3)
+    .map(([pillar]) => pillar);
+
+  const matchingBook = lifeBooks.find((book) =>
+    book.pillars.every((p) => pillarScores.includes(p))
+  );
+
+  return matchingBook || lifeBooks[0];
+};
+
 export default function AssessmentPage() {
-  const [started, setStarted] = useState(false)
-  const [currentQuestion, setCurrentQuestion] = useState(0)
-  const [answers, setAnswers] = useState<Record<number, number>>({})
-  const [showResults, setShowResults] = useState(false)
+  const [currentQuestion, setCurrentQuestion] = useState(1);
+  const [answers, setAnswers] = useState<Record<number, string>>({});
+  const [showResult, setShowResult] = useState(false);
+  const [result, setResult] = useState<LifeBookResult | null>(null);
 
-  const handleAnswer = (value: number) => {
-    setAnswers({ ...answers, [questions[currentQuestion].id]: value })
+  const handleAnswer = (value: string) => {
+    setAnswers((prev) => ({ ...prev, [currentQuestion]: value }));
+  };
 
-    if (currentQuestion < questions.length - 1) {
-      setTimeout(() => setCurrentQuestion(currentQuestion + 1), 300)
+  const handleNext = () => {
+    if (currentQuestion < questions.length) {
+      setCurrentQuestion((prev) => prev + 1);
     } else {
-      setTimeout(() => setShowResults(true), 300)
+      const calculatedResult = calculateResult(answers);
+      setResult(calculatedResult);
+      setShowResult(true);
     }
-  }
+  };
 
-  const calculateScores = () => {
-    const scores: Record<string, number> = {}
-
-    pillars.forEach(pillar => {
-      const pillarQuestions = questions.filter(q => q.pillar === pillar)
-      const pillarAnswers = pillarQuestions.map(q => answers[q.id] || 0)
-      const total = pillarAnswers.reduce((a, b) => a + b, 0)
-      const max = pillarQuestions.length * 5
-      scores[pillar] = Math.round((total / max) * 10)
-    })
-
-    return scores
-  }
-
-  const getLifeBookRecommendation = (scores: Record<string, number>) => {
-    const soulScore = scores.Soul || 0
-    const craftScore = scores.Craft || 0
-    const mindScore = scores.Mind || 0
-
-    if (craftScore >= soulScore && craftScore >= mindScore) {
-      return { book: 'Life Symphony', path: '/soulbook/life-symphony', desc: 'For artists and creatives like you' }
-    } else if (soulScore >= craftScore && soulScore >= mindScore) {
-      return { book: 'Golden Path', path: '/soulbook/golden-path', desc: 'For seekers and visionaries like you' }
-    } else {
-      return { book: 'The 7 Pillars', path: '/soulbook/7-pillars', desc: 'For builders and architects like you' }
+  const handlePrevious = () => {
+    if (currentQuestion > 1) {
+      setCurrentQuestion((prev) => prev - 1);
     }
-  }
+  };
 
-  const resetAssessment = () => {
-    setStarted(false)
-    setCurrentQuestion(0)
-    setAnswers({})
-    setShowResults(false)
-  }
+  const canProceed = answers[currentQuestion] !== undefined;
 
-  const scores = calculateScores()
-  const recommendation = getLifeBookRecommendation(scores)
-  const overallScore = Math.round(Object.values(scores).reduce((a, b) => a + b, 0) / 7)
+  if (showResult && result) {
+    const Icon = result.icon;
 
-  // Intro screen
-  if (!started) {
     return (
-      <div className="min-h-screen bg-slate-950 text-slate-100">
-        <section className="relative overflow-hidden pt-32 pb-20">
-          <div className="absolute inset-0 bg-gradient-to-br from-amber-900/20 via-slate-950 to-purple-900/20" />
-
-          <div className="relative mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-            <Link
-              href="/soulbook"
-              className="inline-flex items-center text-slate-400 hover:text-slate-200 mb-8 transition-colors"
-            >
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              Back to Soulbook
-            </Link>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-center"
-            >
-              <h1 className="mb-6 text-4xl font-bold bg-gradient-to-r from-amber-200 via-slate-100 to-purple-200 bg-clip-text text-transparent sm:text-5xl">
-                Soulbook Assessment
-              </h1>
-
-              <p className="mx-auto mb-8 max-w-2xl text-lg text-slate-400">
-                Discover your pillar scores and find out which Life Book speaks to your soul.
-                This free assessment takes about 3 minutes.
-              </p>
-
-              <GlassmorphicCard variant="luxury" border="glow" className="p-8 mb-8">
-                <h2 className="text-xl font-semibold text-slate-200 mb-4">What you&apos;ll discover:</h2>
-                <div className="grid gap-4 md:grid-cols-3 text-left">
-                  <div className="flex items-start gap-3">
-                    <CheckCircle className="h-5 w-5 text-amber-400 flex-shrink-0 mt-0.5" />
-                    <div>
-                      <p className="font-medium text-slate-200">Your 7 Pillar Scores</p>
-                      <p className="text-sm text-slate-400">See your strengths and growth areas</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <CheckCircle className="h-5 w-5 text-amber-400 flex-shrink-0 mt-0.5" />
-                    <div>
-                      <p className="font-medium text-slate-200">Your Life Book Match</p>
-                      <p className="text-sm text-slate-400">Which framework fits you best</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-3">
-                    <CheckCircle className="h-5 w-5 text-amber-400 flex-shrink-0 mt-0.5" />
-                    <div>
-                      <p className="font-medium text-slate-200">Your Next Steps</p>
-                      <p className="text-sm text-slate-400">Personalized recommendations</p>
-                    </div>
-                  </div>
+      <div className="min-h-screen bg-[#030712] py-20 px-4">
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6 }}
+          >
+            <GlassmorphicCard variant="luxury" gradient="aurora" border="glow" className="p-8 md:p-12">
+              <div className="text-center mb-8">
+                <div
+                  className={cn(
+                    'inline-flex p-4 rounded-2xl mb-6',
+                    result.color === 'amber'
+                      ? 'bg-amber-500/20 text-amber-400'
+                      : 'bg-gold-500/20 text-gold-400'
+                  )}
+                >
+                  <Icon className="w-12 h-12" />
                 </div>
-              </GlassmorphicCard>
+                <span className="inline-block px-4 py-2 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-sm font-medium mb-4">
+                  Your Life Book
+                </span>
+                <h1 className="text-4xl md:text-5xl font-bold text-white mb-2">
+                  {result.title}
+                </h1>
+                <p className="text-xl text-gold-400">{result.subtitle}</p>
+              </div>
 
-              <PremiumButton onClick={() => setStarted(true)} variant="primary" size="lg">
-                Start Free Assessment
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </PremiumButton>
-            </motion.div>
-          </div>
-        </section>
-      </div>
-    )
-  }
-
-  // Results screen
-  if (showResults) {
-    return (
-      <div className="min-h-screen bg-slate-950 text-slate-100">
-        <section className="relative overflow-hidden pt-32 pb-20 px-4">
-          <div className="absolute inset-0 bg-gradient-to-br from-amber-900/20 via-slate-950 to-purple-900/20" />
-
-          <div className="relative mx-auto max-w-4xl">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-center mb-12"
-            >
-              <h1 className="mb-4 text-4xl font-bold bg-gradient-to-r from-amber-200 via-slate-100 to-purple-200 bg-clip-text text-transparent">
-                Your Soulbook Results
-              </h1>
-              <p className="text-slate-400">
-                Overall Score: <span className="text-2xl font-bold text-amber-400">{overallScore}/10</span>
+              <p className="text-slate-300 text-lg leading-relaxed mb-8 text-center max-w-2xl mx-auto">
+                {result.description}
               </p>
-            </motion.div>
 
-            {/* Pillar Scores */}
-            <GlassmorphicCard variant="luxury" border="glow" className="p-8 mb-8">
-              <h2 className="text-xl font-semibold text-slate-200 mb-6">Your 7 Pillar Scores</h2>
-              <div className="space-y-4">
-                {pillars.map((pillar, index) => (
-                  <motion.div
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+                {result.pillars.map((pillar) => (
+                  <div
                     key={pillar}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.1 }}
+                    className="bg-slate-800/50 rounded-lg p-4 text-center"
                   >
-                    <div className="flex justify-between mb-1">
-                      <span className="text-slate-300">{pillar}</span>
-                      <span className="text-slate-400">{scores[pillar]}/10</span>
-                    </div>
-                    <div className="h-3 bg-slate-800 rounded-full overflow-hidden">
-                      <motion.div
-                        initial={{ width: 0 }}
-                        animate={{ width: `${scores[pillar] * 10}%` }}
-                        transition={{ delay: index * 0.1 + 0.3, duration: 0.5 }}
-                        className={`h-full bg-gradient-to-r ${pillarColors[pillar]} rounded-full`}
-                      />
-                    </div>
-                  </motion.div>
+                    <span className="capitalize text-amber-400 font-medium">{pillar}</span>
+                  </div>
                 ))}
               </div>
+
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <PremiumButton variant="primary" size="lg" className="group">
+                  Start Your {result.title}
+                  <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+                </PremiumButton>
+                <PremiumButton variant="ghost" size="lg">
+                  Explore All Life Books
+                </PremiumButton>
+              </div>
             </GlassmorphicCard>
-
-            {/* Life Book Recommendation */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8 }}
-            >
-              <GlassmorphicCard variant="luxury" border="glow" className="p-8 mb-8 bg-gradient-to-br from-amber-950/30 to-slate-950">
-                <h2 className="text-xl font-semibold text-slate-200 mb-4">Your Recommended Life Book</h2>
-                <div className="text-center">
-                  <p className="text-3xl font-bold text-amber-400 mb-2">{recommendation.book}</p>
-                  <p className="text-slate-400 mb-6">{recommendation.desc}</p>
-                  <PremiumButton href={recommendation.path} variant="primary" size="lg">
-                    Explore {recommendation.book}
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </PremiumButton>
-                </div>
-              </GlassmorphicCard>
-            </motion.div>
-
-            {/* Actions */}
-            <div className="flex flex-wrap justify-center gap-4">
-              <PremiumButton href="/soulbook/vault" variant="ghost" size="lg">
-                Download Obsidian Vault
-              </PremiumButton>
-              <PremiumButton onClick={resetAssessment} variant="ghost" size="lg">
-                <RotateCcw className="mr-2 h-4 w-4" />
-                Retake Assessment
-              </PremiumButton>
-            </div>
-          </div>
-        </section>
+          </motion.div>
+        </div>
       </div>
-    )
+    );
   }
 
-  // Quiz screen
-  const progress = ((currentQuestion + 1) / questions.length) * 100
-  const currentPillar = questions[currentQuestion].pillar
+  const question = questions[currentQuestion - 1];
+  const progress = (currentQuestion / questions.length) * 100;
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100">
-      <section className="relative overflow-hidden pt-32 pb-20 px-4">
-        <div className="absolute inset-0 bg-gradient-to-br from-amber-900/20 via-slate-950 to-purple-900/20" />
+    <div className="min-h-screen bg-[#030712]">
+      {/* Progress Bar */}
+      <div className="fixed top-0 left-0 right-0 h-1 bg-slate-800 z-50">
+        <motion.div
+          className="h-full bg-gradient-to-r from-amber-500 to-gold-500"
+          initial={{ width: 0 }}
+          animate={{ width: `${progress}%` }}
+          transition={{ duration: 0.3 }}
+        />
+      </div>
 
-        <div className="relative mx-auto max-w-2xl">
-          {/* Progress */}
-          <div className="mb-8">
-            <div className="flex justify-between text-sm text-slate-400 mb-2">
-              <span>{currentPillar} Pillar</span>
-              <span>{currentQuestion + 1} of {questions.length}</span>
-            </div>
-            <div className="h-2 bg-slate-800 rounded-full overflow-hidden">
-              <motion.div
-                initial={{ width: 0 }}
-                animate={{ width: `${progress}%` }}
-                className="h-full bg-gradient-to-r from-amber-500 to-amber-400 rounded-full"
-              />
-            </div>
-          </div>
+      {/* Question Counter */}
+      <div className="pt-8 pb-4 px-4 text-center">
+        <span className="text-slate-500 text-sm">
+          Question {currentQuestion} of {questions.length}
+        </span>
+      </div>
 
-          {/* Question */}
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={currentQuestion}
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -50 }}
-              transition={{ duration: 0.3 }}
-            >
-              <GlassmorphicCard variant="luxury" border="glow" className="p-8">
-                <p className="text-xl text-slate-200 mb-8 text-center leading-relaxed">
-                  &quot;{questions[currentQuestion].text}&quot;
-                </p>
+      {/* Question Section */}
+      <section className="py-8 px-4">
+        <div className="max-w-3xl mx-auto">
+          <motion.div
+            key={currentQuestion}
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -20 }}
+            transition={{ duration: 0.3 }}
+          >
+            <InteractiveCard glowColor="yellow" intensity="medium">
+              <GlassmorphicCard variant="premium" gradient="aurora" border="subtle" className="p-8">
+                <h2 className="text-2xl md:text-3xl font-bold text-white mb-8">
+                  {question.question}
+                </h2>
 
-                <div className="space-y-3">
-                  {[
-                    { value: 1, label: 'Strongly Disagree' },
-                    { value: 2, label: 'Disagree' },
-                    { value: 3, label: 'Neutral' },
-                    { value: 4, label: 'Agree' },
-                    { value: 5, label: 'Strongly Agree' },
-                  ].map(option => (
-                    <button
+                <div className="space-y-4">
+                  {question.options.map((option, idx) => (
+                    <motion.button
                       key={option.value}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: idx * 0.1 }}
                       onClick={() => handleAnswer(option.value)}
-                      className={`w-full p-4 rounded-lg border transition-all duration-200 text-left
-                        ${answers[questions[currentQuestion].id] === option.value
-                          ? 'border-amber-500 bg-amber-500/20 text-amber-200'
-                          : 'border-slate-700 bg-slate-800/50 text-slate-300 hover:border-slate-600 hover:bg-slate-800'
-                        }`}
+                      className={cn(
+                        'w-full p-4 rounded-xl text-left transition-all duration-200',
+                        'border border-slate-700/50 bg-slate-800/30',
+                        'hover:bg-slate-800/60 hover:border-amber-500/30',
+                        'focus:outline-none focus:ring-2 focus:ring-amber-500/50',
+                        answers[currentQuestion] === option.value &&
+                          'bg-amber-500/10 border-amber-500/50'
+                      )}
                     >
-                      <div className="flex items-center justify-between">
-                        <span>{option.label}</span>
-                        <span className="text-sm text-slate-500">{option.value}</span>
+                      <div className="flex items-center gap-4">
+                        <div
+                          className={cn(
+                            'w-6 h-6 rounded-full border-2 flex items-center justify-center',
+                            answers[currentQuestion] === option.value
+                              ? 'border-amber-500 bg-amber-500'
+                              : 'border-slate-600'
+                          )}
+                        >
+                          {answers[currentQuestion] === option.value && (
+                            <Check className="w-4 h-4 text-white" />
+                          )}
+                        </div>
+                        <span className="text-slate-200">{option.label}</span>
                       </div>
-                    </button>
+                    </motion.button>
                   ))}
                 </div>
               </GlassmorphicCard>
-            </motion.div>
-          </AnimatePresence>
+            </InteractiveCard>
+          </motion.div>
+        </div>
+      </section>
 
-          {/* Navigation */}
-          {currentQuestion > 0 && (
-            <button
-              onClick={() => setCurrentQuestion(currentQuestion - 1)}
-              className="mt-6 text-slate-400 hover:text-slate-200 transition-colors inline-flex items-center"
-            >
-              <ArrowLeft className="mr-2 h-4 w-4" />
-              Previous question
-            </button>
-          )}
+      {/* Navigation */}
+      <section className="py-8 px-4">
+        <div className="max-w-3xl mx-auto flex justify-between items-center">
+          <PremiumButton
+            variant="ghost"
+            size="md"
+            onClick={handlePrevious}
+            disabled={currentQuestion === 1}
+            className={currentQuestion === 1 ? 'opacity-50' : ''}
+          >
+            <ChevronLeft className="w-5 h-5 mr-2" />
+            Previous
+          </PremiumButton>
+
+          <PremiumButton
+            variant="primary"
+            size="md"
+            onClick={handleNext}
+            disabled={!canProceed}
+            className={!canProceed ? 'opacity-50 cursor-not-allowed' : ''}
+          >
+            {currentQuestion === questions.length ? 'See Results' : 'Next'}
+            <ChevronRight className="w-5 h-5 ml-2" />
+          </PremiumButton>
         </div>
       </section>
     </div>
-  )
+  );
 }

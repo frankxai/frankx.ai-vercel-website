@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-label="Creative Operating System - interconnected creative workflows">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f172a"/>
+      <stop offset="0.5" stop-color="#1e1b4b"/>
+      <stop offset="1" stop-color="#0f172a"/>
+    </linearGradient>
+    <radialGradient id="centerGlow" cx="50%" cy="50%" r="40%">
+      <stop offset="0" stop-color="#0ea5e9" stop-opacity="0.3"/>
+      <stop offset="1" stop-color="#0f172a" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="6"/>
+    </filter>
+  </defs>
+  <!-- Background -->
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect width="1600" height="900" fill="url(#centerGlow)"/>
+
+  <!-- Grid pattern -->
+  <g stroke="#1e3a5f" stroke-width="0.5" opacity="0.3">
+    <line x1="0" y1="150" x2="1600" y2="150"/>
+    <line x1="0" y1="300" x2="1600" y2="300"/>
+    <line x1="0" y1="450" x2="1600" y2="450"/>
+    <line x1="0" y1="600" x2="1600" y2="600"/>
+    <line x1="0" y1="750" x2="1600" y2="750"/>
+    <line x1="200" y1="0" x2="200" y2="900"/>
+    <line x1="400" y1="0" x2="400" y2="900"/>
+    <line x1="600" y1="0" x2="600" y2="900"/>
+    <line x1="800" y1="0" x2="800" y2="900"/>
+    <line x1="1000" y1="0" x2="1000" y2="900"/>
+    <line x1="1200" y1="0" x2="1200" y2="900"/>
+    <line x1="1400" y1="0" x2="1400" y2="900"/>
+  </g>
+
+  <!-- Central hub -->
+  <g filter="url(#glow)">
+    <circle cx="800" cy="450" r="80" fill="#0ea5e9"/>
+  </g>
+  <circle cx="800" cy="450" r="80" fill="none" stroke="#38bdf8" stroke-width="3"/>
+  <text x="800" y="440" fill="#0f172a" font-size="18" font-family="system-ui" font-weight="bold" text-anchor="middle">CREATIVE</text>
+  <text x="800" y="465" fill="#0f172a" font-size="18" font-family="system-ui" font-weight="bold" text-anchor="middle">OS</text>
+
+  <!-- Orbital modules -->
+  <!-- Writing -->
+  <g filter="url(#glow)">
+    <circle cx="500" cy="250" r="50" fill="#8b5cf6"/>
+  </g>
+  <circle cx="500" cy="250" r="50" fill="none" stroke="#a855f7" stroke-width="2"/>
+  <text x="500" y="255" fill="#e2e8f0" font-size="14" font-family="system-ui" font-weight="bold" text-anchor="middle">WRITE</text>
+
+  <!-- Music -->
+  <g filter="url(#glow)">
+    <circle cx="1100" cy="250" r="50" fill="#ec4899"/>
+  </g>
+  <circle cx="1100" cy="250" r="50" fill="none" stroke="#f472b6" stroke-width="2"/>
+  <text x="1100" y="255" fill="#e2e8f0" font-size="14" font-family="system-ui" font-weight="bold" text-anchor="middle">MUSIC</text>
+
+  <!-- Design -->
+  <g filter="url(#glow)">
+    <circle cx="400" cy="550" r="50" fill="#f97316"/>
+  </g>
+  <circle cx="400" cy="550" r="50" fill="none" stroke="#fb923c" stroke-width="2"/>
+  <text x="400" y="555" fill="#e2e8f0" font-size="14" font-family="system-ui" font-weight="bold" text-anchor="middle">DESIGN</text>
+
+  <!-- Code -->
+  <g filter="url(#glow)">
+    <circle cx="1200" cy="550" r="50" fill="#10b981"/>
+  </g>
+  <circle cx="1200" cy="550" r="50" fill="none" stroke="#34d399" stroke-width="2"/>
+  <text x="1200" y="555" fill="#e2e8f0" font-size="14" font-family="system-ui" font-weight="bold" text-anchor="middle">CODE</text>
+
+  <!-- Publish -->
+  <g filter="url(#glow)">
+    <circle cx="800" cy="750" r="50" fill="#06b6d4"/>
+  </g>
+  <circle cx="800" cy="750" r="50" fill="none" stroke="#22d3ee" stroke-width="2"/>
+  <text x="800" y="755" fill="#e2e8f0" font-size="14" font-family="system-ui" font-weight="bold" text-anchor="middle">PUBLISH</text>
+
+  <!-- Connections to center -->
+  <g stroke="#38bdf8" stroke-width="2" opacity="0.6">
+    <line x1="545" y1="285" x2="730" y2="400"/>
+    <line x1="1055" y1="285" x2="870" y2="400"/>
+    <line x1="445" y1="520" x2="730" y2="480"/>
+    <line x1="1155" y1="520" x2="870" y2="480"/>
+    <line x1="800" y1="530" x2="800" y2="700"/>
+  </g>
+
+  <!-- Data flow particles -->
+  <g fill="#38bdf8" opacity="0.8">
+    <circle cx="620" cy="340" r="4"/>
+    <circle cx="980" cy="340" r="4"/>
+    <circle cx="580" cy="500" r="4"/>
+    <circle cx="1020" cy="500" r="4"/>
+    <circle cx="800" cy="620" r="4"/>
+  </g>
+
+  <!-- Decorative rings -->
+  <circle cx="800" cy="450" r="200" fill="none" stroke="#1e3a5f" stroke-width="1" stroke-dasharray="10 5" opacity="0.4"/>
+  <circle cx="800" cy="450" r="320" fill="none" stroke="#1e3a5f" stroke-width="1" stroke-dasharray="10 5" opacity="0.3"/>
+</svg>

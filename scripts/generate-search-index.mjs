@@ -5,7 +5,7 @@ import { createSearchIndex } from '../lib/search.js'
 const contentDir = path.join(process.cwd(), 'content')
 const publicDir = path.join(process.cwd(), 'public')
 
-const getAllFiles = (dirPath: string, arrayOfFiles: string[] = []) => {
+const getAllFiles = (dirPath, arrayOfFiles = []) => {
   const files = fs.readdirSync(dirPath)
 
   files.forEach((file) => {

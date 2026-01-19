@@ -1,8 +1,6 @@
 import { ArrowRight, BookOpen, CheckCircle2, Clock, Download, Globe, Lightbulb, Play, Star, Target, Trophy, Users, Video, Zap } from 'lucide-react'
 import Link from 'next/link'
 
-import Footer from '@/components/Footer'
-import Navigation from '@/components/Navigation'
 import { createMetadata } from '@/lib/seo'
 
 const courseModules = [
@@ -228,8 +226,7 @@ export const metadata = createMetadata({
 export default function ConsciousAIFoundationsPage() {
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100">
-      <Navigation />
-      <main className="px-6 pt-28 pb-20">
+<main className="px-6 pt-28 pb-20">
         <div className="mx-auto max-w-7xl space-y-20">
           {/* Hero Section */}
           <header className="text-center space-y-8">
@@ -526,7 +523,6 @@ export default function ConsciousAIFoundationsPage() {
           </section>
         </div>
       </main>
-      <Footer />
-    </div>
+</div>
   )
 }

@@ -41,49 +41,19 @@ Thumbs.db
 .idea/
 *.swp
 *.swo
-.cursor/
-.windsurf/
-.kiro/
-.roo/
-.codex/
-.gemini/
-.agent/
 
 # Misc
 .cache/
 /public/reading/
 /reading-site/
-public/admin/
-__pycache__/
-~/
-content/blog/content/
-check_imports.js
-run-tina.sh
 
-# Local agent/tooling state
-.claude/
-.claude-mem/
-.opencode/*
-!.opencode/oh-my-opencode.json
-.shared/
-.tina/
-
-# Data (subscribers, etc)
-/data/subscribers.json
-
-# Separate Git Repositories (managed independently)
-/FrankX.AI - Vercel Website/
-/_repo_remote_frankx_website/
-/arcanea-opencode/
-/claude-agentic-creator-os/
-/sanity-frankx/
-
-# Symlinks to global configurations
-/.claude-nextjs-skills
-
-# Large backup files
-backups/**/*.bundle
-backups/**/*.tar.gz
-
-# Prevent CLAUDE.md pollution
-**/CLAUDE.md
+# Local agent scratch files
+notes.md
+task_plan.md
+content/**/CLAUDE.md
+components/**/CLAUDE.md
+data/**/CLAUDE.md
+lib/**/CLAUDE.md
+FrankX.AI - Vercel Website/
+agentic-creator-os/
+.claude-skills/CLAUDE.md

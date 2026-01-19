@@ -1,13 +1,11 @@
 import Link from 'next/link'
 import { Download, ExternalLink, FileText, Users, Zap } from 'lucide-react'
 
-import Navigation from '@/components/Navigation'
-import Footer from '@/components/Footer'
 import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
   title: 'FrankX Template Library - Soul-Aligned AI Systems',
-  description: 'Download proven templates for creator operating systems, release rituals, and community storytelling.',
+  description: 'Download proven templates for conscious AI implementation, agent governance, and transformation rituals. Enterprise-grade systems made accessible.',
   keywords: [
     'ai templates',
     'agent governance templates',
@@ -20,82 +18,31 @@ export const metadata = createMetadata({
 
 const templateCategories = [
   {
-    id: 'creator-systems',
-    title: 'Creator Systems',
-    description: 'Operating frameworks for planning, automation, and measurement.',
+    id: 'ai-governance',
+    title: 'AI Governance & Strategy',
+    description: 'Enterprise-grade frameworks for conscious AI implementation',
     icon: FileText,
     templates: [
       {
-        title: 'Creator Lab OS Blueprint',
-        description: 'Map your weekly planning, automation, and review loops.',
+        title: 'Conscious AI Governance Playbook',
+        description: 'Complete framework for implementing soul-aligned AI systems in enterprise environments',
         downloadUrl: '/templates/conscious-ai-governance-playbook.pdf',
         type: 'PDF Guide',
         pages: 24
       },
       {
-        title: 'Creator Workflow Assessment',
-        description: 'Audit your current rituals and decide what to automate next.',
+        title: 'Agent Architecture Assessment',
+        description: 'Evaluate and design human-centered AI agent systems',
         downloadUrl: '/templates/agent-architecture-assessment.xlsx',
         type: 'Excel Template',
         pages: 12
       },
       {
-        title: 'Creator Strategy Canvas',
-        description: 'One-page canvas to align offers, funnels, and content cadences.',
+        title: 'AI Strategy Canvas',
+        description: 'Visual planning tool for aligning AI initiatives with consciousness evolution',
         downloadUrl: '/templates/ai-strategy-canvas.pdf',
         type: 'PDF Canvas',
         pages: 1
-      }
-    ]
-  },
-  {
-    id: 'music-rituals',
-    title: 'Music & Focus Rituals',
-    description: 'Session scripts, daily run-throughs, and activation prompts.',
-    icon: Zap,
-    templates: [
-      {
-        title: 'Daily Intelligence Ritual',
-        description: 'A repeatable daily flow for ideation, production, and review.',
-        downloadUrl: '/templates/daily-intelligence-ritual.md',
-        type: 'Markdown Guide',
-        pages: 8
-      },
-      {
-        title: 'Soul Frequency Calibration',
-        description: 'Align your Suno sessions and live sets with intention.',
-        downloadUrl: '/templates/soul-frequency-worksheet.pdf',
-        type: 'PDF Worksheet',
-        pages: 4
-      },
-      {
-        title: 'Creative Intelligence Activation',
-        description: 'Step-by-step routine to prep your body, mind, and tools before recording.',
-        downloadUrl: '/templates/creative-intelligence-activation.docx',
-        type: 'Word Document',
-        pages: 6
-      }
-    ]
-  },
-  {
-    id: 'story-community',
-    title: 'Story & Community',
-    description: 'Toolkits for launches, workshops, and community momentum.',
-    icon: Users,
-    templates: [
-      {
-        title: 'Workshop Facilitation Kit',
-        description: 'Run creator labs or community sessions with ready-to-go agendas.',
-        downloadUrl: '/templates/ai-workshop-kit.zip',
-        type: 'Resource Bundle',
-        pages: 45
-      },
-      {
-        title: 'Creator Community Rituals',
-        description: 'Guided prompts and check-ins to keep your circle engaged each week.',
-        downloadUrl: '/templates/community-ai-ritual.md',
-        type: 'Markdown Template',
-        pages: 5
       }
     ]
   },
@@ -162,9 +109,7 @@ const templateCategories = [
 export default function TemplatesPage() {
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100">
-      <Navigation />
-
-      <main className="pb-24 pt-28">
+<main className="pb-24 pt-28">
         <section className="relative overflow-hidden px-6 pb-16 pt-16">
           <div className="absolute inset-0 bg-gradient-to-br from-primary-500/10 via-slate-950 to-slate-950" />
 
@@ -179,13 +124,13 @@ export default function TemplatesPage() {
 
             <div className="mt-8 flex flex-wrap justify-center gap-4 text-sm">
               <div className="rounded-full border border-white/20 bg-white/10 px-4 py-2">
-                Creator-first
+                📋 Enterprise Ready
               </div>
               <div className="rounded-full border border-white/20 bg-white/10 px-4 py-2">
-                Field-tested
+                🌟 Consciousness Aligned
               </div>
               <div className="rounded-full border border-white/20 bg-white/10 px-4 py-2">
-                Actionable playbooks
+                🚀 Immediately Actionable
               </div>
             </div>
           </div>
@@ -258,7 +203,7 @@ export default function TemplatesPage() {
             </p>
             <div className="mt-6 flex flex-wrap justify-center gap-4">
               <Link
-                href="mailto:hello@frankx.ai?subject=Creator Template Request"
+                href="mailto:hello@frankx.ai?subject=Custom Template Request"
                 className="inline-flex items-center gap-2 rounded-xl bg-white/10 border border-white/20 px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/20"
               >
                 <ExternalLink className="h-4 w-4" />
@@ -274,11 +219,6 @@ export default function TemplatesPage() {
           </div>
         </section>
       </main>
-
-      <Footer />
-    </div>
+</div>
   )
 }
-
-
-

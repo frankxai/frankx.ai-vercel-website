@@ -1,120 +1,305 @@
 import { MetadataRoute } from 'next'
-import { getAllBlogPosts, BlogPost } from '@/lib/blog'
+import fs from 'fs'
+import path from 'path'
 
-const baseUrl = 'https://frankx.ai'
+const BASE_URL = 'https://frankx.ai'
 
-// Static pages with their priority and change frequency
-const staticPages: { url: string; priority: number; changeFrequency: 'always' | 'hourly' | 'daily' | 'weekly' | 'monthly' | 'yearly' | 'never' }[] = [
-  // Core Pages (Highest Priority)
-  { url: '', priority: 1.0, changeFrequency: 'daily' },
-  { url: '/about', priority: 0.9, changeFrequency: 'monthly' },
-  { url: '/start', priority: 0.9, changeFrequency: 'monthly' },
-  { url: '/contact', priority: 0.7, changeFrequency: 'monthly' },
+// Extract slug from MDX filename
+function getSlugFromFilename(filename: string): string {
+  // Remove number prefix and .mdx extension
+  return filename.replace(/^\d+-/, '').replace(/\.mdx$/, '')
+}
 
-  // Products (High Priority - Revenue Pages)
-  { url: '/products', priority: 0.9, changeFrequency: 'weekly' },
-  { url: '/products/creative-ai-toolkit', priority: 0.9, changeFrequency: 'weekly' },
-  { url: '/products/vibe-os', priority: 0.9, changeFrequency: 'weekly' },
-  { url: '/products/agentic-creator-os', priority: 0.9, changeFrequency: 'weekly' },
-  { url: '/products/creation-chronicles', priority: 0.8, changeFrequency: 'weekly' },
-  { url: '/products/generative-creator-os', priority: 0.8, changeFrequency: 'weekly' },
+// Get all blog slugs from content/blog directory
+function getBlogSlugs(): string[] {
+  const blogDir = path.join(process.cwd(), 'content/blog')
+  try {
+    const files = fs.readdirSync(blogDir)
+    const slugs = new Set(
+      files
+        .filter(file => file.endsWith('.mdx'))
+        .map(file => getSlugFromFilename(file))
+    )
+    return Array.from(slugs)
+  } catch {
+    return []
+  }
+}
 
-  // Soulbook (High Priority - Lead Magnet)
-  { url: '/soulbook', priority: 0.9, changeFrequency: 'weekly' },
-  { url: '/soulbook/vault', priority: 0.9, changeFrequency: 'monthly' },
-  { url: '/soulbook/7-pillars', priority: 0.8, changeFrequency: 'monthly' },
-  { url: '/soulbook/assessment', priority: 0.8, changeFrequency: 'monthly' },
-  { url: '/soulbook/golden-path', priority: 0.8, changeFrequency: 'monthly' },
-  { url: '/soulbook/life-symphony', priority: 0.8, changeFrequency: 'monthly' },
+// Get all guide slugs from content/guides directory
+function getGuideSlugs(): string[] {
+  const guidesDir = path.join(process.cwd(), 'content/guides')
+  try {
+    const files = fs.readdirSync(guidesDir)
+    const slugs = new Set(
+      files
+        .filter(file => file.endsWith('.mdx'))
+        .map(file => getSlugFromFilename(file))
+    )
+    return Array.from(slugs)
+  } catch {
+    return []
+  }
+}
 
-  // Content Hubs (High Priority)
-  { url: '/blog', priority: 0.9, changeFrequency: 'daily' },
-  { url: '/courses', priority: 0.8, changeFrequency: 'weekly' },
-  { url: '/courses/conscious-ai-foundations', priority: 0.8, changeFrequency: 'monthly' },
-  { url: '/guides', priority: 0.8, changeFrequency: 'weekly' },
-  { url: '/resources', priority: 0.8, changeFrequency: 'weekly' },
-  { url: '/resources/skills', priority: 0.7, changeFrequency: 'weekly' },
-  { url: '/resources/templates', priority: 0.7, changeFrequency: 'weekly' },
-  { url: '/templates', priority: 0.7, changeFrequency: 'weekly' },
+// Get product slugs from data/products.json
+function getProductSlugs(): string[] {
+  const productsPath = path.join(process.cwd(), 'data/products.json')
+  try {
+    const fileContent = fs.readFileSync(productsPath, 'utf8')
+    const products = JSON.parse(fileContent)
+    return products.map((p: any) => p.slug)
+  } catch {
+    return []
+  }
+}
 
-  // Interactive Tools (Medium-High Priority)
-  { url: '/intelligence-atlas', priority: 0.8, changeFrequency: 'weekly' },
-  { url: '/agentic-ai-center', priority: 0.8, changeFrequency: 'weekly' },
-  { url: '/agents', priority: 0.7, changeFrequency: 'weekly' },
-  { url: '/agent-team', priority: 0.7, changeFrequency: 'weekly' },
-  { url: '/prompt-library', priority: 0.7, changeFrequency: 'weekly' },
-  { url: '/music-lab', priority: 0.8, changeFrequency: 'weekly' },
-  { url: '/content-studio', priority: 0.7, changeFrequency: 'weekly' },
-
-  // Assessments (Medium Priority)
-  { url: '/assessment', priority: 0.7, changeFrequency: 'monthly' },
-  { url: '/assessment/advanced', priority: 0.6, changeFrequency: 'monthly' },
-  { url: '/assessment/creative', priority: 0.6, changeFrequency: 'monthly' },
-  { url: '/ai-assessment', priority: 0.7, changeFrequency: 'monthly' },
-  { url: '/soul-frequency-assessment', priority: 0.7, changeFrequency: 'monthly' },
-  { url: '/soul-frequency-quiz', priority: 0.7, changeFrequency: 'monthly' },
-
-  // Community & Engagement (Medium Priority)
-  { url: '/realm', priority: 0.8, changeFrequency: 'weekly' },
-  { url: '/creation-chronicles', priority: 0.8, changeFrequency: 'weekly' },
-  { url: '/community', priority: 0.7, changeFrequency: 'weekly' },
-  { url: '/testimonials', priority: 0.6, changeFrequency: 'monthly' },
-  { url: '/showcase', priority: 0.6, changeFrequency: 'monthly' },
-  { url: '/team', priority: 0.6, changeFrequency: 'monthly' },
-
-  // Tools (Medium Priority)
-  { url: '/tools', priority: 0.7, changeFrequency: 'monthly' },
-  { url: '/tools/builder', priority: 0.6, changeFrequency: 'monthly' },
-  { url: '/tools/roi-calculator', priority: 0.6, changeFrequency: 'monthly' },
-  { url: '/tools/strategy-canvas', priority: 0.6, changeFrequency: 'monthly' },
-
-  // Founder & Business (Medium Priority)
-  { url: '/founder-playbook', priority: 0.7, changeFrequency: 'monthly' },
-  { url: '/coaching', priority: 0.7, changeFrequency: 'monthly' },
-  { url: '/affiliates', priority: 0.5, changeFrequency: 'monthly' },
-
-  // Student Portal (Medium Priority)
-  { url: '/students', priority: 0.6, changeFrequency: 'weekly' },
-  { url: '/students/coe-builder', priority: 0.5, changeFrequency: 'monthly' },
-  { url: '/students/prompts', priority: 0.5, changeFrequency: 'monthly' },
-  { url: '/students/roles', priority: 0.5, changeFrequency: 'monthly' },
-  { url: '/students/workshop', priority: 0.5, changeFrequency: 'monthly' },
-
-  // Utility Pages (Low Priority)
-  { url: '/search', priority: 0.5, changeFrequency: 'weekly' },
-  { url: '/insights', priority: 0.6, changeFrequency: 'weekly' },
-  { url: '/roadmap', priority: 0.5, changeFrequency: 'monthly' },
-  { url: '/goals', priority: 0.4, changeFrequency: 'monthly' },
-  { url: '/achievements', priority: 0.4, changeFrequency: 'monthly' },
+// Prompt library categories
+const PROMPT_CATEGORIES = [
+  'writing',
+  'music-creation',
+  'image-generation',
+  'creative',
+  'coding',
+  'ai-architecture',
+  'agent-development',
+  'business',
+  'social-media',
+  'marketing',
+  'productivity',
+  'personal-development',
+  'spiritual',
+  'learning',
 ]
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  // Get current date for lastModified
-  const now = new Date()
+  const currentDate = new Date().toISOString()
 
-  // Build static page entries
-  const staticEntries: MetadataRoute.Sitemap = staticPages.map((page) => ({
-    url: `${baseUrl}${page.url}`,
-    lastModified: now,
-    changeFrequency: page.changeFrequency,
-    priority: page.priority,
-  }))
+  // Core pages (highest priority)
+  const corePages = [
+    { url: '', priority: 1.0, changeFrequency: 'weekly' as const },
+    { url: '/about', priority: 0.9, changeFrequency: 'monthly' as const },
+    { url: '/blog', priority: 0.9, changeFrequency: 'daily' as const },
+    { url: '/products', priority: 0.9, changeFrequency: 'weekly' as const },
+    { url: '/prompt-library', priority: 0.9, changeFrequency: 'weekly' as const },
+    { url: '/resources', priority: 0.8, changeFrequency: 'weekly' as const },
+    { url: '/guides', priority: 0.8, changeFrequency: 'weekly' as const },
+    { url: '/creators', priority: 0.8, changeFrequency: 'monthly' as const },
+    { url: '/students', priority: 0.8, changeFrequency: 'monthly' as const },
+    { url: '/music-lab', priority: 0.8, changeFrequency: 'weekly' as const },
+  ]
 
-  // Get all blog posts dynamically
-  let blogEntries: MetadataRoute.Sitemap = []
-  try {
-    const posts = getAllBlogPosts()
-    blogEntries = posts.map((post: BlogPost) => ({
-      url: `${baseUrl}/blog/${post.slug}`,
-      lastModified: new Date(post.date),
-      changeFrequency: 'monthly' as const,
-      priority: post.featured ? 0.9 : 0.7,
-    }))
-  } catch (error) {
-    // If blog posts can't be loaded, continue with static pages only
-    console.warn('Could not load blog posts for sitemap:', error)
-  }
+  // Tool pages
+  const toolPages = [
+    '/tools',
+    '/tools/roi-calculator',
+    '/tools/strategy-canvas',
+    '/tools/builder',
+  ]
 
-  // Combine all entries
-  return [...staticEntries, ...blogEntries]
+  // Assessment pages
+  const assessmentPages = [
+    '/assessment',
+    '/assessment/creative',
+    '/assessment/advanced',
+    '/ai-assessment',
+    '/soul-frequency-assessment',
+    '/soul-frequency-quiz',
+  ]
+
+  // Community and engagement pages
+  const communityPages = [
+    '/community',
+    '/coaching',
+    '/inner-circle',
+    '/testimonials',
+    '/affiliates',
+    '/newsletter',
+  ]
+
+  // Learning and courses
+  const learningPages = [
+    '/courses',
+    '/courses/conscious-ai-foundations',
+    '/students/ikigai',
+  ]
+
+  // Content and creation pages
+  const contentPages = [
+    '/content-studio',
+    '/creation-chronicles',
+    '/intelligence-atlas',
+    '/golden-age',
+    '/golden-age/chapter-01-when-creation-calls',
+  ]
+
+  // AI and agent pages
+  const aiPages = [
+    '/agents',
+    '/agent-team',
+    '/agentic-ai-center',
+    '/developers',
+  ]
+
+  // Utility pages
+  const utilityPages = [
+    '/start',
+    '/search',
+    '/contact',
+    '/roadmap',
+    '/achievements',
+    '/goals',
+    '/templates',
+    '/resources/templates',
+  ]
+
+  // Legacy pages (lower priority, may redirect)
+  const legacyPages = [
+    '/founder-playbook',
+    '/insights',
+    '/thank-you',
+    '/enterprise',
+    '/onboarding',
+    '/dashboard',
+  ]
+
+  // Get dynamic content
+  const blogSlugs = getBlogSlugs()
+  const guideSlugs = getGuideSlugs()
+  const productSlugs = getProductSlugs()
+
+  // Build sitemap entries
+  const entries: MetadataRoute.Sitemap = []
+
+  // Core pages
+  corePages.forEach(page => {
+    entries.push({
+      url: `${BASE_URL}${page.url}`,
+      lastModified: currentDate,
+      changeFrequency: page.changeFrequency,
+      priority: page.priority,
+    })
+  })
+
+  // Product pages (dynamic)
+  productSlugs.forEach(slug => {
+    entries.push({
+      url: `${BASE_URL}/products/${slug}`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    })
+  })
+
+  // Tool pages
+  toolPages.forEach(page => {
+    entries.push({
+      url: `${BASE_URL}${page}`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    })
+  })
+
+  // Assessment pages
+  assessmentPages.forEach(page => {
+    entries.push({
+      url: `${BASE_URL}${page}`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    })
+  })
+
+  // Community pages
+  communityPages.forEach(page => {
+    entries.push({
+      url: `${BASE_URL}${page}`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    })
+  })
+
+  // Learning pages
+  learningPages.forEach(page => {
+    entries.push({
+      url: `${BASE_URL}${page}`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    })
+  })
+
+  // Content pages
+  contentPages.forEach(page => {
+    entries.push({
+      url: `${BASE_URL}${page}`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
+      priority: 0.7,
+    })
+  })
+
+  // AI pages
+  aiPages.forEach(page => {
+    entries.push({
+      url: `${BASE_URL}${page}`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
+      priority: 0.7,
+    })
+  })
+
+  // Utility pages
+  utilityPages.forEach(page => {
+    entries.push({
+      url: `${BASE_URL}${page}`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.5,
+    })
+  })
+
+  // Legacy pages
+  legacyPages.forEach(page => {
+    entries.push({
+      url: `${BASE_URL}${page}`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.4,
+    })
+  })
+
+  // Blog posts (high priority - fresh content)
+  blogSlugs.forEach(slug => {
+    entries.push({
+      url: `${BASE_URL}/blog/${slug}`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    })
+  })
+
+  // Guide posts
+  guideSlugs.forEach(slug => {
+    entries.push({
+      url: `${BASE_URL}/guides/${slug}`,
+      lastModified: currentDate,
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    })
+  })
+
+  // Prompt library categories
+  PROMPT_CATEGORIES.forEach(category => {
+    entries.push({
+      url: `${BASE_URL}/prompt-library/${category}`,
+      lastModified: currentDate,
+      changeFrequency: 'weekly',
+      priority: 0.7,
+    })
+  })
+
+  return entries
 }

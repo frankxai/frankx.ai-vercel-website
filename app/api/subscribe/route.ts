@@ -1,105 +1,83 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { Resend } from 'resend'
-import { writeFile, readFile } from 'fs/promises'
-import { join } from 'path'
 
-// Lazy-initialize Resend only at runtime to avoid build-time errors
-let resend: Resend | null = null
-function getResendClient() {
-  if (!resend && process.env.RESEND_API_KEY) {
-    resend = new Resend(process.env.RESEND_API_KEY)
-  }
-  return resend
-}
+const CONVERTKIT_API_KEY = process.env.CONVERTKIT_API_KEY
+const CONVERTKIT_FORM_ID = process.env.CONVERTKIT_FORM_ID
 
-// Simple JSON file storage for MVP (replace with proper DB later)
-const SUBSCRIBERS_FILE = join(process.cwd(), 'data', 'subscribers.json')
-
-async function getSubscribers() {
-  try {
-    const data = await readFile(SUBSCRIBERS_FILE, 'utf-8')
-    return JSON.parse(data)
-  } catch (error) {
-    return []
-  }
-}
-
-async function saveSubscriber(email: string, name?: string, product?: string) {
-  const subscribers = await getSubscribers()
-
-  // Check if already subscribed
-  if (subscribers.find((s: any) => s.email === email)) {
-    return { alreadySubscribed: true }
-  }
-
-  subscribers.push({
-    email,
-    name: name || '',
-    product: product || 'general',
-    subscribedAt: new Date().toISOString(),
-  })
-
-  await writeFile(SUBSCRIBERS_FILE, JSON.stringify(subscribers, null, 2))
-  return { success: true }
+// ConvertKit forms mapping
+const CONVERTKIT_FORMS = {
+  'creation-chronicles': process.env.CONVERTKIT_CREATION_CHRONICLES_FORM_ID,
+  'inner-circle': process.env.CONVERTKIT_INNER_CIRCLE_FORM_ID,
+  'newsletter': process.env.CONVERTKIT_NEWSLETTER_FORM_ID,
 }
 
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json()
-    const { email, name, product } = body
+    const { email, name, listType = 'newsletter' } = await request.json()
 
-    if (!email || !email.includes('@')) {
+    // Validation
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       return NextResponse.json(
-        { error: 'Valid email is required' },
+        { error: 'Please enter a valid email address' },
         { status: 400 }
       )
     }
 
-    // Save to simple JSON file
-    const result = await saveSubscriber(email, name, product)
+    // Get the appropriate ConvertKit form ID
+    const formId = CONVERTKIT_FORMS[listType as keyof typeof CONVERTKIT_FORMS] || CONVERTKIT_FORM_ID
 
-    if (result.alreadySubscribed) {
+    if (!CONVERTKIT_API_KEY || !formId) {
+      console.error('ConvertKit API key or Form ID not configured')
       return NextResponse.json(
-        { message: "You're already subscribed!" },
-        { status: 200 }
+        { error: 'Email service not configured. Please try again later.' },
+        { status: 500 }
       )
     }
 
-    // Send welcome email via Resend
-    const resendClient = getResendClient()
-    if (resendClient) {
-      try {
-        await resendClient.emails.send({
-          from: 'Frank <hello@frankx.ai>',
-          to: email,
-          subject: 'Welcome to FrankX Intelligence Systems',
-          html: `
-            <h1>Welcome ${name || 'Creator'}!</h1>
-            <p>Thanks for joining the FrankX community. You're now part of a growing movement of AI architects and conscious creators.</p>
-            <h2>What's Next?</h2>
-            <ul>
-              <li><a href="https://frankx.ai/products/intelligence-systems">Explore Intelligence Systems</a> - Prompt packs, tool recommendations, and automation blueprints</li>
-              <li><a href="https://frankx.ai/products/vibe-os">Check out Vibe OS</a> - Suno music workflows and consciousness tech</li>
-              <li><a href="https://frankx.ai/music-lab">Listen to Frank's 500+ Songs</a> - Get inspired by AI-human collaboration</li>
-            </ul>
-            <p>I'll be in touch soon with your first intelligence pack.</p>
-            <p>-Frank<br><em>Oracle AI Architect & Music Creator</em></p>
-          `,
-        })
-      } catch (emailError) {
-        console.error('Email send failed:', emailError)
-        // Don't fail the request if email fails
+    // Subscribe to ConvertKit
+    const convertKitResponse = await fetch(
+      `https://api.convertkit.com/v3/forms/${formId}/subscribe`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          api_key: CONVERTKIT_API_KEY,
+          email,
+          first_name: name || '',
+        }),
       }
+    )
+
+    if (!convertKitResponse.ok) {
+      const errorData = await convertKitResponse.json()
+      console.error('ConvertKit API error:', errorData)
+
+      // Check for duplicate email
+      if (convertKitResponse.status === 400 && errorData.message?.includes('already subscribed')) {
+        return NextResponse.json(
+          { error: 'This email is already subscribed!' },
+          { status: 400 }
+        )
+      }
+
+      return NextResponse.json(
+        { error: 'Failed to subscribe. Please try again.' },
+        { status: 500 }
+      )
     }
+
+    const data = await convertKitResponse.json()
 
     return NextResponse.json({
       success: true,
-      message: 'Successfully subscribed! Check your email for next steps.',
+      message: 'Successfully subscribed!',
+      subscriber: data.subscription,
     })
   } catch (error) {
-    console.error('Subscribe error:', error)
+    console.error('Subscription error:', error)
     return NextResponse.json(
-      { error: 'Something went wrong. Please try again.' },
+      { error: 'An unexpected error occurred. Please try again.' },
       { status: 500 }
     )
   }
