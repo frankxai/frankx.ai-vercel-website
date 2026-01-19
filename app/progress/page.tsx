@@ -346,13 +346,13 @@ function AssessmentView({
               {/* Pillar Badge */}
               <div className="flex items-center gap-3">
                 <div className="text-3xl">
-                  {progressData.frankStats.pillars[question.pillar].icon}
+                  {(progressData.frankStats.pillars as Record<string, { icon: string; name: string; color: string }>)[question.pillar]?.icon}
                 </div>
                 <div>
                   <div className="text-sm text-slate-400">
-                    {progressData.frankStats.pillars[question.pillar].name}
+                    {(progressData.frankStats.pillars as Record<string, { icon: string; name: string; color: string }>)[question.pillar]?.name}
                   </div>
-                  <div className={`text-xs font-medium bg-gradient-to-r ${progressData.frankStats.pillars[question.pillar].color} bg-clip-text text-transparent`}>
+                  <div className={`text-xs font-medium bg-gradient-to-r ${(progressData.frankStats.pillars as Record<string, { icon: string; name: string; color: string }>)[question.pillar]?.color} bg-clip-text text-transparent`}>
                     Pillar {currentQuestion + 1}
                   </div>
                 </div>

@@ -82,9 +82,7 @@ const products = [
     tagline: 'Prompt library + workflow rituals',
     description:
       'A digital kit with prompts, templates, and rollout rituals for consistent output.',
-    price: 1,
-    currency: '€',
-    originalPrice: null,
+    status: 'coming-soon',
     href: '/products/creative-ai-toolkit',
     color: 'violet',
     highlights: [
@@ -100,10 +98,7 @@ const products = [
     tagline: 'Suno Music Mastery',
     description:
       'Prompt packs, emotion mapping, and production checklists for Suno creators.',
-    price: 0,
-    currency: '€',
-    originalPrice: null,
-    priceDisplay: 'Free',
+    status: 'coming-soon',
     href: '/products/vibe-os',
     color: 'emerald',
     highlights: [
@@ -120,9 +115,7 @@ const products = [
     tagline: 'Strategic Storytelling OS',
     description:
       'Story frameworks, editorial calendars, and prompt stacks to build authority.',
-    price: 7,
-    currency: '€',
-    originalPrice: null,
+    status: 'coming-soon',
     href: '/products/creation-chronicles',
     color: 'cyan',
     highlights: [
@@ -138,9 +131,7 @@ const products = [
     tagline: 'Multi-modal AI Studio',
     description:
       'Multi-modal templates, prompts, and guardrails for a reliable studio system.',
-    price: 97,
-    currency: '€',
-    originalPrice: null,
+    status: 'coming-soon',
     href: '/products/generative-creator-os',
     color: 'amber',
     highlights: [
@@ -156,9 +147,7 @@ const products = [
     tagline: 'Developer AI Mastery',
     description:
       'Agentic playbooks, prompt stacks, and governance checklists for builders.',
-    price: 197,
-    currency: '€',
-    originalPrice: null,
+    status: 'coming-soon',
     href: '/products/agentic-creator-os',
     color: 'rose',
     highlights: [
@@ -324,28 +313,16 @@ export default function ProductsPage() {
                           </ul>
                         </div>
 
-                        {/* Price and CTA */}
+                        {/* Status and CTA */}
                         <div className="flex items-center justify-between border-t border-white/5 pt-6">
-                          <div className="flex items-baseline gap-2">
-                            {product.priceDisplay ? (
-                              <span className={`text-lg font-bold ${colors.accent}`}>
-                                {product.priceDisplay}
-                              </span>
-                            ) : (
-                              <>
-                                <span className="text-2xl font-bold text-white">
-                                  {product.currency}{product.price}
-                                </span>
-                                {product.originalPrice && (
-                                  <span className="text-sm text-slate-500 line-through">
-                                    {product.currency}{product.originalPrice}
-                                  </span>
-                                )}
-                              </>
-                            )}
+                          <div className="flex items-center gap-2">
+                            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 text-sm font-medium">
+                              <Sparkles className="w-3.5 h-3.5" />
+                              Coming Soon
+                            </span>
                           </div>
                           <div className="flex items-center gap-2 text-slate-400 transition-colors group-hover:text-white">
-                            <span className="text-sm font-medium">View</span>
+                            <span className="text-sm font-medium">Join Waitlist</span>
                             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                           </div>
                         </div>
@@ -363,10 +340,10 @@ export default function ProductsPage() {
           <div className="mx-auto max-w-6xl px-6">
             <div className="flex flex-wrap justify-center gap-6 md:gap-10">
               {[
-                { icon: Shield, label: '30-Day Money Back', color: 'text-emerald-400' },
-                { icon: Zap, label: 'Instant Access', color: 'text-cyan-400' },
-                { icon: Users, label: '1000+ Creators', color: 'text-violet-400' },
-                { icon: Star, label: 'Battle-Tested', color: 'text-amber-400' },
+                { icon: Sparkles, label: 'Early Access Benefits', color: 'text-amber-400' },
+                { icon: Zap, label: 'Priority Launch Access', color: 'text-cyan-400' },
+                { icon: Users, label: 'Exclusive Community', color: 'text-violet-400' },
+                { icon: Star, label: 'Battle-Tested Systems', color: 'text-emerald-400' },
               ].map((badge, i) => (
                 <motion.div
                   key={badge.label}
@@ -474,12 +451,12 @@ export default function ProductsPage() {
                   a: "The Creative AI Toolkit and Vibe OS are designed for beginners. Generative Creator OS and Agentic Creator OS are for intermediate users who want to go deeper.",
                 },
                 {
-                  q: "What's the refund policy?",
-                  a: "30-day money-back guarantee on all products. If it doesn't work for you, you get a full refund—no questions asked.",
+                  q: "When will these products launch?",
+                  a: "Products are launching throughout 2026. Join the waitlist to get early access, exclusive launch discounts, and behind-the-scenes updates as each product is finalized.",
                 },
                 {
-                  q: "Do I get lifetime access?",
-                  a: "Yes. One purchase, lifetime access, including all future updates. As my systems evolve, your access evolves with them.",
+                  q: "What do I get by joining the waitlist?",
+                  a: "Waitlist members get priority access when products launch, exclusive early-bird pricing, and behind-the-scenes content showing how each system is built.",
                 },
               ].map((faq, i) => (
                 <motion.div
@@ -498,7 +475,7 @@ export default function ProductsPage() {
           </div>
         </section>
 
-        {/* Bottom CTA */}
+        {/* Bottom CTA - Waitlist */}
         <section className="py-16 pb-24">
           <div className="mx-auto max-w-6xl px-6">
             <motion.div
@@ -511,32 +488,29 @@ export default function ProductsPage() {
               {/* Decorative gradient */}
               <div className="absolute -right-20 -top-20 h-40 w-40 rounded-full bg-gradient-to-br from-violet-500/20 to-cyan-500/20 blur-3xl" />
 
-              <div className="relative flex flex-col items-start gap-8 md:flex-row md:items-center md:justify-between">
-                <div className="max-w-xl">
-                  <h2 className="text-2xl font-bold text-white sm:text-3xl">
-                    Not sure where to start?
+              <div className="relative flex flex-col items-center gap-8 text-center">
+                <div className="max-w-2xl">
+                  <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 text-amber-400 text-sm font-medium mb-6">
+                    <Sparkles className="w-4 h-4" />
+                    Launching Soon
+                  </span>
+                  <h2 className="text-2xl font-bold text-white sm:text-3xl mb-4">
+                    Be the first to know when products launch
                   </h2>
-                  <p className="mt-3 text-slate-400">
-                    Start with <span className="text-emerald-400 font-medium">Vibe OS</span> (free) or the <span className="text-violet-400 font-medium">€1 Creative AI Toolkit</span>.
-                    Experience my approach before committing to the advanced systems.
+                  <p className="text-slate-400">
+                    Join the waitlist for early access, exclusive discounts, and behind-the-scenes updates
+                    on each product as they're developed.
                   </p>
                 </div>
-                <div className="flex flex-wrap gap-4">
+                <div className="flex flex-col sm:flex-row gap-4 w-full max-w-md">
                   <Link
-                    href="/products/vibe-os"
+                    href="/newsletter"
                     onClick={() =>
-                      trackEvent('product_vibe_os_cta', { location: 'products-page' })
+                      trackEvent('product_waitlist_cta', { location: 'products-page' })
                     }
-                    className="group flex items-center gap-2 rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-6 py-3 font-medium text-emerald-400 transition-all hover:bg-emerald-500/20"
+                    className="group flex-1 flex items-center justify-center gap-2 rounded-xl bg-white px-6 py-3 font-medium text-slate-900 transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-white/10"
                   >
-                    <Music className="h-4 w-4" />
-                    Get Vibe OS Free
-                  </Link>
-                  <Link
-                    href="/products/creative-ai-toolkit"
-                    className="group flex items-center gap-2 rounded-xl bg-white px-6 py-3 font-medium text-slate-900 transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-white/10"
-                  >
-                    Get Toolkit for €1
+                    Join the Waitlist
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </Link>
                 </div>

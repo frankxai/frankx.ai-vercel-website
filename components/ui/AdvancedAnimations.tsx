@@ -21,6 +21,32 @@ export function ParallaxContainer({ children, offset = 50 }: { children: ReactNo
   )
 }
 
+// Parallax Layer for depth effects
+export function ParallaxLayer({
+  children,
+  offset = 0,
+  blur = 0,
+  className
+}: {
+  children: ReactNode;
+  offset?: number;
+  blur?: number;
+  className?: string;
+}) {
+  const { scrollY } = useScroll()
+  const y = useTransform(scrollY, [0, 1000], [0, offset])
+  const springY = useSpring(y, { stiffness: 100, damping: 30 })
+
+  return (
+    <motion.div
+      style={{ y: springY, filter: blur > 0 ? `blur(${blur}px)` : undefined }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  )
+}
+
 // Fade In Up with Stagger
 export function StaggerContainer({ children, staggerDelay = 0.1, className }: { children: ReactNode; staggerDelay?: number; className?: string }) {
   return (

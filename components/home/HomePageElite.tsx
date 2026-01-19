@@ -242,9 +242,12 @@ function Hero() {
     offset: ['start start', 'end start']
   })
 
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
-  const y = useTransform(scrollYProgress, [0, 0.5], [0, 100])
-  const scale = useTransform(scrollYProgress, [0, 0.5], [1, 0.95])
+  // Premium scroll effect - slower, smoother fade for mobile
+  // Extended range [0, 0.7] gives more time to see content before it fades
+  // Gentler scale change (0.98 vs 0.95) feels more elegant
+  const opacity = useTransform(scrollYProgress, [0, 0.7], [1, 0])
+  const y = useTransform(scrollYProgress, [0, 0.7], [0, 60])
+  const scale = useTransform(scrollYProgress, [0, 0.7], [1, 0.98])
 
   return (
     <section

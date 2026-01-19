@@ -43,7 +43,7 @@ export const authOptions: NextAuthConfig = {
 
         // Verify password hash
         const isValid = await bcrypt.compare(
-          credentials.password,
+          credentials.password as string,
           ADMIN_CREDENTIALS.passwordHash
         )
 

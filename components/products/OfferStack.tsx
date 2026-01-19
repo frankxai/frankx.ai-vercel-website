@@ -1,9 +1,13 @@
 "use client"
 
 import Link from 'next/link'
+import { Sparkles, Mail } from 'lucide-react'
 
 import { trackEvent } from '@/lib/analytics'
 import type { ProductBonus, ProductModule, ProductOffer, ProductPricingTier } from '@/types/products'
+
+// Global coming soon mode - set to true to hide all pricing
+const COMING_SOON_MODE = true
 
 interface OfferStackProps {
   productId: string
@@ -65,83 +69,114 @@ export default function OfferStack({ productId, offer, modules, bonuses, pricing
         </div>
         <div className="flex w-full flex-1 flex-col justify-center">
           <div className="rounded-3xl border border-white/10 bg-white/[0.04] p-8 text-center text-white shadow-[0_20px_60px_rgba(8,15,33,0.55)]">
-            <div className="text-sm uppercase tracking-[0.3em] text-white/50">One-time investment</div>
-            <div className="mt-4 flex items-center justify-center gap-3">
-              {offer.originalPrice ? (
-                <span className="text-2xl text-white/40 line-through">
-                  ${offer.originalPrice}
-                </span>
-              ) : null}
-              <span className="text-5xl font-bold text-cyan-200">
-                {offer.primaryPriceDisplay ?? `$${offer.primaryPrice}`}
-              </span>
-            </div>
-            {offer.note ? <p className="mt-4 text-sm text-white/60">{offer.note}</p> : <p className="mt-4 text-sm text-white/60">Lifetime updates included</p>}
-            {(() => {
-              const content = (
-                <span className="block w-full rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-4 text-sm font-semibold uppercase tracking-[0.3em] text-white shadow-[0_16px_55px_rgba(45,212,191,0.35)] transition hover:-translate-y-1 hover:shadow-[0_22px_60px_rgba(56,189,248,0.45)]">
-                  {offer.ctaPrimary}
-                </span>
-              )
-
-              if (isExternal(offer.ctaPrimaryHref)) {
-                return (
-                  <a
-                    href={offer.ctaPrimaryHref}
-                    onClick={() => handleClick('primary', offer.ctaPrimaryHref, offer.ctaPrimaryTracking)}
-                    className="mt-6 inline-flex w-full"
-                    target={offer.ctaPrimaryHref.startsWith('http') ? '_blank' : undefined}
-                    rel={offer.ctaPrimaryHref.startsWith('http') ? 'noreferrer' : undefined}
-                  >
-                    {content}
-                  </a>
-                )
-              }
-
-              return (
+            {COMING_SOON_MODE ? (
+              <>
+                {/* Coming Soon Mode */}
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500/10 text-amber-400 text-sm font-medium mb-4">
+                  <Sparkles className="w-4 h-4" />
+                  Coming Soon
+                </div>
+                <h3 className="text-2xl font-bold text-white mb-3">Join the Waitlist</h3>
+                <p className="text-sm text-white/60 mb-6">
+                  Be the first to know when this product launches. Get early access, exclusive discounts, and behind-the-scenes updates.
+                </p>
                 <Link
-                  href={offer.ctaPrimaryHref}
-                  onClick={() => handleClick('primary', offer.ctaPrimaryHref, offer.ctaPrimaryTracking)}
-                  className="mt-6 inline-flex w-full"
+                  href="/newsletter"
+                  onClick={() => handleClick('waitlist', '/newsletter', 'product-waitlist')}
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-4 text-sm font-semibold uppercase tracking-[0.3em] text-white shadow-[0_16px_55px_rgba(45,212,191,0.35)] transition hover:-translate-y-1 hover:shadow-[0_22px_60px_rgba(56,189,248,0.45)]"
                 >
-                  {content}
+                  <Mail className="w-4 h-4" />
+                  Join Waitlist
                 </Link>
-              )
-            })()}
-            {secondaryLabel && secondaryHref ? (
-              <p className="mt-4 text-xs text-white/50">
-                {isExternal(secondaryHref) ? (
-                  <a
-                    href={secondaryHref}
-                    onClick={() => handleClick('secondary', secondaryHref, secondaryTracking)}
-                    className="underline-offset-4 hover:underline"
-                    target={secondaryHref.startsWith('http') ? '_blank' : undefined}
-                    rel={secondaryHref.startsWith('http') ? 'noreferrer' : undefined}
-                  >
-                    {secondaryLabel}
-                  </a>
-                ) : (
-                  <Link
-                    href={secondaryHref}
-                    onClick={() => handleClick('secondary', secondaryHref, secondaryTracking)}
-                    className="underline-offset-4 hover:underline"
-                  >
-                    {secondaryLabel}
-                  </Link>
-                )}
-              </p>
-            ) : null}
-            <div className="mt-6 rounded-2xl border border-cyan-500/20 bg-cyan-500/10 p-4 text-left text-xs text-white/70">
-              <div className="text-sm font-semibold uppercase tracking-[0.3em] text-cyan-200">
-                {offer.guarantee.label}
-              </div>
-              <p className="mt-2 leading-relaxed">{offer.guarantee.description}</p>
-            </div>
+                <div className="mt-6 rounded-2xl border border-amber-500/20 bg-amber-500/10 p-4 text-left text-xs text-white/70">
+                  <div className="text-sm font-semibold uppercase tracking-[0.3em] text-amber-200">
+                    Waitlist Benefits
+                  </div>
+                  <p className="mt-2 leading-relaxed">Priority access when launched, exclusive early-bird pricing, and insider updates on development progress.</p>
+                </div>
+              </>
+            ) : (
+              <>
+                {/* Normal Pricing Mode */}
+                <div className="text-sm uppercase tracking-[0.3em] text-white/50">One-time investment</div>
+                <div className="mt-4 flex items-center justify-center gap-3">
+                  {offer.originalPrice ? (
+                    <span className="text-2xl text-white/40 line-through">
+                      ${offer.originalPrice}
+                    </span>
+                  ) : null}
+                  <span className="text-5xl font-bold text-cyan-200">
+                    {offer.primaryPriceDisplay ?? `$${offer.primaryPrice}`}
+                  </span>
+                </div>
+                {offer.note ? <p className="mt-4 text-sm text-white/60">{offer.note}</p> : <p className="mt-4 text-sm text-white/60">Lifetime updates included</p>}
+                {(() => {
+                  const content = (
+                    <span className="block w-full rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 px-6 py-4 text-sm font-semibold uppercase tracking-[0.3em] text-white shadow-[0_16px_55px_rgba(45,212,191,0.35)] transition hover:-translate-y-1 hover:shadow-[0_22px_60px_rgba(56,189,248,0.45)]">
+                      {offer.ctaPrimary}
+                    </span>
+                  )
+
+                  if (isExternal(offer.ctaPrimaryHref)) {
+                    return (
+                      <a
+                        href={offer.ctaPrimaryHref}
+                        onClick={() => handleClick('primary', offer.ctaPrimaryHref, offer.ctaPrimaryTracking)}
+                        className="mt-6 inline-flex w-full"
+                        target={offer.ctaPrimaryHref.startsWith('http') ? '_blank' : undefined}
+                        rel={offer.ctaPrimaryHref.startsWith('http') ? 'noreferrer' : undefined}
+                      >
+                        {content}
+                      </a>
+                    )
+                  }
+
+                  return (
+                    <Link
+                      href={offer.ctaPrimaryHref}
+                      onClick={() => handleClick('primary', offer.ctaPrimaryHref, offer.ctaPrimaryTracking)}
+                      className="mt-6 inline-flex w-full"
+                    >
+                      {content}
+                    </Link>
+                  )
+                })()}
+                {secondaryLabel && secondaryHref ? (
+                  <p className="mt-4 text-xs text-white/50">
+                    {isExternal(secondaryHref) ? (
+                      <a
+                        href={secondaryHref}
+                        onClick={() => handleClick('secondary', secondaryHref, secondaryTracking)}
+                        className="underline-offset-4 hover:underline"
+                        target={secondaryHref.startsWith('http') ? '_blank' : undefined}
+                        rel={secondaryHref.startsWith('http') ? 'noreferrer' : undefined}
+                      >
+                        {secondaryLabel}
+                      </a>
+                    ) : (
+                      <Link
+                        href={secondaryHref}
+                        onClick={() => handleClick('secondary', secondaryHref, secondaryTracking)}
+                        className="underline-offset-4 hover:underline"
+                      >
+                        {secondaryLabel}
+                      </Link>
+                    )}
+                  </p>
+                ) : null}
+                <div className="mt-6 rounded-2xl border border-cyan-500/20 bg-cyan-500/10 p-4 text-left text-xs text-white/70">
+                  <div className="text-sm font-semibold uppercase tracking-[0.3em] text-cyan-200">
+                    {offer.guarantee.label}
+                  </div>
+                  <p className="mt-2 leading-relaxed">{offer.guarantee.description}</p>
+                </div>
+              </>
+            )}
           </div>
         </div>
       </div>
 
-      {pricingTiers && pricingTiers.length > 0 ? (
+      {pricingTiers && pricingTiers.length > 0 && !COMING_SOON_MODE ? (
         <div className="mx-auto mt-12 max-w-6xl px-6">
           <h3 className="text-center text-2xl font-semibold text-white">Choose Your Path</h3>
           <div className="mt-8 grid gap-6 md:grid-cols-3">

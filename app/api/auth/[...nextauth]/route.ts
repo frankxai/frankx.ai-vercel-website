@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import NextAuth from 'next-auth'
 import { authOptions } from '@/lib/auth'
 
@@ -11,6 +12,7 @@ import { authOptions } from '@/lib/auth'
  * - /api/auth/csrf - CSRF token
  */
 
-const handler = NextAuth(authOptions)
+const { handlers } = NextAuth(authOptions) as any
 
-export { handler as GET, handler as POST }
+export const GET = handlers.GET
+export const POST = handlers.POST
