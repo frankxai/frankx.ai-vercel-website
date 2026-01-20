@@ -57,6 +57,11 @@ export default function EnhancedPDFViewer({
 
   // Track viewing session (every 30 seconds)
   useEffect(() => {
+    // Copy ref to local variable for cleanup function (lint rule requirement)
+    const pagesViewed = pagesViewedRef.current
+    const startTime = startTimeRef.current
+    const interval = trackingIntervalRef.current
+
     trackingIntervalRef.current = setInterval(() => {
       const timeSpent = Math.floor((Date.now() - startTimeRef.current) / 1000)
       const completionRate = numPages ? (pagesViewedRef.current.size / numPages) * 100 : 0
@@ -73,18 +78,21 @@ export default function EnhancedPDFViewer({
     }, 30000) // Track every 30 seconds
 
     return () => {
+      if (interval) {
+        clearInterval(interval)
+      }
       if (trackingIntervalRef.current) {
         clearInterval(trackingIntervalRef.current)
       }
 
-      // Final tracking on unmount
-      const timeSpent = Math.floor((Date.now() - startTimeRef.current) / 1000)
-      const completionRate = numPages ? (pagesViewedRef.current.size / numPages) * 100 : 0
+      // Final tracking on unmount - use local copies
+      const timeSpent = Math.floor((Date.now() - startTime) / 1000)
+      const completionRate = numPages ? (pagesViewed.size / numPages) * 100 : 0
 
       trackPDFView(
         guideSlug,
         title,
-        Array.from(pagesViewedRef.current),
+        Array.from(pagesViewed),
         timeSpent,
         completionRate
       )

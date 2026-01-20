@@ -21,6 +21,8 @@ const PDFViewer = dynamic(() => import('@/components/ui/PDFViewer'), {
 
 export default function SoulbookPreviewPage() {
   const [emailModalOpen, setEmailModalOpen] = useState(false)
+  // Generate stable sessionId on mount using lazy state initializer
+  const [sessionId] = useState(() => `session-${Date.now()}`)
 
   // Use HTML template as primary source (PDFs are empty directory)
   // Fallback chain: PDF → HTML template → Error
@@ -126,7 +128,7 @@ export default function SoulbookPreviewPage() {
         pdfTitle="The Creator's Soulbook"
         pdfUrl={htmlFallbackUrl || pdfUrl}
         guideSlug="soulbook"
-        sessionId={`session-${Date.now()}`}
+        sessionId={sessionId}
         htmlFallbackUrl={htmlFallbackUrl}
       />
     </div>
