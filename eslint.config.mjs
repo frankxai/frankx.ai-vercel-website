@@ -3,17 +3,18 @@ import tseslint from 'typescript-eslint';
 import react from 'eslint-plugin-react';
 import globals from 'globals';
 
-export default [
-  // Global ignores
+const config = [
+  // Global ignores - must be first and use proper glob patterns
   {
     ignores: [
-      'tina-frankx/**',
-      '.worktrees/**',
-      'node_modules/**',
-      '.next/**',
-      'out/**',
-      'build/**',
-      'dist/**',
+      '**/tina-frankx/**',
+      '**/.worktrees/**',
+      '**/node_modules/**',
+      '**/.next/**',
+      '**/out/**',
+      '**/build/**',
+      '**/dist/**',
+      '**/agentic-creator-os/**',
     ],
   },
   { languageOptions: { globals: globals.browser } },
@@ -31,3 +32,5 @@ export default [
     },
   },
 ];
+
+export default config;

@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
@@ -139,6 +139,8 @@ export default function CoEBuilderPage() {
   const [selectedDomains, setSelectedDomains] = useState<string[]>([])
   const [customAgents, setCustomAgents] = useState<SelectedAgent[]>([])
   const [showExport, setShowExport] = useState(false)
+  // Counter ref for generating unique IDs (avoids impure Date.now during render)
+  const agentIdCounter = useRef(0)
 
   const toggleDomain = (domainId: string) => {
     if (selectedDomains.includes(domainId)) {
@@ -153,8 +155,9 @@ export default function CoEBuilderPage() {
     const domain = domainTemplates.find((d) => d.id === domainId)
     if (!domain) return
 
+    agentIdCounter.current += 1
     const newAgent: SelectedAgent = {
-      id: `${domainId}-${Date.now()}`,
+      id: `${domainId}-${agentIdCounter.current}`,
       domainId,
       name: `Custom ${domain.name} Agent`,
       customInstructions: '',

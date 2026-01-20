@@ -1,8 +1,8 @@
 'use client'
 
-import { useMemo, useState } from 'react'
+import { useState } from 'react'
 import { type TeamMember } from '@/lib/team-members'
-import { getIcon } from '@/lib/icon-map'
+import { IconRenderer } from '@/lib/icon-map'
 import { motion } from 'framer-motion'
 import { ArrowUpRight, Sparkles } from 'lucide-react'
 
@@ -31,8 +31,6 @@ const platformBadgeColors = {
 
 export function TeamMemberCard({ member, index }: TeamMemberCardProps) {
   const [isFlipped, setIsFlipped] = useState(false)
-  // Memoize icon lookup to avoid "component created during render" lint warning
-  const Icon = useMemo(() => getIcon(member.icon), [member.icon])
 
   const gradientClass = member.gradient
 
@@ -81,7 +79,7 @@ export function TeamMemberCard({ member, index }: TeamMemberCardProps) {
                 className={`relative w-24 h-24 rounded-2xl bg-gradient-to-br ${gradientClass} p-0.5 transform group-hover:scale-110 transition-transform duration-300`}
               >
                 <div className="w-full h-full rounded-2xl bg-slate-900/90 flex items-center justify-center backdrop-blur-sm">
-                  <Icon className="w-12 h-12 text-white drop-shadow-lg" />
+                  <IconRenderer name={member.icon} className="w-12 h-12 text-white drop-shadow-lg" />
                 </div>
                 {/* Sparkle effect */}
                 <div className="absolute -top-1 -right-1 w-3 h-3 bg-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity animate-pulse" />

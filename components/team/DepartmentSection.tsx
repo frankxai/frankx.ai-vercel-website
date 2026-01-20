@@ -1,8 +1,7 @@
 'use client'
 
-import { useMemo } from 'react'
 import { type Department, type TeamMember } from '@/lib/team-members'
-import { getIcon } from '@/lib/icon-map'
+import { IconRenderer } from '@/lib/icon-map'
 import { motion } from 'framer-motion'
 import { TeamMemberCard } from './TeamMemberCard'
 
@@ -13,8 +12,6 @@ interface DepartmentSectionProps {
 }
 
 export function DepartmentSection({ department, members, index }: DepartmentSectionProps) {
-  // Memoize icon lookup to avoid "component created during render" lint warning
-  const Icon = useMemo(() => getIcon(department.icon), [department.icon])
 
   return (
     <motion.section
@@ -40,7 +37,7 @@ export function DepartmentSection({ department, members, index }: DepartmentSect
             {/* Department Icon */}
             <div className={`relative w-16 h-16 rounded-2xl bg-gradient-to-br ${department.gradient} p-0.5`}>
               <div className="w-full h-full rounded-2xl bg-slate-900/90 backdrop-blur-sm flex items-center justify-center">
-                <Icon className="w-8 h-8 text-white" />
+                <IconRenderer name={department.icon} className="w-8 h-8 text-white" />
               </div>
             </div>
 

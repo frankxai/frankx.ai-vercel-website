@@ -38,33 +38,38 @@ export default function EnhancedPDFViewer({
   const [error, setError] = useState<string | null>(null)
   const [isEmailModalOpen, setIsEmailModalOpen] = useState(false)
 
-  // Analytics tracking
-  const [pagesViewed, setPagesViewed] = useState<Set<number>>(new Set([1]))
-  // Use lazy initializer to avoid impure Date.now() during render
-  const [startTime] = useState(() => Date.now())
-  const [lastTrackTime, setLastTrackTime] = useState(() => Date.now())
+  // Analytics tracking - use refs to avoid setState in effects
+  const pagesViewedRef = useRef<Set<number>>(new Set([1]))
+  const startTimeRef = useRef<number>(0)
+  const lastTrackTimeRef = useRef<number>(0)
   const trackingIntervalRef = useRef<NodeJS.Timeout>()
 
-  // Track page views
+  // Initialize timestamps on mount
   useEffect(() => {
-    setPagesViewed(prev => new Set([...prev, pageNumber]))
+    startTimeRef.current = Date.now()
+    lastTrackTimeRef.current = Date.now()
+  }, [])
+
+  // Track page views - update ref instead of state
+  useEffect(() => {
+    pagesViewedRef.current.add(pageNumber)
   }, [pageNumber])
 
   // Track viewing session (every 30 seconds)
   useEffect(() => {
     trackingIntervalRef.current = setInterval(() => {
-      const timeSpent = Math.floor((Date.now() - startTime) / 1000)
-      const completionRate = numPages ? (pagesViewed.size / numPages) * 100 : 0
+      const timeSpent = Math.floor((Date.now() - startTimeRef.current) / 1000)
+      const completionRate = numPages ? (pagesViewedRef.current.size / numPages) * 100 : 0
 
       trackPDFView(
         guideSlug,
         title,
-        Array.from(pagesViewed),
+        Array.from(pagesViewedRef.current),
         timeSpent,
         completionRate
       )
 
-      setLastTrackTime(Date.now())
+      lastTrackTimeRef.current = Date.now()
     }, 30000) // Track every 30 seconds
 
     return () => {
@@ -73,18 +78,18 @@ export default function EnhancedPDFViewer({
       }
 
       // Final tracking on unmount
-      const timeSpent = Math.floor((Date.now() - startTime) / 1000)
-      const completionRate = numPages ? (pagesViewed.size / numPages) * 100 : 0
+      const timeSpent = Math.floor((Date.now() - startTimeRef.current) / 1000)
+      const completionRate = numPages ? (pagesViewedRef.current.size / numPages) * 100 : 0
 
       trackPDFView(
         guideSlug,
         title,
-        Array.from(pagesViewed),
+        Array.from(pagesViewedRef.current),
         timeSpent,
         completionRate
       )
     }
-  }, [guideSlug, title, numPages, pagesViewed, startTime])
+  }, [guideSlug, title, numPages])
 
   const onDocumentLoadSuccess = useCallback(({ numPages }: { numPages: number }) => {
     setNumPages(numPages)
