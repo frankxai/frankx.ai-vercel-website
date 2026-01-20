@@ -112,12 +112,13 @@ function OrbitingRing({ radius, speed, color }: { radius: number; speed: number;
 }
 
 // Floating data cubes
-function DataCube({ position, size = 0.2 }: { position: [number, number, number]; size?: number }) {
+function DataCube({ position, size = 0.2, seed = 1 }: { position: [number, number, number]; size?: number; seed?: number }) {
   const ref = useRef<THREE.Mesh>(null)
+  // Use seed-based deterministic rotation speed to avoid impure Math.random during render
   const rotationSpeed = useMemo(() => ({
-    x: Math.random() * 0.5 + 0.2,
-    y: Math.random() * 0.5 + 0.2,
-  }), [])
+    x: ((seed * 9301 + 49297) % 233280) / 233280 * 0.5 + 0.2,
+    y: ((seed * 9301 + 49297) % 233281) / 233281 * 0.5 + 0.2,
+  }), [seed])
 
   useFrame((state) => {
     if (ref.current) {
@@ -144,19 +145,26 @@ function DataCube({ position, size = 0.2 }: { position: [number, number, number]
   )
 }
 
+// Simple seeded random function for deterministic particle generation
+function seededRandom(seed: number): number {
+  const x = Math.sin(seed) * 10000
+  return x - Math.floor(x)
+}
+
 // Particle field
-function ParticleField({ count = 100 }: { count?: number }) {
+function ParticleField({ count = 100, seed = 42 }: { count?: number; seed?: number }) {
   const ref = useRef<THREE.Points>(null)
 
   const particles = useMemo(() => {
     const positions = new Float32Array(count * 3)
     for (let i = 0; i < count * 3; i += 3) {
-      positions[i] = (Math.random() - 0.5) * 10
-      positions[i + 1] = (Math.random() - 0.5) * 10
-      positions[i + 2] = (Math.random() - 0.5) * 10
+      // Use deterministic seeded random to avoid impure Math.random during render
+      positions[i] = (seededRandom(seed + i) - 0.5) * 10
+      positions[i + 1] = (seededRandom(seed + i + 1) - 0.5) * 10
+      positions[i + 2] = (seededRandom(seed + i + 2) - 0.5) * 10
     }
     return positions
-  }, [count])
+  }, [count, seed])
 
   useFrame((state) => {
     if (ref.current) {
@@ -233,9 +241,9 @@ function Scene() {
       ))}
 
       {/* Data cubes */}
-      <DataCube position={[3, 1.5, -1]} size={0.15} />
-      <DataCube position={[-3, -1, 1]} size={0.12} />
-      <DataCube position={[2.5, -1.5, 0.5]} size={0.18} />
+      <DataCube position={[3, 1.5, -1]} size={0.15} seed={1} />
+      <DataCube position={[-3, -1, 1]} size={0.12} seed={2} />
+      <DataCube position={[2.5, -1.5, 0.5]} size={0.18} seed={3} />
 
       {/* Particle field */}
       <ParticleField count={150} />

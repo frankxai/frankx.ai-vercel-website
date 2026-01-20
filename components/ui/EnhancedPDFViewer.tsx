@@ -40,8 +40,9 @@ export default function EnhancedPDFViewer({
 
   // Analytics tracking
   const [pagesViewed, setPagesViewed] = useState<Set<number>>(new Set([1]))
-  const [startTime] = useState(Date.now())
-  const [lastTrackTime, setLastTrackTime] = useState(Date.now())
+  // Use lazy initializer to avoid impure Date.now() during render
+  const [startTime] = useState(() => Date.now())
+  const [lastTrackTime, setLastTrackTime] = useState(() => Date.now())
   const trackingIntervalRef = useRef<NodeJS.Timeout>()
 
   // Track page views

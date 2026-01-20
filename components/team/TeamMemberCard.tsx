@@ -1,10 +1,10 @@
 'use client'
 
+import { useMemo, useState } from 'react'
 import { type TeamMember } from '@/lib/team-members'
 import { getIcon } from '@/lib/icon-map'
 import { motion } from 'framer-motion'
 import { ArrowUpRight, Sparkles } from 'lucide-react'
-import { useState } from 'react'
 
 interface TeamMemberCardProps {
   member: TeamMember
@@ -31,7 +31,8 @@ const platformBadgeColors = {
 
 export function TeamMemberCard({ member, index }: TeamMemberCardProps) {
   const [isFlipped, setIsFlipped] = useState(false)
-  const Icon = getIcon(member.icon)
+  // Memoize icon lookup to avoid "component created during render" lint warning
+  const Icon = useMemo(() => getIcon(member.icon), [member.icon])
 
   const gradientClass = member.gradient
 

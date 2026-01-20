@@ -4,6 +4,18 @@ import react from 'eslint-plugin-react';
 import globals from 'globals';
 
 export default [
+  // Global ignores
+  {
+    ignores: [
+      'tina-frankx/**',
+      '.worktrees/**',
+      'node_modules/**',
+      '.next/**',
+      'out/**',
+      'build/**',
+      'dist/**',
+    ],
+  },
   { languageOptions: { globals: globals.browser } },
   js.configs.recommended,
   ...tseslint.configs.recommended,

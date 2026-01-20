@@ -62,11 +62,25 @@ export default function GuideTestimonials({ guideSlug, className = '' }: GuideTe
     ? testimonials.filter(t => t.guideSlug === guideSlug)
     : testimonials
 
+  const currentTestimonial = filteredTestimonials[currentIndex]
+
+  // Auto-rotate testimonials - must be called before conditional returns
+  useEffect(() => {
+    if (filteredTestimonials.length <= 1) return
+
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) =>
+        prev === filteredTestimonials.length - 1 ? 0 : prev + 1
+      )
+    }, 8000)
+
+    return () => clearInterval(interval)
+  }, [currentIndex, filteredTestimonials.length])
+
+  // Early return after hooks
   if (filteredTestimonials.length === 0) {
     return null
   }
-
-  const currentTestimonial = filteredTestimonials[currentIndex]
 
   const goToPrevious = () => {
     setCurrentIndex((prev) =>
@@ -79,17 +93,6 @@ export default function GuideTestimonials({ guideSlug, className = '' }: GuideTe
       prev === filteredTestimonials.length - 1 ? 0 : prev + 1
     )
   }
-
-  // Auto-rotate testimonials
-  useEffect(() => {
-    if (filteredTestimonials.length <= 1) return
-
-    const interval = setInterval(() => {
-      goToNext()
-    }, 8000)
-
-    return () => clearInterval(interval)
-  }, [currentIndex, filteredTestimonials.length])
 
   return (
     <div className={`relative ${className}`}>
