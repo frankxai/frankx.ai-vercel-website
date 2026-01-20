@@ -9,15 +9,13 @@ import Confetti from 'react-confetti'
 export default function NewsletterThankYouPage() {
   const router = useRouter()
   const [showConfetti, setShowConfetti] = useState(true)
-  const [dimensions, setDimensions] = useState({ width: 0, height: 0 })
+  // Use lazy initializer to get window dimensions safely
+  const [dimensions] = useState(() => ({
+    width: typeof window !== 'undefined' ? window.innerWidth : 800,
+    height: typeof window !== 'undefined' ? window.innerHeight : 600
+  }))
 
   useEffect(() => {
-    // Set dimensions for confetti
-    setDimensions({
-      width: window.innerWidth,
-      height: window.innerHeight
-    })
-
     // Stop confetti after 5 seconds
     const confettiTimer = setTimeout(() => {
       setShowConfetti(false)

@@ -21,6 +21,8 @@ const PDFViewer = dynamic(() => import('@/components/ui/PDFViewer'), {
 
 export default function VibeOSPreviewPage() {
   const [emailModalOpen, setEmailModalOpen] = useState(false)
+  // Generate stable sessionId on mount using lazy state initializer
+  const [sessionId] = useState(() => `session-${Date.now()}`)
 
   // Use HTML template as primary source (PDFs are empty directory)
   // Fallback chain: PDF → HTML template → Error
@@ -126,7 +128,7 @@ export default function VibeOSPreviewPage() {
         pdfTitle="Vibe OS"
         pdfUrl={htmlFallbackUrl || pdfUrl}
         guideSlug="vibe-os"
-        sessionId={`session-${Date.now()}`}
+        sessionId={sessionId}
         htmlFallbackUrl={htmlFallbackUrl}
       />
     </div>
