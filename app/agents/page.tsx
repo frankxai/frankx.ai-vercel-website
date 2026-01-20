@@ -1,4 +1,5 @@
 import { Metadata } from 'next'
+import Link from 'next/link'
 import AgentShowcase from '@/components/sections/AgentShowcase'
 import AuroraGradient from '@/components/ui/AuroraGradient'
 
@@ -91,18 +92,18 @@ export default function AgentsPage() {
               to experience the full power of the agent team.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <a
+              <Link
                 href="/products/soulbook"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-slate-900 font-semibold rounded-xl hover:bg-white/90 transition-colors"
               >
                 Get Free Soulbook
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/products"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 border border-white/20 text-white font-medium rounded-xl hover:bg-white/10 transition-colors"
               >
                 Explore Products
-              </a>
+              </Link>
             </div>
           </AuroraGradient>
         </div>
