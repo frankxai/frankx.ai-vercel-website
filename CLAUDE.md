@@ -1,6 +1,59 @@
 # FrankX Claude Code Configuration
 *Personal Hub for Creator AI Transformation*
 
+---
+
+## 🚨 CRITICAL: Production Deployment Rules (READ FIRST)
+
+**MANDATORY FOR ALL AGENTS: Content must be pushed to BOTH repos to go live!**
+
+### Two-Repo Architecture
+| Repo | Purpose | Push To |
+|------|---------|---------|
+| `frankxai/FrankX` | Private development, all files | `origin main` |
+| `frankxai/frankx.ai-vercel-website` | **PRODUCTION**, Vercel deploys | `.worktrees/vercel-ui-ux` |
+
+### When Creating Content (Blog, Pages, Images):
+
+1. **Create in main FrankX repo** (where you work)
+2. **Commit to FrankX** (`git push origin main`)
+3. **ALSO sync to production**:
+   ```bash
+   # Copy files to production clone
+   cp content/blog/new-article.mdx .worktrees/vercel-ui-ux/content/blog/
+   cp public/images/blog/new-hero.jpg .worktrees/vercel-ui-ux/public/images/blog/
+
+   # Commit and push to production
+   cd .worktrees/vercel-ui-ux
+   git add -A
+   git commit -m "feat: Add new article"
+   git push origin main  # This deploys to frankx.ai!
+   ```
+
+### What Goes to Production
+| ✅ SYNC | ❌ KEEP PRIVATE |
+|---------|-----------------|
+| `app/` pages & routes | `.claude/`, `.claude-skills/` |
+| `components/` | `.agent/`, `.worktrees/` |
+| `content/blog/` | `docs/` (internal) |
+| `public/images/` | `backups/`, `research/` |
+| `lib/` utilities | API keys, secrets |
+
+### If Worktree is Broken
+```bash
+# Clone production repo fresh
+git clone git@github.com:frankxai/frankx.ai-vercel-website.git .worktrees/vercel-ui-ux
+```
+
+### Verification
+- Production repo: https://github.com/frankxai/frankx.ai-vercel-website
+- Live site: https://frankx.ai
+- Vercel dashboard: https://vercel.com/frankxai
+
+**⚠️ If content isn't on frankx.ai, it wasn't pushed to the vercel-website repo!**
+
+---
+
 ## 🌟 Core Mission
 Transform creators from Tech-Overwhelmed to AI-Empowered through Frank's musician-technologist journey: 500+ AI songs, Oracle expertise, and soul-aligned creative systems that amplify expression, not replace it.
 
@@ -254,6 +307,65 @@ FrankX (Parent Folder)         This Repo (Production)
 ## 🗓️ Daily Operating Ritual
 
 The agents collaborate through the [Daily Intelligence Operations](docs/DAILY_INTELLIGENCE_OPERATIONS.md) cadence. Review it to align sprints, SEO deliverables, and content releases before engaging the studio.
+
+## 📦 Git Architecture & Sync Strategy
+
+FrankX uses a **dual-repo architecture** for managing private development and public deployment:
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│  FRANKX (Private) - /mnt/c/Users/Frank/FrankX               │
+│  Remote: git@github.com:frankxai/FrankX.git                 │
+│  Branch: main (development)                                 │
+│  Contains: All files including private .claude/, .agent/    │
+└─────────────────────────────────────────────────────────────┘
+                           │
+                           │ Copy public files →
+                           ▼
+┌─────────────────────────────────────────────────────────────┐
+│  VERCEL WEBSITE (Public) - PRODUCTION                       │
+│  Remote: git@github.com:frankxai/frankx.ai-vercel-website   │
+│  Location: .worktrees/vercel-ui-ux (git clone)              │
+│  Deployed: https://frankx.ai                                │
+│  Contains: Only public files (app/, components/, etc.)      │
+└─────────────────────────────────────────────────────────────┘
+```
+
+**Key Documents:**
+- `docs/SYNC_STRATEGY.md` - Complete sync rules and workflows
+- `docs/DEPLOYMENT_STRATEGY.md` - Deployment procedures
+
+**Manual Sync (Recommended for New Content):**
+```bash
+# 1. Copy files to production
+cp content/blog/new-article.mdx .worktrees/vercel-ui-ux/content/blog/
+cp app/new-page/page.tsx .worktrees/vercel-ui-ux/app/new-page/
+
+# 2. Commit in production repo
+cd .worktrees/vercel-ui-ux
+git add -A && git commit -m "feat: Add new content"
+git push origin main
+
+# 3. Vercel auto-deploys to frankx.ai
+```
+
+**Script Sync (for bulk operations):**
+```bash
+./scripts/sync-to-vercel.sh
+./scripts/sync-workshops.sh
+```
+
+**What Syncs vs Stays Private:**
+| Sync to Public | Stay Private |
+|----------------|--------------|
+| `app/` | `.claude/` |
+| `components/` | `.agent/` |
+| `lib/` | `.worktrees/` |
+| `content/` | `backups/` |
+| `public/` | `docs/` (internal notes) |
+| `workshops/` | `.claude-skills/` |
+
+---
 
 ## 📝 MANDATORY: Automatic Session Logging
 
