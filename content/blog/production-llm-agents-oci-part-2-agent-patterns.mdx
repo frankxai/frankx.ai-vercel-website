@@ -1,155 +1,719 @@
 ---
-title: 'Production LLMs & AI Agents on OCI: Part 2 - Agent Patterns That Actually Scale'
-date: '2026-01-20'
-description: 'Managed agents vs framework agents: when to use OCI AI Agent Platform/Agent Hub, when to run LangGraph on OKE, and how to avoid building everything twice.'
+title: 'Production LLMs & AI Agents on OCI: Part 2 - Six Agent Orchestration Patterns'
+date: '2026-01-21'
+description: 'The complete pattern library for agent orchestration on OCI: Sequential, Concurrent, Group Chat, Handoff, Orchestrator-Worker, and Human-in-the-Loop. Decision criteria, OCI service mapping, and when to use each pattern.'
 image: '/images/blog/oci-agent-patterns-hero.jpg'
-tags: ['Enterprise AI', 'OCI', 'Agent Patterns', 'LangGraph', 'Agent Hub', 'Oracle']
+tags: ['Enterprise AI', 'OCI', 'Agent Patterns', 'LangGraph', 'Orchestration', 'Oracle', 'Agentic AI']
 author: 'Frank'
 category: 'Enterprise AI'
-readingTime: '12 min read'
+readingTime: '22 min read'
 ---
 
-# Production LLMs and AI Agents on OCI: Agent Patterns That Actually Scale
+# Production LLMs and AI Agents on OCI: Six Agent Orchestration Patterns
 
-**TL;DR:** Enterprises typically land in one of two agent patterns: managed runtime (OCI AI Agent Platform/Agent Hub) for speed and consistency, or framework runtime (LangGraph/LangChain on OKE) for maximum control. Many organizations use both. This post helps you decide when to use which.
-
----
-
-## Two Production Paths: Managed vs Framework Agents
-
-Both patterns are valid. The key is being explicit about which you're choosing—and why—before you start building.
-
-### Path A: Managed Agent Runtime (Fastest to Value)
-
-Use **OCI AI Agent Platform** and **Agent Hub** as your orchestration layer.
-
-| Pros | Cons |
-|------|------|
-| Speed to deployment | Less control over internal logic |
-| Managed scaling and infrastructure | Vendor-specific patterns |
-| Consistent platform to onboard teams | May require workarounds for edge cases |
-| Built-in security and compliance | Tool limitations early in platform maturity |
-
-**Best when:** You want speed, managed scaling, and a consistent platform to onboard multiple teams.
-
-### Path B: Framework Agent Runtime (Maximum Control)
-
-Run **LangGraph/LangChain-style services** on OCI compute (OKE, Container Instances).
-
-| Pros | Cons |
-|------|------|
-| Full control over agent logic | You own the infrastructure |
-| Custom workflows and state machines | More DevOps overhead |
-| Framework ecosystem (tools, integrations) | Consistency depends on your standards |
-| Portable across clouds | Security is your responsibility |
-
-**Best when:** You need custom workflows, bespoke tool execution, or deep integration into existing platforms.
-
-### The Hybrid Reality
-
-In practice, many organizations use **both**:
-- **Managed agents** for broad internal productivity and customer-facing assistants
-- **Framework agents** for specialized workflows where you need tight control
+**TL;DR**: Not all agent workflows are equal. This pattern library maps six orchestration patterns to OCI services, with explicit decision criteria for each. Match your workflow requirements to the right pattern before you write a single line of code.
 
 ---
 
-## OCI AI Agent Platform: What You Get
+## The Pattern Selection Problem
 
-### Built-In Integrations
-- **Oracle Databases** (Autonomous DB, MySQL HeatWave)
-- **Object Storage** for document retrieval
-- **OCI Functions** for custom tasks
-- **Oracle Digital Assistant** for conversation management
+Most teams pick an orchestration pattern based on what they saw in a tutorial, not what their workflow actually requires.
 
-### Agent Hub: The Control Center
-- Create, deploy, and govern agents centrally
-- Register multiple specialized agents
-- Meta-agents route requests to the appropriate agent
-- Abstracts complexity of navigating many agents
+This leads to:
+- **Over-engineering**: Building complex multi-agent systems for simple linear workflows
+- **Under-engineering**: Using linear chains when concurrent or collaborative patterns would dramatically improve quality
+- **Wrong abstraction**: Fighting the pattern instead of leveraging it
 
-### Built-In Tools
+The solution: **Pattern-first design**. Understand your workflow characteristics, then select the pattern that fits.
 
-| Tool | What It Does |
-|------|--------------|
-| **SQL Tool** | Execute database queries with self-correction |
-| **RAG Tool** | Document retrieval with hybrid semantic search |
-| **Custom Tool** | Backed by OCI Functions or any API |
-
----
-
-## Framework Agents on OCI: LangGraph/LangChain
-
-### Why LangGraph?
-
-- **Stateful graphs** for complex multi-step workflows
-- **Branching and cycles** (not just linear chains)
-- **Human-in-the-loop** patterns built-in
-- **Persistence** for long-running tasks
-- **Streaming** for responsive UX
-
-### Deployment on OKE
-
-```yaml
-# Example Helm values
-replicaCount: 3
-image:
-  repository: <region>.ocir.io/<tenancy>/agent-service
-  tag: "v1.2.0"
-env:
-  - name: OCI_GENAI_ENDPOINT
-    value: "https://inference.generativeai.<region>.oci.oraclecloud.com"
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                   PATTERN SELECTION FRAMEWORK                    │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                  │
+│  STEP 1: Characterize Your Workflow                              │
+│  ────────────────────────────────────────────────                │
+│  ○ Are steps independent or dependent?                           │
+│  ○ Is the order fixed or dynamic?                                │
+│  ○ Does quality improve with multiple perspectives?              │
+│  ○ Are human checkpoints required?                               │
+│  ○ Is the solution path known upfront?                           │
+│                                                                  │
+│  STEP 2: Match to Pattern                                        │
+│  ────────────────────────────────────────────────                │
+│  ┌─────────────────────────────────────────────────────────────┐│
+│  │ Workflow Type              →  Recommended Pattern            ││
+│  │ ─────────────────────────────────────────────────────────── ││
+│  │ Linear, fixed order        →  Sequential                     ││
+│  │ Independent, parallelizable→  Concurrent                     ││
+│  │ Collaborative, iterative   →  Group Chat                     ││
+│  │ Dynamic routing by context →  Handoff                        ││
+│  │ Complex, evolving plan     →  Orchestrator-Worker            ││
+│  │ High-stakes decisions      →  Human-in-the-Loop              ││
+│  └─────────────────────────────────────────────────────────────┘│
+│                                                                  │
+│  STEP 3: Validate Against Constraints                            │
+│  ────────────────────────────────────────────────                │
+│  ○ Does the pattern fit your team's expertise?                   │
+│  ○ Does OCI provide the required services?                       │
+│  ○ Does the complexity match the value delivered?                │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
 ```
 
 ---
 
-## Tool Standardization: The Secret to Scaling
+## Pattern 1: Sequential Orchestration
 
-### Tool Design Principles
+**Definition**: Chains agents in a predefined linear order. Each agent processes the output from the previous agent, creating a pipeline of specialized transformations.
 
-1. **Single responsibility**: One tool, one job
-2. **Clear schemas**: Input/output types the LLM can understand
-3. **Error handling**: Fail gracefully with useful messages
-4. **Observability built-in**: Every tool call emits telemetry
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                    SEQUENTIAL PATTERN                            │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                  │
+│  ┌─────────┐     ┌─────────┐     ┌─────────┐     ┌─────────┐   │
+│  │ Agent 1 │────►│ Agent 2 │────►│ Agent 3 │────►│ Agent 4 │   │
+│  │ Extract │     │ Analyze │     │  Draft  │     │ Review  │   │
+│  └─────────┘     └─────────┘     └─────────┘     └─────────┘   │
+│                                                                  │
+│  Input ─────────────────────────────────────────────────► Output │
+│                                                                  │
+│  Characteristics:                                                │
+│  ├─ Fixed order, predictable flow                                │
+│  ├─ Each stage adds specific value                               │
+│  ├─ State accumulates through pipeline                           │
+│  └─ Easy to debug (linear trace)                                 │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
+```
 
-### Tool Registry
+### When to Use Sequential
 
-Maintain a versioned catalog of all tools:
-- Tool name and version
-- Input/output schema
-- Permissions required
-- Data classification
-- Owner and support contact
+| Use When | Avoid When |
+|----------|------------|
+| Stages have clear linear dependencies | Stages can be parallelized |
+| Each stage adds specific value for the next | Single agent can handle the full task |
+| Workflow progression is predictable | Workflow requires backtracking |
+| Performance of each stage is well-understood | Agents need to collaborate dynamically |
+
+### OCI Implementation
+
+| Component | OCI Service | Configuration |
+|-----------|-------------|---------------|
+| **Runtime** | OCI AI Agent Platform | Workflow definition with sequential steps |
+| **State** | Autonomous JSON DB | Document state accumulates across stages |
+| **Orchestration** | OKE + LangGraph | `StateGraph` with linear edges |
+| **Monitoring** | OCI APM | Trace spans for each stage |
+
+### Example: Contract Generation Pipeline
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│               CONTRACT GENERATION WORKFLOW                       │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                  │
+│  ┌────────────────┐                                              │
+│  │ 1. TEMPLATE    │  Select appropriate contract template        │
+│  │    SELECTION   │  based on deal parameters                    │
+│  └───────┬────────┘                                              │
+│          │                                                       │
+│          ▼                                                       │
+│  ┌────────────────┐                                              │
+│  │ 2. CLAUSE      │  Customize standard clauses based on         │
+│  │    CUSTOMIZATION│ negotiated terms                            │
+│  └───────┬────────┘                                              │
+│          │                                                       │
+│          ▼                                                       │
+│  ┌────────────────┐                                              │
+│  │ 3. REGULATORY  │  Review against applicable laws and          │
+│  │    COMPLIANCE  │  regulations (GDPR, CCPA, etc.)              │
+│  └───────┬────────┘                                              │
+│          │                                                       │
+│          ▼                                                       │
+│  ┌────────────────┐                                              │
+│  │ 4. RISK        │  Analyze liability exposure, dispute         │
+│  │    ASSESSMENT  │  resolution, termination clauses             │
+│  └────────────────┘                                              │
+│                                                                  │
+│  OCI Services:                                                   │
+│  ├─ Agent Platform: Workflow orchestration                       │
+│  ├─ OCI Generative AI: Cohere Command R+ for legal reasoning     │
+│  ├─ Autonomous DB 23ai: Contract templates + clause library      │
+│  └─ Object Storage: Generated contract documents                 │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
+```
 
 ---
 
-## Decision Framework: Managed vs Framework
+## Pattern 2: Concurrent Orchestration
 
-| Factor | Choose Managed | Choose Framework |
-|--------|----------------|------------------|
-| **Time to production** | < 4 weeks | Can invest 8+ weeks |
-| **Team expertise** | Limited LLM experience | Strong Python skills |
-| **Customization** | Standard patterns work | Unique workflows required |
-| **Scale** | 10s of agents | 100s of specialized agents |
-| **Compliance** | Need managed controls | Can implement own |
-| **Multi-cloud** | OCI-centric | Portability required |
+**Definition**: Runs multiple agents simultaneously on the same task. Each agent provides independent analysis from its unique perspective. Results are aggregated for final output.
 
-Most enterprises: **managed for 80%** of use cases, **framework for the 20%** that need custom control.
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                    CONCURRENT PATTERN                            │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                  │
+│                         ┌─────────┐                              │
+│                    ┌───►│ Agent A │───┐                          │
+│                    │    │ (View 1)│   │                          │
+│                    │    └─────────┘   │                          │
+│                    │                  │                          │
+│  ┌─────────┐      │    ┌─────────┐   │      ┌─────────┐         │
+│  │  INPUT  │──────┼───►│ Agent B │───┼─────►│AGGREGATE│         │
+│  │         │      │    │ (View 2)│   │      │ RESULTS │         │
+│  └─────────┘      │    └─────────┘   │      └─────────┘         │
+│                    │                  │                          │
+│                    │    ┌─────────┐   │                          │
+│                    └───►│ Agent C │───┘                          │
+│                         │ (View 3)│                              │
+│                         └─────────┘                              │
+│                                                                  │
+│  Characteristics:                                                │
+│  ├─ Parallel execution reduces latency                           │
+│  ├─ Multiple independent perspectives                            │
+│  ├─ Requires aggregation strategy                                │
+│  └─ Best for ensemble reasoning                                  │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### When to Use Concurrent
+
+| Use When | Avoid When |
+|----------|------------|
+| Tasks can run in parallel | Agents need to build on each other's work |
+| Multiple perspectives improve quality | Deterministic, reproducible results required |
+| Time-sensitive scenarios | Resource constraints limit parallelization |
+| Brainstorming, ensemble decisions | Conflict resolution logic is too complex |
+
+### OCI Implementation
+
+| Component | OCI Service | Configuration |
+|-----------|-------------|---------------|
+| **Runtime** | OKE with parallel pods | Each agent in separate pod |
+| **Orchestration** | LangGraph parallel nodes | `parallel_branch` construct |
+| **Aggregation** | OCI Functions | Weighted voting, consensus logic |
+| **Monitoring** | OCI APM | Parallel span tracking |
+
+### Example: Investment Analysis
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│               INVESTMENT ANALYSIS WORKFLOW                       │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                  │
+│  Input: Stock ticker + analysis request                          │
+│                                                                  │
+│         ┌───────────────────────────────────────────────┐        │
+│         │              PARALLEL ANALYSIS                 │        │
+│         ├───────────────────────────────────────────────┤        │
+│         │                                               │        │
+│         │  ┌──────────────┐  ┌──────────────┐           │        │
+│         │  │ FUNDAMENTAL  │  │  TECHNICAL   │           │        │
+│         │  │   AGENT      │  │    AGENT     │           │        │
+│         │  │              │  │              │           │        │
+│         │  │ P/E, revenue │  │ RSI, MACD,   │           │        │
+│         │  │ growth, DCF  │  │ support/res  │           │        │
+│         │  └──────────────┘  └──────────────┘           │        │
+│         │                                               │        │
+│         │  ┌──────────────┐  ┌──────────────┐           │        │
+│         │  │  SENTIMENT   │  │     ESG      │           │        │
+│         │  │    AGENT     │  │    AGENT     │           │        │
+│         │  │              │  │              │           │        │
+│         │  │ News, social │  │ Environment, │           │        │
+│         │  │ analyst rpts │  │ governance   │           │        │
+│         │  └──────────────┘  └──────────────┘           │        │
+│         │                                               │        │
+│         └───────────────────────────────────────────────┘        │
+│                              │                                   │
+│                              ▼                                   │
+│                    ┌──────────────────┐                          │
+│                    │   AGGREGATOR     │                          │
+│                    │                  │                          │
+│                    │ Weighted combine │                          │
+│                    │ Confidence score │                          │
+│                    │ Recommendation   │                          │
+│                    └──────────────────┘                          │
+│                                                                  │
+│  OCI Services:                                                   │
+│  ├─ OKE: 4 parallel pods for each agent                          │
+│  ├─ OCI Generative AI: Llama 3.3 70B for analysis                │
+│  ├─ Autonomous DB 23ai: Historical data + embeddings             │
+│  └─ OCI Functions: Aggregation logic                             │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## Pattern 3: Group Chat Orchestration
+
+**Definition**: Multiple agents solve problems through shared conversation threads. A chat manager coordinates flow, determining which agents respond and when.
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                    GROUP CHAT PATTERN                            │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                  │
+│  ┌─────────────────────────────────────────────────────────────┐│
+│  │                    CHAT THREAD                               ││
+│  │                                                              ││
+│  │  [User]: "Design a park for the downtown district"           ││
+│  │                                                              ││
+│  │  [Community Agent]: "Based on resident surveys..."           ││
+│  │                                                              ││
+│  │  [Environment Agent]: "The soil analysis shows..."           ││
+│  │                                                              ││
+│  │  [Budget Agent]: "Construction costs estimate..."            ││
+│  │                                                              ││
+│  │  [Community Agent]: "Addressing the budget concern..."       ││
+│  │                                                              ││
+│  └─────────────────────────────────────────────────────────────┘│
+│                              │                                   │
+│                    ┌─────────▼─────────┐                         │
+│                    │   CHAT MANAGER    │                         │
+│                    │                   │                         │
+│                    │ ○ Select speaker  │                         │
+│                    │ ○ Manage turns    │                         │
+│                    │ ○ Detect completion│                        │
+│                    └───────────────────┘                         │
+│                                                                  │
+│  Characteristics:                                                │
+│  ├─ Collaborative problem-solving                                │
+│  ├─ Iterative refinement through discussion                      │
+│  ├─ Chat manager controls flow                                   │
+│  └─ Best limited to 3 agents to prevent loops                    │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### When to Use Group Chat
+
+| Use When | Avoid When |
+|----------|------------|
+| Creative brainstorming with multiple perspectives | Simple task delegation suffices |
+| Iterative refinement through discussion | Real-time processing required |
+| Quality control with maker-checker loops | Clear hierarchical decision-making |
+| Multidisciplinary problems | Chat manager can't determine completion |
+
+### OCI Implementation
+
+| Component | OCI Service | Configuration |
+|-----------|-------------|---------------|
+| **Runtime** | OCI AI Agent Platform | Multi-agent conversation |
+| **Chat Manager** | OCI Functions | Turn selection logic |
+| **Message Store** | Autonomous JSON DB | Conversation history |
+| **Monitoring** | Logging Analytics | Full conversation audit |
+
+### Maker-Checker Variant
+
+A common group chat pattern where one agent creates and another validates:
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                  MAKER-CHECKER PATTERN                           │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                  │
+│  ┌─────────────┐         ┌─────────────┐                         │
+│  │   MAKER     │────────►│   CHECKER   │                         │
+│  │   AGENT     │◄────────│   AGENT     │                         │
+│  └─────────────┘         └─────────────┘                         │
+│                                                                  │
+│  Loop: Create → Critique → Revise → Approve                      │
+│                                                                  │
+│  Example: Code Generation                                        │
+│  ├─ Maker: Generates code implementation                         │
+│  ├─ Checker: Reviews for bugs, security, style                   │
+│  ├─ Maker: Addresses feedback                                    │
+│  └─ Checker: Approves or requests more changes                   │
+│                                                                  │
+│  OCI Implementation:                                             │
+│  ├─ OCI AI Agent Platform: Both agents in same workflow          │
+│  ├─ OCI Generative AI: Different models for maker/checker        │
+│  │   ├─ Maker: Llama 3.3 70B (code generation)                   │
+│  │   └─ Checker: Cohere Command R+ (reasoning/review)            │
+│  └─ Autonomous DB: Store iterations for learning                 │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## Pattern 4: Handoff Orchestration
+
+**Definition**: Enables dynamic delegation between specialized agents. Each agent assesses whether to handle the task directly or transfer to a more appropriate agent based on context.
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                    HANDOFF PATTERN                               │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                  │
+│  ┌─────────────┐                                                 │
+│  │   TRIAGE    │◄──────── User Request                           │
+│  │   AGENT     │                                                 │
+│  └──────┬──────┘                                                 │
+│         │                                                        │
+│         ├─────────────────┬─────────────────┬──────────────────┐│
+│         ▼                 ▼                 ▼                  ▼│
+│  ┌─────────────┐   ┌─────────────┐   ┌─────────────┐   ┌─────────┐
+│  │  TECHNICAL  │   │  BILLING    │   │  ACCOUNT    │   │ HUMAN   │
+│  │   AGENT     │   │   AGENT     │   │   AGENT     │   │ SUPPORT │
+│  └──────┬──────┘   └──────┬──────┘   └─────────────┘   └─────────┘
+│         │                 │                                      │
+│         │ (can handoff)   │                                      │
+│         └────────────────►│                                      │
+│                                                                  │
+│  Characteristics:                                                │
+│  ├─ Dynamic routing based on context                             │
+│  ├─ One agent active at a time                                   │
+│  ├─ Full control transfers on handoff                            │
+│  └─ Prevents expertise mismatch                                  │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### When to Use Handoff
+
+| Use When | Avoid When |
+|----------|------------|
+| Specialized knowledge required dynamically | Appropriate agent known upfront |
+| Expertise requirements emerge during processing | Simple rule-based routing suffices |
+| Multiple domains but one at a time | Multiple agents needed concurrently |
+| Logical signals indicate capability limits | Risk of infinite handoff loops |
+
+### OCI Implementation
+
+| Component | OCI Service | Configuration |
+|-----------|-------------|---------------|
+| **Runtime** | OCI AI Agent Platform | Agent-to-agent routing |
+| **Router** | OCI Functions | Handoff decision logic |
+| **State** | Autonomous JSON DB | Conversation context persists |
+| **Escalation** | Oracle Digital Assistant | Human handoff integration |
+
+### Example: Customer Service Escalation
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│            CUSTOMER SERVICE HANDOFF WORKFLOW                     │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                  │
+│  Customer: "My internet is slow and I was overcharged"           │
+│                                                                  │
+│  ┌────────────────┐                                              │
+│  │ TRIAGE AGENT   │  Analyzes intent, routes appropriately       │
+│  │                │                                              │
+│  │ Detected:      │                                              │
+│  │ ├─ Technical ──┼──► Technical Agent                           │
+│  │ └─ Billing  ───┼──► (handled after technical)                 │
+│  └────────────────┘                                              │
+│           │                                                      │
+│           ▼                                                      │
+│  ┌────────────────┐                                              │
+│  │ TECHNICAL      │  "Let me check your connection..."           │
+│  │ AGENT          │                                              │
+│  │                │  Runs diagnostics via MCP tool               │
+│  │                │  Identifies router issue                     │
+│  │                │                                              │
+│  │ Handoff signal:│  "Technical resolved. Billing issue          │
+│  │                │   detected in customer context."             │
+│  └───────┬────────┘                                              │
+│          │                                                       │
+│          ▼ (automatic handoff)                                   │
+│  ┌────────────────┐                                              │
+│  │ BILLING AGENT  │  "I see the overcharge. Processing           │
+│  │                │   refund now..."                             │
+│  │                │                                              │
+│  │ Resolution:    │  Issues $15.50 credit                        │
+│  └────────────────┘                                              │
+│                                                                  │
+│  OCI Services:                                                   │
+│  ├─ Agent Platform: Multi-agent workflow with handoff rules      │
+│  ├─ MCP Server on OKE: Network diagnostic tools                  │
+│  ├─ Autonomous DB: Customer account data                         │
+│  └─ OCI Functions: Billing system integration                    │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## Pattern 5: Orchestrator-Worker
+
+**Definition**: A manager agent dynamically builds a task ledger with goals and subgoals, invoking specialized worker agents as needed. The plan evolves as context changes.
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                ORCHESTRATOR-WORKER PATTERN                       │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                  │
+│  ┌─────────────────────────────────────────────────────────────┐│
+│  │                    ORCHESTRATOR AGENT                        ││
+│  │                                                              ││
+│  │  ┌─────────────────────────────────────────────────────────┐││
+│  │  │                    TASK LEDGER                           │││
+│  │  │  ┌──────────────────────────────────────────────────┐   │││
+│  │  │  │ Goal 1: Restore service availability      [DONE] │   │││
+│  │  │  │ Goal 2: Identify root cause              [IN PROGRESS]│││
+│  │  │  │   └─ Subgoal 2a: Analyze logs            [DONE]  │   │││
+│  │  │  │   └─ Subgoal 2b: Check database          [PENDING]│   │││
+│  │  │  │ Goal 3: Implement fix                    [PENDING]│   │││
+│  │  │  └──────────────────────────────────────────────────┘   │││
+│  │  └─────────────────────────────────────────────────────────┘││
+│  └─────────────────────────────────────────────────────────────┘│
+│                              │                                   │
+│              ┌───────────────┼───────────────┐                   │
+│              ▼               ▼               ▼                   │
+│       ┌─────────────┐ ┌─────────────┐ ┌─────────────┐           │
+│       │ DIAGNOSTICS │ │INFRASTRUCTURE│ │ ROLLBACK   │           │
+│       │   WORKER    │ │   WORKER    │ │  WORKER    │           │
+│       └─────────────┘ └─────────────┘ └─────────────┘           │
+│                                                                  │
+│  Characteristics:                                                │
+│  ├─ Plan evolves as context changes                              │
+│  ├─ Workers have tools to affect external systems                │
+│  ├─ Full audit trail via task ledger                             │
+│  └─ Best for open-ended, complex problems                        │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### When to Use Orchestrator-Worker
+
+| Use When | Avoid When |
+|----------|------------|
+| Complex problems without predetermined solution | Solution path is deterministic |
+| Multiple specialists needed to develop valid plan | No requirement for documented plan |
+| Plan review required before/after implementation | Time-sensitive (pattern focuses on planning) |
+| Agents interact with external systems | Low complexity where simpler patterns suffice |
+
+### OCI Implementation
+
+| Component | OCI Service | Configuration |
+|-----------|-------------|---------------|
+| **Orchestrator** | LangGraph on OKE | Dynamic subgraph spawning |
+| **Task Ledger** | Autonomous JSON DB | Real-time plan updates |
+| **Workers** | OCI AI Agent Platform | Specialized agents with tools |
+| **Tools** | MCP Servers on OKE | External system integration |
+| **Audit** | OCI Audit + Logging | Complete decision trail |
+
+### Example: SRE Incident Response
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│              SRE INCIDENT RESPONSE WORKFLOW                      │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                  │
+│  Alert: "Service latency > 5s for 10 minutes"                    │
+│                                                                  │
+│  ┌────────────────────────────────────────────────────────────┐ │
+│  │                  ORCHESTRATOR AGENT                         │ │
+│  │                                                             │ │
+│  │  Initial Task Ledger:                                       │ │
+│  │  ├─ Goal: Restore service availability                      │ │
+│  │  └─ Goal: Identify root cause                               │ │
+│  │                                                             │ │
+│  │  Invokes: DIAGNOSTICS WORKER                                │ │
+│  └────────────────────────────────────────────────────────────┘ │
+│                              │                                   │
+│                              ▼                                   │
+│  ┌────────────────────────────────────────────────────────────┐ │
+│  │                  DIAGNOSTICS WORKER                         │ │
+│  │                                                             │ │
+│  │  Tools: Logging Analytics query, APM trace analysis         │ │
+│  │                                                             │ │
+│  │  Finding: "Database connection pool exhausted"              │ │
+│  └────────────────────────────────────────────────────────────┘ │
+│                              │                                   │
+│                              ▼                                   │
+│  ┌────────────────────────────────────────────────────────────┐ │
+│  │                  ORCHESTRATOR UPDATES PLAN                  │ │
+│  │                                                             │ │
+│  │  Revised Task Ledger:                                       │ │
+│  │  ├─ Goal: Restore service availability                      │ │
+│  │  │   └─ Subgoal: Increase DB connection pool [NEW]          │ │
+│  │  ├─ Goal: Identify root cause                               │ │
+│  │  │   └─ Subgoal: Trace connection leak source [NEW]         │ │
+│  │  └─ Goal: Prevent recurrence [NEW]                          │ │
+│  │                                                             │ │
+│  │  Invokes: INFRASTRUCTURE WORKER                             │ │
+│  └────────────────────────────────────────────────────────────┘ │
+│                              │                                   │
+│                              ▼                                   │
+│  ┌────────────────────────────────────────────────────────────┐ │
+│  │                  INFRASTRUCTURE WORKER                      │ │
+│  │                                                             │ │
+│  │  Tools: Autonomous DB config API, OKE scaling               │ │
+│  │                                                             │ │
+│  │  Actions:                                                   │ │
+│  │  ├─ Increased max_connections from 100 → 200                │ │
+│  │  └─ Scaled OKE replicas 3 → 5                               │ │
+│  │                                                             │ │
+│  │  Result: Latency restored to < 200ms                        │ │
+│  └────────────────────────────────────────────────────────────┘ │
+│                                                                  │
+│  OCI Services:                                                   │
+│  ├─ LangGraph on OKE: Orchestrator runtime                       │
+│  ├─ Agent Platform: Worker agents                                │
+│  ├─ Autonomous DB: Connection pool target                        │
+│  ├─ Logging Analytics: Log queries                               │
+│  ├─ OCI APM: Trace analysis                                      │
+│  └─ OCI Audit: Complete incident audit trail                     │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## Pattern 6: Human-in-the-Loop
+
+**Definition**: Explicit breakpoints where human approval is required before the workflow continues. Critical for high-stakes decisions.
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                 HUMAN-IN-THE-LOOP PATTERN                        │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                  │
+│  ┌─────────┐     ┌─────────┐     ┌─────────────┐     ┌─────────┐│
+│  │ Agent A │────►│ Agent B │────►│ HUMAN       │────►│ Agent C ││
+│  │ Process │     │ Draft   │     │ CHECKPOINT  │     │ Execute ││
+│  └─────────┘     └─────────┘     └──────┬──────┘     └─────────┘│
+│                                         │                        │
+│                                         │                        │
+│                           ┌─────────────┴─────────────┐          │
+│                           │                           │          │
+│                           ▼                           ▼          │
+│                    ┌─────────────┐            ┌─────────────┐    │
+│                    │   APPROVE   │            │   REJECT    │    │
+│                    │             │            │   + FEEDBACK│    │
+│                    └─────────────┘            └─────────────┘    │
+│                           │                           │          │
+│                           ▼                           ▼          │
+│                    Continue to              Return to            │
+│                    Agent C                  Agent B              │
+│                                                                  │
+│  Characteristics:                                                │
+│  ├─ Async approval with timeout                                  │
+│  ├─ Multiple approval tiers possible                             │
+│  ├─ Feedback loop for rejected items                             │
+│  └─ Audit trail of all decisions                                 │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### When to Use Human-in-the-Loop
+
+| Use When | Avoid When |
+|----------|------------|
+| High-stakes decisions (financial, legal, medical) | All decisions can be automated |
+| Compliance requires human approval | Approval latency is unacceptable |
+| Building trust in AI system | Volume makes human review impossible |
+| Training data collection | Clear rules can replace judgment |
+
+### OCI Implementation
+
+| Component | OCI Service | Configuration |
+|-----------|-------------|---------------|
+| **Approval UI** | OCI APEX | Approval queue with context |
+| **State Persistence** | Autonomous JSON DB | Workflow paused state |
+| **Notifications** | OCI Notifications | Slack, email, SMS alerts |
+| **Timeout** | OCI Events + Functions | Auto-escalate on timeout |
+| **Audit** | OCI Audit | All approval decisions logged |
+
+### Checkpoint Placement Strategy
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│              CHECKPOINT PLACEMENT GUIDE                          │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                  │
+│  Checkpoint Type       When Required           Risk Tier         │
+│  ────────────────────────────────────────────────────────────── │
+│  Content approval      Before external publish     HIGH          │
+│  Financial action      Before payment/transfer     HIGH          │
+│  PII handling          Before processing personal  HIGH          │
+│  External API call     Before irreversible action  MEDIUM        │
+│  Budget threshold      When cost > $X              MEDIUM        │
+│  Bulk operation        Before affecting >N records MEDIUM        │
+│  Model selection       Before using new model      LOW           │
+│                                                                  │
+│  Anti-Pattern: Too Many Checkpoints                              │
+│  ────────────────────────────────────────────────────────────── │
+│  ✗ Checkpoint fatigue leads to rubber-stamping                   │
+│  ✗ Approval backlog blocks workflows                             │
+│  ✗ User trust in AI never builds                                 │
+│                                                                  │
+│  Solution: Risk-tiered checkpoints                               │
+│  ├─ HIGH risk: Always require approval                           │
+│  ├─ MEDIUM risk: Approve if confidence > 95%                     │
+│  └─ LOW risk: Notify but don't block                             │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## Pattern Decision Matrix
+
+Quick reference for pattern selection:
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                  PATTERN DECISION MATRIX                         │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                  │
+│  Pattern           Complexity  Parallelism  Control    Use Case  │
+│  ─────────────────────────────────────────────────────────────  │
+│  Sequential        Low         None         High       Pipelines │
+│  Concurrent        Medium      High         Medium     Analysis  │
+│  Group Chat        High        Partial      Low        Creative  │
+│  Handoff           Medium      None         Medium     Routing   │
+│  Orchestrator-Wkr  Very High   Partial      Variable   Complex   │
+│  Human-in-Loop     Medium      None         Very High  Critical  │
+│                                                                  │
+│  Combining Patterns:                                             │
+│  ─────────────────────────────────────────────────────────────  │
+│  ✓ Sequential + Human-in-Loop: Pipeline with approval gates     │
+│  ✓ Concurrent + Group Chat: Multi-perspective with synthesis    │
+│  ✓ Orchestrator + Handoff: Dynamic planning with specialists    │
+│  ✓ Sequential + Concurrent: Linear stages, parallel within      │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+## OCI Service Mapping Summary
+
+| Pattern | Primary OCI Service | Supporting Services |
+|---------|---------------------|---------------------|
+| **Sequential** | AI Agent Platform | Autonomous DB, Object Storage |
+| **Concurrent** | OKE + LangGraph | Functions, APM |
+| **Group Chat** | AI Agent Platform | Logging Analytics, JSON DB |
+| **Handoff** | AI Agent Platform | Digital Assistant, Functions |
+| **Orchestrator-Worker** | LangGraph on OKE | Agent Platform, Audit |
+| **Human-in-Loop** | APEX + Agent Platform | Notifications, Events |
 
 ---
 
 ## What's Next
 
-In [Part 3](/blog/production-llm-agents-oci-part-3-operating-model), we cover the operating model: governance, observability, cost management, and incident response.
+**[Part 3: The Operating Model](/blog/production-llm-agents-oci-part-3-operating-model)** — Evaluation pipelines, CI/CD for AI, incident response, cost management, and the 5-tier maturity roadmap.
 
 ---
 
 ## Resources
 
-- [Deploy agentic AI using OCI AI Agent Platform](https://docs.oracle.com/en/solutions/deploy-agentic-ai-agent-platform/index.html)
-- [Agent Hub announcement](https://blogs.oracle.com/cloud-infrastructure/ai-world-2025-artificial-intelligence)
-- [Open Agent Specification](https://github.com/oracle/agent-spec)
-- [LangGraph documentation](https://langchain-ai.github.io/langgraph/)
+- [Microsoft Agent Framework Design Patterns](https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/ai-agent-design-patterns)
+- [Google Cloud Agent Design Patterns](https://cloud.google.com/blog/topics/partners/building-scalable-ai-agents-design-patterns-with-agent-engine-on-google-cloud)
+- [LangGraph Documentation](https://langchain-ai.github.io/langgraph/)
+- [OCI AI Agent Platform](https://docs.oracle.com/en/solutions/deploy-agentic-ai-agent-platform/index.html)
+- [Oracle Open Agent Specification](https://github.com/oracle/agent-spec)
 
 ---
 
-*This is Part 2 of a 3-part series. [Part 1: Architecture](/blog/production-llm-agents-oci-part-1-architecture) | [Part 3: Operating Model](/blog/production-llm-agents-oci-part-3-operating-model)*
+*This is Part 2 of a 3-part series on production LLM and agentic AI systems on OCI.*
+
+*[Part 1: Six-Plane Architecture](/blog/production-llm-agents-oci-part-1-architecture) | [Part 3: Operating Model](/blog/production-llm-agents-oci-part-3-operating-model)*
