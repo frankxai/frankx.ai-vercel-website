@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="550" viewBox="0 0 800 550">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f172a"/>
+      <stop offset="1" stop-color="#1e293b"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="550" fill="url(#bg)"/>
+
+  <!-- Title -->
+  <text x="400" y="35" fill="#f1f5f9" font-size="22" font-family="system-ui" font-weight="bold" text-anchor="middle">10-Week Implementation Roadmap</text>
+  <text x="400" y="60" fill="#64748b" font-size="12" font-family="system-ui" text-anchor="middle">Don't build everything at once. This sequence works.</text>
+
+  <!-- Phase 1 -->
+  <g transform="translate(30, 85)">
+    <rect width="230" height="80" rx="8" fill="#1e293b" stroke="#06b6d4" stroke-width="2"/>
+    <text x="115" y="22" fill="#06b6d4" font-size="12" font-family="system-ui" font-weight="bold" text-anchor="middle">PHASE 1: FOUNDATION</text>
+    <text x="115" y="40" fill="#f1f5f9" font-size="11" font-family="system-ui" text-anchor="middle">Weeks 1-2</text>
+    <line x1="15" y1="50" x2="215" y2="50" stroke="#334155"/>
+    <text x="15" y="67" fill="#94a3b8" font-size="9" font-family="system-ui">• Map workflow as state diagram</text>
+    <text x="15" y="79" fill="#94a3b8" font-size="9" font-family="system-ui">• Define state contract (types)</text>
+  </g>
+
+  <!-- Phase 2 -->
+  <g transform="translate(285, 85)">
+    <rect width="230" height="80" rx="8" fill="#1e293b" stroke="#22d3ee" stroke-width="2"/>
+    <text x="115" y="22" fill="#22d3ee" font-size="12" font-family="system-ui" font-weight="bold" text-anchor="middle">PHASE 2: MVA</text>
+    <text x="115" y="40" fill="#f1f5f9" font-size="11" font-family="system-ui" text-anchor="middle">Weeks 3-4</text>
+    <line x1="15" y1="50" x2="215" y2="50" stroke="#334155"/>
+    <text x="15" y="67" fill="#94a3b8" font-size="9" font-family="system-ui">• Simple state machine</text>
+    <text x="15" y="79" fill="#94a3b8" font-size="9" font-family="system-ui">• Deploy to staging</text>
+  </g>
+
+  <!-- Phase 3 -->
+  <g transform="translate(540, 85)">
+    <rect width="230" height="80" rx="8" fill="#1e293b" stroke="#0ea5e9" stroke-width="2"/>
+    <text x="115" y="22" fill="#0ea5e9" font-size="12" font-family="system-ui" font-weight="bold" text-anchor="middle">PHASE 3: RESILIENCE</text>
+    <text x="115" y="40" fill="#f1f5f9" font-size="11" font-family="system-ui" text-anchor="middle">Weeks 5-6</text>
+    <line x1="15" y1="50" x2="215" y2="50" stroke="#334155"/>
+    <text x="15" y="67" fill="#94a3b8" font-size="9" font-family="system-ui">• Retry + backoff logic</text>
+    <text x="15" y="79" fill="#94a3b8" font-size="9" font-family="system-ui">• Quality gates</text>
+  </g>
+
+  <!-- Phase 4 -->
+  <g transform="translate(160, 190)">
+    <rect width="230" height="80" rx="8" fill="#1e293b" stroke="#8b5cf6" stroke-width="2"/>
+    <text x="115" y="22" fill="#8b5cf6" font-size="12" font-family="system-ui" font-weight="bold" text-anchor="middle">PHASE 4: OBSERVABILITY</text>
+    <text x="115" y="40" fill="#f1f5f9" font-size="11" font-family="system-ui" text-anchor="middle">Weeks 7-8</text>
+    <line x1="15" y1="50" x2="215" y2="50" stroke="#334155"/>
+    <text x="15" y="67" fill="#94a3b8" font-size="9" font-family="system-ui">• Structured tracing</text>
+    <text x="15" y="79" fill="#94a3b8" font-size="9" font-family="system-ui">• Dashboards + alerts</text>
+  </g>
+
+  <!-- Phase 5 -->
+  <g transform="translate(415, 190)">
+    <rect width="230" height="80" rx="8" fill="#1e293b" stroke="#a78bfa" stroke-width="2"/>
+    <text x="115" y="22" fill="#a78bfa" font-size="12" font-family="system-ui" font-weight="bold" text-anchor="middle">PHASE 5: GOVERNANCE</text>
+    <text x="115" y="40" fill="#f1f5f9" font-size="11" font-family="system-ui" text-anchor="middle">Weeks 9-10</text>
+    <line x1="15" y1="50" x2="215" y2="50" stroke="#334155"/>
+    <text x="15" y="67" fill="#94a3b8" font-size="9" font-family="system-ui">• Human checkpoint UI</text>
+    <text x="15" y="79" fill="#94a3b8" font-size="9" font-family="system-ui">• Audit logging</text>
+  </g>
+
+  <!-- Timeline visualization -->
+  <g transform="translate(30, 300)">
+    <rect width="740" height="200" rx="8" fill="#0f172a" stroke="#334155"/>
+    <text x="370" y="25" fill="#94a3b8" font-size="14" font-family="system-ui" text-anchor="middle">Detailed Activities by Phase</text>
+
+    <!-- Week 1-2 -->
+    <g transform="translate(20, 45)">
+      <rect x="0" y="0" width="130" height="170" rx="6" fill="#1e293b" stroke="#06b6d4"/>
+      <text x="65" y="20" fill="#06b6d4" font-size="11" font-family="system-ui" font-weight="bold" text-anchor="middle">W1-2: Foundation</text>
+      <line x1="10" y1="30" x2="120" y2="30" stroke="#334155"/>
+      <text x="10" y="48" fill="#e2e8f0" font-size="9" font-family="system-ui">□ Map workflow</text>
+      <text x="10" y="62" fill="#e2e8f0" font-size="9" font-family="system-ui">□ Define state types</text>
+      <text x="10" y="76" fill="#e2e8f0" font-size="9" font-family="system-ui">□ Identify checkpoints</text>
+      <text x="10" y="90" fill="#e2e8f0" font-size="9" font-family="system-ui">□ Set token budgets</text>
+      <text x="10" y="115" fill="#94a3b8" font-size="8" font-family="system-ui">Deliverable:</text>
+      <text x="10" y="130" fill="#64748b" font-size="8" font-family="system-ui">State diagram + contract</text>
+    </g>
+
+    <!-- Week 3-4 -->
+    <g transform="translate(165, 45)">
+      <rect x="0" y="0" width="130" height="170" rx="6" fill="#1e293b" stroke="#22d3ee"/>
+      <text x="65" y="20" fill="#22d3ee" font-size="11" font-family="system-ui" font-weight="bold" text-anchor="middle">W3-4: MVA</text>
+      <line x1="10" y1="30" x2="120" y2="30" stroke="#334155"/>
+      <text x="10" y="48" fill="#e2e8f0" font-size="9" font-family="system-ui">□ Build state machine</text>
+      <text x="10" y="62" fill="#e2e8f0" font-size="9" font-family="system-ui">□ Add structured logs</text>
+      <text x="10" y="76" fill="#e2e8f0" font-size="9" font-family="system-ui">□ Deploy to staging</text>
+      <text x="10" y="90" fill="#e2e8f0" font-size="9" font-family="system-ui">□ Measure metrics</text>
+      <text x="10" y="115" fill="#94a3b8" font-size="8" font-family="system-ui">Metrics:</text>
+      <text x="10" y="130" fill="#64748b" font-size="8" font-family="system-ui">Latency, tokens, errors</text>
+    </g>
+
+    <!-- Week 5-6 -->
+    <g transform="translate(310, 45)">
+      <rect x="0" y="0" width="130" height="170" rx="6" fill="#1e293b" stroke="#0ea5e9"/>
+      <text x="65" y="20" fill="#0ea5e9" font-size="11" font-family="system-ui" font-weight="bold" text-anchor="middle">W5-6: Resilience</text>
+      <line x1="10" y1="30" x2="120" y2="30" stroke="#334155"/>
+      <text x="10" y="48" fill="#e2e8f0" font-size="9" font-family="system-ui">□ Retry with backoff</text>
+      <text x="10" y="62" fill="#e2e8f0" font-size="9" font-family="system-ui">□ Error states</text>
+      <text x="10" y="76" fill="#e2e8f0" font-size="9" font-family="system-ui">□ Output validation</text>
+      <text x="10" y="90" fill="#e2e8f0" font-size="9" font-family="system-ui">□ Failure testing</text>
+      <text x="10" y="115" fill="#94a3b8" font-size="8" font-family="system-ui">Test:</text>
+      <text x="10" y="130" fill="#64748b" font-size="8" font-family="system-ui">Chaos scenarios</text>
+    </g>
+
+    <!-- Week 7-8 -->
+    <g transform="translate(455, 45)">
+      <rect x="0" y="0" width="130" height="170" rx="6" fill="#1e293b" stroke="#8b5cf6"/>
+      <text x="65" y="20" fill="#8b5cf6" font-size="11" font-family="system-ui" font-weight="bold" text-anchor="middle">W7-8: Observability</text>
+      <line x1="10" y1="30" x2="120" y2="30" stroke="#334155"/>
+      <text x="10" y="48" fill="#e2e8f0" font-size="9" font-family="system-ui">□ Structured tracing</text>
+      <text x="10" y="62" fill="#e2e8f0" font-size="9" font-family="system-ui">□ Dashboard</text>
+      <text x="10" y="76" fill="#e2e8f0" font-size="9" font-family="system-ui">□ Alert thresholds</text>
+      <text x="10" y="90" fill="#e2e8f0" font-size="9" font-family="system-ui">□ On-call runbook</text>
+      <text x="10" y="115" fill="#94a3b8" font-size="8" font-family="system-ui">SLA:</text>
+      <text x="10" y="130" fill="#64748b" font-size="8" font-family="system-ui">&gt;95% success rate</text>
+    </g>
+
+    <!-- Week 9-10 -->
+    <g transform="translate(600, 45)">
+      <rect x="0" y="0" width="130" height="170" rx="6" fill="#1e293b" stroke="#a78bfa"/>
+      <text x="65" y="20" fill="#a78bfa" font-size="11" font-family="system-ui" font-weight="bold" text-anchor="middle">W9-10: Governance</text>
+      <line x1="10" y1="30" x2="120" y2="30" stroke="#334155"/>
+      <text x="10" y="48" fill="#e2e8f0" font-size="9" font-family="system-ui">□ Approval workflow</text>
+      <text x="10" y="62" fill="#e2e8f0" font-size="9" font-family="system-ui">□ Audit logs</text>
+      <text x="10" y="76" fill="#e2e8f0" font-size="9" font-family="system-ui">□ Cost attribution</text>
+      <text x="10" y="90" fill="#e2e8f0" font-size="9" font-family="system-ui">□ Drift detection</text>
+      <text x="10" y="115" fill="#94a3b8" font-size="8" font-family="system-ui">Compliance:</text>
+      <text x="10" y="130" fill="#64748b" font-size="8" font-family="system-ui">Audit-ready</text>
+    </g>
+  </g>
+</svg>

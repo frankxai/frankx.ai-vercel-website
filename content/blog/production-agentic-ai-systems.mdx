@@ -1,15 +1,16 @@
 ---
-title: "Enterprise Agentic Architecture: The Decision Framework That Gets You to Production"
-description: "Most agentic AI projects stall at demo because teams optimize for the wrong things. This is the architectural decision framework that separates shipped products from abandoned experiments."
+title: "Enterprise Agentic Architecture: Decision Framework for Production"
+description: "Most agentic AI projects stall at demo because teams optimize for the wrong things. This architectural decision framework separates shipped products from abandoned experiments."
 date: "2026-01-21"
-author: "Frank X"
-category: "AI Architecture"
+lastUpdated: "2026-01-22"
+author: "Frank Villanueva"
+category: "Intelligence Dispatches"
 tags:
-  - Agentic AI
-  - Enterprise Architecture
-  - Production Systems
-  - Decision Framework
-  - AI Strategy
+  - agentic-ai
+  - enterprise-architecture
+  - production-systems
+  - decision-framework
+  - ai-strategy
 keywords:
   - enterprise agentic ai architecture
   - agentic ai decision framework
@@ -20,387 +21,221 @@ keywords:
 image: '/images/blog/production-agentic-ai-systems.svg'
 readingGoal: "Walk away with a decision framework and maturity assessment for your agentic AI initiative."
 featured: true
+schema: ["Article", "FAQPage"]
 ---
 
-# Enterprise Agentic Architecture: The Decision Framework That Gets You to Production
+# Enterprise Agentic Architecture: Decision Framework for Production
 
-**TL;DR**: The question isn't "how do I build agentic AI?" It's "should I, and at what maturity level?" This framework helps enterprise architects make that decision, assess their readiness, and plan the architecture that matches their actual constraints—not someone else's demo.
+**TL;DR**: The question isn't "how do I build agentic AI?" It's "should I, and at what maturity level?" This framework helps you decide if you're building a solo acoustic act or a full symphony orchestra—and how to architect for the performance you actually need.
 
 ---
 
-## The Real Problem: Decision Paralysis, Not Technical Complexity
+## The Studio Session: From Demo to Production
 
-Every enterprise I work with has the same story:
+The studio monitors are humming. It's 2 AM, and your prototype just nailed the perfect run. It reasoned, it executed, it delivered. You feel that rush—the same one I get when a track finally comes together after hours of mixing.
 
+But here's the cold reality check: **A great demo is like a great solo in the shower. It's not ready for the stadium tour.**
+
+Every enterprise leader I talk to shares the same struggle:
 > "We built a demo in two weeks. Six months later, we're still debating how to deploy it."
 
-The technical patterns are well-documented. The decision framework is not.
-
-This guide doesn't teach you how to code agentic systems. It teaches you **when to build them, at what maturity level, and how to architect for your actual constraints**.
+The problem isn't the code. It's the composition. You're trying to score a film before you've written the main theme. This guide isn't about the syntax of agents; it's about the **rhythm of production**. It teaches you when to let the agents improvise, when to force them to follow the sheet music, and how to build a stage that doesn't collapse under the weight of the performance.
 
 ---
 
-## The Enterprise Agentic Architecture Decision Framework
+## The Producer's Board: A Decision Framework
 
-Before drawing any architecture diagrams, answer these four questions:
+Before we lay down a single track of code, we need to look at the mixing board. Adjust your levels based on these four faders:
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                    DECISION FRAMEWORK                            │
-├─────────────────────────────────────────────────────────────────┤
-│                                                                  │
-│  1. REASONING REQUIREMENT                                        │
-│     Does your workflow require reasoning about novel situations? │
-│     ├─ YES → Continue to question 2                              │
-│     └─ NO  → Use traditional automation (faster, cheaper)        │
-│                                                                  │
-│  2. APPROVAL REQUIREMENT                                         │
-│     Do decisions require human judgment before execution?        │
-│     ├─ ALWAYS → Human-in-the-loop architecture (pessimistic)     │
-│     ├─ SOMETIMES → Checkpoint architecture (configurable)        │
-│     └─ NEVER → Autonomous architecture (optimistic)              │
-│                                                                  │
-│  3. FAILURE TOLERANCE                                            │
-│     What happens when the agent makes a mistake?                 │
-│     ├─ HIGH COST → Multi-agent verification, conservative limits │
-│     ├─ MEDIUM COST → Single-agent with quality gates             │
-│     └─ LOW COST → Fast iteration, learn from failures            │
-│                                                                  │
-│  4. SCALE REQUIREMENT                                            │
-│     How many concurrent workflows?                               │
-│     ├─ < 100/day → Single-tenant, simple orchestration           │
-│     ├─ 100-10K/day → Managed orchestration, queue-based          │
-│     └─ > 10K/day → Distributed, multi-region, custom routing     │
-│                                                                  │
-└─────────────────────────────────────────────────────────────────┘
-```
+![Decision Framework](/images/blog/production-agentic-ai-systems-decision-framework.svg)
 
-Your answers determine your architecture tier—not the other way around.
+Your answers here define your lineup. Don't hire a symphony when you just need a DJ.
 
 ---
 
-## The Four-Tier Maturity Model
+## The Four-Tier Maturity Model (From Solo to Symphony)
 
-Most teams over-engineer because they don't know which tier they're actually at.
+Most teams over-engineer because they try to go straight to the symphony without learning to play the instrument first. Let's look at the progression.
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                  AGENTIC AI MATURITY MODEL                       │
-├─────────────────────────────────────────────────────────────────┤
-│                                                                  │
-│  TIER 1: AUGMENTED WORKFLOWS                                     │
-│  ┌─────────────────────────────────────────────────────────────┐│
-│  │ What: AI assists human decisions, doesn't make them         ││
-│  │ Architecture: LLM API calls within existing systems         ││
-│  │ When: < 50 AI-assisted decisions/day                        ││
-│  │ Cost: $100-500/month                                        ││
-│  │ Team: 1 engineer, part-time                                 ││
-│  │ Risk: Minimal (human always in control)                     ││
-│  └─────────────────────────────────────────────────────────────┘│
-│                           ↓                                      │
-│  TIER 2: AUTONOMOUS SINGLE-AGENT                                 │
-│  ┌─────────────────────────────────────────────────────────────┐│
-│  │ What: Agent completes tasks end-to-end with checkpoints     ││
-│  │ Architecture: State machine with typed state, quality gates ││
-│  │ When: 50-500 autonomous workflows/day                       ││
-│  │ Cost: $1K-5K/month                                          ││
-│  │ Team: 1-2 engineers, dedicated                              ││
-│  │ Risk: Medium (mistakes possible, but bounded)               ││
-│  └─────────────────────────────────────────────────────────────┘│
-│                           ↓                                      │
-│  TIER 3: COORDINATED MULTI-AGENT                                 │
-│  ┌─────────────────────────────────────────────────────────────┐│
-│  │ What: Multiple specialized agents collaborate on complex    ││
-│  │       workflows with handoffs and error recovery            ││
-│  │ Architecture: Orchestrator pattern, managed infrastructure  ││
-│  │ When: 500-5K workflows/day, complex decision trees          ││
-│  │ Cost: $5K-20K/month                                         ││
-│  │ Team: 3-5 engineers, platform team                          ││
-│  │ Risk: Higher (coordination failures, cascade effects)       ││
-│  └─────────────────────────────────────────────────────────────┘│
-│                           ↓                                      │
-│  TIER 4: ENTERPRISE AGENTIC PLATFORM                             │
-│  ┌─────────────────────────────────────────────────────────────┐│
-│  │ What: Self-service platform for teams to deploy agents      ││
-│  │ Architecture: Multi-tenant, governance-first, self-healing  ││
-│  │ When: > 5K workflows/day, multiple business units           ││
-│  │ Cost: $20K-100K+/month                                      ││
-│  │ Team: 10+ engineers, dedicated platform organization        ││
-│  │ Risk: Highest (platform failures affect all tenants)        ││
-│  └─────────────────────────────────────────────────────────────┘│
-│                                                                  │
-└─────────────────────────────────────────────────────────────────┘
-```
+![Maturity Model](/images/blog/production-agentic-ai-systems-maturity-model.svg)
 
-**Critical insight**: Most teams should be at Tier 1 or 2. Tier 3 and 4 are organizational capabilities, not technical achievements.
+**Critical insight**: Most of you should be rocking Tier 1 or 2. Tier 3 and 4 are for when you've sold out the stadium.
 
 ---
 
-## Reference Architecture: The Six-Plane Model
+## Reference Architecture: The Six-Plane Stage
 
-Regardless of tier, production agentic systems share six architectural planes. The difference is which planes you build vs. buy vs. skip.
+Whether you're playing a dive bar or Wembley, you need a stage, instruments, and sound. In agentic systems, we call this the Six-Plane Model.
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                    EXPERIENCE PLANE                              │
-│  ┌─────────┐  ┌─────────┐  ┌─────────┐  ┌─────────┐            │
-│  │   Web   │  │   API   │  │  Slack  │  │  Email  │            │
-│  │   UI    │  │ Gateway │  │   Bot   │  │ Trigger │            │
-│  └────┬────┘  └────┬────┘  └────┬────┘  └────┬────┘            │
-└───────┼────────────┼────────────┼────────────┼──────────────────┘
-        │            │            │            │
-        └────────────┴────────────┴────────────┘
-                          │
-┌─────────────────────────┼───────────────────────────────────────┐
-│               ORCHESTRATION PLANE                                │
-│                         │                                        │
-│         ┌───────────────┴───────────────┐                        │
-│         │        STATE MACHINE          │                        │
-│         │  ┌──────┐   ┌──────┐   ┌──────┐                        │
-│         │  │ Node │──▶│ Node │──▶│ Node │                        │
-│         │  └──────┘   └──────┘   └──────┘                        │
-│         │         ↑               │                              │
-│         │         └───────────────┘ (conditional routing)        │
-│         └───────────────────────────────┘                        │
-│                         │                                        │
-└─────────────────────────┼───────────────────────────────────────┘
-                          │
-┌─────────────────────────┼───────────────────────────────────────┐
-│                  AGENT PLANE                                     │
-│         ┌───────────────┴───────────────┐                        │
-│         │                               │                        │
-│   ┌─────┴─────┐  ┌───────────┐  ┌──────┴────┐                    │
-│   │ Research  │  │  Drafting │  │  Review   │                    │
-│   │   Agent   │  │   Agent   │  │   Agent   │                    │
-│   │ (Claude)  │  │  (GPT-4o) │  │ (Claude)  │                    │
-│   └─────┬─────┘  └─────┬─────┘  └─────┬─────┘                    │
-│         │              │              │                          │
-└─────────┼──────────────┼──────────────┼─────────────────────────┘
-          │              │              │
-┌─────────┼──────────────┼──────────────┼─────────────────────────┐
-│         │        TOOL PLANE (MCP)     │                          │
-│         │              │              │                          │
-│   ┌─────┴─────┐  ┌─────┴─────┐  ┌─────┴─────┐  ┌───────────┐    │
-│   │ Knowledge │  │    CMS    │  │  Search   │  │   Email   │    │
-│   │   Base    │  │  Publish  │  │    API    │  │  Sender   │    │
-│   └───────────┘  └───────────┘  └───────────┘  └───────────┘    │
-│                                                                  │
-└─────────────────────────────────────────────────────────────────┘
-                          │
-┌─────────────────────────┼───────────────────────────────────────┐
-│                  DATA PLANE                                      │
-│         ┌───────────────┴───────────────┐                        │
-│   ┌─────┴─────┐  ┌───────────┐  ┌──────┴────┐                    │
-│   │  Vector   │  │ Document  │  │   State   │                    │
-│   │    DB     │  │   Store   │  │   Store   │                    │
-│   └───────────┘  └───────────┘  └───────────┘                    │
-│                                                                  │
-└─────────────────────────────────────────────────────────────────┘
-                          │
-┌─────────────────────────┼───────────────────────────────────────┐
-│              OPERATIONS PLANE                                    │
-│         ┌───────────────┴───────────────┐                        │
-│   ┌─────┴─────┐  ┌───────────┐  ┌──────┴────┐  ┌───────────┐    │
-│   │  Traces   │  │   Logs    │  │  Metrics  │  │  Alerts   │    │
-│   │ (Jaeger)  │  │ (DataDog) │  │(Prometheus)│  │(PagerDuty)│    │
-│   └───────────┘  └───────────┘  └───────────┘  └───────────┘    │
-│                                                                  │
-└─────────────────────────────────────────────────────────────────┘
-```
+![Six-Plane Architecture](/images/blog/production-agentic-ai-systems-six-plane.svg)
 
 ---
 
-## Architecture Decisions by Tier
+## Architectural Decisions (The Rider)
 
-Each tier involves explicit trade-offs. Here are the Architecture Decision Records (ADRs) that define each level.
+Every tour has a rider—the non-negotiables. Here are the Architectural Decision Records (ADRs) you need for each level of fame.
 
-### Tier 1 → Tier 2: Adding Autonomy
-
+### Tier 1 → Tier 2: Going Autonomous
 | Decision | Context | Choice | Trade-off |
 |----------|---------|--------|-----------|
-| **Orchestration** | Need workflow state tracking | Graph-based state machine | +Explicit states, +Resumable / -Learning curve |
-| **State Management** | Prevent corruption across steps | Typed state contracts (Pydantic) | +Validation, +Audit trail / -Upfront design cost |
-| **Error Handling** | Failures shouldn't cascade | Retry limits + exponential backoff | +Resilience / -Slower recovery |
-| **Quality Gates** | Catch garbage output | Multi-stage validation | +Quality / -Latency |
+| **Orchestration** | Tracking the song structure | Graph-based state machine | +Explicit rhythm / -Takes time to compose |
+| **State Management** | Keeping everyone in tune | Typed state contracts (Pydantic) | +No bad notes / -More prep work |
+| **Error Handling** | The show must go on | Retry limits + exponential backoff | +Resilience / -Can slow the tempo |
+| **Quality Gates** | Catching bad takes | Multi-stage validation | +Quality / -Latency |
 
-### Tier 2 → Tier 3: Adding Coordination
-
+### Tier 2 → Tier 3: The Ensemble
 | Decision | Context | Choice | Trade-off |
 |----------|---------|--------|-----------|
-| **Agent Selection** | Different tasks need different models | Model routing layer | +Optimal cost/quality / -Complexity |
-| **Handoff Protocol** | Agents must share context | Structured handoff schema | +Clarity / -Overhead per handoff |
-| **Failure Isolation** | One agent failure shouldn't kill workflow | Circuit breaker per agent | +Resilience / -Partial results possible |
-| **Human Checkpoints** | Critical decisions need approval | Async approval queue | +Safety / -Latency (hours, not seconds) |
+| **Agent Selection** | Who plays the solo? | Model routing layer | +Best sound per instrument / -Complex wiring |
+| **Handoff Protocol** | Passing the melody | Structured handoff schema | +Clarity / -Overhead |
+| **Failure Isolation** | Broken string? | Circuit breaker per agent | +Band keeps playing / -One part missing |
+| **Human Checkpoints** | The Producer's final listen | Async approval queue | +Safety / -Wait time |
 
-### Tier 3 → Tier 4: Adding Platform
-
+### Tier 3 → Tier 4: The Label Platform
 | Decision | Context | Choice | Trade-off |
 |----------|---------|--------|-----------|
-| **Multi-Tenancy** | Multiple teams, shared infra | Namespace isolation | +Efficiency / -Noisy neighbor risk |
-| **Self-Service** | Teams deploy without platform team | Declarative workflow specs | +Velocity / -Governance overhead |
-| **Cost Allocation** | Chargeback to business units | Per-workflow token tracking | +Accountability / -Instrumentation cost |
-| **Compliance** | Audit requirements | Immutable workflow logs | +Compliance / -Storage cost |
+| **Multi-Tenancy** | Multiple bands, one studio | Namespace isolation | +Efficiency / -Noisy neighbors |
+| **Self-Service** | DIY recording | Declarative workflow specs | +Speed / -Governance |
+| **Cost Allocation** | Who pays for the studio time? | Per-workflow token tracking | +Accountability / -Instrumentation cost |
 
 ---
 
 ## The Cost-Complexity Curve
 
-The most common mistake: building Tier 3 architecture for Tier 1 problems.
+Don't buy a stadium sound system for a coffee shop gig. This is where budgets die.
 
-```
-                     COST vs. COMPLEXITY
-
-Cost ($K/month)
-     │
-100+ │                                    ┌─────────────┐
-     │                                    │   Tier 4    │
-     │                                    │  Platform   │
- 50  │                        ┌───────────┼─────────────┘
-     │                        │  Tier 3   │
-     │                        │  Multi-   │
- 20  │            ┌───────────┤  Agent    │
-     │            │  Tier 2   │           │
- 10  │            │  Single   ├───────────┘
-     │            │  Agent    │
-  5  │  ┌─────────┼───────────┘
-     │  │ Tier 1  │
-  1  │  │ Augment │
-     │  └─────────┘
-     └────────────────────────────────────────────────────
-                                              Complexity
-       Simple      Moderate      High      Very High
-
-     ┌──────────────────────────────────────────────────┐
-     │  Rule: If you're not sure, start one tier lower  │
-     └──────────────────────────────────────────────────┘
-```
+![Cost vs Complexity](/images/blog/production-agentic-ai-systems-cost-complexity.svg)
 
 ---
 
 ## When NOT to Use Agentic AI
 
-This framework starts with "should you build this at all?" Here's the decision matrix:
+Sometimes, you don't need AI. You just need a spreadsheet.
 
 | Your Situation | Agentic AI? | Better Alternative |
 |----------------|-------------|-------------------|
 | Workflow has < 3 steps | **No** | Simple API calls |
-| Every input maps predictably to output | **No** | Traditional automation |
-| No budget for 3+ months of iteration | **No** | Pre-built SaaS tools |
-| Can't tolerate any errors | **No** | Human-only workflow |
-| Team < 2 engineers | **Maybe Tier 1** | Augmented workflows |
-| Compliance requires full audit trail | **Yes, with constraints** | Tier 3+ with logging |
-| High-stakes decisions (legal, medical) | **Yes, human-in-loop** | Pessimistic architecture |
-| Novel situations requiring reasoning | **Yes** | This is what agents are for |
+| Predictable inputs & outputs | **No** | Traditional automation |
+| No budget for rehearsals | **No** | Pre-built SaaS tools |
+| Zero tolerance for wrong notes | **No** | Human-only workflow |
+| Novel situations requiring improv | **Yes** | **This is the jam.** |
 
 ---
 
-## Failure Mode Analysis
+## Failure Mode Analysis (The Feedback Loop)
 
-Production failures aren't bugs. They're architectural gaps. Here's what to design against:
+When the mic feeds back, it ruins the show. Here's how to stop the screeching before it starts.
 
-| Failure Mode | What Happens | Root Cause | Prevention |
-|--------------|--------------|------------|------------|
-| **Infinite Loop** | Agent retries endlessly | No retry limit | MAX_RETRIES=3 + exponential backoff |
-| **State Corruption** | Workflow continues with invalid data | Untyped state updates | Pydantic validation on every transition |
-| **Silent Failure** | Agent "completes" but output is garbage | No quality gates | Multi-stage output validation |
-| **Hallucination Cascade** | Wrong output feeds next agent | No verification layer | Cross-agent fact-checking |
-| **Cost Explosion** | $50K bill from runaway workflow | No token budget | Per-workflow limits + auto-throttle |
-| **Checkpoint Fatigue** | 1,000 approvals pile up | Over-cautious design | Risk-tiered checkpoint frequency |
-| **Model Drift** | Agent behaves differently after model update | No regression testing | Golden set evaluation on model changes |
+| Failure Mode | The Symptom | The Fix |
+|--------------|-------------|---------|
+| **Infinite Loop** | The agent gets stuck on a riff | MAX_RETRIES=3 + backoff |
+| **State Corruption** | The band is playing different songs | Pydantic validation on every bar |
+| **Silent Failure** | The solo ended but no one clapped | Multi-stage output validation |
+| **Hallucination Cascade** | One wrong note ruins the chord | Cross-agent fact-checking |
+| **Cost Explosion** | The studio bill is astronomical | Token budgets + auto-throttle |
 
 ---
 
-## Implementation Roadmap
+## Implementation Roadmap (The Rehearsal Schedule)
 
-Don't build everything at once. Here's the sequence that works:
+Don't book the gig until you've practiced. Here's your schedule:
 
+![Implementation Roadmap](/images/blog/production-agentic-ai-systems-roadmap.svg)
+
+### Code Example: State Contract (Tier 2+)
+
+```python
+from pydantic import BaseModel, Field
+from enum import Enum
+from datetime import datetime
+from typing import Optional
+
+class WorkflowState(str, Enum):
+    """The song structure—everyone needs to know the key and time signature."""
+    PENDING = "pending"
+    RESEARCHING = "researching"
+    DRAFTING = "drafting"
+    REVIEWING = "reviewing"
+    APPROVED = "approved"
+    FAILED = "failed"
+
+class ResearchResult(BaseModel):
+    """Each section needs its own sheet music."""
+    sources: list[str] = Field(..., min_items=1)
+    summary: str = Field(..., min_length=50, max_length=500)
+    confidence: float = Field(..., ge=0.0, le=1.0)
+
+class AgentWorkflowState(BaseModel):
+    """The state contract—validation on every transition."""
+    workflow_id: str
+    current_state: WorkflowState = WorkflowState.PENDING
+    research_result: Optional[ResearchResult] = None
+    draft_content: Optional[str] = None
+    retry_count: int = 0
+    created_at: datetime = Field(default_factory=datetime.utcnow)
+    token_budget_remaining: int = Field(default=10000)
+    
+    def transition_to(self, new_state: WorkflowState) -> None:
+        """Explicit state transitions prevent silent corruption."""
+        valid_transitions = {
+            WorkflowState.PENDING: [WorkflowState.RESEARCHING],
+            WorkflowState.RESEARCHING: [WorkflowState.DRAFTING, WorkflowState.FAILED],
+            WorkflowState.DRAFTING: [WorkflowState.REVIEWING, WorkflowState.FAILED],
+            WorkflowState.REVIEWING: [WorkflowState.APPROVED, WorkflowState.FAILED],
+        }
+        
+        if new_state not in valid_transitions.get(self.current_state, []):
+            raise ValueError(f"Cannot transition from {self.current_state} to {new_state}")
+        
+        self.current_state = new_state
 ```
-PHASE 1: FOUNDATION (Weeks 1-2)
-├── Map workflow as state diagram (whiteboard first)
-├── Define state contract (types, not code)
-├── Identify mandatory human checkpoints
-└── Set token budget constraints
 
-PHASE 2: MINIMAL VIABLE AGENT (Weeks 3-4)
-├── Implement simplest possible state machine
-├── Add structured logging for every node
-├── Deploy to staging with synthetic inputs
-└── Measure: latency, token usage, error rate
-
-PHASE 3: RESILIENCE (Weeks 5-6)
-├── Add retry logic with exponential backoff
-├── Implement error states and recovery paths
-├── Add quality gates for output validation
-└── Test failure scenarios explicitly
-
-PHASE 4: OBSERVABILITY (Weeks 7-8)
-├── Structured tracing (parent/child spans)
-├── Dashboard: success rate, latency p50/p95, cost
-├── Alerts: error rate > 5%, cost > threshold
-└── On-call runbook for common failures
-
-PHASE 5: GOVERNANCE (Weeks 9-10)
-├── Human checkpoint UI and approval workflow
-├── Audit logging for compliance
-├── Cost attribution by workflow type
-└── Model drift detection pipeline
-```
+This is your **state contract**—it keeps everyone in tune. Pydantic validates on every bar change, and explicit transitions prevent the "wrong song" problem.
 
 ---
 
-## Framework Comparison: When to Use What
+## Framework Comparison
 
-| Framework | Best For | Watch Out For | Tier Match |
-|-----------|----------|---------------|------------|
-| **Claude SDK** | Claude-native apps, rapid prototyping | Vendor lock-in | Tier 1-2 |
-| **LangGraph** | Complex state machines, enterprise workflows | Learning curve | Tier 2-3 |
-| **CrewAI** | Role-based multi-agent collaboration | Less routing control | Tier 2-3 |
-| **OpenAI Agents SDK** | GPT-native, function calling | Less flexible state | Tier 2 |
-| **OCI Agent Platform** | Enterprise governance, Oracle ecosystem | Cloud lock-in | Tier 3-4 |
-| **AWS Bedrock Agents** | AWS-native, managed infrastructure | AWS ecosystem | Tier 3-4 |
-| **Custom** | Full control, unique requirements | 6+ month build | Tier 4 only |
+| Framework | Best For | The Vibe | Tier Match |
+|-----------|----------|----------|------------|
+| **Claude SDK** | Native apps, prototyping | **Indie Rock** | Tier 1-2 |
+| **LangGraph** | Complex state machines | **Prog Rock** | Tier 2-3 |
+| **CrewAI** | Role-based collaboration | **Jazz Improv** | Tier 2-3 |
+| **OCI Agent Platform** | Enterprise governance | **Symphony Hall** | Tier 3-4 |
 
-**Recommendation**: Start with Claude SDK or LangGraph. Migrate to managed platforms when you hit Tier 3 scale.
+**Frank's Take**: Start with the Claude SDK or LangGraph. Don't rent the Symphony Hall until you can fill the seats.
 
 ---
 
-## FAQ: The Hard Questions
+## FAQ: Studio Notes
 
-**Q: When does agentic AI actually save money vs. traditional automation?**
+**Q: Does this actually save money?**
+Only if the work requires *improvisation*. If it's routine, use a script. If it requires judgment (handling the 20% of exceptions), then yes—agents are your affordable session musicians.
 
-When the workflow requires **reasoning about exceptions**. If 80% of cases are routine and 20% require judgment, agentic AI handles the 20% that would otherwise require human escalation. Calculate: (human hours saved × hourly cost) vs. (agent cost + error cost).
+**Q: How do I stop hallucinations?**
+Three layers of soundproofing: (1) Constrain the tools (don't give the drummer a trumpet). (2) Verify the output (listen to the playback). (3) Human approval for the hit singles (high stakes).
 
-**Q: How do I prevent agents from hallucinating in production?**
+**Q: Minimum team size?**
+Tier 1: You on a laptop. Tier 2: You and a dedicated engineer. Tier 3: A small band (3-5 devs). Tier 4: A full production crew (10+).
 
-Three layers: (1) Constrain scope—narrow tool access, explicit boundaries. (2) Verify outputs—cross-reference claims against source data. (3) Human checkpoints—for high-stakes decisions, require approval.
+**Q: Same model for everyone?**
+No. You don't use a Stradivarius to hammer a nail. Use cheaper models for simple tasks (classification) and the heavy hitters (Claude 3.5 Sonnet, GPT-4o) for the complex solos.
 
-**Q: What's the minimum team size for production agentic systems?**
-
-Tier 1: 1 engineer, part-time. Tier 2: 1-2 engineers, dedicated. Tier 3: 3-5 engineers + platform support. Tier 4: 10+ engineers, dedicated organization.
-
-**Q: Should I use the same model for all agents?**
-
-No. Use cost-efficient models for simple tasks (classification, extraction), capable models for reasoning (Claude, GPT-4o), and fast models for real-time requirements. Model routing is a Tier 3 capability.
-
-**Q: How do I test agentic workflows?**
-
-Three levels: (1) Unit tests for individual nodes with mocked LLM responses. (2) Integration tests for state transitions with deterministic inputs. (3) Golden set evaluation for end-to-end quality. Never test against live LLMs in CI.
+**Q: How do I test this?**
+Unit tests for the notes. Integration tests for the melody. Golden set evaluations for the soul. Never test against live LLMs in your CI pipeline—that's like rehearsing during the show.
 
 ---
 
 ## Your Next Step
 
-1. **Assess your tier**: Use the maturity model to identify where you actually are
-2. **Answer the decision framework**: Reasoning? Approval? Failure tolerance? Scale?
-3. **Design for your constraints**: Not someone else's demo
-4. **Start one tier lower**: You can always add complexity; removing it is expensive
+1.  **Check your tier**: Are you a soloist or a conductor?
+2.  **Set the stage**: Answer the decision framework.
+3.  **Start simple**: You can always add instruments later. Removing them is harder.
 
----
+Ready to build your ensemble? Check out the [Architecture Blueprint](/blog/production-llm-agents-oci-part-1-architecture) to see the full setup, or explore the [Enterprise Agent Roadmap](/blog/enterprise-agent-roadmap) to plan your tour.
 
-## Related Resources
+For deep research on these patterns, dive into our [AI CoE Hub](/research).
 
-- [Production LLM Agents on OCI: Part 1 - Architecture Blueprint](/blog/production-llm-agents-oci-part-1-architecture) — Six-plane enterprise stack for OCI
-- [Enterprise Agent Roadmap 2026](/blog/enterprise-agent-roadmap) — Organizational topology for agent adoption
-- [AI CoE Hub](/research) — Research and implementation patterns
+*Let's make some noise.*
 
-For architecture consulting or implementation support: [hello@frankx.ai](mailto:hello@frankx.ai?subject=Agentic%20Architecture%20Consultation)
+[hello@frankx.ai](mailto:hello@frankx.ai?subject=Agentic%20Architecture%20Consultation)
