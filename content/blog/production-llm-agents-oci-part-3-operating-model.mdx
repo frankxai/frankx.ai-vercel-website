@@ -1,0 +1,198 @@
+---
+title: 'Production LLMs & AI Agents on OCI: Part 3 - The Operating Model'
+date: '2026-01-20'
+description: 'Governance, observability, and lifecycle management for production AI systems. Including prompt versioning, cost controls, evaluation pipelines, and incident response.'
+image: '/images/blog/oci-operating-model-hero.jpg'
+tags: ['Enterprise AI', 'OCI', 'Governance', 'Observability', 'MLOps', 'Oracle']
+author: 'Frank'
+category: 'Enterprise AI'
+readingTime: '14 min read'
+---
+
+# Production LLMs and AI Agents on OCI: The Operating Model
+
+**TL;DR:** Production GenAI systems fail not because of bad models, but because of missing operating models. This post covers governance, observability, and lifecycle management—including prompt versioning, cost controls, evaluation pipelines, and incident response.
+
+---
+
+## The Operating Model Gap
+
+Most GenAI projects focus 90% of effort on the model and 10% on operations. Production systems require the inverse: the model is a dependency; the operating model is the product.
+
+An operating model answers:
+- How do we version and deploy prompt changes?
+- How do we know if quality is degrading?
+- How do we control costs?
+- How do we respond to incidents?
+- How do we maintain compliance?
+
+---
+
+## 1. Observability: See Everything
+
+### The Three Pillars
+
+| Pillar | What It Captures | OCI Service |
+|--------|------------------|-------------|
+| **Traces** | Request flow through agent, tools, models | OCI APM + OpenTelemetry |
+| **Metrics** | Latency, throughput, token counts, costs | OCI Monitoring |
+| **Logs** | Request/response payloads, errors, decisions | OCI Logging |
+
+### Key Metrics to Track
+
+| Metric | SLO Target | Alert Threshold |
+|--------|------------|-----------------|
+| **End-to-end latency (p95)** | < 5 seconds | > 8 seconds |
+| **Tool failure rate** | < 1% | > 3% |
+| **Model error rate** | < 0.1% | > 0.5% |
+| **Groundedness rate** | > 95% | < 90% |
+| **Cost per interaction** | < $0.10 | > $0.25 |
+
+---
+
+## 2. Evaluation Pipeline: Measure Quality
+
+### Golden Set Testing
+
+A golden set is a curated collection of input-output pairs that represent expected behavior. Run these before every deployment:
+
+```python
+@dataclass
+class GoldenTestCase:
+    id: str
+    input: str
+    expected_tool: str
+    expected_keywords: List[str]
+    max_latency_ms: float
+```
+
+### CI/CD Integration
+
+```yaml
+# .github/workflows/deploy-agent.yml
+jobs:
+  evaluate:
+    steps:
+      - name: Run Golden Set Evaluation
+        run: |
+          python -m pytest tests/golden_set/ \
+            --min-pass-rate=0.95 \
+            --max-avg-latency=3000
+```
+
+---
+
+## 3. Prompt & Agent Lifecycle Management
+
+### Prompts as Code
+
+```
+prompts/
+├── agents/
+│   ├── sales-assistant/
+│   │   ├── v1.0.0/
+│   │   │   ├── system.md
+│   │   │   ├── tools.yaml
+│   │   │   └── examples.json
+│   │   └── v1.1.0/
+│   │       └── ...
+└── registry.yaml
+```
+
+### Deployment Strategies
+
+| Strategy | Risk | Rollback Time | Best For |
+|----------|------|---------------|----------|
+| **Blue/Green** | Low | Instant | Major changes |
+| **Canary** | Very Low | Fast | Incremental improvements |
+| **Shadow** | None | N/A | Testing new models |
+
+---
+
+## 4. Cost Management
+
+### Cost Model
+
+| Component | Pricing Model | Optimization Lever |
+|-----------|---------------|-------------------|
+| **LLM Inference** | Per token | Caching, model selection, prompt length |
+| **Embeddings** | Per token | Batch processing, caching |
+| **Vector DB** | Storage + queries | Index optimization |
+| **Compute** | Per hour | Right-sizing, autoscaling |
+
+### Cost Controls
+
+- Per-request limits
+- Per-user daily limits
+- Per-tenant monthly limits
+- Automatic model fallback when approaching limits
+
+---
+
+## 5. Security & Compliance
+
+### Data Classification
+
+| Classification | Allowed Models | Logging | Encryption |
+|----------------|----------------|---------|------------|
+| **Public** | All | Full | Standard |
+| **Internal** | OCI-hosted | Metadata only | At rest + transit |
+| **Confidential** | Dedicated cluster | Audit only | Customer-managed keys |
+| **Restricted** | Private Agent Factory | Audit only | Customer keys + residency |
+
+### Prompt Injection Prevention
+
+- Pattern detection for injection attempts
+- Input sanitization and escaping
+- Length limits
+- Sandboxed tool execution
+
+---
+
+## 6. Incident Response
+
+### Incident Classification
+
+| Severity | Response Time | Example |
+|----------|---------------|---------|
+| **P1 - Critical** | 15 minutes | Data breach, service down |
+| **P2 - High** | 1 hour | Tool failures > 10% |
+| **P3 - Medium** | 4 hours | Latency SLO breach |
+| **P4 - Low** | 24 hours | Occasional incorrect responses |
+
+---
+
+## Production Checklist
+
+- [ ] **Security**: RBAC, network isolation, secrets management
+- [ ] **Data Access**: Least privilege, audited retrieval
+- [ ] **Reliability**: Timeouts, retries, fallbacks
+- [ ] **Quality**: Online telemetry + offline evaluation
+- [ ] **Cost**: Quotas, rate limiting, caching
+- [ ] **Observability**: OpenTelemetry traces, SLOs defined
+- [ ] **Governance**: Prompt versioning, audit trails
+- [ ] **Testing**: Golden sets, regression tests
+
+---
+
+## Resources
+
+- [OCI APM for RAG solutions](https://blogs.oracle.com/cloud-infrastructure/post/oci-apm-rag-solutions)
+- [OCI Logging Service](https://docs.oracle.com/en-us/iaas/Content/Logging/home.htm)
+- [OCI Monitoring Service](https://docs.oracle.com/en-us/iaas/Content/Monitoring/home.htm)
+- [OpenTelemetry OCI Integration](https://docs.oracle.com/en-us/iaas/application-performance-monitoring/)
+
+---
+
+## Series Complete
+
+This three-part series has covered:
+1. **[Part 1: Architecture](/blog/production-llm-agents-oci-part-1-architecture)** - Six-plane enterprise model
+2. **[Part 2: Agent Patterns](/blog/production-llm-agents-oci-part-2-agent-patterns)** - Managed vs framework agents
+3. **Part 3: Operating Model** - Governance, observability, lifecycle
+
+For hands-on implementation, clone the [OCI AI Blueprints](https://github.com/oracle-quickstart/oci-ai-blueprints) and visit our [AI CoE Hub](/ai-architect/ai-coe-hub).
+
+---
+
+*Visit the [AI CoE Hub](/ai-architect/ai-coe-hub) for all resources, decision frameworks, and links to Oracle Architecture Center patterns.*

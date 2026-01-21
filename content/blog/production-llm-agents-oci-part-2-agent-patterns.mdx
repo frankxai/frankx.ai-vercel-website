@@ -1,0 +1,155 @@
+---
+title: 'Production LLMs & AI Agents on OCI: Part 2 - Agent Patterns That Actually Scale'
+date: '2026-01-20'
+description: 'Managed agents vs framework agents: when to use OCI AI Agent Platform/Agent Hub, when to run LangGraph on OKE, and how to avoid building everything twice.'
+image: '/images/blog/oci-agent-patterns-hero.jpg'
+tags: ['Enterprise AI', 'OCI', 'Agent Patterns', 'LangGraph', 'Agent Hub', 'Oracle']
+author: 'Frank'
+category: 'Enterprise AI'
+readingTime: '12 min read'
+---
+
+# Production LLMs and AI Agents on OCI: Agent Patterns That Actually Scale
+
+**TL;DR:** Enterprises typically land in one of two agent patterns: managed runtime (OCI AI Agent Platform/Agent Hub) for speed and consistency, or framework runtime (LangGraph/LangChain on OKE) for maximum control. Many organizations use both. This post helps you decide when to use which.
+
+---
+
+## Two Production Paths: Managed vs Framework Agents
+
+Both patterns are valid. The key is being explicit about which you're choosing—and why—before you start building.
+
+### Path A: Managed Agent Runtime (Fastest to Value)
+
+Use **OCI AI Agent Platform** and **Agent Hub** as your orchestration layer.
+
+| Pros | Cons |
+|------|------|
+| Speed to deployment | Less control over internal logic |
+| Managed scaling and infrastructure | Vendor-specific patterns |
+| Consistent platform to onboard teams | May require workarounds for edge cases |
+| Built-in security and compliance | Tool limitations early in platform maturity |
+
+**Best when:** You want speed, managed scaling, and a consistent platform to onboard multiple teams.
+
+### Path B: Framework Agent Runtime (Maximum Control)
+
+Run **LangGraph/LangChain-style services** on OCI compute (OKE, Container Instances).
+
+| Pros | Cons |
+|------|------|
+| Full control over agent logic | You own the infrastructure |
+| Custom workflows and state machines | More DevOps overhead |
+| Framework ecosystem (tools, integrations) | Consistency depends on your standards |
+| Portable across clouds | Security is your responsibility |
+
+**Best when:** You need custom workflows, bespoke tool execution, or deep integration into existing platforms.
+
+### The Hybrid Reality
+
+In practice, many organizations use **both**:
+- **Managed agents** for broad internal productivity and customer-facing assistants
+- **Framework agents** for specialized workflows where you need tight control
+
+---
+
+## OCI AI Agent Platform: What You Get
+
+### Built-In Integrations
+- **Oracle Databases** (Autonomous DB, MySQL HeatWave)
+- **Object Storage** for document retrieval
+- **OCI Functions** for custom tasks
+- **Oracle Digital Assistant** for conversation management
+
+### Agent Hub: The Control Center
+- Create, deploy, and govern agents centrally
+- Register multiple specialized agents
+- Meta-agents route requests to the appropriate agent
+- Abstracts complexity of navigating many agents
+
+### Built-In Tools
+
+| Tool | What It Does |
+|------|--------------|
+| **SQL Tool** | Execute database queries with self-correction |
+| **RAG Tool** | Document retrieval with hybrid semantic search |
+| **Custom Tool** | Backed by OCI Functions or any API |
+
+---
+
+## Framework Agents on OCI: LangGraph/LangChain
+
+### Why LangGraph?
+
+- **Stateful graphs** for complex multi-step workflows
+- **Branching and cycles** (not just linear chains)
+- **Human-in-the-loop** patterns built-in
+- **Persistence** for long-running tasks
+- **Streaming** for responsive UX
+
+### Deployment on OKE
+
+```yaml
+# Example Helm values
+replicaCount: 3
+image:
+  repository: <region>.ocir.io/<tenancy>/agent-service
+  tag: "v1.2.0"
+env:
+  - name: OCI_GENAI_ENDPOINT
+    value: "https://inference.generativeai.<region>.oci.oraclecloud.com"
+```
+
+---
+
+## Tool Standardization: The Secret to Scaling
+
+### Tool Design Principles
+
+1. **Single responsibility**: One tool, one job
+2. **Clear schemas**: Input/output types the LLM can understand
+3. **Error handling**: Fail gracefully with useful messages
+4. **Observability built-in**: Every tool call emits telemetry
+
+### Tool Registry
+
+Maintain a versioned catalog of all tools:
+- Tool name and version
+- Input/output schema
+- Permissions required
+- Data classification
+- Owner and support contact
+
+---
+
+## Decision Framework: Managed vs Framework
+
+| Factor | Choose Managed | Choose Framework |
+|--------|----------------|------------------|
+| **Time to production** | < 4 weeks | Can invest 8+ weeks |
+| **Team expertise** | Limited LLM experience | Strong Python skills |
+| **Customization** | Standard patterns work | Unique workflows required |
+| **Scale** | 10s of agents | 100s of specialized agents |
+| **Compliance** | Need managed controls | Can implement own |
+| **Multi-cloud** | OCI-centric | Portability required |
+
+Most enterprises: **managed for 80%** of use cases, **framework for the 20%** that need custom control.
+
+---
+
+## What's Next
+
+In [Part 3](/blog/production-llm-agents-oci-part-3-operating-model), we cover the operating model: governance, observability, cost management, and incident response.
+
+---
+
+## Resources
+
+- [Deploy agentic AI using OCI AI Agent Platform](https://docs.oracle.com/en/solutions/deploy-agentic-ai-agent-platform/index.html)
+- [Agent Hub announcement](https://blogs.oracle.com/cloud-infrastructure/ai-world-2025-artificial-intelligence)
+- [Open Agent Specification](https://github.com/oracle/agent-spec)
+- [LangGraph documentation](https://langchain-ai.github.io/langgraph/)
+
+---
+
+*This is Part 2 of a 3-part series. [Part 1: Architecture](/blog/production-llm-agents-oci-part-1-architecture) | [Part 3: Operating Model](/blog/production-llm-agents-oci-part-3-operating-model)*

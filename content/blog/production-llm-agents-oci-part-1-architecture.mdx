@@ -1,0 +1,130 @@
+---
+title: 'Production LLMs & AI Agents on OCI: Part 1 - The Enterprise Architecture Blueprint'
+date: '2026-01-20'
+description: 'Most GenAI initiatives stall at demo because teams underinvest in identity, governance, observability, and delivery. Here is the six-plane enterprise stack that actually gets to production.'
+image: '/images/blog/oci-genai-architecture-hero.jpg'
+tags: ['Enterprise AI', 'OCI', 'Architecture', 'LLM', 'Production Systems', 'Oracle']
+author: 'Frank'
+category: 'Enterprise AI'
+readingTime: '10 min read'
+---
+
+# Production LLMs and AI Agents on OCI: The Enterprise Architecture Blueprint
+
+**TL;DR:** Prototypes are easy. Production is where GenAI systems get real: identity, governance, data access, latency, cost, auditability, and an operating model that survives the first incident and the first compliance review. This three-part series gives you the blueprint enterprises actually need.
+
+---
+
+## The Hard Truth About GenAI in Production
+
+Every organization I work with has built an LLM demo in a week.
+
+Most are still running that same demo six months later.
+
+Why? Because moving from "ChatGPT wrapper" to production-grade AI system requires **everything around the model**—and that's where teams underinvest. The LLM is a dependency. The system is a product.
+
+This series proposes a single, reusable blueprint for running LLMs and AI agents in production on Oracle Cloud Infrastructure (OCI). We'll cover architecture, agent patterns, and operating models. No hand-waving. No vendor theater. Just the decisions you actually need to make.
+
+---
+
+## What "Production" Actually Means for GenAI
+
+Before we draw any boxes, let's define terms. Production-grade GenAI means:
+
+| Dimension | What It Requires |
+|-----------|------------------|
+| **Security & Identity** | RBAC, network isolation, secrets management, threat protection at the edge |
+| **Data Access** | Least privilege, audited retrieval, clear data residency boundaries |
+| **Reliability** | Timeouts, retries, fallbacks, graceful degradation when a model or tool fails |
+| **Quality** | Online telemetry + offline evaluation + regression testing |
+| **Cost** | Quotas, rate limiting, caching, and model selection policies |
+
+If you're missing any of these, you don't have a production system. You have a demo with a login screen.
+
+---
+
+## The Six-Plane Enterprise Architecture
+
+Here's a practical way to reason about what you're building. Each plane has clear owners and controls:
+
+### 1. Experience Plane
+Web/mobile/chat UI, task UIs, and "agentic frontends" that can display tool results and intermediate steps.
+
+### 2. Ingress & Policy Plane
+API Gateway/WAF, authN/authZ, rate limits, request shaping, and tenant-level governance.
+
+### 3. Orchestration Plane
+Agent runtime (managed or framework), tool routing, memory, and workflow control.
+
+### 4. Data & Retrieval Plane
+Ingestion, chunking, embeddings, vector stores, structured data access, and data catalogs.
+
+### 5. Model Plane
+Hosted LLM endpoints, model import, fine-tunes, dedicated AI clusters, and model selection policy.
+
+### 6. Operations & Governance Plane
+Observability, evaluation, CI/CD, audit trails, prompt libraries, and lifecycle management.
+
+---
+
+## Foundation Models on OCI: The Model-Agnostic Advantage
+
+OCI's Generative AI Service takes a **model-agnostic, multi-provider approach**:
+
+- **Cohere** (Command R+, Embed)
+- **Meta** (Llama family)
+- **OpenAI** (open-weight variants)
+- **Mistral**
+- **xAI** (Grok models)
+- **Google** (Gemini, coming soon)
+
+### Deployment Options
+
+| Option | Best For |
+|--------|----------|
+| **On-Demand** | Development, variable workloads, pay-per-use |
+| **Dedicated AI Clusters** | Isolation, predictable costs, high-volume production traffic |
+
+### Enterprise-First Security
+- Data stays within your OCI tenancy boundaries
+- Private endpoints (no public internet traffic)
+- Fine-grained IAM controls
+- Sovereign Cloud regions for strict data residency
+
+---
+
+## OCI Reference Patterns
+
+Oracle publishes strong building blocks:
+
+| Pattern | What It Gives You |
+|---------|-------------------|
+| [Enterprise GenAI Stack](https://docs.oracle.com/en/solutions/oci-genai-enterprise/index.html) | The four-layer umbrella architecture |
+| [Agentic AI with OCI AI Agent Platform](https://docs.oracle.com/en/solutions/deploy-agentic-ai-agent-platform/index.html) | Managed-agent blueprint |
+| [Select AI + APEX Framework](https://docs.oracle.com/en/solutions/select-ai-apex-framework/index.html) | Near-zero hallucinations pattern |
+| [Multicloud GenAI RAG](https://docs.oracle.com/en/solutions/oci-multicloud-genai-rag/index.html) | OCI + Azure connectivity |
+
+---
+
+## What's Next
+
+In [Part 2](/blog/production-llm-agents-oci-part-2-agent-patterns), we dive deep into agent patterns—managed agents (OCI AI Agent Platform/Agent Hub) vs. framework agents (LangGraph/LangChain)—and when to use each.
+
+In [Part 3](/blog/production-llm-agents-oci-part-3-operating-model), we cover the operating model: observability, evaluation, CI/CD for AI, and lifecycle management.
+
+---
+
+## FAQ
+
+### What makes OCI different from AWS or Azure for GenAI?
+OCI's model-agnostic approach, deep database integration (Oracle DB 23ai with native vector search), and dedicated AI clusters with enterprise-grade isolation set it apart.
+
+### Can I use open-source models on OCI?
+Yes. OCI's Model Import feature lets you bring your own models and run them on OCI infrastructure with the same security and observability as hosted models.
+
+### What's the minimum viable production architecture?
+VCN with private subnets, OCI WAF + API Gateway, OCI AI Agent Platform or OKE running an agent service, OCI Generative AI hosted models, Autonomous Database for data, and Logging + APM for observability.
+
+---
+
+*This is Part 1 of a 3-part series. [Part 2: Agent Patterns](/blog/production-llm-agents-oci-part-2-agent-patterns) | [Part 3: Operating Model](/blog/production-llm-agents-oci-part-3-operating-model)*
