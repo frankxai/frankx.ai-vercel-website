@@ -46,12 +46,14 @@ export function DepartmentSection({ department, members, index }: DepartmentSect
               <h2 className={`text-3xl font-bold bg-gradient-to-r ${department.gradient} bg-clip-text text-transparent mb-2`}>
                 {department.name}
               </h2>
-              <p className="text-white/70 text-sm mb-3 leading-relaxed max-w-2xl">
+              <p className="text-white/70 text-sm leading-relaxed max-w-2xl">
                 {department.description}
               </p>
-              <p className="text-white/50 text-xs italic leading-relaxed max-w-2xl">
-                Mission: {department.mission}
-              </p>
+              {department.stats && (
+                <p className="text-white/50 text-xs mt-2 font-medium uppercase tracking-wider">
+                  {department.stats}
+                </p>
+              )}
             </div>
           </div>
 

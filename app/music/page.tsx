@@ -137,7 +137,7 @@ function HeroSection() {
             </h1>
 
             <p className="text-xl text-white/50 mb-8 max-w-lg leading-relaxed">
-              10,000+ songs created with Suno AI. Ambient soundscapes, electronic beats,
+              12,000+ songs created with Suno AI. Ambient soundscapes, electronic beats,
               cinematic scores, and healing frequencies. Exploring the frontier of AI music.
             </p>
 

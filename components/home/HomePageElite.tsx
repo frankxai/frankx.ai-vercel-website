@@ -308,7 +308,7 @@ function Hero() {
               animate={{ opacity: 1 }}
               transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.4 }}
             >
-              AI Architect at Oracle. Creator of 10K+ songs with Suno.
+              AI Architect at Oracle. Creator of 12K+ songs with Suno.
               Everything I build goes here—open, documented, yours to use.
             </motion.p>
 

@@ -40,7 +40,7 @@ const navigation = {
     label: 'Music',
     featured: {
       title: 'AI Music Portfolio',
-      description: '10,000+ songs created with Suno AI. Explore the catalog.',
+      description: '12,000+ songs created with Suno AI. Explore the catalog.',
       href: '/music',
       badge: '500+ Public',
     },
@@ -91,9 +91,9 @@ const navigation = {
     items: [
       { name: 'AI Architect Academy', href: '/ai-architect-academy', icon: Building, description: '80+ skills, 20+ patterns' },
       { name: 'Developer Hub', href: '/developers', icon: Code2, description: 'Ship 10x faster with AI' },
-      { name: 'Architecture Prototypes', href: '/prototypes', icon: Layers, description: 'Production blueprints' },
+      { name: 'AI Architecture', href: '/ai-architecture', icon: Network, description: 'Methodology & process' },
+      { name: 'Architecture Gallery', href: '/ai-architectures', icon: Layers, description: 'Production blueprints' },
       { name: 'Claude Code Mastery', href: '/prompt-library/agent-development', icon: Terminal, description: 'Prompts & patterns' },
-      { name: 'AI Patterns', href: '/ai-architect', icon: Workflow, description: 'Enterprise design patterns' },
       { name: 'Coding Prompts', href: '/prompt-library/coding', icon: Bot, description: 'Automation workflows' },
     ],
   },
@@ -111,6 +111,7 @@ const navigation = {
       { name: "The Creator's Soulbook", href: '/soulbook', icon: BookOpen, description: 'Your life transformation system' },
       { name: 'Free Playbooks', href: '/free-playbook', icon: FileText, description: 'Start with quick wins' },
       { name: 'Prompt Library', href: '/prompt-library', icon: BookOpen, description: 'Curated prompt stacks' },
+      { name: 'Downloads', href: '/downloads', icon: FileText, description: 'PDFs & free resources' },
       { name: 'Research Hub', href: '/research', icon: Microscope, description: 'Daily intelligence operations' },
       { name: 'Intelligence Atlas', href: '/intelligence-atlas', icon: Star, description: 'Flagship research' },
       { name: 'AI Architect', href: '/ai-architect', icon: Network, description: 'Solution design & patterns' },
@@ -369,6 +370,20 @@ export default function NavigationMega() {
               </Link>
             </NavigationMenu.Item>
 
+            <NavigationMenu.Item>
+              <Link
+                href="/contact"
+                className={cn(
+                  'rounded-md px-2.5 py-1.5 text-[13px] font-semibold transition-all',
+                  isActive('/contact')
+                    ? 'text-white bg-white/5'
+                    : 'text-slate-300 hover:text-white hover:bg-white/5'
+                )}
+              >
+                Contact
+              </Link>
+            </NavigationMenu.Item>
+
             <NavigationMenu.Indicator className="top-full z-10 flex h-2 items-end justify-center overflow-hidden transition-[width,transform_250ms_ease] data-[state=hidden]:animate-fadeOut data-[state=visible]:animate-fadeIn">
               <div className="relative top-[60%] h-2 w-2 rotate-45 rounded-tl-sm bg-slate-800 shadow-lg" />
             </NavigationMenu.Indicator>
@@ -429,6 +444,13 @@ export default function NavigationMega() {
                 className="block rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base font-medium text-slate-300 transition-colors hover:bg-white/5 hover:text-white"
               >
                 About
+              </Link>
+              <Link
+                href="/contact"
+                onClick={() => setIsOpen(false)}
+                className="block rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base font-medium text-slate-300 transition-colors hover:bg-white/5 hover:text-white"
+              >
+                Contact
               </Link>
 
               {/* Mobile CTA */}

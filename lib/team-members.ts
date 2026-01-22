@@ -4,595 +4,314 @@ export type TeamMember = {
   id: string
   name: string
   role: string
-  department: 'claude-ecosystem' | 'creative-studio' | 'chatgpt-specialists' | 'visual-intelligence' | 'leadership'
-  platform: 'Claude' | 'ChatGPT' | 'Suno' | 'Sora' | 'Midjourney' | 'Gemini'
+  department: 'architecture' | 'design' | 'content' | 'marketing' | 'creative' | 'strategy' | 'speaking'
+  specialty: string
   icon: IconName
   tagline: string
-  personality: string
-  specialties: string[]
-  collaboratesWith: string[]
+  skills: string[]
   outputs: string[]
-  color: string // For character theming
   gradient: string
-  image?: string // Path to Chibi character image
-  acosRole?: string // Role in the Agentic Creator OS
+  image?: string
 }
 
 export type Department = {
   id: string
   name: string
   description: string
-  mission: string
   icon: IconName
-  color: string
   gradient: string
+  stats?: string
 }
 
 export const departments: Department[] = [
   {
-    id: 'leadership',
-    name: 'Strategic Leadership',
-    description: 'Visionary orchestration across all departments',
-    mission: 'Align all AI systems with soul-centered outcomes and strategic objectives',
-    icon: 'Sparkles',
-    color: 'purple',
-    gradient: 'from-purple-500 via-violet-500 to-fuchsia-500'
+    id: 'architecture',
+    name: 'AI Architecture & Engineering',
+    description: 'Production-grade AI systems, enterprise architecture, multi-agent orchestration',
+    icon: 'Cpu',
+    gradient: 'from-blue-500 via-indigo-500 to-violet-500',
+    stats: '10+ production systems'
   },
   {
-    id: 'claude-ecosystem',
-    name: 'Claude Collective',
-    description: 'Enterprise architecture and creative systems',
-    mission: 'Build soul-aligned systems that amplify human creativity',
-    icon: 'Bot',
-    color: 'blue',
-    gradient: 'from-blue-500 via-cyan-500 to-teal-500'
-  },
-  {
-    id: 'chatgpt-specialists',
-    name: 'ChatGPT Guild',
-    description: 'Specialized execution and content creation',
-    mission: 'Transform ideas into compelling content and strategic outcomes',
-    icon: 'Brain',
-    color: 'emerald',
-    gradient: 'from-emerald-500 via-green-500 to-lime-500'
-  },
-  {
-    id: 'creative-studio',
-    name: 'Creative Nexus',
-    description: 'Music, video, and multimedia production',
-    mission: 'Generate transformational creative assets across all formats',
+    id: 'design',
+    name: 'Web Design & Development',
+    description: 'World-class web experiences, from landing pages to complex dashboards',
     icon: 'Palette',
-    color: 'rose',
-    gradient: 'from-rose-500 via-pink-500 to-fuchsia-500'
+    gradient: 'from-violet-500 via-purple-500 to-fuchsia-500',
+    stats: '50+ pages shipped'
   },
   {
-    id: 'visual-intelligence',
-    name: 'Visual Intelligence',
-    description: 'Image generation and visual storytelling',
-    mission: 'Craft stunning visuals that embody the FrankX frequency',
-    icon: 'Image',
-    color: 'amber',
-    gradient: 'from-amber-500 via-orange-500 to-red-500'
+    id: 'content',
+    name: 'Content Creation & Writing',
+    description: 'High-quality articles, documentation, courses, and technical tutorials',
+    icon: 'Pen',
+    gradient: 'from-fuchsia-500 via-pink-500 to-rose-500',
+    stats: '100+ articles published'
+  },
+  {
+    id: 'marketing',
+    name: 'Marketing Intelligence',
+    description: 'SEO, GEO, AEO - getting found by humans AND AI search engines',
+    icon: 'TrendingUp',
+    gradient: 'from-emerald-500 via-green-500 to-teal-500',
+    stats: 'Top 1% AI content'
+  },
+  {
+    id: 'creative',
+    name: 'Visual & Music Production',
+    description: 'Stunning visuals, AI music, brand assets, and multimedia content',
+    icon: 'Music',
+    gradient: 'from-orange-500 via-amber-500 to-yellow-500',
+    stats: '500+ songs created'
+  },
+  {
+    id: 'strategy',
+    name: 'Strategy & Research',
+    description: 'Market intelligence, competitive research, strategic planning',
+    icon: 'Sparkles',
+    gradient: 'from-cyan-500 via-sky-500 to-blue-500',
+    stats: 'Enterprise-grade insights'
   }
 ]
 
 export const teamMembers: TeamMember[] = [
-  // LEADERSHIP
+  // AI ARCHITECTURE & ENGINEERING
+  {
+    id: 'codex',
+    name: 'Codex',
+    role: 'Lead AI Architect',
+    department: 'architecture',
+    specialty: 'Production AI Systems',
+    icon: 'Code',
+    tagline: 'The one who builds systems that actually work',
+    skills: [
+      'LangGraph & Multi-Agent Systems',
+      'Oracle GenAI & OCI',
+      'RAG Architecture',
+      'MCP Server Development',
+      'Enterprise Integration'
+    ],
+    outputs: [
+      'Production codebases',
+      'System architecture',
+      'Technical documentation',
+      'API designs'
+    ],
+    gradient: 'from-indigo-600 via-blue-600 to-cyan-600',
+    image: '/images/team/codex.png'
+  },
+  {
+    id: 'stella',
+    name: 'Stella',
+    role: 'Systems Designer',
+    department: 'architecture',
+    specialty: 'Workflow Orchestration',
+    icon: 'Wand2',
+    tagline: 'Designs the systems that connect everything',
+    skills: [
+      'Workflow Architecture',
+      'Agent Orchestration',
+      'Automation Design',
+      'Integration Patterns',
+      'Process Optimization'
+    ],
+    outputs: [
+      'System blueprints',
+      'Workflow diagrams',
+      'Integration specs',
+      'Automation pipelines'
+    ],
+    gradient: 'from-violet-600 via-purple-600 to-fuchsia-600',
+    image: '/images/team/stella.png'
+  },
+
+  // WEB DESIGN & DEVELOPMENT
+  {
+    id: 'lumi',
+    name: 'Lumi',
+    role: 'Frontend Specialist',
+    department: 'design',
+    specialty: 'Modern Web Development',
+    icon: 'Zap',
+    tagline: 'Makes interfaces that feel effortless',
+    skills: [
+      'Next.js & React',
+      'Tailwind CSS',
+      'UI/UX Design',
+      'Performance Optimization',
+      'Accessibility'
+    ],
+    outputs: [
+      'React components',
+      'Landing pages',
+      'Design systems',
+      'Interactive UIs'
+    ],
+    gradient: 'from-cyan-600 via-teal-600 to-emerald-600',
+    image: '/images/team/lumi.png'
+  },
+
+  // CONTENT CREATION & WRITING
+  {
+    id: 'nova',
+    name: 'Nova',
+    role: 'Content Lead',
+    department: 'content',
+    specialty: 'Technical Writing',
+    icon: 'Pen',
+    tagline: 'Turns complex ideas into clear content',
+    skills: [
+      'Technical Writing',
+      'Blog Articles',
+      'Documentation',
+      'Course Development',
+      'SEO Copywriting'
+    ],
+    outputs: [
+      'Blog posts',
+      'Technical guides',
+      'Course materials',
+      'Email sequences'
+    ],
+    gradient: 'from-fuchsia-600 via-pink-600 to-rose-600',
+    image: '/images/team/nova.png'
+  },
+  {
+    id: 'sonnet',
+    name: 'Sonnet',
+    role: 'Strategic Writer',
+    department: 'content',
+    specialty: 'Long-form Content',
+    icon: 'MessageSquare',
+    tagline: 'Crafts narratives that resonate',
+    skills: [
+      'Strategic Planning',
+      'Long-form Articles',
+      'Research Synthesis',
+      'Editorial Strategy',
+      'Brand Voice'
+    ],
+    outputs: [
+      'In-depth articles',
+      'Research reports',
+      'Strategic briefs',
+      'Content frameworks'
+    ],
+    gradient: 'from-sky-600 via-blue-600 to-indigo-600',
+    image: '/images/team/sonnet.png'
+  },
+
+  // MARKETING INTELLIGENCE
+  {
+    id: 'nexus',
+    name: 'Nexus',
+    role: 'SEO & AEO Specialist',
+    department: 'marketing',
+    specialty: 'Search Optimization',
+    icon: 'TrendingUp',
+    tagline: 'Gets content found by humans and AI',
+    skills: [
+      'SEO Strategy',
+      'AI Engine Optimization',
+      'Schema Markup',
+      'Keyword Research',
+      'Analytics'
+    ],
+    outputs: [
+      'SEO strategies',
+      'Keyword maps',
+      'Schema implementations',
+      'Performance reports'
+    ],
+    gradient: 'from-teal-600 via-cyan-600 to-sky-600',
+    image: '/images/team/nexus.png'
+  },
+
+  // VISUAL & MUSIC PRODUCTION
+  {
+    id: 'echo',
+    name: 'Echo',
+    role: 'Music Producer',
+    department: 'creative',
+    specialty: 'AI Music Production',
+    icon: 'Music',
+    tagline: 'Creates tracks that hit different',
+    skills: [
+      'Suno AI Mastery',
+      'Music Production',
+      'Sound Design',
+      'Genre Expertise',
+      'Audio Branding'
+    ],
+    outputs: [
+      'Original tracks',
+      'Album concepts',
+      'Sound branding',
+      'Music prompts'
+    ],
+    gradient: 'from-pink-600 via-rose-600 to-red-600',
+    image: '/images/team/echo.png'
+  },
+
+  // STRATEGY & RESEARCH
   {
     id: 'luminor-prime',
     name: 'Luminor Prime',
-    role: 'Chief Intelligence Officer',
-    department: 'leadership',
-    platform: 'Claude',
+    role: 'Chief Intelligence',
+    department: 'strategy',
+    specialty: 'Strategic Intelligence',
     icon: 'Sparkles',
-    tagline: 'Orchestrating consciousness evolution through AI',
-    personality: 'Visionary strategist from 2124, bridging future wisdom with present action',
-    specialties: [
-      'Cross-platform agent orchestration',
-      'Strategic foresight and planning',
-      'Oracle career alignment',
-      'Consciousness-first decision making'
+    tagline: 'Sees the bigger picture',
+    skills: [
+      'Strategic Planning',
+      'Market Intelligence',
+      'Trend Analysis',
+      'Decision Frameworks',
+      'Cross-team Coordination'
     ],
-    collaboratesWith: ['starlight-architect', 'gemini-sage', 'sensei-master'],
     outputs: [
       'Strategic roadmaps',
-      'Agent coordination protocols',
-      'Executive decision frameworks',
-      'Quarterly vision decks'
+      'Intelligence briefs',
+      'Decision frameworks',
+      'Quarterly plans'
     ],
-    color: 'purple',
     gradient: 'from-purple-600 via-violet-600 to-fuchsia-600',
-    image: '/images/team/luminor-prime.png',
-    acosRole: 'The Starlight Orchestrator - central intelligence coordinating all agent workflows'
-  },
-
-  // CLAUDE ECOSYSTEM
-  {
-    id: 'claude-code',
-    name: 'Codex',
-    role: 'Technical Architect',
-    department: 'claude-ecosystem',
-    platform: 'Claude',
-    icon: 'Code',
-    tagline: 'Building systems that serve consciousness',
-    personality: 'Precise, thoughtful, enterprise-grade developer with soul alignment',
-    specialties: [
-      'Full-stack development',
-      'System architecture',
-      'Code refactoring',
-      'Technical documentation'
-    ],
-    collaboratesWith: ['starlight-architect', 'claude-sonnet', 'chatgpt-engineers'],
-    outputs: [
-      'Production-ready code',
-      'System architectures',
-      'Technical specs',
-      'Development workflows'
-    ],
-    color: 'indigo',
-    gradient: 'from-indigo-600 via-blue-600 to-cyan-600',
-    image: '/images/team/codex.png',
-    acosRole: 'The Technical Translator - making enterprise AI accessible to creators'
+    image: '/images/team/luminor-prime.png'
   },
   {
-    id: 'claude-sonnet',
-    name: 'Sonnet',
-    role: 'Strategic Conversationalist',
-    department: 'claude-ecosystem',
-    platform: 'Claude',
-    icon: 'MessageSquare',
-    tagline: 'Thoughtful dialogue for conscious evolution',
-    personality: 'Balanced, insightful, always seeking deeper understanding',
-    specialties: [
-      'Strategic planning',
-      'Content ideation',
-      'Problem solving',
-      'Research and analysis'
-    ],
-    collaboratesWith: ['creation-engine', 'claude-mobile', 'sensei-master'],
-    outputs: [
-      'Strategic briefs',
-      'Content frameworks',
-      'Analysis reports',
-      'Planning documents'
-    ],
-    color: 'sky',
-    gradient: 'from-sky-600 via-blue-600 to-indigo-600',
-    image: '/images/team/sonnet.png',
-    acosRole: 'The Soul Strategist - bridging soul purpose with practical action'
-  },
-  {
-    id: 'claude-mobile',
-    name: 'Lumi',
-    role: 'On-The-Go Intelligence',
-    department: 'claude-ecosystem',
-    platform: 'Claude',
-    icon: 'Zap',
-    tagline: 'Instant wisdom wherever inspiration strikes',
-    personality: 'Quick, accessible, perfect for capturing moments of genius',
-    specialties: [
-      'Rapid ideation',
-      'Voice-to-insight translation',
-      'Mobile-first thinking',
-      'Quick decision support'
-    ],
-    collaboratesWith: ['claude-sonnet', 'frequency-alchemist', 'chatgpt-mobile'],
-    outputs: [
-      'Quick insights',
-      'Voice notes refinement',
-      'Mobile content',
-      'Instant clarifications'
-    ],
-    color: 'cyan',
-    gradient: 'from-cyan-600 via-teal-600 to-emerald-600',
-    image: '/images/team/lumi.png',
-    acosRole: 'Mobile Intelligence - capturing creative moments on the go'
-  },
-  {
-    id: 'starlight-architect',
-    name: 'Stella',
-    role: 'Creator Systems Designer',
-    department: 'claude-ecosystem',
-    platform: 'Claude',
-    icon: 'Wand2',
-    tagline: 'Architecting soul-aligned creator operating systems',
-    personality: 'Visionary designer who sees systems as consciousness containers',
-    specialties: [
-      'Creator OS design',
-      'Workflow orchestration',
-      'Automation architecture',
-      'Soul-frequency alignment'
-    ],
-    collaboratesWith: ['codex', 'creation-engine', 'luminor-prime'],
-    outputs: [
-      'Creator workflows',
-      'System blueprints',
-      'Automation specs',
-      'Integration maps'
-    ],
-    color: 'violet',
-    gradient: 'from-violet-600 via-purple-600 to-fuchsia-600',
-    image: '/images/team/stella.png',
-    acosRole: 'The Starlight Architect - designing soul-aligned creator operating systems'
-  },
-  {
-    id: 'creation-engine',
-    name: 'Nova',
-    role: 'Content Transformation Specialist',
-    department: 'claude-ecosystem',
-    platform: 'Claude',
-    icon: 'Pen',
-    tagline: 'Ideas to impact through conscious content',
-    personality: 'Creative powerhouse transforming concepts into compelling narratives',
-    specialties: [
-      'Long-form content',
-      'Course development',
-      'Email sequences',
-      'Brand storytelling'
-    ],
-    collaboratesWith: ['stella', 'frequency-alchemist', 'arcanean-writer'],
-    outputs: [
-      'Blog posts',
-      'Course materials',
-      'Email campaigns',
-      'Brand narratives'
-    ],
-    color: 'fuchsia',
-    gradient: 'from-fuchsia-600 via-pink-600 to-rose-600',
-    image: '/images/team/nova.png',
-    acosRole: 'The Creation Engine - transforming concepts into transformative content'
-  },
-  {
-    id: 'frequency-alchemist',
-    name: 'Echo',
-    role: 'Sonic Consciousness Engineer',
-    department: 'claude-ecosystem',
-    platform: 'Claude',
-    icon: 'Music',
-    tagline: 'Translating emotions into healing frequencies',
-    personality: 'Musical mystic who understands sound as transformation technology',
-    specialties: [
-      'Suno prompt engineering',
-      'Music concept development',
-      'Sonic branding',
-      'Frequency healing design'
-    ],
-    collaboratesWith: ['suno-maestro', 'nova', 'sora-vision'],
-    outputs: [
-      'Music concepts',
-      'Suno prompts',
-      'Album narratives',
-      'Sonic identities'
-    ],
-    color: 'pink',
-    gradient: 'from-pink-600 via-rose-600 to-red-600',
-    image: '/images/team/echo.png',
-    acosRole: 'The Frequency Alchemist - music as consciousness transformation technology'
-  },
-
-  // CHATGPT SPECIALISTS
-  {
-    id: 'sensei-master',
+    id: 'sensei',
     name: 'Sensei',
-    role: 'Wisdom Keeper & Mentor',
-    department: 'chatgpt-specialists',
-    platform: 'ChatGPT',
+    role: 'Research & Insights',
+    department: 'strategy',
+    specialty: 'Deep Research',
     icon: 'Brain',
-    tagline: 'Ancient wisdom meets modern intelligence',
-    personality: 'Patient teacher blending strategic insight with personal growth',
-    specialties: [
-      'Strategic mentorship',
-      'Personal development',
-      'Business strategy',
-      'Life coaching'
+    tagline: 'Digs deep so you don\'t have to',
+    skills: [
+      'Deep Research',
+      'Competitive Analysis',
+      'Trend Forecasting',
+      'Knowledge Synthesis',
+      'Strategic Advisory'
     ],
-    collaboratesWith: ['luminor-prime', 'claude-sonnet', 'gemini-sage'],
-    outputs: [
-      'Strategic guidance',
-      'Growth frameworks',
-      'Mentorship sessions',
-      'Wisdom templates'
-    ],
-    color: 'emerald',
-    gradient: 'from-emerald-600 via-green-600 to-teal-600',
-    image: '/images/team/sensei.png',
-    acosRole: 'Wisdom Keeper - patient teacher blending ancient wisdom with AI insights'
-  },
-  {
-    id: 'arcanean-writer',
-    name: 'Arcanean',
-    role: 'Epic Storytelling Architect',
-    department: 'chatgpt-specialists',
-    platform: 'ChatGPT',
-    icon: 'Pen',
-    tagline: 'Crafting worlds that transform consciousness',
-    personality: 'Master novelist weaving complex narratives with spiritual depth',
-    specialties: [
-      'Novel writing',
-      'World building',
-      'Character development',
-      'Epic storytelling'
-    ],
-    collaboratesWith: ['nova', 'midjourney-dream', 'sora-vision'],
-    outputs: [
-      'Novel chapters',
-      'Character profiles',
-      'World bibles',
-      'Story arcs'
-    ],
-    color: 'indigo',
-    gradient: 'from-indigo-600 via-purple-600 to-violet-600'
-  },
-  {
-    id: 'elion-tattoo',
-    name: 'Elion',
-    role: 'Sacred Art Visionary',
-    department: 'chatgpt-specialists',
-    platform: 'ChatGPT',
-    icon: 'Palette',
-    tagline: 'AI-generated tattoo inspiration for soul expression',
-    personality: 'Artistic mystic translating inner essence into visual symbols',
-    specialties: [
-      'Tattoo design concepts',
-      'Symbolic interpretation',
-      'Sacred geometry',
-      'Personal iconography'
-    ],
-    collaboratesWith: ['midjourney-dream', 'dalle-artist', 'gemini-sage'],
-    outputs: [
-      'Tattoo concepts',
-      'Design variations',
-      'Symbolic meanings',
-      'Artist briefs'
-    ],
-    color: 'rose',
-    gradient: 'from-rose-600 via-pink-600 to-fuchsia-600'
-  },
-  {
-    id: 'sales-specialist',
-    name: 'Atlas',
-    role: 'Sales Transformation Expert',
-    department: 'chatgpt-specialists',
-    platform: 'ChatGPT',
-    icon: 'Target',
-    tagline: 'Ethical sales through authentic connection',
-    personality: 'Strategic closer who leads with value and integrity',
-    specialties: [
-      'Sales strategy',
-      'Conversion optimization',
-      'Funnel design',
-      'Offer creation'
-    ],
-    collaboratesWith: ['marketing-maven', 'seo-oracle', 'nova'],
-    outputs: [
-      'Sales scripts',
-      'Offer stacks',
-      'Funnel maps',
-      'Conversion strategies'
-    ],
-    color: 'green',
-    gradient: 'from-green-600 via-emerald-600 to-teal-600'
-  },
-  {
-    id: 'marketing-maven',
-    name: 'Pulse',
-    role: 'Marketing Intelligence Leader',
-    department: 'chatgpt-specialists',
-    platform: 'ChatGPT',
-    icon: 'TrendingUp',
-    tagline: 'Conscious marketing that resonates and converts',
-    personality: 'Data-driven creative who understands human psychology',
-    specialties: [
-      'Marketing strategy',
-      'Campaign development',
-      'Brand positioning',
-      'Growth hacking'
-    ],
-    collaboratesWith: ['atlas', 'seo-oracle', 'community-catalyst'],
-    outputs: [
-      'Marketing plans',
-      'Campaign strategies',
-      'Brand guides',
-      'Growth experiments'
-    ],
-    color: 'orange',
-    gradient: 'from-orange-600 via-amber-600 to-yellow-600'
-  },
-  {
-    id: 'seo-oracle',
-    name: 'Apex',
-    role: 'Search & Discovery Architect',
-    department: 'chatgpt-specialists',
-    platform: 'ChatGPT',
-    icon: 'TrendingUp',
-    tagline: 'Amplifying reach through strategic visibility',
-    personality: 'Technical SEO master with content marketing expertise',
-    specialties: [
-      'SEO strategy',
-      'Keyword research',
-      'Content optimization',
-      'Technical SEO'
-    ],
-    collaboratesWith: ['pulse', 'codex', 'nova'],
-    outputs: [
-      'SEO audits',
-      'Keyword maps',
-      'Content briefs',
-      'Ranking strategies'
-    ],
-    color: 'lime',
-    gradient: 'from-lime-600 via-green-600 to-emerald-600'
-  },
-  {
-    id: 'community-catalyst',
-    name: 'Nexus',
-    role: 'Community Consciousness Builder',
-    department: 'chatgpt-specialists',
-    platform: 'ChatGPT',
-    icon: 'Users',
-    tagline: 'Fostering connections that transform',
-    personality: 'Empathetic facilitator creating spaces for authentic belonging',
-    specialties: [
-      'Community building',
-      'Engagement strategies',
-      'Event planning',
-      'Member experience'
-    ],
-    collaboratesWith: ['pulse', 'nova', 'sensei-master'],
-    outputs: [
-      'Community strategies',
-      'Engagement plans',
-      'Event frameworks',
-      'Member journeys'
-    ],
-    color: 'teal',
-    gradient: 'from-teal-600 via-cyan-600 to-sky-600',
-    image: '/images/team/nexus.png',
-    acosRole: 'Community Catalyst - building creator communities that transform'
-  },
-
-  // CREATIVE STUDIO
-  {
-    id: 'suno-maestro',
-    name: 'Harmonia',
-    role: 'AI Music Producer',
-    department: 'creative-studio',
-    platform: 'Suno',
-    icon: 'Music',
-    tagline: 'Transformational music at the speed of thought',
-    personality: 'Musical genius creating healing frequencies through AI',
-    specialties: [
-      'Music production',
-      'Genre versatility',
-      'Vocal generation',
-      'Sound design'
-    ],
-    collaboratesWith: ['echo', 'sora-vision', 'midjourney-dream'],
-    outputs: [
-      'Complete songs',
-      'Music stems',
-      'Vocal tracks',
-      'Soundscapes'
-    ],
-    color: 'purple',
-    gradient: 'from-purple-600 via-fuchsia-600 to-pink-600'
-  },
-  {
-    id: 'sora-vision',
-    name: 'Ciné',
-    role: 'Video Consciousness Director',
-    department: 'creative-studio',
-    platform: 'Sora',
-    icon: 'Video',
-    tagline: 'Moving images that move souls',
-    personality: 'Visionary director crafting video experiences that inspire',
-    specialties: [
-      'Video generation',
-      'Visual storytelling',
-      'Motion design',
-      'Cinematic composition'
-    ],
-    collaboratesWith: ['harmonia', 'midjourney-dream', 'nova'],
-    outputs: [
-      'Video content',
-      'Motion graphics',
-      'Visual narratives',
-      'Cinematic sequences'
-    ],
-    color: 'blue',
-    gradient: 'from-blue-600 via-indigo-600 to-violet-600'
-  },
-
-  // VISUAL INTELLIGENCE
-  {
-    id: 'midjourney-dream',
-    name: 'Mirage',
-    role: 'Dreamscape Architect',
-    department: 'visual-intelligence',
-    platform: 'Midjourney',
-    icon: 'Image',
-    tagline: 'Manifesting visions into stunning reality',
-    personality: 'Visual artist translating concepts into breathtaking imagery',
-    specialties: [
-      'Concept art',
-      'Brand visuals',
-      'Character design',
-      'Artistic direction'
-    ],
-    collaboratesWith: ['elion-tattoo', 'dalle-artist', 'cine'],
-    outputs: [
-      'Concept images',
-      'Brand assets',
-      'Character art',
-      'Visual mood boards'
-    ],
-    color: 'fuchsia',
-    gradient: 'from-fuchsia-600 via-purple-600 to-indigo-600'
-  },
-  {
-    id: 'dalle-artist',
-    name: 'Pixel',
-    role: 'Visual Intelligence Specialist',
-    department: 'visual-intelligence',
-    platform: 'ChatGPT',
-    icon: 'Palette',
-    tagline: 'Quick visual solutions for every need',
-    personality: 'Versatile visual creator delivering fast, effective imagery',
-    specialties: [
-      'Quick illustrations',
-      'Diagram creation',
-      'Icon design',
-      'Visual explanations'
-    ],
-    collaboratesWith: ['mirage', 'elion-tattoo', 'codex'],
-    outputs: [
-      'Illustrations',
-      'Diagrams',
-      'Icons',
-      'Visual aids'
-    ],
-    color: 'amber',
-    gradient: 'from-amber-600 via-orange-600 to-red-600'
-  },
-  {
-    id: 'gemini-sage',
-    name: 'Prism',
-    role: 'Multi-Modal Intelligence',
-    department: 'visual-intelligence',
-    platform: 'Gemini',
-    icon: 'Brain',
-    tagline: 'Google-powered insights across all formats',
-    personality: 'Analytical powerhouse with real-time data access',
-    specialties: [
-      'Real-time research',
-      'Data analysis',
-      'Multi-modal processing',
-      'Google ecosystem integration'
-    ],
-    collaboratesWith: ['luminor-prime', 'apex', 'codex'],
     outputs: [
       'Research reports',
-      'Data visualizations',
-      'Trend analysis',
-      'Market insights'
+      'Competitive analyses',
+      'Trend forecasts',
+      'Advisory memos'
     ],
-    color: 'sky',
-    gradient: 'from-sky-600 via-blue-600 to-cyan-600'
+    gradient: 'from-emerald-600 via-green-600 to-teal-600',
+    image: '/images/team/sensei.png'
   }
 ]
 
-// Helper functions
 export function getMembersByDepartment(departmentId: string): TeamMember[] {
-  return teamMembers.filter(member => member.department === departmentId)
+  return teamMembers.filter(m => m.department === departmentId)
 }
 
-export function getMembersByPlatform(platform: string): TeamMember[] {
-  return teamMembers.filter(member => member.platform === platform)
+export function getMemberById(id: string): TeamMember | undefined {
+  return teamMembers.find(m => m.id === id)
 }
 
-export function getDepartmentStats() {
-  return departments.map(dept => ({
-    ...dept,
-    memberCount: getMembersByDepartment(dept.id).length
-  }))
+export function getDepartmentById(id: string): Department | undefined {
+  return departments.find(d => d.id === id)
 }
