@@ -8,49 +8,63 @@
     <title>The Ultimate Guide to AI Coding Agents in 2026: Claude Code, OpenCode, Cline, and Beyond</title>
     <link>https://frankx.ai/blog/ultimate-guide-ai-coding-agents-2026</link>
     <guid>https://frankx.ai/blog/ultimate-guide-ai-coding-agents-2026</guid>
-    <pubDate>Thu, 22 Jan 2026 18:32:03 GMT</pubDate>
+    <pubDate>Thu, 22 Jan 2026 19:27:42 GMT</pubDate>
     <description>Master AI-powered development with the complete guide to coding agents. Learn to set up Claude Code, OpenCode, Cline, Roo Code, and build your evolution from basic prompts to multi-agent orchestration.</description>
   </item>
   <item>
     <title>Create Music Without Musical Training: The Suno AI Music Creation Workshop</title>
     <link>https://frankx.ai/blog/suno-ai-music-creation-workshop</link>
     <guid>https://frankx.ai/blog/suno-ai-music-creation-workshop</guid>
-    <pubDate>Thu, 22 Jan 2026 18:32:03 GMT</pubDate>
+    <pubDate>Thu, 22 Jan 2026 19:27:42 GMT</pubDate>
     <description>Transform your ideas into cinematic soundscapes, meditation music, and motivation anthems using AI. Learn the 5-Layer Prompt Architecture and frequency science for transformative audio.</description>
   </item>
   <item>
     <title>The 5C Framework: Mastering Prompt Engineering for Any AI System</title>
     <link>https://frankx.ai/blog/prompt-engineering-mastery-workshop</link>
     <guid>https://frankx.ai/blog/prompt-engineering-mastery-workshop</guid>
-    <pubDate>Thu, 22 Jan 2026 18:32:03 GMT</pubDate>
+    <pubDate>Thu, 22 Jan 2026 19:27:42 GMT</pubDate>
     <description>Learn systematic prompt engineering with the 5C Framework. From basic commands to advanced techniques like Chain-of-Thought and Few-Shot Learning. Build your personal prompt template library.</description>
+  </item>
+  <item>
+    <title>AWS Bedrock AgentCore Deep Dive: Production Patterns for Enterprise AI Agents</title>
+    <link>https://frankx.ai/blog/production-agent-patterns-aws-bedrock</link>
+    <guid>https://frankx.ai/blog/production-agent-patterns-aws-bedrock</guid>
+    <pubDate>Thu, 22 Jan 2026 19:27:41 GMT</pubDate>
+    <description>A comprehensive guide to building production-ready AI agents on AWS using Bedrock, AgentCore, and the Strands framework. Learn the architectural patterns, security controls, and operational best practices that power enterprise agent deployments.</description>
+  </item>
+  <item>
+    <title>The 7 Pillars of Production Agent Systems: What Actually Matters in 2026</title>
+    <link>https://frankx.ai/blog/production-agent-patterns-7-pillars</link>
+    <guid>https://frankx.ai/blog/production-agent-patterns-7-pillars</guid>
+    <pubDate>Thu, 22 Jan 2026 19:27:41 GMT</pubDate>
+    <description>2026 marks the shift from AI demos to production deployments. Here's the architectural framework that emerged from analyzing AWS, Azure, Google Cloud, OpenAI, Anthropic, and Oracle's approaches to production-ready AI agents.</description>
   </item>
   <item>
     <title>Build Your Personal AI Assistant: The Complete Setup Workshop</title>
     <link>https://frankx.ai/blog/personal-ai-assistant-setup-workshop</link>
     <guid>https://frankx.ai/blog/personal-ai-assistant-setup-workshop</guid>
-    <pubDate>Thu, 22 Jan 2026 18:32:03 GMT</pubDate>
+    <pubDate>Thu, 22 Jan 2026 19:27:41 GMT</pubDate>
     <description>Create a customized AI development environment from scratch. Learn to configure Claude Code, build CLAUDE.md files, create custom skills, and connect MCP servers to your workflow.</description>
   </item>
   <item>
     <title>Build Your First MCP Server: The Model Context Protocol Workshop</title>
     <link>https://frankx.ai/blog/mcp-server-architecture-workshop</link>
     <guid>https://frankx.ai/blog/mcp-server-architecture-workshop</guid>
-    <pubDate>Thu, 22 Jan 2026 18:32:03 GMT</pubDate>
+    <pubDate>Thu, 22 Jan 2026 19:27:41 GMT</pubDate>
     <description>Learn to build production-grade MCP servers that connect AI to your data. Master resources, tools, and prompts with the open standard revolutionizing AI integration.</description>
   </item>
   <item>
     <title>The Creator's AI Toolkit: Build Your Complete Content System</title>
     <link>https://frankx.ai/blog/creators-ai-toolkit-workshop</link>
     <guid>https://frankx.ai/blog/creators-ai-toolkit-workshop</guid>
-    <pubDate>Thu, 22 Jan 2026 18:32:03 GMT</pubDate>
+    <pubDate>Thu, 22 Jan 2026 19:27:41 GMT</pubDate>
     <description>Transform from overwhelmed creator to AI-empowered content machine. Build ideation engines, research pipelines, writing assistants, and distribution automation.</description>
   </item>
   <item>
     <title>CONTENT_SCHEMA</title>
     <link>https://frankx.ai/blog/CONTENT_SCHEMA</link>
     <guid>https://frankx.ai/blog/CONTENT_SCHEMA</guid>
-    <pubDate>Thu, 22 Jan 2026 18:32:03 GMT</pubDate>
+    <pubDate>Thu, 22 Jan 2026 19:27:41 GMT</pubDate>
     <description># FrankX Blog Content Schema ## Approved Categories (5 Only) | Category | Purpose | Editorial Day | Examples | |----------|---------|---------------|----------| | **Creator Systems** | Workflo…</description>
   </item>
   <item>
@@ -61,11 +75,32 @@
     <description>Production workflows I use daily: blog publishing, ops reports, client onboarding, content repurposing, code review. Copy these patterns and automate the grind.</description>
   </item>
   <item>
+    <title>AGI in 2026: What Current Progress Means for Students, Creators, and Your Career</title>
+    <link>https://frankx.ai/blog/agi-2026-opportunities-students-creators</link>
+    <guid>https://frankx.ai/blog/agi-2026-opportunities-students-creators</guid>
+    <pubDate>Wed, 21 Jan 2026 00:00:00 GMT</pubDate>
+    <description>Expert predictions range from 'AGI by 2026' to 'decades away.' Here's what the actual progress means for students, personal growth, and economic opportunities right now.</description>
+  </item>
+  <item>
     <title>Launching the AI Center of Excellence: A New Era for FrankX</title>
     <link>https://frankx.ai/blog/ai-coe-launch</link>
     <guid>https://frankx.ai/blog/ai-coe-launch</guid>
     <pubDate>Wed, 21 Jan 2026 00:00:00 GMT</pubDate>
-    <description>We are deploying the AI CoE Hub, a production-grade LLM/Agent blog series, and massive UX enhancements. See how we are transforming from tech-overwhelmed to AI-empowered.</description>
+    <description> # Launching the AI Center of Excellence Today marks a pivotal moment in the FrankX journey. We are officially rolling out the **AI Center of Excellence (CoE) Hub**, a dedicated resource for masterin…</description>
+  </item>
+  <item>
+    <title>Building a Research Intelligence System: How I Use AI Agents for Daily Knowledge Operations</title>
+    <link>https://frankx.ai/blog/building-research-intelligence-system</link>
+    <guid>https://frankx.ai/blog/building-research-intelligence-system</guid>
+    <pubDate>Wed, 21 Jan 2026 00:00:00 GMT</pubDate>
+    <description>A deep dive into the multi-agent research system powering FrankX.AI - five specialized agents, three workflow modes, and a publication pipeline optimized for the AI age.</description>
+  </item>
+  <item>
+    <title>EU Inc Explained: The '28th Regime' That Could Finally Unify European Startups</title>
+    <link>https://frankx.ai/blog/eu-inc-28th-regime-european-startups</link>
+    <guid>https://frankx.ai/blog/eu-inc-28th-regime-european-startups</guid>
+    <pubDate>Wed, 21 Jan 2026 00:00:00 GMT</pubDate>
+    <description>The European Commission just announced EU Inc - a pan-European company structure promising 48-hour incorporation across all member states. Here's what it means for founders, investors, and the European startup ecosystem.</description>
   </item>
   <item>
     <title>Getting Started with Agentic Creator OS</title>
@@ -75,11 +110,11 @@
     <description>Set up your own AI operating system in 30 minutes. Step-by-step guide to installing departments, MCP servers, and running your first automated workflow.</description>
   </item>
   <item>
-    <title>Enterprise Agentic Architecture: The Decision Framework That Gets You to Production</title>
+    <title>Enterprise Agentic Architecture: Decision Framework for Production</title>
     <link>https://frankx.ai/blog/production-agentic-ai-systems</link>
     <guid>https://frankx.ai/blog/production-agentic-ai-systems</guid>
     <pubDate>Wed, 21 Jan 2026 00:00:00 GMT</pubDate>
-    <description>Most agentic AI projects stall at demo because teams optimize for the wrong things. This is the architectural decision framework that separates shipped products from abandoned experiments.</description>
+    <description>Most agentic AI projects stall at demo because teams optimize for the wrong things. This architectural decision framework separates shipped products from abandoned experiments.</description>
   </item>
   <item>
     <title>Production LLMs &amp; AI Agents on OCI: Part 1 - The Six-Plane Enterprise Architecture</title>
@@ -101,6 +136,20 @@
     <guid>https://frankx.ai/blog/production-llm-agents-oci-part-3-operating-model</guid>
     <pubDate>Wed, 21 Jan 2026 00:00:00 GMT</pubDate>
     <description>The definitive guide to operating production AI systems. 5-stage maturity model, evaluation pipelines, MLOps for GenAI, incident response runbooks, cost optimization, and team operating models.</description>
+  </item>
+  <item>
+    <title>Build Your Own Jarvis: Turn Claude Code Into Your Personal Intelligence System</title>
+    <link>https://frankx.ai/blog/build-your-own-jarvis-claude-code</link>
+    <guid>https://frankx.ai/blog/build-your-own-jarvis-claude-code</guid>
+    <pubDate>Tue, 20 Jan 2026 00:00:00 GMT</pubDate>
+    <description>Stop using AI tools like everyone else. Build a personal AI system that knows your work, executes your workflows, and gets smarter every day. Here's exactly how.</description>
+  </item>
+  <item>
+    <title>Why Every Creator Needs an Intelligence System in 2026</title>
+    <link>https://frankx.ai/blog/creator-intelligence-systems-2026</link>
+    <guid>https://frankx.ai/blog/creator-intelligence-systems-2026</guid>
+    <pubDate>Tue, 20 Jan 2026 00:00:00 GMT</pubDate>
+    <description>The creators who thrive in 2026 won't be those with the best tools—they'll be those with the best systems. Here's why personal AI intelligence systems are the new competitive advantage.</description>
   </item>
   <item>
     <title>Nvidia CES 2026: Jensen Huang Declares the 'ChatGPT Moment for Physical AI'</title>
@@ -247,7 +296,7 @@
     <link>https://frankx.ai/blog/agentic-seo-publishing-masterplan</link>
     <guid>https://frankx.ai/blog/agentic-seo-publishing-masterplan</guid>
     <pubDate>Thu, 19 Sep 2024 00:00:00 GMT</pubDate>
-    <description> # Agentic SEO Publishing Masterplan: 12-Day Accelerator from September 19 ## Executive Summary FrankX.ai is entering a decisive sprint. From **19 September through 30 September**, we will orchestra…</description>
+    <description> # Agentic SEO Publishing Masterplan: 12-Day Accelerator from September 19 ## Executive Summary FrankX.ai is entering a decisive sprint. From **19 September through 30 September**, we will orch…</description>
   </item>
   <item>
     <title>AI Doesn't Have To Be Soulless (And Here's How I Know)</title>
@@ -304,55 +353,6 @@
     <guid>https://frankx.ai/guides/elevenlabs-voice-guide</guid>
     <pubDate>Mon, 12 Jan 2026 00:00:00 GMT</pubDate>
     <description>Master ElevenLabs for professional voiceovers, podcast production, voice cloning, and building audio content at scale without recording equipment</description>
-  </item>
-  <item>
-    <title>Midjourney Guide for Creators</title>
-    <link>https://frankx.ai/guides/midjourney-guide</link>
-    <guid>https://frankx.ai/guides/midjourney-guide</guid>
-    <pubDate>Mon, 12 Jan 2026 00:00:00 GMT</pubDate>
-    <description>Master Midjourney for stunning visuals, brand imagery, content graphics, and developing a consistent visual identity powered by AI image generation</description>
-  </item>
-  <item>
-    <title>OpenAI ChatGPT Guide for Creators</title>
-    <link>https://frankx.ai/guides/openai-chatgpt-guide</link>
-    <guid>https://frankx.ai/guides/openai-chatgpt-guide</guid>
-    <pubDate>Mon, 12 Jan 2026 00:00:00 GMT</pubDate>
-    <description>Master ChatGPT and OpenAI tools for content creation, brainstorming, automation, and building AI-powered workflows with the world's most popular AI assistant</description>
-  </item>
-  <item>
-    <title>Perplexity AI Guide for Creators</title>
-    <link>https://frankx.ai/guides/perplexity-ai-guide</link>
-    <guid>https://frankx.ai/guides/perplexity-ai-guide</guid>
-    <pubDate>Mon, 12 Jan 2026 00:00:00 GMT</pubDate>
-    <description>Master Perplexity AI for research, fact-checking, trend discovery, and building a citation-backed content workflow that establishes authority</description>
-  </item>
-  <item>
-    <title>The Golden Age of Intelligence: A Modern, Practical Guide</title>
-    <link>https://frankx.ai/guides/modern-guide</link>
-    <guid>https://frankx.ai/guides/modern-guide</guid>
-    <pubDate>Fri, 12 Sep 2025 00:00:00 GMT</pubDate>
-    <description>Clarity, frameworks, and a 90-day plan to capture real value—without the hype</description>
-  </item>
-  <item>
-    <title>Agent Collective Operating System</title>
-    <link>https://frankx.ai/guides/agent-collective-operating-system</link>
-    <guid>https://frankx.ai/guides/agent-collective-operating-system</guid>
-    <pubDate>Sat, 01 Mar 2025 00:00:00 GMT</pubDate>
-    <description>The shared rituals, roles, and delivery cadence that keep FrankX agents shipping premium outcomes.</description>
-  </item>
-  <item>
-    <title>Skills Library Playbook</title>
-    <link>https://frankx.ai/guides/skills-library-playbook</link>
-    <guid>https://frankx.ai/guides/skills-library-playbook</guid>
-    <pubDate>Sat, 01 Mar 2025 00:00:00 GMT</pubDate>
-    <description>How to activate the FrankX skill stack for faster execution and better creative outcomes.</description>
-  </item>
-  <item>
-    <title>Top 50 AI Prompts Collection</title>
-    <link>https://frankx.ai/guides/top-50-ai-prompts</link>
-    <guid>https://frankx.ai/guides/top-50-ai-prompts</guid>
-    <pubDate>Fri, 03 Jan 2025 00:00:00 GMT</pubDate>
-    <description>Battle-tested prompts for ChatGPT, Claude, Midjourney, and Suno across all creative domains</description>
   </item>
 </channel>
 </rss>
