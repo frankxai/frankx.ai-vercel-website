@@ -16,6 +16,30 @@ import {
   Zap,
   Heart,
 } from 'lucide-react'
+import { FAQPageJsonLd } from '@/components/seo/JsonLd'
+
+const aboutFaqs = [
+  {
+    question: 'Who is Frank and what is FrankX.AI?',
+    answer: 'Frank is an AI Architect at Oracle\'s Center of Excellence by day and a prolific AI music creator by night. FrankX.AI is his personal hub sharing everything learned from building enterprise AI systems and creating 10,000+ songs with Suno AI, providing tools and frameworks for creators to build their own AI-powered creative practice.'
+  },
+  {
+    question: 'What makes FrankX.AI different from other AI resources?',
+    answer: 'FrankX.AI combines enterprise-grade AI architecture expertise with hands-on creative AI experience. It bridges the gap between technical implementation and practical creative workflows, offering resources that work in the real world—not just in theory.'
+  },
+  {
+    question: 'What kind of content can I find on FrankX.AI?',
+    answer: 'The site offers AI implementation guides, prompt libraries for tools like Suno and Midjourney, enterprise AI architecture patterns, creative workflows, courses on AI music production, and frameworks for building goal-aligned AI systems.'
+  },
+  {
+    question: 'How can I get started with the resources on this site?',
+    answer: 'Start with the /start page for a guided overview, explore the Music Lab for AI music creation, browse the Prompt Library for ready-to-use prompts, or dive into the Creation Chronicles blog for practical insights and tutorials.'
+  },
+  {
+    question: 'Does Frank offer consulting or collaboration opportunities?',
+    answer: 'Yes, Frank is available for AI strategy consulting, enterprise AI implementations, speaking engagements, and creative AI projects. Visit the Contact page or reach out via LinkedIn to discuss collaboration opportunities.'
+  }
+]
 
 // Premium background
 function AboutBackground() {
@@ -151,6 +175,7 @@ const colorMap = {
 export default function AboutPage() {
   return (
     <>
+      <FAQPageJsonLd faqs={aboutFaqs} />
       <AboutBackground />
       <main id="main" className="relative min-h-screen">
         {/* Hero Section */}
