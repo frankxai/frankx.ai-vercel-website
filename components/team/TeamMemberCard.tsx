@@ -5,6 +5,7 @@ import { type TeamMember } from '@/lib/team-members'
 import { IconRenderer } from '@/lib/icon-map'
 import { motion } from 'framer-motion'
 import { ArrowUpRight, Sparkles } from 'lucide-react'
+import Image from 'next/image'
 
 interface TeamMemberCardProps {
   member: TeamMember
@@ -73,14 +74,26 @@ export function TeamMemberCard({ member, index }: TeamMemberCardProps) {
               <Sparkles className="w-4 h-4 text-white/40" />
             </div>
 
-            {/* Character Icon - Chibi style */}
+            {/* Character Avatar - Chibi image or fallback icon */}
             <div className="mb-4 flex justify-center">
               <div
-                className={`relative w-24 h-24 rounded-2xl bg-gradient-to-br ${gradientClass} p-0.5 transform group-hover:scale-110 transition-transform duration-300`}
+                className={`relative w-28 h-28 rounded-2xl bg-gradient-to-br ${gradientClass} p-0.5 transform group-hover:scale-110 transition-transform duration-300`}
               >
-                <div className="w-full h-full rounded-2xl bg-slate-900/90 flex items-center justify-center backdrop-blur-sm">
-                  <IconRenderer name={member.icon} className="w-12 h-12 text-white drop-shadow-lg" />
-                </div>
+                {member.image ? (
+                  <div className="relative w-full h-full rounded-2xl overflow-hidden bg-gradient-to-br from-slate-900/50 to-slate-800/50">
+                    <Image
+                      src={member.image}
+                      alt={`${member.name} - AI Agent Character`}
+                      fill
+                      className="object-cover object-top rounded-2xl"
+                      sizes="(max-width: 768px) 112px, 112px"
+                    />
+                  </div>
+                ) : (
+                  <div className="w-full h-full rounded-2xl bg-slate-900/90 flex items-center justify-center backdrop-blur-sm">
+                    <IconRenderer name={member.icon} className="w-12 h-12 text-white drop-shadow-lg" />
+                  </div>
+                )}
                 {/* Sparkle effect */}
                 <div className="absolute -top-1 -right-1 w-3 h-3 bg-white rounded-full opacity-0 group-hover:opacity-100 transition-opacity animate-pulse" />
                 <div className="absolute -bottom-1 -left-1 w-2 h-2 bg-white/70 rounded-full opacity-0 group-hover:opacity-100 transition-opacity animate-pulse delay-75" />
@@ -125,9 +138,14 @@ export function TeamMemberCard({ member, index }: TeamMemberCardProps) {
           <div className="relative p-6 h-full flex flex-col overflow-y-auto">
             {/* Header */}
             <div className="mb-4">
-              <h3 className={`text-lg font-bold bg-gradient-to-r ${gradientClass} bg-clip-text text-transparent mb-2`}>
+              <h3 className={`text-lg font-bold bg-gradient-to-r ${gradientClass} bg-clip-text text-transparent mb-1`}>
                 {member.name}
               </h3>
+              {member.acosRole && (
+                <p className={`text-xs font-medium bg-gradient-to-r ${gradientClass} bg-clip-text text-transparent mb-2`}>
+                  {member.acosRole}
+                </p>
+              )}
               <p className="text-xs text-white/50 leading-relaxed">{member.personality}</p>
             </div>
 

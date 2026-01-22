@@ -155,6 +155,84 @@ export default function TeamPage() {
             </div>
           </section>
 
+          {/* The Agentic Creator OS Section */}
+          <section className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-purple-950/40 via-slate-900/60 to-indigo-950/40 backdrop-blur-xl p-8 lg:p-12">
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(168,85,247,0.15),_transparent_60%)]" />
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_rgba(99,102,241,0.1),_transparent_60%)]" />
+
+            <div className="relative max-w-5xl mx-auto space-y-8">
+              <div className="text-center max-w-3xl mx-auto">
+                <span className="inline-flex items-center gap-2 rounded-full border border-purple-400/30 bg-purple-500/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-wider text-purple-300 mb-4">
+                  <Sparkles className="w-3.5 h-3.5" />
+                  The Operating System
+                </span>
+                <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+                  <span className="bg-gradient-to-r from-purple-400 via-fuchsia-400 to-pink-400 bg-clip-text text-transparent">
+                    Agentic Creator OS
+                  </span>
+                </h2>
+                <p className="text-lg text-white/70 leading-relaxed">
+                  This isn't just a team—it's a living operating system designed for the Golden Age of creators.
+                  Each AI agent represents a specialized capability that I've trained, refined, and orchestrated
+                  to build this website, create content, produce music, and serve creators worldwide.
+                </p>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-6">
+                <div className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm p-6 space-y-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 to-violet-500 flex items-center justify-center">
+                      <Bot className="w-5 h-5 text-white" />
+                    </div>
+                    <h3 className="text-lg font-semibold text-white">Why These Agents?</h3>
+                  </div>
+                  <p className="text-sm text-white/60 leading-relaxed">
+                    After creating 500+ AI songs and years of building enterprise AI systems at Oracle, I developed
+                    this specialized agent ecosystem. Each character emerged from real creative workflows—what I
+                    actually needed to ship products, write articles, produce music, and build communities.
+                  </p>
+                </div>
+
+                <div className="rounded-2xl border border-white/10 bg-white/5 backdrop-blur-sm p-6 space-y-4">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-fuchsia-500 to-pink-500 flex items-center justify-center">
+                      <Zap className="w-5 h-5 text-white" />
+                    </div>
+                    <h3 className="text-lg font-semibold text-white">How They Serve You</h3>
+                  </div>
+                  <p className="text-sm text-white/60 leading-relaxed">
+                    Every page you see, article you read, and system you experience was co-created with these agents.
+                    They're not just tools—they're trained collaborators that understand FrankX's voice, values, and
+                    vision for transforming overwhelmed creators into AI-empowered artists.
+                  </p>
+                </div>
+              </div>
+
+              <div className="grid md:grid-cols-4 gap-4">
+                <div className="rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm p-4 text-center">
+                  <div className="text-2xl font-bold text-purple-400 mb-1">6+</div>
+                  <div className="text-xs text-white/60">Claude Agents</div>
+                  <div className="text-xs text-white/40 mt-1">Strategic Core</div>
+                </div>
+                <div className="rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm p-4 text-center">
+                  <div className="text-2xl font-bold text-emerald-400 mb-1">8+</div>
+                  <div className="text-xs text-white/60">Specialized GPTs</div>
+                  <div className="text-xs text-white/40 mt-1">Task Execution</div>
+                </div>
+                <div className="rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm p-4 text-center">
+                  <div className="text-2xl font-bold text-fuchsia-400 mb-1">4+</div>
+                  <div className="text-xs text-white/60">Creative Studios</div>
+                  <div className="text-xs text-white/40 mt-1">Music & Visual</div>
+                </div>
+                <div className="rounded-xl border border-white/10 bg-white/5 backdrop-blur-sm p-4 text-center">
+                  <div className="text-2xl font-bold text-amber-400 mb-1">∞</div>
+                  <div className="text-xs text-white/60">Workflows</div>
+                  <div className="text-xs text-white/40 mt-1">Automated</div>
+                </div>
+              </div>
+            </div>
+          </section>
+
           {/* How We Collaborate */}
           <section className="relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-slate-900/60 via-slate-900/40 to-slate-950/60 backdrop-blur-xl p-8 lg:p-12">
             <div className="absolute -top-20 -right-20 w-64 h-64 bg-gradient-to-br from-fuchsia-500/20 to-purple-500/10 blur-3xl rounded-full" />

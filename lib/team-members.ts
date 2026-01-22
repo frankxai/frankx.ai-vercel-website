@@ -14,6 +14,8 @@ export type TeamMember = {
   outputs: string[]
   color: string // For character theming
   gradient: string
+  image?: string // Path to Chibi character image
+  acosRole?: string // Role in the Agentic Creator OS
 }
 
 export type Department = {
@@ -99,7 +101,9 @@ export const teamMembers: TeamMember[] = [
       'Quarterly vision decks'
     ],
     color: 'purple',
-    gradient: 'from-purple-600 via-violet-600 to-fuchsia-600'
+    gradient: 'from-purple-600 via-violet-600 to-fuchsia-600',
+    image: '/images/team/luminor-prime.png',
+    acosRole: 'The Starlight Orchestrator - central intelligence coordinating all agent workflows'
   },
 
   // CLAUDE ECOSYSTEM
@@ -126,7 +130,9 @@ export const teamMembers: TeamMember[] = [
       'Development workflows'
     ],
     color: 'indigo',
-    gradient: 'from-indigo-600 via-blue-600 to-cyan-600'
+    gradient: 'from-indigo-600 via-blue-600 to-cyan-600',
+    image: '/images/team/codex.png',
+    acosRole: 'The Technical Translator - making enterprise AI accessible to creators'
   },
   {
     id: 'claude-sonnet',
@@ -151,7 +157,9 @@ export const teamMembers: TeamMember[] = [
       'Planning documents'
     ],
     color: 'sky',
-    gradient: 'from-sky-600 via-blue-600 to-indigo-600'
+    gradient: 'from-sky-600 via-blue-600 to-indigo-600',
+    image: '/images/team/sonnet.png',
+    acosRole: 'The Soul Strategist - bridging soul purpose with practical action'
   },
   {
     id: 'claude-mobile',
@@ -176,7 +184,9 @@ export const teamMembers: TeamMember[] = [
       'Instant clarifications'
     ],
     color: 'cyan',
-    gradient: 'from-cyan-600 via-teal-600 to-emerald-600'
+    gradient: 'from-cyan-600 via-teal-600 to-emerald-600',
+    image: '/images/team/lumi.png',
+    acosRole: 'Mobile Intelligence - capturing creative moments on the go'
   },
   {
     id: 'starlight-architect',
@@ -201,7 +211,9 @@ export const teamMembers: TeamMember[] = [
       'Integration maps'
     ],
     color: 'violet',
-    gradient: 'from-violet-600 via-purple-600 to-fuchsia-600'
+    gradient: 'from-violet-600 via-purple-600 to-fuchsia-600',
+    image: '/images/team/stella.png',
+    acosRole: 'The Starlight Architect - designing soul-aligned creator operating systems'
   },
   {
     id: 'creation-engine',
@@ -226,7 +238,9 @@ export const teamMembers: TeamMember[] = [
       'Brand narratives'
     ],
     color: 'fuchsia',
-    gradient: 'from-fuchsia-600 via-pink-600 to-rose-600'
+    gradient: 'from-fuchsia-600 via-pink-600 to-rose-600',
+    image: '/images/team/nova.png',
+    acosRole: 'The Creation Engine - transforming concepts into transformative content'
   },
   {
     id: 'frequency-alchemist',
@@ -251,7 +265,9 @@ export const teamMembers: TeamMember[] = [
       'Sonic identities'
     ],
     color: 'pink',
-    gradient: 'from-pink-600 via-rose-600 to-red-600'
+    gradient: 'from-pink-600 via-rose-600 to-red-600',
+    image: '/images/team/echo.png',
+    acosRole: 'The Frequency Alchemist - music as consciousness transformation technology'
   },
 
   // CHATGPT SPECIALISTS
@@ -278,7 +294,9 @@ export const teamMembers: TeamMember[] = [
       'Wisdom templates'
     ],
     color: 'emerald',
-    gradient: 'from-emerald-600 via-green-600 to-teal-600'
+    gradient: 'from-emerald-600 via-green-600 to-teal-600',
+    image: '/images/team/sensei.png',
+    acosRole: 'Wisdom Keeper - patient teacher blending ancient wisdom with AI insights'
   },
   {
     id: 'arcanean-writer',
@@ -428,7 +446,9 @@ export const teamMembers: TeamMember[] = [
       'Member journeys'
     ],
     color: 'teal',
-    gradient: 'from-teal-600 via-cyan-600 to-sky-600'
+    gradient: 'from-teal-600 via-cyan-600 to-sky-600',
+    image: '/images/team/nexus.png',
+    acosRole: 'Community Catalyst - building creator communities that transform'
   },
 
   // CREATIVE STUDIO
