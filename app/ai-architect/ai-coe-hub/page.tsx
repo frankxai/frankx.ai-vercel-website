@@ -3,27 +3,27 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import {
-  BuildingOffice2Icon,
-  CodeBracketIcon,
-  ServerStackIcon,
-  BookOpenIcon,
-  AcademicCapIcon,
-  ArrowTopRightOnSquareIcon,
-  CommandLineIcon,
-  CpuChipIcon,
-  CloudIcon,
-  ShieldCheckIcon,
-  ChartBarIcon,
-  DocumentTextIcon,
-  BeakerIcon,
-  RocketLaunchIcon,
-  CheckCircleIcon
-} from '@heroicons/react/24/outline'
+  Building2 as BuildingOffice2Icon,
+  Code2 as CodeBracketIcon,
+  Server as ServerStackIcon,
+  BookOpen as BookOpenIcon,
+  GraduationCap as AcademicCapIcon,
+  ExternalLink as ArrowTopRightOnSquareIcon,
+  Terminal as CommandLineIcon,
+  Cpu as CpuChipIcon,
+  Cloud as CloudIcon,
+  ShieldCheck as ShieldCheckIcon,
+  BarChart3 as ChartBarIcon,
+  FileText as DocumentTextIcon,
+  FlaskConical as BeakerIcon,
+  Rocket as RocketLaunchIcon,
+  CheckCircle as CheckCircleIcon
+} from 'lucide-react'
 
 interface ResourceCard {
   title: string
   description: string
-  icon: React.ElementType
+  icon: React.FC<{ className?: string }>
   href: string
   external?: boolean
   category: 'architecture' | 'code' | 'guide' | 'oracle'
