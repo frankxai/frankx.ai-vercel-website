@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useTransform, useSpring, useReducedMotion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useRef, useState, useEffect } from 'react'
 import {
   ArrowRight,
@@ -12,6 +13,8 @@ import {
   BookOpen,
   Code2,
   ChevronRight,
+  ImageIcon,
+  Wand2,
 } from 'lucide-react'
 
 import { trackEvent } from '@/lib/analytics'
@@ -789,6 +792,122 @@ function FeaturedResources() {
 }
 
 // ============================================================================
+// AI ART GALLERY PREVIEW
+// ============================================================================
+
+const featuredArtworks = [
+  {
+    src: '/images/ai-art/generated-2026-01-21T10-05-06-577Z-s5e43g.png',
+    title: 'Neural Synthesis I',
+    category: 'Abstract',
+  },
+  {
+    src: '/images/ai-art/generated-2026-01-21T10-05-26-229Z-jajczn.png',
+    title: 'Consciousness Wave',
+    category: 'Consciousness',
+  },
+  {
+    src: '/images/ai-art/generated-2026-01-21T10-05-42-484Z-c75nch.png',
+    title: 'Digital Aurora',
+    category: 'Nature Tech',
+  },
+  {
+    src: '/images/ai-art/generated-2025-11-20T19-29-22-071Z-uz2q95.png',
+    title: 'First Light',
+    category: 'Cosmic',
+  },
+]
+
+function AIArtGalleryPreview() {
+  return (
+    <section className="py-16 md:py-24 lg:py-32 border-t border-white/5">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8 md:mb-12"
+        >
+          <div>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-medium mb-4">
+              <Wand2 className="w-3.5 h-3.5" />
+              AI-Generated Art
+            </div>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold text-white mb-2 sm:mb-4 tracking-tight">
+              Visual Explorations
+            </h2>
+            <p className="text-base sm:text-lg md:text-xl text-white/50 max-w-xl">
+              Where artificial intelligence meets creative expression. Each piece generated with nano-banana AI.
+            </p>
+          </div>
+          <Link
+            href="/ai-art"
+            className="inline-flex items-center gap-2 text-sm sm:text-base text-white/60 hover:text-white transition-colors self-start sm:self-auto"
+          >
+            View full gallery
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+        </motion.div>
+
+        {/* Gallery Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+          {featuredArtworks.map((artwork, i) => (
+            <motion.div
+              key={artwork.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+            >
+              <Link
+                href="/ai-art"
+                className="group relative block aspect-square rounded-xl sm:rounded-2xl overflow-hidden border border-white/5 hover:border-white/20 transition-all"
+              >
+                <Image
+                  src={artwork.src}
+                  alt={artwork.title}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  sizes="(max-width: 768px) 50vw, 25vw"
+                />
+                {/* Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                {/* Info */}
+                <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                  <p className="text-[10px] sm:text-xs uppercase tracking-wider text-emerald-400 mb-0.5">
+                    {artwork.category}
+                  </p>
+                  <h3 className="text-sm sm:text-base font-semibold text-white truncate">
+                    {artwork.title}
+                  </h3>
+                </div>
+              </Link>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Stats */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="flex items-center justify-center gap-6 sm:gap-8 mt-8 text-white/40 text-sm"
+        >
+          <div className="flex items-center gap-2">
+            <ImageIcon className="w-4 h-4" />
+            <span>20+ Artworks</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <Wand2 className="w-4 h-4" />
+            <span>nano-banana AI</span>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  )
+}
+
+// ============================================================================
 // ABOUT SECTION
 // ============================================================================
 
@@ -950,6 +1069,7 @@ export default function HomePageElite() {
         <WhatIDo />
         <QuickStartSection />
         <FeaturedResources />
+        <AIArtGalleryPreview />
         <AboutSection />
         <FinalCTA />
       </div>

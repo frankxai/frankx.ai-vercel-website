@@ -4,6 +4,19 @@ import type { ComponentPropsWithoutRef, ReactNode } from 'react'
 import type { MDXComponents } from 'mdx/types'
 import AffiliateLink from '@/components/affiliates/AffiliateLink'
 
+// Embed components for immersive media
+import {
+  YouTubeEmbed,
+  TikTokEmbed,
+  InstagramEmbed,
+  TwitterEmbed,
+  SpotifyEmbed,
+  VimeoEmbed,
+  FigmaEmbed,
+  CodePenEmbed,
+  LoomEmbed,
+} from '@/components/embeds'
+
 type CalloutKind = 'info' | 'warning' | 'tip' | 'success'
 
 interface CalloutProps {
@@ -165,4 +178,14 @@ export const mdxComponents: MDXComponents = {
   Callout,
   AffiliateLink,
   Link,
+  // Embed components for immersive media in blog posts
+  YouTubeEmbed,
+  TikTokEmbed,
+  InstagramEmbed,
+  TwitterEmbed,
+  SpotifyEmbed,
+  VimeoEmbed,
+  FigmaEmbed,
+  CodePenEmbed,
+  LoomEmbed,
 }
