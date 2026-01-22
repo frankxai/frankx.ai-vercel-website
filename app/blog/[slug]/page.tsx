@@ -61,14 +61,14 @@ export default async function BlogPostPage({
     title: postItem.title,
     content: postItem.content,
     url: `/blog/${postItem.slug}`,
-    tags: postItem.tags,
+    tags: postItem.tags || [],
   }))
 
   const currentDocument = {
     title: post.title,
     content: post.content,
     url: `/blog/${post.slug}`,
-    tags: post.tags,
+    tags: post.tags || [],
   }
 
   const canonicalUrl = `https://frankx.ai/blog/${post.slug}`
@@ -101,7 +101,7 @@ export default async function BlogPostPage({
       '@id': canonicalUrl,
     },
     wordCount,
-    keywords: post.keywords?.join(', ') || post.tags.join(', '),
+    keywords: post.keywords?.join(', ') || post.tags?.join(', ') || '',
   }
 
   return (
