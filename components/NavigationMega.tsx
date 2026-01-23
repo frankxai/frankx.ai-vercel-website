@@ -30,12 +30,33 @@ import {
   Network,
   Microscope,
   Building,
+  Sun,
+  Moon,
+  Calendar,
+  Flame,
 } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
 
 // Navigation structure
 const navigation = {
+  rituals: {
+    label: 'Rituals',
+    featured: {
+      title: 'The Ritual System',
+      description: 'Transform your days into masterpieces through intentional practice.',
+      href: '/rituals',
+      badge: 'Core Practice',
+    },
+    items: [
+      { name: 'Morning Rituals', href: '/rituals/morning', icon: Sun, description: 'Start with power' },
+      { name: 'Creative Sessions', href: '/rituals/creative-session', icon: Sparkles, description: 'Enter flow state' },
+      { name: 'AI Practices', href: '/rituals/ai-practice', icon: Bot, description: 'Collaborate with AI' },
+      { name: 'Evening Integration', href: '/rituals/evening', icon: Moon, description: 'Close with intention' },
+      { name: 'Weekly Reviews', href: '/rituals/weekly-review', icon: Calendar, description: 'The meta-ritual' },
+      { name: 'Ritual Library', href: '/rituals#library', icon: Flame, description: 'Downloadable guides' },
+    ],
+  },
   music: {
     label: 'Music',
     featured: {
@@ -301,7 +322,15 @@ export default function NavigationMega() {
           onValueChange={(value) => setMenuOpen(!!value)}
         >
           <NavigationMenu.List className="flex items-center gap-1">
-            {/* Music - Lead with the portfolio */}
+            {/* Rituals - Lead with transformation */}
+            <NavigationMenu.Item>
+              <NavTrigger>Rituals</NavTrigger>
+              <NavigationMenu.Content className="absolute left-0 top-0 data-[motion=from-end]:animate-enterFromRight data-[motion=from-start]:animate-enterFromLeft data-[motion=to-end]:animate-exitToRight data-[motion=to-start]:animate-exitToLeft">
+                <MegaMenuContent section="rituals" />
+              </NavigationMenu.Content>
+            </NavigationMenu.Item>
+
+            {/* Music */}
             <NavigationMenu.Item>
               <NavTrigger>Music</NavTrigger>
               <NavigationMenu.Content className="absolute left-0 top-0 data-[motion=from-end]:animate-enterFromRight data-[motion=from-start]:animate-enterFromLeft data-[motion=to-end]:animate-exitToRight data-[motion=to-start]:animate-exitToLeft">
