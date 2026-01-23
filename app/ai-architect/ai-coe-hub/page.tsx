@@ -3,22 +3,39 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import {
-  BuildingOffice2Icon,
-  CodeBracketIcon,
-  ServerStackIcon,
-  BookOpenIcon,
-  AcademicCapIcon,
-  ArrowTopRightOnSquareIcon,
-  CommandLineIcon,
-  CpuChipIcon,
-  CloudIcon,
-  ShieldCheckIcon,
-  ChartBarIcon,
-  DocumentTextIcon,
-  BeakerIcon,
-  RocketLaunchIcon,
-  CheckCircleIcon
-} from '@heroicons/react/24/outline'
+  Building2,
+  Code2,
+  Server,
+  BookOpen,
+  GraduationCap,
+  ExternalLink,
+  Terminal,
+  Cpu,
+  Cloud,
+  ShieldCheck,
+  BarChart3,
+  FileText,
+  FlaskConical,
+  Rocket,
+  CheckCircle
+} from 'lucide-react'
+
+// Alias heroicons names to lucide equivalents
+const BuildingOffice2Icon = Building2
+const CodeBracketIcon = Code2
+const ServerStackIcon = Server
+const BookOpenIcon = BookOpen
+const AcademicCapIcon = GraduationCap
+const ArrowTopRightOnSquareIcon = ExternalLink
+const CommandLineIcon = Terminal
+const CpuChipIcon = Cpu
+const CloudIcon = Cloud
+const ShieldCheckIcon = ShieldCheck
+const ChartBarIcon = BarChart3
+const DocumentTextIcon = FileText
+const BeakerIcon = FlaskConical
+const RocketLaunchIcon = Rocket
+const CheckCircleIcon = CheckCircle
 
 interface ResourceCard {
   title: string

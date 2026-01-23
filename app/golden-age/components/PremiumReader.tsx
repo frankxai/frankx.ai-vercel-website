@@ -17,6 +17,7 @@ import {
 } from 'lucide-react';
 import type { Chapter, TOCItem } from '../types';
 import FontSizeControl from './FontSizeControl';
+import ChapterFeedback from './ChapterFeedback';
 
 interface PremiumReaderProps {
   chapter: Chapter;
@@ -469,6 +470,12 @@ export default function PremiumReader({
                   </Link>
                 </div>
               </motion.nav>
+
+              {/* Chapter Feedback */}
+              <ChapterFeedback
+                chapterSlug={chapter.slug}
+                chapterNumber={chapter.number}
+              />
             </article>
 
             {/* Sidebar TOC */}
