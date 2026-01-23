@@ -22,9 +22,9 @@ import {
 } from 'lucide-react'
 
 // Premium Components
-import Globe from '@/components/ui/globe'
-import Particles from '@/components/ui/particles'
-import Meteors from '@/components/ui/meteors'
+import { Globe } from '@/components/ui/globe'
+import { Particles } from '@/components/ui/particles'
+import { Meteors } from '@/components/ui/meteors'
 import { ShimmerButton } from '@/components/ui/shimmer-button'
 import { AnimatedShinyText } from '@/components/ui/animated-shiny-text'
 import { TypingAnimation } from '@/components/ui/typing-animation'
@@ -150,9 +150,10 @@ function HeroSection() {
             <div className="h-[60px] mb-8">
               <TypingAnimation
                 className="text-xl sm:text-2xl text-white/70"
-                text="AI systems. 10K+ songs. Soul-aligned creation."
                 duration={50}
-              />
+              >
+                AI systems. 10K+ songs. Soul-aligned creation.
+              </TypingAnimation>
             </div>
 
             {/* Description */}
