@@ -426,7 +426,7 @@ export default function PremiumReader({
                 <div className="grid gap-4 sm:grid-cols-2">
                   {previousChapter && previousChapter.published ? (
                     <Link
-                      href={`/golden-age/${previousChapter.slug}`}
+                      href={"/golden-age/" + previousChapter.slug}
                       className="group p-5 rounded-2xl border-2 border-gray-200 dark:border-gray-800 hover:border-amber-300 dark:hover:border-amber-700 hover:bg-amber-50/50 dark:hover:bg-amber-900/20 transition-all cursor-pointer"
                     >
                       <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 mb-2">
@@ -443,7 +443,7 @@ export default function PremiumReader({
 
                   {nextChapter && nextChapter.published ? (
                     <Link
-                      href={`/golden-age/${nextChapter.slug}`}
+                      href={"/golden-age/" + nextChapter.slug}
                       className="group p-5 rounded-2xl border-2 border-gray-200 dark:border-gray-800 hover:border-amber-300 dark:hover:border-amber-700 hover:bg-amber-50/50 dark:hover:bg-amber-900/20 transition-all text-right cursor-pointer"
                     >
                       <div className="flex items-center justify-end gap-2 text-sm text-gray-500 dark:text-gray-400 mb-2">
