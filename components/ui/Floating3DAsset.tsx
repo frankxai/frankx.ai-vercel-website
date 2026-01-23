@@ -14,7 +14,7 @@ interface Floating3DAssetProps {
   /** Custom position classes when position is 'custom' */
   positionClassName?: string
   /** Size preset */
-  size?: 'sm' | 'md' | 'lg' | 'xl'
+  size?: 'sm' | 'md' | 'lg' | 'xl' | '2xl'
   /** Animation variant */
   animation?: 'float' | 'rotate' | 'pulse' | 'float-rotate' | 'none'
   /** Animation duration in seconds */
@@ -45,6 +45,7 @@ const sizeStyles = {
   md: { width: 120, height: 120 },
   lg: { width: 180, height: 180 },
   xl: { width: 240, height: 240 },
+  '2xl': { width: 320, height: 320 },
 }
 
 const blurStyles = {
