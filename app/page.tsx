@@ -1,4 +1,4 @@
-import HomePagePremium from '@/components/home/HomePagePremium'
+import HomePageElite from '@/components/home/HomePageElite'
 import { createMetadata } from '@/lib/seo'
 import JsonLd from '@/components/seo/JsonLd'
 
@@ -56,7 +56,7 @@ const organizationSchema = {
 export default function Page() {
   return (
     <>
-      <HomePagePremium />
+      <HomePageElite />
       <JsonLd type="WebSite" data={websiteSchema} />
       <JsonLd type="Person" data={personSchema} />
       <JsonLd type="Organization" data={organizationSchema} />
