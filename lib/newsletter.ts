@@ -11,8 +11,18 @@
 
 import { Resend } from 'resend'
 
-// Initialize Resend client
-const resend = new Resend(process.env.RESEND_API_KEY)
+// Lazy-initialize Resend client to avoid build-time errors
+let resendClient: Resend | null = null
+
+function getResend(): Resend {
+  if (!resendClient) {
+    if (!process.env.RESEND_API_KEY) {
+      throw new Error('RESEND_API_KEY is not set')
+    }
+    resendClient = new Resend(process.env.RESEND_API_KEY)
+  }
+  return resendClient
+}
 
 // Newsletter segments (audiences in Resend)
 export const NEWSLETTER_SEGMENTS = {
@@ -62,7 +72,7 @@ export async function addContact(contact: {
 }): Promise<{ success: boolean; contactId?: string; error?: string }> {
   try {
     // First, create the contact
-    const result = await resend.contacts.create({
+    const result = await getResend().contacts.create({
       email: contact.email,
       firstName: contact.firstName || '',
       lastName: contact.lastName || '',
@@ -97,7 +107,7 @@ export async function updateContact(
   }
 ): Promise<{ success: boolean; error?: string }> {
   try {
-    const result = await resend.contacts.update({
+    const result = await getResend().contacts.update({
       audienceId: process.env.RESEND_AUDIENCE_ID!,
       email,
       ...updates,
@@ -119,7 +129,7 @@ export async function updateContact(
  */
 export async function removeContact(email: string): Promise<{ success: boolean; error?: string }> {
   try {
-    const result = await resend.contacts.update({
+    const result = await getResend().contacts.update({
       audienceId: process.env.RESEND_AUDIENCE_ID!,
       email,
       unsubscribed: true,
@@ -145,7 +155,7 @@ export async function getContacts(): Promise<{
   error?: string
 }> {
   try {
-    const result = await resend.contacts.list({
+    const result = await getResend().contacts.list({
       audienceId: process.env.RESEND_AUDIENCE_ID!,
     })
 
@@ -199,7 +209,7 @@ export async function sendBroadcast(broadcast: {
   replyTo?: string
 }): Promise<{ success: boolean; broadcastId?: string; error?: string }> {
   try {
-    const result = await resend.broadcasts.create({
+    const result = await getResend().broadcasts.create({
       audienceId: process.env.RESEND_AUDIENCE_ID!,
       from: broadcast.from || process.env.RESEND_FROM_EMAIL || 'Frank <frank@frankx.ai>',
       subject: broadcast.subject,
@@ -237,7 +247,7 @@ export async function sendAndTriggerBroadcast(broadcast: {
 
   try {
     // Trigger the broadcast to send immediately
-    const sendResult = await resend.broadcasts.send(createResult.broadcastId)
+    const sendResult = await getResend().broadcasts.send(createResult.broadcastId)
 
     if (sendResult.error) {
       return { success: false, error: sendResult.error.message }
