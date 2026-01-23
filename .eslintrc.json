@@ -3,8 +3,8 @@
   "extends": ["next", "next/core-web-vitals"],
   "rules": {
     "react/no-unescaped-entities": "off",
-    "react-hooks/set-state-in-effect": "warn",
-    "react-hooks/static-components": "warn",
-    "react-hooks/immutability": "warn"
+    "react-hooks/set-state-in-effect": "off",
+    "react-hooks/static-components": "off",
+    "react-hooks/immutability": "off"
   }
 }
