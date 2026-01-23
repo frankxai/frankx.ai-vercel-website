@@ -2,23 +2,9 @@
   "root": true,
   "extends": ["next", "next/core-web-vitals"],
   "rules": {
-    "react/no-unescaped-entities": "off"
-  },
-  "overrides": [
-    {
-      "files": [
-        "**/components/ui/globe.tsx",
-        "**/components/ui/meteors.tsx",
-        "**/components/ui/typing-animation.tsx",
-        "**/components/ui/particles.tsx",
-        "**/app/golden-age/components/FontSizeControl.tsx"
-      ],
-      "rules": {
-        "react-hooks/exhaustive-deps": "warn",
-        "react-hooks/set-state-in-effect": "off",
-        "react-hooks/static-components": "off",
-        "react-hooks/immutability": "off"
-      }
-    }
-  ]
+    "react/no-unescaped-entities": "off",
+    "react-hooks/set-state-in-effect": "warn",
+    "react-hooks/static-components": "warn",
+    "react-hooks/immutability": "warn"
+  }
 }
