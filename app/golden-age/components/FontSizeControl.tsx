@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useCallback, useRef, useLayoutEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Minus, Plus, Type } from 'lucide-react';
 
@@ -19,6 +19,15 @@ const FONT_SIZE_LABELS: Record<FontSize, string> = {
   large: 'L',
 };
 
+function getInitialSize(): FontSize {
+  if (typeof window === 'undefined') return 'medium';
+  const saved = localStorage.getItem('golden-age-font-size') as FontSize | null;
+  if (saved && FONT_SIZES.includes(saved)) {
+    return saved;
+  }
+  return 'medium';
+}
+
 interface FontSizeControlProps {
   onSizeChange: (sizeClass: string) => void;
 }
@@ -26,31 +35,40 @@ interface FontSizeControlProps {
 export default function FontSizeControl({ onSizeChange }: FontSizeControlProps) {
   const [size, setSize] = useState<FontSize>('medium');
   const [isOpen, setIsOpen] = useState(false);
+  const initializedRef = useRef(false);
 
-  // Load saved preference
-  // eslint-disable-next-line react-hooks/set-state-in-effect
-  useEffect(() => {
-    const saved = localStorage.getItem('golden-age-font-size') as FontSize | null;
-    if (saved && FONT_SIZES.includes(saved)) {
-      setSize(saved);
-      onSizeChange(FONT_SIZE_CLASSES[saved]);
+  // Load saved preference on mount using useLayoutEffect to avoid flash
+  useLayoutEffect(() => {
+    if (!initializedRef.current) {
+      initializedRef.current = true;
+      const savedSize = getInitialSize();
+      if (savedSize !== 'medium') {
+        setSize(savedSize);
+      }
+      onSizeChange(FONT_SIZE_CLASSES[savedSize]);
     }
   }, [onSizeChange]);
 
-  const handleSizeChange = (newSize: FontSize) => {
+  const handleSizeChange = useCallback((newSize: FontSize) => {
     setSize(newSize);
     localStorage.setItem('golden-age-font-size', newSize);
     onSizeChange(FONT_SIZE_CLASSES[newSize]);
     setIsOpen(false);
-  };
+  }, [onSizeChange]);
 
-  const adjustSize = (direction: 'up' | 'down') => {
-    const currentIndex = FONT_SIZES.indexOf(size);
-    const newIndex = direction === 'up'
-      ? Math.min(currentIndex + 1, FONT_SIZES.length - 1)
-      : Math.max(currentIndex - 1, 0);
-    handleSizeChange(FONT_SIZES[newIndex]);
-  };
+  const adjustSize = useCallback((direction: 'up' | 'down') => {
+    setSize(currentSize => {
+      const currentIndex = FONT_SIZES.indexOf(currentSize);
+      const newIndex = direction === 'up'
+        ? Math.min(currentIndex + 1, FONT_SIZES.length - 1)
+        : Math.max(currentIndex - 1, 0);
+      const newSize = FONT_SIZES[newIndex];
+      localStorage.setItem('golden-age-font-size', newSize);
+      onSizeChange(FONT_SIZE_CLASSES[newSize]);
+      setIsOpen(false);
+      return newSize;
+    });
+  }, [onSizeChange]);
 
   return (
     <div className="relative">

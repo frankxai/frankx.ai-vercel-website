@@ -3,5 +3,19 @@
   "extends": ["next", "next/core-web-vitals"],
   "rules": {
     "react/no-unescaped-entities": "off"
-  }
+  },
+  "overrides": [
+    {
+      "files": [
+        "components/ui/globe.tsx",
+        "components/ui/meteors.tsx",
+        "components/ui/typing-animation.tsx",
+        "components/ui/particles.tsx",
+        "app/golden-age/components/FontSizeControl.tsx"
+      ],
+      "rules": {
+        "react-hooks/exhaustive-deps": "warn"
+      }
+    }
+  ]
 }

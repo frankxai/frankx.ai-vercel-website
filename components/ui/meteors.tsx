@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useEffect, useState } from "react"
+import React, { useMemo, useState, useEffect } from "react"
 
 import { cn } from "@/lib/utils"
 
@@ -23,27 +23,28 @@ export const Meteors = ({
   angle = 215,
   className,
 }: MeteorsProps) => {
-  const [meteorStyles, setMeteorStyles] = useState<Array<React.CSSProperties>>(
-    []
-  )
+  const [windowWidth, setWindowWidth] = useState(1000)
 
-  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => {
-    const styles = [...new Array(number)].map(() => ({
+    setWindowWidth(window.innerWidth)
+  }, [])
+
+  const meteorStyles = useMemo(() => {
+    return [...new Array(number)].map((_, i) => ({
       "--angle": -angle + "deg",
       top: "-5%",
-      left: `calc(0% + ${Math.floor(Math.random() * window.innerWidth)}px)`,
-      animationDelay: Math.random() * (maxDelay - minDelay) + minDelay + "s",
+      // Use index-based pseudo-random for consistent rendering
+      left: `calc(0% + ${Math.floor(((i * 7919) % 1000) / 1000 * windowWidth)}px)`,
+      animationDelay: (((i * 3571) % 1000) / 1000) * (maxDelay - minDelay) + minDelay + "s",
       animationDuration:
-        Math.floor(Math.random() * (maxDuration - minDuration) + minDuration) +
+        Math.floor((((i * 6199) % 1000) / 1000) * (maxDuration - minDuration) + minDuration) +
         "s",
     }))
-    setMeteorStyles(styles)
-  }, [number, minDelay, maxDelay, minDuration, maxDuration, angle])
+  }, [number, minDelay, maxDelay, minDuration, maxDuration, angle, windowWidth])
 
   return (
     <>
-      {[...meteorStyles].map((style, idx) => (
+      {meteorStyles.map((style, idx) => (
         // Meteor Head
         <span
           key={idx}
