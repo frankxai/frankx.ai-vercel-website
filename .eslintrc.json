@@ -7,11 +7,11 @@
   "overrides": [
     {
       "files": [
-        "components/ui/globe.tsx",
-        "components/ui/meteors.tsx",
-        "components/ui/typing-animation.tsx",
-        "components/ui/particles.tsx",
-        "app/golden-age/components/FontSizeControl.tsx"
+        "**/components/ui/globe.tsx",
+        "**/components/ui/meteors.tsx",
+        "**/components/ui/typing-animation.tsx",
+        "**/components/ui/particles.tsx",
+        "**/app/golden-age/components/FontSizeControl.tsx"
       ],
       "rules": {
         "react-hooks/exhaustive-deps": "warn",
