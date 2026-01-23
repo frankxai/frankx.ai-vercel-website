@@ -14,7 +14,8 @@
         "app/golden-age/components/FontSizeControl.tsx"
       ],
       "rules": {
-        "react-hooks/exhaustive-deps": "warn"
+        "react-hooks/exhaustive-deps": "warn",
+        "react-compiler/react-compiler": "off"
       }
     }
   ]
