@@ -31,9 +31,17 @@ export const chapters: Chapter[] = [
     slug: 'chapter-02-the-orchestration-age',
     title: 'The Orchestration Age',
     number: 2,
-    readingTime: 'Coming soon',
+    readingTime: '15 min',
     description: 'From using AI to conducting AI agents like an orchestra.',
-    published: false,
+    published: true,
+  },
+  {
+    slug: 'chapter-03-the-first-gesture',
+    title: 'The First Gesture',
+    number: 3,
+    readingTime: '14 min',
+    description: 'Moving from theory to practice—the moment that transforms everything.',
+    published: true,
   },
 ];
 

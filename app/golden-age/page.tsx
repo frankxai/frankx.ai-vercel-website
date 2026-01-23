@@ -1,15 +1,35 @@
 'use client';
 
+import { lazy, Suspense } from 'react';
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Book, FileText, ArrowRight, Clock, Sparkles, Music, Zap, Stars } from 'lucide-react';
 import { bookMetadata, chapters, essays } from './metadata';
 import { EmailSignup } from '@/components/email-signup';
 
+// Lazy load 3D book for performance
+const Book3D = lazy(() => import('./components/Book3D'));
+
+// Book fallback while loading
+function BookFallback() {
+  return (
+    <div className="w-full h-[400px] md:h-[500px] lg:h-[600px] flex items-center justify-center">
+      <div className="relative">
+        <div className="w-40 h-56 bg-gradient-to-br from-amber-600 to-amber-800 rounded-lg shadow-2xl transform rotate-3 animate-pulse">
+          <div className="absolute inset-0 flex items-center justify-center">
+            <Book className="w-16 h-16 text-amber-200/50" />
+          </div>
+        </div>
+        <div className="absolute -inset-8 bg-amber-500/20 rounded-full blur-2xl -z-10 animate-pulse" />
+      </div>
+    </div>
+  );
+}
+
 export default function GoldenAgePage() {
   return (
     <div className="min-h-screen bg-white dark:bg-slate-950">
-      {/* Hero Section - Enhanced */}
+      {/* Hero Section - Premium with 3D Book */}
       <section className="relative overflow-hidden border-b border-gray-200 dark:border-gray-800">
         {/* Animated Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-amber-50/50 via-white to-indigo-50/50 dark:from-slate-900 dark:via-slate-950 dark:to-indigo-950/20" />
@@ -18,97 +38,109 @@ export default function GoldenAgePage() {
           <div className="absolute bottom-20 right-10 w-96 h-96 bg-indigo-300/10 dark:bg-indigo-500/5 rounded-full blur-3xl animate-pulse delay-1000" />
         </div>
 
-        <div className="relative max-w-4xl mx-auto px-6 py-24 sm:py-32">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="text-center space-y-8"
-          >
-            {/* Badge with Music Icon */}
+        <div className="relative max-w-7xl mx-auto px-6 py-16 sm:py-24">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+            {/* Left Column - Content */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.2 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-amber-100 to-orange-100 dark:from-amber-900/30 dark:to-orange-900/30 text-amber-900 dark:text-amber-200 text-sm font-medium border border-amber-200 dark:border-amber-800"
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              className="space-y-8 text-center lg:text-left"
             >
-              <Music className="w-4 h-4 animate-pulse" />
-              <span>When Creation Calls, Everything Changes</span>
-              <Sparkles className="w-4 h-4" />
-            </motion.div>
+              {/* Badge with Music Icon */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.2 }}
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-amber-100 to-orange-100 dark:from-amber-900/30 dark:to-orange-900/30 text-amber-900 dark:text-amber-200 text-sm font-medium border border-amber-200 dark:border-amber-800"
+              >
+                <Music className="w-4 h-4 animate-pulse" />
+                <span>When Creation Calls, Everything Changes</span>
+                <Sparkles className="w-4 h-4" />
+              </motion.div>
 
-            {/* Title with Gradient */}
-            <h1 className="font-serif text-5xl sm:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-gray-900 via-amber-800 to-gray-900 dark:from-white dark:via-amber-300 dark:to-white bg-clip-text text-transparent leading-tight">
-              {bookMetadata.title}
-            </h1>
+              {/* Title with Gradient */}
+              <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-gray-900 via-amber-800 to-gray-900 dark:from-white dark:via-amber-300 dark:to-white bg-clip-text text-transparent leading-tight">
+                {bookMetadata.title}
+              </h1>
 
-            {/* Subtitle */}
-            <p className="text-xl sm:text-2xl text-gray-600 dark:text-gray-400 max-w-2xl mx-auto font-light leading-relaxed">
-              {bookMetadata.subtitle}
-            </p>
-
-            {/* Story Hook - Enhanced */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.4 }}
-              className="relative"
-            >
-              <p className="text-lg text-gray-700 dark:text-gray-300 max-w-2xl mx-auto leading-relaxed">
-                <span className="text-2xl font-serif text-amber-600 dark:text-amber-400">2 AM.</span> Studio lights glow. An idea hits—that electric moment when you <em className="font-semibold not-italic">know</em> something wants to be created through you.
-                <br /><br />
-                <span className="bg-gradient-to-r from-amber-600 to-orange-600 dark:from-amber-400 dark:to-orange-400 bg-clip-text text-transparent font-semibold">This book is for creators ready to answer that call</span>—with AI as your amplifier, not your replacement.
+              {/* Subtitle */}
+              <p className="text-xl sm:text-2xl text-gray-600 dark:text-gray-400 font-light leading-relaxed">
+                {bookMetadata.subtitle}
               </p>
-            </motion.div>
 
-            {/* Stats - New */}
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
-              className="flex items-center justify-center gap-8 pt-4"
-            >
-              <div className="text-center">
-                <div className="text-3xl font-bold text-gray-900 dark:text-white">500+</div>
-                <div className="text-sm text-gray-600 dark:text-gray-400">AI Songs Created</div>
-              </div>
-              <div className="h-12 w-px bg-gray-300 dark:bg-gray-700" />
-              <div className="text-center">
-                <div className="text-3xl font-bold text-gray-900 dark:text-white">{chapters.length}</div>
-                <div className="text-sm text-gray-600 dark:text-gray-400">Chapters</div>
-              </div>
-              <div className="h-12 w-px bg-gray-300 dark:bg-gray-700" />
-              <div className="text-center">
-                <div className="text-3xl font-bold text-gray-900 dark:text-white">Oracle AI</div>
-                <div className="text-sm text-gray-600 dark:text-gray-400">Expertise</div>
-              </div>
-            </motion.div>
-
-            {/* CTAs - Enhanced */}
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8 }}
-              className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4"
-            >
-              <Link
-                href="/golden-age/chapter-01-when-creation-calls"
-                className="group inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-2xl font-semibold hover:from-amber-600 hover:to-orange-600 transition-all shadow-lg hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-amber-500/50 cursor-pointer"
+              {/* Story Hook */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.4 }}
               >
-                <Zap className="w-5 h-5" />
-                <span>Start Chapter 1</span>
-                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </Link>
+                <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+                  <span className="text-2xl font-serif text-amber-600 dark:text-amber-400">2 AM.</span> Studio lights glow. An idea hits—that electric moment when you <em className="font-semibold not-italic">know</em> something wants to be created through you.
+                </p>
+              </motion.div>
 
-              <Link
-                href="#chapters"
-                className="group inline-flex items-center gap-2 px-8 py-4 border-2 border-gray-300 dark:border-gray-700 text-gray-900 dark:text-white rounded-2xl font-medium hover:border-gray-900 dark:hover:border-white focus:outline-none focus:ring-4 focus:ring-gray-900/50 dark:focus:ring-white/50 transition-colors cursor-pointer"
+              {/* Stats */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6 }}
+                className="flex items-center justify-center lg:justify-start gap-6 sm:gap-8"
               >
-                <Book className="w-5 h-5" />
-                <span>Browse All Chapters</span>
-              </Link>
+                <div className="text-center lg:text-left">
+                  <div className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">500+</div>
+                  <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">AI Songs</div>
+                </div>
+                <div className="h-10 w-px bg-gray-300 dark:bg-gray-700" />
+                <div className="text-center lg:text-left">
+                  <div className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">{chapters.filter(c => c.published).length}</div>
+                  <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">Published</div>
+                </div>
+                <div className="h-10 w-px bg-gray-300 dark:bg-gray-700" />
+                <div className="text-center lg:text-left">
+                  <div className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">Oracle</div>
+                  <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">AI Expert</div>
+                </div>
+              </motion.div>
+
+              {/* CTAs */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.8 }}
+                className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4"
+              >
+                <Link
+                  href="/golden-age/chapter-01-when-creation-calls"
+                  className="group inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-amber-500 to-orange-500 text-white rounded-2xl font-semibold hover:from-amber-600 hover:to-orange-600 transition-all shadow-lg hover:shadow-xl focus:outline-none focus:ring-4 focus:ring-amber-500/50 cursor-pointer"
+                >
+                  <Zap className="w-5 h-5" />
+                  <span>Start Chapter 1</span>
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                </Link>
+
+                <Link
+                  href="#chapters"
+                  className="group inline-flex items-center gap-2 px-8 py-4 border-2 border-gray-300 dark:border-gray-700 text-gray-900 dark:text-white rounded-2xl font-medium hover:border-gray-900 dark:hover:border-white focus:outline-none focus:ring-4 focus:ring-gray-900/50 dark:focus:ring-white/50 transition-colors cursor-pointer"
+                >
+                  <Book className="w-5 h-5" />
+                  <span>All Chapters</span>
+                </Link>
+              </motion.div>
             </motion.div>
-          </motion.div>
+
+            {/* Right Column - 3D Book */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="hidden lg:block"
+            >
+              <Suspense fallback={<BookFallback />}>
+                <Book3D />
+              </Suspense>
+            </motion.div>
+          </div>
         </div>
       </section>
 
