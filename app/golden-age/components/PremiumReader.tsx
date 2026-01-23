@@ -18,6 +18,7 @@ import {
 import type { Chapter, TOCItem } from '../types';
 import FontSizeControl from './FontSizeControl';
 import ChapterFeedback from './ChapterFeedback';
+import ShareQuote from './ShareQuote';
 
 interface PremiumReaderProps {
   chapter: Chapter;
@@ -307,6 +308,7 @@ export default function PremiumReader({
     <>
       <ReadingProgressBar />
       <ScrollToTop />
+      <ShareQuote chapterTitle={chapter.title} chapterSlug={chapter.slug} />
       <MobileTOC
         items={tocItems}
         isOpen={tocOpen}
@@ -412,7 +414,7 @@ export default function PremiumReader({
                   prose-li:text-gray-700 dark:prose-li:text-gray-300 prose-li:leading-relaxed
                   prose-a:text-amber-600 dark:prose-a:text-amber-400 prose-a:no-underline prose-a:font-medium hover:prose-a:underline
                   prose-hr:border-0 prose-hr:h-px prose-hr:bg-gradient-to-r prose-hr:from-transparent prose-hr:via-amber-300 prose-hr:to-transparent dark:prose-hr:via-amber-700 prose-hr:my-16
-                  first-letter:text-6xl first-letter:font-serif first-letter:font-bold first-letter:float-left first-letter:mr-3 first-letter:mt-1 first-letter:text-amber-600 dark:first-letter:text-amber-500"
+                  first-letter:text-6xl first-letter:font-serif first-letter:font-bold first-letter:float-left first-letter:mr-3 first-letter:mt-1 first-letter:text-amber-600 dark:first-letter:text-amber-500`}
                 dangerouslySetInnerHTML={{ __html: htmlContent }}
               />
 
