@@ -30,33 +30,12 @@ import {
   Network,
   Microscope,
   Building,
-  Sun,
-  Moon,
-  Calendar,
-  Flame,
 } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
 
 // Navigation structure
 const navigation = {
-  rituals: {
-    label: 'Rituals',
-    featured: {
-      title: 'The Ritual System',
-      description: 'Transform your days into masterpieces through intentional practice.',
-      href: '/rituals',
-      badge: 'Core Practice',
-    },
-    items: [
-      { name: 'Morning Rituals', href: '/rituals/morning', icon: Sun, description: 'Start with power' },
-      { name: 'Creative Sessions', href: '/rituals/creative-session', icon: Sparkles, description: 'Enter flow state' },
-      { name: 'AI Practices', href: '/rituals/ai-practice', icon: Bot, description: 'Collaborate with AI' },
-      { name: 'Evening Integration', href: '/rituals/evening', icon: Moon, description: 'Close with intention' },
-      { name: 'Weekly Reviews', href: '/rituals/weekly-review', icon: Calendar, description: 'The meta-ritual' },
-      { name: 'Ritual Library', href: '/rituals#library', icon: Flame, description: 'Downloadable guides' },
-    ],
-  },
   music: {
     label: 'Music',
     featured: {
@@ -309,8 +288,8 @@ export default function NavigationMega() {
         isVisible ? 'translate-y-0' : '-translate-y-full',
         // Background and border intensity based on scroll
         isScrolled
-          ? 'border-white/10 bg-[#030712]/95 backdrop-blur-xl shadow-lg shadow-black/10'
-          : 'border-white/5 bg-[#030712]/90 backdrop-blur-xl'
+          ? 'border-white/10 bg-void/95 backdrop-blur-xl shadow-lg shadow-black/10'
+          : 'border-white/5 bg-void/90 backdrop-blur-xl'
       )}
     >
       <nav className="mx-auto flex h-14 sm:h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
@@ -322,15 +301,7 @@ export default function NavigationMega() {
           onValueChange={(value) => setMenuOpen(!!value)}
         >
           <NavigationMenu.List className="flex items-center gap-1">
-            {/* Rituals - Lead with transformation */}
-            <NavigationMenu.Item>
-              <NavTrigger>Rituals</NavTrigger>
-              <NavigationMenu.Content className="absolute left-0 top-0 data-[motion=from-end]:animate-enterFromRight data-[motion=from-start]:animate-enterFromLeft data-[motion=to-end]:animate-exitToRight data-[motion=to-start]:animate-exitToLeft">
-                <MegaMenuContent section="rituals" />
-              </NavigationMenu.Content>
-            </NavigationMenu.Item>
-
-            {/* Music */}
+            {/* Music - Lead with the portfolio */}
             <NavigationMenu.Item>
               <NavTrigger>Music</NavTrigger>
               <NavigationMenu.Content className="absolute left-0 top-0 data-[motion=from-end]:animate-enterFromRight data-[motion=from-start]:animate-enterFromLeft data-[motion=to-end]:animate-exitToRight data-[motion=to-start]:animate-exitToLeft">
@@ -451,7 +422,7 @@ export default function NavigationMega() {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
-            className="border-t border-white/5 bg-[#030712]/98 backdrop-blur-xl lg:hidden overflow-y-auto max-h-[calc(100vh-3.5rem)] sm:max-h-[calc(100vh-4rem)]"
+            className="border-t border-white/5 bg-void/98 backdrop-blur-xl lg:hidden overflow-y-auto max-h-[calc(100vh-3.5rem)] sm:max-h-[calc(100vh-4rem)]"
           >
             <div className="mx-auto max-w-6xl space-y-1 px-4 sm:px-6 py-3 sm:py-4">
               {/* Mobile dropdowns */}
