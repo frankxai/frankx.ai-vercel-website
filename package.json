@@ -38,6 +38,8 @@
     "@radix-ui/react-navigation-menu": "^1.2.14",
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.5.0",
+    "@splinetool/react-spline": "^4.1.0",
+    "@splinetool/runtime": "^1.12.39",
     "@types/mdx": "^2.0.13",
     "@types/react-syntax-highlighter": "^15.5.13",
     "@upstash/ratelimit": "^2.0.8",
