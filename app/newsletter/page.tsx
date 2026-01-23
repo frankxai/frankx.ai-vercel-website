@@ -415,7 +415,7 @@ export default function NewsletterPage() {
                   </div>
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-white mb-2">Written by Frank Guzman</h3>
+                  <h3 className="text-xl font-bold text-white mb-2">Written by Frank Riemer</h3>
                   <p className="text-white/60 mb-4">
                     Musician turned AI Architect at Oracle. I've created 500+ AI-generated songs,
                     built enterprise AI systems, and now I help creators navigate the AI revolution

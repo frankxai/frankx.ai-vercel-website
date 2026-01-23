@@ -259,10 +259,12 @@ module.exports = {
       fontFamily: {
         // Primary body font - Inter (clean, professional, excellent readability)
         sans: ['var(--font-sans)', 'Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
-        // Display/headlines - Uses same as body for consistency (Inter)
-        display: ['var(--font-sans)', 'Inter', 'system-ui', 'sans-serif'],
+        // Display/headlines - Cormorant Garamond (elegant, high-contrast, editorial)
+        display: ['var(--font-display)', 'Cormorant Garamond', 'Georgia', 'serif'],
         // Editorial/italic emphasis - Playfair Display (elegant serif)
         serif: ['var(--font-serif)', 'Playfair Display', 'Georgia', '"Times New Roman"', 'Times', 'serif'],
+        // Premium reading font - Crimson Pro (optimized for long-form content)
+        reading: ['var(--font-reading)', 'Crimson Pro', 'Georgia', 'serif'],
         // Code/technical content - JetBrains Mono
         mono: ['var(--font-mono)', 'JetBrains Mono', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
       },

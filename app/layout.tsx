@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter, Playfair_Display, JetBrains_Mono } from 'next/font/google'
+import { Inter, Playfair_Display, JetBrains_Mono, Crimson_Pro, Cormorant_Garamond } from 'next/font/google'
 import './globals.css'
 import Script from 'next/script'
 
@@ -18,6 +18,8 @@ import SessionProvider from '@/components/providers/SessionProvider'
 // Current Stack:
 // - Inter: Primary body & UI font (clean, professional, excellent readability)
 // - Playfair Display: Serif/italic for editorial emphasis and quotes
+// - Crimson Pro: Premium book reading experience (long-form content)
+// - Cormorant Garamond: Elegant display headlines for Golden Age
 // - JetBrains Mono: Code blocks and technical content
 //
 // Last approved: 2026-01-23
@@ -36,6 +38,26 @@ const inter = Inter({
 const playfair = Playfair_Display({
   subsets: ['latin'],
   variable: '--font-serif',
+  display: 'swap',
+  style: ['normal', 'italic'],
+  weight: ['400', '500', '600', '700'],
+})
+
+// Crimson Pro - Premium reading font for long-form book content
+// Optimized for readability at small sizes, similar to Kindle/Medium
+const crimsonPro = Crimson_Pro({
+  subsets: ['latin'],
+  variable: '--font-reading',
+  display: 'swap',
+  style: ['normal', 'italic'],
+  weight: ['300', '400', '500', '600', '700'],
+})
+
+// Cormorant Garamond - Elegant display font for Golden Age headlines
+// High contrast, sophisticated, editorial quality
+const cormorant = Cormorant_Garamond({
+  subsets: ['latin'],
+  variable: '--font-display',
   display: 'swap',
   style: ['normal', 'italic'],
   weight: ['400', '500', '600', '700'],
@@ -130,6 +152,8 @@ export default function RootLayout({
         className={cn(
           inter.variable,
           playfair.variable,
+          crimsonPro.variable,
+          cormorant.variable,
           jetbrains.variable,
           'font-sans dark bg-void text-white antialiased min-h-screen overflow-x-hidden'
         )}

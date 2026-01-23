@@ -76,7 +76,7 @@ export function PDFDeliveryEmail({ name, pdfTitle, pdfUrl, guideSlug }: PDFDeliv
     <!-- Footer -->
     <div style="text-align: center; padding-top: 32px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
       <p style="font-size: 12px; color: #64748b; margin: 0 0 16px 0;">
-        <strong style="color: #94a3b8;">Frank Guzman</strong><br>
+        <strong style="color: #94a3b8;">Frank Riemer</strong><br>
         Musician turned AI Architect at Oracle<br>
         500+ AI songs | Enterprise AI Systems
       </p>

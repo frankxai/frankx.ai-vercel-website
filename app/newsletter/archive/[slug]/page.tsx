@@ -31,7 +31,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     path: `/newsletter/archive/${newsletter.slug}`,
     type: 'article',
     publishedTime: newsletter.date,
-    authors: ['Frank Guzman'],
+    authors: ['Frank Riemer'],
   })
 }
 
@@ -59,7 +59,7 @@ export default async function NewsletterIssuePage({
     description: newsletter.description,
     author: {
       '@type': 'Person',
-      name: 'Frank Guzman',
+      name: 'Frank Riemer',
     },
     publisher: {
       '@type': 'Organization',

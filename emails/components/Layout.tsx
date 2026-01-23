@@ -84,7 +84,7 @@ export function EmailLayout({ preview, children }: EmailLayoutProps) {
           <Section style={styles.footer}>
             <Hr style={styles.divider} />
 
-            <Text style={styles.footerName}>Frank Guzman</Text>
+            <Text style={styles.footerName}>Frank Riemer</Text>
             <Text style={styles.footerTitle}>
               Musician turned AI Architect at Oracle
             </Text>
