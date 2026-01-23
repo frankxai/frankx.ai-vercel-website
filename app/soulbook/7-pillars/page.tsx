@@ -288,7 +288,7 @@ export default function SevenPillarsPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#030712]">
+    <div className="min-h-screen bg-void">
       {/* Hero Section */}
       <section className="relative py-20 px-4 overflow-hidden">
         {/* Background Effects */}

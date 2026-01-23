@@ -23,7 +23,7 @@ function ResourcesBackground() {
 
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden">
-      <div className="absolute inset-0 bg-[#030712]" />
+      <div className="absolute inset-0 bg-void" />
 
       <motion.div
         className="absolute -right-52 top-32 h-[640px] w-[640px] rounded-full opacity-25"

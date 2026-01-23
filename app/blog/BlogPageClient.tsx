@@ -52,7 +52,7 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
   const regularPosts = filteredPosts.filter((post) => !post.featured)
 
   return (
-    <main className="min-h-screen bg-[#030712] text-white">
+    <main className="min-h-screen bg-void text-white">
       {/* Hero with Aurora Background */}
       <section className="relative pt-32 pb-16 px-6 overflow-hidden">
         {/* Aurora Background Effect */}
@@ -102,7 +102,7 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
       </section>
 
       {/* Category Dropdown & Filter Section */}
-      <section className="pb-8 px-6 sticky top-20 z-40 bg-[#030712]/80 backdrop-blur-xl border-b border-white/5">
+      <section className="pb-8 px-6 sticky top-20 z-40 bg-void/80 backdrop-blur-xl border-b border-white/5">
         <div className="max-w-6xl mx-auto">
           <div className="flex items-center justify-between py-4">
             <CategoryDropdown

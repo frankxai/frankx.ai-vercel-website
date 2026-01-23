@@ -53,7 +53,7 @@ export default function VibeOSPage() {
   const productId = product.analyticsId ?? product.id
 
   return (
-    <div className="min-h-screen bg-[#02030b] text-slate-100">
+    <div className="min-h-screen bg-void text-slate-100">
       <ProductHero
         productId={productId}
         badge={product.badge}
@@ -75,7 +75,7 @@ export default function VibeOSPage() {
         pricingTiers={product.pricingTiers}
       />
 
-      <section className="bg-[#02030b] py-16">
+      <section className="bg-void py-16">
         <div className="mx-auto flex max-w-6xl flex-col gap-10 px-6 lg:flex-row">
           <div className="flex-1 space-y-6">
             <h2 className="text-3xl font-semibold text-white">Latest Sessions in the Studio</h2>
@@ -101,7 +101,7 @@ export default function VibeOSPage() {
         </div>
       </section>
 
-      <section className="bg-[#02030b] py-16">
+      <section className="bg-void py-16">
         <div className="mx-auto max-w-4xl px-6">
           <h2 className="text-center text-3xl font-semibold text-white">Frequently Asked Questions</h2>
           <div className="mt-10 space-y-6">

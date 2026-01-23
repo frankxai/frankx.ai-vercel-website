@@ -16,6 +16,7 @@ import {
   Home,
 } from 'lucide-react';
 import type { Chapter, TOCItem } from '../types';
+import FontSizeControl from './FontSizeControl';
 
 interface PremiumReaderProps {
   chapter: Chapter;
@@ -212,6 +213,7 @@ export default function PremiumReader({
 }: PremiumReaderProps) {
   const [tocOpen, setTocOpen] = useState(false);
   const [activeId, setActiveId] = useState('');
+  const [fontSizeClass, setFontSizeClass] = useState('prose-lg');
 
   // Extract TOC from content
   const tocItems = useMemo(() => {
@@ -313,7 +315,7 @@ export default function PremiumReader({
 
       <div className="min-h-screen bg-gradient-to-b from-amber-50/30 via-white to-white dark:from-slate-950 dark:via-slate-950 dark:to-slate-950">
         {/* Premium Header */}
-        <header className="sticky top-1 z-30 bg-white/95 dark:bg-slate-950/95 backdrop-blur-lg border-b border-gray-200/80 dark:border-gray-800/80 shadow-sm">
+        <header className="sticky top-1 z-30 bg-white/95 dark:bg-void/95 backdrop-blur-lg border-b border-gray-200/80 dark:border-gray-800/80 shadow-sm">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2 sm:gap-4">
@@ -346,6 +348,8 @@ export default function PremiumReader({
                   <Clock className="w-4 h-4" />
                   <span>{chapter.readingTime}</span>
                 </div>
+
+                <FontSizeControl onSizeChange={setFontSizeClass} />
 
                 {tocItems.length > 0 && (
                   <button
@@ -392,7 +396,7 @@ export default function PremiumReader({
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.3, duration: 0.6 }}
-                className="premium-prose prose prose-lg dark:prose-invert max-w-none
+                className={`premium-prose prose ${fontSizeClass} dark:prose-invert max-w-none
                   prose-headings:font-serif prose-headings:font-bold prose-headings:text-gray-900 dark:prose-headings:text-white
                   prose-h2:text-3xl prose-h2:mt-16 prose-h2:mb-6 prose-h2:pt-8 prose-h2:border-t-2 prose-h2:border-amber-200 dark:prose-h2:border-amber-900/50
                   prose-h3:text-2xl prose-h3:mt-12 prose-h3:mb-4 prose-h3:text-amber-800 dark:prose-h3:text-amber-400

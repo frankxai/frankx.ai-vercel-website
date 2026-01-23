@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function AgentsPage() {
   return (
-    <div className="min-h-screen bg-[#030712]">
+    <div className="min-h-screen bg-void">
       {/* Hero */}
       <section className="pt-28 pb-12 px-6">
         <div className="max-w-4xl mx-auto text-center">

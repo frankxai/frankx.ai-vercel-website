@@ -95,7 +95,7 @@ export default function SkillsPage() {
   const totalSkills = skillCategories.reduce((acc, cat) => acc + cat.count, 0)
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100">
+    <div className="min-h-screen bg-void text-slate-100">
       {/* Hero Section */}
       <section className="relative overflow-hidden pt-32 pb-20">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-900/20 via-slate-950 to-purple-900/20" />

@@ -19,7 +19,7 @@ import {
 function NewsletterBackground() {
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden">
-      <div className="absolute inset-0 bg-[#030712]" />
+      <div className="absolute inset-0 bg-void" />
       <div
         className="absolute inset-0 opacity-[0.02]"
         style={{

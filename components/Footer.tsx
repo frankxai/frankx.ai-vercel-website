@@ -5,7 +5,7 @@ import { LogoMarkMinimal } from '@/components/ui/LogoMark'
 
 export default function Footer() {
   return (
-    <footer className="relative border-t border-white/5 bg-[#030712] text-white overflow-hidden">
+    <footer className="relative border-t border-white/5 bg-void text-white overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-12 md:py-16">
         <div className="grid gap-8 sm:gap-10 md:gap-12 grid-cols-2 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
@@ -82,33 +82,15 @@ export default function Footer() {
             <h3 className="text-xs sm:text-sm font-semibold uppercase tracking-wider sm:tracking-widest text-white/60 mb-3 sm:mb-4">More</h3>
             <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-white/40">
               <li><Link href="/about" className="hover:text-white transition-colors">About</Link></li>
-              <li><Link href="/contact" className="hover:text-white transition-colors">Contact</Link></li>
+              <li><Link href="/resources" className="hover:text-white transition-colors">Resources</Link></li>
               <li><Link href="/roadmap" className="hover:text-white transition-colors">Roadmap</Link></li>
               <li><Link href="/products" className="hover:text-white transition-colors">All Products</Link></li>
-              <li><Link href="/downloads" className="hover:text-white transition-colors">Downloads</Link></li>
             </ul>
           </div>
         </div>
 
-        {/* Legal Links */}
-        <div className="mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-white/5 flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs text-white/30">
-          <Link href="/privacy" className="hover:text-white/60 transition-colors">Privacy Policy</Link>
-          <span className="text-white/10">|</span>
-          <Link href="/terms" className="hover:text-white/60 transition-colors">Terms of Service</Link>
-          <span className="text-white/10">|</span>
-          <Link href="/contact" className="hover:text-white/60 transition-colors">Contact</Link>
-        </div>
-
-        {/* Disclaimer */}
-        <div className="mt-8 sm:mt-10 pt-4 sm:pt-6 border-t border-white/5 text-center">
-          <p className="text-[10px] sm:text-xs text-white/25 max-w-2xl mx-auto leading-relaxed">
-            All opinions expressed are my own and do not represent the views of my employer.
-            Content is for informational purposes only.
-          </p>
-        </div>
-
         {/* Bottom bar */}
-        <div className="mt-4 sm:mt-6 pt-4 sm:pt-6 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-3 sm:gap-4 text-xs sm:text-sm text-white/30">
+        <div className="mt-8 sm:mt-12 md:mt-16 pt-6 sm:pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-3 sm:gap-4 text-xs sm:text-sm text-white/30">
           <p>&copy; {new Date().getFullYear()} Frank. All rights reserved.</p>
           <p className="text-center md:text-right">
             Built with Next.js, deployed on Vercel. Music made with Suno.

@@ -432,7 +432,7 @@ function FinalSection() {
 // Main page component
 export default function HomePage2025() {
   return (
-    <main className="min-h-screen bg-[#030712] text-white">
+    <main className="min-h-screen bg-void text-white">
       <ScrollProgress />
       <Hero />
       <Stats />

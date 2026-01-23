@@ -28,7 +28,7 @@ function BookFallback() {
 
 export default function GoldenAgePage() {
   return (
-    <div className="min-h-screen bg-white dark:bg-slate-950">
+    <div className="min-h-screen bg-white dark:bg-void">
       {/* Hero Section - Premium with 3D Book */}
       <section className="relative overflow-hidden border-b border-gray-200 dark:border-gray-800">
         {/* Animated Background */}

@@ -338,7 +338,7 @@ export default function AdvancedAssessmentPage() {
   const progress = ((currentStep + 1) / assessmentSteps.length) * 100
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100">
+    <div className="min-h-screen bg-void text-slate-100">
       {/* Progress Bar */}
       <div className="fixed top-0 left-0 right-0 z-50">
         <div className="h-1 bg-slate-800">

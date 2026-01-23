@@ -85,7 +85,7 @@ export default function Navigation() {
 
   return (
     <nav
-      className="fixed top-0 w-full z-50 border-b border-white/5 bg-[#030712]/90 backdrop-blur-2xl"
+      className="fixed top-0 w-full z-50 border-b border-white/5 bg-void/90 backdrop-blur-2xl"
       aria-label="Main navigation"
     >
       <div className="max-w-6xl mx-auto px-6 py-3">

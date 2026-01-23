@@ -218,7 +218,7 @@ export default function AgentTeamPage() {
   const TestimonialIcon = testimonialIcon
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100">
+    <div className="min-h-screen bg-void text-slate-100">
 <main className="px-6 pt-28 pb-20">
         <script
           type="application/ld+json"

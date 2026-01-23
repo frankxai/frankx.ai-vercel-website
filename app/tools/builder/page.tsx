@@ -150,7 +150,7 @@ export default function AIBuilderPage() {
   const StepIcon = currentStepData.icon
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100">
+    <div className="min-h-screen bg-void text-slate-100">
 <main className="px-6 pt-28 pb-20">
         <div className="mx-auto max-w-7xl space-y-20">
           {/* Header */}

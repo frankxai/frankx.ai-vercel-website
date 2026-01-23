@@ -3,7 +3,7 @@ import { ArrowRight, Home, Search, BookOpen, Sparkles } from 'lucide-react'
 
 export default function NotFound() {
   return (
-    <div className="min-h-screen bg-slate-950 flex items-center justify-center px-4">
+    <div className="min-h-screen bg-void flex items-center justify-center px-4">
       <div className="max-w-2xl mx-auto text-center">
         {/* 404 */}
         <div className="mb-8">

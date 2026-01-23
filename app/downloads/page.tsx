@@ -32,7 +32,7 @@ const downloads = [
 
 export default function DownloadsPage() {
   return (
-    <div className="min-h-screen bg-[#030712]">
+    <div className="min-h-screen bg-void">
       <main className="pt-28 pb-20 px-6">
         <div className="max-w-6xl mx-auto">
           {/* Header */}

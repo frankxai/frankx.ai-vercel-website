@@ -97,7 +97,7 @@ const typeColors = {
 
 export default function UpdatesPage() {
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100">
+    <div className="min-h-screen bg-void text-slate-100">
       {/* Header */}
       <header className="relative overflow-hidden border-b border-white/10 bg-gradient-to-br from-emerald-900/20 via-slate-950 to-cyan-900/20">
         <div className="mx-auto flex max-w-5xl flex-col gap-6 px-6 py-16 text-center">
@@ -147,7 +147,7 @@ export default function UpdatesPage() {
                   className="relative pl-0 md:pl-20"
                 >
                   {/* Timeline dot */}
-                  <div className="absolute left-6 top-6 hidden h-4 w-4 rounded-full border-2 border-emerald-500 bg-slate-950 md:block" />
+                  <div className="absolute left-6 top-6 hidden h-4 w-4 rounded-full border-2 border-emerald-500 bg-void md:block" />
 
                   <GlassmorphicCard variant="luxury" border="glow" className="p-6">
                     <div className="mb-4 flex flex-wrap items-center gap-3">

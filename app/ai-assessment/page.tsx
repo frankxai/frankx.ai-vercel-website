@@ -276,7 +276,7 @@ export default function AIAssessmentPage() {
 
   if (isCompleted && results) {
     return (
-      <div className="min-h-screen bg-slate-950">
+      <div className="min-h-screen bg-void">
 <div className="pt-24 pb-16 px-6">
           <div className="max-w-4xl mx-auto">
             <motion.div
@@ -429,7 +429,7 @@ export default function AIAssessmentPage() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-950">
+    <div className="min-h-screen bg-void">
 <div className="pt-24 pb-16 px-6">
         <div className="max-w-4xl mx-auto">
           {/* Progress Bar */}

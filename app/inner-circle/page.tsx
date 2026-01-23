@@ -86,7 +86,7 @@ const waitlistForm = {
 
 export default function RealmPage() {
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100">
+    <div className="min-h-screen bg-void text-slate-100">
       <header className="relative overflow-hidden border-b border-white/10 bg-gradient-to-br from-primary-900/40 via-slate-950 to-purple-900/30">
         <div className="mx-auto flex max-w-5xl flex-col gap-6 px-6 py-24 text-center">
           <span className="self-center rounded-full border border-white/15 bg-white/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.35em] text-white/70">

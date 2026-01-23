@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter, Playfair_Display, JetBrains_Mono } from 'next/font/google'
+import { Syne, Outfit, Playfair_Display, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 import Script from 'next/script'
 
@@ -10,11 +10,20 @@ import Footer from '@/components/Footer'
 import OrganizationJsonLd from '@/components/seo/OrganizationJsonLd'
 import SessionProvider from '@/components/providers/SessionProvider'
 
-// Inter - Clean, professional sans-serif
-const inter = Inter({
+// Syne - Bold geometric display font for headlines (distinctive, memorable)
+const syne = Syne({
   subsets: ['latin'],
-  variable: '--font-inter',
+  variable: '--font-display',
   display: 'swap',
+  weight: ['400', '500', '600', '700', '800'],
+})
+
+// Outfit - Modern, refined sans-serif for body text (cleaner than Inter)
+const outfit = Outfit({
+  subsets: ['latin'],
+  variable: '--font-sans',
+  display: 'swap',
+  weight: ['300', '400', '500', '600', '700'],
 })
 
 // Playfair Display for editorial touches (classic, elegant Times-like italics)
@@ -111,10 +120,11 @@ export default function RootLayout({
       </head>
       <body
         className={cn(
-          inter.variable,
+          syne.variable,
+          outfit.variable,
           playfair.variable,
           jetbrains.variable,
-          'font-sans dark bg-[#030712] text-white antialiased min-h-screen overflow-x-hidden'
+          'font-sans dark bg-void text-white antialiased min-h-screen overflow-x-hidden'
         )}
         suppressHydrationWarning
       >

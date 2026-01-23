@@ -145,7 +145,7 @@ export default function CreativeAIAssessmentPage() {
     const results = calculateResults()
 
     return (
-      <div className="min-h-screen bg-slate-950 text-slate-100">
+      <div className="min-h-screen bg-void text-slate-100">
 <main className="px-6 pt-28 pb-20">
           <div className="mx-auto max-w-4xl space-y-12">
             {/* Results Header */}
@@ -214,7 +214,7 @@ export default function CreativeAIAssessmentPage() {
   const selectedAnswer = answers[currentQ.id]
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-100">
+    <div className="min-h-screen bg-void text-slate-100">
 <main className="px-6 pt-28 pb-20">
         <div className="mx-auto max-w-4xl space-y-12">
           {/* Header */}
