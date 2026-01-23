@@ -239,16 +239,32 @@ module.exports = {
       },
 
       // =====================================================
-      // TYPOGRAPHY - Perfect Fourth Scale (1.333)
-      // See /lib/design-system.ts for full scale
+      // TYPOGRAPHY - APPROVED FRANKX FONT STACK
+      // =====================================================
+      // DO NOT CHANGE without explicit approval.
+      // Font choices are part of brand identity.
+      //
+      // Current Stack:
+      // - sans (Inter): Primary body & UI font
+      // - serif (Playfair Display): Editorial emphasis, quotes, italics
+      // - mono (JetBrains Mono): Code blocks, technical content
+      //
+      // CSS Variables (set in app/layout.tsx):
+      // - --font-sans → Inter
+      // - --font-serif → Playfair Display
+      // - --font-mono → JetBrains Mono
+      //
+      // Last approved: 2026-01-23
       // =====================================================
       fontFamily: {
-        // Inter for body - clean, professional
-        sans: ['var(--font-inter)', 'Inter', 'system-ui', '-apple-system', 'sans-serif'],
-        // Inter for display as well (consistent)
-        display: ['var(--font-inter)', 'Inter', 'system-ui', 'sans-serif'],
-        serif: ['var(--font-serif)', 'Playfair Display', '"Times New Roman"', 'Times', 'Georgia', 'serif'],
-        mono: ['var(--font-mono)', 'JetBrains Mono', 'Menlo', 'Monaco', 'monospace'],
+        // Primary body font - Inter (clean, professional, excellent readability)
+        sans: ['var(--font-sans)', 'Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        // Display/headlines - Uses same as body for consistency (Inter)
+        display: ['var(--font-sans)', 'Inter', 'system-ui', 'sans-serif'],
+        // Editorial/italic emphasis - Playfair Display (elegant serif)
+        serif: ['var(--font-serif)', 'Playfair Display', 'Georgia', '"Times New Roman"', 'Times', 'serif'],
+        // Code/technical content - JetBrains Mono
+        mono: ['var(--font-mono)', 'JetBrains Mono', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
       },
       fontSize: {
         // Display sizes
