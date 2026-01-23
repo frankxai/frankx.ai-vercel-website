@@ -1,10 +1,9 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { ArrowRight, Download, Music, Sparkles, BookOpen, Zap, BarChart3, Mail, ExternalLink } from 'lucide-react'
-import Image from 'next/image'
+import { ArrowRight, Download, Music, Sparkles, BookOpen, Zap, BarChart3, Mail, ExternalLink, CheckCircle, AlertCircle } from 'lucide-react'
 import Link from 'next/link'
-import { PRIMARY_SOCIAL_LINKS, SCHEMA_SAME_AS } from '@/lib/social-links'
+import { PRIMARY_SOCIAL_LINKS } from '@/lib/social-links'
 import { useState } from 'react'
 
 /**
@@ -20,10 +19,19 @@ import { useState } from 'react'
  * Reference: /mnt/c/Users/Frank/FrankX/LINKS_PAGE_DESIGN_SPEC.md
  */
 
-// Track link click events
+// PostHog type declaration for type safety
+declare global {
+  interface Window {
+    posthog?: {
+      capture: (event: string, properties?: Record<string, unknown>) => void
+    }
+  }
+}
+
+// Track link click events with proper typing
 const trackLinkClick = (linkTitle: string, linkHref: string, linkType: string) => {
-  if (typeof window !== 'undefined' && (window as any).posthog) {
-    (window as any).posthog.capture('link_clicked', {
+  if (typeof window !== 'undefined' && window.posthog) {
+    window.posthog.capture('link_clicked', {
       link_title: linkTitle,
       link_href: linkHref,
       link_type: linkType,
@@ -34,6 +42,8 @@ const trackLinkClick = (linkTitle: string, linkHref: string, linkType: string) =
 
 export default function LinksPage() {
   const [email, setEmail] = useState('')
+  const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle')
+  const [errorMessage, setErrorMessage] = useState('')
 
   // Animation variants
   const containerVariants = {
@@ -339,14 +349,31 @@ export default function LinksPage() {
               </p>
 
               <form
-                action="/api/newsletter"
-                method="POST"
                 className="flex gap-2"
-                onSubmit={(e) => {
+                onSubmit={async (e) => {
                   e.preventDefault()
+                  setFormStatus('submitting')
+                  setErrorMessage('')
                   trackLinkClick('Newsletter Signup', email, 'newsletter')
-                  // Add your newsletter submission logic here
-                  console.log('Newsletter signup:', email)
+
+                  try {
+                    const response = await fetch('/api/newsletter', {
+                      method: 'POST',
+                      headers: { 'Content-Type': 'application/json' },
+                      body: JSON.stringify({ email }),
+                    })
+
+                    if (!response.ok) {
+                      const data = await response.json().catch(() => ({}))
+                      throw new Error(data.message || 'Failed to subscribe')
+                    }
+
+                    setFormStatus('success')
+                    setEmail('')
+                  } catch (err) {
+                    setFormStatus('error')
+                    setErrorMessage(err instanceof Error ? err.message : 'Something went wrong')
+                  }
                 }}
               >
                 <input
@@ -355,16 +382,41 @@ export default function LinksPage() {
                   placeholder="your@email.com"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="flex-1 px-4 py-3 rounded-xl bg-white/10 backdrop-blur-xl border border-white/10 text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-tech-cyan focus:border-transparent text-sm"
+                  disabled={formStatus === 'submitting'}
+                  aria-describedby="newsletter-status"
+                  className="flex-1 px-4 py-3 rounded-xl bg-white/10 backdrop-blur-xl border border-white/10 text-white placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-tech-cyan focus:border-transparent text-sm disabled:opacity-50"
                   required
                 />
                 <button
                   type="submit"
-                  className="px-6 py-3 rounded-xl bg-gradient-to-r from-tech-cyan to-aurora-blue text-white font-semibold text-sm hover:scale-[1.02] active:scale-[0.98] transition-transform shadow-lg shadow-tech-cyan/25"
+                  disabled={formStatus === 'submitting'}
+                  className="px-6 py-3 rounded-xl bg-gradient-to-r from-tech-cyan to-aurora-blue text-white font-semibold text-sm hover:scale-[1.02] active:scale-[0.98] transition-transform shadow-lg shadow-tech-cyan/25 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Join
+                  {formStatus === 'submitting' ? '...' : 'Join'}
                 </button>
               </form>
+
+              {/* Accessible status region for form feedback */}
+              <div
+                id="newsletter-status"
+                role="status"
+                aria-live="polite"
+                aria-atomic="true"
+                className="mt-3 text-sm"
+              >
+                {formStatus === 'success' && (
+                  <div className="flex items-center gap-2 text-growth-green">
+                    <CheckCircle className="w-4 h-4" />
+                    <span>Welcome to the community!</span>
+                  </div>
+                )}
+                {formStatus === 'error' && (
+                  <div className="flex items-center gap-2 text-music-orange">
+                    <AlertCircle className="w-4 h-4" />
+                    <span>{errorMessage || 'Failed to subscribe. Please try again.'}</span>
+                  </div>
+                )}
+              </div>
             </div>
           </div>
         </motion.div>
