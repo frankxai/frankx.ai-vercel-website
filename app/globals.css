@@ -107,7 +107,7 @@
 
   /* Times New Roman italic for elegant headings */
   .font-serif-italic {
-    font-family: "Times New Roman", Times, Georgia, serif;
+    font-family: var(--font-serif), "Playfair Display", "Times New Roman", Times, Georgia, serif;
     font-style: italic;
   }
 
@@ -125,6 +125,155 @@
     background: rgba(15, 23, 42, 0.6);
     backdrop-filter: blur(18px);
     border: 1px solid rgba(148, 163, 184, 0.18);
+  }
+
+  /* =========================================================================
+     PREMIUM CARD SYSTEM - Enhanced contrast and depth
+     ========================================================================= */
+
+  .card-premium {
+    background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.04) 0%,
+      rgba(255, 255, 255, 0.01) 100%
+    );
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.03) inset,
+      0 24px 48px -12px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(12px);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card-premium::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    opacity: 0.02;
+    mix-blend-mode: overlay;
+    pointer-events: none;
+  }
+
+  .card-premium:hover {
+    border-color: rgba(255, 255, 255, 0.15);
+    box-shadow:
+      0 0 0 1px rgba(255, 255, 255, 0.05) inset,
+      0 32px 64px -16px rgba(0, 0, 0, 0.6);
+  }
+
+  /* Card with accent border on hover */
+  .card-accent-hover {
+    position: relative;
+  }
+
+  .card-accent-hover::after {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      135deg,
+      rgba(16, 185, 129, 0) 0%,
+      rgba(16, 185, 129, 0) 100%
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    transition: all 0.4s ease;
+  }
+
+  .card-accent-hover:hover::after {
+    background: linear-gradient(
+      135deg,
+      rgba(16, 185, 129, 0.5) 0%,
+      rgba(6, 182, 212, 0.3) 50%,
+      rgba(139, 92, 246, 0.2) 100%
+    );
+  }
+
+  /* =========================================================================
+     GRAIN TEXTURE OVERLAY
+     ========================================================================= */
+
+  .grain-overlay {
+    position: relative;
+  }
+
+  .grain-overlay::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    pointer-events: none;
+    mix-blend-mode: overlay;
+    z-index: 1;
+  }
+
+  /* =========================================================================
+     MOTION UTILITIES
+     ========================================================================= */
+
+  /* Staggered fade-in for children */
+  .stagger-fade-in > * {
+    opacity: 0;
+    animation: staggerFadeIn 0.6s ease-out forwards;
+  }
+
+  .stagger-fade-in > *:nth-child(1) { animation-delay: 0ms; }
+  .stagger-fade-in > *:nth-child(2) { animation-delay: 80ms; }
+  .stagger-fade-in > *:nth-child(3) { animation-delay: 160ms; }
+  .stagger-fade-in > *:nth-child(4) { animation-delay: 240ms; }
+  .stagger-fade-in > *:nth-child(5) { animation-delay: 320ms; }
+  .stagger-fade-in > *:nth-child(6) { animation-delay: 400ms; }
+
+  @keyframes staggerFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
+      filter: blur(4px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
+  }
+
+  /* Glow pulse effect */
+  .glow-pulse {
+    animation: glowPulse 3s ease-in-out infinite;
+  }
+
+  @keyframes glowPulse {
+    0%, 100% {
+      box-shadow: 0 0 20px rgba(16, 185, 129, 0.15);
+    }
+    50% {
+      box-shadow: 0 0 40px rgba(16, 185, 129, 0.25);
+    }
+  }
+
+  /* Shimmer effect for loading states */
+  .shimmer {
+    background: linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0) 0%,
+      rgba(255, 255, 255, 0.05) 50%,
+      rgba(255, 255, 255, 0) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 2s infinite;
+  }
+
+  @keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
   }
 }
 
