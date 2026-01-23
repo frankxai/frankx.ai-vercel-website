@@ -12,6 +12,11 @@ export type TeamMember = {
   outputs: string[]
   gradient: string
   image?: string
+  // Optional extended properties for enhanced card display
+  platform?: 'Claude' | 'ChatGPT' | 'Suno' | 'Sora' | 'Midjourney' | 'Gemini'
+  personality?: string
+  specialties?: string[]
+  collaboratesWith?: string[]
 }
 
 export type Department = {
@@ -21,6 +26,7 @@ export type Department = {
   icon: IconName
   gradient: string
   stats?: string
+  mission?: string
 }
 
 export const departments: Department[] = [

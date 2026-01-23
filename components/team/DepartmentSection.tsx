@@ -49,9 +49,11 @@ export function DepartmentSection({ department, members, index }: DepartmentSect
               <p className="text-white/70 text-sm mb-3 leading-relaxed max-w-2xl">
                 {department.description}
               </p>
-              <p className="text-white/50 text-xs italic leading-relaxed max-w-2xl">
-                Mission: {department.mission}
-              </p>
+              {department.mission && (
+                <p className="text-white/50 text-xs italic leading-relaxed max-w-2xl">
+                  Mission: {department.mission}
+                </p>
+              )}
             </div>
           </div>
 
