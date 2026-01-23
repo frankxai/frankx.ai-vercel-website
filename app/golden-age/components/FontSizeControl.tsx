@@ -28,6 +28,7 @@ export default function FontSizeControl({ onSizeChange }: FontSizeControlProps) 
   const [isOpen, setIsOpen] = useState(false);
 
   // Load saved preference
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => {
     const saved = localStorage.getItem('golden-age-font-size') as FontSize | null;
     if (saved && FONT_SIZES.includes(saved)) {

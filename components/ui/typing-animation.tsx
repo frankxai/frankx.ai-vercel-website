@@ -39,6 +39,7 @@ export function TypingAnimation({
   cursorStyle = "line",
   ...props
 }: TypingAnimationProps) {
+  // eslint-disable-next-line react-hooks/static-components
   const MotionComponent = motion.create(Component, {
     forwardMotionProps: true,
   })

@@ -86,6 +86,7 @@ export function Globe({
       width: width * 2,
       height: width * 2,
       onRender: (state) => {
+        // eslint-disable-next-line react-hooks/immutability
         if (!pointerInteracting.current) phi += 0.005
         state.phi = phi + rs.get()
         state.width = width * 2

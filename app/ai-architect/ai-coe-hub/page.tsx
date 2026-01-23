@@ -40,7 +40,7 @@ const CheckCircleIcon = CheckCircle
 interface ResourceCard {
   title: string
   description: string
-  icon: React.ElementType
+  icon: React.ComponentType<{ className?: string }>
   href: string
   external?: boolean
   category: 'architecture' | 'code' | 'guide' | 'oracle'

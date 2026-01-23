@@ -27,6 +27,7 @@ export const Meteors = ({
     []
   )
 
+  // eslint-disable-next-line react-hooks/set-state-in-effect
   useEffect(() => {
     const styles = [...new Array(number)].map(() => ({
       "--angle": -angle + "deg",
