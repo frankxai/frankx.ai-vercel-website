@@ -7,6 +7,10 @@ module.exports = [
   {
     rules: {
       'react/no-unescaped-entities': 'off',
+      // Disable React Compiler ESLint rules that conflict with animation libraries
+      'react-hooks/set-state-in-effect': 'off',
+      'react-hooks/static-components': 'off',
+      'react-hooks/immutability': 'off',
     },
   },
 ]
