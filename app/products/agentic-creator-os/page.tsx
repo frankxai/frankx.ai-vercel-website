@@ -1,4 +1,5 @@
 import Script from 'next/script'
+import Image from 'next/image'
 
 import products from '@/data/products.json'
 import FinalCTA from '@/components/products/FinalCTA'
@@ -52,6 +53,28 @@ export default function AgenticCreatorOSPage() {
         promise={product.promise}
         offer={product.offer}
       />
+
+      {/* Architecture Overview */}
+      <section className="bg-[#02030b] py-16">
+        <div className="mx-auto max-w-6xl px-6">
+          <h2 className="mb-4 text-center text-2xl font-semibold text-white sm:text-3xl">
+            System Architecture
+          </h2>
+          <p className="mx-auto mb-10 max-w-2xl text-center text-slate-400">
+            7-layer architecture with 70+ skills, 10 specialist agents, and enterprise-grade orchestration
+          </p>
+          <div className="overflow-hidden rounded-2xl border border-white/10">
+            <Image
+              src="/images/acos/acos-technical-architecture.png"
+              alt="ACOS v5.0 Architecture - 7-layer system with MCP foundation, skills library, specialist agents, and creator hub interface"
+              width={1376}
+              height={768}
+              className="w-full"
+              priority
+            />
+          </div>
+        </div>
+      </section>
 
       <TransformationList items={product.transformation} title="Agent System Outcomes" />
 

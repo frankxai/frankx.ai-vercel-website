@@ -296,6 +296,24 @@ export default function AboutPage() {
               <p className="mt-2 text-slate-400">How I got here</p>
             </motion.div>
 
+            {/* Creator Journey Infographic */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="mb-12 overflow-hidden rounded-2xl border border-white/10"
+            >
+              <Image
+                src="/images/about/creator-journey-hero.png"
+                alt="Frank's Creator Journey - From corporate tech to AI music and community building"
+                width={1408}
+                height={768}
+                className="w-full"
+                priority
+              />
+            </motion.div>
+
             <div className="grid gap-6 md:grid-cols-3">
               {journey.map((item, index) => {
                 const Icon = item.icon
