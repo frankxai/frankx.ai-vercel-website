@@ -130,7 +130,7 @@ const resources: ResourceCard[] = [
   }
 ]
 
-const categories = [
+const categories: { id: CategoryFilter; label: string }[] = [
   { id: 'all', label: 'All Resources' },
   { id: 'oracle', label: 'Oracle Architecture Center' },
   { id: 'code', label: 'GitHub Repositories' },
