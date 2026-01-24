@@ -19,7 +19,6 @@ import {
 
 import { trackEvent } from '@/lib/analytics'
 import TrustedByBlock from '@/components/social-proof/TrustedByBlock'
-import Floating3DAsset from '@/components/ui/Floating3DAsset'
 
 // ============================================================================
 // DESIGN SYSTEM
@@ -257,46 +256,6 @@ function Hero() {
       ref={ref}
       className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 md:pt-20"
     >
-      {/* Floating 3D Assets - subtle ambient decoration */}
-      <div className="hidden lg:block">
-        <Floating3DAsset
-          src="/images/3d/sparkles_3d.png"
-          position="top-left"
-          size="lg"
-          animation="float"
-          opacity={40}
-          className="top-32 left-[10%]"
-          delay={0.2}
-        />
-        <Floating3DAsset
-          src="/images/3d/music_3d.png"
-          position="top-right"
-          size="xl"
-          animation="pulse"
-          opacity={35}
-          className="top-40 right-[8%]"
-          delay={0.5}
-        />
-        <Floating3DAsset
-          src="/images/3d/rocket_3d.png"
-          position="bottom-left"
-          size="lg"
-          animation="bounce"
-          opacity={30}
-          className="bottom-32 left-[15%]"
-          delay={0.8}
-        />
-        <Floating3DAsset
-          src="/images/3d/star_3d.png"
-          position="bottom-right"
-          size="md"
-          animation="float"
-          opacity={45}
-          className="bottom-48 right-[12%]"
-          delay={0.3}
-        />
-      </div>
-
       <motion.div
         className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 py-8 md:py-20"
         style={shouldReduceMotion ? undefined : { opacity, y, scale }}

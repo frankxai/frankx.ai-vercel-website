@@ -358,6 +358,20 @@ export default function NavigationMega() {
 
             <NavigationMenu.Item>
               <Link
+                href="/rituals"
+                className={cn(
+                  'rounded-md px-2.5 py-1.5 text-[13px] font-semibold transition-all',
+                  isActive('/rituals')
+                    ? 'text-white bg-white/5'
+                    : 'text-slate-300 hover:text-white hover:bg-white/5'
+                )}
+              >
+                Rituals
+              </Link>
+            </NavigationMenu.Item>
+
+            <NavigationMenu.Item>
+              <Link
                 href="/about"
                 className={cn(
                   'rounded-md px-2.5 py-1.5 text-[13px] font-semibold transition-all',
@@ -437,6 +451,13 @@ export default function NavigationMega() {
                 className="block rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base font-medium text-slate-300 transition-colors hover:bg-white/5 hover:text-white"
               >
                 Blog
+              </Link>
+              <Link
+                href="/rituals"
+                onClick={() => setIsOpen(false)}
+                className="block rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base font-medium text-slate-300 transition-colors hover:bg-white/5 hover:text-white"
+              >
+                Rituals
               </Link>
               <Link
                 href="/about"
