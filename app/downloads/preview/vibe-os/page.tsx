@@ -15,7 +15,8 @@ import {
   CheckCircle,
   Clock,
   BookOpen,
-  ExternalLink
+  ExternalLink,
+  Gift
 } from 'lucide-react'
 
 import VibeOSEmailModal from './VibeOSEmailModal'
@@ -24,7 +25,8 @@ export default function VibeOSLeadMagnetPage() {
   const [emailModalOpen, setEmailModalOpen] = useState(false)
   const [sessionId] = useState(() => `session-${Date.now()}`)
 
-  const pdfUrl = '/pdf-templates/vibe-os-guide.html'
+  // Direct HTML guide URL - no PDF needed
+  const guideUrl = '/pdf-templates/vibe-os-guide.html'
 
   return (
     <main className="relative min-h-screen overflow-hidden bg-void">
@@ -67,7 +69,7 @@ export default function VibeOSLeadMagnetPage() {
               className="mb-8 inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-500/10 px-5 py-2.5 text-xs font-medium uppercase tracking-[0.15em] text-cyan-200"
             >
               <Sparkles className="h-4 w-4" />
-              Free Download
+              Free Download • No Email Required
             </motion.div>
 
             {/* Title */}
@@ -107,40 +109,52 @@ export default function VibeOSLeadMagnetPage() {
               </div>
               <div className="flex items-center gap-2">
                 <BookOpen className="h-4 w-4 text-emerald-400" />
-                <span>15 pages</span>
+                <span>18 pages</span>
               </div>
               <div className="flex items-center gap-2">
                 <Music className="h-4 w-4 text-violet-400" />
-                <span>10 Starter Prompts</span>
+                <span>10+ Prompt Templates</span>
               </div>
             </motion.div>
 
-            {/* CTA Buttons */}
+            {/* CTA Buttons - Download First, Email Secondary */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.4 }}
               className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center"
             >
-              <button
-                onClick={() => setEmailModalOpen(true)}
-                className="group inline-flex items-center gap-3 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 px-8 py-4 text-sm font-semibold text-white shadow-[0_20px_60px_rgba(6,182,212,0.4)] transition-all hover:-translate-y-1 hover:shadow-[0_30px_80px_rgba(6,182,212,0.5)]"
-              >
-                <Mail className="h-5 w-5" />
-                Get Via Email
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </button>
-
+              {/* Primary: Instant Download */}
               <a
-                href={pdfUrl}
+                href={guideUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-8 py-4 text-sm font-semibold text-white transition-all hover:border-white/20 hover:bg-white/10"
+                className="group inline-flex items-center gap-3 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 px-8 py-4 text-sm font-semibold text-white shadow-[0_20px_60px_rgba(6,182,212,0.4)] transition-all hover:-translate-y-1 hover:shadow-[0_30px_80px_rgba(6,182,212,0.5)]"
               >
                 <Download className="h-5 w-5" />
                 Download Now
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </a>
+
+              {/* Secondary: Email for Bonuses */}
+              <button
+                onClick={() => setEmailModalOpen(true)}
+                className="group inline-flex items-center gap-3 rounded-2xl border border-violet-500/30 bg-violet-500/10 px-8 py-4 text-sm font-semibold text-violet-200 transition-all hover:border-violet-500/50 hover:bg-violet-500/20"
+              >
+                <Gift className="h-5 w-5" />
+                Get Bonus Prompts
+                <Mail className="h-4 w-4 opacity-50" />
+              </button>
             </motion.div>
+
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              className="mt-4 text-xs text-white/40"
+            >
+              No signup required • Opens in new tab • HTML format
+            </motion.p>
           </div>
         </section>
 
@@ -160,7 +174,7 @@ export default function VibeOSLeadMagnetPage() {
                 What&apos;s Inside the Guide
               </h2>
               <p className="mx-auto mt-3 max-w-lg text-white/60">
-                A condensed version of the full Vibe OS system, perfect for getting started
+                A complete framework for AI music creation, not just prompts
               </p>
             </motion.div>
 
@@ -168,20 +182,20 @@ export default function VibeOSLeadMagnetPage() {
               {[
                 {
                   icon: Music,
-                  title: '10 Starter Prompts',
-                  description: 'Genre-tested prompts for electronic, ambient, hip-hop, and cinematic styles',
+                  title: '10+ Prompt Templates',
+                  description: 'Genre-tested prompts for electronic, ambient, hip-hop, lo-fi, cinematic, and neo-soul styles',
                   color: 'cyan'
                 },
                 {
                   icon: Palette,
-                  title: 'Emotion Mapping Intro',
-                  description: 'The basics of translating feelings into sonic cues that resonate',
+                  title: 'Emotion Mapping System',
+                  description: 'Translate feelings into sonic specs using the Four Vectors: Time, Key, Texture, Shape',
                   color: 'violet'
                 },
                 {
                   icon: Zap,
-                  title: 'Quick-Start Workflow',
-                  description: 'The 5-step ritual to go from idea to finished track in one session',
+                  title: '90-Minute Protocol',
+                  description: 'The complete workflow from blank page to finished track in a single session',
                   color: 'emerald'
                 }
               ].map((item, index) => {
@@ -243,10 +257,18 @@ export default function VibeOSLeadMagnetPage() {
                   <div className="h-3 w-3 rounded-full bg-yellow-500/70" />
                   <div className="h-3 w-3 rounded-full bg-green-500/70" />
                 </div>
-                <span className="text-xs text-white/40">vibe-os-guide.html</span>
+                <span className="text-xs text-white/40">vibe-os-quickstart-guide.html</span>
+                <a
+                  href={guideUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs text-cyan-400 transition-colors hover:text-cyan-300"
+                >
+                  Open in new tab →
+                </a>
               </div>
               <iframe
-                src={pdfUrl}
+                src={guideUrl}
                 className="h-[600px] w-full bg-white"
                 title="Vibe OS Guide Preview"
               />
@@ -260,22 +282,23 @@ export default function VibeOSLeadMagnetPage() {
               transition={{ duration: 0.5 }}
               className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center"
             >
-              <button
-                onClick={() => setEmailModalOpen(true)}
+              <a
+                href={guideUrl}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="group inline-flex items-center gap-3 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 px-8 py-4 text-sm font-semibold text-white shadow-[0_20px_60px_rgba(6,182,212,0.4)] transition-all hover:-translate-y-1 hover:shadow-[0_30px_80px_rgba(6,182,212,0.5)]"
               >
-                <Mail className="h-5 w-5" />
-                Get Full Guide Via Email
-              </button>
+                <Download className="h-5 w-5" />
+                Download Full Guide
+              </a>
 
-              <a
-                href={pdfUrl}
-                download="vibe-os-quickstart-guide.html"
+              <button
+                onClick={() => setEmailModalOpen(true)}
                 className="group inline-flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-8 py-4 text-sm font-semibold text-white transition-all hover:border-white/20 hover:bg-white/10"
               >
-                <Download className="h-5 w-5" />
-                Download HTML
-              </a>
+                <Gift className="h-5 w-5 text-violet-400" />
+                Get 5 Bonus Prompts via Email
+              </button>
             </motion.div>
           </div>
         </section>
@@ -294,15 +317,15 @@ export default function VibeOSLeadMagnetPage() {
             >
               <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-amber-400/30 bg-amber-500/10 px-5 py-2 text-xs font-medium uppercase tracking-[0.15em] text-amber-200">
                 <Sparkles className="h-4 w-4" />
-                Want More?
+                Want the Complete System?
               </div>
 
               <h2 className="font-display text-3xl font-bold text-white sm:text-4xl">
-                Get the Complete Vibe OS System
+                Get the Full Vibe OS
               </h2>
 
               <p className="mx-auto mt-4 max-w-2xl text-white/60">
-                This guide is just the beginning. The full Vibe OS includes 50+ genre prompts,
+                This quickstart is just the beginning. The full Vibe OS includes 50+ genre prompts,
                 complete emotion mapping system, release playbooks, and production enhancement guides.
               </p>
 
@@ -329,11 +352,11 @@ export default function VibeOSLeadMagnetPage() {
         </section>
       </div>
 
-      {/* Email Modal */}
+      {/* Email Modal - Now for Bonus Content */}
       <VibeOSEmailModal
         isOpen={emailModalOpen}
         onClose={() => setEmailModalOpen(false)}
-        pdfUrl={pdfUrl}
+        pdfUrl={guideUrl}
         sessionId={sessionId}
       />
     </main>
