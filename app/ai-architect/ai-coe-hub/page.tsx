@@ -20,13 +20,16 @@ import {
   CheckCircleIcon
 } from '@heroicons/react/24/outline'
 
+type CategoryType = 'architecture' | 'code' | 'guide' | 'oracle'
+type CategoryFilter = 'all' | CategoryType
+
 interface ResourceCard {
   title: string
   description: string
   icon: React.ElementType
   href: string
   external?: boolean
-  category: 'architecture' | 'code' | 'guide' | 'oracle'
+  category: CategoryType
 }
 
 const resources: ResourceCard[] = [
@@ -199,9 +202,9 @@ const decisionMatrix = [
 ]
 
 export default function AICoEHubPage() {
-  const [activeCategory, setActiveCategory] = useState<string>('all')
+  const [activeCategory, setActiveCategory] = useState<CategoryFilter>('all')
 
-  const filteredResources: ResourceCard[] = activeCategory === 'all'
+  const filteredResources = activeCategory === 'all'
     ? resources
     : resources.filter(r => r.category === activeCategory)
 
