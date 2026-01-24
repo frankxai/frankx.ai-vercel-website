@@ -204,7 +204,7 @@ export default function GoldenAgePage() {
         className="relative overflow-hidden"
       >
         {/* Premium Animated Background */}
-        <div className="absolute inset-0 bg-gradient-to-b from-void via-slate-950 to-void" />
+        <div className="absolute inset-0 bg-gradient-to-b from-void via-space to-void" />
         <div className="absolute inset-0">
           {/* Ambient orbs */}
           <div className="absolute top-20 left-[10%] w-[500px] h-[500px] bg-amber-500/8 rounded-full blur-[120px] animate-pulse" />
@@ -350,7 +350,7 @@ export default function GoldenAgePage() {
       {/* Book Chapters Section - Premium Bento Grid */}
       <section id="chapters" className="py-24 scroll-mt-20 relative">
         {/* Background gradient */}
-        <div className="absolute inset-0 bg-gradient-to-b from-void via-slate-950/50 to-void" />
+        <div className="absolute inset-0 bg-gradient-to-b from-void via-space/50 to-void" />
 
         <div className="relative max-w-7xl mx-auto px-6">
           {/* Section Header */}

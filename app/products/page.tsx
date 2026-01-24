@@ -19,54 +19,65 @@ import {
 
 import { trackEvent } from '@/lib/analytics'
 
-// Premium background
+// Premium background - aligned with tech spectrum (emerald/cyan)
 function ProductsBackground() {
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden">
       <div className="absolute inset-0 bg-void" />
 
-      {/* Gradient orbs */}
+      {/* Primary aurora orb - emerald */}
       <motion.div
-        className="absolute -right-60 top-40 h-[600px] w-[600px] rounded-full opacity-25"
+        className="absolute -right-60 top-40 h-[600px] w-[600px] rounded-full"
         style={{
-          background: 'radial-gradient(circle, rgba(56,189,248,0.35) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(16, 185, 129, 0.12) 0%, transparent 70%)',
         }}
         animate={{
           scale: [1, 1.1, 1],
-          opacity: [0.25, 0.35, 0.25],
+          opacity: [0.8, 1, 0.8],
         }}
-        transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
+        transition={{ duration: 15, repeat: Infinity, ease: 'easeInOut' }}
       />
+      {/* Secondary aurora orb - cyan */}
       <motion.div
-        className="absolute -left-40 top-1/2 h-[500px] w-[500px] rounded-full opacity-20"
+        className="absolute -left-40 top-1/2 h-[500px] w-[500px] rounded-full"
         style={{
-          background: 'radial-gradient(circle, rgba(20,184,166,0.28) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(6, 182, 212, 0.08) 0%, transparent 70%)',
         }}
         animate={{
           scale: [1.1, 1, 1.1],
-          opacity: [0.2, 0.3, 0.2],
+          opacity: [0.6, 0.8, 0.6],
         }}
-        transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
+        transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
       />
+      {/* Tertiary accent - violet (subtle) */}
       <motion.div
-        className="absolute bottom-0 right-1/4 h-[400px] w-[400px] rounded-full opacity-15"
+        className="absolute bottom-0 right-1/4 h-[400px] w-[400px] rounded-full"
         style={{
-          background: 'radial-gradient(circle, rgba(59,130,246,0.3) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(139, 92, 246, 0.06) 0%, transparent 70%)',
         }}
         animate={{
           scale: [1, 1.15, 1],
-          opacity: [0.15, 0.25, 0.15],
+          opacity: [0.4, 0.6, 0.4],
         }}
-        transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut' }}
+        transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
       />
 
       {/* Subtle grid */}
       <div
-        className="absolute inset-0 opacity-[0.015]"
+        className="absolute inset-0 opacity-[0.012]"
         style={{
-          backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
-                           linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
-          backgroundSize: '60px 60px',
+          backgroundImage: `linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
+                           linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px)`,
+          backgroundSize: '80px 80px',
+        }}
+      />
+
+      {/* Grain texture */}
+      <div
+        className="absolute inset-0 opacity-[0.02]"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
+          mixBlendMode: 'overlay',
         }}
       />
     </div>
@@ -175,46 +186,47 @@ const products = [
   },
 ]
 
+// Color map aligned with FrankX design system: tech (emerald/cyan), soul (amber)
 const colorMap = {
   violet: {
-    bg: 'bg-cyan-500/10',
-    border: 'border-cyan-500/20 hover:border-cyan-500/40',
-    icon: 'bg-cyan-500/20 text-cyan-300',
-    accent: 'text-cyan-300',
-    button: 'bg-cyan-600 hover:bg-cyan-500',
-    glow: 'group-hover:shadow-cyan-500/20',
+    bg: 'bg-violet-500/8',
+    border: 'border-violet-500/15 hover:border-violet-500/30',
+    icon: 'bg-violet-500/15 text-violet-400',
+    accent: 'text-violet-400',
+    button: 'bg-violet-600 hover:bg-violet-500',
+    glow: 'group-hover:shadow-violet-500/15',
   },
   emerald: {
-    bg: 'bg-emerald-500/10',
-    border: 'border-emerald-500/20 hover:border-emerald-500/40',
-    icon: 'bg-emerald-500/20 text-emerald-300',
-    accent: 'text-emerald-300',
+    bg: 'bg-emerald-500/8',
+    border: 'border-emerald-500/15 hover:border-emerald-500/30',
+    icon: 'bg-emerald-500/15 text-emerald-400',
+    accent: 'text-emerald-400',
     button: 'bg-emerald-600 hover:bg-emerald-500',
-    glow: 'group-hover:shadow-emerald-500/20',
+    glow: 'group-hover:shadow-emerald-500/15',
   },
   cyan: {
-    bg: 'bg-cyan-500/10',
-    border: 'border-cyan-500/20 hover:border-cyan-500/40',
-    icon: 'bg-cyan-500/20 text-cyan-300',
-    accent: 'text-cyan-300',
+    bg: 'bg-cyan-500/8',
+    border: 'border-cyan-500/15 hover:border-cyan-500/30',
+    icon: 'bg-cyan-500/15 text-cyan-400',
+    accent: 'text-cyan-400',
     button: 'bg-cyan-600 hover:bg-cyan-500',
-    glow: 'group-hover:shadow-cyan-500/20',
+    glow: 'group-hover:shadow-cyan-500/15',
   },
   amber: {
-    bg: 'bg-blue-500/10',
-    border: 'border-blue-500/20 hover:border-blue-500/40',
-    icon: 'bg-blue-500/20 text-blue-300',
-    accent: 'text-blue-300',
-    button: 'bg-blue-600 hover:bg-blue-500',
-    glow: 'group-hover:shadow-blue-500/20',
+    bg: 'bg-amber-500/8',
+    border: 'border-amber-500/15 hover:border-amber-500/30',
+    icon: 'bg-amber-500/15 text-amber-400',
+    accent: 'text-amber-400',
+    button: 'bg-amber-600 hover:bg-amber-500',
+    glow: 'group-hover:shadow-amber-500/15',
   },
   rose: {
-    bg: 'bg-teal-500/10',
-    border: 'border-teal-500/20 hover:border-teal-500/40',
-    icon: 'bg-teal-500/20 text-teal-300',
-    accent: 'text-teal-300',
-    button: 'bg-teal-600 hover:bg-teal-500',
-    glow: 'group-hover:shadow-teal-500/20',
+    bg: 'bg-emerald-500/8',
+    border: 'border-emerald-500/15 hover:border-emerald-500/30',
+    icon: 'bg-emerald-500/15 text-emerald-400',
+    accent: 'text-emerald-400',
+    button: 'bg-emerald-600 hover:bg-emerald-500',
+    glow: 'group-hover:shadow-emerald-500/15',
   },
 }
 

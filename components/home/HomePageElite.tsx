@@ -24,28 +24,9 @@ import TrustedByBlock from '@/components/social-proof/TrustedByBlock'
 // DESIGN SYSTEM
 // ============================================================================
 
-// Premium color palette - moving away from generic purple
-const colors = {
-  // Deep blacks with warmth
-  bg: '#0a0a0b',
-  bgElevated: '#111113',
-  bgSubtle: '#18181b',
-
-  // Accent colors - emerald/teal for tech, gold for premium
-  accent: {
-    primary: '#10b981', // emerald
-    secondary: '#06b6d4', // cyan
-    tertiary: '#f59e0b', // amber/gold
-  },
-
-  // Text hierarchy
-  text: {
-    primary: '#fafafa',
-    secondary: 'rgba(250, 250, 250, 0.7)',
-    tertiary: 'rgba(250, 250, 250, 0.5)',
-    muted: 'rgba(250, 250, 250, 0.3)',
-  }
-}
+// Design tokens now in tailwind.config.js - use utility classes:
+// bg-void, bg-space, bg-elevated, bg-subtle
+// text-emerald-*, text-cyan-*, text-amber-* for accents
 
 // ============================================================================
 // PREMIUM BACKGROUND COMPONENTS
@@ -56,7 +37,7 @@ function AuroraBackground() {
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none">
       {/* Base gradient - deeper with more dimension */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0b] via-[#0d0d0f] to-[#0a0a0b]" />
+      <div className="absolute inset-0 bg-gradient-to-b from-void via-space to-void" />
 
       {/* Primary aurora orb - emerald */}
       <motion.div
@@ -365,7 +346,7 @@ function Hero() {
               <Link
                 href="/start"
                 onClick={() => trackEvent('hero_cta_click', { type: 'primary' })}
-                className="group relative inline-flex items-center justify-center gap-2 sm:gap-3 bg-white text-black px-6 sm:px-8 py-3.5 sm:py-4 rounded-full font-semibold text-sm sm:text-base transition-all duration-300 hover:bg-white/95 hover:shadow-[0_0_50px_rgba(255,255,255,0.2)] hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98]"
+                className="group relative inline-flex items-center justify-center gap-2 sm:gap-3 bg-white text-black px-6 sm:px-8 py-3.5 sm:py-4 rounded-full font-semibold text-sm sm:text-base transition-all duration-300 hover:bg-white/95 hover:shadow-[0_0_50px_rgba(255,255,255,0.2)] hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-void active:scale-[0.98]"
               >
                 Explore My Work
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -374,7 +355,7 @@ function Hero() {
               <Link
                 href="/music-lab"
                 onClick={() => trackEvent('hero_cta_click', { type: 'secondary' })}
-                className="group inline-flex items-center justify-center gap-2 sm:gap-3 px-6 sm:px-8 py-3.5 sm:py-4 rounded-full font-medium text-sm sm:text-base text-white/70 hover:text-white border border-white/10 hover:border-emerald-400/30 hover:bg-emerald-400/5 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98]"
+                className="group inline-flex items-center justify-center gap-2 sm:gap-3 px-6 sm:px-8 py-3.5 sm:py-4 rounded-full font-medium text-sm sm:text-base text-white/70 hover:text-white border border-white/10 hover:border-emerald-400/30 hover:bg-emerald-400/5 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 focus-visible:ring-offset-2 focus-visible:ring-offset-void active:scale-[0.98]"
               >
                 <Play className="w-4 h-4" />
                 Listen to Music
@@ -383,7 +364,7 @@ function Hero() {
               <Link
                 href="/resources"
                 onClick={() => trackEvent('hero_cta_click', { type: 'resources' })}
-                className="group inline-flex items-center justify-center gap-2 sm:gap-3 px-6 sm:px-8 py-3.5 sm:py-4 rounded-full font-medium text-sm sm:text-base text-white/70 hover:text-white border border-white/10 hover:border-white/20 hover:bg-white/5 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98]"
+                className="group inline-flex items-center justify-center gap-2 sm:gap-3 px-6 sm:px-8 py-3.5 sm:py-4 rounded-full font-medium text-sm sm:text-base text-white/70 hover:text-white border border-white/10 hover:border-white/20 hover:bg-white/5 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 focus-visible:ring-offset-2 focus-visible:ring-offset-void active:scale-[0.98]"
               >
                 <Sparkles className="w-4 h-4" />
                 Resource Hub
@@ -631,7 +612,7 @@ function QuickStartSection() {
             >
               <Link
                 href={path.href}
-                className="group block p-4 sm:p-6 rounded-xl sm:rounded-2xl border border-white/[0.06] bg-white/[0.02] hover:border-white/[0.12] hover:bg-white/[0.04] hover:-translate-y-1 hover:shadow-[0_16px_32px_-8px_rgba(0,0,0,0.4)] transition-all duration-300 h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.99]"
+                className="group block p-4 sm:p-6 rounded-xl sm:rounded-2xl border border-white/[0.06] bg-white/[0.02] hover:border-white/[0.12] hover:bg-white/[0.04] hover:-translate-y-1 hover:shadow-[0_16px_32px_-8px_rgba(0,0,0,0.4)] transition-all duration-300 h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 focus-visible:ring-offset-2 focus-visible:ring-offset-void active:scale-[0.99]"
               >
                 <div className="flex items-center justify-between mb-3 sm:mb-4">
                   <span className={`text-[10px] sm:text-xs font-medium px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full border ${
@@ -732,7 +713,7 @@ function WhatIDo() {
             >
               <Link
                 href={item.href}
-                className="card-accent-hover group relative block p-5 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl bg-white/[0.02] border border-white/[0.06] overflow-hidden transition-all duration-500 hover:bg-white/[0.04] hover:border-white/[0.12] hover:-translate-y-1.5 hover:shadow-[0_24px_48px_-12px_rgba(0,0,0,0.5)] h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.99]"
+                className="card-accent-hover group relative block p-5 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl bg-white/[0.02] border border-white/[0.06] overflow-hidden transition-all duration-500 hover:bg-white/[0.04] hover:border-white/[0.12] hover:-translate-y-1.5 hover:shadow-[0_24px_48px_-12px_rgba(0,0,0,0.5)] h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 focus-visible:ring-offset-2 focus-visible:ring-offset-void active:scale-[0.99]"
               >
                 {/* Gradient background on hover */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
@@ -839,7 +820,7 @@ function FeaturedResources() {
               whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.08 }}
-              className="group flex items-center justify-between gap-3 p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-white/[0.02] border border-white/[0.06] hover:bg-white/[0.05] hover:border-white/[0.12] hover:-translate-y-0.5 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.99]"
+              className="group flex items-center justify-between gap-3 p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-white/[0.02] border border-white/[0.06] hover:bg-white/[0.05] hover:border-white/[0.12] hover:-translate-y-0.5 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 focus-visible:ring-offset-2 focus-visible:ring-offset-void active:scale-[0.99]"
             >
               <div className="min-w-0 flex-1">
                 <div className="text-[10px] sm:text-xs uppercase tracking-[0.12em] sm:tracking-[0.15em] text-white/30 mb-0.5 sm:mb-1">
@@ -1104,14 +1085,14 @@ function FinalCTA() {
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4">
               <Link
                 href="/start"
-                className="group inline-flex items-center justify-center gap-2 sm:gap-3 bg-white text-black px-7 sm:px-10 py-3.5 sm:py-4 rounded-full text-sm sm:text-base font-semibold transition-all duration-300 hover:bg-white/95 hover:shadow-[0_0_80px_rgba(255,255,255,0.25)] hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98]"
+                className="group inline-flex items-center justify-center gap-2 sm:gap-3 bg-white text-black px-7 sm:px-10 py-3.5 sm:py-4 rounded-full text-sm sm:text-base font-semibold transition-all duration-300 hover:bg-white/95 hover:shadow-[0_0_80px_rgba(255,255,255,0.25)] hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-void active:scale-[0.98]"
               >
                 Pick Your Path
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </Link>
               <Link
                 href="/resources"
-                className="group inline-flex items-center justify-center gap-2 sm:gap-3 px-7 sm:px-10 py-3.5 sm:py-4 rounded-full text-sm sm:text-base font-medium text-white/60 hover:text-white border border-white/10 hover:border-emerald-400/30 hover:bg-emerald-400/5 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98]"
+                className="group inline-flex items-center justify-center gap-2 sm:gap-3 px-7 sm:px-10 py-3.5 sm:py-4 rounded-full text-sm sm:text-base font-medium text-white/60 hover:text-white border border-white/10 hover:border-emerald-400/30 hover:bg-emerald-400/5 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 focus-visible:ring-offset-2 focus-visible:ring-offset-void active:scale-[0.98]"
               >
                 Browse Resources
                 <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />

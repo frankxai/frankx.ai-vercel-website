@@ -19,16 +19,18 @@ export default function BlogCard({ post, featured = false, className }: BlogCard
     <Link
       href={`/blog/${post.slug}`}
       className={cn(
-        'group relative block overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] transition-all duration-500',
-        'hover:border-white/20 hover:bg-white/[0.04] hover:-translate-y-2 hover:shadow-2xl hover:shadow-emerald-500/10',
-        'focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50',
+        'group relative block overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.02] transition-all duration-500',
+        'hover:border-emerald-500/20 hover:bg-white/[0.04] hover:-translate-y-1.5',
+        'hover:shadow-[0_24px_48px_-12px_rgba(0,0,0,0.5),0_0_0_1px_rgba(16,185,129,0.1)]',
+        'focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-void',
+        'active:scale-[0.99]',
         featured && 'md:col-span-2 lg:col-span-3',
         className
       )}
     >
-      {/* Hero Image Section */}
+      {/* Hero Image Section with subtle noise texture */}
       {post.image && (
-        <div className="relative w-full h-48 md:h-56 overflow-hidden bg-gradient-to-br from-emerald-500/10 via-cyan-500/5 to-purple-500/10">
+        <div className="relative w-full h-48 md:h-56 overflow-hidden bg-gradient-to-br from-emerald-500/10 via-cyan-500/5 to-violet-500/5">
           <Image
             src={post.image}
             alt={post.title}
