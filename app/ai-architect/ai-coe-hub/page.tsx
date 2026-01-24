@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, type ElementType, type SVGProps } from 'react'
 import Link from 'next/link'
 import {
   BuildingOffice2Icon,
@@ -20,16 +20,13 @@ import {
   CheckCircleIcon
 } from '@heroicons/react/24/outline'
 
-type CategoryType = 'architecture' | 'code' | 'guide' | 'oracle'
-type CategoryFilter = 'all' | CategoryType
-
 interface ResourceCard {
   title: string
   description: string
-  icon: React.ElementType
+  icon: ElementType<SVGProps<SVGSVGElement>>
   href: string
   external?: boolean
-  category: CategoryType
+  category: 'architecture' | 'code' | 'guide' | 'oracle'
 }
 
 const resources: ResourceCard[] = [
@@ -130,7 +127,7 @@ const resources: ResourceCard[] = [
   }
 ]
 
-const categories: { id: CategoryFilter; label: string }[] = [
+const categories = [
   { id: 'all', label: 'All Resources' },
   { id: 'oracle', label: 'Oracle Architecture Center' },
   { id: 'code', label: 'GitHub Repositories' },
@@ -201,17 +198,12 @@ const decisionMatrix = [
   }
 ]
 
-function filterResources(category: CategoryFilter): ResourceCard[] {
-  if (category === 'all') {
-    return resources
-  }
-  return resources.filter((r): r is ResourceCard => r.category === category)
-}
-
 export default function AICoEHubPage() {
-  const [activeCategory, setActiveCategory] = useState<CategoryFilter>('all')
+  const [activeCategory, setActiveCategory] = useState('all')
 
-  const filteredResources = filterResources(activeCategory)
+  const filteredResources = activeCategory === 'all'
+    ? resources
+    : resources.filter(r => r.category === activeCategory)
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
@@ -357,9 +349,7 @@ export default function AICoEHubPage() {
 
           {/* Resource Cards */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {filteredResources.map((resource: ResourceCard, index: number) => {
-              const IconComponent = resource.icon
-              return (
+            {filteredResources.map((resource, index) => (
               <Link
                 key={index}
                 href={resource.href}
@@ -373,7 +363,8 @@ export default function AICoEHubPage() {
                     resource.category === 'code' ? 'bg-green-500/10 text-green-400' :
                     'bg-amber-500/10 text-amber-400'
                   }`}>
-                    <IconComponent className="w-6 h-6" />
+                    {/* @ts-expect-error - Dynamic icon component */}
+                    <resource.icon className="w-6 h-6" />
                   </div>
                   {resource.external && (
                     <ArrowTopRightOnSquareIcon className="w-4 h-4 text-slate-500 group-hover:text-amber-400 transition-colors" />
@@ -386,8 +377,7 @@ export default function AICoEHubPage() {
                   {resource.description}
                 </p>
               </Link>
-              )
-            })}
+            ))}
           </div>
         </div>
       </section>
