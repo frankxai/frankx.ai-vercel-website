@@ -199,9 +199,9 @@ const decisionMatrix = [
 ]
 
 export default function AICoEHubPage() {
-  const [activeCategory, setActiveCategory] = useState('all')
+  const [activeCategory, setActiveCategory] = useState<string>('all')
 
-  const filteredResources = activeCategory === 'all'
+  const filteredResources: ResourceCard[] = activeCategory === 'all'
     ? resources
     : resources.filter(r => r.category === activeCategory)
 
