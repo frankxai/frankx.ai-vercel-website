@@ -110,7 +110,7 @@ Level 1: Metadata (~100 tokens)
 ├── Claude scans this to decide relevance
 └── Loads in milliseconds
 
-Level 2: Instructions (<5k tokens)
+Level 2: Instructions (under 5k tokens)
 ├── Core patterns, examples, workflows
 ├── SKILL.md loads completely
 └── Still fast, focused context
@@ -310,7 +310,7 @@ ACOS runs locally on your machine. The database uses local SQLite by default. Fo
 ### How do I contribute new skills?
 
 1. Copy `templates/SKILL_TEMPLATE.md` to your skill directory
-2. Follow the <500 line rule
+2. Follow the 500-line rule (keep skills under 500 lines)
 3. Add YAML frontmatter with triggers
 4. Include complete, working code examples
 5. Submit a PR to the repository
