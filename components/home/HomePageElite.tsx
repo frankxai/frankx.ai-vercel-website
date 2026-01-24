@@ -24,9 +24,28 @@ import TrustedByBlock from '@/components/social-proof/TrustedByBlock'
 // DESIGN SYSTEM
 // ============================================================================
 
-// Design tokens now in tailwind.config.js - use utility classes:
-// bg-void, bg-space, bg-elevated, bg-subtle
-// text-emerald-*, text-cyan-*, text-amber-* for accents
+// Premium color palette - moving away from generic purple
+const colors = {
+  // Deep blacks with warmth
+  bg: '#0a0a0b',
+  bgElevated: '#111113',
+  bgSubtle: '#18181b',
+
+  // Accent colors - emerald/teal for tech, gold for premium
+  accent: {
+    primary: '#10b981', // emerald
+    secondary: '#06b6d4', // cyan
+    tertiary: '#f59e0b', // amber/gold
+  },
+
+  // Text hierarchy
+  text: {
+    primary: '#fafafa',
+    secondary: 'rgba(250, 250, 250, 0.7)',
+    tertiary: 'rgba(250, 250, 250, 0.5)',
+    muted: 'rgba(250, 250, 250, 0.3)',
+  }
+}
 
 // ============================================================================
 // PREMIUM BACKGROUND COMPONENTS
@@ -36,92 +55,64 @@ function AuroraBackground() {
   const shouldReduceMotion = useReducedMotion()
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none">
-      {/* Base gradient - deeper with more dimension */}
-      <div className="absolute inset-0 bg-gradient-to-b from-void via-space to-void" />
+      {/* Base gradient */}
+      <div className="absolute inset-0 bg-[#0a0a0b]" />
 
-      {/* Primary aurora orb - emerald */}
+      {/* Aurora effect - contained within viewport to prevent overflow */}
+      {/* Mobile: smaller, more contained gradients */}
       <motion.div
-        className="absolute top-[-10%] left-[-10%] w-[80%] h-[80%] md:w-[70%] md:h-[70%]"
+        className="absolute top-0 left-0 w-full h-[60%] md:w-[80%] md:h-[80%]"
         style={{
-          background: 'radial-gradient(ellipse at center, rgba(16, 185, 129, 0.08) 0%, rgba(16, 185, 129, 0.02) 40%, transparent 70%)',
-          filter: 'blur(100px)',
-        }}
-        animate={
-          shouldReduceMotion
-            ? undefined
-            : {
-                x: [0, 80, 0],
-                y: [0, 50, 0],
-                scale: [1, 1.1, 1],
-              }
-        }
-        transition={shouldReduceMotion ? undefined : { duration: 35, repeat: Infinity, ease: 'easeInOut' }}
-      />
-
-      {/* Secondary aurora orb - cyan */}
-      <motion.div
-        className="absolute bottom-[-20%] right-[-10%] w-[70%] h-[70%] md:w-[60%] md:h-[60%]"
-        style={{
-          background: 'radial-gradient(ellipse at center, rgba(6, 182, 212, 0.06) 0%, rgba(6, 182, 212, 0.015) 40%, transparent 70%)',
-          filter: 'blur(100px)',
-        }}
-        animate={
-          shouldReduceMotion
-            ? undefined
-            : {
-                x: [0, -60, 0],
-                y: [0, -40, 0],
-                scale: [1, 1.15, 1],
-              }
-        }
-        transition={shouldReduceMotion ? undefined : { duration: 28, repeat: Infinity, ease: 'easeInOut' }}
-      />
-
-      {/* Tertiary accent orb - violet (subtle) */}
-      <motion.div
-        className="absolute top-[30%] right-[10%] w-[40%] h-[40%] md:w-[35%] md:h-[35%]"
-        style={{
-          background: 'radial-gradient(ellipse at center, rgba(139, 92, 246, 0.04) 0%, transparent 60%)',
+          background: 'radial-gradient(ellipse at center, rgba(16, 185, 129, 0.06) 0%, transparent 70%)',
           filter: 'blur(80px)',
         }}
         animate={
           shouldReduceMotion
             ? undefined
             : {
-                x: [0, -30, 0],
-                y: [0, 40, 0],
+                x: [0, 50, 0],
+                y: [0, 30, 0],
                 scale: [1, 1.05, 1],
               }
         }
-        transition={shouldReduceMotion ? undefined : { duration: 22, repeat: Infinity, ease: 'easeInOut' }}
+        transition={shouldReduceMotion ? undefined : { duration: 30, repeat: Infinity, ease: 'easeInOut' }}
       />
 
-      {/* Enhanced grain texture - more visible */}
-      <div
-        className="absolute inset-0 opacity-[0.025]"
+      <motion.div
+        className="absolute bottom-0 right-0 w-full h-[50%] md:w-[60%] md:h-[60%]"
         style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
-          mixBlendMode: 'overlay',
+          background: 'radial-gradient(ellipse at center, rgba(6, 182, 212, 0.05) 0%, transparent 70%)',
+          filter: 'blur(80px)',
         }}
+        animate={
+          shouldReduceMotion
+            ? undefined
+            : {
+                x: [0, -40, 0],
+                y: [0, -20, 0],
+                scale: [1, 1.08, 1],
+              }
+        }
+        transition={shouldReduceMotion ? undefined : { duration: 25, repeat: Infinity, ease: 'easeInOut' }}
       />
 
-      {/* Grid pattern - refined */}
+      {/* Subtle grain texture */}
       <div
         className="absolute inset-0 opacity-[0.015]"
         style={{
-          backgroundImage: `
-            linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px)
-          `,
-          backgroundSize: '80px 80px',
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
         }}
       />
 
-      {/* Vignette effect for depth */}
+      {/* Grid pattern - very subtle */}
       <div
-        className="absolute inset-0"
+        className="absolute inset-0 opacity-[0.02]"
         style={{
-          background: 'radial-gradient(ellipse at center, transparent 0%, rgba(0,0,0,0.4) 100%)',
+          backgroundImage: `
+            linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)
+          `,
+          backgroundSize: '100px 100px',
         }}
       />
     </div>
@@ -154,13 +145,12 @@ const heroConcepts = [
   'intelligent systems',
   'music empire',
   'AI vision',
-  'Soulbook',
+  'agentic workflows',
   'Vibe OS',
   'GenCreator OS',
-  'Arcanea universe',
-  'Starlight system',
   'creative future',
   'golden age',
+  'next project',
 ]
 
 function RotatingWord() {
@@ -255,31 +245,11 @@ function Hero() {
   })
 
   // Premium scroll effect - slower, smoother fade for mobile
+  // Extended range [0, 0.7] gives more time to see content before it fades
+  // Gentler scale change (0.98 vs 0.95) feels more elegant
   const opacity = useTransform(scrollYProgress, [0, 0.7], [1, 0])
   const y = useTransform(scrollYProgress, [0, 0.7], [0, 60])
   const scale = useTransform(scrollYProgress, [0, 0.7], [1, 0.98])
-
-  // Staggered animation variants for orchestrated entrance
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.12,
-        delayChildren: 0.1,
-      }
-    }
-  }
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 24, filter: 'blur(4px)' },
-    visible: {
-      opacity: 1,
-      y: 0,
-      filter: 'blur(0px)',
-      transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] }
-    }
-  }
 
   return (
     <section
@@ -291,62 +261,67 @@ function Hero() {
         style={shouldReduceMotion ? undefined : { opacity, y, scale }}
       >
         <div className="grid lg:grid-cols-[1.3fr,1fr] gap-8 md:gap-16 lg:gap-24 items-center">
-          {/* Left column - Text content with orchestrated entrance */}
+          {/* Left column - Text content */}
           <motion.div
-            variants={shouldReduceMotion ? undefined : containerVariants}
-            initial="hidden"
-            animate="visible"
+            initial={shouldReduceMotion ? false : { opacity: 0, x: -40 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           >
-            {/* Eyebrow - editorial style */}
+            {/* Subtle breadcrumb - editorial style */}
             <motion.div
-              className="mb-6 md:mb-10"
-              variants={shouldReduceMotion ? undefined : itemVariants}
+              className="mb-6 md:mb-12"
+              initial={shouldReduceMotion ? false : { opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.1 }}
             >
-              <span className="inline-flex items-center gap-2 text-[10px] sm:text-xs font-medium uppercase tracking-[0.2em] sm:tracking-[0.3em] text-emerald-400/70 px-3 py-1.5 rounded-full border border-emerald-400/20 bg-emerald-400/5">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+              <span className="text-[10px] sm:text-xs font-medium uppercase tracking-[0.2em] sm:tracking-[0.3em] text-emerald-400/60">
                 AI Architect & Music Creator
               </span>
             </motion.div>
 
-            {/* Main headline - using display font for impact */}
-            <motion.h1 className="mb-6 md:mb-8" variants={shouldReduceMotion ? undefined : itemVariants}>
-              <span className="block font-display text-[clamp(2.25rem,9vw,5.5rem)] font-extrabold leading-[1.05] tracking-tight pb-1">
+            {/* Main headline - authority + vision */}
+            <h1 className="mb-6 md:mb-8">
+              <span className="block text-[clamp(2rem,8vw,5rem)] font-bold leading-[1.15] tracking-tight pb-1">
                 <RotatingWord /> <span className="text-white">your</span>
               </span>
-              <span className="block font-display text-[clamp(1.75rem,7vw,4.5rem)] font-bold leading-[1.1] tracking-tight text-white/95 pb-2 md:pb-4">
+              <span className="block text-[clamp(1.5rem,6vw,4rem)] font-bold leading-[1.15] tracking-tight text-white pb-2 md:pb-4">
                 <RotatingConcept />
               </span>
-            </motion.h1>
+              <motion.span
+                className="block text-base sm:text-lg md:text-[clamp(1.25rem,3vw,1.75rem)] text-white/60 mt-4 md:mt-6 leading-relaxed max-w-2xl"
+                initial={shouldReduceMotion ? false : { opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.3 }}
+              >
+                Create music, art, and momentum in the{' '}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-400 to-violet-400">
+                  Golden Age of Intelligence.
+                </span>
+              </motion.span>
+            </h1>
 
-            {/* Subheadline with gradient */}
+            {/* Subtext - invitation to explore */}
             <motion.p
-              className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/55 mt-4 md:mt-6 leading-relaxed max-w-2xl mb-2"
-              variants={shouldReduceMotion ? undefined : itemVariants}
-            >
-              Create music, art, and momentum in the{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-400 to-violet-400 font-medium">
-                Golden Age of Intelligence.
-              </span>
-            </motion.p>
-
-            {/* Bio line */}
-            <motion.p
-              className="text-sm md:text-base lg:text-lg text-white/35 max-w-lg mb-8 md:mb-12 leading-relaxed"
-              variants={shouldReduceMotion ? undefined : itemVariants}
+              className="text-base md:text-lg lg:text-xl text-white/40 max-w-lg mb-8 md:mb-12 leading-relaxed"
+              initial={shouldReduceMotion ? false : { opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.4 }}
             >
               AI Architect at Oracle. Creator of 12K+ songs with Suno.
               Everything I build goes here—open, documented, yours to use.
             </motion.p>
 
-            {/* CTAs with enhanced styling */}
+            {/* CTAs */}
             <motion.div
               className="flex flex-col sm:flex-row flex-wrap items-stretch sm:items-center gap-3 sm:gap-4"
-              variants={shouldReduceMotion ? undefined : itemVariants}
+              initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.5 }}
             >
               <Link
                 href="/start"
                 onClick={() => trackEvent('hero_cta_click', { type: 'primary' })}
-                className="group relative inline-flex items-center justify-center gap-2 sm:gap-3 bg-white text-black px-6 sm:px-8 py-3.5 sm:py-4 rounded-full font-semibold text-sm sm:text-base transition-all duration-300 hover:bg-white/95 hover:shadow-[0_0_50px_rgba(255,255,255,0.2)] hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-void active:scale-[0.98]"
+                className="group relative inline-flex items-center justify-center gap-2 sm:gap-3 bg-white text-black px-5 sm:px-7 py-3 sm:py-4 rounded-full font-semibold text-sm sm:text-base transition-all duration-300 hover:bg-white/90 hover:shadow-[0_0_40px_rgba(255,255,255,0.15)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98] active:shadow-[0_0_24px_rgba(255,255,255,0.2)]"
               >
                 Explore My Work
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -355,7 +330,7 @@ function Hero() {
               <Link
                 href="/music-lab"
                 onClick={() => trackEvent('hero_cta_click', { type: 'secondary' })}
-                className="group inline-flex items-center justify-center gap-2 sm:gap-3 px-6 sm:px-8 py-3.5 sm:py-4 rounded-full font-medium text-sm sm:text-base text-white/70 hover:text-white border border-white/10 hover:border-emerald-400/30 hover:bg-emerald-400/5 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 focus-visible:ring-offset-2 focus-visible:ring-offset-void active:scale-[0.98]"
+                className="group inline-flex items-center justify-center gap-2 sm:gap-3 px-5 sm:px-7 py-3 sm:py-4 rounded-full font-medium text-sm sm:text-base text-white/70 hover:text-white border border-white/10 hover:border-white/20 hover:bg-white/5 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98] active:border-white/30 active:bg-white/10"
               >
                 <Play className="w-4 h-4" />
                 Listen to Music
@@ -364,7 +339,7 @@ function Hero() {
               <Link
                 href="/resources"
                 onClick={() => trackEvent('hero_cta_click', { type: 'resources' })}
-                className="group inline-flex items-center justify-center gap-2 sm:gap-3 px-6 sm:px-8 py-3.5 sm:py-4 rounded-full font-medium text-sm sm:text-base text-white/70 hover:text-white border border-white/10 hover:border-white/20 hover:bg-white/5 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 focus-visible:ring-offset-2 focus-visible:ring-offset-void active:scale-[0.98]"
+                className="group inline-flex items-center justify-center gap-2 sm:gap-3 px-5 sm:px-7 py-3 sm:py-4 rounded-full font-medium text-sm sm:text-base text-white/70 hover:text-white border border-white/10 hover:border-white/20 hover:bg-white/5 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98] active:border-white/30 active:bg-white/10"
               >
                 <Sparkles className="w-4 h-4" />
                 Resource Hub
@@ -374,9 +349,9 @@ function Hero() {
 
           {/* Right column - Featured content card */}
           <motion.div
-            initial={shouldReduceMotion ? false : { opacity: 0, x: 40, filter: 'blur(8px)' }}
-            animate={{ opacity: 1, x: 0, filter: 'blur(0px)' }}
-            transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.9, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            initial={shouldReduceMotion ? false : { opacity: 0, x: 40 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             className="relative"
           >
             <FeaturedMusicCard />
@@ -384,23 +359,19 @@ function Hero() {
         </div>
       </motion.div>
 
-      {/* Scroll indicator - enhanced */}
+      {/* Scroll indicator */}
       <motion.div
         className="absolute bottom-10 left-1/2 -translate-x-1/2"
-        initial={shouldReduceMotion ? false : { opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={shouldReduceMotion ? { duration: 0 } : { delay: 1.8, duration: 0.6 }}
+        initial={shouldReduceMotion ? false : { opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={shouldReduceMotion ? { duration: 0 } : { delay: 1.5 }}
       >
         <motion.div
-          className="w-6 h-10 rounded-full border border-white/15 flex justify-center pt-2 backdrop-blur-sm bg-white/[0.02]"
-          animate={shouldReduceMotion ? undefined : { y: [0, 8, 0] }}
-          transition={shouldReduceMotion ? undefined : { duration: 2.5, repeat: Infinity, ease: 'easeInOut' }}
+          className="w-5 h-8 rounded-full border border-white/20 flex justify-center pt-1.5"
+          animate={shouldReduceMotion ? undefined : { y: [0, 6, 0] }}
+          transition={shouldReduceMotion ? undefined : { duration: 2, repeat: Infinity }}
         >
-          <motion.div
-            className="w-1 h-2 bg-gradient-to-b from-emerald-400/60 to-transparent rounded-full"
-            animate={shouldReduceMotion ? undefined : { opacity: [0.6, 1, 0.6] }}
-            transition={shouldReduceMotion ? undefined : { duration: 2, repeat: Infinity }}
-          />
+          <div className="w-1 h-1.5 bg-white/40 rounded-full" />
         </motion.div>
       </motion.div>
     </section>
@@ -423,23 +394,19 @@ function FeaturedMusicCard() {
 
   return (
     <div className="relative mt-8 lg:mt-0">
-      {/* Enhanced glow effect behind card */}
-      <div className="absolute -inset-2 md:-inset-6 bg-gradient-to-br from-emerald-500/25 via-cyan-500/15 to-violet-500/10 blur-3xl md:blur-[60px] opacity-60 md:opacity-70 rounded-3xl" />
+      {/* Glow effect behind card - contained to prevent overflow */}
+      <div className="absolute inset-0 md:-inset-4 bg-gradient-to-br from-emerald-500/20 via-cyan-500/10 to-violet-500/8 blur-2xl md:blur-3xl opacity-50 md:opacity-60 rounded-3xl" />
 
       <motion.div
-        className="card-premium relative rounded-2xl md:rounded-3xl p-4 sm:p-6 md:p-8 overflow-hidden"
-        whileHover={{ scale: 1.01, y: -4 }}
-        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+        className="relative bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-2xl md:rounded-3xl p-4 sm:p-6 md:p-8 overflow-hidden"
+        whileHover={{ scale: 1.01 }}
+        transition={{ duration: 0.3 }}
       >
-        {/* Inner gradient overlay for depth */}
-        <div className="absolute inset-0 bg-gradient-to-br from-white/[0.04] via-transparent to-emerald-500/[0.02] pointer-events-none" />
-
         {/* Suno Embed Player - Responsive heights */}
-        <div className="relative rounded-xl md:rounded-2xl overflow-hidden mb-4 md:mb-6 border border-white/5">
-          <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-cyan-500/5 to-purple-500/10 pointer-events-none" />
+        <div className="relative rounded-xl md:rounded-2xl overflow-hidden mb-4 md:mb-6 bg-gradient-to-br from-emerald-500/10 via-cyan-500/10 to-purple-500/10">
           <iframe
             src={`https://suno.com/embed/${song.id}`}
-            className="relative w-full h-[280px] sm:h-[320px] md:h-[380px] lg:h-[420px] rounded-xl md:rounded-2xl"
+            className="w-full h-[280px] sm:h-[320px] md:h-[380px] lg:h-[420px] rounded-xl md:rounded-2xl"
             frameBorder="0"
             allow="autoplay; clipboard-write"
             loading="lazy"
@@ -448,44 +415,41 @@ function FeaturedMusicCard() {
         </div>
 
         {/* Track info */}
-        <div className="relative space-y-3 md:space-y-4">
+        <div className="space-y-3 md:space-y-4">
           <div>
-            <p className="text-[10px] sm:text-xs uppercase tracking-[0.15em] sm:tracking-[0.2em] text-emerald-400 mb-1 font-medium">Music Lab</p>
-            <h3 className="text-lg sm:text-xl font-display font-bold text-white">A Daily Practice of Creation</h3>
-            <p className="text-xs sm:text-sm text-white/45">Ambient · Electronic · Cinematic · Healing</p>
+            <p className="text-[10px] sm:text-xs uppercase tracking-[0.15em] sm:tracking-[0.2em] text-emerald-400/80 mb-1">Music Lab</p>
+            <h3 className="text-lg sm:text-xl font-semibold text-white">A Daily Practice of Creation</h3>
+            <p className="text-xs sm:text-sm text-white/50">Ambient · Electronic · Cinematic · Healing</p>
           </div>
 
-          <p className="text-xs sm:text-sm text-white/35 leading-relaxed">
+          <p className="text-xs sm:text-sm text-white/40 leading-relaxed">
             Music as exploration. Each session teaches me something new about sound, emotion, and the creative process.
           </p>
 
           {/* CTAs */}
-          <div className="flex items-center gap-3 sm:gap-4 flex-wrap pt-1">
+          <div className="flex items-center gap-3 sm:gap-4 flex-wrap">
             <a
               href="https://suno.com/@frankx"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-medium text-emerald-400 hover:text-emerald-300 transition-colors group"
+              className="inline-flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-medium text-emerald-400 hover:text-emerald-300 transition-colors"
             >
               Full Library
-              <ExternalLink className="w-3 h-3 sm:w-3.5 sm:h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              <ExternalLink className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
             </a>
             <Link
               href="/music-lab"
-              className="inline-flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-medium text-white/50 hover:text-white transition-colors group"
+              className="inline-flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-medium text-white/60 hover:text-white transition-colors"
             >
               Music Lab
-              <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5 group-hover:translate-x-1 transition-transform" />
+              <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5" />
             </Link>
           </div>
         </div>
 
-        {/* Corner decoration with glow */}
+        {/* Corner decoration */}
         <div className="absolute top-4 right-4 sm:top-6 sm:right-6">
-          <div className="relative">
-            <div className="absolute inset-0 bg-emerald-400/20 blur-lg rounded-full" />
-            <Music2 className="relative w-5 h-5 sm:w-6 sm:h-6 text-white/25" />
-          </div>
+          <Music2 className="w-5 h-5 sm:w-6 sm:h-6 text-white/20" />
         </div>
       </motion.div>
     </div>
@@ -504,26 +468,22 @@ function FeaturedMusicCard() {
 
 function StatsSection() {
   return (
-    <section className="py-16 md:py-24 lg:py-32 relative">
-      {/* Subtle gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-emerald-500/[0.02] to-transparent pointer-events-none" />
-
-      <div className="relative max-w-6xl mx-auto px-4 sm:px-6">
+    <section className="py-16 md:py-24 lg:py-32">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Editorial quote/statement */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
           className="max-w-4xl mx-auto text-center mb-12 md:mb-20"
         >
-          <blockquote className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-serif italic text-white/65 leading-relaxed px-2">
+          <blockquote className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-serif-italic text-white/70 leading-relaxed px-2">
             "I create to understand. I share to teach. I explore because the universe is too interesting not to."
           </blockquote>
         </motion.div>
 
-        {/* Journey markers - story-focused with display font */}
-        <div className="grid grid-cols-2 gap-6 sm:gap-8 md:flex md:flex-wrap md:justify-center md:gap-x-16 lg:gap-x-24 md:gap-y-8">
+        {/* Journey markers - story-focused */}
+        <div className="grid grid-cols-2 gap-6 sm:gap-8 md:flex md:flex-wrap md-justify-center md:gap-x-16 lg:gap-x-24 md:gap-y-8">
           {[
             { value: 'Music', label: 'Daily creative practice with Suno' },
             { value: 'Systems', label: 'Building tools that serve the work' },
@@ -532,16 +492,16 @@ function StatsSection() {
           ].map((stat, i) => (
             <motion.div
               key={stat.label}
-              initial={{ opacity: 0, y: 30, filter: 'blur(4px)' }}
-              whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: i * 0.1 }}
-              className="text-center group"
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+              className="text-center"
             >
-              <div className="font-display text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-extrabold text-white mb-2 md:mb-3 tracking-tight group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-emerald-400 group-hover:to-cyan-400 transition-all duration-500">
+              <div className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-2 md:mb-3 tracking-tighter">
                 {stat.value}
               </div>
-              <div className="text-xs sm:text-sm text-white/35 max-w-[140px] sm:max-w-[160px] mx-auto leading-relaxed">
+              <div className="text-xs sm:text-sm text-white/40 max-w-[140px] sm:max-w-[160px] mx-auto">
                 {stat.label}
               </div>
             </motion.div>
@@ -582,21 +542,18 @@ const quickStartPaths = [
 
 function QuickStartSection() {
   return (
-    <section className="py-16 md:py-24 border-t border-white/[0.03] relative">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-white/[0.01] to-transparent pointer-events-none" />
-
-      <div className="relative max-w-6xl mx-auto px-4 sm:px-6">
+    <section className="py-16 md:py-24 border-t border-white/5">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="text-center mb-8 md:mb-12"
         >
-          <p className="text-xs sm:text-sm font-medium uppercase tracking-[0.2em] sm:tracking-[0.25em] text-emerald-400/80 mb-3 md:mb-4">
+          <p className="text-xs sm:text-sm font-medium uppercase tracking-[0.2em] sm:tracking-[0.25em] text-emerald-400/70 mb-3 md:mb-4">
             Quick Start
           </p>
-          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight">
             Start creating in minutes
           </h2>
         </motion.div>
@@ -605,29 +562,29 @@ function QuickStartSection() {
           {quickStartPaths.map((path, i) => (
             <motion.div
               key={path.title}
-              initial={{ opacity: 0, y: 24, filter: 'blur(4px)' }}
-              whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1, duration: 0.6 }}
+              transition={{ delay: i * 0.1 }}
             >
               <Link
                 href={path.href}
-                className="group block p-4 sm:p-6 rounded-xl sm:rounded-2xl border border-white/[0.06] bg-white/[0.02] hover:border-white/[0.12] hover:bg-white/[0.04] hover:-translate-y-1 hover:shadow-[0_16px_32px_-8px_rgba(0,0,0,0.4)] transition-all duration-300 h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 focus-visible:ring-offset-2 focus-visible:ring-offset-void active:scale-[0.99]"
+                className="group block p-4 sm:p-6 rounded-xl sm:rounded-2xl border border-white/5 bg-white/[0.02] hover:border-white/15 hover:bg-white/[0.04] transition-all h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.99] active:border-white/20"
               >
                 <div className="flex items-center justify-between mb-3 sm:mb-4">
-                  <span className={`text-[10px] sm:text-xs font-medium px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full border ${
-                    path.color === 'cyan' ? 'bg-cyan-500/10 text-cyan-400 border-cyan-500/20' :
-                    path.color === 'emerald' ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20' :
-                    'bg-violet-500/10 text-violet-400 border-violet-500/20'
+                  <span className={`text-[10px] sm:text-xs font-medium px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full ${
+                    path.color === 'cyan' ? 'bg-cyan-500/10 text-cyan-400' :
+                    path.color === 'emerald' ? 'bg-emerald-500/10 text-emerald-400' :
+                    'bg-violet-500/10 text-violet-400'
                   }`}>
                     {path.time}
                   </span>
-                  <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white/25 group-hover:text-white/60 group-hover:translate-x-1 transition-all duration-300" />
+                  <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white/30 group-hover:text-white/60 group-hover:translate-x-1 transition-all" />
                 </div>
-                <h3 className="font-display text-base sm:text-lg font-semibold text-white mb-1.5 sm:mb-2 group-hover:text-emerald-400 transition-colors duration-300">
+                <h3 className="text-base sm:text-lg font-semibold text-white mb-1.5 sm:mb-2 group-hover:text-emerald-400 transition-colors">
                   {path.title}
                 </h3>
-                <p className="text-xs sm:text-sm text-white/40">{path.description}</p>
+                <p className="text-xs sm:text-sm text-white/50">{path.description}</p>
               </Link>
             </motion.div>
           ))}
@@ -682,7 +639,7 @@ const capabilities = [
 
 function WhatIDo() {
   return (
-    <section className="py-16 md:py-24 lg:py-32 border-t border-white/[0.03]">
+    <section className="py-16 md:py-24 lg:py-32 border-t border-white/5">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -690,13 +647,13 @@ function WhatIDo() {
           viewport={{ once: true }}
           className="mb-8 md:mb-16"
         >
-          <p className="text-xs sm:text-sm font-medium uppercase tracking-[0.2em] sm:tracking-[0.25em] text-emerald-400/80 mb-3 md:mb-4">
+          <p className="text-xs sm:text-sm font-medium uppercase tracking-[0.2em] sm:tracking-[0.25em] text-emerald-400/70 mb-3 md:mb-4">
             The Work
           </p>
-          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 md:mb-6 tracking-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 md:mb-6 tracking-tight">
             Four areas of exploration.
           </h2>
-          <p className="text-base sm:text-lg md:text-xl text-white/45 max-w-2xl leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-white/50 max-w-2xl leading-relaxed">
             Music. Learning. Tools. Process. Everything documented so you can see
             how it actually works—not just the highlights.
           </p>
@@ -706,36 +663,33 @@ function WhatIDo() {
           {capabilities.map((item, i) => (
             <motion.div
               key={item.title}
-              initial={{ opacity: 0, y: 30, filter: 'blur(4px)' }}
-              whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: i * 0.1 }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
             >
               <Link
                 href={item.href}
-                className="card-accent-hover group relative block p-5 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl bg-white/[0.02] border border-white/[0.06] overflow-hidden transition-all duration-500 hover:bg-white/[0.04] hover:border-white/[0.12] hover:-translate-y-1.5 hover:shadow-[0_24px_48px_-12px_rgba(0,0,0,0.5)] h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 focus-visible:ring-offset-2 focus-visible:ring-offset-void active:scale-[0.99]"
+                className="group relative block p-5 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl border border-white/5 overflow-hidden transition-all duration-500 hover:border-white/15 hover:-translate-y-1 h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.99] active:border-white/20"
               >
                 {/* Gradient background on hover */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
 
-                {/* Subtle noise texture */}
-                <div className="absolute inset-0 opacity-[0.015] bg-[url('data:image/svg+xml,%3Csvg viewBox=%220 0 256 256%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noise%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.8%22 numOctaves=%224%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noise)%22/%3E%3C/svg%3E')]" />
-
                 <div className="relative">
                   <div className="flex items-start justify-between mb-4 sm:mb-6">
-                    <div className={`p-2.5 sm:p-3 rounded-lg sm:rounded-xl bg-white/[0.04] border border-white/[0.06] group-hover:bg-white/[0.08] group-hover:border-white/[0.1] transition-all duration-300`}>
+                    <div className="p-2.5 sm:p-3 rounded-lg sm:rounded-xl bg-white/5 group-hover:bg-white/10 transition-colors">
                       <item.icon className={`w-5 h-5 sm:w-6 sm:h-6 ${item.iconColor}`} />
                     </div>
-                    <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 text-white/15 group-hover:text-white/60 group-hover:translate-x-1.5 transition-all duration-300" />
+                    <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 text-white/20 group-hover:text-white/60 group-hover:translate-x-1 transition-all" />
                   </div>
 
-                  <p className="text-[10px] sm:text-xs font-medium uppercase tracking-[0.12em] sm:tracking-[0.15em] text-white/25 mb-1.5 sm:mb-2">
+                  <p className="text-[10px] sm:text-xs font-medium uppercase tracking-[0.12em] sm:tracking-[0.15em] text-white/30 mb-1.5 sm:mb-2">
                     {item.subtitle}
                   </p>
-                  <h3 className="font-display text-lg sm:text-xl md:text-2xl font-bold text-white mb-2 sm:mb-3 group-hover:text-white transition-colors">
+                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-2 sm:mb-3 group-hover:text-white transition-colors">
                     {item.title}
                   </h3>
-                  <p className="text-sm sm:text-base text-white/40 leading-relaxed group-hover:text-white/55 transition-colors">
+                  <p className="text-sm sm:text-base text-white/50 leading-relaxed group-hover:text-white/60 transition-colors">
                     {item.description}
                   </p>
                 </div>
@@ -781,11 +735,8 @@ const resources = [
 
 function FeaturedResources() {
   return (
-    <section className="py-16 md:py-24 lg:py-32 relative">
-      {/* Background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-emerald-500/[0.015] to-transparent pointer-events-none" />
-
-      <div className="relative max-w-6xl mx-auto px-4 sm:px-6">
+    <section className="py-16 md:py-24 lg:py-32 bg-gradient-to-b from-transparent via-white/[0.01] to-transparent">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -793,19 +744,19 @@ function FeaturedResources() {
           className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8 md:mb-12"
         >
           <div>
-            <h2 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-2 sm:mb-4 tracking-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold text-white mb-2 sm:mb-4 tracking-tight">
               Curated Resources
             </h2>
-            <p className="text-base sm:text-lg md:text-xl text-white/45">
+            <p className="text-base sm:text-lg md:text-xl text-white/50">
               The courses and certifications I actually recommend.
             </p>
           </div>
           <Link
             href="/resources"
-            className="group inline-flex items-center gap-2 text-sm sm:text-base text-white/50 hover:text-emerald-400 transition-colors self-start sm:self-auto"
+            className="inline-flex items-center gap-2 text-sm sm:text-base text-white/60 hover:text-white transition-colors self-start sm:self-auto"
           >
             View all
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            <ArrowRight className="w-4 h-4" />
           </Link>
         </motion.div>
 
@@ -816,21 +767,21 @@ function FeaturedResources() {
               href={resource.href}
               target="_blank"
               rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 20, filter: 'blur(4px)' }}
-              whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.08 }}
-              className="group flex items-center justify-between gap-3 p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-white/[0.02] border border-white/[0.06] hover:bg-white/[0.05] hover:border-white/[0.12] hover:-translate-y-0.5 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 focus-visible:ring-offset-2 focus-visible:ring-offset-void active:scale-[0.99]"
+              transition={{ duration: 0.5, delay: i * 0.05 }}
+              className="group flex items-center justify-between gap-3 p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] hover:border-white/10 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.99] active:border-white/20"
             >
               <div className="min-w-0 flex-1">
                 <div className="text-[10px] sm:text-xs uppercase tracking-[0.12em] sm:tracking-[0.15em] text-white/30 mb-0.5 sm:mb-1">
                   {resource.type} · {resource.source}
                 </div>
-                <div className="text-sm sm:text-base md:text-lg font-display font-semibold text-white group-hover:text-emerald-400 transition-colors truncate">
+                <div className="text-sm sm:text-base md:text-lg font-medium text-white group-hover:text-emerald-400 transition-colors truncate">
                   {resource.name}
                 </div>
               </div>
-              <ExternalLink className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white/20 group-hover:text-emerald-400/70 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all flex-shrink-0" />
+              <ExternalLink className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white/20 group-hover:text-white/50 transition-colors flex-shrink-0" />
             </motion.a>
           ))}
         </div>
@@ -845,30 +796,30 @@ function FeaturedResources() {
 
 const featuredArtworks = [
   {
-    src: '/images/ai-art/neural-synthesis-ii.png',
-    title: 'Neural Synthesis II',
+    src: '/images/ai-art/generated-2026-01-21T10-05-06-577Z-s5e43g.png',
+    title: 'Neural Synthesis I',
     category: 'Abstract',
   },
   {
-    src: '/images/ai-art/consciousness-wave-ii.png',
-    title: 'Consciousness Wave II',
-    category: 'Consciousness',
+    src: '/images/ai-art/generated-2026-01-21T10-05-26-229Z-jajczn.png',
+    title: 'Neural Wave',
+    category: 'Abstract',
   },
   {
-    src: '/images/ai-art/digital-aurora-ii.png',
-    title: 'Digital Aurora II',
+    src: '/images/ai-art/generated-2026-01-21T10-05-42-484Z-c75nch.png',
+    title: 'Digital Aurora',
     category: 'Nature Tech',
   },
   {
-    src: '/images/ai-art/first-light-ii.png',
-    title: 'First Light II',
+    src: '/images/ai-art/generated-2025-11-20T19-29-22-071Z-uz2q95.png',
+    title: 'First Light',
     category: 'Cosmic',
   },
 ]
 
 function AIArtGalleryPreview() {
   return (
-    <section className="py-16 md:py-24 lg:py-32 border-t border-white/[0.03]">
+    <section className="py-16 md:py-24 lg:py-32 border-t border-white/5">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -881,19 +832,19 @@ function AIArtGalleryPreview() {
               <Wand2 className="w-3.5 h-3.5" />
               AI-Generated Art
             </div>
-            <h2 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-2 sm:mb-4 tracking-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold text-white mb-2 sm:mb-4 tracking-tight">
               Visual Explorations
             </h2>
-            <p className="text-base sm:text-lg md:text-xl text-white/45 max-w-xl">
+            <p className="text-base sm:text-lg md:text-xl text-white/50 max-w-xl">
               Where artificial intelligence meets creative expression. Each piece generated with nano-banana AI.
             </p>
           </div>
           <Link
             href="/ai-art"
-            className="group inline-flex items-center gap-2 text-sm sm:text-base text-white/50 hover:text-emerald-400 transition-colors self-start sm:self-auto"
+            className="inline-flex items-center gap-2 text-sm sm:text-base text-white/60 hover:text-white transition-colors self-start sm:self-auto"
           >
             View full gallery
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            <ArrowRight className="w-4 h-4" />
           </Link>
         </motion.div>
 
@@ -902,30 +853,30 @@ function AIArtGalleryPreview() {
           {featuredArtworks.map((artwork, i) => (
             <motion.div
               key={artwork.title}
-              initial={{ opacity: 0, y: 20, filter: 'blur(4px)' }}
-              whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
             >
               <Link
                 href="/ai-art"
-                className="group relative block aspect-square rounded-xl sm:rounded-2xl overflow-hidden border border-white/[0.06] hover:border-emerald-400/30 transition-all duration-500 hover:shadow-[0_16px_48px_-8px_rgba(16,185,129,0.15)]"
+                className="group relative block aspect-square rounded-xl sm:rounded-2xl overflow-hidden border border-white/5 hover:border-white/20 transition-all"
               >
                 <Image
                   src={artwork.src}
                   alt={artwork.title}
                   fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
                   sizes="(max-width: 768px) 50vw, 25vw"
                 />
                 {/* Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 {/* Info */}
-                <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+                <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
                   <p className="text-[10px] sm:text-xs uppercase tracking-wider text-emerald-400 mb-0.5">
                     {artwork.category}
                   </p>
-                  <h3 className="font-display text-sm sm:text-base font-semibold text-white truncate">
+                  <h3 className="text-sm sm:text-base font-semibold text-white truncate">
                     {artwork.title}
                   </h3>
                 </div>
@@ -939,7 +890,7 @@ function AIArtGalleryPreview() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="flex items-center justify-center gap-6 sm:gap-8 mt-8 text-white/35 text-sm"
+          className="flex items-center justify-center gap-6 sm:gap-8 mt-8 text-white/40 text-sm"
         >
           <div className="flex items-center gap-2">
             <ImageIcon className="w-4 h-4" />
@@ -961,24 +912,21 @@ function AIArtGalleryPreview() {
 
 function AboutSection() {
   return (
-    <section className="py-16 md:py-24 lg:py-32 relative">
-      {/* Subtle background gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/[0.02] via-transparent to-cyan-500/[0.02] pointer-events-none" />
-
-      <div className="relative max-w-6xl mx-auto px-4 sm:px-6">
+    <section className="py-16 md:py-24 lg:py-32">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="max-w-3xl"
         >
-          <p className="text-xs sm:text-sm font-medium uppercase tracking-[0.2em] sm:tracking-[0.25em] text-emerald-400/80 mb-4 sm:mb-6">
+          <p className="text-xs sm:text-sm font-medium uppercase tracking-[0.2em] sm:tracking-[0.25em] text-emerald-400/70 mb-4 sm:mb-6">
             The Journey
           </p>
 
-          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 sm:mb-8 tracking-tight leading-tight">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 sm:mb-8 tracking-tight leading-tight">
             Music, technology, family, and the endless exploration of how things work.
-            <span className="block mt-3 font-serif italic text-white/60 text-xl sm:text-2xl md:text-3xl lg:text-4xl font-normal">
+            <span className="block mt-2 font-serif-italic text-white/70 text-xl sm:text-2xl md:text-3xl lg:text-4xl">
               These are the threads that weave through everything here.
             </span>
           </h2>
@@ -988,25 +936,25 @@ function AboutSection() {
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="relative pl-4 sm:pl-6 my-6 sm:my-10 border-l-2 border-emerald-400/50"
+            className="relative pl-4 sm:pl-6 my-6 sm:my-10 border-l-2 border-emerald-400/40"
           >
-            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-serif italic text-white/70 leading-relaxed">
+            <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-serif-italic text-white/80 leading-relaxed">
               "The best way to learn is to teach. The best way to understand is to create."
             </p>
           </motion.blockquote>
 
-          <div className="space-y-4 sm:space-y-6 text-base sm:text-lg text-white/50 leading-relaxed mb-8 sm:mb-10">
+          <div className="space-y-4 sm:space-y-6 text-base sm:text-lg text-white/60 leading-relaxed mb-8 sm:mb-10">
             <p>
               By day, I architect AI systems at Oracle. By night, I make music—hundreds of songs
               exploring what's possible when humans and AI create together. I'm a husband, a father,
               someone who believes the universe is too interesting not to explore deeply.
             </p>
-            <p className="text-white/60">
+            <p className="text-white/70">
               This site is my workshop, my notebook, my attempt to share what I'm learning
               with anyone curious enough to look. Not courses to sell, not followers to count.
               Just the work itself, documented as I do it.
             </p>
-            <p className="text-white/40">
+            <p className="text-white/50">
               Take what's useful. Adapt it to your life. That's the point.
             </p>
           </div>
@@ -1019,12 +967,12 @@ function AboutSection() {
               Read the full story
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
-            <div className="flex items-center gap-3 sm:gap-4 text-sm sm:text-base text-white/35">
+            <div className="flex items-center gap-3 sm:gap-4 text-sm sm:text-base text-white/40">
               <a
                 href="https://linkedin.com/in/frank-x-riemer/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-emerald-400 transition-colors"
+                className="hover:text-white transition-colors"
               >
                 LinkedIn
               </a>
@@ -1033,7 +981,7 @@ function AboutSection() {
                 href="https://github.com/frankxai"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-emerald-400 transition-colors"
+                className="hover:text-white transition-colors"
               >
                 GitHub
               </a>
@@ -1042,7 +990,7 @@ function AboutSection() {
                 href="https://suno.com/@frankx"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-emerald-400 transition-colors"
+                className="hover:text-white transition-colors"
               >
                 Suno
               </a>
@@ -1060,24 +1008,22 @@ function AboutSection() {
 
 function FinalCTA() {
   return (
-    <section className="py-16 md:py-24 lg:py-32 border-t border-white/[0.03] overflow-hidden relative">
-      {/* Background orbs */}
-      <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-emerald-500/[0.04] rounded-full blur-[100px] pointer-events-none" />
-      <div className="absolute top-1/2 right-1/4 translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-cyan-500/[0.03] rounded-full blur-[80px] pointer-events-none" />
-
-      <div className="relative max-w-5xl mx-auto px-4 sm:px-6">
+    <section className="py-16 md:py-24 lg:py-32 border-t border-white/5 overflow-hidden">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
           className="relative"
         >
+          {/* Subtle glow - contained to prevent overflow */}
+          <div className="absolute inset-0 md:-inset-x-10 md:-inset-y-10 bg-gradient-to-r from-emerald-500/5 via-transparent to-cyan-500/5 blur-2xl md:blur-3xl opacity-40 md:opacity-50 rounded-3xl" />
+
           <div className="relative text-center px-2">
-            <h2 className="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold text-white mb-4 md:mb-6 tracking-tight">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-4 md:mb-6 tracking-tight">
               Start where you are.
             </h2>
-            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/45 mb-8 md:mb-12 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white/50 mb-8 md:mb-12 max-w-2xl mx-auto font-light leading-relaxed">
               Whether you're learning AI, creating music, or building systems—
               there's something here for you. All of it is open.
             </p>
@@ -1085,14 +1031,14 @@ function FinalCTA() {
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4">
               <Link
                 href="/start"
-                className="group inline-flex items-center justify-center gap-2 sm:gap-3 bg-white text-black px-7 sm:px-10 py-3.5 sm:py-4 rounded-full text-sm sm:text-base font-semibold transition-all duration-300 hover:bg-white/95 hover:shadow-[0_0_80px_rgba(255,255,255,0.25)] hover:-translate-y-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-void active:scale-[0.98]"
+                className="group inline-flex items-center justify-center gap-2 sm:gap-3 bg-white text-black px-6 sm:px-8 py-3 sm:py-4 rounded-full text-sm sm:text-base font-semibold transition-all duration-300 hover:bg-white/90 hover:shadow-[0_0_60px_rgba(255,255,255,0.2)] hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98]"
               >
                 Pick Your Path
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </Link>
               <Link
                 href="/resources"
-                className="group inline-flex items-center justify-center gap-2 sm:gap-3 px-7 sm:px-10 py-3.5 sm:py-4 rounded-full text-sm sm:text-base font-medium text-white/60 hover:text-white border border-white/10 hover:border-emerald-400/30 hover:bg-emerald-400/5 transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 focus-visible:ring-offset-2 focus-visible:ring-offset-void active:scale-[0.98]"
+                className="group inline-flex items-center justify-center gap-2 sm:gap-3 px-6 sm:px-8 py-3 sm:py-4 rounded-full text-sm sm:text-base font-medium text-white/60 hover:text-white border border-white/10 hover:border-white/20 hover:bg-white/5 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98] active:border-white/30 active:bg-white/10"
               >
                 Browse Resources
                 <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
