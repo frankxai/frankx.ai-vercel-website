@@ -87,8 +87,8 @@ export function getPostsByCategory(category: string): BlogPost[] {
 }
 
 export function getPostsByTag(tag: string): BlogPost[] {
-  return getAllBlogPosts().filter(post =>
-    post.tags?.some(t => t.toLowerCase() === tag.toLowerCase())
+  return getAllBlogPosts().filter(post => 
+    post.tags.some(t => t.toLowerCase() === tag.toLowerCase())
   )
 }
 

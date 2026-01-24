@@ -1,0 +1,282 @@
+{
+  "_description": "ACOS Content Creation Pipeline - The Genius System",
+  "_purpose": "Track what EXISTS (inventory) + what to CREATE (backlog) + what's IN PROGRESS",
+  "_lastUpdated": "2026-01-23",
+  "_version": "1.0.0",
+
+  "brands": {
+    "frankx": {
+      "focus": "Personal brand - Oracle AI expertise for creators",
+      "contentTypes": ["music", "blog", "video", "social", "products"]
+    },
+    "ai-architect-academy": {
+      "focus": "Educational brand - Courses and tutorials",
+      "contentTypes": ["courses", "tutorials", "resources"]
+    },
+    "arcanea": {
+      "focus": "Creative gaming universe - Fantasy world-building",
+      "contentTypes": ["music", "art", "lore", "implementations"]
+    }
+  },
+
+  "contentBacklog": {
+    "_description": "Ideas and planned content to create",
+
+    "music": [
+      {
+        "id": "backlog-music-001",
+        "title": "Meditation Series - 7 Pillars",
+        "brand": "frankx",
+        "description": "One meditation track for each of the 7 Soulbook pillars: Energy, Mind, Soul, Craft, Capital, Circle, Legacy",
+        "status": "idea",
+        "priority": "high",
+        "estimatedTracks": 7,
+        "relatedProduct": "creators-soulbook",
+        "tags": ["meditation", "528hz", "soulbook"]
+      },
+      {
+        "id": "backlog-music-002",
+        "title": "Arcanea Soundtrack Album",
+        "brand": "arcanea",
+        "description": "Complete 12-track album for the Arcanea universe with themes for key locations/characters",
+        "status": "idea",
+        "priority": "medium",
+        "estimatedTracks": 12,
+        "tags": ["arcanea", "soundtrack", "fantasy"]
+      },
+      {
+        "id": "backlog-music-003",
+        "title": "Vibe OS Sample Pack",
+        "brand": "frankx",
+        "description": "10 production-ready tracks demonstrating different Vibe OS workflows",
+        "status": "idea",
+        "priority": "high",
+        "estimatedTracks": 10,
+        "relatedProduct": "vibe-os"
+      }
+    ],
+
+    "articles": [
+      {
+        "id": "backlog-article-001",
+        "title": "Complete Suno Prompt Engineering Guide",
+        "brand": "frankx",
+        "description": "Deep-dive tutorial on crafting Suno prompts based on 500+ sessions",
+        "status": "idea",
+        "priority": "high",
+        "category": "tutorial",
+        "relatedProduct": "vibe-os"
+      },
+      {
+        "id": "backlog-article-002",
+        "title": "Building AI Agent Systems: Enterprise Patterns",
+        "brand": "ai-architect-academy",
+        "description": "Technical deep-dive on agent orchestration for enterprise",
+        "status": "idea",
+        "priority": "medium",
+        "category": "technical"
+      },
+      {
+        "id": "backlog-article-003",
+        "title": "The Arcanea Chronicles - Chapter 1",
+        "brand": "arcanea",
+        "description": "First chapter of the Arcanea narrative",
+        "status": "idea",
+        "priority": "low",
+        "category": "fiction"
+      }
+    ],
+
+    "videos": [
+      {
+        "id": "backlog-video-001",
+        "title": "Suno Mastery: From Zero to Published Track",
+        "brand": "frankx",
+        "description": "Complete walkthrough of the Vibe OS music creation process",
+        "status": "idea",
+        "priority": "high",
+        "duration": "30-45 min",
+        "platform": "youtube"
+      },
+      {
+        "id": "backlog-video-002",
+        "title": "Claude Code Setup for Creators",
+        "brand": "ai-architect-academy",
+        "description": "How to set up Claude Code as your creative assistant",
+        "status": "idea",
+        "priority": "medium",
+        "duration": "15-20 min",
+        "platform": "youtube"
+      }
+    ],
+
+    "products": [
+      {
+        "id": "backlog-product-001",
+        "title": "Suno Prompt Library Pack",
+        "brand": "frankx",
+        "description": "100+ battle-tested Suno prompts categorized by genre",
+        "status": "idea",
+        "priority": "high",
+        "pricing": "$27",
+        "relatedProduct": "vibe-os"
+      },
+      {
+        "id": "backlog-product-002",
+        "title": "AI Architect Academy Certification",
+        "brand": "ai-architect-academy",
+        "description": "Complete certification program for AI system architects",
+        "status": "idea",
+        "priority": "medium",
+        "pricing": "$997"
+      }
+    ],
+
+    "apps": [
+      {
+        "id": "backlog-app-001",
+        "title": "Suno Track Manager",
+        "brand": "frankx",
+        "description": "Web app to manage, tag, and organize Suno library",
+        "status": "idea",
+        "priority": "medium",
+        "techStack": ["Next.js", "Supabase"]
+      },
+      {
+        "id": "backlog-app-002",
+        "title": "Arcanea Interactive Lore Wiki",
+        "brand": "arcanea",
+        "description": "Interactive web experience for exploring Arcanea universe",
+        "status": "idea",
+        "priority": "low",
+        "techStack": ["Next.js", "Three.js"]
+      }
+    ],
+
+    "websites": [
+      {
+        "id": "backlog-website-001",
+        "title": "AI Architect Academy Portal",
+        "brand": "ai-architect-academy",
+        "description": "Dedicated website for courses and certification",
+        "status": "idea",
+        "priority": "high",
+        "domain": "aiarchitectacademy.com"
+      },
+      {
+        "id": "backlog-website-002",
+        "title": "Arcanea Universe Portal",
+        "brand": "arcanea",
+        "description": "Immersive landing page for the Arcanea universe",
+        "status": "idea",
+        "priority": "low",
+        "domain": "arcanea.world"
+      }
+    ]
+  },
+
+  "inProgress": {
+    "_description": "Currently being worked on",
+    "items": []
+  },
+
+  "thisWeek": {
+    "_description": "Planned for this week",
+    "items": []
+  },
+
+  "thisMonth": {
+    "_description": "Planned for this month",
+    "items": []
+  },
+
+  "workflows": {
+    "musicCreation": {
+      "name": "Vibe OS Music Pipeline",
+      "steps": [
+        { "step": 1, "action": "Define mood/purpose", "tool": "planning" },
+        { "step": 2, "action": "Craft Suno prompt", "tool": "lyric-genius-mcp" },
+        { "step": 3, "action": "Generate variations", "tool": "suno" },
+        { "step": 4, "action": "Select best version", "tool": "manual" },
+        { "step": 5, "action": "Add to inventory", "tool": "import-suno-tracks.mjs" },
+        { "step": 6, "action": "Publish to playlist", "tool": "suno" },
+        { "step": 7, "action": "Create social post", "tool": "social-content-generator" }
+      ]
+    },
+    "articleCreation": {
+      "name": "Content Factory Pipeline",
+      "steps": [
+        { "step": 1, "action": "Research & outline", "tool": "research-agent" },
+        { "step": 2, "action": "Write draft", "tool": "content-polisher" },
+        { "step": 3, "action": "Add to content/blog", "tool": "write" },
+        { "step": 4, "action": "Generate images", "tool": "nano-banana-mcp" },
+        { "step": 5, "action": "Review & polish", "tool": "content-polisher" },
+        { "step": 6, "action": "Deploy to production", "tool": "/deploy" },
+        { "step": 7, "action": "Generate social", "tool": "social-content-generator" }
+      ]
+    },
+    "productCreation": {
+      "name": "Product Launch Pipeline",
+      "steps": [
+        { "step": 1, "action": "Define transformation", "tool": "planning" },
+        { "step": 2, "action": "Create product content", "tool": "various" },
+        { "step": 3, "action": "Build landing page", "tool": "nextjs" },
+        { "step": 4, "action": "Set up delivery", "tool": "gumroad/whop" },
+        { "step": 5, "action": "Launch announcement", "tool": "social" },
+        { "step": 6, "action": "Track in products.json", "tool": "inventory" }
+      ]
+    }
+  },
+
+  "automations": {
+    "_description": "Automated workflows in ACOS",
+    "available": [
+      {
+        "name": "/factory",
+        "description": "Full content publishing pipeline",
+        "triggers": "Manual"
+      },
+      {
+        "name": "/deploy",
+        "description": "Sync to production and deploy",
+        "triggers": "After content creation"
+      },
+      {
+        "name": "generate-blog-inventory.mjs",
+        "description": "Auto-index blog articles",
+        "triggers": "After adding new articles"
+      },
+      {
+        "name": "import-suno-tracks.mjs",
+        "description": "Import Suno tracks to inventory",
+        "triggers": "After music creation session"
+      }
+    ]
+  },
+
+  "guidedCreation": {
+    "_description": "ACOS guided creation workflows",
+    "commands": {
+      "/create-music": {
+        "description": "Guided Suno music creation session",
+        "flow": ["Define purpose", "Craft prompt", "Generate", "Publish", "Social"]
+      },
+      "/create-article": {
+        "description": "Guided article creation",
+        "flow": ["Research", "Outline", "Write", "Images", "Publish", "Social"]
+      },
+      "/create-product": {
+        "description": "Guided product launch",
+        "flow": ["Define offer", "Create content", "Build page", "Launch", "Promote"]
+      },
+      "/plan-week": {
+        "description": "Plan content for the week",
+        "flow": ["Review backlog", "Prioritize", "Schedule", "Set goals"]
+      },
+      "/inventory-status": {
+        "description": "Review all content inventories",
+        "flow": ["Show counts", "Identify gaps", "Suggest priorities"]
+      }
+    }
+  }
+}

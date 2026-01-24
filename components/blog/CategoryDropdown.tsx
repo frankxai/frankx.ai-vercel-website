@@ -1,8 +1,8 @@
 'use client'
 
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ChevronDown, X } from 'lucide-react'
+import { ChevronDown, Check, Sparkles } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 interface CategoryDropdownProps {
@@ -13,25 +13,19 @@ interface CategoryDropdownProps {
   getCategoryCount: (category: string) => number
 }
 
-// Category styling - only define for main categories
-const categoryStyles: Record<string, { icon: string; color: string }> = {
-  'Creator Systems': { icon: '⚡', color: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20' },
-  'Intelligence Dispatches': { icon: '📡', color: 'text-cyan-400 bg-cyan-500/10 border-cyan-500/20' },
-  'Enterprise AI': { icon: '🏢', color: 'text-blue-400 bg-blue-500/10 border-blue-500/20' },
-  'AI Architecture': { icon: '🔧', color: 'text-violet-400 bg-violet-500/10 border-violet-500/20' },
-  'Workshops': { icon: '🎓', color: 'text-amber-400 bg-amber-500/10 border-amber-500/20' },
-  'AI & Consciousness': { icon: '🧠', color: 'text-purple-400 bg-purple-500/10 border-purple-500/20' },
+// Category icon mapping with FrankX domain colors
+const categoryIcons: Record<string, { icon: string; color: string }> = {
+  'AI & Technology': { icon: '🤖', color: 'from-cyan-500/20 to-cyan-600/10 border-cyan-500/30 text-cyan-400' },
+  'AI & Consciousness': { icon: '🧠', color: 'from-purple-500/20 to-purple-600/10 border-purple-500/30 text-purple-400' },
+  'Music Production': { icon: '🎵', color: 'from-orange-500/20 to-orange-600/10 border-orange-500/30 text-orange-400' },
+  'Creator Systems': { icon: '⚡', color: 'from-emerald-500/20 to-emerald-600/10 border-emerald-500/30 text-emerald-400' },
+  'Personal Development': { icon: '🌱', color: 'from-green-500/20 to-green-600/10 border-green-500/30 text-green-400' },
+  'Enterprise AI': { icon: '🏢', color: 'from-blue-500/20 to-blue-600/10 border-blue-500/30 text-blue-400' },
 }
 
-const getStyle = (category: string) => {
-  return categoryStyles[category] || {
-    icon: '📝',
-    color: 'text-white/60 bg-white/5 border-white/10'
-  }
+const getCategoryStyle = (category: string) => {
+  return categoryIcons[category] || { icon: '📝', color: 'from-white/10 to-white/5 border-white/20 text-white' }
 }
-
-// Minimum posts to be a "primary" category
-const PRIMARY_THRESHOLD = 3
 
 export default function CategoryDropdown({
   categories,
@@ -40,152 +34,164 @@ export default function CategoryDropdown({
   totalPosts,
   getCategoryCount,
 }: CategoryDropdownProps) {
-  const [mounted, setMounted] = useState(false)
-  const [showMore, setShowMore] = useState(false)
+  const [isOpen, setIsOpen] = useState(false)
+  const dropdownRef = useRef<HTMLDivElement>(null)
 
+  // Close dropdown when clicking outside
   useEffect(() => {
-    setMounted(true)
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsOpen(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside)
+    return () => document.removeEventListener('mousedown', handleClickOutside)
   }, [])
 
-  // Sort categories by post count and split into primary/secondary
-  const { primaryCategories, secondaryCategories } = useMemo(() => {
-    const sorted = [...categories].sort((a, b) => getCategoryCount(b) - getCategoryCount(a))
-    const primary = sorted.filter(cat => getCategoryCount(cat) >= PRIMARY_THRESHOLD)
-    const secondary = sorted.filter(cat => getCategoryCount(cat) < PRIMARY_THRESHOLD)
-    return { primaryCategories: primary, secondaryCategories: secondary }
-  }, [categories, getCategoryCount])
+  const selectedCategoryLabel = selectedCategory
+    ? `${selectedCategory} (${getCategoryCount(selectedCategory)})`
+    : `All Categories (${totalPosts})`
 
-  if (!mounted) {
-    return <div className="h-12 bg-white/5 rounded-xl animate-pulse" />
-  }
-
-  const CategoryPill = ({
-    category,
-    isAll = false
-  }: {
-    category: string | null
-    isAll?: boolean
-  }) => {
-    const isSelected = isAll ? !selectedCategory : selectedCategory === category
-    const count = isAll ? totalPosts : getCategoryCount(category!)
-    const style = isAll ? { icon: '✨', color: 'text-white bg-white/10 border-white/20' } : getStyle(category!)
-
-    return (
-      <motion.button
-        onClick={() => onSelectCategory(isAll ? null : (isSelected ? null : category))}
-        className={cn(
-          'group relative flex items-center gap-2 px-3 py-2 rounded-lg border transition-all duration-200',
-          'focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30',
-          isSelected
-            ? cn(style.color, 'border-current/30')
-            : 'bg-transparent border-white/10 hover:bg-white/5 hover:border-white/20'
-        )}
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
-      >
-        <span className="text-sm">{style.icon}</span>
-        <span className={cn(
-          'text-sm font-medium',
-          isSelected ? 'text-white' : 'text-white/60 group-hover:text-white/80'
-        )}>
-          {isAll ? 'All' : category}
-        </span>
-        <span className={cn(
-          'text-xs px-1.5 py-0.5 rounded-md',
-          isSelected ? 'bg-white/20 text-white' : 'bg-white/5 text-white/40'
-        )}>
-          {count}
-        </span>
-      </motion.button>
-    )
-  }
+  const selectedIcon = selectedCategory
+    ? getCategoryStyle(selectedCategory).icon
+    : '✨'
 
   return (
-    <div className="w-full">
-      {/* Primary Categories - Always Visible */}
-      <div className="flex flex-wrap items-center justify-center gap-2">
-        {/* All Button */}
-        <CategoryPill category={null} isAll />
+    <div ref={dropdownRef} className="relative inline-block">
+      {/* Trigger Button */}
+      <motion.button
+        onClick={() => setIsOpen(!isOpen)}
+        className={cn(
+          'group relative flex items-center gap-3 px-5 py-3 rounded-xl',
+          'bg-gradient-to-br from-white/10 to-white/5 border border-white/20',
+          'hover:from-white/15 hover:to-white/10 hover:border-white/30',
+          'focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50',
+          'transition-all duration-300',
+          'min-w-[200px] justify-between'
+        )}
+        whileTap={{ scale: 0.98 }}
+        aria-expanded={isOpen}
+        aria-haspopup="listbox"
+      >
+        <div className="flex items-center gap-2.5">
+          <span className="text-lg">{selectedIcon}</span>
+          <span className="text-sm font-medium text-white">
+            {selectedCategoryLabel}
+          </span>
+        </div>
+        <motion.div
+          animate={{ rotate: isOpen ? 180 : 0 }}
+          transition={{ duration: 0.3, ease: 'easeInOut' }}
+        >
+          <ChevronDown className="w-4 h-4 text-white/60 group-hover:text-white/80 transition-colors" />
+        </motion.div>
+      </motion.button>
 
-        {/* Top Categories */}
-        {primaryCategories.map((category) => (
-          <CategoryPill key={category} category={category} />
-        ))}
-
-        {/* More Button */}
-        {secondaryCategories.length > 0 && (
-          <motion.button
-            onClick={() => setShowMore(!showMore)}
+      {/* Dropdown Menu */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -10, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -10, scale: 0.95 }}
+            transition={{ duration: 0.2, ease: 'easeOut' }}
             className={cn(
-              'flex items-center gap-1.5 px-3 py-2 rounded-lg border transition-all duration-200',
-              'focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30',
-              showMore
-                ? 'bg-white/10 border-white/20 text-white'
-                : 'bg-transparent border-white/10 text-white/50 hover:bg-white/5 hover:text-white/70'
+              'absolute top-full left-0 right-0 mt-2 z-50',
+              'bg-[#0F172A]/95 backdrop-blur-xl border border-white/20 rounded-xl',
+              'shadow-2xl shadow-black/50 overflow-hidden'
             )}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
+            role="listbox"
           >
-            <span className="text-sm font-medium">
-              {showMore ? 'Less' : `+${secondaryCategories.length} more`}
-            </span>
-            <motion.div
-              animate={{ rotate: showMore ? 180 : 0 }}
-              transition={{ duration: 0.2 }}
+            {/* All Categories Option */}
+            <motion.button
+              onClick={() => {
+                onSelectCategory(null)
+                setIsOpen(false)
+              }}
+              className={cn(
+                'w-full flex items-center justify-between px-4 py-3',
+                'hover:bg-white/10 transition-colors duration-200',
+                'border-b border-white/5',
+                !selectedCategory && 'bg-emerald-500/10'
+              )}
+              whileHover={{ x: 4 }}
+              transition={{ duration: 0.15 }}
+              role="option"
+              aria-selected={!selectedCategory}
             >
-              <ChevronDown className="w-4 h-4" />
-            </motion.div>
-          </motion.button>
-        )}
-      </div>
+              <div className="flex items-center gap-3">
+                <span className="text-base">✨</span>
+                <div className="text-left">
+                  <span className="text-sm font-medium text-white block">
+                    All Categories
+                  </span>
+                  <span className="text-xs text-white/40">
+                    View everything
+                  </span>
+                </div>
+              </div>
+              <div className="flex items-center gap-2">
+                <span className="text-xs font-medium text-white/60 bg-white/5 px-2 py-1 rounded">
+                  {totalPosts}
+                </span>
+                {!selectedCategory && (
+                  <Check className="w-4 h-4 text-emerald-400" />
+                )}
+              </div>
+            </motion.button>
 
-      {/* Secondary Categories - Expandable */}
-      <AnimatePresence>
-        {showMore && secondaryCategories.length > 0 && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="overflow-hidden"
-          >
-            <div className="flex flex-wrap items-center justify-center gap-2 pt-3 mt-3 border-t border-white/5">
-              {secondaryCategories.map((category) => (
-                <CategoryPill key={category} category={category} />
-              ))}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            {/* Category Options */}
+            {categories.map((category, index) => {
+              const count = getCategoryCount(category)
+              const isSelected = selectedCategory === category
+              const { icon, color } = getCategoryStyle(category)
 
-      {/* Active Filter Indicator */}
-      <AnimatePresence>
-        {selectedCategory && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            className="flex justify-center mt-4"
-          >
-            <div className={cn(
-              'inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-sm',
-              'bg-white/5 border border-white/10'
-            )}>
-              <span className="text-white/50">Showing</span>
-              <span className={cn('font-medium', getStyle(selectedCategory).color.split(' ')[0])}>
-                {selectedCategory}
-              </span>
-              <span className="text-white/50">
-                ({getCategoryCount(selectedCategory)} articles)
-              </span>
-              <button
-                onClick={() => onSelectCategory(null)}
-                className="ml-1 p-0.5 rounded-full hover:bg-white/10 transition-colors"
-                aria-label="Clear filter"
-              >
-                <X className="w-3.5 h-3.5 text-white/40 hover:text-white" />
-              </button>
-            </div>
+              return (
+                <motion.button
+                  key={category}
+                  onClick={() => {
+                    onSelectCategory(isSelected ? null : category)
+                    setIsOpen(false)
+                  }}
+                  className={cn(
+                    'w-full flex items-center justify-between px-4 py-3',
+                    'hover:bg-white/10 transition-colors duration-200',
+                    index < categories.length - 1 && 'border-b border-white/5',
+                    isSelected && 'bg-emerald-500/10'
+                  )}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.03, duration: 0.2 }}
+                  whileHover={{ x: 4 }}
+                  role="option"
+                  aria-selected={isSelected}
+                >
+                  <div className="flex items-center gap-3">
+                    <span className="text-base">{icon}</span>
+                    <div className="text-left">
+                      <span className="text-sm font-medium text-white block">
+                        {category}
+                      </span>
+                      <span className="text-xs text-white/40">
+                        {count} {count === 1 ? 'article' : 'articles'}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <span className={cn(
+                      'text-xs font-medium px-2 py-1 rounded bg-gradient-to-br border backdrop-blur-sm',
+                      color
+                    )}>
+                      {count}
+                    </span>
+                    {isSelected && (
+                      <Check className="w-4 h-4 text-emerald-400" />
+                    )}
+                  </div>
+                </motion.button>
+              )
+            })}
           </motion.div>
         )}
       </AnimatePresence>

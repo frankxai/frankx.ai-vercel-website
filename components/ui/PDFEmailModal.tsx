@@ -168,7 +168,7 @@ export default function PDFEmailModal({ isOpen, onClose, pdfTitle, pdfUrl, guide
                           onChange={(e) => setName(e.target.value)}
                           required
                           className="w-full px-4 py-3 rounded-xl bg-gray-800/50 backdrop-blur-sm border border-gray-700/50 text-white placeholder:text-gray-500 focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/30 transition-all hover:border-gray-600"
-                          placeholder="Frank Riemer"
+                          placeholder="Frank Guzman"
                         />
                       </div>
 

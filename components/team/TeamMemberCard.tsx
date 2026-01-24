@@ -65,17 +65,11 @@ export function TeamMemberCard({ member, index }: TeamMemberCardProps) {
           <div className="relative p-6 h-full flex flex-col">
             {/* Platform badge */}
             <div className="flex items-center justify-between mb-4">
-              {member.platform ? (
-                <span
-                  className={`px-3 py-1 rounded-full text-xs font-semibold border ${platformBadgeColors[member.platform] || 'bg-white/10 text-white/70 border-white/20'}`}
-                >
-                  {member.platform}
-                </span>
-              ) : (
-                <span className="px-3 py-1 rounded-full text-xs font-semibold border bg-white/10 text-white/70 border-white/20">
-                  AI Agent
-                </span>
-              )}
+              <span
+                className={`px-3 py-1 rounded-full text-xs font-semibold border ${platformBadgeColors[member.platform]}`}
+              >
+                {member.platform}
+              </span>
               <Sparkles className="w-4 h-4 text-white/40" />
             </div>
 
@@ -134,19 +128,19 @@ export function TeamMemberCard({ member, index }: TeamMemberCardProps) {
               <h3 className={`text-lg font-bold bg-gradient-to-r ${gradientClass} bg-clip-text text-transparent mb-2`}>
                 {member.name}
               </h3>
-              <p className="text-xs text-white/50 leading-relaxed">{member.personality || member.tagline}</p>
+              <p className="text-xs text-white/50 leading-relaxed">{member.personality}</p>
             </div>
 
             {/* Specialties */}
             <div className="mb-4">
               <h4 className="text-xs font-semibold text-white/70 uppercase tracking-wider mb-2">
-                {member.specialties ? 'Specialties' : 'Skills'}
+                Specialties
               </h4>
               <ul className="space-y-1.5">
-                {(member.specialties || member.skills).slice(0, 4).map((item) => (
-                  <li key={item} className="flex items-start gap-2 text-xs text-white/60">
+                {member.specialties.slice(0, 4).map((specialty) => (
+                  <li key={specialty} className="flex items-start gap-2 text-xs text-white/60">
                     <span className={`mt-1 w-1.5 h-1.5 rounded-full bg-gradient-to-r ${gradientClass} flex-shrink-0`} />
-                    <span className="leading-relaxed">{item}</span>
+                    <span className="leading-relaxed">{specialty}</span>
                   </li>
                 ))}
               </ul>
@@ -170,16 +164,14 @@ export function TeamMemberCard({ member, index }: TeamMemberCardProps) {
             </div>
 
             {/* Collaborates with */}
-            {member.collaboratesWith && member.collaboratesWith.length > 0 && (
-              <div className="mt-auto pt-4 border-t border-white/10">
-                <h4 className="text-xs font-semibold text-white/70 uppercase tracking-wider mb-2">
-                  Collaborates With
-                </h4>
-                <p className="text-xs text-white/50">
-                  {member.collaboratesWith.slice(0, 3).join(' • ')}
-                </p>
-              </div>
-            )}
+            <div className="mt-auto pt-4 border-t border-white/10">
+              <h4 className="text-xs font-semibold text-white/70 uppercase tracking-wider mb-2">
+                Collaborates With
+              </h4>
+              <p className="text-xs text-white/50">
+                {member.collaboratesWith.slice(0, 3).join(' • ')}
+              </p>
+            </div>
           </div>
         </div>
       </motion.div>

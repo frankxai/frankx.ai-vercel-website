@@ -403,31 +403,6 @@ function Hero() {
         </div>
       </motion.div>
 
-      {/* Floating 3D decorative icons - hidden on mobile for performance */}
-      <div className="hidden lg:block absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div
-          className="absolute top-32 left-[8%] w-16 h-16 opacity-40"
-          animate={{ y: [0, -15, 0], rotate: [0, 5, 0] }}
-          transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-        >
-          <Image src="/images/3d/premium/star-dynamic.webp" alt="" fill className="object-contain drop-shadow-lg" sizes="64px" />
-        </motion.div>
-        <motion.div
-          className="absolute bottom-40 left-[12%] w-12 h-12 opacity-30"
-          animate={{ y: [0, -10, 0], rotate: [0, -3, 0] }}
-          transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-        >
-          <Image src="/images/3d/premium/flash-dynamic.webp" alt="" fill className="object-contain drop-shadow-lg" sizes="48px" />
-        </motion.div>
-        <motion.div
-          className="absolute top-48 right-[6%] w-14 h-14 opacity-35"
-          animate={{ y: [0, -12, 0], rotate: [0, -5, 0] }}
-          transition={{ duration: 5.5, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
-        >
-          <Image src="/images/3d/premium/crown-dynamic.webp" alt="" fill className="object-contain drop-shadow-lg" sizes="56px" />
-        </motion.div>
-      </div>
-
       {/* Scroll indicator - enhanced */}
       <motion.div
         className="absolute bottom-10 left-1/2 -translate-x-1/2"
@@ -688,7 +663,6 @@ function QuickStartSection() {
 const capabilities = [
   {
     icon: Music2,
-    icon3D: '/images/3d/premium/headphone-dynamic.webp',
     title: 'Music Lab',
     subtitle: 'Daily Creative Practice',
     description: 'My ongoing exploration of AI music with Suno. Ambient soundscapes, electronic experiments, cinematic scores. The process documented.',
@@ -698,7 +672,6 @@ const capabilities = [
   },
   {
     icon: BookOpen,
-    icon3D: '/images/3d/premium/bulb-dynamic.webp',
     title: 'Learning Paths',
     subtitle: 'What Changed How I Think',
     description: 'Curated resources from Oracle, Google, MIT. Not everything that exists—just what actually helped me understand.',
@@ -708,7 +681,6 @@ const capabilities = [
   },
   {
     icon: Sparkles,
-    icon3D: '/images/3d/premium/star-dynamic.webp',
     title: 'Prompt Collection',
     subtitle: 'Tools for the Work',
     description: 'Prompts I use daily for writing, coding, music, and exploration. Adapt them to your own projects.',
@@ -718,7 +690,6 @@ const capabilities = [
   },
   {
     icon: Code2,
-    icon3D: '/images/3d/premium/rocket-dynamic.webp',
     title: 'Creation Chronicles',
     subtitle: 'Building in Public',
     description: 'How I built this site, my workflows, decisions made along the way. The messy process, not just the polished result.',
@@ -770,23 +741,6 @@ function WhatIDo() {
                 <div className="absolute inset-0 opacity-[0.015] bg-[url('data:image/svg+xml,%3Csvg viewBox=%220 0 256 256%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noise%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.8%22 numOctaves=%224%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noise)%22/%3E%3C/svg%3E')]" />
 
                 <div className="relative">
-                  {/* Floating 3D Icon */}
-                  {item.icon3D && (
-                    <motion.div
-                      className="absolute -top-6 -right-4 w-20 h-20 sm:w-24 sm:h-24 drop-shadow-2xl opacity-80 group-hover:opacity-100 transition-opacity duration-500"
-                      animate={{ y: [0, -8, 0] }}
-                      transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-                    >
-                      <Image
-                        src={item.icon3D}
-                        alt=""
-                        fill
-                        className="object-contain"
-                        sizes="96px"
-                      />
-                    </motion.div>
-                  )}
-
                   <div className="flex items-start justify-between mb-4 sm:mb-6">
                     <div className={`p-2.5 sm:p-3 rounded-lg sm:rounded-xl bg-white/[0.04] border border-white/[0.06] group-hover:bg-white/[0.08] group-hover:border-white/[0.1] transition-all duration-300`}>
                       <item.icon className={`w-5 h-5 sm:w-6 sm:h-6 ${item.iconColor}`} />
@@ -1129,22 +1083,6 @@ function FinalCTA() {
       {/* Background orbs */}
       <div className="absolute top-1/2 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-emerald-500/[0.04] rounded-full blur-[100px] pointer-events-none" />
       <div className="absolute top-1/2 right-1/4 translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-cyan-500/[0.03] rounded-full blur-[80px] pointer-events-none" />
-
-      {/* Floating 3D icons for visual interest */}
-      <motion.div
-        className="hidden md:block absolute top-16 left-[10%] w-20 h-20 opacity-25 pointer-events-none"
-        animate={{ y: [0, -15, 0], rotate: [0, 8, 0] }}
-        transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-      >
-        <Image src="/images/3d/premium/rocket-dynamic.webp" alt="" fill className="object-contain" sizes="80px" />
-      </motion.div>
-      <motion.div
-        className="hidden md:block absolute bottom-20 right-[10%] w-16 h-16 opacity-20 pointer-events-none"
-        animate={{ y: [0, -12, 0], rotate: [0, -5, 0] }}
-        transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
-      >
-        <Image src="/images/3d/premium/target-dynamic.webp" alt="" fill className="object-contain" sizes="64px" />
-      </motion.div>
 
       <div className="relative max-w-5xl mx-auto px-4 sm:px-6">
         <motion.div

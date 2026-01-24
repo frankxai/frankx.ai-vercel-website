@@ -1,0 +1,95 @@
+{
+  "_description": "Master Social Profiles for All Brands",
+  "_instructions": "Track all social media profiles across FrankX, AI Architect Academy, and Arcanea",
+  "_lastUpdated": "2026-01-23",
+  "profiles": [
+    {
+      "platform": "linkedin",
+      "username": "UPDATE_THIS",
+      "displayName": "Frank [Your Name]",
+      "url": "https://linkedin.com/in/UPDATE_THIS",
+      "brand": "frankx",
+      "primary": true,
+      "verified": false,
+      "bio": "Oracle AI Architect | Creator | 500+ AI Songs | Building the Golden Age of Intelligence",
+      "followers": null
+    },
+    {
+      "platform": "x-twitter",
+      "username": "UPDATE_THIS",
+      "displayName": "FrankX",
+      "url": "https://x.com/UPDATE_THIS",
+      "brand": "frankx",
+      "primary": true,
+      "verified": false,
+      "bio": "",
+      "followers": null
+    },
+    {
+      "platform": "instagram",
+      "username": "UPDATE_THIS",
+      "displayName": "FrankX",
+      "url": "https://instagram.com/UPDATE_THIS",
+      "brand": "frankx",
+      "primary": true,
+      "verified": false,
+      "bio": "",
+      "followers": null
+    },
+    {
+      "platform": "suno",
+      "username": "frankx",
+      "displayName": "FrankX",
+      "url": "https://suno.com/@frankx",
+      "brand": "frankx",
+      "primary": true,
+      "verified": false,
+      "bio": "Music to unleash your creative genius 🎼",
+      "followers": 456,
+      "following": 180,
+      "hooks": "13K"
+    },
+    {
+      "platform": "youtube",
+      "username": "UPDATE_THIS",
+      "displayName": "FrankX",
+      "url": "https://youtube.com/@UPDATE_THIS",
+      "brand": "frankx",
+      "primary": true,
+      "verified": false,
+      "bio": "",
+      "followers": null
+    },
+    {
+      "platform": "github",
+      "username": "frankxai",
+      "displayName": "FrankX AI",
+      "url": "https://github.com/frankxai",
+      "brand": "frankx",
+      "primary": true,
+      "verified": false,
+      "bio": "Creator OS, Agent Systems, AI Tools",
+      "followers": null
+    },
+    {
+      "platform": "website",
+      "username": "frankx",
+      "displayName": "FrankX.AI",
+      "url": "https://frankx.ai",
+      "brand": "frankx",
+      "primary": true,
+      "verified": true,
+      "bio": "Personal Hub for Creator AI Transformation"
+    },
+    {
+      "platform": "gumroad",
+      "username": "frankx",
+      "displayName": "FrankX",
+      "url": "https://frankx.gumroad.com",
+      "brand": "frankx",
+      "primary": true,
+      "verified": false,
+      "bio": "Digital products for creators"
+    }
+  ]
+}

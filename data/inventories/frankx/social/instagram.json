@@ -1,0 +1,28 @@
+{
+  "_description": "FrankX Instagram Posts Inventory",
+  "_instructions": "Track Instagram posts, reels, stories here",
+  "_profileUrl": "https://instagram.com/YOUR_PROFILE",
+  "_lastUpdated": "2026-01-23",
+  "_count": 0,
+  "_template": {
+    "id": "ig-2025-01-15-topic",
+    "type": "social",
+    "platform": "instagram",
+    "title": "Caption hook",
+    "content": "Full caption...",
+    "brand": "frankx",
+    "status": "published",
+    "tags": ["topic"],
+    "createdAt": "2025-01-15",
+    "postType": "carousel",
+    "url": "https://instagram.com/p/...",
+    "mediaUrls": ["/images/social/ig-post-1.jpg"],
+    "engagement": {
+      "likes": 200,
+      "comments": 30,
+      "saves": 45
+    },
+    "hashtags": ["#AI", "#Creator"]
+  },
+  "posts": []
+}

@@ -1,0 +1,26 @@
+{
+  "_description": "FrankX Visual Art Inventory",
+  "_instructions": "Track AI-generated art, photos, illustrations here",
+  "_lastUpdated": "2026-01-23",
+  "_count": 0,
+  "_template": {
+    "id": "art-slug",
+    "type": "art",
+    "title": "Art Title",
+    "description": "Description of the piece",
+    "brand": "frankx",
+    "status": "published",
+    "tags": ["style", "subject", "use-case"],
+    "createdAt": "2025-01-01",
+    "platform": "midjourney",
+    "medium": "digital",
+    "thumbnail": "/images/ai-art/piece.jpg",
+    "highResPath": "/images/ai-art/piece-full.jpg",
+    "promptUsed": "The AI prompt used",
+    "style": ["cyberpunk", "portrait"],
+    "dimensions": { "width": 1920, "height": 1080 },
+    "usedIn": ["blog-post-slug", "product-page"],
+    "licensable": true
+  },
+  "pieces": []
+}

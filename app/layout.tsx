@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter, Playfair_Display, JetBrains_Mono, Crimson_Pro, Cormorant_Garamond } from 'next/font/google'
+import { Syne, Outfit, Playfair_Display, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 import Script from 'next/script'
 
@@ -10,65 +10,35 @@ import Footer from '@/components/Footer'
 import OrganizationJsonLd from '@/components/seo/OrganizationJsonLd'
 import SessionProvider from '@/components/providers/SessionProvider'
 
-// =============================================================================
-// FRANKX TYPOGRAPHY SYSTEM - APPROVED CONFIGURATION
-// =============================================================================
-// DO NOT CHANGE without explicit approval. Font choices are part of brand identity.
-//
-// Current Stack:
-// - Inter: Primary body & UI font (clean, professional, excellent readability)
-// - Playfair Display: Serif/italic for editorial emphasis and quotes
-// - Crimson Pro: Premium book reading experience (long-form content)
-// - Cormorant Garamond: Elegant display headlines for Golden Age
-// - JetBrains Mono: Code blocks and technical content
-//
-// Last approved: 2026-01-23
-// =============================================================================
+// Syne - Bold geometric display font for headlines (distinctive, memorable)
+const syne = Syne({
+  subsets: ['latin'],
+  variable: '--font-display',
+  display: 'swap',
+  weight: ['400', '500', '600', '700', '800'],
+})
 
-// Inter - Primary font for body text and UI (industry standard, excellent readability)
-const inter = Inter({
+// Outfit - Modern, refined sans-serif for body text (cleaner than Inter)
+const outfit = Outfit({
   subsets: ['latin'],
   variable: '--font-sans',
   display: 'swap',
-  weight: ['300', '400', '500', '600', '700', '800'],
+  weight: ['300', '400', '500', '600', '700'],
 })
 
-// Playfair Display - Elegant serif for editorial touches, quotes, and italic emphasis
-// Similar to premium sites like AI Advantage (Aeonik Pro + Roboto Italic)
+// Playfair Display for editorial touches (classic, elegant Times-like italics)
 const playfair = Playfair_Display({
   subsets: ['latin'],
   variable: '--font-serif',
   display: 'swap',
   style: ['normal', 'italic'],
-  weight: ['400', '500', '600', '700'],
 })
 
-// Crimson Pro - Premium reading font for long-form book content
-// Optimized for readability at small sizes, similar to Kindle/Medium
-const crimsonPro = Crimson_Pro({
-  subsets: ['latin'],
-  variable: '--font-reading',
-  display: 'swap',
-  style: ['normal', 'italic'],
-  weight: ['300', '400', '500', '600', '700'],
-})
-
-// Cormorant Garamond - Elegant display font for Golden Age headlines
-// High contrast, sophisticated, editorial quality
-const cormorant = Cormorant_Garamond({
-  subsets: ['latin'],
-  variable: '--font-display',
-  display: 'swap',
-  style: ['normal', 'italic'],
-  weight: ['400', '500', '600', '700'],
-})
-
-// JetBrains Mono - Monospace for code blocks and technical content
+// JetBrains Mono for code/technical elements
 const jetbrains = JetBrains_Mono({
   subsets: ['latin'],
   variable: '--font-mono',
   display: 'swap',
-  weight: ['400', '500', '600', '700'],
 })
 
 export const metadata: Metadata = {
@@ -150,10 +120,9 @@ export default function RootLayout({
       </head>
       <body
         className={cn(
-          inter.variable,
+          syne.variable,
+          outfit.variable,
           playfair.variable,
-          crimsonPro.variable,
-          cormorant.variable,
           jetbrains.variable,
           'font-sans dark bg-void text-white antialiased min-h-screen overflow-x-hidden'
         )}

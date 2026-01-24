@@ -16,7 +16,6 @@ import {
   Mic,
   Image,
   Pen,
-  Cpu,
 } from 'lucide-react'
 
 export type IconName =
@@ -36,7 +35,6 @@ export type IconName =
   | 'Mic'
   | 'Image'
   | 'Pen'
-  | 'Cpu'
 
 const iconMap: Record<IconName, LucideIcon> = {
   Bot,
@@ -55,7 +53,6 @@ const iconMap: Record<IconName, LucideIcon> = {
   Mic,
   Image,
   Pen,
-  Cpu,
 }
 
 export function getIcon(name: IconName): LucideIcon {

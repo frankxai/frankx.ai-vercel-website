@@ -51,7 +51,7 @@ function emailWrapper(content: string): string {
     <div style="text-align: center; padding-top: 40px; border-top: 2px solid rgba(6, 182, 212, 0.15); margin-top: 40px;">
       <div style="margin-bottom: 20px;">
         <p style="font-family: 'Poppins', sans-serif; font-size: 15px; color: #E2E8F0; margin: 0 0 6px 0; font-weight: 600;">
-          Frank Riemer
+          Frank Guzman
         </p>
         <p style="font-size: 13px; color: #94a3b8; margin: 0; line-height: 1.6;">
           Musician → AI Architect at Oracle<br>

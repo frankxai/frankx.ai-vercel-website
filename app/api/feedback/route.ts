@@ -1,4 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { appendFileSync, existsSync, mkdirSync } from 'fs';
+import { join } from 'path';
+
+// Simple file-based feedback storage
+// In production, you'd use a database or analytics service
+const FEEDBACK_DIR = join(process.cwd(), 'data', 'feedback');
+const FEEDBACK_FILE = join(FEEDBACK_DIR, 'chapter-feedback.jsonl');
 
 interface FeedbackPayload {
   type: 'chapter_feedback' | 'chapter_comment';
@@ -21,32 +28,40 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Log feedback for analytics
-    // In production, you could send this to:
-    // - A database (Supabase, PlanetScale, etc.)
-    // - An analytics service (Mixpanel, Amplitude, etc.)
-    // - A simple webhook (Zapier, Make, etc.)
-    console.log('[Chapter Feedback]', {
+    // Ensure feedback directory exists
+    if (!existsSync(FEEDBACK_DIR)) {
+      mkdirSync(FEEDBACK_DIR, { recursive: true });
+    }
+
+    // Append feedback as JSON line
+    const feedbackEntry = {
+      ...body,
+      userAgent: request.headers.get('user-agent') || 'unknown',
+      receivedAt: new Date().toISOString(),
+    };
+
+    appendFileSync(FEEDBACK_FILE, JSON.stringify(feedbackEntry) + '\n', 'utf-8');
+
+    // Log for analytics (could send to external service)
+    console.log('[Feedback]', {
       type: body.type,
       chapter: body.chapter,
-      chapterNumber: body.chapterNumber,
       feedback: body.feedback,
       hasComment: !!body.comment,
-      timestamp: body.timestamp,
-      userAgent: request.headers.get('user-agent')?.substring(0, 100) || 'unknown',
     });
 
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error('[Feedback Error]', error);
     return NextResponse.json(
-      { error: 'Failed to process feedback' },
+      { error: 'Failed to save feedback' },
       { status: 500 }
     );
   }
 }
 
 export async function GET() {
+  // Simple endpoint to check feedback API status
   return NextResponse.json({
     status: 'ok',
     message: 'Feedback API is running',

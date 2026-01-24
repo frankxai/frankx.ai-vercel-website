@@ -239,34 +239,16 @@ module.exports = {
       },
 
       // =====================================================
-      // TYPOGRAPHY - APPROVED FRANKX FONT STACK
-      // =====================================================
-      // DO NOT CHANGE without explicit approval.
-      // Font choices are part of brand identity.
-      //
-      // Current Stack:
-      // - sans (Inter): Primary body & UI font
-      // - serif (Playfair Display): Editorial emphasis, quotes, italics
-      // - mono (JetBrains Mono): Code blocks, technical content
-      //
-      // CSS Variables (set in app/layout.tsx):
-      // - --font-sans → Inter
-      // - --font-serif → Playfair Display
-      // - --font-mono → JetBrains Mono
-      //
-      // Last approved: 2026-01-23
+      // TYPOGRAPHY - Perfect Fourth Scale (1.333)
+      // See /lib/design-system.ts for full scale
       // =====================================================
       fontFamily: {
-        // Primary body font - Inter (clean, professional, excellent readability)
-        sans: ['var(--font-sans)', 'Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
-        // Display/headlines - Cormorant Garamond (elegant, high-contrast, editorial)
-        display: ['var(--font-display)', 'Cormorant Garamond', 'Georgia', 'serif'],
-        // Editorial/italic emphasis - Playfair Display (elegant serif)
-        serif: ['var(--font-serif)', 'Playfair Display', 'Georgia', '"Times New Roman"', 'Times', 'serif'],
-        // Premium reading font - Crimson Pro (optimized for long-form content)
-        reading: ['var(--font-reading)', 'Crimson Pro', 'Georgia', 'serif'],
-        // Code/technical content - JetBrains Mono
-        mono: ['var(--font-mono)', 'JetBrains Mono', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
+        // Outfit for body - clean, modern, refined
+        sans: ['var(--font-sans)', 'Outfit', 'system-ui', '-apple-system', 'sans-serif'],
+        // Syne for headlines - bold, geometric, distinctive
+        display: ['var(--font-display)', 'Syne', 'system-ui', 'sans-serif'],
+        serif: ['var(--font-serif)', 'Playfair Display', '"Times New Roman"', 'Times', 'Georgia', 'serif'],
+        mono: ['var(--font-mono)', 'JetBrains Mono', 'Menlo', 'Monaco', 'monospace'],
       },
       fontSize: {
         // Display sizes

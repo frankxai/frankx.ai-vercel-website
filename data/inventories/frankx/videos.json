@@ -1,0 +1,30 @@
+{
+  "_description": "FrankX Video Content Inventory",
+  "_instructions": "Track YouTube videos, tutorials, course content here",
+  "_lastUpdated": "2026-01-23",
+  "_count": 0,
+  "_template": {
+    "id": "video-slug",
+    "type": "video",
+    "title": "Video Title",
+    "description": "Description of the video",
+    "brand": "frankx",
+    "status": "published",
+    "tags": ["topic", "format"],
+    "createdAt": "2025-01-01",
+    "platform": "youtube",
+    "youtubeId": "dQw4w9WgXcQ",
+    "url": "https://youtube.com/watch?v=dQw4w9WgXcQ",
+    "thumbnail": "/images/videos/thumbnail.jpg",
+    "duration": "12:34",
+    "category": "tutorial",
+    "chapters": [
+      { "time": "0:00", "title": "Intro" },
+      { "time": "2:15", "title": "Main Content" }
+    ],
+    "views": 1000,
+    "likes": 100,
+    "relatedProducts": ["vibe-os", "creative-ai-toolkit"]
+  },
+  "videos": []
+}

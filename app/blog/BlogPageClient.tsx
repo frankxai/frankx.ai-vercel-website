@@ -101,16 +101,28 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
         </div>
       </section>
 
-      {/* Category Navigation */}
-      <section className="py-6 px-6 sticky top-20 z-40 bg-void/95 backdrop-blur-xl border-b border-white/5">
+      {/* Category Dropdown & Filter Section */}
+      <section className="pb-8 px-6 sticky top-20 z-40 bg-void/80 backdrop-blur-xl border-b border-white/5">
         <div className="max-w-6xl mx-auto">
-          <CategoryDropdown
-            categories={categories}
-            selectedCategory={selectedCategory}
-            onSelectCategory={setSelectedCategory}
-            totalPosts={posts.length}
-            getCategoryCount={getCategoryCount}
-          />
+          <div className="flex items-center justify-between py-4">
+            <CategoryDropdown
+              categories={categories}
+              selectedCategory={selectedCategory}
+              onSelectCategory={setSelectedCategory}
+              totalPosts={posts.length}
+              getCategoryCount={getCategoryCount}
+            />
+
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="hidden md:flex items-center gap-3"
+            >
+              <span className="text-sm text-white/40">
+                {filteredPosts.length} {filteredPosts.length === 1 ? 'article' : 'articles'}
+              </span>
+            </motion.div>
+          </div>
         </div>
       </section>
 
