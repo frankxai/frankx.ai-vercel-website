@@ -2,135 +2,340 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import dynamic from 'next/dynamic'
-import { ArrowLeft, ArrowRight } from 'lucide-react'
-import PDFEmailModal from '@/components/ui/PDFEmailModal'
+import { motion } from 'framer-motion'
+import {
+  ArrowLeft,
+  ArrowRight,
+  Mail,
+  Download,
+  Sparkles,
+  Music,
+  Palette,
+  Zap,
+  CheckCircle,
+  Clock,
+  BookOpen,
+  ExternalLink
+} from 'lucide-react'
 
-// Dynamic import to avoid SSR issues
-const PDFViewer = dynamic(() => import('@/components/ui/PDFViewer'), {
-  ssr: false,
-  loading: () => (
-    <div className="flex items-center justify-center min-h-[600px] bg-gray-900 rounded-2xl border border-cyan-500/20">
-      <div className="text-center">
-        <div className="w-12 h-12 border-4 border-cyan-500 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
-        <p className="text-gray-400">Loading PDF viewer...</p>
-      </div>
-    </div>
-  )
-})
+import VibeOSEmailModal from './VibeOSEmailModal'
 
-export default function VibeOSPreviewPage() {
+export default function VibeOSLeadMagnetPage() {
   const [emailModalOpen, setEmailModalOpen] = useState(false)
-  // Generate stable sessionId on mount using lazy state initializer
   const [sessionId] = useState(() => `session-${Date.now()}`)
 
-  // Use HTML template as primary source (PDFs are empty directory)
-  // Fallback chain: PDF → HTML template → Error
-  const pdfUrl = '/pdfs/vibe-os-guide.pdf'
-  const htmlFallbackUrl = '/pdf-templates/vibe-os-guide.html'
+  const pdfUrl = '/pdf-templates/vibe-os-guide.html'
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-950 via-gray-900 to-black">
-      {/* Header */}
-      <div className="border-b border-cyan-500/10 bg-gray-950/80 backdrop-blur-xl sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <Link
-            href="/downloads"
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 backdrop-blur-sm text-gray-300 hover:text-white transition-all border border-white/10 group"
-          >
-            <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" />
-            <span>Back to Downloads</span>
-          </Link>
-        </div>
+    <main className="relative min-h-screen overflow-hidden bg-void">
+      {/* Ambient Background */}
+      <div className="pointer-events-none fixed inset-0 z-0">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(6,182,212,0.12),transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_80%,rgba(139,92,246,0.06),transparent_40%)]" />
       </div>
 
-      {/* Hero Section */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="text-center mb-12">
-          {/* Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-orange-500/20 to-orange-600/20 border border-orange-500/30 backdrop-blur-sm mb-6">
-            <span className="w-2 h-2 rounded-full bg-orange-400 animate-pulse" />
-            <span className="text-orange-300 text-sm font-medium">Music & Creativity</span>
-          </div>
+      {/* Header */}
+      <header className="sticky top-0 z-50 border-b border-white/5 bg-void/80 backdrop-blur-xl">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+          <Link
+            href="/downloads"
+            className="group inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm text-white/70 transition-all hover:border-white/20 hover:bg-white/10 hover:text-white"
+          >
+            <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
+            All Downloads
+          </Link>
 
-          {/* Title */}
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 font-['Poppins']">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-red-600">Vibe OS</span> Guide
-          </h1>
+          <Link
+            href="/products/vibe-os"
+            className="group inline-flex items-center gap-2 text-sm text-cyan-400 transition-colors hover:text-cyan-300"
+          >
+            View Full Product
+            <ExternalLink className="h-4 w-4" />
+          </Link>
+        </div>
+      </header>
 
-          {/* Description */}
-          <p className="text-xl text-gray-300 mb-4 max-w-3xl mx-auto leading-relaxed">
-            AI Music Creation System for engineering flow state and neuro-state transformation
-          </p>
-
-          <p className="text-base text-gray-400 max-w-2xl mx-auto mb-8">
-            From midnight studio sessions to 500+ released AI songs. This is the system behind every track - a framework for turning creative energy into music that actually ships.
-          </p>
-
-          {/* Stats */}
-          <div className="flex items-center justify-center gap-8 text-sm text-gray-400 mb-8 flex-wrap">
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-full bg-orange-500/20 flex items-center justify-center">
-                <span className="text-orange-400">🎵</span>
-              </div>
-              <span>Proven System</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-full bg-cyan-500/20 flex items-center justify-center">
-                <span className="text-cyan-400">⏱️</span>
-              </div>
-              <span>10-min read</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-8 h-8 rounded-full bg-red-500/20 flex items-center justify-center">
-                <span className="text-red-400">🔥</span>
-              </div>
-              <span>500+ Songs Created</span>
-            </div>
-          </div>
-
-          {/* CTA */}
-          <div className="flex items-center justify-center gap-4">
-            <button
-              onClick={() => setEmailModalOpen(true)}
-              className="group inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-gradient-to-r from-orange-500 to-red-600 hover:from-orange-400 hover:to-red-500 text-white font-semibold transition-all shadow-lg shadow-orange-500/30 hover:shadow-orange-500/50 hover:scale-105"
+      <div className="relative z-10">
+        {/* Hero Section */}
+        <section className="px-6 pb-16 pt-12">
+          <div className="mx-auto max-w-4xl text-center">
+            {/* Badge */}
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="mb-8 inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-500/10 px-5 py-2.5 text-xs font-medium uppercase tracking-[0.15em] text-cyan-200"
             >
-              <span>Get Via Email</span>
-              <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
-            </button>
-          </div>
-        </div>
+              <Sparkles className="h-4 w-4" />
+              Free Download
+            </motion.div>
 
-        {/* Separator */}
-        <div className="relative my-12">
-          <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-gray-800"></div>
-          </div>
-          <div className="relative flex justify-center">
-            <span className="bg-gray-950 px-4 text-sm text-gray-500">Preview Below</span>
-          </div>
-        </div>
+            {/* Title */}
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="font-display text-4xl font-bold leading-tight text-white sm:text-5xl md:text-6xl"
+            >
+              The Vibe OS{' '}
+              <span className="bg-gradient-to-r from-cyan-300 via-blue-300 to-violet-300 bg-clip-text text-transparent">
+                Quickstart Guide
+              </span>
+            </motion.h1>
 
-        {/* PDF Viewer */}
-        <PDFViewer
-          url={pdfUrl}
-          htmlFallbackUrl={htmlFallbackUrl}
-          title="Vibe OS"
-          description="AI Music Creation System for engineering neuro-state"
-          onEmailRequest={() => setEmailModalOpen(true)}
-        />
+            {/* Subtitle */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="mx-auto mt-6 max-w-2xl text-lg text-white/70"
+            >
+              The exact framework behind 500+ AI songs. Go from emotional vision to finished track
+              using proven Suno workflows and emotion mapping techniques.
+            </motion.p>
+
+            {/* Stats Row */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="mt-8 flex flex-wrap items-center justify-center gap-6 text-sm text-white/50"
+            >
+              <div className="flex items-center gap-2">
+                <Clock className="h-4 w-4 text-cyan-400" />
+                <span>10 min read</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <BookOpen className="h-4 w-4 text-emerald-400" />
+                <span>15 pages</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Music className="h-4 w-4 text-violet-400" />
+                <span>10 Starter Prompts</span>
+              </div>
+            </motion.div>
+
+            {/* CTA Buttons */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center"
+            >
+              <button
+                onClick={() => setEmailModalOpen(true)}
+                className="group inline-flex items-center gap-3 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 px-8 py-4 text-sm font-semibold text-white shadow-[0_20px_60px_rgba(6,182,212,0.4)] transition-all hover:-translate-y-1 hover:shadow-[0_30px_80px_rgba(6,182,212,0.5)]"
+              >
+                <Mail className="h-5 w-5" />
+                Get Via Email
+                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </button>
+
+              <a
+                href={pdfUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-8 py-4 text-sm font-semibold text-white transition-all hover:border-white/20 hover:bg-white/10"
+              >
+                <Download className="h-5 w-5" />
+                Download Now
+              </a>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* What's Inside Section */}
+        <section className="relative py-16">
+          <div className="absolute inset-0 bg-gradient-to-b from-void via-space/30 to-void" />
+
+          <div className="relative mx-auto max-w-5xl px-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="mb-12 text-center"
+            >
+              <h2 className="font-display text-2xl font-bold text-white sm:text-3xl">
+                What&apos;s Inside the Guide
+              </h2>
+              <p className="mx-auto mt-3 max-w-lg text-white/60">
+                A condensed version of the full Vibe OS system, perfect for getting started
+              </p>
+            </motion.div>
+
+            <div className="grid gap-6 md:grid-cols-3">
+              {[
+                {
+                  icon: Music,
+                  title: '10 Starter Prompts',
+                  description: 'Genre-tested prompts for electronic, ambient, hip-hop, and cinematic styles',
+                  color: 'cyan'
+                },
+                {
+                  icon: Palette,
+                  title: 'Emotion Mapping Intro',
+                  description: 'The basics of translating feelings into sonic cues that resonate',
+                  color: 'violet'
+                },
+                {
+                  icon: Zap,
+                  title: 'Quick-Start Workflow',
+                  description: 'The 5-step ritual to go from idea to finished track in one session',
+                  color: 'emerald'
+                }
+              ].map((item, index) => {
+                const Icon = item.icon
+                const colorClasses = {
+                  cyan: 'from-cyan-500/20 to-cyan-500/5 border-cyan-500/20 text-cyan-300',
+                  violet: 'from-violet-500/20 to-violet-500/5 border-violet-500/20 text-violet-300',
+                  emerald: 'from-emerald-500/20 to-emerald-500/5 border-emerald-500/20 text-emerald-300'
+                }
+
+                return (
+                  <motion.div
+                    key={item.title}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.4, delay: index * 0.1 }}
+                    className={`rounded-2xl border bg-gradient-to-b p-6 ${colorClasses[item.color as keyof typeof colorClasses]}`}
+                  >
+                    <Icon className="mb-4 h-8 w-8" />
+                    <h3 className="mb-2 text-lg font-semibold text-white">{item.title}</h3>
+                    <p className="text-sm text-white/60">{item.description}</p>
+                  </motion.div>
+                )
+              })}
+            </div>
+          </div>
+        </section>
+
+        {/* Preview Section */}
+        <section className="relative py-16">
+          <div className="mx-auto max-w-5xl px-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="mb-8 text-center"
+            >
+              <h2 className="font-display text-2xl font-bold text-white sm:text-3xl">
+                Preview the Guide
+              </h2>
+              <p className="mx-auto mt-3 max-w-lg text-white/60">
+                Read it right here or download for offline access
+              </p>
+            </motion.div>
+
+            {/* Guide Preview Embed */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.98 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="overflow-hidden rounded-3xl border border-white/10 bg-white/[0.02] shadow-2xl"
+            >
+              <div className="flex items-center justify-between border-b border-white/10 bg-white/5 px-6 py-4">
+                <div className="flex items-center gap-3">
+                  <div className="h-3 w-3 rounded-full bg-red-500/70" />
+                  <div className="h-3 w-3 rounded-full bg-yellow-500/70" />
+                  <div className="h-3 w-3 rounded-full bg-green-500/70" />
+                </div>
+                <span className="text-xs text-white/40">vibe-os-guide.html</span>
+              </div>
+              <iframe
+                src={pdfUrl}
+                className="h-[600px] w-full bg-white"
+                title="Vibe OS Guide Preview"
+              />
+            </motion.div>
+
+            {/* Bottom CTA */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+              className="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center"
+            >
+              <button
+                onClick={() => setEmailModalOpen(true)}
+                className="group inline-flex items-center gap-3 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 px-8 py-4 text-sm font-semibold text-white shadow-[0_20px_60px_rgba(6,182,212,0.4)] transition-all hover:-translate-y-1 hover:shadow-[0_30px_80px_rgba(6,182,212,0.5)]"
+              >
+                <Mail className="h-5 w-5" />
+                Get Full Guide Via Email
+              </button>
+
+              <a
+                href={pdfUrl}
+                download="vibe-os-quickstart-guide.html"
+                className="group inline-flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-8 py-4 text-sm font-semibold text-white transition-all hover:border-white/20 hover:bg-white/10"
+              >
+                <Download className="h-5 w-5" />
+                Download HTML
+              </a>
+            </motion.div>
+          </div>
+        </section>
+
+        {/* Upgrade CTA Section */}
+        <section className="relative py-20">
+          <div className="absolute inset-0 bg-gradient-to-b from-void via-space/50 to-void" />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_40%_at_50%_100%,rgba(6,182,212,0.1),transparent_50%)]" />
+
+          <div className="relative mx-auto max-w-4xl px-6 text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-amber-400/30 bg-amber-500/10 px-5 py-2 text-xs font-medium uppercase tracking-[0.15em] text-amber-200">
+                <Sparkles className="h-4 w-4" />
+                Want More?
+              </div>
+
+              <h2 className="font-display text-3xl font-bold text-white sm:text-4xl">
+                Get the Complete Vibe OS System
+              </h2>
+
+              <p className="mx-auto mt-4 max-w-2xl text-white/60">
+                This guide is just the beginning. The full Vibe OS includes 50+ genre prompts,
+                complete emotion mapping system, release playbooks, and production enhancement guides.
+              </p>
+
+              <div className="mt-8 flex flex-wrap justify-center gap-4 text-sm text-white/60">
+                {['50+ Genre Prompts', 'Emotion Mapping System', 'Release Playbooks', 'Production Guide'].map((item) => (
+                  <div key={item} className="flex items-center gap-2">
+                    <CheckCircle className="h-4 w-4 text-emerald-400" />
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div className="mt-10">
+                <Link
+                  href="/products/vibe-os"
+                  className="group inline-flex items-center gap-3 rounded-2xl bg-gradient-to-r from-amber-500 to-orange-500 px-10 py-5 text-lg font-semibold text-white shadow-[0_20px_60px_rgba(245,158,11,0.35)] transition-all hover:-translate-y-1 hover:shadow-[0_30px_80px_rgba(245,158,11,0.45)]"
+                >
+                  Explore Full Vibe OS
+                  <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+                </Link>
+              </div>
+            </motion.div>
+          </div>
+        </section>
       </div>
 
       {/* Email Modal */}
-      <PDFEmailModal
+      <VibeOSEmailModal
         isOpen={emailModalOpen}
         onClose={() => setEmailModalOpen(false)}
-        pdfTitle="Vibe OS"
-        pdfUrl={htmlFallbackUrl || pdfUrl}
-        guideSlug="vibe-os"
+        pdfUrl={pdfUrl}
         sessionId={sessionId}
-        htmlFallbackUrl={htmlFallbackUrl}
       />
-    </div>
+    </main>
   )
 }
