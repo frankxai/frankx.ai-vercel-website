@@ -24,6 +24,7 @@ const navItems: NavItem[] = [
     href: '/products/vibe-os',
     subItems: [
       { name: 'Vibe OS (AI Music)', href: '/products/vibe-os' },
+      { name: 'Creative Rituals', href: '/rituals' },
       { name: 'Prompt Library', href: '/prompt-library' },
       { name: 'Music Lab', href: '/music-lab' },
       { name: 'Templates', href: '/templates' },
@@ -46,6 +47,7 @@ const navItems: NavItem[] = [
     href: '/resources',
     subItems: [
       { name: "The Creator's Soulbook", href: '/soulbook' },
+      { name: 'Creative Rituals', href: '/rituals' },
       { name: 'Workshops', href: '/workshops' },
       { name: 'All Resources', href: '/resources' },
       { name: 'Prompt Library', href: '/prompt-library' },

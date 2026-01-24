@@ -131,6 +131,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/intelligence-atlas',
     '/golden-age',
     '/golden-age/chapter-01-when-creation-calls',
+    '/rituals',
   ]
 
   // AI and agent pages
