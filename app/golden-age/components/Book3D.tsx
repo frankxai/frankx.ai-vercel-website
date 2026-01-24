@@ -72,7 +72,6 @@ function PremiumBook() {
   const spineDarkColor = new THREE.Color('#5D3A1A');
   const goldColor = new THREE.Color('#D4AF37');
   const pageColor = new THREE.Color('#FFF8E7');
-  const pageEdgeColor = new THREE.Color('#E8D5B5');
 
   useFrame(({ clock, pointer }) => {
     if (!groupRef.current) return;

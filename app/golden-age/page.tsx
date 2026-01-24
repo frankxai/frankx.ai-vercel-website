@@ -2,9 +2,8 @@
 
 import { lazy, Suspense } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { Book, ArrowRight, Clock, Sparkles, Music, Zap, Stars, Library, BookOpen } from 'lucide-react';
+import { Book, ArrowRight, Clock, Sparkles, Music, Zap, Stars, Library } from 'lucide-react';
 import { bookMetadata, chapters, essays } from './metadata';
 import { EmailSignup } from '@/components/email-signup';
 
