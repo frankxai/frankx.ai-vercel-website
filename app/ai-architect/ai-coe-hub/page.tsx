@@ -363,7 +363,6 @@ export default function AICoEHubPage() {
                     resource.category === 'code' ? 'bg-green-500/10 text-green-400' :
                     'bg-amber-500/10 text-amber-400'
                   }`}>
-                    {/* @ts-expect-error - Dynamic icon component */}
                     <resource.icon className="w-6 h-6" />
                   </div>
                   {resource.external && (
