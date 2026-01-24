@@ -76,6 +76,24 @@ function ProductsBackground() {
 // Product data - structured for premium display
 const products = [
   {
+    id: 'suno-prompt-library',
+    icon: Music,
+    name: 'Suno Prompt Library',
+    tagline: '100+ Battle-Tested Prompts',
+    description:
+      'Skip the prompt guessing game. Get 100+ prompts that powered 500+ tracks across every genre.',
+    status: 'available',
+    href: '/products/suno-prompt-library',
+    color: 'emerald',
+    highlights: [
+      '100+ prompts tested across 500+ generations',
+      '12 genre categories with mood and energy filters',
+      'Bonus modifier library for tempo, vocals, and style',
+    ],
+    featured: true,
+    price: '$27',
+  },
+  {
     id: 'creative-ai-toolkit',
     icon: Sparkles,
     name: 'Creative AI Toolkit',
@@ -100,13 +118,12 @@ const products = [
       'Prompt packs, emotion mapping, and production checklists for Suno creators.',
     status: 'coming-soon',
     href: '/products/vibe-os',
-    color: 'emerald',
+    color: 'cyan',
     highlights: [
       '50+ genre-specific prompts (electronic, hip-hop, ambient, cinematic)',
       'Emotion-to-sound mapping system',
       'Production enhancement and mastering guide',
     ],
-    featured: true,
   },
   {
     id: 'creation-chronicles',
@@ -316,13 +333,22 @@ export default function ProductsPage() {
                         {/* Status and CTA */}
                         <div className="flex items-center justify-between border-t border-white/5 pt-6">
                           <div className="flex items-center gap-2">
-                            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 text-sm font-medium">
-                              <Sparkles className="w-3.5 h-3.5" />
-                              Coming Soon
-                            </span>
+                            {product.status === 'available' ? (
+                              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-sm font-medium">
+                                <CheckCircle2 className="w-3.5 h-3.5" />
+                                {(product as typeof product & { price?: string }).price || 'Available'}
+                              </span>
+                            ) : (
+                              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 text-sm font-medium">
+                                <Sparkles className="w-3.5 h-3.5" />
+                                Coming Soon
+                              </span>
+                            )}
                           </div>
                           <div className="flex items-center gap-2 text-slate-400 transition-colors group-hover:text-white">
-                            <span className="text-sm font-medium">Join Waitlist</span>
+                            <span className="text-sm font-medium">
+                              {product.status === 'available' ? 'Get Access' : 'Join Waitlist'}
+                            </span>
                             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                           </div>
                         </div>

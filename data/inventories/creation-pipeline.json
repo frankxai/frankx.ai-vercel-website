@@ -62,19 +62,22 @@
         "title": "Complete Suno Prompt Engineering Guide",
         "brand": "frankx",
         "description": "Deep-dive tutorial on crafting Suno prompts based on 500+ sessions",
-        "status": "idea",
+        "status": "published",
         "priority": "high",
         "category": "tutorial",
-        "relatedProduct": "vibe-os"
+        "relatedProduct": "vibe-os",
+        "publishedUrl": "https://frankx.ai/blog/suno-prompt-engineering-complete-guide",
+        "publishedDate": "2026-01-24"
       },
       {
         "id": "backlog-article-002",
         "title": "Building AI Agent Systems: Enterprise Patterns",
         "brand": "ai-architect-academy",
         "description": "Technical deep-dive on agent orchestration for enterprise",
-        "status": "idea",
+        "status": "draft",
         "priority": "medium",
-        "category": "technical"
+        "category": "technical",
+        "draftPath": "content/drafts/ai-architect-academy/tutorials/enterprise-ai-agent-patterns.mdx"
       },
       {
         "id": "backlog-article-003",
@@ -116,10 +119,12 @@
         "title": "Suno Prompt Library Pack",
         "brand": "frankx",
         "description": "100+ battle-tested Suno prompts categorized by genre",
-        "status": "idea",
+        "status": "page-created",
         "priority": "high",
         "pricing": "$27",
-        "relatedProduct": "vibe-os"
+        "relatedProduct": "vibe-os",
+        "productPage": "/products/suno-prompt-library",
+        "nextStep": "Create PDF content and Gumroad listing"
       },
       {
         "id": "backlog-product-002",

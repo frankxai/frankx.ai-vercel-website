@@ -313,6 +313,91 @@
   text-decoration: none;
 }
 
+/* =========================================================================
+   PREMIUM INTERACTIONS - Smooth hovers, rounded edges, micro-interactions
+   ========================================================================= */
+
+/* Premium button hover with scale and glow */
+.btn-premium {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-premium::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.btn-premium:hover {
+  transform: translateY(-2px);
+}
+
+.btn-premium:hover::before {
+  opacity: 1;
+}
+
+.btn-premium:active {
+  transform: translateY(0);
+}
+
+/* Smooth rounded hover for nav items */
+.nav-item-premium {
+  border-radius: 0.75rem;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-item-premium:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 1rem;
+}
+
+/* Premium card hover with lift effect */
+.card-lift {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-lift:hover {
+  transform: translateY(-4px);
+  box-shadow:
+    0 20px 40px -12px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+/* Focus ring - Premium amber */
+.focus-ring-premium:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 2px var(--bg-void),
+    0 0 0 4px rgba(245, 158, 11, 0.5);
+}
+
+/* Premium serif italic - Playfair Display */
+.font-serif-italic {
+  font-family: var(--font-serif), 'Playfair Display', Georgia, serif;
+  font-style: italic;
+}
+
+/* Golden Age specific styles */
+.golden-age-prose blockquote {
+  position: relative;
+}
+
+.golden-age-prose blockquote::before {
+  content: '"';
+  position: absolute;
+  left: 1rem;
+  top: 0.5rem;
+  font-size: 4rem;
+  font-family: var(--font-serif);
+  color: rgba(245, 158, 11, 0.2);
+  line-height: 1;
+}
+
 /* Accessibility: Respect reduced motion preferences */
 @media (prefers-reduced-motion: reduce) {
   *,
