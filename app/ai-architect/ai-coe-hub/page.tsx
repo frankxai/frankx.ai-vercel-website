@@ -357,7 +357,7 @@ export default function AICoEHubPage() {
 
           {/* Resource Cards */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {filteredResources.map((resource, index) => (
+            {filteredResources.map((resource: ResourceCard, index: number) => (
               <Link
                 key={index}
                 href={resource.href}
