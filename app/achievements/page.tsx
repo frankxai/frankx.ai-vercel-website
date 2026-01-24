@@ -1,11 +1,13 @@
 import { ArrowRight, Award, BookOpen, Building2, Calendar, CheckCircle2, Globe, Lightbulb, Music, Sparkles, Target, TrendingUp, Users, Zap } from 'lucide-react'
 import Link from 'next/link'
+import Image from 'next/image'
 
 import { createMetadata } from '@/lib/seo'
 
 const majorAchievements = [
   {
     icon: Building2,
+    icon3D: '/images/3d/premium/computer-dynamic.webp',
     title: 'Enterprise AI Transformations',
     metric: '200+',
     description: 'Successful AI implementations across Fortune 500 companies and high-growth enterprises',
@@ -19,6 +21,7 @@ const majorAchievements = [
   },
   {
     icon: Music,
+    icon3D: '/images/3d/premium/headphone-dynamic.webp',
     title: 'Vibe OS Implementations',
     metric: '500+',
     description: 'AI music creation systems deployed across creative workflows',
@@ -32,6 +35,7 @@ const majorAchievements = [
   },
   {
     icon: Sparkles,
+    icon3D: '/images/3d/premium/star-dynamic.webp',
     title: 'Conscious AI Framework',
     metric: '100+',
     description: 'Organizations adopting human-centered AI principles and practices',
@@ -45,6 +49,7 @@ const majorAchievements = [
   },
   {
     icon: Users,
+    icon3D: '/images/3d/premium/trophy-dynamic.webp',
     title: 'Teams Transformed',
     metric: '10K+',
     description: 'Professionals trained in conscious AI practices and strategic implementation',
@@ -112,6 +117,7 @@ const keyMilestones = [
 const impactMetrics = [
   {
     icon: TrendingUp,
+    icon3D: '/images/3d/premium/chart-dynamic.webp',
     title: 'Revenue Impact',
     value: '$50M+',
     description: 'Total documented revenue improvements for client organizations',
@@ -119,6 +125,7 @@ const impactMetrics = [
   },
   {
     icon: Zap,
+    icon3D: '/images/3d/premium/flash-dynamic.webp',
     title: 'Efficiency Gains',
     value: '60%',
     description: 'Average productivity improvement across AI implementations',
@@ -126,6 +133,7 @@ const impactMetrics = [
   },
   {
     icon: Target,
+    icon3D: '/images/3d/premium/target-dynamic.webp',
     title: 'Success Rate',
     value: '95%',
     description: 'Client projects achieving or exceeding stated objectives',
@@ -133,6 +141,7 @@ const impactMetrics = [
   },
   {
     icon: Globe,
+    icon3D: '/images/3d/premium/rocket-dynamic.webp',
     title: 'Global Reach',
     value: '25+',
     description: 'Countries with active FrankX.AI implementations',
@@ -203,7 +212,19 @@ export default function AchievementsPage() {
           {/* Impact Metrics */}
           <section className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
             {impactMetrics.map((metric) => (
-              <article key={metric.title} className="text-center p-8 rounded-3xl border border-white/10 bg-white/5 backdrop-blur">
+              <article key={metric.title} className="group relative text-center p-8 rounded-3xl border border-white/10 bg-white/5 backdrop-blur overflow-hidden">
+                {/* Floating 3D Icon */}
+                {metric.icon3D && (
+                  <div className="absolute -top-4 -right-4 w-20 h-20 opacity-40 group-hover:opacity-70 transition-opacity duration-500 pointer-events-none animate-float-slow">
+                    <Image
+                      src={metric.icon3D}
+                      alt=""
+                      fill
+                      className="object-contain drop-shadow-xl"
+                      sizes="80px"
+                    />
+                  </div>
+                )}
                 <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-yellow-500/20 to-orange-500/20 flex items-center justify-center mx-auto mb-6">
                   <metric.icon className="w-8 h-8 text-yellow-400" />
                 </div>
@@ -231,7 +252,19 @@ export default function AchievementsPage() {
 
             <div className="grid gap-8 lg:grid-cols-2">
               {majorAchievements.map((achievement) => (
-                <article key={achievement.title} className="rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur">
+                <article key={achievement.title} className="group relative rounded-3xl border border-white/10 bg-white/5 p-8 backdrop-blur overflow-hidden">
+                  {/* Floating 3D Icon */}
+                  {achievement.icon3D && (
+                    <div className="absolute -top-6 -right-6 w-28 h-28 opacity-30 group-hover:opacity-60 transition-opacity duration-500 pointer-events-none animate-float">
+                      <Image
+                        src={achievement.icon3D}
+                        alt=""
+                        fill
+                        className="object-contain drop-shadow-2xl"
+                        sizes="112px"
+                      />
+                    </div>
+                  )}
                   <div className="flex items-start gap-6">
                     <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-cyan-500/20 to-blue-500/20 flex items-center justify-center flex-shrink-0">
                       <achievement.icon className="w-8 h-8 text-cyan-400" />

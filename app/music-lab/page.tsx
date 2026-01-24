@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import Image from 'next/image'
 import {
   Play,
   ExternalLink,
@@ -58,6 +59,34 @@ function MusicLabBackground() {
 function HeroSection() {
   return (
     <section className="relative pt-32 pb-20 px-6">
+      {/* Floating Hero 3D Icons */}
+      <motion.div
+        className="absolute top-24 right-[15%] w-24 h-24 opacity-60 pointer-events-none hidden lg:block"
+        animate={{ y: [0, -15, 0], rotate: [0, 5, 0] }}
+        transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
+      >
+        <Image
+          src="/images/3d/premium/headphone-dynamic.webp"
+          alt=""
+          fill
+          className="object-contain drop-shadow-2xl"
+          sizes="96px"
+        />
+      </motion.div>
+      <motion.div
+        className="absolute top-40 left-[10%] w-16 h-16 opacity-40 pointer-events-none hidden lg:block"
+        animate={{ y: [0, -10, 0], rotate: [0, -3, 0] }}
+        transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
+      >
+        <Image
+          src="/images/3d/premium/star-dynamic.webp"
+          alt=""
+          fill
+          className="object-contain drop-shadow-xl"
+          sizes="64px"
+        />
+      </motion.div>
+
       <div className="max-w-5xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left - Text */}
@@ -181,16 +210,19 @@ function WhatIsSection() {
           {[
             {
               icon: FileAudio,
+              icon3D: '/images/3d/premium/headphone-dynamic.webp',
               title: 'Full songs in minutes',
               description: 'Generate complete tracks with vocals, instruments, and professional mixing—not just loops or samples.',
             },
             {
               icon: Layers,
+              icon3D: '/images/3d/premium/tools-dynamic.webp',
               title: 'No technical skills needed',
               description: 'If you can describe music in words, you can create it. No DAW, no instruments, no music theory required.',
             },
             {
               icon: Target,
+              icon3D: '/images/3d/premium/star-dynamic.webp',
               title: 'Commercial-ready output',
               description: 'Modern AI music tools produce release-quality audio you can actually use for content, products, or personal enjoyment.',
             },
@@ -201,8 +233,20 @@ function WhatIsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="p-6 rounded-2xl bg-white/[0.02] border border-white/10"
+              className="group relative p-6 rounded-2xl bg-white/[0.02] border border-white/10 overflow-hidden"
             >
+              {/* Floating 3D Icon */}
+              {item.icon3D && (
+                <div className="absolute -top-3 -right-3 w-16 h-16 opacity-40 group-hover:opacity-70 transition-opacity duration-500 pointer-events-none animate-float-slow">
+                  <Image
+                    src={item.icon3D}
+                    alt=""
+                    fill
+                    className="object-contain drop-shadow-lg"
+                    sizes="64px"
+                  />
+                </div>
+              )}
               <div className="w-12 h-12 rounded-xl bg-pink-500/10 flex items-center justify-center mb-4">
                 <item.icon className="w-6 h-6 text-pink-400" />
               </div>

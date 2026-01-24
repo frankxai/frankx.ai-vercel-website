@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import Image from 'next/image'
 import {
   BookOpen,
   Play,
@@ -38,6 +39,7 @@ type Course = {
   isBestseller: boolean
   href: string
   icon: typeof BookOpen
+  icon3D?: string
   color: string
   gradient: string
 }
@@ -61,6 +63,7 @@ const courses: Course[] = [
     isBestseller: true,
     href: '/courses/conscious-ai-foundations',
     icon: BookOpen,
+    icon3D: '/images/3d/premium/notebook-dynamic.webp',
     color: 'text-emerald-400',
     gradient: 'from-emerald-500/20 to-emerald-500/5',
   },
@@ -79,6 +82,7 @@ const courses: Course[] = [
     isBestseller: false,
     href: '/courses/prompt-engineering-mastery',
     icon: Code2,
+    icon3D: '/images/3d/premium/chat-dynamic.webp',
     color: 'text-cyan-400',
     gradient: 'from-cyan-500/20 to-cyan-500/5',
   },
@@ -97,6 +101,7 @@ const courses: Course[] = [
     isBestseller: true,
     href: '/courses/ai-business-strategy',
     icon: Zap,
+    icon3D: '/images/3d/premium/chart-dynamic.webp',
     color: 'text-violet-400',
     gradient: 'from-violet-500/20 to-violet-500/5',
   },
@@ -115,6 +120,7 @@ const courses: Course[] = [
     isBestseller: false,
     href: '/courses/agent-architecture-deep-dive',
     icon: Shield,
+    icon3D: '/images/3d/premium/gear-dynamic.webp',
     color: 'text-amber-400',
     gradient: 'from-amber-500/20 to-amber-500/5',
   },
@@ -133,6 +139,7 @@ const courses: Course[] = [
     isBestseller: false,
     href: '/courses/ai-music-creation',
     icon: Music,
+    icon3D: '/images/3d/premium/headphone-dynamic.webp',
     color: 'text-pink-400',
     gradient: 'from-pink-500/20 to-pink-500/5',
   },
@@ -202,6 +209,19 @@ function CourseCard({ course, index }: { course: Course; index: number }) {
       >
         {/* Gradient background on hover */}
         <div className={`absolute inset-0 bg-gradient-to-br ${course.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
+
+        {/* Floating 3D Icon */}
+        {course.icon3D && (
+          <div className="absolute -top-4 -right-4 w-20 h-20 opacity-40 group-hover:opacity-70 transition-opacity duration-500 pointer-events-none animate-float-slow">
+            <Image
+              src={course.icon3D}
+              alt=""
+              fill
+              className="object-contain drop-shadow-xl"
+              sizes="80px"
+            />
+          </div>
+        )}
 
         <div className="relative">
           {/* Header */}
