@@ -204,12 +204,14 @@ export interface ArcaneaLore extends BaseContentItem {
   firstAppearance?: string;      // Where this lore was introduced
 }
 
-export interface ArcaneaImplementation extends BaseContentItem {
+export type ArcaneaImplementationStatus = 'active' | 'archived' | 'planned';
+
+export interface ArcaneaImplementation extends Omit<BaseContentItem, 'status'> {
   type: 'implementation';
   repoUrl: string;
   techStack: string[];
   implementationType: 'game' | 'app' | 'website' | 'api' | 'tool';
-  status: 'active' | 'archived' | 'planned';
+  status: ArcaneaImplementationStatus;
   contributors?: string[];
   stars?: number;
   forks?: number;
