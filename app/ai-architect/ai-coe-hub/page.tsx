@@ -201,12 +201,17 @@ const decisionMatrix = [
   }
 ]
 
+function filterResources(category: CategoryFilter): ResourceCard[] {
+  if (category === 'all') {
+    return resources
+  }
+  return resources.filter((r): r is ResourceCard => r.category === category)
+}
+
 export default function AICoEHubPage() {
   const [activeCategory, setActiveCategory] = useState<CategoryFilter>('all')
 
-  const filteredResources = activeCategory === 'all'
-    ? resources
-    : resources.filter(r => r.category === activeCategory)
+  const filteredResources = filterResources(activeCategory)
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
