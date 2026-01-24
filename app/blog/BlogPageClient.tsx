@@ -52,49 +52,55 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
   const regularPosts = filteredPosts.filter((post) => !post.featured)
 
   return (
-    <main className="min-h-screen bg-void text-white">
+    <main className="min-h-screen bg-void text-white grain-overlay">
       {/* Hero with Aurora Background */}
       <section className="relative pt-32 pb-16 px-6 overflow-hidden">
         {/* Aurora Background Effect */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl animate-pulse" />
-          <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
-          <div className="absolute bottom-0 left-1/2 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-2000" />
+          <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-emerald-500/10 rounded-full blur-[100px] animate-pulse" />
+          <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[100px] animate-pulse delay-1000" />
+          <div className="absolute bottom-0 left-1/2 w-[600px] h-[600px] bg-purple-500/05 rounded-full blur-[120px] animate-pulse delay-2000" />
         </div>
 
-        <div className="max-w-6xl mx-auto relative">
+        <div className="max-w-6xl mx-auto relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="max-w-3xl"
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-6">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-6 backdrop-blur-sm">
               <Sparkles className="w-4 h-4 text-emerald-400" />
               <span className="text-xs font-medium text-emerald-400">Creation Chronicles</span>
             </div>
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 tracking-tight leading-tight">
+            <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 tracking-tight leading-[1.1]">
               What I'm building.
-              <span className="block mt-2 bg-gradient-to-r from-white/90 to-white/40 bg-clip-text text-transparent">
+              <span className="block mt-2 bg-gradient-to-r from-white via-white/90 to-white/40 bg-clip-text text-transparent">
                 What's working.
               </span>
             </h1>
-            <p className="text-lg md:text-xl text-white/60 leading-relaxed max-w-2xl">
+            <p className="text-lg md:text-xl text-white/60 leading-relaxed max-w-2xl font-light">
               Weekly insights on AI systems, creative workflows, and building in public. From Oracle architecture to Suno music production.
             </p>
 
             {/* Stats */}
-            <div className="flex items-center gap-6 mt-8">
-              <div className="flex items-center gap-2">
-                <TrendingUp className="w-4 h-4 text-emerald-400" />
-                <span className="text-sm text-white/50">
-                  <span className="font-semibold text-white">{posts.length}</span> articles
-                </span>
+            <div className="flex items-center gap-8 mt-10">
+              <div className="flex items-center gap-3">
+                <div className="p-2 rounded-lg bg-emerald-500/10">
+                  <TrendingUp className="w-5 h-5 text-emerald-400" />
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-xl font-display font-bold text-white leading-none">{posts.length}</span>
+                  <span className="text-xs text-white/40 uppercase tracking-wider font-medium">Articles</span>
+                </div>
               </div>
-              <div className="flex items-center gap-2">
-                <Filter className="w-4 h-4 text-cyan-400" />
-                <span className="text-sm text-white/50">
-                  <span className="font-semibold text-white">{categories.length}</span> categories
-                </span>
+              <div className="flex items-center gap-3">
+                <div className="p-2 rounded-lg bg-cyan-500/10">
+                  <Filter className="w-5 h-5 text-cyan-400" />
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-xl font-display font-bold text-white leading-none">{categories.length}</span>
+                  <span className="text-xs text-white/40 uppercase tracking-wider font-medium">Categories</span>
+                </div>
               </div>
             </div>
           </motion.div>
@@ -102,9 +108,9 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
       </section>
 
       {/* Category Dropdown & Filter Section */}
-      <section className="pb-8 px-6 sticky top-20 z-40 bg-void/80 backdrop-blur-xl border-b border-white/5">
+      <section className="pb-8 px-6 sticky top-20 z-40">
         <div className="max-w-6xl mx-auto">
-          <div className="flex items-center justify-between py-4">
+          <div className="flex items-center justify-between py-4 px-6 rounded-2xl bg-void/80 backdrop-blur-xl border border-white/10 shadow-glass">
             <CategoryDropdown
               categories={categories}
               selectedCategory={selectedCategory}
@@ -118,7 +124,7 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
               animate={{ opacity: 1, x: 0 }}
               className="hidden md:flex items-center gap-3"
             >
-              <span className="text-sm text-white/40">
+              <span className="text-sm font-medium text-white/40">
                 {filteredPosts.length} {filteredPosts.length === 1 ? 'article' : 'articles'}
               </span>
             </motion.div>
@@ -132,7 +138,7 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
           <div className="max-w-6xl mx-auto">
             <div className="flex items-center gap-2 mb-8">
               <Sparkles className="w-4 h-4 text-amber-400" />
-              <h2 className="text-sm font-medium uppercase tracking-[0.2em] text-white/60">
+              <h2 className="font-display text-sm font-semibold uppercase tracking-[0.2em] text-white/60">
                 Featured Articles
               </h2>
             </div>
@@ -157,7 +163,7 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
         <div className="max-w-6xl mx-auto">
           {selectedCategory && (
             <div className="flex items-center gap-2 mb-8">
-              <h2 className="text-sm font-medium uppercase tracking-[0.2em] text-white/60">
+              <h2 className="font-display text-sm font-semibold uppercase tracking-[0.2em] text-white/60">
                 {selectedCategory}
               </h2>
               <span className="text-xs text-white/30">
@@ -168,7 +174,7 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
 
           {!selectedCategory && regularPosts.length > 0 && (
             <div className="flex items-center gap-2 mb-8">
-              <h2 className="text-sm font-medium uppercase tracking-[0.2em] text-white/60">
+              <h2 className="font-display text-sm font-semibold uppercase tracking-[0.2em] text-white/60">
                 All Articles
               </h2>
               <span className="text-xs text-white/30">
@@ -181,15 +187,15 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="py-20 text-center"
+              className="py-24 text-center card-premium rounded-3xl"
             >
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-white/5 border border-white/10 mb-6">
-                <Filter className="w-6 h-6 text-white/30" />
+              <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-white/5 border border-white/10 mb-6">
+                <Filter className="w-8 h-8 text-white/30" />
               </div>
-              <p className="text-white/50 mb-4 text-lg">No articles found in this category.</p>
+              <p className="text-white/50 mb-6 text-lg font-light">No articles found in this category.</p>
               <button
                 onClick={() => setSelectedCategory(null)}
-                className="text-emerald-400 hover:text-emerald-300 text-sm font-medium inline-flex items-center gap-2 group"
+                className="group relative inline-flex items-center gap-2 px-6 py-3 rounded-full bg-emerald-500/10 text-emerald-400 font-medium hover:bg-emerald-500/20 transition-all"
               >
                 View all articles
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -218,25 +224,33 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
       </section>
 
       {/* Newsletter CTA */}
-      <section className="py-16 px-6 border-t border-white/5">
-        <div className="max-w-xl mx-auto text-center">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-6">
-            <Sparkles className="w-4 h-4 text-emerald-400" />
-            <span className="text-sm text-emerald-400">Weekly Insights</span>
+      <section className="py-24 px-6 border-t border-white/5 relative overflow-hidden">
+        {/* Glow effect */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-emerald-500/5 rounded-full blur-[80px] pointer-events-none" />
+        
+        <div className="max-w-4xl mx-auto relative z-10">
+          <div className="card-premium rounded-3xl p-8 md:p-12 text-center backdrop-blur-xl border border-white/10">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-8">
+              <Sparkles className="w-4 h-4 text-emerald-400" />
+              <span className="text-sm font-medium text-emerald-400">Weekly Insights</span>
+            </div>
+            
+            <h2 className="font-display text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 tracking-tight">
+              Join Creation Chronicles
+            </h2>
+            <p className="text-lg text-white/50 mb-10 max-w-xl mx-auto leading-relaxed">
+              Get weekly insights on AI, creativity, and building in public. 
+              Straight to your inbox, no noise.
+            </p>
+            
+            <Link
+              href="/free-playbook"
+              className="group inline-flex items-center gap-3 px-8 py-4 bg-white text-black rounded-full font-semibold text-lg hover:bg-white/90 hover:scale-[1.02] hover:shadow-[0_0_30px_rgba(255,255,255,0.3)] transition-all duration-300"
+            >
+              Get Free Playbooks
+              <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+            </Link>
           </div>
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
-            Join Creation Chronicles
-          </h2>
-          <p className="text-white/50 mb-8">
-            Get weekly insights on AI, creativity, and building in public.
-          </p>
-          <Link
-            href="/free-playbook"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black rounded-full font-semibold hover:bg-white/90 transition-all"
-          >
-            Get Free Playbooks
-            <ArrowRight className="w-4 h-4" />
-          </Link>
         </div>
       </section>
     </main>

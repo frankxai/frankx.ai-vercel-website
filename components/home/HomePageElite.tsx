@@ -864,23 +864,23 @@ function FeaturedResources() {
 
 const featuredArtworks = [
   {
-    src: '/images/ai-art/generated-2026-01-21T10-05-06-577Z-s5e43g.png',
-    title: 'Neural Synthesis I',
+    src: '/images/ai-art/neural-synthesis-ii.png',
+    title: 'Neural Synthesis II',
     category: 'Abstract',
   },
   {
-    src: '/images/ai-art/generated-2026-01-21T10-05-26-229Z-jajczn.png',
-    title: 'Consciousness Wave',
+    src: '/images/ai-art/consciousness-wave-ii.png',
+    title: 'Consciousness Wave II',
     category: 'Consciousness',
   },
   {
-    src: '/images/ai-art/generated-2026-01-21T10-05-42-484Z-c75nch.png',
-    title: 'Digital Aurora',
+    src: '/images/ai-art/digital-aurora-ii.png',
+    title: 'Digital Aurora II',
     category: 'Nature Tech',
   },
   {
-    src: '/images/ai-art/generated-2025-11-20T19-29-22-071Z-uz2q95.png',
-    title: 'First Light',
+    src: '/images/ai-art/first-light-ii.png',
+    title: 'First Light II',
     category: 'Cosmic',
   },
 ]
