@@ -357,7 +357,9 @@ export default function AICoEHubPage() {
 
           {/* Resource Cards */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {filteredResources.map((resource: ResourceCard, index: number) => (
+            {filteredResources.map((resource: ResourceCard, index: number) => {
+              const IconComponent = resource.icon
+              return (
               <Link
                 key={index}
                 href={resource.href}
@@ -371,7 +373,7 @@ export default function AICoEHubPage() {
                     resource.category === 'code' ? 'bg-green-500/10 text-green-400' :
                     'bg-amber-500/10 text-amber-400'
                   }`}>
-                    <resource.icon className="w-6 h-6" />
+                    <IconComponent className="w-6 h-6" />
                   </div>
                   {resource.external && (
                     <ArrowTopRightOnSquareIcon className="w-4 h-4 text-slate-500 group-hover:text-amber-400 transition-colors" />
@@ -384,7 +386,8 @@ export default function AICoEHubPage() {
                   {resource.description}
                 </p>
               </Link>
-            ))}
+              )
+            })}
           </div>
         </div>
       </section>
