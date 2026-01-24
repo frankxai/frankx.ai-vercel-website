@@ -1,7 +1,8 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
+import { useState, useEffect, useMemo } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { ChevronDown, X } from 'lucide-react'
 import { cn } from '@/lib/utils'
 
 interface CategoryDropdownProps {
@@ -12,85 +13,25 @@ interface CategoryDropdownProps {
   getCategoryCount: (category: string) => number
 }
 
-// Category styling with distinctive colors and gradients
-const categoryStyles: Record<string, {
-  icon: string
-  gradient: string
-  glow: string
-  accent: string
-}> = {
-  'AI & Technology': {
-    icon: '🤖',
-    gradient: 'from-cyan-400 via-cyan-500 to-blue-500',
-    glow: 'shadow-cyan-500/25',
-    accent: 'text-cyan-400'
-  },
-  'AI & Consciousness': {
-    icon: '🧠',
-    gradient: 'from-purple-400 via-fuchsia-500 to-pink-500',
-    glow: 'shadow-purple-500/25',
-    accent: 'text-purple-400'
-  },
-  'Music Production': {
-    icon: '🎵',
-    gradient: 'from-orange-400 via-amber-500 to-yellow-500',
-    glow: 'shadow-orange-500/25',
-    accent: 'text-orange-400'
-  },
-  'Creator Systems': {
-    icon: '⚡',
-    gradient: 'from-emerald-400 via-green-500 to-teal-500',
-    glow: 'shadow-emerald-500/25',
-    accent: 'text-emerald-400'
-  },
-  'Personal Development': {
-    icon: '🌱',
-    gradient: 'from-green-400 via-lime-500 to-emerald-500',
-    glow: 'shadow-green-500/25',
-    accent: 'text-green-400'
-  },
-  'Enterprise AI': {
-    icon: '🏢',
-    gradient: 'from-blue-400 via-indigo-500 to-violet-500',
-    glow: 'shadow-blue-500/25',
-    accent: 'text-blue-400'
-  },
+// Category styling - only define for main categories
+const categoryStyles: Record<string, { icon: string; color: string }> = {
+  'Creator Systems': { icon: '⚡', color: 'text-emerald-400 bg-emerald-500/10 border-emerald-500/20' },
+  'Intelligence Dispatches': { icon: '📡', color: 'text-cyan-400 bg-cyan-500/10 border-cyan-500/20' },
+  'Enterprise AI': { icon: '🏢', color: 'text-blue-400 bg-blue-500/10 border-blue-500/20' },
+  'AI Architecture': { icon: '🔧', color: 'text-violet-400 bg-violet-500/10 border-violet-500/20' },
+  'Workshops': { icon: '🎓', color: 'text-amber-400 bg-amber-500/10 border-amber-500/20' },
+  'AI & Consciousness': { icon: '🧠', color: 'text-purple-400 bg-purple-500/10 border-purple-500/20' },
 }
 
 const getStyle = (category: string) => {
   return categoryStyles[category] || {
     icon: '📝',
-    gradient: 'from-white/40 via-white/60 to-white/40',
-    glow: 'shadow-white/10',
-    accent: 'text-white'
+    color: 'text-white/60 bg-white/5 border-white/10'
   }
 }
 
-// Stagger animation variants
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.06,
-      delayChildren: 0.1
-    }
-  }
-}
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20, scale: 0.9 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: {
-      type: 'spring',
-      stiffness: 400,
-      damping: 25
-    }
-  }
-}
+// Minimum posts to be a "primary" category
+const PRIMARY_THRESHOLD = 3
 
 export default function CategoryDropdown({
   categories,
@@ -100,223 +41,154 @@ export default function CategoryDropdown({
   getCategoryCount,
 }: CategoryDropdownProps) {
   const [mounted, setMounted] = useState(false)
+  const [showMore, setShowMore] = useState(false)
 
   useEffect(() => {
     setMounted(true)
   }, [])
 
+  // Sort categories by post count and split into primary/secondary
+  const { primaryCategories, secondaryCategories } = useMemo(() => {
+    const sorted = [...categories].sort((a, b) => getCategoryCount(b) - getCategoryCount(a))
+    const primary = sorted.filter(cat => getCategoryCount(cat) >= PRIMARY_THRESHOLD)
+    const secondary = sorted.filter(cat => getCategoryCount(cat) < PRIMARY_THRESHOLD)
+    return { primaryCategories: primary, secondaryCategories: secondary }
+  }, [categories, getCategoryCount])
+
   if (!mounted) {
+    return <div className="h-12 bg-white/5 rounded-xl animate-pulse" />
+  }
+
+  const CategoryPill = ({
+    category,
+    isAll = false
+  }: {
+    category: string | null
+    isAll?: boolean
+  }) => {
+    const isSelected = isAll ? !selectedCategory : selectedCategory === category
+    const count = isAll ? totalPosts : getCategoryCount(category!)
+    const style = isAll ? { icon: '✨', color: 'text-white bg-white/10 border-white/20' } : getStyle(category!)
+
     return (
-      <div className="h-14 bg-white/5 rounded-2xl animate-pulse" />
+      <motion.button
+        onClick={() => onSelectCategory(isAll ? null : (isSelected ? null : category))}
+        className={cn(
+          'group relative flex items-center gap-2 px-3 py-2 rounded-lg border transition-all duration-200',
+          'focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30',
+          isSelected
+            ? cn(style.color, 'border-current/30')
+            : 'bg-transparent border-white/10 hover:bg-white/5 hover:border-white/20'
+        )}
+        whileHover={{ scale: 1.02 }}
+        whileTap={{ scale: 0.98 }}
+      >
+        <span className="text-sm">{style.icon}</span>
+        <span className={cn(
+          'text-sm font-medium',
+          isSelected ? 'text-white' : 'text-white/60 group-hover:text-white/80'
+        )}>
+          {isAll ? 'All' : category}
+        </span>
+        <span className={cn(
+          'text-xs px-1.5 py-0.5 rounded-md',
+          isSelected ? 'bg-white/20 text-white' : 'bg-white/5 text-white/40'
+        )}>
+          {count}
+        </span>
+      </motion.button>
     )
   }
 
   return (
     <div className="w-full">
-      {/* Section Label */}
-      <motion.div
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4 }}
-        className="flex items-center gap-2 mb-4"
-      >
-        <div className="h-px flex-1 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-        <span className="text-xs font-medium tracking-[0.2em] uppercase text-white/40">
-          Explore by Topic
-        </span>
-        <div className="h-px flex-1 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-      </motion.div>
+      {/* Primary Categories - Always Visible */}
+      <div className="flex flex-wrap items-center justify-center gap-2">
+        {/* All Button */}
+        <CategoryPill category={null} isAll />
 
-      {/* Category Pills */}
-      <motion.div
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
-        className="flex flex-wrap justify-center gap-2 sm:gap-3"
-      >
-        {/* All Categories Pill */}
-        <motion.button
-          variants={itemVariants}
-          onClick={() => onSelectCategory(null)}
-          className={cn(
-            'group relative px-4 sm:px-5 py-2.5 sm:py-3 rounded-full',
-            'transition-all duration-300',
-            'focus:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A0F1E]'
-          )}
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-        >
-          {/* Background */}
-          <div className={cn(
-            'absolute inset-0 rounded-full transition-all duration-300',
-            !selectedCategory
-              ? 'bg-gradient-to-r from-white/20 via-white/25 to-white/20 shadow-lg shadow-white/10'
-              : 'bg-white/5 group-hover:bg-white/10'
-          )} />
+        {/* Top Categories */}
+        {primaryCategories.map((category) => (
+          <CategoryPill key={category} category={category} />
+        ))}
 
-          {/* Animated border for selected state */}
-          {!selectedCategory && (
+        {/* More Button */}
+        {secondaryCategories.length > 0 && (
+          <motion.button
+            onClick={() => setShowMore(!showMore)}
+            className={cn(
+              'flex items-center gap-1.5 px-3 py-2 rounded-lg border transition-all duration-200',
+              'focus:outline-none focus-visible:ring-2 focus-visible:ring-white/30',
+              showMore
+                ? 'bg-white/10 border-white/20 text-white'
+                : 'bg-transparent border-white/10 text-white/50 hover:bg-white/5 hover:text-white/70'
+            )}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+          >
+            <span className="text-sm font-medium">
+              {showMore ? 'Less' : `+${secondaryCategories.length} more`}
+            </span>
             <motion.div
-              className="absolute inset-0 rounded-full"
-              style={{
-                background: 'linear-gradient(90deg, rgba(255,255,255,0.3), rgba(255,255,255,0.1), rgba(255,255,255,0.3))',
-                backgroundSize: '200% 100%',
-                WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
-                WebkitMaskComposite: 'xor',
-                maskComposite: 'exclude',
-                padding: '1px',
-              }}
-              animate={{
-                backgroundPosition: ['0% 0%', '200% 0%'],
-              }}
-              transition={{
-                duration: 3,
-                repeat: Infinity,
-                ease: 'linear',
-              }}
-            />
-          )}
-
-          {/* Content */}
-          <span className="relative flex items-center gap-2">
-            <span className="text-base sm:text-lg">✨</span>
-            <span className={cn(
-              'text-sm font-medium transition-colors',
-              !selectedCategory ? 'text-white' : 'text-white/70 group-hover:text-white'
-            )}>
-              All
-            </span>
-            <span className={cn(
-              'text-xs px-2 py-0.5 rounded-full transition-all',
-              !selectedCategory
-                ? 'bg-white/20 text-white'
-                : 'bg-white/10 text-white/50 group-hover:text-white/70'
-            )}>
-              {totalPosts}
-            </span>
-          </span>
-        </motion.button>
-
-        {/* Category Pills */}
-        {categories.map((category) => {
-          const count = getCategoryCount(category)
-          const isSelected = selectedCategory === category
-          const style = getStyle(category)
-
-          return (
-            <motion.button
-              key={category}
-              variants={itemVariants}
-              onClick={() => onSelectCategory(isSelected ? null : category)}
-              className={cn(
-                'group relative px-4 sm:px-5 py-2.5 sm:py-3 rounded-full',
-                'transition-all duration-300',
-                'focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0A0F1E]',
-                isSelected && 'focus-visible:ring-white/50'
-              )}
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
+              animate={{ rotate: showMore ? 180 : 0 }}
+              transition={{ duration: 0.2 }}
             >
-              {/* Background */}
-              <div className={cn(
-                'absolute inset-0 rounded-full transition-all duration-300',
-                isSelected
-                  ? `bg-gradient-to-r ${style.gradient} opacity-20 shadow-lg ${style.glow}`
-                  : 'bg-white/5 group-hover:bg-white/10'
-              )} />
+              <ChevronDown className="w-4 h-4" />
+            </motion.div>
+          </motion.button>
+        )}
+      </div>
 
-              {/* Animated gradient border for selected */}
-              {isSelected && (
-                <motion.div
-                  className={cn(
-                    'absolute inset-0 rounded-full bg-gradient-to-r',
-                    style.gradient
-                  )}
-                  animate={{
-                    opacity: [0.5, 0.8, 0.5],
-                  }}
-                  transition={{
-                    duration: 2,
-                    repeat: Infinity,
-                    ease: 'easeInOut',
-                  }}
-                  style={{
-                    WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
-                    WebkitMaskComposite: 'xor',
-                    maskComposite: 'exclude',
-                    padding: '1.5px',
-                  }}
-                />
-              )}
+      {/* Secondary Categories - Expandable */}
+      <AnimatePresence>
+        {showMore && secondaryCategories.length > 0 && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: 'auto', opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="overflow-hidden"
+          >
+            <div className="flex flex-wrap items-center justify-center gap-2 pt-3 mt-3 border-t border-white/5">
+              {secondaryCategories.map((category) => (
+                <CategoryPill key={category} category={category} />
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
-              {/* Glow effect on hover */}
-              <div className={cn(
-                'absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-xl -z-10',
-                `bg-gradient-to-r ${style.gradient}`
-              )}
-              style={{ transform: 'scale(0.8)' }}
-              />
-
-              {/* Content */}
-              <span className="relative flex items-center gap-2">
-                <motion.span
-                  className="text-base sm:text-lg"
-                  animate={isSelected ? {
-                    scale: [1, 1.2, 1],
-                    rotate: [0, 10, -10, 0]
-                  } : {}}
-                  transition={{ duration: 0.4 }}
-                >
-                  {style.icon}
-                </motion.span>
-                <span className={cn(
-                  'text-sm font-medium transition-colors hidden sm:inline',
-                  isSelected ? 'text-white' : 'text-white/70 group-hover:text-white'
-                )}>
-                  {category.replace(' & ', ' & ')}
-                </span>
-                <span className={cn(
-                  'text-xs px-2 py-0.5 rounded-full transition-all',
-                  isSelected
-                    ? `bg-gradient-to-r ${style.gradient} text-white font-semibold`
-                    : 'bg-white/10 text-white/50 group-hover:text-white/70'
-                )}>
-                  {count}
-                </span>
+      {/* Active Filter Indicator */}
+      <AnimatePresence>
+        {selectedCategory && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            className="flex justify-center mt-4"
+          >
+            <div className={cn(
+              'inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-sm',
+              'bg-white/5 border border-white/10'
+            )}>
+              <span className="text-white/50">Showing</span>
+              <span className={cn('font-medium', getStyle(selectedCategory).color.split(' ')[0])}>
+                {selectedCategory}
               </span>
-            </motion.button>
-          )
-        })}
-      </motion.div>
-
-      {/* Selected Category Indicator */}
-      {selectedCategory && (
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -10 }}
-          className="flex justify-center mt-4"
-        >
-          <div className={cn(
-            'flex items-center gap-2 px-4 py-2 rounded-lg',
-            'bg-white/5 border border-white/10'
-          )}>
-            <span className={cn('text-sm', getStyle(selectedCategory).accent)}>
-              Showing {getCategoryCount(selectedCategory)} articles in
-            </span>
-            <span className="text-sm font-semibold text-white">
-              {selectedCategory}
-            </span>
-            <button
-              onClick={() => onSelectCategory(null)}
-              className="ml-2 text-white/40 hover:text-white transition-colors"
-              aria-label="Clear filter"
-            >
-              ✕
-            </button>
-          </div>
-        </motion.div>
-      )}
+              <span className="text-white/50">
+                ({getCategoryCount(selectedCategory)} articles)
+              </span>
+              <button
+                onClick={() => onSelectCategory(null)}
+                className="ml-1 p-0.5 rounded-full hover:bg-white/10 transition-colors"
+                aria-label="Clear filter"
+              >
+                <X className="w-3.5 h-3.5 text-white/40 hover:text-white" />
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   )
 }
