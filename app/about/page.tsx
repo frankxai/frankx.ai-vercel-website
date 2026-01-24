@@ -47,7 +47,7 @@ function AboutBackground() {
 
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden">
-      <div className="absolute inset-0 bg-void" />
+      <div className="absolute inset-0 bg-[#030712]" />
 
       {/* Gradient orbs */}
       <motion.div
@@ -177,7 +177,7 @@ export default function AboutPage() {
     <>
       <FAQPageJsonLd faqs={aboutFaqs} />
       <AboutBackground />
-      <main id="main" className="relative min-h-screen grain-overlay">
+      <main id="main" className="relative min-h-screen">
         {/* Hero Section */}
         <section className="pt-32 pb-16">
           <div className="mx-auto max-w-6xl px-6">
@@ -266,7 +266,7 @@ export default function AboutPage() {
                 transition={{ duration: 0.6, delay: 0.3 }}
                 className="relative"
               >
-                <div className="relative aspect-square overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-emerald-500/10 via-cyan-500/10 to-amber-500/10 shadow-2xl">
+                <div className="relative aspect-square overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-emerald-500/10 via-cyan-500/10 to-amber-500/10">
                   <Image
                     src="/images/portraits/frank-aurora-portrait.svg"
                     alt="Frank — AI Architect and Creator"
@@ -292,7 +292,7 @@ export default function AboutPage() {
               transition={{ duration: 0.5 }}
               className="mb-12"
             >
-              <h2 className="font-display text-2xl font-bold text-white sm:text-3xl">The journey</h2>
+              <h2 className="text-2xl font-bold text-white sm:text-3xl">The journey</h2>
               <p className="mt-2 text-slate-400">How I got here</p>
             </motion.div>
 
@@ -310,12 +310,12 @@ export default function AboutPage() {
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                   >
                     <div
-                      className={`h-full card-premium rounded-2xl p-8 backdrop-blur-sm transition-transform hover:-translate-y-1`}
+                      className={`h-full rounded-2xl border ${colors.border} ${colors.bg} p-8 backdrop-blur-sm`}
                     >
                       <div className={`mb-6 flex h-14 w-14 items-center justify-center rounded-xl ${colors.icon}`}>
                         <Icon className="h-7 w-7" />
                       </div>
-                      <h3 className="mb-3 font-display text-xl font-bold text-white">{item.title}</h3>
+                      <h3 className="mb-3 text-xl font-bold text-white">{item.title}</h3>
                       <p className="leading-relaxed text-slate-400">{item.description}</p>
                     </div>
                   </motion.div>
@@ -335,7 +335,7 @@ export default function AboutPage() {
               transition={{ duration: 0.5 }}
               className="mb-12"
             >
-              <h2 className="font-display text-2xl font-bold text-white sm:text-3xl">How I work</h2>
+              <h2 className="text-2xl font-bold text-white sm:text-3xl">How I work</h2>
               <p className="mt-2 text-slate-400">Principles that guide everything</p>
             </motion.div>
 
@@ -354,7 +354,7 @@ export default function AboutPage() {
                       <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-lg bg-white/5 text-slate-400">
                         <Icon className="h-6 w-6" />
                       </div>
-                      <h3 className="mb-3 font-display text-lg font-bold text-white">{item.title}</h3>
+                      <h3 className="mb-3 text-lg font-bold text-white">{item.title}</h3>
                       <p className="leading-relaxed text-slate-400">{item.description}</p>
                     </div>
                   </motion.div>
@@ -383,7 +383,7 @@ export default function AboutPage() {
                     <Award className="h-6 w-6" />
                   </div>
                   <div>
-                    <h2 className="font-display text-xl font-bold text-white sm:text-2xl">
+                    <h2 className="text-xl font-bold text-white sm:text-2xl">
                       See what I've built
                     </h2>
                     <p className="mt-2 text-slate-400">
@@ -413,7 +413,7 @@ export default function AboutPage() {
               transition={{ duration: 0.5 }}
               className="text-center"
             >
-              <h2 className="font-display text-2xl font-bold text-white sm:text-3xl">Ready to explore?</h2>
+              <h2 className="text-2xl font-bold text-white sm:text-3xl">Ready to explore?</h2>
               <p className="mx-auto mt-4 max-w-xl text-slate-400">
                 Start with the hub overview, or dive straight into the music lab, learning paths, or prompt library.
               </p>

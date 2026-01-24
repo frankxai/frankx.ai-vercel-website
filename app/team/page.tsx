@@ -42,7 +42,7 @@ export default function TeamPage() {
   const totalAgents = teamMembers.length
 
   return (
-    <div className="min-h-screen bg-void text-white">
+    <div className="min-h-screen bg-slate-950 text-slate-100">
       <Navigation />
       <main className="px-6 pt-28 pb-20">
         <div className="mx-auto max-w-7xl space-y-16">

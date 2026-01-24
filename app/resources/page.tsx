@@ -6,41 +6,24 @@ import Link from 'next/link'
 import { motion, useReducedMotion } from 'framer-motion'
 import {
   ArrowRight,
+  BookOpen,
+  Bot,
   ExternalLink,
+  GraduationCap,
+  Heart,
+  Layers,
+  Music,
+  Sparkles,
+  Star,
+  Wand2,
 } from 'lucide-react'
-import Floating3DAsset, { Icon3D } from '@/components/ui/Floating3DAsset'
-
-// ============================================================================
-// 3D ICON MAPPING
-// ============================================================================
-
-const icon3DMap = {
-  music: '/images/3d/music_3d.png',
-  sparkles: '/images/3d/sparkles_3d.png',
-  layers: '/images/3d/3dicons-file-text-dynamic-premium.png',
-  bot: '/images/3d/brain_3d.png',
-  book: '/images/3d/3dicons-notebook-dynamic-premium.png',
-  wand: '/images/3d/magic_wand_3d.png',
-  star: '/images/3d/3dicons-star-dynamic-premium.png',
-  heart: '/images/3d/3dicons-heart-dynamic-premium.png',
-  graduation: '/images/3d/3dicons-medal-dynamic-premium.png',
-  rocket: '/images/3d/3dicons-rocket-dynamic-premium.png',
-  gift: '/images/3d/3dicons-gift-dynamic-premium.png',
-  bulb: '/images/3d/3dicons-bulb-dynamic-premium.png',
-  headphones: '/images/3d/3dicons-headphone-dynamic-color.png',
-  play: '/images/3d/3dicons-play-dynamic-premium.png',
-}
-
-// ============================================================================
-// BACKGROUND
-// ============================================================================
 
 function ResourcesBackground() {
   const shouldReduceMotion = useReducedMotion()
 
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden">
-      <div className="absolute inset-0 bg-void" />
+      <div className="absolute inset-0 bg-[#030712]" />
 
       <motion.div
         className="absolute -right-52 top-32 h-[640px] w-[640px] rounded-full opacity-25"
@@ -100,34 +83,30 @@ function ResourcesBackground() {
   )
 }
 
-// ============================================================================
-// DATA
-// ============================================================================
-
 const productItems = [
   {
     name: 'Vibe OS',
     description: 'AI music creation system with prompts, workflows, and production tips.',
     href: '/products/vibe-os',
-    icon3D: icon3DMap.music,
+    icon: Music,
   },
   {
     name: 'Creative AI Toolkit',
     description: 'Prompts, templates, and rituals for creators shipping consistently.',
     href: '/products/creative-ai-toolkit',
-    icon3D: icon3DMap.sparkles,
+    icon: Sparkles,
   },
   {
     name: 'Generative Creator OS',
     description: 'A multi-modal studio for music, visuals, and writing.',
     href: '/products/generative-creator-os',
-    icon3D: icon3DMap.layers,
+    icon: Layers,
   },
   {
     name: 'Agentic Creator OS',
     description: 'Build autonomous agents and developer-grade workflows.',
     href: '/products/agentic-creator-os',
-    icon3D: icon3DMap.bot,
+    icon: Bot,
   },
 ]
 
@@ -136,25 +115,25 @@ const foundationItems = [
     name: 'Free Playbooks',
     description: 'Downloadable AI playbooks to get started fast.',
     href: '/free-playbook',
-    icon3D: icon3DMap.gift,
+    icon: Sparkles,
   },
   {
     name: 'AI Assessment',
     description: 'Find your next step with a quick assessment.',
     href: '/ai-assessment',
-    icon3D: icon3DMap.wand,
+    icon: Wand2,
   },
   {
     name: 'Prompt Library',
     description: 'Curated prompts for creators and operators.',
     href: '/prompt-library',
-    icon3D: icon3DMap.book,
+    icon: BookOpen,
   },
   {
     name: 'Templates',
     description: 'Ready-to-use workflows and checklists.',
     href: '/templates',
-    icon3D: icon3DMap.layers,
+    icon: Layers,
   },
 ]
 
@@ -163,25 +142,25 @@ const intelligenceItems = [
     name: 'Intelligence Atlas',
     description: 'Flagship research and frameworks.',
     href: '/intelligence-atlas',
-    icon3D: icon3DMap.star,
+    icon: Star,
   },
   {
     name: 'Agentic AI Center',
     description: 'Agent systems, playbooks, and updates.',
     href: '/agentic-ai-center',
-    icon3D: icon3DMap.bot,
+    icon: Bot,
   },
   {
     name: 'Creation Chronicles',
     description: 'Strategic storytelling OS and narratives.',
     href: '/products/creation-chronicles',
-    icon3D: icon3DMap.book,
+    icon: BookOpen,
   },
   {
     name: 'Vibe OS Sessions',
     description: 'AI music experiments and studio notes.',
     href: '/music',
-    icon3D: icon3DMap.headphones,
+    icon: Music,
   },
 ]
 
@@ -190,26 +169,26 @@ const arcaneaItems = [
     name: 'Arcanea',
     description: 'The 100-year future mythology and worldbuilding academy.',
     href: '/magic',
-    icon3D: icon3DMap.wand,
+    icon: Wand2,
   },
   {
     name: 'Arcanea Academy',
     description: 'Guided learning paths for AI worldbuilders.',
     href: '/magic',
-    icon3D: icon3DMap.graduation,
+    icon: GraduationCap,
   },
   {
     name: 'The Luminors',
     description: 'AI companions for creation and evolution.',
     href: 'https://arcanea.app',
-    icon3D: icon3DMap.star,
+    icon: Star,
     external: true,
   },
   {
     name: 'Arcanea Platform',
     description: 'The full Arcanea experience.',
     href: 'https://arcanea.app',
-    icon3D: icon3DMap.heart,
+    icon: Heart,
     external: true,
   },
 ]
@@ -219,49 +198,45 @@ const learningItems = [
     name: 'Agent Collective OS',
     description: 'Operating system for orchestrating multi-agent collaboration.',
     href: '/guides/agent-collective-operating-system',
-    icon3D: icon3DMap.bot,
+    icon: Bot,
   },
   {
     name: 'Skills Library Playbook',
     description: 'How to activate the FrankX skill stack with precision.',
     href: '/guides/skills-library-playbook',
-    icon3D: icon3DMap.sparkles,
+    icon: Sparkles,
   },
   {
     name: 'Guides',
     description: 'In-depth tutorials and frameworks.',
     href: '/guides',
-    icon3D: icon3DMap.book,
+    icon: BookOpen,
   },
   {
     name: 'Blog',
     description: 'Essays, experiments, and launch notes.',
     href: '/blog',
-    icon3D: icon3DMap.bulb,
+    icon: BookOpen,
   },
   {
     name: 'Music Lab',
     description: 'Learn to create AI music with Suno.',
     href: '/music-lab',
-    icon3D: icon3DMap.music,
+    icon: Music,
   },
   {
     name: 'Students',
     description: 'Learning paths and community.',
     href: '/students',
-    icon3D: icon3DMap.graduation,
+    icon: GraduationCap,
   },
   {
     name: 'Developers',
     description: 'Agentic workflows for builders.',
     href: '/developers',
-    icon3D: icon3DMap.rocket,
+    icon: Bot,
   },
 ]
-
-// ============================================================================
-// RESOURCE GRID WITH 3D ICONS
-// ============================================================================
 
 function ResourceGrid({
   title,
@@ -274,7 +249,7 @@ function ResourceGrid({
     name: string
     description: string
     href: string
-    icon3D: string
+    icon: ComponentType<{ className?: string }>
     external?: boolean
   }>
 }) {
@@ -295,7 +270,8 @@ function ResourceGrid({
         </motion.div>
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {items.map((item, index) => {
+          {items.map((item) => {
+            const Icon = item.icon
             const isExternal = item.external
             const LinkComponent = isExternal ? 'a' : Link
             const linkProps = isExternal
@@ -303,34 +279,24 @@ function ResourceGrid({
               : { href: item.href }
 
             return (
-              <motion.div
+              <LinkComponent
                 key={item.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.05 }}
+                {...linkProps}
+                className="group rounded-2xl border border-white/10 bg-white/[0.02] p-5 transition-all hover:-translate-y-1 hover:border-white/20 hover:bg-white/[0.04]"
               >
-                <LinkComponent
-                  {...linkProps}
-                  className="group block rounded-2xl border border-white/10 bg-white/[0.02] p-5 transition-all hover:-translate-y-1 hover:border-white/20 hover:bg-white/[0.04] hover:shadow-lg hover:shadow-emerald-500/5"
-                >
-                  {/* 3D Icon */}
-                  <div className="relative mb-4">
-                    <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/20 to-cyan-500/20 rounded-xl blur-xl opacity-0 group-hover:opacity-60 transition-opacity" />
-                    <Icon3D src={item.icon3D} alt={item.name} size="lg" className="relative" />
-                  </div>
-
-                  <div className="flex items-center gap-2 text-base font-semibold text-white">
-                    {item.name}
-                    {isExternal && <ExternalLink className="h-4 w-4 text-white/40" />}
-                  </div>
-                  <p className="mt-2 text-sm text-slate-400">{item.description}</p>
-                  <div className="mt-4 flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-emerald-300">
-                    Explore
-                    <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
-                  </div>
-                </LinkComponent>
-              </motion.div>
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-emerald-300">
+                  <Icon className="h-5 w-5" />
+                </div>
+                <div className="mt-4 flex items-center gap-2 text-base font-semibold text-white">
+                  {item.name}
+                  {isExternal && <ExternalLink className="h-4 w-4 text-white/40" />}
+                </div>
+                <p className="mt-2 text-sm text-slate-400">{item.description}</p>
+                <div className="mt-4 flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-emerald-300">
+                  Explore
+                  <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+                </div>
+              </LinkComponent>
             )
           })}
         </div>
@@ -339,16 +305,11 @@ function ResourceGrid({
   )
 }
 
-// ============================================================================
-// MAIN PAGE
-// ============================================================================
-
 export default function ResourcesPage() {
   return (
     <>
       <ResourcesBackground />
       <main id="main" className="relative min-h-screen pb-16">
-        {/* Hero Section */}
         <section className="pt-28 pb-12">
           <div className="mx-auto max-w-6xl px-6">
             <motion.div
@@ -384,36 +345,8 @@ export default function ResourcesPage() {
                 </div>
               </div>
 
-              {/* Hero Visual with Floating 3D Assets */}
               <div className="relative">
                 <div className="absolute -inset-8 rounded-full bg-gradient-to-br from-emerald-500/20 via-cyan-500/10 to-violet-500/20 blur-3xl opacity-70" />
-
-                {/* Floating 3D decorations */}
-                <Floating3DAsset
-                  src={icon3DMap.rocket}
-                  position="top-right"
-                  size="lg"
-                  animation="float"
-                  delay={0.2}
-                  className="z-20"
-                />
-                <Floating3DAsset
-                  src={icon3DMap.sparkles}
-                  position="bottom-left"
-                  size="md"
-                  animation="pulse"
-                  delay={0.4}
-                  opacity={80}
-                />
-                <Floating3DAsset
-                  src={icon3DMap.star}
-                  position="top-left"
-                  size="sm"
-                  animation="float"
-                  delay={0.6}
-                  opacity={60}
-                />
-
                 <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] p-6">
                   <Image
                     src="/images/blog/blog-hero-aurora.svg"

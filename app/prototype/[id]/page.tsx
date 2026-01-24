@@ -56,7 +56,7 @@ const cloudColors: Record<CloudProvider, string> = {
 function PrototypeBackground() {
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden">
-      <div className="absolute inset-0 bg-void" />
+      <div className="absolute inset-0 bg-[#030712]" />
       <motion.div
         className="absolute -right-40 top-40 h-[500px] w-[500px] rounded-full opacity-15"
         style={{

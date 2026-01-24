@@ -330,7 +330,7 @@ export default function V3HomePage() {
       {/* ========================================
           SOCIAL PROOF SECTION
       ======================================== */}
-      <section className="py-24 px-6 bg-void/50" aria-labelledby="social-proof-heading">
+      <section className="py-24 px-6 bg-slate-950/50" aria-labelledby="social-proof-heading">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <SectionHeading
@@ -454,7 +454,7 @@ export default function V3HomePage() {
       {/* ========================================
           FEATURED PRODUCTS
       ======================================== */}
-      <section className="py-24 px-6 bg-void/50" aria-labelledby="products-heading">
+      <section className="py-24 px-6 bg-slate-950/50" aria-labelledby="products-heading">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <SectionHeading

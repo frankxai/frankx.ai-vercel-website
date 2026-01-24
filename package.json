@@ -27,7 +27,11 @@
     "factory:publish": "npm run qa:check && npm run publish:artifact",
     "ci:check": "npm run type-check && npm run lint && npm run content:validate",
     "links:check": "node scripts/check-links.mjs",
-    "log:session": "node scripts/log-session.mjs"
+    "log:session": "node scripts/log-session.mjs",
+    "sync:check": "bash scripts/pre-deploy-sync-check.sh",
+    "sync:fix": "bash scripts/pre-deploy-sync-check.sh --sync",
+    "sync:diff": "bash scripts/pre-deploy-sync-check.sh --diff",
+    "predeploy": "npm run sync:check"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.9",

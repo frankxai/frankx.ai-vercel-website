@@ -24,7 +24,6 @@ const navItems: NavItem[] = [
     href: '/products/vibe-os',
     subItems: [
       { name: 'Vibe OS (AI Music)', href: '/products/vibe-os' },
-      { name: 'Creative Rituals', href: '/rituals' },
       { name: 'Prompt Library', href: '/prompt-library' },
       { name: 'Music Lab', href: '/music-lab' },
       { name: 'Templates', href: '/templates' },
@@ -47,7 +46,6 @@ const navItems: NavItem[] = [
     href: '/resources',
     subItems: [
       { name: "The Creator's Soulbook", href: '/soulbook' },
-      { name: 'Creative Rituals', href: '/rituals' },
       { name: 'Workshops', href: '/workshops' },
       { name: 'All Resources', href: '/resources' },
       { name: 'Prompt Library', href: '/prompt-library' },
@@ -87,7 +85,7 @@ export default function Navigation() {
 
   return (
     <nav
-      className="fixed top-0 w-full z-50 border-b border-white/5 bg-void/90 backdrop-blur-2xl"
+      className="fixed top-0 w-full z-50 border-b border-white/5 bg-[#030712]/90 backdrop-blur-2xl"
       aria-label="Main navigation"
     >
       <div className="max-w-6xl mx-auto px-6 py-3">
@@ -132,7 +130,7 @@ export default function Navigation() {
                       <div className="px-1 py-1 ">
                         {item.subItems.map((subItem) => (
                           <Menu.Item key={subItem.name}>
-                            {({ active }: { active: boolean }) => (
+                            {({ active }) => (
                               <Link
                                 href={subItem.href}
                                 className={cn(

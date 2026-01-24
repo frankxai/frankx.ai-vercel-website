@@ -5,7 +5,7 @@ import PremiumButton from '@/components/ui/PremiumButton';
 
 export default function GoldenPathPage() {
   return (
-    <div className="min-h-screen bg-void flex flex-col items-center justify-center p-4">
+    <div className="min-h-screen bg-[#030712] flex flex-col items-center justify-center p-4">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}

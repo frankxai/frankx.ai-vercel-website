@@ -78,7 +78,7 @@ export default function ProductLanding({ product }: Props) {
   const [openFaq, setOpenFaq] = useState<number | null>(null)
 
   return (
-    <div className="min-h-screen bg-void text-slate-100">
+    <div className="min-h-screen bg-slate-950 text-slate-100">
       {/* Hero Section */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-cyan-900/20 via-slate-950 to-blue-950/20" />

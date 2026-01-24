@@ -25,7 +25,7 @@ const links = {
 
 export default function Footer2025() {
   return (
-    <footer className="border-t border-white/5 bg-void">
+    <footer className="border-t border-white/5 bg-[#030712]">
       <div className="max-w-6xl mx-auto px-6 py-16">
         {/* Main footer content */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">

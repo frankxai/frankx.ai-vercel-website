@@ -71,7 +71,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
   }
 
   return (
-    <div className="min-h-screen bg-void text-white selection:bg-cyan-500/30">
+    <div className="min-h-screen bg-[#02030b] text-white selection:bg-cyan-500/30">
       <JsonLd type="Product" data={productSchema} />
       
       <main className="mx-auto max-w-7xl px-6 py-12 lg:px-8">

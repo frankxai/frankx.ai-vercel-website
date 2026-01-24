@@ -34,7 +34,7 @@ export default function ProductHero({ productId, badge, title, subtitle, promise
   }
 
   return (
-    <section className="relative overflow-hidden bg-void">
+    <section className="relative overflow-hidden bg-[#02030b]">
       <div className="absolute inset-0 bg-gradient-to-br from-cyan-950/30 via-[#02030b] to-blue-950/35" />
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(45,212,191,0.12),transparent_55%)]" />
       <div className="relative mx-auto max-w-5xl px-6 pb-16 pt-24 text-center text-slate-100">

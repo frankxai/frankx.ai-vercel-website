@@ -154,7 +154,7 @@ export default function PromptLibraryView({
     <main className="relative min-h-screen pb-24 pt-28 text-white">
       {/* Background */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute inset-0 bg-void" />
+        <div className="absolute inset-0 bg-[#030712]" />
         <motion.div
           className="absolute top-0 -right-[20%] w-[60%] h-[60%]"
           style={{

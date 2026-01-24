@@ -101,11 +101,11 @@ export default async function BlogPostPage({
       '@id': canonicalUrl,
     },
     wordCount,
-    keywords: post.keywords?.join(', ') || post.tags.join(', '),
+    keywords: post.keywords?.join(', ') || post.tags?.join(', ') || post.category || '',
   }
 
   return (
-    <div className="min-h-screen bg-void text-white">
+    <div className="min-h-screen bg-[#030712] text-white">
       <JsonLd type="Article" data={articleSchema} />
 
       {/* Aurora Background Effect */}

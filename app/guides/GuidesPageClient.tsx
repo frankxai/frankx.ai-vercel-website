@@ -29,7 +29,7 @@ function AuroraBackground() {
 
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none">
-      <div className="absolute inset-0 bg-void" />
+      <div className="absolute inset-0 bg-[#030712]" />
       <motion.div
         className="absolute -top-[40%] -left-[20%] w-[80%] h-[80%]"
         style={{

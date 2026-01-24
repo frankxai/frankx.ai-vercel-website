@@ -47,7 +47,7 @@ export const metadata = createMetadata({
 // Loading skeleton for Suspense fallback
 function BlogSkeleton() {
   return (
-    <div className="min-h-screen bg-void">
+    <div className="min-h-screen bg-[#030712]">
       <div className="max-w-6xl mx-auto px-6 pt-32 pb-20">
         <div className="max-w-4xl animate-pulse">
           <div className="h-4 w-32 bg-white/10 rounded mb-8" />

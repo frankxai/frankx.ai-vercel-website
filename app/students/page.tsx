@@ -29,7 +29,7 @@ import { AILabsMarquee } from '@/components/ui/AILabsMarquee'
 function AuroraBackground() {
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none">
-      <div className="absolute inset-0 bg-void" />
+      <div className="absolute inset-0 bg-[#030712]" />
 
       {/* Gradient orbs */}
       <motion.div

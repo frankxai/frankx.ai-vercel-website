@@ -27,16 +27,24 @@ const iconMap: Record<string, React.ElementType> = {
   image: ImageIcon,
 }
 
-const colorMap: Record<string, { bg: string; text: string; border: string }> = {
-  emerald: { bg: 'bg-emerald-500', text: 'text-emerald-400', border: 'border-emerald-500/20' },
-  cyan: { bg: 'bg-cyan-500', text: 'text-cyan-400', border: 'border-cyan-500/20' },
-  amber: { bg: 'bg-amber-500', text: 'text-amber-400', border: 'border-amber-500/20' },
-  violet: { bg: 'bg-violet-500', text: 'text-violet-400', border: 'border-violet-500/20' },
+const colorMap: Record<string, { bg: string; text: string; border: string; gradientFrom: string }> = {
+  emerald: { bg: 'bg-emerald-500', text: 'text-emerald-400', border: 'border-emerald-500/20', gradientFrom: 'from-emerald-500/10' },
+  cyan: { bg: 'bg-cyan-500', text: 'text-cyan-400', border: 'border-cyan-500/20', gradientFrom: 'from-cyan-500/10' },
+  amber: { bg: 'bg-amber-500', text: 'text-amber-400', border: 'border-amber-500/20', gradientFrom: 'from-amber-500/10' },
+  violet: { bg: 'bg-violet-500', text: 'text-violet-400', border: 'border-violet-500/20', gradientFrom: 'from-violet-500/10' },
+}
+
+const playButtonBgMap: Record<string, string> = {
+  emerald: 'bg-emerald-500/80 group-hover:bg-emerald-500',
+  cyan: 'bg-cyan-500/80 group-hover:bg-cyan-500',
+  amber: 'bg-amber-500/80 group-hover:bg-amber-500',
+  violet: 'bg-violet-500/80 group-hover:bg-violet-500',
 }
 
 function VideoPlayer({ video, color }: { video: VideoResource; color: string }) {
   const [isPlaying, setIsPlaying] = useState(false)
   const colors = colorMap[color]
+  const playBtnClasses = playButtonBgMap[color] || playButtonBgMap.emerald
 
   return (
     <div className="bg-white/[0.02] border border-white/10 rounded-2xl overflow-hidden">
@@ -62,7 +70,7 @@ function VideoPlayer({ video, color }: { video: VideoResource; color: string }) 
               className="absolute inset-0 flex items-center justify-center bg-black/40 hover:bg-black/30 transition-colors group"
               aria-label={`Play ${video.title}`}
             >
-              <div className={`p-5 rounded-full ${colors.bg}/80 group-hover:${colors.bg} transition-colors`}>
+              <div className={`p-5 rounded-full transition-colors ${playBtnClasses}`}>
                 <Play className="w-10 h-10 text-white fill-white" />
               </div>
             </button>
@@ -135,7 +143,7 @@ export default function LearningPathPage() {
     <div className="min-h-screen bg-[#0a0a0b]">
       {/* Hero */}
       <section className="relative pt-24 pb-12 overflow-hidden">
-        <div className={`absolute inset-0 bg-gradient-to-br from-${path.color}-500/10 via-transparent to-transparent`} />
+        <div className={`absolute inset-0 bg-gradient-to-br ${colors.gradientFrom} via-transparent to-transparent`} />
 
         <div className="relative max-w-6xl mx-auto px-6">
           {/* Back link */}
@@ -155,6 +163,7 @@ export default function LearningPathPage() {
             {/* Main content */}
             <div>
               <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full ${colors.border} border bg-white/5 ${colors.text} text-sm font-medium mb-6`}>
+                {/* @ts-expect-error - Dynamic icon component */}
                 <Icon className="w-4 h-4" />
                 {path.difficulty} path
               </div>
@@ -244,7 +253,7 @@ export default function LearningPathPage() {
 
       {/* CTA */}
       <section className="max-w-4xl mx-auto px-6 pb-24">
-        <div className={`bg-gradient-to-br from-${path.color}-500/10 to-transparent rounded-3xl border ${colors.border} p-8 md:p-12 text-center`}>
+        <div className={`bg-gradient-to-br ${colors.gradientFrom} to-transparent rounded-3xl border ${colors.border} p-8 md:p-12 text-center`}>
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
             Ready for Hands-On Practice?
           </h2>

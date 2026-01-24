@@ -303,7 +303,7 @@ export default function AssessmentPage() {
     const Icon = result.icon;
 
     return (
-      <div className="min-h-screen bg-void py-20 px-4">
+      <div className="min-h-screen bg-[#030712] py-20 px-4">
         <div className="max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
@@ -366,7 +366,7 @@ export default function AssessmentPage() {
   const progress = (currentQuestion / questions.length) * 100;
 
   return (
-    <div className="min-h-screen bg-void">
+    <div className="min-h-screen bg-[#030712]">
       {/* Progress Bar */}
       <div className="fixed top-0 left-0 right-0 h-1 bg-slate-800 z-50">
         <motion.div

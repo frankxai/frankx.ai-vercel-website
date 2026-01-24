@@ -46,7 +46,7 @@ export default function HeroImage({
       role="img"
       aria-label={alt || title}
       className={cn(
-        'relative overflow-hidden rounded-3xl border border-white/10 bg-void/70 px-8 py-10 text-white',
+        'relative overflow-hidden rounded-3xl border border-white/10 bg-slate-950/70 px-8 py-10 text-white',
         className
       )}
     >

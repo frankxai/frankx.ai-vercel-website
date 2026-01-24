@@ -19,7 +19,7 @@ export default function Error({ error, reset }: ErrorProps) {
   }, [error])
 
   return (
-    <div className="min-h-screen bg-void flex items-center justify-center px-4">
+    <div className="min-h-screen bg-slate-950 flex items-center justify-center px-4">
       <div className="max-w-2xl mx-auto text-center">
         {/* Error Icon */}
         <motion.div

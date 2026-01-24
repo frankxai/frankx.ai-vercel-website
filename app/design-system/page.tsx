@@ -55,7 +55,7 @@ const intensityLevels = ['subtle', 'normal', 'vibrant'] as const
 
 export default function DesignSystemPage() {
   return (
-    <div className="min-h-screen bg-void">
+    <div className="min-h-screen bg-[#030712]">
       <main className="pt-28 pb-20 px-6">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
@@ -120,7 +120,7 @@ export default function DesignSystemPage() {
                     </div>
 
                     {/* Code */}
-                    <div className="mt-4 p-3 bg-void rounded-lg">
+                    <div className="mt-4 p-3 bg-slate-950 rounded-lg">
                       <code className="text-sm text-emerald-400">
                         {`<AuroraGradient variant="${item.variant}">`}
                       </code>
@@ -156,7 +156,7 @@ export default function DesignSystemPage() {
                     {intensity === 'normal' && 'Opacity: 70%'}
                     {intensity === 'vibrant' && 'Opacity: 100%'}
                   </p>
-                  <div className="mt-4 p-2 bg-void/50 rounded">
+                  <div className="mt-4 p-2 bg-slate-950/50 rounded">
                     <code className="text-xs text-emerald-400">
                       intensity=&quot;{intensity}&quot;
                     </code>
@@ -181,7 +181,7 @@ export default function DesignSystemPage() {
               >
                 <h3 className="text-xl font-bold text-white mb-2">With Noise</h3>
                 <p className="text-white/60 text-sm">Default behavior - adds organic texture</p>
-                <div className="mt-4 p-2 bg-void/50 rounded">
+                <div className="mt-4 p-2 bg-slate-950/50 rounded">
                   <code className="text-xs text-emerald-400">showNoise=&#123;true&#125;</code>
                 </div>
               </AuroraGradient>
@@ -193,7 +193,7 @@ export default function DesignSystemPage() {
               >
                 <h3 className="text-xl font-bold text-white mb-2">Without Noise</h3>
                 <p className="text-white/60 text-sm">Cleaner, smoother appearance</p>
-                <div className="mt-4 p-2 bg-void/50 rounded">
+                <div className="mt-4 p-2 bg-slate-950/50 rounded">
                   <code className="text-xs text-emerald-400">showNoise=&#123;false&#125;</code>
                 </div>
               </AuroraGradient>

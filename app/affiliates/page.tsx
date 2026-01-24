@@ -110,7 +110,7 @@ export default function IntelligenceArsenal() {
   })
 
   return (
-    <div className="min-h-screen bg-void pb-16 pt-24 text-slate-100">
+    <div className="min-h-screen bg-slate-950 pb-16 pt-24 text-slate-100">
       <div className="mx-auto max-w-7xl px-4">
         <StaggerContainer>
           {/* Premium Header */}

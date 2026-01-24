@@ -288,8 +288,8 @@ export default function NavigationMega() {
         isVisible ? 'translate-y-0' : '-translate-y-full',
         // Background and border intensity based on scroll
         isScrolled
-          ? 'border-white/10 bg-void/95 backdrop-blur-xl shadow-lg shadow-black/10'
-          : 'border-white/5 bg-void/90 backdrop-blur-xl'
+          ? 'border-white/10 bg-[#030712]/95 backdrop-blur-xl shadow-lg shadow-black/10'
+          : 'border-white/5 bg-[#030712]/90 backdrop-blur-xl'
       )}
     >
       <nav className="mx-auto flex h-14 sm:h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
@@ -422,7 +422,7 @@ export default function NavigationMega() {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
-            className="border-t border-white/5 bg-void/98 backdrop-blur-xl lg:hidden overflow-y-auto max-h-[calc(100vh-3.5rem)] sm:max-h-[calc(100vh-4rem)]"
+            className="border-t border-white/5 bg-[#030712]/98 backdrop-blur-xl lg:hidden overflow-y-auto max-h-[calc(100vh-3.5rem)] sm:max-h-[calc(100vh-4rem)]"
           >
             <div className="mx-auto max-w-6xl space-y-1 px-4 sm:px-6 py-3 sm:py-4">
               {/* Mobile dropdowns */}

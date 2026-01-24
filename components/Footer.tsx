@@ -5,7 +5,7 @@ import { LogoMarkMinimal } from '@/components/ui/LogoMark'
 
 export default function Footer() {
   return (
-    <footer className="relative border-t border-white/5 bg-void text-white overflow-hidden">
+    <footer className="relative border-t border-white/5 bg-[#030712] text-white overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-12 md:py-16">
         <div className="grid gap-8 sm:gap-10 md:gap-12 grid-cols-2 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}

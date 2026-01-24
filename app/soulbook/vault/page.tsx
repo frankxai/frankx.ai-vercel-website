@@ -232,14 +232,14 @@ export default function VaultPage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-void flex items-center justify-center">
+      <div className="min-h-screen bg-[#030712] flex items-center justify-center">
         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-amber-500" />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-void">
+    <div className="min-h-screen bg-[#030712]">
       {/* Hero Section */}
       <section className="relative py-12 px-4 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-amber-500/5 via-transparent to-transparent" />

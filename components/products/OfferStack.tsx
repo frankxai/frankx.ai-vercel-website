@@ -37,7 +37,7 @@ export default function OfferStack({ productId, offer, modules, bonuses, pricing
   const secondaryTracking = offer.ctaSecondaryTracking
 
   return (
-    <section className="bg-void py-20">
+    <section className="bg-[#02030b] py-20">
       <div className="mx-auto flex max-w-6xl flex-col gap-10 px-6 lg:flex-row">
         <div className="flex-1 space-y-6">
           <h2 className="text-3xl font-semibold text-white">What You Receive</h2>

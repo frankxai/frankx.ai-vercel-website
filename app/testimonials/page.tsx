@@ -17,7 +17,7 @@ import {
 function TestimonialsBackground() {
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden">
-      <div className="absolute inset-0 bg-void" />
+      <div className="absolute inset-0 bg-[#030712]" />
       <motion.div
         className="absolute -right-40 top-20 h-[600px] w-[600px] rounded-full opacity-20"
         style={{

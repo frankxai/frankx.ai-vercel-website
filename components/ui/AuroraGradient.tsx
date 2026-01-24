@@ -93,7 +93,7 @@ export default function AuroraGradient({
   return (
     <Component
       className={cn(
-        'relative overflow-hidden bg-void/70',
+        'relative overflow-hidden bg-slate-950/70',
         className
       )}
     >

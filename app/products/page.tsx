@@ -19,65 +19,54 @@ import {
 
 import { trackEvent } from '@/lib/analytics'
 
-// Premium background - aligned with tech spectrum (emerald/cyan)
+// Premium background
 function ProductsBackground() {
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden">
-      <div className="absolute inset-0 bg-void" />
+      <div className="absolute inset-0 bg-[#02030b]" />
 
-      {/* Primary aurora orb - emerald */}
+      {/* Gradient orbs */}
       <motion.div
-        className="absolute -right-60 top-40 h-[600px] w-[600px] rounded-full"
+        className="absolute -right-60 top-40 h-[600px] w-[600px] rounded-full opacity-25"
         style={{
-          background: 'radial-gradient(circle, rgba(16, 185, 129, 0.12) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(56,189,248,0.35) 0%, transparent 70%)',
         }}
         animate={{
           scale: [1, 1.1, 1],
-          opacity: [0.8, 1, 0.8],
+          opacity: [0.25, 0.35, 0.25],
         }}
-        transition={{ duration: 15, repeat: Infinity, ease: 'easeInOut' }}
+        transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
       />
-      {/* Secondary aurora orb - cyan */}
       <motion.div
-        className="absolute -left-40 top-1/2 h-[500px] w-[500px] rounded-full"
+        className="absolute -left-40 top-1/2 h-[500px] w-[500px] rounded-full opacity-20"
         style={{
-          background: 'radial-gradient(circle, rgba(6, 182, 212, 0.08) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(20,184,166,0.28) 0%, transparent 70%)',
         }}
         animate={{
           scale: [1.1, 1, 1.1],
-          opacity: [0.6, 0.8, 0.6],
+          opacity: [0.2, 0.3, 0.2],
         }}
-        transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
+        transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
       />
-      {/* Tertiary accent - violet (subtle) */}
       <motion.div
-        className="absolute bottom-0 right-1/4 h-[400px] w-[400px] rounded-full"
+        className="absolute bottom-0 right-1/4 h-[400px] w-[400px] rounded-full opacity-15"
         style={{
-          background: 'radial-gradient(circle, rgba(139, 92, 246, 0.06) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(59,130,246,0.3) 0%, transparent 70%)',
         }}
         animate={{
           scale: [1, 1.15, 1],
-          opacity: [0.4, 0.6, 0.4],
+          opacity: [0.15, 0.25, 0.15],
         }}
-        transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
+        transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut' }}
       />
 
       {/* Subtle grid */}
       <div
-        className="absolute inset-0 opacity-[0.012]"
+        className="absolute inset-0 opacity-[0.015]"
         style={{
-          backgroundImage: `linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
-                           linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px)`,
-          backgroundSize: '80px 80px',
-        }}
-      />
-
-      {/* Grain texture */}
-      <div
-        className="absolute inset-0 opacity-[0.02]"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
-          mixBlendMode: 'overlay',
+          backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+                           linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
+          backgroundSize: '60px 60px',
         }}
       />
     </div>
@@ -86,24 +75,6 @@ function ProductsBackground() {
 
 // Product data - structured for premium display
 const products = [
-  {
-    id: 'suno-prompt-library',
-    icon: Music,
-    name: 'Suno Prompt Library',
-    tagline: '100+ Battle-Tested Prompts',
-    description:
-      'Skip the prompt guessing game. Get 100+ prompts that powered 500+ tracks across every genre.',
-    status: 'available',
-    href: '/products/suno-prompt-library',
-    color: 'emerald',
-    highlights: [
-      '100+ prompts tested across 500+ generations',
-      '12 genre categories with mood and energy filters',
-      'Bonus modifier library for tempo, vocals, and style',
-    ],
-    featured: true,
-    price: '$27',
-  },
   {
     id: 'creative-ai-toolkit',
     icon: Sparkles,
@@ -129,12 +100,13 @@ const products = [
       'Prompt packs, emotion mapping, and production checklists for Suno creators.',
     status: 'coming-soon',
     href: '/products/vibe-os',
-    color: 'cyan',
+    color: 'emerald',
     highlights: [
       '50+ genre-specific prompts (electronic, hip-hop, ambient, cinematic)',
       'Emotion-to-sound mapping system',
       'Production enhancement and mastering guide',
     ],
+    featured: true,
   },
   {
     id: 'creation-chronicles',
@@ -186,47 +158,46 @@ const products = [
   },
 ]
 
-// Color map aligned with FrankX design system: tech (emerald/cyan), soul (amber)
 const colorMap = {
   violet: {
-    bg: 'bg-violet-500/8',
-    border: 'border-violet-500/15 hover:border-violet-500/30',
-    icon: 'bg-violet-500/15 text-violet-400',
-    accent: 'text-violet-400',
-    button: 'bg-violet-600 hover:bg-violet-500',
-    glow: 'group-hover:shadow-violet-500/15',
+    bg: 'bg-cyan-500/10',
+    border: 'border-cyan-500/20 hover:border-cyan-500/40',
+    icon: 'bg-cyan-500/20 text-cyan-300',
+    accent: 'text-cyan-300',
+    button: 'bg-cyan-600 hover:bg-cyan-500',
+    glow: 'group-hover:shadow-cyan-500/20',
   },
   emerald: {
-    bg: 'bg-emerald-500/8',
-    border: 'border-emerald-500/15 hover:border-emerald-500/30',
-    icon: 'bg-emerald-500/15 text-emerald-400',
-    accent: 'text-emerald-400',
+    bg: 'bg-emerald-500/10',
+    border: 'border-emerald-500/20 hover:border-emerald-500/40',
+    icon: 'bg-emerald-500/20 text-emerald-300',
+    accent: 'text-emerald-300',
     button: 'bg-emerald-600 hover:bg-emerald-500',
-    glow: 'group-hover:shadow-emerald-500/15',
+    glow: 'group-hover:shadow-emerald-500/20',
   },
   cyan: {
-    bg: 'bg-cyan-500/8',
-    border: 'border-cyan-500/15 hover:border-cyan-500/30',
-    icon: 'bg-cyan-500/15 text-cyan-400',
-    accent: 'text-cyan-400',
+    bg: 'bg-cyan-500/10',
+    border: 'border-cyan-500/20 hover:border-cyan-500/40',
+    icon: 'bg-cyan-500/20 text-cyan-300',
+    accent: 'text-cyan-300',
     button: 'bg-cyan-600 hover:bg-cyan-500',
-    glow: 'group-hover:shadow-cyan-500/15',
+    glow: 'group-hover:shadow-cyan-500/20',
   },
   amber: {
-    bg: 'bg-amber-500/8',
-    border: 'border-amber-500/15 hover:border-amber-500/30',
-    icon: 'bg-amber-500/15 text-amber-400',
-    accent: 'text-amber-400',
-    button: 'bg-amber-600 hover:bg-amber-500',
-    glow: 'group-hover:shadow-amber-500/15',
+    bg: 'bg-blue-500/10',
+    border: 'border-blue-500/20 hover:border-blue-500/40',
+    icon: 'bg-blue-500/20 text-blue-300',
+    accent: 'text-blue-300',
+    button: 'bg-blue-600 hover:bg-blue-500',
+    glow: 'group-hover:shadow-blue-500/20',
   },
   rose: {
-    bg: 'bg-emerald-500/8',
-    border: 'border-emerald-500/15 hover:border-emerald-500/30',
-    icon: 'bg-emerald-500/15 text-emerald-400',
-    accent: 'text-emerald-400',
-    button: 'bg-emerald-600 hover:bg-emerald-500',
-    glow: 'group-hover:shadow-emerald-500/15',
+    bg: 'bg-teal-500/10',
+    border: 'border-teal-500/20 hover:border-teal-500/40',
+    icon: 'bg-teal-500/20 text-teal-300',
+    accent: 'text-teal-300',
+    button: 'bg-teal-600 hover:bg-teal-500',
+    glow: 'group-hover:shadow-teal-500/20',
   },
 }
 
@@ -345,22 +316,13 @@ export default function ProductsPage() {
                         {/* Status and CTA */}
                         <div className="flex items-center justify-between border-t border-white/5 pt-6">
                           <div className="flex items-center gap-2">
-                            {product.status === 'available' ? (
-                              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-sm font-medium">
-                                <CheckCircle2 className="w-3.5 h-3.5" />
-                                {(product as typeof product & { price?: string }).price || 'Available'}
-                              </span>
-                            ) : (
-                              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 text-sm font-medium">
-                                <Sparkles className="w-3.5 h-3.5" />
-                                Coming Soon
-                              </span>
-                            )}
+                            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 text-sm font-medium">
+                              <Sparkles className="w-3.5 h-3.5" />
+                              Coming Soon
+                            </span>
                           </div>
                           <div className="flex items-center gap-2 text-slate-400 transition-colors group-hover:text-white">
-                            <span className="text-sm font-medium">
-                              {product.status === 'available' ? 'Get Access' : 'Join Waitlist'}
-                            </span>
+                            <span className="text-sm font-medium">Join Waitlist</span>
                             <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                           </div>
                         </div>

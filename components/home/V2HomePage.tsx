@@ -148,7 +148,7 @@ export default function V2HomePage() {
       </section>
 
       {/* Problem/Solution Section */}
-      <section className="px-6 py-24 bg-void/50" aria-labelledby="problem-heading">
+      <section className="px-6 py-24 bg-slate-950/50" aria-labelledby="problem-heading">
         <div className="mx-auto max-w-7xl">
           <div className="text-center mb-16">
             <h2 id="problem-heading" className="text-3xl md:text-5xl font-bold text-white mb-6">
@@ -283,7 +283,7 @@ export default function V2HomePage() {
       </section>
 
       {/* Social Proof - Testimonials */}
-      <section className="px-6 py-24 bg-void/50" aria-labelledby="testimonials-heading">
+      <section className="px-6 py-24 bg-slate-950/50" aria-labelledby="testimonials-heading">
         <div className="mx-auto max-w-7xl">
           <div className="text-center mb-16">
             <h2 id="testimonials-heading" className="text-3xl md:text-5xl font-bold text-white mb-6">

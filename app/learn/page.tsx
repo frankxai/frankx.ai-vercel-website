@@ -31,6 +31,13 @@ const colorMap: Record<string, string> = {
   violet: 'from-violet-500/20 to-violet-500/5 border-violet-500/20 text-violet-400',
 }
 
+const playButtonBgMap: Record<string, string> = {
+  emerald: 'bg-emerald-500/80 group-hover:bg-emerald-500',
+  cyan: 'bg-cyan-500/80 group-hover:bg-cyan-500',
+  amber: 'bg-amber-500/80 group-hover:bg-amber-500',
+  violet: 'bg-violet-500/80 group-hover:bg-violet-500',
+}
+
 function PathCard({ path }: { path: LearningPath }) {
   const Icon = iconMap[path.icon] || BookOpen
   const colors = colorMap[path.color]
@@ -42,6 +49,7 @@ function PathCard({ path }: { path: LearningPath }) {
     >
       <div className="flex items-start justify-between mb-4">
         <div className={`p-3 rounded-xl bg-white/5`}>
+          {/* @ts-expect-error - Dynamic icon component */}
           <Icon className="w-6 h-6" />
         </div>
         <span className="text-xs font-medium px-2 py-1 rounded-full bg-white/10 text-white/60 capitalize">
@@ -74,6 +82,7 @@ function PathCard({ path }: { path: LearningPath }) {
 
 function VideoCard({ video, pathColor }: { video: VideoResource; pathColor: string }) {
   const [isPlaying, setIsPlaying] = useState(false)
+  const playBtnClasses = playButtonBgMap[pathColor] || playButtonBgMap.emerald
 
   return (
     <div className="bg-white/[0.02] border border-white/10 rounded-xl overflow-hidden">
@@ -98,7 +107,7 @@ function VideoCard({ video, pathColor }: { video: VideoResource; pathColor: stri
               onClick={() => setIsPlaying(true)}
               className="absolute inset-0 flex items-center justify-center bg-black/40 hover:bg-black/30 transition-colors group"
             >
-              <div className={`p-4 rounded-full bg-${pathColor}-500/80 group-hover:bg-${pathColor}-500 transition-colors`}>
+              <div className={`p-4 rounded-full transition-colors ${playBtnClasses}`}>
                 <Play className="w-8 h-8 text-white fill-white" />
               </div>
             </button>
