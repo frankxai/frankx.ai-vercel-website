@@ -178,13 +178,6 @@ const arcaneaItems = [
     icon: GraduationCap,
   },
   {
-    name: 'The Luminors',
-    description: 'AI companions for creation and evolution.',
-    href: 'https://arcanea.app',
-    icon: Star,
-    external: true,
-  },
-  {
     name: 'Arcanea Platform',
     description: 'The full Arcanea experience.',
     href: 'https://arcanea.app',

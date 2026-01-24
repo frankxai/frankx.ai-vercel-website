@@ -105,10 +105,11 @@
     text-wrap: balance;
   }
 
-  /* Inter italic for emphasis - locked brand font */
+  /* Cormorant Garamond italic for quotes & editorial emphasis */
   .font-serif-italic {
-    font-family: var(--font-inter), Inter, system-ui, sans-serif;
+    font-family: var(--font-quote), 'Cormorant Garamond', Georgia, serif;
     font-style: italic;
+    font-weight: 500;
   }
 
   .gradient-text {

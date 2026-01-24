@@ -315,7 +315,7 @@ export const mdxComponents: MDXComponents = {
     </pre>
   ),
   blockquote: ({ children, ...props }: ComponentPropsWithoutRef<'blockquote'>) => (
-    <blockquote className="my-8 border-l-4 border-primary-500/70 bg-primary-500/10 px-6 py-4 text-lg italic text-white/80" {...props}>
+    <blockquote className="my-8 border-l-4 border-emerald-500/40 bg-white/[0.02] px-6 py-5 font-serif-italic text-xl text-white/80 leading-relaxed" {...props}>
       {children}
     </blockquote>
   ),

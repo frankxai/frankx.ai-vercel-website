@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter, JetBrains_Mono } from 'next/font/google'
+import { Inter, Cormorant_Garamond, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 import Script from 'next/script'
 
@@ -16,6 +16,16 @@ const inter = Inter({
   variable: '--font-inter',
   display: 'swap',
   weight: ['300', '400', '500', '600', '700', '800', '900'],
+})
+
+// Cormorant Garamond for quotes & editorial italic ONLY
+// High-contrast serif with ultra-elegant italic forms
+const cormorant = Cormorant_Garamond({
+  subsets: ['latin'],
+  variable: '--font-quote',
+  display: 'swap',
+  weight: ['400', '500', '600'],
+  style: ['normal', 'italic'],
 })
 
 // JetBrains Mono for code/technical elements only
@@ -105,6 +115,7 @@ export default function RootLayout({
       <body
         className={cn(
           inter.variable,
+          cormorant.variable,
           jetbrains.variable,
           'font-sans dark bg-[#030712] text-white antialiased min-h-screen overflow-x-hidden'
         )}
