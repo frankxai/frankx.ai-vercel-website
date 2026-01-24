@@ -20,38 +20,23 @@ type NavItem = {
 const navItems: NavItem[] = [
   { name: 'Home', href: '/' },
   {
-    name: 'For Creators',
+    name: 'Create',
     href: '/products/vibe-os',
     subItems: [
-      { name: 'Vibe OS (AI Music)', href: '/products/vibe-os' },
-      { name: 'Prompt Library', href: '/prompt-library' },
+      { name: 'Vibe OS', href: '/products/vibe-os' },
       { name: 'Music Lab', href: '/music-lab' },
-      { name: 'Templates', href: '/templates' },
+      { name: 'Prompt Library', href: '/prompt-library' },
       { name: 'Creation Chronicles', href: '/creation-chronicles' },
     ],
   },
   {
-    name: 'For Students',
-    href: '/students',
+    name: 'Learn',
+    href: '/learn',
     subItems: [
-      { name: 'Student Hub', href: '/students' },
-      { name: 'Workshops', href: '/workshops' },
       { name: 'Courses', href: '/courses' },
+      { name: 'Workshops', href: '/workshops' },
       { name: 'Guides', href: '/guides' },
       { name: 'AI Assessment', href: '/ai-assessment' },
-    ],
-  },
-  {
-    name: 'Resources',
-    href: '/resources',
-    subItems: [
-      { name: "The Creator's Soulbook", href: '/soulbook' },
-      { name: 'Workshops', href: '/workshops' },
-      { name: 'All Resources', href: '/resources' },
-      { name: 'Prompt Library', href: '/prompt-library' },
-      { name: 'Templates', href: '/templates' },
-      { name: 'Guides', href: '/guides' },
-      { name: 'Roadmap', href: '/roadmap' },
     ],
   },
   {
@@ -60,11 +45,12 @@ const navItems: NavItem[] = [
     subItems: [
       { name: 'All Products', href: '/products' },
       { name: 'Vibe OS', href: '/products/vibe-os' },
-      { name: 'Creative AI Toolkit', href: '/products/creative-ai-toolkit' },
-      { name: 'Generative Creator OS', href: '/products/generative-creator-os' },
+      { name: 'Agentic Creator OS', href: '/products/agentic-creator-os' },
+      { name: 'Templates', href: '/templates' },
     ],
   },
   { name: 'Blog', href: '/blog' },
+  { name: 'Rituals', href: '/rituals' },
   { name: 'About', href: '/about' },
 ]
 
