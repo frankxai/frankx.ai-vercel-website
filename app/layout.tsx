@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Syne, Outfit, Playfair_Display, JetBrains_Mono } from 'next/font/google'
+import { Inter, Playfair_Display, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 import Script from 'next/script'
 
@@ -10,23 +10,23 @@ import Footer from '@/components/Footer'
 import OrganizationJsonLd from '@/components/seo/OrganizationJsonLd'
 import SessionProvider from '@/components/providers/SessionProvider'
 
-// Syne - Bold geometric display font for headlines (distinctive, memorable)
-const syne = Syne({
-  subsets: ['latin'],
-  variable: '--font-display',
-  display: 'swap',
-  weight: ['400', '500', '600', '700', '800'],
-})
+/**
+ * TYPOGRAPHY SYSTEM - DO NOT CHANGE WITHOUT APPROVAL
+ * Approved: 2026-01-23 by Frank
+ *
+ * Inter: Primary font for all UI text (body, headings, buttons)
+ * Playfair Display: Editorial emphasis (quotes, special headings)
+ * JetBrains Mono: Code blocks and technical content
+ */
 
-// Outfit - Modern, refined sans-serif for body text (cleaner than Inter)
-const outfit = Outfit({
+// Inter - Clean, professional, highly readable
+const inter = Inter({
   subsets: ['latin'],
   variable: '--font-sans',
   display: 'swap',
-  weight: ['300', '400', '500', '600', '700'],
 })
 
-// Playfair Display for editorial touches (classic, elegant Times-like italics)
+// Playfair Display for editorial touches (classic, elegant)
 const playfair = Playfair_Display({
   subsets: ['latin'],
   variable: '--font-serif',
@@ -120,8 +120,7 @@ export default function RootLayout({
       </head>
       <body
         className={cn(
-          syne.variable,
-          outfit.variable,
+          inter.variable,
           playfair.variable,
           jetbrains.variable,
           'font-sans dark bg-void text-white antialiased min-h-screen overflow-x-hidden'
