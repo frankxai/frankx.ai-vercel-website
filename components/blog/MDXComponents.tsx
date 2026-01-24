@@ -19,6 +19,168 @@ import {
 
 type CalloutKind = 'info' | 'warning' | 'tip' | 'success'
 
+// ============================================================================
+// ARCHITECTURE DIAGRAM COMPONENTS
+// ============================================================================
+
+interface DecisionBoxProps {
+  title: string
+  children: ReactNode
+}
+
+function DecisionBox({ title, children }: DecisionBoxProps) {
+  return (
+    <div className="my-8 overflow-hidden rounded-2xl border border-cyan-500/30 bg-gradient-to-br from-cyan-950/40 via-slate-900/60 to-slate-900/40 backdrop-blur">
+      <div className="border-b border-cyan-500/20 bg-cyan-500/10 px-6 py-3">
+        <h4 className="text-sm font-bold uppercase tracking-widest text-cyan-300">{title}</h4>
+      </div>
+      <div className="p-6">{children}</div>
+    </div>
+  )
+}
+
+interface ComparisonGridProps {
+  children: ReactNode
+}
+
+function ComparisonGrid({ children }: ComparisonGridProps) {
+  return (
+    <div className="my-8 grid gap-4 md:grid-cols-2">
+      {children}
+    </div>
+  )
+}
+
+interface ComparisonCardProps {
+  title: string
+  subtitle?: string
+  pros?: string[]
+  cons?: string[]
+  color?: 'cyan' | 'emerald' | 'violet' | 'amber'
+  children?: ReactNode
+}
+
+const comparisonColors = {
+  cyan: {
+    border: 'border-cyan-500/30',
+    bg: 'from-cyan-950/30 to-slate-900/50',
+    header: 'bg-cyan-500/10 border-cyan-500/20',
+    title: 'text-cyan-300',
+    check: 'text-emerald-400',
+    cross: 'text-rose-400',
+  },
+  emerald: {
+    border: 'border-emerald-500/30',
+    bg: 'from-emerald-950/30 to-slate-900/50',
+    header: 'bg-emerald-500/10 border-emerald-500/20',
+    title: 'text-emerald-300',
+    check: 'text-emerald-400',
+    cross: 'text-rose-400',
+  },
+  violet: {
+    border: 'border-violet-500/30',
+    bg: 'from-violet-950/30 to-slate-900/50',
+    header: 'bg-violet-500/10 border-violet-500/20',
+    title: 'text-violet-300',
+    check: 'text-emerald-400',
+    cross: 'text-rose-400',
+  },
+  amber: {
+    border: 'border-amber-500/30',
+    bg: 'from-amber-950/30 to-slate-900/50',
+    header: 'bg-amber-500/10 border-amber-500/20',
+    title: 'text-amber-300',
+    check: 'text-emerald-400',
+    cross: 'text-rose-400',
+  },
+}
+
+function ComparisonCard({ title, subtitle, pros, cons, color = 'cyan', children }: ComparisonCardProps) {
+  const colors = comparisonColors[color]
+  return (
+    <div className={`overflow-hidden rounded-xl border ${colors.border} bg-gradient-to-br ${colors.bg}`}>
+      <div className={`border-b ${colors.header} px-5 py-3`}>
+        <h5 className={`font-bold ${colors.title}`}>{title}</h5>
+        {subtitle && <p className="text-xs text-white/50">{subtitle}</p>}
+      </div>
+      <div className="p-5 text-sm">
+        {pros && pros.length > 0 && (
+          <ul className="mb-3 space-y-1">
+            {pros.map((item, i) => (
+              <li key={i} className="flex items-start gap-2 text-white/70">
+                <span className={colors.check}>✓</span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        )}
+        {cons && cons.length > 0 && (
+          <ul className="space-y-1">
+            {cons.map((item, i) => (
+              <li key={i} className="flex items-start gap-2 text-white/70">
+                <span className={colors.cross}>×</span>
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        )}
+        {children}
+      </div>
+    </div>
+  )
+}
+
+interface TechStackProps {
+  layers: { name: string; services: string; color?: string }[]
+}
+
+function TechStack({ layers }: TechStackProps) {
+  const layerColors = ['cyan', 'emerald', 'violet', 'amber', 'rose', 'sky']
+  return (
+    <div className="my-8 overflow-hidden rounded-2xl border border-white/10">
+      {layers.map((layer, i) => {
+        const colorClass = layerColors[i % layerColors.length]
+        return (
+          <div
+            key={i}
+            className={`flex items-center border-b border-white/10 last:border-b-0 bg-gradient-to-r from-${colorClass}-950/30 to-transparent`}
+          >
+            <div className={`w-40 shrink-0 border-r border-white/10 bg-${colorClass}-500/10 px-4 py-3`}>
+              <span className={`text-sm font-bold text-${colorClass}-300`}>{layer.name}</span>
+            </div>
+            <div className="px-4 py-3 text-sm text-white/60">{layer.services}</div>
+          </div>
+        )
+      })}
+    </div>
+  )
+}
+
+interface ArchitectureImageProps {
+  src: string
+  alt: string
+  caption?: string
+}
+
+function ArchitectureImage({ src, alt, caption }: ArchitectureImageProps) {
+  return (
+    <figure className="my-10">
+      <div className="overflow-hidden rounded-2xl border border-cyan-500/20 bg-gradient-to-br from-slate-900 to-slate-950 p-1">
+        <Image
+          src={src}
+          alt={alt}
+          width={1408}
+          height={768}
+          className="w-full rounded-xl"
+        />
+      </div>
+      {caption && (
+        <figcaption className="mt-3 text-center text-sm text-white/50">{caption}</figcaption>
+      )}
+    </figure>
+  )
+}
+
 interface CalloutProps {
   children: ReactNode
   type?: CalloutKind
@@ -178,6 +340,12 @@ export const mdxComponents: MDXComponents = {
   Callout,
   AffiliateLink,
   Link,
+  // Architecture diagram components
+  DecisionBox,
+  ComparisonGrid,
+  ComparisonCard,
+  TechStack,
+  ArchitectureImage,
   // Embed components for immersive media in blog posts
   YouTubeEmbed,
   TikTokEmbed,
