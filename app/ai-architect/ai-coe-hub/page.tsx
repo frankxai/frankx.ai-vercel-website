@@ -23,7 +23,7 @@ import {
 interface ResourceCard {
   title: string
   description: string
-  icon: React.ComponentType<{ className?: string }>
+  icon: React.ElementType
   href: string
   external?: boolean
   category: 'architecture' | 'code' | 'guide' | 'oracle'
@@ -363,10 +363,7 @@ export default function AICoEHubPage() {
                     resource.category === 'code' ? 'bg-green-500/10 text-green-400' :
                     'bg-amber-500/10 text-amber-400'
                   }`}>
-                    {(() => {
-                      const Icon = resource.icon
-                      return <Icon className="w-6 h-6" />
-                    })()}
+                    <resource.icon className="w-6 h-6" />
                   </div>
                   {resource.external && (
                     <ArrowTopRightOnSquareIcon className="w-4 h-4 text-slate-500 group-hover:text-amber-400 transition-colors" />

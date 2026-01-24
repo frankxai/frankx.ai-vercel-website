@@ -2,9 +2,6 @@ import { getAllGuides, type GuideDoc } from '@/lib/guides'
 import { createMetadata } from '@/lib/seo'
 import GuidesPageClient from './GuidesPageClient'
 
-// ISR: Revalidate guides every 2 hours
-export const revalidate = 7200
-
 export const metadata = createMetadata({
   title: 'Implementation Guides - Step by Step AI Building',
   description:

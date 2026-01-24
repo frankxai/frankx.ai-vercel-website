@@ -1,7 +1,6 @@
 'use client'
 
 import Link from 'next/link'
-import Image from 'next/image'
 import { motion } from 'framer-motion'
 import {
   Compass,
@@ -74,7 +73,6 @@ const journeyPaths = [
   {
     id: 'music',
     icon: Music,
-    icon3D: '/images/3d/premium/headphone-dynamic.webp',
     title: 'Create AI Music',
     subtitle: 'The Music Lab',
     description: 'Learn how I create music with Suno AI. Prompts, workflows, and the creative process.',
@@ -85,7 +83,6 @@ const journeyPaths = [
   {
     id: 'learn',
     icon: BookOpen,
-    icon3D: '/images/3d/premium/bulb-dynamic.webp',
     title: 'Learn AI Skills',
     subtitle: 'Curated Courses',
     description: 'Free courses from Oracle, Google, and MIT. Hand-picked learning paths for AI mastery.',
@@ -96,7 +93,6 @@ const journeyPaths = [
   {
     id: 'prompts',
     icon: Sparkles,
-    icon3D: '/images/3d/premium/star-dynamic.webp',
     title: 'Use My Prompts',
     subtitle: 'Prompt Library',
     description: 'Battle-tested prompts I actually use daily. Copy them, adapt them, make them yours.',
@@ -107,7 +103,6 @@ const journeyPaths = [
   {
     id: 'build',
     icon: Code,
-    icon3D: '/images/3d/premium/tools-dynamic.webp',
     title: 'Build with AI',
     subtitle: 'Resources & Tools',
     description: 'Templates, guides, and frameworks for building your own AI-powered workflows.',
@@ -238,23 +233,6 @@ export default function StartPage() {
                       <div
                         className={`relative h-full overflow-hidden rounded-2xl border ${colors.border} ${colors.bg} p-8 backdrop-blur-sm transition-all duration-500 group-hover:-translate-y-1 group-hover:shadow-xl ${colors.glow}`}
                       >
-                        {/* Floating 3D Icon */}
-                        {path.icon3D && (
-                          <motion.div
-                            className="absolute -top-4 -right-4 w-24 h-24 opacity-50 group-hover:opacity-80 transition-opacity duration-500 pointer-events-none"
-                            animate={{ y: [0, -10, 0], rotate: [0, 3, 0] }}
-                            transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
-                          >
-                            <Image
-                              src={path.icon3D}
-                              alt=""
-                              fill
-                              className="object-contain drop-shadow-2xl"
-                              sizes="96px"
-                            />
-                          </motion.div>
-                        )}
-
                         {/* Icon and Stats Row */}
                         <div className="mb-6 flex items-start justify-between">
                           <div className={`flex h-14 w-14 items-center justify-center rounded-xl ${colors.icon}`}>

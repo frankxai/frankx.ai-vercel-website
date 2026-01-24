@@ -20,7 +20,7 @@ import {
 } from 'lucide-react'
 import { learningPaths, type VideoResource } from '@/data/learning-paths'
 
-const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
+const iconMap: Record<string, React.ElementType> = {
   brain: Brain,
   music: Music2,
   zap: Zap,

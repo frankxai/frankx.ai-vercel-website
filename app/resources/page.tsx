@@ -89,28 +89,24 @@ const productItems = [
     description: 'AI music creation system with prompts, workflows, and production tips.',
     href: '/products/vibe-os',
     icon: Music,
-    icon3D: '/images/3d/premium/headphone-dynamic.webp',
   },
   {
     name: 'Creative AI Toolkit',
     description: 'Prompts, templates, and rituals for creators shipping consistently.',
     href: '/products/creative-ai-toolkit',
     icon: Sparkles,
-    icon3D: '/images/3d/premium/star-dynamic.webp',
   },
   {
     name: 'Generative Creator OS',
     description: 'A multi-modal studio for music, visuals, and writing.',
     href: '/products/generative-creator-os',
     icon: Layers,
-    icon3D: '/images/3d/premium/tools-dynamic.webp',
   },
   {
     name: 'Agentic Creator OS',
     description: 'Build autonomous agents and developer-grade workflows.',
     href: '/products/agentic-creator-os',
     icon: Bot,
-    icon3D: '/images/3d/premium/gear-dynamic.webp',
   },
 ]
 
@@ -120,28 +116,24 @@ const foundationItems = [
     description: 'Downloadable AI playbooks to get started fast.',
     href: '/free-playbook',
     icon: Sparkles,
-    icon3D: '/images/3d/premium/notebook-dynamic.webp',
   },
   {
     name: 'AI Assessment',
     description: 'Find your next step with a quick assessment.',
     href: '/ai-assessment',
     icon: Wand2,
-    icon3D: '/images/3d/premium/target-dynamic.webp',
   },
   {
     name: 'Prompt Library',
     description: 'Curated prompts for creators and operators.',
     href: '/prompt-library',
     icon: BookOpen,
-    icon3D: '/images/3d/premium/chat-dynamic.webp',
   },
   {
     name: 'Templates',
     description: 'Ready-to-use workflows and checklists.',
     href: '/templates',
     icon: Layers,
-    icon3D: '/images/3d/premium/tools-dynamic.webp',
   },
 ]
 
@@ -151,28 +143,24 @@ const intelligenceItems = [
     description: 'Flagship research and frameworks.',
     href: '/intelligence-atlas',
     icon: Star,
-    icon3D: '/images/3d/premium/bulb-dynamic.webp',
   },
   {
     name: 'Agentic AI Center',
     description: 'Agent systems, playbooks, and updates.',
     href: '/agentic-ai-center',
     icon: Bot,
-    icon3D: '/images/3d/premium/computer-dynamic.webp',
   },
   {
     name: 'Creation Chronicles',
     description: 'Strategic storytelling OS and narratives.',
     href: '/products/creation-chronicles',
     icon: BookOpen,
-    icon3D: '/images/3d/premium/pencil-dynamic.webp',
   },
   {
     name: 'Vibe OS Sessions',
     description: 'AI music experiments and studio notes.',
     href: '/music',
     icon: Music,
-    icon3D: '/images/3d/premium/headphone-dynamic.webp',
   },
 ]
 
@@ -262,7 +250,6 @@ function ResourceGrid({
     description: string
     href: string
     icon: ComponentType<{ className?: string }>
-    icon3D?: string
     external?: boolean
   }>
 }) {
@@ -295,24 +282,8 @@ function ResourceGrid({
               <LinkComponent
                 key={item.name}
                 {...linkProps}
-                className="group relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] p-5 transition-all hover:-translate-y-1 hover:border-white/20 hover:bg-white/[0.04]"
+                className="group rounded-2xl border border-white/10 bg-white/[0.02] p-5 transition-all hover:-translate-y-1 hover:border-white/20 hover:bg-white/[0.04]"
               >
-                {/* Floating 3D Icon */}
-                {item.icon3D && (
-                  <motion.div
-                    className="absolute -top-3 -right-3 w-16 h-16 opacity-50 group-hover:opacity-80 transition-opacity duration-500 pointer-events-none"
-                    animate={{ y: [0, -6, 0], rotate: [0, 3, 0] }}
-                    transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
-                  >
-                    <Image
-                      src={item.icon3D}
-                      alt=""
-                      fill
-                      className="object-contain drop-shadow-lg"
-                      sizes="64px"
-                    />
-                  </motion.div>
-                )}
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-emerald-300">
                   <Icon className="h-5 w-5" />
                 </div>

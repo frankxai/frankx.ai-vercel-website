@@ -112,7 +112,6 @@ function AboutBackground() {
 const journey = [
   {
     icon: Briefcase,
-    icon3D: '/images/3d/premium/computer-dynamic.webp',
     title: 'Enterprise AI',
     description:
       'Senior AI Architect at Oracle\'s Center of Excellence. I build AI systems for global organizations that work in the real world.',
@@ -120,7 +119,6 @@ const journey = [
   },
   {
     icon: Music,
-    icon3D: '/images/3d/premium/headphone-dynamic.webp',
     title: 'Prolific Creator',
     description:
       'Thousands of songs created with Suno AI. Not just experimenting — exploring what\'s possible with AI music.',
@@ -128,7 +126,6 @@ const journey = [
   },
   {
     icon: Code,
-    icon3D: '/images/3d/premium/tools-dynamic.webp',
     title: 'Open Building',
     description:
       'Everything I learn goes into this hub. Prompts, workflows, frameworks — shared openly so you can use them too.',
@@ -139,19 +136,16 @@ const journey = [
 const principles = [
   {
     icon: Brain,
-    icon3D: '/images/3d/premium/bulb-dynamic.webp',
     title: 'Goal-Aligned AI',
     description: 'AI should amplify your unique voice. Every workflow starts with your goals, not a template.',
   },
   {
     icon: Zap,
-    icon3D: '/images/3d/premium/flash-dynamic.webp',
     title: 'Practical Over Hype',
     description: 'Tools you can use today. No jargon, no gatekeeping — just resources that help you ship.',
   },
   {
     icon: Heart,
-    icon3D: '/images/3d/premium/heart-dynamic.webp',
     title: 'Open Development',
     description: 'See how everything is built. Every framework here is transparent and adaptable.',
   },
@@ -314,27 +308,10 @@ export default function AboutPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className="group"
                   >
                     <div
-                      className={`relative h-full overflow-hidden rounded-2xl border ${colors.border} ${colors.bg} p-8 backdrop-blur-sm`}
+                      className={`h-full rounded-2xl border ${colors.border} ${colors.bg} p-8 backdrop-blur-sm`}
                     >
-                      {/* Floating 3D Icon */}
-                      {item.icon3D && (
-                        <motion.div
-                          className="absolute -top-4 -right-4 w-20 h-20 opacity-50 group-hover:opacity-80 transition-opacity duration-500 pointer-events-none"
-                          animate={{ y: [0, -8, 0], rotate: [0, 4, 0] }}
-                          transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
-                        >
-                          <Image
-                            src={item.icon3D}
-                            alt=""
-                            fill
-                            className="object-contain drop-shadow-xl"
-                            sizes="80px"
-                          />
-                        </motion.div>
-                      )}
                       <div className={`mb-6 flex h-14 w-14 items-center justify-center rounded-xl ${colors.icon}`}>
                         <Icon className="h-7 w-7" />
                       </div>
@@ -372,25 +349,8 @@ export default function AboutPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className="group"
                   >
-                    <div className="relative h-full overflow-hidden rounded-2xl border border-white/5 bg-white/[0.02] p-8 backdrop-blur-sm transition-all hover:border-white/10 hover:bg-white/[0.04]">
-                      {/* Floating 3D Icon */}
-                      {item.icon3D && (
-                        <motion.div
-                          className="absolute -top-3 -right-3 w-16 h-16 opacity-40 group-hover:opacity-70 transition-opacity duration-500 pointer-events-none"
-                          animate={{ y: [0, -6, 0], rotate: [0, 3, 0] }}
-                          transition={{ duration: 6, repeat: Infinity, ease: 'easeInOut' }}
-                        >
-                          <Image
-                            src={item.icon3D}
-                            alt=""
-                            fill
-                            className="object-contain drop-shadow-lg"
-                            sizes="64px"
-                          />
-                        </motion.div>
-                      )}
+                    <div className="h-full rounded-2xl border border-white/5 bg-white/[0.02] p-8 backdrop-blur-sm transition-all hover:border-white/10 hover:bg-white/[0.04]">
                       <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-lg bg-white/5 text-slate-400">
                         <Icon className="h-6 w-6" />
                       </div>
