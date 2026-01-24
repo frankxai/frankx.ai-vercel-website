@@ -19,6 +19,7 @@ import {
 
 import { trackEvent } from '@/lib/analytics'
 import TrustedByBlock from '@/components/social-proof/TrustedByBlock'
+import Floating3DAsset from '@/components/ui/Floating3DAsset'
 
 // ============================================================================
 // DESIGN SYSTEM
@@ -256,6 +257,28 @@ function Hero() {
       ref={ref}
       className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 md:pt-20"
     >
+      {/* Premium 3D floating accents - desktop only, subtle */}
+      <div className="hidden xl:block pointer-events-none">
+        <Floating3DAsset
+          src="/images/3d/3dicons-rocket-dynamic-premium.png"
+          position="top-right"
+          size="xl"
+          animation="float"
+          opacity={25}
+          className="top-32 right-[5%]"
+          delay={0.3}
+        />
+        <Floating3DAsset
+          src="/images/3d/3dicons-star-dynamic-premium.png"
+          position="bottom-left"
+          size="lg"
+          animation="pulse"
+          opacity={20}
+          className="bottom-40 left-[8%]"
+          delay={0.6}
+        />
+      </div>
+
       <motion.div
         className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 py-8 md:py-20"
         style={shouldReduceMotion ? undefined : { opacity, y, scale }}

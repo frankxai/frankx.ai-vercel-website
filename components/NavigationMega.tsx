@@ -101,24 +101,42 @@ const navigation = {
     label: 'Resources',
     featured: {
       title: 'Resource Hub',
-      description: 'Products, Arcanea, and learning paths to build your creative future.',
+      description: 'All guides, tools, and learning resources.',
       href: '/resources',
       badge: 'Explore',
     },
     items: [
-      { name: 'Resource Hub', href: '/resources', icon: Sparkles, description: 'All systems, guides, and tools' },
-      { name: 'The Golden Age of Creators', href: '/golden-age', icon: BookOpen, description: 'Book on creative transformation' },
-      { name: "The Creator's Soulbook", href: '/soulbook', icon: BookOpen, description: 'Your life transformation system' },
-      { name: 'Free Playbooks', href: '/free-playbook', icon: FileText, description: 'Start with quick wins' },
-      { name: 'Prompt Library', href: '/prompt-library', icon: BookOpen, description: 'Curated prompt stacks' },
-      { name: 'Downloads', href: '/downloads', icon: FileText, description: 'PDFs & free resources' },
-      { name: 'Research Hub', href: '/research', icon: Microscope, description: 'Daily intelligence operations' },
-      { name: 'Intelligence Atlas', href: '/intelligence-atlas', icon: Star, description: 'Flagship research' },
-      { name: 'AI Architect', href: '/ai-architect', icon: Network, description: 'Solution design & patterns' },
-      { name: 'Vibe OS', href: '/products/vibe-os', icon: Music, description: 'AI music system' },
+      { name: 'Free Playbooks', href: '/free-playbook', icon: FileText, description: 'Quick-start guides' },
+      { name: 'Downloads', href: '/downloads', icon: FileText, description: 'PDFs & resources' },
+      { name: 'Prompt Library', href: '/prompt-library', icon: BookOpen, description: 'Curated prompts' },
+    ],
+  },
+}
+
+// Categorized Resources for mega menu columns
+const resourcesCategories = {
+  learn: {
+    title: 'Learn',
+    items: [
+      { name: 'The Golden Age', href: '/golden-age', icon: BookOpen, description: 'Transformation book' },
+      { name: 'Soulbook', href: '/soulbook', icon: Heart, description: 'Life system' },
+      { name: 'Free Playbooks', href: '/free-playbook', icon: FileText, description: 'Quick wins' },
+    ],
+  },
+  build: {
+    title: 'Build',
+    items: [
+      { name: 'Vibe OS', href: '/products/vibe-os', icon: Music, description: 'AI music' },
       { name: 'Agentic Creator OS', href: '/products/agentic-creator-os', icon: Bot, description: 'Agent workflows' },
-      { name: 'Arcanea', href: '/magic', icon: Wand2, description: 'Worldbuilding academy' },
-      { name: 'The Luminors', href: 'https://arcanea.app', icon: Heart, description: 'AI companions', external: true },
+      { name: 'Prompt Library', href: '/prompt-library', icon: Sparkles, description: 'Curated prompts' },
+    ],
+  },
+  explore: {
+    title: 'Explore',
+    items: [
+      { name: 'Research Hub', href: '/research', icon: Microscope, description: 'Intelligence ops' },
+      { name: 'AI Architect', href: '/ai-architect', icon: Network, description: 'Patterns' },
+      { name: 'Arcanea', href: '/magic', icon: Wand2, description: 'Worldbuilding' },
     ],
   },
 }
@@ -193,6 +211,47 @@ function MegaMenuContent({ section }: { section: keyof typeof navigation }) {
           )
         })}
       </ul>
+    </div>
+  )
+}
+
+// Resources mega menu with 3-column layout
+function ResourcesMegaMenu() {
+  return (
+    <div className="grid w-[680px] gap-6 p-5 md:grid-cols-3">
+      {(Object.keys(resourcesCategories) as Array<keyof typeof resourcesCategories>).map((category) => {
+        const data = resourcesCategories[category]
+        return (
+          <div key={category}>
+            <h4 className="mb-3 text-[11px] font-bold uppercase tracking-widest text-emerald-400/80">
+              {data.title}
+            </h4>
+            <ul className="space-y-1">
+              {data.items.map((item) => {
+                const Icon = item.icon
+                return (
+                  <li key={item.name}>
+                    <NavigationMenu.Link asChild>
+                      <Link
+                        href={item.href}
+                        className="group flex items-center gap-2.5 rounded-lg px-2 py-2 transition-colors hover:bg-white/5"
+                      >
+                        <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-white/5 text-slate-400 transition-colors group-hover:bg-emerald-500/10 group-hover:text-emerald-400">
+                          <Icon className="h-3.5 w-3.5" />
+                        </div>
+                        <div>
+                          <span className="text-[13px] font-medium text-white">{item.name}</span>
+                          <p className="text-[11px] text-slate-500">{item.description}</p>
+                        </div>
+                      </Link>
+                    </NavigationMenu.Link>
+                  </li>
+                )
+              })}
+            </ul>
+          </div>
+        )
+      })}
     </div>
   )
 }
@@ -337,7 +396,7 @@ export default function NavigationMega() {
             <NavigationMenu.Item>
               <NavTrigger>Resources</NavTrigger>
               <NavigationMenu.Content className="absolute left-0 top-0 data-[motion=from-end]:animate-enterFromRight data-[motion=from-start]:animate-enterFromLeft data-[motion=to-end]:animate-exitToRight data-[motion=to-start]:animate-exitToLeft">
-                <MegaMenuContent section="resources" />
+                <ResourcesMegaMenu />
               </NavigationMenu.Content>
             </NavigationMenu.Item>
 

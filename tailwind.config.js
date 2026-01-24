@@ -243,11 +243,10 @@ module.exports = {
       // See /lib/design-system.ts for full scale
       // =====================================================
       fontFamily: {
-        // Outfit for body - clean, modern, refined
-        sans: ['var(--font-sans)', 'Outfit', 'system-ui', '-apple-system', 'sans-serif'],
-        // Syne for headlines - bold, geometric, distinctive
-        display: ['var(--font-display)', 'Syne', 'system-ui', 'sans-serif'],
-        serif: ['var(--font-serif)', 'Playfair Display', '"Times New Roman"', 'Times', 'Georgia', 'serif'],
+        // INTER ONLY - Locked as the single brand font (DO NOT CHANGE)
+        sans: ['var(--font-inter)', 'Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        display: ['var(--font-inter)', 'Inter', 'system-ui', 'sans-serif'],
+        serif: ['var(--font-inter)', 'Inter', 'system-ui', 'sans-serif'], // No serif fonts
         mono: ['var(--font-mono)', 'JetBrains Mono', 'Menlo', 'Monaco', 'monospace'],
       },
       fontSize: {

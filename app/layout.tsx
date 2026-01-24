@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter, Playfair_Display, JetBrains_Mono } from 'next/font/google'
+import { Inter, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 import Script from 'next/script'
 
@@ -10,23 +10,15 @@ import Footer from '@/components/Footer'
 import OrganizationJsonLd from '@/components/seo/OrganizationJsonLd'
 import SessionProvider from '@/components/providers/SessionProvider'
 
-// Inter as primary sans-serif (geometric, variable weight, screen-optimized)
+// Inter as THE primary font - used everywhere (locked, do not change)
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
   display: 'swap',
-  weight: ['300', '400', '500', '600', '700'],
+  weight: ['300', '400', '500', '600', '700', '800', '900'],
 })
 
-// Playfair Display for editorial touches (classic, elegant Times-like italics)
-const playfair = Playfair_Display({
-  subsets: ['latin'],
-  variable: '--font-serif',
-  display: 'swap',
-  style: ['normal', 'italic'],
-})
-
-// JetBrains Mono for code/technical elements
+// JetBrains Mono for code/technical elements only
 const jetbrains = JetBrains_Mono({
   subsets: ['latin'],
   variable: '--font-mono',
@@ -113,7 +105,6 @@ export default function RootLayout({
       <body
         className={cn(
           inter.variable,
-          playfair.variable,
           jetbrains.variable,
           'font-sans dark bg-[#030712] text-white antialiased min-h-screen overflow-x-hidden'
         )}

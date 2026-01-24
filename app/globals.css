@@ -105,9 +105,9 @@
     text-wrap: balance;
   }
 
-  /* Times New Roman italic for elegant headings */
+  /* Inter italic for emphasis - locked brand font */
   .font-serif-italic {
-    font-family: "Times New Roman", Times, Georgia, serif;
+    font-family: var(--font-inter), Inter, system-ui, sans-serif;
     font-style: italic;
   }
 
