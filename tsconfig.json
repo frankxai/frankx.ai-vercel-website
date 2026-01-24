@@ -38,6 +38,7 @@
   ],
   "exclude": [
     "node_modules",
+    "emails",
     "tests",
     "_repo_remote_frankx_website",
     "agentic-creator-os-mcp",
