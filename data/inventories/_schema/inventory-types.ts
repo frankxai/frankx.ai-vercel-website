@@ -17,7 +17,9 @@ export type ContentStatus =
   | 'draft'      // Work in progress
   | 'published'  // Live and public
   | 'archived'   // No longer promoted but accessible
-  | 'private';   // Internal only
+  | 'private'    // Internal only
+  | 'active'     // Currently active (for implementations)
+  | 'planned';   // Planned for future
 
 export type Platform =
   | 'suno'
