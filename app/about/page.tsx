@@ -314,6 +314,26 @@ export default function AboutPage() {
               />
             </motion.div>
 
+            {/* AI Stack Concept */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="mb-12 overflow-hidden rounded-2xl border border-white/10"
+            >
+              <Image
+                src="/images/acos/ai-motherboard-concept.jpeg"
+                alt="The AI Stack - Claude, ChatGPT, Suno, and more integrated on a unified platform"
+                width={1376}
+                height={768}
+                className="w-full"
+              />
+              <div className="bg-white/[0.03] px-6 py-3 text-center text-sm text-white/50">
+                The unified AI stack powering creative output across music, content, and code
+              </div>
+            </motion.div>
+
             <div className="grid gap-6 md:grid-cols-3">
               {journey.map((item, index) => {
                 const Icon = item.icon

@@ -65,12 +65,48 @@ export default function AgenticCreatorOSPage() {
           </p>
           <div className="overflow-hidden rounded-2xl border border-white/10">
             <Image
-              src="/images/acos/acos-technical-architecture.png"
-              alt="ACOS v5.0 Architecture - 7-layer system with MCP foundation, skills library, specialist agents, and creator hub interface"
+              src="/images/acos/acos-v5-architecture-pyramid.jpeg"
+              alt="ACOS v5.0 Architecture - 7-layer pyramid with MCP foundation, skills library, specialist agents, plugin marketplace, model routing, swarm orchestration, and creator hub interface. Includes agent hierarchy and live metrics dashboard."
               width={1376}
               height={768}
               className="w-full"
               priority
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Agent Orchestration */}
+      <section className="bg-[#02030b] py-16">
+        <div className="mx-auto max-w-6xl px-6">
+          <h2 className="mb-4 text-center text-2xl font-semibold text-white sm:text-3xl">
+            Agent Orchestration
+          </h2>
+          <p className="mx-auto mb-10 max-w-2xl text-center text-slate-400">
+            Central orchestrator coordinates specialist agents — each with dedicated tools and domain expertise
+          </p>
+          <div className="overflow-hidden rounded-2xl border border-white/10">
+            <Image
+              src="/images/acos/orchestrator-core-agents.jpeg"
+              alt="ACOS Orchestrator Core connected to 5 specialist agents: Researcher, Strategist, Writer, QA Critic, and Media Gen"
+              width={1376}
+              height={768}
+              className="w-full"
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Overview */}
+      <section className="bg-[#02030b] py-16">
+        <div className="mx-auto max-w-4xl px-6">
+          <div className="overflow-hidden rounded-2xl border border-white/10">
+            <Image
+              src="/images/acos/acos-venn-stats.jpeg"
+              alt="ACOS by the numbers: 70+ Skills, 10 Agents, 14 Commands — 51 Articles Published, 500+ Tracks Created, 40min Idea-to-Publish"
+              width={1376}
+              height={768}
+              className="w-full"
             />
           </div>
         </div>
