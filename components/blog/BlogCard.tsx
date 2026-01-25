@@ -1,5 +1,6 @@
 'use client'
 
+import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Calendar, Clock, ArrowUpRight, Sparkles } from 'lucide-react'
@@ -15,6 +16,9 @@ interface BlogCardProps {
 }
 
 export default function BlogCard({ post, featured = false, className }: BlogCardProps) {
+  const [imgError, setImgError] = useState(false)
+  const showImage = post.image && !imgError
+
   return (
     <Link
       href={`/blog/${post.slug}`}
@@ -27,7 +31,7 @@ export default function BlogCard({ post, featured = false, className }: BlogCard
       )}
     >
       {/* Hero Image Section */}
-      {post.image && (
+      {showImage && (
         <div className="relative w-full h-48 md:h-56 overflow-hidden bg-gradient-to-br from-emerald-500/10 via-cyan-500/5 to-purple-500/10">
           <Image
             src={post.image}
@@ -35,6 +39,7 @@ export default function BlogCard({ post, featured = false, className }: BlogCard
             fill
             className="object-cover transition-transform duration-700 group-hover:scale-110"
             sizes={featured ? '(max-width: 768px) 100vw, 66vw' : '(max-width: 768px) 100vw, 33vw'}
+            onError={() => setImgError(true)}
           />
           {/* Gradient overlay */}
           <div className="absolute inset-0 bg-gradient-to-t from-[#030712] via-[#030712]/80 to-transparent" />
@@ -65,7 +70,7 @@ export default function BlogCard({ post, featured = false, className }: BlogCard
 
       <div className={cn('relative p-6', featured && 'p-8')}>
         {/* If no image, show category at top */}
-        {!post.image && (
+        {!showImage && (
           <div className="flex items-center justify-between mb-4">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
               <Sparkles className="w-3 h-3" />
@@ -75,7 +80,7 @@ export default function BlogCard({ post, featured = false, className }: BlogCard
           </div>
         )}
 
-        {post.image && (
+        {showImage && (
           <div className="flex items-center justify-end mb-3">
             <ArrowUpRight className="w-5 h-5 text-white/30 group-hover:text-emerald-400 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300" />
           </div>
@@ -118,7 +123,7 @@ export default function BlogCard({ post, featured = false, className }: BlogCard
         </div>
 
         {/* Tags (show on featured or if no image) */}
-        {(featured || !post.image) && post.tags && post.tags.length > 0 && (
+        {(featured || !showImage) && post.tags && post.tags.length > 0 && (
           <div className="flex flex-wrap gap-2 mt-4 pt-4 border-t border-white/5">
             {post.tags.slice(0, featured ? 5 : 3).map((tag) => (
               <span
