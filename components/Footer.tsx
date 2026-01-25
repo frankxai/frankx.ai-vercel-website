@@ -104,6 +104,13 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="mt-8 sm:mt-12 md:mt-16 pt-6 sm:pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-3 sm:gap-4 text-xs sm:text-sm text-white/30">
           <p>&copy; {new Date().getFullYear()} Frank. All rights reserved.</p>
+          <nav className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1" aria-label="Legal">
+            <Link href="/privacy" className="hover:text-white/60 transition-colors">Privacy</Link>
+            <span className="text-white/15">·</span>
+            <Link href="/terms" className="hover:text-white/60 transition-colors">Terms</Link>
+            <span className="text-white/15">·</span>
+            <Link href="/legal" className="hover:text-white/60 transition-colors">Legal</Link>
+          </nav>
           <p className="text-center md:text-right">
             Built with Next.js, deployed on Vercel. Music made with Suno.
           </p>

@@ -7,6 +7,7 @@ import { cn } from '@/lib/utils'
 import { robotsConfig, siteConfig } from '@/lib/seo'
 import NavigationMega from '@/components/NavigationMega'
 import Footer from '@/components/Footer'
+import CookieConsent from '@/components/CookieConsent'
 import OrganizationJsonLd from '@/components/seo/OrganizationJsonLd'
 import SessionProvider from '@/components/providers/SessionProvider'
 
@@ -141,6 +142,7 @@ export default function RootLayout({
             {children}
           </div>
           <Footer />
+          <CookieConsent />
         </SessionProvider>
       </body>
     </html >
