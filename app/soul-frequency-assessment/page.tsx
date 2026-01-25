@@ -14,7 +14,7 @@ const pillars = [
   },
   {
     icon: Heart,
-    title: 'Soul-Aligned Delivery',
+    title: 'Purpose-Aligned Delivery',
     description: 'Design operating rhythms that protect your energy while unlocking exponential impact.'
   },
   {

@@ -2,11 +2,11 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Research Intelligence Hub | FrankX.AI',
-  description: 'A sophisticated research system exploring generative AI, consciousness, and human potential. Daily intelligence operations synthesizing cutting-edge insights for conscious creators.',
+  description: 'A sophisticated research system exploring generative AI, creativity, and human potential. Daily intelligence operations synthesizing cutting-edge insights for ambitious creators.',
   keywords: [
     'AI research',
     'generative AI',
-    'consciousness research',
+    'creative intelligence',
     'personal development',
     'AI agents',
     'LLM research',
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: 'Research Intelligence Hub | FrankX.AI',
-    description: 'Daily intelligence operations exploring the frontiers of AI, consciousness, and human potential.',
+    description: 'Daily intelligence operations exploring the frontiers of AI, creativity, and human potential.',
     type: 'website',
     url: 'https://frankx.ai/research',
     images: [
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Research Intelligence Hub | FrankX.AI',
-    description: 'Multi-agent research system for AI, consciousness, and human potential.',
+    description: 'Multi-agent research system for AI, creativity, and human potential.',
     images: ['/images/og-image.png'],
   },
   alternates: {

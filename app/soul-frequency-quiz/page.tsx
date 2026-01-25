@@ -321,7 +321,7 @@ export default function SoulFrequencyQuiz() {
                   </h1>
                   <p className="text-base text-white/75 md:text-lg">
                     Six fast prompts surface your dominant creative frequency. We will translate it into rituals, prompts,
-                    and partner workflows so every AI interaction stays soul-aligned.
+                    and partner workflows so every AI interaction stays purpose-aligned.
                   </p>
                 </div>
 
