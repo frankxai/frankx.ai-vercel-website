@@ -63,6 +63,33 @@
           "hasOracleLogo": false,
           "status": "ok",
           "generatedWith": "Gemini 3 Pro Image via Nano Banana MCP"
+        },
+        {
+          "file": "/images/blog/oci-series/operating-model-inversion.png",
+          "title": "Operating Model Inversion",
+          "description": "Side-by-side comparison of POC effort (90% model, 10% ops) vs production effort (governance, observability, evaluation, cost, security, model).",
+          "usedIn": ["content/blog/production-llm-agents-oci-part-3-operating-model.mdx"],
+          "hasOracleLogo": false,
+          "status": "ok",
+          "generatedWith": "Gemini 3 Pro Image via Nano Banana MCP"
+        },
+        {
+          "file": "/images/blog/oci-series/maturity-model-5-stages.png",
+          "title": "5-Stage AI Operations Maturity",
+          "description": "Staircase progression from Stage 1 Ad-Hoc through Stage 5 Autonomous. Each stage has description and team role.",
+          "usedIn": ["content/blog/production-llm-agents-oci-part-3-operating-model.mdx"],
+          "hasOracleLogo": false,
+          "status": "ok",
+          "generatedWith": "Gemini 3 Pro Image via Nano Banana MCP"
+        },
+        {
+          "file": "/images/blog/oci-series/observability-4-pillars.png",
+          "title": "4 Pillars of AI Observability",
+          "description": "4-column architecture: Traces, Metrics, Logs, Evals converging into Unified Observability Console.",
+          "usedIn": ["content/blog/production-llm-agents-oci-part-3-operating-model.mdx"],
+          "hasOracleLogo": false,
+          "status": "ok",
+          "generatedWith": "Gemini 3 Pro Image via Nano Banana MCP"
         }
       ]
     },
