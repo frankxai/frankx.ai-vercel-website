@@ -49,6 +49,7 @@ function PathCard({ path }: { path: LearningPath }) {
     >
       <div className="flex items-start justify-between mb-4">
         <div className={`p-3 rounded-xl bg-white/5`}>
+          {/* @ts-expect-error - Dynamic icon component */}
           <Icon className="w-6 h-6" />
         </div>
         <span className="text-xs font-medium px-2 py-1 rounded-full bg-white/10 text-white/60 capitalize">

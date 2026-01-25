@@ -163,6 +163,7 @@ export default function LearningPathPage() {
             {/* Main content */}
             <div>
               <div className={`inline-flex items-center gap-2 px-4 py-2 rounded-full ${colors.border} border bg-white/5 ${colors.text} text-sm font-medium mb-6`}>
+                {/* @ts-expect-error - Dynamic icon component */}
                 <Icon className="w-4 h-4" />
                 {path.difficulty} path
               </div>
