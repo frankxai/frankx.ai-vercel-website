@@ -22,33 +22,11 @@ seriesPart: 3
 
 Most GenAI projects invest 90% effort on models and 10% on operations. Production systems require the inverse: **the model is a dependency; the operating model is the product.**
 
-```
-┌─────────────────────────────────────────────────────────────────────────┐
-│                     THE OPERATING MODEL INVERSION                        │
-├─────────────────────────────────────────────────────────────────────────┤
-│                                                                          │
-│   POC/Prototype Effort                Production Effort                  │
-│   ───────────────────                 ─────────────────                  │
-│                                                                          │
-│   ┌─────────────────┐                ┌─────────────────┐                │
-│   │                 │                │ Governance  15% │                │
-│   │                 │                ├─────────────────┤                │
-│   │   Model/Prompt  │                │ Observability   │                │
-│   │      90%        │                │      20%        │                │
-│   │                 │                ├─────────────────┤                │
-│   │                 │                │ Evaluation 15%  │                │
-│   ├─────────────────┤                ├─────────────────┤                │
-│   │  Operations 10% │                │ Cost Mgmt  10%  │                │
-│   └─────────────────┘                ├─────────────────┤                │
-│                                      │ Security   15%  │                │
-│                                      ├─────────────────┤                │
-│                                      │Model/Prompt 25% │                │
-│                                      └─────────────────┘                │
-│                                                                          │
-│   "Let's see if it works"            "Let's make it reliable"           │
-│                                                                          │
-└─────────────────────────────────────────────────────────────────────────┘
-```
+<ArchitectureImage
+  src="/images/blog/oci-series/operating-model-inversion.png"
+  alt="The Operating Model Inversion — POC allocates 90% effort to model/prompt and 10% to operations. Production inverts this: Governance 15%, Observability 20%, Evaluation 15%, Cost Management 10%, Security 15%, Model/Prompt 25%."
+  caption="POC effort is 90% model-centric. Production effort distributes across governance, observability, evaluation, cost, security, and the model itself."
+/>
 
 An operating model answers these critical questions:
 
@@ -66,38 +44,11 @@ An operating model answers these critical questions:
 
 Based on production learnings from enterprise deployments and aligned with industry frameworks like Google's ADK maturity guidance.
 
-```
-┌─────────────────────────────────────────────────────────────────────────┐
-│                    5-STAGE AI OPERATIONS MATURITY                        │
-├─────────────────────────────────────────────────────────────────────────┤
-│                                                                          │
-│  STAGE 5: AUTONOMOUS ────────────────────────────────────────────────── │
-│  │  Self-healing, self-optimizing systems                               │
-│  │  AI monitors AI, predictive scaling, autonomous cost optimization    │
-│  │  Team: Strategic oversight only                                      │
-│  ▼                                                                       │
-│  STAGE 4: OPTIMIZED ─────────────────────────────────────────────────── │
-│  │  ML-driven operations, A/B testing at scale                          │
-│  │  Automated quality gates, dynamic routing                            │
-│  │  Team: Focus on capability expansion                                 │
-│  ▼                                                                       │
-│  STAGE 3: MEASURED ──────────────────────────────────────────────────── │
-│  │  Full observability, SLOs defined and tracked                        │
-│  │  Evaluation pipelines in CI/CD, cost allocation                      │
-│  │  Team: Proactive improvement                                         │
-│  ▼                                                                       │
-│  STAGE 2: MANAGED ───────────────────────────────────────────────────── │
-│  │  Basic monitoring, manual quality checks                             │
-│  │  Prompt versioning, incident response defined                        │
-│  │  Team: Reactive operations                                           │
-│  ▼                                                                       │
-│  STAGE 1: AD-HOC ────────────────────────────────────────────────────── │
-│     No versioning, no monitoring, no quality gates                      │
-│     "It works on my laptop"                                             │
-│     Team: Heroic firefighting                                           │
-│                                                                          │
-└─────────────────────────────────────────────────────────────────────────┘
-```
+<ArchitectureImage
+  src="/images/blog/oci-series/maturity-model-5-stages.png"
+  alt="5-Stage AI Operations Maturity — Stage 1 Ad-Hoc (heroic firefighting), Stage 2 Managed (basic monitoring), Stage 3 Measured (full observability and SLOs), Stage 4 Optimized (A/B testing and quality gates), Stage 5 Autonomous (self-healing, AI monitors AI)."
+  caption="Progress from ad-hoc firefighting to autonomous self-healing operations. Most enterprise teams are between Stage 1 and Stage 2."
+/>
 
 ### Maturity Assessment Scorecard
 
@@ -125,35 +76,20 @@ Rate your current state (1-5) for each dimension:
 
 ### Stage 1 → Stage 2: Foundation (Weeks 1-4)
 
-```
-┌─────────────────────────────────────────────────────────────────────────┐
-│                    STAGE 2 IMPLEMENTATION                                │
-├─────────────────────────────────────────────────────────────────────────┤
-│                                                                          │
-│  Week 1: Version Control                                                 │
-│  ├─ Move prompts to Git repository                                      │
-│  ├─ Define naming conventions                                           │
-│  └─ Create prompt registry YAML                                         │
-│                                                                          │
-│  Week 2: Basic Monitoring                                                │
-│  ├─ Enable OCI Logging for all requests                                 │
-│  ├─ Create error dashboards in OCI Monitoring                           │
-│  └─ Set up basic alerting (errors, latency)                             │
-│                                                                          │
-│  Week 3: Incident Response                                               │
-│  ├─ Document runbooks for common failures                               │
-│  ├─ Define severity levels                                              │
-│  └─ Establish on-call rotation                                          │
-│                                                                          │
-│  Week 4: Quality Baseline                                                │
-│  ├─ Create initial golden test set (20-50 cases)                        │
-│  ├─ Manual evaluation process                                           │
-│  └─ Document known limitations                                          │
-│                                                                          │
-│  OCI Services: Logging, Monitoring, Identity Domains                     │
-│                                                                          │
-└─────────────────────────────────────────────────────────────────────────┘
-```
+<DecisionBox title="Stage 2 Implementation (Weeks 1-4)">
+
+**Week 1 — Version Control:** Move prompts to Git, define naming conventions, create prompt registry YAML.
+
+**Week 2 — Basic Monitoring:** Enable OCI Logging for all requests, create error dashboards, set up basic alerting (errors, latency).
+
+**Week 3 — Incident Response:** Document runbooks for common failures, define severity levels, establish on-call rotation.
+
+**Week 4 — Quality Baseline:** Create initial golden test set (20-50 cases), define manual evaluation process, document known limitations.
+
+<Callout type="info">
+**OCI Services:** Logging, Monitoring, Identity Domains
+</Callout>
+</DecisionBox>
 
 **Key Deliverables:**
 - Prompt repository structure
@@ -164,39 +100,20 @@ Rate your current state (1-5) for each dimension:
 
 ### Stage 2 → Stage 3: Measurement (Weeks 5-12)
 
-```
-┌─────────────────────────────────────────────────────────────────────────┐
-│                    STAGE 3 IMPLEMENTATION                                │
-├─────────────────────────────────────────────────────────────────────────┤
-│                                                                          │
-│  Weeks 5-6: Full Observability                                           │
-│  ├─ Instrument with OpenTelemetry                                       │
-│  ├─ Deploy OCI APM for distributed tracing                              │
-│  ├─ Create SLO dashboards                                               │
-│  └─ Implement log correlation                                           │
-│                                                                          │
-│  Weeks 7-8: Evaluation Pipeline                                          │
-│  ├─ Expand golden set to 200+ cases                                     │
-│  ├─ Integrate evaluation into CI/CD                                     │
-│  ├─ Implement semantic similarity metrics                               │
-│  └─ Add latency/cost assertions                                         │
-│                                                                          │
-│  Weeks 9-10: Cost Management                                             │
-│  ├─ Tag all resources for cost allocation                               │
-│  ├─ Implement per-request cost tracking                                 │
-│  ├─ Create cost dashboards by tenant/use-case                           │
-│  └─ Set up budget alerts                                                │
-│                                                                          │
-│  Weeks 11-12: Governance                                                 │
-│  ├─ Define prompt review process                                        │
-│  ├─ Implement approval workflows                                        │
-│  ├─ Create audit trail for changes                                      │
-│  └─ Document compliance requirements                                    │
-│                                                                          │
-│  OCI Services: APM, Functions, DevOps Pipelines, Cost Analysis           │
-│                                                                          │
-└─────────────────────────────────────────────────────────────────────────┘
-```
+<DecisionBox title="Stage 3 Implementation (Weeks 5-12)">
+
+**Weeks 5-6 — Full Observability:** Instrument with OpenTelemetry, deploy APM for distributed tracing, create SLO dashboards, implement log correlation.
+
+**Weeks 7-8 — Evaluation Pipeline:** Expand golden set to 200+ cases, integrate evaluation into CI/CD, implement semantic similarity metrics, add latency/cost assertions.
+
+**Weeks 9-10 — Cost Management:** Tag all resources for cost allocation, implement per-request cost tracking, create cost dashboards by tenant/use-case, set up budget alerts.
+
+**Weeks 11-12 — Governance:** Define prompt review process, implement approval workflows, create audit trail for changes, document compliance requirements.
+
+<Callout type="info">
+**OCI Services:** APM, Functions, DevOps Pipelines, Cost Analysis
+</Callout>
+</DecisionBox>
 
 ### Stage 3 → Stage 4: Optimization (Months 4-6)
 
@@ -210,35 +127,26 @@ Rate your current state (1-5) for each dimension:
 
 ### Stage 4 → Stage 5: Autonomy (Month 6+)
 
-```
-┌─────────────────────────────────────────────────────────────────────────┐
-│                    AUTONOMOUS OPERATIONS ARCHITECTURE                    │
-├─────────────────────────────────────────────────────────────────────────┤
-│                                                                          │
-│  ┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐   │
-│  │  Self-Healing   │     │  Self-Optimizing│     │  Self-Learning  │   │
-│  │                 │     │                 │     │                 │   │
-│  │ • Auto-rollback │     │ • Dynamic model │     │ • Continuous    │   │
-│  │ • Circuit break │     │   selection     │     │   fine-tuning   │   │
-│  │ • Failover      │     │ • Cost/quality  │     │ • Feedback loop │   │
-│  │                 │     │   balancing     │     │   integration   │   │
-│  └────────┬────────┘     └────────┬────────┘     └────────┬────────┘   │
-│           │                       │                       │             │
-│           └───────────────────────┼───────────────────────┘             │
-│                                   │                                     │
-│                           ┌───────▼───────┐                             │
-│                           │   AI Control  │                             │
-│                           │     Plane     │                             │
-│                           │               │                             │
-│                           │  OCI AI Agent │                             │
-│                           │  Platform +   │                             │
-│                           │  Functions    │                             │
-│                           └───────────────┘                             │
-│                                                                          │
-│  Human Role: Strategic decisions, exception handling, capability design │
-│                                                                          │
-└─────────────────────────────────────────────────────────────────────────┘
-```
+<DecisionBox title="Autonomous Operations Architecture">
+
+Three capabilities feed into a unified **AI Control Plane**:
+
+<ComparisonGrid>
+  <ComparisonCard title="Self-Healing" color="cyan">
+    Auto-rollback on quality drops. Circuit breakers for failed dependencies. Automatic failover to backup models or endpoints.
+  </ComparisonCard>
+  <ComparisonCard title="Self-Optimizing" color="emerald">
+    Dynamic model selection per query. Cost/quality balancing based on budget and SLOs. Automatic scaling under load.
+  </ComparisonCard>
+  <ComparisonCard title="Self-Learning" color="violet">
+    Continuous fine-tuning from feedback. Feedback loop integration (thumbs up/down). Automatic golden set expansion from production data.
+  </ComparisonCard>
+</ComparisonGrid>
+
+<Callout type="info">
+**Human Role at Stage 5:** Strategic decisions, exception handling, and capability design. The system operates autonomously within defined boundaries.
+</Callout>
+</DecisionBox>
 
 ---
 
@@ -246,90 +154,33 @@ Rate your current state (1-5) for each dimension:
 
 ### The Four Pillars of AI Observability
 
-```
-┌─────────────────────────────────────────────────────────────────────────┐
-│                    AI OBSERVABILITY PILLARS                              │
-├─────────────────────────────────────────────────────────────────────────┤
-│                                                                          │
-│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐    │
-│  │   TRACES    │  │   METRICS   │  │    LOGS     │  │   EVALS     │    │
-│  │             │  │             │  │             │  │             │    │
-│  │ Request     │  │ Latency     │  │ Payloads    │  │ Quality     │    │
-│  │ journey     │  │ Throughput  │  │ Decisions   │  │ scores      │    │
-│  │ through     │  │ Token count │  │ Errors      │  │ Regression  │    │
-│  │ system      │  │ Cost        │  │ Tool calls  │  │ detection   │    │
-│  │             │  │             │  │             │  │             │    │
-│  │ "What       │  │ "How is it  │  │ "What       │  │ "Is it      │    │
-│  │  happened?" │  │  performing"│  │  decided?"  │  │  working?"  │    │
-│  │             │  │             │  │             │  │             │    │
-│  │ OCI APM     │  │ OCI         │  │ OCI         │  │ Custom +    │    │
-│  │ + OTEL      │  │ Monitoring  │  │ Logging     │  │ Functions   │    │
-│  └─────────────┘  └─────────────┘  └─────────────┘  └─────────────┘    │
-│                                                                          │
-│                              │                                          │
-│                              ▼                                          │
-│                   ┌─────────────────────┐                               │
-│                   │   Unified Console   │                               │
-│                   │                     │                               │
-│                   │   OCI Observability │                               │
-│                   │   & Management      │                               │
-│                   └─────────────────────┘                               │
-│                                                                          │
-└─────────────────────────────────────────────────────────────────────────┘
-```
+<ArchitectureImage
+  src="/images/blog/oci-series/observability-4-pillars.png"
+  alt="4 Pillars of AI Observability — Traces (what happened?), Metrics (how is it performing?), Logs (what did it decide?), and Evals (is it working well?) — all converging into a Unified Observability Console."
+  caption="Traditional observability covers traces, metrics, and logs. AI systems add a fourth pillar: Evals — continuous quality measurement that answers 'is the model still working well?'"
+/>
 
 ### Distributed Trace Structure
 
-```
-┌─────────────────────────────────────────────────────────────────────────┐
-│                    AGENT TRACE ANATOMY                                   │
-├─────────────────────────────────────────────────────────────────────────┤
-│                                                                          │
-│  Trace ID: abc123                                                        │
-│  Duration: 4.2s                                                          │
-│  Status: Success                                                         │
-│                                                                          │
-│  ├─ SPAN: api_request (800ms)                                           │
-│  │   ├─ http.method: POST                                               │
-│  │   ├─ http.url: /api/agent/query                                      │
-│  │   └─ user.id: tenant-xyz                                             │
-│  │                                                                       │
-│  ├─ SPAN: agent_orchestration (3200ms)                                  │
-│  │   ├─ agent.name: sales-assistant                                     │
-│  │   ├─ agent.version: v2.1.0                                           │
-│  │   │                                                                   │
-│  │   ├─ SPAN: llm_call_planning (400ms)                                 │
-│  │   │   ├─ model: cohere.command-r-plus                                │
-│  │   │   ├─ tokens.input: 850                                           │
-│  │   │   ├─ tokens.output: 120                                          │
-│  │   │   └─ cost.usd: 0.0034                                            │
-│  │   │                                                                   │
-│  │   ├─ SPAN: tool_execution (1800ms)                                   │
-│  │   │   ├─ tool.name: search_knowledge_base                            │
-│  │   │   ├─ tool.input: "Q3 revenue by region"                          │
-│  │   │   │                                                               │
-│  │   │   ├─ SPAN: vector_search (600ms)                                 │
-│  │   │   │   ├─ db: autonomous-db-23ai                                  │
-│  │   │   │   ├─ results.count: 5                                        │
-│  │   │   │   └─ similarity.min: 0.82                                    │
-│  │   │   │                                                               │
-│  │   │   └─ SPAN: rerank (200ms)                                        │
-│  │   │       └─ model: cohere.rerank-v3                                 │
-│  │   │                                                                   │
-│  │   └─ SPAN: llm_call_synthesis (1000ms)                               │
-│  │       ├─ model: cohere.command-r-plus                                │
-│  │       ├─ tokens.input: 2100                                          │
-│  │       ├─ tokens.output: 450                                          │
-│  │       ├─ cost.usd: 0.0089                                            │
-│  │       └─ groundedness.score: 0.94                                    │
-│  │                                                                       │
-│  └─ SPAN: response_streaming (200ms)                                    │
-│                                                                          │
-│  TOTAL COST: $0.0123                                                     │
-│  QUALITY: groundedness=0.94, relevance=0.91                              │
-│                                                                          │
-└─────────────────────────────────────────────────────────────────────────┘
-```
+<DecisionBox title="Agent Trace Anatomy">
+
+**Trace ID:** `abc123` | **Duration:** 4.2s | **Status:** Success
+
+1. **SPAN: `api_request`** (800ms) — `POST /api/agent/query` for `tenant-xyz`
+2. **SPAN: `agent_orchestration`** (3200ms) — `sales-assistant v2.1.0`
+   - **SPAN: `llm_call_planning`** (400ms) — Cohere Command R+, 850→120 tokens, $0.0034
+   - **SPAN: `tool_execution`** (1800ms) — `search_knowledge_base("Q3 revenue by region")`
+     - **SPAN: `vector_search`** (600ms) — Autonomous DB 23ai, 5 results, min similarity 0.82
+     - **SPAN: `rerank`** (200ms) — Cohere Rerank v3
+   - **SPAN: `llm_call_synthesis`** (1000ms) — Cohere Command R+, 2100→450 tokens, $0.0089, groundedness: 0.94
+3. **SPAN: `response_streaming`** (200ms)
+
+**Total Cost:** $0.0123 | **Quality:** groundedness=0.94, relevance=0.91
+
+<Callout type="info">
+Every LLM call, tool execution, and database query becomes a span. This lets you trace cost, latency, and quality to the exact step that caused an issue.
+</Callout>
+</DecisionBox>
 
 ### SLO Definition Framework
 
@@ -343,51 +194,22 @@ Rate your current state (1-5) for each dimension:
 
 ### OCI Observability Stack
 
-```
-┌─────────────────────────────────────────────────────────────────────────┐
-│                    OCI OBSERVABILITY STACK                               │
-├─────────────────────────────────────────────────────────────────────────┤
-│                                                                          │
-│  Application Layer                                                       │
-│  ┌─────────────────────────────────────────────────────────────────┐    │
-│  │  Your AI Application (Instrumented with OpenTelemetry)          │    │
-│  └─────────────────────────────────────────────────────────────────┘    │
-│                              │                                          │
-│                              ▼                                          │
-│  Collection Layer                                                        │
-│  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐         │
-│  │ OCI APM Agent   │  │ OCI Logging     │  │ OCI Connector  │         │
-│  │ (Traces)        │  │ Agent (Logs)    │  │ Hub (Metrics)  │         │
-│  └────────┬────────┘  └────────┬────────┘  └────────┬───────┘         │
-│           │                    │                    │                   │
-│           ▼                    ▼                    ▼                   │
-│  Storage Layer                                                          │
-│  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐         │
-│  │ APM Trace       │  │ Logging         │  │ Monitoring      │         │
-│  │ Storage         │  │ Service         │  │ Metrics         │         │
-│  └────────┬────────┘  └────────┬────────┘  └────────┬───────┘         │
-│           │                    │                    │                   │
-│           └────────────────────┼────────────────────┘                   │
-│                                ▼                                        │
-│  Analysis Layer                                                          │
-│  ┌─────────────────────────────────────────────────────────────────┐    │
-│  │                    OCI Logging Analytics                        │    │
-│  │                                                                  │    │
-│  │  • Log correlation with traces                                  │    │
-│  │  • ML-powered anomaly detection                                 │    │
-│  │  • Custom dashboards                                            │    │
-│  │  • Saved searches for common patterns                           │    │
-│  └─────────────────────────────────────────────────────────────────┘    │
-│                                │                                        │
-│                                ▼                                        │
-│  Alerting Layer                                                          │
-│  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐         │
-│  │ OCI Alarms      │  │ Notifications   │  │ Events Service  │         │
-│  │ (Thresholds)    │  │ (PagerDuty,etc) │  │ (Automation)    │         │
-│  └─────────────────┘  └─────────────────┘  └─────────────────┘         │
-│                                                                          │
-└─────────────────────────────────────────────────────────────────────────┘
-```
+<DecisionBox title="OCI Observability Stack — 5 Layers">
+
+**Layer 1 — Application:** Your AI application instrumented with OpenTelemetry SDK.
+
+**Layer 2 — Collection:** APM Agent (traces), Logging Agent (logs), Connector Hub (metrics) — three parallel pipelines.
+
+**Layer 3 — Storage:** APM Trace Storage, Logging Service, Monitoring Metrics — each pipeline stores to its native service.
+
+**Layer 4 — Analysis:** OCI Logging Analytics — log correlation with traces, ML-powered anomaly detection, custom dashboards, saved searches.
+
+**Layer 5 — Alerting:** OCI Alarms (threshold-based), Notifications (PagerDuty, Slack, email), Events Service (automation triggers).
+
+<Callout type="info">
+**Key insight:** The three data types (traces, logs, metrics) flow through separate collection and storage pipelines, but converge in the analysis layer via Logging Analytics. This lets you correlate a latency spike (metric) with the specific trace and log entries that caused it.
+</Callout>
+</DecisionBox>
 
 ---
 
@@ -395,51 +217,25 @@ Rate your current state (1-5) for each dimension:
 
 ### Offline vs Online Evaluation
 
-```
-┌─────────────────────────────────────────────────────────────────────────┐
-│                    EVALUATION ARCHITECTURE                               │
-├─────────────────────────────────────────────────────────────────────────┤
-│                                                                          │
-│  OFFLINE EVALUATION (Pre-deployment)                                     │
-│  ────────────────────────────────────                                    │
-│                                                                          │
-│  ┌─────────┐    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐  │
-│  │ Golden  │───▶│   Agent     │───▶│  Evaluator  │───▶│   Quality   │  │
-│  │ Dataset │    │   Under     │    │  Functions  │    │   Gate      │  │
-│  │         │    │   Test      │    │             │    │             │  │
-│  │ 500+    │    │             │    │ • Semantic  │    │ Pass: ≥95%  │  │
-│  │ cases   │    │             │    │ • Factual   │    │ Fail: <95%  │  │
-│  │         │    │             │    │ • Safety    │    │             │  │
-│  └─────────┘    └─────────────┘    └─────────────┘    └──────┬──────┘  │
-│                                                               │         │
-│                                           ┌───────────────────┴───┐     │
-│                                           │                       │     │
-│                                           ▼                       ▼     │
-│                                    ┌──────────┐            ┌──────────┐ │
-│                                    │  Deploy  │            │  Block   │ │
-│                                    └──────────┘            └──────────┘ │
-│                                                                          │
-│  ═══════════════════════════════════════════════════════════════════    │
-│                                                                          │
-│  ONLINE EVALUATION (Post-deployment)                                     │
-│  ───────────────────────────────────                                     │
-│                                                                          │
-│  ┌─────────┐    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐  │
-│  │  Live   │───▶│ Production  │───▶│  Sampling   │───▶│  Dashboard  │  │
-│  │ Traffic │    │   Agent     │    │  Evaluator  │    │  + Alerts   │  │
-│  │         │    │             │    │             │    │             │  │
-│  │         │    │             │    │ Sample 5%   │    │ SLO breach  │  │
-│  │         │    │             │    │ of requests │    │ detection   │  │
-│  └─────────┘    └─────────────┘    └─────────────┘    └─────────────┘  │
-│                        │                                                 │
-│                        ▼                                                 │
-│                 ┌─────────────┐                                          │
-│                 │  User       │ ──▶ Explicit feedback collection        │
-│                 │  Feedback   │     (thumbs up/down, corrections)       │
-│                 └─────────────┘                                          │
-│                                                                          │
-└─────────────────────────────────────────────────────────────────────────┘
-```
+<DecisionBox title="Evaluation Architecture">
+
+<ComparisonGrid>
+  <ComparisonCard title="Offline Evaluation (Pre-deployment)" color="cyan">
+    **Flow:** Golden Dataset (500+ cases) → Agent Under Test → Evaluator Functions (semantic, factual, safety) → Quality Gate (pass ≥95%, fail &lt;95%)
+
+    **Outcome:** Pass → Deploy. Fail → Block deployment. No bad prompts reach production.
+  </ComparisonCard>
+  <ComparisonCard title="Online Evaluation (Post-deployment)" color="emerald">
+    **Flow:** Live Traffic → Production Agent → Sampling Evaluator (5% of requests) → Dashboard + SLO Alerts
+
+    **Feedback loop:** User feedback (thumbs up/down, corrections) feeds back into the golden set for continuous improvement.
+  </ComparisonCard>
+</ComparisonGrid>
+
+<Callout type="warning">
+**Both are required.** Offline evaluation catches regressions before deployment. Online evaluation catches real-world drift that test sets miss. Running only one leaves a blind spot.
+</Callout>
+</DecisionBox>
 
 ### Evaluation Metrics Framework
 
@@ -454,112 +250,82 @@ Rate your current state (1-5) for each dimension:
 
 ### Golden Set Design
 
+<DecisionBox title="Golden Set Architecture">
+
+**Repository structure:**
+
 ```
-┌─────────────────────────────────────────────────────────────────────────┐
-│                    GOLDEN SET ARCHITECTURE                               │
-├─────────────────────────────────────────────────────────────────────────┤
-│                                                                          │
-│  Golden Set Repository                                                   │
-│  ├── test_cases/                                                        │
-│  │   ├── category_customer_service/                                     │
-│  │   │   ├── refund_requests.yaml        (50 cases)                     │
-│  │   │   ├── product_inquiries.yaml      (50 cases)                     │
-│  │   │   └── escalation_scenarios.yaml   (30 cases)                     │
-│  │   ├── category_technical_support/                                    │
-│  │   │   ├── troubleshooting.yaml        (40 cases)                     │
-│  │   │   └── how_to_guides.yaml          (30 cases)                     │
-│  │   └── category_edge_cases/                                           │
-│  │       ├── adversarial_inputs.yaml     (50 cases)                     │
-│  │       ├── out_of_scope.yaml           (30 cases)                     │
-│  │       └── language_variations.yaml    (20 cases)                     │
-│  └── evaluators/                                                        │
-│      ├── semantic_similarity.py                                         │
-│      ├── groundedness_check.py                                          │
-│      └── safety_classifier.py                                           │
-│                                                                          │
-│  Test Case Schema:                                                       │
-│  ┌─────────────────────────────────────────────────────────────────┐    │
-│  │  id: "cs-refund-001"                                            │    │
-│  │  category: "customer_service"                                   │    │
-│  │  input: "I want to return my order from last week"              │    │
-│  │  context:                                                       │    │
-│  │    order_id: "ORD-12345"                                        │    │
-│  │    order_date: "2026-01-14"                                     │    │
-│  │    status: "delivered"                                          │    │
-│  │  expected:                                                      │    │
-│  │    tool_calls: ["get_order", "initiate_return"]                 │    │
-│  │    must_contain: ["return label", "refund timeline"]            │    │
-│  │    must_not_contain: ["cannot", "unable"]                       │    │
-│  │  constraints:                                                   │    │
-│  │    max_latency_ms: 5000                                         │    │
-│  │    max_tool_calls: 3                                            │    │
-│  └─────────────────────────────────────────────────────────────────┘    │
-│                                                                          │
-│  Coverage Requirements:                                                  │
-│  • Minimum 500 total test cases                                         │
-│  • 20% adversarial/edge cases                                           │
-│  • 10% out-of-scope queries                                             │
-│  • Updated monthly with production failures                              │
-│                                                                          │
-└─────────────────────────────────────────────────────────────────────────┘
+test_cases/
+├── category_customer_service/
+│   ├── refund_requests.yaml        (50 cases)
+│   ├── product_inquiries.yaml      (50 cases)
+│   └── escalation_scenarios.yaml   (30 cases)
+├── category_technical_support/
+│   ├── troubleshooting.yaml        (40 cases)
+│   └── how_to_guides.yaml          (30 cases)
+└── category_edge_cases/
+    ├── adversarial_inputs.yaml     (50 cases)
+    ├── out_of_scope.yaml           (30 cases)
+    └── language_variations.yaml    (20 cases)
+evaluators/
+├── semantic_similarity.py
+├── groundedness_check.py
+└── safety_classifier.py
 ```
+
+**Test case schema (YAML):**
+
+```yaml
+id: "cs-refund-001"
+category: "customer_service"
+input: "I want to return my order from last week"
+context:
+  order_id: "ORD-12345"
+  order_date: "2026-01-14"
+  status: "delivered"
+expected:
+  tool_calls: ["get_order", "initiate_return"]
+  must_contain: ["return label", "refund timeline"]
+  must_not_contain: ["cannot", "unable"]
+constraints:
+  max_latency_ms: 5000
+  max_tool_calls: 3
+```
+
+**Coverage requirements:** Minimum 500 total cases, 20% adversarial/edge cases, 10% out-of-scope queries. Updated monthly with production failures.
+</DecisionBox>
 
 ### CI/CD Integration
 
+<DecisionBox title="Evaluation in CI/CD Pipeline">
+
+**Pipeline flow:** Developer pushes prompt change →
+
+1. **Lint Check** — Validate prompt syntax and structure
+2. **Unit Tests** — Test individual components
+3. **Golden Set Eval** → **Quality Gate** (pass ≥95%, latency OK, cost OK)
+4. **Staging Deploy** → **Smoke Tests** (key flows working)
+5. **Production Deploy** (canary at 5%)
+
+```yaml
+# OCI DevOps Pipeline
+stages:
+  - stage: evaluate
+    jobs:
+      - job: golden_set
+        steps:
+          - run: python -m eval.golden_set
+                   --min-pass-rate 0.95
+                   --max-avg-latency 3000
+                   --max-avg-cost 0.05
+          - publish: eval-results.json
+        failOn: quality_gate_failed
 ```
-┌─────────────────────────────────────────────────────────────────────────┐
-│                    EVALUATION IN CI/CD PIPELINE                          │
-├─────────────────────────────────────────────────────────────────────────┤
-│                                                                          │
-│  ┌────────────┐                                                          │
-│  │ Developer  │                                                          │
-│  │ pushes     │                                                          │
-│  │ prompt     │                                                          │
-│  │ change     │                                                          │
-│  └─────┬──────┘                                                          │
-│        │                                                                 │
-│        ▼                                                                 │
-│  ┌────────────┐   ┌────────────┐   ┌────────────┐   ┌────────────┐     │
-│  │   Lint     │──▶│   Unit     │──▶│  Golden    │──▶│  Staging   │     │
-│  │   Check    │   │   Tests    │   │  Set Eval  │   │  Deploy    │     │
-│  └────────────┘   └────────────┘   └─────┬──────┘   └─────┬──────┘     │
-│                                          │                │             │
-│                                          ▼                ▼             │
-│                                    ┌────────────┐   ┌────────────┐     │
-│                                    │  Quality   │   │  Smoke     │     │
-│                                    │  Gate      │   │  Tests     │     │
-│                                    │            │   │            │     │
-│                                    │ Pass ≥95%  │   │ Key flows  │     │
-│                                    │ Latency OK │   │ working    │     │
-│                                    │ Cost OK    │   │            │     │
-│                                    └─────┬──────┘   └─────┬──────┘     │
-│                                          │                │             │
-│                                          └───────┬────────┘             │
-│                                                  │                      │
-│                                                  ▼                      │
-│                                          ┌────────────┐                 │
-│                                          │ Production │                 │
-│                                          │ Deploy     │                 │
-│                                          │ (Canary)   │                 │
-│                                          └────────────┘                 │
-│                                                                          │
-│  OCI DevOps Pipeline YAML:                                               │
-│  ┌─────────────────────────────────────────────────────────────────┐    │
-│  │  stages:                                                        │    │
-│  │    - stage: evaluate                                            │    │
-│  │      jobs:                                                      │    │
-│  │        - job: golden_set                                        │    │
-│  │          steps:                                                 │    │
-│  │            - run: python -m eval.golden_set                     │    │
-│  │                     --min-pass-rate 0.95                        │    │
-│  │                     --max-avg-latency 3000                      │    │
-│  │                     --max-avg-cost 0.05                         │    │
-│  │            - publish: eval-results.json                         │    │
-│  │          failOn: quality_gate_failed                            │    │
-│  └─────────────────────────────────────────────────────────────────┘    │
-│                                                                          │
-└─────────────────────────────────────────────────────────────────────────┘
-```
+
+<Callout type="warning">
+**The quality gate is the critical addition.** Without it, a prompt change that degrades quality by 10% will silently ship to production. The gate enforces minimum pass rate, maximum latency, and maximum cost per request.
+</Callout>
+</DecisionBox>
 
 ---
 
@@ -567,132 +333,71 @@ Rate your current state (1-5) for each dimension:
 
 ### Prompts as Code
 
+<DecisionBox title="Prompt Repository Structure">
+
 ```
-┌─────────────────────────────────────────────────────────────────────────┐
-│                    PROMPT REPOSITORY STRUCTURE                           │
-├─────────────────────────────────────────────────────────────────────────┤
-│                                                                          │
-│  prompts/                                                                │
-│  ├── agents/                                                            │
-│  │   ├── sales-assistant/                                               │
-│  │   │   ├── v1.0.0/                                                    │
-│  │   │   │   ├── system.md            # System prompt                   │
-│  │   │   │   ├── tools.yaml           # Tool definitions                │
-│  │   │   │   ├── examples.json        # Few-shot examples               │
-│  │   │   │   ├── guardrails.yaml      # Safety rules                    │
-│  │   │   │   └── metadata.yaml        # Version info                    │
-│  │   │   ├── v1.1.0/                                                    │
-│  │   │   │   └── ...                                                    │
-│  │   │   └── CHANGELOG.md                                               │
-│  │   │                                                                   │
-│  │   └── support-agent/                                                 │
-│  │       └── ...                                                        │
-│  │                                                                       │
-│  ├── components/                       # Reusable components            │
-│  │   ├── personality/                                                   │
-│  │   │   ├── professional.md                                            │
-│  │   │   └── friendly.md                                                │
-│  │   └── guardrails/                                                    │
-│  │       ├── pii-protection.yaml                                        │
-│  │       └── competitor-mentions.yaml                                   │
-│  │                                                                       │
-│  ├── registry.yaml                     # Agent registry                 │
-│  └── templates/                        # Agent templates                │
-│      └── ...                                                            │
-│                                                                          │
-│  Registry Schema (registry.yaml):                                        │
-│  ┌─────────────────────────────────────────────────────────────────┐    │
-│  │  agents:                                                        │    │
-│  │    sales-assistant:                                             │    │
-│  │      production: v1.1.0                                         │    │
-│  │      staging: v1.2.0-beta                                       │    │
-│  │      deprecated: [v0.9.0]                                       │    │
-│  │      model: cohere.command-r-plus                               │    │
-│  │      owner: sales-team                                          │    │
-│  │      review_required: true                                      │    │
-│  └─────────────────────────────────────────────────────────────────┘    │
-│                                                                          │
-└─────────────────────────────────────────────────────────────────────────┘
+prompts/
+├── agents/
+│   ├── sales-assistant/
+│   │   ├── v1.0.0/
+│   │   │   ├── system.md          # System prompt
+│   │   │   ├── tools.yaml         # Tool definitions
+│   │   │   ├── examples.json      # Few-shot examples
+│   │   │   ├── guardrails.yaml    # Safety rules
+│   │   │   └── metadata.yaml      # Version info
+│   │   ├── v1.1.0/
+│   │   └── CHANGELOG.md
+│   └── support-agent/
+├── components/                     # Reusable across agents
+│   ├── personality/
+│   │   ├── professional.md
+│   │   └── friendly.md
+│   └── guardrails/
+│       ├── pii-protection.yaml
+│       └── competitor-mentions.yaml
+├── registry.yaml                   # Agent registry
+└── templates/                      # Agent templates
 ```
+
+```yaml
+# registry.yaml — tracks which version is deployed where
+agents:
+  sales-assistant:
+    production: v1.1.0
+    staging: v1.2.0-beta
+    deprecated: [v0.9.0]
+    model: cohere.command-r-plus
+    owner: sales-team
+    review_required: true
+```
+
+<Callout type="info">
+**Semantic versioning for prompts:** Major version = behavior change. Minor = improvement. Patch = fix. This lets you roll back to any prior version instantly.
+</Callout>
+</DecisionBox>
 
 ### Deployment Strategies
 
-```
-┌─────────────────────────────────────────────────────────────────────────┐
-│                    DEPLOYMENT STRATEGY COMPARISON                        │
-├─────────────────────────────────────────────────────────────────────────┤
-│                                                                          │
-│  BLUE/GREEN DEPLOYMENT                                                   │
-│  ─────────────────────                                                   │
-│                                                                          │
-│  ┌───────────┐     ┌───────────────────────────────────┐                │
-│  │   Load    │     │              ██ Blue (v1.0)       │                │
-│  │  Balancer │────▶│   100%       ██████████████████   │                │
-│  │           │     │              ░░ Green (v1.1)      │                │
-│  └───────────┘     │   0%         ░░░░░░░░░░░░░░░░░░   │                │
-│                    └───────────────────────────────────┘                │
-│                                    │                                     │
-│                                    ▼ Switch                              │
-│                    ┌───────────────────────────────────┐                │
-│                    │              ░░ Blue (v1.0)       │                │
-│                    │   0%         ░░░░░░░░░░░░░░░░░░   │                │
-│                    │              ██ Green (v1.1)      │                │
-│                    │   100%       ██████████████████   │                │
-│                    └───────────────────────────────────┘                │
-│                                                                          │
-│  Best for: Major changes, instant rollback needed                        │
-│  OCI: API Gateway + Functions with versioned aliases                    │
-│                                                                          │
-│  ═══════════════════════════════════════════════════════════════════    │
-│                                                                          │
-│  CANARY DEPLOYMENT                                                       │
-│  ─────────────────                                                       │
-│                                                                          │
-│  ┌───────────┐     ┌───────────────────────────────────┐                │
-│  │   Load    │     │              ██ v1.0              │                │
-│  │  Balancer │────▶│   95%        ████████████████████ │                │
-│  │           │     │              ░░ v1.1 (canary)     │                │
-│  └───────────┘     │   5%         ░░                   │                │
-│                    └───────────────────────────────────┘                │
-│                                    │                                     │
-│                                    ▼ Gradual                             │
-│                    ┌───────────────────────────────────┐                │
-│                    │              ██ v1.0              │                │
-│                    │   70%        ██████████████████   │                │
-│                    │              ░░ v1.1              │                │
-│                    │   30%        ░░░░░░░░             │                │
-│                    └───────────────────────────────────┘                │
-│                                    │                                     │
-│                                    ▼ Complete                            │
-│                    ┌───────────────────────────────────┐                │
-│                    │              ░░ v1.1              │                │
-│                    │   100%       ████████████████████ │                │
-│                    └───────────────────────────────────┘                │
-│                                                                          │
-│  Best for: Incremental improvements, A/B testing                         │
-│  OCI: API Gateway traffic splitting                                      │
-│                                                                          │
-│  ═══════════════════════════════════════════════════════════════════    │
-│                                                                          │
-│  SHADOW DEPLOYMENT                                                       │
-│  ─────────────────                                                       │
-│                                                                          │
-│  ┌───────────┐     ┌───────────────────────────────────┐                │
-│  │  Request  │────▶│   ██ Production v1.0              │───▶ Response  │
-│  │           │     │   ██████████████████████████████   │                │
-│  │           │     └───────────────────────────────────┘                │
-│  │           │                    │ Copy                                │
-│  │           │                    ▼                                      │
-│  │           │     ┌───────────────────────────────────┐                │
-│  │           │     │   ░░ Shadow v1.1                  │───▶ Log only  │
-│  │           │     │   ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  │    (discard) │
-│  └───────────┘     └───────────────────────────────────┘                │
-│                                                                          │
-│  Best for: Testing new models, no user impact                            │
-│  OCI: Functions + Streaming for dual processing                          │
-│                                                                          │
-└─────────────────────────────────────────────────────────────────────────┘
-```
+<DecisionBox title="Deployment Strategy Comparison">
+
+<ComparisonGrid>
+  <ComparisonCard title="Blue/Green" color="cyan">
+    **How it works:** Run two identical environments. Route 100% traffic to Blue (current). Deploy to Green (new). Switch all traffic instantly.
+
+    **Rollback:** Instant — switch back to Blue. **Resource cost:** 2x during deploy. **Best for:** Major changes, breaking changes, instant rollback needed.
+  </ComparisonCard>
+  <ComparisonCard title="Canary" color="emerald">
+    **How it works:** Deploy new version alongside current. Route 5% traffic to canary. Gradually increase (5% → 30% → 100%) if metrics hold.
+
+    **Rollback:** Fast — route back to 0%. **Resource cost:** 1.05x. **Best for:** Incremental improvements, A/B testing, prompt optimizations.
+  </ComparisonCard>
+  <ComparisonCard title="Shadow" color="violet">
+    **How it works:** Send every request to both production (serves response) and shadow (logs only, response discarded). Compare outputs offline.
+
+    **Rollback:** N/A — shadow never serves users. **Resource cost:** 2x always. **Best for:** Testing new models with zero user impact.
+  </ComparisonCard>
+</ComparisonGrid>
+</DecisionBox>
 
 ### Deployment Decision Framework
 
@@ -711,41 +416,24 @@ Rate your current state (1-5) for each dimension:
 
 ### Cost Attribution Model
 
-```
-┌─────────────────────────────────────────────────────────────────────────┐
-│                    COST ATTRIBUTION HIERARCHY                            │
-├─────────────────────────────────────────────────────────────────────────┤
-│                                                                          │
-│                        ┌─────────────────┐                               │
-│                        │  Organization   │                               │
-│                        │  Total: $50,000 │                               │
-│                        └────────┬────────┘                               │
-│                                 │                                        │
-│              ┌──────────────────┼──────────────────┐                     │
-│              │                  │                  │                     │
-│              ▼                  ▼                  ▼                     │
-│     ┌────────────────┐ ┌────────────────┐ ┌────────────────┐            │
-│     │  Business Unit │ │  Business Unit │ │  Business Unit │            │
-│     │  Sales: $20K   │ │  Support: $15K │ │  Ops: $15K     │            │
-│     └───────┬────────┘ └────────┬───────┘ └────────┬───────┘            │
-│             │                   │                  │                     │
-│    ┌────────┴────────┐    ┌─────┴─────┐     ┌─────┴─────┐               │
-│    │                 │    │           │     │           │               │
-│    ▼                 ▼    ▼           ▼     ▼           ▼               │
-│ ┌──────────┐ ┌──────────┐ ┌────────┐ ┌────────┐ ┌────────┐             │
-│ │ Sales    │ │ Lead     │ │Support │ │ Chat   │ │  SRE   │             │
-│ │ Agent    │ │ Scoring  │ │ Agent  │ │  Bot   │ │ Agent  │             │
-│ │ $12,000  │ │ $8,000   │ │$10,000 │ │ $5,000 │ │$15,000 │             │
-│ └──────────┘ └──────────┘ └────────┘ └────────┘ └────────┘             │
-│                                                                          │
-│  Attribution Tags:                                                       │
-│  • business_unit: sales | support | operations                          │
-│  • agent: sales-assistant | support-agent | sre-agent                   │
-│  • tenant: customer-xyz | internal                                      │
-│  • environment: prod | staging | dev                                    │
-│                                                                          │
-└─────────────────────────────────────────────────────────────────────────┘
-```
+<DecisionBox title="Cost Attribution Hierarchy">
+
+| Level | Example | Monthly Cost |
+|-------|---------|-------------|
+| **Organization** | Total AI spend | $50,000 |
+| **Business Unit** | Sales / Support / Ops | $20K / $15K / $15K |
+| **Agent** | Sales Agent, Lead Scoring, Support Agent, Chat Bot, SRE Agent | $12K, $8K, $10K, $5K, $15K |
+
+**Attribution tags** (applied to every request):
+- `business_unit`: sales, support, operations
+- `agent`: sales-assistant, support-agent, sre-agent
+- `tenant`: customer-xyz, internal
+- `environment`: prod, staging, dev
+
+<Callout type="info">
+Tag every request at the API Gateway level. This enables cost allocation dashboards that show exactly which team, agent, and customer is driving spend — essential for chargeback models.
+</Callout>
+</DecisionBox>
 
 ### Cost Components Breakdown
 
@@ -760,55 +448,28 @@ Rate your current state (1-5) for each dimension:
 
 ### Cost Control Mechanisms
 
+<DecisionBox title="Cost Control Hierarchy — 4 Layers">
+
+**Layer 1 — Per-Request Limits:** Reject if `estimated_cost > $0.50` or `token_count > 100,000`. Prevents runaway single requests.
+
+**Layer 2 — Per-User Limits:** Track `user_daily_cost`. Throttle user if daily spend exceeds $10. Notify user of limit reached.
+
+**Layer 3 — Per-Tenant Budget:** Track `tenant_monthly_cost`. Alert at 80% of budget. At 100%, downgrade to cheaper model or block requests.
+
+**Layer 4 — Organization Hard Stop:** If `org_monthly_cost > hard_limit`, trigger emergency shutdown and page on-call. This is the last line of defense.
+
+```python
+# Layer 3 example
+if tenant_monthly_cost > tenant.budget * 0.8:
+    alert("80% of budget consumed")
+if tenant_monthly_cost > tenant.budget:
+    downgrade_model(tenant_id)  # Use cheaper model
 ```
-┌─────────────────────────────────────────────────────────────────────────┐
-│                    COST CONTROL HIERARCHY                                │
-├─────────────────────────────────────────────────────────────────────────┤
-│                                                                          │
-│  LAYER 1: Per-Request Limits                                             │
-│  ┌─────────────────────────────────────────────────────────────────┐    │
-│  │  if request.estimated_cost > $0.50:                             │    │
-│  │      reject("Request exceeds per-request limit")                │    │
-│  │  if request.token_count > 100000:                               │    │
-│  │      reject("Request exceeds token limit")                      │    │
-│  └─────────────────────────────────────────────────────────────────┘    │
-│                                    │                                     │
-│                                    ▼                                     │
-│  LAYER 2: Per-User Limits (Rate Limiting)                                │
-│  ┌─────────────────────────────────────────────────────────────────┐    │
-│  │  user_daily_cost = sum(requests_today)                          │    │
-│  │  if user_daily_cost > $10:                                      │    │
-│  │      throttle(user_id, until="tomorrow")                        │    │
-│  │      notify_user("Daily limit reached")                         │    │
-│  └─────────────────────────────────────────────────────────────────┘    │
-│                                    │                                     │
-│                                    ▼                                     │
-│  LAYER 3: Per-Tenant Limits (Budget Enforcement)                         │
-│  ┌─────────────────────────────────────────────────────────────────┐    │
-│  │  tenant_monthly_cost = sum(requests_this_month)                 │    │
-│  │  if tenant_monthly_cost > tenant.budget * 0.8:                  │    │
-│  │      alert("80% of budget consumed")                            │    │
-│  │  if tenant_monthly_cost > tenant.budget:                        │    │
-│  │      downgrade_model(tenant_id)  # Use cheaper model            │    │
-│  │      # OR block_requests(tenant_id)                             │    │
-│  └─────────────────────────────────────────────────────────────────┘    │
-│                                    │                                     │
-│                                    ▼                                     │
-│  LAYER 4: Organization Limits (Hard Stops)                               │
-│  ┌─────────────────────────────────────────────────────────────────┐    │
-│  │  if org_monthly_cost > org.hard_limit:                          │    │
-│  │      emergency_shutdown()                                       │    │
-│  │      page_oncall("Cost limit exceeded")                         │    │
-│  └─────────────────────────────────────────────────────────────────┘    │
-│                                                                          │
-│  OCI Implementation:                                                     │
-│  • OCI Budgets for alerts and tracking                                  │
-│  • Functions for enforcement logic                                       │
-│  • API Gateway for rate limiting                                         │
-│  • Events + Notifications for alerting                                   │
-│                                                                          │
-└─────────────────────────────────────────────────────────────────────────┘
-```
+
+<Callout type="info">
+**OCI Implementation:** Budgets for alerts, Functions for enforcement logic, API Gateway for rate limiting, Events + Notifications for alerting.
+</Callout>
+</DecisionBox>
 
 ### Cost Optimization Strategies
 
@@ -827,94 +488,41 @@ Rate your current state (1-5) for each dimension:
 
 ### Incident Classification Matrix
 
-```
-┌─────────────────────────────────────────────────────────────────────────┐
-│                    INCIDENT SEVERITY MATRIX                              │
-├─────────────────────────────────────────────────────────────────────────┤
-│                                                                          │
-│           │ Low Impact        │ High Impact          │ Critical         │
-│  ─────────┼───────────────────┼──────────────────────┼────────────────  │
-│           │                   │                      │                  │
-│  High     │ P3 - Medium       │ P2 - High            │ P1 - Critical    │
-│  Frequency│ Occasional        │ Widespread quality   │ Service down     │
-│           │ incorrect         │ degradation          │ Data breach      │
-│           │ responses         │                      │                  │
-│           │                   │                      │                  │
-│           │ Response: 4hr     │ Response: 1hr        │ Response: 15min  │
-│           │ Resolve: 24hr     │ Resolve: 8hr         │ Resolve: 4hr     │
-│  ─────────┼───────────────────┼──────────────────────┼────────────────  │
-│           │                   │                      │                  │
-│  Low      │ P4 - Low          │ P3 - Medium          │ P2 - High        │
-│  Frequency│ Edge case         │ Specific use case    │ Targeted attack  │
-│           │ failures          │ broken               │ Compliance issue │
-│           │                   │                      │                  │
-│           │ Response: 24hr    │ Response: 4hr        │ Response: 1hr    │
-│           │ Resolve: 72hr     │ Resolve: 24hr        │ Resolve: 8hr     │
-│           │                   │                      │                  │
-│  ─────────┴───────────────────┴──────────────────────┴────────────────  │
-│                                                                          │
-└─────────────────────────────────────────────────────────────────────────┘
-```
+<DecisionBox title="Incident Severity Matrix">
+
+| Frequency / Impact | Low Impact | High Impact | Critical |
+|---|---|---|---|
+| **High Frequency** | **P3** — Occasional incorrect responses. Response: 4hr, Resolve: 24hr | **P2** — Widespread quality degradation. Response: 1hr, Resolve: 8hr | **P1** — Service down or data breach. Response: 15min, Resolve: 4hr |
+| **Low Frequency** | **P4** — Edge case failures. Response: 24hr, Resolve: 72hr | **P3** — Specific use case broken. Response: 4hr, Resolve: 24hr | **P2** — Targeted attack or compliance issue. Response: 1hr, Resolve: 8hr |
+
+<Callout type="warning">
+**AI-specific twist:** Quality degradation (P2) can be harder to detect than a full outage (P1). The system is "up" but returning subtly wrong answers. This is why continuous evaluation matters more than uptime monitoring alone.
+</Callout>
+</DecisionBox>
 
 ### Incident Response Runbooks
 
-```
-┌─────────────────────────────────────────────────────────────────────────┐
-│                    RUNBOOK: Model Quality Degradation                    │
-├─────────────────────────────────────────────────────────────────────────┤
-│                                                                          │
-│  TRIGGER: Groundedness score drops below 85% for 15+ minutes             │
-│  SEVERITY: P2 (High)                                                     │
-│                                                                          │
-│  STEP 1: Confirm the Issue (5 min)                                       │
-│  ┌─────────────────────────────────────────────────────────────────┐    │
-│  │  □ Check Logging Analytics for error patterns                   │    │
-│  │  □ Review recent deployments in DevOps                          │    │
-│  │  □ Check OCI Generative AI service status                       │    │
-│  │  □ Sample 5 recent requests manually                            │    │
-│  └─────────────────────────────────────────────────────────────────┘    │
-│                                                                          │
-│  STEP 2: Identify Root Cause (10 min)                                    │
-│  ┌─────────────────────────────────────────────────────────────────┐    │
-│  │  Common Causes:                                                 │    │
-│  │  □ Recent prompt change? → Check prompt registry                │    │
-│  │  □ Knowledge base update? → Check vector DB logs                │    │
-│  │  □ Model endpoint issue? → Check Generative AI metrics          │    │
-│  │  □ Upstream data change? → Check integration logs               │    │
-│  └─────────────────────────────────────────────────────────────────┘    │
-│                                                                          │
-│  STEP 3: Mitigate (15 min)                                               │
-│  ┌─────────────────────────────────────────────────────────────────┐    │
-│  │  IF prompt change:                                              │    │
-│  │    → Roll back to previous version in registry                  │    │
-│  │    → Deploy via blue/green switch                               │    │
-│  │                                                                  │    │
-│  │  IF model issue:                                                │    │
-│  │    → Switch to fallback model (cohere.command-r)                │    │
-│  │    → Enable degraded mode                                       │    │
-│  │                                                                  │    │
-│  │  IF knowledge base:                                             │    │
-│  │    → Disable RAG, use model-only responses                      │    │
-│  │    → Roll back KB to previous snapshot                          │    │
-│  └─────────────────────────────────────────────────────────────────┘    │
-│                                                                          │
-│  STEP 4: Communicate (Ongoing)                                           │
-│  ┌─────────────────────────────────────────────────────────────────┐    │
-│  │  □ Update incident channel with status                          │    │
-│  │  □ Notify stakeholders if customer-facing                       │    │
-│  │  □ Update status page if applicable                             │    │
-│  └─────────────────────────────────────────────────────────────────┘    │
-│                                                                          │
-│  STEP 5: Resolve and Review                                              │
-│  ┌─────────────────────────────────────────────────────────────────┐    │
-│  │  □ Confirm metrics back to normal                               │    │
-│  │  □ Document root cause                                          │    │
-│  │  □ Schedule post-mortem if P1/P2                                │    │
-│  │  □ Create follow-up tickets for prevention                      │    │
-│  └─────────────────────────────────────────────────────────────────┘    │
-│                                                                          │
-└─────────────────────────────────────────────────────────────────────────┘
-```
+<DecisionBox title="Runbook: Model Quality Degradation">
+
+**Trigger:** Groundedness score drops below 85% for 15+ minutes | **Severity:** P2 (High)
+
+**Step 1 — Confirm (5 min):** Check Logging Analytics for error patterns. Review recent deployments. Check GenAI service status. Sample 5 recent requests manually.
+
+**Step 2 — Root Cause (10 min):**
+- Recent prompt change? → Check prompt registry
+- Knowledge base update? → Check vector DB logs
+- Model endpoint issue? → Check GenAI metrics
+- Upstream data change? → Check integration logs
+
+**Step 3 — Mitigate (15 min):**
+- **If prompt change** → Roll back to previous version via blue/green switch
+- **If model issue** → Switch to fallback model, enable degraded mode
+- **If knowledge base** → Disable RAG (model-only responses), roll back KB to previous snapshot
+
+**Step 4 — Communicate:** Update incident channel, notify stakeholders if customer-facing, update status page.
+
+**Step 5 — Resolve:** Confirm metrics back to normal, document root cause, schedule post-mortem, create follow-up tickets for prevention.
+</DecisionBox>
 
 ### Common Incident Types
 
@@ -929,42 +537,28 @@ Rate your current state (1-5) for each dimension:
 
 ### Automated Remediation
 
-```
-┌─────────────────────────────────────────────────────────────────────────┐
-│                    AUTO-REMEDIATION ARCHITECTURE                         │
-├─────────────────────────────────────────────────────────────────────────┤
-│                                                                          │
-│  ┌──────────────┐     ┌──────────────┐     ┌──────────────┐            │
-│  │ OCI Alarms   │────▶│ OCI Events   │────▶│ OCI Functions │            │
-│  │              │     │              │     │              │            │
-│  │ • Latency    │     │ • Trigger    │     │ • Evaluate   │            │
-│  │ • Error rate │     │   events     │     │   severity   │            │
-│  │ • Quality    │     │              │     │ • Execute    │            │
-│  │              │     │              │     │   playbook   │            │
-│  └──────────────┘     └──────────────┘     └──────┬───────┘            │
-│                                                   │                     │
-│                       ┌───────────────────────────┴───────────────┐     │
-│                       │                                           │     │
-│                       ▼                                           ▼     │
-│              ┌──────────────┐                           ┌──────────────┐│
-│              │ Auto Actions │                           │ Human Review ││
-│              │              │                           │              ││
-│              │ • Rollback   │                           │ • P1/P2      ││
-│              │ • Scale      │                           │ • Novel      ││
-│              │ • Failover   │                           │   issues     ││
-│              │ • Rate limit │                           │              ││
-│              └──────────────┘                           └──────────────┘│
-│                                                                          │
-│  Auto-Remediation Rules:                                                 │
-│  ┌─────────────────────────────────────────────────────────────────┐    │
-│  │  - IF latency_p95 > 10s FOR 5min THEN scale_up()                │    │
-│  │  - IF error_rate > 5% FOR 3min THEN enable_circuit_breaker()    │    │
-│  │  - IF quality_score < 80% FOR 10min THEN rollback_prompt()      │    │
-│  │  - IF cost_rate > 2x_baseline FOR 1hr THEN enable_rate_limit()  │    │
-│  └─────────────────────────────────────────────────────────────────┘    │
-│                                                                          │
-└─────────────────────────────────────────────────────────────────────────┘
-```
+<DecisionBox title="Auto-Remediation Architecture">
+
+**Flow:** OCI Alarms (latency, error rate, quality) → OCI Events (trigger) → OCI Functions (evaluate severity, execute playbook) → **Auto Actions** or **Human Review**
+
+<ComparisonGrid>
+  <ComparisonCard title="Auto Actions" color="emerald">
+    Rollback prompt version. Scale up compute. Failover to backup model. Enable rate limiting. Triggered automatically for known, well-defined failure modes.
+  </ComparisonCard>
+  <ComparisonCard title="Human Review" color="amber">
+    P1/P2 incidents. Novel issues not matching known patterns. Escalated automatically with full context (traces, logs, metrics) attached.
+  </ComparisonCard>
+</ComparisonGrid>
+
+**Remediation rules:**
+
+| Condition | Duration | Action |
+|-----------|----------|--------|
+| `latency_p95 > 10s` | 5 min | `scale_up()` |
+| `error_rate > 5%` | 3 min | `enable_circuit_breaker()` |
+| `quality_score < 80%` | 10 min | `rollback_prompt()` |
+| `cost_rate > 2x baseline` | 1 hr | `enable_rate_limit()` |
+</DecisionBox>
 
 ---
 
@@ -972,52 +566,20 @@ Rate your current state (1-5) for each dimension:
 
 ### Security Control Framework
 
-```
-┌─────────────────────────────────────────────────────────────────────────┐
-│                    AI SECURITY CONTROL LAYERS                            │
-├─────────────────────────────────────────────────────────────────────────┤
-│                                                                          │
-│  LAYER 1: Input Protection                                               │
-│  ┌─────────────────────────────────────────────────────────────────┐    │
-│  │  • Prompt injection detection (pattern matching + ML)           │    │
-│  │  • Input sanitization and escaping                              │    │
-│  │  • Length limits (max tokens)                                   │    │
-│  │  • Rate limiting per user/tenant                                │    │
-│  │  OCI: API Gateway + WAF + Functions                             │    │
-│  └─────────────────────────────────────────────────────────────────┘    │
-│                                    │                                     │
-│                                    ▼                                     │
-│  LAYER 2: Processing Protection                                          │
-│  ┌─────────────────────────────────────────────────────────────────┐    │
-│  │  • Tool execution sandboxing                                    │    │
-│  │  • Least-privilege data access                                  │    │
-│  │  • Context isolation between tenants                            │    │
-│  │  • Timeout enforcement                                          │    │
-│  │  OCI: Container Security + Identity Domains + Functions         │    │
-│  └─────────────────────────────────────────────────────────────────┘    │
-│                                    │                                     │
-│                                    ▼                                     │
-│  LAYER 3: Output Protection                                              │
-│  ┌─────────────────────────────────────────────────────────────────┐    │
-│  │  • PII detection and redaction                                  │    │
-│  │  • Harmful content filtering                                    │    │
-│  │  • Citation verification                                        │    │
-│  │  • Competitor mention filtering                                 │    │
-│  │  OCI: Functions + Content Moderation + Logging                  │    │
-│  └─────────────────────────────────────────────────────────────────┘    │
-│                                    │                                     │
-│                                    ▼                                     │
-│  LAYER 4: Audit and Compliance                                           │
-│  ┌─────────────────────────────────────────────────────────────────┐    │
-│  │  • Full request/response logging (with PII redaction)           │    │
-│  │  • Model decision audit trail                                   │    │
-│  │  • Access control audit                                         │    │
-│  │  • Compliance reporting                                         │    │
-│  │  OCI: Logging + Audit + Data Safe + Compliance Reports          │    │
-│  └─────────────────────────────────────────────────────────────────┘    │
-│                                                                          │
-└─────────────────────────────────────────────────────────────────────────┘
-```
+<DecisionBox title="AI Security Control Layers">
+
+**Layer 1 — Input Protection:** Prompt injection detection (pattern matching + ML), input sanitization, length limits, rate limiting per user/tenant. *OCI: API Gateway + WAF + Functions.*
+
+**Layer 2 — Processing Protection:** Tool execution sandboxing, least-privilege data access, context isolation between tenants, timeout enforcement. *OCI: Container Security + Identity Domains + Functions.*
+
+**Layer 3 — Output Protection:** PII detection and redaction, harmful content filtering, citation verification, competitor mention filtering. *OCI: Functions + Content Moderation + Logging.*
+
+**Layer 4 — Audit and Compliance:** Full request/response logging (with PII redaction), model decision audit trail, access control audit, compliance reporting. *OCI: Logging + Audit + Data Safe + Compliance Reports.*
+
+<Callout type="warning">
+**Defense in depth:** Each layer catches what the previous one missed. Input protection blocks prompt injection. Processing protection limits blast radius if injection succeeds. Output protection catches leaked data. Audit ensures you can prove compliance after the fact.
+</Callout>
+</DecisionBox>
 
 ### Data Classification and Handling
 
@@ -1044,47 +606,33 @@ Rate your current state (1-5) for each dimension:
 
 ### Roles and Responsibilities
 
-```
-┌─────────────────────────────────────────────────────────────────────────┐
-│                    AI PLATFORM TEAM STRUCTURE                            │
-├─────────────────────────────────────────────────────────────────────────┤
-│                                                                          │
-│                        ┌─────────────────┐                               │
-│                        │   AI Platform   │                               │
-│                        │     Lead        │                               │
-│                        │                 │                               │
-│                        │ • Strategy      │                               │
-│                        │ • Standards     │                               │
-│                        │ • Escalation    │                               │
-│                        └────────┬────────┘                               │
-│                                 │                                        │
-│           ┌─────────────────────┼─────────────────────┐                  │
-│           │                     │                     │                  │
-│           ▼                     ▼                     ▼                  │
-│  ┌────────────────┐   ┌────────────────┐   ┌────────────────┐           │
-│  │   ML Engineer  │   │  Platform Eng  │   │ Prompt Engineer│           │
-│  │                │   │                │   │                │           │
-│  │ • Model ops    │   │ • Infra        │   │ • Agent design │           │
-│  │ • Evaluation   │   │ • Observability│   │ • Quality      │           │
-│  │ • Fine-tuning  │   │ • Security     │   │ • Testing      │           │
-│  └────────────────┘   └────────────────┘   └────────────────┘           │
-│                                                                          │
-│  RACI Matrix:                                                            │
-│  ┌───────────────────────────────────────────────────────────────┐      │
-│  │  Activity          │ Lead │ ML Eng │ Platform │ Prompt Eng   │      │
-│  │  ─────────────────────────────────────────────────────────────│      │
-│  │  Model selection   │  A   │   R    │    C     │     C        │      │
-│  │  Prompt design     │  A   │   C    │    I     │     R        │      │
-│  │  Infrastructure    │  A   │   C    │    R     │     I        │      │
-│  │  Quality gates     │  A   │   R    │    C     │     R        │      │
-│  │  Incident response │  A   │   R    │    R     │     C        │      │
-│  │  Cost management   │  R   │   C    │    R     │     I        │      │
-│  └───────────────────────────────────────────────────────────────┘      │
-│                                                                          │
-│  R = Responsible, A = Accountable, C = Consulted, I = Informed          │
-│                                                                          │
-└─────────────────────────────────────────────────────────────────────────┘
-```
+<DecisionBox title="AI Platform Team Structure">
+
+**AI Platform Lead** → Strategy, standards, escalation. Reports to three specialist roles:
+
+<ComparisonGrid>
+  <ComparisonCard title="ML Engineer" color="cyan">
+    Model ops, evaluation pipelines, fine-tuning. Owns model selection and quality gates.
+  </ComparisonCard>
+  <ComparisonCard title="Platform Engineer" color="emerald">
+    Infrastructure, observability, security. Owns deployment pipelines and monitoring.
+  </ComparisonCard>
+  <ComparisonCard title="Prompt Engineer" color="violet">
+    Agent design, quality testing, prompt optimization. Owns prompt versioning and evaluation.
+  </ComparisonCard>
+</ComparisonGrid>
+
+**RACI Matrix** (R=Responsible, A=Accountable, C=Consulted, I=Informed):
+
+| Activity | Lead | ML Eng | Platform | Prompt Eng |
+|----------|------|--------|----------|------------|
+| Model selection | A | R | C | C |
+| Prompt design | A | C | I | R |
+| Infrastructure | A | C | R | I |
+| Quality gates | A | R | C | R |
+| Incident response | A | R | R | C |
+| Cost management | R | C | R | I |
+</DecisionBox>
 
 ### On-Call Structure
 
