@@ -42,7 +42,7 @@ const agents: Agent[] = [
     id: 'starlight-architect',
     name: 'Starlight Architect',
     title: 'Systems Design',
-    description: 'Enterprise AI with soul alignment',
+    description: 'Enterprise AI with mission alignment',
     imagePath: '/images/agents/starlight-architect.svg',
     accentColor: 'amber',
   },

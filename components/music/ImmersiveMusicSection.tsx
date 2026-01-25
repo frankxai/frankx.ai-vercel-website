@@ -45,7 +45,7 @@ export default function ImmersiveMusicSection({ variant = 'tech' }: ImmersiveMus
             Experience the Sound
           </h2>
           <p className="text-white/60 max-w-2xl mx-auto">
-            Listen to curated playlists and tracks designed for creative flow, deep focus, and consciousness expansion.
+            Listen to curated playlists and tracks designed for creative flow, deep focus, and creative immersion.
           </p>
         </motion.div>
 
@@ -127,7 +127,7 @@ export default function ImmersiveMusicSection({ variant = 'tech' }: ImmersiveMus
                 <Sparkles className="w-4 h-4 text-purple-400" />
               </div>
               <div>
-                <h3 className="font-semibold text-white">Consciousness Expansion</h3>
+                <h3 className="font-semibold text-white">Creative Immersion</h3>
                 <p className="text-xs text-white/50">Ambient soundscapes for meditation</p>
               </div>
             </div>

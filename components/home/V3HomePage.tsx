@@ -121,7 +121,7 @@ export default function V3HomePage() {
                 <StaggerItem>
                   <p className="text-body text-neutral-300 max-w-4xl mx-auto leading-relaxed">
                     Prompt packs, tool recommendations, and n8n/Zapier automations for AI architects.
-                    Plus Suno music workflows and consciousness-first creation systems. Built by an Oracle AI Architect who's created 500+ songs.
+                    Plus Suno music workflows and systems-first creation architecture. Built by an Oracle AI Architect who's created 500+ songs.
                   </p>
                 </StaggerItem>
 
@@ -249,10 +249,10 @@ export default function V3HomePage() {
                 </div>
                 <h3 className="text-2xl font-bold text-white mb-3">AI Architects</h3>
                 <p className="text-lg font-medium text-cyan-400 mb-4">
-                  Build Conscious AI Systems
+                  Build Intelligent AI Systems
                 </p>
                 <p className="text-slate-300 mb-6 leading-relaxed flex-grow">
-                  Enterprise-grade architectures for Oracle teams and conscious creators. Design systems that serve both professional excellence and human consciousness evolution.
+                  Enterprise-grade architectures for Oracle teams and ambitious creators. Design systems that serve both professional excellence and human creative capability.
                 </p>
                 <div className="flex flex-wrap gap-2 mb-6">
                   <span className="text-xs px-3 py-1 rounded-full bg-white/10 text-slate-300">#Enterprise</span>
@@ -281,7 +281,7 @@ export default function V3HomePage() {
                   Create with Suno + AI
                 </p>
                 <p className="text-slate-300 mb-6 leading-relaxed flex-grow">
-                  500+ field-tested Suno workflows, release planning systems, and vibrational music creation frameworks. Go from idea to release in hours, not weeks.
+                  500+ field-tested Suno workflows, release planning systems, and AI music creation frameworks. Go from idea to release in hours, not weeks.
                 </p>
                 <div className="flex flex-wrap gap-2 mb-6">
                   <span className="text-xs px-3 py-1 rounded-full bg-white/10 text-slate-300">#Suno</span>
@@ -336,7 +336,7 @@ export default function V3HomePage() {
             <SectionHeading
               id="social-proof-heading"
               eyebrow="Trusted Results"
-              title="Trusted by Oracle Architects & Conscious Creators"
+              title="Trusted by Oracle Architects & AI Creators"
               description="Real systems, real results, real transformation."
             />
           </div>
@@ -362,7 +362,7 @@ export default function V3HomePage() {
           {/* Testimonials section removed - will be added when real user feedback is collected */}
           <div className="text-center">
             <p className="text-slate-300 text-lg">
-              Join our growing community of early adopters building with AI consciousness and creativity.
+              Join our growing community of early adopters building with AI systems and creativity.
             </p>
           </div>
         </div>
@@ -461,7 +461,7 @@ export default function V3HomePage() {
               id="products-heading"
               eyebrow="Intelligence Systems"
               title="Choose Your Creator Operating System"
-              description="Field-tested frameworks from an Oracle AI architect and conscious creator."
+              description="Field-tested frameworks from an Oracle AI architect and prolific creator."
             />
           </div>
 
@@ -480,13 +480,13 @@ export default function V3HomePage() {
               <h3 className="text-2xl font-bold text-white mb-2">Vibe OS</h3>
               <div className="text-3xl font-bold text-purple-400 mb-4">$97</div>
               <p className="text-slate-300 mb-6 leading-relaxed flex-grow">
-                Complete Suno music creation system with 500+ field-tested workflows, release planning templates, and vibrational frequency frameworks.
+                Complete Suno music creation system with 500+ field-tested workflows, release planning templates, and creative production frameworks.
               </p>
               <ul className="space-y-3 mb-8">
                 {[
                   '500+ Suno session templates',
                   'Release planning workflows',
-                  'Music as consciousness tech',
+                  'Music as creative technology',
                   'Commercial licensing guides',
                   'Platform distribution playbooks'
                 ].map((feature) => (
@@ -566,13 +566,13 @@ export default function V3HomePage() {
               <h3 className="text-2xl font-bold text-white mb-2">Agentic Creator OS</h3>
               <div className="text-3xl font-bold text-cyan-400 mb-4">Custom</div>
               <p className="text-slate-300 mb-6 leading-relaxed flex-grow">
-                Oracle-grade AI system architecture for conscious creators. Custom-designed operating systems with enterprise standards and soul-centered design.
+                Oracle-grade AI system architecture for ambitious creators. Custom-designed operating systems with enterprise standards and creator-first design.
               </p>
               <ul className="space-y-3 mb-8">
                 {[
                   'Custom system architecture',
                   'Enterprise AI integration',
-                  'Consciousness-first design',
+                  'Creator-first design',
                   'Oracle career alignment',
                   'Ongoing support & evolution'
                 ].map((feature) => (
