@@ -15,6 +15,8 @@ import {
   Volume2,
 } from 'lucide-react'
 
+import Floating3DAsset from '@/components/ui/Floating3DAsset'
+
 // ============================================================================
 // BACKGROUND
 // ============================================================================
@@ -115,6 +117,27 @@ const stats = [
 function HeroSection() {
   return (
     <section className="relative pt-32 pb-16 px-6">
+      {/* Premium 3D floating icons - XL screens only */}
+      <div className="hidden xl:block pointer-events-none">
+        <Floating3DAsset
+          src="/images/3d/3dicons-headphone-dynamic-color.png"
+          position="top-right"
+          size="xl"
+          animation="float"
+          opacity={22}
+          className="top-20 right-[3%]"
+          delay={0.3}
+        />
+        <Floating3DAsset
+          src="/images/3d/3dicons-play-dynamic-premium.png"
+          position="bottom-left"
+          size="lg"
+          animation="pulse"
+          opacity={18}
+          className="bottom-8 left-[5%]"
+          delay={0.7}
+        />
+      </div>
       <div className="max-w-6xl mx-auto">
         <div className="grid lg:grid-cols-[1fr,1.2fr] gap-12 items-center">
           {/* Left - Text */}

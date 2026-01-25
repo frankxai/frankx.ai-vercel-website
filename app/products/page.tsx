@@ -18,6 +18,7 @@ import {
 } from 'lucide-react'
 
 import { trackEvent } from '@/lib/analytics'
+import Floating3DAsset from '@/components/ui/Floating3DAsset'
 
 // Premium background
 function ProductsBackground() {
@@ -206,6 +207,28 @@ export default function ProductsPage() {
     <>
       <ProductsBackground />
       <main id="main" className="relative min-h-screen">
+        {/* Premium 3D floating icons - XL screens only */}
+        <div className="hidden xl:block pointer-events-none">
+          <Floating3DAsset
+            src="/images/3d/3dicons-gift-dynamic-premium.png"
+            position="top-right"
+            size="xl"
+            animation="float"
+            opacity={20}
+            className="top-36 right-[4%]"
+            delay={0.4}
+          />
+          <Floating3DAsset
+            src="/images/3d/3dicons-medal-dynamic-premium.png"
+            position="bottom-left"
+            size="lg"
+            animation="pulse"
+            opacity={18}
+            className="bottom-48 left-[6%]"
+            delay={0.8}
+          />
+        </div>
+
         {/* Hero Section */}
         <section className="pt-32 pb-16">
           <div className="mx-auto max-w-6xl px-6">

@@ -18,6 +18,8 @@ import {
   Wand2,
 } from 'lucide-react'
 
+import Floating3DAsset from '@/components/ui/Floating3DAsset'
+
 function ResourcesBackground() {
   const shouldReduceMotion = useReducedMotion()
 
@@ -303,6 +305,28 @@ export default function ResourcesPage() {
     <>
       <ResourcesBackground />
       <main id="main" className="relative min-h-screen pb-16">
+        {/* Premium 3D floating icons - XL screens only */}
+        <div className="hidden xl:block pointer-events-none">
+          <Floating3DAsset
+            src="/images/3d/3dicons-notebook-dynamic-premium.png"
+            position="top-right"
+            size="xl"
+            animation="float"
+            opacity={20}
+            className="top-40 right-[4%]"
+            delay={0.3}
+          />
+          <Floating3DAsset
+            src="/images/3d/3dicons-bulb-dynamic-premium.png"
+            position="bottom-left"
+            size="lg"
+            animation="pulse"
+            opacity={18}
+            className="bottom-40 left-[6%]"
+            delay={0.7}
+          />
+        </div>
+
         <section className="pt-28 pb-12">
           <div className="mx-auto max-w-6xl px-6">
             <motion.div

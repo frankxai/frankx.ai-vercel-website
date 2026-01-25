@@ -91,7 +91,7 @@ const navigation = {
     items: [
       { name: 'AI Architect Academy', href: '/ai-architect-academy', icon: Building, description: '80+ skills, 20+ patterns' },
       { name: 'Developer Hub', href: '/developers', icon: Code2, description: 'Ship 10x faster with AI' },
-      { name: 'AI Architecture', href: '/ai-architecture', icon: Network, description: 'Methodology & process' },
+      { name: 'AI Architecture', href: '/ai-architectures', icon: Network, description: 'Methodology & process' },
       { name: 'Architecture Gallery', href: '/ai-architectures', icon: Layers, description: 'Production blueprints' },
       { name: 'Claude Code Mastery', href: '/prompt-library/agent-development', icon: Terminal, description: 'Prompts & patterns' },
       { name: 'Coding Prompts', href: '/prompt-library/coding', icon: Bot, description: 'Automation workflows' },
