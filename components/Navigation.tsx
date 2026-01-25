@@ -20,23 +20,49 @@ type NavItem = {
 const navItems: NavItem[] = [
   { name: 'Home', href: '/' },
   {
-    name: 'Create',
+    name: 'AI Architecture',
+    href: '/ai-architecture',
+    subItems: [
+      { name: 'Architecture Hub', href: '/ai-architecture' },
+      { name: 'Blueprints', href: '/ai-architecture/blueprints' },
+      { name: 'Prototypes (BYOK)', href: '/ai-architecture/prototypes' },
+      { name: 'Templates', href: '/ai-architecture/templates' },
+      { name: 'Tools', href: '/ai-architecture/tools' },
+    ],
+  },
+  {
+    name: 'For Creators',
     href: '/products/vibe-os',
     subItems: [
-      { name: 'Vibe OS', href: '/products/vibe-os' },
-      { name: 'Music Lab', href: '/music-lab' },
+      { name: 'Vibe OS (AI Music)', href: '/products/vibe-os' },
       { name: 'Prompt Library', href: '/prompt-library' },
+      { name: 'Music Lab', href: '/music-lab' },
+      { name: 'Templates', href: '/templates' },
       { name: 'Creation Chronicles', href: '/creation-chronicles' },
     ],
   },
   {
-    name: 'Learn',
-    href: '/learn',
+    name: 'For Students',
+    href: '/students',
     subItems: [
-      { name: 'Courses', href: '/courses' },
+      { name: 'Student Hub', href: '/students' },
       { name: 'Workshops', href: '/workshops' },
+      { name: 'Courses', href: '/courses' },
       { name: 'Guides', href: '/guides' },
       { name: 'AI Assessment', href: '/ai-assessment' },
+    ],
+  },
+  {
+    name: 'Resources',
+    href: '/resources',
+    subItems: [
+      { name: "The Creator's Soulbook", href: '/soulbook' },
+      { name: 'Workshops', href: '/workshops' },
+      { name: 'All Resources', href: '/resources' },
+      { name: 'Prompt Library', href: '/prompt-library' },
+      { name: 'Templates', href: '/templates' },
+      { name: 'Guides', href: '/guides' },
+      { name: 'Roadmap', href: '/roadmap' },
     ],
   },
   {
@@ -45,12 +71,11 @@ const navItems: NavItem[] = [
     subItems: [
       { name: 'All Products', href: '/products' },
       { name: 'Vibe OS', href: '/products/vibe-os' },
-      { name: 'Agentic Creator OS', href: '/products/agentic-creator-os' },
-      { name: 'Templates', href: '/templates' },
+      { name: 'Creative AI Toolkit', href: '/products/creative-ai-toolkit' },
+      { name: 'Generative Creator OS', href: '/products/generative-creator-os' },
     ],
   },
   { name: 'Blog', href: '/blog' },
-  { name: 'Rituals', href: '/rituals' },
   { name: 'About', href: '/about' },
 ]
 
@@ -116,7 +141,7 @@ export default function Navigation() {
                       <div className="px-1 py-1 ">
                         {item.subItems.map((subItem) => (
                           <Menu.Item key={subItem.name}>
-                            {({ active }: { active: boolean }) => (
+                            {({ active }) => (
                               <Link
                                 href={subItem.href}
                                 className={cn(

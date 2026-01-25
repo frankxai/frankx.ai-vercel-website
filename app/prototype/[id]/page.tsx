@@ -99,11 +99,11 @@ export default function PrototypePage({
               className="mb-8"
             >
               <Link
-                href="/prototypes"
-                className="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-white"
+                href="/ai-architecture/blueprints"
+                className="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-white transition-colors"
               >
                 <ArrowLeft className="h-4 w-4" />
-                Back to Prototypes
+                Back to Blueprints
               </Link>
             </motion.div>
 

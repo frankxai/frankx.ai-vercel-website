@@ -475,3 +475,175 @@ export const DIFFICULTY_META: Record<DifficultyLevel, DifficultyMeta> = {
     color: 'red',
   },
 }
+
+// =============================================================================
+// AI ARCHITECTURE HUB TYPES
+// =============================================================================
+
+export type AIProvider = 'anthropic' | 'openai' | 'google' | 'oci'
+
+export type HubItemType = 'blueprint' | 'prototype' | 'template'
+
+export type DeployTarget = 'vercel' | 'railway' | 'render' | 'replit' | 'oci'
+
+// Blueprint = Architecture documentation (free)
+export interface Blueprint extends ArchitecturePrototype {
+  type: 'blueprint'
+  relatedPrototype?: string // slug of related prototype
+  relatedTemplate?: string // slug of related template
+}
+
+// Prototype = Interactive BYOK demo (free, uses user's API key)
+export interface InteractivePrototype {
+  id: string
+  slug: string
+  title: string
+  subtitle: string
+  category: PrototypeCategory
+  status: PrototypeStatus
+  type: 'prototype'
+
+  // BYOK Configuration
+  supportedProviders: AIProvider[]
+  requiredKeys: {
+    provider: AIProvider
+    keyName: string
+    getKeyUrl: string
+    description: string
+  }[]
+
+  // External Tool Links
+  externalLinks?: {
+    googleAIStudio?: string
+    vercelV0?: string
+    replit?: string
+    stackblitz?: string
+    codespaces?: string
+  }
+
+  // Component path for rendering
+  componentPath: string // e.g., 'chat-playground', 'rag-tester'
+
+  // Cross-links
+  relatedBlueprint?: string
+  relatedTemplate?: string
+
+  // Metadata
+  description: string
+  features: string[]
+  technologies: string[]
+
+  // Timestamps
+  createdAt: string
+  updatedAt: string
+}
+
+// Template = Purchasable starter kit (paid)
+export interface Template {
+  id: string
+  slug: string
+  title: string
+  subtitle: string
+  category: PrototypeCategory
+  status: PrototypeStatus
+  type: 'template'
+
+  // Pricing
+  price: number
+  currency: 'USD' | 'EUR'
+  originalPrice?: number // For showing discounts
+
+  // Purchase
+  purchaseUrl: string // Gumroad/Stripe link
+  licenseType: 'personal' | 'commercial' | 'enterprise'
+
+  // Delivery
+  githubRepo?: string // Private repo, revealed after purchase
+  deployTargets: DeployTarget[]
+
+  // Content
+  description: string
+  features: string[]
+  techStack: string[]
+  includesOCI: boolean // Whether OCI GenAI variant is included
+
+  // Demo
+  demoUrl?: string
+  previewImages?: string[]
+
+  // Cross-links
+  relatedBlueprint?: string
+  relatedPrototype?: string
+
+  // Timestamps
+  createdAt: string
+  updatedAt: string
+}
+
+// =============================================================================
+// PROVIDER METADATA
+// =============================================================================
+
+export interface AIProviderMeta {
+  id: AIProvider
+  name: string
+  shortName: string
+  keyUrl: string
+  freeTier: string
+  color: string
+}
+
+export const AI_PROVIDER_META: Record<AIProvider, AIProviderMeta> = {
+  anthropic: {
+    id: 'anthropic',
+    name: 'Anthropic',
+    shortName: 'Claude',
+    keyUrl: 'https://console.anthropic.com/settings/keys',
+    freeTier: '$5 credit',
+    color: 'orange',
+  },
+  openai: {
+    id: 'openai',
+    name: 'OpenAI',
+    shortName: 'GPT',
+    keyUrl: 'https://platform.openai.com/api-keys',
+    freeTier: '$5 credit',
+    color: 'emerald',
+  },
+  google: {
+    id: 'google',
+    name: 'Google AI',
+    shortName: 'Gemini',
+    keyUrl: 'https://aistudio.google.com/apikey',
+    freeTier: 'Generous free tier',
+    color: 'blue',
+  },
+  oci: {
+    id: 'oci',
+    name: 'OCI GenAI',
+    shortName: 'OCI',
+    keyUrl: 'https://cloud.oracle.com/generative-ai',
+    freeTier: 'Free tier available',
+    color: 'red',
+  },
+}
+
+// =============================================================================
+// HUB DISPLAY TYPES
+// =============================================================================
+
+export interface HubStats {
+  blueprints: number
+  prototypes: number
+  templates: number
+  categories: number
+}
+
+export interface FeaturedItem {
+  type: HubItemType
+  slug: string
+  title: string
+  subtitle: string
+  category: PrototypeCategory
+  badge?: string // e.g., "New", "Popular", "$49"
+}

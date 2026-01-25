@@ -81,62 +81,44 @@ const navigation = {
     ],
   },
   developers: {
-    label: 'Developers',
+    label: 'AI Architecture',
     featured: {
-      title: 'AI Architect Academy',
-      description: 'Master enterprise AI patterns, Claude Code skills, and production architectures.',
-      href: '/ai-architect-academy',
-      badge: 'New',
+      title: 'AI Architecture Hub',
+      description: 'Learn. Try. Build. Blueprints, BYOK prototypes, and production templates.',
+      href: '/ai-architecture',
+      badge: 'New Hub',
     },
     items: [
-      { name: 'AI Architect Academy', href: '/ai-architect-academy', icon: Building, description: '80+ skills, 20+ patterns' },
-      { name: 'Developer Hub', href: '/developers', icon: Code2, description: 'Ship 10x faster with AI' },
-      { name: 'AI Architecture', href: '/ai-architectures', icon: Network, description: 'Methodology & process' },
-      { name: 'Architecture Gallery', href: '/ai-architectures', icon: Layers, description: 'Production blueprints' },
-      { name: 'Claude Code Mastery', href: '/prompt-library/agent-development', icon: Terminal, description: 'Prompts & patterns' },
-      { name: 'Coding Prompts', href: '/prompt-library/coding', icon: Bot, description: 'Automation workflows' },
+      { name: 'Architecture Hub', href: '/ai-architecture', icon: Network, description: 'Central hub for AI architecture' },
+      { name: 'Blueprints', href: '/ai-architecture/blueprints', icon: Layers, description: 'Diagrams & guides (FREE)' },
+      { name: 'Prototypes (BYOK)', href: '/ai-architecture/prototypes', icon: Terminal, description: 'Try with your API keys' },
+      { name: 'Templates', href: '/ai-architecture/templates', icon: Building, description: 'Starter kits ($29-199)' },
+      { name: 'Tools', href: '/ai-architecture/tools', icon: Code2, description: 'Curated resources' },
+      { name: 'Developer Hub', href: '/developers', icon: Bot, description: 'Ship 10x faster with AI' },
     ],
   },
   resources: {
     label: 'Resources',
     featured: {
       title: 'Resource Hub',
-      description: 'All guides, tools, and learning resources.',
+      description: 'Products, Arcanea, and learning paths to build your creative future.',
       href: '/resources',
       badge: 'Explore',
     },
     items: [
-      { name: 'Free Playbooks', href: '/free-playbook', icon: FileText, description: 'Quick-start guides' },
-      { name: 'Downloads', href: '/downloads', icon: FileText, description: 'PDFs & resources' },
-      { name: 'Prompt Library', href: '/prompt-library', icon: BookOpen, description: 'Curated prompts' },
-    ],
-  },
-}
-
-// Categorized Resources for mega menu columns
-const resourcesCategories = {
-  learn: {
-    title: 'Learn',
-    items: [
-      { name: 'The Golden Age', href: '/golden-age', icon: BookOpen, description: 'Transformation book' },
-      { name: 'Soulbook', href: '/soulbook', icon: Heart, description: 'Life system' },
-      { name: 'Free Playbooks', href: '/free-playbook', icon: FileText, description: 'Quick wins' },
-    ],
-  },
-  build: {
-    title: 'Build',
-    items: [
-      { name: 'Vibe OS', href: '/products/vibe-os', icon: Music, description: 'AI music' },
+      { name: 'Resource Hub', href: '/resources', icon: Sparkles, description: 'All systems, guides, and tools' },
+      { name: 'The Golden Age of Creators', href: '/golden-age', icon: BookOpen, description: 'Book on creative transformation' },
+      { name: "The Creator's Soulbook", href: '/soulbook', icon: BookOpen, description: 'Your life transformation system' },
+      { name: 'Free Playbooks', href: '/free-playbook', icon: FileText, description: 'Start with quick wins' },
+      { name: 'Prompt Library', href: '/prompt-library', icon: BookOpen, description: 'Curated prompt stacks' },
+      { name: 'Downloads', href: '/downloads', icon: FileText, description: 'PDFs & free resources' },
+      { name: 'Research Hub', href: '/research', icon: Microscope, description: 'Daily intelligence operations' },
+      { name: 'Intelligence Atlas', href: '/intelligence-atlas', icon: Star, description: 'Flagship research' },
+      { name: 'AI Architect', href: '/ai-architect', icon: Network, description: 'Solution design & patterns' },
+      { name: 'Vibe OS', href: '/products/vibe-os', icon: Music, description: 'AI music system' },
       { name: 'Agentic Creator OS', href: '/products/agentic-creator-os', icon: Bot, description: 'Agent workflows' },
-      { name: 'Prompt Library', href: '/prompt-library', icon: Sparkles, description: 'Curated prompts' },
-    ],
-  },
-  explore: {
-    title: 'Explore',
-    items: [
-      { name: 'Research Hub', href: '/research', icon: Microscope, description: 'Intelligence ops' },
-      { name: 'AI Architect', href: '/ai-architect', icon: Network, description: 'Patterns' },
-      { name: 'Arcanea', href: '/magic', icon: Wand2, description: 'Worldbuilding' },
+      { name: 'Arcanea', href: '/magic', icon: Wand2, description: 'Worldbuilding academy' },
+      { name: 'The Luminors', href: 'https://arcanea.app', icon: Heart, description: 'AI companions', external: true },
     ],
   },
 }
@@ -211,47 +193,6 @@ function MegaMenuContent({ section }: { section: keyof typeof navigation }) {
           )
         })}
       </ul>
-    </div>
-  )
-}
-
-// Resources mega menu with 3-column layout
-function ResourcesMegaMenu() {
-  return (
-    <div className="grid w-[680px] gap-6 p-5 md:grid-cols-3">
-      {(Object.keys(resourcesCategories) as Array<keyof typeof resourcesCategories>).map((category) => {
-        const data = resourcesCategories[category]
-        return (
-          <div key={category}>
-            <h4 className="mb-3 text-[11px] font-bold uppercase tracking-widest text-emerald-400/80">
-              {data.title}
-            </h4>
-            <ul className="space-y-1">
-              {data.items.map((item) => {
-                const Icon = item.icon
-                return (
-                  <li key={item.name}>
-                    <NavigationMenu.Link asChild>
-                      <Link
-                        href={item.href}
-                        className="group flex items-center gap-2.5 rounded-lg px-2 py-2 transition-colors hover:bg-white/5"
-                      >
-                        <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-white/5 text-slate-400 transition-colors group-hover:bg-emerald-500/10 group-hover:text-emerald-400">
-                          <Icon className="h-3.5 w-3.5" />
-                        </div>
-                        <div>
-                          <span className="text-[13px] font-medium text-white">{item.name}</span>
-                          <p className="text-[11px] text-slate-500">{item.description}</p>
-                        </div>
-                      </Link>
-                    </NavigationMenu.Link>
-                  </li>
-                )
-              })}
-            </ul>
-          </div>
-        )
-      })}
     </div>
   )
 }
@@ -396,7 +337,7 @@ export default function NavigationMega() {
             <NavigationMenu.Item>
               <NavTrigger>Resources</NavTrigger>
               <NavigationMenu.Content className="absolute left-0 top-0 data-[motion=from-end]:animate-enterFromRight data-[motion=from-start]:animate-enterFromLeft data-[motion=to-end]:animate-exitToRight data-[motion=to-start]:animate-exitToLeft">
-                <ResourcesMegaMenu />
+                <MegaMenuContent section="resources" />
               </NavigationMenu.Content>
             </NavigationMenu.Item>
 
@@ -412,20 +353,6 @@ export default function NavigationMega() {
                 )}
               >
                 Blog
-              </Link>
-            </NavigationMenu.Item>
-
-            <NavigationMenu.Item>
-              <Link
-                href="/rituals"
-                className={cn(
-                  'rounded-md px-2.5 py-1.5 text-[13px] font-semibold transition-all',
-                  isActive('/rituals')
-                    ? 'text-white bg-white/5'
-                    : 'text-slate-300 hover:text-white hover:bg-white/5'
-                )}
-              >
-                Rituals
               </Link>
             </NavigationMenu.Item>
 
@@ -510,13 +437,6 @@ export default function NavigationMega() {
                 className="block rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base font-medium text-slate-300 transition-colors hover:bg-white/5 hover:text-white"
               >
                 Blog
-              </Link>
-              <Link
-                href="/rituals"
-                onClick={() => setIsOpen(false)}
-                className="block rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base font-medium text-slate-300 transition-colors hover:bg-white/5 hover:text-white"
-              >
-                Rituals
               </Link>
               <Link
                 href="/about"
