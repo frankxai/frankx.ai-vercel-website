@@ -17,7 +17,7 @@ const agents = [
     id: 'frequency-alchemist',
     name: 'Frequency Alchemist',
     description: 'Frank\'s music creation approach with Suno AI mastery',
-    specialties: ['Suno AI', 'Healing Frequencies', 'Music as Consciousness Tech'],
+    specialties: ['Suno AI', 'Ambient Frequencies', 'Music as Creative Tech'],
     color: 'from-purple-500 to-pink-500',
     icon: '🎵'
   },
@@ -84,11 +84,11 @@ const audiences = [
   { id: 'developers', name: 'Developers', description: 'Technical professionals building AI systems' }
 ]
 
-const consciousnessLevels = [
-  { id: 'awareness', name: 'Awareness', description: 'Gentle introduction to consciousness concepts' },
+const depthLevels = [
+  { id: 'awareness', name: 'Awareness', description: 'Gentle introduction to core concepts' },
   { id: 'understanding', name: 'Understanding', description: 'Deeper exploration with practical examples' },
   { id: 'integration', name: 'Integration', description: 'Practical implementation guidance' },
-  { id: 'mastery', name: 'Mastery', description: 'Advanced transformation techniques' }
+  { id: 'mastery', name: 'Mastery', description: 'Advanced techniques and frameworks' }
 ]
 
 export default function ContentStudioPage() {
@@ -157,7 +157,7 @@ export default function ContentStudioPage() {
               Creator Toolkit
             </h1>
             <p className="mt-6 text-lg text-white/75 leading-relaxed">
-              Frank's AI-powered creator tools. Generate consciousness-aligned content with specialized agents
+              Frank's AI-powered creator tools. Generate high-quality content with specialized agents
               designed to amplify your creative expression, not replace it.
             </p>
 
@@ -284,13 +284,13 @@ export default function ContentStudioPage() {
                       </div>
                     </div>
 
-                    {/* Consciousness Level */}
+                    {/* Depth Level */}
                     <div>
                       <label className="block text-sm font-medium text-white/80 mb-2">
-                        Consciousness Level
+                        Depth Level
                       </label>
                       <div className="grid gap-3 md:grid-cols-2">
-                        {consciousnessLevels.map((level) => (
+                        {depthLevels.map((level) => (
                           <div
                             key={level.id}
                             onClick={() => setSelectedLevel(level.id)}
@@ -397,7 +397,7 @@ export default function ContentStudioPage() {
                           <div className="text-sm text-white/60 mb-2">Statistics</div>
                           <div className="space-y-1 text-sm text-white/80">
                             <div>Read Time: {generatedContent.estimated_read_time} min</div>
-                            <div>Consciousness Score: {generatedContent.consciousness_alignment_score}/10</div>
+                            <div>Quality Score: {generatedContent.consciousness_alignment_score}/10</div>
                             <div>Keywords: {generatedContent.keywords?.length || 0}</div>
                           </div>
                         </div>
@@ -425,7 +425,7 @@ export default function ContentStudioPage() {
                       <span className="text-sm font-medium text-white">247</span>
                     </div>
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-white/70">Avg Consciousness Score</span>
+                      <span className="text-sm text-white/70">Avg Quality Score</span>
                       <span className="text-sm font-medium text-white">8.6/10</span>
                     </div>
                     <div className="flex items-center justify-between">

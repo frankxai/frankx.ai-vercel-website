@@ -161,7 +161,7 @@ function HeroSection() {
 
             <p className="text-xl text-white/50 mb-8 max-w-lg leading-relaxed">
               12,000+ songs created with Suno AI. Ambient soundscapes, electronic beats,
-              cinematic scores, and healing frequencies. Exploring the frontier of AI music.
+              cinematic scores, and ambient frequencies. Exploring the frontier of AI music.
             </p>
 
             <div className="flex flex-wrap gap-4">

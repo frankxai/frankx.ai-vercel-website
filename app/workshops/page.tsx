@@ -229,7 +229,7 @@ const workshops: Workshop[] = [
   {
     id: 'agentic-creator-evolution',
     title: 'Agentic Creator Evolution Path',
-    description: 'Progressive journey from AI beginner to master builder. Four levels: Awakening, Building, Mastery, Teaching.',
+    description: 'Progressive journey from AI beginner to master builder. Four levels: Foundations, Building, Mastery, Teaching.',
     level: 'all',
     duration: 'Ongoing',
     modules: 4,

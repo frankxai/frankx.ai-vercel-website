@@ -116,7 +116,7 @@ export default function Navigation() {
                       <div className="px-1 py-1 ">
                         {item.subItems.map((subItem) => (
                           <Menu.Item key={subItem.name}>
-                            {({ active }) => (
+                            {({ active }: { active: boolean }) => (
                               <Link
                                 href={subItem.href}
                                 className={cn(

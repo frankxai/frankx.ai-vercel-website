@@ -64,7 +64,7 @@ export const linksPageSchema = {
       'Enterprise AI Architecture',
       'Agentic AI Systems',
       'Creative AI Tools',
-      'Consciousness Technology',
+      'Creative Technology',
     ],
     hasOccupation: [
       {

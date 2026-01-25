@@ -440,7 +440,7 @@ function CTASection() {
 
           <p className="text-sm text-white/30 mt-8">
             Frank has created 500+ songs using Suno AI, exploring ambient,
-            electronic, cinematic, and healing frequencies.
+            electronic, cinematic, and ambient genres.
           </p>
         </motion.div>
       </div>

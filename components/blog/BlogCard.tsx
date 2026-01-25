@@ -34,7 +34,7 @@ export default function BlogCard({ post, featured = false, className }: BlogCard
       {showImage && (
         <div className="relative w-full h-48 md:h-56 overflow-hidden bg-gradient-to-br from-emerald-500/10 via-cyan-500/5 to-purple-500/10">
           <Image
-            src={post.image}
+            src={post.image!}
             alt={post.title}
             fill
             className="object-cover transition-transform duration-700 group-hover:scale-110"
