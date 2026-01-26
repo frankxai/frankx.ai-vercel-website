@@ -1,0 +1,380 @@
+---
+title: "ACOS Quick Start: Zero to Production in 10 Minutes"
+description: "Get Agentic Creator OS running in 10 minutes. Clone, install, configure, and run your first workflow. The fastest path from zero to AI-powered productivity."
+date: "2026-01-27"
+lastModified: "2026-01-27"
+author: "Frank"
+tags: ["tutorial", "getting started", "quick start", "claude code", "beginner"]
+keywords: ["acos quick start", "agentic creator os tutorial", "claude code setup", "ai productivity setup", "acos installation"]
+category: "Tutorials"
+featured: true
+image: '/images/blog/acos-quick-start-hero.png'
+readingGoal: "Install ACOS and run your first automated workflow in under 10 minutes."
+readingTime: '6 min'
+---
+
+# ACOS Quick Start: Zero to Production in 10 Minutes
+
+*From clone to creating in one coffee break.*
+
+---
+
+## TL;DR
+
+```bash
+git clone https://github.com/frankxai/agentic-creator-os.git
+cd agentic-creator-os
+./install.sh
+claude
+/acos
+```
+
+That's it. You now have 25 commands, 80+ skills, and 40+ agents. This guide walks through each step with explanations.
+
+---
+
+## Prerequisites (2 minutes)
+
+Before starting, you need:
+
+| Requirement | How to Check | Install Link |
+|-------------|--------------|--------------|
+| **Node.js 18+** | `node --version` | [nodejs.org](https://nodejs.org) |
+| **Claude Code CLI** | `claude --version` | [claude.ai/claude-code](https://claude.ai/claude-code) |
+| **Git** | `git --version` | [git-scm.com](https://git-scm.com) |
+
+**Quick Check:**
+```bash
+node --version    # Should show v18.x or higher
+claude --version  # Should show claude-code version
+git --version     # Should show git version
+```
+
+All good? Let's go.
+
+---
+
+## Step 1: Clone the Repository (30 seconds)
+
+```bash
+# Clone ACOS
+git clone https://github.com/frankxai/agentic-creator-os.git
+
+# Enter the directory
+cd agentic-creator-os
+
+# Verify you're in the right place
+ls
+```
+
+You should see:
+```
+README.md
+CLAUDE.md
+install.sh
+.claude/
+skills/
+templates/
+workflows/
+departments/
+mcp-servers/
+```
+
+---
+
+## Step 2: Run the Installer (1 minute)
+
+```bash
+# Make installer executable
+chmod +x install.sh
+
+# Run it
+./install.sh
+```
+
+**What the installer does:**
+1. Copies commands to `~/.claude/commands/`
+2. Copies skills to `~/.claude/skills/`
+3. Sets up configuration files
+4. Validates your environment
+
+You'll see output like:
+```
+[ACOS] Installing Agentic Creator OS v6.0...
+[ACOS] Copying 25 commands...
+[ACOS] Copying 80+ skills...
+[ACOS] Setting up skill-rules.json...
+[ACOS] Installation complete!
+[ACOS] Run 'claude' then '/acos' to start.
+```
+
+---
+
+## Step 3: Launch Claude Code (30 seconds)
+
+```bash
+# Start Claude Code
+claude
+```
+
+You're now in the Claude Code CLI. The ACOS context is automatically loaded because you're in the `agentic-creator-os` directory.
+
+---
+
+## Step 4: Run Your First Command (1 minute)
+
+```bash
+/acos
+```
+
+You'll see the ACOS system status:
+
+```
+╔═══════════════════════════════════════════════════════════════════╗
+║                    AGENTIC CREATOR OS v6.0                         ║
+║          "The Operating System for Golden Age Creators"            ║
+╠═══════════════════════════════════════════════════════════════════╣
+║  Commands: 25 │ Skills: 80+ │ Agents: 40+ │ Workflows: 8          ║
+╚═══════════════════════════════════════════════════════════════════╝
+
+Available Commands:
+- /article-creator    Write a blog post
+- /create-music       Produce a track
+- /spec               Build a feature
+- /infogenius         Generate images
+- /starlight-architect Design AI systems
+...
+```
+
+---
+
+## Step 5: Create Something (5 minutes)
+
+Let's write a blog post to test the system:
+
+```bash
+/article-creator
+```
+
+ACOS will ask:
+- **Topic**: What do you want to write about?
+- **Audience**: Who's reading this?
+- **Goal**: What should readers learn/do?
+
+**Example Session:**
+```
+You: /article-creator
+
+ACOS: What topic would you like to write about?
+
+You: How to use AI for personal productivity
+
+ACOS: [Loads content-strategy skill automatically]
+      [Creates outline]
+      [Drafts article with SEO optimization]
+      [Offers to generate hero image]
+
+# 5 minutes later: Complete, publish-ready article
+```
+
+---
+
+## What You Just Installed
+
+### 25 Commands
+
+| Category | Commands |
+|----------|----------|
+| **Creation** | `/article-creator`, `/create-music`, `/infogenius`, `/factory` |
+| **Strategy** | `/starlight-architect`, `/council`, `/research`, `/plan-week` |
+| **Development** | `/spec`, `/nextjs-deploy`, `/ux-design`, `/automation-dev` |
+| **System** | `/acos`, `/inventory-status`, `/mcp-status`, `/publish` |
+| **Quality** | `/review-content`, `/classify-content`, `/polish-content` |
+
+### 80+ Skills (Auto-Activating)
+
+Skills load automatically based on context:
+- Say "write a blog" → `content-strategy` loads
+- Say "build a feature" → `implementation-planning` loads
+- Say "create music" → `suno-ai-mastery` loads
+
+### 40+ Agents
+
+Specialized AI personas for different domains:
+- **Starlight Orchestrator**: Meta-coordination
+- **Creation Engine**: Content and products
+- **Frequency Alchemist**: Music production
+- **Luminor Oracle**: Strategy and foresight
+
+---
+
+## Quick Command Reference
+
+### Content Creation
+```bash
+/article-creator              # Write a blog post
+/create-music                 # Produce a Suno track
+/infogenius                   # Generate research-grounded images
+/factory                      # Full pipeline: research → publish
+```
+
+### Strategy & Planning
+```bash
+/starlight-architect          # Design AI systems
+/council                      # Multi-agent strategic council
+/research                     # Intelligence gathering
+/plan-week                    # Weekly content planning
+```
+
+### Development
+```bash
+/spec                         # Spec-driven feature development
+/nextjs-deploy                # Deploy to Vercel
+/automation-dev               # Build MCP servers
+```
+
+### System
+```bash
+/acos                         # Smart router (start here)
+/inventory-status             # Content dashboard
+/mcp-status                   # Check MCP servers
+```
+
+---
+
+## Customizing Your Setup
+
+### Change Your Brand Voice
+
+Edit `instances/frankx/config.json` or create your own:
+
+```json
+{
+  "brand": {
+    "name": "Your Brand",
+    "voice": "professional, friendly, direct",
+    "bannedPhrases": ["synergy", "leverage", "circle back"],
+    "preferredPhrases": ["build", "create", "ship"]
+  }
+}
+```
+
+### Add Custom Skills
+
+Create a skill file in `~/.claude/skills/`:
+
+```markdown
+---
+name: my-custom-skill
+triggers:
+  - keyword1
+  - keyword2
+---
+
+# My Custom Skill
+
+## When to Use
+[Describe when this skill should activate]
+
+## Patterns
+[Your domain knowledge here]
+```
+
+### Enable MCP Servers
+
+Check which MCP servers are available:
+
+```bash
+/mcp-status
+```
+
+Configure in Claude Code settings for:
+- Browser automation (Playwright)
+- Image generation (Nano Banana)
+- Music prompts (Lyric Genius)
+- Memory persistence
+
+---
+
+## Troubleshooting
+
+### "Command not found"
+
+```bash
+# Reinstall commands
+cp agentic-creator-os/.claude/commands/*.md ~/.claude/commands/
+```
+
+### Skills not auto-loading
+
+```bash
+# Check skill-rules.json exists
+cat ~/.claude/skill-rules.json
+
+# If missing, copy from repo
+cp agentic-creator-os/.claude/skill-rules.json ~/.claude/
+```
+
+### Claude Code not recognizing ACOS
+
+Make sure you're in a directory with a `CLAUDE.md` file, or the `agentic-creator-os` directory itself.
+
+---
+
+## Next Steps
+
+You're set up. Here's where to go next:
+
+| Goal | Resource |
+|------|----------|
+| **Understand the architecture** | [Complete Guide to ACOS v6](/blog/agentic-creator-os-complete-guide) |
+| **Learn orchestration patterns** | [Swarm Intelligence](/blog/swarm-intelligence-multi-agent-orchestration) |
+| **Find your workflow** | [Use Cases by Creator Type](/blog/acos-use-cases-creator-types) |
+| **Connect external tools** | [MCP Server Integration](/blog/mcp-server-integration-guide) |
+| **Build custom skills** | [Building Custom Skills](/blog/building-custom-skills-acos) |
+
+---
+
+## Frequently Asked Questions
+
+### How long does installation take?
+
+Under 2 minutes for the clone and install. Another minute to verify everything works.
+
+### Do I need API keys?
+
+Not for basic ACOS functionality. Some MCP servers (like image generation) may require API keys configured in your environment.
+
+### Can I use this with existing Claude Code projects?
+
+Yes. ACOS commands and skills are additive. They won't interfere with your existing setup.
+
+### Is ACOS free?
+
+Completely free and open source. No subscriptions, no paywalls, no limits.
+
+### Where do I report issues?
+
+GitHub Issues: [github.com/frankxai/agentic-creator-os/issues](https://github.com/frankxai/agentic-creator-os/issues)
+
+---
+
+## Summary
+
+| Step | Time | Action |
+|------|------|--------|
+| 1 | 30s | `git clone` the repo |
+| 2 | 1m | Run `./install.sh` |
+| 3 | 30s | Launch `claude` |
+| 4 | 1m | Run `/acos` |
+| 5 | 5m | Create your first content |
+
+**Total: ~8 minutes to first output.**
+
+Welcome to Agentic Creator OS.
+
+---
+
+*Start creating. The system handles the rest.*
+
+*[GitHub](https://github.com/frankxai/agentic-creator-os) | [Full Documentation](/blog/agentic-creator-os-complete-guide) | [FrankX](https://frankx.ai)*
