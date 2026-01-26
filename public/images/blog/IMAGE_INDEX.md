@@ -9,10 +9,10 @@
 
 | Metric | Value |
 |--------|-------|
-| Total Images | 20 |
+| Total Images | 31 |
 | Model | Gemini 3 Pro Image (`gemini-3-pro-image-preview`) |
 | Average Cost | ~$0.12/image |
-| Total Batch Cost | ~$2.40 |
+| Total Batch Cost | ~$3.72 |
 
 ---
 
@@ -108,6 +108,21 @@ Images marked for regeneration:
 | # | Filename | Style | Research Topic | Quality |
 |---|----------|-------|----------------|---------|
 | 1 | `ultimate-guide-ai-coding-agents-2026-hero-v2.png` | da-vinci-technical | AI coding agents 2026, autonomous programming, multi-agent systems | ⏳ Review |
+
+### Batch 4: Premium Style Expansion (2026-01-26)
+
+| # | Filename | Style | Research Topic | Quality |
+|---|----------|-------|----------------|---------|
+| 1 | `conscious-ai-entrepreneurs-hero.png` | 3d-isometric | AI for entrepreneurs, human-AI collaboration | ⏳ Review |
+| 2 | `aws-bedrock-agents.png` | 3d-isometric | AWS Bedrock agents, cloud AI infrastructure | ⏳ Review |
+| 3 | `claude-code-mcp.png` | premium-gradient | Model Context Protocol, Claude Code tools | ⏳ Review |
+| 4 | `multi-agent-orchestration.png` | 3d-isometric | Multi-agent systems, orchestration patterns 2026 | ⏳ Review |
+| 5 | `nvidia-physical-ai-hero.png` | premium-gradient | NVIDIA CES 2026, physical AI, robotics | ⏳ Review |
+| 6 | `oracle-genai-comparison.png` | business-professional | Oracle GenAI vs LangGraph vs CrewAI comparison | ⏳ Review |
+| 7 | `agentic-creator-os-hero.png` | premium-gradient | Agentic Creator OS, AI-powered creative platform | ⏳ Review |
+| 8 | `what-is-agentic-ai-hero.png` | 3d-isometric | What is Agentic AI, explainer guide | ⏳ Review |
+| 9 | `suno-music-workflow-hero.png` | premium-gradient | Suno AI music workflow, idea to track | ⏳ Review |
+| 10 | `vibe-os-creative-soul-hero.png` | premium-gradient | Vibe OS, frequency music, state change | ⏳ Review |
 
 ---
 
