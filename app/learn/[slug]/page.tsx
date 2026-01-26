@@ -60,6 +60,7 @@ function VideoPlayer({ video, color }: { video: VideoResource; color: string }) 
           />
         ) : (
           <>
+            {/* eslint-disable-next-line @next/next/no-img-element -- External YouTube thumbnail */}
             <img
               src={`https://img.youtube.com/vi/${video.youtubeId}/maxresdefault.jpg`}
               alt={video.title}

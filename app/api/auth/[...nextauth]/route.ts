@@ -11,8 +11,7 @@ import { authOptions } from '@/lib/auth'
  * - /api/auth/csrf - CSRF token
  */
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const { handlers } = NextAuth(authOptions) as any
+const { handlers } = NextAuth(authOptions) as { GET: typeof import('next/server').NextRequest; POST: typeof import('next/server').NextRequest }
 
 export const GET = handlers.GET
 export const POST = handlers.POST

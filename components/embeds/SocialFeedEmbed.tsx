@@ -112,6 +112,7 @@ function SocialPostCard({
         onClick={onOpenLightbox}
       >
         {post.thumbnailUrl ? (
+          /* eslint-disable-next-line @next/next/no-img-element -- External social media content */
           <img
             src={post.thumbnailUrl}
             alt={post.title || 'Social media post'}
@@ -159,6 +160,7 @@ function SocialPostCard({
         {post.author && (
           <div className="flex items-center gap-2 mb-2">
             {post.authorAvatar && (
+              /* eslint-disable-next-line @next/next/no-img-element -- External avatar URL */
               <img
                 src={post.authorAvatar}
                 alt={post.author}

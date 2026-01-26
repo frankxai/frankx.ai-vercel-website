@@ -235,7 +235,7 @@ export const components = {
   },
 }
 
-export default {
+export const designTokens = {
   colors,
   typography,
   spacing,
@@ -246,3 +246,5 @@ export default {
   zIndex,
   components,
 }
+
+export default designTokens
