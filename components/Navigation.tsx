@@ -84,7 +84,6 @@ export default function Navigation() {
   const pathname = usePathname()
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsOpen(false)
   }, [pathname])
 
@@ -141,7 +140,7 @@ export default function Navigation() {
                       <div className="px-1 py-1 ">
                         {item.subItems.map((subItem) => (
                           <Menu.Item key={subItem.name}>
-                            {({ active }) => (
+                            {({ active }: { active: boolean }) => (
                               <Link
                                 href={subItem.href}
                                 className={cn(

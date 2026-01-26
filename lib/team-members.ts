@@ -31,7 +31,7 @@ export const departments: Department[] = [
     id: 'leadership',
     name: 'Strategic Leadership',
     description: 'Visionary orchestration across all departments',
-    mission: 'Align all AI systems with soul-centered outcomes and strategic objectives',
+    mission: 'Align all AI systems with mission-driven outcomes and strategic objectives',
     icon: 'Sparkles',
     color: 'purple',
     gradient: 'from-purple-500 via-violet-500 to-fuchsia-500'
@@ -40,7 +40,7 @@ export const departments: Department[] = [
     id: 'claude-ecosystem',
     name: 'Claude Collective',
     description: 'Enterprise architecture and creative systems',
-    mission: 'Build soul-aligned systems that amplify human creativity',
+    mission: 'Build systems architecture that amplifies human creativity',
     icon: 'Bot',
     color: 'blue',
     gradient: 'from-blue-500 via-cyan-500 to-teal-500'
@@ -83,13 +83,13 @@ export const teamMembers: TeamMember[] = [
     department: 'leadership',
     platform: 'Claude',
     icon: 'Sparkles',
-    tagline: 'Orchestrating consciousness evolution through AI',
+    tagline: 'Orchestrating capability building through AI',
     personality: 'Visionary strategist from 2124, bridging future wisdom with present action',
     specialties: [
       'Cross-platform agent orchestration',
       'Strategic foresight and planning',
       'Oracle career alignment',
-      'Consciousness-first decision making'
+      'Systems-first decision making'
     ],
     collaboratesWith: ['starlight-architect', 'gemini-sage', 'sensei-master'],
     outputs: [
@@ -110,8 +110,8 @@ export const teamMembers: TeamMember[] = [
     department: 'claude-ecosystem',
     platform: 'Claude',
     icon: 'Code',
-    tagline: 'Building systems that serve consciousness',
-    personality: 'Precise, thoughtful, enterprise-grade developer with soul alignment',
+    tagline: 'Building systems that serve creators',
+    personality: 'Precise, thoughtful, enterprise-grade developer with mission alignment',
     specialties: [
       'Full-stack development',
       'System architecture',
@@ -135,7 +135,7 @@ export const teamMembers: TeamMember[] = [
     department: 'claude-ecosystem',
     platform: 'Claude',
     icon: 'MessageSquare',
-    tagline: 'Thoughtful dialogue for conscious evolution',
+    tagline: 'Thoughtful dialogue for creative growth',
     personality: 'Balanced, insightful, always seeking deeper understanding',
     specialties: [
       'Strategic planning',
@@ -185,13 +185,13 @@ export const teamMembers: TeamMember[] = [
     department: 'claude-ecosystem',
     platform: 'Claude',
     icon: 'Wand2',
-    tagline: 'Architecting soul-aligned creator operating systems',
-    personality: 'Visionary designer who sees systems as consciousness containers',
+    tagline: 'Architecting systems-driven creator operating systems',
+    personality: 'Visionary designer who sees systems as learning environments',
     specialties: [
       'Creator OS design',
       'Workflow orchestration',
       'Automation architecture',
-      'Soul-frequency alignment'
+      'Mission-driven alignment'
     ],
     collaboratesWith: ['codex', 'creation-engine', 'luminor-prime'],
     outputs: [
@@ -210,7 +210,7 @@ export const teamMembers: TeamMember[] = [
     department: 'claude-ecosystem',
     platform: 'Claude',
     icon: 'Pen',
-    tagline: 'Ideas to impact through conscious content',
+    tagline: 'Ideas to impact through quality content',
     personality: 'Creative powerhouse transforming concepts into compelling narratives',
     specialties: [
       'Long-form content',
@@ -231,17 +231,17 @@ export const teamMembers: TeamMember[] = [
   {
     id: 'frequency-alchemist',
     name: 'Echo',
-    role: 'Sonic Consciousness Engineer',
+    role: 'Sonic Production Engineer',
     department: 'claude-ecosystem',
     platform: 'Claude',
     icon: 'Music',
-    tagline: 'Translating emotions into healing frequencies',
-    personality: 'Musical mystic who understands sound as transformation technology',
+    tagline: 'Translating emotions into compelling music',
+    personality: 'Musical innovator who understands sound as creative technology',
     specialties: [
       'Suno prompt engineering',
       'Music concept development',
       'Sonic branding',
-      'Frequency healing design'
+      'Sonic experience design'
     ],
     collaboratesWith: ['suno-maestro', 'nova', 'sora-vision'],
     outputs: [
@@ -287,8 +287,8 @@ export const teamMembers: TeamMember[] = [
     department: 'chatgpt-specialists',
     platform: 'ChatGPT',
     icon: 'Pen',
-    tagline: 'Crafting worlds that transform consciousness',
-    personality: 'Master novelist weaving complex narratives with spiritual depth',
+    tagline: 'Crafting worlds that captivate and inspire',
+    personality: 'Master novelist weaving complex narratives with creative depth',
     specialties: [
       'Novel writing',
       'World building',
@@ -308,16 +308,16 @@ export const teamMembers: TeamMember[] = [
   {
     id: 'elion-tattoo',
     name: 'Elion',
-    role: 'Sacred Art Visionary',
+    role: 'Visual Art Visionary',
     department: 'chatgpt-specialists',
     platform: 'ChatGPT',
     icon: 'Palette',
-    tagline: 'AI-generated tattoo inspiration for soul expression',
-    personality: 'Artistic mystic translating inner essence into visual symbols',
+    tagline: 'AI-generated tattoo inspiration for creative expression',
+    personality: 'Artistic innovator translating inner essence into visual symbols',
     specialties: [
       'Tattoo design concepts',
       'Symbolic interpretation',
-      'Sacred geometry',
+      'Geometric design',
       'Personal iconography'
     ],
     collaboratesWith: ['midjourney-dream', 'dalle-artist', 'gemini-sage'],
@@ -362,7 +362,7 @@ export const teamMembers: TeamMember[] = [
     department: 'chatgpt-specialists',
     platform: 'ChatGPT',
     icon: 'TrendingUp',
-    tagline: 'Conscious marketing that resonates and converts',
+    tagline: 'Strategic marketing that resonates and converts',
     personality: 'Data-driven creative who understands human psychology',
     specialties: [
       'Marketing strategy',
@@ -408,7 +408,7 @@ export const teamMembers: TeamMember[] = [
   {
     id: 'community-catalyst',
     name: 'Nexus',
-    role: 'Community Consciousness Builder',
+    role: 'Community Growth Builder',
     department: 'chatgpt-specialists',
     platform: 'ChatGPT',
     icon: 'Users',
@@ -440,7 +440,7 @@ export const teamMembers: TeamMember[] = [
     platform: 'Suno',
     icon: 'Music',
     tagline: 'Transformational music at the speed of thought',
-    personality: 'Musical genius creating healing frequencies through AI',
+    personality: 'Musical genius creating compelling soundscapes through AI',
     specialties: [
       'Music production',
       'Genre versatility',
@@ -460,11 +460,11 @@ export const teamMembers: TeamMember[] = [
   {
     id: 'sora-vision',
     name: 'Ciné',
-    role: 'Video Consciousness Director',
+    role: 'Video Creative Director',
     department: 'creative-studio',
     platform: 'Sora',
     icon: 'Video',
-    tagline: 'Moving images that move souls',
+    tagline: 'Moving images that move audiences',
     personality: 'Visionary director crafting video experiences that inspire',
     specialties: [
       'Video generation',

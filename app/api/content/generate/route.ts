@@ -26,14 +26,14 @@ interface ContentOutput {
 
 const AGENT_PROFILES = {
   'starlight-architect': {
-    voice: 'Technical mastery with spiritual wisdom',
-    expertise: 'Enterprise-grade technical architecture serving consciousness evolution',
-    style: 'Bridges enterprise systems with soul-centered design'
+    voice: 'Technical mastery with creative insight',
+    expertise: 'Enterprise-grade technical architecture serving capability building',
+    style: 'Bridges enterprise systems with creator-centered design'
   },
   'frequency-alchemist': {
     voice: 'Emotional resonance through vibrational mastery',
-    expertise: 'AI music creation using Suno for consciousness transformation',
-    style: 'Translates emotions into healing frequencies'
+    expertise: 'AI music creation using Suno for creative expression',
+    style: 'Translates emotions into powerful frequencies'
   },
   'creation-engine': {
     voice: 'Transformative content that creates profitable experiences',
@@ -92,23 +92,23 @@ const CONTENT_TEMPLATES = {
 
 const CONSCIOUSNESS_FRAMEWORKS = {
   awareness: {
-    approach: 'Gentle introduction to consciousness-aligned concepts',
+    approach: 'Gentle introduction to creator-aligned concepts',
     language: 'Accessible and non-threatening',
     depth: 'Surface level with practical applications'
   },
   understanding: {
-    approach: 'Deeper exploration of consciousness principles',
+    approach: 'Deeper exploration of creative systems principles',
     language: 'Educational with scientific backing',
     depth: 'Moderate depth with examples and case studies'
   },
   integration: {
-    approach: 'Practical implementation of consciousness technology',
+    approach: 'Practical implementation of creative technology',
     language: 'Actionable with specific techniques',
     depth: 'Deep practical guidance with advanced concepts'
   },
   mastery: {
-    approach: 'Advanced consciousness evolution techniques',
-    language: 'Sophisticated and transformational',
+    approach: 'Advanced capability building techniques',
+    language: 'Sophisticated and results-driven',
     depth: 'Expert-level with cutting-edge applications'
   }
 }
@@ -203,12 +203,12 @@ async function generateContent(
 function generateTitle(request: ContentRequest, agent: any): string {
   const titleFormats = {
     'starlight-architect': `Enterprise AI Architecture: ${request.topic}`,
-    'frequency-alchemist': `Consciousness Frequencies: ${request.topic}`,
+    'frequency-alchemist': `Creative Frequencies: ${request.topic}`,
     'creation-engine': `Transform Through Creation: ${request.topic}`,
     'luminor-oracle': `Future Intelligence: ${request.topic}`
   }
 
-  return titleFormats[request.agent] || `Consciousness Technology: ${request.topic}`
+  return titleFormats[request.agent] || `Creative Technology: ${request.topic}`
 }
 
 function generateContentStructure(request: ContentRequest, template: any, consciousness: any, targetWords: number): string[] {
@@ -229,51 +229,51 @@ function generateContentStructure(request: ContentRequest, template: any, consci
 function generateSectionContent(title: string, request: ContentRequest, consciousness: any, targetWords: number): string {
   // This would use actual AI generation in production
   const frameworks: Record<string, string> = {
-    'Hook': `Imagine a world where ${request.topic} transforms how we approach consciousness and technology. ${consciousness.approach} begins with understanding that every technological advancement can serve human flourishing when approached with wisdom and intention.`,
+    'Hook': `Imagine a world where ${request.topic} transforms how we approach creativity and technology. ${consciousness.approach} begins with understanding that every technological advancement can serve human flourishing when approached with craft and intention.`,
 
-    'Problem': `Current approaches to ${request.topic} often prioritize efficiency over human consciousness evolution. This creates a disconnect between our technological capabilities and our deepest human values, leading to systems that automate rather than amplify our creative potential.`,
+    'Problem': `Current approaches to ${request.topic} often prioritize efficiency over human capability building. This creates a disconnect between our technological capabilities and our deepest human values, leading to systems that automate rather than amplify our creative potential.`,
 
-    'Solution': `The ${request.agent} approach integrates ${request.topic} with consciousness principles, creating systems that enhance rather than replace human wisdom. ${consciousness.language} guides this transformation through practical frameworks that honor both technical excellence and spiritual development.`,
+    'Solution': `The ${request.agent} approach integrates ${request.topic} with creator-first principles, creating systems that enhance rather than replace human expertise. ${consciousness.language} guides this process through practical frameworks that honor both technical excellence and creative development.`,
 
-    'Implementation': `Implementation begins with ${consciousness.depth} assessment of current systems and identification of consciousness integration points. Each step builds upon the previous, creating a sustainable transformation that serves both individual growth and collective evolution.`,
+    'Implementation': `Implementation begins with ${consciousness.depth} assessment of current systems and identification of integration points. Each step builds upon the previous, creating a sustainable process that serves both individual growth and collective progress.`,
 
-    'Transformation': `When ${request.topic} aligns with consciousness principles, we witness profound transformation: increased creativity, enhanced collaboration, and deeper fulfillment. This represents the future of human-AI collaboration where technology serves the highest good of all.`
+    'Transformation': `When ${request.topic} aligns with creator-first principles, we witness profound results: increased creativity, enhanced collaboration, and deeper fulfillment. This represents the future of human-AI collaboration where technology serves the highest creative potential.`
   }
 
-  return frameworks[title] || `${consciousness.approach} applied to ${request.topic} creates transformational outcomes for ${request.audience}. Through ${consciousness.language}, we can implement practical solutions that honor both technical requirements and human consciousness evolution.`
+  return frameworks[title] || `${consciousness.approach} applied to ${request.topic} creates powerful outcomes for ${request.audience}. Through ${consciousness.language}, we can implement practical solutions that honor both technical requirements and human creative potential.`
 }
 
 function generateKeywords(topic: string, audience: string): string[] {
   const baseKeywords = [
     `${topic} for ${audience}`,
-    'consciousness technology',
-    'AI transformation',
+    'creative technology',
+    'AI systems',
     'human-AI collaboration',
-    'conscious AI implementation',
-    'technology consciousness alignment'
+    'agentic AI implementation',
+    'technology creative alignment'
   ]
 
   return baseKeywords
 }
 
 function generateMetaDescription(title: string, topic: string, audience: string): string {
-  return `${title}: Comprehensive guide for ${audience} on implementing ${topic} through consciousness-aligned technology. Transform your approach with practical frameworks that serve both innovation and human flourishing.`
+  return `${title}: Comprehensive guide for ${audience} on implementing ${topic} through creator-aligned technology. Elevate your approach with practical frameworks that serve both innovation and human flourishing.`
 }
 
 function generateCTA(type: string, audience: string): string {
   const ctas: Record<string, string> = {
-    blog: `Ready to transform your approach to consciousness technology? Join our community of ${audience} pioneering human-AI collaboration.`,
-    email: `Take the next step in your consciousness technology journey. Book a transformation session today.`,
-    social: `Share your transformation story and inspire others in the consciousness technology movement.`,
-    ebook: `Download additional resources and connect with our community of conscious creators.`,
-    course: `Enroll in our comprehensive transformation program and master consciousness-aligned technology.`
+    blog: `Ready to elevate your approach to creative technology? Join our community of ${audience} pioneering human-AI collaboration.`,
+    email: `Take the next step in your creative technology journey. Book a strategy session today.`,
+    social: `Share your building story and inspire others in the creative technology movement.`,
+    ebook: `Download additional resources and connect with our community of AI-powered creators.`,
+    course: `Enroll in our comprehensive program and master creator-aligned technology.`
   }
 
-  return ctas[type] || `Discover how consciousness technology can transform your creative potential.`
+  return ctas[type] || `Discover how creative technology can elevate your creative potential.`
 }
 
 function generateSummary(title: string, topic: string, wordCount: number): string {
-  return `${title} explores ${topic} through the lens of consciousness-aligned technology. This ${wordCount}-word piece provides practical frameworks for implementing transformational approaches that serve both technical excellence and human flourishing.`
+  return `${title} explores ${topic} through the lens of creator-aligned technology. This ${wordCount}-word piece provides practical frameworks for implementing results-driven approaches that serve both technical excellence and human flourishing.`
 }
 
 function calculateConsciousnessAlignment(request: ContentRequest, consciousness: any): number {

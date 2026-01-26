@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef, useState, useEffect } from 'react';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Zap,
@@ -127,7 +128,6 @@ export default function VaultPage() {
   };
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     setJournalEntries(getFromStorage(STORAGE_KEYS.JOURNAL, []));
     setGoals(getFromStorage(STORAGE_KEYS.GOALS, []));
     setProgress(getFromStorage(STORAGE_KEYS.PROGRESS, []));
@@ -242,10 +242,21 @@ export default function VaultPage() {
     <div className="min-h-screen bg-[#030712]">
       {/* Hero Section */}
       <section className="relative py-12 px-4 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-amber-500/5 via-transparent to-transparent" />
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <Image
+            src="/images/soulbook/hero-vault.png"
+            alt=""
+            fill
+            className="object-cover opacity-20"
+            priority
+            quality={80}
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#030712]/40 via-[#030712]/70 to-[#030712]" />
+        </div>
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl" />
 
-        <div className="relative max-w-6xl mx-auto">
+        <div className="relative z-10 max-w-6xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

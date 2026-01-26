@@ -77,7 +77,7 @@ export const CATEGORY_GROUPS: Record<CategoryGroup, { name: string; description:
   creative: { name: 'Creative', description: 'Content creation, music, and visual arts' },
   technical: { name: 'Technical', description: 'Coding, AI systems, and development' },
   business: { name: 'Business & Marketing', description: 'Strategy, social media, and growth' },
-  personal: { name: 'Personal Development', description: 'Productivity, spirituality, and learning' },
+  personal: { name: 'Personal Development', description: 'Productivity, mindfulness, and learning' },
 }
 
 export const CATEGORIES: CategoryInfo[] = [
@@ -207,13 +207,13 @@ export const CATEGORIES: CategoryInfo[] = [
   },
   {
     id: 'spiritual',
-    name: 'Spiritual Growth',
+    name: 'Mindfulness & Growth',
     icon: 'Compass',
-    description: 'Consciousness, meditation, manifestation, and inner work.',
+    description: 'Meditation, mindfulness, goal-setting, and inner work.',
     color: '#A855F7',
     group: 'personal',
-    seoTitle: 'AI Spiritual Prompts - Meditation, Manifestation, Consciousness',
-    seoDescription: 'AI prompts for spiritual growth, meditation guidance, manifestation, and consciousness expansion.',
+    seoTitle: 'AI Mindfulness Prompts - Meditation, Growth, Creative Systems',
+    seoDescription: 'AI prompts for personal growth, meditation guidance, goal-setting, and creative systems.',
   },
   {
     id: 'learning',

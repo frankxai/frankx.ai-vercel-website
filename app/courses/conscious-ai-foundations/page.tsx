@@ -6,12 +6,12 @@ import { createMetadata } from '@/lib/seo'
 const courseModules = [
   {
     module: 1,
-    title: 'Foundations of Conscious AI',
+    title: 'Foundations of Agentic AI',
     duration: '2 hours',
     lessons: 8,
-    description: 'Introduction to conscious AI principles and human-centered implementation approaches.',
+    description: 'Introduction to agentic AI principles and human-centered implementation approaches.',
     topics: [
-      'Understanding Conscious AI vs Traditional AI',
+      'Understanding Agentic AI vs Traditional AI',
       'Human-Centered Design Principles',
       'Ethical AI Frameworks',
       'Value Alignment Strategies'
@@ -95,8 +95,8 @@ const instructors = [
     name: 'Frank X',
     role: 'Founder & Chief AI Strategist',
     company: 'FrankX.AI',
-    bio: 'Pioneer in conscious AI implementation with 200+ successful enterprise transformations.',
-    expertise: ['AI Strategy', 'Conscious AI', 'Enterprise Transformation', 'Ethical AI'],
+    bio: 'Pioneer in agentic AI implementation with 200+ successful enterprise transformations.',
+    expertise: ['AI Strategy', 'Agentic AI', 'Enterprise Transformation', 'Ethical AI'],
     image: '/images/frank-avatar.jpg' // This would be a real image path
   },
   {
@@ -148,7 +148,7 @@ const pricing = [
   {
     name: 'Individual Access',
     price: '$497',
-    description: 'Perfect for professionals looking to develop conscious AI expertise.',
+    description: 'Perfect for professionals looking to develop agentic AI expertise.',
     features: [
       'Complete 6-module course',
       'All templates and resources',
@@ -194,7 +194,7 @@ const testimonials = [
     name: 'Jennifer Walsh',
     role: 'VP of Digital Transformation',
     company: 'Fortune 500 Healthcare',
-    quote: 'This course transformed how our entire organization approaches AI. The conscious AI framework helped us implement solutions that actually enhance our healthcare professionals\' capabilities rather than replacing them.',
+    quote: 'This course transformed how our entire organization approaches AI. The agentic AI framework helped us implement solutions that actually enhance our healthcare professionals\' capabilities rather than replacing them.',
     rating: 5,
     results: '40% improvement in AI project success rate'
   },
@@ -217,9 +217,9 @@ const testimonials = [
 ]
 
 export const metadata = createMetadata({
-  title: 'Conscious AI Foundations Course - Master Ethical AI Implementation | FrankX.AI',
-  description: 'Comprehensive online course teaching conscious AI principles, strategic implementation, and ethical frameworks. Transform your AI approach with human-centered methodologies.',
-  keywords: ['conscious ai course', 'ai ethics training', 'ai implementation course', 'responsible ai education'],
+  title: 'Agentic AI Foundations Course - Master Ethical AI Implementation | FrankX.AI',
+  description: 'Comprehensive online course teaching agentic AI principles, strategic implementation, and ethical frameworks. Elevate your AI approach with human-centered methodologies.',
+  keywords: ['agentic ai course', 'ai ethics training', 'ai implementation course', 'responsible ai education'],
   path: '/courses/conscious-ai-foundations',
 })
 
@@ -236,7 +236,7 @@ export default function ConsciousAIFoundationsPage() {
             </div>
             <h1 className="text-5xl font-bold text-white md:text-6xl xl:text-7xl max-w-4xl mx-auto leading-tight">
               <span className="bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent">
-                Conscious AI
+                Agentic AI
               </span>
               <br />
               <span className="bg-gradient-to-r from-emerald-400 via-green-500 to-teal-500 bg-clip-text text-transparent">
@@ -244,7 +244,7 @@ export default function ConsciousAIFoundationsPage() {
               </span>
             </h1>
             <p className="text-xl text-white/70 max-w-3xl mx-auto leading-relaxed">
-              Master the principles and practices of conscious AI implementation. Learn to build AI systems
+              Master the principles and practices of agentic AI implementation. Learn to build AI systems
               that enhance human capability while maintaining ethical standards and organizational values.
             </p>
 
@@ -310,7 +310,7 @@ export default function ConsciousAIFoundationsPage() {
               <h2 className="text-4xl font-bold text-white">Course Curriculum</h2>
               <p className="text-xl text-white/70 max-w-3xl mx-auto">
                 Six comprehensive modules covering everything from foundational principles to advanced applications
-                of conscious AI implementation.
+                of agentic AI implementation.
               </p>
             </div>
 
@@ -376,7 +376,7 @@ export default function ConsciousAIFoundationsPage() {
             <div className="text-center space-y-4">
               <h2 className="text-4xl font-bold text-white">Meet Your Instructors</h2>
               <p className="text-xl text-white/70 max-w-3xl mx-auto">
-                Learn from industry experts and pioneers in conscious AI implementation.
+                Learn from industry experts and pioneers in agentic AI implementation.
               </p>
             </div>
 
@@ -502,7 +502,7 @@ export default function ConsciousAIFoundationsPage() {
           <section className="text-center space-y-8 py-16 px-8 rounded-4xl border border-white/10 bg-gradient-to-br from-emerald-500/5 via-slate-900 to-slate-950">
             <h2 className="text-4xl font-bold text-white">Transform Your AI Approach Today</h2>
             <p className="text-xl text-white/70 max-w-2xl mx-auto">
-              Join thousands of professionals who have mastered conscious AI implementation.
+              Join thousands of professionals who have mastered agentic AI implementation.
               Start building AI systems that enhance human capability and organizational values.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

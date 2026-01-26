@@ -20,11 +20,11 @@ const aiArtworks: AIArtwork[] = [
   {
     id: '2',
     src: '/images/ai-art/generated-2026-01-21T10-05-26-229Z-jajczn.png',
-    title: 'Consciousness Wave',
-    prompt: 'Visualization of consciousness expanding, golden light emanating from center, sacred geometry patterns, ethereal atmosphere',
+    title: 'Creative Wave',
+    prompt: 'Visualization of creativity expanding, golden light emanating from center, sacred geometry patterns, ethereal atmosphere',
     model: 'nano-banana',
-    category: 'Consciousness',
-    tags: ['consciousness', 'sacred geometry', 'light'],
+    category: 'Creativity',
+    tags: ['creativity', 'sacred geometry', 'light'],
     featured: true,
   },
   {
@@ -67,11 +67,11 @@ const aiArtworks: AIArtwork[] = [
   {
     id: '7',
     src: '/images/ai-art/generated-2025-12-29T14-17-31-949Z-j632lw.png',
-    title: 'Soul Interface',
-    prompt: 'Human soul connecting with AI interface, golden threads of consciousness, digital and organic merge seamlessly',
+    title: 'Creator Interface',
+    prompt: 'Human creativity connecting with AI interface, golden threads of imagination, digital and organic merge seamlessly',
     model: 'nano-banana',
-    category: 'Consciousness',
-    tags: ['soul', 'interface', 'connection'],
+    category: 'Creativity',
+    tags: ['creator', 'interface', 'connection'],
   },
   {
     id: '8',
@@ -121,20 +121,20 @@ const aiArtworks: AIArtwork[] = [
   {
     id: '13',
     src: '/images/ai-art/generated-2025-12-05T09-36-27-447Z-097if4.png',
-    title: 'Digital Awakening',
-    prompt: 'Consciousness emerging from digital cocoon, binary butterfly spreading wings of light, metamorphosis complete',
+    title: 'Digital Emergence',
+    prompt: 'Creativity emerging from digital cocoon, binary butterfly spreading wings of light, metamorphosis complete',
     model: 'nano-banana',
-    category: 'Consciousness',
-    tags: ['awakening', 'butterfly', 'metamorphosis'],
+    category: 'Creativity',
+    tags: ['emergence', 'butterfly', 'metamorphosis'],
   },
   {
     id: '14',
     src: '/images/ai-art/generated-2025-12-05T09-36-09-355Z-o905cg.png',
     title: 'Neural Symphony',
-    prompt: 'Brain neurons conducting symphony orchestra, thoughts as musical notes, consciousness composing reality',
+    prompt: 'Brain neurons conducting symphony orchestra, thoughts as musical notes, creativity composing reality',
     model: 'nano-banana',
     category: 'Music',
-    tags: ['neural', 'symphony', 'consciousness'],
+    tags: ['neural', 'symphony', 'creativity'],
   },
   {
     id: '15',
@@ -158,9 +158,9 @@ const aiArtworks: AIArtwork[] = [
     id: '17',
     src: '/images/ai-art/generated-2025-12-05T09-35-14-760Z-usz07y.png',
     title: 'Golden Path',
-    prompt: 'Path made of golden light leading through cosmic landscape, journey of awakening, destination is transformation',
+    prompt: 'Path made of golden light leading through cosmic landscape, journey of creation, destination is mastery',
     model: 'nano-banana',
-    category: 'Consciousness',
+    category: 'Creativity',
     tags: ['path', 'golden', 'journey'],
   },
   {
@@ -185,7 +185,7 @@ const aiArtworks: AIArtwork[] = [
     id: '20',
     src: '/images/ai-art/generated-2025-11-20T19-29-22-071Z-uz2q95.png',
     title: 'First Light',
-    prompt: 'The first moment of creation, light emerging from void, genesis of consciousness, beginning of everything',
+    prompt: 'The first moment of creation, light emerging from void, genesis of imagination, beginning of everything',
     model: 'nano-banana',
     category: 'Cosmic',
     tags: ['creation', 'light', 'genesis'],
@@ -228,7 +228,7 @@ export default function AIArtGalleryPage() {
             <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
               Visual{' '}
               <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
-                Consciousness
+                Creativity
               </span>
             </h1>
 

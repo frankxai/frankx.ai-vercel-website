@@ -193,7 +193,7 @@ export default function TeamPage() {
                   </div>
                   <h3 className="text-lg font-semibold text-white mb-2">Creative Synthesis</h3>
                   <p className="text-sm text-white/60 leading-relaxed">
-                    Suno, Sora, and Midjourney agents transform concepts into music, video, and visuals that move souls.
+                    Suno, Sora, and Midjourney agents transform concepts into music, video, and visuals that move audiences.
                   </p>
                 </div>
               </div>

@@ -10,7 +10,7 @@
           {
             "metric": "Meditation Practice",
             "value": "Daily",
-            "context": "Morning consciousness work",
+            "context": "Morning creative practice",
             "verifiable": false
           },
           {
@@ -430,7 +430,7 @@
   },
   "archetypes": {
     "awakening_creator": {
-      "name": "Awakening Creator",
+      "name": "Emerging Creator",
       "range": [7, 14],
       "description": "You're at the beginning of a powerful transformation. The fact that you're here shows you're ready to evolve beyond where you are. Every master was once where you are now.",
       "strengths": "Open to growth, willing to learn, potential is unlimited",

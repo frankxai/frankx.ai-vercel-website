@@ -32,8 +32,8 @@ const agents = [
   {
     id: 'soul-strategist',
     name: 'Soul Strategist',
-    description: 'Creative transformation strategy aligned with soul purpose',
-    specialties: ['Creative Strategy', 'Soul Purpose', 'Artistic Development'],
+    description: 'Creative strategy aligned with mission and purpose',
+    specialties: ['Creative Strategy', 'Mission Alignment', 'Artistic Development'],
     color: 'from-yellow-500 to-orange-500',
     icon: '✨'
   }

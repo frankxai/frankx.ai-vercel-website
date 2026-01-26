@@ -3,7 +3,7 @@ import { Sparkles, Brain, Heart, Workflow, ArrowRight, Shield, Waves, CheckCircl
 
 export const metadata = {
   title: 'Soul Frequency Assessment | FrankX',
-  description: 'Discover your conscious creator archetype and receive a custom intelligence stack to amplify your work with AI.',
+  description: 'Discover your creator archetype and receive a custom intelligence stack to amplify your work with AI.',
 }
 
 const pillars = [
@@ -14,7 +14,7 @@ const pillars = [
   },
   {
     icon: Heart,
-    title: 'Purpose-Aligned Delivery',
+    title: 'System-Aligned Delivery',
     description: 'Design operating rhythms that protect your energy while unlocking exponential impact.'
   },
   {
@@ -44,9 +44,9 @@ export default function SoulFrequencyAssessmentPage() {
               Discover the Creator You Came Here to Be & Build the System That Supports It
             </h1>
             <p className="mt-6 text-lg text-gray-600 leading-relaxed">
-              In 7 minutes you will map your soul frequency, identify your signature transformation, and receive a
+              In 7 minutes you will discover your creator archetype, identify your signature strengths, and receive a
               custom AI-powered operating plan. This is not a personality quiz. It is a strategic assessment built from
-              15 years of Oracle enterprise AI delivery, 500+ Suno compositions, and dozens of conscious launches.
+              15 years of Oracle enterprise AI delivery, 500+ Suno compositions, and dozens of product launches.
             </p>
 
             <div className="mt-10 grid sm:grid-cols-3 gap-6">
@@ -101,7 +101,7 @@ export default function SoulFrequencyAssessmentPage() {
               <h3 className="text-lg font-semibold mb-2">Frequency Labs Access</h3>
               <p className="text-sm opacity-90 leading-relaxed">
                 Every quarter we host live build sessions where we co-create agent workflows, Suno experiences,
-                and conscious business models. Completing the assessment unlocks early invites and backstage assets.
+                and creator business models. Completing the assessment unlocks early invites and backstage assets.
               </p>
             </div>
 

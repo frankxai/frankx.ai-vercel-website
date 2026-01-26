@@ -4,14 +4,14 @@
 ## Strategic Overview
 
 ### Mission Statement
-Create premium content that accelerates human potential through conscious AI collaboration, establishing FrankX.ai as the definitive source for intelligent AI integration guidance.
+Create premium content that accelerates human potential through agentic AI collaboration, establishing FrankX.ai as the definitive source for intelligent AI integration guidance.
 
 ### Content Vision
 Every piece of content serves as a bridge between where people are now and where they want to be with AI, delivered through the collective wisdom of our agent team.
 
 ## Core Content Pillars
 
-### 1. Conscious AI Integration (40% of content)
+### 1. Agentic AI Integration (40% of content)
 **Focus**: Practical guidance for ethical, effective AI adoption
 **Audience**: Creators, entrepreneurs, professionals
 **Content Types**:
@@ -25,7 +25,7 @@ Every piece of content serves as a bridge between where people are now and where
 - Prompt engineering mastery
 - Agent team coordination
 - Quality control and validation
-- Ethics and consciousness in AI use
+- Ethics and systems thinking in AI use
 
 ### 2. Strategic Business Intelligence (25% of content)
 **Focus**: Data-driven insights for AI-powered business growth
@@ -92,7 +92,7 @@ Every piece of content serves as a bridge between where people are now and where
 - The Engineer supports with technical validation
 
 **Wednesday: Wisdom Wednesday**
-- Philosophical and consciousness-focused content
+- Systems architecture and builder-focused content
 - Ethical AI discussions
 - Future-thinking and vision pieces
 - The Visionary leads content creation
@@ -228,13 +228,13 @@ Every piece of content serves as a bridge between where people are now and where
 ### Primary Keywords (High Volume, High Intent)
 - "AI integration"
 - "AI workflow automation"
-- "Conscious AI"
+- "Agentic AI"
 - "AI agent teams"
 - "AI for business"
 
 ### Long-tail Keywords (Specific, High-converting)
 - "How to build AI agent team"
-- "Conscious AI integration framework"
+- "Agentic AI integration framework"
 - "AI workflow optimization guide"
 - "Enterprise AI transformation strategy"
 - "AI prompt engineering best practices"

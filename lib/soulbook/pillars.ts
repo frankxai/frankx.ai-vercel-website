@@ -1,5 +1,5 @@
 // 7 Pillars of the Soulbook Framework
-// Each pillar represents a foundational aspect of conscious living and personal transformation
+// Each pillar represents a foundational aspect of intentional living and personal growth
 
 export interface Pillar {
   id: string
@@ -20,9 +20,9 @@ export const pillars: Pillar[] = [
   {
     id: 'consciousness',
     number: 1,
-    title: 'Consciousness & Awareness',
-    shortTitle: 'Consciousness',
-    description: 'The foundation of all transformation begins with Awareness. Cultivating present-moment consciousness creates the fertile ground for all other pillars to flourish.',
+    title: 'Awareness & Systems Thinking',
+    shortTitle: 'Awareness',
+    description: 'The foundation of all growth begins with Awareness. Cultivating present-moment focus and systems thinking creates the fertile ground for all other pillars to flourish.',
     icon: '🌟',
     color: 'amber',
     gradient: 'from-amber-400 via-yellow-500 to-orange-500',
@@ -50,7 +50,7 @@ export const pillars: Pillar[] = [
     number: 3,
     title: 'Emotional Mastery',
     shortTitle: 'Emotions',
-    description: 'Transforming emotional reactivity into conscious response. Your emotions are messengers guiding you toward growth.',
+    description: 'Transforming emotional reactivity into intentional response. Your emotions are messengers guiding you toward growth.',
     icon: '💜',
     color: 'violet',
     gradient: 'from-violet-400 via-purple-500 to-fuchsia-500',
@@ -64,7 +64,7 @@ export const pillars: Pillar[] = [
     number: 4,
     title: 'Relationships & Connection',
     shortTitle: 'Relationships',
-    description: 'The mirror of connection reveals your deepest patterns. Conscious relationships accelerate your transformation journey.',
+    description: 'The mirror of connection reveals your deepest patterns. Intentional relationships accelerate your growth journey.',
     icon: '🤝',
     color: 'rose',
     gradient: 'from-rose-400 via-pink-500 to-rose-600',
@@ -78,7 +78,7 @@ export const pillars: Pillar[] = [
     number: 5,
     title: 'Vitality & Body Wisdom',
     shortTitle: 'Vitality',
-    description: 'Your body holds ancient wisdom. Honoring your physical vessel amplifies your capacity for transformation.',
+    description: 'Your body holds deep wisdom. Honoring your physical vessel amplifies your capacity for creative output.',
     icon: '🌿',
     color: 'emerald',
     gradient: 'from-emerald-400 via-green-500 to-teal-500',

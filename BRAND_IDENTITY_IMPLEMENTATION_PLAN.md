@@ -206,7 +206,7 @@ import { SOCIAL_PROFILES, PRIMARY_SOCIAL_LINKS } from '@/lib/social-links'
 
 export default function AboutPage() {
   // Use official bio from BRAND_IDENTITY.md
-  const bio = `Frank X. Riemer is a musician-technologist who bridges consciousness, creativity, and cutting-edge AI...`
+  const bio = `Frank X. Riemer is a musician-technologist who bridges systems thinking, creativity, and cutting-edge AI...`
 
   return (
     <div>
