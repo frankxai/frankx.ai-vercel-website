@@ -486,7 +486,7 @@ export default function SoulFrequencyQuiz() {
                           name="email"
                           required
                           placeholder="Enter your email"
-                          className="flex-1 rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-sm text-white placeholder:text-white/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
+                          className="flex-1 rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-sm text-white placeholder:text-white/55 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
                         />
                         <button
                           type="submit"

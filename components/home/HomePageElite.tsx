@@ -325,7 +325,7 @@ function Hero() {
 
             {/* Subtext - invitation to explore */}
             <motion.p
-              className="text-base md:text-lg lg:text-xl text-white/40 max-w-lg mb-8 md:mb-12 leading-relaxed"
+              className="text-base md:text-lg lg:text-xl text-white/55 max-w-lg mb-8 md:mb-12 leading-relaxed"
               initial={shouldReduceMotion ? false : { opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.4 }}
@@ -445,7 +445,7 @@ function FeaturedMusicCard() {
             <p className="text-xs sm:text-sm text-white/50">Ambient · Electronic · Cinematic · Healing</p>
           </div>
 
-          <p className="text-xs sm:text-sm text-white/40 leading-relaxed">
+          <p className="text-xs sm:text-sm text-white/55 leading-relaxed">
             Music as exploration. Each session teaches me something new about sound, emotion, and the creative process.
           </p>
 
@@ -524,7 +524,7 @@ function StatsSection() {
               <div className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-2 md:mb-3 tracking-tighter">
                 {stat.value}
               </div>
-              <div className="text-xs sm:text-sm text-white/40 max-w-[140px] sm:max-w-[160px] mx-auto">
+              <div className="text-xs sm:text-sm text-white/55 max-w-[140px] sm:max-w-[160px] mx-auto">
                 {stat.label}
               </div>
             </motion.div>
@@ -602,7 +602,7 @@ function QuickStartSection() {
                   }`}>
                     {path.time}
                   </span>
-                  <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white/30 group-hover:text-white/60 group-hover:translate-x-1 transition-all" />
+                  <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white/50 group-hover:text-white/60 group-hover:translate-x-1 transition-all" />
                 </div>
                 <h3 className="text-base sm:text-lg font-semibold text-white mb-1.5 sm:mb-2 group-hover:text-emerald-400 transition-colors">
                   {path.title}
@@ -706,7 +706,7 @@ function WhatIDo() {
                     <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 text-white/20 group-hover:text-white/60 group-hover:translate-x-1 transition-all" />
                   </div>
 
-                  <p className="text-[10px] sm:text-xs font-medium uppercase tracking-[0.12em] sm:tracking-[0.15em] text-white/30 mb-1.5 sm:mb-2">
+                  <p className="text-[10px] sm:text-xs font-medium uppercase tracking-[0.12em] sm:tracking-[0.15em] text-white/50 mb-1.5 sm:mb-2">
                     {item.subtitle}
                   </p>
                   <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-2 sm:mb-3 group-hover:text-white transition-colors">
@@ -797,7 +797,7 @@ function FeaturedResources() {
               className="group flex items-center justify-between gap-3 p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] hover:border-white/10 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.99] active:border-white/20"
             >
               <div className="min-w-0 flex-1">
-                <div className="text-[10px] sm:text-xs uppercase tracking-[0.12em] sm:tracking-[0.15em] text-white/30 mb-0.5 sm:mb-1">
+                <div className="text-[10px] sm:text-xs uppercase tracking-[0.12em] sm:tracking-[0.15em] text-white/50 mb-0.5 sm:mb-1">
                   {resource.type} · {resource.source}
                 </div>
                 <div className="text-sm sm:text-base md:text-lg font-medium text-white group-hover:text-emerald-400 transition-colors truncate">
@@ -913,7 +913,7 @@ function AIArtGalleryPreview() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="flex items-center justify-center gap-6 sm:gap-8 mt-8 text-white/40 text-sm"
+          className="flex items-center justify-center gap-6 sm:gap-8 mt-8 text-white/55 text-sm"
         >
           <div className="flex items-center gap-2">
             <ImageIcon className="w-4 h-4" />
@@ -990,7 +990,7 @@ function AboutSection() {
               Read the full story
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
-            <div className="flex items-center gap-3 sm:gap-4 text-sm sm:text-base text-white/40">
+            <div className="flex items-center gap-3 sm:gap-4 text-sm sm:text-base text-white/55">
               <a
                 href="https://linkedin.com/in/frank-x-riemer/"
                 target="_blank"

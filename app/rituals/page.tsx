@@ -312,7 +312,7 @@ function RitualCard({
                     >
                       <ProtocolIcon className={`w-4 h-4 ${ritual.textClass} stroke-[1.5]`} />
                       <span className="text-sm text-white/70 flex-grow">{protocol.name}</span>
-                      <span className="text-xs text-white/30">{protocol.time}</span>
+                      <span className="text-xs text-white/50">{protocol.time}</span>
                     </div>
                   );
                 })}
@@ -326,7 +326,7 @@ function RitualCard({
               <Play className="w-4 h-4 fill-current" />
               Begin Ritual
             </span>
-            <ArrowRight className="w-5 h-5 text-white/30 group-hover:text-white/60 group-hover:translate-x-1 transition-all" />
+            <ArrowRight className="w-5 h-5 text-white/50 group-hover:text-white/60 group-hover:translate-x-1 transition-all" />
           </div>
         </Link>
       </SpotlightCard>
@@ -401,7 +401,7 @@ export default function RitualsPage() {
             {/* Subtitle */}
             <motion.p
               variants={itemVariants}
-              className="text-xl sm:text-2xl text-white/40 max-w-2xl mx-auto leading-relaxed"
+              className="text-xl sm:text-2xl text-white/55 max-w-2xl mx-auto leading-relaxed"
             >
               Transform your creative practice through intentional routines,
               sonic frequencies, and state-shifting protocols.
@@ -434,7 +434,7 @@ export default function RitualsPage() {
               ].map((stat) => (
                 <div key={stat.label} className="text-center">
                   <div className="text-3xl font-bold text-white">{stat.value}</div>
-                  <div className="text-[10px] uppercase tracking-[0.2em] text-white/30 mt-1">{stat.label}</div>
+                  <div className="text-[10px] uppercase tracking-[0.2em] text-white/50 mt-1">{stat.label}</div>
                 </div>
               ))}
             </motion.div>
@@ -492,7 +492,7 @@ export default function RitualsPage() {
             <h2 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold text-white">
               Choose Your <span className="text-amber-400">Ritual</span>
             </h2>
-            <p className="text-white/40 max-w-lg mx-auto">
+            <p className="text-white/55 max-w-lg mx-auto">
               Each ritual is a portal into creative flow. Consistency transforms everything.
             </p>
           </motion.div>
@@ -566,7 +566,7 @@ export default function RitualsPage() {
                     </div>
                     <div>
                       <h3 className="font-display text-lg font-bold text-white mb-1">{item.name}</h3>
-                      <p className="text-sm text-white/40">{item.desc}</p>
+                      <p className="text-sm text-white/55">{item.desc}</p>
                     </div>
                   </div>
                 </motion.div>
@@ -625,7 +625,7 @@ export default function RitualsPage() {
                       <feature.icon className="w-5 h-5 text-violet-400 stroke-[1.5] mt-0.5" />
                       <div>
                         <h4 className="font-semibold text-white text-sm">{feature.title}</h4>
-                        <p className="text-xs text-white/40 mt-0.5">{feature.desc}</p>
+                        <p className="text-xs text-white/55 mt-0.5">{feature.desc}</p>
                       </div>
                     </div>
                   ))}
@@ -675,7 +675,7 @@ export default function RitualsPage() {
               />
             </div>
 
-            <p className="text-xs text-white/30 pt-2">
+            <p className="text-xs text-white/50 pt-2">
               PDF guide + audio companions. Unsubscribe anytime.
             </p>
           </motion.div>
@@ -699,7 +699,7 @@ export default function RitualsPage() {
               <span className="text-amber-400">Starts Now</span>
             </h2>
 
-            <p className="text-xl text-white/40 max-w-xl mx-auto">
+            <p className="text-xl text-white/55 max-w-xl mx-auto">
               Choose one ritual. Start today.
               Watch consistency transform your creative life.
             </p>
@@ -713,7 +713,7 @@ export default function RitualsPage() {
               <ArrowRight className="w-5 h-5" />
             </Link>
 
-            <p className="text-sm text-white/30 flex items-center justify-center gap-2 pt-4">
+            <p className="text-sm text-white/50 flex items-center justify-center gap-2 pt-4">
               <Heart className="w-4 h-4" />
               Join 5,000+ creators practicing daily
             </p>

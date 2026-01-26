@@ -122,7 +122,7 @@ function HeroSection() {
                     </div>
                     <div>
                       <p className="text-white font-medium">Describe your song</p>
-                      <p className="text-white/40 text-sm">Genre, mood, lyrics</p>
+                      <p className="text-white/55 text-sm">Genre, mood, lyrics</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
@@ -131,7 +131,7 @@ function HeroSection() {
                     </div>
                     <div>
                       <p className="text-white font-medium">AI generates music</p>
-                      <p className="text-white/40 text-sm">Full production in seconds</p>
+                      <p className="text-white/55 text-sm">Full production in seconds</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-3">
@@ -140,7 +140,7 @@ function HeroSection() {
                     </div>
                     <div>
                       <p className="text-white font-medium">Download & share</p>
-                      <p className="text-white/40 text-sm">Own your creations</p>
+                      <p className="text-white/55 text-sm">Own your creations</p>
                     </div>
                   </div>
                 </div>
@@ -361,7 +361,7 @@ function PromptExamplesSection() {
             >
               <div className="flex items-center justify-between mb-4">
                 <span className="text-lg font-semibold text-white">{example.genre}</span>
-                <span className="text-xs text-white/40">{example.useCase}</span>
+                <span className="text-xs text-white/55">{example.useCase}</span>
               </div>
               <p className="text-sm text-white/60 font-mono bg-white/5 rounded-lg p-3 mb-4">
                 {example.prompt}
@@ -438,7 +438,7 @@ function CTASection() {
             </a>
           </div>
 
-          <p className="text-sm text-white/30 mt-8">
+          <p className="text-sm text-white/50 mt-8">
             Frank has created 500+ songs using Suno AI, exploring ambient,
             electronic, cinematic, and ambient genres.
           </p>

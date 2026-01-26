@@ -304,7 +304,7 @@ export default function StudentsPage() {
                     transition={{ delay: 0.4 + i * 0.1 }}
                   >
                     <div className="text-3xl font-bold text-white">{stat.value}</div>
-                    <div className="text-xs uppercase tracking-[0.2em] text-white/40">{stat.label}</div>
+                    <div className="text-xs uppercase tracking-[0.2em] text-white/55">{stat.label}</div>
                   </motion.div>
                 ))}
               </div>
@@ -460,7 +460,7 @@ export default function StudentsPage() {
                   <h3 className="text-sm font-semibold text-white mb-1 group-hover:text-emerald-400 transition-colors">
                     {resource.title}
                   </h3>
-                  <p className="text-xs text-white/40">{resource.description}</p>
+                  <p className="text-xs text-white/55">{resource.description}</p>
                 </motion.a>
               ))}
             </div>
@@ -482,7 +482,7 @@ export default function StudentsPage() {
                 </p>
                 <h2 className="text-2xl md:text-3xl font-bold text-white">World-class learning, zero cost</h2>
               </div>
-              <span className="hidden md:block text-xs uppercase tracking-[0.2em] text-white/40">
+              <span className="hidden md:block text-xs uppercase tracking-[0.2em] text-white/55">
                 {learningPaths.length} courses
               </span>
             </motion.div>
@@ -545,7 +545,7 @@ export default function StudentsPage() {
 
                         {/* Footer */}
                         <div className="flex items-center justify-between border-t border-white/5 pt-4">
-                          <div className="flex items-center gap-3 text-xs text-white/40">
+                          <div className="flex items-center gap-3 text-xs text-white/55">
                             <span className="flex items-center gap-1">
                               <Clock className="w-3.5 h-3.5" />
                               {path.duration}
@@ -554,7 +554,7 @@ export default function StudentsPage() {
                               {path.level}
                             </span>
                           </div>
-                          <div className="flex items-center gap-1 text-white/40 transition-colors group-hover:text-white">
+                          <div className="flex items-center gap-1 text-white/55 transition-colors group-hover:text-white">
                             <span className="text-xs font-medium">Start</span>
                             <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
                           </div>
@@ -644,7 +644,7 @@ export default function StudentsPage() {
                     <p className="text-sm text-white/50 leading-relaxed">
                       {reading.description}
                     </p>
-                    <div className="mt-4 flex items-center gap-1 text-xs text-white/40 group-hover:text-white/60 transition-colors">
+                    <div className="mt-4 flex items-center gap-1 text-xs text-white/55 group-hover:text-white/60 transition-colors">
                       Read article
                       <ArrowRight className="w-3 h-3 group-hover:translate-x-1 transition-transform" />
                     </div>
@@ -667,7 +667,7 @@ export default function StudentsPage() {
               <p className="text-2xl md:text-3xl lg:text-4xl font-serif-italic text-white/70 leading-relaxed">
                 "The best time to learn AI was yesterday. The second best time is today."
               </p>
-              <cite className="block mt-4 text-sm text-white/40 not-italic">— The Golden Age is now</cite>
+              <cite className="block mt-4 text-sm text-white/55 not-italic">— The Golden Age is now</cite>
             </motion.blockquote>
           </div>
         </section>

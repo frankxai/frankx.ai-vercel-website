@@ -96,7 +96,7 @@ export default function ProductHero({ productId, badge, title, subtitle, promise
               {offer.ctaSecondary && offer.ctaSecondaryHref ? (
                 (() => {
                   const secondaryClasses =
-                    'inline-flex items-center text-xs uppercase tracking-[0.3em] text-white/40 transition hover:text-white/70'
+                    'inline-flex items-center text-xs uppercase tracking-[0.3em] text-white/55 transition hover:text-white/70'
                   const content = <span>{offer.ctaSecondary}</span>
 
                   return isExternal(offer.ctaSecondaryHref) ? (

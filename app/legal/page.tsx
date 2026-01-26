@@ -86,7 +86,7 @@ export default function LegalPage() {
           </p>
         </div>
 
-        <p className="mt-8 text-xs text-white/30">
+        <p className="mt-8 text-xs text-white/50">
           For legal inquiries, contact{' '}
           <a href="mailto:hello@frankx.ai" className="text-white/50 underline hover:text-white/70">
             hello@frankx.ai

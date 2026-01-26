@@ -225,7 +225,7 @@ function FooterSection() {
             <Link href="/contact" className="hover:text-white transition-colors">Contact</Link>
           </div>
 
-          <p className="text-sm text-white/40">
+          <p className="text-sm text-white/55">
             © 2025 FrankX.AI. All rights reserved.
           </p>
         </div>

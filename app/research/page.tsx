@@ -224,7 +224,7 @@ function HeroSection() {
 
           <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 tracking-tight leading-[1.1]">
             Research Intelligence
-            <span className="block text-white/40 mt-2">Hub</span>
+            <span className="block text-white/55 mt-2">Hub</span>
           </h1>
 
           <p className="text-lg md:text-xl text-white/60 mb-8 leading-relaxed max-w-3xl">
@@ -264,7 +264,7 @@ function HeroSection() {
             { label: 'Published Insights', value: '50+', icon: FileText },
           ].map((stat, i) => (
             <div key={i} className="bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-xl p-5">
-              <stat.icon className="w-5 h-5 text-white/40 mb-3" />
+              <stat.icon className="w-5 h-5 text-white/55 mb-3" />
               <p className="text-2xl font-bold text-white mb-1">{stat.value}</p>
               <p className="text-sm text-white/50">{stat.label}</p>
             </div>
@@ -329,7 +329,7 @@ function ResearchDomainsSection() {
                     <div className={`p-3 ${colorClasses?.bg} rounded-xl`}>
                       <Icon className={`w-6 h-6 ${colorClasses?.text}`} />
                     </div>
-                    <ArrowUpRight className="w-5 h-5 text-white/30 group-hover:text-white/60 transition-colors" />
+                    <ArrowUpRight className="w-5 h-5 text-white/50 group-hover:text-white/60 transition-colors" />
                   </div>
 
                   <h3 className="text-xl font-bold text-white mb-2">{domain.name}</h3>
@@ -346,7 +346,7 @@ function ResearchDomainsSection() {
                       </span>
                     ))}
                     {!isActive && domain.topics.length > 3 && (
-                      <span className="text-xs px-3 py-1 bg-white/5 border border-white/10 rounded-full text-white/40">
+                      <span className="text-xs px-3 py-1 bg-white/5 border border-white/10 rounded-full text-white/55">
                         +{domain.topics.length - 3} more
                       </span>
                     )}
@@ -563,7 +563,7 @@ export default function ResearchPage() {
 
         {/* Footer note */}
         <div className="max-w-6xl mx-auto px-4 sm:px-6 pb-16 text-center">
-          <p className="text-sm text-white/40">
+          <p className="text-sm text-white/55">
             Research intelligence powered by multi-agent AI collaboration.
             Insights synthesized for the conscious creator.
           </p>

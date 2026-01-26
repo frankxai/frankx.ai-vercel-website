@@ -139,7 +139,7 @@ function Hero() {
           >
             <Link
               href={tertiary.href}
-              className="text-sm text-white/40 hover:text-white/70 transition-colors"
+              className="text-sm text-white/55 hover:text-white/70 transition-colors"
             >
               {tertiary.label} →
             </Link>
@@ -184,7 +184,7 @@ function Stats() {
               <div className="text-5xl md:text-6xl font-bold text-white mb-3">
                 {stat.value}
               </div>
-              <div className="text-sm uppercase tracking-[0.2em] text-white/40 mb-2">
+              <div className="text-sm uppercase tracking-[0.2em] text-white/55 mb-2">
                 {stat.label}
               </div>
               <div className="text-white/60 text-sm max-w-xs mx-auto">
@@ -237,7 +237,7 @@ function WhatsHere() {
                   <ArrowUpRight className="w-4 h-4 text-white/20 group-hover:text-white/50 transition-colors" />
                 </div>
                 <h3 className="text-lg font-semibold text-white mb-2">{action.title}</h3>
-                <p className="text-sm text-white/40 group-hover:text-white/60 transition-colors">
+                <p className="text-sm text-white/55 group-hover:text-white/60 transition-colors">
                   {action.description}
                 </p>
               </Link>
@@ -329,7 +329,7 @@ function CuratedResources() {
               className="group flex items-center justify-between p-6 rounded-2xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] hover:border-white/10 transition-all"
             >
               <div>
-                <div className="text-xs uppercase tracking-[0.15em] text-white/30 mb-1">
+                <div className="text-xs uppercase tracking-[0.15em] text-white/50 mb-1">
                   {resource.type} • {resource.source}
                 </div>
                 <div className="text-lg font-medium text-white group-hover:text-cyan-400 transition-colors">
@@ -379,7 +379,7 @@ function Testimonials() {
               <p className="text-2xl md:text-3xl text-white/80 font-light leading-relaxed mb-6">
                 "{testimonial.quote}"
               </p>
-              <footer className="text-white/40">
+              <footer className="text-white/55">
                 <span className="text-white/60">{testimonial.name}</span>
                 <span className="mx-2">·</span>
                 <span>{testimonial.role}</span>

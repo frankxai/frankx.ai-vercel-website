@@ -284,7 +284,7 @@ function ResourceGrid({
                 </div>
                 <div className="mt-4 flex items-center gap-2 text-base font-semibold text-white">
                   {item.name}
-                  {isExternal && <ExternalLink className="h-4 w-4 text-white/40" />}
+                  {isExternal && <ExternalLink className="h-4 w-4 text-white/55" />}
                 </div>
                 <p className="mt-2 text-sm text-slate-400">{item.description}</p>
                 <div className="mt-4 flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-emerald-300">

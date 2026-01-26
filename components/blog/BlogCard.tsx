@@ -99,7 +99,7 @@ export default function BlogCard({ post, featured = false, className }: BlogCard
         {/* Description */}
         <p
           className={cn(
-            'text-white/50 leading-relaxed mb-4 group-hover:text-white/60 transition-colors duration-300',
+            'text-white/60 leading-relaxed mb-4 group-hover:text-white/70 transition-colors duration-300',
             featured ? 'text-base line-clamp-3' : 'text-sm line-clamp-2'
           )}
         >
@@ -107,7 +107,7 @@ export default function BlogCard({ post, featured = false, className }: BlogCard
         </p>
 
         {/* Meta row */}
-        <div className="flex items-center gap-4 text-xs text-white/40 group-hover:text-white/50 transition-colors duration-300">
+        <div className="flex items-center gap-4 text-xs text-white/55 group-hover:text-white/65 transition-colors duration-300">
           <span className="flex items-center gap-1.5">
             <Calendar className="w-3.5 h-3.5" />
             {new Date(post.date).toLocaleDateString('en-US', {
@@ -128,7 +128,7 @@ export default function BlogCard({ post, featured = false, className }: BlogCard
             {post.tags.slice(0, featured ? 5 : 3).map((tag) => (
               <span
                 key={tag}
-                className="px-2 py-1 rounded text-xs text-white/40 bg-white/5 group-hover:bg-white/10 group-hover:text-white/50 transition-all duration-300"
+                className="px-2 py-1 rounded text-xs text-white/55 bg-white/5 group-hover:bg-white/10 group-hover:text-white/65 transition-all duration-300"
               >
                 #{tag}
               </span>

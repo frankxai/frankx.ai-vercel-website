@@ -105,13 +105,13 @@ export default function CategoryFilter({
   return (
     <div className={cn('space-y-4', className)}>
       <div className="relative">
-        <Search className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-white/40" />
+        <Search className="pointer-events-none absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-white/55" />
         <input
           type="text"
           placeholder="Search prompts, categories, or tools..."
           value={searchQuery}
           onChange={(event) => onSearchChange(event.target.value)}
-          className="w-full rounded-2xl border border-white/10 bg-white/5 px-12 py-4 text-sm text-white placeholder:text-white/40 shadow-inner transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500/60"
+          className="w-full rounded-2xl border border-white/10 bg-white/5 px-12 py-4 text-sm text-white placeholder:text-white/55 shadow-inner transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-500/60"
         />
         {searchQuery && (
           <button

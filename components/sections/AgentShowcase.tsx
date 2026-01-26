@@ -163,7 +163,7 @@ export default function AgentShowcase() {
 
                 {/* Capabilities */}
                 <div className="mt-8 pt-8 border-t border-white/10">
-                  <h4 className="text-sm font-semibold uppercase tracking-wider text-white/40 mb-4">
+                  <h4 className="text-sm font-semibold uppercase tracking-wider text-white/55 mb-4">
                     Core Capabilities
                   </h4>
                   <div className="flex flex-wrap gap-2">

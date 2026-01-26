@@ -70,7 +70,7 @@ export function TeamMemberCard({ member, index }: TeamMemberCardProps) {
               >
                 {member.platform}
               </span>
-              <Sparkles className="w-4 h-4 text-white/40" />
+              <Sparkles className="w-4 h-4 text-white/55" />
             </div>
 
             {/* Character Icon - Chibi style */}
@@ -104,7 +104,7 @@ export function TeamMemberCard({ member, index }: TeamMemberCardProps) {
 
             {/* Hover hint */}
             <div className="mt-4 text-center">
-              <span className="text-xs text-white/40 flex items-center justify-center gap-1">
+              <span className="text-xs text-white/55 flex items-center justify-center gap-1">
                 Hover for details
                 <ArrowUpRight className="w-3 h-3" />
               </span>

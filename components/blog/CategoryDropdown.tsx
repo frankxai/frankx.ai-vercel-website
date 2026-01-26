@@ -126,7 +126,7 @@ export default function CategoryDropdown({
                   <span className="text-sm font-medium text-white block">
                     All Categories
                   </span>
-                  <span className="text-xs text-white/40">
+                  <span className="text-xs text-white/55">
                     View everything
                   </span>
                 </div>
@@ -173,7 +173,7 @@ export default function CategoryDropdown({
                       <span className="text-sm font-medium text-white block">
                         {category}
                       </span>
-                      <span className="text-xs text-white/40">
+                      <span className="text-xs text-white/55">
                         {count} {count === 1 ? 'article' : 'articles'}
                       </span>
                     </div>

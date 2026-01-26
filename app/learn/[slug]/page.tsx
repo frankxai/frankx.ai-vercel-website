@@ -106,7 +106,7 @@ function VideoPlayer({ video, color }: { video: VideoResource; color: string }) 
           </a>
           <div className="flex gap-2">
             {video.tags.slice(0, 3).map((tag) => (
-              <span key={tag} className="text-xs px-2 py-1 rounded bg-white/5 text-white/40">
+              <span key={tag} className="text-xs px-2 py-1 rounded bg-white/5 text-white/55">
                 {tag}
               </span>
             ))}
@@ -243,7 +243,7 @@ export default function LearningPathPage() {
                     {guide.includes('blog') ? 'Related Article' : guide.includes('product') ? 'Product' : 'Guide'}
                   </span>
                 </div>
-                <ArrowRight className="w-4 h-4 text-white/30 group-hover:text-white/70 group-hover:translate-x-1 transition-all" />
+                <ArrowRight className="w-4 h-4 text-white/50 group-hover:text-white/70 group-hover:translate-x-1 transition-all" />
               </Link>
             ))}
           </div>

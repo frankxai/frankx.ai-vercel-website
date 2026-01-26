@@ -118,7 +118,7 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
               animate={{ opacity: 1, x: 0 }}
               className="hidden md:flex items-center gap-3"
             >
-              <span className="text-sm text-white/40">
+              <span className="text-sm text-white/55">
                 {filteredPosts.length} {filteredPosts.length === 1 ? 'article' : 'articles'}
               </span>
             </motion.div>
@@ -160,7 +160,7 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
               <h2 className="text-sm font-medium uppercase tracking-[0.2em] text-white/60">
                 {selectedCategory}
               </h2>
-              <span className="text-xs text-white/30">
+              <span className="text-xs text-white/50">
                 • {filteredPosts.length} {filteredPosts.length === 1 ? 'article' : 'articles'}
               </span>
             </div>
@@ -171,7 +171,7 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
               <h2 className="text-sm font-medium uppercase tracking-[0.2em] text-white/60">
                 All Articles
               </h2>
-              <span className="text-xs text-white/30">
+              <span className="text-xs text-white/50">
                 • {regularPosts.length} {regularPosts.length === 1 ? 'article' : 'articles'}
               </span>
             </div>
@@ -184,7 +184,7 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
               className="py-20 text-center"
             >
               <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-white/5 border border-white/10 mb-6">
-                <Filter className="w-6 h-6 text-white/30" />
+                <Filter className="w-6 h-6 text-white/50" />
               </div>
               <p className="text-white/50 mb-4 text-lg">No articles found in this category.</p>
               <button

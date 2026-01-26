@@ -184,7 +184,7 @@ export default function VibeOSHero({ productId, product }: VibeOSHeroProps) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.7 }}
-          className="mt-16 flex flex-wrap items-center justify-center gap-8 text-xs text-white/40"
+          className="mt-16 flex flex-wrap items-center justify-center gap-8 text-xs text-white/55"
         >
           <div className="flex items-center gap-2">
             <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">

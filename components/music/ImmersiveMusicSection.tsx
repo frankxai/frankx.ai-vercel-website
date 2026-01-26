@@ -153,7 +153,7 @@ export default function ImmersiveMusicSection({ variant = 'tech' }: ImmersiveMus
           viewport={{ once: true }}
           className="mt-12 text-center"
         >
-          <p className="text-white/40 text-sm">
+          <p className="text-white/55 text-sm">
             Full Suno library available at{' '}
             <a
               href="https://suno.com/@frankx"

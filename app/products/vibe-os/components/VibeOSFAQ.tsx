@@ -74,7 +74,7 @@ export default function VibeOSFAQ({ faq }: VibeOSFAQProps) {
                     animate={{ rotate: openIndex === index ? 180 : 0 }}
                     transition={{ duration: 0.2 }}
                     className={`flex-shrink-0 ${
-                      openIndex === index ? 'text-cyan-400' : 'text-white/40'
+                      openIndex === index ? 'text-cyan-400' : 'text-white/55'
                     }`}
                   >
                     <ChevronDown className="h-5 w-5" />

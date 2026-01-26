@@ -56,14 +56,14 @@ export default function Footer2025() {
                 />
               </svg>
             </Link>
-            <p className="text-sm text-white/40 max-w-xs">
+            <p className="text-sm text-white/55 max-w-xs">
               My system for building with AI. Take what works.
             </p>
           </div>
 
           {/* Explore */}
           <div>
-            <h3 className="text-xs uppercase tracking-[0.15em] text-white/30 mb-4">
+            <h3 className="text-xs uppercase tracking-[0.15em] text-white/50 mb-4">
               Explore
             </h3>
             <ul className="space-y-2">
@@ -82,7 +82,7 @@ export default function Footer2025() {
 
           {/* Resources */}
           <div>
-            <h3 className="text-xs uppercase tracking-[0.15em] text-white/30 mb-4">
+            <h3 className="text-xs uppercase tracking-[0.15em] text-white/50 mb-4">
               Resources
             </h3>
             <ul className="space-y-2">
@@ -101,7 +101,7 @@ export default function Footer2025() {
 
           {/* Connect */}
           <div>
-            <h3 className="text-xs uppercase tracking-[0.15em] text-white/30 mb-4">
+            <h3 className="text-xs uppercase tracking-[0.15em] text-white/50 mb-4">
               Connect
             </h3>
             <ul className="space-y-2">
@@ -132,10 +132,10 @@ export default function Footer2025() {
 
         {/* Bottom bar */}
         <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-xs text-white/30">
+          <p className="text-xs text-white/50">
             {new Date().getFullYear()} Frank. Built in public.
           </p>
-          <p className="text-xs text-white/30">
+          <p className="text-xs text-white/50">
             Resources curated from Oracle, Google, MIT, and more.
           </p>
         </div>

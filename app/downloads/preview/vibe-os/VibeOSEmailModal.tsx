@@ -96,7 +96,7 @@ export default function VibeOSEmailModal({ isOpen, onClose, pdfUrl, sessionId }:
                 {/* Close button */}
                 <button
                   onClick={onClose}
-                  className="absolute right-4 top-4 rounded-xl p-2 text-white/40 transition-all hover:bg-white/10 hover:text-white"
+                  className="absolute right-4 top-4 rounded-xl p-2 text-white/55 transition-all hover:bg-white/10 hover:text-white"
                   aria-label="Close"
                 >
                   <X className="h-5 w-5" />
@@ -178,7 +178,7 @@ export default function VibeOSEmailModal({ isOpen, onClose, pdfUrl, sessionId }:
                           value={name}
                           onChange={(e) => setName(e.target.value)}
                           required
-                          className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-white/30 transition-all focus:border-violet-400/50 focus:outline-none focus:ring-2 focus:ring-violet-500/20 hover:border-white/20"
+                          className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-white/50 transition-all focus:border-violet-400/50 focus:outline-none focus:ring-2 focus:ring-violet-500/20 hover:border-white/20"
                           placeholder="Your creative name"
                         />
                       </div>
@@ -193,7 +193,7 @@ export default function VibeOSEmailModal({ isOpen, onClose, pdfUrl, sessionId }:
                           value={email}
                           onChange={(e) => setEmail(e.target.value)}
                           required
-                          className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-white/30 transition-all focus:border-violet-400/50 focus:outline-none focus:ring-2 focus:ring-violet-500/20 hover:border-white/20"
+                          className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-white placeholder:text-white/50 transition-all focus:border-violet-400/50 focus:outline-none focus:ring-2 focus:ring-violet-500/20 hover:border-white/20"
                           placeholder="creator@example.com"
                         />
                       </div>
@@ -238,7 +238,7 @@ export default function VibeOSEmailModal({ isOpen, onClose, pdfUrl, sessionId }:
                         <div className="absolute inset-0 bg-gradient-to-r from-violet-400/20 to-purple-500/20 opacity-0 transition-opacity group-hover:opacity-100" />
                       </button>
 
-                      <p className="text-center text-xs text-white/40">
+                      <p className="text-center text-xs text-white/55">
                         🔒 No spam, ever. Unsubscribe with one click.
                       </p>
                     </form>

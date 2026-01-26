@@ -111,7 +111,7 @@ function LifeBookCard({
           {/* Price */}
           <div className="flex items-baseline gap-2 mb-6">
             <span className="text-3xl font-bold text-white">${book.price.current}</span>
-            <span className="text-white/40 line-through text-sm">${book.price.original}</span>
+            <span className="text-white/55 line-through text-sm">${book.price.original}</span>
             <span className="text-amber-400 text-sm font-medium">
               Save ${book.price.original - book.price.current}
             </span>
@@ -128,7 +128,7 @@ function LifeBookCard({
               </li>
             ))}
             {book.features.length > 4 && (
-              <li className="text-sm text-white/40">
+              <li className="text-sm text-white/55">
                 +{book.features.length - 4} more features
               </li>
             )}

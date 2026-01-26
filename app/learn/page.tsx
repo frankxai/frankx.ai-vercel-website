@@ -63,7 +63,7 @@ function PathCard({ path }: { path: LearningPath }) {
         {path.description}
       </p>
 
-      <div className="flex items-center gap-4 text-xs text-white/40">
+      <div className="flex items-center gap-4 text-xs text-white/55">
         <div className="flex items-center gap-1.5">
           <Clock className="w-3.5 h-3.5" />
           {path.estimatedHours} hours
@@ -134,7 +134,7 @@ function VideoCard({ video, pathColor }: { video: VideoResource; pathColor: stri
           href={video.creatorChannel}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 text-xs text-white/40 hover:text-white/70 transition-colors"
+          className="inline-flex items-center gap-1.5 text-xs text-white/55 hover:text-white/70 transition-colors"
         >
           {video.creator}
           <ExternalLink className="w-3 h-3" />

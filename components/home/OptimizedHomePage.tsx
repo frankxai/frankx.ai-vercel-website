@@ -54,7 +54,7 @@ export default function OptimizedHomePage() {
                 {/* Main Title */}
                 <StaggerItem>
                   <div className="flex flex-col items-center justify-center mb-6">
-                    <span className="text-sm md:text-base font-medium tracking-[0.4em] uppercase text-white/40 mb-4 hover:text-white/60 transition-colors cursor-default">
+                    <span className="text-sm md:text-base font-medium tracking-[0.4em] uppercase text-white/55 mb-4 hover:text-white/60 transition-colors cursor-default">
                       FrankX
                     </span>
                     <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tight text-white text-center">
@@ -108,7 +108,7 @@ export default function OptimizedHomePage() {
                   <div className="mt-8">
                     <Link
                       href={tertiary.href}
-                      className="text-sm text-white/40 hover:text-white transition-colors border-b border-transparent hover:border-white/40 pb-0.5"
+                      className="text-sm text-white/55 hover:text-white transition-colors border-b border-transparent hover:border-white/40 pb-0.5"
                     >
                       {tertiary.label}
                     </Link>

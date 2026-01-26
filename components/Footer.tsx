@@ -16,10 +16,10 @@ export default function Footer() {
               </div>
               <div>
                 <span className="block text-base sm:text-lg font-semibold text-white">FrankX.AI</span>
-                <span className="block text-[10px] sm:text-xs text-white/40">AI Systems & Music</span>
+                <span className="block text-[10px] sm:text-xs text-white/55">AI Systems & Music</span>
               </div>
             </Link>
-            <p className="text-xs sm:text-sm text-white/50 leading-relaxed max-w-xs">
+            <p className="text-xs sm:text-sm text-white/60 leading-relaxed max-w-xs">
               Oracle AI architect by day. Music creator by night.
               Building systems, making music, sharing everything.
             </p>
@@ -28,7 +28,7 @@ export default function Footer() {
                 href="https://linkedin.com/in/frank-x-riemer/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs sm:text-sm text-white/40 hover:text-white transition-colors flex items-center gap-1"
+                className="text-xs sm:text-sm text-white/55 hover:text-white transition-colors flex items-center gap-1"
               >
                 LinkedIn
                 <ExternalLink className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
@@ -38,7 +38,7 @@ export default function Footer() {
                 href="https://suno.com/@frankx"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs sm:text-sm text-white/40 hover:text-white transition-colors flex items-center gap-1"
+                className="text-xs sm:text-sm text-white/55 hover:text-white transition-colors flex items-center gap-1"
               >
                 Suno
                 <ExternalLink className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
@@ -46,7 +46,7 @@ export default function Footer() {
               <span className="text-white/20">·</span>
               <a
                 href="mailto:hello@frankx.ai"
-                className="text-xs sm:text-sm text-white/40 hover:text-white transition-colors flex items-center gap-1"
+                className="text-xs sm:text-sm text-white/55 hover:text-white transition-colors flex items-center gap-1"
               >
                 <Mail className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
                 Email
@@ -102,14 +102,14 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-8 sm:mt-12 md:mt-16 pt-6 sm:pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-3 sm:gap-4 text-xs sm:text-sm text-white/30">
+        <div className="mt-8 sm:mt-12 md:mt-16 pt-6 sm:pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-3 sm:gap-4 text-xs sm:text-sm text-white/50">
           <p>&copy; {new Date().getFullYear()} Frank. All rights reserved.</p>
           <nav className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1" aria-label="Legal">
-            <Link href="/privacy" className="hover:text-white/60 transition-colors">Privacy</Link>
-            <span className="text-white/15">·</span>
-            <Link href="/terms" className="hover:text-white/60 transition-colors">Terms</Link>
-            <span className="text-white/15">·</span>
-            <Link href="/legal" className="hover:text-white/60 transition-colors">Legal</Link>
+            <Link href="/privacy" className="hover:text-white transition-colors">Privacy</Link>
+            <span className="text-white/30">·</span>
+            <Link href="/terms" className="hover:text-white transition-colors">Terms</Link>
+            <span className="text-white/30">·</span>
+            <Link href="/legal" className="hover:text-white transition-colors">Legal</Link>
           </nav>
           <p className="text-center md:text-right">
             Built with Next.js, deployed on Vercel. Music made with Suno.

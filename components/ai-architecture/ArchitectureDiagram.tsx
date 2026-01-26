@@ -99,7 +99,7 @@ function ArchitectureNode({ data, selected }: NodeProps<Node<ArchitectureNodeDat
       </div>
 
       {data.description && (
-        <div className="mt-2 text-[10px] text-white/40 border-t border-white/10 pt-2">
+        <div className="mt-2 text-[10px] text-white/55 border-t border-white/10 pt-2">
           {data.description}
         </div>
       )}

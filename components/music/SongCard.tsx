@@ -62,7 +62,7 @@ export default function SongCard({ song }: SongCardProps) {
           >
             Listen on Suno
           </Link>
-          <span className="text-xs uppercase tracking-[0.3em] text-white/40">FrankX Sessions</span>
+          <span className="text-xs uppercase tracking-[0.3em] text-white/55">FrankX Sessions</span>
         </div>
       </div>
     </article>

@@ -231,7 +231,7 @@ function StatsSection() {
               className="text-center"
             >
               <p className="text-3xl md:text-4xl font-bold text-white">{stat.value}</p>
-              <p className="text-sm text-white/40 mt-1">{stat.label}</p>
+              <p className="text-sm text-white/55 mt-1">{stat.label}</p>
             </motion.div>
           ))}
         </div>
@@ -272,7 +272,7 @@ function FeaturedTracksSection() {
                 <div className="flex items-center justify-between mb-3 px-2">
                   <div>
                     <h3 className="font-semibold text-white">{track.title}</h3>
-                    <p className="text-sm text-white/40">{track.genre}</p>
+                    <p className="text-sm text-white/55">{track.genre}</p>
                   </div>
                   <a
                     href={`https://suno.com/song/${track.id}`}
@@ -374,7 +374,7 @@ function CollectionsSection() {
                         <div className="flex items-center justify-between mb-2 px-1">
                           <div>
                             <p className="text-sm font-medium text-white">{track.title}</p>
-                            <p className="text-xs text-white/40">{track.style}</p>
+                            <p className="text-xs text-white/55">{track.style}</p>
                           </div>
                           <a
                             href={`https://suno.com/song/${track.id}`}
@@ -382,7 +382,7 @@ function CollectionsSection() {
                             rel="noopener noreferrer"
                             className="p-1.5 rounded-full bg-white/5 hover:bg-white/10 transition-colors"
                           >
-                            <ExternalLink className="w-3 h-3 text-white/40" />
+                            <ExternalLink className="w-3 h-3 text-white/55" />
                           </a>
                         </div>
                         <iframe
@@ -398,7 +398,7 @@ function CollectionsSection() {
                   </div>
                 ) : (
                   <div className={`rounded-xl border ${colors.border} ${colors.bg} p-8 text-center`}>
-                    <p className="text-white/40">More tracks coming soon</p>
+                    <p className="text-white/55">More tracks coming soon</p>
                     <a
                       href={collection.playlistLink || 'https://suno.com/@frankx'}
                       target="_blank"
