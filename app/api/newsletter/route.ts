@@ -60,8 +60,8 @@ export async function POST(request: NextRequest) {
       const r = await subscribeWebhook(email)
       if (!r.ok) outcome = { ok: false }
     } else {
-      // Fallback: log only
-      console.log('Newsletter signup (no provider configured):', email)
+      // No provider configured - subscription won't be saved
+      console.warn('[Newsletter] No provider configured, signup not persisted:', email)
     }
 
     if (!outcome.ok) {

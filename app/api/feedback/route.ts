@@ -42,14 +42,6 @@ export async function POST(request: NextRequest) {
 
     appendFileSync(FEEDBACK_FILE, JSON.stringify(feedbackEntry) + '\n', 'utf-8');
 
-    // Log for analytics (could send to external service)
-    console.log('[Feedback]', {
-      type: body.type,
-      chapter: body.chapter,
-      feedback: body.feedback,
-      hasComment: !!body.comment,
-    });
-
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error('[Feedback Error]', error);
