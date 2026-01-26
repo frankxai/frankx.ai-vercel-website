@@ -217,7 +217,7 @@ export default function VibeOSHero({ productId, product }: VibeOSHeroProps) {
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
-          className="flex flex-col items-center gap-2 text-white/30"
+          className="flex flex-col items-center gap-2 text-white/50"
         >
           <span className="text-xs uppercase tracking-widest">Scroll</span>
           <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -68,7 +68,7 @@ export default function SocialProofStats({
             <div className={`text-2xl md:text-3xl font-bold ${stat.color ? colorMap[stat.color] : 'text-white'}`}>
               {stat.value}
             </div>
-            <div className="text-xs text-white/40">{stat.label}</div>
+            <div className="text-xs text-white/55">{stat.label}</div>
           </motion.div>
         ))}
       </div>
@@ -122,7 +122,7 @@ export default function SocialProofStats({
           <div className="text-5xl md:text-7xl font-bold text-white mb-3 tracking-tighter">
             {stat.value}
           </div>
-          <div className="text-sm text-white/40 max-w-[160px]">{stat.label}</div>
+          <div className="text-sm text-white/55 max-w-[160px]">{stat.label}</div>
         </motion.div>
       ))}
     </div>
@@ -136,7 +136,7 @@ export default function SocialProofStats({
 export function LogoCloud() {
   return (
     <div className="py-8">
-      <p className="text-xs font-medium uppercase tracking-[0.25em] text-white/30 text-center mb-6">
+      <p className="text-xs font-medium uppercase tracking-[0.25em] text-white/50 text-center mb-6">
         Featured resources from
       </p>
       <motion.div

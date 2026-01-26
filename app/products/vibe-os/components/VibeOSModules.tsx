@@ -161,7 +161,7 @@ export default function VibeOSModules({ productId, modules, offer }: VibeOSModul
                       </div>
                       <div className="mt-4 flex items-center justify-center gap-3">
                         {offer.originalPrice && (
-                          <span className="text-2xl text-white/30 line-through">
+                          <span className="text-2xl text-white/50 line-through">
                             ${offer.originalPrice}
                           </span>
                         )}

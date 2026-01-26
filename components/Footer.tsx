@@ -57,7 +57,7 @@ export default function Footer() {
           {/* Create */}
           <div>
             <h3 className="text-xs sm:text-sm font-semibold uppercase tracking-wider sm:tracking-widest text-white/60 mb-3 sm:mb-4">Create</h3>
-            <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-white/40">
+            <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-white/55">
               <li><Link href="/music-lab" className="hover:text-white transition-colors">Music Lab</Link></li>
               <li><Link href="/prompt-library" className="hover:text-white transition-colors">Prompt Library</Link></li>
               <li><Link href="/products/vibe-os" className="hover:text-white transition-colors">Vibe OS</Link></li>
@@ -68,7 +68,7 @@ export default function Footer() {
           {/* Learn */}
           <div>
             <h3 className="text-xs sm:text-sm font-semibold uppercase tracking-wider sm:tracking-widest text-white/60 mb-3 sm:mb-4">Learn</h3>
-            <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-white/40">
+            <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-white/55">
               <li><Link href="/resources" className="hover:text-white transition-colors">Resource Hub</Link></li>
               <li><Link href="/students" className="hover:text-white transition-colors">Student Hub</Link></li>
               <li><Link href="/courses" className="hover:text-white transition-colors">Courses</Link></li>
@@ -80,7 +80,7 @@ export default function Footer() {
           {/* Build */}
           <div>
             <h3 className="text-xs sm:text-sm font-semibold uppercase tracking-wider sm:tracking-widest text-white/60 mb-3 sm:mb-4">Build</h3>
-            <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-white/40">
+            <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-white/55">
               <li><Link href="/ai-architecture" className="hover:text-white transition-colors">Architecture Hub</Link></li>
               <li><Link href="/ai-architecture/blueprints" className="hover:text-white transition-colors">Blueprints</Link></li>
               <li><Link href="/ai-architecture/prototypes" className="hover:text-white transition-colors">Prototypes</Link></li>
@@ -92,7 +92,7 @@ export default function Footer() {
           {/* More */}
           <div>
             <h3 className="text-xs sm:text-sm font-semibold uppercase tracking-wider sm:tracking-widest text-white/60 mb-3 sm:mb-4">More</h3>
-            <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-white/40">
+            <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-white/55">
               <li><Link href="/about" className="hover:text-white transition-colors">About</Link></li>
               <li><Link href="/resources" className="hover:text-white transition-colors">Resources</Link></li>
               <li><Link href="/roadmap" className="hover:text-white transition-colors">Roadmap</Link></li>
@@ -106,9 +106,9 @@ export default function Footer() {
           <p>&copy; {new Date().getFullYear()} Frank. All rights reserved.</p>
           <nav className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1" aria-label="Legal">
             <Link href="/privacy" className="hover:text-white transition-colors">Privacy</Link>
-            <span className="text-white/30">·</span>
+            <span className="text-white/40">·</span>
             <Link href="/terms" className="hover:text-white transition-colors">Terms</Link>
-            <span className="text-white/30">·</span>
+            <span className="text-white/40">·</span>
             <Link href="/legal" className="hover:text-white transition-colors">Legal</Link>
           </nav>
           <p className="text-center md:text-right">
