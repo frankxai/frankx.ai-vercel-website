@@ -312,7 +312,7 @@ function HeroSection() {
 
           <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 tracking-tight leading-[1.1]">
             Multi-Cloud Architecture
-            <span className="block text-white/55 mt-2">for AI-Powered Platforms</span>
+            <span className="block text-white/40 mt-2">for AI-Powered Platforms</span>
           </h1>
 
           <p className="text-lg md:text-xl text-white/60 mb-8 leading-relaxed max-w-3xl">
@@ -534,7 +534,7 @@ function CloudProviderTabs() {
               <span className="text-2xl font-bold text-white">{provider.costEstimate.total}</span>
             </div>
 
-            <p className="text-xs text-white/55 mt-4">
+            <p className="text-xs text-white/40 mt-4">
               * Estimates based on moderate usage patterns. Actual costs vary with traffic, AI model usage, and storage needs.
             </p>
           </div>
@@ -699,7 +699,7 @@ export default function AIArchitecturePage() {
 
         {/* Footer note */}
         <div className="max-w-6xl mx-auto px-4 sm:px-6 pb-16 text-center">
-          <p className="text-sm text-white/55">
+          <p className="text-sm text-white/40">
             This is independent technical research by Frank, Oracle AI Architect.
             Not endorsed by or representing Oracle, AWS, Google, or Microsoft.
           </p>
