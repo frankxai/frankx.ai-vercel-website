@@ -19,6 +19,9 @@ import {
   Target,
   Layers,
   ArrowUpRight,
+  CheckCircle2,
+  Clock,
+  ExternalLink,
 } from 'lucide-react'
 
 // ============================================================================
@@ -108,6 +111,33 @@ function AuroraBackground() {
     </div>
   )
 }
+
+// ============================================================================
+// VALIDATED RESEARCH BRIEFS - AI Architecture Focus
+// ============================================================================
+
+const researchBriefs = [
+  {
+    slug: 'multi-agent-adoption-2026',
+    title: 'Multi-Agent System Adoption: Q1 2026',
+    description: 'Validated statistics on enterprise multi-agent adoption, framework market share, and orchestration patterns.',
+    keyStats: ['72% enterprise adoption', '34% LangGraph market share', '$52B market by 2030'],
+    sources: 15,
+    lastValidated: '2026-01-26',
+    category: 'Market Intelligence',
+    relatedArticle: '/blog/multi-agent-orchestration-patterns-2026',
+  },
+  {
+    slug: 'mcp-ecosystem-2026',
+    title: 'MCP Protocol Ecosystem: Q1 2026',
+    description: 'Comprehensive analysis of Model Context Protocol adoption, server ecosystem, and integration patterns.',
+    keyStats: ['50+ production servers', '340% H2 2025 growth', '5+ IDE integrations'],
+    sources: 12,
+    lastValidated: '2026-01-26',
+    category: 'Integration Architecture',
+    relatedArticle: '/blog/claude-code-2-1-mcp-revolution',
+  },
+]
 
 // ============================================================================
 // RESEARCH DOMAINS
@@ -269,6 +299,127 @@ function HeroSection() {
               <p className="text-sm text-white/50">{stat.label}</p>
             </div>
           ))}
+        </motion.div>
+      </div>
+    </section>
+  )
+}
+
+// ============================================================================
+// VALIDATED RESEARCH BRIEFS SECTION - AI Architect Authority
+// ============================================================================
+
+function ResearchBriefsSection() {
+  const shouldReduceMotion = useReducedMotion()
+
+  return (
+    <section id="briefs" className="py-16 md:py-24 bg-white/[0.01]">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        {/* Section header with studio energy */}
+        <div className="mb-12">
+          <motion.div
+            initial={shouldReduceMotion ? false : { opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="inline-flex items-center gap-2 mb-4"
+          >
+            <FileText className="w-4 h-4 text-cyan-400" />
+            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-400">
+              Validated Research
+            </span>
+          </motion.div>
+
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            Research Briefs
+          </h2>
+
+          {/* Studio energy hook */}
+          <p className="text-lg text-white/70 mb-2 max-w-3xl">
+            Think of research like pre-production. Before you mix, you scout. Before you build, you map.
+          </p>
+          <p className="text-base text-white/50 max-w-3xl">
+            Every stat has a source. Every claim is validated. No opinions—just evidence for AI architects.
+          </p>
+        </div>
+
+        {/* Research briefs grid */}
+        <div className="grid md:grid-cols-2 gap-6">
+          {researchBriefs.map((brief, index) => (
+            <motion.div
+              key={brief.slug}
+              initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={shouldReduceMotion ? { duration: 0 } : { delay: index * 0.1 }}
+              className="group relative bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-2xl p-6 hover:bg-white/[0.05] hover:border-cyan-500/30 transition-all duration-300"
+            >
+              {/* Category badge */}
+              <div className="flex items-center justify-between mb-4">
+                <span className="rounded-full bg-cyan-500/10 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-cyan-400">
+                  {brief.category}
+                </span>
+                <div className="flex items-center gap-1.5 text-xs text-white/40">
+                  <Clock className="h-3 w-3" />
+                  <span>{brief.lastValidated}</span>
+                </div>
+              </div>
+
+              {/* Title & Description */}
+              <h3 className="text-xl font-bold text-white mb-2 group-hover:text-cyan-100 transition-colors">
+                {brief.title}
+              </h3>
+              <p className="text-white/60 mb-4 leading-relaxed">
+                {brief.description}
+              </p>
+
+              {/* Key Stats */}
+              <div className="mb-4 space-y-2">
+                {brief.keyStats.map((stat, i) => (
+                  <div key={i} className="flex items-center gap-2 text-sm">
+                    <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400 flex-shrink-0" />
+                    <span className="text-white/70">{stat}</span>
+                  </div>
+                ))}
+              </div>
+
+              {/* Footer */}
+              <div className="flex items-center justify-between pt-4 border-t border-white/[0.06]">
+                <span className="text-xs text-white/40">
+                  {brief.sources} validated sources
+                </span>
+                <div className="flex items-center gap-3">
+                  {brief.relatedArticle && (
+                    <Link
+                      href={brief.relatedArticle}
+                      className="text-xs text-white/40 hover:text-cyan-400 transition-colors flex items-center gap-1"
+                    >
+                      Related article
+                      <ExternalLink className="h-3 w-3" />
+                    </Link>
+                  )}
+                  <span className="flex items-center gap-1 text-sm text-cyan-400 group-hover:text-cyan-300">
+                    Read brief
+                    <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+                  </span>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Link to AI Architecture Hub */}
+        <motion.div
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.3 }}
+          className="mt-8 text-center"
+        >
+          <Link
+            href="/ai-architecture"
+            className="inline-flex items-center gap-2 text-sm text-white/50 hover:text-cyan-400 transition-colors"
+          >
+            <Layers className="h-4 w-4" />
+            Explore AI Architecture Hub for blueprints & prototypes
+            <ArrowRight className="h-4 w-4" />
+          </Link>
         </motion.div>
       </div>
     </section>
@@ -556,6 +707,7 @@ export default function ResearchPage() {
 
       <div className="relative z-10">
         <HeroSection />
+        <ResearchBriefsSection />
         <ResearchDomainsSection />
         <ResearchCouncilSection />
         <MethodologySection />
