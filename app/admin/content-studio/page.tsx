@@ -38,6 +38,7 @@ interface ContentItem {
   charCount: number;
   imagePath?: string;
   imageUrl?: string;
+  thumbnailUrl?: string;
   blogUrl?: string;
   createdAt: string;
   bestTime?: string;
@@ -226,13 +227,14 @@ export default function ContentStudioPage() {
                 >
                   {/* Card Header */}
                   <div className="p-4 flex items-start gap-4">
-                    {/* Image Preview */}
-                    {item.imageUrl ? (
+                    {/* Image Preview - uses thumbnail (12KB) instead of full (600KB) */}
+                    {(item.thumbnailUrl || item.imageUrl) ? (
                       <div className="w-24 h-24 rounded-xl overflow-hidden flex-shrink-0 bg-slate-700 relative group">
                         <img
-                          src={item.imageUrl}
+                          src={item.thumbnailUrl || item.imageUrl}
                           alt={item.title}
                           className="w-full h-full object-cover"
+                          loading="lazy"
                         />
                         <button
                           onClick={() => downloadImage(item.imageUrl!, `${item.id}.png`)}

@@ -13,6 +13,7 @@ interface ContentItem {
   charCount: number;
   imagePath?: string;
   imageUrl?: string;
+  thumbnailUrl?: string; // 40-50x smaller for previews
   blogUrl?: string;
   createdAt: string;
   bestTime?: string;
@@ -140,11 +141,19 @@ export async function GET() {
         const imageFile = files.find(f =>
           f.startsWith(slug) &&
           f.includes('-1x1') &&
-          (f.endsWith('.png') || f.endsWith('.jpg'))
+          (f.endsWith('.png') || f.endsWith('.jpg')) &&
+          !f.includes('_thumb')
         ) || files.find(f =>
           f.startsWith(slug) &&
           (f.endsWith('.png') || f.endsWith('.jpg')) &&
           !f.includes('_thumb')
+        );
+
+        // Find thumbnail for bandwidth optimization (40-50x smaller)
+        const thumbFile = files.find(f =>
+          f.startsWith(slug) &&
+          f.includes('_thumb') &&
+          f.endsWith('.jpeg')
         );
 
         const captionData = extractCaption(mdContent);
@@ -161,6 +170,7 @@ export async function GET() {
           charCount: captionData.charCount,
           imagePath: imageFile ? `/social/linkedin/${imageFile}` : undefined,
           imageUrl: imageFile ? `/social/linkedin/${imageFile}` : undefined,
+          thumbnailUrl: thumbFile ? `/social/linkedin/${thumbFile}` : (imageFile ? `/social/linkedin/${imageFile}` : undefined),
           blogUrl: metadata.blogUrl,
           createdAt: stats.mtime.toISOString(),
           bestTime: metadata.bestTime,
@@ -195,12 +205,19 @@ export async function GET() {
         // Twitter uses LinkedIn image if available
         const linkedinDir2 = join(socialDir, 'linkedin');
         let imageFile: string | undefined;
+        let thumbFile2: string | undefined;
         if (existsSync(linkedinDir2)) {
           const linkedinFiles = readdirSync(linkedinDir2);
           imageFile = linkedinFiles.find(f =>
             f.startsWith(slug) &&
             f.includes('-1x1') &&
-            (f.endsWith('.png') || f.endsWith('.jpg'))
+            (f.endsWith('.png') || f.endsWith('.jpg')) &&
+            !f.includes('_thumb')
+          );
+          thumbFile2 = linkedinFiles.find(f =>
+            f.startsWith(slug) &&
+            f.includes('_thumb') &&
+            f.endsWith('.jpeg')
           );
         }
 
@@ -215,6 +232,7 @@ export async function GET() {
           charCount: fullThread.length,
           imagePath: imageFile ? `/social/linkedin/${imageFile}` : undefined,
           imageUrl: imageFile ? `/social/linkedin/${imageFile}` : undefined,
+          thumbnailUrl: thumbFile2 ? `/social/linkedin/${thumbFile2}` : (imageFile ? `/social/linkedin/${imageFile}` : undefined),
           blogUrl: metadata.blogUrl,
           createdAt: stats.mtime.toISOString(),
           bestTime: metadata.bestTime,
