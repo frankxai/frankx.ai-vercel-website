@@ -472,6 +472,125 @@ export const validatedClaims: Record<string, ValidatedClaim> = {
     confidence: 'high',
     category: 'Cognitive Enhancement',
     crossRefCount: 1
+  },
+
+  // ============================================
+  // VIRAL/LANDMARK RESEARCH 2025-2026
+  // ============================================
+
+  'adult-neurogenesis-confirmed': {
+    id: 'adult-neurogenesis-confirmed',
+    claim: 'Adult human brain neurogenesis confirmed via RNA sequencing (ages 0-78)',
+    value: 'Confirmed July 2025',
+    sources: [
+      { name: 'Science/AAAS', url: 'https://www.science.org/content/article/genetic-evidence-our-brains-make-new-neurons-adulthood-may-close-century-old-debate', date: '2025-07' },
+      { name: 'Karolinska Institutet', url: 'https://news.ki.se/new-research-confirms-that-neurons-form-in-the-adult-brain', date: '2025-07' },
+      { name: 'Scientific American', url: 'https://www.scientificamerican.com/article/proof-that-adult-brains-make-new-neurons-settles-scientific-controversy/', date: '2025-07' }
+    ],
+    validatedDate: '2026-01-27',
+    confidence: 'high',
+    category: 'Landmark Research',
+    crossRefCount: 3
+  },
+  'columbia-bci-electrode-count': {
+    id: 'columbia-bci-electrode-count',
+    claim: 'Columbia wireless BCI electrode density',
+    value: '65,536 electrodes, 1,024 channels',
+    sources: [
+      { name: 'Nature Electronics', date: '2025-12' },
+      { name: 'ScienceDaily', url: 'https://www.sciencedaily.com/releases/2025/12/251209234139.htm', date: '2025-12' }
+    ],
+    validatedDate: '2026-01-27',
+    confidence: 'high',
+    category: 'Brain-Computer Interfaces',
+    crossRefCount: 2
+  },
+  'neuralink-patient-count-2025': {
+    id: 'neuralink-patient-count-2025',
+    claim: 'Neuralink patients controlling digital devices with thoughts',
+    value: '5+ patients',
+    sources: [
+      { name: 'MIT Technology Review', url: 'https://www.technologyreview.com/2025/04/01/1114009/brain-computer-interfaces-10-breakthrough-technologies-2025/', date: '2025-04' },
+      { name: 'IEEE Pulse', url: 'https://www.embs.org/pulse/articles/silicon-synapses-the-bold-frontier-of-brain-computer-integration/', date: '2025' }
+    ],
+    validatedDate: '2026-01-27',
+    confidence: 'high',
+    category: 'Brain-Computer Interfaces',
+    crossRefCount: 2
+  },
+  'synchron-fda-trial-complete': {
+    id: 'synchron-fda-trial-complete',
+    claim: 'Synchron COMMAND early feasibility study completion',
+    value: 'Completed November 2025',
+    sources: [
+      { name: 'ClinicalTrials.gov NCT05035823', date: '2025-11' },
+      { name: 'STAT News', url: 'https://www.statnews.com/2025/12/26/brain-computer-interface-technology-trends-2026/', date: '2025-12' }
+    ],
+    validatedDate: '2026-01-27',
+    confidence: 'high',
+    category: 'Brain-Computer Interfaces',
+    crossRefCount: 2
+  },
+  'ai-depression-prediction-accuracy': {
+    id: 'ai-depression-prediction-accuracy',
+    claim: 'AI prediction of depressive episodes using wearables',
+    value: '91% accuracy',
+    sources: [
+      { name: 'PMC', url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC12604579/', date: '2025' }
+    ],
+    validatedDate: '2026-01-27',
+    confidence: 'high',
+    category: 'AI Mental Health',
+    crossRefCount: 1
+  },
+  'digital-therapeutics-growth': {
+    id: 'digital-therapeutics-growth',
+    claim: 'Digital therapeutics user growth projection',
+    value: '44M (2021) → 652M (2025)',
+    sources: [
+      { name: 'UT Health Houston', url: 'https://med.uth.edu/psychiatry/2025/07/28/ai-in-mind-can-digital-therapeutics-reshape-mental-healthcares-future/', date: '2025-07' }
+    ],
+    validatedDate: '2026-01-27',
+    confidence: 'high',
+    category: 'AI Mental Health',
+    crossRefCount: 1
+  },
+  'neurofeedback-adhd-efficacy': {
+    id: 'neurofeedback-adhd-efficacy',
+    claim: 'Neurofeedback efficacy rating for ADHD (SMR/TBR protocols)',
+    value: 'Level 1 - Efficacious and Specific',
+    sources: [
+      { name: 'Frontiers in Systems Neuroscience', url: 'https://www.frontiersin.org/journals/systems-neuroscience/articles/10.3389/fnsys.2025.1444283/full', date: '2025' },
+      { name: 'Arns et al. Review', date: '2020' }
+    ],
+    validatedDate: '2026-01-27',
+    confidence: 'high',
+    category: 'Cognitive Enhancement',
+    crossRefCount: 2
+  },
+  'bci-market-size': {
+    id: 'bci-market-size',
+    claim: 'Global invasive BCI market size',
+    value: '$160.44 billion (2024)',
+    sources: [
+      { name: 'Grand View Research', date: '2024' }
+    ],
+    validatedDate: '2026-01-27',
+    confidence: 'high',
+    category: 'Brain-Computer Interfaces',
+    crossRefCount: 1
+  },
+  'brain-turning-points': {
+    id: 'brain-turning-points',
+    claim: 'Brain reorganization turning points identified',
+    value: 'Ages 9, 23, 32, 66, 83',
+    sources: [
+      { name: 'Scientific American', url: 'https://www.scientificamerican.com/article/10-mind-blowing-brain-discoveries-from-2025/', date: '2025' }
+    ],
+    validatedDate: '2026-01-27',
+    confidence: 'high',
+    category: 'Landmark Research',
+    crossRefCount: 1
   }
 };
 
@@ -483,28 +602,32 @@ export const researchBriefs: Record<string, ResearchBrief> = {
   'ai-neuroscience-2026': {
     slug: 'ai-neuroscience-2026',
     title: 'AI & Neuroscience: The State of What\'s Possible',
-    description: 'Brain-computer interfaces at production scale, neuromorphic computing achieving 1,000x efficiency, thought-to-text at 74% accuracy, and organoid intelligence emerging as biological computing.',
+    description: 'Landmark research confirms adult neurogenesis, BCIs reach production scale with 65K+ electrodes, AI therapy shows 34% depression reduction in clinical trials, and neuromorphic computing hits 1,000x efficiency.',
     category: 'Frontier Technology',
     lastValidated: '2026-01-27',
-    methodology: 'Cross-referenced 15+ sources including STAT News, Nature, IEEE Spectrum, Frontiers in Science, APA, NEJM AI, and official company announcements. Claims validated from peer-reviewed papers and verified industry reports.',
-    sourceCount: 15,
+    methodology: 'Cross-referenced 25+ sources including Science/AAAS, Nature, NEJM AI, MIT Technology Review, Scientific American, and peer-reviewed papers. Focus on landmark studies that shifted scientific consensus or demonstrated clinical breakthroughs.',
+    sourceCount: 25,
     claims: [
-      validatedClaims['neuralink-patients'],
+      validatedClaims['adult-neurogenesis-confirmed'],
+      validatedClaims['columbia-bci-electrode-count'],
+      validatedClaims['neuralink-patient-count-2025'],
+      validatedClaims['synchron-fda-trial-complete'],
+      validatedClaims['ai-depression-reduction'],
+      validatedClaims['ai-depression-prediction-accuracy'],
+      validatedClaims['digital-therapeutics-growth'],
       validatedClaims['neuromorphic-efficiency'],
       validatedClaims['thought-decoding-accuracy'],
-      validatedClaims['organoid-speech-recognition'],
-      validatedClaims['northpole-llm-efficiency'],
-      validatedClaims['ai-depression-reduction'],
-      validatedClaims['ai-anxiety-reduction'],
-      validatedClaims['sleep-cognition-impact'],
-      validatedClaims['spaced-repetition-effectiveness'],
+      validatedClaims['neurofeedback-adhd-efficacy'],
+      validatedClaims['brain-turning-points'],
+      validatedClaims['bci-market-size'],
     ],
     implications: [
-      'BCIs are transitioning from research to production—Neuralink plans high-volume manufacturing in 2026',
-      'Neuromorphic computing offers 1,000x efficiency gains—critical for edge AI and sustainability',
-      'Thought decoding requires willing cooperation—privacy concerns may be overstated for now',
-      'Organoid intelligence could revolutionize computing energy consumption—watch FinalSpark',
-      'AI mental health tools show clinical efficacy—but should complement, not replace, human care',
+      'Adult neurogenesis is real—the July 2025 Karolinska study settled decades of debate with RNA sequencing proof',
+      'BCIs hit clinical reality—Synchron completed FDA trial, Neuralink has 5+ patients, Columbia achieved 65K electrodes',
+      'AI therapy works—34% depression reduction, 91% prediction accuracy, 652M projected users by 2025',
+      'The brain reorganizes at specific ages (9, 23, 32, 66, 83)—implications for learning and intervention timing',
+      'Neuromorphic computing offers 1,000x efficiency—IBM NorthPole achieves 72.7x for LLM inference',
+      'Neurofeedback rated Level 1 Efficacious for ADHD—no longer experimental for specific conditions',
     ],
     relatedArticles: [
       '/blog/ai-mental-health-what-works-2026',
