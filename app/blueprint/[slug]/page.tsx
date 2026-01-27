@@ -1,7 +1,6 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import {
-  ArrowRight,
   ChevronLeft,
   Play,
   Package,
@@ -10,9 +9,24 @@ import {
   ExternalLink,
 } from 'lucide-react'
 
+import dynamic from 'next/dynamic'
+
 import prototypesData from '@/data/ai-architecture/prototypes.json'
 import { CATEGORY_META, CLOUD_PROVIDER_META, DIFFICULTY_META } from '@/types/ai-architecture'
 import type { ArchitecturePrototype } from '@/types/ai-architecture'
+
+// Dynamic import for client-side ReactFlow component
+const BlueprintDiagram = dynamic(() => import('./BlueprintDiagram'), {
+  ssr: false,
+  loading: () => (
+    <div className="h-[500px] rounded-2xl border border-white/10 bg-slate-900/80 flex items-center justify-center">
+      <div className="flex flex-col items-center gap-3">
+        <div className="w-8 h-8 border-2 border-cyan-500 border-t-transparent rounded-full animate-spin" />
+        <span className="text-sm text-slate-400">Loading interactive diagram...</span>
+      </div>
+    </div>
+  ),
+})
 
 const blueprints = prototypesData as ArchitecturePrototype[]
 
@@ -139,7 +153,7 @@ export default async function BlueprintPage({ params }: Props) {
 
       {/* Content */}
       <section className="py-12">
-        <div className="mx-auto max-w-4xl px-6">
+        <div className="mx-auto max-w-5xl px-6">
           {/* Problem & Solution */}
           <div className="mb-12 grid gap-8 md:grid-cols-2">
             <div className="rounded-xl border border-red-500/20 bg-red-500/5 p-6">
@@ -158,15 +172,15 @@ export default async function BlueprintPage({ params }: Props) {
             <p className="text-slate-400 leading-relaxed">{blueprint.overview}</p>
           </div>
 
-          {/* Architecture Diagram */}
-          {blueprint.architecture.diagram && (
+          {/* Interactive Architecture Diagram */}
+          {blueprint.architecture.components.length > 0 && (
             <div className="mb-12">
               <h2 className="mb-4 text-2xl font-bold text-white">Architecture</h2>
-              <div className="rounded-xl border border-white/10 bg-white/5 p-6">
-                <pre className="overflow-x-auto text-sm text-slate-400">
-                  {blueprint.architecture.diagram}
-                </pre>
-              </div>
+              <BlueprintDiagram
+                components={blueprint.architecture.components}
+                flows={blueprint.architecture.flows}
+                title={`${blueprint.title} Architecture`}
+              />
             </div>
           )}
 
