@@ -163,7 +163,7 @@ export default async function BlogPostPage({
                   </div>
                   <div>
                     <div className="text-base font-semibold text-white">{post.author || 'Frank'}</div>
-                    <div className="text-sm text-white/50">Oracle AI Architect & Creator</div>
+                    <div className="text-sm text-white/50">AI Architect & Creator</div>
                   </div>
                 </div>
 

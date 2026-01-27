@@ -173,7 +173,7 @@ export default function StartPage() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="max-w-2xl text-lg leading-relaxed text-slate-400 sm:text-xl"
             >
-              Oracle AI Architect by day. Music creator by night.
+              AI Architect by day. Music creator by night.
               Everything I learn and build—shared openly.
             </motion.p>
           </div>

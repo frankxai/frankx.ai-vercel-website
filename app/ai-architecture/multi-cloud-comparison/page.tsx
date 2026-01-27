@@ -318,7 +318,7 @@ function HeroSection() {
           <p className="text-lg md:text-xl text-white/60 mb-8 leading-relaxed max-w-3xl">
             Independent analysis of AWS, Google Cloud, Azure, and Oracle Cloud for building
             AI-powered creator platforms. Real cost comparisons, architecture patterns,
-            and decision frameworks from an Oracle AI Architect.
+            and decision frameworks from an AI Architect.
           </p>
 
           <div className="flex flex-wrap gap-3">

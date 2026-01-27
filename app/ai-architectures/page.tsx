@@ -436,7 +436,7 @@ export default function AIArchitecturesPage() {
             >
               <h2 className="mb-4 text-2xl font-bold text-white">Need a Custom Architecture?</h2>
               <p className="mb-8 text-slate-400">
-                Work with an Oracle AI Architect to design production-ready solutions for your specific needs.
+                Work with an AI Architect to design production-ready solutions for your specific needs.
               </p>
               <div className="flex flex-wrap justify-center gap-4">
                 <Link

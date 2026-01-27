@@ -5,7 +5,7 @@ import AIArchitectClient from './AIArchitectClient'
 export const metadata: Metadata = {
   title: 'AI Architect | Enterprise AI Architecture Methodology',
   description:
-    'A battle-tested methodology for designing production AI systems. From Oracle AI Architect experience building enterprise solutions across AWS, GCP, Azure, and OCI.',
+    'A battle-tested methodology for designing production AI systems. From enterprise AI architecture experience building solutions across AWS, GCP, Azure, and OCI.',
   keywords: [
     'AI architecture',
     'enterprise AI',
