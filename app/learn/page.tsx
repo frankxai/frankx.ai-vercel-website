@@ -17,17 +17,14 @@ import {
 } from 'lucide-react'
 import { learningPaths, featuredCreators, type LearningPath, type VideoResource } from '@/data/learning-paths'
 
-const iconMap = {
-  brain: Brain,
-  music: Music2,
-  zap: Zap,
-  image: ImageIcon,
-} as const
-
-type IconKey = keyof typeof iconMap
-
-function getIcon(key: string): React.ElementType {
-  return (iconMap as Record<string, React.ElementType>)[key] ?? BookOpen
+function getIcon(key: string): React.ComponentType<{ className?: string }> {
+  const icons: Record<string, React.ComponentType<{ className?: string }>> = {
+    brain: Brain,
+    music: Music2,
+    zap: Zap,
+    image: ImageIcon,
+  }
+  return icons[key] ?? BookOpen
 }
 
 const colorMap: Record<string, string> = {

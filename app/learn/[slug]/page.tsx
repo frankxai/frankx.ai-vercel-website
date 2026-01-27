@@ -20,15 +20,14 @@ import {
 } from 'lucide-react'
 import { learningPaths, type VideoResource } from '@/data/learning-paths'
 
-const iconMap = {
-  brain: Brain,
-  music: Music2,
-  zap: Zap,
-  image: ImageIcon,
-} as const
-
-function getIcon(key: string): React.ElementType {
-  return (iconMap as Record<string, React.ElementType>)[key] ?? BookOpen
+function getIcon(key: string): React.ComponentType<{ className?: string }> {
+  const icons: Record<string, React.ComponentType<{ className?: string }>> = {
+    brain: Brain,
+    music: Music2,
+    zap: Zap,
+    image: ImageIcon,
+  }
+  return icons[key] ?? BookOpen
 }
 
 const defaultColors = { bg: 'bg-emerald-500', text: 'text-emerald-400', border: 'border-emerald-500/20', gradientFrom: 'from-emerald-500/10' }
