@@ -201,7 +201,26 @@ export default function BlueprintsPage() {
         </div>
       </section>
 
-      {/* CTA */}
+      {/* Academy CTA */}
+      <section className="py-16 border-t border-white/5">
+        <div className="mx-auto max-w-4xl px-6 text-center">
+          <h2 className="mb-4 text-2xl font-bold text-white">Full Blueprint Collection</h2>
+          <p className="mb-6 text-slate-400">
+            Explore the complete library with advanced filtering, implementation guides, and deep-dive tutorials.
+          </p>
+          <a
+            href="https://aiarchitectacademy.com/blueprints"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 px-6 py-3 font-semibold text-white transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-cyan-500/25"
+          >
+            Visit AI Architect Academy
+            <ArrowRight className="h-4 w-4" />
+          </a>
+        </div>
+      </section>
+
+      {/* Prototypes CTA */}
       <section className="py-16 border-t border-white/5">
         <div className="mx-auto max-w-4xl px-6 text-center">
           <h2 className="mb-4 text-2xl font-bold text-white">Want to Try These Patterns?</h2>
