@@ -2,76 +2,52 @@
 
 import { useState, useEffect } from 'react';
 import {
-  Calendar,
-  Grid3X3,
-  Plus,
   Sparkles,
-  Send,
   Clock,
-  CheckCircle2,
-  Image as ImageIcon,
-  FileText,
   Linkedin,
   Twitter,
   Instagram,
   Youtube,
   RefreshCw,
-  Eye,
-  Trash2,
-  Edit3,
   Copy,
   ExternalLink,
-  Loader2,
   Check,
-  X
+  X,
+  ChevronDown,
+  ChevronUp,
+  Image as ImageIcon
 } from 'lucide-react';
 
-// Toast notification component
-function Toast({ message, type, onClose }: { message: string; type: 'success' | 'error' | 'info'; onClose: () => void }) {
+interface ContentItem {
+  id: string;
+  title: string;
+  platform: 'linkedin' | 'twitter' | 'instagram' | 'youtube';
+  status: 'draft' | 'scheduled' | 'published';
+  caption: string;
+  imagePath?: string;
+  imageUrl?: string;
+  blogUrl?: string;
+  createdAt: string;
+  bestTime?: string;
+  targetAudience?: string;
+}
+
+// Toast component
+function Toast({ message, onClose }: { message: string; onClose: () => void }) {
   useEffect(() => {
-    const timer = setTimeout(onClose, 4000);
+    const timer = setTimeout(onClose, 3000);
     return () => clearTimeout(timer);
   }, [onClose]);
 
-  const bgColor = type === 'success' ? 'bg-green-500' : type === 'error' ? 'bg-red-500' : 'bg-blue-500';
-
   return (
-    <div className={`fixed bottom-4 right-4 ${bgColor} text-white px-6 py-3 rounded-xl shadow-lg flex items-center gap-3 z-50 animate-slide-up`}>
-      {type === 'success' && <Check className="w-5 h-5" />}
-      {type === 'error' && <X className="w-5 h-5" />}
-      {type === 'info' && <Sparkles className="w-5 h-5" />}
+    <div className="fixed bottom-4 right-4 bg-green-500 text-white px-6 py-3 rounded-xl shadow-lg flex items-center gap-3 z-50 animate-slide-up">
+      <Check className="w-5 h-5" />
       <span>{message}</span>
       <button onClick={onClose} className="ml-2 hover:opacity-80">
         <X className="w-4 h-4" />
       </button>
     </div>
   );
-}
-
-interface ContentItem {
-  id: string;
-  title: string;
-  platform: 'linkedin' | 'twitter' | 'instagram' | 'youtube';
-  status: 'draft' | 'scheduled' | 'published' | 'generating';
-  scheduledFor?: string;
-  imagePath?: string;
-  captionPath?: string;
-  createdAt: string;
-  blogSlug?: string;
-}
-
-interface ContentQueue {
-  pending: QueueTask[];
-  completed: QueueTask[];
-}
-
-interface QueueTask {
-  id: string;
-  type: 'generate_social' | 'generate_image' | 'publish';
-  params: Record<string, string>;
-  status: 'pending' | 'processing' | 'completed' | 'failed';
-  createdAt: string;
-  completedAt?: string;
 }
 
 const platformIcons = {
@@ -82,44 +58,26 @@ const platformIcons = {
 };
 
 const platformColors = {
-  linkedin: 'bg-blue-500',
+  linkedin: 'bg-blue-600',
   twitter: 'bg-sky-500',
   instagram: 'bg-gradient-to-br from-purple-500 to-pink-500',
-  youtube: 'bg-red-500',
-};
-
-const statusColors = {
-  draft: 'bg-gray-500',
-  scheduled: 'bg-amber-500',
-  published: 'bg-green-500',
-  generating: 'bg-purple-500 animate-pulse',
+  youtube: 'bg-red-600',
 };
 
 export default function ContentStudioPage() {
-  const [view, setView] = useState<'calendar' | 'grid'>('grid');
   const [content, setContent] = useState<ContentItem[]>([]);
-  const [queue, setQueue] = useState<ContentQueue>({ pending: [], completed: [] });
   const [loading, setLoading] = useState(true);
   const [selectedPlatform, setSelectedPlatform] = useState<string>('all');
-  const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' | 'info' } | null>(null);
-  const [loadingAction, setLoadingAction] = useState<string | null>(null);
-
-  const showToast = (message: string, type: 'success' | 'error' | 'info' = 'info') => {
-    setToast({ message, type });
-  };
+  const [expandedId, setExpandedId] = useState<string | null>(null);
+  const [toast, setToast] = useState<string | null>(null);
+  const [copiedId, setCopiedId] = useState<string | null>(null);
 
   useEffect(() => {
     loadContent();
-    loadQueue();
-    // Auto-refresh every 10 seconds
-    const interval = setInterval(() => {
-      loadContent();
-      loadQueue();
-    }, 10000);
-    return () => clearInterval(interval);
   }, []);
 
   const loadContent = async () => {
+    setLoading(true);
     try {
       const res = await fetch('/api/content-studio/content');
       if (res.ok) {
@@ -133,55 +91,29 @@ export default function ContentStudioPage() {
     }
   };
 
-  const loadQueue = async () => {
+  const copyToClipboard = async (text: string, id: string) => {
     try {
-      const res = await fetch('/api/content-studio/queue');
-      if (res.ok) {
-        const data = await res.json();
-        setQueue(data);
-      }
+      await navigator.clipboard.writeText(text);
+      setCopiedId(id);
+      setToast('Copied to clipboard!');
+      setTimeout(() => setCopiedId(null), 2000);
     } catch (error) {
-      console.error('Failed to load queue:', error);
+      console.error('Failed to copy:', error);
     }
-  };
-
-  const triggerAction = async (action: string, params: Record<string, string> = {}) => {
-    setLoadingAction(action);
-    try {
-      const res = await fetch('/api/content-studio/trigger', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ action, params }),
-      });
-      if (res.ok) {
-        const data = await res.json();
-        showToast(`✅ Task queued! Run "claude /content-studio watch" to process.`, 'success');
-        loadQueue();
-      } else {
-        showToast('Failed to queue task', 'error');
-      }
-    } catch (error) {
-      console.error('Failed to trigger action:', error);
-      showToast('Failed to queue task', 'error');
-    } finally {
-      setLoadingAction(null);
-    }
-  };
-
-  const copyCommand = (command: string) => {
-    navigator.clipboard.writeText(command);
-    showToast(`Copied: ${command}`, 'success');
   };
 
   const filteredContent = selectedPlatform === 'all'
     ? content
     : content.filter(c => c.platform === selectedPlatform);
 
+  const linkedinCount = content.filter(c => c.platform === 'linkedin').length;
+  const twitterCount = content.filter(c => c.platform === 'twitter').length;
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
       {/* Header */}
-      <header className="border-b border-slate-700/50 bg-slate-900/50 backdrop-blur-xl sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4">
+      <header className="border-b border-slate-700/50 bg-slate-900/80 backdrop-blur-xl sticky top-0 z-40">
+        <div className="max-w-5xl mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <div className="p-2 bg-gradient-to-br from-amber-500 to-orange-600 rounded-xl">
@@ -189,339 +121,239 @@ export default function ContentStudioPage() {
               </div>
               <div>
                 <h1 className="text-xl font-bold text-white">Content Studio</h1>
-                <p className="text-sm text-slate-400">Visual content management + Claude Code automation</p>
+                <p className="text-sm text-slate-400">{linkedinCount} LinkedIn · {twitterCount} Twitter threads</p>
               </div>
             </div>
-
-            <div className="flex items-center gap-3">
-              {/* View Toggle */}
-              <div className="flex bg-slate-800 rounded-lg p-1">
-                <button
-                  onClick={() => setView('grid')}
-                  className={`p-2 rounded-md transition-colors ${
-                    view === 'grid' ? 'bg-amber-500 text-white' : 'text-slate-400 hover:text-white'
-                  }`}
-                >
-                  <Grid3X3 className="w-5 h-5" />
-                </button>
-                <button
-                  onClick={() => setView('calendar')}
-                  className={`p-2 rounded-md transition-colors ${
-                    view === 'calendar' ? 'bg-amber-500 text-white' : 'text-slate-400 hover:text-white'
-                  }`}
-                >
-                  <Calendar className="w-5 h-5" />
-                </button>
-              </div>
-
-              {/* Refresh */}
-              <button
-                onClick={() => { loadContent(); loadQueue(); }}
-                className="p-2 text-slate-400 hover:text-white transition-colors"
-              >
-                <RefreshCw className="w-5 h-5" />
-              </button>
-            </div>
+            <button
+              onClick={loadContent}
+              disabled={loading}
+              className="p-2 text-slate-400 hover:text-white transition-colors disabled:opacity-50"
+            >
+              <RefreshCw className={`w-5 h-5 ${loading ? 'animate-spin' : ''}`} />
+            </button>
           </div>
         </div>
       </header>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+      <div className="max-w-5xl mx-auto px-4 py-6">
+        {/* Platform Filter */}
+        <div className="flex items-center gap-2 mb-6 overflow-x-auto pb-2">
+          {[
+            { key: 'all', label: 'All', count: content.length },
+            { key: 'linkedin', label: 'LinkedIn', count: linkedinCount },
+            { key: 'twitter', label: 'Twitter', count: twitterCount },
+          ].map(({ key, label, count }) => (
+            <button
+              key={key}
+              onClick={() => setSelectedPlatform(key)}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-all whitespace-nowrap flex items-center gap-2 ${
+                selectedPlatform === key
+                  ? 'bg-amber-500 text-white'
+                  : 'bg-slate-800 text-slate-400 hover:text-white hover:bg-slate-700'
+              }`}
+            >
+              {label}
+              <span className={`text-xs px-1.5 py-0.5 rounded-full ${
+                selectedPlatform === key ? 'bg-amber-600' : 'bg-slate-700'
+              }`}>
+                {count}
+              </span>
+            </button>
+          ))}
+        </div>
 
-          {/* Main Content Area */}
-          <div className="lg:col-span-3 space-y-6">
+        {/* Content List */}
+        {loading ? (
+          <div className="flex items-center justify-center py-20">
+            <RefreshCw className="w-8 h-8 text-amber-500 animate-spin" />
+          </div>
+        ) : filteredContent.length === 0 ? (
+          <div className="text-center py-20">
+            <p className="text-slate-400">No content found</p>
+            <p className="text-sm text-slate-500 mt-2">
+              Generate content with: <code className="text-amber-400">claude &quot;/content-studio social [blog-slug]&quot;</code>
+            </p>
+          </div>
+        ) : (
+          <div className="space-y-4">
+            {filteredContent.map((item) => {
+              const PlatformIcon = platformIcons[item.platform];
+              const isExpanded = expandedId === item.id;
+              const isCopied = copiedId === item.id;
 
-            {/* Quick Actions */}
-            <div className="bg-slate-800/50 rounded-2xl p-6 border border-slate-700/50">
-              <h2 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
-                <Sparkles className="w-5 h-5 text-amber-500" />
-                Quick Actions
-              </h2>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                <button
-                  onClick={() => triggerAction('generate_social_pack')}
-                  disabled={loadingAction === 'generate_social_pack'}
-                  className="flex flex-col items-center gap-2 p-4 bg-gradient-to-br from-blue-500/20 to-blue-600/20 hover:from-blue-500/30 hover:to-blue-600/30 border border-blue-500/30 rounded-xl transition-all group disabled:opacity-50"
+              return (
+                <div
+                  key={item.id}
+                  className="bg-slate-800/50 rounded-2xl border border-slate-700/50 overflow-hidden"
                 >
-                  <div className="p-3 bg-blue-500 rounded-xl group-hover:scale-110 transition-transform">
-                    {loadingAction === 'generate_social_pack' ? (
-                      <Loader2 className="w-5 h-5 text-white animate-spin" />
+                  {/* Card Header */}
+                  <div className="p-4 flex items-start gap-4">
+                    {/* Image Preview */}
+                    {item.imageUrl ? (
+                      <div className="w-20 h-20 rounded-xl overflow-hidden flex-shrink-0 bg-slate-700">
+                        <img
+                          src={item.imageUrl}
+                          alt={item.title}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
                     ) : (
-                      <Linkedin className="w-5 h-5 text-white" />
+                      <div className="w-20 h-20 rounded-xl bg-slate-700 flex items-center justify-center flex-shrink-0">
+                        <ImageIcon className="w-8 h-8 text-slate-500" />
+                      </div>
                     )}
+
+                    {/* Content Info */}
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className={`p-1.5 ${platformColors[item.platform]} rounded-lg`}>
+                          <PlatformIcon className="w-3.5 h-3.5 text-white" />
+                        </span>
+                        <h3 className="font-medium text-white truncate">{item.title}</h3>
+                      </div>
+
+                      <p className="text-sm text-slate-400 line-clamp-2 mb-2">
+                        {item.caption.split('\n')[0]}
+                      </p>
+
+                      <div className="flex items-center gap-4 text-xs text-slate-500">
+                        {item.bestTime && (
+                          <span className="flex items-center gap-1">
+                            <Clock className="w-3 h-3" />
+                            {item.bestTime}
+                          </span>
+                        )}
+                        {item.blogUrl && (
+                          <a
+                            href={item.blogUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-1 hover:text-amber-400 transition-colors"
+                          >
+                            <ExternalLink className="w-3 h-3" />
+                            View article
+                          </a>
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Actions */}
+                    <div className="flex items-center gap-2 flex-shrink-0">
+                      <button
+                        onClick={() => copyToClipboard(item.caption, item.id)}
+                        className={`px-4 py-2 rounded-xl font-medium text-sm transition-all flex items-center gap-2 ${
+                          isCopied
+                            ? 'bg-green-500 text-white'
+                            : 'bg-amber-500 hover:bg-amber-600 text-white'
+                        }`}
+                      >
+                        {isCopied ? (
+                          <>
+                            <Check className="w-4 h-4" />
+                            Copied!
+                          </>
+                        ) : (
+                          <>
+                            <Copy className="w-4 h-4" />
+                            Copy
+                          </>
+                        )}
+                      </button>
+                      <button
+                        onClick={() => setExpandedId(isExpanded ? null : item.id)}
+                        className="p-2 text-slate-400 hover:text-white transition-colors"
+                      >
+                        {isExpanded ? (
+                          <ChevronUp className="w-5 h-5" />
+                        ) : (
+                          <ChevronDown className="w-5 h-5" />
+                        )}
+                      </button>
+                    </div>
                   </div>
-                  <span className="text-sm text-white font-medium">
-                    {loadingAction === 'generate_social_pack' ? 'Queuing...' : 'Generate LinkedIn'}
-                  </span>
-                </button>
 
-                <button
-                  onClick={() => triggerAction('generate_twitter_thread')}
-                  disabled={loadingAction === 'generate_twitter_thread'}
-                  className="flex flex-col items-center gap-2 p-4 bg-gradient-to-br from-sky-500/20 to-sky-600/20 hover:from-sky-500/30 hover:to-sky-600/30 border border-sky-500/30 rounded-xl transition-all group disabled:opacity-50"
-                >
-                  <div className="p-3 bg-sky-500 rounded-xl group-hover:scale-110 transition-transform">
-                    <Twitter className="w-5 h-5 text-white" />
-                  </div>
-                  <span className="text-sm text-white font-medium">Generate Thread</span>
-                </button>
-
-                <button
-                  onClick={() => triggerAction('generate_images')}
-                  className="flex flex-col items-center gap-2 p-4 bg-gradient-to-br from-purple-500/20 to-purple-600/20 hover:from-purple-500/30 hover:to-purple-600/30 border border-purple-500/30 rounded-xl transition-all group"
-                >
-                  <div className="p-3 bg-purple-500 rounded-xl group-hover:scale-110 transition-transform">
-                    <ImageIcon className="w-5 h-5 text-white" />
-                  </div>
-                  <span className="text-sm text-white font-medium">Generate Images</span>
-                </button>
-
-                <button
-                  onClick={() => triggerAction('remix_latest_blog')}
-                  className="flex flex-col items-center gap-2 p-4 bg-gradient-to-br from-amber-500/20 to-orange-600/20 hover:from-amber-500/30 hover:to-orange-600/30 border border-amber-500/30 rounded-xl transition-all group"
-                >
-                  <div className="p-3 bg-gradient-to-br from-amber-500 to-orange-600 rounded-xl group-hover:scale-110 transition-transform">
-                    <FileText className="w-5 h-5 text-white" />
-                  </div>
-                  <span className="text-sm text-white font-medium">Remix Blog</span>
-                </button>
-              </div>
-            </div>
-
-            {/* Platform Filter */}
-            <div className="flex items-center gap-2 overflow-x-auto pb-2">
-              {['all', 'linkedin', 'twitter', 'instagram', 'youtube'].map((platform) => (
-                <button
-                  key={platform}
-                  onClick={() => setSelectedPlatform(platform)}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-colors whitespace-nowrap ${
-                    selectedPlatform === platform
-                      ? 'bg-amber-500 text-white'
-                      : 'bg-slate-800 text-slate-400 hover:text-white'
-                  }`}
-                >
-                  {platform.charAt(0).toUpperCase() + platform.slice(1)}
-                </button>
-              ))}
-            </div>
-
-            {/* Content Grid */}
-            {loading ? (
-              <div className="flex items-center justify-center py-20">
-                <RefreshCw className="w-8 h-8 text-amber-500 animate-spin" />
-              </div>
-            ) : filteredContent.length === 0 ? (
-              <div className="bg-slate-800/50 rounded-2xl p-12 border border-slate-700/50 text-center">
-                <div className="p-4 bg-slate-700/50 rounded-full w-fit mx-auto mb-4">
-                  <FileText className="w-8 h-8 text-slate-500" />
-                </div>
-                <h3 className="text-lg font-semibold text-white mb-2">No content yet</h3>
-                <p className="text-slate-400 mb-6">Generate your first social content from the quick actions above</p>
-                <button
-                  onClick={() => triggerAction('generate_social_pack')}
-                  className="inline-flex items-center gap-2 px-6 py-3 bg-amber-500 text-white rounded-xl font-medium hover:bg-amber-600 transition-colors"
-                >
-                  <Plus className="w-5 h-5" />
-                  Generate Content
-                </button>
-              </div>
-            ) : (
-              <div className={view === 'grid' ? 'grid grid-cols-1 sm:grid-cols-2 gap-4' : 'space-y-4'}>
-                {filteredContent.map((item) => {
-                  const PlatformIcon = platformIcons[item.platform];
-                  return (
-                    <div
-                      key={item.id}
-                      className="bg-slate-800/50 rounded-xl border border-slate-700/50 overflow-hidden hover:border-slate-600/50 transition-colors group"
-                    >
-                      {/* Image Preview */}
-                      {item.imagePath && (
-                        <div className="aspect-video bg-slate-900 relative overflow-hidden">
-                          <img
-                            src={item.imagePath}
-                            alt={item.title}
-                            className="w-full h-full object-cover"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 to-transparent" />
-
-                          {/* Platform Badge */}
-                          <div className={`absolute top-3 left-3 p-2 ${platformColors[item.platform]} rounded-lg`}>
-                            <PlatformIcon className="w-4 h-4 text-white" />
+                  {/* Expanded Content */}
+                  {isExpanded && (
+                    <div className="border-t border-slate-700/50 p-4 bg-slate-900/50">
+                      <div className="flex gap-4">
+                        {/* Full Image */}
+                        {item.imageUrl && (
+                          <div className="w-48 flex-shrink-0">
+                            <img
+                              src={item.imageUrl}
+                              alt={item.title}
+                              className="w-full rounded-xl"
+                            />
+                            <button
+                              onClick={() => {
+                                const link = document.createElement('a');
+                                link.href = item.imageUrl!;
+                                link.download = `${item.id}.png`;
+                                link.click();
+                              }}
+                              className="mt-2 w-full text-center text-xs text-slate-400 hover:text-amber-400 transition-colors"
+                            >
+                              Download image
+                            </button>
                           </div>
-
-                          {/* Status Badge */}
-                          <div className={`absolute top-3 right-3 px-3 py-1 ${statusColors[item.status]} rounded-full text-xs font-medium text-white flex items-center gap-1`}>
-                            {item.status === 'scheduled' && <Clock className="w-3 h-3" />}
-                            {item.status === 'published' && <CheckCircle2 className="w-3 h-3" />}
-                            {item.status.charAt(0).toUpperCase() + item.status.slice(1)}
-                          </div>
-                        </div>
-                      )}
-
-                      {/* Content */}
-                      <div className="p-4">
-                        <h3 className="font-medium text-white mb-2 line-clamp-2">{item.title}</h3>
-
-                        {item.scheduledFor && (
-                          <p className="text-sm text-slate-400 flex items-center gap-1 mb-3">
-                            <Clock className="w-4 h-4" />
-                            {new Date(item.scheduledFor).toLocaleDateString('en-US', {
-                              weekday: 'short',
-                              month: 'short',
-                              day: 'numeric',
-                              hour: 'numeric',
-                              minute: '2-digit'
-                            })}
-                          </p>
                         )}
 
-                        {/* Actions */}
-                        <div className="flex items-center gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                          <button className="p-2 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg transition-colors">
-                            <Eye className="w-4 h-4" />
-                          </button>
-                          <button className="p-2 text-slate-400 hover:text-white hover:bg-slate-700 rounded-lg transition-colors">
-                            <Edit3 className="w-4 h-4" />
-                          </button>
-                          <button className="p-2 text-slate-400 hover:text-red-400 hover:bg-slate-700 rounded-lg transition-colors">
-                            <Trash2 className="w-4 h-4" />
-                          </button>
-                          <div className="flex-1" />
-                          <button className="px-3 py-1.5 bg-green-500 text-white text-sm font-medium rounded-lg hover:bg-green-600 transition-colors flex items-center gap-1">
-                            <Send className="w-3 h-3" />
-                            Publish
-                          </button>
+                        {/* Full Caption */}
+                        <div className="flex-1">
+                          <div className="flex items-center justify-between mb-2">
+                            <span className="text-xs font-medium text-slate-500 uppercase tracking-wider">
+                              {item.platform === 'twitter' ? 'Thread' : 'Post Copy'}
+                            </span>
+                            <button
+                              onClick={() => copyToClipboard(item.caption, item.id)}
+                              className="text-xs text-amber-400 hover:text-amber-300 flex items-center gap-1"
+                            >
+                              <Copy className="w-3 h-3" />
+                              Copy all
+                            </button>
+                          </div>
+                          <pre className="text-sm text-slate-300 whitespace-pre-wrap font-sans bg-slate-800/50 rounded-xl p-4 max-h-96 overflow-y-auto">
+                            {item.caption}
+                          </pre>
+                          {item.targetAudience && (
+                            <p className="mt-3 text-xs text-slate-500">
+                              <strong>Target:</strong> {item.targetAudience}
+                            </p>
+                          )}
                         </div>
                       </div>
                     </div>
-                  );
-                })}
-              </div>
-            )}
+                  )}
+                </div>
+              );
+            })}
           </div>
+        )}
 
-          {/* Sidebar - Queue */}
-          <div className="space-y-6">
-            {/* Task Queue */}
-            <div className="bg-slate-800/50 rounded-2xl p-6 border border-slate-700/50">
-              <h2 className="text-lg font-semibold text-white mb-4 flex items-center gap-2">
-                <Clock className="w-5 h-5 text-amber-500" />
-                Task Queue
-              </h2>
-
-              {queue.pending.length === 0 ? (
-                <p className="text-sm text-slate-500 text-center py-4">No pending tasks</p>
-              ) : (
-                <div className="space-y-3">
-                  {queue.pending.map((task) => (
-                    <div
-                      key={task.id}
-                      className="p-3 bg-slate-900/50 rounded-lg border border-slate-700/50"
-                    >
-                      <div className="flex items-center gap-2 mb-1">
-                        <div className={`w-2 h-2 rounded-full ${
-                          task.status === 'processing' ? 'bg-amber-500 animate-pulse' : 'bg-slate-500'
-                        }`} />
-                        <span className="text-sm font-medium text-white">
-                          {task.type.replace(/_/g, ' ')}
-                        </span>
-                      </div>
-                      <p className="text-xs text-slate-500">
-                        {new Date(task.createdAt).toLocaleTimeString()}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
-
-            {/* Stats */}
-            <div className="bg-slate-800/50 rounded-2xl p-6 border border-slate-700/50">
-              <h2 className="text-lg font-semibold text-white mb-4">This Week</h2>
-              <div className="grid grid-cols-2 gap-4">
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-amber-500">
-                    {content.filter(c => c.status === 'published').length}
-                  </div>
-                  <div className="text-sm text-slate-400">Published</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-blue-500">
-                    {content.filter(c => c.status === 'scheduled').length}
-                  </div>
-                  <div className="text-sm text-slate-400">Scheduled</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-purple-500">
-                    {content.filter(c => c.status === 'draft').length}
-                  </div>
-                  <div className="text-sm text-slate-400">Drafts</div>
-                </div>
-                <div className="text-center">
-                  <div className="text-3xl font-bold text-green-500">
-                    {queue.completed.length}
-                  </div>
-                  <div className="text-sm text-slate-400">Generated</div>
-                </div>
-              </div>
-            </div>
-
-            {/* Claude Code Status */}
-            <div className="bg-gradient-to-br from-amber-500/20 to-orange-600/20 rounded-2xl p-6 border border-amber-500/30">
-              <h2 className="text-lg font-semibold text-white mb-2 flex items-center gap-2">
-                <Sparkles className="w-5 h-5 text-amber-500" />
-                Claude Code
-              </h2>
-              <p className="text-sm text-slate-300 mb-4">
-                Run the watcher on your desktop to process queued tasks automatically.
-              </p>
-              <div className="space-y-2">
-                <button
-                  onClick={() => copyCommand('claude "/content-studio watch"')}
-                  className="w-full flex items-center justify-between p-3 bg-slate-900/50 rounded-lg text-xs text-amber-400 font-mono hover:bg-slate-900/70 transition-colors group"
-                >
-                  <span>claude &quot;/content-studio watch&quot;</span>
-                  <Copy className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
-                </button>
-                <a
-                  href="https://github.com/gitroomhq/postiz-app"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 p-2 text-sm text-slate-400 hover:text-white transition-colors"
-                >
-                  <ExternalLink className="w-4 h-4" />
-                  Or try Postiz (full open source scheduler)
-                </a>
-              </div>
-            </div>
+        {/* Help Section */}
+        <div className="mt-8 p-6 bg-slate-800/30 rounded-2xl border border-slate-700/30">
+          <h3 className="text-sm font-medium text-white mb-3">Generate more content</h3>
+          <div className="space-y-2 text-sm text-slate-400">
+            <p>Run in Claude Code:</p>
+            <code className="block p-3 bg-slate-900/50 rounded-lg text-amber-400 font-mono text-xs">
+              claude &quot;/content-studio social enterprise-agent-roadmap&quot;
+            </code>
+            <p className="text-xs text-slate-500 mt-2">
+              Replace with any blog slug from frankx.ai/blog/[slug]
+            </p>
           </div>
         </div>
       </div>
 
-      {/* Toast Notification */}
-      {toast && (
-        <Toast
-          message={toast.message}
-          type={toast.type}
-          onClose={() => setToast(null)}
-        />
-      )}
+      {/* Toast */}
+      {toast && <Toast message={toast} onClose={() => setToast(null)} />}
 
       <style jsx global>{`
         @keyframes slide-up {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
+          from { opacity: 0; transform: translateY(20px); }
+          to { opacity: 1; transform: translateY(0); }
         }
-        .animate-slide-up {
-          animation: slide-up 0.3s ease-out;
-        }
+        .animate-slide-up { animation: slide-up 0.3s ease-out; }
       `}</style>
     </div>
   );
