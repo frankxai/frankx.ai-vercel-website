@@ -18,8 +18,35 @@ import {
   RefreshCw,
   Eye,
   Trash2,
-  Edit3
+  Edit3,
+  Copy,
+  ExternalLink,
+  Loader2,
+  Check,
+  X
 } from 'lucide-react';
+
+// Toast notification component
+function Toast({ message, type, onClose }: { message: string; type: 'success' | 'error' | 'info'; onClose: () => void }) {
+  useEffect(() => {
+    const timer = setTimeout(onClose, 4000);
+    return () => clearTimeout(timer);
+  }, [onClose]);
+
+  const bgColor = type === 'success' ? 'bg-green-500' : type === 'error' ? 'bg-red-500' : 'bg-blue-500';
+
+  return (
+    <div className={`fixed bottom-4 right-4 ${bgColor} text-white px-6 py-3 rounded-xl shadow-lg flex items-center gap-3 z-50 animate-slide-up`}>
+      {type === 'success' && <Check className="w-5 h-5" />}
+      {type === 'error' && <X className="w-5 h-5" />}
+      {type === 'info' && <Sparkles className="w-5 h-5" />}
+      <span>{message}</span>
+      <button onClick={onClose} className="ml-2 hover:opacity-80">
+        <X className="w-4 h-4" />
+      </button>
+    </div>
+  );
+}
 
 interface ContentItem {
   id: string;
@@ -74,10 +101,22 @@ export default function ContentStudioPage() {
   const [queue, setQueue] = useState<ContentQueue>({ pending: [], completed: [] });
   const [loading, setLoading] = useState(true);
   const [selectedPlatform, setSelectedPlatform] = useState<string>('all');
+  const [toast, setToast] = useState<{ message: string; type: 'success' | 'error' | 'info' } | null>(null);
+  const [loadingAction, setLoadingAction] = useState<string | null>(null);
+
+  const showToast = (message: string, type: 'success' | 'error' | 'info' = 'info') => {
+    setToast({ message, type });
+  };
 
   useEffect(() => {
     loadContent();
     loadQueue();
+    // Auto-refresh every 10 seconds
+    const interval = setInterval(() => {
+      loadContent();
+      loadQueue();
+    }, 10000);
+    return () => clearInterval(interval);
   }, []);
 
   const loadContent = async () => {
@@ -107,6 +146,7 @@ export default function ContentStudioPage() {
   };
 
   const triggerAction = async (action: string, params: Record<string, string> = {}) => {
+    setLoadingAction(action);
     try {
       const res = await fetch('/api/content-studio/trigger', {
         method: 'POST',
@@ -114,11 +154,23 @@ export default function ContentStudioPage() {
         body: JSON.stringify({ action, params }),
       });
       if (res.ok) {
+        const data = await res.json();
+        showToast(`✅ Task queued! Run "claude /content-studio watch" to process.`, 'success');
         loadQueue();
+      } else {
+        showToast('Failed to queue task', 'error');
       }
     } catch (error) {
       console.error('Failed to trigger action:', error);
+      showToast('Failed to queue task', 'error');
+    } finally {
+      setLoadingAction(null);
     }
+  };
+
+  const copyCommand = (command: string) => {
+    navigator.clipboard.writeText(command);
+    showToast(`Copied: ${command}`, 'success');
   };
 
   const filteredContent = selectedPlatform === 'all'
@@ -189,17 +241,25 @@ export default function ContentStudioPage() {
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                 <button
                   onClick={() => triggerAction('generate_social_pack')}
-                  className="flex flex-col items-center gap-2 p-4 bg-gradient-to-br from-blue-500/20 to-blue-600/20 hover:from-blue-500/30 hover:to-blue-600/30 border border-blue-500/30 rounded-xl transition-all group"
+                  disabled={loadingAction === 'generate_social_pack'}
+                  className="flex flex-col items-center gap-2 p-4 bg-gradient-to-br from-blue-500/20 to-blue-600/20 hover:from-blue-500/30 hover:to-blue-600/30 border border-blue-500/30 rounded-xl transition-all group disabled:opacity-50"
                 >
                   <div className="p-3 bg-blue-500 rounded-xl group-hover:scale-110 transition-transform">
-                    <Linkedin className="w-5 h-5 text-white" />
+                    {loadingAction === 'generate_social_pack' ? (
+                      <Loader2 className="w-5 h-5 text-white animate-spin" />
+                    ) : (
+                      <Linkedin className="w-5 h-5 text-white" />
+                    )}
                   </div>
-                  <span className="text-sm text-white font-medium">Generate LinkedIn</span>
+                  <span className="text-sm text-white font-medium">
+                    {loadingAction === 'generate_social_pack' ? 'Queuing...' : 'Generate LinkedIn'}
+                  </span>
                 </button>
 
                 <button
                   onClick={() => triggerAction('generate_twitter_thread')}
-                  className="flex flex-col items-center gap-2 p-4 bg-gradient-to-br from-sky-500/20 to-sky-600/20 hover:from-sky-500/30 hover:to-sky-600/30 border border-sky-500/30 rounded-xl transition-all group"
+                  disabled={loadingAction === 'generate_twitter_thread'}
+                  className="flex flex-col items-center gap-2 p-4 bg-gradient-to-br from-sky-500/20 to-sky-600/20 hover:from-sky-500/30 hover:to-sky-600/30 border border-sky-500/30 rounded-xl transition-all group disabled:opacity-50"
                 >
                   <div className="p-3 bg-sky-500 rounded-xl group-hover:scale-110 transition-transform">
                     <Twitter className="w-5 h-5 text-white" />
@@ -416,13 +476,53 @@ export default function ContentStudioPage() {
               <p className="text-sm text-slate-300 mb-4">
                 Run the watcher on your desktop to process queued tasks automatically.
               </p>
-              <code className="block p-3 bg-slate-900/50 rounded-lg text-xs text-amber-400 font-mono">
-                claude &quot;/content-studio watch&quot;
-              </code>
+              <div className="space-y-2">
+                <button
+                  onClick={() => copyCommand('claude "/content-studio watch"')}
+                  className="w-full flex items-center justify-between p-3 bg-slate-900/50 rounded-lg text-xs text-amber-400 font-mono hover:bg-slate-900/70 transition-colors group"
+                >
+                  <span>claude &quot;/content-studio watch&quot;</span>
+                  <Copy className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-opacity" />
+                </button>
+                <a
+                  href="https://github.com/gitroomhq/postiz-app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2 p-2 text-sm text-slate-400 hover:text-white transition-colors"
+                >
+                  <ExternalLink className="w-4 h-4" />
+                  Or try Postiz (full open source scheduler)
+                </a>
+              </div>
             </div>
           </div>
         </div>
       </div>
+
+      {/* Toast Notification */}
+      {toast && (
+        <Toast
+          message={toast.message}
+          type={toast.type}
+          onClose={() => setToast(null)}
+        />
+      )}
+
+      <style jsx global>{`
+        @keyframes slide-up {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        .animate-slide-up {
+          animation: slide-up 0.3s ease-out;
+        }
+      `}</style>
     </div>
   );
 }
