@@ -116,35 +116,49 @@ function AuroraBackground() {
 // VALIDATED RESEARCH BRIEFS - AI Architecture Focus
 // ============================================================================
 
+// Featured deep dives - creator-focused, narrative content
+const deepDives = [
+  {
+    slug: 'ai-neuroscience-for-creators-2026',
+    title: 'What Brain Science Actually Means for Creators in 2026',
+    description: 'A no-bullshit guide to flow states, mental wellness, learning faster, and what\'s real vs. marketing. Plain English, practical applications.',
+    readingTime: '15 min',
+    topics: ['Flow states', 'Mental wellness', 'Learning & memory', 'What actually works'],
+    category: 'Deep Dive',
+    isNew: true,
+  },
+]
+
+// Quick reference briefs - stats and claims for fact-checking
 const researchBriefs = [
   {
     slug: 'ai-neuroscience-2026',
-    title: 'AI & Neuroscience: The State of What\'s Possible',
-    description: 'BCIs at production scale, neuromorphic computing breakthroughs, thought-to-text at 74% accuracy, and organoid intelligence emerging as biological computing.',
-    keyStats: ['12 Neuralink patients', '1,000x neuromorphic efficiency', '74% thought decoding accuracy'],
-    sources: 12,
+    title: 'AI & Neuroscience: Quick Reference',
+    description: 'Validated stats: neurogenesis confirmed, BCIs at clinical scale, AI therapy efficacy data.',
+    keyStats: ['Neurogenesis confirmed July 2025', '34% depression reduction', '91% prediction accuracy'],
+    sources: 25,
     lastValidated: '2026-01-27',
-    category: 'Frontier Technology',
-    relatedArticle: '/blog/production-agentic-ai-systems',
+    category: 'Stat Reference',
+    relatedArticle: '/blog/ai-neuroscience-for-creators-2026',
   },
   {
     slug: 'multi-agent-adoption-2026',
-    title: 'Multi-Agent System Adoption: Q1 2026',
-    description: 'Validated statistics on enterprise multi-agent adoption, framework market share, and orchestration patterns.',
+    title: 'Multi-Agent Adoption: Quick Reference',
+    description: 'Market data: enterprise adoption rates, framework market share, growth projections.',
     keyStats: ['72% enterprise adoption', '34% LangGraph market share', '$52B market by 2030'],
     sources: 15,
     lastValidated: '2026-01-26',
-    category: 'Market Intelligence',
+    category: 'Stat Reference',
     relatedArticle: '/blog/multi-agent-orchestration-patterns-2026',
   },
   {
     slug: 'mcp-ecosystem-2026',
-    title: 'MCP Protocol Ecosystem: Q1 2026',
-    description: 'Comprehensive analysis of Model Context Protocol adoption, server ecosystem, and integration patterns.',
-    keyStats: ['50+ production servers', '340% H2 2025 growth', '5+ IDE integrations'],
+    title: 'MCP Protocol: Quick Reference',
+    description: 'Ecosystem data: server count, growth rate, integration patterns.',
+    keyStats: ['50+ production servers', '340% H2 2025 growth', '85% token reduction'],
     sources: 12,
     lastValidated: '2026-01-26',
-    category: 'Integration Architecture',
+    category: 'Stat Reference',
     relatedArticle: '/blog/claude-code-2-1-mcp-revolution',
   },
 ]
@@ -316,7 +330,92 @@ function HeroSection() {
 }
 
 // ============================================================================
-// VALIDATED RESEARCH BRIEFS SECTION - AI Architect Authority
+// DEEP DIVES SECTION - Creator-Focused Content
+// ============================================================================
+
+function DeepDivesSection() {
+  const shouldReduceMotion = useReducedMotion()
+
+  return (
+    <section className="py-16 md:py-24 bg-gradient-to-b from-violet-500/[0.03] to-transparent">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        {/* Section header */}
+        <div className="mb-10">
+          <motion.div
+            initial={shouldReduceMotion ? false : { opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="inline-flex items-center gap-2 mb-4"
+          >
+            <BookOpen className="w-4 h-4 text-violet-400" />
+            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-violet-400">
+              Featured Research
+            </span>
+          </motion.div>
+
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            Deep Dives
+          </h2>
+          <p className="text-lg text-white/60 max-w-2xl">
+            Long-form research translated for creators. No jargon, no stat dumps—just what you need to know and how to use it.
+          </p>
+        </div>
+
+        {/* Featured deep dive */}
+        {deepDives.map((dive, index) => (
+          <motion.div
+            key={dive.slug}
+            initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={shouldReduceMotion ? { duration: 0 } : { delay: index * 0.1 }}
+          >
+            <Link href={`/blog/${dive.slug}`} className="block group">
+              <div className="relative bg-gradient-to-br from-violet-500/10 via-white/[0.03] to-cyan-500/10 backdrop-blur-xl border border-violet-500/20 rounded-3xl p-8 md:p-10 hover:border-violet-500/40 transition-all duration-300 hover:-translate-y-1">
+                {/* New badge */}
+                {dive.isNew && (
+                  <div className="absolute top-6 right-6 px-3 py-1 bg-violet-500/20 border border-violet-500/30 rounded-full">
+                    <span className="text-xs font-bold text-violet-400">NEW</span>
+                  </div>
+                )}
+
+                <div className="flex items-center gap-2 mb-4">
+                  <span className="rounded-full bg-violet-500/20 px-3 py-1 text-xs font-bold uppercase tracking-wider text-violet-400">
+                    {dive.category}
+                  </span>
+                  <span className="text-sm text-white/40">{dive.readingTime}</span>
+                </div>
+
+                <h3 className="text-2xl md:text-3xl font-bold text-white mb-4 group-hover:text-violet-100 transition-colors">
+                  {dive.title}
+                </h3>
+
+                <p className="text-lg text-white/60 mb-6 max-w-3xl">
+                  {dive.description}
+                </p>
+
+                {/* Topic pills */}
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {dive.topics.map((topic, i) => (
+                    <span key={i} className="text-sm px-4 py-1.5 bg-white/5 border border-white/10 rounded-full text-white/70">
+                      {topic}
+                    </span>
+                  ))}
+                </div>
+
+                <span className="inline-flex items-center gap-2 text-violet-400 font-semibold group-hover:text-violet-300 transition-colors">
+                  Read the full guide
+                  <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+                </span>
+              </div>
+            </Link>
+          </motion.div>
+        ))}
+      </div>
+    </section>
+  )
+}
+
+// ============================================================================
+// QUICK REFERENCE BRIEFS SECTION
 // ============================================================================
 
 function ResearchBriefsSection() {
@@ -325,8 +424,8 @@ function ResearchBriefsSection() {
   return (
     <section id="briefs" className="py-16 md:py-24 bg-white/[0.01]">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        {/* Section header with studio energy */}
-        <div className="mb-12">
+        {/* Section header */}
+        <div className="mb-10">
           <motion.div
             initial={shouldReduceMotion ? false : { opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -334,20 +433,15 @@ function ResearchBriefsSection() {
           >
             <FileText className="w-4 h-4 text-cyan-400" />
             <span className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-400">
-              Validated Research
+              Quick Reference
             </span>
           </motion.div>
 
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Research Briefs
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
+            Stat Sheets
           </h2>
-
-          {/* Studio energy hook */}
-          <p className="text-lg text-white/70 mb-2 max-w-3xl">
-            Think of research like pre-production. Before you mix, you scout. Before you build, you map.
-          </p>
-          <p className="text-base text-white/50 max-w-3xl">
-            Every stat has a source. Every claim is validated. No opinions—just evidence for AI architects.
+          <p className="text-base text-white/50 max-w-2xl">
+            Need to cite a number? These are validated statistics with sources. For context and explanation, read the deep dives above.
           </p>
         </div>
 
@@ -709,6 +803,7 @@ export default function ResearchPage() {
 
       <div className="relative z-10">
         <HeroSection />
+        <DeepDivesSection />
         <ResearchBriefsSection />
         <ResearchDomainsSection />
         <ResearchCouncilSection />
