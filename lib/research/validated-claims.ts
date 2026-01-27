@@ -435,6 +435,43 @@ export const validatedClaims: Record<string, ValidatedClaim> = {
     confidence: 'medium-high',
     category: 'Consciousness Research',
     crossRefCount: 1
+  },
+  'ai-anxiety-reduction': {
+    id: 'ai-anxiety-reduction',
+    claim: 'AI therapy platform anxiety symptom reduction',
+    value: '29%',
+    sources: [
+      { name: 'NEJM AI', url: 'https://ai.nejm.org/doi/abs/10.1056/AIoa2400802', date: '2026' }
+    ],
+    validatedDate: '2026-01-27',
+    confidence: 'high',
+    category: 'AI Mental Health',
+    crossRefCount: 1
+  },
+  'sleep-cognition-impact': {
+    id: 'sleep-cognition-impact',
+    claim: 'Sleep deprivation impairs cognition equivalent to intoxication',
+    value: 'Validated',
+    sources: [
+      { name: 'Walker, M. Why We Sleep', date: '2017' },
+      { name: 'Nature Neuroscience', url: 'https://www.nature.com/articles/s41593-025-02169-w', date: '2025' }
+    ],
+    validatedDate: '2026-01-27',
+    confidence: 'high',
+    category: 'Cognitive Enhancement',
+    crossRefCount: 2
+  },
+  'spaced-repetition-effectiveness': {
+    id: 'spaced-repetition-effectiveness',
+    claim: 'Spaced repetition improvement in retention',
+    value: '200-400%',
+    sources: [
+      { name: 'Roediger & Karpicke, Psychological Science', date: '2006' }
+    ],
+    validatedDate: '2026-01-27',
+    confidence: 'high',
+    category: 'Cognitive Enhancement',
+    crossRefCount: 1
   }
 };
 
@@ -449,8 +486,8 @@ export const researchBriefs: Record<string, ResearchBrief> = {
     description: 'Brain-computer interfaces at production scale, neuromorphic computing achieving 1,000x efficiency, thought-to-text at 74% accuracy, and organoid intelligence emerging as biological computing.',
     category: 'Frontier Technology',
     lastValidated: '2026-01-27',
-    methodology: 'Cross-referenced 12+ sources including STAT News, Nature, IEEE Spectrum, Frontiers in Science, APA, and official company announcements. Claims validated from peer-reviewed papers and verified industry reports.',
-    sourceCount: 12,
+    methodology: 'Cross-referenced 15+ sources including STAT News, Nature, IEEE Spectrum, Frontiers in Science, APA, NEJM AI, and official company announcements. Claims validated from peer-reviewed papers and verified industry reports.',
+    sourceCount: 15,
     claims: [
       validatedClaims['neuralink-patients'],
       validatedClaims['neuromorphic-efficiency'],
@@ -458,6 +495,9 @@ export const researchBriefs: Record<string, ResearchBrief> = {
       validatedClaims['organoid-speech-recognition'],
       validatedClaims['northpole-llm-efficiency'],
       validatedClaims['ai-depression-reduction'],
+      validatedClaims['ai-anxiety-reduction'],
+      validatedClaims['sleep-cognition-impact'],
+      validatedClaims['spaced-repetition-effectiveness'],
     ],
     implications: [
       'BCIs are transitioning from research to production—Neuralink plans high-volume manufacturing in 2026',
@@ -466,7 +506,12 @@ export const researchBriefs: Record<string, ResearchBrief> = {
       'Organoid intelligence could revolutionize computing energy consumption—watch FinalSpark',
       'AI mental health tools show clinical efficacy—but should complement, not replace, human care',
     ],
-    relatedArticles: ['/blog/production-agentic-ai-systems', '/blog/multi-agent-orchestration-patterns-2026']
+    relatedArticles: [
+      '/blog/ai-mental-health-what-works-2026',
+      '/blog/brain-enhancement-evidence-based-guide-2026',
+      '/blog/production-agentic-ai-systems',
+      '/blog/multi-agent-orchestration-patterns-2026'
+    ]
   },
   'multi-agent-adoption-2026': {
     slug: 'multi-agent-adoption-2026',
