@@ -9,72 +9,86 @@
 **Tweet 1 (Hook):**
 Your org chart is a tomb.
 
-VP → Director → Manager → Junior
+VP approves. Director assigns. Manager tracks.
 
-This hierarchy was built for humans who sleep and type at 50 WPM.
+Then you wonder why your $2M AI investment moves at human speed.
 
-AI agents think at the speed of light.
-
-Stop putting a Ferrari engine inside a horse. 🧵
+Here's what actually works:
 
 **Tweet 2:**
-The unit of scale in 2026 isn't the "Team."
+I spent 6 months watching enterprises fail at this.
 
-It's the Graph.
+They "add AI" to existing structures.
 
-Agents (Nodes) talking directly to each other (Edges), governed by shared Protocol.
+Like putting a jet engine on a horse-drawn carriage.
 
-No status meetings. No approval chains. Just execution.
+The problem isn't the AI. It's the org design.
 
 **Tweet 3:**
-The Fractal Triad—your new building block:
+The unit of scale in 2026 isn't the "team."
 
-1. Context Node (Brain)
-   → Understands goal, breaks into sub-tasks
+It's the graph.
 
-2. Execution Node (Hands)
-   → Deep skills, runs PARALLEL not sequential
-
-3. Verification Node (Eyes)
-   → The Critic, rejects 30%, forces retry
+Three nodes. That's the whole architecture:
 
 **Tweet 4:**
-Traditional company:
-• Day 1: Junior writes code
-• Day 2: Manager reviews
-• Day 3: Fixes
-• Day 4: Director approves
-→ 96 hours
+Node 1: Context
+→ Holds the goal
+→ Breaks it into 50 parallel tasks
+→ Maintains state
 
-Fractal company:
-• Context defines spec
-• Execution writes
-• Verification rejects/approves
-• Retry loop
-→ 24 minutes
+This replaces your project manager + 47 status meetings.
 
 **Tweet 5:**
-New metric: Cognitive Velocity
+Node 2: Execution
+→ Deep, narrow skills
+→ Runs everything PARALLEL
+→ No sequential approval chains
 
-How fast can a novel idea traverse your graph and become shipped reality?
+This is why AI moves in minutes while you move in days.
 
-• Measured in days? Safe.
-• Measured in weeks? Dying.
-• Measured in months? Already dead.
+**Tweet 6:**
+Node 3: Verification
+→ The critic
+→ Rejects 30% of output
+→ Forces retry loops
 
-**Tweet 6 (CTA):**
-Full Enterprise Agent Roadmap with:
-• LangGraph patterns
-• CrewAI integration
-• MCP orchestration
-• Implementation blueprints
+This is your quality gate that never sleeps, never gets tired, never rubber-stamps.
 
-Tear down the pyramid. Build the graph.
+**Tweet 7:**
+Real numbers from a system I built last quarter:
+
+Old flow: 96 hours
+(4 days of meetings, reviews, fixes)
+
+New flow: 24 minutes
+(automated iteration)
+
+Same quality. 240x faster.
+
+**Tweet 8:**
+The metric that matters:
+
+Cognitive Velocity
+
+How fast can a novel idea traverse your system and become shipped reality?
+
+Measured in weeks? You're bleeding talent.
+Measured in months? Your competitors already won.
+
+**Tweet 9 (CTA):**
+Full implementation guide:
+→ LangGraph patterns
+→ CrewAI integration
+→ MCP orchestration
+→ Production blueprints
 
 https://www.frankx.ai/blog/enterprise-agent-roadmap
+
+What's your current idea-to-ship velocity?
 
 ---
 
 **Status:** Ready for posting
-**Format:** Thread (6 tweets)
-**Engagement strategy:** Provocative opener, visual contrast in Tweet 4, actionable CTA
+**Format:** Thread (9 tweets)
+**Engagement strategy:** Provocative opener, concrete numbers in Tweet 7, question CTA

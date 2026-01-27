@@ -24,10 +24,17 @@ interface ContentItem {
 }
 
 function cleanForPosting(text: string): string {
-  // Remove markdown bold formatting but keep the text
   return text
-    .replace(/\*\*([^*]+)\*\*/g, '$1')
-    .replace(/\*([^*]+)\*/g, '$1')
+    // Remove bold: **text** → text (non-greedy)
+    .replace(/\*\*(.+?)\*\*/g, '$1')
+    // Remove italic: *text* → text
+    .replace(/(?<!\*)\*([^*]+)\*(?!\*)/g, '$1')
+    // Remove inline code: `code` → code
+    .replace(/`([^`]+)`/g, '$1')
+    // Remove headers that might have slipped through: ## text → text
+    .replace(/^#{1,6}\s+/gm, '')
+    // Clean up excessive newlines
+    .replace(/\n{3,}/g, '\n\n')
     .trim();
 }
 
