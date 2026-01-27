@@ -160,6 +160,12 @@ const nextConfig = {
         destination: '/ai-architecture',
         permanent: true,
       },
+      // Blueprint routes moved to /ai-architecture
+      {
+        source: '/blueprint/:slug',
+        destination: '/ai-architecture/:slug',
+        permanent: true,
+      },
     ]
   },
   outputFileTracingRoot: __dirname,
