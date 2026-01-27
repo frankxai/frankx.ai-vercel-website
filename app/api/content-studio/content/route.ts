@@ -25,14 +25,16 @@ interface ContentItem {
 
 function cleanForPosting(text: string): string {
   return text
-    // Remove bold: **text** → text (non-greedy)
-    .replace(/\*\*(.+?)\*\*/g, '$1')
-    // Remove italic: *text* → text
-    .replace(/(?<!\*)\*([^*]+)\*(?!\*)/g, '$1')
+    // Remove bold: **text** → text (do this first, before italic)
+    .replace(/\*\*([^*]+)\*\*/g, '$1')
+    // Remove remaining single asterisks used for italic
+    .replace(/\*([^*\n]+)\*/g, '$1')
     // Remove inline code: `code` → code
     .replace(/`([^`]+)`/g, '$1')
-    // Remove headers that might have slipped through: ## text → text
+    // Remove headers: ## text → text
     .replace(/^#{1,6}\s+/gm, '')
+    // Remove horizontal rules
+    .replace(/^---+$/gm, '')
     // Clean up excessive newlines
     .replace(/\n{3,}/g, '\n\n')
     .trim();
@@ -49,19 +51,21 @@ function extractCaption(mdContent: string): {
   hashtags: string[];
   charCount: number;
 } {
+  // Normalize line endings (Windows CRLF → Unix LF)
+  const normalized = mdContent.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
   let rawCaption = '';
 
   // Extract the "Post Copy" section from the markdown
-  const postCopyMatch = mdContent.match(/## Post Copy\s*\n\n([\s\S]*?)(?=\n---|\n##|$)/);
+  const postCopyMatch = normalized.match(/## Post Copy\s*\n\n([\s\S]*?)(?=\n---|\n##|$)/);
   if (postCopyMatch) {
     rawCaption = postCopyMatch[1].trim();
   } else {
     // Fallback: return everything after the first ---
-    const parts = mdContent.split('---');
+    const parts = normalized.split('---');
     if (parts.length > 2) {
       rawCaption = parts.slice(2).join('---').trim();
     } else {
-      rawCaption = mdContent;
+      rawCaption = normalized;
     }
   }
 
@@ -80,7 +84,9 @@ function extractCaption(mdContent: string): {
 }
 
 function extractTweets(mdContent: string): { text: string; charCount: number; index: number }[] | undefined {
-  const threadMatch = mdContent.match(/## Thread\s*\n\n([\s\S]*?)(?=\n---|\n##|$)/);
+  // Normalize line endings
+  const normalized = mdContent.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+  const threadMatch = normalized.match(/## Thread\s*\n\n([\s\S]*?)(?=\n---|\n##|$)/);
   if (!threadMatch) return undefined;
 
   const threadContent = threadMatch[1];
@@ -109,10 +115,12 @@ function extractMetadata(mdContent: string): {
   blogUrl?: string;
   engagementHook?: string;
 } {
-  const bestTimeMatch = mdContent.match(/\*\*Best time:\*\*\s*(.+)/);
-  const audienceMatch = mdContent.match(/\*\*Target audience:\*\*\s*(.+)/);
-  const hookMatch = mdContent.match(/\*\*Engagement (?:hook|strategy):\*\*\s*(.+)/);
-  const urlMatch = mdContent.match(/https:\/\/www\.frankx\.ai\/blog\/[\w-]+/);
+  // Normalize line endings
+  const normalized = mdContent.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+  const bestTimeMatch = normalized.match(/\*\*Best time:\*\*\s*(.+)/);
+  const audienceMatch = normalized.match(/\*\*Target audience:\*\*\s*(.+)/);
+  const hookMatch = normalized.match(/\*\*Engagement (?:hook|strategy):\*\*\s*(.+)/);
+  const urlMatch = normalized.match(/https:\/\/www\.frankx\.ai\/blog\/[\w-]+/);
 
   return {
     bestTime: bestTimeMatch?.[1]?.trim(),
