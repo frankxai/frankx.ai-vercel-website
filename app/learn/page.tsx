@@ -17,11 +17,17 @@ import {
 } from 'lucide-react'
 import { learningPaths, featuredCreators, type LearningPath, type VideoResource } from '@/data/learning-paths'
 
-const iconMap: Record<string, React.ElementType> = {
+const iconMap = {
   brain: Brain,
   music: Music2,
   zap: Zap,
   image: ImageIcon,
+} as const
+
+type IconKey = keyof typeof iconMap
+
+function getIcon(key: string): React.ElementType {
+  return (iconMap as Record<string, React.ElementType>)[key] ?? BookOpen
 }
 
 const colorMap: Record<string, string> = {
@@ -39,8 +45,8 @@ const playButtonBgMap: Record<string, string> = {
 }
 
 function PathCard({ path }: { path: LearningPath }) {
-  const Icon = iconMap[path.icon] || BookOpen
-  const colors = colorMap[path.color]
+  const Icon = getIcon(path.icon)
+  const colors = colorMap[path.color] ?? ''
 
   return (
     <Link

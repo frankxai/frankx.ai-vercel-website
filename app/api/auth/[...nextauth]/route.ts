@@ -11,7 +11,6 @@ import { authOptions } from '@/lib/auth'
  * - /api/auth/csrf - CSRF token
  */
 
-const { handlers } = NextAuth(authOptions) as { GET: typeof import('next/server').NextRequest; POST: typeof import('next/server').NextRequest }
+const handler = NextAuth(authOptions)
 
-export const GET = handlers.GET
-export const POST = handlers.POST
+export { handler as GET, handler as POST }

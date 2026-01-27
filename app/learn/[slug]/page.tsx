@@ -20,18 +20,28 @@ import {
 } from 'lucide-react'
 import { learningPaths, type VideoResource } from '@/data/learning-paths'
 
-const iconMap: Record<string, React.ElementType> = {
+const iconMap = {
   brain: Brain,
   music: Music2,
   zap: Zap,
   image: ImageIcon,
+} as const
+
+function getIcon(key: string): React.ElementType {
+  return (iconMap as Record<string, React.ElementType>)[key] ?? BookOpen
 }
 
-const colorMap: Record<string, { bg: string; text: string; border: string; gradientFrom: string }> = {
+const defaultColors = { bg: 'bg-emerald-500', text: 'text-emerald-400', border: 'border-emerald-500/20', gradientFrom: 'from-emerald-500/10' }
+
+const colorMap: Record<string, typeof defaultColors> = {
   emerald: { bg: 'bg-emerald-500', text: 'text-emerald-400', border: 'border-emerald-500/20', gradientFrom: 'from-emerald-500/10' },
   cyan: { bg: 'bg-cyan-500', text: 'text-cyan-400', border: 'border-cyan-500/20', gradientFrom: 'from-cyan-500/10' },
   amber: { bg: 'bg-amber-500', text: 'text-amber-400', border: 'border-amber-500/20', gradientFrom: 'from-amber-500/10' },
   violet: { bg: 'bg-violet-500', text: 'text-violet-400', border: 'border-violet-500/20', gradientFrom: 'from-violet-500/10' },
+}
+
+function getColors(key: string): typeof defaultColors {
+  return colorMap[key] ?? defaultColors
 }
 
 const playButtonBgMap: Record<string, string> = {
@@ -43,7 +53,7 @@ const playButtonBgMap: Record<string, string> = {
 
 function VideoPlayer({ video, color }: { video: VideoResource; color: string }) {
   const [isPlaying, setIsPlaying] = useState(false)
-  const colors = colorMap[color]
+  const colors = getColors(color)
   const playBtnClasses = playButtonBgMap[color] || playButtonBgMap.emerald
 
   return (
@@ -137,8 +147,8 @@ export default function LearningPathPage() {
     )
   }
 
-  const Icon = iconMap[path.icon] || BookOpen
-  const colors = colorMap[path.color]
+  const Icon = getIcon(path.icon)
+  const colors = getColors(path.color)
 
   return (
     <div className="min-h-screen bg-[#0a0a0b]">

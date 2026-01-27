@@ -12,110 +12,91 @@ import {
   Layers,
   TrendingUp,
   Network,
+  ShieldCheck,
+  AlertTriangle,
+  AlertCircle,
+  Link2,
+  Calendar,
+  BarChart3,
 } from 'lucide-react'
+import {
+  researchBriefs,
+  getBriefBySlug,
+  getFreshnessStatus,
+  getFreshnessLabel,
+  getConfidencePercentage,
+  type FreshnessStatus,
+  type ConfidenceLevel,
+} from '@/lib/research/validated-claims'
 
-// Research brief data - will be moved to CMS/MDX later
-const briefs: Record<string, {
-  title: string
-  description: string
-  category: string
-  lastValidated: string
-  sources: number
-  keyStats: { label: string; value: string; trend?: string }[]
-  validatedClaims: { claim: string; source: string; confidence: string }[]
-  implications: string[]
-  relatedArticle?: string
-  methodology: string
-}> = {
-  'multi-agent-adoption-2026': {
-    title: 'Multi-Agent System Adoption: Q1 2026',
-    description: 'Validated statistics on enterprise multi-agent adoption, framework market share, and orchestration patterns in production.',
-    category: 'Market Intelligence',
-    lastValidated: '2026-01-26',
-    sources: 15,
-    keyStats: [
-      { label: 'Enterprise Adoption', value: '72%', trend: '+27% YoY' },
-      { label: 'LangGraph Market Share', value: '34%', trend: 'Leading' },
-      { label: 'CrewAI Market Share', value: '28%', trend: 'Growing' },
-      { label: 'Market Size (2030)', value: '$52B', trend: 'Projected' },
-    ],
-    validatedClaims: [
-      {
-        claim: '72% of enterprise AI projects use multi-agent architectures',
-        source: 'G2 Enterprise AI Report Q1 2026, Gartner AI Hype Cycle 2025',
-        confidence: 'High',
-      },
-      {
-        claim: 'LangGraph leads framework adoption at 34%',
-        source: 'Stack Overflow Developer Survey 2026, GitHub Stars analysis',
-        confidence: 'Medium-High',
-      },
-      {
-        claim: '40% of enterprise apps will have AI agents by EOY 2026',
-        source: 'Gartner Strategic Predictions 2026',
-        confidence: 'High',
-      },
-    ],
-    implications: [
-      'Multi-agent is no longer experimental—with 72% adoption, it\'s the default architecture',
-      'Framework choice matters less than orchestration patterns—top frameworks converge on similar approaches',
-      'Production observability is the new battleground—systems need tracing, not just logging',
-      'Human-in-the-loop remains critical—escalation patterns differentiate production systems',
-    ],
-    relatedArticle: '/blog/multi-agent-orchestration-patterns-2026',
-    methodology: 'Cross-referenced 15+ sources including G2, Gartner, McKinsey State of AI, Stack Overflow Survey, and GitHub/npm statistics. Claims validated with minimum 2 independent sources.',
-  },
-  'mcp-ecosystem-2026': {
-    title: 'MCP Protocol Ecosystem: Q1 2026',
-    description: 'Comprehensive analysis of Model Context Protocol adoption, server ecosystem, and integration patterns.',
-    category: 'Integration Architecture',
-    lastValidated: '2026-01-26',
-    sources: 12,
-    keyStats: [
-      { label: 'Production Servers', value: '50+', trend: 'Official Registry' },
-      { label: 'H2 2025 Growth', value: '340%', trend: 'Rapid' },
-      { label: 'IDE Integrations', value: '5+', trend: 'Expanding' },
-      { label: 'Token Reduction', value: '85%', trend: 'With Tool Search' },
-    ],
-    validatedClaims: [
-      {
-        claim: 'MCP is emerging as the standard for AI tool integration',
-        source: 'Anthropic announcements, Linux Foundation Agentic AI Foundation',
-        confidence: 'High',
-      },
-      {
-        claim: '50+ production-ready MCP servers available',
-        source: 'Anthropic MCP Registry, GitHub ecosystem analysis',
-        confidence: 'High',
-      },
-      {
-        claim: 'MCP Tool Search reduces token usage by 85%',
-        source: 'Anthropic Claude Code 2.1 release notes',
-        confidence: 'High',
-      },
-    ],
-    implications: [
-      'MCP-first design should be standard—plan tool integrations around MCP from the start',
-      'Server composition is key—think in terms of MCP pipelines, not individual tools',
-      'Custom servers create differentiation—build domain-specific MCP servers',
-      'Security patterns needed—MCP requires proper auth/audit patterns',
-    ],
-    relatedArticle: '/blog/claude-code-2-1-mcp-revolution',
-    methodology: 'Analysis of Anthropic official documentation, GitHub repository counts, npm download statistics, and developer surveys. Cross-referenced with Claude Code release notes and Linux Foundation announcements.',
-  },
+// Freshness indicator component
+function FreshnessBadge({ status }: { status: FreshnessStatus }) {
+  const config = {
+    current: {
+      color: 'bg-emerald-500',
+      textColor: 'text-emerald-400',
+      bgColor: 'bg-emerald-500/10',
+      icon: ShieldCheck,
+      label: 'Current',
+    },
+    aging: {
+      color: 'bg-amber-500',
+      textColor: 'text-amber-400',
+      bgColor: 'bg-amber-500/10',
+      icon: AlertTriangle,
+      label: 'Aging',
+    },
+    stale: {
+      color: 'bg-red-500',
+      textColor: 'text-red-400',
+      bgColor: 'bg-red-500/10',
+      icon: AlertCircle,
+      label: 'Needs Review',
+    },
+  }
+
+  const { color, textColor, bgColor, icon: Icon, label } = config[status]
+
+  return (
+    <div className={`inline-flex items-center gap-2 rounded-full ${bgColor} px-3 py-1`}>
+      <span className={`h-2 w-2 rounded-full ${color}`} />
+      <Icon className={`h-3.5 w-3.5 ${textColor}`} />
+      <span className={`text-xs font-medium ${textColor}`}>{label}</span>
+    </div>
+  )
+}
+
+// Confidence bar component
+function ConfidenceBar({ confidence }: { confidence: ConfidenceLevel }) {
+  const percentage = getConfidencePercentage(confidence)
+  const color = confidence === 'high' ? 'bg-emerald-500' :
+                confidence === 'medium-high' ? 'bg-cyan-500' :
+                confidence === 'medium' ? 'bg-amber-500' : 'bg-red-500'
+
+  return (
+    <div className="flex items-center gap-2">
+      <div className="h-1.5 w-20 rounded-full bg-white/10 overflow-hidden">
+        <div
+          className={`h-full ${color} rounded-full transition-all`}
+          style={{ width: `${percentage}%` }}
+        />
+      </div>
+      <span className="text-xs text-slate-500">{percentage}%</span>
+    </div>
+  )
 }
 
 export default function ResearchBriefPage() {
   const params = useParams()
   const slug = params?.slug as string
-  const brief = briefs[slug]
+  const brief = getBriefBySlug(slug)
 
   if (!brief) {
     return (
       <main className="min-h-screen bg-[#030712] pt-32">
         <div className="mx-auto max-w-4xl px-6 text-center">
           <h1 className="text-2xl font-bold text-white mb-4">Brief Not Found</h1>
-          <p className="text-slate-400 mb-8">The research brief you're looking for doesn't exist yet.</p>
+          <p className="text-slate-400 mb-8">The research brief you&apos;re looking for doesn&apos;t exist yet.</p>
           <Link
             href="/research"
             className="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300"
@@ -127,6 +108,15 @@ export default function ResearchBriefPage() {
       </main>
     )
   }
+
+  const freshnessStatus = getFreshnessStatus(brief.lastValidated)
+
+  // Calculate key stats from claims
+  const keyStats = brief.claims.slice(0, 4).map(claim => ({
+    label: claim.claim.split(' ').slice(0, 4).join(' ') + '...',
+    value: claim.value,
+    trend: claim.confidence === 'high' ? 'Verified' : 'Estimated'
+  }))
 
   return (
     <main className="min-h-screen bg-[#030712]">
@@ -167,16 +157,13 @@ export default function ResearchBriefPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="mb-12"
+            className="mb-8"
           >
-            <div className="flex items-center gap-3 mb-4">
+            <div className="flex flex-wrap items-center gap-3 mb-4">
               <span className="rounded-full bg-cyan-500/10 px-3 py-1 text-xs font-bold uppercase tracking-wider text-cyan-400">
                 {brief.category}
               </span>
-              <div className="flex items-center gap-1.5 text-xs text-slate-500">
-                <Clock className="h-3 w-3" />
-                <span>Validated: {brief.lastValidated}</span>
-              </div>
+              <FreshnessBadge status={freshnessStatus} />
             </div>
 
             <h1 className="text-3xl md:text-4xl font-bold text-white mb-4">
@@ -187,6 +174,51 @@ export default function ResearchBriefPage() {
             </p>
           </motion.div>
 
+          {/* Validation Summary Card */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.15 }}
+            className="mb-12"
+          >
+            <div className="rounded-2xl border border-white/[0.08] bg-gradient-to-br from-cyan-500/[0.08] to-violet-500/[0.04] p-6">
+              <h3 className="text-sm font-semibold text-white uppercase tracking-wider mb-4 flex items-center gap-2">
+                <ShieldCheck className="h-4 w-4 text-cyan-400" />
+                Validation Summary
+              </h3>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+                <div>
+                  <p className="text-xs text-slate-500 mb-1 flex items-center gap-1">
+                    <Calendar className="h-3 w-3" />
+                    Last Validated
+                  </p>
+                  <p className="text-lg font-semibold text-white">{brief.lastValidated}</p>
+                </div>
+                <div>
+                  <p className="text-xs text-slate-500 mb-1 flex items-center gap-1">
+                    <Link2 className="h-3 w-3" />
+                    Sources
+                  </p>
+                  <p className="text-lg font-semibold text-white">{brief.sourceCount} cross-referenced</p>
+                </div>
+                <div>
+                  <p className="text-xs text-slate-500 mb-1 flex items-center gap-1">
+                    <CheckCircle2 className="h-3 w-3" />
+                    Claims Validated
+                  </p>
+                  <p className="text-lg font-semibold text-white">{brief.claims.length}</p>
+                </div>
+                <div>
+                  <p className="text-xs text-slate-500 mb-1 flex items-center gap-1">
+                    <BarChart3 className="h-3 w-3" />
+                    Freshness
+                  </p>
+                  <p className="text-lg font-semibold text-emerald-400">{getFreshnessLabel(freshnessStatus)}</p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
           {/* Key Stats Grid */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -194,21 +226,19 @@ export default function ResearchBriefPage() {
             transition={{ delay: 0.2 }}
             className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12"
           >
-            {brief.keyStats.map((stat, i) => (
+            {keyStats.map((stat, i) => (
               <div
                 key={i}
                 className="rounded-xl border border-white/[0.08] bg-white/[0.03] p-4 text-center"
               >
                 <p className="text-2xl font-bold text-white mb-1">{stat.value}</p>
-                <p className="text-xs text-slate-500 mb-1">{stat.label}</p>
-                {stat.trend && (
-                  <p className="text-[10px] text-cyan-400">{stat.trend}</p>
-                )}
+                <p className="text-xs text-slate-500 mb-1 line-clamp-1">{stat.label}</p>
+                <p className="text-[10px] text-cyan-400">{stat.trend}</p>
               </div>
             ))}
           </motion.div>
 
-          {/* Validated Claims */}
+          {/* Validated Claims - Enhanced */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -220,22 +250,72 @@ export default function ResearchBriefPage() {
               Validated Claims
             </h2>
             <div className="space-y-4">
-              {brief.validatedClaims.map((claim, i) => (
+              {brief.claims.map((claim, i) => (
                 <div
                   key={i}
                   className="rounded-xl border border-white/[0.08] bg-white/[0.03] p-5"
                 >
-                  <p className="text-white font-medium mb-2">"{claim.claim}"</p>
-                  <div className="flex flex-wrap items-center gap-4 text-sm">
-                    <span className="text-slate-500">
-                      <strong className="text-slate-400">Source:</strong> {claim.source}
+                  <div className="flex items-start justify-between gap-4 mb-3">
+                    <p className="text-white font-medium">&ldquo;{claim.claim}&rdquo;</p>
+                    <span className="text-2xl font-bold text-cyan-400 whitespace-nowrap">
+                      {claim.value}
                     </span>
-                    <span className={`rounded-full px-2 py-0.5 text-xs font-medium ${
-                      claim.confidence === 'High' ? 'bg-emerald-500/15 text-emerald-400' :
-                      'bg-amber-500/15 text-amber-400'
-                    }`}>
-                      {claim.confidence} Confidence
-                    </span>
+                  </div>
+
+                  <div className="space-y-2">
+                    {/* Sources */}
+                    <div className="flex flex-wrap items-start gap-2">
+                      <span className="text-xs text-slate-500 mt-0.5">Sources:</span>
+                      <div className="flex flex-wrap gap-2">
+                        {claim.sources.map((source, si) => (
+                          <span key={si} className="inline-flex items-center gap-1">
+                            {source.url ? (
+                              <a
+                                href={source.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-xs text-cyan-400 hover:text-cyan-300 underline underline-offset-2"
+                              >
+                                {source.name}
+                              </a>
+                            ) : (
+                              <span className="text-xs text-slate-400">{source.name}</span>
+                            )}
+                            {source.date && (
+                              <span className="text-[10px] text-slate-600">({source.date})</span>
+                            )}
+                            {si < claim.sources.length - 1 && (
+                              <span className="text-slate-600">,</span>
+                            )}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Validation metadata */}
+                    <div className="flex flex-wrap items-center gap-4 pt-2 border-t border-white/5">
+                      <div className="flex items-center gap-2">
+                        <span className="text-xs text-slate-500">Confidence:</span>
+                        <ConfidenceBar confidence={claim.confidence} />
+                        <span className={`rounded-full px-2 py-0.5 text-xs font-medium capitalize ${
+                          claim.confidence === 'high' ? 'bg-emerald-500/15 text-emerald-400' :
+                          claim.confidence === 'medium-high' ? 'bg-cyan-500/15 text-cyan-400' :
+                          'bg-amber-500/15 text-amber-400'
+                        }`}>
+                          {claim.confidence.replace('-', ' ')}
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-1.5 text-xs text-slate-500">
+                        <Clock className="h-3 w-3" />
+                        <span>Verified: {claim.validatedDate}</span>
+                      </div>
+                      {claim.crossRefCount > 1 && (
+                        <div className="flex items-center gap-1.5 text-xs text-slate-500">
+                          <Link2 className="h-3 w-3" />
+                          <span>{claim.crossRefCount} cross-references</span>
+                        </div>
+                      )}
+                    </div>
                   </div>
                 </div>
               ))}
@@ -273,15 +353,27 @@ export default function ResearchBriefPage() {
             className="mb-12"
           >
             <div className="rounded-xl border border-cyan-500/20 bg-cyan-500/[0.04] p-6">
-              <h3 className="text-sm font-semibold text-cyan-400 uppercase tracking-wider mb-2">
-                Methodology
+              <h3 className="text-sm font-semibold text-cyan-400 uppercase tracking-wider mb-3 flex items-center gap-2">
+                <ShieldCheck className="h-4 w-4" />
+                Validation Methodology
               </h3>
-              <p className="text-slate-400 text-sm leading-relaxed">
+              <p className="text-slate-400 text-sm leading-relaxed mb-4">
                 {brief.methodology}
               </p>
-              <p className="mt-3 text-xs text-slate-500">
-                {brief.sources} sources validated
-              </p>
+              <div className="flex flex-wrap gap-4 text-xs text-slate-500">
+                <span className="flex items-center gap-1">
+                  <Link2 className="h-3 w-3" />
+                  {brief.sourceCount} sources validated
+                </span>
+                <span className="flex items-center gap-1">
+                  <CheckCircle2 className="h-3 w-3" />
+                  Minimum 2 cross-references for &quot;High&quot; confidence
+                </span>
+                <span className="flex items-center gap-1">
+                  <Calendar className="h-3 w-3" />
+                  Updated {brief.lastValidated}
+                </span>
+              </div>
             </div>
           </motion.div>
 
@@ -292,16 +384,17 @@ export default function ResearchBriefPage() {
             transition={{ delay: 0.6 }}
             className="flex flex-wrap gap-4"
           >
-            {brief.relatedArticle && (
+            {brief.relatedArticles.map((article, i) => (
               <Link
-                href={brief.relatedArticle}
+                key={i}
+                href={article}
                 className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-5 py-2.5 text-sm font-medium text-white hover:bg-white/10 transition-all"
               >
                 <FileText className="h-4 w-4" />
                 Read Related Article
                 <ExternalLink className="h-3 w-3 opacity-50" />
               </Link>
-            )}
+            ))}
             <Link
               href="/ai-architecture"
               className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-5 py-2.5 text-sm font-medium text-white hover:bg-white/10 transition-all"
