@@ -7,45 +7,109 @@ interface ContentItem {
   title: string;
   platform: 'linkedin' | 'twitter' | 'instagram' | 'youtube';
   status: 'draft' | 'scheduled' | 'published';
-  caption: string; // The actual post text
+  caption: string; // The actual post text (clean, no markdown)
+  captionWithHashtags: string; // Full post ready to paste
+  hashtags: string[]; // Extracted hashtags
+  charCount: number;
   imagePath?: string;
   imageUrl?: string;
   blogUrl?: string;
   createdAt: string;
   bestTime?: string;
   targetAudience?: string;
+  engagementHook?: string;
+  // Twitter-specific
+  tweets?: { text: string; charCount: number; index: number }[];
 }
 
-function extractCaption(mdContent: string): string {
+function cleanForPosting(text: string): string {
+  // Remove markdown bold formatting but keep the text
+  return text
+    .replace(/\*\*([^*]+)\*\*/g, '$1')
+    .replace(/\*([^*]+)\*/g, '$1')
+    .trim();
+}
+
+function extractHashtags(text: string): string[] {
+  const matches = text.match(/#[A-Za-z0-9_]+/g);
+  return matches || [];
+}
+
+function extractCaption(mdContent: string): {
+  caption: string;
+  captionWithHashtags: string;
+  hashtags: string[];
+  charCount: number;
+} {
+  let rawCaption = '';
+
   // Extract the "Post Copy" section from the markdown
   const postCopyMatch = mdContent.match(/## Post Copy\s*\n\n([\s\S]*?)(?=\n---|\n##|$)/);
   if (postCopyMatch) {
-    return postCopyMatch[1].trim();
+    rawCaption = postCopyMatch[1].trim();
+  } else {
+    // Fallback: return everything after the first ---
+    const parts = mdContent.split('---');
+    if (parts.length > 2) {
+      rawCaption = parts.slice(2).join('---').trim();
+    } else {
+      rawCaption = mdContent;
+    }
   }
 
-  // For Twitter threads, extract all tweets
-  const threadMatch = mdContent.match(/## Thread\s*\n\n([\s\S]*?)(?=\n---|\n##|$)/);
-  if (threadMatch) {
-    return threadMatch[1].trim();
-  }
+  const hashtags = extractHashtags(rawCaption);
+  const captionWithHashtags = cleanForPosting(rawCaption);
 
-  // Fallback: return everything after the first ---
-  const parts = mdContent.split('---');
-  if (parts.length > 2) {
-    return parts.slice(2).join('---').trim();
-  }
+  // Caption without hashtags (for flexibility)
+  const caption = captionWithHashtags.replace(/#[A-Za-z0-9_]+/g, '').replace(/\n\s*\n\s*$/g, '\n').trim();
 
-  return mdContent;
+  return {
+    caption,
+    captionWithHashtags,
+    hashtags,
+    charCount: captionWithHashtags.length
+  };
 }
 
-function extractMetadata(mdContent: string): { bestTime?: string; targetAudience?: string; blogUrl?: string } {
+function extractTweets(mdContent: string): { text: string; charCount: number; index: number }[] | undefined {
+  const threadMatch = mdContent.match(/## Thread\s*\n\n([\s\S]*?)(?=\n---|\n##|$)/);
+  if (!threadMatch) return undefined;
+
+  const threadContent = threadMatch[1];
+  const tweets: { text: string; charCount: number; index: number }[] = [];
+
+  // Parse tweets by **Tweet N:** pattern
+  const tweetMatches = threadContent.split(/\*\*Tweet \d+[^:]*:\*\*/).filter(t => t.trim());
+
+  tweetMatches.forEach((tweet, index) => {
+    const cleanTweet = tweet.trim();
+    if (cleanTweet) {
+      tweets.push({
+        text: cleanTweet,
+        charCount: cleanTweet.length,
+        index: index + 1
+      });
+    }
+  });
+
+  return tweets.length > 0 ? tweets : undefined;
+}
+
+function extractMetadata(mdContent: string): {
+  bestTime?: string;
+  targetAudience?: string;
+  blogUrl?: string;
+  engagementHook?: string;
+} {
   const bestTimeMatch = mdContent.match(/\*\*Best time:\*\*\s*(.+)/);
   const audienceMatch = mdContent.match(/\*\*Target audience:\*\*\s*(.+)/);
+  const hookMatch = mdContent.match(/\*\*Engagement (?:hook|strategy):\*\*\s*(.+)/);
   const urlMatch = mdContent.match(/https:\/\/www\.frankx\.ai\/blog\/[\w-]+/);
 
   return {
     bestTime: bestTimeMatch?.[1]?.trim(),
     targetAudience: audienceMatch?.[1]?.trim(),
+    engagementHook: hookMatch?.[1]?.trim(),
     blogUrl: urlMatch?.[0],
   };
 }
@@ -83,7 +147,7 @@ export async function GET() {
           !f.includes('_thumb')
         );
 
-        const caption = extractCaption(mdContent);
+        const captionData = extractCaption(mdContent);
         const metadata = extractMetadata(mdContent);
 
         content.push({
@@ -91,13 +155,17 @@ export async function GET() {
           title,
           platform: 'linkedin',
           status: 'draft',
-          caption,
+          caption: captionData.caption,
+          captionWithHashtags: captionData.captionWithHashtags,
+          hashtags: captionData.hashtags,
+          charCount: captionData.charCount,
           imagePath: imageFile ? `/social/linkedin/${imageFile}` : undefined,
           imageUrl: imageFile ? `/social/linkedin/${imageFile}` : undefined,
           blogUrl: metadata.blogUrl,
           createdAt: stats.mtime.toISOString(),
           bestTime: metadata.bestTime,
           targetAudience: metadata.targetAudience,
+          engagementHook: metadata.engagementHook,
         });
       }
     }
@@ -118,8 +186,11 @@ export async function GET() {
                           mdContent.match(/^#\s+(.+)$/m);
         const title = titleMatch ? titleMatch[1].trim() : slug.replace(/-/g, ' ');
 
-        const caption = extractCaption(mdContent);
+        const tweets = extractTweets(mdContent);
         const metadata = extractMetadata(mdContent);
+
+        // Full thread as single string for copying
+        const fullThread = tweets?.map(t => t.text).join('\n\n---\n\n') || '';
 
         // Twitter uses LinkedIn image if available
         const linkedinDir2 = join(socialDir, 'linkedin');
@@ -138,11 +209,18 @@ export async function GET() {
           title,
           platform: 'twitter',
           status: 'draft',
-          caption,
+          caption: fullThread,
+          captionWithHashtags: fullThread,
+          hashtags: [],
+          charCount: fullThread.length,
           imagePath: imageFile ? `/social/linkedin/${imageFile}` : undefined,
           imageUrl: imageFile ? `/social/linkedin/${imageFile}` : undefined,
           blogUrl: metadata.blogUrl,
           createdAt: stats.mtime.toISOString(),
+          bestTime: metadata.bestTime,
+          targetAudience: metadata.targetAudience,
+          engagementHook: metadata.engagementHook,
+          tweets,
         });
       }
     }
