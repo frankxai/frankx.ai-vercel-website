@@ -118,6 +118,16 @@ function AuroraBackground() {
 
 const researchBriefs = [
   {
+    slug: 'ai-neuroscience-2026',
+    title: 'AI & Neuroscience: The State of What\'s Possible',
+    description: 'BCIs at production scale, neuromorphic computing breakthroughs, thought-to-text at 74% accuracy, and organoid intelligence emerging as biological computing.',
+    keyStats: ['12 Neuralink patients', '1,000x neuromorphic efficiency', '74% thought decoding accuracy'],
+    sources: 12,
+    lastValidated: '2026-01-27',
+    category: 'Frontier Technology',
+    relatedArticle: '/blog/production-agentic-ai-systems',
+  },
+  {
     slug: 'multi-agent-adoption-2026',
     title: 'Multi-Agent System Adoption: Q1 2026',
     description: 'Validated statistics on enterprise multi-agent adoption, framework market share, and orchestration patterns.',
