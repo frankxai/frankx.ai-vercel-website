@@ -32,6 +32,7 @@ export interface ResearchBrief {
   slug: string;
   title: string;
   description: string;
+  tldr: string; // 50-word AI-quotable summary
   category: string;
   lastValidated: string;
   methodology: string;
@@ -39,6 +40,8 @@ export interface ResearchBrief {
   claims: ValidatedClaim[];
   implications: string[];
   relatedArticles: string[];
+  // FAQ for schema markup
+  faqs?: { question: string; answer: string }[];
 }
 
 // Calculate freshness status based on validation date
@@ -603,6 +606,7 @@ export const researchBriefs: Record<string, ResearchBrief> = {
     slug: 'ai-neuroscience-2026',
     title: 'AI & Neuroscience: The State of What\'s Possible',
     description: 'Landmark research confirms adult neurogenesis, BCIs reach production scale with 65K+ electrodes, AI therapy shows 34% depression reduction in clinical trials, and neuromorphic computing hits 1,000x efficiency.',
+    tldr: 'Adult neurogenesis confirmed (July 2025 Karolinska study). BCIs now clinical: Synchron completed FDA trial, Neuralink has 5+ patients, Columbia achieved 65,536 electrodes. AI therapy shows 34% depression reduction in RCTs. Neuromorphic chips hit 1,000x efficiency. Brain reorganizes at ages 9, 23, 32, 66, 83.',
     category: 'Frontier Technology',
     lastValidated: '2026-01-27',
     methodology: 'Cross-referenced 25+ sources including Science/AAAS, Nature, NEJM AI, MIT Technology Review, Scientific American, and peer-reviewed papers. Focus on landmark studies that shifted scientific consensus or demonstrated clinical breakthroughs.',
@@ -620,6 +624,28 @@ export const researchBriefs: Record<string, ResearchBrief> = {
       validatedClaims['neurofeedback-adhd-efficacy'],
       validatedClaims['brain-turning-points'],
       validatedClaims['bci-market-size'],
+    ],
+    faqs: [
+      {
+        question: 'Does the adult brain make new neurons?',
+        answer: 'Yes. The July 2025 Karolinska Institute study using RNA sequencing on subjects aged 0-78 confirmed adult neurogenesis in the hippocampus, settling a decades-long scientific debate.'
+      },
+      {
+        question: 'How effective is AI therapy for depression?',
+        answer: 'Randomized controlled trials published in NEJM AI show 34% symptom reduction over 4 weeks using AI-powered CBT platforms, compared to 20% in control groups. AI can also predict depressive episodes with 91% accuracy using wearable data.'
+      },
+      {
+        question: 'What is the current state of brain-computer interfaces?',
+        answer: 'BCIs reached clinical scale in 2025: Neuralink has 5+ patients controlling devices with thoughts, Synchron completed its FDA COMMAND trial, and Columbia University achieved 65,536 electrodes with wireless transmission.'
+      },
+      {
+        question: 'Are brain training apps backed by science?',
+        answer: 'Most consumer brain training apps lack clinical evidence. However, neurofeedback (specifically SMR and TBR protocols) is now rated Level 1 "Efficacious and Specific" for ADHD treatment based on randomized controlled trials.'
+      },
+      {
+        question: 'What are the major brain development turning points?',
+        answer: 'Research published in Scientific American identified five major brain reorganization points at ages 9, 23, 32, 66, and 83, with implications for optimal learning windows and intervention timing.'
+      }
     ],
     implications: [
       'Adult neurogenesis is real—the July 2025 Karolinska study settled decades of debate with RNA sequencing proof',
@@ -640,6 +666,7 @@ export const researchBriefs: Record<string, ResearchBrief> = {
     slug: 'multi-agent-adoption-2026',
     title: 'Multi-Agent System Adoption: Q1 2026',
     description: 'Validated statistics on enterprise multi-agent adoption, framework market share, and orchestration patterns in production.',
+    tldr: '72% of enterprise AI projects now use multi-agent architectures. LangGraph leads with 34% market share, CrewAI at 28%. Gartner predicts 40% of enterprise apps will feature AI agents by end of 2026. Market projected to reach $52.62B by 2030 at 46.3% CAGR.',
     category: 'Market Intelligence',
     lastValidated: '2026-01-27',
     methodology: 'Cross-referenced 15+ sources including G2, Gartner, McKinsey State of AI, Stack Overflow Survey, and GitHub/npm statistics. Claims validated with minimum 2 independent sources where possible.',
@@ -650,6 +677,20 @@ export const researchBriefs: Record<string, ResearchBrief> = {
       validatedClaims['crewai-market-share'],
       validatedClaims['gartner-40-percent-agents'],
       validatedClaims['market-size-2030'],
+    ],
+    faqs: [
+      {
+        question: 'What percentage of enterprises use multi-agent AI systems?',
+        answer: '72% of enterprise AI projects now use multi-agent architectures according to G2 and Gartner research from Q1 2026, making it the default approach rather than an experimental pattern.'
+      },
+      {
+        question: 'Which AI agent framework has the largest market share?',
+        answer: 'LangGraph leads with 34% market share based on Stack Overflow Developer Survey 2026 and GitHub analysis. CrewAI follows at 28%, with the rest fragmented across AutoGen, Semantic Kernel, and custom solutions.'
+      },
+      {
+        question: 'How big is the AI agents market?',
+        answer: 'The AI agents market was valued at $7.84 billion in 2025 and is projected to reach $52.62 billion by 2030, growing at a 46.3% CAGR according to MarketsAndMarkets research.'
+      }
     ],
     implications: [
       'Multi-agent is no longer experimental—with 72% adoption, it\'s the default architecture',
@@ -663,6 +704,7 @@ export const researchBriefs: Record<string, ResearchBrief> = {
     slug: 'mcp-ecosystem-2026',
     title: 'MCP Protocol Ecosystem: Q1 2026',
     description: 'Comprehensive analysis of Model Context Protocol adoption, server ecosystem, and integration patterns.',
+    tldr: 'Model Context Protocol ecosystem grew 340% in H2 2025. Over 50 production MCP servers now available. Claude Code 2.1\'s Tool Search achieves 85% token reduction through deferred loading. MCP-first architecture becoming standard for AI tool integration.',
     category: 'Integration Architecture',
     lastValidated: '2026-01-27',
     methodology: 'Analysis of Anthropic official documentation, GitHub repository counts, npm download statistics, and developer surveys. Cross-referenced with Claude Code release notes and Linux Foundation announcements.',
@@ -671,6 +713,20 @@ export const researchBriefs: Record<string, ResearchBrief> = {
       validatedClaims['mcp-servers-count'],
       validatedClaims['mcp-growth-h2-2025'],
       validatedClaims['mcp-token-reduction'],
+    ],
+    faqs: [
+      {
+        question: 'What is Model Context Protocol (MCP)?',
+        answer: 'MCP is Anthropic\'s open standard for connecting AI models to external tools and data sources. It enables AI assistants to interact with databases, APIs, file systems, and services through a standardized protocol rather than custom integrations.'
+      },
+      {
+        question: 'How many MCP servers are available?',
+        answer: 'Over 50 production-ready MCP servers are available as of Q1 2026, covering databases, cloud services, development tools, and productivity apps. The ecosystem grew 340% in the second half of 2025.'
+      },
+      {
+        question: 'How does MCP reduce token usage?',
+        answer: 'Claude Code 2.1\'s Tool Search feature achieves 85% token reduction by loading MCP tool definitions only when needed (deferred loading) rather than including all tool schemas in every request.'
+      }
     ],
     implications: [
       'MCP-first design should be standard—plan tool integrations around MCP from the start',
@@ -684,6 +740,7 @@ export const researchBriefs: Record<string, ResearchBrief> = {
     slug: 'observability-production-2026',
     title: 'AI Agent Observability: Q1 2026',
     description: 'Production monitoring patterns, tool comparison, and implementation guidance for multi-agent systems.',
+    tldr: 'Gartner predicts 60% of AI deployments will fail without proper observability by 2027. 60%+ of production AI apps use RAG patterns. Key metrics: latency, token cost, response quality. LangSmith leads for LangGraph users; Langfuse for open-source flexibility.',
     category: 'Production Patterns',
     lastValidated: '2026-01-27',
     methodology: 'Analysis of vendor documentation (LangSmith, W&B Weave, Langfuse), Gartner predictions, and enterprise deployment case studies.',
@@ -691,6 +748,20 @@ export const researchBriefs: Record<string, ResearchBrief> = {
     claims: [
       validatedClaims['gartner-observability-failure'],
       validatedClaims['rag-production-usage'],
+    ],
+    faqs: [
+      {
+        question: 'Why do AI deployments fail without observability?',
+        answer: 'Gartner predicts 60% of AI deployments will fail by 2027 without proper observability because teams cannot debug agent decision paths, identify cost spikes, or detect quality degradation in production multi-agent systems.'
+      },
+      {
+        question: 'What percentage of AI applications use RAG?',
+        answer: 'Over 60% of production AI applications use Retrieval Augmented Generation (RAG) patterns according to industry surveys and LangChain reports, making RAG observability critical for most deployments.'
+      },
+      {
+        question: 'Which observability tool is best for AI agents?',
+        answer: 'LangSmith leads for LangGraph users with zero-overhead tracing and native integration. Langfuse offers open-source flexibility for cost-conscious teams. W&B Weave suits ML-heavy workflows. Choice depends on framework and budget.'
+      }
     ],
     implications: [
       '60% of AI deployments will fail without proper observability by 2027',

@@ -2,6 +2,7 @@
 
 import { useParams } from 'next/navigation'
 import Link from 'next/link'
+import Script from 'next/script'
 import { motion } from 'framer-motion'
 import {
   ArrowLeft,
@@ -18,6 +19,8 @@ import {
   Link2,
   Calendar,
   BarChart3,
+  Sparkles,
+  MessageCircleQuestion,
 } from 'lucide-react'
 import {
   researchBriefs,
@@ -27,7 +30,48 @@ import {
   getConfidencePercentage,
   type FreshnessStatus,
   type ConfidenceLevel,
+  type ResearchBrief,
 } from '@/lib/research/validated-claims'
+
+// Generate FAQPage schema for SEO/AEO
+function generateFAQSchema(brief: ResearchBrief) {
+  if (!brief.faqs || brief.faqs.length === 0) return null;
+
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    'mainEntity': brief.faqs.map(faq => ({
+      '@type': 'Question',
+      'name': faq.question,
+      'acceptedAnswer': {
+        '@type': 'Answer',
+        'text': faq.answer
+      }
+    }))
+  };
+}
+
+// Generate Article schema
+function generateArticleSchema(brief: ResearchBrief) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'TechArticle',
+    'headline': brief.title,
+    'description': brief.tldr || brief.description,
+    'author': {
+      '@type': 'Person',
+      'name': 'Frank',
+      'url': 'https://frankx.ai/about'
+    },
+    'publisher': {
+      '@type': 'Organization',
+      'name': 'FrankX',
+      'url': 'https://frankx.ai'
+    },
+    'dateModified': brief.lastValidated,
+    'mainEntityOfPage': `https://frankx.ai/research/briefs/${brief.slug}`
+  };
+}
 
 // Freshness indicator component
 function FreshnessBadge({ status }: { status: FreshnessStatus }) {
@@ -118,7 +162,25 @@ export default function ResearchBriefPage() {
     trend: claim.confidence === 'high' ? 'Verified' : 'Estimated'
   }))
 
+  // Generate schemas for SEO/AEO (safe - data is from our validated claims registry)
+  const faqSchema = generateFAQSchema(brief)
+  const articleSchema = generateArticleSchema(brief)
+
   return (
+    <>
+      {/* Schema.org structured data for SEO and AI citation */}
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          // Schema content is generated from our validated claims registry, not user input
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
+      <script
+        type="application/ld+json"
+        // Schema content is generated from our validated claims registry, not user input
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
+      />
     <main className="min-h-screen bg-[#030712]">
       {/* Background */}
       <div className="fixed inset-0 -z-10 overflow-hidden" aria-hidden>
@@ -173,6 +235,26 @@ export default function ResearchBriefPage() {
               {brief.description}
             </p>
           </motion.div>
+
+          {/* TL;DR Block - AI-Quotable Summary */}
+          {brief.tldr && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.12 }}
+              className="mb-8"
+            >
+              <div className="rounded-2xl border border-violet-500/20 bg-gradient-to-br from-violet-500/[0.08] to-cyan-500/[0.04] p-6">
+                <h3 className="text-sm font-semibold text-violet-400 uppercase tracking-wider mb-3 flex items-center gap-2">
+                  <Sparkles className="h-4 w-4" />
+                  TL;DR
+                </h3>
+                <p className="text-white leading-relaxed">
+                  {brief.tldr}
+                </p>
+              </div>
+            </motion.div>
+          )}
 
           {/* Validation Summary Card */}
           <motion.div
@@ -377,6 +459,41 @@ export default function ResearchBriefPage() {
             </div>
           </motion.div>
 
+          {/* FAQ Section */}
+          {brief.faqs && brief.faqs.length > 0 && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.55 }}
+              className="mb-12"
+            >
+              <h2 className="flex items-center gap-2 text-xl font-bold text-white mb-6">
+                <MessageCircleQuestion className="h-5 w-5 text-amber-400" />
+                Frequently Asked Questions
+              </h2>
+              <div className="space-y-4">
+                {brief.faqs.map((faq, i) => (
+                  <details
+                    key={i}
+                    className="group rounded-xl border border-white/[0.08] bg-white/[0.03] overflow-hidden"
+                  >
+                    <summary className="cursor-pointer p-5 flex items-center justify-between hover:bg-white/[0.02] transition-colors">
+                      <h3 className="text-white font-medium pr-4">{faq.question}</h3>
+                      <span className="text-slate-500 group-open:rotate-180 transition-transform">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                          <path d="M4 6L8 10L12 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      </span>
+                    </summary>
+                    <div className="px-5 pb-5 pt-0">
+                      <p className="text-slate-400 leading-relaxed">{faq.answer}</p>
+                    </div>
+                  </details>
+                ))}
+              </div>
+            </motion.div>
+          )}
+
           {/* Related Content */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -413,5 +530,6 @@ export default function ResearchBriefPage() {
         </div>
       </div>
     </main>
+    </>
   )
 }
