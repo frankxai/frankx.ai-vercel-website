@@ -1,4 +1,4 @@
-# Twitter/X Thread: Agentic Creator OS Complete Guide
+# Twitter/X Thread: Agentic Creator OS Guide
 
 **Image:** Use 1x1 from linkedin folder on Tweet 1
 
@@ -7,77 +7,102 @@
 ## Thread
 
 **Tweet 1 (Hook):**
-I built an AI operating system.
+I automated 80% of my content workflow.
 
-25 commands. 80+ skills. 40+ agents.
+25 commands. 80+ skills. 40+ agents. 8 workflows.
 
-Zero code required.
+No code required.
 
-Here's how Agentic Creator OS transforms Claude Code into a full creative studio 🧵
+Here's the system:
 
 **Tweet 2:**
-The problem with AI chat tools:
+The problem it solves:
 
-• Lose your best prompts
-• Outputs don't sound like you
-• Juggling 10 different tools
-• Start from scratch every session
+Most creators use AI like this:
+1. Open ChatGPT
+2. Write prompt
+3. Get response
+4. Copy-paste
+5. Repeat (losing context)
 
-Chat = temporary
-Operating System = persistent intelligence
+Tool roulette. Prompt amnesia. Nothing compounds.
 
 **Tweet 3:**
-What ACOS v6 gives you:
+What ACOS does:
 
-• Single entry point: `/acos`
-• Smart router detects intent
-• Auto-activating skills
-• Quality gates (brand voice, code standards)
-• Swarm intelligence (parallel agents)
+Transforms Claude Code from chat tool to operating system.
 
-All from one command.
+- Persistent skills
+- Coordinated agents
+- Automated workflows
+
+Same system runs my music (12K songs), website, and enterprise work.
 
 **Tweet 4:**
-The architecture:
+The entry point:
 
-Layer 1: Commands (25)
-→ /factory, /research, /council
+```
+/acos
+```
 
-Layer 2: Skills (80+)
-→ Specialized capabilities that auto-load
+One command. Smart router detects your intent. Routes to the right workflow automatically.
 
-Layer 3: Agents (40+)
-→ Expert personalities for specific tasks
-
-Layer 4: Workflows (8)
-→ Orchestrated pipelines
+"I need to publish the agent roadmap article" → Full pipeline triggers.
 
 **Tweet 5:**
-This system powers:
+What happens when I say "/publish enterprise-agent-roadmap":
 
-• 12,000+ AI-generated songs
-• My entire website (you're reading it)
-• Enterprise Oracle consulting
+1. Writer drafts in my voice
+2. SEO optimizes structure
+3. Image generator creates hero
+4. Deploy pushes to Vercel
+5. Social creates LinkedIn/Twitter posts
 
-Started as a CLAUDE.md file.
-Now it's a full OS.
+One command. Everything executes.
 
-**Tweet 6 (CTA):**
-Full guide with:
+**Tweet 6:**
+The skill architecture:
 
-• Installation (5 minutes)
-• Architecture diagrams
-• Command reference
-• Example workflows
+Skills are saved capabilities.
 
-Free on GitHub.
+I have 80+:
+- /research (deep dive with sources)
+- /publish (full blog pipeline)
+- /music (Suno production)
+- /deploy (staging to production)
 
+Each one compounds over time.
+
+**Tweet 7:**
+The hooks system:
+
+Quality gates that run automatically.
+
+- Before file writes: Check formatting
+- After code: Run tests
+- Before publish: SEO validation
+
+Mistakes caught before they ship.
+
+**Tweet 8:**
+The numbers after 8 months:
+
+- 12,000+ AI songs produced
+- 50+ blog articles published
+- 3 enterprise projects managed
+
+All through natural language commands.
+
+**Tweet 9 (CTA):**
+Free. Open source. Installs in 5 minutes.
+
+Full guide:
 https://www.frankx.ai/blog/agentic-creator-os-complete-guide
 
-Stop chatting with AI.
-Start operating with it.
+What would you build with your own AI operating system?
 
 ---
 
 **Status:** Ready for posting
-**Format:** Thread (6 tweets)
+**Format:** Thread (9 tweets)
+**Engagement strategy:** Bold claim, system walkthrough, open source hook
