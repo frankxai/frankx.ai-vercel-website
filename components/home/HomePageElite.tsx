@@ -969,8 +969,9 @@ function AboutSection() {
           <div className="space-y-4 sm:space-y-6 text-base sm:text-lg text-white/60 leading-relaxed mb-8 sm:mb-10">
             <p>
               By day, I architect AI systems at Oracle. By night, I make music—hundreds of songs
-              exploring what's possible when humans and AI create together. I'm a husband, a father,
-              someone who believes the universe is too interesting not to explore deeply.
+              exploring what's possible when humans and AI create together. I'm 28, living in Amsterdam
+              with my girlfriend Tien, godfather to two, uncle to many more. Building something they can
+              experience someday—a map of what I learned, what I built, what I figured out.
             </p>
             <p className="text-white/70">
               This site is my workshop, my notebook, my attempt to share what I'm learning
