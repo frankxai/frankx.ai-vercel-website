@@ -9,24 +9,10 @@ import {
   ExternalLink,
 } from 'lucide-react'
 
-import dynamic from 'next/dynamic'
-
 import prototypesData from '@/data/ai-architecture/prototypes.json'
 import { CATEGORY_META, CLOUD_PROVIDER_META, DIFFICULTY_META } from '@/types/ai-architecture'
 import type { ArchitecturePrototype } from '@/types/ai-architecture'
-
-// Dynamic import for client-side ReactFlow component
-const BlueprintDiagram = dynamic(() => import('./BlueprintDiagram'), {
-  ssr: false,
-  loading: () => (
-    <div className="h-[500px] rounded-2xl border border-white/10 bg-slate-900/80 flex items-center justify-center">
-      <div className="flex flex-col items-center gap-3">
-        <div className="w-8 h-8 border-2 border-cyan-500 border-t-transparent rounded-full animate-spin" />
-        <span className="text-sm text-slate-400">Loading interactive diagram...</span>
-      </div>
-    </div>
-  ),
-})
+import { BlueprintDiagramWrapper } from './BlueprintDiagramWrapper'
 
 const blueprints = prototypesData as ArchitecturePrototype[]
 
@@ -176,7 +162,7 @@ export default async function BlueprintPage({ params }: Props) {
           {blueprint.architecture.components.length > 0 && (
             <div className="mb-12">
               <h2 className="mb-4 text-2xl font-bold text-white">Architecture</h2>
-              <BlueprintDiagram
+              <BlueprintDiagramWrapper
                 components={blueprint.architecture.components}
                 flows={blueprint.architecture.flows}
                 title={`${blueprint.title} Architecture`}

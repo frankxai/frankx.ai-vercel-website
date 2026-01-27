@@ -65,7 +65,7 @@ function BlueprintCard({ blueprint, index }: { blueprint: ArchitecturePrototype;
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
     >
-      <Link href={`/blueprint/${blueprint.slug}`} className="group block h-full">
+      <Link href={`/ai-architecture/${blueprint.slug}`} className="group block h-full">
         <div className="relative flex h-full flex-col rounded-2xl border border-cyan-500/20 bg-cyan-500/5 p-6 backdrop-blur-sm transition-all duration-300 hover:border-cyan-500/40 group-hover:-translate-y-1 group-hover:shadow-xl">
           {/* Type badge */}
           <div className="absolute -right-2 -top-2 rounded-full bg-cyan-500 px-2.5 py-0.5 text-[10px] font-semibold uppercase text-white">
