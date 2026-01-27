@@ -1,4 +1,5 @@
 import { NextRequest } from 'next/server'
+import { byokRatelimit, getClientIdentifier } from '@/lib/ratelimit'
 
 export const runtime = 'edge'
 
@@ -201,6 +202,25 @@ export async function POST(req: NextRequest) {
 
     if (!apiKey) {
       return Response.json({ error: 'API key required' }, { status: 401 })
+    }
+
+    // Rate limiting to prevent abuse
+    try {
+      const identifier = getClientIdentifier(req)
+      const { success, remaining } = await byokRatelimit.limit(identifier)
+
+      if (!success) {
+        return Response.json(
+          { error: 'Rate limit exceeded. Please wait before making more requests.' },
+          {
+            status: 429,
+            headers: { 'X-RateLimit-Remaining': remaining.toString() }
+          }
+        )
+      }
+    } catch (rateLimitError) {
+      // If rate limiting fails (KV not configured), log but continue
+      console.warn('BYOK rate limiting unavailable:', rateLimitError)
     }
 
     const { messages } = await req.json()

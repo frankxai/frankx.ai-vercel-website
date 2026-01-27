@@ -37,6 +37,15 @@ export const leadRatelimit = new Ratelimit({
   prefix: 'ratelimit:leads'
 })
 
+// BYOK API rate limit - Protects against abuse of user-provided API keys
+// 20 requests per minute per IP (enough for normal chat, prevents runaway costs)
+export const byokRatelimit = new Ratelimit({
+  redis: kv,
+  limiter: Ratelimit.slidingWindow(20, '1 m'),
+  analytics: true,
+  prefix: 'ratelimit:byok'
+})
+
 /**
  * Get client identifier from request
  * Uses IP address for rate limiting
