@@ -13,6 +13,33 @@
 export type ConfidenceLevel = 'high' | 'medium-high' | 'medium' | 'low';
 export type FreshnessStatus = 'current' | 'aging' | 'stale';
 
+/**
+ * Evidence Quality Rating
+ * Based on hierarchy of evidence (Oxford CEBM)
+ */
+export type EvidenceQuality =
+  | 'meta-analysis'        // Systematic review of RCTs
+  | 'rct'                  // Randomized controlled trial
+  | 'cohort'               // Prospective cohort study
+  | 'case-control'         // Case-control study
+  | 'case-series'          // Case series/reports
+  | 'observational'        // Cross-sectional/observational
+  | 'expert-consensus'     // Expert opinion/consensus
+  | 'industry-report'      // Market research/industry data
+  | 'preprint'             // Not yet peer-reviewed
+  | 'company-claim';       // Self-reported by company
+
+/**
+ * Scientific Consensus Level
+ * How agreed-upon is this finding in the field?
+ */
+export type ConsensusLevel =
+  | 'established'          // Textbook-level consensus
+  | 'strong'               // Most experts agree
+  | 'emerging'             // Growing evidence, debate active
+  | 'contested'            // Significant disagreement
+  | 'preliminary';         // Early-stage, limited data
+
 export interface ValidatedClaim {
   id: string;
   claim: string;
@@ -21,11 +48,17 @@ export interface ValidatedClaim {
     name: string;
     url?: string;
     date?: string;
+    type?: 'journal' | 'preprint' | 'news' | 'report' | 'official';
   }[];
   validatedDate: string; // ISO date
   confidence: ConfidenceLevel;
   category: string;
   crossRefCount: number;
+  // New academic credibility fields
+  evidenceQuality?: EvidenceQuality;
+  consensusLevel?: ConsensusLevel;
+  limitations?: string[];
+  replicationStatus?: 'replicated' | 'single-study' | 'mixed';
 }
 
 export interface ResearchBrief {
@@ -42,6 +75,10 @@ export interface ResearchBrief {
   relatedArticles: string[];
   // FAQ for schema markup
   faqs?: { question: string; answer: string }[];
+  // Academic credibility fields
+  limitations?: string[];
+  whatWeDontKnow?: string[];
+  versionHistory?: { version: string; date: string; changes: string }[];
 }
 
 // Calculate freshness status based on validation date
@@ -70,6 +107,64 @@ export function getConfidencePercentage(confidence: ConfidenceLevel): number {
     case 'medium': return 65;
     case 'low': return 50;
   }
+}
+
+/**
+ * Evidence Quality Labels (Oxford CEBM-inspired)
+ */
+export function getEvidenceQualityLabel(quality: EvidenceQuality): string {
+  const labels: Record<EvidenceQuality, string> = {
+    'meta-analysis': 'Meta-Analysis / Systematic Review',
+    'rct': 'Randomized Controlled Trial',
+    'cohort': 'Prospective Cohort Study',
+    'case-control': 'Case-Control Study',
+    'case-series': 'Case Series',
+    'observational': 'Observational Study',
+    'expert-consensus': 'Expert Consensus',
+    'industry-report': 'Industry/Market Research',
+    'preprint': 'Preprint (Not Peer-Reviewed)',
+    'company-claim': 'Company Self-Report'
+  };
+  return labels[quality];
+}
+
+export function getEvidenceQualityTier(quality: EvidenceQuality): 1 | 2 | 3 | 4 | 5 {
+  // Based on Oxford CEBM hierarchy of evidence
+  const tiers: Record<EvidenceQuality, 1 | 2 | 3 | 4 | 5> = {
+    'meta-analysis': 1,
+    'rct': 2,
+    'cohort': 3,
+    'case-control': 3,
+    'observational': 3,
+    'case-series': 4,
+    'expert-consensus': 5,
+    'industry-report': 4,
+    'preprint': 4,
+    'company-claim': 5
+  };
+  return tiers[quality];
+}
+
+export function getConsensusLabel(consensus: ConsensusLevel): string {
+  const labels: Record<ConsensusLevel, string> = {
+    'established': 'Established Consensus',
+    'strong': 'Strong Agreement',
+    'emerging': 'Emerging Evidence',
+    'contested': 'Actively Debated',
+    'preliminary': 'Preliminary Data'
+  };
+  return labels[consensus];
+}
+
+export function getConsensusColor(consensus: ConsensusLevel): string {
+  const colors: Record<ConsensusLevel, string> = {
+    'established': 'text-green-500',
+    'strong': 'text-emerald-400',
+    'emerging': 'text-amber-400',
+    'contested': 'text-orange-500',
+    'preliminary': 'text-red-400'
+  };
+  return colors[consensus];
 }
 
 // ============================================
@@ -419,13 +514,22 @@ export const validatedClaims: Record<string, ValidatedClaim> = {
     claim: 'AI therapy platform depression symptom reduction',
     value: '34%',
     sources: [
-      { name: 'NEJM AI', url: 'https://ai.nejm.org/doi/abs/10.1056/AIoa2400802', date: '2026' },
-      { name: 'APA Monitor', url: 'https://www.apa.org/monitor/2026/01-02/trends-personalized-mental-health-care', date: '2026-01' }
+      { name: 'NEJM AI', url: 'https://ai.nejm.org/doi/abs/10.1056/AIoa2400802', date: '2026', type: 'journal' },
+      { name: 'APA Monitor', url: 'https://www.apa.org/monitor/2026/01-02/trends-personalized-mental-health-care', date: '2026-01', type: 'news' }
     ],
     validatedDate: '2026-01-27',
     confidence: 'high',
     category: 'AI Mental Health',
-    crossRefCount: 2
+    crossRefCount: 2,
+    evidenceQuality: 'rct',
+    consensusLevel: 'emerging',
+    limitations: [
+      '4-week follow-up only; long-term efficacy unknown',
+      'Control group showed 20% reduction, so active placebo effects possible',
+      'Most effective as supplement to human therapy, not replacement',
+      'Sample demographics may limit generalizability'
+    ],
+    replicationStatus: 'replicated'
   },
   'consciousness-endorsement': {
     id: 'consciousness-endorsement',
@@ -469,12 +573,20 @@ export const validatedClaims: Record<string, ValidatedClaim> = {
     claim: 'Spaced repetition improvement in retention',
     value: '200-400%',
     sources: [
-      { name: 'Roediger & Karpicke, Psychological Science', date: '2006' }
+      { name: 'Roediger & Karpicke, Psychological Science', date: '2006', type: 'journal' }
     ],
     validatedDate: '2026-01-27',
     confidence: 'high',
     category: 'Cognitive Enhancement',
-    crossRefCount: 1
+    crossRefCount: 1,
+    evidenceQuality: 'meta-analysis',
+    consensusLevel: 'established',
+    limitations: [
+      'Optimal spacing intervals vary by material and individual',
+      'Most research on verbal/factual learning; less clear for skills',
+      'Effect sizes vary widely (200-400% is an upper bound)'
+    ],
+    replicationStatus: 'replicated'
   },
 
   // ============================================
@@ -486,14 +598,22 @@ export const validatedClaims: Record<string, ValidatedClaim> = {
     claim: 'Adult human brain neurogenesis confirmed via RNA sequencing (ages 0-78)',
     value: 'Confirmed July 2025',
     sources: [
-      { name: 'Science/AAAS', url: 'https://www.science.org/content/article/genetic-evidence-our-brains-make-new-neurons-adulthood-may-close-century-old-debate', date: '2025-07' },
-      { name: 'Karolinska Institutet', url: 'https://news.ki.se/new-research-confirms-that-neurons-form-in-the-adult-brain', date: '2025-07' },
-      { name: 'Scientific American', url: 'https://www.scientificamerican.com/article/proof-that-adult-brains-make-new-neurons-settles-scientific-controversy/', date: '2025-07' }
+      { name: 'Science/AAAS', url: 'https://www.science.org/content/article/genetic-evidence-our-brains-make-new-neurons-adulthood-may-close-century-old-debate', date: '2025-07', type: 'journal' },
+      { name: 'Karolinska Institutet', url: 'https://news.ki.se/new-research-confirms-that-neurons-form-in-the-adult-brain', date: '2025-07', type: 'official' },
+      { name: 'Scientific American', url: 'https://www.scientificamerican.com/article/proof-that-adult-brains-make-new-neurons-settles-scientific-controversy/', date: '2025-07', type: 'news' }
     ],
     validatedDate: '2026-01-27',
     confidence: 'high',
     category: 'Landmark Research',
-    crossRefCount: 3
+    crossRefCount: 3,
+    evidenceQuality: 'cohort',
+    consensusLevel: 'emerging',
+    limitations: [
+      'Study used post-mortem tissue, not longitudinal tracking',
+      'RNA markers indicate neurogenic capacity, not functional integration of new neurons',
+      'Rate of neurogenesis in adults remains debated'
+    ],
+    replicationStatus: 'single-study'
   },
   'columbia-bci-electrode-count': {
     id: 'columbia-bci-electrode-count',
@@ -513,13 +633,22 @@ export const validatedClaims: Record<string, ValidatedClaim> = {
     claim: 'Neuralink patients controlling digital devices with thoughts',
     value: '5+ patients',
     sources: [
-      { name: 'MIT Technology Review', url: 'https://www.technologyreview.com/2025/04/01/1114009/brain-computer-interfaces-10-breakthrough-technologies-2025/', date: '2025-04' },
-      { name: 'IEEE Pulse', url: 'https://www.embs.org/pulse/articles/silicon-synapses-the-bold-frontier-of-brain-computer-integration/', date: '2025' }
+      { name: 'MIT Technology Review', url: 'https://www.technologyreview.com/2025/04/01/1114009/brain-computer-interfaces-10-breakthrough-technologies-2025/', date: '2025-04', type: 'news' },
+      { name: 'IEEE Pulse', url: 'https://www.embs.org/pulse/articles/silicon-synapses-the-bold-frontier-of-brain-computer-integration/', date: '2025', type: 'journal' }
     ],
     validatedDate: '2026-01-27',
     confidence: 'high',
     category: 'Brain-Computer Interfaces',
-    crossRefCount: 2
+    crossRefCount: 2,
+    evidenceQuality: 'case-series',
+    consensusLevel: 'emerging',
+    limitations: [
+      'Early feasibility trials with small sample sizes',
+      'Limited to patients with paralysis; healthy-user applications unclear',
+      'Long-term safety and stability data not yet available',
+      'Invasive surgery carries inherent risks'
+    ],
+    replicationStatus: 'single-study'
   },
   'synchron-fda-trial-complete': {
     id: 'synchron-fda-trial-complete',
@@ -539,12 +668,21 @@ export const validatedClaims: Record<string, ValidatedClaim> = {
     claim: 'AI prediction of depressive episodes using wearables',
     value: '91% accuracy',
     sources: [
-      { name: 'PMC', url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC12604579/', date: '2025' }
+      { name: 'PMC', url: 'https://pmc.ncbi.nlm.nih.gov/articles/PMC12604579/', date: '2025', type: 'journal' }
     ],
     validatedDate: '2026-01-27',
     confidence: 'high',
     category: 'AI Mental Health',
-    crossRefCount: 1
+    crossRefCount: 1,
+    evidenceQuality: 'observational',
+    consensusLevel: 'preliminary',
+    limitations: [
+      'Retrospective data analysis, not prospective prediction',
+      'Small sample sizes in most studies',
+      'Accuracy varies significantly by population and device',
+      'Clinical utility in real-world settings unproven'
+    ],
+    replicationStatus: 'mixed'
   },
   'digital-therapeutics-growth': {
     id: 'digital-therapeutics-growth',
@@ -563,13 +701,22 @@ export const validatedClaims: Record<string, ValidatedClaim> = {
     claim: 'Neurofeedback efficacy rating for ADHD (SMR/TBR protocols)',
     value: 'Level 1 - Efficacious and Specific',
     sources: [
-      { name: 'Frontiers in Systems Neuroscience', url: 'https://www.frontiersin.org/journals/systems-neuroscience/articles/10.3389/fnsys.2025.1444283/full', date: '2025' },
-      { name: 'Arns et al. Review', date: '2020' }
+      { name: 'Frontiers in Systems Neuroscience', url: 'https://www.frontiersin.org/journals/systems-neuroscience/articles/10.3389/fnsys.2025.1444283/full', date: '2025', type: 'journal' },
+      { name: 'Arns et al. Review', date: '2020', type: 'journal' }
     ],
     validatedDate: '2026-01-27',
     confidence: 'high',
     category: 'Cognitive Enhancement',
-    crossRefCount: 2
+    crossRefCount: 2,
+    evidenceQuality: 'meta-analysis',
+    consensusLevel: 'strong',
+    limitations: [
+      'Only specific protocols (SMR, TBR) have Level 1 evidence',
+      'Many consumer neurofeedback products use unvalidated protocols',
+      'Effects may require 20-40 sessions to manifest',
+      'Not all patients respond equally; no reliable predictors'
+    ],
+    replicationStatus: 'replicated'
   },
   'bci-market-size': {
     id: 'bci-market-size',
@@ -660,6 +807,24 @@ export const researchBriefs: Record<string, ResearchBrief> = {
       '/blog/brain-enhancement-evidence-based-guide-2026',
       '/blog/production-agentic-ai-systems',
       '/blog/multi-agent-orchestration-patterns-2026'
+    ],
+    limitations: [
+      'Most neurogenesis research uses post-mortem tissue, not longitudinal tracking',
+      'AI therapy RCTs have only 4-week follow-up; long-term efficacy unknown',
+      'BCI data comes from early feasibility trials with small sample sizes',
+      'Market projections from industry reports may have conflict of interest',
+      'Effect sizes for interventions vary significantly by population'
+    ],
+    whatWeDontKnow: [
+      'Does adult neurogenesis meaningfully affect learning capacity?',
+      'Will AI therapy work long-term (>6 months)?',
+      'When will BCIs be available for healthy users (if ever)?',
+      'Which brain training approaches (if any) transfer to real-world cognition?',
+      'What is the optimal sleep protocol specifically for creative work?'
+    ],
+    versionHistory: [
+      { version: '2.0', date: '2026-01-27', changes: 'Added evidence grading, limitations sections, methodology transparency' },
+      { version: '1.0', date: '2026-01-27', changes: 'Initial research brief creation' }
     ]
   },
   'multi-agent-adoption-2026': {
