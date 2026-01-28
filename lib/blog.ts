@@ -92,3 +92,11 @@ export function getPostsByTag(tag: string): BlogPost[] {
   )
 }
 
+export function getLatestPosts(limit: number = 3): BlogPost[] {
+  return getAllBlogPosts().slice(0, limit).map(post => ({
+    ...post,
+    summary: post.description,
+    publishedAt: post.date,
+  }))
+}
+

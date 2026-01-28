@@ -8,64 +8,71 @@
     <title>The Ultimate Guide to AI Coding Agents in 2026: Claude Code, OpenCode, Cline, and Beyond</title>
     <link>https://frankx.ai/blog/ultimate-guide-ai-coding-agents-2026</link>
     <guid>https://frankx.ai/blog/ultimate-guide-ai-coding-agents-2026</guid>
-    <pubDate>Thu, 22 Jan 2026 19:27:42 GMT</pubDate>
+    <pubDate>Tue, 27 Jan 2026 00:19:04 GMT</pubDate>
     <description>Master AI-powered development with the complete guide to coding agents. Learn to set up Claude Code, OpenCode, Cline, Roo Code, and build your evolution from basic prompts to multi-agent orchestration.</description>
   </item>
   <item>
     <title>Create Music Without Musical Training: The Suno AI Music Creation Workshop</title>
     <link>https://frankx.ai/blog/suno-ai-music-creation-workshop</link>
     <guid>https://frankx.ai/blog/suno-ai-music-creation-workshop</guid>
-    <pubDate>Thu, 22 Jan 2026 19:27:42 GMT</pubDate>
+    <pubDate>Tue, 27 Jan 2026 00:19:04 GMT</pubDate>
     <description>Transform your ideas into cinematic soundscapes, meditation music, and motivation anthems using AI. Learn the 5-Layer Prompt Architecture and frequency science for transformative audio.</description>
   </item>
   <item>
     <title>The 5C Framework: Mastering Prompt Engineering for Any AI System</title>
     <link>https://frankx.ai/blog/prompt-engineering-mastery-workshop</link>
     <guid>https://frankx.ai/blog/prompt-engineering-mastery-workshop</guid>
-    <pubDate>Thu, 22 Jan 2026 19:27:42 GMT</pubDate>
+    <pubDate>Tue, 27 Jan 2026 00:19:04 GMT</pubDate>
     <description>Learn systematic prompt engineering with the 5C Framework. From basic commands to advanced techniques like Chain-of-Thought and Few-Shot Learning. Build your personal prompt template library.</description>
   </item>
   <item>
     <title>AWS Bedrock AgentCore Deep Dive: Production Patterns for Enterprise AI Agents</title>
     <link>https://frankx.ai/blog/production-agent-patterns-aws-bedrock</link>
     <guid>https://frankx.ai/blog/production-agent-patterns-aws-bedrock</guid>
-    <pubDate>Thu, 22 Jan 2026 19:27:41 GMT</pubDate>
+    <pubDate>Tue, 27 Jan 2026 00:19:04 GMT</pubDate>
     <description>A comprehensive guide to building production-ready AI agents on AWS using Bedrock, AgentCore, and the Strands framework. Learn the architectural patterns, security controls, and operational best practices that power enterprise agent deployments.</description>
   </item>
   <item>
     <title>The 7 Pillars of Production Agent Systems: What Actually Matters in 2026</title>
     <link>https://frankx.ai/blog/production-agent-patterns-7-pillars</link>
     <guid>https://frankx.ai/blog/production-agent-patterns-7-pillars</guid>
-    <pubDate>Thu, 22 Jan 2026 19:27:41 GMT</pubDate>
+    <pubDate>Tue, 27 Jan 2026 00:19:04 GMT</pubDate>
     <description>2026 marks the shift from AI demos to production deployments. Here's the architectural framework that emerged from analyzing AWS, Azure, Google Cloud, OpenAI, Anthropic, and Oracle's approaches to production-ready AI agents.</description>
   </item>
   <item>
     <title>Build Your Personal AI Assistant: The Complete Setup Workshop</title>
     <link>https://frankx.ai/blog/personal-ai-assistant-setup-workshop</link>
     <guid>https://frankx.ai/blog/personal-ai-assistant-setup-workshop</guid>
-    <pubDate>Thu, 22 Jan 2026 19:27:41 GMT</pubDate>
+    <pubDate>Tue, 27 Jan 2026 00:19:04 GMT</pubDate>
     <description>Create a customized AI development environment from scratch. Learn to configure Claude Code, build CLAUDE.md files, create custom skills, and connect MCP servers to your workflow.</description>
   </item>
   <item>
     <title>Build Your First MCP Server: The Model Context Protocol Workshop</title>
     <link>https://frankx.ai/blog/mcp-server-architecture-workshop</link>
     <guid>https://frankx.ai/blog/mcp-server-architecture-workshop</guid>
-    <pubDate>Thu, 22 Jan 2026 19:27:41 GMT</pubDate>
+    <pubDate>Tue, 27 Jan 2026 00:19:04 GMT</pubDate>
     <description>Learn to build production-grade MCP servers that connect AI to your data. Master resources, tools, and prompts with the open standard revolutionizing AI integration.</description>
   </item>
   <item>
     <title>The Creator's AI Toolkit: Build Your Complete Content System</title>
     <link>https://frankx.ai/blog/creators-ai-toolkit-workshop</link>
     <guid>https://frankx.ai/blog/creators-ai-toolkit-workshop</guid>
-    <pubDate>Thu, 22 Jan 2026 19:27:41 GMT</pubDate>
+    <pubDate>Tue, 27 Jan 2026 00:19:04 GMT</pubDate>
     <description>Transform from overwhelmed creator to AI-empowered content machine. Build ideation engines, research pipelines, writing assistants, and distribution automation.</description>
   </item>
   <item>
     <title>CONTENT_SCHEMA</title>
     <link>https://frankx.ai/blog/CONTENT_SCHEMA</link>
     <guid>https://frankx.ai/blog/CONTENT_SCHEMA</guid>
-    <pubDate>Thu, 22 Jan 2026 19:27:41 GMT</pubDate>
+    <pubDate>Tue, 27 Jan 2026 00:19:04 GMT</pubDate>
     <description># FrankX Blog Content Schema ## Approved Categories (5 Only) | Category | Purpose | Editorial Day | Examples | |----------|---------|---------------|----------| | **Creator Systems** | Workflo…</description>
+  </item>
+  <item>
+    <title>CLAUDE</title>
+    <link>https://frankx.ai/blog/CLAUDE</link>
+    <guid>https://frankx.ai/blog/CLAUDE</guid>
+    <pubDate>Tue, 27 Jan 2026 00:19:04 GMT</pubDate>
+    <description>&lt;claude-mem-context&gt; # Recent Activity &lt;!-- This section is auto-generated by claude-mem. Edit content outside the tags. --&gt; *No recent activity* &lt;/claude-mem-context&gt;…</description>
   </item>
   <item>
     <title>5 Agentic Workflows That Save Creators 10+ Hours Per Week</title>
@@ -159,6 +166,13 @@
     <description>Everything announced at Nvidia's CES 2026 keynote - Rubin platform, Cosmos models, autonomous vehicles, and why physical AI is the next frontier for creators and enterprises.</description>
   </item>
   <item>
+    <title>Agentic Creator OS: Built in 8 Hours</title>
+    <link>https://frankx.ai/blog/agentic-creator-os-8-hours</link>
+    <guid>https://frankx.ai/blog/agentic-creator-os-8-hours</guid>
+    <pubDate>Wed, 14 Jan 2026 00:00:00 GMT</pubDate>
+    <description>How we built a complete multi-agent AI content platform from scratch in just 8 hours</description>
+  </item>
+  <item>
     <title>How to Use Suno AI for Professional Music Production</title>
     <link>https://frankx.ai/blog/suno-music-production-workflow</link>
     <guid>https://frankx.ai/blog/suno-music-production-workflow</guid>
@@ -171,6 +185,13 @@
     <guid>https://frankx.ai/blog/30-minute-creator-os-quick-start</guid>
     <pubDate>Fri, 09 Jan 2026 00:00:00 GMT</pubDate>
     <description>Skip the theory. In 30 minutes, you'll have a working creative system with capture, create, and ship workflows. Everything else can wait.</description>
+  </item>
+  <item>
+    <title>Complete Claude Code Masterclass: Build Your Agentic Studio in 2026</title>
+    <link>https://frankx.ai/blog/complete-claude-code-masterclass-2026</link>
+    <guid>https://frankx.ai/blog/complete-claude-code-masterclass-2026</guid>
+    <pubDate>Tue, 06 Jan 2026 00:00:00 GMT</pubDate>
+    <description>Master Claude Code workspaces, agent orchestration, and multi-agent workflows. Build a production-ready AI development environment.</description>
   </item>
   <item>
     <title>The Creative OS: A Guide to Building Your Creative Operating System</title>
@@ -332,27 +353,6 @@
     <guid>https://frankx.ai/blog/music-as-consciousness-technology</guid>
     <pubDate>Thu, 22 Aug 2024 00:00:00 GMT</pubDate>
     <description>After creating 12,000+ songs with Suno AI, I discovered music isn't entertainment—it's consciousness technology. Here's what three years of daily creation revealed.</description>
-  </item>
-  <item>
-    <title>The Soul Frequency Framework: How to Find Your Authentic Creative Voice in the AI Age</title>
-    <link>https://frankx.ai/blog/soul-frequency-framework</link>
-    <guid>https://frankx.ai/blog/soul-frequency-framework</guid>
-    <pubDate>Tue, 20 Aug 2024 00:00:00 GMT</pubDate>
-    <description>Everyone has a unique creative frequency — a way of expressing that's authentically yours. Here's how to discover yours and use AI to amplify it, not mask it.</description>
-  </item>
-  <item>
-    <title>Claude AI Guide for Creators</title>
-    <link>https://frankx.ai/guides/claude-anthropic-guide</link>
-    <guid>https://frankx.ai/guides/claude-anthropic-guide</guid>
-    <pubDate>Mon, 12 Jan 2026 00:00:00 GMT</pubDate>
-    <description>Master Anthropic's Claude for creative writing, content strategy, coding assistance, and building AI-powered workflows that amplify your creative output</description>
-  </item>
-  <item>
-    <title>ElevenLabs Voice AI Guide for Creators</title>
-    <link>https://frankx.ai/guides/elevenlabs-voice-guide</link>
-    <guid>https://frankx.ai/guides/elevenlabs-voice-guide</guid>
-    <pubDate>Mon, 12 Jan 2026 00:00:00 GMT</pubDate>
-    <description>Master ElevenLabs for professional voiceovers, podcast production, voice cloning, and building audio content at scale without recording equipment</description>
   </item>
 </channel>
 </rss>
