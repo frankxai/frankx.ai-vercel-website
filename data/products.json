@@ -602,7 +602,7 @@
       "primaryPriceDisplay": "Apply for the Lab",
       "currency": "USD",
       "ctaPrimary": "Apply for the Lab",
-      "ctaPrimaryHref": "https://frankx.ck.page/creator-lab",
+      "ctaPrimaryHref": "/creator-lab",
       "ctaPrimaryTracking": "creator-lab-apply",
       "ctaSecondary": "Download Creator Lab Overview",
       "ctaSecondaryHref": "/creation-chronicles",
@@ -642,7 +642,7 @@
           "Community check-ins"
         ],
         "ctaLabel": "Get Starter Kit",
-        "ctaHref": "https://frankx.ck.page/creator-lab-starter"
+        "ctaHref": "/creator-lab-starter"
       },
       {
         "name": "Guided Cohort",
@@ -655,7 +655,7 @@
           "Launch + analytics review"
         ],
         "ctaLabel": "Apply for Cohort",
-        "ctaHref": "https://frankx.ck.page/creator-lab"
+        "ctaHref": "/creator-lab"
       },
       {
         "name": "Creator Residency",

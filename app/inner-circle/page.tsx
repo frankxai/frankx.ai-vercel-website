@@ -59,7 +59,7 @@ const tiers = [
     description: 'Creation Chronicles newsletter + public drops to stay aligned with FrankX intelligence.',
     perks: ['Weekly dispatch', 'Early product notices', 'Selected Creation Chronicles essays'],
     ctaLabel: 'Join Creation Chronicles',
-    ctaHref: 'https://frankx.ck.page/creation-chronicles'
+    ctaHref: '/creation-chronicles'
   },
   {
     name: 'Inner Circle',
@@ -203,4 +203,3 @@ export default function RealmPage() {
     </div>
   )
 }
-

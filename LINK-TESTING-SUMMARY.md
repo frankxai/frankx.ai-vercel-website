@@ -145,13 +145,13 @@ Comprehensive link testing was performed on 11 key pages of the FrankX.AI websit
 **Affected Page:** /realm
 
 **Links:**
-- `https://frankx.ck.page/realm` (appears 3 times)
-- `https://frankx.ck.page/creation-chronicles`
+- `https://frankx.ai/realm` (appears 3 times)
+- `https://frankx.ai/creation-chronicles`
 
 **Fix:**
 Update all external ConvertKit links to open in new tab:
 ```jsx
-<a href="https://frankx.ck.page/realm" target="_blank" rel="noopener noreferrer">
+<a href="https://frankx.ai/realm" target="_blank" rel="noopener noreferrer">
 ```
 
 ---

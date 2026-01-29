@@ -206,7 +206,7 @@ Translate Frank's musician-technologist journey into language, prompts, and expe
 - **Styling**: Tailwind CSS, Framer Motion
 - **Deployment**: Vercel
 - **Analytics**: Vercel Analytics, PostHog
-- **Email**: ConvertKit (`frankx.ck.page`)
+- **Email**: ConvertKit (`frankx.ai`)
 - **Payments**: Stripe, Lemon Squeezy
 
 ### AI Infrastructure

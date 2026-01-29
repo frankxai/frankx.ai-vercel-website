@@ -93,9 +93,8 @@ export default function LinksPage() {
     {
       title: 'Inner Circle',
       description: 'Join the exclusive creator community with live labs',
-      href: 'https://frankx.ck.page/realm',
+      href: '/inner-circle',
       icon: Sparkles,
-      external: true,
       eyebrow: 'EXCLUSIVE',
       gradient: 'from-conscious-purple to-cosmic-purple'
     }

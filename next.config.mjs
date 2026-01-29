@@ -77,6 +77,17 @@ const nextConfig = {
         destination: 'https://frankx.ck.page/creation-chronicles',
         permanent: true,
       },
+      // Creator Lab signup → product page
+      {
+        source: '/creator-lab',
+        destination: '/products/agentic-creator-os',
+        permanent: false,
+      },
+      {
+        source: '/creator-lab-starter',
+        destination: '/products/agentic-creator-os',
+        permanent: false,
+      },
       // Blog post legacy redirects
       {
         source: '/blog/01-ai-doesnt-have-to-be-soulless',

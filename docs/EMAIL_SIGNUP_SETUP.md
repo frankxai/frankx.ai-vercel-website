@@ -167,7 +167,7 @@ Each type maps to its own ConvertKit form (configured via env vars).
 
 Old flow:
 ```tsx
-<a href="https://frankx.ck.page/creation-chronicles">Subscribe</a>
+<a href="https://frankx.ai/creation-chronicles">Subscribe</a>
 ```
 
 New flow:
