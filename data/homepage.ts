@@ -7,15 +7,15 @@
 export const homepageContent = {
   hero: {
     eyebrow: "AI Systems & Creator Tools",
-    headline: "Build AI-Powered Creator Systems That Actually Ship",
-    subheadline: "Practical AI tools, music production systems, and digital products for creators who ship.",
+    headline: "Turn Overwhelm Into Systems That Ship Weekly",
+    subheadline: "Creation Chronicles delivers one new system, one action, and one asset every week—so your work compounds.",
     primaryCTA: {
-      text: "Get Free Creator Toolkit",
-      href: "/products/creative-ai-toolkit",
+      text: "Join Creation Chronicles",
+      href: "/creation-chronicles",
       tracking: "hero-primary-cta"
     },
     secondaryCTA: {
-      text: "Explore Products",
+      text: "Explore Systems",
       href: "/products",
       tracking: "hero-secondary-cta"
     },
@@ -43,24 +43,24 @@ export const homepageContent = {
 
   whatIBuild: {
     sectionTitle: "What I Build",
-    sectionSubtitle: "Three focus areas where AI meets creative execution",
+    sectionSubtitle: "Systems that turn ideas into finished work with steady momentum",
     items: [
       {
         title: "Music Systems",
         subtitle: "AI-Powered Music Creation",
-        description: "500+ Suno sessions documented. Genre-specific prompts, emotion mapping, and production workflows that ship finished tracks weekly.",
+        description: "Genre maps, emotion stacks, and repeatable workflows that turn sessions into finished tracks on schedule.",
         icon: "music",
         href: "/music-lab",
         stats: [
-          { label: "Tracks Created", value: "500+" },
-          { label: "Genre Templates", value: "50+" }
+          { label: "Suno Sessions", value: "500+" },
+          { label: "Emotion Maps", value: "25+" }
         ],
         color: "cyan"
       },
       {
         title: "AI Systems",
         subtitle: "Enterprise Architecture",
-        description: "Oracle-grade AI systems design. Agentic workflows, multi-agent orchestration, and production patterns for real-world deployments.",
+        description: "Oracle-grade architecture, agentic workflows, and production patterns for real-world AI deployments.",
         icon: "server",
         href: "/ai-architecture",
         stats: [
@@ -72,7 +72,7 @@ export const homepageContent = {
       {
         title: "Digital Products",
         subtitle: "Creator Tools & Systems",
-        description: "Battle-tested toolkits, prompt libraries, and operating systems. Everything I use to ship content, music, and code consistently.",
+        description: "Battle-tested toolkits and operating systems built from real shipping cadence—not theory.",
         icon: "package",
         href: "/products",
         stats: [
@@ -86,14 +86,14 @@ export const homepageContent = {
 
   featuredProducts: {
     sectionTitle: "Featured Products",
-    sectionSubtitle: "Start with these. Everything I wish I had when I started.",
+    sectionSubtitle: "Start here. These are the fastest paths to momentum.",
     products: [
       {
         id: "vibe-os",
         badge: "FREE",
         name: "Vibe OS: Music Creation System",
         tagline: "From emotion to finished track in 90 minutes",
-        description: "50+ genre prompts, emotion mapping, and production workflows tested across 500+ Suno sessions.",
+        description: "Genre prompts, emotion maps, and production workflows tested across 500+ Suno sessions.",
         href: "/products/vibe-os",
         color: "cyan",
         stats: [
@@ -106,8 +106,8 @@ export const homepageContent = {
         id: "creative-ai-toolkit",
         badge: "MOST POPULAR",
         name: "Creative AI Toolkit",
-        tagline: "Replace AI panic with proven workflows",
-        description: "100+ battle-tested prompts and 12 automations that cut content creation time in half.",
+        tagline: "Replace AI panic with shipping systems",
+        description: "100+ prompts and 12 automations that cut content creation time in half.",
         href: "/products/creative-ai-toolkit",
         color: "emerald",
         stats: [
@@ -121,22 +121,57 @@ export const homepageContent = {
 
   latestContent: {
     sectionTitle: "Latest Articles",
-    sectionSubtitle: "AI systems, music creation, and building in public",
+    sectionSubtitle: "Systems, music, and shipping in public",
     viewAllText: "View All Articles",
     viewAllHref: "/blog"
   },
 
+  journey: {
+    sectionTitle: "From Signal to Shipping",
+    sectionSubtitle: "A smooth path from first signal to full momentum—no overwhelm, just progress.",
+    steps: [
+      {
+        label: "Discover",
+        title: "Creation Chronicles",
+        description: "Weekly systems + action steps delivered with clarity. Start here to build momentum fast.",
+        cta: "Join the dispatch",
+        href: "/creation-chronicles"
+      },
+      {
+        label: "Deepen",
+        title: "Creator Systems",
+        description: "Grab the toolkits and workflows that help you publish consistently without burning out.",
+        cta: "Explore systems",
+        href: "/products"
+      },
+      {
+        label: "Belong",
+        title: "Inner Circle Vault",
+        description: "Member-only vault, weekly drops, and live labs designed to compound your output.",
+        cta: "Preview the vault",
+        href: "/vault"
+      },
+      {
+        label: "Build",
+        title: "Labs + Drops",
+        description: "Live builds and monthly systems sprints with the FrankX agent collective.",
+        cta: "See the labs",
+        href: "/labs"
+      }
+    ]
+  },
+
   cta: {
-    headline: "Start where you are.",
-    subheadline: "Whether you're learning AI, creating music, or building systems—there's something here for you. All of it is open.",
+    headline: "Start with one system this week.",
+    subheadline: "Join Creation Chronicles for one new system, one action, and one asset every week. Momentum beats motivation.",
     primaryCTA: {
-      text: "Pick Your Path",
-      href: "/start",
+      text: "Join Creation Chronicles",
+      href: "/creation-chronicles",
       tracking: "footer-cta-primary"
     },
     secondaryCTA: {
-      text: "Browse Resources",
-      href: "/resources",
+      text: "Browse Systems",
+      href: "/products",
       tracking: "footer-cta-secondary"
     }
   },

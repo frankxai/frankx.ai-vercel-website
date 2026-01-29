@@ -112,6 +112,7 @@ const navigation = {
       { name: 'Free Playbooks', href: '/free-playbook', icon: FileText, description: 'Start with quick wins' },
       { name: 'Prompt Library', href: '/prompt-library', icon: BookOpen, description: 'Curated prompt stacks' },
       { name: 'Downloads', href: '/downloads', icon: FileText, description: 'PDFs & free resources' },
+      { name: 'Inner Circle Vault', href: '/vault', icon: Star, description: 'Member systems + weekly drops' },
       { name: 'Research Hub', href: '/research', icon: Microscope, description: 'Daily intelligence operations' },
       { name: 'Intelligence Atlas', href: '/intelligence-atlas', icon: Star, description: 'Flagship research' },
       { name: 'AI Architect', href: '/ai-architect', icon: Network, description: 'Solution design & patterns' },

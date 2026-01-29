@@ -5,6 +5,7 @@ import { WhatIBuildSection } from '@/components/home/WhatIBuildSection'
 import { FeaturedProductsSection } from '@/components/home/FeaturedProductsSection'
 import { LatestContentSection } from '@/components/home/LatestContentSection'
 import { CTASection } from '@/components/home/CTASection'
+import { JourneySection } from '@/components/home/JourneySection'
 import TrustedByBlock from '@/components/social-proof/TrustedByBlock'
 import { getLatestPosts } from '@/lib/blog'
 
@@ -101,6 +102,7 @@ export default async function Page() {
           <WhatIBuildSection />
           <FeaturedProductsSection />
           <LatestContentSection articles={articles} />
+          <JourneySection />
           <CTASection />
         </div>
       </main>
