@@ -35,9 +35,12 @@ export function LatestContentSection({ articles }: LatestContentSectionProps) {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-12 md:mb-16"
+          className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-12 md:mb-16 text-center sm:text-left"
         >
           <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-400/60 mb-3">
+              Dispatches
+            </p>
             <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-2 tracking-tight">
               {latestContent.sectionTitle}
             </h2>
@@ -66,8 +69,9 @@ export function LatestContentSection({ articles }: LatestContentSectionProps) {
             >
               <Link
                 href={`/blog/${article.slug}`}
-                className="group block h-full rounded-2xl bg-white/[0.02] border border-white/[0.06] hover:border-white/[0.12] hover:bg-white/[0.04] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_16px_32px_-8px_rgba(0,0,0,0.4)] overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-950"
+                className="group relative block h-full rounded-2xl bg-white/[0.02] border border-white/[0.06] hover:border-white/[0.12] hover:bg-white/[0.04] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_16px_32px_-8px_rgba(0,0,0,0.4)] overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-950"
               >
+                <div className="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                 {/* Image */}
                 {article.image && (
                   <div className="relative w-full aspect-[16/9] overflow-hidden bg-white/[0.02]">

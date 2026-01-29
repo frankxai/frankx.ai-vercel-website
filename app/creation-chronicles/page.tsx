@@ -29,7 +29,7 @@ const timeline = [
     headline: 'Join the Inner Circle',
     description: 'Members receive vault access, live ritual labs, and direct collaboration with the FrankX agent collective.',
     action: 'Explore Inner Circle',
-    href: '/inner-circle',
+    href: 'https://frankx.ck.page/creation-chronicles',
     color: 'text-cyan-400',
     gradient: 'from-cyan-500/20 to-cyan-500/5',
   },

@@ -47,14 +47,19 @@ export function WhatIBuildSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12 md:mb-16"
+          className="mb-12 md:mb-16 text-center lg:text-left"
         >
-          <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">
-            {whatIBuild.sectionTitle}
-          </h2>
-          <p className="text-lg sm:text-xl text-white/50 max-w-2xl mx-auto">
-            {whatIBuild.sectionSubtitle}
+          <p className="text-xs font-semibold uppercase tracking-[0.3em] text-emerald-400/60 mb-3">
+            Focus Areas
           </p>
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-4">
+            <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight">
+              {whatIBuild.sectionTitle}
+            </h2>
+            <p className="text-lg sm:text-xl text-white/50 max-w-2xl lg:max-w-md">
+              {whatIBuild.sectionSubtitle}
+            </p>
+          </div>
         </motion.div>
 
         {/* Cards grid */}
@@ -73,8 +78,9 @@ export function WhatIBuildSection() {
               >
                 <Link
                   href={item.href}
-                  className={`group block h-full p-6 md:p-8 rounded-2xl bg-white/[0.02] border ${colors.border} ${colors.hover} hover:bg-white/[0.04] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_24px_48px_-12px_rgba(0,0,0,0.5)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-950`}
+                  className={`group relative block h-full p-6 md:p-8 rounded-2xl bg-white/[0.02] border ${colors.border} ${colors.hover} hover:bg-white/[0.04] transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_24px_48px_-12px_rgba(0,0,0,0.5)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-950`}
                 >
+                  <div className="pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-white/30 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                   {/* Gradient overlay on hover */}
                   <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${colors.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
 

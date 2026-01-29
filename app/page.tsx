@@ -87,13 +87,22 @@ export default async function Page() {
 
   return (
     <>
-      <main className="relative min-h-screen text-white overflow-x-hidden bg-gray-950">
-        <HeroSection />
-        <TrustedByBlock />
-        <WhatIBuildSection />
-        <FeaturedProductsSection />
-        <LatestContentSection articles={articles} />
-        <CTASection />
+      <main className="relative min-h-screen text-white overflow-x-hidden bg-void">
+        <div className="pointer-events-none absolute inset-0">
+          <div className="absolute -top-[35%] left-1/2 h-[70%] w-[70%] -translate-x-1/2 rounded-full bg-[radial-gradient(circle_at_center,rgba(16,185,129,0.08),transparent_70%)] blur-[120px]" />
+          <div className="absolute bottom-[-40%] right-[-15%] h-[70%] w-[70%] rounded-full bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.07),transparent_70%)] blur-[140px]" />
+          <div className="absolute inset-0 bg-grid-soft opacity-[0.35]" />
+          <div className="absolute inset-0 bg-noise opacity-[0.12]" />
+        </div>
+
+        <div className="relative">
+          <HeroSection />
+          <TrustedByBlock />
+          <WhatIBuildSection />
+          <FeaturedProductsSection />
+          <LatestContentSection articles={articles} />
+          <CTASection />
+        </div>
       </main>
 
       <JsonLd type="WebSite" data={websiteSchema} />

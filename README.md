@@ -12,7 +12,7 @@ Next.js 15 marketing site for FrankX - conscious AI systems for creators, famili
 | Blog | [/blog](https://frankx.ai/blog) | Live |
 | Research Hub | [/research](https://frankx.ai/research) | Live |
 | Soulbook | [/soulbook](https://frankx.ai/soulbook) | Live |
-| Inner Circle | [/inner-circle](https://frankx.ai/inner-circle) | Live |
+| Creation Chronicles | [Creation Chronicles](https://frankx.ck.page/creation-chronicles) | Live |
 | Updates | [/updates](https://frankx.ai/updates) | Live |
 
 ## Tech Stack

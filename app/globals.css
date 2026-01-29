@@ -132,6 +132,19 @@
     border: 1px solid rgba(148, 163, 184, 0.18);
   }
 
+  .bg-grid-soft {
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+    background-size: 64px 64px;
+    background-position: center;
+    mask-image: radial-gradient(circle at center, rgba(0, 0, 0, 0.9), transparent 70%);
+  }
+
+  .bg-noise {
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  }
+
   /* ==========================================================================
      ACCESSIBLE TEXT UTILITIES - Use instead of raw opacity values
      These map to CSS variables with WCAG-compliant contrast ratios

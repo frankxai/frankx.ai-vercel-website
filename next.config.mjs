@@ -68,7 +68,13 @@ const nextConfig = {
       // Realm → Inner Circle rename
       {
         source: '/realm',
-        destination: '/inner-circle',
+        destination: 'https://frankx.ck.page/creation-chronicles',
+        permanent: true,
+      },
+      // Inner Circle → Creation Chronicles (external)
+      {
+        source: '/inner-circle',
+        destination: 'https://frankx.ck.page/creation-chronicles',
         permanent: true,
       },
       // Blog post legacy redirects
