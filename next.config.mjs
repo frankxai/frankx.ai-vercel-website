@@ -24,57 +24,17 @@ const nextConfig = {
         protocol: 'https',
         hostname: 'images.unsplash.com',
       },
-      {
-        protocol: 'https',
-        hostname: 'www.google.com',
-        pathname: '/s2/favicons/**',
-      },
     ],
   },
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
-  },
-  async headers() {
-    return [
-      {
-        source: '/(.*)',
-        headers: [
-          {
-            key: 'X-DNS-Prefetch-Control',
-            value: 'on',
-          },
-          {
-            key: 'X-Frame-Options',
-            value: 'SAMEORIGIN',
-          },
-          {
-            key: 'X-Content-Type-Options',
-            value: 'nosniff',
-          },
-          {
-            key: 'Referrer-Policy',
-            value: 'strict-origin-when-cross-origin',
-          },
-          {
-            key: 'Permissions-Policy',
-            value: 'camera=(), microphone=(), geolocation=()',
-          },
-        ],
-      },
-    ]
   },
   async redirects() {
     return [
       // Realm → Inner Circle rename
       {
         source: '/realm',
-        destination: 'https://frankx.ck.page/creation-chronicles',
-        permanent: true,
-      },
-      // Inner Circle → Creation Chronicles (external)
-      {
-        source: '/inner-circle',
-        destination: 'https://frankx.ck.page/creation-chronicles',
+        destination: '/inner-circle',
         permanent: true,
       },
       // Creator Lab signup → product page
@@ -182,10 +142,10 @@ const nextConfig = {
         destination: '/ai-architecture',
         permanent: true,
       },
-      // Blueprint routes moved to /ai-architecture
+      // Product page redirects to main pages
       {
-        source: '/blueprint/:slug',
-        destination: '/ai-architecture/:slug',
+        source: '/products/soulbook',
+        destination: '/soulbook',
         permanent: true,
       },
     ]

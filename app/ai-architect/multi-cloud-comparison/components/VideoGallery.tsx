@@ -19,14 +19,18 @@ export function VideoGallery() {
   const [selectedCategory, setSelectedCategory] = useState<Category>('all');
   const [selectedVideo, setSelectedVideo] = useState<Video | null>(null);
 
+  // Use YouTube's auto-generated thumbnails for videos
+  const getYouTubeThumbnail = (youtubeId: string) =>
+    `https://img.youtube.com/vi/${youtubeId}/maxresdefault.jpg`;
+
   const videos: Video[] = [
     {
       id: '1',
       title: 'OCI Generative AI - Getting Started',
       description: 'Learn how to get started with Oracle Cloud Infrastructure Generative AI Service using Cohere and Meta Llama models.',
       category: 'getting-started',
-      thumbnail: '/thumbnails/oci-genai-intro.jpg',
-      youtubeId: 'KuT6DksQpKc', // Oracle Cloud Infrastructure - Technical Deep Dive
+      thumbnail: getYouTubeThumbnail('KuT6DksQpKc'),
+      youtubeId: 'KuT6DksQpKc',
       duration: '8:45',
     },
     {
@@ -34,7 +38,7 @@ export function VideoGallery() {
       title: 'Autonomous Database Deep Dive',
       description: 'Explore Oracle Autonomous Database features including auto-scaling, self-patching, and automatic performance tuning.',
       category: 'getting-started',
-      thumbnail: '/thumbnails/adb-deep-dive.jpg',
+      thumbnail: getYouTubeThumbnail('djcBOv3hqss'),
       youtubeId: 'djcBOv3hqss',
       duration: '12:30',
     },
@@ -43,7 +47,7 @@ export function VideoGallery() {
       title: 'Kubernetes on OCI - Best Practices',
       description: 'Deploy and manage production Kubernetes workloads on OCI Container Engine with auto-scaling and security best practices.',
       category: 'architecture',
-      thumbnail: '/thumbnails/oke-best-practices.jpg',
+      thumbnail: getYouTubeThumbnail('X48VuDVv0do'),
       youtubeId: 'X48VuDVv0do',
       duration: '15:20',
     },
@@ -52,7 +56,7 @@ export function VideoGallery() {
       title: 'Customer Churn Prediction with Oracle AI',
       description: 'Build ML models for customer churn prediction using OCI Data Science and Oracle AI Data Platform (AIDP).',
       category: 'use-cases',
-      thumbnail: '/thumbnails/churn-prediction.jpg',
+      thumbnail: getYouTubeThumbnail('zjkBMFhNj_g'),
       youtubeId: 'zjkBMFhNj_g',
       duration: '10:15',
     },
@@ -61,7 +65,7 @@ export function VideoGallery() {
       title: 'Multi-Region Architecture on OCI',
       description: 'Design highly available applications across multiple OCI regions with cross-region replication and disaster recovery.',
       category: 'architecture',
-      thumbnail: '/thumbnails/multi-region.jpg',
+      thumbnail: getYouTubeThumbnail('s_o8dwzRlu4'),
       youtubeId: 's_o8dwzRlu4',
       duration: '18:40',
     },
@@ -70,7 +74,7 @@ export function VideoGallery() {
       title: 'Building a Metaverse Platform on OCI',
       description: 'Demo of a metaverse music platform built on OCI with Unity, spatial audio, and real-time multiplayer features.',
       category: 'demos',
-      thumbnail: '/thumbnails/metaverse-demo.jpg',
+      thumbnail: getYouTubeThumbnail('d6WC5n9G_sM'),
       youtubeId: 'd6WC5n9G_sM',
       duration: '22:15',
     },
@@ -79,7 +83,7 @@ export function VideoGallery() {
       title: 'Oracle ADK - Multi-Agent Orchestration',
       description: 'Learn how to build and deploy multi-agent systems using Oracle Agent Development Kit with code examples.',
       category: 'getting-started',
-      thumbnail: '/thumbnails/oracle-adk.jpg',
+      thumbnail: getYouTubeThumbnail('5V6c4oPCsvU'),
       youtubeId: '5V6c4oPCsvU',
       duration: '14:50',
     },
@@ -88,7 +92,7 @@ export function VideoGallery() {
       title: 'Dedicated AI Cluster with vLLM',
       description: 'Set up a dedicated GPU cluster for self-hosted LLMs (Llama, Qwen, Mistral) using vLLM on OCI.',
       category: 'demos',
-      thumbnail: '/thumbnails/vllm-cluster.jpg',
+      thumbnail: getYouTubeThumbnail('bhBSlnQcq2k'),
       youtubeId: 'bhBSlnQcq2k',
       duration: '16:30',
     },
@@ -97,7 +101,7 @@ export function VideoGallery() {
       title: 'Real-Time Analytics with MySQL HeatWave',
       description: 'Perform real-time analytics on operational data using MySQL HeatWave - up to 1000× faster than traditional MySQL.',
       category: 'use-cases',
-      thumbnail: '/thumbnails/heatwave-analytics.jpg',
+      thumbnail: getYouTubeThumbnail('xqS5PDYbTsE'),
       youtubeId: 'xqS5PDYbTsE',
       duration: '11:20',
     },
