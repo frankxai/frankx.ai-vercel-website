@@ -54,7 +54,7 @@ const personSchema = {
 const organizationSchema = {
   name: 'FrankX.AI',
   url: 'https://frankx.ai',
-  logo: 'https://frankx.ai/assets/logo.png',
+  logo: 'https://frankx.ai/images/brand/logo-full.png',
   sameAs: [
     'https://linkedin.com/in/frank-x-riemer/',
     'https://github.com/frankxai',

@@ -417,7 +417,7 @@ export default function AIArchitectClient() {
                 </p>
               </div>
               <Link
-                href="/ai-architect-academy/patterns"
+                href="/ai-architect-academy"
                 className="hidden items-center gap-2 rounded-full border border-white/20 px-4 py-2 text-sm font-medium text-white transition-all hover:bg-white/10 sm:flex"
               >
                 View all patterns
@@ -452,7 +452,7 @@ export default function AIArchitectClient() {
             </motion.div>
 
             <Link
-              href="/ai-architect-academy/patterns"
+              href="/ai-architect-academy"
               className="mt-6 flex items-center justify-center gap-2 text-sm font-medium text-violet-400 hover:text-violet-300 sm:hidden"
             >
               View all patterns

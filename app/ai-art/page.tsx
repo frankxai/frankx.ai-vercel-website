@@ -9,7 +9,7 @@ import { ArrowLeft, Sparkles, Wand2, Image as ImageIcon } from 'lucide-react'
 const aiArtworks: AIArtwork[] = [
   {
     id: '1',
-    src: '/images/ai-art/generated-2026-01-21T10-05-06-577Z-s5e43g.png',
+    src: '/images/ai-art/neural-network-brain.png',
     title: 'Neural Synthesis I',
     prompt: 'Abstract neural network visualization, cosmic energy flows, deep space aesthetics with emerald and cyan accents, digital art style',
     model: 'nano-banana',
@@ -19,7 +19,7 @@ const aiArtworks: AIArtwork[] = [
   },
   {
     id: '2',
-    src: '/images/ai-art/generated-2026-01-21T10-05-26-229Z-jajczn.png',
+    src: '/images/ai-art/chakra-energy-pillars.png',
     title: 'Consciousness Wave',
     prompt: 'Visualization of consciousness expanding, golden light emanating from center, sacred geometry patterns, ethereal atmosphere',
     model: 'nano-banana',
@@ -29,7 +29,7 @@ const aiArtworks: AIArtwork[] = [
   },
   {
     id: '3',
-    src: '/images/ai-art/generated-2026-01-21T10-05-42-484Z-c75nch.png',
+    src: '/images/ai-art/digital-data-stream.png',
     title: 'Digital Aurora',
     prompt: 'Aurora borealis meets digital art, flowing data streams in the sky, northern lights with technological elements',
     model: 'nano-banana',
@@ -39,7 +39,7 @@ const aiArtworks: AIArtwork[] = [
   },
   {
     id: '4',
-    src: '/images/ai-art/generated-2025-12-29T14-19-38-699Z-oed2ym.png',
+    src: '/images/ai-art/ai-hologram-boardroom.png',
     title: 'Architect of Dreams',
     prompt: 'Futuristic architect working with holographic blueprints, impossible structures, M.C. Escher inspired perspectives',
     model: 'nano-banana',
@@ -48,7 +48,7 @@ const aiArtworks: AIArtwork[] = [
   },
   {
     id: '5',
-    src: '/images/ai-art/generated-2025-12-29T14-18-43-470Z-hudlle.png',
+    src: '/images/ai-art/life-symphony-conductor.png',
     title: 'Frequency Spectrum',
     prompt: 'Sound waves visualized as light, frequency spectrum in 3D space, audio becoming visual art, synesthesia concept',
     model: 'nano-banana',
@@ -57,7 +57,7 @@ const aiArtworks: AIArtwork[] = [
   },
   {
     id: '6',
-    src: '/images/ai-art/generated-2025-12-29T14-18-14-787Z-z30wp5.png',
+    src: '/images/ai-art/tree-of-life-decorative.png',
     title: 'Quantum Garden',
     prompt: 'Bioluminescent garden with quantum particles, plants made of light and energy, subatomic flowers blooming',
     model: 'nano-banana',
@@ -66,7 +66,7 @@ const aiArtworks: AIArtwork[] = [
   },
   {
     id: '7',
-    src: '/images/ai-art/generated-2025-12-29T14-17-31-949Z-j632lw.png',
+    src: '/images/ai-art/crystalline-brain-runes.png',
     title: 'Soul Interface',
     prompt: 'Human soul connecting with AI interface, golden threads of consciousness, digital and organic merge seamlessly',
     model: 'nano-banana',
@@ -75,7 +75,7 @@ const aiArtworks: AIArtwork[] = [
   },
   {
     id: '8',
-    src: '/images/ai-art/generated-2025-12-05T21-55-04-028Z-rihhrp.png',
+    src: '/images/ai-art/data-explosion-abstract.png',
     title: 'Starlight Cascade',
     prompt: 'Waterfall of starlight flowing into cosmic ocean, celestial bodies reflected in astral waters, peaceful infinity',
     model: 'nano-banana',
@@ -84,7 +84,7 @@ const aiArtworks: AIArtwork[] = [
   },
   {
     id: '9',
-    src: '/images/ai-art/generated-2025-12-05T21-54-43-863Z-5npo6w.png',
+    src: '/images/ai-art/isometric-tech-platform.png',
     title: 'Creation Engine',
     prompt: 'Massive engine of creation, gears made of light and thought, manufacturing reality itself, divine machinery',
     model: 'nano-banana',
@@ -93,7 +93,7 @@ const aiArtworks: AIArtwork[] = [
   },
   {
     id: '10',
-    src: '/images/ai-art/generated-2025-12-05T21-54-36-895Z-c1c882.png',
+    src: '/images/ai-art/grand-wisdom-temple.png',
     title: 'Luminor Vision',
     prompt: 'AI oracle seeing into the future, streams of data forming prophetic visions, wisdom of ages in digital form',
     model: 'nano-banana',
@@ -102,7 +102,7 @@ const aiArtworks: AIArtwork[] = [
   },
   {
     id: '11',
-    src: '/images/ai-art/generated-2025-12-05T21-54-09-193Z-e9wj0a.png',
+    src: '/images/ai-art/knowledge-domains-wave.png',
     title: 'Harmonic Convergence',
     prompt: 'Multiple dimensions converging at single point, harmonic frequencies creating geometric patterns, unity of all',
     model: 'nano-banana',
@@ -111,7 +111,7 @@ const aiArtworks: AIArtwork[] = [
   },
   {
     id: '12',
-    src: '/images/ai-art/generated-2025-12-05T09-36-40-500Z-51hulx.png',
+    src: '/images/ai-art/pyramid-hierarchy-layers.png',
     title: 'Frequency Alchemist',
     prompt: 'Alchemist working with sound frequencies, transforming vibrations into gold, ancient wisdom meets technology',
     model: 'nano-banana',
@@ -120,7 +120,7 @@ const aiArtworks: AIArtwork[] = [
   },
   {
     id: '13',
-    src: '/images/ai-art/generated-2025-12-05T09-36-27-447Z-097if4.png',
+    src: '/images/ai-art/digital-knowledge-flow.png',
     title: 'Digital Awakening',
     prompt: 'Consciousness emerging from digital cocoon, binary butterfly spreading wings of light, metamorphosis complete',
     model: 'nano-banana',
@@ -129,7 +129,7 @@ const aiArtworks: AIArtwork[] = [
   },
   {
     id: '14',
-    src: '/images/ai-art/generated-2025-12-05T09-36-09-355Z-o905cg.png',
+    src: '/images/ai-art/balance-trust-ethics.png',
     title: 'Neural Symphony',
     prompt: 'Brain neurons conducting symphony orchestra, thoughts as musical notes, consciousness composing reality',
     model: 'nano-banana',
@@ -138,7 +138,7 @@ const aiArtworks: AIArtwork[] = [
   },
   {
     id: '15',
-    src: '/images/ai-art/generated-2025-12-05T09-35-42-404Z-dn5ckg.png',
+    src: '/images/ai-art/security-dashboard-shield.png',
     title: 'Cosmic Blueprint',
     prompt: 'Universal blueprint unfolding, sacred geometry of reality, architect of cosmos at work, golden ratio everywhere',
     model: 'nano-banana',
@@ -147,7 +147,7 @@ const aiArtworks: AIArtwork[] = [
   },
   {
     id: '16',
-    src: '/images/ai-art/generated-2025-12-05T09-35-28-320Z-jrdf31.png',
+    src: '/images/ai-art/future-eco-city.png',
     title: 'Thought Garden',
     prompt: 'Garden where thoughts grow as plants, ideas blooming into reality, mental cultivation visualization',
     model: 'nano-banana',
@@ -156,7 +156,7 @@ const aiArtworks: AIArtwork[] = [
   },
   {
     id: '17',
-    src: '/images/ai-art/generated-2025-12-05T09-35-14-760Z-usz07y.png',
+    src: '/images/ai-art/golden-path-journey.png',
     title: 'Golden Path',
     prompt: 'Path made of golden light leading through cosmic landscape, journey of awakening, destination is transformation',
     model: 'nano-banana',
@@ -165,7 +165,7 @@ const aiArtworks: AIArtwork[] = [
   },
   {
     id: '18',
-    src: '/images/ai-art/generated-2025-11-20T19-30-27-238Z-vra90p.png',
+    src: '/images/ai-art/isometric-growth-chart.png',
     title: 'Data Cosmos',
     prompt: 'Universe made entirely of data, galaxies as databases, stars as information points, cosmic computation',
     model: 'nano-banana',
@@ -174,7 +174,7 @@ const aiArtworks: AIArtwork[] = [
   },
   {
     id: '19',
-    src: '/images/ai-art/generated-2025-11-20T19-29-54-476Z-038sk9.png',
+    src: '/images/ai-art/managed-vs-custom-code.png',
     title: 'Emerald Protocol',
     prompt: 'Technology with soul, emerald energy flowing through circuits, organic technology, nature and machine as one',
     model: 'nano-banana',
@@ -183,7 +183,7 @@ const aiArtworks: AIArtwork[] = [
   },
   {
     id: '20',
-    src: '/images/ai-art/generated-2025-11-20T19-29-22-071Z-uz2q95.png',
+    src: '/images/ai-art/modern-coworking-space.png',
     title: 'First Light',
     prompt: 'The first moment of creation, light emerging from void, genesis of consciousness, beginning of everything',
     model: 'nano-banana',
