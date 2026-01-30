@@ -29,6 +29,10 @@ import {
   Compass,
   Eye,
   Feather,
+  CheckCircle2,
+  Circle,
+  TrendingUp,
+  Bot,
 } from 'lucide-react';
 import { EmailSignup } from '@/components/email-signup';
 
@@ -71,6 +75,74 @@ const fadeUp = {
     transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] }
   },
 };
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// PROGRESS TRACKING (localStorage)
+// ═══════════════════════════════════════════════════════════════════════════════
+
+interface DailyProgress {
+  date: string;
+  completed: string[];
+  protocolsCompleted: Record<string, string[]>;
+}
+
+function getToday(): string {
+  return new Date().toISOString().split('T')[0];
+}
+
+function loadProgress(): DailyProgress {
+  if (typeof window === 'undefined') {
+    return { date: getToday(), completed: [], protocolsCompleted: {} };
+  }
+  const stored = localStorage.getItem('ritualProgress');
+  if (!stored) {
+    return { date: getToday(), completed: [], protocolsCompleted: {} };
+  }
+  const parsed = JSON.parse(stored);
+  if (parsed.date !== getToday()) {
+    return { date: getToday(), completed: [], protocolsCompleted: {} };
+  }
+  return parsed;
+}
+
+function getStreak(): number {
+  if (typeof window === 'undefined') return 0;
+  const stored = localStorage.getItem('ritualStreak');
+  return stored ? parseInt(stored, 10) : 0;
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// TIME-BASED RECOMMENDATIONS
+// ═══════════════════════════════════════════════════════════════════════════════
+
+function getTimeOfDay(): 'morning' | 'afternoon' | 'evening' | 'night' {
+  const hour = new Date().getHours();
+  if (hour >= 5 && hour < 12) return 'morning';
+  if (hour >= 12 && hour < 17) return 'afternoon';
+  if (hour >= 17 && hour < 21) return 'evening';
+  return 'night';
+}
+
+function getGreeting(): string {
+  const timeOfDay = getTimeOfDay();
+  const greetings = {
+    morning: 'Good Morning',
+    afternoon: 'Good Afternoon',
+    evening: 'Good Evening',
+    night: 'Good Night',
+  };
+  return greetings[timeOfDay];
+}
+
+function getRecommendedRitual(): string {
+  const hour = new Date().getHours();
+  if (hour >= 5 && hour < 9) return 'morning';
+  if (hour >= 9 && hour < 12) return 'flow';
+  if (hour >= 12 && hour < 14) return 'transition';
+  if (hour >= 14 && hour < 17) return 'focus';
+  if (hour >= 17 && hour < 20) return 'music';
+  return 'evening';
+}
 
 // ═══════════════════════════════════════════════════════════════════════════════
 // RITUAL DATA - Each with distinct visual identity
@@ -243,17 +315,137 @@ function SpotlightCard({
 }
 
 // ═══════════════════════════════════════════════════════════════════════════════
+// DAILY DASHBOARD COMPONENT
+// ═══════════════════════════════════════════════════════════════════════════════
+
+function DailyDashboard({
+  progress,
+  streak,
+  recommendedRitual,
+}: {
+  progress: DailyProgress;
+  streak: number;
+  recommendedRitual: string;
+}) {
+  const [currentTime, setCurrentTime] = useState(new Date());
+
+  useEffect(() => {
+    const interval = setInterval(() => setCurrentTime(new Date()), 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const recommended = rituals.find((r) => r.id === recommendedRitual);
+
+  return (
+    <motion.div
+      initial="hidden"
+      animate="visible"
+      variants={containerVariants}
+      className="relative rounded-3xl border border-white/[0.06] bg-gradient-to-br from-white/[0.03] to-transparent backdrop-blur-xl overflow-hidden"
+    >
+      {/* Ambient glow */}
+      <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-amber-500/[0.05] rounded-full blur-[100px] -z-10" />
+
+      <div className="p-6 lg:p-8">
+        <div className="grid lg:grid-cols-3 gap-6">
+          {/* Greeting & Time */}
+          <motion.div variants={itemVariants} className="space-y-2">
+            <p className="text-sm font-medium text-white/50 uppercase tracking-wider">
+              {currentTime.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric' })}
+            </p>
+            <h2 className="text-3xl lg:text-4xl font-bold text-white">
+              {getGreeting()}, <span className="text-amber-400">Creator</span>
+            </h2>
+            <p className="text-lg text-white/60">
+              {currentTime.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' })}
+            </p>
+          </motion.div>
+
+          {/* Daily Progress */}
+          <motion.div variants={itemVariants} className="flex items-center gap-4">
+            <div className="flex-shrink-0 w-16 h-16 rounded-2xl bg-gradient-to-br from-emerald-500/20 to-emerald-500/5 border border-emerald-500/20 flex items-center justify-center">
+              <TrendingUp className="w-7 h-7 text-emerald-400" />
+            </div>
+            <div>
+              <p className="text-sm text-white/50">Today's Progress</p>
+              <p className="text-2xl font-bold text-white">
+                {progress.completed.length}<span className="text-white/30">/6</span>
+              </p>
+              <div className="flex gap-1 mt-2">
+                {rituals.map((r) => (
+                  <div
+                    key={r.id}
+                    className={`w-6 h-1 rounded-full transition-all ${
+                      progress.completed.includes(r.id)
+                        ? 'bg-emerald-400'
+                        : 'bg-white/10'
+                    }`}
+                  />
+                ))}
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Streak Counter */}
+          <motion.div variants={itemVariants} className="flex items-center gap-4">
+            <div className="flex-shrink-0 w-16 h-16 rounded-2xl bg-gradient-to-br from-amber-500/20 to-orange-500/5 border border-amber-500/20 flex items-center justify-center">
+              <Flame className="w-7 h-7 text-amber-400" />
+            </div>
+            <div>
+              <p className="text-sm text-white/50">Current Streak</p>
+              <p className="text-2xl font-bold text-white">
+                {streak} <span className="text-white/30">days</span>
+              </p>
+              <p className="text-xs text-white/40 mt-1">
+                {streak > 0 ? 'Keep the fire alive!' : 'Start your streak today'}
+              </p>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Recommended Ritual */}
+        {recommended && !progress.completed.includes(recommended.id) && (
+          <motion.div variants={itemVariants} className="mt-6 pt-6 border-t border-white/[0.04]">
+            <Link
+              href={`/rituals/${recommended.id}`}
+              className="group flex items-center gap-4 p-4 rounded-2xl bg-gradient-to-r from-white/[0.02] to-transparent border border-white/[0.04] hover:border-amber-500/30 hover:bg-white/[0.04] transition-all"
+            >
+              <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${recommended.accentClass} p-[1px]`}>
+                <div className="w-full h-full rounded-xl bg-black/80 flex items-center justify-center">
+                  <recommended.icon className="w-6 h-6 text-white" />
+                </div>
+              </div>
+              <div className="flex-grow">
+                <p className="text-xs font-semibold text-amber-400 uppercase tracking-wider">
+                  Recommended Now
+                </p>
+                <p className="text-lg font-semibold text-white group-hover:text-amber-50 transition-colors">
+                  {recommended.title}
+                </p>
+              </div>
+              <ArrowRight className="w-5 h-5 text-white/50 group-hover:text-amber-400 group-hover:translate-x-1 transition-all" />
+            </Link>
+          </motion.div>
+        )}
+      </div>
+    </motion.div>
+  );
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
 // RITUAL CARD - Premium glass with intentional design
 // ═══════════════════════════════════════════════════════════════════════════════
 
 function RitualCard({
   ritual,
   index,
-  isFeatured = false
+  isFeatured = false,
+  isCompleted = false,
 }: {
   ritual: typeof rituals[0];
   index: number;
   isFeatured?: boolean;
+  isCompleted?: boolean;
 }) {
   const Icon = ritual.icon;
 
@@ -263,19 +455,31 @@ function RitualCard({
       className={isFeatured ? 'md:col-span-2 md:row-span-2' : ''}
     >
       <SpotlightCard
-        className={`group h-full rounded-[2rem] border border-white/[0.06] bg-gradient-to-br from-white/[0.04] to-transparent backdrop-blur-xl transition-all duration-500 ${ritual.borderClass} hover:shadow-2xl ${ritual.glowClass}`}
+        className={`group h-full rounded-[2rem] border bg-gradient-to-br from-white/[0.04] to-transparent backdrop-blur-xl transition-all duration-500 hover:shadow-2xl ${
+          isCompleted
+            ? 'border-emerald-500/30 shadow-emerald-500/10'
+            : `border-white/[0.06] ${ritual.borderClass} ${ritual.glowClass}`
+        }`}
         glowColor={ritual.id === 'morning' ? 'rgba(251,191,36,0.08)' : 'rgba(212,175,55,0.06)'}
       >
-        <Link href={`#${ritual.id}`} className="flex flex-col h-full p-6 lg:p-8">
+        <Link href={`/rituals/${ritual.id}`} className="flex flex-col h-full p-6 lg:p-8">
           {/* Header */}
           <div className="flex items-start justify-between mb-6">
             {/* Icon Badge */}
-            <div className={`relative w-14 h-14 rounded-2xl bg-gradient-to-br ${ritual.accentClass} p-[1px]`}>
-              <div className="w-full h-full rounded-2xl bg-black/80 flex items-center justify-center backdrop-blur-xl">
-                <Icon className="w-6 h-6 text-white/90 stroke-[1.5]" />
+            <div className="relative">
+              <div className={`relative w-14 h-14 rounded-2xl bg-gradient-to-br ${ritual.accentClass} p-[1px]`}>
+                <div className="w-full h-full rounded-2xl bg-black/80 flex items-center justify-center backdrop-blur-xl">
+                  <Icon className="w-6 h-6 text-white/90 stroke-[1.5]" />
+                </div>
+                {/* Glow */}
+                <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${ritual.accentClass} opacity-40 blur-xl -z-10`} />
               </div>
-              {/* Glow */}
-              <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${ritual.accentClass} opacity-40 blur-xl -z-10`} />
+              {/* Completed checkmark */}
+              {isCompleted && (
+                <div className="absolute -top-1 -right-1 w-6 h-6 rounded-full bg-emerald-500 flex items-center justify-center">
+                  <CheckCircle2 className="w-4 h-4 text-white" />
+                </div>
+              )}
             </div>
 
             {/* Duration Badge */}
@@ -322,9 +526,18 @@ function RitualCard({
 
           {/* Footer CTA */}
           <div className="flex items-center justify-between pt-6 mt-auto border-t border-white/[0.04]">
-            <span className={`flex items-center gap-2 text-sm font-medium ${ritual.textClass}`}>
-              <Play className="w-4 h-4 fill-current" />
-              Begin Ritual
+            <span className={`flex items-center gap-2 text-sm font-medium ${isCompleted ? 'text-emerald-400' : ritual.textClass}`}>
+              {isCompleted ? (
+                <>
+                  <CheckCircle2 className="w-4 h-4" />
+                  Completed Today
+                </>
+              ) : (
+                <>
+                  <Play className="w-4 h-4 fill-current" />
+                  Begin Ritual
+                </>
+              )}
             </span>
             <ArrowRight className="w-5 h-5 text-white/50 group-hover:text-white/60 group-hover:translate-x-1 transition-all" />
           </div>
@@ -347,15 +560,35 @@ export default function RitualsPage() {
   const heroOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
   const heroY = useTransform(scrollYProgress, [0, 0.5], [0, -50]);
 
+  // Progress state
+  const [progress, setProgress] = useState<DailyProgress>({ date: getToday(), completed: [], protocolsCompleted: {} });
+  const [streak, setStreak] = useState(0);
+  const [recommendedRitual, setRecommendedRitual] = useState('morning');
+
+  useEffect(() => {
+    setProgress(loadProgress());
+    setStreak(getStreak());
+    setRecommendedRitual(getRecommendedRitual());
+  }, []);
+
   return (
     <div className="min-h-screen bg-black text-white">
+      {/* ════════════════════════════════════════════════════════════════════════
+          DAILY DASHBOARD - Time-aware greeting and progress
+          ════════════════════════════════════════════════════════════════════════ */}
+      <section className="relative py-6 lg:py-10">
+        <div className="max-w-7xl mx-auto px-6">
+          <DailyDashboard progress={progress} streak={streak} recommendedRitual={recommendedRitual} />
+        </div>
+      </section>
+
       {/* ════════════════════════════════════════════════════════════════════════
           HERO SECTION - Dark OLED with Gold accents
           ════════════════════════════════════════════════════════════════════════ */}
       <motion.section
         ref={heroRef}
         style={{ opacity: heroOpacity, y: heroY }}
-        className="relative min-h-[90vh] flex items-center justify-center overflow-hidden"
+        className="relative min-h-[70vh] flex items-center justify-center overflow-hidden"
       >
         {/* Absolute black base */}
         <div className="absolute inset-0 bg-black" />
@@ -382,7 +615,7 @@ export default function RitualsPage() {
             <motion.div variants={itemVariants}>
               <span className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-gradient-to-r from-amber-500/10 to-orange-500/10 border border-amber-500/20 text-amber-400 text-xs font-semibold uppercase tracking-[0.25em]">
                 <Sparkles className="w-4 h-4 stroke-[1.5]" />
-                Sacred Practice
+                Daily Practice
                 <Stars className="w-4 h-4 stroke-[1.5]" />
               </span>
             </motion.div>
@@ -450,7 +683,7 @@ export default function RitualsPage() {
               >
                 <span className="relative z-10 flex items-center gap-2">
                   <Sparkles className="w-4 h-4" />
-                  Explore Rituals
+                  Choose Ritual
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </span>
               </Link>
@@ -493,7 +726,7 @@ export default function RitualsPage() {
               Choose Your <span className="text-amber-400">Ritual</span>
             </h2>
             <p className="text-white/55 max-w-lg mx-auto">
-              Each ritual is a portal into creative flow. Consistency transforms everything.
+              Each ritual is a portal into creative flow. Click to start your practice with guided timers and AI assistance.
             </p>
           </motion.div>
         </div>
@@ -513,6 +746,7 @@ export default function RitualsPage() {
                 ritual={ritual}
                 index={index}
                 isFeatured={ritual.featured}
+                isCompleted={progress.completed.includes(ritual.id)}
               />
             ))}
           </motion.div>
@@ -577,12 +811,12 @@ export default function RitualsPage() {
       </section>
 
       {/* ════════════════════════════════════════════════════════════════════════
-          VIBE OS INTEGRATION - Premium feature card
+          AI COMPANION SECTION
           ════════════════════════════════════════════════════════════════════════ */}
       <section className="relative py-24">
         <div className="max-w-4xl mx-auto px-6">
           <SpotlightCard
-            className="rounded-[2.5rem] border border-white/[0.06] bg-gradient-to-br from-violet-500/[0.08] via-black to-amber-500/[0.05] overflow-hidden"
+            className="rounded-[2.5rem] border border-violet-500/20 bg-gradient-to-br from-violet-500/[0.08] via-black to-amber-500/[0.05] overflow-hidden"
             glowColor="rgba(139,92,246,0.08)"
           >
             <div className="p-8 lg:p-12">
@@ -590,13 +824,73 @@ export default function RitualsPage() {
                 {/* Content */}
                 <div className="space-y-6">
                   <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-violet-500/10 border border-violet-500/20 text-violet-400 text-xs font-semibold uppercase tracking-[0.15em]">
+                    <Bot className="w-3.5 h-3.5" />
+                    AI-Powered Practice
+                  </span>
+
+                  <h2 className="font-display text-3xl sm:text-4xl font-bold text-white">
+                    Your AI<br />
+                    <span className="text-violet-400">Ritual Companion</span>
+                  </h2>
+
+                  <p className="text-white/50 leading-relaxed">
+                    Each ritual includes AI-powered guidance. Claude helps you through protocols,
+                    answers questions, and adapts the practice to your creative needs.
+                  </p>
+
+                  <Link
+                    href="/agents"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-violet-600 to-purple-600 text-white font-semibold text-sm hover:shadow-lg hover:shadow-violet-500/25 transition-all"
+                  >
+                    <Bot className="w-4 h-4" />
+                    Meet Your Agent Team
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+
+                {/* Features */}
+                <div className="space-y-4">
+                  {[
+                    { icon: Volume2, title: 'Guided Protocols', desc: 'Step-by-step instructions with timers' },
+                    { icon: Compass, title: 'Personalized Prompts', desc: 'AI prompts for each ritual phase' },
+                    { icon: Headphones, title: 'Vibe OS Integration', desc: 'Custom soundscapes for your state' },
+                  ].map((feature, i) => (
+                    <div key={i} className="flex items-start gap-4 p-4 rounded-xl bg-white/[0.02] border border-white/[0.04]">
+                      <feature.icon className="w-5 h-5 text-violet-400 stroke-[1.5] mt-0.5" />
+                      <div>
+                        <h4 className="font-semibold text-white text-sm">{feature.title}</h4>
+                        <p className="text-xs text-white/55 mt-0.5">{feature.desc}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </SpotlightCard>
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════════════════════════════════════
+          VIBE OS INTEGRATION - Premium feature card
+          ════════════════════════════════════════════════════════════════════════ */}
+      <section className="relative py-24">
+        <div className="max-w-4xl mx-auto px-6">
+          <SpotlightCard
+            className="rounded-[2.5rem] border border-white/[0.06] bg-gradient-to-br from-amber-500/[0.08] via-black to-violet-500/[0.05] overflow-hidden"
+            glowColor="rgba(251,191,36,0.08)"
+          >
+            <div className="p-8 lg:p-12">
+              <div className="grid lg:grid-cols-2 gap-10 items-center">
+                {/* Content */}
+                <div className="space-y-6">
+                  <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-semibold uppercase tracking-[0.15em]">
                     <Crown className="w-3.5 h-3.5" />
                     Powered by Vibe OS
                   </span>
 
                   <h2 className="font-display text-3xl sm:text-4xl font-bold text-white">
                     Rituals Come Alive<br />
-                    <span className="text-violet-400">with Sound</span>
+                    <span className="text-amber-400">with Sound</span>
                   </h2>
 
                   <p className="text-white/50 leading-relaxed">
@@ -606,7 +900,7 @@ export default function RitualsPage() {
 
                   <Link
                     href="/products/vibe-os"
-                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-violet-600 to-purple-600 text-white font-semibold text-sm hover:shadow-lg hover:shadow-violet-500/25 transition-all"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 text-black font-semibold text-sm hover:shadow-lg hover:shadow-amber-500/25 transition-all"
                   >
                     <Music className="w-4 h-4" />
                     Explore Vibe OS
@@ -622,7 +916,7 @@ export default function RitualsPage() {
                     { icon: Headphones, title: 'Custom Tracks', desc: 'Generate unique sonic landscapes' },
                   ].map((feature, i) => (
                     <div key={i} className="flex items-start gap-4 p-4 rounded-xl bg-white/[0.02] border border-white/[0.04]">
-                      <feature.icon className="w-5 h-5 text-violet-400 stroke-[1.5] mt-0.5" />
+                      <feature.icon className="w-5 h-5 text-amber-400 stroke-[1.5] mt-0.5" />
                       <div>
                         <h4 className="font-semibold text-white text-sm">{feature.title}</h4>
                         <p className="text-xs text-white/55 mt-0.5">{feature.desc}</p>
@@ -705,11 +999,11 @@ export default function RitualsPage() {
             </p>
 
             <Link
-              href="#rituals"
+              href={`/rituals/${recommendedRitual}`}
               className="inline-flex items-center gap-3 px-10 py-5 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 text-black font-bold text-sm uppercase tracking-wider hover:shadow-2xl hover:shadow-amber-500/30 transition-all"
             >
               <Sparkles className="w-5 h-5" />
-              Choose Your First Ritual
+              Start {rituals.find(r => r.id === recommendedRitual)?.title}
               <ArrowRight className="w-5 h-5" />
             </Link>
 

@@ -122,6 +122,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/newsletter',
   ]
 
+  // Ritual pages (daily practice hub)
+  const ritualPages = [
+    '/rituals',
+    '/rituals/morning',
+    '/rituals/flow',
+    '/rituals/music',
+    '/rituals/focus',
+    '/rituals/transition',
+    '/rituals/evening',
+  ]
+
   // Learning and courses
   const learningPages = [
     '/courses',
@@ -230,6 +241,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: currentDate,
       changeFrequency: 'monthly',
       priority: 0.6,
+    })
+  })
+
+  // Ritual pages (daily practice hub - high engagement)
+  ritualPages.forEach(page => {
+    entries.push({
+      url: `${BASE_URL}${page}`,
+      lastModified: currentDate,
+      changeFrequency: 'daily',
+      priority: 0.8,
     })
   })
 
