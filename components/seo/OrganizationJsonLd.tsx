@@ -1,5 +1,6 @@
 
 import { siteConfig } from '@/lib/seo'
+import { SCHEMA_SAME_AS } from '@/lib/social-links'
 
 export default function OrganizationJsonLd() {
     const schema = {
@@ -8,11 +9,7 @@ export default function OrganizationJsonLd() {
         url: siteConfig.url,
         name: siteConfig.name,
         logo: `${siteConfig.url}/logo.png`,
-        sameAs: [
-            'https://twitter.com/frankxai',
-            'https://linkedin.com/in/frank',
-            'https://github.com/frank',
-        ],
+        sameAs: SCHEMA_SAME_AS,
         contactPoint: {
             '@type': 'ContactPoint',
             email: 'hello@frankx.ai',

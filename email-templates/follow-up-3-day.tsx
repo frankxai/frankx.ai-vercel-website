@@ -117,7 +117,7 @@ export function FollowUp3DayEmail({ name, pdfTitle, guideSlug, relatedContentUrl
     <div style="text-align: center; padding-top: 32px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
       <p style="font-size: 12px; color: #64748b; margin: 0 0 16px 0;">
         <strong style="color: #94a3b8;">Frank Riemer</strong><br>
-        Musician turned AI Architect at Oracle<br>
+        AI Architect at Oracle | Creator<br>
         500+ AI songs | Enterprise AI Systems
       </p>
 
@@ -126,11 +126,11 @@ export function FollowUp3DayEmail({ name, pdfTitle, guideSlug, relatedContentUrl
           frankx.ai
         </a>
         <span style="color: #64748b;">|</span>
-        <a href="https://twitter.com/frankxai" style="color: #22d3ee; text-decoration: none; font-size: 14px; margin: 0 12px;">
-          Twitter
+        <a href="https://x.com/frankxeth" style="color: #22d3ee; text-decoration: none; font-size: 14px; margin: 0 12px;">
+          X
         </a>
         <span style="color: #64748b;">|</span>
-        <a href="https://linkedin.com/in/frankguzmanai" style="color: #22d3ee; text-decoration: none; font-size: 14px; margin: 0 12px;">
+        <a href="https://www.linkedin.com/in/frank-x-riemer/" style="color: #22d3ee; text-decoration: none; font-size: 14px; margin: 0 12px;">
           LinkedIn
         </a>
       </div>

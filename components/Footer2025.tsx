@@ -18,7 +18,7 @@ const links = {
   connect: [
     { name: 'About', href: '/about' },
     { name: 'Email', href: 'mailto:hello@frankx.ai' },
-    { name: 'LinkedIn', href: 'https://linkedin.com/in/frank', external: true },
+    { name: 'LinkedIn', href: 'https://www.linkedin.com/in/frank-x-riemer/', external: true },
     { name: 'GitHub', href: 'https://github.com/frankxai', external: true },
   ],
 }

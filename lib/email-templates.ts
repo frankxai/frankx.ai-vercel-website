@@ -51,10 +51,10 @@ function emailWrapper(content: string): string {
     <div style="text-align: center; padding-top: 40px; border-top: 2px solid rgba(6, 182, 212, 0.15); margin-top: 40px;">
       <div style="margin-bottom: 20px;">
         <p style="font-family: 'Poppins', sans-serif; font-size: 15px; color: #E2E8F0; margin: 0 0 6px 0; font-weight: 600;">
-          Frank Guzman
+          Frank Riemer
         </p>
         <p style="font-size: 13px; color: #94a3b8; margin: 0; line-height: 1.6;">
-          Musician → AI Architect at Oracle<br>
+          AI Architect at Oracle | Creator<br>
           <span style="color: #22d3ee;">500+ AI Songs</span> | <span style="color: #8B5CF6;">Enterprise AI Systems</span>
         </p>
       </div>
@@ -64,11 +64,11 @@ function emailWrapper(content: string): string {
           🏠 frankx.ai
         </a>
         <span style="color: #64748b;">•</span>
-        <a href="https://twitter.com/frankxai" style="color: #22d3ee; text-decoration: none; font-size: 14px; font-weight: 500; margin: 0 12px;">
-          𝕏 Twitter
+        <a href="https://x.com/frankxeth" style="color: #22d3ee; text-decoration: none; font-size: 14px; font-weight: 500; margin: 0 12px;">
+          𝕏 X
         </a>
         <span style="color: #64748b;">•</span>
-        <a href="https://linkedin.com/in/frankguzmanai" style="color: #22d3ee; text-decoration: none; font-size: 14px; font-weight: 500; margin: 0 12px;">
+        <a href="https://www.linkedin.com/in/frank-x-riemer/" style="color: #22d3ee; text-decoration: none; font-size: 14px; font-weight: 500; margin: 0 12px;">
           💼 LinkedIn
         </a>
       </div>

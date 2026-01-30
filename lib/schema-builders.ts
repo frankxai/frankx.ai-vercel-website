@@ -13,13 +13,13 @@ export const SITE_CONFIG = {
   name: 'FrankX.AI',
   url: 'https://frankx.ai',
   author: {
-    name: 'Frank Villanueva',
+    name: 'Frank Riemer',
     url: 'https://frankx.ai/about',
     jobTitle: 'AI Architect & Creator',
     sameAs: [
-      'https://linkedin.com/in/frankxvillanueva',
-      'https://twitter.com/FrankXVillanueva',
-      'https://github.com/FrankXVillanueva',
+      'https://www.linkedin.com/in/frank-x-riemer/',
+      'https://x.com/frankxeth',
+      'https://github.com/frankxai',
     ],
   },
   organization: {
