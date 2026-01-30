@@ -350,7 +350,7 @@ export default function AIArchitecturesPage() {
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
               <Link
-                href="/ai-architect"
+                href="/ai-architecture"
                 className="group flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 font-medium text-white transition-all hover:bg-white/10"
               >
                 View Methodology
@@ -416,7 +416,7 @@ export default function AIArchitecturesPage() {
                 patterns, security by default, and pragmatic innovation.
               </p>
               <Link
-                href="/ai-architect"
+                href="/ai-architecture"
                 className="inline-flex items-center gap-2 rounded-full border border-violet-500/30 bg-violet-500/10 px-6 py-3 font-medium text-violet-400 transition-all hover:border-violet-500/50 hover:bg-violet-500/20"
               >
                 Explore the Methodology
@@ -436,7 +436,7 @@ export default function AIArchitecturesPage() {
             >
               <h2 className="mb-4 text-2xl font-bold text-white">Need a Custom Architecture?</h2>
               <p className="mb-8 text-slate-400">
-                Work with an AI Architect to design production-ready solutions for your specific needs.
+                Work with an Oracle AI Architect to design production-ready solutions for your specific needs.
               </p>
               <div className="flex flex-wrap justify-center gap-4">
                 <Link

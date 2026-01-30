@@ -19,9 +19,6 @@ import {
   Target,
   Layers,
   ArrowUpRight,
-  CheckCircle2,
-  Clock,
-  ExternalLink,
 } from 'lucide-react'
 
 // ============================================================================
@@ -111,57 +108,6 @@ function AuroraBackground() {
     </div>
   )
 }
-
-// ============================================================================
-// VALIDATED RESEARCH BRIEFS - AI Architecture Focus
-// ============================================================================
-
-// Featured deep dives - creator-focused, narrative content
-const deepDives = [
-  {
-    slug: 'ai-neuroscience-for-creators-2026',
-    title: 'What Brain Science Actually Means for Creators in 2026',
-    description: 'A no-bullshit guide to flow states, mental wellness, learning faster, and what\'s real vs. marketing. Plain English, practical applications.',
-    readingTime: '15 min',
-    topics: ['Flow states', 'Mental wellness', 'Learning & memory', 'What actually works'],
-    category: 'Deep Dive',
-    isNew: true,
-  },
-]
-
-// Quick reference briefs - stats and claims for fact-checking
-const researchBriefs = [
-  {
-    slug: 'ai-neuroscience-2026',
-    title: 'AI & Neuroscience: Quick Reference',
-    description: 'Validated stats: neurogenesis confirmed, BCIs at clinical scale, AI therapy efficacy data.',
-    keyStats: ['Neurogenesis confirmed July 2025', '34% depression reduction', '91% prediction accuracy'],
-    sources: 25,
-    lastValidated: '2026-01-27',
-    category: 'Stat Reference',
-    relatedArticle: '/blog/ai-neuroscience-for-creators-2026',
-  },
-  {
-    slug: 'multi-agent-adoption-2026',
-    title: 'Multi-Agent Adoption: Quick Reference',
-    description: 'Market data: enterprise adoption rates, framework market share, growth projections.',
-    keyStats: ['72% enterprise adoption', '34% LangGraph market share', '$52B market by 2030'],
-    sources: 15,
-    lastValidated: '2026-01-26',
-    category: 'Stat Reference',
-    relatedArticle: '/blog/multi-agent-orchestration-patterns-2026',
-  },
-  {
-    slug: 'mcp-ecosystem-2026',
-    title: 'MCP Protocol: Quick Reference',
-    description: 'Ecosystem data: server count, growth rate, integration patterns.',
-    keyStats: ['50+ production servers', '340% H2 2025 growth', '85% token reduction'],
-    sources: 12,
-    lastValidated: '2026-01-26',
-    category: 'Stat Reference',
-    relatedArticle: '/blog/claude-code-2-1-mcp-revolution',
-  },
-]
 
 // ============================================================================
 // RESEARCH DOMAINS
@@ -278,7 +224,7 @@ function HeroSection() {
 
           <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 tracking-tight leading-[1.1]">
             Research Intelligence
-            <span className="block text-white/55 mt-2">Hub</span>
+            <span className="block text-white/40 mt-2">Hub</span>
           </h1>
 
           <p className="text-lg md:text-xl text-white/60 mb-8 leading-relaxed max-w-3xl">
@@ -318,204 +264,11 @@ function HeroSection() {
             { label: 'Published Insights', value: '50+', icon: FileText },
           ].map((stat, i) => (
             <div key={i} className="bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-xl p-5">
-              <stat.icon className="w-5 h-5 text-white/55 mb-3" />
+              <stat.icon className="w-5 h-5 text-white/40 mb-3" />
               <p className="text-2xl font-bold text-white mb-1">{stat.value}</p>
               <p className="text-sm text-white/50">{stat.label}</p>
             </div>
           ))}
-        </motion.div>
-      </div>
-    </section>
-  )
-}
-
-// ============================================================================
-// DEEP DIVES SECTION - Creator-Focused Content
-// ============================================================================
-
-function DeepDivesSection() {
-  const shouldReduceMotion = useReducedMotion()
-
-  return (
-    <section className="py-16 md:py-24 bg-gradient-to-b from-violet-500/[0.03] to-transparent">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        {/* Section header */}
-        <div className="mb-10">
-          <motion.div
-            initial={shouldReduceMotion ? false : { opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="inline-flex items-center gap-2 mb-4"
-          >
-            <BookOpen className="w-4 h-4 text-violet-400" />
-            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-violet-400">
-              Featured Research
-            </span>
-          </motion.div>
-
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-            Deep Dives
-          </h2>
-          <p className="text-lg text-white/60 max-w-2xl">
-            Long-form research translated for creators. No jargon, no stat dumps—just what you need to know and how to use it.
-          </p>
-        </div>
-
-        {/* Featured deep dive */}
-        {deepDives.map((dive, index) => (
-          <motion.div
-            key={dive.slug}
-            initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={shouldReduceMotion ? { duration: 0 } : { delay: index * 0.1 }}
-          >
-            <Link href={`/blog/${dive.slug}`} className="block group">
-              <div className="relative bg-gradient-to-br from-violet-500/10 via-white/[0.03] to-cyan-500/10 backdrop-blur-xl border border-violet-500/20 rounded-3xl p-8 md:p-10 hover:border-violet-500/40 transition-all duration-300 hover:-translate-y-1">
-                {/* New badge */}
-                {dive.isNew && (
-                  <div className="absolute top-6 right-6 px-3 py-1 bg-violet-500/20 border border-violet-500/30 rounded-full">
-                    <span className="text-xs font-bold text-violet-400">NEW</span>
-                  </div>
-                )}
-
-                <div className="flex items-center gap-2 mb-4">
-                  <span className="rounded-full bg-violet-500/20 px-3 py-1 text-xs font-bold uppercase tracking-wider text-violet-400">
-                    {dive.category}
-                  </span>
-                  <span className="text-sm text-white/40">{dive.readingTime}</span>
-                </div>
-
-                <h3 className="text-2xl md:text-3xl font-bold text-white mb-4 group-hover:text-violet-100 transition-colors">
-                  {dive.title}
-                </h3>
-
-                <p className="text-lg text-white/60 mb-6 max-w-3xl">
-                  {dive.description}
-                </p>
-
-                {/* Topic pills */}
-                <div className="flex flex-wrap gap-2 mb-6">
-                  {dive.topics.map((topic, i) => (
-                    <span key={i} className="text-sm px-4 py-1.5 bg-white/5 border border-white/10 rounded-full text-white/70">
-                      {topic}
-                    </span>
-                  ))}
-                </div>
-
-                <span className="inline-flex items-center gap-2 text-violet-400 font-semibold group-hover:text-violet-300 transition-colors">
-                  Read the full guide
-                  <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
-                </span>
-              </div>
-            </Link>
-          </motion.div>
-        ))}
-      </div>
-    </section>
-  )
-}
-
-// ============================================================================
-// QUICK REFERENCE BRIEFS SECTION
-// ============================================================================
-
-function ResearchBriefsSection() {
-  const shouldReduceMotion = useReducedMotion()
-
-  return (
-    <section id="briefs" className="py-16 md:py-24 bg-white/[0.01]">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        {/* Section header */}
-        <div className="mb-10">
-          <motion.div
-            initial={shouldReduceMotion ? false : { opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="inline-flex items-center gap-2 mb-4"
-          >
-            <FileText className="w-4 h-4 text-cyan-400" />
-            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-400">
-              Quick Reference
-            </span>
-          </motion.div>
-
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
-            Stat Sheets
-          </h2>
-          <p className="text-base text-white/50 max-w-2xl">
-            Need to cite a number? These are validated statistics with sources. For context and explanation, read the deep dives above.
-          </p>
-        </div>
-
-        {/* Research briefs grid */}
-        <div className="grid md:grid-cols-2 gap-6">
-          {researchBriefs.map((brief, index) => (
-            <motion.div
-              key={brief.slug}
-              initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={shouldReduceMotion ? { duration: 0 } : { delay: index * 0.1 }}
-            >
-              <Link href={`/research/briefs/${brief.slug}`} className="block group">
-                <div className="relative bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-2xl p-6 hover:bg-white/[0.05] hover:border-cyan-500/30 transition-all duration-300 hover:-translate-y-1">
-                  {/* Category badge */}
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="rounded-full bg-cyan-500/10 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-cyan-400">
-                      {brief.category}
-                    </span>
-                    <div className="flex items-center gap-1.5 text-xs text-white/40">
-                      <Clock className="h-3 w-3" />
-                      <span>{brief.lastValidated}</span>
-                    </div>
-                  </div>
-
-                  {/* Title & Description */}
-                  <h3 className="text-xl font-bold text-white mb-2 group-hover:text-cyan-100 transition-colors">
-                    {brief.title}
-                  </h3>
-                  <p className="text-white/60 mb-4 leading-relaxed">
-                    {brief.description}
-                  </p>
-
-                  {/* Key Stats */}
-                  <div className="mb-4 space-y-2">
-                    {brief.keyStats.map((stat, i) => (
-                      <div key={i} className="flex items-center gap-2 text-sm">
-                        <CheckCircle2 className="h-3.5 w-3.5 text-emerald-400 flex-shrink-0" />
-                        <span className="text-white/70">{stat}</span>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Footer */}
-                  <div className="flex items-center justify-between pt-4 border-t border-white/[0.06]">
-                    <span className="text-xs text-white/40">
-                      {brief.sources} validated sources
-                    </span>
-                    <span className="flex items-center gap-1 text-sm text-cyan-400 group-hover:text-cyan-300">
-                      Read brief
-                      <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
-                    </span>
-                  </div>
-                </div>
-              </Link>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Link to AI Architecture Hub */}
-        <motion.div
-          initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.3 }}
-          className="mt-8 text-center"
-        >
-          <Link
-            href="/ai-architecture"
-            className="inline-flex items-center gap-2 text-sm text-white/50 hover:text-cyan-400 transition-colors"
-          >
-            <Layers className="h-4 w-4" />
-            Explore AI Architecture Hub for blueprints & prototypes
-            <ArrowRight className="h-4 w-4" />
-          </Link>
         </motion.div>
       </div>
     </section>
@@ -576,7 +329,7 @@ function ResearchDomainsSection() {
                     <div className={`p-3 ${colorClasses?.bg} rounded-xl`}>
                       <Icon className={`w-6 h-6 ${colorClasses?.text}`} />
                     </div>
-                    <ArrowUpRight className="w-5 h-5 text-white/50 group-hover:text-white/60 transition-colors" />
+                    <ArrowUpRight className="w-5 h-5 text-white/30 group-hover:text-white/60 transition-colors" />
                   </div>
 
                   <h3 className="text-xl font-bold text-white mb-2">{domain.name}</h3>
@@ -593,7 +346,7 @@ function ResearchDomainsSection() {
                       </span>
                     ))}
                     {!isActive && domain.topics.length > 3 && (
-                      <span className="text-xs px-3 py-1 bg-white/5 border border-white/10 rounded-full text-white/55">
+                      <span className="text-xs px-3 py-1 bg-white/5 border border-white/10 rounded-full text-white/40">
                         +{domain.topics.length - 3} more
                       </span>
                     )}
@@ -772,10 +525,10 @@ function CTASection() {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-                href="https://frankx.ck.page/creation-chronicles"
+                href="/inner-circle"
                 className="inline-flex items-center justify-center gap-2 bg-white text-black px-8 py-4 rounded-full font-semibold hover:bg-white/90 transition-all"
               >
-                Join Creation Chronicles
+                Join Inner Circle
                 <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
@@ -803,8 +556,6 @@ export default function ResearchPage() {
 
       <div className="relative z-10">
         <HeroSection />
-        <DeepDivesSection />
-        <ResearchBriefsSection />
         <ResearchDomainsSection />
         <ResearchCouncilSection />
         <MethodologySection />
@@ -812,7 +563,7 @@ export default function ResearchPage() {
 
         {/* Footer note */}
         <div className="max-w-6xl mx-auto px-4 sm:px-6 pb-16 text-center">
-          <p className="text-sm text-white/55">
+          <p className="text-sm text-white/40">
             Research intelligence powered by multi-agent AI collaboration.
             Insights synthesized for the conscious creator.
           </p>

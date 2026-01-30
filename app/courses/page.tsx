@@ -232,7 +232,7 @@ function CourseCard({ course, index }: { course: Course; index: number }) {
           </p>
 
           {/* Meta */}
-          <div className="flex items-center gap-4 text-xs text-white/55 mb-6">
+          <div className="flex items-center gap-4 text-xs text-white/40 mb-6">
             <span className="flex items-center gap-1">
               <Clock className="w-3.5 h-3.5" />
               {course.duration}
@@ -259,7 +259,7 @@ function CourseCard({ course, index }: { course: Course; index: number }) {
                 <div className="flex items-center gap-2">
                   <span className="text-lg font-bold text-white">${course.price}</span>
                   {course.originalPrice && (
-                    <span className="text-sm text-white/55 line-through">${course.originalPrice}</span>
+                    <span className="text-sm text-white/40 line-through">${course.originalPrice}</span>
                   )}
                 </div>
               )}
@@ -334,7 +334,7 @@ export default function CoursesPage() {
                     className="text-left"
                   >
                     <div className="text-3xl font-bold text-white">{stat.value}</div>
-                    <div className="text-xs uppercase tracking-[0.2em] text-white/55">{stat.label}</div>
+                    <div className="text-xs uppercase tracking-[0.2em] text-white/40">{stat.label}</div>
                   </motion.div>
                 ))}
               </div>
@@ -435,7 +435,7 @@ export default function CoursesPage() {
                   className="group flex items-center justify-between p-5 rounded-xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] hover:border-white/10 transition-all"
                 >
                   <div>
-                    <div className="text-xs uppercase tracking-[0.15em] text-white/50 mb-1">
+                    <div className="text-xs uppercase tracking-[0.15em] text-white/30 mb-1">
                       {resource.type} · {resource.source}
                     </div>
                     <div className="text-base font-medium text-white group-hover:text-emerald-400 transition-colors">

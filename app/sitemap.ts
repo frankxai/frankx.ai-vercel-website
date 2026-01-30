@@ -111,6 +111,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const communityPages = [
     '/community',
     '/coaching',
+    '/inner-circle',
+    '/vault',
+    '/labs',
+    '/drops',
+    '/skills',
+    '/skills/builder',
     '/testimonials',
     '/affiliates',
     '/newsletter',

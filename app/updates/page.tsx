@@ -195,10 +195,10 @@ export default function UpdatesPage() {
               Join the Creation Chronicles for weekly updates on new features and content.
             </p>
             <Link
-              href="https://frankx.ck.page/creation-chronicles"
+              href="/inner-circle"
               className="inline-flex items-center gap-2 rounded-2xl bg-gradient-to-r from-emerald-500 to-cyan-500 px-6 py-3 font-semibold text-white transition-all hover:shadow-lg hover:shadow-emerald-500/25"
             >
-              Join Creation Chronicles
+              Join Inner Circle
               <ExternalLink className="h-4 w-4" />
             </Link>
           </GlassmorphicCard>

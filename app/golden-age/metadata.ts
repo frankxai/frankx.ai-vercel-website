@@ -26,14 +26,25 @@ export const chapters: Chapter[] = [
     readingTime: '18 min',
     description: 'The question beneath all questions: What am I here to create?',
     published: true,
+    image: '/images/golden-age/chapter-01-when-creation-calls.png',
   },
   {
     slug: 'chapter-02-the-orchestration-age',
     title: 'The Orchestration Age',
     number: 2,
-    readingTime: 'Coming soon',
+    readingTime: '14 min',
     description: 'From using AI to conducting AI agents like an orchestra.',
-    published: false,
+    published: true,
+    image: '/images/golden-age/chapter-02-the-orchestration-age.png',
+  },
+  {
+    slug: 'chapter-03-the-first-gesture',
+    title: 'The First Gesture',
+    number: 3,
+    readingTime: '15 min',
+    description: 'The genesis moment — when intent becomes creation and the first mark is made.',
+    published: true,
+    image: '/images/golden-age/chapter-03-the-first-gesture.png',
   },
 ];
 

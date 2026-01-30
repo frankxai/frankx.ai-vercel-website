@@ -1,0 +1,47 @@
+{
+  "_description": "Arcanea Project Implementations Inventory",
+  "_brand": "arcanea",
+  "_instructions": "Track all code repositories, apps, games implementing Arcanea",
+  "_lastUpdated": "2026-01-23",
+  "_count": 1,
+  "_template": {
+    "id": "impl-slug",
+    "type": "implementation",
+    "title": "Implementation Title",
+    "description": "What this implementation does",
+    "brand": "arcanea",
+    "status": "active",
+    "tags": ["game", "web", "tool"],
+    "createdAt": "2025-01-01",
+    "repoUrl": "https://github.com/...",
+    "localPath": "./arcanea-opencode",
+    "techStack": ["TypeScript", "React", "Node.js"],
+    "implementationType": "game",
+    "contributors": ["FrankX"],
+    "stars": 0,
+    "forks": 0
+  },
+  "implementations": [
+    {
+      "id": "arcanea-opencode",
+      "type": "implementation",
+      "title": "Arcanea OpenCode",
+      "description": "Open source Arcanea implementation with multi-language documentation",
+      "brand": "arcanea",
+      "status": "active",
+      "tags": ["opencode", "typescript", "open-source"],
+      "createdAt": "2025-01-09",
+      "localPath": "./arcanea-opencode",
+      "techStack": ["TypeScript", "Bun"],
+      "implementationType": "game",
+      "contributors": ["FrankX"],
+      "documentation": [
+        "README.md",
+        "README.ja.md",
+        "README.zh-cn.md",
+        "AGENTS.md",
+        "CONTRIBUTING.md"
+      ]
+    }
+  ]
+}

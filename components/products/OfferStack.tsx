@@ -101,7 +101,7 @@ export default function OfferStack({ productId, offer, modules, bonuses, pricing
                 <div className="text-sm uppercase tracking-[0.3em] text-white/50">One-time investment</div>
                 <div className="mt-4 flex items-center justify-center gap-3">
                   {offer.originalPrice ? (
-                    <span className="text-2xl text-white/55 line-through">
+                    <span className="text-2xl text-white/40 line-through">
                       ${offer.originalPrice}
                     </span>
                   ) : null}

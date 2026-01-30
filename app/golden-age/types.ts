@@ -9,6 +9,7 @@ export interface Chapter {
   readingTime: string;
   description: string;
   published: boolean;
+  image?: string;
 }
 
 export interface Essay {

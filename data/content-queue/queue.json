@@ -1,4 +1,41 @@
 {
   "pending": [],
-  "completed": []
+  "completed": [
+    {
+      "id": "task-001-enterprise-agent",
+      "type": "generate_social_pack",
+      "params": { "blogSlug": "enterprise-agent-roadmap" },
+      "status": "completed",
+      "createdAt": "2026-01-27T12:30:00Z",
+      "completedAt": "2026-01-27T12:31:00Z",
+      "result": "LinkedIn + Twitter + 1:1 image"
+    },
+    {
+      "id": "task-002-agentic-roadmap",
+      "type": "generate_social_pack",
+      "params": { "blogSlug": "agentic-ai-roadmap-2026" },
+      "status": "completed",
+      "createdAt": "2026-01-27T12:35:00Z",
+      "completedAt": "2026-01-27T12:36:00Z",
+      "result": "LinkedIn + Twitter + 1:1 image"
+    },
+    {
+      "id": "task-003-jarvis",
+      "type": "generate_social_pack",
+      "params": { "blogSlug": "build-your-own-jarvis-claude-code" },
+      "status": "completed",
+      "createdAt": "2026-01-27T12:40:00Z",
+      "completedAt": "2026-01-27T12:41:00Z",
+      "result": "LinkedIn + Twitter + 1:1 image"
+    },
+    {
+      "id": "task-004-acos-guide",
+      "type": "generate_social_pack",
+      "params": { "blogSlug": "agentic-creator-os-complete-guide" },
+      "status": "completed",
+      "createdAt": "2026-01-27T12:45:00Z",
+      "completedAt": "2026-01-27T12:46:00Z",
+      "result": "LinkedIn + Twitter + 1:1 image"
+    }
+  ]
 }

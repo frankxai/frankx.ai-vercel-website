@@ -19,7 +19,6 @@ import {
 
 import { trackEvent } from '@/lib/analytics'
 import TrustedByBlock from '@/components/social-proof/TrustedByBlock'
-import Floating3DAsset from '@/components/ui/Floating3DAsset'
 
 // ============================================================================
 // DESIGN SYSTEM
@@ -257,28 +256,6 @@ function Hero() {
       ref={ref}
       className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16 md:pt-20"
     >
-      {/* Premium 3D floating accents - desktop only, subtle */}
-      <div className="hidden xl:block pointer-events-none">
-        <Floating3DAsset
-          src="/images/3d/3dicons-rocket-dynamic-premium.png"
-          position="top-right"
-          size="xl"
-          animation="float"
-          opacity={25}
-          className="top-32 right-[5%]"
-          delay={0.3}
-        />
-        <Floating3DAsset
-          src="/images/3d/3dicons-star-dynamic-premium.png"
-          position="bottom-left"
-          size="lg"
-          animation="pulse"
-          opacity={20}
-          className="bottom-40 left-[8%]"
-          delay={0.6}
-        />
-      </div>
-
       <motion.div
         className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 py-8 md:py-20"
         style={shouldReduceMotion ? undefined : { opacity, y, scale }}
@@ -325,7 +302,7 @@ function Hero() {
 
             {/* Subtext - invitation to explore */}
             <motion.p
-              className="text-base md:text-lg lg:text-xl text-white/55 max-w-lg mb-8 md:mb-12 leading-relaxed"
+              className="text-base md:text-lg lg:text-xl text-white/40 max-w-lg mb-8 md:mb-12 leading-relaxed"
               initial={shouldReduceMotion ? false : { opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.4 }}
@@ -445,7 +422,7 @@ function FeaturedMusicCard() {
             <p className="text-xs sm:text-sm text-white/50">Ambient · Electronic · Cinematic · Healing</p>
           </div>
 
-          <p className="text-xs sm:text-sm text-white/55 leading-relaxed">
+          <p className="text-xs sm:text-sm text-white/40 leading-relaxed">
             Music as exploration. Each session teaches me something new about sound, emotion, and the creative process.
           </p>
 
@@ -524,7 +501,7 @@ function StatsSection() {
               <div className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-bold text-white mb-2 md:mb-3 tracking-tighter">
                 {stat.value}
               </div>
-              <div className="text-xs sm:text-sm text-white/55 max-w-[140px] sm:max-w-[160px] mx-auto">
+              <div className="text-xs sm:text-sm text-white/40 max-w-[140px] sm:max-w-[160px] mx-auto">
                 {stat.label}
               </div>
             </motion.div>
@@ -602,7 +579,7 @@ function QuickStartSection() {
                   }`}>
                     {path.time}
                   </span>
-                  <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white/50 group-hover:text-white/60 group-hover:translate-x-1 transition-all" />
+                  <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white/30 group-hover:text-white/60 group-hover:translate-x-1 transition-all" />
                 </div>
                 <h3 className="text-base sm:text-lg font-semibold text-white mb-1.5 sm:mb-2 group-hover:text-emerald-400 transition-colors">
                   {path.title}
@@ -706,7 +683,7 @@ function WhatIDo() {
                     <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 text-white/20 group-hover:text-white/60 group-hover:translate-x-1 transition-all" />
                   </div>
 
-                  <p className="text-[10px] sm:text-xs font-medium uppercase tracking-[0.12em] sm:tracking-[0.15em] text-white/50 mb-1.5 sm:mb-2">
+                  <p className="text-[10px] sm:text-xs font-medium uppercase tracking-[0.12em] sm:tracking-[0.15em] text-white/30 mb-1.5 sm:mb-2">
                     {item.subtitle}
                   </p>
                   <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-2 sm:mb-3 group-hover:text-white transition-colors">
@@ -797,7 +774,7 @@ function FeaturedResources() {
               className="group flex items-center justify-between gap-3 p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] hover:border-white/10 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.99] active:border-white/20"
             >
               <div className="min-w-0 flex-1">
-                <div className="text-[10px] sm:text-xs uppercase tracking-[0.12em] sm:tracking-[0.15em] text-white/50 mb-0.5 sm:mb-1">
+                <div className="text-[10px] sm:text-xs uppercase tracking-[0.12em] sm:tracking-[0.15em] text-white/30 mb-0.5 sm:mb-1">
                   {resource.type} · {resource.source}
                 </div>
                 <div className="text-sm sm:text-base md:text-lg font-medium text-white group-hover:text-emerald-400 transition-colors truncate">
@@ -913,7 +890,7 @@ function AIArtGalleryPreview() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="flex items-center justify-center gap-6 sm:gap-8 mt-8 text-white/55 text-sm"
+          className="flex items-center justify-center gap-6 sm:gap-8 mt-8 text-white/40 text-sm"
         >
           <div className="flex items-center gap-2">
             <ImageIcon className="w-4 h-4" />
@@ -969,9 +946,8 @@ function AboutSection() {
           <div className="space-y-4 sm:space-y-6 text-base sm:text-lg text-white/60 leading-relaxed mb-8 sm:mb-10">
             <p>
               By day, I architect AI systems at Oracle. By night, I make music—hundreds of songs
-              exploring what's possible when humans and AI create together. I'm 28, living in Amsterdam
-              with my girlfriend Tien, godfather to two, uncle to many more. Building something they can
-              experience someday—a map of what I learned, what I built, what I figured out.
+              exploring what's possible when humans and AI create together. I'm a husband, a father,
+              someone who believes the universe is too interesting not to explore deeply.
             </p>
             <p className="text-white/70">
               This site is my workshop, my notebook, my attempt to share what I'm learning
@@ -991,7 +967,7 @@ function AboutSection() {
               Read the full story
               <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
-            <div className="flex items-center gap-3 sm:gap-4 text-sm sm:text-base text-white/55">
+            <div className="flex items-center gap-3 sm:gap-4 text-sm sm:text-base text-white/40">
               <a
                 href="https://linkedin.com/in/frank-x-riemer/"
                 target="_blank"

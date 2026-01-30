@@ -219,7 +219,7 @@ export default function PromptLibraryView({
                         {config && <config.icon className={cn('h-4 w-4', config.color.split(' ')[0])} />}
                         <span className="capitalize">{tier === 'all' ? 'All Prompts' : config?.label}</span>
                       </div>
-                      <span className="text-xs text-white/55">{count}</span>
+                      <span className="text-xs text-white/40">{count}</span>
                     </button>
                   )
                 })}
@@ -244,7 +244,7 @@ export default function PromptLibraryView({
                       </span>
                       <ChevronDown
                         className={cn(
-                          'h-4 w-4 text-white/55 transition-transform',
+                          'h-4 w-4 text-white/40 transition-transform',
                           isExpanded && 'rotate-180'
                         )}
                       />
@@ -281,7 +281,7 @@ export default function PromptLibraryView({
                                     </span>
                                     <span>{category.name}</span>
                                   </div>
-                                  <span className="text-xs text-white/55">{count}</span>
+                                  <span className="text-xs text-white/40">{count}</span>
                                 </button>
                               )
                             })}
@@ -350,13 +350,13 @@ export default function PromptLibraryView({
 
                 {/* Search Bar */}
                 <div className="relative max-w-2xl mx-auto">
-                  <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-white/55" />
+                  <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-white/40" />
                   <input
                     type="text"
                     placeholder="Search prompts, categories, or tags..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full rounded-2xl border border-white/10 bg-white/5 py-4 pl-12 pr-4 text-white placeholder:text-white/55 focus:border-white/20 focus:outline-none focus:ring-2 focus:ring-violet-500/20"
+                    className="w-full rounded-2xl border border-white/10 bg-white/5 py-4 pl-12 pr-4 text-white placeholder:text-white/40 focus:border-white/20 focus:outline-none focus:ring-2 focus:ring-violet-500/20"
                   />
                 </div>
               </motion.div>

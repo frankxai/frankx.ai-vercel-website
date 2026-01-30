@@ -8,16 +8,7 @@ export async function POST(request: NextRequest) {
   try {
     // Rate limiting - 5 emails per 10 minutes per IP
     const identifier = getClientIdentifier(request)
-
-    let rateLimitOk = true
-    try {
-      const result = await emailRatelimit.limit(identifier)
-      rateLimitOk = result.success
-    } catch (rateLimitError) {
-      // If rate limiting fails (KV not configured), log but continue
-      console.warn('Rate limiting unavailable:', rateLimitError)
-      // Continue without rate limiting rather than blocking
-    }
+    const { success: rateLimitOk } = await emailRatelimit.limit(identifier)
 
     if (!rateLimitOk) {
       return NextResponse.json(
@@ -76,28 +67,20 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // Store lead in Vercel KV (non-blocking - don't fail if KV is unavailable)
-    try {
-      await storeLead({
-        email: leadData.email,
-        name: leadData.name,
-        company: leadData.company,
-        role: leadData.role,
-        primaryInterest: leadData.primaryInterest,
-        referralSource: leadData.referralSource,
-        guideId: guideSlug
-      })
-    } catch (kvError) {
-      // Log but don't fail - email delivery is more important than lead storage
-      console.warn('Lead storage failed (KV issue):', kvError)
-    }
+    // Store lead in Vercel KV
+    await storeLead({
+      email: leadData.email,
+      name: leadData.name,
+      company: leadData.company,
+      role: leadData.role,
+      primaryInterest: leadData.primaryInterest,
+      referralSource: leadData.referralSource,
+      guideId: guideSlug
+    })
 
     // Send email with Resend
-    // Use custom domain if verified, otherwise fall back to Resend's domain
-    const fromEmail = process.env.RESEND_FROM_EMAIL || 'Frank from FrankX.AI <onboarding@resend.dev>'
-
     const { data, error } = await resend.emails.send({
-      from: fromEmail,
+      from: 'Frank from FrankX.AI <frank@frankx.ai>',
       to: [leadData.email],
       subject: `Your ${pdfTitle} Guide from FrankX.AI`,
       html: `
@@ -211,28 +194,9 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({ success: true, emailId: data?.id })
   } catch (error) {
-    // Enhanced error logging for debugging
-    const errorMessage = error instanceof Error ? error.message : 'Unknown error'
-    const errorStack = error instanceof Error ? error.stack : ''
-
-    console.error('API error:', {
-      message: errorMessage,
-      stack: errorStack,
-      timestamp: new Date().toISOString()
-    })
-
-    // Return more specific error in development, generic in production
-    const isDev = process.env.NODE_ENV === 'development'
+    console.error('API error:', error)
     return NextResponse.json(
-      {
-        error: isDev ? errorMessage : 'Internal server error',
-        // Include hint for common issues
-        hint: errorMessage.includes('KV') || errorMessage.includes('Redis')
-          ? 'Database connection issue - check Upstash/KV configuration'
-          : errorMessage.includes('Resend') || errorMessage.includes('email')
-          ? 'Email service issue - check Resend configuration'
-          : undefined
-      },
+      { error: 'Internal server error' },
       { status: 500 }
     )
   }

@@ -233,7 +233,7 @@ export default function AIArchitectAcademyPage() {
               className="mb-8 max-w-2xl text-lg leading-relaxed text-slate-400 sm:text-xl"
             >
               Master enterprise AI patterns, Claude Code skills, and production architectures.
-              80+ skills, 20+ battle-tested patterns, and 13 learning paths from an AI Architect.
+              80+ skills, 20+ battle-tested patterns, and 13 learning paths from an Oracle AI Architect.
             </motion.p>
 
             {/* Tech badges */}
@@ -320,7 +320,7 @@ export default function AIArchitectAcademyPage() {
                 >
                   <p className="text-3xl font-bold text-white md:text-4xl">{stat.value}</p>
                   <p className="mt-1 text-sm font-medium text-white/60">{stat.label}</p>
-                  <p className="text-xs text-white/55">{stat.sublabel}</p>
+                  <p className="text-xs text-white/40">{stat.sublabel}</p>
                 </motion.div>
               ))}
             </div>

@@ -50,7 +50,7 @@ export default function SoulbookPreviewPage() {
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-purple-500/20 to-purple-600/20 border border-purple-500/30 backdrop-blur-sm mb-6">
             <span className="w-2 h-2 rounded-full bg-purple-400 animate-pulse" />
-            <span className="text-purple-300 text-sm font-medium">Growth & Transformation</span>
+            <span className="text-purple-300 text-sm font-medium">Consciousness & Transformation</span>
           </div>
 
           {/* Title */}
@@ -60,7 +60,7 @@ export default function SoulbookPreviewPage() {
 
           {/* Description */}
           <p className="text-xl text-gray-300 mb-4 max-w-3xl mx-auto leading-relaxed">
-            7-pillar framework for purpose-driven creative transformation
+            7-pillar framework for soul-aligned creative transformation
           </p>
 
           <p className="text-base text-gray-400 max-w-2xl mx-auto mb-8">
@@ -116,7 +116,7 @@ export default function SoulbookPreviewPage() {
           url={pdfUrl}
           htmlFallbackUrl={htmlFallbackUrl}
           title="The Creator's Soulbook"
-          description="7-pillar framework for purpose-driven creative transformation"
+          description="7-pillar framework for soul-aligned creative transformation"
           onEmailRequest={() => setEmailModalOpen(true)}
         />
       </div>

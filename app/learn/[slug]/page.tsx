@@ -20,27 +20,18 @@ import {
 } from 'lucide-react'
 import { learningPaths, type VideoResource } from '@/data/learning-paths'
 
-function getIcon(key: string): React.ComponentType<{ className?: string }> {
-  const icons: Record<string, React.ComponentType<{ className?: string }>> = {
-    brain: Brain,
-    music: Music2,
-    zap: Zap,
-    image: ImageIcon,
-  }
-  return icons[key] ?? BookOpen
+const iconMap: Record<string, React.ElementType> = {
+  brain: Brain,
+  music: Music2,
+  zap: Zap,
+  image: ImageIcon,
 }
 
-const defaultColors = { bg: 'bg-emerald-500', text: 'text-emerald-400', border: 'border-emerald-500/20', gradientFrom: 'from-emerald-500/10' }
-
-const colorMap: Record<string, typeof defaultColors> = {
+const colorMap: Record<string, { bg: string; text: string; border: string; gradientFrom: string }> = {
   emerald: { bg: 'bg-emerald-500', text: 'text-emerald-400', border: 'border-emerald-500/20', gradientFrom: 'from-emerald-500/10' },
   cyan: { bg: 'bg-cyan-500', text: 'text-cyan-400', border: 'border-cyan-500/20', gradientFrom: 'from-cyan-500/10' },
   amber: { bg: 'bg-amber-500', text: 'text-amber-400', border: 'border-amber-500/20', gradientFrom: 'from-amber-500/10' },
   violet: { bg: 'bg-violet-500', text: 'text-violet-400', border: 'border-violet-500/20', gradientFrom: 'from-violet-500/10' },
-}
-
-function getColors(key: string): typeof defaultColors {
-  return colorMap[key] ?? defaultColors
 }
 
 const playButtonBgMap: Record<string, string> = {
@@ -52,7 +43,7 @@ const playButtonBgMap: Record<string, string> = {
 
 function VideoPlayer({ video, color }: { video: VideoResource; color: string }) {
   const [isPlaying, setIsPlaying] = useState(false)
-  const colors = getColors(color)
+  const colors = colorMap[color]
   const playBtnClasses = playButtonBgMap[color] || playButtonBgMap.emerald
 
   return (
@@ -69,7 +60,6 @@ function VideoPlayer({ video, color }: { video: VideoResource; color: string }) 
           />
         ) : (
           <>
-            {/* eslint-disable-next-line @next/next/no-img-element -- External YouTube thumbnail */}
             <img
               src={`https://img.youtube.com/vi/${video.youtubeId}/maxresdefault.jpg`}
               alt={video.title}
@@ -116,7 +106,7 @@ function VideoPlayer({ video, color }: { video: VideoResource; color: string }) 
           </a>
           <div className="flex gap-2">
             {video.tags.slice(0, 3).map((tag) => (
-              <span key={tag} className="text-xs px-2 py-1 rounded bg-white/5 text-white/55">
+              <span key={tag} className="text-xs px-2 py-1 rounded bg-white/5 text-white/40">
                 {tag}
               </span>
             ))}
@@ -146,8 +136,8 @@ export default function LearningPathPage() {
     )
   }
 
-  const Icon = getIcon(path.icon)
-  const colors = getColors(path.color)
+  const Icon = iconMap[path.icon] || BookOpen
+  const colors = colorMap[path.color]
 
   return (
     <div className="min-h-screen bg-[#0a0a0b]">
@@ -253,7 +243,7 @@ export default function LearningPathPage() {
                     {guide.includes('blog') ? 'Related Article' : guide.includes('product') ? 'Product' : 'Guide'}
                   </span>
                 </div>
-                <ArrowRight className="w-4 h-4 text-white/50 group-hover:text-white/70 group-hover:translate-x-1 transition-all" />
+                <ArrowRight className="w-4 h-4 text-white/30 group-hover:text-white/70 group-hover:translate-x-1 transition-all" />
               </Link>
             ))}
           </div>

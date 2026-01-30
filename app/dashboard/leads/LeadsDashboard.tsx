@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect } from 'react'
 import { Search, Download, Mail, Filter, Calendar, Building, Briefcase } from 'lucide-react'
 import type { PDFLead } from '@/lib/types/pdf-analytics'
 
@@ -17,7 +17,33 @@ export default function LeadsDashboard() {
     fetchLeads()
   }, [])
 
-  const filterLeadsData = useCallback(() => {
+  useEffect(() => {
+    filterLeadsData()
+  }, [searchQuery, filterGuide, filterInterest, leads])
+
+  async function fetchLeads() {
+    setIsLoading(true)
+    setError(null)
+
+    try {
+      const response = await fetch('/api/dashboard/leads')
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch leads')
+      }
+
+      const data = await response.json()
+      setLeads(data.leads)
+      setFilteredLeads(data.leads)
+    } catch (err) {
+      setError('Failed to load leads. Please try again.')
+      console.error('Leads fetch error:', err)
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  function filterLeadsData() {
     let filtered = [...leads]
 
     // Search filter
@@ -42,32 +68,6 @@ export default function LeadsDashboard() {
     }
 
     setFilteredLeads(filtered)
-  }, [leads, searchQuery, filterGuide, filterInterest])
-
-  useEffect(() => {
-    filterLeadsData()
-  }, [filterLeadsData])
-
-  async function fetchLeads() {
-    setIsLoading(true)
-    setError(null)
-
-    try {
-      const response = await fetch('/api/dashboard/leads')
-
-      if (!response.ok) {
-        throw new Error('Failed to fetch leads')
-      }
-
-      const data = await response.json()
-      setLeads(data.leads)
-      setFilteredLeads(data.leads)
-    } catch (err) {
-      setError('Failed to load leads. Please try again.')
-      console.error('Leads fetch error:', err)
-    } finally {
-      setIsLoading(false)
-    }
   }
 
   function exportToCSV() {

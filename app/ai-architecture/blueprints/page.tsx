@@ -65,7 +65,7 @@ function BlueprintCard({ blueprint, index }: { blueprint: ArchitecturePrototype;
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
     >
-      <Link href={`/ai-architecture/${blueprint.slug}`} className="group block h-full">
+      <Link href={`/blueprint/${blueprint.slug}`} className="group block h-full">
         <div className="relative flex h-full flex-col rounded-2xl border border-cyan-500/20 bg-cyan-500/5 p-6 backdrop-blur-sm transition-all duration-300 hover:border-cyan-500/40 group-hover:-translate-y-1 group-hover:shadow-xl">
           {/* Type badge */}
           <div className="absolute -right-2 -top-2 rounded-full bg-cyan-500 px-2.5 py-0.5 text-[10px] font-semibold uppercase text-white">
@@ -201,26 +201,7 @@ export default function BlueprintsPage() {
         </div>
       </section>
 
-      {/* Academy CTA */}
-      <section className="py-16 border-t border-white/5">
-        <div className="mx-auto max-w-4xl px-6 text-center">
-          <h2 className="mb-4 text-2xl font-bold text-white">Full Blueprint Collection</h2>
-          <p className="mb-6 text-slate-400">
-            Explore the complete library with advanced filtering, implementation guides, and deep-dive tutorials.
-          </p>
-          <a
-            href="https://aiarchitectacademy.com/blueprints"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 px-6 py-3 font-semibold text-white transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-cyan-500/25"
-          >
-            Visit AI Architect Academy
-            <ArrowRight className="h-4 w-4" />
-          </a>
-        </div>
-      </section>
-
-      {/* Prototypes CTA */}
+      {/* CTA */}
       <section className="py-16 border-t border-white/5">
         <div className="mx-auto max-w-4xl px-6 text-center">
           <h2 className="mb-4 text-2xl font-bold text-white">Want to Try These Patterns?</h2>

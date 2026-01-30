@@ -132,27 +132,27 @@ OpenTelemetry is the vendor-neutral standard. While it requires more setup, it i
 
 | Metric | Description | Target |
 |--------|-------------|--------|
-| p50 latency | Median response time | Under 2s |
-| p95 latency | 95th percentile | Under 5s |
-| p99 latency | Worst case | Under 10s |
-| Time to first token | Streaming start | Under 500ms |
+| p50 latency | Median response time | <2s |
+| p95 latency | 95th percentile | <5s |
+| p99 latency | Worst case | <10s |
+| Time to first token | Streaming start | <500ms |
 
 ### Cost Metrics
 
 | Metric | Description | Alert Threshold |
 |--------|-------------|-----------------|
-| Cost per query | Average token cost | Over $0.10 |
+| Cost per query | Average token cost | >$0.10 |
 | Daily spend | Total daily cost | Budget limit |
-| Token waste | Unused context | Over 30% |
+| Token waste | Unused context | >30% |
 
 ### Quality Metrics
 
 | Metric | Description | Target |
 |--------|-------------|--------|
-| Success rate | Queries completed | 99%+ |
-| Relevance score | Answer quality | 0.85+ |
-| Faithfulness | Grounded in context | 0.9+ |
-| User satisfaction | Thumbs up/down | 80%+ |
+| Success rate | Queries completed | >99% |
+| Relevance score | Answer quality | >0.85 |
+| Faithfulness | Grounded in context | >0.9 |
+| User satisfaction | Thumbs up/down | >80% |
 
 ---
 

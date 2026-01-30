@@ -18,8 +18,6 @@ import {
   Wand2,
 } from 'lucide-react'
 
-import Floating3DAsset from '@/components/ui/Floating3DAsset'
-
 function ResourcesBackground() {
   const shouldReduceMotion = useReducedMotion()
 
@@ -180,6 +178,13 @@ const arcaneaItems = [
     icon: GraduationCap,
   },
   {
+    name: 'The Luminors',
+    description: 'AI companions for creation and evolution.',
+    href: 'https://arcanea.app',
+    icon: Star,
+    external: true,
+  },
+  {
     name: 'Arcanea Platform',
     description: 'The full Arcanea experience.',
     href: 'https://arcanea.app',
@@ -284,7 +289,7 @@ function ResourceGrid({
                 </div>
                 <div className="mt-4 flex items-center gap-2 text-base font-semibold text-white">
                   {item.name}
-                  {isExternal && <ExternalLink className="h-4 w-4 text-white/55" />}
+                  {isExternal && <ExternalLink className="h-4 w-4 text-white/40" />}
                 </div>
                 <p className="mt-2 text-sm text-slate-400">{item.description}</p>
                 <div className="mt-4 flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-emerald-300">
@@ -305,28 +310,6 @@ export default function ResourcesPage() {
     <>
       <ResourcesBackground />
       <main id="main" className="relative min-h-screen pb-16">
-        {/* Premium 3D floating icons - XL screens only */}
-        <div className="hidden xl:block pointer-events-none">
-          <Floating3DAsset
-            src="/images/3d/3dicons-notebook-dynamic-premium.png"
-            position="top-right"
-            size="xl"
-            animation="float"
-            opacity={20}
-            className="top-40 right-[4%]"
-            delay={0.3}
-          />
-          <Floating3DAsset
-            src="/images/3d/3dicons-bulb-dynamic-premium.png"
-            position="bottom-left"
-            size="lg"
-            animation="pulse"
-            opacity={18}
-            className="bottom-40 left-[6%]"
-            delay={0.7}
-          />
-        </div>
-
         <section className="pt-28 pb-12">
           <div className="mx-auto max-w-6xl px-6">
             <motion.div

@@ -26,11 +26,40 @@ This leads to:
 
 The solution: **Pattern-first design**. Understand your workflow characteristics, then select the pattern that fits.
 
-<ArchitectureImage
-  src="/images/blog/oci-series/pattern-selection-framework.png"
-  alt="Pattern Selection Framework - Three-step decision process for choosing agent orchestration patterns"
-  caption="Match workflow characteristics to the right orchestration pattern before writing code"
-/>
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                   PATTERN SELECTION FRAMEWORK                    │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                  │
+│  STEP 1: Characterize Your Workflow                              │
+│  ────────────────────────────────────────────────                │
+│  ○ Are steps independent or dependent?                           │
+│  ○ Is the order fixed or dynamic?                                │
+│  ○ Does quality improve with multiple perspectives?              │
+│  ○ Are human checkpoints required?                               │
+│  ○ Is the solution path known upfront?                           │
+│                                                                  │
+│  STEP 2: Match to Pattern                                        │
+│  ────────────────────────────────────────────────                │
+│  ┌─────────────────────────────────────────────────────────────┐│
+│  │ Workflow Type              →  Recommended Pattern            ││
+│  │ ─────────────────────────────────────────────────────────── ││
+│  │ Linear, fixed order        →  Sequential                     ││
+│  │ Independent, parallelizable→  Concurrent                     ││
+│  │ Collaborative, iterative   →  Group Chat                     ││
+│  │ Dynamic routing by context →  Handoff                        ││
+│  │ Complex, evolving plan     →  Orchestrator-Worker            ││
+│  │ High-stakes decisions      →  Human-in-the-Loop              ││
+│  └─────────────────────────────────────────────────────────────┘│
+│                                                                  │
+│  STEP 3: Validate Against Constraints                            │
+│  ────────────────────────────────────────────────                │
+│  ○ Does the pattern fit your team's expertise?                   │
+│  ○ Does OCI provide the required services?                       │
+│  ○ Does the complexity match the value delivered?                │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
+```
 
 ---
 
@@ -38,20 +67,26 @@ The solution: **Pattern-first design**. Understand your workflow characteristics
 
 **Definition**: Chains agents in a predefined linear order. Each agent processes the output from the previous agent, creating a pipeline of specialized transformations.
 
-<DecisionBox title="Sequential Pattern">
-
-**Flow**: Agent 1 (Extract) → Agent 2 (Analyze) → Agent 3 (Draft) → Agent 4 (Review)
-
-<ComparisonGrid>
-  <ComparisonCard title="Characteristics" color="cyan">
-    Fixed order, predictable flow. Each stage adds specific value. State accumulates through pipeline. Easy to debug with linear trace.
-  </ComparisonCard>
-  <ComparisonCard title="Best For" color="emerald">
-    Document processing pipelines, content generation workflows, sequential transformations where order matters.
-  </ComparisonCard>
-</ComparisonGrid>
-
-</DecisionBox>
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                    SEQUENTIAL PATTERN                            │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                  │
+│  ┌─────────┐     ┌─────────┐     ┌─────────┐     ┌─────────┐   │
+│  │ Agent 1 │────►│ Agent 2 │────►│ Agent 3 │────►│ Agent 4 │   │
+│  │ Extract │     │ Analyze │     │  Draft  │     │ Review  │   │
+│  └─────────┘     └─────────┘     └─────────┘     └─────────┘   │
+│                                                                  │
+│  Input ─────────────────────────────────────────────────► Output │
+│                                                                  │
+│  Characteristics:                                                │
+│  ├─ Fixed order, predictable flow                                │
+│  ├─ Each stage adds specific value                               │
+│  ├─ State accumulates through pipeline                           │
+│  └─ Easy to debug (linear trace)                                 │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
+```
 
 ### When to Use Sequential
 
@@ -73,22 +108,42 @@ The solution: **Pattern-first design**. Understand your workflow characteristics
 
 ### Example: Contract Generation Pipeline
 
-<DecisionBox title="Contract Generation Workflow">
-
-**Pipeline Stages:**
-
-1. **Template Selection** — Select appropriate contract template based on deal parameters
-2. **Clause Customization** — Customize standard clauses based on negotiated terms
-3. **Regulatory Compliance** — Review against applicable laws (GDPR, CCPA, etc.)
-4. **Risk Assessment** — Analyze liability exposure, dispute resolution, termination clauses
-
-**OCI Services:**
-- **Agent Platform**: Workflow orchestration
-- **OCI Generative AI**: Cohere Command R+ for legal reasoning
-- **Autonomous DB 23ai**: Contract templates + clause library
-- **Object Storage**: Generated contract documents
-
-</DecisionBox>
+```
+┌─────────────────────────────────────────────────────────────────┐
+│               CONTRACT GENERATION WORKFLOW                       │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                  │
+│  ┌────────────────┐                                              │
+│  │ 1. TEMPLATE    │  Select appropriate contract template        │
+│  │    SELECTION   │  based on deal parameters                    │
+│  └───────┬────────┘                                              │
+│          │                                                       │
+│          ▼                                                       │
+│  ┌────────────────┐                                              │
+│  │ 2. CLAUSE      │  Customize standard clauses based on         │
+│  │    CUSTOMIZATION│ negotiated terms                            │
+│  └───────┬────────┘                                              │
+│          │                                                       │
+│          ▼                                                       │
+│  ┌────────────────┐                                              │
+│  │ 3. REGULATORY  │  Review against applicable laws and          │
+│  │    COMPLIANCE  │  regulations (GDPR, CCPA, etc.)              │
+│  └───────┬────────┘                                              │
+│          │                                                       │
+│          ▼                                                       │
+│  ┌────────────────┐                                              │
+│  │ 4. RISK        │  Analyze liability exposure, dispute         │
+│  │    ASSESSMENT  │  resolution, termination clauses             │
+│  └────────────────┘                                              │
+│                                                                  │
+│  OCI Services:                                                   │
+│  ├─ Agent Platform: Workflow orchestration                       │
+│  ├─ OCI Generative AI: Cohere Command R+ for legal reasoning     │
+│  ├─ Autonomous DB 23ai: Contract templates + clause library      │
+│  └─ Object Storage: Generated contract documents                 │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
+```
 
 ---
 
@@ -96,20 +151,34 @@ The solution: **Pattern-first design**. Understand your workflow characteristics
 
 **Definition**: Runs multiple agents simultaneously on the same task. Each agent provides independent analysis from its unique perspective. Results are aggregated for final output.
 
-<DecisionBox title="Concurrent Pattern">
-
-**Flow**: Input → [Agent A + Agent B + Agent C running in parallel] → Aggregate Results → Output
-
-<ComparisonGrid>
-  <ComparisonCard title="Characteristics" color="violet">
-    Parallel execution reduces latency. Multiple independent perspectives. Requires aggregation strategy. Best for ensemble reasoning.
-  </ComparisonCard>
-  <ComparisonCard title="Best For" color="emerald">
-    Investment analysis, multi-perspective reviews, brainstorming, time-sensitive scenarios where speed matters.
-  </ComparisonCard>
-</ComparisonGrid>
-
-</DecisionBox>
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                    CONCURRENT PATTERN                            │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                  │
+│                         ┌─────────┐                              │
+│                    ┌───►│ Agent A │───┐                          │
+│                    │    │ (View 1)│   │                          │
+│                    │    └─────────┘   │                          │
+│                    │                  │                          │
+│  ┌─────────┐      │    ┌─────────┐   │      ┌─────────┐         │
+│  │  INPUT  │──────┼───►│ Agent B │───┼─────►│AGGREGATE│         │
+│  │         │      │    │ (View 2)│   │      │ RESULTS │         │
+│  └─────────┘      │    └─────────┘   │      └─────────┘         │
+│                    │                  │                          │
+│                    │    ┌─────────┐   │                          │
+│                    └───►│ Agent C │───┘                          │
+│                         │ (View 3)│                              │
+│                         └─────────┘                              │
+│                                                                  │
+│  Characteristics:                                                │
+│  ├─ Parallel execution reduces latency                           │
+│  ├─ Multiple independent perspectives                            │
+│  ├─ Requires aggregation strategy                                │
+│  └─ Best for ensemble reasoning                                  │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
+```
 
 ### When to Use Concurrent
 
@@ -131,37 +200,52 @@ The solution: **Pattern-first design**. Understand your workflow characteristics
 
 ### Example: Investment Analysis
 
-<DecisionBox title="Investment Analysis Workflow">
-
-**Input**: Stock ticker + analysis request
-
-<ComparisonGrid>
-  <ComparisonCard title="Fundamental Agent" color="cyan">
-    P/E ratios, revenue growth, DCF valuation, balance sheet analysis
-  </ComparisonCard>
-  <ComparisonCard title="Technical Agent" color="violet">
-    RSI, MACD, support/resistance levels, chart patterns
-  </ComparisonCard>
-</ComparisonGrid>
-
-<ComparisonGrid>
-  <ComparisonCard title="Sentiment Agent" color="emerald">
-    News analysis, social media sentiment, analyst reports
-  </ComparisonCard>
-  <ComparisonCard title="ESG Agent" color="amber">
-    Environmental impact, governance quality, social responsibility
-  </ComparisonCard>
-</ComparisonGrid>
-
-**Aggregator**: Weighted combine → Confidence score → Final Recommendation
-
-**OCI Services:**
-- **OKE**: 4 parallel pods for each agent
-- **OCI Generative AI**: Llama 3.3 70B for analysis
-- **Autonomous DB 23ai**: Historical data + embeddings
-- **OCI Functions**: Aggregation logic
-
-</DecisionBox>
+```
+┌─────────────────────────────────────────────────────────────────┐
+│               INVESTMENT ANALYSIS WORKFLOW                       │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                  │
+│  Input: Stock ticker + analysis request                          │
+│                                                                  │
+│         ┌───────────────────────────────────────────────┐        │
+│         │              PARALLEL ANALYSIS                 │        │
+│         ├───────────────────────────────────────────────┤        │
+│         │                                               │        │
+│         │  ┌──────────────┐  ┌──────────────┐           │        │
+│         │  │ FUNDAMENTAL  │  │  TECHNICAL   │           │        │
+│         │  │   AGENT      │  │    AGENT     │           │        │
+│         │  │              │  │              │           │        │
+│         │  │ P/E, revenue │  │ RSI, MACD,   │           │        │
+│         │  │ growth, DCF  │  │ support/res  │           │        │
+│         │  └──────────────┘  └──────────────┘           │        │
+│         │                                               │        │
+│         │  ┌──────────────┐  ┌──────────────┐           │        │
+│         │  │  SENTIMENT   │  │     ESG      │           │        │
+│         │  │    AGENT     │  │    AGENT     │           │        │
+│         │  │              │  │              │           │        │
+│         │  │ News, social │  │ Environment, │           │        │
+│         │  │ analyst rpts │  │ governance   │           │        │
+│         │  └──────────────┘  └──────────────┘           │        │
+│         │                                               │        │
+│         └───────────────────────────────────────────────┘        │
+│                              │                                   │
+│                              ▼                                   │
+│                    ┌──────────────────┐                          │
+│                    │   AGGREGATOR     │                          │
+│                    │                  │                          │
+│                    │ Weighted combine │                          │
+│                    │ Confidence score │                          │
+│                    │ Recommendation   │                          │
+│                    └──────────────────┘                          │
+│                                                                  │
+│  OCI Services:                                                   │
+│  ├─ OKE: 4 parallel pods for each agent                          │
+│  ├─ OCI Generative AI: Llama 3.3 70B for analysis                │
+│  ├─ Autonomous DB 23ai: Historical data + embeddings             │
+│  └─ OCI Functions: Aggregation logic                             │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
+```
 
 ---
 
@@ -169,27 +253,42 @@ The solution: **Pattern-first design**. Understand your workflow characteristics
 
 **Definition**: Multiple agents solve problems through shared conversation threads. A chat manager coordinates flow, determining which agents respond and when.
 
-<DecisionBox title="Group Chat Pattern">
-
-**Example Thread** — "Design a park for the downtown district":
-
-- **[Community Agent]**: "Based on resident surveys, families want playgrounds..."
-- **[Environment Agent]**: "The soil analysis shows native plants would thrive..."
-- **[Budget Agent]**: "Construction costs estimate $2.3M for Phase 1..."
-- **[Community Agent]**: "Addressing the budget concern, we could phase..."
-
-**Chat Manager** coordinates: Select speaker → Manage turns → Detect completion
-
-<ComparisonGrid>
-  <ComparisonCard title="Characteristics" color="amber">
-    Collaborative problem-solving. Iterative refinement through discussion. Chat manager controls flow. Best limited to 3 agents to prevent loops.
-  </ComparisonCard>
-  <ComparisonCard title="Best For" color="emerald">
-    Creative brainstorming, multidisciplinary problems, iterative refinement, quality control with maker-checker loops.
-  </ComparisonCard>
-</ComparisonGrid>
-
-</DecisionBox>
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                    GROUP CHAT PATTERN                            │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                  │
+│  ┌─────────────────────────────────────────────────────────────┐│
+│  │                    CHAT THREAD                               ││
+│  │                                                              ││
+│  │  [User]: "Design a park for the downtown district"           ││
+│  │                                                              ││
+│  │  [Community Agent]: "Based on resident surveys..."           ││
+│  │                                                              ││
+│  │  [Environment Agent]: "The soil analysis shows..."           ││
+│  │                                                              ││
+│  │  [Budget Agent]: "Construction costs estimate..."            ││
+│  │                                                              ││
+│  │  [Community Agent]: "Addressing the budget concern..."       ││
+│  │                                                              ││
+│  └─────────────────────────────────────────────────────────────┘│
+│                              │                                   │
+│                    ┌─────────▼─────────┐                         │
+│                    │   CHAT MANAGER    │                         │
+│                    │                   │                         │
+│                    │ ○ Select speaker  │                         │
+│                    │ ○ Manage turns    │                         │
+│                    │ ○ Detect completion│                        │
+│                    └───────────────────┘                         │
+│                                                                  │
+│  Characteristics:                                                │
+│  ├─ Collaborative problem-solving                                │
+│  ├─ Iterative refinement through discussion                      │
+│  ├─ Chat manager controls flow                                   │
+│  └─ Best limited to 3 agents to prevent loops                    │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
+```
 
 ### When to Use Group Chat
 
@@ -213,25 +312,33 @@ The solution: **Pattern-first design**. Understand your workflow characteristics
 
 A common group chat pattern where one agent creates and another validates:
 
-<DecisionBox title="Maker-Checker Pattern">
-
-**Loop**: Create → Critique → Revise → Approve
-
-<ComparisonGrid>
-  <ComparisonCard title="Maker Agent" subtitle="Llama 3.3 70B" color="cyan">
-    Generates code implementation. Addresses feedback from checker. Iterates until approved.
-  </ComparisonCard>
-  <ComparisonCard title="Checker Agent" subtitle="Cohere Command R+" color="violet">
-    Reviews for bugs, security, style. Provides specific feedback. Approves or requests changes.
-  </ComparisonCard>
-</ComparisonGrid>
-
-**OCI Services:**
-- **AI Agent Platform**: Both agents in same workflow
-- **OCI Generative AI**: Different models optimized for each role
-- **Autonomous DB**: Store iterations for learning
-
-</DecisionBox>
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                  MAKER-CHECKER PATTERN                           │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                  │
+│  ┌─────────────┐         ┌─────────────┐                         │
+│  │   MAKER     │────────►│   CHECKER   │                         │
+│  │   AGENT     │◄────────│   AGENT     │                         │
+│  └─────────────┘         └─────────────┘                         │
+│                                                                  │
+│  Loop: Create → Critique → Revise → Approve                      │
+│                                                                  │
+│  Example: Code Generation                                        │
+│  ├─ Maker: Generates code implementation                         │
+│  ├─ Checker: Reviews for bugs, security, style                   │
+│  ├─ Maker: Addresses feedback                                    │
+│  └─ Checker: Approves or requests more changes                   │
+│                                                                  │
+│  OCI Implementation:                                             │
+│  ├─ OCI AI Agent Platform: Both agents in same workflow          │
+│  ├─ OCI Generative AI: Different models for maker/checker        │
+│  │   ├─ Maker: Llama 3.3 70B (code generation)                   │
+│  │   └─ Checker: Cohere Command R+ (reasoning/review)            │
+│  └─ Autonomous DB: Store iterations for learning                 │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
+```
 
 ---
 
@@ -239,31 +346,34 @@ A common group chat pattern where one agent creates and another validates:
 
 **Definition**: Enables dynamic delegation between specialized agents. Each agent assesses whether to handle the task directly or transfer to a more appropriate agent based on context.
 
-<DecisionBox title="Handoff Pattern">
-
-**Flow**: User Request → Triage Agent → Routes to Specialist
-
-<ComparisonGrid>
-  <ComparisonCard title="Technical Agent" color="cyan">
-    Handles technical issues. Can handoff to Billing if billing issue detected.
-  </ComparisonCard>
-  <ComparisonCard title="Billing Agent" color="violet">
-    Handles payment, refunds, charges. Can escalate to Human Support.
-  </ComparisonCard>
-</ComparisonGrid>
-
-<ComparisonGrid>
-  <ComparisonCard title="Account Agent" color="emerald">
-    Handles profile, settings, access issues.
-  </ComparisonCard>
-  <ComparisonCard title="Human Support" color="amber">
-    Escalation path for complex or sensitive issues.
-  </ComparisonCard>
-</ComparisonGrid>
-
-**Characteristics**: Dynamic routing based on context. One agent active at a time. Full control transfers on handoff. Prevents expertise mismatch.
-
-</DecisionBox>
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                    HANDOFF PATTERN                               │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                  │
+│  ┌─────────────┐                                                 │
+│  │   TRIAGE    │◄──────── User Request                           │
+│  │   AGENT     │                                                 │
+│  └──────┬──────┘                                                 │
+│         │                                                        │
+│         ├─────────────────┬─────────────────┬──────────────────┐│
+│         ▼                 ▼                 ▼                  ▼│
+│  ┌─────────────┐   ┌─────────────┐   ┌─────────────┐   ┌─────────┐
+│  │  TECHNICAL  │   │  BILLING    │   │  ACCOUNT    │   │ HUMAN   │
+│  │   AGENT     │   │   AGENT     │   │   AGENT     │   │ SUPPORT │
+│  └──────┬──────┘   └──────┬──────┘   └─────────────┘   └─────────┘
+│         │                 │                                      │
+│         │ (can handoff)   │                                      │
+│         └────────────────►│                                      │
+│                                                                  │
+│  Characteristics:                                                │
+│  ├─ Dynamic routing based on context                             │
+│  ├─ One agent active at a time                                   │
+│  ├─ Full control transfers on handoff                            │
+│  └─ Prevents expertise mismatch                                  │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
+```
 
 ### When to Use Handoff
 
@@ -285,27 +395,48 @@ A common group chat pattern where one agent creates and another validates:
 
 ### Example: Customer Service Escalation
 
-<DecisionBox title="Customer Service Handoff Workflow">
-
-**Customer**: "My internet is slow and I was overcharged"
-
-**1. Triage Agent** — Analyzes intent, detects both Technical and Billing issues
-
-**2. Technical Agent** — "Let me check your connection..."
-- Runs diagnostics via MCP tool
-- Identifies router issue, resolves it
-- **Handoff signal**: "Technical resolved. Billing issue detected."
-
-**3. Billing Agent** (automatic handoff) — "I see the overcharge. Processing refund now..."
-- **Resolution**: Issues $15.50 credit
-
-**OCI Services:**
-- **Agent Platform**: Multi-agent workflow with handoff rules
-- **MCP Server on OKE**: Network diagnostic tools
-- **Autonomous DB**: Customer account data
-- **OCI Functions**: Billing system integration
-
-</DecisionBox>
+```
+┌─────────────────────────────────────────────────────────────────┐
+│            CUSTOMER SERVICE HANDOFF WORKFLOW                     │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                  │
+│  Customer: "My internet is slow and I was overcharged"           │
+│                                                                  │
+│  ┌────────────────┐                                              │
+│  │ TRIAGE AGENT   │  Analyzes intent, routes appropriately       │
+│  │                │                                              │
+│  │ Detected:      │                                              │
+│  │ ├─ Technical ──┼──► Technical Agent                           │
+│  │ └─ Billing  ───┼──► (handled after technical)                 │
+│  └────────────────┘                                              │
+│           │                                                      │
+│           ▼                                                      │
+│  ┌────────────────┐                                              │
+│  │ TECHNICAL      │  "Let me check your connection..."           │
+│  │ AGENT          │                                              │
+│  │                │  Runs diagnostics via MCP tool               │
+│  │                │  Identifies router issue                     │
+│  │                │                                              │
+│  │ Handoff signal:│  "Technical resolved. Billing issue          │
+│  │                │   detected in customer context."             │
+│  └───────┬────────┘                                              │
+│          │                                                       │
+│          ▼ (automatic handoff)                                   │
+│  ┌────────────────┐                                              │
+│  │ BILLING AGENT  │  "I see the overcharge. Processing           │
+│  │                │   refund now..."                             │
+│  │                │                                              │
+│  │ Resolution:    │  Issues $15.50 credit                        │
+│  └────────────────┘                                              │
+│                                                                  │
+│  OCI Services:                                                   │
+│  ├─ Agent Platform: Multi-agent workflow with handoff rules      │
+│  ├─ MCP Server on OKE: Network diagnostic tools                  │
+│  ├─ Autonomous DB: Customer account data                         │
+│  └─ OCI Functions: Billing system integration                    │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
+```
 
 ---
 
@@ -313,30 +444,41 @@ A common group chat pattern where one agent creates and another validates:
 
 **Definition**: A manager agent dynamically builds a task ledger with goals and subgoals, invoking specialized worker agents as needed. The plan evolves as context changes.
 
-<DecisionBox title="Orchestrator-Worker Pattern">
-
-**Orchestrator Agent** maintains a dynamic **Task Ledger**:
-
-| Goal | Status |
-|------|--------|
-| Goal 1: Restore service availability | ✅ DONE |
-| Goal 2: Identify root cause | 🔄 IN PROGRESS |
-| └─ Subgoal 2a: Analyze logs | ✅ DONE |
-| └─ Subgoal 2b: Check database | ⏳ PENDING |
-| Goal 3: Implement fix | ⏳ PENDING |
-
-<ComparisonGrid>
-  <ComparisonCard title="Diagnostics Worker" color="cyan">
-    Logging Analytics queries, APM trace analysis, error pattern detection
-  </ComparisonCard>
-  <ComparisonCard title="Infrastructure Worker" color="violet">
-    OKE scaling, DB config changes, resource provisioning
-  </ComparisonCard>
-</ComparisonGrid>
-
-**Characteristics**: Plan evolves as context changes. Workers have tools to affect external systems. Full audit trail via task ledger. Best for open-ended, complex problems.
-
-</DecisionBox>
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                ORCHESTRATOR-WORKER PATTERN                       │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                  │
+│  ┌─────────────────────────────────────────────────────────────┐│
+│  │                    ORCHESTRATOR AGENT                        ││
+│  │                                                              ││
+│  │  ┌─────────────────────────────────────────────────────────┐││
+│  │  │                    TASK LEDGER                           │││
+│  │  │  ┌──────────────────────────────────────────────────┐   │││
+│  │  │  │ Goal 1: Restore service availability      [DONE] │   │││
+│  │  │  │ Goal 2: Identify root cause              [IN PROGRESS]│││
+│  │  │  │   └─ Subgoal 2a: Analyze logs            [DONE]  │   │││
+│  │  │  │   └─ Subgoal 2b: Check database          [PENDING]│   │││
+│  │  │  │ Goal 3: Implement fix                    [PENDING]│   │││
+│  │  │  └──────────────────────────────────────────────────┘   │││
+│  │  └─────────────────────────────────────────────────────────┘││
+│  └─────────────────────────────────────────────────────────────┘│
+│                              │                                   │
+│              ┌───────────────┼───────────────┐                   │
+│              ▼               ▼               ▼                   │
+│       ┌─────────────┐ ┌─────────────┐ ┌─────────────┐           │
+│       │ DIAGNOSTICS │ │INFRASTRUCTURE│ │ ROLLBACK   │           │
+│       │   WORKER    │ │   WORKER    │ │  WORKER    │           │
+│       └─────────────┘ └─────────────┘ └─────────────┘           │
+│                                                                  │
+│  Characteristics:                                                │
+│  ├─ Plan evolves as context changes                              │
+│  ├─ Workers have tools to affect external systems                │
+│  ├─ Full audit trail via task ledger                             │
+│  └─ Best for open-ended, complex problems                        │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
+```
 
 ### When to Use Orchestrator-Worker
 
@@ -359,37 +501,69 @@ A common group chat pattern where one agent creates and another validates:
 
 ### Example: SRE Incident Response
 
-<DecisionBox title="SRE Incident Response Workflow">
-
-**Alert**: "Service latency > 5s for 10 minutes"
-
-**Phase 1 — Orchestrator** creates initial plan:
-- Goal: Restore service availability
-- Goal: Identify root cause
-- Invokes: **Diagnostics Worker**
-
-**Phase 2 — Diagnostics Worker** investigates:
-- Tools: Logging Analytics query, APM trace analysis
-- **Finding**: "Database connection pool exhausted"
-
-**Phase 3 — Orchestrator Updates Plan**:
-- Goal: Restore service → **Subgoal**: Increase DB connection pool [NEW]
-- Goal: Identify root cause → **Subgoal**: Trace connection leak source [NEW]
-- Goal: Prevent recurrence [NEW]
-- Invokes: **Infrastructure Worker**
-
-**Phase 4 — Infrastructure Worker** remediates:
-- Actions: Increased max_connections 100 → 200, Scaled OKE replicas 3 → 5
-- **Result**: Latency restored to < 200ms
-
-**OCI Services:**
-- **LangGraph on OKE**: Orchestrator runtime
-- **Agent Platform**: Worker agents
-- **Autonomous DB**: Connection pool target
-- **Logging Analytics + APM**: Diagnostics
-- **OCI Audit**: Complete incident audit trail
-
-</DecisionBox>
+```
+┌─────────────────────────────────────────────────────────────────┐
+│              SRE INCIDENT RESPONSE WORKFLOW                      │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                  │
+│  Alert: "Service latency > 5s for 10 minutes"                    │
+│                                                                  │
+│  ┌────────────────────────────────────────────────────────────┐ │
+│  │                  ORCHESTRATOR AGENT                         │ │
+│  │                                                             │ │
+│  │  Initial Task Ledger:                                       │ │
+│  │  ├─ Goal: Restore service availability                      │ │
+│  │  └─ Goal: Identify root cause                               │ │
+│  │                                                             │ │
+│  │  Invokes: DIAGNOSTICS WORKER                                │ │
+│  └────────────────────────────────────────────────────────────┘ │
+│                              │                                   │
+│                              ▼                                   │
+│  ┌────────────────────────────────────────────────────────────┐ │
+│  │                  DIAGNOSTICS WORKER                         │ │
+│  │                                                             │ │
+│  │  Tools: Logging Analytics query, APM trace analysis         │ │
+│  │                                                             │ │
+│  │  Finding: "Database connection pool exhausted"              │ │
+│  └────────────────────────────────────────────────────────────┘ │
+│                              │                                   │
+│                              ▼                                   │
+│  ┌────────────────────────────────────────────────────────────┐ │
+│  │                  ORCHESTRATOR UPDATES PLAN                  │ │
+│  │                                                             │ │
+│  │  Revised Task Ledger:                                       │ │
+│  │  ├─ Goal: Restore service availability                      │ │
+│  │  │   └─ Subgoal: Increase DB connection pool [NEW]          │ │
+│  │  ├─ Goal: Identify root cause                               │ │
+│  │  │   └─ Subgoal: Trace connection leak source [NEW]         │ │
+│  │  └─ Goal: Prevent recurrence [NEW]                          │ │
+│  │                                                             │ │
+│  │  Invokes: INFRASTRUCTURE WORKER                             │ │
+│  └────────────────────────────────────────────────────────────┘ │
+│                              │                                   │
+│                              ▼                                   │
+│  ┌────────────────────────────────────────────────────────────┐ │
+│  │                  INFRASTRUCTURE WORKER                      │ │
+│  │                                                             │ │
+│  │  Tools: Autonomous DB config API, OKE scaling               │ │
+│  │                                                             │ │
+│  │  Actions:                                                   │ │
+│  │  ├─ Increased max_connections from 100 → 200                │ │
+│  │  └─ Scaled OKE replicas 3 → 5                               │ │
+│  │                                                             │ │
+│  │  Result: Latency restored to < 200ms                        │ │
+│  └────────────────────────────────────────────────────────────┘ │
+│                                                                  │
+│  OCI Services:                                                   │
+│  ├─ LangGraph on OKE: Orchestrator runtime                       │
+│  ├─ Agent Platform: Worker agents                                │
+│  ├─ Autonomous DB: Connection pool target                        │
+│  ├─ Logging Analytics: Log queries                               │
+│  ├─ OCI APM: Trace analysis                                      │
+│  └─ OCI Audit: Complete incident audit trail                     │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
+```
 
 ---
 
@@ -397,22 +571,37 @@ A common group chat pattern where one agent creates and another validates:
 
 **Definition**: Explicit breakpoints where human approval is required before the workflow continues. Critical for high-stakes decisions.
 
-<DecisionBox title="Human-in-the-Loop Pattern">
-
-**Flow**: Agent A (Process) → Agent B (Draft) → **HUMAN CHECKPOINT** → Agent C (Execute)
-
-<ComparisonGrid>
-  <ComparisonCard title="✅ Approve" color="emerald">
-    Human approves the draft. Workflow continues to Agent C for execution.
-  </ComparisonCard>
-  <ComparisonCard title="❌ Reject + Feedback" color="amber">
-    Human provides feedback. Workflow returns to Agent B for revision.
-  </ComparisonCard>
-</ComparisonGrid>
-
-**Characteristics**: Async approval with timeout. Multiple approval tiers possible. Feedback loop for rejected items. Complete audit trail of all decisions.
-
-</DecisionBox>
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                 HUMAN-IN-THE-LOOP PATTERN                        │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                  │
+│  ┌─────────┐     ┌─────────┐     ┌─────────────┐     ┌─────────┐│
+│  │ Agent A │────►│ Agent B │────►│ HUMAN       │────►│ Agent C ││
+│  │ Process │     │ Draft   │     │ CHECKPOINT  │     │ Execute ││
+│  └─────────┘     └─────────┘     └──────┬──────┘     └─────────┘│
+│                                         │                        │
+│                                         │                        │
+│                           ┌─────────────┴─────────────┐          │
+│                           │                           │          │
+│                           ▼                           ▼          │
+│                    ┌─────────────┐            ┌─────────────┐    │
+│                    │   APPROVE   │            │   REJECT    │    │
+│                    │             │            │   + FEEDBACK│    │
+│                    └─────────────┘            └─────────────┘    │
+│                           │                           │          │
+│                           ▼                           ▼          │
+│                    Continue to              Return to            │
+│                    Agent C                  Agent B              │
+│                                                                  │
+│  Characteristics:                                                │
+│  ├─ Async approval with timeout                                  │
+│  ├─ Multiple approval tiers possible                             │
+│  ├─ Feedback loop for rejected items                             │
+│  └─ Audit trail of all decisions                                 │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
+```
 
 ### When to Use Human-in-the-Loop
 
@@ -435,23 +624,34 @@ A common group chat pattern where one agent creates and another validates:
 
 ### Checkpoint Placement Strategy
 
-| Checkpoint Type | When Required | Risk Tier |
-|-----------------|---------------|-----------|
-| Content approval | Before external publish | 🔴 HIGH |
-| Financial action | Before payment/transfer | 🔴 HIGH |
-| PII handling | Before processing personal data | 🔴 HIGH |
-| External API call | Before irreversible action | 🟡 MEDIUM |
-| Budget threshold | When cost > $X | 🟡 MEDIUM |
-| Bulk operation | Before affecting >N records | 🟡 MEDIUM |
-| Model selection | Before using new model | 🟢 LOW |
-
-<Callout type="warning">
-**Anti-Pattern: Too Many Checkpoints** — Checkpoint fatigue leads to rubber-stamping. Approval backlog blocks workflows. User trust in AI never builds.
-</Callout>
-
-<Callout type="tip">
-**Solution: Risk-tiered checkpoints** — HIGH risk: Always require approval. MEDIUM risk: Approve if confidence > 95%. LOW risk: Notify but don't block.
-</Callout>
+```
+┌─────────────────────────────────────────────────────────────────┐
+│              CHECKPOINT PLACEMENT GUIDE                          │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                  │
+│  Checkpoint Type       When Required           Risk Tier         │
+│  ────────────────────────────────────────────────────────────── │
+│  Content approval      Before external publish     HIGH          │
+│  Financial action      Before payment/transfer     HIGH          │
+│  PII handling          Before processing personal  HIGH          │
+│  External API call     Before irreversible action  MEDIUM        │
+│  Budget threshold      When cost > $X              MEDIUM        │
+│  Bulk operation        Before affecting >N records MEDIUM        │
+│  Model selection       Before using new model      LOW           │
+│                                                                  │
+│  Anti-Pattern: Too Many Checkpoints                              │
+│  ────────────────────────────────────────────────────────────── │
+│  ✗ Checkpoint fatigue leads to rubber-stamping                   │
+│  ✗ Approval backlog blocks workflows                             │
+│  ✗ User trust in AI never builds                                 │
+│                                                                  │
+│  Solution: Risk-tiered checkpoints                               │
+│  ├─ HIGH risk: Always require approval                           │
+│  ├─ MEDIUM risk: Approve if confidence > 95%                     │
+│  └─ LOW risk: Notify but don't block                             │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
+```
 
 ---
 
@@ -459,24 +659,29 @@ A common group chat pattern where one agent creates and another validates:
 
 Quick reference for pattern selection:
 
-<ArchitectureImage
-  src="/images/blog/oci-series/six-patterns-overview.png"
-  alt="Six Agent Orchestration Patterns for OCI"
-  caption="All six patterns at a glance with their primary use cases"
-/>
-
-| Pattern | Complexity | Parallelism | Control | Use Case |
-|---------|------------|-------------|---------|----------|
-| Sequential | Low | None | High | Pipelines |
-| Concurrent | Medium | High | Medium | Analysis |
-| Group Chat | High | Partial | Low | Creative |
-| Handoff | Medium | None | Medium | Routing |
-| Orchestrator-Worker | Very High | Partial | Variable | Complex |
-| Human-in-Loop | Medium | None | Very High | Critical |
-
-<Callout type="tip">
-**Combining Patterns:** Sequential + Human-in-Loop for pipeline with approval gates. Concurrent + Group Chat for multi-perspective with synthesis. Orchestrator + Handoff for dynamic planning with specialists. Sequential + Concurrent for linear stages with parallel execution within.
-</Callout>
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                  PATTERN DECISION MATRIX                         │
+├─────────────────────────────────────────────────────────────────┤
+│                                                                  │
+│  Pattern           Complexity  Parallelism  Control    Use Case  │
+│  ─────────────────────────────────────────────────────────────  │
+│  Sequential        Low         None         High       Pipelines │
+│  Concurrent        Medium      High         Medium     Analysis  │
+│  Group Chat        High        Partial      Low        Creative  │
+│  Handoff           Medium      None         Medium     Routing   │
+│  Orchestrator-Wkr  Very High   Partial      Variable   Complex   │
+│  Human-in-Loop     Medium      None         Very High  Critical  │
+│                                                                  │
+│  Combining Patterns:                                             │
+│  ─────────────────────────────────────────────────────────────  │
+│  ✓ Sequential + Human-in-Loop: Pipeline with approval gates     │
+│  ✓ Concurrent + Group Chat: Multi-perspective with synthesis    │
+│  ✓ Orchestrator + Handoff: Dynamic planning with specialists    │
+│  ✓ Sequential + Concurrent: Linear stages, parallel within      │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
+```
 
 ---
 
@@ -512,5 +717,3 @@ Quick reference for pattern selection:
 *This is Part 2 of a 3-part series on production LLM and agentic AI systems on OCI.*
 
 *[Part 1: Six-Plane Architecture](/blog/production-llm-agents-oci-part-1-architecture) | [Part 3: Operating Model](/blog/production-llm-agents-oci-part-3-operating-model)*
-
-*Oracle, OCI, Oracle Cloud Infrastructure, and Oracle Database are trademarks of Oracle Corporation. This content is independent and not endorsed by or affiliated with Oracle.*

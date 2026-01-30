@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter, Cormorant_Garamond, JetBrains_Mono } from 'next/font/google'
+import { Inter, Playfair_Display, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 import Script from 'next/script'
 
@@ -7,29 +7,26 @@ import { cn } from '@/lib/utils'
 import { robotsConfig, siteConfig } from '@/lib/seo'
 import NavigationMega from '@/components/NavigationMega'
 import Footer from '@/components/Footer'
-import CookieConsent from '@/components/CookieConsent'
 import OrganizationJsonLd from '@/components/seo/OrganizationJsonLd'
 import SessionProvider from '@/components/providers/SessionProvider'
 
-// Inter as THE primary font - used everywhere (locked, do not change)
+// Inter as primary sans-serif (geometric, variable weight, screen-optimized)
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
   display: 'swap',
-  weight: ['300', '400', '500', '600', '700', '800', '900'],
+  weight: ['300', '400', '500', '600', '700'],
 })
 
-// Cormorant Garamond for quotes & editorial italic ONLY
-// High-contrast serif with ultra-elegant italic forms
-const cormorant = Cormorant_Garamond({
+// Playfair Display for editorial touches (classic, elegant Times-like italics)
+const playfair = Playfair_Display({
   subsets: ['latin'],
-  variable: '--font-quote',
+  variable: '--font-serif',
   display: 'swap',
-  weight: ['400', '500', '600'],
   style: ['normal', 'italic'],
 })
 
-// JetBrains Mono for code/technical elements only
+// JetBrains Mono for code/technical elements
 const jetbrains = JetBrains_Mono({
   subsets: ['latin'],
   variable: '--font-mono',
@@ -98,6 +95,7 @@ export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   maximumScale: 5,
+  viewportFit: 'cover', // Support for iPhone notch/safe areas
 }
 
 export default function RootLayout({
@@ -116,7 +114,7 @@ export default function RootLayout({
       <body
         className={cn(
           inter.variable,
-          cormorant.variable,
+          playfair.variable,
           jetbrains.variable,
           'font-sans dark bg-[#030712] text-white antialiased min-h-screen overflow-x-hidden'
         )}
@@ -142,7 +140,6 @@ export default function RootLayout({
             {children}
           </div>
           <Footer />
-          <CookieConsent />
         </SessionProvider>
       </body>
     </html >

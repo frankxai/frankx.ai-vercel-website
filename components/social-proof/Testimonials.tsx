@@ -119,7 +119,7 @@ function TestimonialCard({
         )}
         <div>
           <div className="text-sm font-semibold text-white">{testimonial.author}</div>
-          <div className="text-xs text-white/55">{testimonial.role}</div>
+          <div className="text-xs text-white/40">{testimonial.role}</div>
         </div>
       </div>
     </motion.div>

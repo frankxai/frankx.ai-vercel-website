@@ -42,7 +42,7 @@ export default function CaseStudyGrid({ productId, caseStudies, title = 'Field N
                   <blockquote className="mt-4 text-sm text-white/60">&ldquo;{study.quote}&rdquo;</blockquote>
                 ) : null}
                 {study.author || study.role ? (
-                  <p className="mt-2 text-xs uppercase tracking-[0.2em] text-white/55">
+                  <p className="mt-2 text-xs uppercase tracking-[0.2em] text-white/40">
                     {[study.author, study.role].filter(Boolean).join(' - ')}
                   </p>
                 ) : null}

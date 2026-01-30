@@ -17,7 +17,7 @@ export const claudeAgents: ClaudeAgent[] = [
     id: 'starlight-architect',
     name: 'Starlight Architect',
     focus: 'Enterprise Systems & Governance',
-    role: 'Designs scalable systems and ensures every experience is enterprise-grade yet creator-aligned.',
+    role: 'Designs scalable systems and ensures every experience is enterprise-grade yet soul-aligned.',
     icon: CircuitBoard,
     image: '/images/agents/starlight-architect.svg',
     workflows: [

@@ -155,7 +155,7 @@ export default function PromptCard({
 
         {/* Use Case */}
         {variant !== 'compact' && (
-          <p className="mb-6 text-xs text-white/55 line-clamp-2">
+          <p className="mb-6 text-xs text-white/40 line-clamp-2">
             <span className="font-medium text-white/50">Use case:</span> {prompt.useCase}
           </p>
         )}

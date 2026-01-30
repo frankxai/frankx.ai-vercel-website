@@ -440,14 +440,14 @@ export function samplePremiumNewsletter(): { subject: string; html: string } {
   return premiumNewsletterEmail({
     issueNumber: 1,
     headline: 'Welcome to the Golden Age of Creator AI',
-    subheadline: 'Your weekly dispatch from the intersection of music, AI, and creative systems.',
+    subheadline: 'Your weekly dispatch from the intersection of music, AI, and conscious creation.',
     personalNote: "It's 2 AM. I'm in the studio, and something magical just happened. After 500+ AI-generated songs and years building enterprise AI at Oracle, I've realized we're living in the most exciting time to be a creator. This newsletter is how I share what I'm learning in the trenches.",
     sections: [
       {
         icon: '🎵',
         label: 'AI Music',
         title: 'Suno v4.5 Changes Everything',
-        content: 'The latest update dropped and creators are making studio-quality tracks in minutes. I\'ve been experimenting with frequency-based compositions for creative focus — the results are mind-blowing. Here\'s what I learned this week.',
+        content: 'The latest update dropped and creators are making studio-quality tracks in minutes. I\'ve been experimenting with frequency-based compositions for consciousness transformation — the results are mind-blowing. Here\'s what I learned this week.',
         link: 'https://frankx.ai/music',
         linkText: 'Explore 500+ AI Songs',
         highlight: true
@@ -462,8 +462,8 @@ export function samplePremiumNewsletter(): { subject: string; html: string } {
       },
       {
         icon: '✨',
-        label: 'Creative Systems',
-        title: 'Technology That Serves the Creator',
+        label: 'Conscious Creation',
+        title: 'Technology That Serves the Soul',
         content: 'Every framework I build is designed to amplify human creativity, not replace it. This is the difference between using AI and partnering with it. The tools are evolving — and so must our relationship with them.',
         link: 'https://frankx.ai/golden-age',
         linkText: 'Enter the Golden Age'

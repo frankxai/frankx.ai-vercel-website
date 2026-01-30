@@ -41,7 +41,7 @@ const testimonials: Testimonial[] = [
     name: 'Emily Watson',
     role: 'Designer',
     company: 'Freelance',
-    content: 'These guides are the perfect blend of practical frameworks and systems building. Finally found resources that speak to both my technical and creative sides.',
+    content: 'These guides are the perfect blend of practical frameworks and consciousness work. Finally found resources that speak to both my technical and creative sides.',
     guideSlug: 'soulbook-guide'
   },
   {

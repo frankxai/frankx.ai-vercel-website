@@ -101,12 +101,12 @@ export default function DesignSystemPage() {
                     <p className="text-white/60 mb-4">{item.description}</p>
 
                     <div className="mb-4">
-                      <span className="text-xs font-semibold uppercase tracking-wider text-white/55">Use Case</span>
+                      <span className="text-xs font-semibold uppercase tracking-wider text-white/40">Use Case</span>
                       <p className="text-white/70 text-sm mt-1">{item.useCase}</p>
                     </div>
 
                     <div className="mb-4">
-                      <span className="text-xs font-semibold uppercase tracking-wider text-white/55">Colors</span>
+                      <span className="text-xs font-semibold uppercase tracking-wider text-white/40">Colors</span>
                       <div className="flex flex-wrap gap-2 mt-2">
                         {item.colors.map((color, i) => (
                           <span
@@ -147,7 +147,7 @@ export default function DesignSystemPage() {
                   intensity={intensity}
                   className="rounded-2xl border border-white/10 p-8 text-center"
                 >
-                  <span className="text-xs font-semibold uppercase tracking-wider text-white/55">
+                  <span className="text-xs font-semibold uppercase tracking-wider text-white/40">
                     Intensity
                   </span>
                   <h3 className="text-2xl font-bold text-white mt-2 capitalize">{intensity}</h3>

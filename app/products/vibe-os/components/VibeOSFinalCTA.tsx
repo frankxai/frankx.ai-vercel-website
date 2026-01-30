@@ -7,7 +7,7 @@ import { Sparkles, Mail, ArrowRight, Zap } from 'lucide-react'
 import { trackEvent } from '@/lib/analytics'
 import type { ProductOffer } from '@/types/products'
 
-const COMING_SOON_MODE = true
+const COMING_SOON_MODE = false
 
 interface VibeOSFinalCTAProps {
   productId: string
@@ -147,7 +147,7 @@ export default function VibeOSFinalCTA({ productId, offer }: VibeOSFinalCTAProps
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          className="mt-12 flex flex-wrap items-center justify-center gap-8 text-sm text-white/55"
+          className="mt-12 flex flex-wrap items-center justify-center gap-8 text-sm text-white/40"
         >
           <div className="flex items-center gap-2">
             <svg className="h-5 w-5 text-emerald-400" fill="currentColor" viewBox="0 0 20 20">

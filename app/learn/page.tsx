@@ -17,14 +17,11 @@ import {
 } from 'lucide-react'
 import { learningPaths, featuredCreators, type LearningPath, type VideoResource } from '@/data/learning-paths'
 
-function getIcon(key: string): React.ComponentType<{ className?: string }> {
-  const icons: Record<string, React.ComponentType<{ className?: string }>> = {
-    brain: Brain,
-    music: Music2,
-    zap: Zap,
-    image: ImageIcon,
-  }
-  return icons[key] ?? BookOpen
+const iconMap: Record<string, React.ElementType> = {
+  brain: Brain,
+  music: Music2,
+  zap: Zap,
+  image: ImageIcon,
 }
 
 const colorMap: Record<string, string> = {
@@ -42,8 +39,8 @@ const playButtonBgMap: Record<string, string> = {
 }
 
 function PathCard({ path }: { path: LearningPath }) {
-  const Icon = getIcon(path.icon)
-  const colors = colorMap[path.color] ?? ''
+  const Icon = iconMap[path.icon] || BookOpen
+  const colors = colorMap[path.color]
 
   return (
     <Link
@@ -66,7 +63,7 @@ function PathCard({ path }: { path: LearningPath }) {
         {path.description}
       </p>
 
-      <div className="flex items-center gap-4 text-xs text-white/55">
+      <div className="flex items-center gap-4 text-xs text-white/40">
         <div className="flex items-center gap-1.5">
           <Clock className="w-3.5 h-3.5" />
           {path.estimatedHours} hours
@@ -100,7 +97,6 @@ function VideoCard({ video, pathColor }: { video: VideoResource; pathColor: stri
           />
         ) : (
           <>
-            {/* eslint-disable-next-line @next/next/no-img-element -- External YouTube thumbnail */}
             <img
               src={`https://img.youtube.com/vi/${video.youtubeId}/maxresdefault.jpg`}
               alt={video.title}
@@ -138,7 +134,7 @@ function VideoCard({ video, pathColor }: { video: VideoResource; pathColor: stri
           href={video.creatorChannel}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 text-xs text-white/55 hover:text-white/70 transition-colors"
+          className="inline-flex items-center gap-1.5 text-xs text-white/40 hover:text-white/70 transition-colors"
         >
           {video.creator}
           <ExternalLink className="w-3 h-3" />

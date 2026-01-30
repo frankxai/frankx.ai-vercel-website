@@ -475,8 +475,8 @@ function ResultsView({
         <PremiumButton onClick={onReset} variant="secondary">
           Retake Assessment
         </PremiumButton>
-        <PremiumButton href="https://frankx.ck.page/creation-chronicles" variant="primary">
-          Join Creation Chronicles
+        <PremiumButton href="/inner-circle" variant="primary">
+          Join The Realm Community
         </PremiumButton>
       </div>
     </motion.div>

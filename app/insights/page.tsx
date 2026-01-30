@@ -19,7 +19,7 @@ const categoryColors: Record<string, string> = {
   'AI Strategy': 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30',
   'Music Creation': 'bg-pink-500/20 text-pink-400 border-pink-500/30',
   'Technical': 'bg-cyan-500/20 text-cyan-400 border-cyan-500/30',
-  'Personal Growth': 'bg-violet-500/20 text-violet-400 border-violet-500/30',
+  'Consciousness': 'bg-violet-500/20 text-violet-400 border-violet-500/30',
   default: 'bg-slate-500/20 text-slate-400 border-slate-500/30',
 }
 

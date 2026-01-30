@@ -15,8 +15,6 @@ import {
   Volume2,
 } from 'lucide-react'
 
-import Floating3DAsset from '@/components/ui/Floating3DAsset'
-
 // ============================================================================
 // BACKGROUND
 // ============================================================================
@@ -117,27 +115,6 @@ const stats = [
 function HeroSection() {
   return (
     <section className="relative pt-32 pb-16 px-6">
-      {/* Premium 3D floating icons - XL screens only */}
-      <div className="hidden xl:block pointer-events-none">
-        <Floating3DAsset
-          src="/images/3d/3dicons-headphone-dynamic-color.png"
-          position="top-right"
-          size="xl"
-          animation="float"
-          opacity={22}
-          className="top-20 right-[3%]"
-          delay={0.3}
-        />
-        <Floating3DAsset
-          src="/images/3d/3dicons-play-dynamic-premium.png"
-          position="bottom-left"
-          size="lg"
-          animation="pulse"
-          opacity={18}
-          className="bottom-8 left-[5%]"
-          delay={0.7}
-        />
-      </div>
       <div className="max-w-6xl mx-auto">
         <div className="grid lg:grid-cols-[1fr,1.2fr] gap-12 items-center">
           {/* Left - Text */}
@@ -161,7 +138,7 @@ function HeroSection() {
 
             <p className="text-xl text-white/50 mb-8 max-w-lg leading-relaxed">
               12,000+ songs created with Suno AI. Ambient soundscapes, electronic beats,
-              cinematic scores, and ambient frequencies. Exploring the frontier of AI music.
+              cinematic scores, and healing frequencies. Exploring the frontier of AI music.
             </p>
 
             <div className="flex flex-wrap gap-4">
@@ -231,7 +208,7 @@ function StatsSection() {
               className="text-center"
             >
               <p className="text-3xl md:text-4xl font-bold text-white">{stat.value}</p>
-              <p className="text-sm text-white/55 mt-1">{stat.label}</p>
+              <p className="text-sm text-white/40 mt-1">{stat.label}</p>
             </motion.div>
           ))}
         </div>
@@ -272,7 +249,7 @@ function FeaturedTracksSection() {
                 <div className="flex items-center justify-between mb-3 px-2">
                   <div>
                     <h3 className="font-semibold text-white">{track.title}</h3>
-                    <p className="text-sm text-white/55">{track.genre}</p>
+                    <p className="text-sm text-white/40">{track.genre}</p>
                   </div>
                   <a
                     href={`https://suno.com/song/${track.id}`}
@@ -374,7 +351,7 @@ function CollectionsSection() {
                         <div className="flex items-center justify-between mb-2 px-1">
                           <div>
                             <p className="text-sm font-medium text-white">{track.title}</p>
-                            <p className="text-xs text-white/55">{track.style}</p>
+                            <p className="text-xs text-white/40">{track.style}</p>
                           </div>
                           <a
                             href={`https://suno.com/song/${track.id}`}
@@ -382,7 +359,7 @@ function CollectionsSection() {
                             rel="noopener noreferrer"
                             className="p-1.5 rounded-full bg-white/5 hover:bg-white/10 transition-colors"
                           >
-                            <ExternalLink className="w-3 h-3 text-white/55" />
+                            <ExternalLink className="w-3 h-3 text-white/40" />
                           </a>
                         </div>
                         <iframe
@@ -398,7 +375,7 @@ function CollectionsSection() {
                   </div>
                 ) : (
                   <div className={`rounded-xl border ${colors.border} ${colors.bg} p-8 text-center`}>
-                    <p className="text-white/55">More tracks coming soon</p>
+                    <p className="text-white/40">More tracks coming soon</p>
                     <a
                       href={collection.playlistLink || 'https://suno.com/@frankx'}
                       target="_blank"

@@ -99,7 +99,7 @@ function GuideCard({ guide, index }: { guide: GuideDoc; index: number }) {
             {guide.description}
           </p>
 
-          <div className="flex items-center gap-4 text-xs text-white/55">
+          <div className="flex items-center gap-4 text-xs text-white/40">
             <span className="flex items-center gap-1">
               <Clock className="w-3.5 h-3.5" />
               {guide.readingTime}
@@ -170,7 +170,7 @@ export default function GuidesPageClient({ guides }: GuidesPageClientProps) {
                 className="py-20 text-center"
               >
                 <div className="w-16 h-16 rounded-full bg-white/5 flex items-center justify-center mx-auto mb-6">
-                  <Compass className="w-7 h-7 text-white/50" />
+                  <Compass className="w-7 h-7 text-white/30" />
                 </div>
                 <h3 className="text-xl font-semibold text-white mb-2">Guides coming soon</h3>
                 <p className="text-sm text-white/50 mb-6 max-w-md mx-auto">

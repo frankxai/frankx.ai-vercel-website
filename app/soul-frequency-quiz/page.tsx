@@ -321,7 +321,7 @@ export default function SoulFrequencyQuiz() {
                   </h1>
                   <p className="text-base text-white/75 md:text-lg">
                     Six fast prompts surface your dominant creative frequency. We will translate it into rituals, prompts,
-                    and partner workflows so every AI interaction stays purpose-aligned.
+                    and partner workflows so every AI interaction stays soul-aligned.
                   </p>
                 </div>
 
@@ -486,7 +486,7 @@ export default function SoulFrequencyQuiz() {
                           name="email"
                           required
                           placeholder="Enter your email"
-                          className="flex-1 rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-sm text-white placeholder:text-white/55 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
+                          className="flex-1 rounded-xl border border-white/20 bg-white/10 px-4 py-3 text-sm text-white placeholder:text-white/40 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/50"
                         />
                         <button
                           type="submit"

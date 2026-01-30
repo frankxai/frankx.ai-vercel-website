@@ -8,7 +8,7 @@ import { trackEvent } from '@/lib/analytics'
 import type { ProductRecord } from '@/types/products'
 
 // Coming Soon mode - controls pricing visibility
-const COMING_SOON_MODE = true
+const COMING_SOON_MODE = false
 
 interface VibeOSHeroProps {
   productId: string
@@ -184,7 +184,7 @@ export default function VibeOSHero({ productId, product }: VibeOSHeroProps) {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.7 }}
-          className="mt-16 flex flex-wrap items-center justify-center gap-8 text-xs text-white/55"
+          className="mt-16 flex flex-wrap items-center justify-center gap-8 text-xs text-white/40"
         >
           <div className="flex items-center gap-2">
             <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
@@ -217,7 +217,7 @@ export default function VibeOSHero({ productId, product }: VibeOSHeroProps) {
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
-          className="flex flex-col items-center gap-2 text-white/50"
+          className="flex flex-col items-center gap-2 text-white/30"
         >
           <span className="text-xs uppercase tracking-widest">Scroll</span>
           <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -134,6 +134,7 @@ export async function POST(request: NextRequest) {
 
     // TODO: Store email for newsletter/follow-up
     // This would integrate with ConvertKit, Resend, or similar
+    console.log(`Download request from ${email} for ${product.name}`)
 
     // Generate direct download URL from your blob storage
     const downloadUrl = `${BLOB_BASE_URL}/${file.blobKey}`

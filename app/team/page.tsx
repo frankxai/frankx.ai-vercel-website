@@ -10,7 +10,7 @@ import Link from 'next/link'
 export const metadata = createMetadata({
   title: 'Meet the Team - FrankX AI Collaboration Ecosystem',
   description:
-    'Discover the AI dream team powering FrankX: Claude Code, ChatGPT specialists, Suno, Sora, Midjourney, and Gemini working together to create intelligent systems and professional content.',
+    'Discover the AI dream team powering FrankX: Claude Code, ChatGPT specialists, Suno, Sora, Midjourney, and Gemini working together to create soul-aligned systems and transformational content.',
   keywords: [
     'frankx ai team',
     'claude code agents',
@@ -76,7 +76,7 @@ export default function TeamPage() {
                 {/* Description */}
                 <p className="text-lg md:text-xl text-white/70 leading-relaxed max-w-3xl mx-auto">
                   From Claude Code to ChatGPT specialists, from Suno music wizards to Midjourney artists—this is the AI dream team
-                  building intelligent systems, professional content, and creative technology for the future.
+                  building soul-aligned systems, transformational content, and conscious technology for the future.
                 </p>
 
                 {/* Stats Grid */}
@@ -163,7 +163,7 @@ export default function TeamPage() {
               <h2 className="text-3xl font-bold text-white mb-4">How This Team Collaborates</h2>
               <p className="text-white/70 leading-relaxed mb-8">
                 Each agent brings specialized expertise, and together they form an interconnected ecosystem where insights flow,
-                creativity amplifies, and high-quality solutions emerge naturally.
+                creativity amplifies, and soul-aligned solutions emerge naturally.
               </p>
 
               <div className="grid md:grid-cols-3 gap-6">
@@ -173,7 +173,7 @@ export default function TeamPage() {
                   </div>
                   <h3 className="text-lg font-semibold text-white mb-2">Strategic Planning</h3>
                   <p className="text-sm text-white/60 leading-relaxed">
-                    Claude agents lead architecture and long-term vision, ensuring every decision serves creative excellence.
+                    Claude agents lead architecture and long-term vision, ensuring every decision serves consciousness evolution.
                   </p>
                 </div>
 
@@ -193,7 +193,7 @@ export default function TeamPage() {
                   </div>
                   <h3 className="text-lg font-semibold text-white mb-2">Creative Synthesis</h3>
                   <p className="text-sm text-white/60 leading-relaxed">
-                    Suno, Sora, and Midjourney agents transform concepts into music, video, and visuals that move audiences.
+                    Suno, Sora, and Midjourney agents transform concepts into music, video, and visuals that move souls.
                   </p>
                 </div>
               </div>
@@ -246,8 +246,8 @@ export default function TeamPage() {
               <Sparkles className="w-12 h-12 text-fuchsia-400 mx-auto mb-4" />
               <h2 className="text-4xl font-bold text-white">Ready to Collaborate?</h2>
               <p className="text-lg text-white/80 leading-relaxed">
-                This dream team is ready to help you build intelligent systems, create professional content, and amplify your
-                creative output. Let's start building.
+                This dream team is ready to help you build soul-aligned systems, create transformational content, and amplify your
+                creative expression. Let's start your journey.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
                 <Link

@@ -253,7 +253,7 @@ export default function CreatorsPage() {
                 >
                   <p className="text-3xl font-bold text-white md:text-4xl">{stat.value}</p>
                   <p className="mt-1 text-sm font-medium text-white/60">{stat.label}</p>
-                  <p className="text-xs text-white/55">{stat.sublabel}</p>
+                  <p className="text-xs text-white/40">{stat.sublabel}</p>
                 </motion.div>
               ))}
             </div>

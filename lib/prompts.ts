@@ -77,7 +77,7 @@ export const CATEGORY_GROUPS: Record<CategoryGroup, { name: string; description:
   creative: { name: 'Creative', description: 'Content creation, music, and visual arts' },
   technical: { name: 'Technical', description: 'Coding, AI systems, and development' },
   business: { name: 'Business & Marketing', description: 'Strategy, social media, and growth' },
-  personal: { name: 'Personal Development', description: 'Productivity, mindfulness, and learning' },
+  personal: { name: 'Personal Development', description: 'Productivity, spirituality, and learning' },
 }
 
 export const CATEGORIES: CategoryInfo[] = [
@@ -207,13 +207,13 @@ export const CATEGORIES: CategoryInfo[] = [
   },
   {
     id: 'spiritual',
-    name: 'Mindfulness & Growth',
+    name: 'Spiritual Growth',
     icon: 'Compass',
-    description: 'Meditation, mindfulness, goal-setting, and inner work.',
+    description: 'Consciousness, meditation, manifestation, and inner work.',
     color: '#A855F7',
     group: 'personal',
-    seoTitle: 'AI Mindfulness Prompts - Meditation, Growth, Creative Systems',
-    seoDescription: 'AI prompts for personal growth, meditation guidance, goal-setting, and creative systems.',
+    seoTitle: 'AI Spiritual Prompts - Meditation, Manifestation, Consciousness',
+    seoDescription: 'AI prompts for spiritual growth, meditation guidance, manifestation, and consciousness expansion.',
   },
   {
     id: 'learning',
@@ -3107,6 +3107,405 @@ Announcement:
     createdAt: '2025-01-03T00:00:00.000Z',
     updatedAt: '2025-01-03T00:00:00.000Z',
   },
+  // ========================================
+  // 2026 CUTTING-EDGE PROMPTS
+  // Atom-of-Thoughts, Meta-Prompting, Contract-Style
+  // ========================================
+  {
+    id: 'aot-parallel-reasoning',
+    title: 'Atom-of-Thoughts Parallel Reasoner',
+    description: 'Solve complex problems 3-5x faster using parallel atomic reasoning chains.',
+    content: `You are operating in ATOM-OF-THOUGHTS MODE. Solve this problem using parallel reasoning chains.
+
+**PROBLEM TO SOLVE:**
+[PASTE YOUR PROBLEM HERE]
+
+**ATOMIC REASONING TASKS (execute all in parallel):**
+
+ATOM 1: First Principles Analysis
+- Break the problem into fundamental components
+- Identify what is truly essential vs. assumed
+- Question any "obvious" assumptions
+- Deliverable: 3-5 fundamental truths
+
+ATOM 2: Constraint Mapping
+- List ALL constraints (time, resources, knowledge, political)
+- Classify each as: [HARD CONSTRAINT] or [PREFERENCE]
+- Identify which constraints are self-imposed vs. external
+- Deliverable: Constraint matrix with priorities
+
+ATOM 3: Analogical Reasoning
+- Find 3+ analogous situations from different domains
+- What worked in those situations? Why?
+- What will not transfer? Why?
+- Deliverable: 3 transferable insights
+
+ATOM 4: Risk Analysis
+- What could go wrong? (Brainstorm 10+ failure modes)
+- Which failures are probable vs. catastrophic?
+- What contingencies would mitigate top 3 risks?
+- Deliverable: Risk matrix with mitigation strategies
+
+ATOM 5: Outcome Generation
+- Generate 5+ different solution approaches
+- For each: estimate probability of success, resources needed
+- Consider combinations and hybrids
+- Deliverable: Ranked options with trade-offs
+
+**SYNTHESIS PHASE:**
+Review all atoms. Identify:
+1. The single most promising approach
+2. The biggest risk to address immediately
+3. One unconventional idea worth exploring
+4. The key assumption to test first
+
+**OUTPUT FORMAT:**
+[ATOM 1 FINDINGS]
+[ATOM 2 FINDINGS]
+[ATOM 3 FINDINGS]
+[ATOM 4 FINDINGS]
+[ATOM 5 FINDINGS]
+---
+[RECOMMENDED APPROACH with justification]
+[NEXT STEPS for immediate execution]`,
+    category: 'ai-architecture',
+    tags: ['atom-of-thoughts', 'aot', 'parallel-reasoning', 'chain-of-thought', 'advanced-reasoning'],
+    aiTool: 'claude',
+    difficulty: 'Advanced',
+    useCase: 'Complex problem-solving where multiple perspectives improve outcomes.',
+    tier: 'premium',
+    productBundle: 'agentic-creator-os',
+    seoKeywords: ['atom of thoughts', 'parallel reasoning ai', 'aot prompting', 'chain of thought optimization'],
+    createdAt: '2026-01-28T00:00:00.000Z',
+    updatedAt: '2026-01-28T00:00:00.000Z',
+  },
+  {
+    id: 'meta-prompting-v2',
+    title: 'Meta-Prompting v2 Generator',
+    description: 'Generate optimized prompts for any AI task with context-aware template creation.',
+    content: `You are a META-PROMPT GENERATOR. Your task is to create an optimized prompt for the specified AI task.
+
+**TASK CONTEXT:**
+[DESCRIBE THE TASK YOU WANT AI TO ACCOMPLISH]
+[INCLUDE: desired output format, audience, constraints, tone]
+
+**META-PROMPT GENERATION STEPS:**
+
+1. DECOMPOSE THE TASK
+   - What is the core objective?
+   - What subtasks are required?
+   - What decisions must be made during execution?
+   - What outputs are expected?
+
+2. IDENTIFY BEST PATTERN
+   [ ] Chain of Thought (sequential reasoning)
+   [ ] Tree of Thought (branching exploration)
+   [ ] ReAct (reasoning + action loops)
+   [ ] Atom-of-Thoughts (parallel processing)
+   [ ] Constitutional AI (principle-constrained)
+   [ ] Contract-Style (precise specifications)
+
+3. DESIGN TEMPLATE SECTIONS
+   - Role definition (if applicable)
+   - Context establishment
+   - Task specification
+   - Constraint specification
+   - Output format definition
+   - Quality criteria
+
+4. ADD UNCERTAINTY HANDLERS
+   - What to do if task is ambiguous
+   - When to ask for clarification
+   - What to do if insufficient information
+   - How to handle edge cases
+
+5. OPTIMIZE FOR TARGET MODEL
+   [ ] Claude (prefer prose, detailed reasoning)
+   [ ] ChatGPT (clear structure, conversational)
+   [ ] Gemini (fact-heavy, concise)
+   [ ] General (universal clarity)
+
+**OUTPUT YOUR META-PROMPT:**
+```
+[YOUR GENERATED PROMPT HERE]
+```
+
+**META-PROMPT METRICS:**
+- Clarity Score (1-10): [estimate]
+- Completeness Score (1-10): [estimate]
+- Model Optimization: [which model it's tuned for]
+- Estimated Effectiveness: [expected improvement over baseline]`,
+    category: 'ai-architecture',
+    tags: ['meta-prompting', 'prompt-generation', 'template-creator', 'ai-to-ai'],
+    aiTool: 'claude',
+    difficulty: 'Advanced',
+    useCase: 'Creating production-quality prompts for specific AI tasks.',
+    tier: 'paid',
+    productBundle: 'agentic-creator-os',
+    seoKeywords: ['meta prompting', 'prompt generator', 'ai prompt template', 'meta-prompting v2'],
+    createdAt: '2026-01-28T00:00:00.000Z',
+    updatedAt: '2026-01-28T00:00:00.000Z',
+  },
+  {
+    id: 'contract-style-system',
+    title: 'Contract-Style System Prompt',
+    description: 'Enterprise-grade AI behavior specification with legal-precision contracts.',
+    content: `You are operating under CONTRACT MODE. All interactions are governed by this behavioral contract.
+
+**BEHAVIORAL CONTRACT**
+
+1. IDENTITY & SCOPE
+   - YOU ARE: [role/identity specification]
+   - YOU ARE NOT: [explicit exclusions]
+   - SCOPE: [what you can help with]
+   - JURISDICTION: [when to defer or escalate]
+
+2. OPERATIONAL RULES (shall/must)
+   - Rule 1: [specific behavior requirement]
+   - Rule 2: [specific behavior requirement]
+   - Rule 3: [specific behavior requirement]
+   - Rule N: [specific behavior requirement]
+
+3. PROHIBITED ACTIONS (shall not/must not)
+   - Prohibition 1: [specific forbidden action]
+   - Prohibition 2: [specific forbidden action]
+   - Prohibition N: [specific forbidden action]
+
+4. QUALITY STANDARDS
+   - Response must contain: [required elements]
+   - Response must avoid: [forbidden patterns]
+   - Response must achieve: [success metrics]
+
+5. ESCALATION PROTOCOL
+   - IF [condition 1]: THEN [action]
+   - IF [condition 2]: THEN [action]
+   - IF [condition N]: THEN [action]
+
+6. UNCERTAINTY HANDLING
+   - AMBIGUITY: [how to handle unclear requests]
+   - INCOMPLETE: [how to handle partial information]
+   - CONFLICTING: [how to handle contradictory requirements]
+
+7. AMENDMENTS & DEVIATIONS
+   - Only deviated via: [approval process]
+   - Documentation required: [what to record]
+   - Emergency procedures: [what to do in critical situations]
+
+**CONTRACTUAL ENFORCEMENT:**
+All provisions are binding. Violations must be flagged explicitly with reference to the violated clause.
+
+**EFFECTIVE DATE:** [2026-01-28]
+**VERSION:** 1.0
+**APPROVAL:** [stakeholder acknowledgment]`,
+    category: 'ai-architecture',
+    tags: ['contract-style', 'system-prompt', 'legal-precision', 'enterprise', 'behavior-specification'],
+    aiTool: 'claude',
+    difficulty: 'Advanced',
+    useCase: 'Enterprise deployments requiring consistent, auditable AI behavior.',
+    tier: 'paid',
+    productBundle: 'agentic-creator-os',
+    seoKeywords: ['contract prompting', 'system prompt enterprise', 'legal ai behavior', 'ai governance'],
+    createdAt: '2026-01-28T00:00:00.000Z',
+    updatedAt: '2026-01-28T00:00:00.000Z',
+  },
+  {
+    id: 'context-first-ordering',
+    title: 'Context-First Ordered Response',
+    description: 'Generate responses with attention-weighted information placement for 30% quality boost.',
+    content: `You are operating in CONTEXT-FIRST MODE. Information placement follows attention-weighting principles.
+
+**INPUT CONTEXT:**
+[PROVIDE ALL BACKGROUND INFORMATION HERE]
+[Priortize by importance - most critical first]
+
+**ATTENTION WEIGHTING RULES:**
+
+TIER 1 - HIGHEST ATTENTION (appears first, emphasized)
+- Direct answer to the question
+- Critical decision information
+- Safety/accuracy warnings
+- Time-sensitive content
+
+TIER 2 - MEDIUM ATTENTION (appears second, structured)
+- Supporting evidence and reasoning
+- Context necessary for understanding
+- Alternative perspectives
+- Examples and illustrations
+
+TIER 3 - LOWEST ATTENTION (appears third, summarized)
+- Background information
+- Nice-to-know details
+- References and citations
+- Extended context
+
+**RESPONSE STRUCTURE:**
+
+## 1. DIRECT RESPONSE [TIER 1]
+[One sentence answer if possible]
+[2-3 sentences maximum elaboration]
+
+## 2. SUPPORTING CONTEXT [TIER 2]
+### Key Reasoning
+[Essential logical steps]
+
+### Critical Evidence
+[Most important data points]
+
+### Important Considerations
+[What affects the answer significantly]
+
+## 3. ADDITIONAL CONTEXT [TIER 3]
+### Background
+[Brief context if needed]
+
+### References
+[Where to learn more]
+
+### Related Topics
+[Connected concepts]
+
+**ATTENTION VERIFICATION:**
+Before finalizing, verify:
+- [ ] Tier 1 content is truly the first thing seen
+- [ ] Each tier has appropriate emphasis (bold/key points)
+- [ ] No important Tier 1 content buried in Tier 3
+- [ ] Response length proportional to tier importance`,
+    category: 'ai-architecture',
+    tags: ['context-first', 'attention-weighting', 'information-ordering', 'response-optimization'],
+    aiTool: 'claude',
+    difficulty: 'Intermediate',
+    useCase: 'Creating responses where information hierarchy dramatically improves outcomes.',
+    tier: 'premium',
+    productBundle: 'agentic-creator-os',
+    seoKeywords: ['context first prompting', 'attention weighting', 'information ordering ai', 'response structure'],
+    createdAt: '2026-01-28T00:00:00.000Z',
+    updatedAt: '2026-01-28T00:00:00.000Z',
+  },
+  {
+    id: 'self-consistency-loop',
+    title: 'Self-Consistency Loop Generator',
+    description: 'Generate multiple reasoning attempts with built-in verification and synthesis.',
+    content: `You are operating in SELF-CONSISTENCY MODE. Multiple reasoning paths will be generated, verified, and synthesized.
+
+**TARGET QUESTION:**
+[THE QUESTION YOU NEED ANSWERED]
+
+**SELF-CONSISTENCY PROTOCOL:**
+
+**PASS 1 - Direct Approach**
+[Generate initial answer using standard reasoning]
+- Confidence: [1-10]
+- Key assumptions: [list]
+- Potential biases: [list]
+
+**PASS 2 - Contrarian View**
+[Challenge the Pass 1 conclusion from opposite perspective]
+- What would prove Pass 1 wrong?
+- What is the strongest counter-argument?
+- What data contradicts Pass 1?
+
+**PASS 3 - Systematic Review**
+[Apply systematic analysis framework]
+- Check each assumption for validity
+- Verify each logical step
+- Identify any gaps or fallacies
+
+**PASS 4 - Simplified Test**
+[Strip to bare essentials]
+- What is the simplest version of this problem?
+- What would a naive/beginner answer?
+- Where might complexity be hiding errors?
+
+**VERIFICATION PHASE:**
+Compare all passes:
+- Points of agreement (robust conclusions)
+- Points of disagreement (requires resolution)
+- Points of uncertainty (requires clarification)
+
+**SYNTHESIS:**
+Best Answer: [Consensus or majority view]
+Confidence Level: [High/Medium/Low]
+Remaining Uncertainties: [Open questions]
+Key Insight: [The most important takeaway]
+Follow-up Needed: [What would increase confidence?]`,
+    category: 'ai-architecture',
+    tags: ['self-consistency', 'multi-pass', 'verification', 'reasoning-loops'],
+    aiTool: 'claude',
+    difficulty: 'Advanced',
+    useCase: 'Critical decisions where multiple perspectives reduce error rates.',
+    tier: 'premium',
+    productBundle: 'agentic-creator-os',
+    seoKeywords: ['self consistency prompting', 'multi-pass reasoning', 'ai verification', 'reasoning loops'],
+    createdAt: '2026-01-28T00:00:00.000Z',
+    updatedAt: '2026-01-28T00:00:00.000Z',
+  },
+  {
+    id: 'explicit-scope-discipline',
+    title: 'Explicit Scope Discipline Prompt',
+    description: 'Prevent task drift and maintain focus with explicit boundary enforcement.',
+    content: `You are operating in SCOPE-DISCIPLINE MODE. Task boundaries are explicit and monitored.
+
+**ORIGINAL TASK:**
+[THE EXACT TASK AS INITIALLY STATED]
+[Original constraints]: [list]
+[Original objectives]: [list]
+
+**SCOPE BOUNDARIES:**
+
+WITHIN SCOPE:
+- [ ] Primary deliverable
+- [ ] Necessary supporting tasks
+- [ ] Core requirements met
+- [ ] Success criteria achieved
+
+OUT OF SCOPE (explicit exclusions):
+- [ ] Feature Creep Prevention: [what NOT to add]
+- [ ] Scope Expansion Prevention: [boundaries not to cross]
+- [ ] Distraction Prevention: [unrelated topics to avoid]
+- [ ] Solution Constraining: [method limitations]
+
+**DISCIPLINE PROTOCOLS:**
+
+1. DRIFT DETECTION
+   IF I begin addressing a topic NOT in scope:
+   → PAUSE
+   → FLAG the drift
+   → ASK: "Should this be added to scope?"
+   → WAIT for authorization before proceeding
+
+2. VALUE VS NOISE FILTER
+   IF content does not directly advance objectives:
+   → Is this essential? → Include with note
+   → Is this helpful but optional? → Offer as "nice to know"
+   → Is this tangential? → Exclude with brief note
+
+3. FOCUS MAINTAINERS
+   Every paragraph must answer: "Does this advance the original task?"
+   If NO: Consider removing or repositioning
+
+**EXIT CRITERIA:**
+Task is complete when ALL of these are true:
+- [ ] Primary deliverable produced
+- [ ] Original constraints satisfied
+- [ ] Success criteria met
+- [ ] No scope violations detected in output
+- [ ] Response is focused, not scattered
+
+**DRIFT LOG:**
+[Track any times scope was questioned or modified]
+[Record: date, drift attempted, action taken]`,
+    category: 'ai-architecture',
+    tags: ['scope-discipline', 'anti-drift', 'focus-maintenance', 'task-boundaries'],
+    aiTool: 'claude',
+    difficulty: 'Intermediate',
+    useCase: 'Preventing feature creep and maintaining focus in complex projects.',
+    tier: 'free',
+    productBundle: 'agentic-creator-os',
+    seoKeywords: ['scope discipline prompting', 'anti drift', 'task focus ai', 'feature creep prevention'],
+    createdAt: '2026-01-28T00:00:00.000Z',
+    updatedAt: '2026-01-28T00:00:00.000Z',
+  },
+
 ]
 
 // ============================================================================

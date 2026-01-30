@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect } from 'react'
 import { BarChart3, Download, Eye, Mail, Users, TrendingUp, Clock, Target } from 'lucide-react'
 import type { AnalyticsSummary, WeeklyStats } from '@/lib/types/pdf-analytics'
 
@@ -11,7 +11,11 @@ export default function PDFAnalyticsDashboard() {
   const [isLoading, setIsLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
-  const fetchData = useCallback(async () => {
+  useEffect(() => {
+    fetchData()
+  }, [days])
+
+  async function fetchData() {
     setIsLoading(true)
     setError(null)
 
@@ -36,11 +40,7 @@ export default function PDFAnalyticsDashboard() {
     } finally {
       setIsLoading(false)
     }
-  }, [days])
-
-  useEffect(() => {
-    fetchData()
-  }, [fetchData])
+  }
 
   if (isLoading) {
     return (

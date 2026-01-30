@@ -1,5 +1,5 @@
 /**
- * Creator-aligned AI service stubs
+ * Consciousness-aligned AI service stubs
  * These provide deterministic, offline-friendly behaviour for the onboarding demos.
  */
 
@@ -31,7 +31,7 @@ class ConsciousnessAI {
     Survival: 'Focus on immediate stability, practical steps, and nervous-system safety.',
     Success: 'Channel ambition into disciplined practice and measurable growth.',
     Service: 'Amplify impact through collaboration, compassion, and ethical design.',
-    Surrender: 'Invite wisdom, music, and intuition to guide every creative action.'
+    Surrender: 'Invite wisdom, music, and intuition to guide every action toward unity.'
   }
 
   private focus(level: ConsciousnessContext['level']) {
@@ -44,7 +44,7 @@ class ConsciousnessAI {
         return 'Architect community experiences and feedback loops.'
       case 'Surrender':
       default:
-        return 'Embrace co-creation with music, community, and creative practice.'
+        return 'Surrender to co-creation with life, music, and higher wisdom.'
     }
   }
 
@@ -53,8 +53,8 @@ class ConsciousnessAI {
     const options: Record<ConsciousnessContext['level'], string[]> = {
       Survival: ['stabilise essentials', 'protect boundaries', 'ground nervous system'],
       Success: ['map the system', 'automate repetitive work', 'measure resonance'],
-      Service: ['co-create with allies', 'share insights weekly', 'invite creator success stories'],
-      Surrender: ['compose a frequency ritual', 'host a deep listening session', 'document creative insights']
+      Service: ['co-create with allies', 'share insights weekly', 'invite transformation stories'],
+      Surrender: ['compose a frequency ritual', 'host a conscious listening session', 'document gifts received']
     }
     const list = options[level]
     return `${base} - ${list[(index - 1) % list.length]}`
@@ -72,7 +72,7 @@ class ConsciousnessAI {
     const response = `
 ${this.guidance[context.level]}
 
-Creator Frequency: ${context.soulFrequency}
+Soul Frequency: ${context.soulFrequency}
 Intention: ${context.intention}
 Action Focus: ${this.focus(context.level)}
 
@@ -86,7 +86,7 @@ First Three Steps:
       data: response.trim(),
       consciousness: { alignment, resonance, serviceImpact },
       metadata: {
-        model: 'frankx-creator-stub',
+        model: 'frankx-consciousness-stub',
         tokens: Math.round(response.length / 4),
         processingTime: 12
       }
@@ -100,7 +100,7 @@ First Three Steps:
       level,
       confidence: clamp(50 + score / 10, 0, 100),
       indicators: [
-        'Language sentiment analysis suggests this level of creative engagement.',
+        'Language sentiment analysis suggests this level of awareness.',
         'Heuristic frequency mapping identifies matching key phrases.'
       ],
       soulFrequency: score
@@ -111,8 +111,8 @@ First Three Steps:
     const stack = {
       platform: context.level === 'Service' ? 'Notion + Automations' : 'Linear + GitHub',
       agent: context.level === 'Surrender' ? 'Frequency Navigator' : 'Strategist Architect',
-      ritual: context.level === 'Survival' ? 'Daily nervous-system reset' : 'Creator Frequency calibration',
-      analytics: context.level === 'Success' ? 'Revenue & impact dashboards' : 'Creative pulse tracking'
+      ritual: context.level === 'Survival' ? 'Daily nervous-system reset' : 'Soul Frequency calibration',
+      analytics: context.level === 'Success' ? 'Revenue & impact dashboards' : 'Consciousness pulse tracking'
     }
 
     return { ...stack, preferences }
@@ -125,26 +125,26 @@ First Three Steps:
   ) {
     const workflows = [
       {
-        name: `${context.level} Creative Amplifier`,
-        description: `A workflow designed for ${context.level} level creative development`,
+        name: `${context.level} Consciousness Amplifier`,
+        description: `A workflow designed for ${context.level} level consciousness development`,
         agents: availableAgents.slice(0, 2),
         consciousnessAlignment: Math.max(70, context.alignmentScore),
         steps: [
-          'Set creative intention',
+          'Set consciousness intention',
           'Execute aligned actions',
-          'Measure creative impact',
+          'Measure spiritual impact',
           'Integrate learnings'
         ]
       },
       {
-        name: 'Daily Creator Frequency Calibration',
-        description: 'Morning ritual for creative alignment',
+        name: 'Daily Soul Frequency Calibration',
+        description: 'Morning ritual for consciousness alignment',
         agents: ['Frequency Alchemist'],
         consciousnessAlignment: 85,
         steps: [
-          'Check creator frequency',
+          'Check soul frequency',
           'Align with daily intention',
-          'Generate focus music',
+          'Generate healing music',
           'Set growth metrics'
         ]
       }
@@ -171,7 +171,7 @@ class AIAgentExecutor {
     const alignmentAfter = clamp(userContext.alignmentScore + 6, 0, 100)
     return {
       data: {
-        result: `${agentId} executed in creator-aligned simulation.`,
+        result: `${agentId} executed in consciousness-aligned simulation.`,
         consciousnessImpact: {
           alignmentShift: alignmentAfter - userContext.alignmentScore,
           resonanceBoost: 4,
@@ -183,8 +183,8 @@ class AIAgentExecutor {
           }
         },
         recommendations: [
-          'Log insights in the Creator Journal template.',
-          'Schedule a Creator Frequency Lab with your community.',
+          'Log insights in the Consciousness Journal template.',
+          'Schedule a Soul Frequency Lab with your community.',
           'Update your intelligence dashboard with new metrics.'
         ]
       },
@@ -229,7 +229,7 @@ class ConsciousnessAnalytics {
       consciousnessVelocity: trend,
       growthAreas: ['Embodied creativity', 'Community resonance', 'Rest & integration'],
       recommendations: [
-        'Schedule a Creator Frequency reflection every Friday.',
+        'Schedule a Soul Frequency reflection every Friday.',
         'Share a behind-the-scenes note with your community.',
         'Host a micro Frequency Lab focused on live co-creation.'
       ],
@@ -261,10 +261,10 @@ export function getConsciousnessColor(level: ConsciousnessContext['level']): str
 
 export function generateConsciousnessInsight(level: ConsciousnessContext['level'], soulFrequency: number): string {
   const insights: Record<ConsciousnessContext['level'], string> = {
-    Survival: `Your creator frequency of ${soulFrequency} invites stability rituals and nervous-system care.`,
+    Survival: `Your soul frequency of ${soulFrequency} invites stability rituals and nervous-system care.`,
     Success: `At ${soulFrequency}, channel ambition into systems that honour your wellbeing.`,
     Service: `A frequency of ${soulFrequency} signals it is time to lead with compassion and collaboration.`,
-    Surrender: `Operating at ${soulFrequency} invites deep trust, music, and co-creation with your creative practice.`
+    Surrender: `Operating at ${soulFrequency} invites deep trust, music, and co-creation with life itself.`
   }
   return insights[level]
 }

@@ -498,7 +498,7 @@
         {
           "type": "community",
           "title": "Energy Mastery Circle",
-          "url": "https://frankx.ck.page/creation-chronicles",
+          "url": "/inner-circle",
           "description": "Join high-performers optimizing energy together"
         }
       ]
@@ -530,7 +530,7 @@
         {
           "type": "community",
           "title": "Creator Intelligence Network",
-          "url": "https://frankx.ck.page/creation-chronicles",
+          "url": "/inner-circle",
           "description": "Continuous learning with fellow creators"
         }
       ]
@@ -568,7 +568,7 @@
         {
           "type": "community",
           "title": "Craft Mastery Lab",
-          "url": "https://frankx.ck.page/creation-chronicles",
+          "url": "/inner-circle",
           "description": "Advanced creators sharing techniques"
         }
       ]
@@ -600,7 +600,7 @@
         {
           "type": "community",
           "title": "Flow State Collective",
-          "url": "https://frankx.ck.page/creation-chronicles",
+          "url": "/inner-circle",
           "description": "Creators mastering flow together"
         }
       ]
@@ -632,7 +632,7 @@
         {
           "type": "community",
           "title": "Prosperous Creators Circle",
-          "url": "https://frankx.ck.page/creation-chronicles",
+          "url": "/inner-circle",
           "description": "Scaling creator businesses together"
         }
       ]
@@ -656,7 +656,7 @@
         {
           "type": "community",
           "title": "The Realm",
-          "url": "https://frankx.ck.page/creation-chronicles",
+          "url": "/inner-circle",
           "description": "Join the FrankX creator community"
         }
       ],
@@ -689,14 +689,14 @@
           "type": "course",
           "title": "Purpose-Driven Creation",
           "url": "/courses/purpose-driven",
-          "description": "Align your creative work with your soul"
+          "description": "Align your creative work with your mission"
         }
       ],
       "high": [
         {
           "type": "community",
           "title": "Purpose Council",
-          "url": "https://frankx.ck.page/creation-chronicles",
+          "url": "/inner-circle",
           "description": "Creators living their purpose together"
         }
       ]

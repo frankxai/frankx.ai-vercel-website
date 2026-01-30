@@ -1,6 +1,5 @@
 'use client'
 
-import { useState } from 'react'
 import Image from 'next/image'
 
 import { cn } from '@/lib/utils'
@@ -22,9 +21,7 @@ export default function HeroImage({
   priority = false,
   className,
 }: HeroImageProps) {
-  const [imgError, setImgError] = useState(false)
-
-  if (src && !imgError) {
+  if (src) {
     return (
       <div
         className={cn(
@@ -39,7 +36,6 @@ export default function HeroImage({
           sizes="(max-width: 768px) 100vw, 960px"
           className="object-cover"
           priority={priority}
-          onError={() => setImgError(true)}
         />
       </div>
     )

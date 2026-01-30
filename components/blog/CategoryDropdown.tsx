@@ -16,7 +16,7 @@ interface CategoryDropdownProps {
 // Category icon mapping with FrankX domain colors
 const categoryIcons: Record<string, { icon: string; color: string }> = {
   'AI & Technology': { icon: '🤖', color: 'from-cyan-500/20 to-cyan-600/10 border-cyan-500/30 text-cyan-400' },
-  'AI & Systems Thinking': { icon: '🧠', color: 'from-purple-500/20 to-purple-600/10 border-purple-500/30 text-purple-400' },
+  'AI & Consciousness': { icon: '🧠', color: 'from-purple-500/20 to-purple-600/10 border-purple-500/30 text-purple-400' },
   'Music Production': { icon: '🎵', color: 'from-orange-500/20 to-orange-600/10 border-orange-500/30 text-orange-400' },
   'Creator Systems': { icon: '⚡', color: 'from-emerald-500/20 to-emerald-600/10 border-emerald-500/30 text-emerald-400' },
   'Personal Development': { icon: '🌱', color: 'from-green-500/20 to-green-600/10 border-green-500/30 text-green-400' },
@@ -126,7 +126,7 @@ export default function CategoryDropdown({
                   <span className="text-sm font-medium text-white block">
                     All Categories
                   </span>
-                  <span className="text-xs text-white/55">
+                  <span className="text-xs text-white/40">
                     View everything
                   </span>
                 </div>
@@ -173,7 +173,7 @@ export default function CategoryDropdown({
                       <span className="text-sm font-medium text-white block">
                         {category}
                       </span>
-                      <span className="text-xs text-white/55">
+                      <span className="text-xs text-white/40">
                         {count} {count === 1 ? 'article' : 'articles'}
                       </span>
                     </div>

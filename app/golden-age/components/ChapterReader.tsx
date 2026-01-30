@@ -1,6 +1,7 @@
 'use client';
 
 import { useMemo } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { marked } from 'marked';
 import DOMPurify from 'isomorphic-dompurify';
@@ -66,7 +67,11 @@ export default function ChapterReader({
     // Add IDs to headings for TOC navigation
     let processedContent = content;
     tocItems.forEach((item) => {
-      const headingPattern = new RegExp(`^#{${item.level}}\\s+${item.text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`, 'm');
+      const escapedText = item.text.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      const headingPattern = new RegExp(
+        `^#{${item.level}}\\s+${escapedText}$`,
+        'm'
+      );
       processedContent = processedContent.replace(
         headingPattern,
         `${'#'.repeat(item.level)} <span id="${item.id}">${item.text}</span>`
@@ -86,7 +91,7 @@ export default function ChapterReader({
       <ReadingProgress />
 
       <div className="min-h-screen bg-white dark:bg-slate-950">
-        {/* Header */}
+        {/* Sticky Header */}
         <header className="sticky top-0 z-30 bg-white/90 dark:bg-slate-950/90 backdrop-blur-md border-b border-gray-200 dark:border-gray-800">
           <div className="max-w-7xl mx-auto px-6 py-4">
             <div className="flex items-center justify-between">
@@ -112,28 +117,63 @@ export default function ChapterReader({
           </div>
         </header>
 
+        {/* Chapter Hero Image */}
+        {chapter.image && (
+          <div className="relative w-full h-[40vh] sm:h-[50vh] overflow-hidden">
+            <Image
+              src={chapter.image}
+              alt={`Chapter ${chapter.number}: ${chapter.title}`}
+              fill
+              className="object-cover"
+              priority
+              quality={90}
+            />
+            {/* Gradient overlays */}
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-slate-950/20 via-transparent to-slate-950/20" />
+
+            {/* Title overlay on image */}
+            <div className="absolute bottom-0 left-0 right-0 p-8 sm:p-12">
+              <div className="max-w-3xl mx-auto">
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-amber-500/20 backdrop-blur-sm text-amber-300 text-sm font-medium border border-amber-400/30 mb-4">
+                  <BookOpen className="w-4 h-4" />
+                  <span>Chapter {chapter.number}</span>
+                </div>
+                <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight drop-shadow-lg">
+                  {chapter.title}
+                </h1>
+                <p className="text-xl text-gray-300 leading-relaxed mt-4 max-w-2xl">
+                  {chapter.description}
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* Main Content */}
         <div className="relative max-w-7xl mx-auto px-6 py-12 lg:py-20">
           <div className="lg:flex lg:gap-12">
             {/* Article */}
             <article className="flex-1 max-w-3xl">
-              {/* Chapter Header */}
-              <header className="space-y-6 mb-12 pb-12 border-b-2 border-gray-200 dark:border-gray-800">
-                <div className="space-y-4">
-                  <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm font-medium">
-                    <BookOpen className="w-4 h-4" />
-                    <span>Chapter {chapter.number}</span>
+              {/* Chapter Header (only shown if no hero image) */}
+              {!chapter.image && (
+                <header className="space-y-6 mb-12 pb-12 border-b-2 border-gray-200 dark:border-gray-800">
+                  <div className="space-y-4">
+                    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 text-sm font-medium">
+                      <BookOpen className="w-4 h-4" />
+                      <span>Chapter {chapter.number}</span>
+                    </div>
+
+                    <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white leading-tight">
+                      {chapter.title}
+                    </h1>
+
+                    <p className="text-xl text-gray-600 dark:text-gray-400 leading-relaxed">
+                      {chapter.description}
+                    </p>
                   </div>
-
-                  <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white leading-tight">
-                    {chapter.title}
-                  </h1>
-
-                  <p className="text-xl text-gray-600 dark:text-gray-400 leading-relaxed">
-                    {chapter.description}
-                  </p>
-                </div>
-              </header>
+                </header>
+              )}
 
               {/* Chapter Content */}
               <div
@@ -144,14 +184,15 @@ export default function ChapterReader({
                   prose-p:text-gray-700 dark:prose-p:text-gray-300 prose-p:leading-relaxed prose-p:mb-6
                   prose-strong:text-gray-900 dark:prose-strong:text-white prose-strong:font-semibold
                   prose-em:text-gray-800 dark:prose-em:text-gray-200
-                  prose-blockquote:border-l-4 prose-blockquote:border-amber-500 prose-blockquote:bg-amber-50 dark:prose-blockquote:bg-amber-900/10
-                  prose-blockquote:pl-6 prose-blockquote:py-4 prose-blockquote:not-italic
+                  prose-blockquote:border-l-4 prose-blockquote:border-amber-500 prose-blockquote:bg-amber-50/80 dark:prose-blockquote:bg-amber-900/10
+                  prose-blockquote:pl-6 prose-blockquote:py-4 prose-blockquote:pr-4 prose-blockquote:not-italic prose-blockquote:rounded-r-xl
                   prose-blockquote:text-gray-800 dark:prose-blockquote:text-gray-200
                   prose-ul:my-6 prose-ul:space-y-2
                   prose-ol:my-6 prose-ol:space-y-2
                   prose-li:text-gray-700 dark:prose-li:text-gray-300
-                  prose-a:text-indigo-600 dark:prose-a:text-indigo-400 prose-a:no-underline hover:prose-a:underline
-                  prose-hr:border-gray-300 dark:prose-hr:border-gray-700 prose-hr:my-12"
+                  prose-a:text-amber-600 dark:prose-a:text-amber-400 prose-a:no-underline hover:prose-a:underline prose-a:font-medium
+                  prose-hr:border-gray-300 dark:prose-hr:border-gray-700 prose-hr:my-12
+                  prose-code:text-amber-700 dark:prose-code:text-amber-300 prose-code:bg-amber-50 dark:prose-code:bg-amber-900/20 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-md prose-code:font-normal"
                 dangerouslySetInnerHTML={{ __html: htmlContent }}
               />
 

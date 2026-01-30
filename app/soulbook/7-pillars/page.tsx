@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Zap,
@@ -30,6 +31,7 @@ interface Pillar {
   assessmentQuestion: string;
   resources: string[];
   color: string;
+  image: string;
 }
 
 const pillars: Pillar[] = [
@@ -47,6 +49,7 @@ const pillars: Pillar[] = [
       'Nutritional Guidelines for Cognitive Performance',
     ],
     color: 'amber',
+    image: '/images/soulbook/pillar-vitality.png',
   },
   {
     id: 'mind',
@@ -62,6 +65,7 @@ const pillars: Pillar[] = [
       'Stress Management Toolkit',
     ],
     color: 'gold',
+    image: '/images/soulbook/pillar-consciousness.png',
   },
   {
     id: 'soul',
@@ -77,6 +81,7 @@ const pillars: Pillar[] = [
       'Spiritual Growth Meditation Series',
     ],
     color: 'amber',
+    image: '/images/soulbook/pillar-emotional-mastery.png',
   },
   {
     id: 'craft',
@@ -92,6 +97,7 @@ const pillars: Pillar[] = [
       'Mastery Tracking System',
     ],
     color: 'gold',
+    image: '/images/soulbook/pillar-creation.png',
   },
   {
     id: 'capital',
@@ -107,6 +113,7 @@ const pillars: Pillar[] = [
       'Investment Fundamentals Guide',
     ],
     color: 'amber',
+    image: '/images/soulbook/pillar-purpose.png',
   },
   {
     id: 'circle',
@@ -122,6 +129,7 @@ const pillars: Pillar[] = [
       'Boundary Setting Protocol',
     ],
     color: 'gold',
+    image: '/images/soulbook/pillar-relationships.png',
   },
   {
     id: 'legacy',
@@ -137,6 +145,7 @@ const pillars: Pillar[] = [
       'Generativity Planning Guide',
     ],
     color: 'amber',
+    image: '/images/soulbook/pillar-identity.png',
   },
 ];
 
@@ -221,6 +230,17 @@ function PillarCard({
                   className="overflow-hidden"
                 >
                   <div className="pt-6 mt-6 border-t border-slate-700/50">
+                    {/* Pillar Visual */}
+                    <div className="relative w-full h-48 rounded-xl overflow-hidden mb-6">
+                      <Image
+                        src={pillar.image}
+                        alt={pillar.title}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, 33vw"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                    </div>
                     <p className="text-slate-300 leading-relaxed mb-6">
                       {pillar.fullDescription}
                     </p>
@@ -290,13 +310,24 @@ export default function SevenPillarsPage() {
   return (
     <div className="min-h-screen bg-[#030712]">
       {/* Hero Section */}
-      <section className="relative py-20 px-4 overflow-hidden">
+      <section className="relative min-h-[60vh] flex items-end overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <Image
+            src="/images/soulbook/seven-pillars.png"
+            alt="The 7 Pillars of Conscious Living"
+            fill
+            className="object-cover opacity-40"
+            priority
+            quality={90}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#030712] via-[#030712]/70 to-[#030712]/30" />
+        </div>
         {/* Background Effects */}
-        <div className="absolute inset-0 bg-gradient-to-b from-amber-500/5 via-transparent to-transparent" />
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-amber-500/10 rounded-full blur-3xl" />
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-gold-500/10 rounded-full blur-3xl" />
 
-        <div className="relative max-w-6xl mx-auto text-center">
+        <div className="relative z-10 max-w-6xl mx-auto text-center w-full pb-16 pt-32 px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}

@@ -3,7 +3,6 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { ArrowRight, Send, Music2, BookOpen, Sparkles, ChevronRight } from 'lucide-react'
-import { membershipConfig } from '@/lib/membership'
 
 import songs from '@/data/songs.json'
 import SongGrid, { SongRecord } from '@/components/music/SongGrid'
@@ -18,8 +17,8 @@ const songRecords = songs as SongRecord[]
 const timeline = [
   {
     phase: 'Signal',
-    headline: 'Receive the Weekly Chronicle',
-    description: 'One new system, one action, one asset—delivered every week so you keep shipping.',
+    headline: 'Subscribe to Creation Chronicles',
+    description: 'Weekly intelligence from the studio—essays, prompts, and music drops that keep you in the Golden Age momentum.',
     action: 'Join the Dispatch',
     href: '#signup',
     color: 'text-emerald-400',
@@ -27,18 +26,18 @@ const timeline = [
   },
   {
     phase: 'Activate',
-    headline: 'Unlock the Inner Circle Vault',
-    description: 'Members get the vault, weekly drops, and live labs with the FrankX agent collective.',
-    action: 'Preview the Vault',
-    href: '/vault',
+    headline: 'Join the Inner Circle',
+    description: 'Members receive vault access, live ritual labs, and direct collaboration with the FrankX agent collective.',
+    action: 'Explore Inner Circle',
+    href: '/inner-circle',
     color: 'text-cyan-400',
     gradient: 'from-cyan-500/20 to-cyan-500/5',
   },
   {
     phase: 'Transform',
     headline: 'Build with Systems',
-    description: 'From Creative AI Toolkit to Vibe OS—products that compound results fast.',
-    action: 'Browse Systems',
+    description: 'From Creative AI Toolkit to Vibe OS—products and partnerships that compound your results.',
+    action: 'Browse Products',
     href: '/products',
     color: 'text-violet-400',
     gradient: 'from-violet-500/20 to-violet-500/5',
@@ -127,13 +126,14 @@ export default function CreationChroniclesPage() {
 
               {/* Headline */}
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight leading-[1.1]">
-                Systems, Sound, and Signal
-                <span className="block mt-2 text-white/60">for creators who ship.</span>
+                Stories, Sound, and Systems
+                <span className="block mt-2 text-white/60">for the Golden Age.</span>
               </h1>
 
               {/* Subtext */}
               <p className="text-lg text-white/50 mb-10 leading-relaxed">
-                Creation Chronicles is the weekly signal: one system, one action, one asset—so your momentum compounds.
+                The Chronicles document everything I build—longform essays, ritual-ready music,
+                and live dispatches from the intelligence frontier.
               </p>
 
               {/* Email Signup */}
@@ -158,53 +158,6 @@ export default function CreationChroniclesPage() {
           </div>
         </section>
 
-        {/* What You Get */}
-        <section className="py-16 border-t border-white/5">
-          <div className="max-w-5xl mx-auto px-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="text-center mb-12"
-            >
-              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-emerald-400/70 mb-3">
-                The Weekly Drop
-              </p>
-              <h2 className="text-2xl md:text-3xl font-bold text-white">
-                One System. One Action. One Asset.
-              </h2>
-            </motion.div>
-
-            <div className="grid md:grid-cols-3 gap-6">
-              {[
-                {
-                  title: 'System',
-                  description: 'A proven framework or workflow you can reuse immediately.',
-                  color: 'from-emerald-500/20 to-emerald-500/5',
-                },
-                {
-                  title: 'Action',
-                  description: 'A focused step to ship this week without overwhelm.',
-                  color: 'from-cyan-500/20 to-cyan-500/5',
-                },
-                {
-                  title: 'Asset',
-                  description: 'Templates, prompts, or code you can deploy right away.',
-                  color: 'from-violet-500/20 to-violet-500/5',
-                },
-              ].map(item => (
-                <div key={item.title} className="relative rounded-2xl border border-white/5 p-6 overflow-hidden">
-                  <div className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-60`} />
-                  <div className="relative">
-                    <h3 className="text-lg font-semibold text-white mb-2">{item.title}</h3>
-                    <p className="text-sm text-white/60 leading-relaxed">{item.description}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* Editorial Quote */}
         <section className="py-16 border-t border-white/5">
           <div className="max-w-4xl mx-auto px-6">
@@ -217,7 +170,7 @@ export default function CreationChroniclesPage() {
               <p className="text-2xl md:text-3xl lg:text-4xl font-serif-italic text-white/70 leading-relaxed">
                 "Each day we make some. We make something prettier."
               </p>
-              <cite className="block mt-4 text-sm text-white/55 not-italic">— My father's philosophy</cite>
+              <cite className="block mt-4 text-sm text-white/40 not-italic">— My father's philosophy</cite>
             </motion.blockquote>
           </div>
         </section>
@@ -359,36 +312,6 @@ export default function CreationChroniclesPage() {
                 </a>
               </motion.div>
             </div>
-          </div>
-        </section>
-
-        {/* Inner Circle CTA */}
-        <section className="py-16 border-t border-white/5">
-          <div className="max-w-4xl mx-auto px-6 text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              <div className="p-3 rounded-xl bg-white/5 w-fit mx-auto mb-6">
-                <Send className="w-6 h-6 text-cyan-400" />
-              </div>
-
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                Ready for the Vault?
-              </h2>
-              <p className="text-lg text-white/50 mb-8 max-w-xl mx-auto">
-                Inner Circle members get the full systems vault, weekly drops, and live labs.
-              </p>
-
-              <Link
-                href={membershipConfig.checkoutUrl}
-                className="inline-flex items-center gap-3 px-7 py-4 rounded-full font-semibold text-black bg-white hover:bg-white/90 transition-all"
-              >
-                Unlock Inner Circle Access
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-            </motion.div>
           </div>
         </section>
 

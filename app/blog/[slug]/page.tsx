@@ -131,7 +131,7 @@ export default async function BlogPostPage({
                   <Tag className="h-3.5 w-3.5" />
                   {post.category}
                 </span>
-                <span className="inline-flex items-center gap-2 text-white/55">
+                <span className="inline-flex items-center gap-2 text-white/40">
                   <Calendar className="h-4 w-4" />
                   {new Date(post.date).toLocaleDateString('en-US', {
                     month: 'long',
@@ -139,7 +139,7 @@ export default async function BlogPostPage({
                     year: 'numeric',
                   })}
                 </span>
-                <span className="inline-flex items-center gap-2 text-white/55">
+                <span className="inline-flex items-center gap-2 text-white/40">
                   <Clock className="h-4 w-4" />
                   {post.readingTime}
                 </span>
@@ -163,7 +163,7 @@ export default async function BlogPostPage({
                   </div>
                   <div>
                     <div className="text-base font-semibold text-white">{post.author || 'Frank'}</div>
-                    <div className="text-sm text-white/50">AI Architect & Creator</div>
+                    <div className="text-sm text-white/50">Oracle AI Architect & Creator</div>
                   </div>
                 </div>
 
@@ -316,7 +316,7 @@ export default async function BlogPostPage({
                 name="email"
                 placeholder="Enter your email"
                 required
-                className="flex-1 rounded-xl border border-white/10 bg-white/5 px-5 py-3.5 text-sm text-white placeholder:text-white/55 focus:outline-none focus:ring-2 focus:ring-emerald-400/50 focus:border-emerald-400/50 transition-all"
+                className="flex-1 rounded-xl border border-white/10 bg-white/5 px-5 py-3.5 text-sm text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-emerald-400/50 focus:border-emerald-400/50 transition-all"
               />
               <button
                 type="submit"
@@ -325,7 +325,7 @@ export default async function BlogPostPage({
                 Subscribe
               </button>
             </form>
-            <p className="mt-4 text-xs text-white/55">No spam. Unsubscribe anytime.</p>
+            <p className="mt-4 text-xs text-white/40">No spam. Unsubscribe anytime.</p>
           </div>
         </div>
 

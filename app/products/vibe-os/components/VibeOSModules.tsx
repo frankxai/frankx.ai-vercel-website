@@ -7,7 +7,7 @@ import { Sparkles, Mail, Library, Workflow, Heart, Sliders, ArrowRight } from 'l
 import { trackEvent } from '@/lib/analytics'
 import type { ProductModule, ProductOffer } from '@/types/products'
 
-const COMING_SOON_MODE = true
+const COMING_SOON_MODE = false
 
 interface VibeOSModulesProps {
   productId: string
@@ -161,7 +161,7 @@ export default function VibeOSModules({ productId, modules, offer }: VibeOSModul
                       </div>
                       <div className="mt-4 flex items-center justify-center gap-3">
                         {offer.originalPrice && (
-                          <span className="text-2xl text-white/50 line-through">
+                          <span className="text-2xl text-white/30 line-through">
                             ${offer.originalPrice}
                           </span>
                         )}
@@ -195,7 +195,7 @@ export default function VibeOSModules({ productId, modules, offer }: VibeOSModul
                 )}
 
                 {/* Trust Indicators */}
-                <div className="mt-6 flex flex-wrap items-center justify-center gap-4 text-xs text-white/55">
+                <div className="mt-6 flex flex-wrap items-center justify-center gap-4 text-xs text-white/40">
                   <div className="flex items-center gap-1.5">
                     <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />

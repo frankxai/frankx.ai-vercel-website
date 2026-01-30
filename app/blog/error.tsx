@@ -53,7 +53,7 @@ export default function BlogError({
         </div>
 
         {error.digest && (
-          <p className="mt-8 text-xs text-white/50 font-mono">
+          <p className="mt-8 text-xs text-white/30 font-mono">
             Error ID: {error.digest}
           </p>
         )}

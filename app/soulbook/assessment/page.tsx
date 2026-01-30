@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   ChevronRight,
@@ -303,8 +304,19 @@ export default function AssessmentPage() {
     const Icon = result.icon;
 
     return (
-      <div className="min-h-screen bg-[#030712] py-20 px-4">
-        <div className="max-w-4xl mx-auto">
+      <div className="min-h-screen bg-[#030712] py-20 px-4 relative overflow-hidden">
+        {/* Background */}
+        <div className="absolute inset-0">
+          <Image
+            src="/images/soulbook/hero-assessment.png"
+            alt=""
+            fill
+            className="object-cover opacity-20"
+            quality={80}
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#030712]/50 via-[#030712]/80 to-[#030712]" />
+        </div>
+        <div className="relative z-10 max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -366,7 +378,19 @@ export default function AssessmentPage() {
   const progress = (currentQuestion / questions.length) * 100;
 
   return (
-    <div className="min-h-screen bg-[#030712]">
+    <div className="min-h-screen bg-[#030712] relative overflow-hidden">
+      {/* Background */}
+      <div className="absolute inset-0">
+        <Image
+          src="/images/soulbook/hero-assessment.png"
+          alt=""
+          fill
+          className="object-cover opacity-15"
+          quality={80}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#030712]/40 via-[#030712]/70 to-[#030712]" />
+      </div>
+
       {/* Progress Bar */}
       <div className="fixed top-0 left-0 right-0 h-1 bg-slate-800 z-50">
         <motion.div
@@ -378,14 +402,14 @@ export default function AssessmentPage() {
       </div>
 
       {/* Question Counter */}
-      <div className="pt-8 pb-4 px-4 text-center">
+      <div className="relative z-10 pt-8 pb-4 px-4 text-center">
         <span className="text-slate-500 text-sm">
           Question {currentQuestion} of {questions.length}
         </span>
       </div>
 
       {/* Question Section */}
-      <section className="py-8 px-4">
+      <section className="relative z-10 py-8 px-4">
         <div className="max-w-3xl mx-auto">
           <motion.div
             key={currentQuestion}
@@ -442,7 +466,7 @@ export default function AssessmentPage() {
       </section>
 
       {/* Navigation */}
-      <section className="py-8 px-4">
+      <section className="relative z-10 py-8 px-4">
         <div className="max-w-3xl mx-auto flex justify-between items-center">
           <PremiumButton
             variant="ghost"

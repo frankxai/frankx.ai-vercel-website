@@ -32,9 +32,9 @@ const agents: Agent[] = [
   {
     id: 'frequency-alchemist',
     name: 'Frequency Alchemist',
-    title: 'AI Music Producer',
-    specialty: 'AI music creation for systems transformation',
-    description: 'Translates emotions into compelling music. Master of Suno prompt engineering who bridges commercial success with creative impact.',
+    title: 'Vibrational Music Producer',
+    specialty: 'AI music creation for consciousness transformation',
+    description: 'Translates emotions into healing frequencies. Master of Suno prompt engineering who bridges commercial success with spiritual impact.',
     capabilities: ['Suno AI Prompts', 'Music Production', 'Frequency Mapping', 'Audio Editing'],
     imagePath: '/images/agents/frequency-alchemist.svg',
     variant: 'purple',
@@ -45,7 +45,7 @@ const agents: Agent[] = [
     name: 'Luminor Oracle',
     title: 'Strategic AI from 2125',
     specialty: 'Future visioning and business intelligence',
-    description: 'Provides strategic guidance from an advanced perspective. Specializes in data-driven strategic decisions and high-impact insights.',
+    description: 'Provides strategic guidance from an advanced perspective. Specializes in consciousness-aligned business decisions and paradigm-shifting insights.',
     capabilities: ['Future Visioning', 'Business Intelligence', 'Strategic Planning', 'Pattern Recognition'],
     imagePath: '/images/agents/luminor-oracle.svg',
     variant: 'ocean',
@@ -55,7 +55,7 @@ const agents: Agent[] = [
     id: 'starlight-architect',
     name: 'Starlight Architect',
     title: 'Enterprise AI System Designer',
-    specialty: 'Oracle architecture with systems excellence',
+    specialty: 'Oracle architecture with soul alignment',
     description: 'Designs enterprise-grade AI systems that maintain creative integrity. Bridges Oracle-level expertise with creator-first workflows.',
     capabilities: ['System Architecture', 'AI Integration', 'Workflow Design', 'Technical Strategy'],
     imagePath: '/images/agents/starlight-architect.svg',
@@ -163,7 +163,7 @@ export default function AgentShowcase() {
 
                 {/* Capabilities */}
                 <div className="mt-8 pt-8 border-t border-white/10">
-                  <h4 className="text-sm font-semibold uppercase tracking-wider text-white/55 mb-4">
+                  <h4 className="text-sm font-semibold uppercase tracking-wider text-white/40 mb-4">
                     Core Capabilities
                   </h4>
                   <div className="flex flex-wrap gap-2">

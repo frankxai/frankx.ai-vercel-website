@@ -76,13 +76,13 @@ export default function BlogCard({ post, featured = false, className }: BlogCard
               <Sparkles className="w-3 h-3" />
               {post.category || 'Article'}
             </span>
-            <ArrowUpRight className="w-4 h-4 text-white/40 group-hover:text-emerald-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
+            <ArrowUpRight className="w-4 h-4 text-white/30 group-hover:text-emerald-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300" />
           </div>
         )}
 
         {showImage && (
           <div className="flex items-center justify-end mb-3">
-            <ArrowUpRight className="w-5 h-5 text-white/40 group-hover:text-emerald-400 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300" />
+            <ArrowUpRight className="w-5 h-5 text-white/30 group-hover:text-emerald-400 group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-300" />
           </div>
         )}
 

@@ -248,7 +248,7 @@ export default function PDFEmailModal({ isOpen, onClose, pdfTitle, pdfUrl, guide
                               <option value="music-creation">Music Creation with AI</option>
                               <option value="content-creation">Content Creation</option>
                               <option value="technical-learning">Technical Learning</option>
-                              <option value="systems">Systems & Architecture</option>
+                              <option value="consciousness">Consciousness & Transformation</option>
                               <option value="community">Community & Realm</option>
                             </select>
                           </div>

@@ -200,7 +200,7 @@ export default function LinksPage() {
           <p className="text-slate-300 text-sm mb-4 leading-relaxed">
             Musician-technologist building AI systems that amplify human creativity.
             <br />
-            Creator of Vibe OS • Agentic Creator OS • Creative Tech
+            Creator of Vibe OS • Agentic Creator OS • Consciousness Tech
           </p>
 
           {/* Stats badges */}

@@ -43,7 +43,7 @@ export default function SearchClient() {
             value={q}
             onChange={(e) => setQ(e.target.value)}
             placeholder="Type a topic, title, or keyword"
-            className="flex-1 bg-transparent text-sm text-white placeholder:text-white/55 focus:outline-none"
+            className="flex-1 bg-transparent text-sm text-white placeholder:text-white/40 focus:outline-none"
           />
         </label>
       </div>

@@ -96,7 +96,7 @@ export default function VibeOSFeatures({ transformation }: VibeOSFeaturesProps) 
         >
           <div className="flex flex-col items-center justify-center gap-8 sm:flex-row sm:gap-16">
             <div className="text-center">
-              <div className="text-4xl font-bold text-white/55 line-through">
+              <div className="text-4xl font-bold text-white/40 line-through">
                 Weeks
               </div>
               <div className="mt-2 text-sm text-white/50">
