@@ -191,4 +191,87 @@ Log significant work to: `/mnt/c/Users/Frank/docs/AI_GLOBAL_SESSIONS.md`
 
 ---
 
+## 🛑 CRITICAL: Decision-Making Principles
+
+### Before Proposing ANY Structural Change
+
+**STOP. Ask these questions FIRST:**
+
+1. **What specific problem are we solving?**
+   - Who experiences this problem?
+   - What's the evidence it's a problem?
+   - Is this a real user problem or an "architecture smell"?
+
+2. **What's the simplest solution?**
+   - Can we fix this with a config change instead of restructuring?
+   - Can we hide instead of delete?
+   - Can we redirect instead of rename?
+
+3. **What could go wrong?**
+   - SEO/backlink damage?
+   - User confusion?
+   - Irreversible data loss?
+   - Breaking existing integrations?
+
+4. **Is this reversible?**
+   - If not, get explicit approval before proceeding
+
+### Specific Anti-Patterns to AVOID
+
+| Bad Instinct | Why It's Wrong | Better Approach |
+|--------------|----------------|-----------------|
+| "60% reduction sounds impressive" | Optimizing for metrics, not outcomes | Ask: does this help users? |
+| "Shorter URLs are better" | Loses meaning, hurts SEO | Keep established URLs |
+| "Consolidate everything" | Over-engineering | Fix navigation, not routes |
+| "Delete orphan pages" | Irreversible, may have traffic | Unlink from nav, keep page |
+| "Rename for consistency" | URL changes have SEO cost | Consistency isn't worth SEO loss |
+| "This spec says to do X" | Following blindly | Question if X makes sense |
+
+### URL/SEO Changes: NEVER Do Without Approval
+
+- **Never rename working URLs** - Even with 301s, you lose link equity
+- **Never delete pages with traffic** - Check analytics first
+- **Never "consolidate" by deletion** - Hide from nav instead
+- **"AI Architect" stays "AI Architect"** - Brand terms don't get shortened
+
+### The Right Way to "Consolidate"
+
+```
+WRONG: Delete 60 routes to have fewer routes
+RIGHT: Fix navigation to show 6 clear options (routes still exist)
+
+WRONG: Rename /ai-architect to /architect for "consistency"
+RIGHT: Keep /ai-architect, it's the brand term
+
+WRONG: Move /soulbook to /resources/soulbook to "organize"
+RIGHT: Keep /soulbook prominent if it's a lead magnet
+```
+
+### When Frank Says "Consolidate Routes"
+
+He probably means: **Fix the navigation so it's not confusing**
+
+NOT: Delete or rename a bunch of pages
+
+**Ask for clarification before making structural changes.**
+
+---
+
+## 🧠 Thinking Protocol
+
+For complex tasks, use this checklist:
+
+```markdown
+## Pre-Action Checklist
+- [ ] What problem are we solving? (specific, not vague)
+- [ ] Who has this problem? (users, SEO, maintenance?)
+- [ ] What's the evidence? (analytics, user feedback, broken things?)
+- [ ] What's the simplest fix? (not the most impressive)
+- [ ] What could go wrong? (SEO, users, irreversibility)
+- [ ] Is this reversible? (if no, get approval)
+- [ ] Am I optimizing for metrics or outcomes?
+```
+
+---
+
 *Excellence in execution. Let the work speak.*
