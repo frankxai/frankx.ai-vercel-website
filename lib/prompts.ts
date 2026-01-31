@@ -3167,7 +3167,7 @@ Review all atoms. Identify:
 <ATOM 5 FINDINGS>
 ---
 <RECOMMENDED APPROACH with justification>
-[NEXT STEPS for immediate execution]`,
+<NEXT STEPS for immediate execution>`,
     category: 'ai-architecture',
     tags: ['atom-of-thoughts', 'aot', 'parallel-reasoning', 'chain-of-thought', 'advanced-reasoning'],
     aiTool: 'claude',
@@ -3493,7 +3493,7 @@ Task is complete when ALL of these are true:
 
 **DRIFT LOG:**
 <Track any times scope was questioned or modified>
-[Record: date, drift attempted, action taken]`,
+<Record: date, drift attempted, action taken>`,
     category: 'ai-architecture',
     tags: ['scope-discipline', 'anti-drift', 'focus-maintenance', 'task-boundaries'],
     aiTool: 'claude',
