@@ -13,6 +13,10 @@ const variants = [
   { id: 'v4', name: 'Terminal', color: 'bg-green-500' },
   { id: 'v5', name: 'Vibrant', color: 'bg-pink-500' },
   { id: 'v6', name: 'Cinematic', color: 'bg-purple-600' },
+  { id: 'v7', name: 'Minimal', color: 'bg-gray-500' },
+  { id: 'v8', name: 'Brutalist', color: 'bg-rose-500' },
+  { id: 'v9', name: 'Gradient', color: 'bg-indigo-500' },
+  { id: 'v10', name: 'Feed', color: 'bg-blue-500' },
 ]
 
 export default function PreviewLayout({
