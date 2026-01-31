@@ -244,12 +244,12 @@ function Hero() {
     offset: ['start start', 'end start']
   })
 
-  // Premium scroll effect - slower, smoother fade for mobile
-  // Extended range [0, 0.7] gives more time to see content before it fades
-  // Gentler scale change (0.98 vs 0.95) feels more elegant
-  const opacity = useTransform(scrollYProgress, [0, 0.7], [1, 0])
-  const y = useTransform(scrollYProgress, [0, 0.7], [0, 60])
-  const scale = useTransform(scrollYProgress, [0, 0.7], [1, 0.98])
+  // Premium scroll effect - much slower fade for mobile readability
+  // Extended range [0, 0.9] gives significantly more time before fade
+  // Very gentle scale change (0.99) for elegance
+  const opacity = useTransform(scrollYProgress, [0, 0.9], [1, 0])
+  const y = useTransform(scrollYProgress, [0, 0.9], [0, 40])
+  const scale = useTransform(scrollYProgress, [0, 0.9], [1, 0.99])
 
   return (
     <section
@@ -308,7 +308,9 @@ function Hero() {
               transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.4 }}
             >
               AI Architect at Oracle. Creator of 12K+ songs with Suno.
-              Everything I build goes here—open, documented, yours to use.
+              <span className="block mt-2 font-serif-italic text-white/50">
+                Everything I build goes here—open, documented, yours to use.
+              </span>
             </motion.p>
 
             {/* CTAs */}
@@ -925,9 +927,11 @@ function AboutSection() {
           </p>
 
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 sm:mb-8 tracking-tight leading-tight">
-            Music, technology, family, and the endless exploration of how things work.
-            <span className="block mt-2 font-serif-italic text-white/70 text-xl sm:text-2xl md:text-3xl lg:text-4xl">
-              These are the threads that weave through everything here.
+            Music, technology, family, and the{' '}
+            <span className="font-serif-italic text-emerald-400/80">endless exploration</span>{' '}
+            of how things work.
+            <span className="block mt-3 font-serif-italic text-white/60 text-xl sm:text-2xl md:text-3xl lg:text-4xl">
+              These threads weave through everything here.
             </span>
           </h2>
 
