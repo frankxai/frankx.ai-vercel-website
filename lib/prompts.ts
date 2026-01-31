@@ -3226,15 +3226,15 @@ Review all atoms. Identify:
    [ ] General (universal clarity)
 
 **OUTPUT YOUR META-PROMPT:**
-```
-[YOUR GENERATED PROMPT HERE]
-```
+\`\`\`
+<YOUR GENERATED PROMPT HERE>
+\`\`\`
 
 **META-PROMPT METRICS:**
-- Clarity Score (1-10): [estimate]
-- Completeness Score (1-10): [estimate]
-- Model Optimization: [which model it's tuned for]
-- Estimated Effectiveness: [expected improvement over baseline]`,
+- Clarity Score (1-10): <estimate>
+- Completeness Score (1-10): <estimate>
+- Model Optimization: <which model it's tuned for>
+- Estimated Effectiveness: <expected improvement over baseline>`,
     category: 'ai-architecture',
     tags: ['meta-prompting', 'prompt-generation', 'template-creator', 'ai-to-ai'],
     aiTool: 'claude',
