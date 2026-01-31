@@ -270,7 +270,7 @@ export default function PillarVisualizer() {
       <div className="absolute inset-0">
         <Image
           src="/images/soulbook/seven-pillars.png"
-          alt=""
+          alt="Seven Pillars of Soulbook visualization"
           fill
           className="object-cover opacity-10"
           quality={80}

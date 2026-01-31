@@ -309,7 +309,7 @@ export default function AssessmentPage() {
         <div className="absolute inset-0">
           <Image
             src="/images/soulbook/hero-assessment.png"
-            alt=""
+            alt="Soulbook assessment background"
             fill
             className="object-cover opacity-20"
             quality={80}
@@ -383,7 +383,7 @@ export default function AssessmentPage() {
       <div className="absolute inset-0">
         <Image
           src="/images/soulbook/hero-assessment.png"
-          alt=""
+          alt="Soulbook assessment background"
           fill
           className="object-cover opacity-15"
           quality={80}

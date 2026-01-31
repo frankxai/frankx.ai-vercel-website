@@ -246,7 +246,7 @@ export default function VaultPage() {
         <div className="absolute inset-0">
           <Image
             src="/images/soulbook/hero-vault.png"
-            alt=""
+            alt="Soulbook vault background"
             fill
             className="object-cover opacity-20"
             priority

@@ -348,7 +348,7 @@ export default function GoldenAgePage() {
         <div className="absolute inset-0">
           <Image
             src="/images/golden-age/hero-golden-age.png"
-            alt=""
+            alt="Golden Age of Intelligence hero background"
             fill
             className="object-cover object-top opacity-30 dark:opacity-20"
             aria-hidden="true"

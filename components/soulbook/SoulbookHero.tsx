@@ -29,7 +29,7 @@ export default function SoulbookHero() {
       <div className="absolute inset-0">
         <Image
           src="/images/soulbook/hero-soulbook.png"
-          alt=""
+          alt="Soulbook hero background"
           fill
           className="object-cover opacity-40"
           priority
