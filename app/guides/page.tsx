@@ -3,15 +3,18 @@ import { createMetadata } from '@/lib/seo'
 import GuidesPageClient from './GuidesPageClient'
 
 export const metadata = createMetadata({
-  title: 'Implementation Guides - Step by Step AI Building',
+  title: 'Creator Guides - Build What Matters with AI',
   description:
-    'Practical implementation guides to help you build intelligence systems. Each guide is battle-tested and ready to use.',
+    'Outcome-focused guides for elite creators and founders. Master image generation, content systems, AI music, and founder strategies. Not tool tutorials—real systems that ship.',
   keywords: [
-    'ai guides',
-    'implementation guides',
-    'ai tutorials',
-    'enterprise ai',
-    'ai architecture',
+    'ai guides for creators',
+    'image generation guide',
+    'ai music production',
+    'founder ai stack',
+    'content systems',
+    'ai writing system',
+    'enterprise ai patterns',
+    'creator economy 2026',
   ],
   path: '/guides',
 })
