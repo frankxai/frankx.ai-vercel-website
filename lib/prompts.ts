@@ -266,7 +266,7 @@ Word count: approximately [NUMBER] words`,
     content: `Rewrite the following text to be more [clear/engaging/professional/concise]:
 
 """
-[PASTE YOUR TEXT HERE]
+<PASTE YOUR TEXT HERE>
 """
 
 Requirements:
@@ -359,19 +359,19 @@ Thundering percussion, heroic theme
 Rising tension, triumphant release
 Film score quality, emotional depth
 
-[Intro - Quiet tension]
+(Intro - Quiet tension)
 Distant drums echo through silence
 A single voice calls out
 
-[Verse - Building]
+(Verse - Building)
 Strings swell with purpose and might
 The journey unfolds tonight
 
-[Chorus - Epic]
+(Chorus - Epic)
 Rise above the storm and flame
 Write your legend, stake your claim
 
-[Bridge - Intense]
+(Bridge - Intense)
 No retreat, no surrender now
 This is our defining hour`,
     category: 'music-creation',
@@ -421,27 +421,27 @@ Night is young until the dawn`,
     title: 'Custom Song Template',
     description: 'Flexible template for creating any style of song.',
     content: `[GENRE: specify your genre]
-[STYLE TAGS: mood, energy level, instruments]
-[TEMPO: slow/medium/fast or specific BPM]
-[VOCAL STYLE: male/female/instrumental only]
+<STYLE TAGS: mood, energy level, instruments>
+<TEMPO: slow/medium/fast or specific BPM>
+<VOCAL STYLE: male/female/instrumental only>
 
 Structure your lyrics:
 
 [Intro]
 Set the scene or mood
 
-[Verse 1]
+(Verse 1)
 Tell the story, introduce the theme
 4-8 lines of narrative
 
-[Pre-Chorus]
+(Pre-Chorus)
 Build tension toward the chorus
 
 [Chorus]
 The hook - catchy, memorable, emotional peak
 Repeat key message
 
-[Verse 2]
+(Verse 2)
 Develop the story, add new perspective
 
 [Chorus]
@@ -450,7 +450,7 @@ Develop the story, add new perspective
 Contrast - different melody/rhythm
 Emotional turning point
 
-[Final Chorus]
+(Final Chorus)
 Payoff - possibly with variation
 
 [Outro]
@@ -577,7 +577,7 @@ vector art aesthetic, professional quality`,
 
 Code:
 \`\`\`[LANGUAGE]
-[PASTE CODE HERE]
+<PASTE CODE HERE>
 \`\`\`
 
 For each issue found:
@@ -602,7 +602,7 @@ For each issue found:
     content: `Explain this code in detail:
 
 \`\`\`[LANGUAGE]
-[PASTE CODE HERE]
+<PASTE CODE HERE>
 \`\`\`
 
 Please explain:
@@ -628,7 +628,7 @@ Adjust explanation depth for: [beginner/intermediate/advanced] developer`,
     title: 'React TypeScript Component',
     description: 'Generate well-typed React components with best practices.',
     content: `Create a React TypeScript component for:
-[DESCRIBE COMPONENT FUNCTIONALITY]
+<DESCRIBE COMPONENT FUNCTIONALITY>
 
 Requirements:
 - Functional component with hooks
@@ -874,13 +874,13 @@ Provide:
     content: `Help me plan my week. Here's my context:
 
 **This week's priorities:**
-[LIST YOUR TOP 3 PRIORITIES]
+<LIST YOUR TOP 3 PRIORITIES>
 
 **Ongoing commitments:**
-[MEETINGS, RECURRING TASKS, ETC.]
+<MEETINGS, RECURRING TASKS, ETC.>
 
 **Projects in progress:**
-[WHAT ARE YOU WORKING ON]
+<WHAT ARE YOU WORKING ON>
 
 **Available hours:** [X hours for deep work]
 
@@ -911,7 +911,7 @@ Output a clean weekly schedule I can follow.`,
 
 Raw Notes:
 """
-[PASTE YOUR MESSY MEETING NOTES]
+<PASTE YOUR MESSY MEETING NOTES>
 """
 
 Extract and organize:
@@ -994,7 +994,7 @@ Then recommend: Which 2-3 ideas have the highest potential and why?`,
 
 Original Content:
 """
-[PASTE YOUR CONTENT - BLOG POST, VIDEO SCRIPT, ETC.]
+<PASTE YOUR CONTENT - BLOG POST, VIDEO SCRIPT, ETC.>
 """
 
 Transform into:
@@ -1095,7 +1095,7 @@ Make it production-grade and specific to my stack.`,
 - State: [Redux/Zustand/Context/etc.]
 
 **Team Conventions:**
-[Describe any specific patterns or rules your team follows]
+<Describe any specific patterns or rules your team follows>
 
 Create rules that enforce:
 
@@ -2705,7 +2705,7 @@ Keep it under 200 words. Make every sentence count.`,
     content: `Act as an expert career coach and resume writer. Review and optimize my resume:
 
 **Current Resume:**
-[PASTE YOUR RESUME HERE]
+<PASTE YOUR RESUME HERE>
 
 **Target Role:** [job title you're applying for]
 **Industry:** [your target industry]
@@ -2754,30 +2754,30 @@ Warm male/female vocals, intimate recording
 Light percussion, tambourine, soft drums
 Nostalgic, authentic, heartfelt
 
-[Verse 1]
-[Write about a specific memory or moment]
-[Use concrete imagery - places, seasons, small details]
-[Keep it conversational and genuine]
+(Verse 1)
+<Write about a specific memory or moment>
+<Use concrete imagery - places, seasons, small details>
+<Keep it conversational and genuine>
 
-[Chorus]
-[The emotional core - what this memory means]
-[Singable, memorable melody]
-[Universal feeling from specific story]
+(Chorus)
+<The emotional core - what this memory means>
+<Singable, memorable melody>
+<Universal feeling from specific story>
 
-[Verse 2]
-[Develop the narrative]
-[Add another layer to the story]
-[Build toward the bridge]
+(Verse 2)
+<Develop the narrative>
+<Add another layer to the story>
+<Build toward the bridge>
 
-[Bridge]
-[The twist or realization]
-[Stripped back - just voice and guitar]
-[The emotional peak]
+(Bridge)
+<The twist or realization>
+<Stripped back - just voice and guitar>
+<The emotional peak>
 
-[Final Chorus]
-[Return with full arrangement]
-[Slight variation in delivery]
-[Resolve the emotional journey]
+(Final Chorus)
+<Return with full arrangement>
+<Slight variation in delivery>
+<Resolve the emotional journey>
 
 Style tags: indie folk, acoustic, singer-songwriter, warm, nostalgic, 90bpm`,
     category: 'music-creation',
@@ -2806,12 +2806,12 @@ Distant synth pad swells
 Arpeggiated sequence builds
 Night city awakens
 
-[Verse - Instrumental Build]
+(Verse - Instrumental Build)
 Driving bass pulse enters
 Snare cuts through the haze
 Synth lead dances above
 
-[Chorus - Full Power]
+(Chorus - Full Power)
 All elements united
 Soaring lead melody
 Euphoric release
@@ -2821,7 +2821,7 @@ Strip to pads and bass
 Space and atmosphere
 Tension builds again
 
-[Final Chorus - Epic]
+(Final Chorus - Epic)
 Everything returns
 Maximum energy
 Triumphant finale
@@ -2853,31 +2853,31 @@ Soft drone pads, nature sounds
 Binaural undertones, gentle breath
 Healing, transcendent, sacred space
 
-[Opening - 2 minutes]
+(Opening - 2 minutes)
 Silence breaks with distant bell
 Single tone establishes space
 Breath syncs with slow pulse
 Safe container created
 
-[Deepening - 4 minutes]
+(Deepening - 4 minutes)
 Layers of harmony emerge
 Each tone supports the other
 Listener dissolves into sound
 Mind releases thought
 
-[Heart Opening - 3 minutes]
+(Heart Opening - 3 minutes)
 Warmest frequencies appear
 Unconditional love vibration
 Expansion beyond body
 Connection to source
 
-[Integration - 3 minutes]
+(Integration - 3 minutes)
 Gently returning
 Tones simplify
 Body awareness returns
 Peace remains
 
-[Closing - 2 minutes]
+(Closing - 2 minutes)
 Final bell
 Silence holds the healing
 Gratitude vibration
@@ -2903,7 +2903,7 @@ Style: meditation, 432hz, healing, ambient, spiritual, tibetan, binaural, 60bpm,
 
 **Current Code:**
 \`\`\`[language]
-[PASTE YOUR CODE HERE]
+<PASTE YOUR CODE HERE>
 \`\`\`
 
 **Context:**
@@ -2964,15 +2964,15 @@ Style: meditation, 432hz, healing, ambient, spiritual, tibetan, binaural, 60bpm,
 
 **Prompt Structure:**
 
-[VISUAL CONCEPT], album cover art,
-[GENRE] music aesthetic,
-[COLOR PALETTE] color scheme,
-[STYLE - photographic/illustrated/abstract/mixed media],
-[COMPOSITION - centered/asymmetric/minimal/complex],
+<VISUAL CONCEPT>, album cover art,
+<GENRE> music aesthetic,
+<COLOR PALETTE> color scheme,
+<STYLE - photographic/illustrated/abstract/mixed media>,
+<COMPOSITION - centered/asymmetric/minimal/complex>,
 professional music industry quality,
 high contrast, bold typography space,
-[MOOD] atmosphere,
-[ADDITIONAL STYLE REFERENCES]
+<MOOD> atmosphere,
+<ADDITIONAL STYLE REFERENCES>
 
 --ar 1:1 --stylize [200-750] --quality 2
 
@@ -3043,7 +3043,7 @@ Format as an easy-to-follow weekly guide.`,
     content: `Transform this material into effective study notes:
 
 **Source Material:**
-[PASTE YOUR TEXTBOOK CHAPTER, LECTURE NOTES, OR ARTICLE]
+<PASTE YOUR TEXTBOOK CHAPTER, LECTURE NOTES, OR ARTICLE>
 
 **Study Context:**
 - Subject: [the topic/course]
@@ -3118,7 +3118,7 @@ Announcement:
     content: `You are operating in ATOM-OF-THOUGHTS MODE. Solve this problem using parallel reasoning chains.
 
 **PROBLEM TO SOLVE:**
-[PASTE YOUR PROBLEM HERE]
+<PASTE YOUR PROBLEM HERE>
 
 **ATOMIC REASONING TASKS (execute all in parallel):**
 
@@ -3160,13 +3160,13 @@ Review all atoms. Identify:
 4. The key assumption to test first
 
 **OUTPUT FORMAT:**
-[ATOM 1 FINDINGS]
-[ATOM 2 FINDINGS]
-[ATOM 3 FINDINGS]
-[ATOM 4 FINDINGS]
-[ATOM 5 FINDINGS]
+<ATOM 1 FINDINGS>
+<ATOM 2 FINDINGS>
+<ATOM 3 FINDINGS>
+<ATOM 4 FINDINGS>
+<ATOM 5 FINDINGS>
 ---
-[RECOMMENDED APPROACH with justification]
+<RECOMMENDED APPROACH with justification>
 [NEXT STEPS for immediate execution]`,
     category: 'ai-architecture',
     tags: ['atom-of-thoughts', 'aot', 'parallel-reasoning', 'chain-of-thought', 'advanced-reasoning'],
@@ -3186,8 +3186,8 @@ Review all atoms. Identify:
     content: `You are a META-PROMPT GENERATOR. Your task is to create an optimized prompt for the specified AI task.
 
 **TASK CONTEXT:**
-[DESCRIBE THE TASK YOU WANT AI TO ACCOMPLISH]
-[INCLUDE: desired output format, audience, constraints, tone]
+<DESCRIBE THE TASK YOU WANT AI TO ACCOMPLISH>
+<INCLUDE: desired output format, audience, constraints, tone>
 
 **META-PROMPT GENERATION STEPS:**
 
@@ -3315,8 +3315,8 @@ All provisions are binding. Violations must be flagged explicitly with reference
     content: `You are operating in CONTEXT-FIRST MODE. Information placement follows attention-weighting principles.
 
 **INPUT CONTEXT:**
-[PROVIDE ALL BACKGROUND INFORMATION HERE]
-[Priortize by importance - most critical first]
+<PROVIDE ALL BACKGROUND INFORMATION HERE>
+<Prioritize by importance - most critical first>
 
 **ATTENTION WEIGHTING RULES:**
 
@@ -3341,28 +3341,28 @@ TIER 3 - LOWEST ATTENTION (appears third, summarized)
 **RESPONSE STRUCTURE:**
 
 ## 1. DIRECT RESPONSE [TIER 1]
-[One sentence answer if possible]
-[2-3 sentences maximum elaboration]
+<One sentence answer if possible>
+<2-3 sentences maximum elaboration>
 
 ## 2. SUPPORTING CONTEXT [TIER 2]
 ### Key Reasoning
-[Essential logical steps]
+<Essential logical steps>
 
 ### Critical Evidence
-[Most important data points]
+<Most important data points>
 
 ### Important Considerations
-[What affects the answer significantly]
+<What affects the answer significantly>
 
 ## 3. ADDITIONAL CONTEXT [TIER 3]
 ### Background
-[Brief context if needed]
+<Brief context if needed>
 
 ### References
-[Where to learn more]
+<Where to learn more>
 
 ### Related Topics
-[Connected concepts]
+<Connected concepts>
 
 **ATTENTION VERIFICATION:**
 Before finalizing, verify:
@@ -3388,30 +3388,30 @@ Before finalizing, verify:
     content: `You are operating in SELF-CONSISTENCY MODE. Multiple reasoning paths will be generated, verified, and synthesized.
 
 **TARGET QUESTION:**
-[THE QUESTION YOU NEED ANSWERED]
+<THE QUESTION YOU NEED ANSWERED>
 
 **SELF-CONSISTENCY PROTOCOL:**
 
 **PASS 1 - Direct Approach**
-[Generate initial answer using standard reasoning]
+<Generate initial answer using standard reasoning>
 - Confidence: [1-10]
 - Key assumptions: [list]
 - Potential biases: [list]
 
 **PASS 2 - Contrarian View**
-[Challenge the Pass 1 conclusion from opposite perspective]
+<Challenge the Pass 1 conclusion from opposite perspective>
 - What would prove Pass 1 wrong?
 - What is the strongest counter-argument?
 - What data contradicts Pass 1?
 
 **PASS 3 - Systematic Review**
-[Apply systematic analysis framework]
+<Apply systematic analysis framework>
 - Check each assumption for validity
 - Verify each logical step
 - Identify any gaps or fallacies
 
 **PASS 4 - Simplified Test**
-[Strip to bare essentials]
+<Strip to bare essentials>
 - What is the simplest version of this problem?
 - What would a naive/beginner answer?
 - Where might complexity be hiding errors?
@@ -3446,9 +3446,9 @@ Follow-up Needed: [What would increase confidence?]`,
     content: `You are operating in SCOPE-DISCIPLINE MODE. Task boundaries are explicit and monitored.
 
 **ORIGINAL TASK:**
-[THE EXACT TASK AS INITIALLY STATED]
-[Original constraints]: [list]
-[Original objectives]: [list]
+<THE EXACT TASK AS INITIALLY STATED>
+<Original constraints>: <list>
+<Original objectives>: <list>
 
 **SCOPE BOUNDARIES:**
 
@@ -3492,7 +3492,7 @@ Task is complete when ALL of these are true:
 - [ ] Response is focused, not scattered
 
 **DRIFT LOG:**
-[Track any times scope was questioned or modified]
+<Track any times scope was questioned or modified>
 [Record: date, drift attempted, action taken]`,
     category: 'ai-architecture',
     tags: ['scope-discipline', 'anti-drift', 'focus-maintenance', 'task-boundaries'],
