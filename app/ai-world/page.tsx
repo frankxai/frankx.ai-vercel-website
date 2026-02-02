@@ -449,17 +449,21 @@ export default function AIWorldPage() {
               >
                 <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#7B1FA2]/20 border border-[#7B1FA2]/30 text-xs font-bold tracking-wider text-[#7B1FA2] mb-4">
                   <Terminal className="w-3.5 h-3.5" />
-                  ORACLE CODE ASSISTANT
+                  AI-POWERED DEVELOPMENT
                 </span>
 
                 <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-                  Reuse the Repo Faster
+                  Accelerate with AI Assistants
                 </h2>
 
-                <p className="text-slate-300 mb-8 leading-relaxed">
-                  Oracle Code Assistant accelerates how you discover, customize, and package
-                  AI assets from the repository. Generate industry packs, create schemas, and
-                  build runbooks in minutes, not days.
+                <p className="text-slate-300 mb-6 leading-relaxed">
+                  Modern AI coding assistants can accelerate how teams discover, customize, and package
+                  AI assets from repositories. Imagine generating industry packs, creating schemas, and
+                  building runbooks in minutes, not days.
+                </p>
+
+                <p className="text-xs text-slate-500 mb-6 italic">
+                  Conceptual demonstration inspired by Oracle AI World 2026. Not an official Oracle product representation.
                 </p>
 
                 {/* Capabilities */}
@@ -480,13 +484,13 @@ export default function AIWorldPage() {
                 </div>
 
                 <Link
-                  href="https://www.oracle.com/application-development/code-assist/"
+                  href="https://www.oracle.com/ai/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  onClick={() => trackClick('Oracle Code Assistant', 'https://www.oracle.com/application-development/code-assist/', 'cta')}
+                  onClick={() => trackClick('Oracle AI Platform', 'https://www.oracle.com/ai/', 'cta')}
                   className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#7B1FA2] text-white font-semibold hover:bg-[#6A1B8A] transition-colors"
                 >
-                  Explore Code Assistant
+                  Explore Oracle AI
                   <ArrowRight className="w-4 h-4" />
                 </Link>
               </motion.div>
@@ -505,39 +509,39 @@ export default function AIWorldPage() {
                     <div className="w-3 h-3 rounded-full bg-red-500" />
                     <div className="w-3 h-3 rounded-full bg-yellow-500" />
                     <div className="w-3 h-3 rounded-full bg-green-500" />
-                    <span className="ml-2 text-xs text-slate-400">Oracle Code Assistant</span>
+                    <span className="ml-2 text-xs text-slate-400">AI Development Assistant (Conceptual)</span>
                   </div>
 
                   {/* Terminal content */}
                   <div className="p-4 font-mono text-sm space-y-3">
                     <div className="text-slate-400">
-                      <span className="text-[#7B1FA2]">oca&gt;</span> find all insurance assets
+                      <span className="text-[#7B1FA2]">ai&gt;</span> search repo for insurance patterns
                     </div>
                     <div className="text-emerald-400 pl-4">
-                      Found 12 assets in ai/generative-ai-service/
+                      Found 12 relevant assets:
                       <br />
-                      - car-accident-report-generator
-                      <br />
-                      - car-insurance-chatbot
+                      - claims-processing-agent
                       <br />
                       - fraud-detection-pipeline
+                      <br />
+                      - customer-service-bot
                       <br />
                       <span className="text-slate-500">... and 9 more</span>
                     </div>
 
                     <div className="text-slate-400 pt-2">
-                      <span className="text-[#7B1FA2]">oca&gt;</span> generate industry pack --vertical insurance
+                      <span className="text-[#7B1FA2]">ai&gt;</span> scaffold industry solution --type insurance
                     </div>
                     <div className="text-emerald-400 pl-4">
                       <CheckCircle className="w-4 h-4 inline mr-1" />
-                      Created: ai/industry-solutions/insurance/
+                      Created: solutions/insurance/
                       <br />
                       <CheckCircle className="w-4 h-4 inline mr-1" />
-                      Generated: schema.json, runbook.md, demo-script.md
+                      Generated: config.yaml, README.md, demo.md
                     </div>
 
                     <div className="text-slate-400 pt-2">
-                      <span className="text-[#7B1FA2]">oca&gt;</span> <span className="animate-pulse">_</span>
+                      <span className="text-[#7B1FA2]">ai&gt;</span> <span className="animate-pulse">_</span>
                     </div>
                   </div>
                 </div>
