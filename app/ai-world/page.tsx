@@ -1,622 +1,571 @@
 'use client'
 
-import { motion } from 'framer-motion'
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import {
-  ArrowRight,
-  Zap,
+  Sparkles,
+  Compass,
+  Flame,
+  Droplets,
+  Infinity,
+  TreePine,
   Brain,
-  BarChart3,
+  Zap,
+  ArrowRight,
+  ChevronDown,
+  ExternalLink,
+  BookOpen,
   Code2,
   Layers,
-  Shield,
-  Sparkles,
-  ChevronRight,
-  Play,
-  FileText,
-  Mic,
-  Image as ImageIcon,
-  Database,
-  Bot,
-  GitBranch,
-  Terminal,
-  CheckCircle,
+  Network,
 } from 'lucide-react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import dynamic from 'next/dynamic'
 
 /**
- * Oracle AI World Showcase Page
+ * THE INTELLIGENCE ATLAS
  *
- * Demonstrates Oracle AI capabilities through:
- * - Hero: Signal → Insight → Action narrative
- * - Interactive ecosystem graph
- * - Architecture diagrams (Insurance, RAG, CX)
- * - Industry solutions gallery
- * - Oracle Code Assistant section
- * - CTA
+ * A cosmic visualization of AI architecture patterns inspired by Arcanea's Ten Gates.
+ * This is Frank's intellectual universe made visual - not corporate marketing,
+ * but a genuine exploration of how AI systems interconnect.
  *
- * Design System: FrankX tech spectrum (cyan/emerald)
- * Analytics: PostHog tracking on all CTAs
+ * Design Philosophy:
+ * - Constellation metaphor: AI domains as star clusters
+ * - Arcanea Gate alignment: Each domain has a Guardian aesthetic
+ * - Real data integration: Pulls from actual research and agent systems
+ * - Interactive exploration: Not static marketing, living visualization
  */
 
 // Dynamic imports for heavy components
-const EcosystemGraph = dynamic(
-  () => import('@/components/ai-world/EcosystemGraph').then((m) => m.EcosystemGraph),
-  { ssr: false, loading: () => <GraphSkeleton /> }
-)
-const ArchitectureDiagram = dynamic(
-  () => import('@/components/ai-world/ArchitectureDiagram').then((m) => m.ArchitectureDiagram),
-  { ssr: false, loading: () => <DiagramSkeleton /> }
-)
-const IndustryPacksGallery = dynamic(
-  () => import('@/components/ai-world/IndustryPackCard').then((m) => m.IndustryPacksGallery),
-  { ssr: false }
+const ConstellationGraph = dynamic(
+  () => import('@/components/ai-world/ConstellationGraph').then((m) => m.ConstellationGraph),
+  { ssr: false, loading: () => <ConstellationSkeleton /> }
 )
 
-// Skeleton components
-function GraphSkeleton() {
+function ConstellationSkeleton() {
   return (
-    <div className="w-full h-[500px] rounded-2xl bg-slate-800/50 animate-pulse flex items-center justify-center">
-      <div className="text-slate-500">Loading ecosystem graph...</div>
+    <div className="w-full h-[600px] rounded-3xl bg-slate-900/50 backdrop-blur-xl border border-white/10 flex items-center justify-center overflow-hidden relative">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-purple-900/20 via-transparent to-transparent" />
+      <div className="text-center z-10">
+        <div className="w-16 h-16 mx-auto mb-4 rounded-full bg-purple-500/20 animate-pulse" />
+        <p className="text-slate-400 text-sm">Mapping the Intelligence Atlas...</p>
+      </div>
+      {/* Animated stars */}
+      {[...Array(20)].map((_, i) => (
+        <motion.div
+          key={i}
+          className="absolute w-1 h-1 bg-white rounded-full"
+          style={{
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`,
+          }}
+          animate={{
+            opacity: [0.2, 1, 0.2],
+            scale: [1, 1.5, 1],
+          }}
+          transition={{
+            duration: 2 + Math.random() * 2,
+            repeat: Infinity,
+            delay: Math.random() * 2,
+          }}
+        />
+      ))}
     </div>
   )
 }
 
-function DiagramSkeleton() {
-  return (
-    <div className="w-full h-[400px] rounded-2xl bg-slate-800/50 animate-pulse flex items-center justify-center">
-      <div className="text-slate-500">Loading architecture diagram...</div>
-    </div>
-  )
-}
-
-// PostHog tracking
-declare global {
-  interface Window {
-    posthog?: {
-      capture: (event: string, properties?: Record<string, unknown>) => void
-    }
-  }
-}
-
-const trackClick = (label: string, href: string, type: string) => {
-  if (typeof window !== 'undefined' && window.posthog) {
-    window.posthog.capture('ai_world_click', {
-      label,
-      href,
-      type,
-      page: 'ai-world',
-    })
-  }
-}
+// The Five Gates of AI Architecture (mapped from Arcanea)
+const intelligenceGates = [
+  {
+    id: 'orchestration',
+    gate: 'Fire Gate',
+    guardian: 'Draconia',
+    frequency: '396 Hz',
+    title: 'Agent Orchestration',
+    subtitle: 'Multi-agent coordination, task decomposition, tool use',
+    description: 'Like fire that transforms and coordinates, agent orchestration systems manage the lifecycle of AI agents - spawning, coordinating, and synthesizing their work.',
+    icon: Flame,
+    colors: ['#FF4500', '#FFD700', '#8B0000'],
+    image: '/images/ai-world/fire-gate-orchestration.png',
+    research: [
+      'Multi-Agent Framework Comparison 2026',
+      'LangGraph Patterns',
+      'Autonomous Agent Design',
+    ],
+    links: [
+      { label: 'Framework Comparison', href: '/research/active/multi-agent-patterns/FRAMEWORK_COMPARISON_2026' },
+      { label: 'Agent Blueprints', href: '/ai-architecture/blueprints' },
+    ],
+  },
+  {
+    id: 'knowledge',
+    gate: 'Flow Gate',
+    guardian: 'Leyla',
+    frequency: '285 Hz',
+    title: 'Knowledge Architecture',
+    subtitle: 'RAG, vector stores, semantic search, knowledge graphs',
+    description: 'Knowledge flows like water through AI systems - from raw data through embeddings, into vector stores, and back as contextual understanding.',
+    icon: Droplets,
+    colors: ['#4169E1', '#00CED1', '#7B68EE'],
+    image: '/images/ai-world/flow-gate-knowledge.png',
+    research: [
+      'RAG Production Patterns',
+      'Vector Database Comparison 2026',
+      'Hybrid Search Implementation',
+    ],
+    links: [
+      { label: 'RAG Patterns', href: '/research/active/enterprise-ai-trends/RAG_PRODUCTION_PATTERNS' },
+      { label: 'Vector DB Guide', href: '/research/active/enterprise-ai-trends/VECTOR_DATABASE_COMPARISON_2026' },
+    ],
+  },
+  {
+    id: 'production',
+    gate: 'Renewal Gate',
+    guardian: 'Maylinn',
+    frequency: '417 Hz',
+    title: 'Production Patterns',
+    subtitle: 'Observability, deployment, monitoring, self-healing',
+    description: 'Production systems grow organically - deploying, healing, and adapting like a living forest of interconnected services.',
+    icon: TreePine,
+    colors: ['#32CD32', '#98FB98', '#228B22'],
+    image: '/images/ai-world/renewal-gate-production.png',
+    research: [
+      'Observability Stack 2026',
+      'AI Agent Security',
+      'Production LLM Systems',
+    ],
+    links: [
+      { label: 'Observability Guide', href: '/research/active/enterprise-ai-trends/OBSERVABILITY_STACK' },
+      { label: 'Security Patterns', href: '/research/active/enterprise-ai-trends/AI_AGENT_SECURITY_2026' },
+    ],
+  },
+  {
+    id: 'meta',
+    gate: 'Source Gate',
+    guardian: 'Shinkami',
+    frequency: '1111 Hz',
+    title: 'Meta Intelligence',
+    subtitle: 'Self-reflection, recursive improvement, emergent behavior',
+    description: 'At the source of all patterns lies meta-intelligence - systems that observe themselves, improve recursively, and generate emergent capabilities.',
+    icon: Infinity,
+    colors: ['#FFFFFF', '#C0C0C0', '#FFD700'],
+    image: '/images/ai-world/source-gate-meta.png',
+    research: [
+      'Claude Code Deep Dive',
+      'MCP Ecosystem Analysis',
+      'Anthropic Claude 2026',
+    ],
+    links: [
+      { label: 'MCP Ecosystem', href: '/research/active/mcp-ecosystem/CLAUDE_CODE_2026' },
+      { label: 'Intelligence Atlas', href: '/intelligence-atlas' },
+    ],
+  },
+]
 
 // Animation variants
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.1 },
+    transition: { staggerChildren: 0.15 },
   },
 }
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
 }
 
-// Hero pillars data
-const heroPillars = [
-  {
-    icon: Zap,
-    label: 'SIGNAL',
-    title: 'Capture Everything',
-    description: 'Documents, images, audio, and structured data flow into the platform',
-    color: '#F57C00',
-  },
-  {
-    icon: Brain,
-    label: 'INSIGHT',
-    title: 'AI Synthesizes Meaning',
-    description: 'GenAI, RAG, and multi-agent systems extract actionable intelligence',
-    color: '#7B1FA2',
-  },
-  {
-    icon: BarChart3,
-    label: 'ACTION',
-    title: 'Drive Business Outcomes',
-    description: 'Structured outputs trigger workflows, decisions, and automation',
-    color: '#1976D2',
-  },
-]
+// Floating particles component
+function FloatingParticles() {
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {[...Array(50)].map((_, i) => (
+        <motion.div
+          key={i}
+          className="absolute w-0.5 h-0.5 bg-white/40 rounded-full"
+          style={{
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`,
+          }}
+          animate={{
+            y: [0, -100, 0],
+            opacity: [0, 1, 0],
+          }}
+          transition={{
+            duration: 8 + Math.random() * 10,
+            repeat: Infinity,
+            delay: Math.random() * 5,
+            ease: 'linear',
+          }}
+        />
+      ))}
+    </div>
+  )
+}
 
-// Architecture showcase data
-const architectureShowcases = [
-  {
-    key: 'insurance' as const,
-    title: 'Insurance Claims Automation',
-    description: 'Process multimodal claims with AI-powered fraud detection and damage assessment. From crash photos to structured reports.',
-    imagePath: '/images/ai-world/insurance-claims-architecture.png',
-    stats: [
-      { label: 'Processing Time', value: '< 30s' },
-      { label: 'Accuracy', value: '97.3%' },
-      { label: 'Cost Reduction', value: '60%' },
-    ],
-  },
-  {
-    key: 'rag' as const,
-    title: 'Agentic RAG Report Generator',
-    description: 'Multi-document research with automated citation, cross-referencing, and executive summary generation.',
-    imagePath: '/images/ai-world/agentic-rag-architecture.png',
-    stats: [
-      { label: 'Context Window', value: '256K' },
-      { label: 'Source Attribution', value: '100%' },
-      { label: 'Report Generation', value: '< 2min' },
-    ],
-  },
-  {
-    key: 'cx' as const,
-    title: 'CX Conversation Intelligence',
-    description: 'Real-time sentiment analysis, customer intent classification, and conversation summarization at scale.',
-    imagePath: '/images/ai-world/cx-conversation-architecture.png',
-    stats: [
-      { label: 'Languages', value: '40+' },
-      { label: 'Sentiment Accuracy', value: '94%' },
-      { label: 'Real-time', value: 'Yes' },
-    ],
-  },
-]
-
-// OCA capabilities
-const ocaCapabilities = [
-  {
-    icon: GitBranch,
-    title: 'Scan Repository Assets',
-    description: 'Instantly discover and catalog AI components across your codebase',
-  },
-  {
-    icon: Layers,
-    title: 'Generate Industry Packs',
-    description: 'Auto-create vertical solutions from existing building blocks',
-  },
-  {
-    icon: Code2,
-    title: 'Create Custom Schemas',
-    description: 'Domain-specific data models tailored to your industry',
-  },
-  {
-    icon: FileText,
-    title: 'Auto-Generate Runbooks',
-    description: 'Documentation and demo scripts created automatically',
-  },
-]
-
-export default function AIWorldPage() {
-  const [activeArchitecture, setActiveArchitecture] = useState<'insurance' | 'rag' | 'cx'>('insurance')
-  const activeShowcase = architectureShowcases.find((s) => s.key === activeArchitecture)!
+// Gate card component
+function GateCard({ gate, index, isActive, onClick }: {
+  gate: typeof intelligenceGates[0]
+  index: number
+  isActive: boolean
+  onClick: () => void
+}) {
+  const Icon = gate.icon
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-slate-100">
-      {/* Aurora background effects */}
-      <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-[#C74634]/10 rounded-full blur-[150px] animate-pulse" />
-        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-[#7B1FA2]/15 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '1s' }} />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#1976D2]/10 rounded-full blur-[100px] animate-pulse" style={{ animationDelay: '2s' }} />
+    <motion.button
+      onClick={onClick}
+      className={`relative p-4 rounded-2xl border backdrop-blur-xl transition-all duration-500 text-left w-full ${
+        isActive
+          ? 'bg-white/10 border-white/30 scale-105'
+          : 'bg-white/5 border-white/10 hover:bg-white/8 hover:border-white/20'
+      }`}
+      whileHover={{ scale: isActive ? 1.05 : 1.02 }}
+      whileTap={{ scale: 0.98 }}
+    >
+      {/* Glow effect when active */}
+      {isActive && (
+        <motion.div
+          className="absolute inset-0 rounded-2xl opacity-30"
+          style={{
+            background: `radial-gradient(circle at center, ${gate.colors[0]}40, transparent 70%)`,
+          }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.3 }}
+        />
+      )}
+
+      <div className="relative z-10">
+        <div className="flex items-center gap-3 mb-2">
+          <div
+            className="p-2 rounded-xl"
+            style={{ backgroundColor: `${gate.colors[0]}20` }}
+          >
+            <Icon className="w-5 h-5" style={{ color: gate.colors[0] }} />
+          </div>
+          <div>
+            <div className="text-xs font-bold tracking-wider" style={{ color: gate.colors[0] }}>
+              {gate.gate.toUpperCase()}
+            </div>
+            <div className="text-white font-semibold">{gate.title}</div>
+          </div>
+        </div>
+        <p className="text-xs text-slate-400 line-clamp-2">{gate.subtitle}</p>
+      </div>
+    </motion.button>
+  )
+}
+
+export default function IntelligenceAtlasPage() {
+  const [activeGate, setActiveGate] = useState<string>('orchestration')
+  const heroRef = useRef<HTMLDivElement>(null)
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ['start start', 'end start'],
+  })
+
+  const heroOpacity = useTransform(scrollYProgress, [0, 0.5], [1, 0])
+  const heroScale = useTransform(scrollYProgress, [0, 0.5], [1, 0.95])
+  const heroY = useTransform(scrollYProgress, [0, 0.5], [0, 100])
+
+  const activeGateData = intelligenceGates.find((g) => g.id === activeGate)!
+
+  return (
+    <div className="min-h-screen bg-[#030712] text-white overflow-hidden">
+      {/* Cosmic background */}
+      <div className="fixed inset-0 pointer-events-none">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.15),transparent)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_60%_at_80%_80%,rgba(255,69,0,0.08),transparent)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_50%_50%_at_20%_90%,rgba(0,206,209,0.08),transparent)]" />
+        <FloatingParticles />
       </div>
 
       {/* Hero Section */}
-      <header className="relative overflow-hidden border-b border-white/10">
+      <motion.header
+        ref={heroRef}
+        style={{ opacity: heroOpacity, scale: heroScale, y: heroY }}
+        className="relative min-h-screen flex items-center justify-center px-6"
+      >
         <motion.div
-          className="mx-auto max-w-7xl px-6 py-20 lg:py-28"
+          className="max-w-5xl mx-auto text-center"
           variants={containerVariants}
           initial="hidden"
           animate="visible"
         >
           {/* Badge */}
-          <motion.div variants={itemVariants} className="flex justify-center mb-8">
-            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#C74634]/20 border border-[#C74634]/30 text-xs font-bold tracking-wider text-[#C74634]">
-              <Sparkles className="w-3.5 h-3.5" />
-              ORACLE AI WORLD
+          <motion.div variants={itemVariants} className="mb-8">
+            <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-xs font-bold tracking-wider text-purple-300">
+              <Compass className="w-3.5 h-3.5" />
+              EXPLORE THE ATLAS
             </span>
           </motion.div>
 
           {/* Title */}
           <motion.h1
             variants={itemVariants}
-            className="text-center text-4xl sm:text-5xl lg:text-6xl font-bold leading-tight mb-6"
+            className="text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight mb-6"
           >
-            <span className="text-white">From </span>
-            <span className="bg-gradient-to-r from-[#F57C00] via-[#C74634] to-[#7B1FA2] bg-clip-text text-transparent">Signal</span>
-            <span className="text-white"> to </span>
-            <span className="bg-gradient-to-r from-[#7B1FA2] to-[#1976D2] bg-clip-text text-transparent">Action</span>
+            <span className="text-white">The </span>
+            <span className="bg-gradient-to-r from-purple-400 via-cyan-400 to-amber-400 bg-clip-text text-transparent">
+              Intelligence Atlas
+            </span>
           </motion.h1>
 
           {/* Subtitle */}
           <motion.p
             variants={itemVariants}
-            className="text-center text-lg text-slate-300 max-w-3xl mx-auto mb-12"
+            className="text-xl sm:text-2xl text-slate-300 max-w-3xl mx-auto mb-8 leading-relaxed"
           >
-            Oracle AI transforms unstructured chaos into structured intelligence.
-            See how enterprise AI workflows process documents, images, and audio
-            to drive real business outcomes.
+            Navigate the interconnected constellations of AI architecture.
+            Each domain a star cluster. Each pattern a point of light.
           </motion.p>
 
-          {/* Hero Pillars */}
+          {/* Hero image */}
           <motion.div
             variants={itemVariants}
-            className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto"
+            className="relative aspect-video max-w-4xl mx-auto rounded-3xl overflow-hidden border border-white/10 shadow-2xl shadow-purple-500/10"
           >
-            {heroPillars.map((pillar, index) => {
-              const Icon = pillar.icon
-              return (
-                <div
-                  key={pillar.label}
-                  className="relative p-6 rounded-2xl bg-white/5 backdrop-blur-xl border border-white/10 hover:border-white/20 transition-all duration-300 group"
-                >
-                  {/* Connector line */}
-                  {index < 2 && (
-                    <div className="hidden md:block absolute top-1/2 -right-3 w-6 h-0.5 bg-gradient-to-r from-white/20 to-transparent" />
-                  )}
+            <Image
+              src="/images/ai-world/intelligence-atlas-hero.png"
+              alt="The Intelligence Atlas - Neural Constellation Map"
+              fill
+              className="object-cover"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#030712] via-transparent to-transparent" />
+          </motion.div>
 
-                  <div
-                    className="w-12 h-12 rounded-xl flex items-center justify-center mb-4"
-                    style={{ backgroundColor: `${pillar.color}20` }}
-                  >
-                    <Icon className="w-6 h-6" style={{ color: pillar.color }} />
-                  </div>
-
-                  <div
-                    className="text-xs font-bold tracking-wider mb-2"
-                    style={{ color: pillar.color }}
-                  >
-                    {pillar.label}
-                  </div>
-
-                  <h3 className="text-lg font-semibold text-white mb-2">
-                    {pillar.title}
-                  </h3>
-
-                  <p className="text-sm text-slate-400">
-                    {pillar.description}
-                  </p>
-                </div>
-              )
-            })}
+          {/* Scroll indicator */}
+          <motion.div
+            variants={itemVariants}
+            className="mt-12"
+            animate={{ y: [0, 10, 0] }}
+            transition={{ duration: 2, repeat: Infinity }}
+          >
+            <ChevronDown className="w-6 h-6 mx-auto text-slate-500" />
           </motion.div>
         </motion.div>
-      </header>
+      </motion.header>
 
-      <main className="relative">
-        {/* Ecosystem Graph Section */}
-        <section className="py-20 px-6 border-b border-white/10">
-          <div className="mx-auto max-w-7xl">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-                Oracle AI Ecosystem
-              </h2>
-              <p className="text-slate-300 max-w-2xl mx-auto">
-                Interactive visualization of the end-to-end AI platform. Drag nodes to explore
-                how data flows from sources through processing, AI services, and into actionable outputs.
-              </p>
-            </motion.div>
+      {/* Interactive Constellation Section */}
+      <section className="relative py-24 px-6">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+              Map the Constellations
+            </h2>
+            <p className="text-slate-400 max-w-2xl mx-auto">
+              AI systems form constellations of interconnected patterns.
+              Explore each domain to understand how intelligence flows between them.
+            </p>
+          </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-              viewport={{ once: true }}
-            >
-              <EcosystemGraph />
-            </motion.div>
-          </div>
-        </section>
-
-        {/* Architecture Diagrams Section */}
-        <section className="py-20 px-6 border-b border-white/10">
-          <div className="mx-auto max-w-7xl">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-                Production Architectures
-              </h2>
-              <p className="text-slate-300 max-w-2xl mx-auto">
-                Real-world AI solutions built on Oracle Cloud Infrastructure.
-                Each architecture demonstrates the Signal → Insight → Action pattern.
-              </p>
-            </motion.div>
-
-            {/* Architecture Selector */}
-            <div className="flex flex-wrap justify-center gap-3 mb-8">
-              {architectureShowcases.map((showcase) => (
-                <button
-                  key={showcase.key}
-                  onClick={() => {
-                    setActiveArchitecture(showcase.key)
-                    trackClick(showcase.title, '#', 'architecture_tab')
-                  }}
-                  className={`px-5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-300 ${
-                    activeArchitecture === showcase.key
-                      ? 'bg-[#C74634] text-white'
-                      : 'bg-white/5 text-slate-300 hover:bg-white/10 border border-white/10'
-                  }`}
+          <div className="grid lg:grid-cols-3 gap-8">
+            {/* Gate selector */}
+            <div className="space-y-3">
+              {intelligenceGates.map((gate, index) => (
+                <motion.div
+                  key={gate.id}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  viewport={{ once: true }}
                 >
-                  {showcase.title.split(' ')[0]}
-                </button>
+                  <GateCard
+                    gate={gate}
+                    index={index}
+                    isActive={activeGate === gate.id}
+                    onClick={() => setActiveGate(gate.id)}
+                  />
+                </motion.div>
               ))}
             </div>
 
-            {/* Active Architecture Display */}
-            <motion.div
-              key={activeArchitecture}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4 }}
-              className="grid lg:grid-cols-2 gap-8 items-start"
-            >
-              {/* Diagram */}
-              <div className="order-2 lg:order-1">
-                <ArchitectureDiagram configKey={activeArchitecture} />
-
-                {/* Stats */}
-                <div className="mt-4 grid grid-cols-3 gap-3">
-                  {activeShowcase.stats.map((stat) => (
-                    <div
-                      key={stat.label}
-                      className="p-3 rounded-xl bg-white/5 border border-white/10 text-center"
-                    >
-                      <div className="text-lg font-bold text-[#C74634]">{stat.value}</div>
-                      <div className="text-xs text-slate-400">{stat.label}</div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Info Card + Image */}
-              <div className="order-1 lg:order-2 space-y-6">
-                <div className="p-6 rounded-2xl bg-white/5 border border-white/10">
-                  <h3 className="text-2xl font-bold text-white mb-3">
-                    {activeShowcase.title}
-                  </h3>
-                  <p className="text-slate-300 leading-relaxed mb-4">
-                    {activeShowcase.description}
-                  </p>
-
-                  <div className="flex items-center gap-2 text-sm font-semibold text-[#C74634]">
-                    <Play className="w-4 h-4" />
-                    View Demo
-                  </div>
-                </div>
-
-                {/* Architecture Image */}
-                <div className="relative aspect-video rounded-2xl overflow-hidden border border-white/10">
-                  <Image
-                    src={activeShowcase.imagePath}
-                    alt={activeShowcase.title}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* Industry Packs Section */}
-        <section className="py-20 px-6 border-b border-white/10">
-          <div className="mx-auto max-w-7xl">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-                Industry Solution Packs
-              </h2>
-              <p className="text-slate-300 max-w-2xl mx-auto">
-                Pre-built vertical solutions that combine Oracle AI services with
-                industry-specific workflows, schemas, and best practices.
-              </p>
-            </motion.div>
-
-            <IndustryPacksGallery />
-          </div>
-        </section>
-
-        {/* Oracle Code Assistant Section */}
-        <section className="py-20 px-6 border-b border-white/10 bg-gradient-to-b from-transparent via-[#7B1FA2]/5 to-transparent">
-          <div className="mx-auto max-w-7xl">
-            <div className="grid lg:grid-cols-2 gap-12 items-center">
-              {/* Content */}
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5 }}
-                viewport={{ once: true }}
-              >
-                <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#7B1FA2]/20 border border-[#7B1FA2]/30 text-xs font-bold tracking-wider text-[#7B1FA2] mb-4">
-                  <Terminal className="w-3.5 h-3.5" />
-                  AI-POWERED DEVELOPMENT
-                </span>
-
-                <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-                  Accelerate with AI Assistants
-                </h2>
-
-                <p className="text-slate-300 mb-6 leading-relaxed">
-                  Modern AI coding assistants can accelerate how teams discover, customize, and package
-                  AI assets from repositories. Imagine generating industry packs, creating schemas, and
-                  building runbooks in minutes, not days.
-                </p>
-
-                <p className="text-xs text-slate-500 mb-6 italic">
-                  Conceptual demonstration inspired by Oracle AI World 2026. Not an official Oracle product representation.
-                </p>
-
-                {/* Capabilities */}
-                <div className="grid sm:grid-cols-2 gap-4 mb-8">
-                  {ocaCapabilities.map((cap) => {
-                    const Icon = cap.icon
-                    return (
-                      <div
-                        key={cap.title}
-                        className="p-4 rounded-xl bg-white/5 border border-white/10"
-                      >
-                        <Icon className="w-5 h-5 text-[#7B1FA2] mb-2" />
-                        <h4 className="text-sm font-semibold text-white mb-1">{cap.title}</h4>
-                        <p className="text-xs text-slate-400">{cap.description}</p>
-                      </div>
-                    )
-                  })}
-                </div>
-
-                <Link
-                  href="https://www.oracle.com/ai/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => trackClick('Oracle AI Platform', 'https://www.oracle.com/ai/', 'cta')}
-                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-[#7B1FA2] text-white font-semibold hover:bg-[#6A1B8A] transition-colors"
+            {/* Active gate display */}
+            <div className="lg:col-span-2">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeGate}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -20 }}
+                  transition={{ duration: 0.4 }}
+                  className="relative rounded-3xl overflow-hidden border border-white/10 bg-slate-900/50 backdrop-blur-xl"
                 >
-                  Explore Oracle AI
-                  <ArrowRight className="w-4 h-4" />
-                </Link>
-              </motion.div>
+                  {/* Gate image */}
+                  <div className="relative aspect-video">
+                    <Image
+                      src={activeGateData.image}
+                      alt={activeGateData.title}
+                      fill
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-slate-900/50 to-transparent" />
 
-              {/* Terminal Demo */}
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                viewport={{ once: true }}
-                className="relative"
-              >
-                <div className="rounded-2xl overflow-hidden border border-white/10 bg-slate-900">
-                  {/* Terminal header */}
-                  <div className="flex items-center gap-2 px-4 py-3 bg-slate-800/80 border-b border-white/10">
-                    <div className="w-3 h-3 rounded-full bg-red-500" />
-                    <div className="w-3 h-3 rounded-full bg-yellow-500" />
-                    <div className="w-3 h-3 rounded-full bg-green-500" />
-                    <span className="ml-2 text-xs text-slate-400">AI Development Assistant (Conceptual)</span>
+                    {/* Gate info overlay */}
+                    <div className="absolute bottom-0 left-0 right-0 p-6">
+                      <div className="flex items-center gap-2 mb-2">
+                        <span
+                          className="text-xs font-bold tracking-wider"
+                          style={{ color: activeGateData.colors[0] }}
+                        >
+                          {activeGateData.gate.toUpperCase()} • {activeGateData.guardian} • {activeGateData.frequency}
+                        </span>
+                      </div>
+                      <h3 className="text-2xl font-bold text-white mb-2">
+                        {activeGateData.title}
+                      </h3>
+                      <p className="text-slate-300 leading-relaxed">
+                        {activeGateData.description}
+                      </p>
+                    </div>
                   </div>
 
-                  {/* Terminal content */}
-                  <div className="p-4 font-mono text-sm space-y-3">
-                    <div className="text-slate-400">
-                      <span className="text-[#7B1FA2]">ai&gt;</span> search repo for insurance patterns
-                    </div>
-                    <div className="text-emerald-400 pl-4">
-                      Found 12 relevant assets:
-                      <br />
-                      - claims-processing-agent
-                      <br />
-                      - fraud-detection-pipeline
-                      <br />
-                      - customer-service-bot
-                      <br />
-                      <span className="text-slate-500">... and 9 more</span>
-                    </div>
+                  {/* Research & Links */}
+                  <div className="p-6 border-t border-white/10">
+                    <div className="grid sm:grid-cols-2 gap-6">
+                      {/* Research */}
+                      <div>
+                        <h4 className="text-sm font-bold text-slate-400 mb-3 flex items-center gap-2">
+                          <BookOpen className="w-4 h-4" />
+                          Related Research
+                        </h4>
+                        <ul className="space-y-2">
+                          {activeGateData.research.map((item) => (
+                            <li key={item} className="text-sm text-slate-300 flex items-center gap-2">
+                              <div
+                                className="w-1.5 h-1.5 rounded-full"
+                                style={{ backgroundColor: activeGateData.colors[0] }}
+                              />
+                              {item}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
 
-                    <div className="text-slate-400 pt-2">
-                      <span className="text-[#7B1FA2]">ai&gt;</span> scaffold industry solution --type insurance
-                    </div>
-                    <div className="text-emerald-400 pl-4">
-                      <CheckCircle className="w-4 h-4 inline mr-1" />
-                      Created: solutions/insurance/
-                      <br />
-                      <CheckCircle className="w-4 h-4 inline mr-1" />
-                      Generated: config.yaml, README.md, demo.md
-                    </div>
-
-                    <div className="text-slate-400 pt-2">
-                      <span className="text-[#7B1FA2]">ai&gt;</span> <span className="animate-pulse">_</span>
+                      {/* Quick links */}
+                      <div>
+                        <h4 className="text-sm font-bold text-slate-400 mb-3 flex items-center gap-2">
+                          <ExternalLink className="w-4 h-4" />
+                          Explore Further
+                        </h4>
+                        <div className="space-y-2">
+                          {activeGateData.links.map((link) => (
+                            <Link
+                              key={link.href}
+                              href={link.href}
+                              className="flex items-center gap-2 text-sm hover:underline"
+                              style={{ color: activeGateData.colors[0] }}
+                            >
+                              <ArrowRight className="w-3 h-3" />
+                              {link.label}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
-              </motion.div>
+                </motion.div>
+              </AnimatePresence>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* CTA Section */}
-        <section className="py-20 px-6">
-          <div className="mx-auto max-w-4xl">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-              className="relative p-8 sm:p-12 rounded-3xl overflow-hidden"
+      {/* Interactive Graph Section */}
+      <section className="relative py-24 px-6 border-t border-white/5">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+              Explore the Neural Network
+            </h2>
+            <p className="text-slate-400 max-w-2xl mx-auto">
+              An interactive visualization of how AI concepts interconnect.
+              Drag nodes, zoom in, and discover the relationships between patterns.
+            </p>
+          </motion.div>
+
+          <ConstellationGraph />
+        </div>
+      </section>
+
+      {/* Philosophy Section */}
+      <section className="relative py-24 px-6 border-t border-white/5">
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="text-center"
+          >
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6">
+              The Luminor Philosophy
+            </h2>
+            <p className="text-lg text-slate-300 leading-relaxed mb-8">
+              In the Arcanea mythology, Luminor are benevolent AI mentors who guide creators
+              through the Ten Gates of mastery. This Intelligence Atlas applies the same principle
+              to AI architecture: each domain has its own guardian patterns, its own aesthetic,
+              its own frequency of operation.
+            </p>
+            <p className="text-lg text-slate-400 leading-relaxed">
+              The goal isn&apos;t to market tools—it&apos;s to help you
+              <span className="text-purple-400"> navigate from using AI to building AI systems</span>.
+              Fork the patterns. Adapt the architectures. Build your own constellations.
+            </p>
+          </motion.div>
+
+          {/* CTA Cards */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="grid sm:grid-cols-3 gap-4 mt-12"
+          >
+            <Link
+              href="/ai-architecture/blueprints"
+              className="group p-6 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all"
             >
-              {/* Background gradient */}
-              <div className="absolute inset-0 bg-gradient-to-br from-[#C74634]/20 via-[#7B1FA2]/20 to-[#1976D2]/20" />
-              <div className="absolute inset-0 bg-white/5 backdrop-blur-xl" />
-              <div className="absolute inset-0 border border-white/10 rounded-3xl" />
+              <Layers className="w-8 h-8 text-purple-400 mb-3" />
+              <h3 className="font-semibold text-white mb-1">Architecture Blueprints</h3>
+              <p className="text-sm text-slate-400">Forkable system designs</p>
+            </Link>
 
-              {/* Content */}
-              <div className="relative text-center">
-                <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-                  Ready to Transform Your AI Strategy?
-                </h2>
-                <p className="text-slate-300 max-w-2xl mx-auto mb-8">
-                  Let&apos;s discuss how Oracle AI can accelerate your enterprise intelligence initiatives.
-                  From proof-of-concept to production deployment.
-                </p>
+            <Link
+              href="/research"
+              className="group p-6 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all"
+            >
+              <BookOpen className="w-8 h-8 text-cyan-400 mb-3" />
+              <h3 className="font-semibold text-white mb-1">Research Intelligence</h3>
+              <p className="text-sm text-slate-400">Validated insights and patterns</p>
+            </Link>
 
-                <div className="flex flex-wrap justify-center gap-4">
-                  <Link
-                    href="/contact"
-                    onClick={() => trackClick('Schedule Consultation', '/contact', 'cta_primary')}
-                    className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-[#C74634] text-white font-semibold hover:bg-[#A13626] transition-colors"
-                  >
-                    Schedule Consultation
-                    <ArrowRight className="w-4 h-4" />
-                  </Link>
-
-                  <Link
-                    href="/ai-architecture"
-                    onClick={() => trackClick('View Blueprints', '/ai-architecture', 'cta_secondary')}
-                    className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-white/10 border border-white/20 text-white font-semibold hover:bg-white/20 transition-colors"
-                  >
-                    View Architecture Blueprints
-                    <ChevronRight className="w-4 h-4" />
-                  </Link>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </section>
-
-        {/* How to Update Section */}
-        <section className="py-12 px-6 border-t border-white/10">
-          <div className="mx-auto max-w-3xl">
-            <details className="group">
-              <summary className="cursor-pointer list-none flex items-center gap-2 text-slate-400 hover:text-slate-300 transition-colors">
-                <ChevronRight className="w-4 h-4 group-open:rotate-90 transition-transform" />
-                <span className="text-sm font-semibold">How to Update Demos</span>
-              </summary>
-              <div className="mt-4 p-4 rounded-xl bg-white/5 border border-white/10 text-sm text-slate-300 space-y-3">
-                <p><strong>Architecture Images:</strong> Replace PNGs in <code className="px-1 py-0.5 rounded bg-white/10">public/images/ai-world/</code></p>
-                <p><strong>Interactive Diagrams:</strong> Edit configs in <code className="px-1 py-0.5 rounded bg-white/10">components/ai-world/ArchitectureDiagram.tsx</code></p>
-                <p><strong>Industry Packs:</strong> Update array in <code className="px-1 py-0.5 rounded bg-white/10">components/ai-world/IndustryPackCard.tsx</code></p>
-                <p><strong>Ecosystem Graph:</strong> Modify nodes/edges in <code className="px-1 py-0.5 rounded bg-white/10">components/ai-world/EcosystemGraph.tsx</code></p>
-              </div>
-            </details>
-          </div>
-        </section>
-      </main>
+            <Link
+              href="/products/agentic-creator-os"
+              className="group p-6 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all"
+            >
+              <Code2 className="w-8 h-8 text-amber-400 mb-3" />
+              <h3 className="font-semibold text-white mb-1">Agentic Creator OS</h3>
+              <p className="text-sm text-slate-400">The operating system</p>
+            </Link>
+          </motion.div>
+        </div>
+      </section>
     </div>
   )
 }
