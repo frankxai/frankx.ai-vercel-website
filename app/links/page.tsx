@@ -81,7 +81,15 @@ export default function LinksPage() {
     badge: 'Most Popular'
   }
 
-  const primaryLinks = [
+  const primaryLinks: Array<{
+    title: string
+    description: string
+    href: string
+    icon: typeof Download
+    eyebrow: string
+    gradient: string
+    external?: boolean
+  }> = [
     {
       title: 'Creative AI Toolkit',
       description: 'Free prompts, workflows, and launch rituals for creators',

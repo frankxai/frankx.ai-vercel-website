@@ -15,7 +15,7 @@ import {
   ExternalLink,
   ArrowRight,
 } from 'lucide-react'
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 
 /**
  * Music Lab V2: Player-Centric Design
@@ -63,6 +63,12 @@ export default function MusicLabPlayer() {
   const [isPlaying, setIsPlaying] = useState(false)
   const [currentTrack, setCurrentTrack] = useState(featuredTracks[0])
 
+  // Pre-generate random heights to avoid impure function calls during render
+  const waveformHeights = useMemo(
+    () => Array.from({ length: 50 }, () => Math.random() * 60 + 20),
+    []
+  )
+
   return (
     <main className="min-h-screen bg-gradient-to-b from-[#0a0510] via-[#0f0a1a] to-[#0a0510] text-white">
       {/* Hero Player */}
@@ -107,13 +113,13 @@ export default function MusicLabPlayer() {
 
               {/* Waveform */}
               <div className="h-20 mb-8 flex items-center gap-1">
-                {Array.from({ length: 50 }).map((_, i) => (
+                {waveformHeights.map((height, i) => (
                   <motion.div
                     key={i}
                     className="flex-1 bg-gradient-to-t from-pink-500 to-violet-500 rounded-full"
                     animate={{
                       height: isPlaying
-                        ? `${Math.random() * 60 + 20}%`
+                        ? `${height}%`
                         : '40%',
                     }}
                     transition={{
