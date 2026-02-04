@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Tumor Board - Pediatric Leukemia AI Ecosystem</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --oracle-red: #C74634;
+            --bg-primary: #FAFAFA;
+            --bg-card: #FFFFFF;
+            --text-primary: #1a1a2e;
+            --text-secondary: #4a5568;
+            --border-color: #e2e8f0;
+            --pillar-infra: #0EA5E9;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg-primary); color: var(--text-primary); line-height: 1.7; }
+        header { background: white; border-bottom: 1px solid var(--border-color); padding: 1rem 2rem; position: sticky; top: 0; z-index: 100; }
+        .header-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+        .logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: inherit; }
+        .logo-icon { width: 36px; height: 36px; background: linear-gradient(135deg, var(--oracle-red), #E85A4F); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; }
+        nav a { color: var(--text-secondary); text-decoration: none; margin-left: 1.5rem; font-size: 0.9rem; }
+        nav a:hover { color: var(--oracle-red); }
+        .demo-banner { background: linear-gradient(90deg, #FEF3C7, #FDE68A); padding: 0.75rem 1rem; text-align: center; font-size: 0.85rem; color: #92400E; border-bottom: 1px solid #F59E0B; }
+        .page-header { background: linear-gradient(135deg, rgba(14, 165, 233, 0.1) 0%, white 100%); padding: 4rem 2rem; border-bottom: 1px solid var(--border-color); }
+        .page-header-content { max-width: 1200px; margin: 0 auto; }
+        .breadcrumb { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem; }
+        .breadcrumb a { color: var(--oracle-red); text-decoration: none; }
+        .pillar-badge { display: inline-block; background: rgba(14, 165, 233, 0.1); color: var(--pillar-infra); padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.8rem; font-weight: 600; margin-bottom: 1rem; }
+        h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; }
+        .subtitle { font-size: 1.1rem; color: var(--text-secondary); max-width: 700px; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+        .section { padding: 4rem 0; }
+        .content-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 3rem; }
+        .prose { font-size: 1rem; line-height: 1.8; }
+        .prose p { margin-bottom: 1.5rem; }
+        .prose h3 { font-size: 1.25rem; margin: 2rem 0 1rem; color: var(--text-primary); }
+        .sidebar-card { background: white; border: 1px solid var(--border-color); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; }
+        .sidebar-card h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 1rem; color: var(--pillar-infra); }
+        .sidebar-card ul { list-style: none; font-size: 0.9rem; }
+        .sidebar-card li { padding: 0.5rem 0; border-bottom: 1px solid var(--border-color); }
+        .sidebar-card li:last-child { border-bottom: none; }
+        .workflow-card { background: white; border: 1px solid var(--border-color); border-radius: 12px; padding: 2rem; margin: 2rem 0; }
+        .workflow-steps { display: flex; flex-direction: column; gap: 1.5rem; }
+        .workflow-step { display: flex; gap: 1.5rem; align-items: flex-start; }
+        .step-number { width: 40px; height: 40px; background: rgba(14, 165, 233, 0.1); color: var(--pillar-infra); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; flex-shrink: 0; }
+        .step-content { flex: 1; }
+        .step-title { font-weight: 600; margin-bottom: 0.5rem; }
+        .step-desc { font-size: 0.9rem; color: var(--text-secondary); }
+        .image-figure { margin: 2rem 0; text-align: center; }
+        .image-figure img { max-width: 100%; border-radius: 8px; border: 1px solid var(--border-color); }
+        .image-figure figcaption { font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.75rem; }
+        .use-case-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; margin: 2rem 0; }
+        .use-case-card { background: white; border: 1px solid var(--border-color); border-radius: 8px; padding: 1.5rem; }
+        .use-case-card h4 { font-size: 1rem; margin-bottom: 0.5rem; }
+        .use-case-card p { font-size: 0.9rem; color: var(--text-secondary); }
+        footer { background: var(--text-primary); color: white; padding: 2rem; text-align: center; font-size: 0.85rem; }
+        footer a { color: var(--oracle-red); }
+        @media (max-width: 768px) { .content-grid { grid-template-columns: 1fr; } .use-case-grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">P</div>
+                <span>Pediatric Leukemia AI</span>
+            </a>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="architecture.html">Architecture</a>
+                <a href="diagnostic-ai.html">Diagnostic AI</a>
+                <a href="tumor-board.html" style="color: var(--oracle-red);">Tumor Board</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="demo-banner">
+        <strong>Reference Architecture Demo</strong> - Conceptual design showcasing OCI PaaS capabilities.
+        <a href="../../docs/COMPLIANCE-AND-DEPLOYMENT.md" style="color: #B45309;">Compliance notes</a>
+    </div>
+
+    <div class="page-header">
+        <div class="page-header-content">
+            <div class="breadcrumb"><a href="index.html">Home</a> / <span>AI Tumor Board</span></div>
+            <div class="pillar-badge">Pillar 2: Intelligent Infrastructure</div>
+            <h1>AI-Powered Tumor Board</h1>
+            <p class="subtitle">Enhancing clinical decision-making through automated case synthesis, literature retrieval, and intelligent recommendation generation using OCI GenAI.</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="container">
+            <div class="content-grid">
+                <div class="prose">
+                    <h3>The Tumor Board Challenge</h3>
+                    <p>
+                        Multidisciplinary tumor boards are the cornerstone of pediatric oncology care. These weekly meetings bring together pathologists, oncologists, radiologists, surgeons, and other specialists to review complex cases and formulate treatment recommendations. However, the current process faces several challenges that impact efficiency and consistency.
+                    </p>
+                    <p>
+                        Preparing for tumor board requires significant manual effort. Clinicians must compile patient histories, laboratory results, imaging findings, and pathology reports from multiple systems. They must also review relevant literature, identify similar historical cases, and synthesize all information into a coherent presentation. This preparation can consume several hours per case, limiting the number of cases that can be thoroughly discussed.
+                    </p>
+                    <p>
+                        Additionally, the institutional knowledge accumulated over decades of treating pediatric leukemia often resides in the memories of senior clinicians rather than in accessible, searchable formats. When experts retire, this valuable experience can be lost to the organization.
+                    </p>
+
+                    <h3>AI-Assisted Case Preparation</h3>
+                    <p>
+                        The AI tumor board system addresses these challenges through three interconnected capabilities powered by <strong>OCI GenAI</strong> and <strong>Oracle Database 26ai</strong>:
+                    </p>
+
+                    <div class="workflow-card">
+                        <h4 style="margin-bottom: 1.5rem; font-weight: 600;">Tumor Board AI Workflow</h4>
+                        <div class="workflow-steps">
+                            <div class="workflow-step">
+                                <div class="step-number">1</div>
+                                <div class="step-content">
+                                    <div class="step-title">Automated Case Synthesis</div>
+                                    <div class="step-desc">OCI GenAI (Cohere Command A) aggregates data from multiple sources into a structured case summary, highlighting key findings and discrepancies.</div>
+                                </div>
+                            </div>
+                            <div class="workflow-step">
+                                <div class="step-number">2</div>
+                                <div class="step-content">
+                                    <div class="step-title">Literature RAG</div>
+                                    <div class="step-desc">Vector search in Database 26ai retrieves relevant publications, clinical guidelines, and trial eligibility criteria based on patient characteristics.</div>
+                                </div>
+                            </div>
+                            <div class="workflow-step">
+                                <div class="step-number">3</div>
+                                <div class="step-content">
+                                    <div class="step-title">Similar Case Retrieval</div>
+                                    <div class="step-desc">Semantic similarity search identifies historical cases with comparable presentations and outcomes, enabling evidence-based discussions.</div>
+                                </div>
+                            </div>
+                            <div class="workflow-step">
+                                <div class="step-number">4</div>
+                                <div class="step-content">
+                                    <div class="step-title">Recommendation Draft</div>
+                                    <div class="step-desc">The system generates preliminary treatment recommendations based on guidelines and similar cases, for clinician review and modification.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3>Case Synthesis with OCI GenAI</h3>
+                    <p>
+                        When a new case is submitted for tumor board review, the system automatically retrieves all relevant data from connected sources: electronic health records, laboratory information systems, PACS for imaging, and the pathology database. <strong>Cohere Command A</strong> (or Gemini 2.5 Pro for complex cases) processes this information and generates a structured case summary that includes:
+                    </p>
+                    <ul style="margin: 1rem 0 1.5rem 1.5rem;">
+                        <li>Patient demographics and relevant medical history</li>
+                        <li>Timeline of symptom onset and diagnostic workup</li>
+                        <li>Summary of morphology, immunophenotyping, and molecular findings</li>
+                        <li>Key prognostic factors and risk stratification</li>
+                        <li>Outstanding questions for tumor board discussion</li>
+                    </ul>
+
+                    <figure class="image-figure">
+                        <img src="images/ai-tumor-board-workflow.png" alt="AI Tumor Board Workflow">
+                        <figcaption>AI-assisted tumor board workflow showing case synthesis and recommendation generation</figcaption>
+                    </figure>
+
+                    <h3>Literature Retrieval with RAG</h3>
+                    <p>
+                        Staying current with the medical literature is increasingly challenging. The AI tumor board system implements a Retrieval-Augmented Generation (RAG) pipeline using <strong>Oracle Database 26ai Vector Search</strong> to maintain an up-to-date knowledge base of published clinical trials, treatment guidelines from NCCN, COG, and AML-BFM, recent case reports, and ongoing clinical trial eligibility criteria. When a case is prepared, the system automatically queries this knowledge base using the patient's specific characteristics (genetic mutations, immunophenotype, risk factors) and retrieves the most relevant publications.
+                    </p>
+
+                    <h3>Similar Case Matching</h3>
+                    <p>
+                        One of the most valuable features is the ability to identify similar historical cases. The system uses embeddings generated by <strong>Cohere Embed 4</strong> to create semantic representations of each patient's case, stored in Database 26ai's vector store. When reviewing a new case, the system retrieves the most similar historical cases based on genetic profile similarity, clinical presentation, patient age, and treatment response patterns.
+                    </p>
+
+                    <div class="use-case-grid">
+                        <div class="use-case-card">
+                            <h4>Rare Subtype Cases</h4>
+                            <p>Identify similar cases across the entire AML-BFM network, even if the treating institution has never seen the subtype before.</p>
+                        </div>
+                        <div class="use-case-card">
+                            <h4>Treatment-Resistant Cases</h4>
+                            <p>Find what alternative approaches worked for comparable patients not responding to standard therapy.</p>
+                        </div>
+                        <div class="use-case-card">
+                            <h4>Clinical Trial Matching</h4>
+                            <p>Automatically identify open trials for which the patient might be eligible based on disease characteristics.</p>
+                        </div>
+                        <div class="use-case-card">
+                            <h4>Outcome Prediction</h4>
+                            <p>Provide survival statistics from similar historical cases to support informed consent discussions.</p>
+                        </div>
+                    </div>
+
+                    <h3>Human-AI Collaboration</h3>
+                    <p>
+                        The AI tumor board system is designed to <strong>augment, not replace</strong>, clinical judgment. All AI-generated content is clearly labeled and presented as suggestions for clinician review. The final treatment recommendations are always made by the multidisciplinary team during the tumor board meeting. Audit trails track which AI suggestions were accepted, modified, or rejected.
+                    </p>
+                </div>
+
+                <aside>
+                    <div class="sidebar-card">
+                        <h4>OCI Services Used</h4>
+                        <ul>
+                            <li><strong>OCI GenAI</strong> - Cohere Command A</li>
+                            <li><strong>Database 26ai</strong> - Vector search</li>
+                            <li><strong>Cohere Embed 4</strong> - Case embeddings</li>
+                            <li><strong>OCI Functions</strong> - Data integration</li>
+                        </ul>
+                    </div>
+
+                    <div class="sidebar-card">
+                        <h4>Cost Estimates</h4>
+                        <ul>
+                            <li><strong>GenAI</strong>: ~$0.06/10K chars</li>
+                            <li><strong>Embeddings</strong>: $0.10/10K txn</li>
+                            <li><strong>Database 26ai</strong>: ~$250/mo</li>
+                        </ul>
+                        <p style="font-size: 0.75rem; margin-top: 1rem; color: var(--text-secondary);">
+                            Source: <a href="https://www.oracle.com/cloud/price-list/" target="_blank" style="color: var(--oracle-red);">oracle.com/cloud/price-list</a>
+                        </p>
+                    </div>
+
+                    <div class="sidebar-card">
+                        <h4>Related Pages</h4>
+                        <ul>
+                            <li><a href="diagnostic-ai.html" style="color: var(--oracle-red);">Diagnostic AI</a></li>
+                            <li><a href="architecture.html" style="color: var(--oracle-red);">Architecture</a></li>
+                        </ul>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Pediatric Leukemia AI Ecosystem - Reference Architecture Demo</p>
+        <p>Powered by <a href="https://www.oracle.com/cloud/" target="_blank">Oracle Cloud Infrastructure</a></p>
+        <p style="margin-top: 1rem; opacity: 0.7; font-size: 0.75rem;">DISCLAIMER: Unofficial community project. Not affiliated with Oracle Corporation.</p>
+    </footer>
+</body>
+</html>

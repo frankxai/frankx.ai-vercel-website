@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnostic AI - Pediatric Leukemia AI Ecosystem</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --oracle-red: #C74634;
+            --bg-primary: #FAFAFA;
+            --bg-card: #FFFFFF;
+            --text-primary: #1a1a2e;
+            --text-secondary: #4a5568;
+            --border-color: #e2e8f0;
+            --pillar-diagnostic: #22C55E;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+        header {
+            background: white;
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; color: inherit; }
+        .logo-icon {
+            width: 36px; height: 36px;
+            background: linear-gradient(135deg, var(--oracle-red), #E85A4F);
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-weight: bold;
+        }
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            margin-left: 1.5rem;
+            font-size: 0.9rem;
+        }
+        nav a:hover { color: var(--oracle-red); }
+        .demo-banner {
+            background: linear-gradient(90deg, #FEF3C7, #FDE68A);
+            padding: 0.75rem 1rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #92400E;
+            border-bottom: 1px solid #F59E0B;
+        }
+        .page-header {
+            background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, white 100%);
+            padding: 4rem 2rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .page-header-content { max-width: 1200px; margin: 0 auto; }
+        .breadcrumb { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem; }
+        .breadcrumb a { color: var(--oracle-red); text-decoration: none; }
+        .pillar-badge {
+            display: inline-block;
+            background: rgba(34, 197, 94, 0.1);
+            color: var(--pillar-diagnostic);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+        h1 { font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; }
+        .subtitle { font-size: 1.1rem; color: var(--text-secondary); max-width: 700px; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+        .section { padding: 4rem 0; }
+        .section-title { font-size: 1.5rem; font-weight: 600; margin-bottom: 1.5rem; }
+        .content-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 3rem; }
+        .prose { font-size: 1rem; line-height: 1.8; }
+        .prose p { margin-bottom: 1.5rem; }
+        .prose h3 { font-size: 1.25rem; margin: 2rem 0 1rem; color: var(--text-primary); }
+        .sidebar-card {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .sidebar-card h4 { font-size: 0.9rem; font-weight: 600; margin-bottom: 1rem; color: var(--pillar-diagnostic); }
+        .sidebar-card ul { list-style: none; font-size: 0.9rem; }
+        .sidebar-card li { padding: 0.5rem 0; border-bottom: 1px solid var(--border-color); }
+        .sidebar-card li:last-child { border-bottom: none; }
+        .pipeline-visual {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+        .pipeline-steps { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+        .pipeline-step {
+            flex: 1;
+            min-width: 150px;
+            text-align: center;
+            padding: 1.5rem 1rem;
+            background: var(--bg-primary);
+            border-radius: 8px;
+            position: relative;
+        }
+        .pipeline-step::after {
+            content: ">";
+            position: absolute;
+            right: -1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--pillar-diagnostic);
+            font-weight: bold;
+        }
+        .pipeline-step:last-child::after { display: none; }
+        .step-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+        .step-name { font-weight: 600; font-size: 0.9rem; }
+        .step-service { font-size: 0.75rem; color: var(--oracle-red); margin-top: 0.25rem; }
+        .image-figure {
+            margin: 2rem 0;
+            text-align: center;
+        }
+        .image-figure img {
+            max-width: 100%;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+        .image-figure figcaption {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 0.75rem;
+        }
+        .metrics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin: 2rem 0; }
+        .metric-card {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        .metric-value { font-size: 2rem; font-weight: 700; color: var(--pillar-diagnostic); }
+        .metric-label { font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.25rem; }
+        .metric-note { font-size: 0.7rem; color: var(--text-secondary); font-style: italic; margin-top: 0.5rem; }
+        footer {
+            background: var(--text-primary);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+        footer a { color: var(--oracle-red); }
+        @media (max-width: 768px) {
+            .content-grid { grid-template-columns: 1fr; }
+            .metrics-grid { grid-template-columns: 1fr; }
+            .pipeline-steps { flex-direction: column; }
+            .pipeline-step::after { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">P</div>
+                <span>Pediatric Leukemia AI</span>
+            </a>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="architecture.html">Architecture</a>
+                <a href="diagnostic-ai.html" style="color: var(--oracle-red);">Diagnostic AI</a>
+                <a href="tumor-board.html">Tumor Board</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="demo-banner">
+        <strong>Reference Architecture Demo</strong> - Conceptual design showcasing OCI PaaS capabilities.
+        <a href="../../docs/COMPLIANCE-AND-DEPLOYMENT.md" style="color: #B45309;">Compliance notes</a>
+    </div>
+
+    <div class="page-header">
+        <div class="page-header-content">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a> / <span>Diagnostic AI</span>
+            </div>
+            <div class="pillar-badge">Pillar 1: Diagnostic Optimization</div>
+            <h1>AI-Powered Diagnostic Pipeline</h1>
+            <p class="subtitle">Integrating morphology analysis, immunophenotyping, and molecular genetics through OCI Vision and GenAI services to accelerate pediatric leukemia diagnosis.</p>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="container">
+            <div class="content-grid">
+                <div class="prose">
+                    <h3>The Diagnostic Challenge</h3>
+                    <p>
+                        Accurate diagnosis of pediatric acute leukemia requires the integration of three complementary analytical approaches: morphological assessment of blood smears, immunophenotyping through flow cytometry, and molecular genetic analysis. Traditionally, these analyses are performed sequentially by different specialists, with results integrated manually during tumor board meetings. This process typically requires 3-5 days for a comprehensive diagnosis.
+                    </p>
+                    <p>
+                        The AML-BFM Study Group has accumulated over 40 years of diagnostic data, including morphology assessments from more than 2,000 children, immunophenotyping records from 1,400+ cases (evolving from 3-color to 10-color panels), and molecular genetics data from 500+ patients analyzed with a 116-gene NGS panel. This dataset represents a unique opportunity to train AI models that can assist pathologists and accelerate the diagnostic process.
+                    </p>
+
+                    <div class="pipeline-visual">
+                        <h4 style="margin-bottom: 1.5rem; font-weight: 600;">Three-Stage Diagnostic Pipeline</h4>
+                        <div class="pipeline-steps">
+                            <div class="pipeline-step">
+                                <div class="step-icon">🔬</div>
+                                <div class="step-name">Morphology</div>
+                                <div class="step-service">OCI Vision</div>
+                            </div>
+                            <div class="pipeline-step">
+                                <div class="step-icon">🧬</div>
+                                <div class="step-name">Immunophenotyping</div>
+                                <div class="step-service">OCI Data Science</div>
+                            </div>
+                            <div class="pipeline-step">
+                                <div class="step-icon">🧪</div>
+                                <div class="step-name">Molecular Genetics</div>
+                                <div class="step-service">NVIDIA Parabricks</div>
+                            </div>
+                            <div class="pipeline-step">
+                                <div class="step-icon">📊</div>
+                                <div class="step-name">Integrated Report</div>
+                                <div class="step-service">OCI GenAI</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3>Stage 1: Morphology Analysis with OCI Vision</h3>
+                    <p>
+                        Blood smear analysis remains the first-line diagnostic tool for leukemia detection. Pathologists examine Giemsa-stained peripheral blood or bone marrow aspirates to identify blast cells, assess their morphological features, and classify them according to the FAB or WHO criteria. This process requires significant expertise and is subject to inter-observer variability.
+                    </p>
+                    <p>
+                        <strong>OCI Vision Custom Models</strong> can be trained on the AML-BFM morphology dataset to assist pathologists in blast detection and classification. The training dataset includes labeled images with expert annotations identifying:
+                    </p>
+                    <ul style="margin: 1rem 0 1.5rem 1.5rem;">
+                        <li>Blast cells vs. normal hematopoietic cells</li>
+                        <li>Morphological subtypes (FAB M0-M7 for AML, L1-L3 for ALL)</li>
+                        <li>Specific cytological features (Auer rods, nuclear shape, cytoplasmic granulation)</li>
+                    </ul>
+                    <p>
+                        The custom vision model processes digitized blood smears and provides probability scores for each cell type, highlighting areas requiring pathologist attention. This approach aims to reduce review time while maintaining diagnostic accuracy through human-AI collaboration.
+                    </p>
+
+                    <figure class="image-figure">
+                        <img src="images/oci-vision-morphology.png" alt="OCI Vision Morphology Pipeline">
+                        <figcaption>OCI Vision custom model training pipeline for blast cell detection</figcaption>
+                    </figure>
+
+                    <h3>Stage 2: Immunophenotyping Analysis</h3>
+                    <p>
+                        Flow cytometry immunophenotyping has evolved significantly over the past four decades. The AML-BFM dataset spans this evolution, from early 3-color panels to current 10-color configurations that can simultaneously analyze multiple surface and intracellular markers. This heterogeneous data presents both a challenge and an opportunity for AI-assisted analysis.
+                    </p>
+                    <p>
+                        <strong>OCI Data Science</strong> provides the computational environment for developing dimensionality reduction algorithms that can:
+                    </p>
+                    <ul style="margin: 1rem 0 1.5rem 1.5rem;">
+                        <li>Normalize data across different instrument generations and panel configurations</li>
+                        <li>Apply UMAP/t-SNE for population visualization</li>
+                        <li>Automatically gate populations based on learned patterns</li>
+                        <li>Detect minimal residual disease (MRD) at sensitivities below 0.01%</li>
+                    </ul>
+
+                    <h3>Stage 3: Molecular Genetics with GPU Acceleration</h3>
+                    <p>
+                        The 116-gene NGS panel used by AML-BFM covers the most clinically relevant mutations, fusions, and copy number variations in pediatric leukemia. Processing this data requires significant computational resources, particularly for variant calling and annotation.
+                    </p>
+                    <p>
+                        <strong>NVIDIA Parabricks on OCI</strong> accelerates genomic analysis workflows from hours to minutes. The GPU-optimized pipeline includes:
+                    </p>
+                    <ul style="margin: 1rem 0 1.5rem 1.5rem;">
+                        <li>BWA-MEM2 alignment (GPU-accelerated)</li>
+                        <li>GATK HaplotypeCaller for variant calling</li>
+                        <li>Custom annotation with ClinVar, COSMIC, and AML-BFM-specific databases</li>
+                        <li>Cryptic fusion detection using RNA-seq data</li>
+                    </ul>
+                    <p>
+                        A typical sample analysis that previously required 24 hours on CPU-based infrastructure can be completed in approximately 30 minutes using A10 or A100 GPUs on OCI, enabling same-day results for urgent cases.
+                    </p>
+
+                    <figure class="image-figure">
+                        <img src="images/ngs-molecular-genetics.png" alt="NGS Pipeline with Parabricks">
+                        <figcaption>NVIDIA Parabricks acceleration reduces NGS analysis from 24 hours to ~30 minutes</figcaption>
+                    </figure>
+
+                    <h3>Integration and Reporting</h3>
+                    <p>
+                        The final stage uses <strong>OCI GenAI</strong> (Cohere Command A or Gemini 2.5 Pro) to synthesize findings from all three analytical modalities into a structured diagnostic report. The LLM is prompted with the individual analysis results and generates a narrative summary that:
+                    </p>
+                    <ul style="margin: 1rem 0 1.5rem 1.5rem;">
+                        <li>Correlates morphological findings with immunophenotype</li>
+                        <li>Interprets genetic variants in clinical context</li>
+                        <li>Suggests WHO 2022 classification</li>
+                        <li>Highlights discrepancies requiring expert review</li>
+                        <li>Provides references to relevant literature</li>
+                    </ul>
+                    <p>
+                        All AI-generated content is flagged as such and presented to the reviewing pathologist for validation before becoming part of the official medical record.
+                    </p>
+
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <div class="metric-value">95%+</div>
+                            <div class="metric-label">Target Accuracy</div>
+                            <div class="metric-note">Goal for AI-assisted blast detection</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">&lt;24h</div>
+                            <div class="metric-label">Target Turnaround</div>
+                            <div class="metric-note">From sample to integrated report</div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">2,000+</div>
+                            <div class="metric-label">Training Samples</div>
+                            <div class="metric-note">Expert-annotated morphology images</div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <aside>
+                    <div class="sidebar-card">
+                        <h4>OCI Services Used</h4>
+                        <ul>
+                            <li><strong>OCI Vision</strong> - Custom model training for morphology</li>
+                            <li><strong>OCI Data Science</strong> - ML pipelines for flow cytometry</li>
+                            <li><strong>NVIDIA Parabricks</strong> - GPU-accelerated genomics</li>
+                            <li><strong>OCI GenAI</strong> - Report synthesis</li>
+                            <li><strong>Database 26ai</strong> - Vector search for similar cases</li>
+                        </ul>
+                    </div>
+
+                    <div class="sidebar-card">
+                        <h4>Cost Estimates</h4>
+                        <ul>
+                            <li><strong>Vision Training</strong>: ~$50/hour</li>
+                            <li><strong>Vision Inference</strong>: $1/1K images</li>
+                            <li><strong>GPU (A10)</strong>: $0.10/hour</li>
+                            <li><strong>GPU (A100)</strong>: $4.95/hour</li>
+                            <li><strong>GenAI (Flash)</strong>: $0.0075/1M tokens</li>
+                        </ul>
+                        <p style="font-size: 0.75rem; margin-top: 1rem; color: var(--text-secondary);">
+                            Source: <a href="https://www.oracle.com/cloud/price-list/" target="_blank" style="color: var(--oracle-red);">oracle.com/cloud/price-list</a> (Feb 2026)
+                        </p>
+                    </div>
+
+                    <div class="sidebar-card">
+                        <h4>Data Requirements</h4>
+                        <ul>
+                            <li>Morphology: TIFF/PNG images, 40x magnification</li>
+                            <li>Flow Cytometry: FCS 3.0/3.1 files</li>
+                            <li>NGS: FASTQ paired-end reads</li>
+                            <li>Annotations: JSON/CSV with expert labels</li>
+                        </ul>
+                    </div>
+
+                    <div class="sidebar-card">
+                        <h4>Related Pages</h4>
+                        <ul>
+                            <li><a href="architecture.html" style="color: var(--oracle-red);">Technical Architecture</a></li>
+                            <li><a href="tumor-board.html" style="color: var(--oracle-red);">AI Tumor Board</a></li>
+                            <li><a href="user-flows.html" style="color: var(--oracle-red);">User Workflows</a></li>
+                        </ul>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Pediatric Leukemia AI Ecosystem - Reference Architecture Demo</p>
+        <p>Powered by <a href="https://www.oracle.com/cloud/" target="_blank">Oracle Cloud Infrastructure</a></p>
+        <p style="margin-top: 1rem; opacity: 0.7; font-size: 0.75rem;">
+            DISCLAIMER: Unofficial community project. Not affiliated with Oracle Corporation. See <a href="../../docs/COMPLIANCE-AND-DEPLOYMENT.md">compliance notes</a>.
+        </p>
+    </footer>
+</body>
+</html>

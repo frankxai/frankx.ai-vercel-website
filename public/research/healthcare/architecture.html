@@ -1,0 +1,745 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technical Architecture - Project Prometheus</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --oracle-red: #C74634;
+            --oracle-red-light: rgba(199, 70, 52, 0.1);
+            --bg-dark: #0A0A0F;
+            --bg-card: rgba(22, 27, 34, 0.8);
+            --text-primary: #E6EDF3;
+            --text-secondary: #8B949E;
+            --text-muted: #6E7681;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --pillar-diagnostic: #22C55E;
+            --pillar-infra: #0EA5E9;
+            --pillar-therapy: #A855F7;
+            --pillar-global: #F59E0B;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 0 24px;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .nav-brand svg { width: 32px; height: 32px; fill: var(--oracle-red); }
+
+        .nav-menu { display: flex; gap: 8px; }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--text-primary);
+            background: var(--bg-card);
+        }
+
+        .nav-badge {
+            background: var(--oracle-red-light);
+            border: 1px solid rgba(199, 70, 52, 0.3);
+            color: var(--oracle-red);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .page-header {
+            padding: 120px 24px 60px;
+            background: linear-gradient(135deg, rgba(199, 70, 52, 0.1) 0%, rgba(10, 10, 15, 1) 100%);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .page-header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a { color: var(--text-secondary); text-decoration: none; }
+        .breadcrumb a:hover { color: var(--text-primary); }
+
+        .page-title {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .page-subtitle {
+            font-size: 20px;
+            color: var(--text-secondary);
+            max-width: 700px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 32px;
+        }
+
+        /* Architecture Diagram */
+        .arch-diagram {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 48px;
+            margin-bottom: 40px;
+        }
+
+        .arch-layer {
+            margin-bottom: 24px;
+        }
+
+        .arch-layer:last-child { margin-bottom: 0; }
+
+        .layer-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .layer-title {
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .layer-line {
+            flex: 1;
+            height: 1px;
+            background: var(--border-color);
+        }
+
+        .layer-content {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .arch-box {
+            flex: 1;
+            min-width: 200px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .arch-box:hover {
+            background: rgba(255, 255, 255, 0.06);
+            transform: translateY(-2px);
+        }
+
+        .arch-box.highlight-red { border-color: var(--oracle-red); }
+        .arch-box.highlight-green { border-color: var(--pillar-diagnostic); }
+        .arch-box.highlight-blue { border-color: var(--pillar-infra); }
+        .arch-box.highlight-purple { border-color: var(--pillar-therapy); }
+        .arch-box.highlight-orange { border-color: var(--pillar-global); }
+
+        .arch-icon {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .arch-label {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .arch-sublabel {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        /* Foundation Box */
+        .foundation-box {
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(245, 158, 11, 0.05) 100%);
+            border: 2px solid var(--pillar-global);
+            border-radius: 16px;
+            padding: 32px;
+            margin: 32px 0;
+            text-align: center;
+        }
+
+        .foundation-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #FCD34D;
+            margin-bottom: 8px;
+        }
+
+        .foundation-subtitle {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .capability-pills {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .capability-pill {
+            background: rgba(245, 158, 11, 0.2);
+            border: 1px solid rgba(245, 158, 11, 0.4);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 12px;
+            color: #FCD34D;
+            font-weight: 500;
+        }
+
+        /* Service Table */
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .service-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .service-card:hover {
+            border-color: var(--oracle-red);
+        }
+
+        .service-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .service-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--oracle-red-light);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+        }
+
+        .service-name {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .service-category {
+            font-size: 12px;
+            color: var(--oracle-red);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .service-description {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        .service-uses {
+            list-style: none;
+        }
+
+        .service-uses li {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--text-muted);
+            padding: 4px 0;
+        }
+
+        .service-uses li::before {
+            content: '✓';
+            color: var(--pillar-diagnostic);
+            font-weight: bold;
+        }
+
+        /* Data Flow */
+        .data-flow {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 32px;
+        }
+
+        .flow-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+
+        .flow-diagram {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            overflow-x: auto;
+            padding: 16px 0;
+        }
+
+        .flow-node {
+            flex: 0 0 auto;
+            width: 120px;
+            text-align: center;
+        }
+
+        .flow-node-box {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 16px 12px;
+            margin-bottom: 8px;
+        }
+
+        .flow-node-icon { font-size: 24px; }
+        .flow-node-label { font-size: 11px; color: var(--text-secondary); }
+        .flow-arrow { color: var(--oracle-red); font-size: 20px; }
+
+        /* Footer */
+        .footer {
+            padding: 40px 24px;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-text { color: var(--text-muted); font-size: 13px; }
+        .footer-link { color: var(--oracle-red); text-decoration: none; }
+
+        @media (max-width: 1024px) {
+            .service-grid { grid-template-columns: 1fr; }
+            .layer-content { flex-direction: column; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu { display: none; }
+            .flow-diagram { flex-direction: column; }
+            .flow-arrow { transform: rotate(90deg); }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                Project Prometheus
+            </a>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">Overview</a>
+                <a href="diagnostic-ai.html" class="nav-link">Diagnostic AI</a>
+                <a href="tumor-board.html" class="nav-link">Tumor Board</a>
+                <a href="therapy-acceleration.html" class="nav-link">Therapy</a>
+                <a href="architecture.html" class="nav-link active">Architecture</a>
+                <a href="user-flows.html" class="nav-link">User Flows</a>
+            </div>
+            <span class="nav-badge">Oracle Cloud</span>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="page-header-content">
+            <div class="breadcrumb">
+                <a href="index.html">Project Prometheus</a>
+                <span>/</span>
+                <span>Technical Architecture</span>
+            </div>
+            <h1 class="page-title">OCI Architecture</h1>
+            <p class="page-subtitle">
+                Enterprise-grade architecture on Oracle Cloud Infrastructure,
+                designed for healthcare AI workloads with GDPR compliance.
+            </p>
+        </div>
+    </header>
+
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">System Architecture</h2>
+
+            <div class="arch-diagram">
+                <!-- Presentation Layer -->
+                <div class="arch-layer">
+                    <div class="layer-header">
+                        <span class="layer-title" style="color: var(--pillar-infra);">Presentation Layer</span>
+                        <span class="layer-line"></span>
+                    </div>
+                    <div class="layer-content">
+                        <div class="arch-box highlight-blue">
+                            <div class="arch-icon">👨‍⚕️</div>
+                            <div class="arch-label">Clinician Portal</div>
+                            <div class="arch-sublabel">Oracle APEX</div>
+                        </div>
+                        <div class="arch-box highlight-blue">
+                            <div class="arch-icon">🏥</div>
+                            <div class="arch-label">Tumor Board</div>
+                            <div class="arch-sublabel">Oracle Digital Assistant</div>
+                        </div>
+                        <div class="arch-box highlight-blue">
+                            <div class="arch-icon">📊</div>
+                            <div class="arch-label">Research Dashboard</div>
+                            <div class="arch-sublabel">OCI Analytics Cloud</div>
+                        </div>
+                        <div class="arch-box highlight-blue">
+                            <div class="arch-icon">🌐</div>
+                            <div class="arch-label">Global API</div>
+                            <div class="arch-sublabel">REST/GraphQL</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Integration Layer -->
+                <div class="arch-layer">
+                    <div class="layer-header">
+                        <span class="layer-title" style="color: var(--oracle-red);">Integration Layer</span>
+                        <span class="layer-line"></span>
+                    </div>
+                    <div class="layer-content">
+                        <div class="arch-box highlight-red" style="flex: 2;">
+                            <div class="arch-icon">🔗</div>
+                            <div class="arch-label">OCI API Gateway + Integration Cloud</div>
+                            <div class="arch-sublabel">Secure routing, rate limiting, authentication</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI/ML Layer -->
+                <div class="arch-layer">
+                    <div class="layer-header">
+                        <span class="layer-title" style="color: var(--pillar-diagnostic);">AI/ML Services Layer</span>
+                        <span class="layer-line"></span>
+                    </div>
+                    <div class="layer-content">
+                        <div class="arch-box highlight-green">
+                            <div class="arch-icon">👁️</div>
+                            <div class="arch-label">OCI Vision</div>
+                            <div class="arch-sublabel">Medical Image AI</div>
+                        </div>
+                        <div class="arch-box highlight-green">
+                            <div class="arch-icon">🧠</div>
+                            <div class="arch-label">OCI Generative AI</div>
+                            <div class="arch-sublabel">Gemini 2.5 + Cohere</div>
+                        </div>
+                        <div class="arch-box highlight-green">
+                            <div class="arch-icon">📈</div>
+                            <div class="arch-label">OCI Data Science</div>
+                            <div class="arch-sublabel">ML Platform</div>
+                        </div>
+                        <div class="arch-box highlight-green">
+                            <div class="arch-icon">⚡</div>
+                            <div class="arch-label">GPU Compute</div>
+                            <div class="arch-sublabel">A100 / H100</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Foundation -->
+                <div class="foundation-box">
+                    <h3 class="foundation-title">Oracle Database 26ai</h3>
+                    <p class="foundation-subtitle">Converged Database Foundation - Vector + Graph + JSON + SQL</p>
+                    <div class="capability-pills">
+                        <span class="capability-pill">HNSW Vector Index</span>
+                        <span class="capability-pill">SQL Property Graph</span>
+                        <span class="capability-pill">JSON Duality Views</span>
+                        <span class="capability-pill">Hybrid Search</span>
+                        <span class="capability-pill">AI Vectors</span>
+                        <span class="capability-pill">OMOP CDM</span>
+                    </div>
+                </div>
+
+                <!-- Infrastructure Layer -->
+                <div class="arch-layer">
+                    <div class="layer-header">
+                        <span class="layer-title" style="color: var(--pillar-therapy);">Infrastructure Layer</span>
+                        <span class="layer-line"></span>
+                    </div>
+                    <div class="layer-content">
+                        <div class="arch-box highlight-purple">
+                            <div class="arch-icon">💾</div>
+                            <div class="arch-label">Object Storage</div>
+                            <div class="arch-sublabel">Images, NGS, Files</div>
+                        </div>
+                        <div class="arch-box highlight-purple">
+                            <div class="arch-icon">🔒</div>
+                            <div class="arch-label">OCI Vault</div>
+                            <div class="arch-sublabel">Key Management</div>
+                        </div>
+                        <div class="arch-box highlight-purple">
+                            <div class="arch-icon">🛡️</div>
+                            <div class="arch-label">Data Safe</div>
+                            <div class="arch-sublabel">GDPR Compliance</div>
+                        </div>
+                        <div class="arch-box highlight-purple">
+                            <div class="arch-icon">🌍</div>
+                            <div class="arch-label">FastConnect</div>
+                            <div class="arch-sublabel">Site Connectivity</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Data Flow -->
+            <div class="data-flow">
+                <h3 class="flow-title">Patient Data Flow</h3>
+                <div class="flow-diagram">
+                    <div class="flow-node">
+                        <div class="flow-node-box">
+                            <div class="flow-node-icon">🏥</div>
+                        </div>
+                        <div class="flow-node-label">Lab Systems</div>
+                    </div>
+                    <span class="flow-arrow">→</span>
+                    <div class="flow-node">
+                        <div class="flow-node-box">
+                            <div class="flow-node-icon">📥</div>
+                        </div>
+                        <div class="flow-node-label">OIC Ingest</div>
+                    </div>
+                    <span class="flow-arrow">→</span>
+                    <div class="flow-node">
+                        <div class="flow-node-box">
+                            <div class="flow-node-icon">💾</div>
+                        </div>
+                        <div class="flow-node-label">Object Storage</div>
+                    </div>
+                    <span class="flow-arrow">→</span>
+                    <div class="flow-node">
+                        <div class="flow-node-box">
+                            <div class="flow-node-icon">🧠</div>
+                        </div>
+                        <div class="flow-node-label">AI Processing</div>
+                    </div>
+                    <span class="flow-arrow">→</span>
+                    <div class="flow-node">
+                        <div class="flow-node-box">
+                            <div class="flow-node-icon">🗄️</div>
+                        </div>
+                        <div class="flow-node-label">Database 26ai</div>
+                    </div>
+                    <span class="flow-arrow">→</span>
+                    <div class="flow-node">
+                        <div class="flow-node-box">
+                            <div class="flow-node-icon">👤</div>
+                        </div>
+                        <div class="flow-node-label">Digital Twin</div>
+                    </div>
+                    <span class="flow-arrow">→</span>
+                    <div class="flow-node">
+                        <div class="flow-node-box">
+                            <div class="flow-node-icon">📊</div>
+                        </div>
+                        <div class="flow-node-label">Clinical Apps</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- OCI Services -->
+    <section class="section" style="background: rgba(22, 27, 34, 0.5);">
+        <div class="container">
+            <h2 class="section-title">OCI Services in Use</h2>
+            <div class="service-grid">
+                <div class="service-card">
+                    <div class="service-header">
+                        <div class="service-icon">🧠</div>
+                        <div>
+                            <div class="service-name">OCI Generative AI</div>
+                            <div class="service-category">AI/ML Platform</div>
+                        </div>
+                    </div>
+                    <p class="service-description">
+                        Foundation models including Gemini 2.5 Flash/Pro and Cohere Command A
+                        for report generation, case synthesis, and knowledge retrieval.
+                    </p>
+                    <ul class="service-uses">
+                        <li>Tumor board case preparation</li>
+                        <li>Automated report generation</li>
+                        <li>RAG-based literature search</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-header">
+                        <div class="service-icon">👁️</div>
+                        <div>
+                            <div class="service-name">OCI Vision</div>
+                            <div class="service-category">Computer Vision</div>
+                        </div>
+                    </div>
+                    <p class="service-description">
+                        Custom CNN models trained on medical imagery for
+                        morphology analysis and cell classification.
+                    </p>
+                    <ul class="service-uses">
+                        <li>Bone marrow smear analysis</li>
+                        <li>Leukemic blast identification</li>
+                        <li>Cell count automation</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-header">
+                        <div class="service-icon">🗄️</div>
+                        <div>
+                            <div class="service-name">Oracle Database 26ai</div>
+                            <div class="service-category">Converged Database</div>
+                        </div>
+                    </div>
+                    <p class="service-description">
+                        Unified platform for vector search, graph analytics, JSON flexibility,
+                        and SQL analytics on clinical data.
+                    </p>
+                    <ul class="service-uses">
+                        <li>Patient digital twins</li>
+                        <li>Similar patient search</li>
+                        <li>Knowledge graph queries</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-header">
+                        <div class="service-icon">🔗</div>
+                        <div>
+                            <div class="service-name">OCI Integration Cloud</div>
+                            <div class="service-category">Integration Platform</div>
+                        </div>
+                    </div>
+                    <p class="service-description">
+                        Pre-built healthcare adapters for lab systems, clinical databases,
+                        and international site connectivity.
+                    </p>
+                    <ul class="service-uses">
+                        <li>Swisslab integration</li>
+                        <li>MARVIN-DB connectivity</li>
+                        <li>HL7 FHIR support</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-header">
+                        <div class="service-icon">🛡️</div>
+                        <div>
+                            <div class="service-name">OCI Data Safe</div>
+                            <div class="service-category">Security & Compliance</div>
+                        </div>
+                    </div>
+                    <p class="service-description">
+                        Automated GDPR compliance with sensitive data discovery,
+                        masking, and audit logging.
+                    </p>
+                    <ul class="service-uses">
+                        <li>Sensitive data discovery</li>
+                        <li>Data masking</li>
+                        <li>Compliance reporting</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-header">
+                        <div class="service-icon">📈</div>
+                        <div>
+                            <div class="service-name">OCI Data Science</div>
+                            <div class="service-category">ML Platform</div>
+                        </div>
+                    </div>
+                    <p class="service-description">
+                        Managed ML platform for model training, deployment,
+                        and federated learning coordination.
+                    </p>
+                    <ul class="service-uses">
+                        <li>Custom model training</li>
+                        <li>Federated learning</li>
+                        <li>Model deployment</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p class="footer-text">
+            Project Prometheus | Oracle AI Center of Excellence |
+            <a href="../../docs/TECHNOLOGY-STACK.md" class="footer-link">View Technology Stack</a>
+        </p>
+    </footer>
+</body>
+</html>

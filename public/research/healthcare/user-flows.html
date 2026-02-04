@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Flows - Project Prometheus</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --oracle-red: #C74634;
+            --oracle-red-light: rgba(199, 70, 52, 0.1);
+            --bg-dark: #0A0A0F;
+            --bg-card: rgba(22, 27, 34, 0.8);
+            --text-primary: #E6EDF3;
+            --text-secondary: #8B949E;
+            --text-muted: #6E7681;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --pillar-diagnostic: #22C55E;
+            --pillar-infra: #0EA5E9;
+            --pillar-therapy: #A855F7;
+            --pillar-global: #F59E0B;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 0 24px;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .nav-brand svg { width: 32px; height: 32px; fill: var(--oracle-red); }
+
+        .nav-menu { display: flex; gap: 8px; }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--text-primary);
+            background: var(--bg-card);
+        }
+
+        .nav-badge {
+            background: var(--oracle-red-light);
+            border: 1px solid rgba(199, 70, 52, 0.3);
+            color: var(--oracle-red);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .page-header {
+            padding: 120px 24px 60px;
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.1) 0%, rgba(10, 10, 15, 1) 100%);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .page-header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a { color: var(--text-secondary); text-decoration: none; }
+        .breadcrumb a:hover { color: var(--text-primary); }
+
+        .page-title {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .page-subtitle {
+            font-size: 20px;
+            color: var(--text-secondary);
+            max-width: 700px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 32px;
+        }
+
+        /* Flow Tabs */
+        .flow-tabs {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+        }
+
+        .flow-tab {
+            padding: 12px 24px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--text-secondary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .flow-tab:hover {
+            border-color: var(--oracle-red);
+            color: var(--text-primary);
+        }
+
+        .flow-tab.active {
+            background: var(--oracle-red);
+            border-color: var(--oracle-red);
+            color: white;
+        }
+
+        /* User Flow Card */
+        .flow-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 40px;
+            margin-bottom: 32px;
+        }
+
+        .flow-header {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 32px;
+        }
+
+        .flow-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+        }
+
+        .flow-icon.green { background: rgba(34, 197, 94, 0.15); }
+        .flow-icon.blue { background: rgba(14, 165, 233, 0.15); }
+        .flow-icon.purple { background: rgba(168, 85, 247, 0.15); }
+        .flow-icon.orange { background: rgba(245, 158, 11, 0.15); }
+
+        .flow-title {
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .flow-subtitle {
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* Journey Steps */
+        .journey {
+            position: relative;
+            padding-left: 40px;
+        }
+
+        .journey::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--pillar-diagnostic), var(--pillar-infra), var(--pillar-therapy));
+        }
+
+        .journey-step {
+            position: relative;
+            margin-bottom: 32px;
+            padding-left: 32px;
+        }
+
+        .journey-step:last-child { margin-bottom: 0; }
+
+        .journey-marker {
+            position: absolute;
+            left: -40px;
+            top: 4px;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: var(--bg-dark);
+            border: 2px solid var(--pillar-diagnostic);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 700;
+            color: var(--pillar-diagnostic);
+        }
+
+        .journey-step:nth-child(2) .journey-marker,
+        .journey-step:nth-child(3) .journey-marker { border-color: var(--pillar-infra); color: var(--pillar-infra); }
+        .journey-step:nth-child(4) .journey-marker,
+        .journey-step:nth-child(5) .journey-marker { border-color: var(--pillar-therapy); color: var(--pillar-therapy); }
+        .journey-step:nth-child(6) .journey-marker { border-color: var(--pillar-global); color: var(--pillar-global); }
+
+        .journey-content {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .journey-content:hover {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: rgba(199, 70, 52, 0.3);
+        }
+
+        .journey-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .journey-description {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+
+        .journey-meta {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        .meta-item .icon { font-size: 14px; }
+
+        .meta-tag {
+            background: var(--oracle-red-light);
+            border: 1px solid rgba(199, 70, 52, 0.3);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 10px;
+            color: var(--oracle-red);
+            font-weight: 600;
+        }
+
+        /* Persona Cards */
+        .persona-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 48px;
+        }
+
+        .persona-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .persona-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--oracle-red);
+        }
+
+        .persona-card.active {
+            border-color: var(--oracle-red);
+            background: rgba(199, 70, 52, 0.05);
+        }
+
+        .persona-avatar {
+            font-size: 40px;
+            margin-bottom: 12px;
+        }
+
+        .persona-name {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .persona-role {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* Metrics Row */
+        .flow-metrics {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-top: 32px;
+            padding-top: 32px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .flow-metric {
+            text-align: center;
+        }
+
+        .flow-metric-value {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--oracle-red);
+        }
+
+        .flow-metric-label {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* Footer */
+        .footer {
+            padding: 40px 24px;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-text { color: var(--text-muted); font-size: 13px; }
+        .footer-link { color: var(--oracle-red); text-decoration: none; }
+
+        @media (max-width: 1024px) {
+            .persona-grid { grid-template-columns: repeat(2, 1fr); }
+            .flow-metrics { grid-template-columns: 1fr; gap: 24px; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu { display: none; }
+            .persona-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                Project Prometheus
+            </a>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">Overview</a>
+                <a href="diagnostic-ai.html" class="nav-link">Diagnostic AI</a>
+                <a href="tumor-board.html" class="nav-link">Tumor Board</a>
+                <a href="therapy-acceleration.html" class="nav-link">Therapy</a>
+                <a href="architecture.html" class="nav-link">Architecture</a>
+                <a href="user-flows.html" class="nav-link active">User Flows</a>
+            </div>
+            <span class="nav-badge">Oracle Cloud</span>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="page-header-content">
+            <div class="breadcrumb">
+                <a href="index.html">Project Prometheus</a>
+                <span>/</span>
+                <span>User Flows</span>
+            </div>
+            <h1 class="page-title">User Journeys</h1>
+            <p class="page-subtitle">
+                Interactive visualization of key workflows across the
+                AI-driven pediatric leukemia ecosystem.
+            </p>
+        </div>
+    </header>
+
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">Key Personas</h2>
+            <div class="persona-grid">
+                <div class="persona-card active" onclick="showFlow('pathologist')">
+                    <div class="persona-avatar">🔬</div>
+                    <div class="persona-name">Dr. Schmidt</div>
+                    <div class="persona-role">Pathologist</div>
+                </div>
+                <div class="persona-card" onclick="showFlow('oncologist')">
+                    <div class="persona-avatar">👨‍⚕️</div>
+                    <div class="persona-name">Dr. Mueller</div>
+                    <div class="persona-role">Pediatric Oncologist</div>
+                </div>
+                <div class="persona-card" onclick="showFlow('researcher')">
+                    <div class="persona-avatar">🧬</div>
+                    <div class="persona-name">Dr. Weber</div>
+                    <div class="persona-role">Research Scientist</div>
+                </div>
+                <div class="persona-card" onclick="showFlow('global')">
+                    <div class="persona-avatar">🌍</div>
+                    <div class="persona-name">Dr. Nazarova</div>
+                    <div class="persona-role">Kazakhstan Oncologist</div>
+                </div>
+            </div>
+
+            <!-- Pathologist Flow -->
+            <div class="flow-card" id="flow-pathologist">
+                <div class="flow-header">
+                    <div class="flow-icon green">🔬</div>
+                    <div>
+                        <h3 class="flow-title">AI-Assisted Diagnostic Workflow</h3>
+                        <p class="flow-subtitle">Pathologist receiving AI support for morphology analysis</p>
+                    </div>
+                </div>
+
+                <div class="journey">
+                    <div class="journey-step">
+                        <div class="journey-marker">1</div>
+                        <div class="journey-content">
+                            <h4 class="journey-title">Sample Received</h4>
+                            <p class="journey-description">
+                                Bone marrow aspirate arrives from pediatric ward. Lab tech prepares
+                                smear and uploads high-resolution scan to OCI Object Storage.
+                            </p>
+                            <div class="journey-meta">
+                                <span class="meta-item"><span class="icon">⏱️</span> 5 min</span>
+                                <span class="meta-item"><span class="icon">🔧</span> Lab Scanner + OCI Object Storage</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="journey-step">
+                        <div class="journey-marker">2</div>
+                        <div class="journey-content">
+                            <h4 class="journey-title">AI Pre-Analysis</h4>
+                            <p class="journey-description">
+                                OCI Vision automatically processes the smear, identifying and
+                                classifying cells. AI highlights suspicious regions and generates
+                                preliminary cell counts.
+                            </p>
+                            <div class="journey-meta">
+                                <span class="meta-item"><span class="icon">⏱️</span> 2 min</span>
+                                <span class="meta-item"><span class="icon">🔧</span> OCI Vision + Custom CNN</span>
+                                <span class="meta-tag">AI-POWERED</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="journey-step">
+                        <div class="journey-marker">3</div>
+                        <div class="journey-content">
+                            <h4 class="journey-title">Expert Review</h4>
+                            <p class="journey-description">
+                                Dr. Schmidt reviews AI findings in the clinician portal. She can
+                                accept, modify, or override AI classifications. Discrepancies
+                                are flagged for quality improvement.
+                            </p>
+                            <div class="journey-meta">
+                                <span class="meta-item"><span class="icon">⏱️</span> 15 min</span>
+                                <span class="meta-item"><span class="icon">🔧</span> Oracle APEX Portal</span>
+                                <span class="meta-tag">HUMAN-IN-LOOP</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="journey-step">
+                        <div class="journey-marker">4</div>
+                        <div class="journey-content">
+                            <h4 class="journey-title">Integrated Diagnosis</h4>
+                            <p class="journey-description">
+                                System combines morphology with immunophenotype and genetic data
+                                (if available) to generate comprehensive diagnostic report with
+                                confidence scores and similar case references.
+                            </p>
+                            <div class="journey-meta">
+                                <span class="meta-item"><span class="icon">⏱️</span> Instant</span>
+                                <span class="meta-item"><span class="icon">🔧</span> Database 26ai + Vector Search</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="journey-step">
+                        <div class="journey-marker">5</div>
+                        <div class="journey-content">
+                            <h4 class="journey-title">Digital Twin Created</h4>
+                            <p class="journey-description">
+                                Patient's complete diagnostic profile is stored as a digital twin,
+                                enabling longitudinal tracking and AI-powered treatment response
+                                prediction.
+                            </p>
+                            <div class="journey-meta">
+                                <span class="meta-item"><span class="icon">⏱️</span> Instant</span>
+                                <span class="meta-item"><span class="icon">🔧</span> JSON Duality Views</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flow-metrics">
+                    <div class="flow-metric">
+                        <div class="flow-metric-value">&lt;30 min</div>
+                        <div class="flow-metric-label">Total Workflow Time</div>
+                    </div>
+                    <div class="flow-metric">
+                        <div class="flow-metric-value">95%</div>
+                        <div class="flow-metric-label">AI Pre-classification Accuracy</div>
+                    </div>
+                    <div class="flow-metric">
+                        <div class="flow-metric-value">70%</div>
+                        <div class="flow-metric-label">Time Saved vs Manual</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Oncologist Flow (Tumor Board) -->
+            <div class="flow-card" id="flow-oncologist" style="display: none;">
+                <div class="flow-header">
+                    <div class="flow-icon blue">👨‍⚕️</div>
+                    <div>
+                        <h3 class="flow-title">AI-Powered Tumor Board</h3>
+                        <p class="flow-subtitle">Oncologist preparing and presenting complex case</p>
+                    </div>
+                </div>
+
+                <div class="journey">
+                    <div class="journey-step">
+                        <div class="journey-marker">1</div>
+                        <div class="journey-content">
+                            <h4 class="journey-title">Case Submission</h4>
+                            <p class="journey-description">
+                                Dr. Mueller submits complex relapsed AML case to the tumor board
+                                platform, uploading all relevant documents, images, and reports.
+                            </p>
+                            <div class="journey-meta">
+                                <span class="meta-item"><span class="icon">⏱️</span> 10 min</span>
+                                <span class="meta-item"><span class="icon">🔧</span> OCI Integration Cloud</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="journey-step">
+                        <div class="journey-marker">2</div>
+                        <div class="journey-content">
+                            <h4 class="journey-title">AI Case Preparation</h4>
+                            <p class="journey-description">
+                                Gemini 2.5 Pro analyzes all documents, synthesizes a comprehensive
+                                case summary, identifies discrepancies, and performs literature
+                                review for relevant recent publications.
+                            </p>
+                            <div class="journey-meta">
+                                <span class="meta-item"><span class="icon">⏱️</span> 5 min</span>
+                                <span class="meta-item"><span class="icon">🔧</span> OCI GenAI + RAG</span>
+                                <span class="meta-tag">AI-POWERED</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="journey-step">
+                        <div class="journey-marker">3</div>
+                        <div class="journey-content">
+                            <h4 class="journey-title">Similar Patient Analysis</h4>
+                            <p class="journey-description">
+                                Vector search identifies similar historical cases. Graph queries
+                                reveal relevant treatment pathways and outcomes from the knowledge
+                                graph.
+                            </p>
+                            <div class="journey-meta">
+                                <span class="meta-item"><span class="icon">⏱️</span> Instant</span>
+                                <span class="meta-item"><span class="icon">🔧</span> Database 26ai Vector + Graph</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="journey-step">
+                        <div class="journey-marker">4</div>
+                        <div class="journey-content">
+                            <h4 class="journey-title">Tumor Board Session</h4>
+                            <p class="journey-description">
+                                AI-generated summary displayed during session. Real-time
+                                transcription and discussion analysis. Experts discuss and
+                                reach consensus with AI support.
+                            </p>
+                            <div class="journey-meta">
+                                <span class="meta-item"><span class="icon">⏱️</span> 20 min</span>
+                                <span class="meta-item"><span class="icon">🔧</span> Oracle Digital Assistant</span>
+                                <span class="meta-tag">HUMAN-IN-LOOP</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="journey-step">
+                        <div class="journey-marker">5</div>
+                        <div class="journey-content">
+                            <h4 class="journey-title">Automated Documentation</h4>
+                            <p class="journey-description">
+                                AI generates structured meeting minutes, treatment recommendations,
+                                and follow-up actions. Report automatically sent to referring
+                                physician.
+                            </p>
+                            <div class="journey-meta">
+                                <span class="meta-item"><span class="icon">⏱️</span> 2 min</span>
+                                <span class="meta-item"><span class="icon">🔧</span> OCI GenAI Report Generation</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flow-metrics">
+                    <div class="flow-metric">
+                        <div class="flow-metric-value">~40 min</div>
+                        <div class="flow-metric-label">End-to-End Process</div>
+                    </div>
+                    <div class="flow-metric">
+                        <div class="flow-metric-value">80%</div>
+                        <div class="flow-metric-label">Prep Time Reduction</div>
+                    </div>
+                    <div class="flow-metric">
+                        <div class="flow-metric-value">100%</div>
+                        <div class="flow-metric-label">Documentation Compliance</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Global Access Flow -->
+            <div class="flow-card" id="flow-global" style="display: none;">
+                <div class="flow-header">
+                    <div class="flow-icon orange">🌍</div>
+                    <div>
+                        <h3 class="flow-title">Global Federated Access</h3>
+                        <p class="flow-subtitle">Kazakhstan oncologist accessing AI diagnostics</p>
+                    </div>
+                </div>
+
+                <div class="journey">
+                    <div class="journey-step">
+                        <div class="journey-marker">1</div>
+                        <div class="journey-content">
+                            <h4 class="journey-title">Secure Upload</h4>
+                            <p class="journey-description">
+                                Dr. Nazarova uploads patient data through secure encrypted
+                                connection. Data is automatically translated and standardized
+                                to OMOP format.
+                            </p>
+                            <div class="journey-meta">
+                                <span class="meta-item"><span class="icon">⏱️</span> 5 min</span>
+                                <span class="meta-item"><span class="icon">🔧</span> OCI FastConnect + Language AI</span>
+                                <span class="meta-tag">ENCRYPTED</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="journey-step">
+                        <div class="journey-marker">2</div>
+                        <div class="journey-content">
+                            <h4 class="journey-title">Federated AI Analysis</h4>
+                            <p class="journey-description">
+                                AI models trained on global data (without data leaving local
+                                jurisdictions) analyze the case. GDPR-compliant federated
+                                learning ensures privacy.
+                            </p>
+                            <div class="journey-meta">
+                                <span class="meta-item"><span class="icon">⏱️</span> 10 min</span>
+                                <span class="meta-item"><span class="icon">🔧</span> OCI Data Science + Federated Learning</span>
+                                <span class="meta-tag">PRIVACY-PRESERVING</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="journey-step">
+                        <div class="journey-marker">3</div>
+                        <div class="journey-content">
+                            <h4 class="journey-title">Expert Consultation</h4>
+                            <p class="journey-description">
+                                Case automatically queued for next tumor board. Dr. Nazarova
+                                can join virtually with real-time translation support.
+                            </p>
+                            <div class="journey-meta">
+                                <span class="meta-item"><span class="icon">⏱️</span> Scheduled</span>
+                                <span class="meta-item"><span class="icon">🔧</span> OCI Communication + Translation</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="journey-step">
+                        <div class="journey-marker">4</div>
+                        <div class="journey-content">
+                            <h4 class="journey-title">Knowledge Transfer</h4>
+                            <p class="journey-description">
+                                Recommendations delivered in local language. Educational
+                                materials and protocol references provided. Case contributes
+                                to federated model improvement (anonymized).
+                            </p>
+                            <div class="journey-meta">
+                                <span class="meta-item"><span class="icon">⏱️</span> Immediate</span>
+                                <span class="meta-item"><span class="icon">🔧</span> OCI GenAI + Knowledge Base</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flow-metrics">
+                    <div class="flow-metric">
+                        <div class="flow-metric-value">Hours</div>
+                        <div class="flow-metric-label">vs Weeks Traditional</div>
+                    </div>
+                    <div class="flow-metric">
+                        <div class="flow-metric-value">15+</div>
+                        <div class="flow-metric-label">Countries Connected</div>
+                    </div>
+                    <div class="flow-metric">
+                        <div class="flow-metric-value">100%</div>
+                        <div class="flow-metric-label">GDPR Compliant</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p class="footer-text">
+            Project Prometheus | Oracle AI Center of Excellence |
+            <a href="architecture.html" class="footer-link">View Architecture</a>
+        </p>
+    </footer>
+
+    <script>
+        function showFlow(persona) {
+            // Hide all flows
+            document.querySelectorAll('.flow-card').forEach(card => {
+                card.style.display = 'none';
+            });
+
+            // Remove active from all personas
+            document.querySelectorAll('.persona-card').forEach(card => {
+                card.classList.remove('active');
+            });
+
+            // Show selected flow
+            const flowMap = {
+                'pathologist': 'flow-pathologist',
+                'oncologist': 'flow-oncologist',
+                'researcher': 'flow-pathologist', // Reuse for demo
+                'global': 'flow-global'
+            };
+
+            document.getElementById(flowMap[persona]).style.display = 'block';
+
+            // Set active persona
+            event.currentTarget.classList.add('active');
+        }
+    </script>
+</body>
+</html>
