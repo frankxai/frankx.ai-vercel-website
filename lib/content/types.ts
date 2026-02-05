@@ -50,7 +50,7 @@ export interface ContentMetadata {
   wordCount: number;
 }
 
-export interface ContentItem extends ContentFrontmatter, ContentMetadata {
+export interface ContentItem extends Omit<ContentFrontmatter, 'seoScore' | 'wordCount'>, ContentMetadata {
   content: string;
   lastModified: string;
 }
