@@ -15,7 +15,7 @@ import {
   ExternalLink,
   ArrowRight,
 } from 'lucide-react'
-import { useState, useMemo } from 'react'
+import { useState } from 'react'
 
 /**
  * Music Lab V2: Player-Centric Design
@@ -59,15 +59,15 @@ const featuredTracks = [
   },
 ]
 
+// Pre-computed waveform heights using deterministic formula (pure, no Math.random)
+const WAVEFORM_HEIGHTS = Array.from({ length: 50 }, (_, i) => 20 + ((i * 37 + 13) % 60))
+
 export default function MusicLabPlayer() {
   const [isPlaying, setIsPlaying] = useState(false)
   const [currentTrack, setCurrentTrack] = useState(featuredTracks[0])
 
-  // Pre-generate random heights to avoid impure function calls during render
-  const waveformHeights = useMemo(
-    () => Array.from({ length: 50 }, () => Math.random() * 60 + 20),
-    []
-  )
+  // Deterministic waveform heights (avoids impure Math.random during render)
+  const waveformHeights = WAVEFORM_HEIGHTS
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-[#0a0510] via-[#0f0a1a] to-[#0a0510] text-white">
