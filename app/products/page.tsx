@@ -18,6 +18,8 @@ import {
 } from 'lucide-react'
 
 import { trackEvent } from '@/lib/analytics'
+import PremiumCard from '@/components/ui/PremiumCard'
+import type { GradientPreset } from '@/components/ui/PremiumCard'
 
 // Premium background
 function ProductsBackground() {
@@ -254,6 +256,9 @@ export default function ProductsPage() {
               {products.map((product, index) => {
                 const Icon = product.icon
                 const colors = colorMap[product.color as keyof typeof colorMap]
+                const gradientMap: Record<string, GradientPreset> = {
+                  violet: 'purple', emerald: 'emerald', cyan: 'cyan', amber: 'gold', rose: 'slate',
+                }
 
                 return (
                   <motion.div
@@ -263,71 +268,62 @@ export default function ProductsPage() {
                     transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
                     className={product.featured ? 'md:col-span-2 lg:col-span-1' : ''}
                   >
-                    <Link
+                    <PremiumCard
                       href={product.href}
+                      gradient={gradientMap[product.color] || 'cyan'}
+                      mouseGlow
+                      badge={product.featured ? 'Most Popular' : undefined}
+                      padding="p-8"
+                      className="h-full"
                       onClick={() =>
                         trackEvent('product_card_click', { productId: product.id })
                       }
-                      className="group block h-full"
                     >
+                      {/* Icon */}
                       <div
-                        className={`relative flex h-full flex-col overflow-hidden rounded-2xl border ${colors.border} ${colors.bg} p-8 backdrop-blur-sm transition-all duration-500 group-hover:-translate-y-1 group-hover:shadow-xl ${colors.glow}`}
+                        className={`mb-6 flex h-14 w-14 items-center justify-center rounded-xl ${colors.icon}`}
                       >
-                        {/* Featured badge */}
-                        {product.featured && (
-                          <div className="absolute right-6 top-6">
-                            <span className="rounded-full bg-cyan-500/20 px-3 py-1 text-xs font-medium text-cyan-400">
-                              Most Popular
-                            </span>
-                          </div>
-                        )}
+                        <Icon className="h-7 w-7" />
+                      </div>
 
-                        {/* Icon */}
-                        <div
-                          className={`mb-6 flex h-14 w-14 items-center justify-center rounded-xl ${colors.icon}`}
-                        >
-                          <Icon className="h-7 w-7" />
+                      {/* Content */}
+                      <div className="flex-1">
+                        <p className="mb-1 text-xs font-medium uppercase tracking-[0.15em] text-slate-500">
+                          {product.tagline}
+                        </p>
+                        <h3 className="mb-3 text-2xl font-bold text-white">{product.name}</h3>
+                        <p className="mb-6 leading-relaxed text-slate-400">
+                          {product.description}
+                        </p>
+
+                        {/* Highlights */}
+                        <ul className="mb-8 space-y-3">
+                          {product.highlights.map((highlight) => (
+                            <li
+                              key={highlight}
+                              className="flex items-start gap-3 text-sm text-slate-300"
+                            >
+                              <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-emerald-400" />
+                              {highlight}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      {/* Status and CTA */}
+                      <div className="flex items-center justify-between border-t border-white/5 pt-6">
+                        <div className="flex items-center gap-2">
+                          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 text-sm font-medium">
+                            <Sparkles className="w-3.5 h-3.5" />
+                            Coming Soon
+                          </span>
                         </div>
-
-                        {/* Content */}
-                        <div className="flex-1">
-                          <p className="mb-1 text-xs font-medium uppercase tracking-[0.15em] text-slate-500">
-                            {product.tagline}
-                          </p>
-                          <h3 className="mb-3 text-2xl font-bold text-white">{product.name}</h3>
-                          <p className="mb-6 leading-relaxed text-slate-400">
-                            {product.description}
-                          </p>
-
-                          {/* Highlights */}
-                          <ul className="mb-8 space-y-3">
-                            {product.highlights.map((highlight) => (
-                              <li
-                                key={highlight}
-                                className="flex items-start gap-3 text-sm text-slate-300"
-                              >
-                                <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-emerald-400" />
-                                {highlight}
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-
-                        {/* Status and CTA */}
-                        <div className="flex items-center justify-between border-t border-white/5 pt-6">
-                          <div className="flex items-center gap-2">
-                            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 text-sm font-medium">
-                              <Sparkles className="w-3.5 h-3.5" />
-                              Coming Soon
-                            </span>
-                          </div>
-                          <div className="flex items-center gap-2 text-slate-400 transition-colors group-hover:text-white">
-                            <span className="text-sm font-medium">Join Waitlist</span>
-                            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                          </div>
+                        <div className="flex items-center gap-2 text-slate-400 transition-colors group-hover:text-white">
+                          <span className="text-sm font-medium">Join Waitlist</span>
+                          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                         </div>
                       </div>
-                    </Link>
+                    </PremiumCard>
                   </motion.div>
                 )
               })}

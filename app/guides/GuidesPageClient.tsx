@@ -16,6 +16,9 @@ import {
   Building2,
   Zap
 } from 'lucide-react'
+import PremiumCard from '@/components/ui/PremiumCard'
+import type { GradientPreset } from '@/components/ui/PremiumCard'
+import { trackEvent } from '@/lib/analytics'
 
 // ============================================================================
 // TYPES
@@ -57,6 +60,7 @@ const GUIDE_CATEGORIES = [
     icon: Image,
     color: 'from-purple-500/20 to-pink-500/20',
     iconColor: 'text-purple-400',
+    gradient: 'purple' as GradientPreset,
     slugs: ['midjourney-guide', 'image-generation-mastery']
   },
   {
@@ -67,6 +71,7 @@ const GUIDE_CATEGORIES = [
     icon: PenTool,
     color: 'from-emerald-500/20 to-teal-500/20',
     iconColor: 'text-emerald-400',
+    gradient: 'emerald' as GradientPreset,
     slugs: ['ai-writing-system', 'claude-anthropic-guide', 'openai-chatgpt-guide', 'perplexity-ai-guide', 'top-50-ai-prompts', 'creator-ai-stack-2026']
   },
   {
@@ -77,6 +82,7 @@ const GUIDE_CATEGORIES = [
     icon: Music,
     color: 'from-orange-500/20 to-amber-500/20',
     iconColor: 'text-orange-400',
+    gradient: 'gold' as GradientPreset,
     slugs: ['suno-prompt-playbook', 'elevenlabs-voice-guide']
   },
   {
@@ -87,6 +93,7 @@ const GUIDE_CATEGORIES = [
     icon: Rocket,
     color: 'from-blue-500/20 to-cyan-500/20',
     iconColor: 'text-blue-400',
+    gradient: 'cyan' as GradientPreset,
     slugs: ['modern-guide', 'skills-library-playbook', 'agent-collective-operating-system', 'founder-ai-stack-2026', 'lean-startup-ai-automation-stack']
   },
   {
@@ -97,6 +104,7 @@ const GUIDE_CATEGORIES = [
     icon: Code,
     color: 'from-rose-500/20 to-red-500/20',
     iconColor: 'text-rose-400',
+    gradient: 'slate' as GradientPreset,
     slugs: ['claude-code-getting-started']
   }
 ]
@@ -143,7 +151,7 @@ function AuroraBackground() {
 // GUIDE CARD
 // ============================================================================
 
-function GuideCard({ guide, index }: { guide: GuideDoc; index: number }) {
+function GuideCard({ guide, index, gradient = 'cyan' }: { guide: GuideDoc; index: number; gradient?: GradientPreset }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -151,32 +159,32 @@ function GuideCard({ guide, index }: { guide: GuideDoc; index: number }) {
       viewport={{ once: true }}
       transition={{ delay: index * 0.05 }}
     >
-      <Link
+      <PremiumCard
         href={`/guides/${guide.slug}`}
-        className="group block relative p-5 rounded-xl border border-white/5 overflow-hidden hover:border-white/10 transition-all duration-300 hover:-translate-y-0.5 bg-white/[0.02]"
+        gradient={gradient}
+        mouseGlow
+        padding="p-5"
+        className="h-full"
+        onClick={() => trackEvent('guide_card_click', { slug: guide.slug, category: gradient })}
       >
-        <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-
-        <div className="relative">
-          <div className="flex items-start justify-between mb-3">
-            <h3 className="text-base font-medium text-white group-hover:text-white transition-colors leading-tight pr-4">
-              {guide.title}
-            </h3>
-            <ArrowRight className="w-4 h-4 text-white/20 group-hover:text-white/60 group-hover:translate-x-0.5 transition-all flex-shrink-0 mt-0.5" />
-          </div>
-
-          <p className="text-sm text-white/40 leading-relaxed mb-3 line-clamp-2 group-hover:text-white/50 transition-colors">
-            {guide.description}
-          </p>
-
-          <div className="flex items-center gap-3 text-xs text-white/30">
-            <span className="flex items-center gap-1">
-              <Clock className="w-3 h-3" />
-              {guide.readingTime}
-            </span>
-          </div>
+        <div className="flex items-start justify-between mb-3">
+          <h3 className="text-base font-medium text-white group-hover:text-white transition-colors leading-tight pr-4">
+            {guide.title}
+          </h3>
+          <ArrowRight className="w-4 h-4 text-white/20 group-hover:text-white/60 group-hover:translate-x-0.5 transition-all flex-shrink-0 mt-0.5" />
         </div>
-      </Link>
+
+        <p className="text-sm text-white/40 leading-relaxed mb-3 line-clamp-2 group-hover:text-white/50 transition-colors">
+          {guide.description}
+        </p>
+
+        <div className="flex items-center gap-3 text-xs text-white/30">
+          <span className="flex items-center gap-1">
+            <Clock className="w-3 h-3" />
+            {guide.readingTime}
+          </span>
+        </div>
+      </PremiumCard>
     </motion.div>
   )
 }
@@ -225,7 +233,7 @@ function CategorySection({
       {/* Guides Grid */}
       <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {categoryGuides.map((guide, i) => (
-          <GuideCard key={guide.slug} guide={guide} index={i} />
+          <GuideCard key={guide.slug} guide={guide} index={i} gradient={category.gradient} />
         ))}
       </div>
     </motion.section>
@@ -243,40 +251,31 @@ function FeaturedGuide({ guide }: { guide: GuideDoc }) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: 0.3 }}
     >
-      <Link
+      <PremiumCard
         href={`/guides/${guide.slug}`}
-        className="group block relative p-8 rounded-2xl border border-white/10 overflow-hidden hover:border-emerald-500/30 transition-all duration-500"
+        gradient="emerald"
+        mouseGlow
+        badge="Featured"
+        padding="p-8"
+        onClick={() => trackEvent('featured_guide_click', { slug: guide.slug })}
       >
-        {/* Gradient Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-transparent to-blue-500/10 opacity-50 group-hover:opacity-100 transition-opacity duration-500" />
-
-        {/* Featured Badge */}
-        <div className="absolute top-4 right-4">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-medium">
-            <Sparkles className="w-3 h-3" />
-            Featured
+        <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-emerald-100 transition-colors pr-24">
+          {guide.title}
+        </h3>
+        <p className="text-white/50 leading-relaxed mb-4 max-w-2xl group-hover:text-white/60 transition-colors">
+          {guide.description}
+        </p>
+        <div className="flex items-center gap-4 text-sm text-white/40">
+          <span className="flex items-center gap-1.5">
+            <Clock className="w-4 h-4" />
+            {guide.readingTime}
+          </span>
+          <span className="flex items-center gap-1.5 text-emerald-400 group-hover:text-emerald-300 transition-colors">
+            Read guide
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </span>
         </div>
-
-        <div className="relative">
-          <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-emerald-100 transition-colors pr-24">
-            {guide.title}
-          </h3>
-          <p className="text-white/50 leading-relaxed mb-4 max-w-2xl group-hover:text-white/60 transition-colors">
-            {guide.description}
-          </p>
-          <div className="flex items-center gap-4 text-sm text-white/40">
-            <span className="flex items-center gap-1.5">
-              <Clock className="w-4 h-4" />
-              {guide.readingTime}
-            </span>
-            <span className="flex items-center gap-1.5 text-emerald-400 group-hover:text-emerald-300 transition-colors">
-              Read guide
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </span>
-          </div>
-        </div>
-      </Link>
+      </PremiumCard>
     </motion.div>
   )
 }
@@ -381,27 +380,35 @@ export default function GuidesPageClient({ guides }: GuidesPageClientProps) {
               >
                 <h2 className="text-sm font-medium uppercase tracking-[0.2em] text-white/30 mb-4">Deep Dive Guides</h2>
                 <div className="grid sm:grid-cols-2 gap-4">
-                  {deepDiveGuides.map((guide, i) => (
-                    <Link
-                      key={guide.slug}
-                      href={`/guides/${guide.slug}`}
-                      className="group flex items-center gap-4 p-5 rounded-xl border border-white/5 bg-white/[0.02] hover:border-violet-500/20 hover:bg-white/[0.04] transition-all duration-300"
-                    >
-                      <div className="flex-1 min-w-0">
-                        <h3 className="text-base font-medium text-white group-hover:text-violet-200 transition-colors truncate">
-                          {guide.title}
-                        </h3>
-                        <div className="flex items-center gap-3 mt-1.5">
-                          <span className="flex items-center gap-1 text-xs text-white/30">
-                            <Clock className="w-3 h-3" />
-                            {guide.readingTime}
-                          </span>
-                          <span className="text-xs text-violet-400/60 font-medium">10K+ words</span>
+                  {deepDiveGuides.map((guide, i) => {
+                    const deepGradients: GradientPreset[] = ['purple', 'cyan', 'gold', 'emerald']
+                    return (
+                      <PremiumCard
+                        key={guide.slug}
+                        href={`/guides/${guide.slug}`}
+                        gradient={deepGradients[i % deepGradients.length]}
+                        mouseGlow
+                        padding="p-5"
+                        badge="10K+ words"
+                        onClick={() => trackEvent('deep_dive_click', { slug: guide.slug })}
+                      >
+                        <div className="flex items-center gap-4">
+                          <div className="flex-1 min-w-0">
+                            <h3 className="text-base font-medium text-white group-hover:text-violet-200 transition-colors truncate">
+                              {guide.title}
+                            </h3>
+                            <div className="flex items-center gap-3 mt-1.5">
+                              <span className="flex items-center gap-1 text-xs text-white/30">
+                                <Clock className="w-3 h-3" />
+                                {guide.readingTime}
+                              </span>
+                            </div>
+                          </div>
+                          <ArrowRight className="w-4 h-4 text-white/20 group-hover:text-violet-400 group-hover:translate-x-0.5 transition-all flex-shrink-0" />
                         </div>
-                      </div>
-                      <ArrowRight className="w-4 h-4 text-white/20 group-hover:text-violet-400 group-hover:translate-x-0.5 transition-all flex-shrink-0" />
-                    </Link>
-                  ))}
+                      </PremiumCard>
+                    )
+                  })}
                 </div>
               </motion.div>
             )}
@@ -442,9 +449,10 @@ export default function GuidesPageClient({ guides }: GuidesPageClientProps) {
                   </div>
                 </div>
                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {uncategorizedGuides.map((guide, i) => (
-                    <GuideCard key={guide.slug} guide={guide} index={i} />
-                  ))}
+                  {uncategorizedGuides.map((guide, i) => {
+                    const moreGradients: GradientPreset[] = ['slate', 'cyan', 'purple', 'gold', 'emerald']
+                    return <GuideCard key={guide.slug} guide={guide} index={i} gradient={moreGradients[i % moreGradients.length]} />
+                  })}
                 </div>
               </motion.section>
             )}
