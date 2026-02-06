@@ -1,0 +1,212 @@
+---
+title: "Claude Opus 4.6: What Actually Changed and Why It Matters"
+description: "Anthropic's Opus 4.6 brings 1M context, 128K output, adaptive thinking, and a 67% price cut. Technical breakdown with benchmarks, migration guide, and practical implications for builders."
+date: "2026-02-06"
+lastUpdated: "2026-02-06"
+author: "Frank"
+category: "Intelligence Dispatches"
+tags:
+  - anthropic
+  - claude
+  - frontier-models
+  - ai-2026
+  - benchmarks
+  - agentic-ai
+keywords:
+  - claude opus 4.6
+  - claude opus 4.6 review
+  - claude opus 4.6 benchmarks
+  - anthropic opus 4.6 pricing
+  - claude opus 4.6 vs gpt 5.2
+  - claude opus 4.6 context window
+  - adaptive thinking claude
+  - claude 1 million context
+  - opus 4.6 api changes
+  - best ai model 2026
+image: "/images/models/claude-opus-4-6-hero.png"
+featured: true
+schema: ["Article", "FAQPage"]
+---
+
+# Claude Opus 4.6: What Actually Changed and Why It Matters
+
+**TL;DR**: Anthropic released Claude Opus 4.6 on February 5, 2026. The headline numbers: 1M token context window (beta), 128K output tokens, adaptive thinking that replaces manual budget tuning, and a 67% price reduction to $5/$25 per million tokens. ARC-AGI-2 jumped from 37.6% to 68.8%. There are breaking changes — prefilling assistant messages now returns a 400 error, and `budget_tokens` is deprecated. Here's what actually matters for builders.
+
+---
+
+## What Is Opus 4.6?
+
+Opus 4.6 is Anthropic's new flagship model, replacing Opus 4.5 as the top of the Claude lineup. The model ID is `claude-opus-4-6`.
+
+Three things make this release significant:
+
+1. **The context window went 5x** — from 200K to 1M tokens in beta. That's roughly 750K words, or about 10 full novels in a single prompt.
+
+2. **The pricing dropped 67%** — from $15/$75 to $5/$25 per million tokens. Opus used to cost 5x more than Sonnet. Now it's 1.67x. That fundamentally changes the cost-benefit calculation for when to route to the top-tier model.
+
+3. **Adaptive thinking replaces manual reasoning budgets** — instead of setting `budget_tokens` and guessing how much the model needs to reason, you set `thinking: {type: "adaptive"}` and the model decides. Four effort levels (`low`, `medium`, `high`, `max`) give you control without the guesswork.
+
+---
+
+## Benchmark Breakdown
+
+Numbers from Anthropic's official release, cross-referenced against independent coverage from SiliconANGLE and The New Stack:
+
+| Benchmark | Opus 4.5 | Opus 4.6 | Change | GPT-5.2 Pro | Gemini 3 Pro |
+|-----------|----------|----------|--------|-------------|--------------|
+| Terminal-Bench 2.0 | 59.8% | **65.4%** | +5.6 | — | — |
+| ARC-AGI-2 | 37.6% | **68.8%** | +31.2 | 54.2% | 45.1% |
+| OSWorld | 66.3% | **72.7%** | +6.4 | — | — |
+| BigLaw Bench | — | **90.2%** | — | — | — |
+| MRCR v2 (1M) | — | **76.0%** | — | — | — |
+| Humanity's Last Exam | — | **#1** | — | — | — |
+| BrowseComp | — | **#1** | — | — | — |
+
+The ARC-AGI-2 number is the standout. Going from 37.6% to 68.8% is an 83% relative improvement on what's widely considered the hardest reasoning benchmark in AI. That's not incremental. GPT-5.2 Pro sits at 54.2%, and Gemini 3 Pro at 45.1%.
+
+The GDPval-AA arena results show a +144 Elo advantage over GPT-5.2 and +190 Elo over the previous Opus 4.5. In competitive terms, that's the difference between a club player and a grandmaster.
+
+---
+
+## Context & Output: The Numbers That Matter
+
+| Spec | Opus 4.5 | Opus 4.6 | What It Enables |
+|------|----------|----------|-----------------|
+| Context Window | 200K | **1M (beta)** | Entire codebases, full research libraries in single prompt |
+| Max Output | 64K | **128K** | Complete articles, full code modules, detailed analysis |
+| Modalities | Text, Vision, Code | Text, Vision, Code | Same multimodal coverage |
+
+The 1M context window is in beta and requires the `anthropic-beta: interleaved-thinking-2025-05-14` header. The MRCR v2 benchmark at 76% confirms the model can actually use that context effectively — not just accept it.
+
+128K output tokens means Opus 4.6 can generate roughly 96K words in a single response. That's enough for complete technical documentation, full research reports, or substantial code modules without hitting output limits.
+
+---
+
+## Pricing: The Real Game-Changer
+
+| Model | Input/1M | Output/1M | Relative to Sonnet |
+|-------|----------|-----------|-------------------|
+| Opus 4.5 (old) | $15.00 | $75.00 | 5.0x |
+| **Opus 4.6** | **$5.00** | **$25.00** | **1.67x** |
+| Sonnet 4.5 | $3.00 | $15.00 | 1.0x |
+| Haiku 4.5 | $0.80 | $4.00 | 0.27x |
+
+This is the most consequential change in the release. At 1.67x the cost of Sonnet, the calculation for "is this task worth Opus?" completely shifts.
+
+Previously, routing a task to Opus meant paying 5x premium. You reserved it for architecture reviews, complex debugging, research synthesis — tasks where quality justified the cost. Now? Many tasks that defaulted to Sonnet become viable Opus candidates.
+
+For context: a 10,000-token conversation that used to cost $0.90 on Opus now costs $0.30. That's cheaper than what GPT-5.2 Pro charges for equivalent capability.
+
+---
+
+## What This Means for Builders
+
+### For Developers
+
+**Adaptive thinking simplifies everything.** The old workflow required you to estimate how much reasoning the model needed and set `budget_tokens` accordingly. Get it wrong and you either waste tokens on over-thinking or get shallow answers from under-thinking.
+
+Now you set the effort level and let the model calibrate:
+
+```json
+{
+  "model": "claude-opus-4-6",
+  "thinking": { "type": "adaptive" },
+  "effort": "high"
+}
+```
+
+Four levels: `low` for simple retrieval, `medium` for standard tasks, `high` for complex reasoning, `max` for research-grade problems. The model determines the actual reasoning depth.
+
+**Agent Teams** is the other developer-facing feature. Opus 4.6 supports parallel Claude Code agents — essentially supervised swarms where a lead agent delegates to specialist sub-agents. This maps directly to multi-agent orchestration patterns.
+
+### For Content Creators
+
+The 1M context window means you can load your entire content library into a single session. Feed it your blog archive, brand guidelines, and target keyword list, and get recommendations that account for everything simultaneously. No more fragmented context across multiple conversations.
+
+The 128K output ceiling means complete first drafts in a single generation — not just outlines or sections you need to stitch together.
+
+### For Enterprise
+
+**Compaction API** (beta) enables server-side context summarization. For production applications running long conversations, the server can compress earlier context to maintain relevance without hitting token limits. This is the answer to "how do I build an AI assistant that remembers the whole conversation?"
+
+**Data residency controls** let you enforce US-only processing with a 1.1x multiplier. Combined with the existing SOC 2 and HIPAA compliance, this addresses the "where does our data go?" question that blocks most enterprise deployments.
+
+---
+
+## How ACOS Integrates This
+
+The Agentic Creator Operating System routes tasks across Haiku, Sonnet, and Opus tiers based on complexity. Opus 4.6 changes the routing economics:
+
+| Before (Opus 4.5) | After (Opus 4.6) |
+|--------------------|-------------------|
+| Opus reserved for architecture, deep research | Opus viable for complex content, detailed code review |
+| 5x Sonnet cost = strict gatekeeping | 1.67x Sonnet cost = broader access |
+| 200K context = session-limited | 1M context = full codebase in memory |
+| Manual budget_tokens tuning | Adaptive effort levels |
+
+The ACOS routing rules have been updated to use `claude-opus-4-6` as the Opus tier model, with adaptive thinking as the default configuration. The expanded context window aligns with Layer 4 (Swarm Orchestration) — agents can now hold the full state of multi-step workflows without context fragmentation.
+
+---
+
+## Breaking Changes: What to Migrate
+
+If you're upgrading from Opus 4.5, these will affect your code:
+
+| Change | Impact | Migration |
+|--------|--------|-----------|
+| **Prefilling returns 400** | Any code that seeds assistant messages will break | Remove assistant prefills or use system prompts instead |
+| **budget_tokens deprecated** | Existing thinking configs need updating | Switch to `thinking: {type: "adaptive"}` with effort levels |
+| **output_format moved** | Old `output_format` param is gone | Use `output_config.format` instead |
+| **Beta header deprecated** | `interleaved-thinking` header no longer needed | Remove the beta header for standard thinking |
+
+The prefilling change is the most disruptive. If your application uses assistant message prefilling to guide outputs (common in structured extraction pipelines), you need to refactor. System prompts and structured output configs (`output_config.format`) are the recommended replacements.
+
+---
+
+## The Competitive Landscape
+
+Where Opus 4.6 sits in February 2026:
+
+| Capability | Best Model | Runner-Up |
+|------------|-----------|-----------|
+| Agentic coding | **Opus 4.6** (Terminal-Bench 65.4%) | Opus 4.5 (59.8%) |
+| Abstract reasoning | **Opus 4.6** (ARC-AGI-2 68.8%) | GPT-5.2 Pro (54.2%) |
+| Long context | Grok 4.1 / Gemini 3 Pro (2M) | **Opus 4.6** (1M beta) |
+| Multimodal breadth | Gemini 3 Pro (text/vision/audio/video) | GPT-5.2 Pro (text/vision/audio) |
+| Price/performance | **Opus 4.6** ($5/$25) | Sonnet 4.5 ($3/$15) |
+| Open source | Llama 4 Maverick (400B MoE) | — |
+
+Opus 4.6 leads on coding and reasoning benchmarks. Grok 4.1 and Gemini 3 Pro still lead on raw context size at 2M tokens. Gemini 3 Pro leads on modality coverage with native video and audio. The pricing story is Opus 4.6's strongest competitive angle — no other frontier model delivers this capability-per-dollar.
+
+---
+
+## FAQ
+
+### Is Opus 4.6 better than GPT-5.2 Pro?
+
+On reasoning and coding benchmarks, yes. Opus 4.6 leads ARC-AGI-2 (68.8% vs 54.2%) and Terminal-Bench (65.4% vs unreported). GPT-5.2 Pro has a slight edge in multimodal capability with native audio support. For most builder workflows — coding, analysis, content — Opus 4.6 is the stronger model at a lower price point.
+
+### How much does Opus 4.6 cost?
+
+$5 per million input tokens, $25 per million output tokens. That's a 67% reduction from Opus 4.5 ($15/$75). Cached inputs are available at reduced rates. US-only data residency adds a 1.1x multiplier.
+
+### When should I use Opus 4.6 vs Sonnet 4.5?
+
+Use Opus 4.6 for: complex architecture decisions, multi-file code generation, research synthesis, long-context analysis, and tasks requiring deep reasoning. Use Sonnet 4.5 for: standard coding tasks, content generation, API integrations, and high-throughput workflows where speed matters more than depth. The 1.67x cost differential makes Opus viable for more use cases than before.
+
+### What's the actual context window?
+
+200K tokens at GA. 1M tokens in beta (requires beta header). The 1M window scores 76% on MRCR v2, confirming effective retrieval across the full context.
+
+### Does adaptive thinking replace extended thinking?
+
+Yes. The `budget_tokens` parameter is deprecated. Use `thinking: {type: "adaptive"}` with an optional `effort` parameter (`low`, `medium`, `high`, `max`). The model automatically determines the appropriate reasoning depth for each query, eliminating the guesswork of manual budget allocation.
+
+### What about the breaking changes?
+
+Three changes require code updates: (1) assistant message prefilling now returns 400, (2) `budget_tokens` is deprecated in favor of adaptive thinking, (3) `output_format` moved to `output_config.format`. If you use any of these, update before switching to Opus 4.6.
+
+---
+
+*Analysis by Frank — AI Architect, builder of the Agentic Creator Operating System.
+Published February 6, 2026 with validated benchmarks from official Anthropic documentation and independent sources.*
