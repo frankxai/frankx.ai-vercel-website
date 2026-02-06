@@ -48,8 +48,9 @@ export const getAllBlogPosts = cache((): BlogPost[] => {
       return {
         slug,
         content,
-        readingTime: readTime.text,
+        readingTime: data.readingTime || readTime.text,
         ...data,
+        date: data.date || data.publishedAt || '2025-01-01',
       } as BlogPost
     })
 
