@@ -36,6 +36,54 @@
         "inLanguage": "en"
     }
     </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "How much can LLM cascade routing save on AI inference costs?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "LLM cascade routing saves 40-70% on inference costs by routing requests to the cheapest capable model. The four-tier approach uses Tier 0 (skip LLMs, use tools), Tier 1 (lightweight models ~$0.25/1M tokens), Tier 2 (balanced models ~$3/1M), and Tier 3 (premium models ~$15/1M for complex reasoning). In practice, 60-70% of enterprise queries can be handled at Tier 0-1."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What is the Quality-per-Dollar (QpD) metric and how do you calculate it?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Quality-per-Dollar measures evaluation score per dollar spent: QpD = (Eval Score × Request Volume) / Monthly Cost. A system scoring 94.7% at $12,400/month has higher QpD than one scoring 96.2% at $45,000/month. The 1.5% quality difference rarely matters operationally, but the 72% cost difference funds additional AI initiatives."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "When should enterprises self-host LLMs versus using API-based services?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Below ~100K requests/month, APIs are cheaper. Above ~500K requests/month with consistent load, self-hosting costs 40-60% less. Between 100K-500K, factors like data residency, latency, and fine-tuning needs tip the decision. Always model full TCO: GPU costs + engineering time + monitoring + model updates + failover."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How do AI agents amplify LLM costs and what can enterprises do about it?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "AI agents amplify costs 3-10x because each step (planning, tool selection, execution, reflection) requires a separate LLM call. Key mitigations: prompt caching (75% savings), semantic response caching (68% reduction), agent step routing (cheap models for planning, premium for synthesis), and observability-driven pruning to eliminate redundant reasoning loops."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What is GPU MIG partitioning and how does it reduce AI infrastructure costs?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Multi-Instance GPU (MIG) on NVIDIA A100/H100 partitions a single GPU into up to 7 isolated instances. Most inference workloads don't need a full GPU, so MIG lets you run 7 different model endpoints on one GPU, reducing per-model cost by up to 85%. OCI AI Blueprints support MIG partitioning out of the box."
+                }
+            }
+        ]
+    }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -162,6 +210,12 @@
         .sources h3 { margin-top: 0; font-size: 14px; }
         .sources ol { font-size: 13px; }
         .sources li { margin-bottom: 6px; }
+        .faq { margin: 48px 0; }
+        .faq h2 { font-size: 1.5rem; margin-bottom: 24px; padding-top: 32px; border-top: 1px solid var(--border); }
+        .faq-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 12px; overflow: hidden; }
+        .faq-q { font-weight: 600; font-size: 15px; padding: 18px 24px; cursor: default; display: flex; align-items: center; gap: 12px; }
+        .faq-q::before { content: "Q"; background: var(--accent-amber); color: white; font-size: 11px; font-weight: 800; width: 22px; height: 22px; border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .faq-a { padding: 0 24px 18px 58px; color: var(--text-secondary); font-size: 14px; line-height: 1.7; }
 
         @media (max-width: 768px) { .metrics { grid-template-columns: 1fr 1fr; } .nav-links { display: none; } .tier-grid { grid-template-columns: 1fr 1fr; } .comparison { grid-template-columns: 1fr; } }
     </style>
@@ -681,6 +735,31 @@
             not cheaper models. Observability tools that trace agent execution paths reveal that 20-40% of reasoning
             steps in typical agent chains are redundant. Pruning these steps delivers cost savings <em>and</em> faster latency.
         </p>
+
+        <!-- FAQ Section -->
+        <div class="faq">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <div class="faq-q">How much can LLM cascade routing save on AI inference costs?</div>
+                <div class="faq-a">LLM cascade routing saves 40-70% on inference costs by routing requests to the cheapest capable model. The four-tier approach: Tier 0 skips LLMs entirely (use tools like grep/SQL), Tier 1 uses lightweight models like Haiku/Flash (~$0.25/1M tokens), Tier 2 uses balanced models like Sonnet (~$3/1M), and Tier 3 reserves premium models like Opus (~$15/1M) for complex reasoning. In practice, 60-70% of enterprise queries can be handled at Tier 0-1, dramatically reducing average cost per request.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">What is the Quality-per-Dollar (QpD) metric and how do you calculate it?</div>
+                <div class="faq-a">Quality-per-Dollar (QpD) measures the evaluation score achieved per dollar spent: QpD = (Eval Score x Request Volume) / Monthly Cost. A system scoring 94.7% quality at $12,400/month has higher QpD than one scoring 96.2% at $45,000/month. The 1.5% quality difference rarely matters operationally, but the 72% cost difference funds three additional AI initiatives. QpD shifts the optimization target from "cheapest" or "best quality" to "maximum business value per dollar invested in AI."</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">When should enterprises self-host LLMs versus using API-based services?</div>
+                <div class="faq-a">The breakpoint depends on volume: below ~100K requests/month, APIs are cheaper (no infrastructure overhead). Above ~500K requests/month with consistent load, self-hosting on dedicated GPU infrastructure (OCI AI Clusters, AWS Inferentia) typically costs 40-60% less. Between 100K-500K is the "gray zone" where factors like data residency requirements, latency needs, and model customization (fine-tuning) tip the decision. Always model the full TCO: GPU costs + engineering time + monitoring + model updates + failover infrastructure.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">How do AI agents amplify LLM costs and what can enterprises do about it?</div>
+                <div class="faq-a">AI agents amplify LLM costs by 3-10x because each agent step (planning, tool selection, execution, reflection) requires a separate LLM call. A single user request may trigger 5-15 calls through an agent chain. Key mitigation strategies: prompt caching (75% savings on repeated system prompts), semantic response caching (68% reduction for similar queries), agent step routing (use cheap models for planning, premium for synthesis), and observability-driven pruning to eliminate redundant reasoning loops (20-40% of steps are typically redundant).</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">What is GPU MIG partitioning and how does it reduce AI infrastructure costs?</div>
+                <div class="faq-a">Multi-Instance GPU (MIG) on NVIDIA A100/H100 GPUs partitions a single GPU into up to 7 isolated instances. Each instance gets dedicated compute, memory, and bandwidth. This is critical for cost optimization because most inference workloads don't need a full GPU &mdash; a small model serving 50 requests/second might only need 1/7 of an A100. MIG lets you run 7 different model endpoints on one GPU, reducing per-model infrastructure cost by up to 85%. OCI AI Blueprints support MIG partitioning out of the box.</div>
+            </div>
+        </div>
 
         <!-- Sources -->
         <div class="sources">

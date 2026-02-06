@@ -36,6 +36,54 @@
         "inLanguage": "en"
     }
     </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "How is AI used in pediatric cancer diagnostics today?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "AI assists pediatric oncology through four pillars: diagnostic intelligence (computer vision for cell morphology analysis), data infrastructure (vector search across pathology images and genomic sequences), therapy acceleration (treatment protocol matching using RAG), and global collaboration (federated learning across hospitals without sharing patient data)."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What is federated learning and why is it critical for healthcare AI?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Federated learning trains AI models across multiple hospitals without moving patient data. Each hospital trains locally, then shares only model updates (gradients). This preserves patient privacy (HIPAA, GDPR) while enabling multi-institutional learning. For rare cancers, federated learning is transformative because no single hospital has enough cases for robust training."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How does vector search improve clinical decision support?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Vector search enables semantic retrieval across medical literature, pathology images, and genomic data. Clinicians can search for similar blast morphology patterns across millions of historical cases using vector embeddings, retrieving relevant precedents in seconds rather than hours. Oracle AI Database 26ai provides native vector search integrated with clinical data."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What OCI services are used in healthcare AI architectures?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "A production healthcare AI architecture on OCI includes: OCI Vision (medical image analysis), OCI GenAI Service (LLM inference with Cohere or Llama models), Oracle AI Database 26ai (vector search, relational data, graph queries), OCI Data Science (model training), OCI Streaming (real-time lab data ingestion), and OCI IAM (clinical data access controls)."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How do healthcare AI systems maintain regulatory compliance?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Healthcare AI compliance requires data residency controls, audit logging of all AI decisions, human-in-the-loop workflows, model explainability documentation, and bias testing. The EU AI Act classifies medical AI as high-risk. HIPAA requires encryption at rest and in transit, access controls, and breach notification procedures."
+                }
+            }
+        ]
+    }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -497,6 +545,52 @@
         }
 
         /* Footer */
+        .faq-section {
+            padding: 4rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .faq-section h2 {
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        .faq-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            margin-bottom: 12px;
+            overflow: hidden;
+        }
+        .faq-q {
+            font-weight: 600;
+            font-size: 15px;
+            padding: 18px 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .faq-q::before {
+            content: "Q";
+            background: var(--pillar-diagnostic);
+            color: white;
+            font-size: 11px;
+            font-weight: 800;
+            width: 22px;
+            height: 22px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .faq-a {
+            padding: 0 24px 18px 58px;
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
         footer {
             background: var(--text-primary);
             color: white;
@@ -931,8 +1025,33 @@
         </div>
     </section>
 
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-item">
+            <div class="faq-q">How is AI used in pediatric cancer diagnostics today?</div>
+            <div class="faq-a">AI assists pediatric oncology through four pillars: diagnostic intelligence (computer vision for cell morphology analysis, reducing classification time from hours to minutes), data infrastructure (vector search across millions of pathology images and genomic sequences), therapy acceleration (treatment protocol matching using RAG over clinical literature), and global collaboration (federated learning across hospitals without sharing patient data). Production systems combine OCI Vision for image analysis with LLM-powered clinical decision support for tumor board preparation.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">What is federated learning and why is it critical for healthcare AI?</div>
+            <div class="faq-a">Federated learning trains AI models across multiple hospitals without moving patient data between institutions. Each hospital trains a local model on its own data, then shares only the model updates (gradients) with a central coordinator. This preserves patient privacy (HIPAA, GDPR compliance) while enabling models to learn from diverse, multi-institutional datasets. For rare cancers like pediatric leukemia, federated learning is transformative because no single hospital has enough cases for robust model training.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">How does vector search improve clinical decision support?</div>
+            <div class="faq-a">Vector search enables semantic retrieval across medical literature, pathology images, and genomic data. Unlike keyword search, vector similarity finds conceptually related results even when terminology differs across institutions. For tumor board preparation, clinicians can search for "similar blast morphology patterns" across millions of historical cases using vector embeddings, retrieving relevant precedents in seconds rather than hours of manual review. Oracle AI Database 26ai provides native vector search integrated with existing clinical data.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">What OCI services are used in healthcare AI architectures?</div>
+            <div class="faq-a">A production healthcare AI architecture on OCI typically includes: OCI Vision (medical image analysis), OCI GenAI Service (LLM inference for clinical decision support with Cohere or Llama models), Oracle AI Database 26ai (vector search, relational data, graph queries), OCI Data Science (model training and evaluation), OCI Streaming (real-time data ingestion from lab systems), and OCI Identity and Access Management (RBAC for clinical data access). GPU shapes (A10, A100) handle model inference workloads.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">How do healthcare AI systems maintain regulatory compliance?</div>
+            <div class="faq-a">Healthcare AI compliance requires: data residency controls (patient data stays within jurisdictional boundaries using OCI Dedicated Region), audit logging of all AI-assisted decisions, human-in-the-loop workflows for clinical recommendations (AI assists but clinicians decide), model explainability documentation for regulatory submission, and bias testing across demographic groups. The EU AI Act classifies medical AI as high-risk, requiring conformity assessments and ongoing monitoring. HIPAA requires encryption at rest and in transit, access controls, and breach notification procedures.</div>
+        </div>
+    </section>
+
     <footer>
-        <p>Project Prometheus | Pediatric Leukemia AI Ecosystem</p>
+        <p>Healthcare AI Diagnostics Ecosystem | FrankX Research</p>
         <p>Powered by <a href="https://www.oracle.com/cloud/" target="_blank">Oracle Cloud Infrastructure</a></p>
         <div class="footer-links">
             <a href="../../docs/AGGREGATED-INSIGHTS.md">Aggregated Insights</a>

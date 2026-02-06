@@ -36,6 +36,54 @@
         "inLanguage": "en"
     }
     </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "What is RAG (Retrieval-Augmented Generation) and why do enterprises need it?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "RAG is an architecture pattern that grounds LLM responses in verified data by retrieving relevant documents before generating answers. Enterprises need RAG because pure LLMs hallucinate 15-25% of the time on domain-specific questions. RAG reduces hallucination to under 5% by providing the model with actual source documents. A production RAG pipeline includes: data ingestion, chunking, embedding, vector storage, retrieval with reranking, and LLM generation with citation."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What is hybrid search and why is it better than pure vector search for RAG?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Hybrid search combines vector similarity search (semantic meaning) with keyword search (exact matches) in a single query. Pure vector search misses exact terms like product codes or error numbers. Pure keyword search misses semantic relationships. Oracle AI Database 26ai's Unified Hybrid Vector Search combines HNSW, IVF, and full-text search in one SQL query, followed by Cohere Rerank 3.5 for relevance scoring — this combination typically improves retrieval precision by 15-25% over either method alone."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How do you evaluate RAG system quality in production?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Production RAG evaluation uses three core metrics: Faithfulness (does the answer match the retrieved documents?), Relevance (are the retrieved documents actually relevant?), and Answer Completeness (does the response fully address the question?). Tools like RAGAS, DeepEval, and LangSmith automate these evaluations. Enterprise systems should also track retrieval latency (p95 under 200ms), citation accuracy, and user feedback loops."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What is the difference between naive RAG and advanced RAG architectures?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Naive RAG uses a simple retrieve-then-generate pattern with fixed chunk sizes and basic similarity search. Advanced RAG adds: intelligent chunking (semantic boundaries), query transformation (HyDE, multi-query decomposition), hybrid retrieval with reranking, guardrails for input/output validation, and observability for continuous monitoring. Production enterprise RAG also requires governance layers: access control on retrieved documents, audit logging, and PII detection."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What embedding models should enterprises use for RAG in 2026?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "For text-only: Cohere Embed Multilingual 3 (100+ languages, available on OCI GenAI). For multimodal: Cohere Embed 4 or OpenAI text-embedding-3-large. For cost-sensitive workloads: open-source models like BGE-M3 or E5-Mistral on dedicated infrastructure. Key factors: embedding dimension, multilingual support, and cross-modal retrieval needs. Always benchmark on your own data — generic leaderboard rankings often don't reflect domain-specific performance."
+                }
+            }
+        ]
+    }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -142,6 +190,12 @@
         .sources h3 { margin-top: 0; font-size: 14px; }
         .sources ol { font-size: 13px; }
         .sources li { margin-bottom: 6px; }
+        .faq { margin: 48px 0; }
+        .faq h2 { font-size: 1.5rem; margin-bottom: 24px; padding-top: 32px; border-top: 1px solid var(--border); }
+        .faq-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 12px; overflow: hidden; }
+        .faq-q { font-weight: 600; font-size: 15px; padding: 18px 24px; cursor: default; display: flex; align-items: center; gap: 12px; }
+        .faq-q::before { content: "Q"; background: var(--accent-blue); color: white; font-size: 11px; font-weight: 800; width: 22px; height: 22px; border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .faq-a { padding: 0 24px 18px 58px; color: var(--text-secondary); font-size: 14px; line-height: 1.7; }
 
         @media (max-width: 768px) { .metrics { grid-template-columns: 1fr 1fr; } .nav-links { display: none; } }
     </style>
@@ -572,6 +626,31 @@
 │   └── <span class="string">USE: Cohere Command A Vision + OCI GenAI endpoints</span>
 └── Custom / unique requirements?
     └── <span class="string">BUILD: oracle-devrel patterns + OKE + custom pipeline</span>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="faq">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <div class="faq-q">What is RAG (Retrieval-Augmented Generation) and why do enterprises need it?</div>
+                <div class="faq-a">RAG is an architecture pattern that grounds LLM responses in verified data by retrieving relevant documents before generating answers. Enterprises need RAG because pure LLMs hallucinate 15-25% of the time on domain-specific questions. RAG reduces hallucination to under 5% by providing the model with actual source documents. A production RAG pipeline includes: data ingestion, chunking, embedding, vector storage, retrieval with reranking, and LLM generation with citation.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">What is hybrid search and why is it better than pure vector search for RAG?</div>
+                <div class="faq-a">Hybrid search combines vector similarity search (semantic meaning) with keyword search (exact matches) in a single query. Pure vector search misses exact terms like product codes, error numbers, or legal citations. Pure keyword search misses semantic relationships. Oracle AI Database 26ai's Unified Hybrid Vector Search combines HNSW, IVF, and full-text search in one SQL query, followed by Cohere Rerank 3.5 for relevance scoring &mdash; this combination typically improves retrieval precision by 15-25% over either method alone.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">How do you evaluate RAG system quality in production?</div>
+                <div class="faq-a">Production RAG evaluation uses three core metrics: Faithfulness (does the answer match the retrieved documents?), Relevance (are the retrieved documents actually relevant?), and Answer Completeness (does the response fully address the question?). Tools like RAGAS, DeepEval, and LangSmith automate these evaluations. Enterprise systems should also track: retrieval latency (p95 under 200ms), citation accuracy, and user feedback loops. The key insight: evaluation is not a one-time check but a continuous monitoring system.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">What is the difference between naive RAG and advanced RAG architectures?</div>
+                <div class="faq-a">Naive RAG uses a simple retrieve-then-generate pattern with fixed chunk sizes and basic similarity search. Advanced RAG adds: intelligent chunking (semantic boundaries, not arbitrary token limits), query transformation (HyDE, multi-query decomposition), hybrid retrieval with reranking, guardrails for input/output validation, and observability for continuous monitoring. Production enterprise RAG also requires governance layers: access control on retrieved documents, audit logging, and PII detection before generation.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">What embedding models should enterprises use for RAG in 2026?</div>
+                <div class="faq-a">For text-only: Cohere Embed Multilingual 3 (100+ languages, available on OCI GenAI). For multimodal (text + images): Cohere Embed 4 or OpenAI text-embedding-3-large. For cost-sensitive workloads: open-source models like BGE-M3 or E5-Mistral on dedicated infrastructure. Key factors: embedding dimension (higher = more precise but more storage), multilingual support, and whether you need cross-modal retrieval. Always benchmark on your own data &mdash; generic leaderboard rankings often don't reflect domain-specific performance.</div>
+            </div>
         </div>
 
         <!-- Sources -->

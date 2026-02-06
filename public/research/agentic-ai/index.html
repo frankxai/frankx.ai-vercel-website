@@ -36,6 +36,54 @@
         "inLanguage": "en"
     }
     </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "What is agentic AI and how does it differ from traditional AI chatbots?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Agentic AI systems autonomously plan, execute multi-step tasks, and use external tools without human intervention at each step. Unlike chatbots that respond to single prompts, agents maintain state across interactions, call APIs, query databases, and coordinate with other agents. In 2026, Gartner predicts 40% of enterprise applications will feature task-specific AI agents, up from less than 5% in 2025."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What is the Model Context Protocol (MCP) and why does it matter for enterprise agents?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "MCP is an open standard (originally from Anthropic, now governed by the Linux Foundation's Agentic AI Foundation) that provides a universal interface for AI agents to connect to external tools and data sources. It eliminates the need for custom integrations per tool. By 2026, MCP is supported by OpenAI, Google, Microsoft, and 75+ connectors, making it the de facto standard for agent-to-tool communication."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What is the difference between Google A2A protocol and Anthropic MCP?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "MCP (Model Context Protocol) standardizes how agents connect to tools and data sources — it is an agent-to-tool protocol. A2A (Agent-to-Agent) standardizes how agents communicate with each other — it is an agent-to-agent protocol. They are complementary, not competing. An enterprise agent system typically uses MCP to access databases and APIs, while using A2A to coordinate between specialized agents."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How do enterprises ensure AI agent security in production?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "The OWASP Agentic AI Top 10 (2026) identifies key threats: tool chain attacks, memory poisoning, privilege escalation, and prompt injection. Enterprise best practices include implementing least-privilege tool access, sandboxing agent execution environments, logging all agent actions for audit trails, applying the BCG FAST framework (Failures, Attacks, Security, Trust), and using observability tools like Langfuse or AgentOps to monitor agent behavior in real-time."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What are the leading AI agent frameworks for enterprise use in 2026?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "The major production-ready frameworks are: Google ADK (code-first, 100+ connectors, Vertex AI integration), OpenAI Agents SDK (lightweight, provider-agnostic), LangGraph (stateful workflows with persistence), CrewAI (role-based multi-agent), and Oracle Select AI Agent (database-native agents in AI Database 26ai). Framework choice depends on deployment model — cloud-native teams favor ADK, data-heavy workloads benefit from Oracle's database-native approach, and teams wanting minimal abstraction choose OpenAI Agents SDK."
+                }
+            }
+        ]
+    }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -141,6 +189,12 @@
         .sources h3 { margin-top: 0; font-size: 14px; }
         .sources ol { font-size: 13px; }
         .sources li { margin-bottom: 6px; }
+        .faq { margin: 48px 0; }
+        .faq h2 { font-size: 1.5rem; margin-bottom: 24px; padding-top: 32px; border-top: 1px solid var(--border); }
+        .faq-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 12px; overflow: hidden; }
+        .faq-q { font-weight: 600; font-size: 15px; padding: 18px 24px; cursor: default; display: flex; align-items: center; gap: 12px; }
+        .faq-q::before { content: "Q"; background: var(--accent-purple); color: white; font-size: 11px; font-weight: 800; width: 22px; height: 22px; border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .faq-a { padding: 0 24px 18px 58px; color: var(--text-secondary); font-size: 14px; line-height: 1.7; }
         .footer { position: relative; z-index: 1; border-top: 1px solid var(--border); padding: 48px 32px; text-align: center; }
         .footer-text { font-size: 12px; color: var(--text-muted); max-width: 640px; margin: 0 auto; line-height: 1.7; }
         .footer-text a { color: var(--text-secondary); }
@@ -484,6 +538,31 @@
             <p><strong>Sources:</strong>
             <a href="https://www.gartner.com/en/newsroom/press-releases/2025-08-26-gartner-predicts-40-percent-of-enterprise-apps-will-feature-task-specific-ai-agents-by-2026-up-from-less-than-5-percent-in-2025">Gartner</a>,
             <a href="https://www.deloitte.com/us/en/insights/industry/technology/technology-media-and-telecom-predictions/2026/ai-agent-orchestration.html">Deloitte</a></p>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="faq">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <div class="faq-q">What is agentic AI and how does it differ from traditional AI chatbots?</div>
+                <div class="faq-a">Agentic AI systems autonomously plan, execute multi-step tasks, and use external tools without human intervention at each step. Unlike chatbots that respond to single prompts, agents maintain state across interactions, call APIs, query databases, and coordinate with other agents. In 2026, Gartner predicts 40% of enterprise applications will feature task-specific AI agents, up from less than 5% in 2025.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">What is the Model Context Protocol (MCP) and why does it matter for enterprise agents?</div>
+                <div class="faq-a">MCP is an open standard (originally from Anthropic, now governed by the Linux Foundation's Agentic AI Foundation) that provides a universal interface for AI agents to connect to external tools and data sources. It eliminates the need for custom integrations per tool. By 2026, MCP is supported by OpenAI, Google, Microsoft, and 75+ connectors, making it the de facto standard for agent-to-tool communication.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">What is the difference between Google A2A protocol and Anthropic MCP?</div>
+                <div class="faq-a">MCP (Model Context Protocol) standardizes how agents connect to tools and data sources &mdash; it is an agent-to-tool protocol. A2A (Agent-to-Agent) standardizes how agents communicate with each other &mdash; it is an agent-to-agent protocol. They are complementary, not competing. An enterprise agent system typically uses MCP to access databases and APIs, while using A2A to coordinate between specialized agents (e.g., a research agent delegating to an analysis agent).</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">How do enterprises ensure AI agent security in production?</div>
+                <div class="faq-a">The OWASP Agentic AI Top 10 (2026) identifies key threats: tool chain attacks, memory poisoning, privilege escalation, and prompt injection. Enterprise best practices include: implementing least-privilege tool access, sandboxing agent execution environments, logging all agent actions for audit trails, applying the BCG FAST framework (Failures, Attacks, Security, Trust), and using observability tools like Langfuse or AgentOps to monitor agent behavior in real-time.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">What are the leading AI agent frameworks for enterprise use in 2026?</div>
+                <div class="faq-a">The major production-ready frameworks are: Google ADK (code-first, 100+ connectors, Vertex AI integration), OpenAI Agents SDK (lightweight, provider-agnostic), LangGraph (stateful workflows with persistence), CrewAI (role-based multi-agent), and Oracle Select AI Agent (database-native agents in AI Database 26ai). Framework choice depends on deployment model &mdash; cloud-native teams favor ADK, data-heavy workloads benefit from Oracle's database-native approach, and teams wanting minimal abstraction choose OpenAI Agents SDK.</div>
+            </div>
         </div>
 
         <!-- Sources -->

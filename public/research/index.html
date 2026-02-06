@@ -55,6 +55,46 @@
         ]
     }
     </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "What is the FrankX AI Architecture Research Center?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "An independent research hub covering enterprise AI architecture patterns across six domains: RAG architecture, agentic AI, Oracle AI Database 26ai, sovereign AI, AI cost engineering, and healthcare AI diagnostics. Based on 210+ verified sources, updated with a 90-day freshness cycle."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Who is this research for?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Enterprise AI architects, cloud solution architects, technology leaders evaluating AI platforms, and engineering teams building production AI systems. The research focuses on architectural patterns and implementation guidance with verified sources and real-world trade-offs."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How often is the research updated?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "All research portals are verified against current official sources at least every 90 days, with critical updates applied within 48 hours. Each page displays a Last verified date for content freshness assessment."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Is this affiliated with Oracle Corporation?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "No. This is an independent research project, not affiliated with, endorsed by, or sponsored by Oracle Corporation. The research covers OCI among other platforms because it offers strong enterprise AI capabilities. All trademarks belong to their respective owners."
+                }
+            }
+        ]
+    }
+    </script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -623,6 +663,13 @@
 
         .footer-link:hover { color: var(--text-secondary); }
 
+        .faq { max-width: 960px; margin: 0 auto; padding: 64px 32px 0; }
+        .faq h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .faq-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 12px; overflow: hidden; }
+        .faq-q { font-weight: 600; font-size: 15px; padding: 18px 24px; display: flex; align-items: center; gap: 12px; }
+        .faq-q::before { content: "Q"; background: var(--accent-cyan); color: white; font-size: 11px; font-weight: 800; width: 22px; height: 22px; border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .faq-a { padding: 0 24px 18px 58px; color: var(--text-secondary); font-size: 14px; line-height: 1.7; }
+
         /* Responsive */
         @media (max-width: 768px) {
             .research-grid { grid-template-columns: 1fr; }
@@ -1029,6 +1076,27 @@
             </div>
         </div>
     </section>
+
+    <!-- FAQ Section -->
+    <div class="faq">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-item">
+            <div class="faq-q">What is the FrankX AI Architecture Research Center?</div>
+            <div class="faq-a">An independent research hub covering enterprise AI architecture patterns across six domains: RAG and production AI architecture, agentic AI and multi-agent orchestration, Oracle AI Database 26ai capabilities, sovereign AI and private deployment, AI cost engineering and FinOps, and healthcare AI diagnostics. All content is based on 210+ verified sources from official documentation, academic papers, and industry reports, updated regularly with a 90-day freshness cycle.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">Who is this research for?</div>
+            <div class="faq-a">Enterprise AI architects, cloud solution architects, technology leaders evaluating AI platforms, and engineering teams building production AI systems. The research focuses on architectural patterns and implementation guidance rather than marketing claims &mdash; every recommendation includes verified sources, implementation considerations, and real-world trade-offs. The methodology page documents our five-stage research process and source validation criteria.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">How often is the research updated?</div>
+            <div class="faq-a">All research portals are verified against current official sources at least every 90 days, with critical updates (new product releases, pricing changes, security advisories) applied within 48 hours. Each page displays a "Last verified" date so you can assess content freshness. The AI and cloud landscape changes rapidly &mdash; architecture guidance from 6 months ago may already be outdated, which is why continuous verification is a core part of our methodology.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">Is this affiliated with Oracle Corporation?</div>
+            <div class="faq-a">No. This is an independent research project. It is not affiliated with, endorsed by, or sponsored by Oracle Corporation. The research covers Oracle Cloud Infrastructure among other cloud platforms because OCI offers strong enterprise AI capabilities. All trademarks belong to their respective owners. The research prioritizes accuracy and practical utility over vendor advocacy.</div>
+        </div>
+    </div>
 
     <footer class="footer">
         <div class="footer-text">

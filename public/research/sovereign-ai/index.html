@@ -36,6 +36,54 @@
         "inLanguage": "en"
     }
     </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "What is sovereign AI and why does it matter for European enterprises?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Sovereign AI ensures that AI workloads — models, data, and computation — execute within national borders on controlled infrastructure under local regulatory frameworks. The EU AI Act combined with GDPR Article 44 creates a regulatory environment where sending enterprise data to US-based LLM APIs may constitute a compliance violation. 67% of EU enterprises now require data sovereignty for AI workloads, driving a $40B+ sovereign cloud market by 2028."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What is the Private Agent Factory architecture pattern?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "The Private Agent Factory is an architectural pattern for deploying multi-agent AI systems in air-gapped, regulation-compliant environments. It uses three security zones: an external integration zone, a processing zone (agent runtime, LLM inference, vector search), and a data zone (encrypted storage, audit logs). All components run on controlled infrastructure with zero external API dependencies."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Can enterprises run AI agents without any external API dependencies?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes. Using OCI Dedicated Region or on-premises infrastructure, enterprises can deploy fully self-contained AI agent systems. Oracle AI Database 26ai provides Select AI Agent with OCI GenAI Service running models like Cohere Command A or Llama 3 within the sovereign boundary. MCP Servers run locally, vector search is database-native, and all agent memory persists in encrypted database tables."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How does the EU AI Act affect AI agent deployment?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "The EU AI Act classifies AI systems by risk level. AI agents in healthcare, financial services, and HR decisions are typically high-risk, requiring conformity assessments, human oversight mechanisms, detailed logging, bias testing, and incident reporting. The Private Agent Factory pattern includes a dedicated Compliance Agent that enforces these requirements at the infrastructure level."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What is quantum-resistant encryption and why is Oracle implementing it now?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Quantum-resistant encryption uses algorithms that remain secure against quantum computers. Oracle AI Database 26ai implements TLS 1.3 with ML-KEM, a NIST-standardized post-quantum algorithm. This matters because of harvest-now-decrypt-later attacks — adversaries collect encrypted data today to decrypt when quantum computers become available (estimated 2030-2035)."
+                }
+            }
+        ]
+    }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -151,6 +199,12 @@
         .sources h3 { margin-top: 0; font-size: 14px; }
         .sources ol { font-size: 13px; }
         .sources li { margin-bottom: 6px; }
+        .faq { margin: 48px 0; }
+        .faq h2 { font-size: 1.5rem; margin-bottom: 24px; padding-top: 32px; border-top: 1px solid var(--border); }
+        .faq-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 12px; overflow: hidden; }
+        .faq-q { font-weight: 600; font-size: 15px; padding: 18px 24px; cursor: default; display: flex; align-items: center; gap: 12px; }
+        .faq-q::before { content: "Q"; background: var(--accent-green); color: white; font-size: 11px; font-weight: 800; width: 22px; height: 22px; border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .faq-a { padding: 0 24px 18px 58px; color: var(--text-secondary); font-size: 14px; line-height: 1.7; }
 
         @media (max-width: 768px) { .metrics { grid-template-columns: 1fr 1fr; } .nav-links { display: none; } .zone-middle, .zone-inner { margin: 12px; } }
     </style>
@@ -607,6 +661,31 @@
             <div class="timeline-item">
                 <div class="timeline-date">Week 9-10</div>
                 <p><strong>Testing and hardening.</strong> Adversarial testing, penetration testing, failover validation. Document for regulatory submission.</p>
+            </div>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="faq">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <div class="faq-q">What is sovereign AI and why does it matter for European enterprises?</div>
+                <div class="faq-a">Sovereign AI ensures that AI workloads &mdash; models, data, and computation &mdash; execute within national borders on controlled infrastructure under local regulatory frameworks. It matters because the EU AI Act (fully enforceable from August 2025) combined with GDPR Article 44 creates a regulatory environment where sending enterprise data to US-based LLM APIs may constitute a compliance violation. 67% of EU enterprises now require data sovereignty for AI workloads, driving a $40B+ sovereign cloud market by 2028.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">What is the Private Agent Factory architecture pattern?</div>
+                <div class="faq-a">The Private Agent Factory is an architectural pattern for deploying multi-agent AI systems in air-gapped, regulation-compliant environments. It uses three security zones: an external integration zone (API gateway, MCP bridge), a processing zone (agent runtime, LLM inference, vector search), and a data zone (encrypted storage, audit logs). All components run on controlled infrastructure with zero external API dependencies. The pattern enables regulated industries to deploy the same agent capabilities as cloud-native organizations while maintaining complete data sovereignty.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">Can enterprises run AI agents without any external API dependencies?</div>
+                <div class="faq-a">Yes. Using OCI Dedicated Region or on-premises infrastructure, enterprises can deploy fully self-contained AI agent systems. Oracle AI Database 26ai provides Select AI Agent (database-native agents) with OCI GenAI Service running models like Cohere Command A or Llama 3 within the sovereign boundary. MCP Servers run locally, vector search is database-native, and all agent memory persists in encrypted database tables. The only external dependency eliminated is the LLM API call &mdash; everything runs within the controlled perimeter.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">How does the EU AI Act affect AI agent deployment?</div>
+                <div class="faq-a">The EU AI Act classifies AI systems by risk level: unacceptable (banned), high-risk (strict requirements), limited risk (transparency obligations), and minimal risk (no restrictions). AI agents in healthcare, financial services, and HR decisions are typically high-risk, requiring: conformity assessments, human oversight mechanisms, detailed logging and audit trails, bias testing, and incident reporting. The Private Agent Factory pattern includes a dedicated Compliance Agent that enforces these requirements at the infrastructure level, making compliance architectural rather than procedural.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">What is quantum-resistant encryption and why is Oracle implementing it now?</div>
+                <div class="faq-a">Quantum-resistant encryption uses mathematical algorithms that remain secure even against quantum computers. Oracle AI Database 26ai implements TLS 1.3 with ML-KEM (Module-Lattice Key Encapsulation Mechanism), a NIST-standardized post-quantum algorithm. This matters now because of "harvest now, decrypt later" attacks &mdash; adversaries are collecting encrypted data today to decrypt it when quantum computers become available (estimated 2030-2035). For sovereign AI deployments handling classified or sensitive data, quantum-resistant encryption is a forward-looking security requirement.</div>
             </div>
         </div>
 
