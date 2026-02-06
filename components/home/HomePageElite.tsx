@@ -817,23 +817,43 @@ function FeaturedResources() {
 
 const featuredArtworks = [
   {
-    src: '/images/ai-art/generated-2026-01-21T10-05-06-577Z-s5e43g.png',
-    title: 'Neural Synthesis I',
+    src: '/images/ai-art/neural-synthesis-ii.png',
+    title: 'Neural Synthesis II',
     category: 'Abstract',
   },
   {
-    src: '/images/ai-art/generated-2026-01-21T10-05-26-229Z-jajczn.png',
-    title: 'Neural Wave',
-    category: 'Abstract',
+    src: '/images/ai-art/future-eco-city.png',
+    title: 'Future Eco City',
+    category: 'Architecture',
   },
   {
-    src: '/images/ai-art/generated-2026-01-21T10-05-42-484Z-c75nch.png',
-    title: 'Digital Aurora',
+    src: '/images/ai-art/digital-aurora-ii.png',
+    title: 'Digital Aurora II',
     category: 'Nature Tech',
   },
   {
-    src: '/images/ai-art/generated-2025-11-20T19-29-22-071Z-uz2q95.png',
-    title: 'First Light',
+    src: '/images/ai-art/crystalline-brain-runes.png',
+    title: 'Crystalline Brain',
+    category: 'Neurotech',
+  },
+  {
+    src: '/images/ai-art/consciousness-wave-ii.png',
+    title: 'Consciousness Wave',
+    category: 'Abstract',
+  },
+  {
+    src: '/images/ai-art/golden-path-journey.png',
+    title: 'Golden Path',
+    category: 'Cosmic',
+  },
+  {
+    src: '/images/ai-art/data-explosion-abstract.png',
+    title: 'Data Explosion',
+    category: 'Data Art',
+  },
+  {
+    src: '/images/ai-art/first-light-ii.png',
+    title: 'First Light II',
     category: 'Cosmic',
   },
 ]
@@ -922,7 +942,7 @@ function AIArtGalleryPreview() {
         >
           <div className="flex items-center gap-2">
             <ImageIcon className="w-4 h-4" />
-            <span>20+ Artworks</span>
+            <span>40+ Artworks</span>
           </div>
           <div className="flex items-center gap-2">
             <Wand2 className="w-4 h-4" />
