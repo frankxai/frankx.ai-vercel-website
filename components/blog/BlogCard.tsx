@@ -1,13 +1,14 @@
 'use client'
 
 import { useState } from 'react'
-import Link from 'next/link'
 import Image from 'next/image'
 import { Calendar, Clock, ArrowUpRight, Sparkles } from 'lucide-react'
-import { motion } from 'framer-motion'
 
 import { BlogPost } from '@/lib/blog'
 import { cn } from '@/lib/utils'
+import PremiumCard from '@/components/ui/PremiumCard'
+import type { GradientPreset } from '@/components/ui/PremiumCard'
+import { trackEvent } from '@/lib/analytics'
 
 interface BlogCardProps {
   post: BlogPost
@@ -15,20 +16,41 @@ interface BlogCardProps {
   className?: string
 }
 
+const CATEGORY_GRADIENTS: Record<string, GradientPreset> = {
+  'ai architecture': 'cyan',
+  'ai tools': 'cyan',
+  'music': 'gold',
+  'music production': 'gold',
+  'creator tools': 'emerald',
+  'enterprise ai': 'purple',
+  'development': 'slate',
+  'ai agents': 'purple',
+  'productivity': 'emerald',
+  'tutorial': 'cyan',
+}
+
+function getCategoryGradient(category?: string): GradientPreset {
+  if (!category) return 'cyan'
+  return CATEGORY_GRADIENTS[category.toLowerCase()] || 'cyan'
+}
+
 export default function BlogCard({ post, featured = false, className }: BlogCardProps) {
   const [imgError, setImgError] = useState(false)
   const showImage = post.image && !imgError
 
   return (
-    <Link
+    <PremiumCard
       href={`/blog/${post.slug}`}
+      gradient={getCategoryGradient(post.category)}
+      mouseGlow
+      badge={featured ? 'Featured' : undefined}
+      padding="p-0"
+      lift
       className={cn(
-        'group relative block overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] transition-all duration-500',
-        'hover:border-white/20 hover:bg-white/[0.04] hover:-translate-y-2 hover:shadow-2xl hover:shadow-emerald-500/10',
-        'focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50',
         featured && 'md:col-span-2 lg:col-span-3',
         className
       )}
+      onClick={() => trackEvent('blog_card_click', { slug: post.slug, category: post.category, featured })}
     >
       {/* Hero Image Section */}
       {showImage && (
@@ -45,28 +67,14 @@ export default function BlogCard({ post, featured = false, className }: BlogCard
           <div className="absolute inset-0 bg-gradient-to-t from-[#030712] via-[#030712]/80 to-transparent" />
 
           {/* Category badge on image */}
-          <div className="absolute top-4 left-4">
+          <div className="absolute top-4 left-4 z-20">
             <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium bg-emerald-500/20 text-emerald-300 border border-emerald-500/30 backdrop-blur-sm">
               <Sparkles className="w-3 h-3" />
               {post.category || 'Article'}
             </span>
           </div>
-
-          {/* Featured badge */}
-          {featured && (
-            <div className="absolute top-4 right-4">
-              <span className="inline-flex items-center px-3 py-1.5 rounded-full text-xs font-bold bg-white/95 text-black backdrop-blur-sm">
-                Featured
-              </span>
-            </div>
-          )}
         </div>
       )}
-
-      {/* Animated gradient overlay on hover - flows across the card */}
-      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
-        <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-cyan-500/5 to-purple-500/10 animate-gradient" />
-      </div>
 
       <div className={cn('relative p-6', featured && 'p-8')}>
         {/* If no image, show category at top */}
@@ -136,6 +144,6 @@ export default function BlogCard({ post, featured = false, className }: BlogCard
           </div>
         )}
       </div>
-    </Link>
+    </PremiumCard>
   )
 }

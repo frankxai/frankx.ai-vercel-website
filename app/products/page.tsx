@@ -375,26 +375,29 @@ export default function ProductsPage() {
             </motion.div>
 
             <div className="grid md:grid-cols-3 gap-6">
-              {[
+              {([
                 {
                   title: 'Battle-Tested Prompts',
                   description: 'Every prompt has been used in real projects. No theoretical examples—just what actually works in production.',
                   icon: Sparkles,
                   color: 'emerald',
+                  gradient: 'emerald' as GradientPreset,
                 },
                 {
                   title: 'Workflow Templates',
                   description: 'Complete workflows you can adapt. From ideation to publishing, every step is documented and replicable.',
                   icon: Zap,
                   color: 'cyan',
+                  gradient: 'cyan' as GradientPreset,
                 },
                 {
                   title: 'Continuous Updates',
                   description: 'AI tools evolve fast. Your purchase includes all future updates as I refine and expand these systems.',
                   icon: Star,
                   color: 'violet',
+                  gradient: 'purple' as GradientPreset,
                 },
-              ].map((item, i) => {
+              ] as const).map((item, i) => {
                 const colorClasses: Record<string, string> = {
                   emerald: 'bg-emerald-500/10 text-emerald-400',
                   cyan: 'bg-cyan-500/10 text-cyan-400',
@@ -408,13 +411,14 @@ export default function ProductsPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.1 }}
-                    className="p-6 rounded-2xl border border-white/5 bg-white/[0.02]"
                   >
-                    <div className={`w-12 h-12 rounded-xl ${colorClasses[item.color]} flex items-center justify-center mb-4`}>
-                      <item.icon className="w-6 h-6" />
-                    </div>
-                    <h3 className="text-lg font-semibold text-white mb-2">{item.title}</h3>
-                    <p className="text-sm text-white/50 leading-relaxed">{item.description}</p>
+                    <PremiumCard gradient={item.gradient} padding="p-6" className="h-full">
+                      <div className={`w-12 h-12 rounded-xl ${colorClasses[item.color]} flex items-center justify-center mb-4`}>
+                        <item.icon className="w-6 h-6" />
+                      </div>
+                      <h3 className="text-lg font-semibold text-white mb-2">{item.title}</h3>
+                      <p className="text-sm text-white/50 leading-relaxed">{item.description}</p>
+                    </PremiumCard>
                   </motion.div>
                 )
               })}
@@ -454,19 +458,23 @@ export default function ProductsPage() {
                   q: "What do I get by joining the waitlist?",
                   a: "Waitlist members get priority access when products launch, exclusive early-bird pricing, and behind-the-scenes content showing how each system is built.",
                 },
-              ].map((faq, i) => (
-                <motion.div
-                  key={faq.q}
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.05 }}
-                  className="p-6 rounded-xl border border-white/5 bg-white/[0.02]"
-                >
-                  <h3 className="text-base font-semibold text-white mb-2">{faq.q}</h3>
-                  <p className="text-sm text-white/50 leading-relaxed">{faq.a}</p>
-                </motion.div>
-              ))}
+              ].map((faq, i) => {
+                const faqGradients: GradientPreset[] = ['cyan', 'emerald', 'gold', 'purple']
+                return (
+                  <motion.div
+                    key={faq.q}
+                    initial={{ opacity: 0, y: 10 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.05 }}
+                  >
+                    <PremiumCard gradient={faqGradients[i % faqGradients.length]} padding="p-6" lift={false}>
+                      <h3 className="text-base font-semibold text-white mb-2">{faq.q}</h3>
+                      <p className="text-sm text-white/50 leading-relaxed">{faq.a}</p>
+                    </PremiumCard>
+                  </motion.div>
+                )
+              })}
             </div>
           </div>
         </section>
