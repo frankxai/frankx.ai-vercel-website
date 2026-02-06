@@ -329,6 +329,8 @@ module.exports = {
         'gradient': 'gradient 15s ease infinite',
         float: 'float 6s ease-in-out infinite',
         'logo-marquee': 'logoMarquee 40s linear infinite',
+        'aurora-1': 'aurora1 30s ease-in-out infinite',
+        'aurora-2': 'aurora2 25s ease-in-out infinite',
 
         // Radix Navigation animations
         scaleIn: 'scaleIn 200ms ease',
@@ -391,6 +393,14 @@ module.exports = {
         logoMarquee: {
           '0%': { transform: 'translateX(0)' },
           '100%': { transform: 'translateX(-50%)' },
+        },
+        aurora1: {
+          '0%, 100%': { transform: 'translate(0, 0) scale(1)' },
+          '50%': { transform: 'translate(50px, 30px) scale(1.05)' },
+        },
+        aurora2: {
+          '0%, 100%': { transform: 'translate(0, 0) scale(1)' },
+          '50%': { transform: 'translate(-40px, -20px) scale(1.08)' },
         },
 
         // Radix Navigation keyframes

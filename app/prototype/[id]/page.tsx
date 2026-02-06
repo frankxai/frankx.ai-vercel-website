@@ -27,7 +27,12 @@ import {
 import prototypesData from '@/data/ai-architecture/prototypes.json'
 import { CATEGORY_META, CLOUD_PROVIDER_META, DIFFICULTY_META } from '@/types/ai-architecture'
 import type { ArchitecturePrototype, PrototypeCategory, CloudProvider } from '@/types/ai-architecture'
-import { ArchitectureDiagram, ARCHITECTURE_PRESETS } from '@/components/ai-architecture'
+import dynamic from 'next/dynamic'
+
+const ArchitectureDiagram = dynamic(
+  () => import('@/components/ai-architecture/ArchitectureDiagram').then((mod) => mod.ArchitectureDiagram),
+  { ssr: false, loading: () => <div className="w-full h-[500px] bg-slate-900/50 rounded-xl animate-pulse" /> }
+)
 
 const prototypes = prototypesData as ArchitecturePrototype[]
 

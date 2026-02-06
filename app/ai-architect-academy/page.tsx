@@ -20,7 +20,12 @@ import {
   GraduationCap,
   Building,
 } from 'lucide-react'
-import { Hero3D } from '@/components/ai-architecture'
+import dynamic from 'next/dynamic'
+
+const Hero3D = dynamic(
+  () => import('@/components/ai-architecture/Hero3D').then((mod) => mod.Hero3D),
+  { ssr: false, loading: () => <div className="w-full h-full bg-[#030712]" /> }
+)
 
 // Premium animated background
 function AcademyBackground() {

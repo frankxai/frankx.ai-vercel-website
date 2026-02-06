@@ -54,48 +54,26 @@ const colors = {
 // ============================================================================
 
 function AuroraBackground() {
-  const shouldReduceMotion = useReducedMotion()
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none">
       {/* Base gradient */}
       <div className="absolute inset-0 bg-[#0a0a0b]" />
 
-      {/* Aurora effect - contained within viewport to prevent overflow */}
-      {/* Mobile: smaller, more contained gradients */}
-      <motion.div
-        className="absolute top-0 left-0 w-full h-[60%] md:w-[80%] md:h-[80%]"
+      {/* Aurora effect - CSS animations for compositor-thread performance */}
+      <div
+        className="absolute top-0 left-0 w-full h-[60%] md:w-[80%] md:h-[80%] animate-aurora-1 motion-reduce:animate-none"
         style={{
           background: 'radial-gradient(ellipse at center, rgba(16, 185, 129, 0.06) 0%, transparent 70%)',
           filter: 'blur(80px)',
         }}
-        animate={
-          shouldReduceMotion
-            ? undefined
-            : {
-                x: [0, 50, 0],
-                y: [0, 30, 0],
-                scale: [1, 1.05, 1],
-              }
-        }
-        transition={shouldReduceMotion ? undefined : { duration: 30, repeat: Infinity, ease: 'easeInOut' }}
       />
 
-      <motion.div
-        className="absolute bottom-0 right-0 w-full h-[50%] md:w-[60%] md:h-[60%]"
+      <div
+        className="absolute bottom-0 right-0 w-full h-[50%] md:w-[60%] md:h-[60%] animate-aurora-2 motion-reduce:animate-none"
         style={{
           background: 'radial-gradient(ellipse at center, rgba(6, 182, 212, 0.05) 0%, transparent 70%)',
           filter: 'blur(80px)',
         }}
-        animate={
-          shouldReduceMotion
-            ? undefined
-            : {
-                x: [0, -40, 0],
-                y: [0, -20, 0],
-                scale: [1, 1.08, 1],
-              }
-        }
-        transition={shouldReduceMotion ? undefined : { duration: 25, repeat: Infinity, ease: 'easeInOut' }}
       />
 
       {/* Subtle grain texture */}

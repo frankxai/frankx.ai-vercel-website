@@ -8,8 +8,7 @@ const __dirname = dirname(__filename)
 const nextConfig = {
   pageExtensions: ['js', 'jsx', 'ts', 'tsx'],
   typescript: {
-    // Skip type checking during build (run separately)
-    ignoreBuildErrors: true,
+    ignoreBuildErrors: false,
   },
   images: {
     // Enable modern image formats for better compression
