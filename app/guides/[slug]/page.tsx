@@ -15,7 +15,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!guide) return { title: 'Guide Not Found' }
   const ogImage = guide.image
     ? guide.image
-    : `/api/og?title=${encodeURIComponent(guide.title)}&subtitle=${encodeURIComponent(guide.description)}`
+    : `/api/og/guide?title=${encodeURIComponent(guide.title)}&subtitle=${encodeURIComponent(guide.description)}&category=${encodeURIComponent(guide.category || '')}&readTime=${encodeURIComponent(guide.readingTime || '')}`
   return {
     title: `${guide.title} | FrankX Guides`,
     description: guide.description,
