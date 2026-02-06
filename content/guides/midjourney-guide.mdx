@@ -400,4 +400,48 @@ With paid subscription:
 
 ---
 
+## Frequently Asked Questions
+
+### How much does Midjourney cost and which plan is best for creators?
+
+Midjourney offers four plans: Basic ($10/month, 3.3 fast hours), Standard ($30/month, 15 fast hours), Pro ($60/month, 30 fast hours), and Mega ($120/month, 60 fast hours). For most content creators, Standard is the sweet spot — 15 fast hours generates roughly 200-300 images per month, more than enough for blog headers, social media graphics, and product visuals. Only upgrade to Pro if you're doing commercial production work or need high-volume batch generation.
+
+### Can I use Midjourney images commercially?
+
+Yes, all paid subscriptions include full commercial usage rights. You can use generated images in products, marketing materials, blog posts, social media, and anywhere else. The only restriction: if you're a company with over $1 million in annual revenue, you need at least the Pro plan. Always avoid generating recognizable real people, copyrighted characters, or trademarked logos to stay safe legally.
+
+### How do I get consistent style across multiple Midjourney images?
+
+Three techniques for style consistency: (1) Create a base prompt template with your style elements (color palette, art style, mood) and reuse it for all generations. (2) Use the `--seed` parameter — same seed + similar prompt = similar composition. (3) Use Style Reference (--sref) with an image URL to maintain visual consistency. Building a prompt library of your tested base styles is the most reliable long-term approach.
+
+### What's the difference between Midjourney and DALL-E 3?
+
+Midjourney produces more aesthetically polished images with stronger artistic coherence — it excels at visual beauty by default. DALL-E 3 (built into ChatGPT) is better at following precise text instructions and text rendering within images. For creator content, Midjourney generally produces more visually stunning results with less prompt engineering. DALL-E 3 is more convenient since it's integrated directly into ChatGPT conversations. See our [Image Generation Mastery guide](/guides/image-generation-mastery) for a deeper comparison.
+
+### How do I write better Midjourney prompts?
+
+Follow the structured prompt formula: [Subject] + [Environment/Context] + [Style/Medium] + [Lighting/Mood] + [Technical Parameters]. Example: "solo musician in home studio, surrounded by vintage synthesizers, documentary photography, warm afternoon light through blinds --ar 16:9 --v 6." Start broad, use variations (V buttons) to explore, then refine. Keep prompts focused — too many details often conflict and produce muddled results.
+
+### What are the most useful Midjourney parameters to know?
+
+The essential parameters: `--ar` (aspect ratio, e.g., 16:9 for blog headers, 1:1 for album art), `--v 6` (model version), `--style raw` (reduces Midjourney's default stylization for more realistic results), `--s` (stylization amount, 0-1000), and `--no` (exclude elements, e.g., `--no text`). For creative exploration, `--c` (chaos, 0-100) generates more diverse results. Start with just `--ar` and `--style raw`, then experiment with others.
+
+### Can Midjourney generate text in images reliably?
+
+Midjourney v6 improved text rendering significantly but it's still imperfect for complex text. Simple, short words (1-3 words) work reasonably well. For reliable text in images, generate the visual in Midjourney without text, then add typography in Canva, Figma, or Photoshop. This also gives you full control over font choice, positioning, and readability — which usually produces better results anyway.
+
+### How long does it take to generate an image in Midjourney?
+
+In fast mode, a standard generation takes 30-60 seconds for 4 image variations. Upscaling takes another 30-60 seconds. Variations are similarly fast. In relax mode (unlimited but slower, available on Standard+), generation can take 1-10 minutes depending on queue. For a typical content creation session, expect to spend 15-30 minutes finding the right image through 3-5 rounds of prompting and variations.
+
+### Should I use Midjourney through Discord or the web app?
+
+The web app (midjourney.com) offers a cleaner interface with better organization, search, and editing tools. Discord provides the community experience and is where many creators find inspiration by browsing others' work. For production work, the web app is more efficient. For learning and exploration, Discord's community channels are invaluable. Most serious creators use both — web app for focused work, Discord for discovery.
+
+### How do I use Midjourney for consistent brand imagery?
+
+Create a brand prompt template that captures your visual identity: color palette, style references, mood, and composition preferences. Example: "professional, blue and gold color palette, modern minimalist aesthetic, clean composition, dark background --style raw --ar 16:9." Use this template as your base for all brand imagery, only changing the subject matter. Combine with `--sref` (style reference) pointing to your best previous generations for maximum consistency.
+
+---
+
 *Midjourney democratized professional visual creation. For creators who previously relied on stock photos or expensive designers, it's a fundamental shift. The key is treating it as a creative collaboration: start with clear intent, iterate through variations, and refine until you have exactly what your content needs.*
