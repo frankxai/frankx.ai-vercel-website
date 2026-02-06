@@ -2,27 +2,29 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Research Intelligence Hub | FrankX.AI',
-  description: 'A sophisticated research system exploring generative AI, consciousness, and human potential. Daily intelligence operations synthesizing cutting-edge insights for conscious creators.',
+  description: 'Validated research across enterprise AI, production patterns, multi-agent systems, and emerging technology. 80+ cross-referenced claims, 12 active research domains, 160+ sources.',
   keywords: [
     'AI research',
-    'generative AI',
-    'consciousness research',
-    'personal development',
+    'enterprise AI architecture',
+    'multi-agent systems',
+    'production AI patterns',
+    'RAG architecture',
     'AI agents',
-    'LLM research',
-    'meditation science',
-    'creator economy',
-    'productivity systems',
-    'human potential',
+    'MCP protocol',
+    'AI operations',
+    'vector databases',
+    'AI security',
+    'AI coding assistants',
+    'AI neuroscience',
   ],
   openGraph: {
     title: 'Research Intelligence Hub | FrankX.AI',
-    description: 'Daily intelligence operations exploring the frontiers of AI, consciousness, and human potential.',
+    description: 'Validated research across enterprise AI, production patterns, multi-agent systems, and emerging technology.',
     type: 'website',
     url: 'https://frankx.ai/research',
     images: [
       {
-        url: '/images/og-image.png',
+        url: '/images/brand/og-template.png',
         width: 1200,
         height: 630,
         alt: 'FrankX Research Intelligence Hub',
@@ -32,8 +34,8 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Research Intelligence Hub | FrankX.AI',
-    description: 'Multi-agent research system for AI, consciousness, and human potential.',
-    images: ['/images/og-image.png'],
+    description: '12 research domains. 80+ validated claims. 160+ cross-referenced sources.',
+    images: ['/images/brand/og-template.png'],
   },
   alternates: {
     canonical: 'https://frankx.ai/research',
