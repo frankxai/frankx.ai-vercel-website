@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { motion, useReducedMotion } from 'framer-motion'
 import {
+  Activity,
   ArrowLeft,
   ArrowRight,
   ArrowUpRight,
@@ -11,14 +12,18 @@ import {
   Calendar,
   CheckCircle2,
   Code,
+  Compass,
   Cpu,
   Database,
   FileText,
+  GraduationCap,
   Heart,
   Layers,
   Network,
+  Palette,
   Plug,
   Radar,
+  Rocket,
   Search,
   Shield,
   ShieldCheck,
@@ -29,8 +34,9 @@ import {
 import type { ResearchDomain } from '@/lib/research/domains'
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
-  Brain, Building2, Code, Cpu, Database, FileText, Heart, Layers,
-  Network, Plug, Radar, Search, Shield, ShieldCheck, TrendingUp, BarChart3,
+  Activity, Brain, Building2, Code, Compass, Cpu, Database, FileText,
+  GraduationCap, Heart, Layers, Network, Palette, Plug, Radar, Rocket,
+  Search, Shield, ShieldCheck, Sparkles, TrendingUp, BarChart3,
 }
 
 const colorConfig: Record<string, { border: string; text: string; bg: string; gradient: string }> = {
