@@ -12,41 +12,16 @@ interface CategoryDropdownProps {
   getCategoryCount: (category: string) => number
 }
 
-// Category styling with brand colors
+// Category styling — 8 consolidated categories with distinct brand colors
 const categoryStyles: Record<string, { icon: string; activeClass: string }> = {
-  'AI & Technology': { icon: '🤖', activeClass: 'bg-cyan-500/15 border-cyan-500/40 text-cyan-300' },
-  'AI & Consciousness': { icon: '🧠', activeClass: 'bg-purple-500/15 border-purple-500/40 text-purple-300' },
-  'AI & Creativity': { icon: '✨', activeClass: 'bg-violet-500/15 border-violet-500/40 text-violet-300' },
-  'AI & Systems': { icon: '⚙️', activeClass: 'bg-sky-500/15 border-sky-500/40 text-sky-300' },
-  'AI Architecture': { icon: '🏗️', activeClass: 'bg-blue-500/15 border-blue-500/40 text-blue-300' },
-  'AI Education': { icon: '📚', activeClass: 'bg-indigo-500/15 border-indigo-500/40 text-indigo-300' },
-  'Agentic AI': { icon: '🤖', activeClass: 'bg-teal-500/15 border-teal-500/40 text-teal-300' },
-  'Agentic Creator Mastery': { icon: '🚀', activeClass: 'bg-emerald-500/15 border-emerald-500/40 text-emerald-300' },
-  'Business & AI': { icon: '💼', activeClass: 'bg-amber-500/15 border-amber-500/40 text-amber-300' },
-  'Consciousness': { icon: '🌀', activeClass: 'bg-fuchsia-500/15 border-fuchsia-500/40 text-fuchsia-300' },
-  'Content Strategy': { icon: '📝', activeClass: 'bg-lime-500/15 border-lime-500/40 text-lime-300' },
-  'Creation Chronicles': { icon: '📖', activeClass: 'bg-orange-500/15 border-orange-500/40 text-orange-300' },
-  'Creator Systems': { icon: '⚡', activeClass: 'bg-emerald-500/15 border-emerald-500/40 text-emerald-300' },
-  'Creativity': { icon: '🎨', activeClass: 'bg-pink-500/15 border-pink-500/40 text-pink-300' },
-  'Creativity & Framework': { icon: '🎯', activeClass: 'bg-rose-500/15 border-rose-500/40 text-rose-300' },
-  'Enterprise AI': { icon: '🏢', activeClass: 'bg-blue-500/15 border-blue-500/40 text-blue-300' },
-  'Flagship': { icon: '🏆', activeClass: 'bg-amber-500/15 border-amber-500/40 text-amber-300' },
-  'Framework': { icon: '🔧', activeClass: 'bg-slate-400/15 border-slate-400/40 text-slate-300' },
-  'Golden Age': { icon: '✦', activeClass: 'bg-yellow-500/15 border-yellow-500/40 text-yellow-300' },
+  'AI Architecture':        { icon: '🏗️', activeClass: 'bg-blue-500/15 border-blue-500/40 text-blue-300' },
+  'Creator Systems':        { icon: '⚡', activeClass: 'bg-emerald-500/15 border-emerald-500/40 text-emerald-300' },
   'Intelligence Dispatches': { icon: '📡', activeClass: 'bg-cyan-500/15 border-cyan-500/40 text-cyan-300' },
-  'Intelligence Economy': { icon: '📈', activeClass: 'bg-green-500/15 border-green-500/40 text-green-300' },
-  'Music Intelligence': { icon: '🎵', activeClass: 'bg-orange-500/15 border-orange-500/40 text-orange-300' },
-  'Music Production': { icon: '🎹', activeClass: 'bg-orange-500/15 border-orange-500/40 text-orange-300' },
-  'Personal Development': { icon: '🌱', activeClass: 'bg-green-500/15 border-green-500/40 text-green-300' },
-  'Product Launch': { icon: '🚀', activeClass: 'bg-rose-500/15 border-rose-500/40 text-rose-300' },
-  'Research Deep Dive': { icon: '🔬', activeClass: 'bg-violet-500/15 border-violet-500/40 text-violet-300' },
-  'Strategy': { icon: '♟️', activeClass: 'bg-slate-400/15 border-slate-400/40 text-slate-300' },
-  'Technology': { icon: '💻', activeClass: 'bg-cyan-500/15 border-cyan-500/40 text-cyan-300' },
-  'Tutorials': { icon: '📘', activeClass: 'bg-indigo-500/15 border-indigo-500/40 text-indigo-300' },
-  'Vibe OS': { icon: '🎧', activeClass: 'bg-purple-500/15 border-purple-500/40 text-purple-300' },
-  'Vibe Sessions': { icon: '🎶', activeClass: 'bg-purple-500/15 border-purple-500/40 text-purple-300' },
-  'Workshops': { icon: '🛠️', activeClass: 'bg-teal-500/15 border-teal-500/40 text-teal-300' },
-  'ai-tools': { icon: '🔧', activeClass: 'bg-slate-400/15 border-slate-400/40 text-slate-300' },
+  'Workshops & Tutorials':  { icon: '🛠️', activeClass: 'bg-indigo-500/15 border-indigo-500/40 text-indigo-300' },
+  'AI & Systems':           { icon: '⚙️', activeClass: 'bg-sky-500/15 border-sky-500/40 text-sky-300' },
+  'AI & Creativity':        { icon: '✨', activeClass: 'bg-violet-500/15 border-violet-500/40 text-violet-300' },
+  'Music & Audio':          { icon: '🎵', activeClass: 'bg-orange-500/15 border-orange-500/40 text-orange-300' },
+  'Strategy & Learning':    { icon: '📚', activeClass: 'bg-amber-500/15 border-amber-500/40 text-amber-300' },
 }
 
 const getCategoryStyle = (category: string) => {
