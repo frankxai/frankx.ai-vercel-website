@@ -1,5 +1,6 @@
 'use client'
 
+import { useState, useMemo } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 import Link from 'next/link'
 import {
@@ -8,6 +9,7 @@ import {
   ArrowUpRight,
   Brain,
   Building2,
+  Calendar,
   Code,
   Compass,
   Cpu,
@@ -28,32 +30,14 @@ import {
   TrendingUp,
   BarChart3,
 } from 'lucide-react'
-import { researchDomains, researchAgents } from '@/lib/research/domains'
+import { researchDomains, researchAgents, domainCategories } from '@/lib/research/domains'
+import type { DomainCategory } from '@/lib/research/domains'
 
 // Icon map for dynamic rendering
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
-  Activity,
-  Brain,
-  Building2,
-  Code,
-  Compass,
-  Cpu,
-  Database,
-  FileText,
-  GraduationCap,
-  Heart,
-  Layers,
-  Network,
-  Palette,
-  Plug,
-  Radar,
-  Rocket,
-  Search,
-  Shield,
-  ShieldCheck,
-  Sparkles,
-  TrendingUp,
-  BarChart3,
+  Activity, Brain, Building2, Code, Compass, Cpu, Database, FileText,
+  GraduationCap, Heart, Layers, Network, Palette, Plug, Radar, Rocket,
+  Search, Shield, ShieldCheck, Sparkles, TrendingUp, BarChart3,
 }
 
 // Color utility
@@ -72,11 +56,19 @@ const colorConfig: Record<string, { border: string; text: string; bg: string; gr
   sky: { border: 'border-sky-500/30', text: 'text-sky-400', bg: 'bg-sky-500/10', gradient: 'from-sky-500/20 to-sky-500/5', glow: 'shadow-sky-500/20' },
 }
 
+// Get featured domains (3 most recently updated)
+const featuredDomains = [...researchDomains]
+  .sort((a, b) => b.lastUpdated.localeCompare(a.lastUpdated))
+  .slice(0, 3)
+
+const totalSources = researchDomains.reduce((sum, d) => sum + d.sourceCount, 0)
+const totalFindings = researchDomains.reduce((sum, d) => sum + d.keyFindings.length, 0)
+
 function HeroSection() {
   const shouldReduceMotion = useReducedMotion()
 
   return (
-    <section className="relative pt-28 pb-16 md:pt-36 md:pb-24 overflow-hidden">
+    <section className="relative pt-28 pb-16 md:pt-36 md:pb-20 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
@@ -105,7 +97,7 @@ function HeroSection() {
 
           <div className="flex flex-wrap gap-4">
             <Link
-              href="#domains"
+              href="#featured"
               className="inline-flex items-center gap-2 bg-white text-black px-6 py-3 rounded-full font-semibold hover:bg-white/90 transition-all"
             >
               Explore Research
@@ -128,9 +120,9 @@ function HeroSection() {
           className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-4"
         >
           {[
-            { label: 'Research Domains', value: '15', icon: Layers },
-            { label: 'Validated Claims', value: '120+', icon: ShieldCheck },
-            { label: 'Sources Cross-Referenced', value: '200+', icon: Search },
+            { label: 'Research Domains', value: String(researchDomains.length), icon: Layers },
+            { label: 'Validated Findings', value: `${totalFindings}+`, icon: ShieldCheck },
+            { label: 'Sources Cross-Referenced', value: `${totalSources}+`, icon: Search },
             { label: 'Research Agents', value: '5', icon: Radar },
           ].map((stat, i) => (
             <div key={i} className="bg-white/[0.03] backdrop-blur-sm border border-white/[0.06] rounded-xl p-4">
@@ -145,24 +137,168 @@ function HeroSection() {
   )
 }
 
+function FeaturedSpotlight() {
+  const shouldReduceMotion = useReducedMotion()
+
+  return (
+    <section id="featured" className="py-12 md:py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.1 }}
+          className="mb-8"
+        >
+          <div className="flex items-center gap-3 mb-3">
+            <Sparkles className="w-5 h-5 text-amber-400" />
+            <h2 className="text-2xl md:text-3xl font-bold text-white">
+              Recently Updated
+            </h2>
+          </div>
+          <p className="text-white/50 max-w-2xl">
+            Our most recently refreshed research domains with the latest data and analysis.
+          </p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-3 gap-4">
+          {featuredDomains.map((domain, index) => {
+            const Icon = iconMap[domain.icon] || Layers
+            const colors = colorConfig[domain.color] || colorConfig.emerald
+
+            return (
+              <motion.div
+                key={domain.slug}
+                initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.15 + index * 0.08 }}
+              >
+                <Link
+                  href={`/research/${domain.slug}`}
+                  className={`
+                    group relative block rounded-2xl border bg-white/[0.02] p-6 h-full
+                    transition-all duration-300 hover:bg-white/[0.05]
+                    ${index === 0
+                      ? `${colors.border} border-opacity-50`
+                      : 'border-white/[0.08]'
+                    }
+                  `}
+                >
+                  {/* Accent gradient */}
+                  <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${colors.gradient} opacity-30 group-hover:opacity-60 transition-opacity duration-300`} />
+
+                  <div className="relative z-10">
+                    <div className="flex items-start justify-between mb-4">
+                      <div className={`p-3 ${colors.bg} rounded-xl ${colors.border} border`}>
+                        <Icon className={`w-6 h-6 ${colors.text}`} />
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="flex items-center gap-1 text-[10px] text-white/30">
+                          <Calendar className="w-3 h-3" />
+                          {domain.lastUpdated}
+                        </span>
+                      </div>
+                    </div>
+
+                    <h3 className="text-lg font-bold text-white mb-1.5">
+                      {domain.title}
+                    </h3>
+                    <p className="text-sm text-white/40 mb-4">
+                      {domain.subtitle}
+                    </p>
+
+                    {/* TL;DR preview */}
+                    <p className="text-xs text-white/35 leading-relaxed line-clamp-3 mb-4">
+                      {domain.tldr}
+                    </p>
+
+                    {/* Highlights */}
+                    <div className="flex flex-wrap gap-1.5 mb-4">
+                      {domain.highlights.slice(0, 2).map((h, i) => (
+                        <span
+                          key={i}
+                          className={`text-[10px] px-2 py-1 rounded-full ${colors.bg} ${colors.text} font-medium`}
+                        >
+                          {h.stat} {h.label}
+                        </span>
+                      ))}
+                    </div>
+
+                    {/* Footer */}
+                    <div className="flex items-center justify-between pt-3 border-t border-white/[0.04]">
+                      <span className="text-[10px] text-white/25">{domain.sourceCount} sources</span>
+                      <span className={`inline-flex items-center gap-1 text-xs font-medium ${colors.text} group-hover:gap-2 transition-all`}>
+                        Read Brief
+                        <ArrowRight className="w-3 h-3" />
+                      </span>
+                    </div>
+                  </div>
+                </Link>
+              </motion.div>
+            )
+          })}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+const categoryKeys: (DomainCategory | 'all')[] = ['all', 'ai-systems', 'models-tools', 'creative-productivity', 'health-science']
+
 function DomainsGrid() {
   const shouldReduceMotion = useReducedMotion()
+  const [activeCategory, setActiveCategory] = useState<DomainCategory | 'all'>('all')
+
+  const filteredDomains = useMemo(() => {
+    if (activeCategory === 'all') return researchDomains
+    return researchDomains.filter(d => d.category === activeCategory)
+  }, [activeCategory])
 
   return (
     <section id="domains" className="py-16 md:py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="mb-10">
+        <div className="mb-8">
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
-            Research Domains
+            All Research Domains
           </h2>
           <p className="text-white/50 max-w-2xl">
-            15 active research areas. Each domain synthesizes validated findings from
-            multiple sources into actionable intelligence.
+            {researchDomains.length} research areas organized by topic. Each domain synthesizes
+            validated findings from multiple sources into actionable intelligence.
           </p>
         </div>
 
+        {/* Category Tabs */}
+        <div className="flex flex-wrap gap-2 mb-8">
+          {categoryKeys.map((key) => {
+            const isActive = activeCategory === key
+            const label = key === 'all' ? 'All Domains' : domainCategories[key].label
+            const count = key === 'all'
+              ? researchDomains.length
+              : researchDomains.filter(d => d.category === key).length
+
+            return (
+              <button
+                key={key}
+                onClick={() => setActiveCategory(key)}
+                className={`
+                  inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium
+                  transition-all duration-200
+                  ${isActive
+                    ? 'bg-white text-black'
+                    : 'bg-white/[0.04] text-white/50 border border-white/[0.08] hover:bg-white/[0.08] hover:text-white/70'
+                  }
+                `}
+              >
+                {label}
+                <span className={`text-[10px] px-1.5 py-0.5 rounded-full ${isActive ? 'bg-black/10' : 'bg-white/[0.08]'}`}>
+                  {count}
+                </span>
+              </button>
+            )
+          })}
+        </div>
+
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {researchDomains.map((domain, index) => {
+          {filteredDomains.map((domain, index) => {
             const Icon = iconMap[domain.icon] || Layers
             const colors = colorConfig[domain.color] || colorConfig.emerald
 
@@ -171,15 +307,11 @@ function DomainsGrid() {
                 key={domain.slug}
                 initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={shouldReduceMotion ? { duration: 0 } : { delay: Math.min(index * 0.05, 0.4) }}
+                transition={shouldReduceMotion ? { duration: 0 } : { delay: Math.min(index * 0.04, 0.3) }}
               >
                 <Link
                   href={`/research/${domain.slug}`}
-                  className={`
-                    group relative block rounded-2xl border border-white/[0.06] bg-white/[0.02]
-                    p-6 transition-all duration-300
-                    hover:bg-white/[0.04] hover:${colors.border} hover:shadow-lg hover:${colors.glow}
-                  `}
+                  className="group relative block rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6 transition-all duration-300 hover:bg-white/[0.04] hover:border-white/[0.12]"
                 >
                   {/* Gradient overlay on hover */}
                   <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${colors.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
@@ -324,6 +456,10 @@ function MethodologySection() {
                 transition={shouldReduceMotion ? { duration: 0 } : { delay: index * 0.1 }}
                 className="relative bg-white/[0.02] border border-white/[0.06] rounded-2xl p-5"
               >
+                {/* Connector line */}
+                {index < phases.length - 1 && (
+                  <div className="hidden md:block absolute top-1/2 -right-2 w-4 h-px bg-white/[0.08]" />
+                )}
                 <div className="flex items-center gap-3 mb-3">
                   <span className="text-xs font-bold text-emerald-400 bg-emerald-500/10 px-2.5 py-1 rounded-full">
                     {phase.number}
@@ -416,6 +552,7 @@ export default function ResearchPage() {
 
       <div className="relative z-10">
         <HeroSection />
+        <FeaturedSpotlight />
         <DomainsGrid />
         <ResearchTeamSection />
         <MethodologySection />
