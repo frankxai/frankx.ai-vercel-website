@@ -212,7 +212,7 @@
                         Accurate diagnosis of pediatric acute leukemia requires the integration of three complementary analytical approaches: morphological assessment of blood smears, immunophenotyping through flow cytometry, and molecular genetic analysis. Traditionally, these analyses are performed sequentially by different specialists, with results integrated manually during tumor board meetings. This process typically requires 3-5 days for a comprehensive diagnosis.
                     </p>
                     <p>
-                        The AML-BFM Study Group has accumulated over 40 years of diagnostic data, including morphology assessments from more than 2,000 children, immunophenotyping records from 1,400+ cases (evolving from 3-color to 10-color panels), and molecular genetics data from 500+ patients analyzed with a 116-gene NGS panel. This dataset represents a unique opportunity to train AI models that can assist pathologists and accelerate the diagnostic process.
+                        The International Oncology Study Group has accumulated over 40 years of diagnostic data, including morphology assessments from more than 2,000 children, immunophenotyping records from 1,400+ cases (evolving from 3-color to 10-color panels), and molecular genetics data from 500+ patients analyzed with a 116-gene NGS panel. This dataset represents a unique opportunity to train AI models that can assist pathologists and accelerate the diagnostic process.
                     </p>
 
                     <div class="pipeline-visual">
@@ -246,7 +246,7 @@
                         Blood smear analysis remains the first-line diagnostic tool for leukemia detection. Pathologists examine Giemsa-stained peripheral blood or bone marrow aspirates to identify blast cells, assess their morphological features, and classify them according to the FAB or WHO criteria. This process requires significant expertise and is subject to inter-observer variability.
                     </p>
                     <p>
-                        <strong>OCI Vision Custom Models</strong> can be trained on the AML-BFM morphology dataset to assist pathologists in blast detection and classification. The training dataset includes labeled images with expert annotations identifying:
+                        <strong>OCI Vision Custom Models</strong> can be trained on the International Oncology morphology dataset to assist pathologists in blast detection and classification. The training dataset includes labeled images with expert annotations identifying:
                     </p>
                     <ul style="margin: 1rem 0 1.5rem 1.5rem;">
                         <li>Blast cells vs. normal hematopoietic cells</li>
@@ -264,7 +264,7 @@
 
                     <h3>Stage 2: Immunophenotyping Analysis</h3>
                     <p>
-                        Flow cytometry immunophenotyping has evolved significantly over the past four decades. The AML-BFM dataset spans this evolution, from early 3-color panels to current 10-color configurations that can simultaneously analyze multiple surface and intracellular markers. This heterogeneous data presents both a challenge and an opportunity for AI-assisted analysis.
+                        Flow cytometry immunophenotyping has evolved significantly over the past four decades. The International Oncology dataset spans this evolution, from early 3-color panels to current 10-color configurations that can simultaneously analyze multiple surface and intracellular markers. This heterogeneous data presents both a challenge and an opportunity for AI-assisted analysis.
                     </p>
                     <p>
                         <strong>OCI Data Science</strong> provides the computational environment for developing dimensionality reduction algorithms that can:
@@ -278,7 +278,7 @@
 
                     <h3>Stage 3: Molecular Genetics with GPU Acceleration</h3>
                     <p>
-                        The 116-gene NGS panel used by AML-BFM covers the most clinically relevant mutations, fusions, and copy number variations in pediatric leukemia. Processing this data requires significant computational resources, particularly for variant calling and annotation.
+                        The 116-gene NGS panel used by International Oncology covers the most clinically relevant mutations, fusions, and copy number variations in pediatric leukemia. Processing this data requires significant computational resources, particularly for variant calling and annotation.
                     </p>
                     <p>
                         <strong>NVIDIA Parabricks on OCI</strong> accelerates genomic analysis workflows from hours to minutes. The GPU-optimized pipeline includes:
@@ -286,7 +286,7 @@
                     <ul style="margin: 1rem 0 1.5rem 1.5rem;">
                         <li>BWA-MEM2 alignment (GPU-accelerated)</li>
                         <li>GATK HaplotypeCaller for variant calling</li>
-                        <li>Custom annotation with ClinVar, COSMIC, and AML-BFM-specific databases</li>
+                        <li>Custom annotation with ClinVar, COSMIC, and International Oncology-specific databases</li>
                         <li>Cryptic fusion detection using RNA-seq data</li>
                     </ul>
                     <p>
