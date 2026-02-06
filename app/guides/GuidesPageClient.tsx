@@ -4,7 +4,6 @@ import Link from 'next/link'
 import { motion, useReducedMotion } from 'framer-motion'
 import {
   Image,
-  Mic,
   PenTool,
   Rocket,
   Code,
@@ -40,6 +39,13 @@ interface GuidesPageClientProps {
 // GUIDE CATEGORIES - OUTCOME FOCUSED
 // ============================================================================
 
+// Deep dive guides — expanded to 10K+ words with comprehensive FAQs
+const DEEP_DIVE_SLUGS = [
+  'creator-ai-stack-2026',
+  'image-generation-mastery',
+  'suno-prompt-playbook',
+]
+
 const GUIDE_CATEGORIES = [
   {
     id: 'visual',
@@ -49,7 +55,7 @@ const GUIDE_CATEGORIES = [
     icon: Image,
     color: 'from-purple-500/20 to-pink-500/20',
     iconColor: 'text-purple-400',
-    slugs: ['midjourney-guide', 'image-generation-mastery', 'product-photography-ai', 'brand-identity-design']
+    slugs: ['midjourney-guide', 'image-generation-mastery']
   },
   {
     id: 'content',
@@ -59,7 +65,7 @@ const GUIDE_CATEGORIES = [
     icon: PenTool,
     color: 'from-emerald-500/20 to-teal-500/20',
     iconColor: 'text-emerald-400',
-    slugs: ['ai-writing-system', 'claude-anthropic-guide', 'openai-chatgpt-guide', 'perplexity-ai-guide', 'top-50-ai-prompts']
+    slugs: ['ai-writing-system', 'claude-anthropic-guide', 'openai-chatgpt-guide', 'perplexity-ai-guide', 'top-50-ai-prompts', 'creator-ai-stack-2026']
   },
   {
     id: 'audio',
@@ -69,7 +75,7 @@ const GUIDE_CATEGORIES = [
     icon: Music,
     color: 'from-orange-500/20 to-amber-500/20',
     iconColor: 'text-orange-400',
-    slugs: ['suno-prompt-playbook', 'elevenlabs-voice-guide', 'ai-music-production']
+    slugs: ['suno-prompt-playbook', 'elevenlabs-voice-guide']
   },
   {
     id: 'founder',
@@ -89,7 +95,7 @@ const GUIDE_CATEGORIES = [
     icon: Code,
     color: 'from-rose-500/20 to-red-500/20',
     iconColor: 'text-rose-400',
-    slugs: ['claude-code-getting-started', 'multi-agent-orchestration', 'ai-automation-patterns']
+    slugs: ['claude-code-getting-started']
   }
 ]
 
@@ -277,11 +283,11 @@ function FeaturedGuide({ guide }: { guide: GuideDoc }) {
 // STATS BAR
 // ============================================================================
 
-function StatsBar() {
+function StatsBar({ guideCount }: { guideCount: number }) {
   const stats = [
-    { icon: Target, label: 'Outcome-focused', value: 'Not tool-centric' },
-    { icon: Zap, label: 'Battle-tested', value: 'Real workflows' },
-    { icon: Building2, label: 'Enterprise-grade', value: 'Production ready' },
+    { icon: Target, label: 'Guides', value: `${guideCount} in-depth guides` },
+    { icon: Zap, label: 'FAQ answers', value: '120+ questions covered' },
+    { icon: Building2, label: 'Categories', value: '5 creator domains' },
   ]
 
   return (
@@ -308,8 +314,13 @@ function StatsBar() {
 // ============================================================================
 
 export default function GuidesPageClient({ guides }: GuidesPageClientProps) {
-  // Find the featured guide (modern-guide or most recent)
-  const featuredGuide = guides.find(g => g.slug === 'modern-guide') || guides[0]
+  // Feature our flagship 10K+ word guide
+  const featuredGuide = guides.find(g => g.slug === 'creator-ai-stack-2026') || guides[0]
+
+  // Deep dive guides (10K+ words each)
+  const deepDiveGuides = DEEP_DIVE_SLUGS
+    .map(slug => guides.find(g => g.slug === slug))
+    .filter((g): g is GuideDoc => g != null && g.slug !== featuredGuide?.slug)
 
   // Get guides that aren't in any category (for "More Guides" section)
   const categorizedSlugs = GUIDE_CATEGORIES.flatMap(c => c.slugs)
@@ -348,15 +359,50 @@ export default function GuidesPageClient({ guides }: GuidesPageClientProps) {
               {/* Subtext */}
               <p className="text-lg md:text-xl text-white/50 max-w-2xl leading-relaxed mb-8">
                 Outcome-focused guides for elite creators and founders.
-                Not tool tutorials—real systems that ship.
+                Not tool tutorials — real systems that ship.
               </p>
             </motion.div>
 
             {/* Stats Bar */}
-            <StatsBar />
+            <StatsBar guideCount={guides.length} />
 
             {/* Featured Guide */}
             {featuredGuide && <FeaturedGuide guide={featuredGuide} />}
+
+            {/* Deep Dive Guides */}
+            {deepDiveGuides.length > 0 && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4 }}
+                className="mt-8"
+              >
+                <h2 className="text-sm font-medium uppercase tracking-[0.2em] text-white/30 mb-4">Deep Dive Guides</h2>
+                <div className="grid sm:grid-cols-2 gap-4">
+                  {deepDiveGuides.map((guide, i) => (
+                    <Link
+                      key={guide.slug}
+                      href={`/guides/${guide.slug}`}
+                      className="group flex items-center gap-4 p-5 rounded-xl border border-white/5 bg-white/[0.02] hover:border-violet-500/20 hover:bg-white/[0.04] transition-all duration-300"
+                    >
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-base font-medium text-white group-hover:text-violet-200 transition-colors truncate">
+                          {guide.title}
+                        </h3>
+                        <div className="flex items-center gap-3 mt-1.5">
+                          <span className="flex items-center gap-1 text-xs text-white/30">
+                            <Clock className="w-3 h-3" />
+                            {guide.readingTime}
+                          </span>
+                          <span className="text-xs text-violet-400/60 font-medium">10K+ words</span>
+                        </div>
+                      </div>
+                      <ArrowRight className="w-4 h-4 text-white/20 group-hover:text-violet-400 group-hover:translate-x-0.5 transition-all flex-shrink-0" />
+                    </Link>
+                  ))}
+                </div>
+              </motion.div>
+            )}
           </div>
         </section>
 
