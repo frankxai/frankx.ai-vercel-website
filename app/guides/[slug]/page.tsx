@@ -4,6 +4,7 @@ import { MDXContent } from '@/components/blog/MDXContent'
 import Link from 'next/link'
 import HeroImage from '@/components/ui/HeroImage'
 import { generateGuideSchema } from '@/lib/schema'
+import { extractFAQFromContent } from '@/lib/schema-builders'
 
 // Static generation - content is read at build time
 export const dynamicParams = false
@@ -30,6 +31,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       authors: [guide.author],
       images: [ogImage],
     },
+    twitter: {
+      card: 'summary_large_image',
+      title: guide.title,
+      description: guide.description,
+      images: [ogImage],
+    },
   }
 }
 
@@ -53,6 +60,8 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
   const guide = getGuide(slug)
   if (!guide) return notFound()
 
+  const faqs = extractFAQFromContent(guide.content)
+
   const schemas = generateGuideSchema({
     title: guide.title,
     description: guide.description,
@@ -60,6 +69,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
     datePublished: guide.date,
     image: guide.image || undefined,
     category: guide.category,
+    faqs,
   })
 
   return (
