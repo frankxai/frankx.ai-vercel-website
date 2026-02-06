@@ -31,7 +31,7 @@ import {
 } from '@/lib/research/validated-claims'
 
 // Category icon mapping
-const categoryIcons: Record<string, React.ElementType> = {
+const categoryIcons: Record<string, React.ComponentType<{ className?: string }>> = {
   'Market Size': TrendingUp,
   'Enterprise Adoption': Building2,
   'Framework Adoption': Cpu,

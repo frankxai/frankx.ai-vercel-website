@@ -65,7 +65,7 @@ const feedItems = [
   },
 ]
 
-const typeIcons: Record<string, React.ElementType> = {
+const typeIcons: Record<string, React.ComponentType<{ className?: string }>> = {
   music: Music,
   blog: BookOpen,
   product: Sparkles,
