@@ -266,7 +266,7 @@ function VariantSection({
   basePath,
 }: {
   title: string
-  icon: React.ElementType
+  icon: React.ComponentType<{ className?: string }>
   variants: Variant[]
   selectedIds: string[]
   onToggle: (id: string) => void

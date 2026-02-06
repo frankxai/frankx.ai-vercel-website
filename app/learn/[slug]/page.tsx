@@ -136,7 +136,7 @@ export default function LearningPathPage() {
     )
   }
 
-  const Icon = iconMap[path.icon] || BookOpen
+  const Icon: React.ComponentType<{ className?: string }> = iconMap[path.icon] || BookOpen
   const colors = colorMap[path.color]
 
   return (

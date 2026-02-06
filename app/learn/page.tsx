@@ -39,7 +39,7 @@ const playButtonBgMap: Record<string, string> = {
 }
 
 function PathCard({ path }: { path: LearningPath }) {
-  const Icon = iconMap[path.icon] || BookOpen
+  const Icon: React.ComponentType<{ className?: string }> = iconMap[path.icon] || BookOpen
   const colors = colorMap[path.color]
 
   return (

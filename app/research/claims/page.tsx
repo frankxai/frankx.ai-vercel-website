@@ -336,7 +336,7 @@ export default function ClaimsBrowserPage() {
             className="space-y-8"
           >
             {Object.entries(claimsByCategory).map(([category, claims]) => {
-              const CategoryIcon = categoryIcons[category] || CheckCircle2
+              const CategoryIcon: React.ComponentType<{ className?: string }> = categoryIcons[category] || CheckCircle2
               return (
                 <div key={category}>
                   <h2 className="flex items-center gap-2 text-lg font-semibold text-white mb-4">

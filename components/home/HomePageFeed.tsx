@@ -140,7 +140,7 @@ export default function HomePageFeed() {
         {/* Feed */}
         <div>
           {feedItems.map((item, index) => {
-            const Icon: React.ElementType = typeIcons[item.type] || MessageCircle
+            const Icon: React.ComponentType<{ className?: string }> = typeIcons[item.type] || MessageCircle
 
             return (
               <motion.article
