@@ -19,6 +19,7 @@ import {
   Search,
   Shield,
   ShieldCheck,
+  Sparkles,
   TrendingUp,
   BarChart3,
 } from 'lucide-react'
@@ -40,6 +41,7 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Search,
   Shield,
   ShieldCheck,
+  Sparkles,
   TrendingUp,
   BarChart3,
 }
@@ -116,9 +118,9 @@ function HeroSection() {
           className="mt-14 grid grid-cols-2 md:grid-cols-4 gap-4"
         >
           {[
-            { label: 'Research Domains', value: '12', icon: Layers },
-            { label: 'Validated Claims', value: '80+', icon: ShieldCheck },
-            { label: 'Sources Cross-Referenced', value: '160+', icon: Search },
+            { label: 'Research Domains', value: '15', icon: Layers },
+            { label: 'Validated Claims', value: '120+', icon: ShieldCheck },
+            { label: 'Sources Cross-Referenced', value: '200+', icon: Search },
             { label: 'Research Agents', value: '5', icon: Radar },
           ].map((stat, i) => (
             <div key={i} className="bg-white/[0.03] backdrop-blur-sm border border-white/[0.06] rounded-xl p-4">
@@ -144,7 +146,7 @@ function DomainsGrid() {
             Research Domains
           </h2>
           <p className="text-white/50 max-w-2xl">
-            12 active research areas. Each domain synthesizes validated findings from
+            15 active research areas. Each domain synthesizes validated findings from
             multiple sources into actionable intelligence.
           </p>
         </div>
