@@ -44,6 +44,8 @@ const DEEP_DIVE_SLUGS = [
   'creator-ai-stack-2026',
   'image-generation-mastery',
   'suno-prompt-playbook',
+  'ai-writing-system',
+  'lean-startup-ai-automation-stack',
 ]
 
 const GUIDE_CATEGORIES = [
@@ -85,7 +87,7 @@ const GUIDE_CATEGORIES = [
     icon: Rocket,
     color: 'from-blue-500/20 to-cyan-500/20',
     iconColor: 'text-blue-400',
-    slugs: ['modern-guide', 'skills-library-playbook', 'agent-collective-operating-system', 'founder-ai-stack-2026']
+    slugs: ['modern-guide', 'skills-library-playbook', 'agent-collective-operating-system', 'founder-ai-stack-2026', 'lean-startup-ai-automation-stack']
   },
   {
     id: 'development',
@@ -286,7 +288,7 @@ function FeaturedGuide({ guide }: { guide: GuideDoc }) {
 function StatsBar({ guideCount }: { guideCount: number }) {
   const stats = [
     { icon: Target, label: 'Guides', value: `${guideCount} in-depth guides` },
-    { icon: Zap, label: 'FAQ answers', value: '120+ questions covered' },
+    { icon: Zap, label: 'FAQ answers', value: '150+ questions covered' },
     { icon: Building2, label: 'Categories', value: '5 creator domains' },
   ]
 
