@@ -1,9 +1,15 @@
 import Link from 'next/link'
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  robots: { index: false, follow: false },
+}
 
 /**
  * Preview Layout
  *
- * Adds a floating navigation bar to switch between variants quickly
+ * Adds a floating navigation bar to switch between variants quickly.
+ * noindex/nofollow prevents search engines from indexing prototype pages.
  */
 
 const variants = [

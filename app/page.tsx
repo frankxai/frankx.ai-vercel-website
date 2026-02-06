@@ -38,6 +38,7 @@ const personSchema = {
   name: 'Frank Riemer',
   jobTitle: 'AI Systems Architect',
   url: 'https://frankx.ai/about',
+  description: 'AI Architect at Oracle building enterprise AI systems. Creator of 12K+ AI-generated songs with Suno. Building practical tools and workflows for the Golden Age of Intelligence.',
   sameAs: [
     'https://linkedin.com/in/frank-x-riemer/',
     'https://github.com/frankxai',
@@ -49,8 +50,12 @@ const personSchema = {
     'AI Music Creation',
     'Suno AI',
     'Enterprise AI Strategy',
-    'Oracle Cloud',
+    'Oracle Cloud Infrastructure',
     'Agentic Workflows',
+    'Prompt Engineering',
+    'Multi-Agent Systems',
+    'RAG Architecture',
+    'AI Workflow Automation',
   ],
 }
 
@@ -62,9 +67,10 @@ const organizationSchema = {
     'https://linkedin.com/in/frank-x-riemer/',
     'https://github.com/frankxai',
     'https://suno.com/@frankx',
+    'https://x.com/frankxeth',
   ],
   description:
-    'AI systems and creator tools. Building practical workflows for the Golden Age of Intelligence.',
+    'Enterprise AI architecture, music production with Suno, and creator tools. Practical systems and workflows for builders in the Golden Age of Intelligence.',
 }
 
 // Variant component map

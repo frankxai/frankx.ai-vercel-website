@@ -19,6 +19,8 @@ import {
 
 import { trackEvent } from '@/lib/analytics'
 import TrustedByBlock from '@/components/social-proof/TrustedByBlock'
+import PremiumCard from '@/components/ui/PremiumCard'
+import type { GradientPreset } from '@/components/ui/PremiumCard'
 
 // ============================================================================
 // DESIGN SYSTEM
@@ -485,7 +487,7 @@ function StatsSection() {
         </motion.div>
 
         {/* Journey markers - story-focused */}
-        <div className="grid grid-cols-2 gap-6 sm:gap-8 md:flex md:flex-wrap md-justify-center md:gap-x-16 lg:gap-x-24 md:gap-y-8">
+        <div className="grid grid-cols-2 gap-6 sm:gap-8 md:flex md:flex-wrap md:justify-center md:gap-x-16 lg:gap-x-24 md:gap-y-8">
           {[
             { value: 'Music', label: 'Daily creative practice with Suno' },
             { value: 'Systems', label: 'Building tools that serve the work' },
@@ -524,21 +526,24 @@ const quickStartPaths = [
     description: 'Generate your first AI song in 5 minutes',
     href: '/music-lab',
     time: '5 min',
-    color: 'cyan',
+    color: 'cyan' as const,
+    gradient: 'cyan' as GradientPreset,
   },
   {
     title: 'Browse Prompt Library',
     description: '50+ battle-tested prompts across all AI tools',
     href: '/prompt-library',
     time: 'Browse',
-    color: 'emerald',
+    color: 'emerald' as const,
+    gradient: 'emerald' as GradientPreset,
   },
   {
     title: 'Learn AI Fundamentals',
     description: 'Curated free courses from Oracle, Google, MIT',
     href: '/students',
     time: 'Free',
-    color: 'violet',
+    color: 'violet' as const,
+    gradient: 'purple' as GradientPreset,
   },
 ]
 
@@ -569,9 +574,12 @@ function QuickStartSection() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
             >
-              <Link
+              <PremiumCard
                 href={path.href}
-                className="group block p-4 sm:p-6 rounded-xl sm:rounded-2xl border border-white/5 bg-white/[0.02] hover:border-white/15 hover:bg-white/[0.04] transition-all h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.99] active:border-white/20"
+                gradient={path.gradient}
+                mouseGlow
+                padding="p-4 sm:p-6"
+                className="h-full"
               >
                 <div className="flex items-center justify-between mb-3 sm:mb-4">
                   <span className={`text-[10px] sm:text-xs font-medium px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full ${
@@ -587,7 +595,7 @@ function QuickStartSection() {
                   {path.title}
                 </h3>
                 <p className="text-xs sm:text-sm text-white/50">{path.description}</p>
-              </Link>
+              </PremiumCard>
             </motion.div>
           ))}
         </div>
@@ -609,6 +617,7 @@ const capabilities = [
     href: '/music-lab',
     color: 'from-cyan-500/20 to-cyan-500/5',
     iconColor: 'text-cyan-400',
+    gradient: 'cyan' as GradientPreset,
   },
   {
     icon: BookOpen,
@@ -618,6 +627,7 @@ const capabilities = [
     href: '/students',
     color: 'from-amber-500/20 to-amber-500/5',
     iconColor: 'text-amber-400',
+    gradient: 'gold' as GradientPreset,
   },
   {
     icon: Sparkles,
@@ -627,6 +637,7 @@ const capabilities = [
     href: '/prompt-library',
     color: 'from-violet-500/20 to-violet-500/5',
     iconColor: 'text-violet-400',
+    gradient: 'purple' as GradientPreset,
   },
   {
     icon: Code2,
@@ -636,6 +647,7 @@ const capabilities = [
     href: '/creation-chronicles',
     color: 'from-emerald-500/20 to-emerald-500/5',
     iconColor: 'text-emerald-400',
+    gradient: 'emerald' as GradientPreset,
   },
 ]
 
@@ -670,32 +682,30 @@ function WhatIDo() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.1 }}
             >
-              <Link
+              <PremiumCard
                 href={item.href}
-                className="group relative block p-5 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl border border-white/5 overflow-hidden transition-all duration-500 hover:border-white/15 hover:-translate-y-1 h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.99] active:border-white/20"
+                gradient={item.gradient}
+                mouseGlow
+                padding="p-5 sm:p-6 md:p-8"
+                className="h-full"
               >
-                {/* Gradient background on hover */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
-
-                <div className="relative">
-                  <div className="flex items-start justify-between mb-4 sm:mb-6">
-                    <div className="p-2.5 sm:p-3 rounded-lg sm:rounded-xl bg-white/5 group-hover:bg-white/10 transition-colors">
-                      <item.icon className={`w-5 h-5 sm:w-6 sm:h-6 ${item.iconColor}`} />
-                    </div>
-                    <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 text-white/20 group-hover:text-white/60 group-hover:translate-x-1 transition-all" />
+                <div className="flex items-start justify-between mb-4 sm:mb-6">
+                  <div className="p-2.5 sm:p-3 rounded-lg sm:rounded-xl bg-white/5 group-hover:bg-white/10 transition-colors">
+                    <item.icon className={`w-5 h-5 sm:w-6 sm:h-6 ${item.iconColor}`} />
                   </div>
-
-                  <p className="text-[10px] sm:text-xs font-medium uppercase tracking-[0.12em] sm:tracking-[0.15em] text-white/30 mb-1.5 sm:mb-2">
-                    {item.subtitle}
-                  </p>
-                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-2 sm:mb-3 group-hover:text-white transition-colors">
-                    {item.title}
-                  </h3>
-                  <p className="text-sm sm:text-base text-white/50 leading-relaxed group-hover:text-white/60 transition-colors">
-                    {item.description}
-                  </p>
+                  <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 text-white/20 group-hover:text-white/60 group-hover:translate-x-1 transition-all" />
                 </div>
-              </Link>
+
+                <p className="text-[10px] sm:text-xs font-medium uppercase tracking-[0.12em] sm:tracking-[0.15em] text-white/30 mb-1.5 sm:mb-2">
+                  {item.subtitle}
+                </p>
+                <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white mb-2 sm:mb-3 group-hover:text-white transition-colors">
+                  {item.title}
+                </h3>
+                <p className="text-sm sm:text-base text-white/50 leading-relaxed group-hover:text-white/60 transition-colors">
+                  {item.description}
+                </p>
+              </PremiumCard>
             </motion.div>
           ))}
         </div>
@@ -763,29 +773,38 @@ function FeaturedResources() {
         </motion.div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-          {resources.map((resource, i) => (
-            <motion.a
-              key={resource.name}
-              href={resource.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.05 }}
-              className="group flex items-center justify-between gap-3 p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] hover:border-white/10 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.99] active:border-white/20"
-            >
-              <div className="min-w-0 flex-1">
-                <div className="text-[10px] sm:text-xs uppercase tracking-[0.12em] sm:tracking-[0.15em] text-white/30 mb-0.5 sm:mb-1">
-                  {resource.type} · {resource.source}
-                </div>
-                <div className="text-sm sm:text-base md:text-lg font-medium text-white group-hover:text-emerald-400 transition-colors truncate">
-                  {resource.name}
-                </div>
-              </div>
-              <ExternalLink className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white/20 group-hover:text-white/50 transition-colors flex-shrink-0" />
-            </motion.a>
-          ))}
+          {resources.map((resource, i) => {
+            const gradients: GradientPreset[] = ['cyan', 'gold', 'emerald', 'purple']
+            return (
+              <motion.div
+                key={resource.name}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.05 }}
+              >
+                <PremiumCard
+                  href={resource.href}
+                  external
+                  gradient={gradients[i % gradients.length]}
+                  padding="p-4 sm:p-6"
+                  lift={false}
+                >
+                  <div className="flex items-center justify-between gap-3">
+                    <div className="min-w-0 flex-1">
+                      <div className="text-[10px] sm:text-xs uppercase tracking-[0.12em] sm:tracking-[0.15em] text-white/30 mb-0.5 sm:mb-1">
+                        {resource.type} · {resource.source}
+                      </div>
+                      <div className="text-sm sm:text-base md:text-lg font-medium text-white group-hover:text-emerald-400 transition-colors truncate">
+                        {resource.name}
+                      </div>
+                    </div>
+                    <ExternalLink className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white/20 group-hover:text-white/50 transition-colors flex-shrink-0" />
+                  </div>
+                </PremiumCard>
+              </motion.div>
+            )
+          })}
         </div>
       </div>
     </section>
@@ -852,39 +871,46 @@ function AIArtGalleryPreview() {
 
         {/* Gallery Grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
-          {featuredArtworks.map((artwork, i) => (
-            <motion.div
-              key={artwork.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: i * 0.1 }}
-            >
-              <Link
-                href="/ai-art"
-                className="group relative block aspect-square rounded-xl sm:rounded-2xl overflow-hidden border border-white/5 hover:border-white/20 transition-all"
+          {featuredArtworks.map((artwork, i) => {
+            const artGradients: GradientPreset[] = ['cyan', 'purple', 'emerald', 'gold']
+            return (
+              <motion.div
+                key={artwork.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
               >
-                <Image
-                  src={artwork.src}
-                  alt={artwork.title}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  sizes="(max-width: 768px) 50vw, 25vw"
-                />
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                {/* Info */}
-                <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-                  <p className="text-[10px] sm:text-xs uppercase tracking-wider text-emerald-400 mb-0.5">
-                    {artwork.category}
-                  </p>
-                  <h3 className="text-sm sm:text-base font-semibold text-white truncate">
-                    {artwork.title}
-                  </h3>
-                </div>
-              </Link>
-            </motion.div>
-          ))}
+                <PremiumCard
+                  href="/ai-art"
+                  gradient={artGradients[i % artGradients.length]}
+                  padding="p-0"
+                  className="aspect-square"
+                >
+                  <div className="relative w-full h-full">
+                    <Image
+                      src={artwork.src}
+                      alt={artwork.title}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      sizes="(max-width: 768px) 50vw, 25vw"
+                    />
+                    {/* Overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    {/* Info */}
+                    <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                      <p className="text-[10px] sm:text-xs uppercase tracking-wider text-emerald-400 mb-0.5">
+                        {artwork.category}
+                      </p>
+                      <h3 className="text-sm sm:text-base font-semibold text-white truncate">
+                        {artwork.title}
+                      </h3>
+                    </div>
+                  </div>
+                </PremiumCard>
+              </motion.div>
+            )
+          })}
         </div>
 
         {/* Stats */}

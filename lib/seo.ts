@@ -3,21 +3,24 @@ import type { Metadata } from 'next'
 const siteUrl = 'https://frankx.ai'
 
 export const siteConfig = {
-  name: 'FrankX Intelligence Hub',
+  name: 'FrankX — AI Architect & Creator',
   shortName: 'FrankX',
   description:
-    'FrankX equips creators, families, and executives with conscious AI strategy, Suno-powered creativity, and enterprise-ready systems.',
+    'AI Architect at Oracle. Creator of 12K+ songs with Suno. Building enterprise AI systems, music production workflows, and creator tools in the Golden Age of Intelligence.',
   url: siteUrl,
   twitter: '@frankxai',
-  ogImage: '/api/og?title=FrankX%20Intelligence%20Hub',
+  ogImage: '/api/og?title=FrankX%20—%20AI%20Architect%20%26%20Creator',
   keywords: [
-    'conscious ai',
-    'ai strategy',
-    'soul frequency',
-    'ai music',
-    'ai governance',
-    'ai for families',
-    'oracle ai architect',
+    'ai architect',
+    'ai music creation',
+    'suno ai',
+    'oracle ai',
+    'enterprise ai systems',
+    'ai workflow automation',
+    'creator tools',
+    'agentic workflows',
+    'ai prompt engineering',
+    'generative ai',
   ],
 }
 
