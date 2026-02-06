@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Methodology | FrankX AI Architecture Research</title>
+    <meta name="description" content="How FrankX AI Architecture Research is conducted: source verification, multi-layer validation, and the research process behind enterprise AI architecture patterns.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://frankx.ai/research/methodology/">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Research Methodology | FrankX AI Architecture Research">
+    <meta property="og:description" content="How FrankX AI Architecture Research is conducted: source verification, multi-layer validation, and the research process behind enterprise AI architecture patterns.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://frankx.ai/research/methodology/">
+    <meta property="og:site_name" content="FrankX AI Architecture Research">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Research Methodology | FrankX AI Architecture Research">
+    <meta name="twitter:description" content="Source verification, multi-layer validation, and the research process behind enterprise AI architecture patterns.">
+
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "AboutPage",
+        "name": "Research Methodology",
+        "description": "How FrankX AI Architecture Research is conducted: source verification, multi-layer validation, and the research process.",
+        "url": "https://frankx.ai/research/methodology/",
+        "isPartOf": {
+            "@type": "ResearchProject",
+            "name": "FrankX AI Architecture Research Center",
+            "url": "https://frankx.ai/research/"
+        },
+        "author": {
+            "@type": "Person",
+            "name": "FrankX",
+            "url": "https://frankx.ai",
+            "jobTitle": "AI Cloud Architect",
+            "knowsAbout": ["Enterprise AI Architecture", "Oracle Cloud Infrastructure", "Multi-Agent Systems", "RAG Architecture", "Healthcare AI", "Sovereign AI"]
+        },
+        "dateModified": "2026-02-06",
+        "inLanguage": "en"
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #06060B;
+            --bg-card: rgba(16, 18, 27, 0.95);
+            --bg-elevated: rgba(24, 27, 38, 0.98);
+            --bg-glass: rgba(255, 255, 255, 0.03);
+            --text-primary: #E6EDF3;
+            --text-secondary: #8B949E;
+            --text-muted: #484F58;
+            --border: rgba(255, 255, 255, 0.06);
+            --border-hover: rgba(255, 255, 255, 0.12);
+            --accent-red: #C74634;
+            --accent-blue: #3B82F6;
+            --accent-purple: #8B5CF6;
+            --accent-green: #10B981;
+            --accent-amber: #F59E0B;
+            --accent-cyan: #06B6D4;
+            --font: 'Inter', -apple-system, sans-serif;
+            --mono: 'JetBrains Mono', monospace;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--font); background: var(--bg); color: var(--text-primary); line-height: 1.7; }
+        .bg-grid { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px); background-size: 64px 64px; pointer-events: none; z-index: 0; }
+
+        .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(6,6,11,0.85); backdrop-filter: blur(24px); border-bottom: 1px solid var(--border); }
+        .nav-inner { max-width: 960px; margin: 0 auto; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; height: 56px; }
+        .nav-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text-primary); font-weight: 700; font-size: 14px; }
+        .nav-brand-icon { width: 28px; height: 28px; background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue)); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 900; }
+        .nav-links { display: flex; gap: 4px; }
+        .nav-link { color: var(--text-secondary); text-decoration: none; font-size: 12px; font-weight: 500; padding: 5px 12px; border-radius: 5px; transition: all 0.2s; }
+        .nav-link:hover { color: var(--text-primary); background: var(--bg-glass); }
+        .nav-link.active { color: var(--accent-cyan); }
+
+        .article { position: relative; z-index: 1; max-width: 960px; margin: 0 auto; padding: 100px 32px 80px; }
+        .article-header { margin-bottom: 64px; }
+        .article-badge { display: inline-flex; align-items: center; gap: 8px; padding: 5px 14px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 100px; font-size: 11px; font-weight: 600; color: var(--accent-cyan); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 24px; }
+        .article-badge::before { content: ''; width: 6px; height: 6px; background: var(--accent-green); border-radius: 50%; animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+        .article h1 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 20px; }
+        .article-subtitle { font-size: 1.125rem; color: var(--text-secondary); max-width: 700px; line-height: 1.7; margin-bottom: 32px; }
+        .article-meta { display: flex; gap: 24px; font-size: 12px; color: var(--text-muted); }
+
+        h2 { font-size: 1.75rem; font-weight: 800; letter-spacing: -0.02em; margin: 64px 0 20px; padding-top: 32px; border-top: 1px solid var(--border); }
+        h2:first-of-type { border-top: none; margin-top: 0; }
+        h3 { font-size: 1.25rem; font-weight: 700; margin: 40px 0 16px; }
+        h4 { font-size: 1rem; font-weight: 600; margin: 24px 0 12px; color: var(--accent-cyan); }
+        p { margin-bottom: 16px; color: var(--text-secondary); }
+        strong { color: var(--text-primary); }
+        a { color: var(--accent-cyan); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        ul, ol { margin: 16px 0; padding-left: 24px; }
+        li { margin-bottom: 8px; color: var(--text-secondary); }
+        li strong { color: var(--text-primary); }
+
+        .process-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; margin: 32px 0; }
+        .process-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 24px; position: relative; overflow: hidden; }
+        .process-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; border-radius: 14px 14px 0 0; }
+        .process-card:nth-child(1)::before { background: var(--accent-blue); }
+        .process-card:nth-child(2)::before { background: var(--accent-purple); }
+        .process-card:nth-child(3)::before { background: var(--accent-green); }
+        .process-card:nth-child(4)::before { background: var(--accent-amber); }
+        .process-card:nth-child(5)::before { background: var(--accent-cyan); }
+        .process-step { font-family: var(--mono); font-size: 11px; color: var(--text-muted); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.1em; }
+        .process-title { font-size: 16px; font-weight: 700; margin-bottom: 8px; }
+        .process-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+
+        .source-tier { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 24px 28px; margin: 16px 0; }
+        .source-tier-header { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+        .source-tier-badge { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; padding: 3px 10px; border-radius: 100px; }
+        .source-tier-badge.primary { background: rgba(16, 185, 129, 0.15); color: var(--accent-green); }
+        .source-tier-badge.secondary { background: rgba(59, 130, 246, 0.15); color: var(--accent-blue); }
+        .source-tier-badge.tertiary { background: rgba(245, 158, 11, 0.15); color: var(--accent-amber); }
+        .source-tier-title { font-size: 16px; font-weight: 700; }
+        .source-tier p { font-size: 13px; margin-bottom: 8px; }
+
+        .principle { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--accent-cyan); border-radius: 0 12px 12px 0; padding: 24px 28px; margin: 24px 0; }
+        .principle-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent-cyan); margin-bottom: 12px; }
+        .principle p { margin-bottom: 8px; }
+        .principle p:last-child { margin-bottom: 0; }
+
+        .maturity-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 24px 0; }
+        .maturity-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; text-align: center; }
+        .maturity-icon { font-size: 28px; margin-bottom: 8px; }
+        .maturity-label { font-size: 14px; font-weight: 700; margin-bottom: 4px; }
+        .maturity-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.5; }
+
+        table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 14px; }
+        th { text-align: left; font-weight: 600; color: var(--text-primary); padding: 12px 16px; border-bottom: 2px solid var(--border); font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; }
+        td { padding: 12px 16px; border-bottom: 1px solid var(--border); color: var(--text-secondary); }
+        tr:hover td { background: var(--bg-glass); }
+
+        .footer { position: relative; z-index: 1; border-top: 1px solid var(--border); padding: 48px 32px; text-align: center; }
+        .footer-text { font-size: 12px; color: var(--text-muted); max-width: 640px; margin: 0 auto; line-height: 1.7; }
+        .footer-text a { color: var(--text-secondary); }
+        .footer-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 24px; margin-top: 16px; }
+        .footer-link { font-size: 12px; color: var(--text-muted); text-decoration: none; }
+        .footer-link:hover { color: var(--text-secondary); }
+
+        @media (max-width: 768px) { .process-grid { grid-template-columns: 1fr; } .maturity-grid { grid-template-columns: 1fr; } .nav-links { display: none; } }
+    </style>
+</head>
+<body>
+    <div class="bg-grid"></div>
+
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="/research/" class="nav-brand">
+                <div class="nav-brand-icon">FX</div>
+                Research Methodology
+            </a>
+            <div class="nav-links">
+                <a href="/research/" class="nav-link">Hub</a>
+                <a href="/research/healthcare/" class="nav-link">Healthcare</a>
+                <a href="/research/ai-architecture/" class="nav-link">Architecture</a>
+                <a href="/research/agentic-ai/" class="nav-link">Agentic AI</a>
+                <a href="/research/oracle-ai-database/" class="nav-link">Database AI</a>
+                <a href="/research/sovereign-ai/" class="nav-link">Sovereign AI</a>
+                <a href="/research/cost-engineering/" class="nav-link">Cost</a>
+                <a href="/research/methodology/" class="nav-link active">Method</a>
+            </div>
+        </div>
+    </nav>
+
+    <article class="article">
+        <header class="article-header">
+            <div class="article-badge">Methodology &mdash; Updated February 2026</div>
+            <h1>How This Research Is Conducted</h1>
+            <p class="article-subtitle">
+                Transparency builds trust. This page documents the research process, source hierarchy,
+                validation methods, and maturity model used across all research in this center.
+                Every claim is traceable to a verifiable source.
+            </p>
+            <div class="article-meta">
+                <span>Last updated: Feb 6, 2026</span>
+                <span>Research Process v2.0</span>
+            </div>
+        </header>
+
+        <!-- Research Process -->
+        <h2>1. Research Process</h2>
+
+        <p>
+            Every research article follows a five-stage process designed to maximize accuracy while maintaining
+            practical relevance for enterprise architects. The process is iterative&mdash;findings from later
+            stages can trigger re-investigation of earlier assumptions.
+        </p>
+
+        <div class="process-grid">
+            <div class="process-card">
+                <div class="process-step">Stage 01</div>
+                <div class="process-title">Landscape Scan</div>
+                <div class="process-desc">Systematic search across official documentation, academic papers, industry analyst reports, and GitHub repositories. Minimum 15 distinct sources per topic before synthesis begins.</div>
+            </div>
+            <div class="process-card">
+                <div class="process-step">Stage 02</div>
+                <div class="process-title">Source Verification</div>
+                <div class="process-desc">Every factual claim is traced to an official or primary source. Pricing data is verified against vendor price lists. Feature claims are checked against release documentation. No second-hand claims accepted.</div>
+            </div>
+            <div class="process-card">
+                <div class="process-step">Stage 03</div>
+                <div class="process-title">Pattern Synthesis</div>
+                <div class="process-desc">Cross-reference findings across sources to identify architectural patterns. Resolve contradictions between vendor claims and independent evaluations. Prioritize patterns validated by multiple independent sources.</div>
+            </div>
+            <div class="process-card">
+                <div class="process-step">Stage 04</div>
+                <div class="process-title">Architecture Validation</div>
+                <div class="process-desc">Every architecture diagram is validated against real-world deployment constraints: cost, latency, compliance requirements, and operational complexity. Abstract patterns are tested against concrete implementation scenarios.</div>
+            </div>
+            <div class="process-card">
+                <div class="process-step">Stage 05</div>
+                <div class="process-title">Publication &amp; Review</div>
+                <div class="process-desc">Final review against accuracy checklist. Sources cited with direct links. Maturity indicator assigned. Regular review cycle ensures content stays current as the field evolves rapidly.</div>
+            </div>
+        </div>
+
+        <!-- Source Hierarchy -->
+        <h2>2. Source Hierarchy</h2>
+
+        <p>
+            Not all sources carry equal weight. This research uses a three-tier source hierarchy,
+            with primary sources always taking precedence when conflicts arise.
+        </p>
+
+        <div class="source-tier">
+            <div class="source-tier-header">
+                <span class="source-tier-badge primary">Tier 1 &mdash; Primary</span>
+                <span class="source-tier-title">Official Documentation &amp; Primary Sources</span>
+            </div>
+            <p>Vendor documentation, official release notes, API specifications, peer-reviewed papers, and GitHub source code. These are authoritative and always preferred.</p>
+            <p><strong>Examples:</strong> Oracle documentation (docs.oracle.com), Anthropic research papers, Cohere model cards, official GitHub repositories (oracle-quickstart, oracle-devrel), IEEE/ACM publications, EU legislative texts.</p>
+        </div>
+
+        <div class="source-tier">
+            <div class="source-tier-header">
+                <span class="source-tier-badge secondary">Tier 2 &mdash; Validated</span>
+                <span class="source-tier-title">Analyst Reports &amp; Expert Analysis</span>
+            </div>
+            <p>Research from established analysts (Gartner, McKinsey, BCG, Forrester), recognized industry experts, and reputable technology publications. Used to provide market context and strategic framing.</p>
+            <p><strong>Examples:</strong> BCG AI Agent frameworks, Gartner Hype Cycles, McKinsey AI adoption surveys, InfoWorld technical reviews, The Register analysis.</p>
+        </div>
+
+        <div class="source-tier">
+            <div class="source-tier-header">
+                <span class="source-tier-badge tertiary">Tier 3 &mdash; Supporting</span>
+                <span class="source-tier-title">Community &amp; Ecosystem Sources</span>
+            </div>
+            <p>Blog posts, conference talks, community benchmarks, and practitioner reports. Used for supplementary context but never as sole evidence for architectural claims. Cross-referenced against Tier 1/2 sources.</p>
+            <p><strong>Examples:</strong> Engineering blog posts, conference presentations, Stack Overflow discussions, community benchmarks.</p>
+        </div>
+
+        <!-- Validation Rules -->
+        <h2>3. Validation Rules</h2>
+
+        <div class="principle">
+            <div class="principle-title">Rule: No Unverified Pricing Claims</div>
+            <p><strong>Pricing data is model-dependent and time-sensitive.</strong> Every cost claim states the specific models compared, cites the source URL, and includes the verification date. Blanket statements like "X is cheaper" without specifying which models are never used. Pricing is verified against official price lists, not cached knowledge.</p>
+        </div>
+
+        <div class="principle">
+            <div class="principle-title">Rule: Architecture Before Aesthetics</div>
+            <p><strong>Every architecture diagram is validated for technical accuracy before visual polish.</strong> Pipeline stages must be correct (e.g., reranking is retrieval, not orchestration). Enterprise diagrams include three tiers: Security/Governance (top) + Pipeline (center) + Observability/Evaluation (bottom). No diagram is published without passing the architecture validation stage.</p>
+        </div>
+
+        <div class="principle">
+            <div class="principle-title">Rule: No Hallucinated Features</div>
+            <p><strong>AI models can hallucinate product capabilities.</strong> Every feature claim about a specific product or service is verified against that product's official documentation. If a feature cannot be confirmed in official docs, it is not included, regardless of how plausible it sounds.</p>
+        </div>
+
+        <div class="principle">
+            <div class="principle-title">Rule: Honest Limitations</div>
+            <p><strong>Research openly acknowledges limitations and gaps.</strong> Where data is insufficient, where comparisons are approximate, or where the author's experience may create bias, this is stated explicitly. The goal is accuracy, not advocacy.</p>
+        </div>
+
+        <div class="principle">
+            <div class="principle-title">Rule: Confidentiality by Design</div>
+            <p><strong>All architecture patterns are anonymized.</strong> Patterns are derived from real-world enterprise engagements, but no proprietary customer data, identifiers, or organization-specific details are ever included. Research reflects general architectural patterns applicable across industries.</p>
+        </div>
+
+        <!-- Research Maturity Model -->
+        <h2>4. Research Maturity Model</h2>
+
+        <p>
+            Each research area carries a maturity indicator reflecting its current depth, source coverage,
+            and verification status. This helps readers calibrate their expectations.
+        </p>
+
+        <div class="maturity-grid">
+            <div class="maturity-card">
+                <div class="maturity-icon" style="color: var(--accent-green);">&#9670;</div>
+                <div class="maturity-label" style="color: var(--accent-green);">Comprehensive</div>
+                <div class="maturity-desc">Deep multi-page coverage. 25+ verified sources. Multiple architecture diagrams. Pattern library with implementation guidance. Regular review cycle active.</div>
+            </div>
+            <div class="maturity-card">
+                <div class="maturity-icon" style="color: var(--accent-blue);">&#9670;</div>
+                <div class="maturity-label" style="color: var(--accent-blue);">Established</div>
+                <div class="maturity-desc">Solid single-page coverage. 15-25 verified sources. Key architecture diagrams included. Core patterns documented. Expanding toward Comprehensive.</div>
+            </div>
+            <div class="maturity-card">
+                <div class="maturity-icon" style="color: var(--accent-amber);">&#9670;</div>
+                <div class="maturity-label" style="color: var(--accent-amber);">Emerging</div>
+                <div class="maturity-desc">Initial research published. 10-15 sources. Foundational patterns identified. Active research underway. Content will deepen over coming weeks.</div>
+            </div>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Research Area</th>
+                    <th>Maturity</th>
+                    <th>Pages</th>
+                    <th>Sources</th>
+                    <th>Last Verified</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><a href="/research/healthcare/">Healthcare AI Diagnostics</a></td>
+                    <td style="color: var(--accent-green);">Comprehensive</td>
+                    <td>9</td>
+                    <td>33+</td>
+                    <td>Feb 6, 2026</td>
+                </tr>
+                <tr>
+                    <td><a href="/research/agentic-ai/">Agentic AI &amp; Multi-Agent</a></td>
+                    <td style="color: var(--accent-blue);">Established</td>
+                    <td>1</td>
+                    <td>22+</td>
+                    <td>Feb 6, 2026</td>
+                </tr>
+                <tr>
+                    <td><a href="/research/ai-architecture/">Enterprise RAG Architecture</a></td>
+                    <td style="color: var(--accent-blue);">Established</td>
+                    <td>1</td>
+                    <td>18+</td>
+                    <td>Feb 6, 2026</td>
+                </tr>
+                <tr>
+                    <td><a href="/research/oracle-ai-database/">Oracle AI Database 26ai</a></td>
+                    <td style="color: var(--accent-blue);">Established</td>
+                    <td>1</td>
+                    <td>25+</td>
+                    <td>Feb 6, 2026</td>
+                </tr>
+                <tr>
+                    <td><a href="/research/sovereign-ai/">Sovereign AI</a></td>
+                    <td style="color: var(--accent-blue);">Established</td>
+                    <td>1</td>
+                    <td>21+</td>
+                    <td>Feb 6, 2026</td>
+                </tr>
+                <tr>
+                    <td><a href="/research/cost-engineering/">AI Cost Engineering</a></td>
+                    <td style="color: var(--accent-blue);">Established</td>
+                    <td>1</td>
+                    <td>20+</td>
+                    <td>Feb 6, 2026</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Author Context -->
+        <h2>5. Author Context</h2>
+
+        <p>
+            This research center is maintained by an <strong>enterprise AI cloud architect</strong> working on
+            real-world AI system deployments across industries including healthcare, financial services,
+            manufacturing, and public sector. The research reflects patterns encountered in production
+            engagements, validated against official documentation and industry best practices.
+        </p>
+
+        <p>
+            <strong>Areas of expertise:</strong> Oracle Cloud Infrastructure (OCI), multi-agent orchestration,
+            RAG architecture, LLM cost optimization, sovereign AI deployment, healthcare AI systems,
+            database-native AI patterns.
+        </p>
+
+        <p>
+            <strong>Research tools used:</strong> Multi-agent research orchestration with AI-assisted source
+            discovery, followed by human verification of all claims against primary documentation. Architecture
+            diagrams are generated with AI assistance and validated for technical accuracy before publication.
+        </p>
+
+        <!-- Update Cadence -->
+        <h2>6. Update Cadence</h2>
+
+        <p>
+            Enterprise AI evolves rapidly. This research center follows a structured update cadence
+            to ensure content remains current and accurate.
+        </p>
+
+        <ul>
+            <li><strong>Weekly:</strong> Source verification check on pricing data and model availability</li>
+            <li><strong>Bi-weekly:</strong> New research findings incorporated into existing portals</li>
+            <li><strong>Monthly:</strong> Maturity assessment review across all research areas</li>
+            <li><strong>Quarterly:</strong> Full content audit against latest vendor documentation</li>
+            <li><strong>Event-driven:</strong> Major product announcements trigger immediate review of affected research areas</li>
+        </ul>
+
+        <div class="principle">
+            <div class="principle-title">Feedback &amp; Corrections</div>
+            <p>If you find an error, outdated information, or have a suggestion for improvement, corrections are welcomed. Accuracy is prioritized over coverage&mdash;it is better to fix an error than to add new content.</p>
+        </div>
+    </article>
+
+    <footer class="footer">
+        <div class="footer-text">
+            <strong>AI Architecture Research Center</strong> by <a href="/">FrankX</a><br>
+            Reference architectures and patterns for enterprise AI systems.
+            All content reflects general architectural patterns&mdash;no proprietary customer data is included.
+            <br><br>
+            <em>Disclaimer: This is an independent research project. Not affiliated with, endorsed by, or sponsored by Oracle Corporation.
+            Oracle, OCI, and related marks are trademarks of Oracle Corporation.</em>
+        </div>
+        <div class="footer-links">
+            <a href="/" class="footer-link">FrankX Home</a>
+            <a href="/research/" class="footer-link">Research Hub</a>
+            <a href="/research/healthcare/" class="footer-link">Healthcare AI</a>
+            <a href="/research/ai-architecture/" class="footer-link">Architecture</a>
+            <a href="/research/agentic-ai/" class="footer-link">Agentic AI</a>
+            <a href="/research/oracle-ai-database/" class="footer-link">Database AI</a>
+            <a href="/research/sovereign-ai/" class="footer-link">Sovereign AI</a>
+            <a href="/research/cost-engineering/" class="footer-link">Cost Engineering</a>
+        </div>
+    </footer>
+</body>
+</html>

@@ -4,7 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Cost Engineering &amp; FinOps | FrankX Research</title>
-    <meta name="description" content="AI cost engineering: LLM cascade routing, GPU optimization, TCO frameworks, FinOps for GenAI, and enterprise cost optimization patterns that cut AI spend by 40-70%.">
+    <meta name="description" content="AI cost engineering for 2026: LLM cascade routing saves 40-70%, GPU MIG partitioning, TCO frameworks, FinOps for GenAI, Quality-per-Dollar metric, and self-hosted vs API breakpoint analysis.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://frankx.ai/research/cost-engineering/">
+    <meta property="og:title" content="AI Cost Engineering & FinOps | FrankX Research">
+    <meta property="og:description" content="Cut AI spend by 40-70%: LLM cascade routing, GPU optimization, TCO frameworks, and FinOps practices for enterprise GenAI.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://frankx.ai/research/cost-engineering/">
+    <meta property="og:site_name" content="FrankX AI Architecture Research">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AI Cost Engineering & FinOps | FrankX Research">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "AI Cost Engineering & FinOps",
+        "description": "Enterprise AI cost optimization: LLM cascade routing, GPU optimization, TCO frameworks, FinOps for GenAI, and the Quality-per-Dollar metric.",
+        "url": "https://frankx.ai/research/cost-engineering/",
+        "datePublished": "2026-02-05",
+        "dateModified": "2026-02-06",
+        "author": {"@type": "Person", "name": "FrankX", "url": "https://frankx.ai"},
+        "publisher": {"@type": "Organization", "name": "FrankX AI Architecture Research"},
+        "isPartOf": {"@type": "ResearchProject", "name": "FrankX AI Architecture Research Center", "url": "https://frankx.ai/research/"},
+        "about": [
+            {"@type": "Thing", "name": "AI Cost Engineering"},
+            {"@type": "Thing", "name": "FinOps"},
+            {"@type": "Thing", "name": "LLM Optimization"},
+            {"@type": "Thing", "name": "GPU Optimization"}
+        ],
+        "keywords": "AI cost engineering, FinOps, LLM cascade routing, GPU optimization, TCO, Quality-per-Dollar, self-hosted vs API, MIG partitioning",
+        "inLanguage": "en"
+    }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -152,6 +183,7 @@
                 <a href="/research/oracle-ai-database/" class="nav-link">Database AI</a>
                 <a href="/research/sovereign-ai/" class="nav-link">Sovereign AI</a>
                 <a href="/research/cost-engineering/" class="nav-link active">Cost Engineering</a>
+                <a href="/research/methodology/" class="nav-link">Method</a>
             </div>
         </div>
     </nav>
@@ -166,10 +198,10 @@
                 dramatically reduce costs while maintaining or improving quality. This is engineering, not compromise.
             </p>
             <div class="article-meta">
-                <span>Updated: Feb 2026</span>
+                <span>Last verified: Feb 6, 2026</span>
+                <span>30+ Sources</span>
                 <span>5 Optimization Patterns</span>
-                <span>Real Cost Models</span>
-                <span>Verified Pricing</span>
+                <span>Maturity: Established</span>
             </div>
         </header>
 
@@ -582,6 +614,74 @@
             </p>
         </div>
 
+        <h2>Pattern 6: Agentic AI Cost Control</h2>
+        <p>
+            AI agents amplify LLM costs by <strong>3-10x</strong> compared to single-call inference. Each agent step
+            (planning, tool selection, execution, reflection) requires a separate LLM invocation. A single user request
+            may trigger 5-15 LLM calls through an agent chain, making cost control critical for production agentic systems.
+        </p>
+
+        <div class="key-numbers">
+            <div class="number-card">
+                <div class="number-value">3-10x</div>
+                <div class="number-label">LLM call amplification per agent task</div>
+            </div>
+            <div class="number-card">
+                <div class="number-value">75%</div>
+                <div class="number-label">Cost reduction with prompt caching</div>
+            </div>
+            <div class="number-card">
+                <div class="number-value">68%</div>
+                <div class="number-label">Savings via semantic response caching</div>
+            </div>
+        </div>
+
+        <h3>Agent Cost Optimization Strategies</h3>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Strategy</th>
+                        <th>Savings</th>
+                        <th>Mechanism</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Prompt Caching</strong></td>
+                        <td>Up to 75%</td>
+                        <td>Cache system prompts and tool definitions across agent calls (Anthropic, Google, OpenAI all support)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Semantic Response Caching</strong></td>
+                        <td>Up to 68%</td>
+                        <td>Cache similar query responses using vector similarity (GPTCache, Redis Semantic Cache)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tool Call Distillation</strong></td>
+                        <td>~90%</td>
+                        <td>Replace expensive tool-calling models with fine-tuned small models for repetitive tool patterns</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Agent Step Routing</strong></td>
+                        <td>40-60%</td>
+                        <td>Route planning steps to capable small models, reserve premium models for final synthesis</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Observability-Driven Pruning</strong></td>
+                        <td>20-40%</td>
+                        <td>Monitor agent traces (Langfuse, AgentOps) to identify and eliminate redundant reasoning loops</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p>
+            <strong>Key insight:</strong> The highest-impact cost lever for agents is <em>reducing unnecessary steps</em>,
+            not cheaper models. Observability tools that trace agent execution paths reveal that 20-40% of reasoning
+            steps in typical agent chains are redundant. Pruning these steps delivers cost savings <em>and</em> faster latency.
+        </p>
+
         <!-- Sources -->
         <div class="sources">
             <h3>Sources &amp; References</h3>
@@ -606,6 +706,15 @@
                 <li>Self-Hosting vs API: True Cost Analysis &mdash; <a href="https://www.detectx.com.au/cost-comparison-api-vs-self-hosting-for-open-weight-llms/" target="_blank">detectx.com.au</a></li>
                 <li>Price Per Token: 300+ Model Comparison &mdash; <a href="https://pricepertoken.com/" target="_blank">pricepertoken.com</a></li>
                 <li>BCG: 74% of Companies Struggle to Scale AI &mdash; <a href="https://www.bcg.com/press/24october2024-ai-adoption-in-2024-74-of-companies-struggle-to-achieve-and-scale-value" target="_blank">bcg.com</a></li>
+                <li>Anthropic: Prompt Caching for Cost Reduction &mdash; <a href="https://docs.anthropic.com/en/docs/build-with-claude/prompt-caching" target="_blank">docs.anthropic.com</a></li>
+                <li>Langfuse: LLM Observability &amp; Cost Tracking &mdash; <a href="https://langfuse.com/" target="_blank">langfuse.com</a></li>
+                <li>Portkey AI: AI Gateway &amp; Budget Controls &mdash; <a href="https://portkey.ai/" target="_blank">portkey.ai</a></li>
+                <li>Martian: Model Router for Cost-Quality Optimization &mdash; <a href="https://withmartian.com/" target="_blank">withmartian.com</a></li>
+                <li>Agentops: Agent Cost &amp; Performance Observability &mdash; <a href="https://www.agentops.ai/" target="_blank">agentops.ai</a></li>
+                <li>OpenRouter: Unified API with Price Comparison &mdash; <a href="https://openrouter.ai/" target="_blank">openrouter.ai</a></li>
+                <li>Google Gemini Context Caching &mdash; <a href="https://ai.google.dev/gemini-api/docs/caching" target="_blank">ai.google.dev</a></li>
+                <li>MLOps Community: AI Cost Optimization Patterns &mdash; <a href="https://mlops.community/" target="_blank">mlops.community</a></li>
+                <li>Semantic Caching for RAG: 68% Cost Reduction &mdash; <a href="https://github.com/zilliztech/GPTCache" target="_blank">github.com/GPTCache</a></li>
             </ol>
         </div>
     </article>
