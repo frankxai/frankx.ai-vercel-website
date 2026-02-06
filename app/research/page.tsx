@@ -123,7 +123,7 @@ function HeroSection() {
             { label: 'Research Domains', value: String(researchDomains.length), icon: Layers },
             { label: 'Validated Findings', value: `${totalFindings}+`, icon: ShieldCheck },
             { label: 'Sources Cross-Referenced', value: `${totalSources}+`, icon: Search },
-            { label: 'Research Agents', value: '5', icon: Radar },
+            { label: 'Research Agents', value: String(researchAgents.length), icon: Radar },
           ].map((stat, i) => (
             <div key={i} className="bg-white/[0.03] backdrop-blur-sm border border-white/[0.06] rounded-xl p-4">
               <stat.icon className="w-4 h-4 text-white/30 mb-2" />
@@ -247,11 +247,25 @@ const categoryKeys: (DomainCategory | 'all')[] = ['all', 'ai-systems', 'models-t
 function DomainsGrid() {
   const shouldReduceMotion = useReducedMotion()
   const [activeCategory, setActiveCategory] = useState<DomainCategory | 'all'>('all')
+  const [searchQuery, setSearchQuery] = useState('')
 
   const filteredDomains = useMemo(() => {
-    if (activeCategory === 'all') return researchDomains
-    return researchDomains.filter(d => d.category === activeCategory)
-  }, [activeCategory])
+    let domains = activeCategory === 'all'
+      ? researchDomains
+      : researchDomains.filter(d => d.category === activeCategory)
+
+    if (searchQuery.trim()) {
+      const q = searchQuery.toLowerCase()
+      domains = domains.filter(d =>
+        d.title.toLowerCase().includes(q) ||
+        d.subtitle.toLowerCase().includes(q) ||
+        d.tldr.toLowerCase().includes(q) ||
+        d.keyFindings.some(f => f.toLowerCase().includes(q))
+      )
+    }
+
+    return domains
+  }, [activeCategory, searchQuery])
 
   return (
     <section id="domains" className="py-16 md:py-24">
@@ -264,6 +278,26 @@ function DomainsGrid() {
             {researchDomains.length} research areas organized by topic. Each domain synthesizes
             validated findings from multiple sources into actionable intelligence.
           </p>
+        </div>
+
+        {/* Search */}
+        <div className="relative mb-6">
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30" />
+          <input
+            type="text"
+            placeholder="Search domains, findings, insights..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="w-full bg-white/[0.03] border border-white/[0.08] rounded-xl pl-11 pr-4 py-3 text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-white/20 focus:bg-white/[0.05] transition-all"
+          />
+          {searchQuery && (
+            <button
+              onClick={() => setSearchQuery('')}
+              className="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-white/30 hover:text-white/60 transition-colors"
+            >
+              Clear
+            </button>
+          )}
         </div>
 
         {/* Category Tabs */}
@@ -297,6 +331,25 @@ function DomainsGrid() {
           })}
         </div>
 
+        {/* Results count */}
+        {(searchQuery || activeCategory !== 'all') && (
+          <p className="text-xs text-white/30 mb-4">
+            Showing {filteredDomains.length} of {researchDomains.length} domains
+          </p>
+        )}
+
+        {filteredDomains.length === 0 ? (
+          <div className="text-center py-16">
+            <Search className="w-8 h-8 text-white/20 mx-auto mb-4" />
+            <p className="text-white/40 text-sm">No domains match your search.</p>
+            <button
+              onClick={() => { setSearchQuery(''); setActiveCategory('all') }}
+              className="mt-3 text-xs text-emerald-400 hover:text-emerald-300 transition-colors"
+            >
+              Clear filters
+            </button>
+          </div>
+        ) : (
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {filteredDomains.map((domain, index) => {
             const Icon = iconMap[domain.icon] || Layers
@@ -353,6 +406,7 @@ function DomainsGrid() {
             )
           })}
         </div>
+        )}
       </div>
     </section>
   )

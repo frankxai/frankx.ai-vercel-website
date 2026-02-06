@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Research Intelligence Hub | FrankX.AI',
-  description: 'Validated research across enterprise AI, production patterns, multi-agent systems, and emerging technology. 80+ cross-referenced claims, 12 active research domains, 160+ sources.',
+  description: 'Validated research across enterprise AI, production patterns, multi-agent systems, and emerging technology. 135+ cross-referenced findings, 20 active research domains, 310+ sources.',
   keywords: [
     'AI research',
     'enterprise AI architecture',
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Research Intelligence Hub | FrankX.AI',
-    description: '12 research domains. 80+ validated claims. 160+ cross-referenced sources.',
+    description: '20 research domains. 135+ validated findings. 310+ cross-referenced sources.',
     images: ['/images/brand/og-template.png'],
   },
   alternates: {

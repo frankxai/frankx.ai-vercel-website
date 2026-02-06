@@ -54,16 +54,26 @@ export default async function Page({ params }: PageProps) {
 
   const relatedDomains = getRelatedDomains(slug)
 
+  // Generate FAQ from keyFindings (convert statements to Q&A pairs)
+  const faqItems = domain.faq && domain.faq.length > 0
+    ? domain.faq
+    : domain.keyFindings.slice(0, 5).map((finding) => ({
+        question: `What does the research show about ${finding.split(' — ')[0].split(' at ')[0].split(' leads ')[0].toLowerCase().replace(/^'?/, '')}?`,
+        answer: finding,
+      }))
+
   // JSON-LD structured data - safe because data is from our own static domain registry
-  const jsonLd = JSON.stringify({
+  const techArticleLd = JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'TechArticle',
     headline: domain.title,
+    alternativeHeadline: domain.subtitle,
     description: domain.tldr,
     author: {
       '@type': 'Person',
       name: 'Frank van den Bergh',
       url: 'https://frankx.ai',
+      jobTitle: 'AI Architect',
     },
     publisher: {
       '@type': 'Organization',
@@ -71,14 +81,35 @@ export default async function Page({ params }: PageProps) {
       url: 'https://frankx.ai',
     },
     dateModified: domain.lastUpdated,
+    datePublished: '2026-01-27',
     mainEntityOfPage: `https://frankx.ai/research/${domain.slug}`,
+    about: domain.keyFindings.slice(0, 3).join('. '),
+    keywords: [domain.title, ...domain.highlights.map(h => h.label)].join(', '),
+    citation: `${domain.sourceCount} validated sources`,
+  })
+
+  const faqLd = JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqItems.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: item.answer,
+      },
+    })),
   })
 
   return (
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: jsonLd }}
+        dangerouslySetInnerHTML={{ __html: techArticleLd }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: faqLd }}
       />
       <ResearchDomainPage domain={domain} relatedDomains={relatedDomains} />
     </>
