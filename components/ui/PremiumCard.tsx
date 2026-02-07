@@ -2,7 +2,7 @@
 
 import { cn } from '@/lib/utils'
 import { ReactNode, useRef, useState, useCallback } from 'react'
-import { motion, useReducedMotion } from 'framer-motion'
+import { motion, useMotionValue, useSpring, useTransform, useReducedMotion } from 'framer-motion'
 import Link from 'next/link'
 
 // ============================================================================
@@ -18,6 +18,19 @@ const GRADIENT_PRESETS = {
 } as const
 
 type GradientPreset = keyof typeof GRADIENT_PRESETS
+
+// ============================================================================
+// GLASS VARIANTS
+// ============================================================================
+
+const GLASS_VARIANTS = {
+  none: '',
+  subtle: 'backdrop-blur-md bg-slate-900/20',
+  medium: 'backdrop-blur-xl bg-slate-900/30',
+  heavy: 'backdrop-blur-2xl bg-slate-900/40',
+} as const
+
+type GlassVariant = keyof typeof GLASS_VARIANTS
 
 // ============================================================================
 // TYPES
@@ -41,6 +54,14 @@ interface PremiumCardProps {
   lift?: boolean
   /** onClick handler for non-link cards */
   onClick?: () => void
+  /** Enable 3D tilt on hover (spring-smoothed) */
+  tilt?: boolean
+  /** Tilt intensity in degrees (default: 5) */
+  tiltIntensity?: number
+  /** Glassmorphic backdrop blur variant */
+  glass?: GlassVariant
+  /** Enable diagonal shine sweep on hover */
+  shine?: boolean
 }
 
 // ============================================================================
@@ -59,35 +80,67 @@ export default function PremiumCard({
   padding = 'p-5 sm:p-6',
   lift = true,
   onClick,
+  tilt = false,
+  tiltIntensity = 5,
+  glass = 'none',
+  shine = false,
 }: PremiumCardProps) {
   const prefersReducedMotion = useReducedMotion()
   const cardRef = useRef<HTMLDivElement>(null)
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
   const [isHovered, setIsHovered] = useState(false)
 
+  // Tilt motion values (spring-smoothed)
+  const tiltX = useMotionValue(0)
+  const tiltY = useMotionValue(0)
+  const springX = useSpring(tiltX, { stiffness: 300, damping: 30 })
+  const springY = useSpring(tiltY, { stiffness: 300, damping: 30 })
+  const rotateX = useTransform(springY, [-0.5, 0.5], [`${tiltIntensity}deg`, `-${tiltIntensity}deg`])
+  const rotateY = useTransform(springX, [-0.5, 0.5], [`-${tiltIntensity}deg`, `${tiltIntensity}deg`])
+
   const colors = gradientColors || GRADIENT_PRESETS[gradient]
   const via = colors.via || colors.from
 
   const handleMouseMove = useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {
-      if (!mouseGlow || !cardRef.current) return
+      if (!cardRef.current) return
       const rect = cardRef.current.getBoundingClientRect()
-      setMousePos({
-        x: e.clientX - rect.left,
-        y: e.clientY - rect.top,
-      })
+      const x = e.clientX - rect.left
+      const y = e.clientY - rect.top
+
+      if (mouseGlow) {
+        setMousePos({ x, y })
+      }
+
+      if (tilt && !prefersReducedMotion) {
+        tiltX.set(x / rect.width - 0.5)
+        tiltY.set(y / rect.height - 0.5)
+      }
     },
-    [mouseGlow]
+    [mouseGlow, tilt, prefersReducedMotion, tiltX, tiltY]
   )
 
+  const handleMouseLeave = useCallback(() => {
+    setIsHovered(false)
+    if (tilt) {
+      tiltX.set(0)
+      tiltY.set(0)
+    }
+  }, [tilt, tiltX, tiltY])
+
   const gradientStyle = `linear-gradient(135deg, ${colors.from}, ${via}, ${colors.to})`
+
+  const tiltStyle = tilt && !prefersReducedMotion
+    ? { rotateX, rotateY, transformStyle: 'preserve-3d' as const }
+    : {}
 
   const card = (
     <motion.div
       ref={cardRef}
       className={cn(
         'group relative block rounded-2xl overflow-hidden',
-        'bg-white/[0.02] border border-white/[0.06]',
+        glass === 'none' ? 'bg-white/[0.02]' : GLASS_VARIANTS[glass],
+        'border border-white/[0.06]',
         'transition-all duration-300 ease-out',
         lift && !prefersReducedMotion && 'hover:-translate-y-1',
         'hover:border-white/[0.12]',
@@ -95,9 +148,10 @@ export default function PremiumCard({
         'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]',
         className
       )}
+      style={tiltStyle}
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      onMouseLeave={handleMouseLeave}
       onClick={onClick}
       role={onClick ? 'button' : undefined}
       tabIndex={onClick ? 0 : undefined}
@@ -141,6 +195,24 @@ export default function PremiumCard({
         }}
       />
 
+      {/* Diagonal shine sweep on hover (optional) */}
+      {shine && !prefersReducedMotion && (
+        <div
+          className={cn(
+            'absolute inset-0 pointer-events-none overflow-hidden rounded-2xl',
+            'transition-opacity duration-300',
+            isHovered ? 'opacity-100' : 'opacity-0'
+          )}
+        >
+          <div
+            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.07] to-transparent -skew-x-12 transition-transform duration-700 ease-out"
+            style={{
+              transform: isHovered ? 'translateX(200%)' : 'translateX(-200%)',
+            }}
+          />
+        </div>
+      )}
+
       {/* Badge */}
       {badge && (
         <span className="absolute top-3 left-3 z-20 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider rounded-full bg-white/[0.06] text-white/60 border border-white/[0.08]">
@@ -176,5 +248,5 @@ export default function PremiumCard({
 // EXPORTS
 // ============================================================================
 
-export { GRADIENT_PRESETS }
-export type { PremiumCardProps, GradientPreset }
+export { GRADIENT_PRESETS, GLASS_VARIANTS }
+export type { PremiumCardProps, GradientPreset, GlassVariant }
