@@ -1,10 +1,7 @@
-import { cookies } from 'next/headers'
 import { createMetadata } from '@/lib/seo'
 import JsonLd from '@/components/seo/JsonLd'
 import { FAQPageJsonLd } from '@/components/seo/JsonLd'
-import { homepageTest, type HomepageVariant } from '@/lib/ab-testing'
 import HomePageElite from '@/components/home/HomePageElite'
-import HomePagePremium from '@/components/home/HomePagePremium'
 
 export const metadata = createMetadata({
   title: 'FrankX.AI | AI Architect & Music Creator',
@@ -102,25 +99,10 @@ const homepageFAQs = [
   },
 ]
 
-// Variant component map
-const variantComponents: Record<HomepageVariant, React.ComponentType> = {
-  elite: HomePageElite,
-  premium: HomePagePremium,
-  control: HomePageElite,
-}
-
-export default async function Page() {
-  // Read variant from cookie (set by middleware)
-  const cookieStore = await cookies()
-  const variantCookie = cookieStore.get(homepageTest.cookieName)
-  const variant: HomepageVariant = (variantCookie?.value as HomepageVariant) || 'elite'
-
-  // Get the component for this variant
-  const HomepageComponent = variantComponents[variant] || HomePageElite
-
+export default function Page() {
   return (
     <>
-      <HomepageComponent />
+      <HomePageElite />
       <JsonLd type="WebSite" data={websiteSchema} />
       <JsonLd type="Person" data={personSchema} />
       <JsonLd type="Organization" data={organizationSchema} />
