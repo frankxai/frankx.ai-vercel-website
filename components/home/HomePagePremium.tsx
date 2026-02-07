@@ -381,7 +381,7 @@ function BentoGrid() {
                     <div className="absolute right-4 bottom-4 w-16 h-16 md:w-24 md:h-24 opacity-30 group-hover:opacity-50 transition-opacity">
                       <Image
                         src={item.image}
-                        alt=""
+                        alt={item.title}
                         fill
                         className="object-contain"
                       />
