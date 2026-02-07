@@ -52,7 +52,7 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
       url: `${siteConfig.url}/products/${product.slug}`,
       priceCurrency: product.offer.currency || 'USD',
       price: product.offer.primaryPrice,
-      priceValidUntil: '2025-12-31',
+      priceValidUntil: '2026-12-31',
       availability: 'https://schema.org/InStock',
       seller: {
         '@type': 'Organization',

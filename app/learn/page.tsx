@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
 import {
@@ -97,10 +98,12 @@ function VideoCard({ video, pathColor }: { video: VideoResource; pathColor: stri
           />
         ) : (
           <>
-            <img
+            <Image
               src={`https://img.youtube.com/vi/${video.youtubeId}/maxresdefault.jpg`}
               alt={video.title}
-              className="absolute inset-0 w-full h-full object-cover"
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              className="object-cover"
             />
             <button
               onClick={() => setIsPlaying(true)}

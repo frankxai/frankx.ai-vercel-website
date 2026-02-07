@@ -18,6 +18,7 @@ import {
   ChevronRight,
   ExternalLink,
 } from 'lucide-react'
+import JsonLd from '@/components/seo/JsonLd'
 
 // ============================================================================
 // TYPES
@@ -286,8 +287,31 @@ export default function CoursesPage() {
     ? courses
     : courses.filter(course => course.category === selectedCategory)
 
+  const courseListSchema = {
+    name: 'FrankX AI Architecture Courses',
+    description: 'Structured courses on AI architecture, agentic systems, and creative AI production.',
+    numberOfItems: courses.length,
+    itemListElement: courses.map((course, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      item: {
+        '@type': 'Course',
+        name: course.title,
+        description: course.description,
+        url: `https://frankx.ai${course.href}`,
+        provider: { '@type': 'Organization', name: 'FrankX.AI' },
+        educationalLevel: course.level === 'beginner' ? 'Beginner' : course.level === 'intermediate' ? 'Intermediate' : 'Advanced',
+        timeRequired: `PT${parseInt(course.duration)}H`,
+        ...(course.isFree ? { isAccessibleForFree: true } : {
+          offers: { '@type': 'Offer', price: String(course.price), priceCurrency: 'USD', availability: 'https://schema.org/InStock' },
+        }),
+      },
+    })),
+  }
+
   return (
     <main className="relative min-h-screen text-white">
+      <JsonLd type="ItemList" data={courseListSchema} />
       <AuroraBackground />
 
       <div className="relative z-10">

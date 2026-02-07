@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
 import { useState } from 'react'
@@ -19,6 +20,7 @@ import {
   Target,
 } from 'lucide-react'
 import { learningPaths, type VideoResource } from '@/data/learning-paths'
+import Breadcrumbs from '@/components/seo/Breadcrumbs'
 
 const iconMap: Record<string, React.ComponentType<{className?: string}>> = {
   brain: Brain,
@@ -60,10 +62,12 @@ function VideoPlayer({ video, color }: { video: VideoResource; color: string }) 
           />
         ) : (
           <>
-            <img
+            <Image
               src={`https://img.youtube.com/vi/${video.youtubeId}/maxresdefault.jpg`}
               alt={video.title}
-              className="absolute inset-0 w-full h-full object-cover"
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-cover"
             />
             <button
               onClick={() => setIsPlaying(true)}
@@ -146,14 +150,12 @@ export default function LearningPathPage() {
         <div className={`absolute inset-0 bg-gradient-to-br ${colors.gradientFrom} via-transparent to-transparent`} />
 
         <div className="relative max-w-6xl mx-auto px-6">
-          {/* Back link */}
-          <Link
-            href="/learn"
-            className="inline-flex items-center gap-2 text-white/60 hover:text-white transition-colors mb-8"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            All Learning Paths
-          </Link>
+          <Breadcrumbs
+            items={[
+              { label: 'Learn', href: '/learn' },
+              { label: path.title, href: `/learn/${path.slug}` },
+            ]}
+          />
 
           <motion.div
             initial={{ opacity: 0, y: 20 }}

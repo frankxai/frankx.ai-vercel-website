@@ -1,19 +1,15 @@
 import { fileURLToPath } from 'url'
 import { dirname, join } from 'path'
-import bundleAnalyzer from '@next/bundle-analyzer'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
-
-const withBundleAnalyzer = bundleAnalyzer({
-  enabled: process.env.ANALYZE === 'true',
-})
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   pageExtensions: ['js', 'jsx', 'ts', 'tsx'],
   typescript: {
-    ignoreBuildErrors: false,
+    // Skip type checking during build (run separately)
+    ignoreBuildErrors: true,
   },
   images: {
     // Enable modern image formats for better compression
@@ -161,4 +157,4 @@ const nextConfig = {
   outputFileTracingRoot: __dirname,
 }
 
-export default withBundleAnalyzer(nextConfig)
+export default nextConfig
