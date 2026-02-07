@@ -94,7 +94,7 @@ const intelligenceGates = [
       'Autonomous Agent Design',
     ],
     links: [
-      { label: 'Framework Comparison', href: '/research/active/multi-agent-patterns/FRAMEWORK_COMPARISON_2026' },
+      { label: 'Framework Comparison', href: '/research/multi-agent-systems' },
       { label: 'Agent Blueprints', href: '/ai-architecture/blueprints' },
     ],
   },
@@ -115,8 +115,8 @@ const intelligenceGates = [
       'Hybrid Search Implementation',
     ],
     links: [
-      { label: 'RAG Patterns', href: '/research/active/enterprise-ai-trends/RAG_PRODUCTION_PATTERNS' },
-      { label: 'Vector DB Guide', href: '/research/active/enterprise-ai-trends/VECTOR_DATABASE_COMPARISON_2026' },
+      { label: 'RAG Patterns', href: '/research/enterprise-ai' },
+      { label: 'Vector DB Guide', href: '/research/vector-databases' },
     ],
   },
   {
@@ -136,8 +136,8 @@ const intelligenceGates = [
       'Production LLM Systems',
     ],
     links: [
-      { label: 'Observability Guide', href: '/research/active/enterprise-ai-trends/OBSERVABILITY_STACK' },
-      { label: 'Security Patterns', href: '/research/active/enterprise-ai-trends/AI_AGENT_SECURITY_2026' },
+      { label: 'Observability Guide', href: '/research/production-patterns' },
+      { label: 'Security Patterns', href: '/research/ai-security' },
     ],
   },
   {
@@ -157,7 +157,7 @@ const intelligenceGates = [
       'Anthropic Claude 2026',
     ],
     links: [
-      { label: 'MCP Ecosystem', href: '/research/active/mcp-ecosystem/CLAUDE_CODE_2026' },
+      { label: 'MCP Ecosystem', href: '/research/mcp-ecosystem' },
       { label: 'Intelligence Atlas', href: '/intelligence-atlas' },
     ],
   },

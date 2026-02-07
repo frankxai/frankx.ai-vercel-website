@@ -17,6 +17,7 @@ import {
   GraduationCap,
 } from 'lucide-react'
 import { learningPaths, featuredCreators, type LearningPath, type VideoResource } from '@/data/learning-paths'
+import JsonLd from '@/components/seo/JsonLd'
 
 const iconMap: Record<string, React.ComponentType<{className?: string}>> = {
   brain: Brain,
@@ -148,8 +149,29 @@ function VideoCard({ video, pathColor }: { video: VideoResource; pathColor: stri
 }
 
 export default function LearnPage() {
+  const learningPathSchema = {
+    name: 'FrankX AI Learning Paths',
+    description: 'Curated video learning paths covering AI architecture, music production with AI, prompt engineering, and creative AI workflows.',
+    numberOfItems: learningPaths.length,
+    itemListElement: learningPaths.map((path, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      item: {
+        '@type': 'LearningResource',
+        name: path.title,
+        description: path.description,
+        url: `https://frankx.ai/learn/${path.slug}`,
+        provider: { '@type': 'Organization', name: 'FrankX.AI' },
+        educationalLevel: path.difficulty === 'beginner' ? 'Beginner' : path.difficulty === 'intermediate' ? 'Intermediate' : 'Advanced',
+        learningResourceType: 'Video',
+        numberOfItems: path.videos.length,
+      },
+    })),
+  }
+
   return (
     <div className="min-h-screen bg-[#0a0a0b]">
+      <JsonLd type="ItemList" data={learningPathSchema} />
       {/* Hero */}
       <section className="relative pt-24 pb-16 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-transparent to-violet-500/10" />
