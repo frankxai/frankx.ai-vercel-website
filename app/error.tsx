@@ -4,7 +4,7 @@ import { useEffect } from 'react'
 import Link from 'next/link'
 import { AlertTriangle, RefreshCw, Home, Mail } from 'lucide-react'
 import { motion } from 'framer-motion'
-import GlassmorphicCard from '@/components/ui/GlassmorphicCard'
+import PremiumCard from '@/components/ui/PremiumCard'
 import PremiumButton from '@/components/ui/PremiumButton'
 
 interface ErrorProps {
@@ -67,8 +67,8 @@ export default function Error({ error, reset }: ErrorProps) {
           transition={{ delay: 0.4, duration: 0.6 }}
           className="mb-8"
         >
-          <GlassmorphicCard
-            variant="premium"
+          <PremiumCard
+            glass="medium"
             className="p-6 text-left"
           >
             <h3 className="text-lg font-semibold text-slate-100 mb-3">
@@ -90,7 +90,7 @@ export default function Error({ error, reset }: ErrorProps) {
                 <span className="text-slate-200 ml-2">{new Date().toLocaleString()}</span>
               </div>
             </div>
-          </GlassmorphicCard>
+          </PremiumCard>
         </motion.div>
 
         {/* Action Buttons */}
@@ -128,8 +128,8 @@ export default function Error({ error, reset }: ErrorProps) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.8, duration: 0.6 }}
         >
-          <GlassmorphicCard
-            variant="default"
+          <PremiumCard
+            glass="subtle"
             className="p-6"
           >
             <h3 className="text-lg font-semibold text-slate-100 mb-4">
@@ -164,7 +164,7 @@ export default function Error({ error, reset }: ErrorProps) {
                 </Link>
               </div>
             </div>
-          </GlassmorphicCard>
+          </PremiumCard>
         </motion.div>
 
         {/* Footer */}

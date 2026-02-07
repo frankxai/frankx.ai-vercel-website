@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { motion } from 'framer-motion'
 import {
   Calculator,
   Brain,
@@ -27,7 +26,7 @@ import {
 import Link from 'next/link'
 
 import { cn } from '@/lib/utils'
-import GlassmorphicCard from '@/components/ui/GlassmorphicCard'
+import PremiumCard from '@/components/ui/PremiumCard'
 import PremiumButton from '@/components/ui/PremiumButton'
 import {
   StaggerContainer,
@@ -278,7 +277,7 @@ export default function ToolsPage() {
 
           {/* Filters */}
           <StaggerItem>
-            <GlassmorphicCard variant="premium" className="p-8 mb-12">
+            <PremiumCard glass="medium" className="p-8 mb-12">
               <div className="flex flex-col lg:flex-row gap-6">
                 {/* Search */}
                 <div className="flex-1">
@@ -331,22 +330,20 @@ export default function ToolsPage() {
                   ))}
                 </div>
               </div>
-            </GlassmorphicCard>
+            </PremiumCard>
           </StaggerItem>
 
           {/* Tools Grid */}
           <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-8">
             {filteredTools.map((tool, index) => (
               <StaggerItem key={tool.id}>
-                <motion.div
-                  initial={{ opacity: 0, y: 40 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
+                <div
+                  className="animate-fade-in-up opacity-0 motion-reduce:animate-none"
+                  style={{ animationDelay: `${(index * 0.1).toFixed(1)}s` }}
                 >
                   <InteractiveCard>
-                    <GlassmorphicCard
-                      variant="luxury"
-                      hover
+                    <PremiumCard
+                      glass="heavy"
                       className="h-full p-8 flex flex-col relative overflow-hidden"
                     >
                       {/* Header */}
@@ -439,9 +436,9 @@ export default function ToolsPage() {
                       {tool.isPremium && (
                         <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/5 via-transparent to-orange-500/5 rounded-2xl pointer-events-none" />
                       )}
-                    </GlassmorphicCard>
+                    </PremiumCard>
                   </InteractiveCard>
-                </motion.div>
+                </div>
               </StaggerItem>
             ))}
           </div>
@@ -472,7 +469,7 @@ export default function ToolsPage() {
           {/* CTA Section */}
           <StaggerItem>
             <div className="mt-20">
-              <GlassmorphicCard variant="luxury" className="p-12 text-center">
+              <PremiumCard glass="heavy" className="p-12 text-center">
                 <h2 className="text-3xl font-bold mb-6 bg-gradient-to-r from-slate-100 to-purple-200 bg-clip-text text-transparent">
                   Need a Custom Tool?
                 </h2>
@@ -491,7 +488,7 @@ export default function ToolsPage() {
                     Tool Builder (Coming Soon)
                   </PremiumButton>
                 </div>
-              </GlassmorphicCard>
+              </PremiumCard>
             </div>
           </StaggerItem>
         </StaggerContainer>

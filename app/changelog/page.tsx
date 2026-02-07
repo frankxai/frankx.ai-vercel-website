@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
 
 // Types
 interface CommitData {
@@ -129,41 +128,33 @@ export default function ChangelogPage() {
       <div className="border-b border-zinc-800">
         <div className="max-w-6xl mx-auto px-4 py-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="bg-zinc-900 rounded-lg p-4"
+            <div
+              className="bg-zinc-900 rounded-lg p-4 animate-fade-in-up opacity-0 motion-reduce:animate-none"
             >
               <div className="text-3xl font-bold text-emerald-400">{totalCommits.toLocaleString()}</div>
               <div className="text-zinc-500 text-sm">Total Commits (1yr)</div>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="bg-zinc-900 rounded-lg p-4"
+            </div>
+            <div
+              className="bg-zinc-900 rounded-lg p-4 animate-fade-in-up opacity-0 motion-reduce:animate-none"
+              style={{ animationDelay: '0.1s' }}
             >
               <div className="text-3xl font-bold text-blue-400">{activeDays}</div>
               <div className="text-zinc-500 text-sm">Active Days</div>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="bg-zinc-900 rounded-lg p-4"
+            </div>
+            <div
+              className="bg-zinc-900 rounded-lg p-4 animate-fade-in-up opacity-0 motion-reduce:animate-none"
+              style={{ animationDelay: '0.2s' }}
             >
               <div className="text-3xl font-bold text-purple-400">{currentStreak}</div>
               <div className="text-zinc-500 text-sm">Current Streak</div>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="bg-zinc-900 rounded-lg p-4"
+            </div>
+            <div
+              className="bg-zinc-900 rounded-lg p-4 animate-fade-in-up opacity-0 motion-reduce:animate-none"
+              style={{ animationDelay: '0.3s' }}
             >
               <div className="text-3xl font-bold text-amber-400">6</div>
               <div className="text-zinc-500 text-sm">Active Repos</div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </div>
@@ -178,14 +169,12 @@ export default function ChangelogPage() {
               {weeks.map((week, weekIndex) => (
                 <div key={weekIndex} className="flex flex-col gap-1">
                   {week.map((day, dayIndex) => (
-                    <motion.div
+                    <div
                       key={day.date}
-                      initial={{ opacity: 0, scale: 0.5 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: weekIndex * 0.01 + dayIndex * 0.01 }}
-                      className={`w-3 h-3 rounded-sm ${getIntensityColor(day.commits)} cursor-pointer hover:ring-2 hover:ring-white/30`}
+                      className={`w-3 h-3 rounded-sm ${getIntensityColor(day.commits)} cursor-pointer hover:ring-2 hover:ring-white/30 animate-scale-in opacity-0 motion-reduce:animate-none`}
                       title={`${day.date}: ${day.commits} commits`}
                       onClick={() => setSelectedDay(day)}
+                      style={{ animationDelay: `${(weekIndex * 0.01 + dayIndex * 0.01).toFixed(2)}s` }}
                     />
                   ))}
                 </div>
@@ -206,10 +195,8 @@ export default function ChangelogPage() {
 
           {/* Selected day details */}
           {selectedDay && (
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="mt-4 p-4 bg-zinc-900 rounded-lg"
+            <div
+              className="mt-4 p-4 bg-zinc-900 rounded-lg animate-fade-in-up motion-reduce:animate-none"
             >
               <div className="font-semibold">{selectedDay.date}</div>
               <div className="text-zinc-400">
@@ -218,7 +205,7 @@ export default function ChangelogPage() {
                   <> in {selectedDay.repos.join(', ')}</>
                 )}
               </div>
-            </motion.div>
+            </div>
           )}
         </div>
       </div>
@@ -229,12 +216,10 @@ export default function ChangelogPage() {
 
         <div className="space-y-2">
           {recentCommits.map((commit, index) => (
-            <motion.div
+            <div
               key={commit.hash}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: index * 0.05 }}
-              className="flex items-center gap-4 p-3 bg-zinc-900 rounded-lg hover:bg-zinc-800 transition-colors"
+              className="flex items-center gap-4 p-3 bg-zinc-900 rounded-lg hover:bg-zinc-800 transition-colors animate-fade-in-up opacity-0 motion-reduce:animate-none"
+              style={{ animationDelay: `${(index * 0.05).toFixed(2)}s` }}
             >
               <span className="text-2xl">{getCategoryIcon(commit.category)}</span>
               <div className="flex-1 min-w-0">
@@ -245,7 +230,7 @@ export default function ChangelogPage() {
                 <div className="text-sm text-emerald-400">{commit.repo}</div>
                 <div className="text-xs text-zinc-500">{commit.date}</div>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
 

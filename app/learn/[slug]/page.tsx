@@ -1,6 +1,5 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
@@ -158,10 +157,8 @@ export default function LearningPathPage() {
             All Learning Paths
           </Link>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="grid lg:grid-cols-[1fr,300px] gap-12"
+          <div
+            className="grid lg:grid-cols-[1fr,300px] gap-12 animate-fade-in-up opacity-0 motion-reduce:animate-none"
           >
             {/* Main content */}
             <div>
@@ -206,7 +203,7 @@ export default function LearningPathPage() {
                 ))}
               </ul>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -216,14 +213,13 @@ export default function LearningPathPage() {
 
         <div className="grid md:grid-cols-2 gap-6">
           {path.videos.map((video, i) => (
-            <motion.div
+            <div
               key={video.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1 }}
+              className="animate-fade-in-up opacity-0 motion-reduce:animate-none"
+              style={{ animationDelay: `${(i * 0.1).toFixed(1)}s` }}
             >
               <VideoPlayer video={video} color={path.color} />
-            </motion.div>
+            </div>
           ))}
         </div>
       </section>

@@ -40,7 +40,7 @@ import {
 import { Surface, SectionHeading, Pill, StatBlock } from '@/components/ui/primitives'
 import { SplitTextReveal } from '@/components/ui/SplitTextReveal'
 import { CursorSpotlight } from '@/components/ui/CursorSpotlight'
-import { TiltCard } from '@/components/ui/TiltCard'
+import PremiumCard from '@/components/ui/PremiumCard'
 
 const fadeUp = {
   initial: { opacity: 0, y: 24 },
@@ -255,7 +255,7 @@ export default function HomePage() {
           <div className="grid gap-6 md:grid-cols-3">
             {homeSpotlights.map((spotlight, index) => (
               <motion.div key={spotlight.title} {...fadeUp} transition={{ delay: index * 0.1 }}>
-                <TiltCard className="h-full group">
+                <PremiumCard tilt={true} className="h-full group">
                   <Surface as="article" tone="glass" padding="md" className="h-full backdrop-blur-sm">
                     <span className="eyebrow-text text-slate-400">{spotlight.eyebrow}</span>
                     <h3 className="mt-3 text-xl font-semibold text-white">{spotlight.title}</h3>
@@ -268,7 +268,7 @@ export default function HomePage() {
                       <ArrowRight className="h-4 w-4" aria-hidden="true" />
                     </Link>
                   </Surface>
-                </TiltCard>
+                </PremiumCard>
               </motion.div>
             ))}
           </div>

@@ -16,8 +16,7 @@ import {
   Check,
   ArrowRight,
 } from 'lucide-react';
-import GlassmorphicCard from '@/components/ui/GlassmorphicCard';
-import InteractiveCard from '@/components/ui/InteractiveCard';
+import PremiumCard from '@/components/ui/PremiumCard';
 import PremiumButton from '@/components/ui/PremiumButton';
 import { cn } from '@/lib/utils';
 
@@ -322,7 +321,7 @@ export default function AssessmentPage() {
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6 }}
           >
-            <GlassmorphicCard variant="luxury" gradient="aurora" border="glow" className="p-8 md:p-12">
+            <PremiumCard glass="heavy" gradient="purple" className="p-8 md:p-12">
               <div className="text-center mb-8">
                 <div
                   className={cn(
@@ -367,7 +366,7 @@ export default function AssessmentPage() {
                   Explore All Life Books
                 </PremiumButton>
               </div>
-            </GlassmorphicCard>
+            </PremiumCard>
           </motion.div>
         </div>
       </div>
@@ -418,8 +417,8 @@ export default function AssessmentPage() {
             exit={{ opacity: 0, x: -20 }}
             transition={{ duration: 0.3 }}
           >
-            <InteractiveCard glowColor="yellow" intensity="medium">
-              <GlassmorphicCard variant="premium" gradient="aurora" border="subtle" className="p-8">
+            <PremiumCard gradient="gold" mouseGlow={true} shine={true}>
+              <PremiumCard glass="medium" className="p-8">
                 <h2 className="text-2xl md:text-3xl font-bold text-white mb-8">
                   {question.question}
                 </h2>
@@ -459,8 +458,8 @@ export default function AssessmentPage() {
                     </motion.button>
                   ))}
                 </div>
-              </GlassmorphicCard>
-            </InteractiveCard>
+              </PremiumCard>
+            </PremiumCard>
           </motion.div>
         </div>
       </section>

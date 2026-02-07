@@ -19,7 +19,7 @@ import {
   Lightbulb,
 } from 'lucide-react'
 
-import GlassmorphicCard from '@/components/ui/GlassmorphicCard'
+import PremiumCard from '@/components/ui/PremiumCard'
 import PremiumButton from '@/components/ui/PremiumButton'
 
 // Domain templates
@@ -272,9 +272,9 @@ export default function CoEBuilderPage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
                 >
-                  <GlassmorphicCard
-                    variant="luxury"
-                    border={isSelected ? 'glow' : 'subtle'}
+                  <PremiumCard
+                    glass="heavy"
+                    gradient={isSelected ? 'purple' : undefined}
                     className={`group h-full p-6 cursor-pointer transition-all ${
                       isSelected ? 'ring-2 ring-purple-500' : ''
                     }`}
@@ -295,7 +295,7 @@ export default function CoEBuilderPage() {
 
                     <h3 className="mb-3 text-xl font-bold text-slate-100">{domain.name}</h3>
                     <p className="text-base text-slate-300 leading-relaxed">{domain.description}</p>
-                  </GlassmorphicCard>
+                  </PremiumCard>
                 </motion.div>
               )
             })}
@@ -326,7 +326,7 @@ export default function CoEBuilderPage() {
                   const agents = customAgents.filter((a) => a.domainId === domainId)
 
                   return (
-                    <GlassmorphicCard key={domainId} variant="luxury" border="glow" className="p-8">
+                    <PremiumCard key={domainId} glass="heavy" gradient="purple" className="p-8">
                       <div className="mb-6 flex items-center gap-4">
                         <domain.icon className={`h-10 w-10 text-${domain.color}-400`} />
                         <h3 className="text-3xl font-bold text-slate-100">{domain.name}</h3>
@@ -410,7 +410,7 @@ export default function CoEBuilderPage() {
                         <Plus className="h-5 w-5" />
                         Add Custom Agent
                       </button>
-                    </GlassmorphicCard>
+                    </PremiumCard>
                   )
                 })}
               </div>
@@ -444,7 +444,7 @@ export default function CoEBuilderPage() {
       {/* Instructions */}
       <section className="py-16">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-          <GlassmorphicCard variant="luxury" border="subtle" className="p-8">
+          <PremiumCard glass="heavy" className="p-8">
             <h3 className="mb-6 text-3xl font-bold text-slate-100">How to Use Your CoE</h3>
 
             <div className="space-y-4 text-base text-slate-300 leading-relaxed">
@@ -471,7 +471,7 @@ export default function CoEBuilderPage() {
                 configuration regularly. Keep it in cloud storage so you can access it anywhere.
               </p>
             </div>
-          </GlassmorphicCard>
+          </PremiumCard>
         </div>
       </section>
     </div>

@@ -1,7 +1,4 @@
-'use client'
-
 import Link from 'next/link'
-import { motion } from 'framer-motion'
 import { Sparkles, Crown, ArrowRight, Mail } from 'lucide-react'
 
 export default function RealmPage() {
@@ -14,11 +11,7 @@ export default function RealmPage() {
       </div>
 
       <div className="relative mx-auto max-w-4xl px-6 py-24 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
+        <div className="animate-fade-in-up opacity-0 motion-reduce:animate-none">
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-amber-500/10 text-amber-400 text-sm font-medium mb-8">
             <Sparkles className="w-4 h-4" />
@@ -74,7 +67,7 @@ export default function RealmPage() {
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>
-        </motion.div>
+        </div>
       </div>
     </main>
   )

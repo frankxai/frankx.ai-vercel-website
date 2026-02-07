@@ -1,6 +1,5 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import { ArrowRight, Download, Music, Sparkles, BookOpen, Zap, BarChart3, Mail, ExternalLink, CheckCircle, AlertCircle } from 'lucide-react'
 import Link from 'next/link'
 import { PRIMARY_SOCIAL_LINKS } from '@/lib/social-links'
@@ -44,26 +43,6 @@ export default function LinksPage() {
   const [email, setEmail] = useState('')
   const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle')
   const [errorMessage, setErrorMessage] = useState('')
-
-  // Animation variants
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1
-      }
-    }
-  }
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5 }
-    }
-  }
 
   const stats = [
     { label: '500+ AI Songs', icon: Music },
@@ -175,14 +154,11 @@ export default function LinksPage() {
       </div>
 
       {/* Main content */}
-      <motion.div
+      <div
         className="relative max-w-[480px] mx-auto px-4 py-12"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
       >
         {/* Profile Section */}
-        <motion.div variants={itemVariants} className="text-center mb-8">
+        <div className="text-center mb-8 animate-fade-in-up opacity-0 motion-reduce:animate-none">
           {/* Avatar with purple glow */}
           <div className="relative w-24 h-24 mx-auto mb-4">
             <div className="absolute inset-0 bg-gradient-to-br from-conscious-purple to-tech-cyan rounded-full blur-xl opacity-60 animate-pulse" />
@@ -226,10 +202,10 @@ export default function LinksPage() {
               )
             })}
           </div>
-        </motion.div>
+        </div>
 
         {/* Hero Product Card (Vibe OS) */}
-        <motion.div variants={itemVariants} className="mb-6">
+        <div className="mb-6 animate-fade-in-up opacity-0 motion-reduce:animate-none" style={{ animationDelay: '0.1s' }}>
           <Link
             href={heroProduct.href}
             onClick={() => trackLinkClick(heroProduct.title, heroProduct.href, 'hero_product')}
@@ -267,7 +243,7 @@ export default function LinksPage() {
               </div>
             </div>
           </Link>
-        </motion.div>
+        </div>
 
         {/* Primary CTA Cards */}
         <div className="space-y-4 mb-6">
@@ -277,7 +253,7 @@ export default function LinksPage() {
             const props = link.external ? { href: link.href, target: '_blank', rel: 'noopener noreferrer' } : { href: link.href }
 
             return (
-              <motion.div key={i} variants={itemVariants}>
+              <div key={i} className="animate-fade-in-up opacity-0 motion-reduce:animate-none" style={{ animationDelay: `${0.2 + i * 0.1}s` }}>
                 <Component
                   {...props}
                   onClick={() => trackLinkClick(link.title, link.href, 'primary_cta')}
@@ -304,13 +280,13 @@ export default function LinksPage() {
                     </div>
                   </div>
                 </Component>
-              </motion.div>
+              </div>
             )
           })}
         </div>
 
         {/* Content Links (Compact) */}
-        <motion.div variants={itemVariants} className="mb-6">
+        <div className="mb-6 animate-fade-in-up opacity-0 motion-reduce:animate-none" style={{ animationDelay: '0.4s' }}>
           <div className="space-y-2">
             {contentLinks.map((link, i) => {
               const Icon = link.icon
@@ -336,10 +312,10 @@ export default function LinksPage() {
               )
             })}
           </div>
-        </motion.div>
+        </div>
 
         {/* Newsletter Signup */}
-        <motion.div variants={itemVariants} className="mb-6">
+        <div className="mb-6 animate-fade-in-up opacity-0 motion-reduce:animate-none" style={{ animationDelay: '0.5s' }}>
           <div className="relative p-6 rounded-3xl bg-gradient-to-br from-white/10 via-white/5 to-transparent backdrop-blur-xl border border-white/10 overflow-hidden">
             {/* Aurora background */}
             <div className="absolute inset-0 bg-gradient-to-br from-conscious-purple/20 to-tech-cyan/20 opacity-50" />
@@ -426,10 +402,10 @@ export default function LinksPage() {
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
 
         {/* Social Icons */}
-        <motion.div variants={itemVariants} className="mb-8">
+        <div className="mb-8 animate-fade-in-up opacity-0 motion-reduce:animate-none" style={{ animationDelay: '0.6s' }}>
           <div className="flex justify-center gap-3">
             {PRIMARY_SOCIAL_LINKS.map((social, i) => {
               const IconComponent = socialIconMap[social.icon]
@@ -449,10 +425,10 @@ export default function LinksPage() {
               )
             })}
           </div>
-        </motion.div>
+        </div>
 
         {/* Footer */}
-        <motion.div variants={itemVariants} className="text-center">
+        <div className="text-center animate-fade-in-up opacity-0 motion-reduce:animate-none" style={{ animationDelay: '0.7s' }}>
           <p className="text-slate-500 text-xs">
             © 2026 Frank X. Riemer. Built with conscious AI collaboration.
           </p>
@@ -461,8 +437,8 @@ export default function LinksPage() {
             <Link href="/terms" className="hover:text-tech-cyan transition-colors">Terms</Link>
             <a href="mailto:hello@frankx.ai" className="hover:text-tech-cyan transition-colors">Contact</a>
           </div>
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
     </div>
   )
 }

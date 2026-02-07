@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 import { Search, Star, Shield, Zap, Brain, Code, Palette, BarChart3, ArrowRight } from 'lucide-react'
 
 import { StaggerContainer, StaggerItem } from '@/components/ui/AdvancedAnimations'
-import GlassmorphicCard from '@/components/ui/GlassmorphicCard'
+import PremiumCard from '@/components/ui/PremiumCard'
 
 // Resource categories with smart tagging
 const resourceCategories = [
@@ -167,7 +167,7 @@ export default function IntelligenceArsenal() {
 
           {/* Search */}
           <StaggerItem>
-            <GlassmorphicCard variant="premium" className="mb-12 p-8">
+            <PremiumCard glass="medium" className="mb-12 p-8">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400" />
                 <input
@@ -178,7 +178,7 @@ export default function IntelligenceArsenal() {
                   className="w-full rounded-xl border border-slate-700/50 bg-slate-800/50 py-3 pl-11 pr-4 text-slate-100 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500/50"
                 />
               </div>
-            </GlassmorphicCard>
+            </PremiumCard>
           </StaggerItem>
 
           {/* Resource Grid */}
@@ -194,7 +194,7 @@ export default function IntelligenceArsenal() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.08 }}
                   >
-                    <GlassmorphicCard variant="luxury" className="group h-full cursor-pointer transition-all hover:scale-[1.02]">
+                    <PremiumCard glass="heavy" className="group h-full cursor-pointer transition-all hover:scale-[1.02]">
                       <div className="p-6">
                         {/* Header */}
                         <div className="mb-4 flex items-start justify-between">
@@ -244,7 +244,7 @@ export default function IntelligenceArsenal() {
                           <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                         </a>
                       </div>
-                    </GlassmorphicCard>
+                    </PremiumCard>
                   </motion.div>
                 </StaggerItem>
               )
@@ -254,11 +254,11 @@ export default function IntelligenceArsenal() {
 
         {/* Embedded Legal Disclosure */}
         <div className="mt-16 mx-auto max-w-4xl">
-          <GlassmorphicCard variant="default" className="p-6">
+          <PremiumCard glass="subtle" className="p-6">
             <p className="text-xs text-slate-400 leading-relaxed">
               <strong className="text-slate-300">Transparency Note:</strong> Our Intelligence Arsenal represents tools we genuinely use and recommend based on performance in production environments. Some resources may include affiliate partnerships that support our research and development—these are clearly marked and never influence our technical recommendations. All expert insights reflect real implementation experience across our agentic systems.
             </p>
-          </GlassmorphicCard>
+          </PremiumCard>
         </div>
       </div>
     </div>

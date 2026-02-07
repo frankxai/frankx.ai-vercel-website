@@ -1,6 +1,5 @@
 'use client'
 
-import { motion } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
@@ -155,10 +154,8 @@ export default function LearnPage() {
         <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-transparent to-violet-500/10" />
 
         <div className="relative max-w-6xl mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-center mb-12"
+          <div
+            className="text-center mb-12 animate-fade-in-up opacity-0 motion-reduce:animate-none"
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm font-medium mb-6">
               <GraduationCap className="w-4 h-4" />
@@ -176,7 +173,7 @@ export default function LearnPage() {
               Free resources from the best creators on the internet.
               Curated paths that actually get you results.
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -184,14 +181,13 @@ export default function LearnPage() {
       <section className="max-w-6xl mx-auto px-6 pb-16">
         <div className="grid md:grid-cols-2 gap-6">
           {learningPaths.map((path, i) => (
-            <motion.div
+            <div
               key={path.id}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1 }}
+              className="animate-fade-in-up opacity-0 motion-reduce:animate-none"
+              style={{ animationDelay: `${(i * 0.1).toFixed(1)}s` }}
             >
               <PathCard path={path} />
-            </motion.div>
+            </div>
           ))}
         </div>
       </section>
