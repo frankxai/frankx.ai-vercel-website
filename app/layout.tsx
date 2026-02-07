@@ -136,9 +136,9 @@ export default function RootLayout({
             Skip to content
           </a>
           <NavigationMega />
-          <div id="main" className="min-h-screen overflow-x-hidden">
+          <main id="main" className="min-h-screen overflow-x-hidden">
             {children}
-          </div>
+          </main>
           <Footer />
         </SessionProvider>
       </body>

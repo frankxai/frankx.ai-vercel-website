@@ -1,6 +1,7 @@
 import { cookies } from 'next/headers'
 import { createMetadata } from '@/lib/seo'
 import JsonLd from '@/components/seo/JsonLd'
+import { FAQPageJsonLd } from '@/components/seo/JsonLd'
 import { homepageTest, type HomepageVariant } from '@/lib/ab-testing'
 import HomePageElite from '@/components/home/HomePageElite'
 import HomePagePremium from '@/components/home/HomePagePremium'
@@ -73,6 +74,34 @@ const organizationSchema = {
     'Enterprise AI architecture, music production with Suno, and creator tools. Practical systems and workflows for builders in the Golden Age of Intelligence.',
 }
 
+const homepageFAQs = [
+  {
+    question: 'What is FrankX.AI?',
+    answer:
+      'FrankX.AI is the personal hub of Frank Riemer — an AI Architect at Oracle and creator of 12,000+ AI-generated songs with Suno. The site features technical tutorials, AI architecture guides, music production workflows, and creator tools.',
+  },
+  {
+    question: 'What kind of content does FrankX publish?',
+    answer:
+      'FrankX publishes in-depth technical tutorials on AI coding agents (Claude Code, Cline, OpenCode), enterprise AI architecture patterns, Suno AI music production guides, prompt engineering frameworks, and multi-agent orchestration patterns.',
+  },
+  {
+    question: 'How can I learn AI music production with Suno?',
+    answer:
+      'Start with the Suno Prompt Engineering Complete Guide on the blog, which covers the 5-Layer Prompt Architecture, genre-specific techniques, and frequency science. FrankX has produced 12,000+ tracks and shares production workflows and prompt templates.',
+  },
+  {
+    question: 'What is the Agentic Creator OS?',
+    answer:
+      'The Agentic Creator OS is a framework for building AI-powered creative workflows. It combines multi-agent orchestration, prompt engineering, and automation tools to help creators ship content, music, and products faster using AI systems.',
+  },
+  {
+    question: 'Does FrankX offer courses or coaching?',
+    answer:
+      'FrankX offers free guides and tutorials on the blog, with premium courses and coaching programs in development. Join the waitlist at frankx.ai/coaching for early access to AI architecture and creator workflow training.',
+  },
+]
+
 // Variant component map
 const variantComponents: Record<HomepageVariant, React.ComponentType> = {
   elite: HomePageElite,
@@ -95,6 +124,7 @@ export default async function Page() {
       <JsonLd type="WebSite" data={websiteSchema} />
       <JsonLd type="Person" data={personSchema} />
       <JsonLd type="Organization" data={organizationSchema} />
+      <FAQPageJsonLd faqs={homepageFAQs} id="homepage-faq" />
     </>
   )
 }
