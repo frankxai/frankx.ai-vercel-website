@@ -29,8 +29,8 @@ const familyLinks = [
   },
   {
     title: 'Opa & Oma',
-    description: 'Ein besonderer Platz fur David und Dorothea. Inspiration, Bucher, und eine Einladung eure Geschichten zu teilen.',
-    href: '/opa',
+    description: 'Ein besonderer Platz fur alle Grosseltern. Inspiration, Bucher, und eine Einladung eure Geschichten zu teilen.',
+    href: '/opa-und-oma',
     icon: Heart,
     color: 'from-amber-500/20 to-amber-600/5',
     borderColor: 'border-amber-500/20 hover:border-amber-500/40',
@@ -163,7 +163,7 @@ export default function FamilyHubPage() {
           <p className="mb-6 text-white/40">
             This is where collected stories, memories, and wisdom will live.
             Share your stories through the prompts on the{' '}
-            <Link href="/opa" className="text-amber-400 hover:text-amber-300 underline underline-offset-2">
+            <Link href="/opa-und-oma" className="text-amber-400 hover:text-amber-300 underline underline-offset-2">
               Opa & Oma page
             </Link>.
           </p>
