@@ -48,9 +48,8 @@ export const getAllBlogPosts = cache((): BlogPost[] => {
       return {
         slug,
         content,
-        readingTime: data.readingTime || readTime.text,
+        readingTime: readTime.text,
         ...data,
-        date: data.date || data.publishedAt || '2025-01-01',
       } as BlogPost
     })
 
@@ -88,8 +87,49 @@ export function getPostsByCategory(category: string): BlogPost[] {
 }
 
 export function getPostsByTag(tag: string): BlogPost[] {
-  return getAllBlogPosts().filter(post => 
+  return getAllBlogPosts().filter(post =>
     post.tags.some(t => t.toLowerCase() === tag.toLowerCase())
   )
+}
+
+/**
+ * Extract FAQ pairs from MDX content body.
+ * Handles two formats:
+ *   1. **Q: Question?** followed by answer text
+ *   2. ### Question? followed by answer paragraph(s)
+ * Only looks within ## FAQ or ## Frequently Asked Questions sections.
+ */
+export function extractFAQFromContent(content: string): { question: string; answer: string }[] {
+  // Find the FAQ section
+  const faqMatch = content.match(/^## (?:FAQ|Frequently Asked[^\n]*)\n([\s\S]*?)(?=\n## [^#]|\n---\n|$)/m)
+  if (!faqMatch) return []
+
+  const faqSection = faqMatch[1]
+  const faqs: { question: string; answer: string }[] = []
+
+  // Pattern 1: **Q: Question?** \n Answer
+  const boldQPattern = /\*\*Q:\s*(.+?)\*\*\s*\n([\s\S]*?)(?=\*\*Q:|### |$)/g
+  let match
+  while ((match = boldQPattern.exec(faqSection)) !== null) {
+    const question = match[1].trim()
+    const answer = match[2].trim()
+    if (question && answer) {
+      faqs.push({ question, answer })
+    }
+  }
+
+  // Pattern 2: ### Question? \n\n Answer paragraph
+  if (faqs.length === 0) {
+    const h3Pattern = /### (.+?)\n\n([\s\S]*?)(?=\n### |\n## |$)/g
+    while ((match = h3Pattern.exec(faqSection)) !== null) {
+      const question = match[1].trim()
+      const answer = match[2].trim()
+      if (question && answer) {
+        faqs.push({ question, answer })
+      }
+    }
+  }
+
+  return faqs
 }
 

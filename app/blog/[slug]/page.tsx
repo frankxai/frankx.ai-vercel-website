@@ -5,7 +5,7 @@ import { ArrowLeft, ArrowRight, Calendar, Clock, Linkedin, Share2, Tag, Twitter 
 import { MDXContent } from '@/components/blog/MDXContent'
 import RelatedResearch from '@/components/blog/RelatedResearch'
 import Recommendations from '@/components/recommendations/Recommendations'
-import { getAllBlogPosts, getBlogPost } from '@/lib/blog'
+import { getAllBlogPosts, getBlogPost, extractFAQFromContent } from '@/lib/blog'
 import { createMetadata, siteConfig } from '@/lib/seo'
 import JsonLd from '@/components/seo/JsonLd'
 import Breadcrumbs from '@/components/seo/Breadcrumbs'
@@ -86,28 +86,50 @@ export default async function BlogPostPage({
     author: {
       '@type': 'Person',
       name: post.author,
+      url: 'https://frankx.ai',
+      jobTitle: 'AI Architect',
     },
     publisher: {
       '@type': 'Organization',
       name: siteConfig.name,
+      url: 'https://frankx.ai',
       logo: {
         '@type': 'ImageObject',
         url: new URL(siteConfig.ogImage, 'https://frankx.ai').toString(),
       },
     },
     datePublished: post.date,
-    dateModified: post.date,
+    dateModified: post.lastUpdated || post.date,
     mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': canonicalUrl,
     },
     wordCount,
     keywords: post.keywords?.join(', ') || post.tags?.join(', ') || post.category || '',
+    ...(post.tldr && { abstract: post.tldr }),
   }
+
+  // Extract FAQ from content body for FAQPage schema
+  const extractedFaqs = extractFAQFromContent(post.content)
 
   return (
     <div className="min-h-screen bg-[#030712] text-white">
       <JsonLd type="Article" data={articleSchema} />
+      {extractedFaqs.length > 0 && (
+        <JsonLd
+          type="FAQPage"
+          data={{
+            mainEntity: extractedFaqs.map(faq => ({
+              '@type': 'Question',
+              name: faq.question,
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: faq.answer,
+              },
+            })),
+          }}
+        />
+      )}
 
       {/* Aurora Background Effect */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
