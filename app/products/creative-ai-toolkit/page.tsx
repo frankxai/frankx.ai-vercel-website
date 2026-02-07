@@ -41,7 +41,8 @@ const structuredData = {
     '@type': 'Offer',
     price: String(product.offer.primaryPrice),
     priceCurrency: product.offer.currency,
-    availability: 'https://schema.org/InStock'
+    availability: 'https://schema.org/InStock',
+    priceValidUntil: '2026-12-31',
   }
 }
 
