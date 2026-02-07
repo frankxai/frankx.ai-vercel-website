@@ -1,24 +1,11 @@
 import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
-  title: 'About Frank | AI Architect & Music Creator',
-  description:
-    'AI Architect at Oracle building enterprise AI systems. Creator of 12,000+ AI-generated songs with Suno. Building practical tools and workflows for the Golden Age of Intelligence.',
-  keywords: [
-    'frank riemer',
-    'ai architect',
-    'oracle ai',
-    'suno music creator',
-    'enterprise ai architect',
-    'ai music production',
-  ],
+  title: 'About Frank van den Bergh | AI Architect & Creator',
+  description: 'Oracle AI Architect, creator of 500+ AI songs, and builder of the Agentic Creator OS. Enterprise AI systems, music production, and digital products.',
   path: '/about',
 })
 
-export default function AboutLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function Layout({ children }: { children: React.ReactNode }) {
   return children
 }

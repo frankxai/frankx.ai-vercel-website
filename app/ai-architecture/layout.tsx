@@ -1,26 +1,11 @@
 import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
-  title: 'AI Architecture Hub | Enterprise Patterns & Blueprints',
-  description:
-    'Enterprise AI architecture patterns, blueprints, and reference designs. RAG systems, multi-agent orchestration, production deployment patterns, and Oracle Cloud AI integration.',
-  keywords: [
-    'ai architecture',
-    'enterprise ai patterns',
-    'rag architecture',
-    'multi-agent systems',
-    'ai blueprints',
-    'oracle cloud ai',
-    'production ai patterns',
-    'ai system design',
-  ],
+  title: 'AI Architecture | System Design for Intelligent Applications | FrankX',
+  description: 'Deep dives into AI system architecture. Design patterns for LLM applications, agent orchestration, and production AI infrastructure.',
   path: '/ai-architecture',
 })
 
-export default function AIArchitectureLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
+export default function Layout({ children }: { children: React.ReactNode }) {
   return children
 }
