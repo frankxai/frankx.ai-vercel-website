@@ -1,6 +1,6 @@
 'use client'
 
-import Image from 'next/image'
+import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { useState } from 'react'
 import {
@@ -17,7 +17,7 @@ import {
 } from 'lucide-react'
 import { learningPaths, featuredCreators, type LearningPath, type VideoResource } from '@/data/learning-paths'
 
-const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
+const iconMap: Record<string, React.ComponentType<{className?: string}>> = {
   brain: Brain,
   music: Music2,
   zap: Zap,
@@ -39,7 +39,7 @@ const playButtonBgMap: Record<string, string> = {
 }
 
 function PathCard({ path }: { path: LearningPath }) {
-  const Icon: React.ComponentType<{ className?: string }> = iconMap[path.icon] || BookOpen
+  const Icon = iconMap[path.icon] || BookOpen
   const colors = colorMap[path.color]
 
   return (
@@ -97,12 +97,10 @@ function VideoCard({ video, pathColor }: { video: VideoResource; pathColor: stri
           />
         ) : (
           <>
-            <Image
+            <img
               src={`https://img.youtube.com/vi/${video.youtubeId}/maxresdefault.jpg`}
               alt={video.title}
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 50vw"
+              className="absolute inset-0 w-full h-full object-cover"
             />
             <button
               onClick={() => setIsPlaying(true)}
@@ -154,8 +152,10 @@ export default function LearnPage() {
         <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-transparent to-violet-500/10" />
 
         <div className="relative max-w-6xl mx-auto px-6">
-          <div
-            className="text-center mb-12 animate-fade-in-up opacity-0 motion-reduce:animate-none"
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-center mb-12"
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm font-medium mb-6">
               <GraduationCap className="w-4 h-4" />
@@ -173,7 +173,7 @@ export default function LearnPage() {
               Free resources from the best creators on the internet.
               Curated paths that actually get you results.
             </p>
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -181,13 +181,14 @@ export default function LearnPage() {
       <section className="max-w-6xl mx-auto px-6 pb-16">
         <div className="grid md:grid-cols-2 gap-6">
           {learningPaths.map((path, i) => (
-            <div
+            <motion.div
               key={path.id}
-              className="animate-fade-in-up opacity-0 motion-reduce:animate-none"
-              style={{ animationDelay: `${(i * 0.1).toFixed(1)}s` }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.1 }}
             >
               <PathCard path={path} />
-            </div>
+            </motion.div>
           ))}
         </div>
       </section>

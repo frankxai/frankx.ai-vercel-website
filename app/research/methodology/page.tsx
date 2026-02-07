@@ -19,7 +19,7 @@ import { researchDomains } from '@/lib/research/domains'
 export const metadata: Metadata = {
   title: 'Research Methodology | FrankX Research Hub',
   description:
-    'How we validate claims, cross-reference sources, and maintain research quality across 20 domains and 310+ sources. Our 4-phase methodology ensures every insight is evidence-backed.',
+    'How we validate claims, cross-reference sources, and maintain research quality across 20 domains and 180+ sources. Our 4-phase methodology ensures every insight is evidence-backed.',
   alternates: {
     canonical: 'https://frankx.ai/research/methodology',
   },

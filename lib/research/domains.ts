@@ -107,7 +107,7 @@ export const researchDomains: ResearchDomain[] = [
     relatedDomains: ['multi-agent-systems', 'production-patterns', 'ai-ops', 'generative-ai'],
     relatedBlogPosts: ['/blog/production-agentic-ai-systems', '/blog/creator-intelligence-systems-2026', '/blog/claude-opus-4-6-analysis-2026'],
     lastUpdated: '2026-02-06',
-    sourceCount: 16,
+    sourceCount: 8,
     status: 'active',
   },
   {
@@ -225,7 +225,7 @@ export const researchDomains: ResearchDomain[] = [
     relatedDomains: ['enterprise-ai', 'vector-databases', 'ai-ops'],
     relatedBlogPosts: ['/blog/production-agentic-ai-systems', '/blog/production-llm-agents-oci-part-3-operating-model'],
     lastUpdated: '2026-01-27',
-    sourceCount: 16,
+    sourceCount: 6,
     status: 'active',
   },
   {
@@ -295,7 +295,7 @@ export const researchDomains: ResearchDomain[] = [
     relatedDomains: ['multi-agent-systems', 'coding-assistants', 'production-patterns', 'generative-ai'],
     relatedBlogPosts: ['/blog/claude-opus-4-6-analysis-2026', '/blog/claude-code-2-1-mcp-revolution'],
     lastUpdated: '2026-02-06',
-    sourceCount: 14,
+    sourceCount: 13,
     status: 'active',
   },
   {
@@ -355,7 +355,7 @@ export const researchDomains: ResearchDomain[] = [
     relatedDomains: ['enterprise-ai', 'production-patterns', 'ai-security'],
     relatedBlogPosts: ['/blog/production-llm-agents-oci-part-3-operating-model'],
     lastUpdated: '2026-01-27',
-    sourceCount: 13,
+    sourceCount: 11,
     status: 'active',
   },
   {
@@ -424,7 +424,7 @@ export const researchDomains: ResearchDomain[] = [
     relatedDomains: ['ai-mental-health', 'ai-healthcare', 'enterprise-ai'],
     relatedBlogPosts: [],
     lastUpdated: '2026-02-06',
-    sourceCount: 20,
+    sourceCount: 15,
     status: 'active',
   },
   {
@@ -497,7 +497,7 @@ export const researchDomains: ResearchDomain[] = [
     relatedDomains: ['production-patterns', 'enterprise-ai', 'ai-ops'],
     relatedBlogPosts: [],
     lastUpdated: '2026-02-06',
-    sourceCount: 14,
+    sourceCount: 5,
     status: 'active',
   },
   {
@@ -573,7 +573,7 @@ export const researchDomains: ResearchDomain[] = [
     relatedDomains: ['enterprise-ai', 'ai-ops', 'production-patterns', 'ai-agent-config'],
     relatedBlogPosts: [],
     lastUpdated: '2026-02-06',
-    sourceCount: 18,
+    sourceCount: 6,
     status: 'active',
   },
   {
@@ -643,7 +643,7 @@ export const researchDomains: ResearchDomain[] = [
     relatedDomains: ['mcp-ecosystem', 'multi-agent-systems', 'agent-benchmarks', 'generative-ai'],
     relatedBlogPosts: ['/blog/claude-opus-4-6-analysis-2026'],
     lastUpdated: '2026-02-06',
-    sourceCount: 16,
+    sourceCount: 5,
     status: 'active',
   },
   {
@@ -714,7 +714,7 @@ export const researchDomains: ResearchDomain[] = [
     relatedDomains: ['enterprise-ai', 'ai-ops', 'ai-security'],
     relatedBlogPosts: [],
     lastUpdated: '2026-02-06',
-    sourceCount: 14,
+    sourceCount: 5,
     status: 'active',
   },
   {
@@ -782,7 +782,7 @@ export const researchDomains: ResearchDomain[] = [
     relatedDomains: ['multi-agent-systems', 'coding-assistants', 'enterprise-ai', 'generative-ai'],
     relatedBlogPosts: ['/blog/claude-opus-4-6-analysis-2026'],
     lastUpdated: '2026-02-06',
-    sourceCount: 18,
+    sourceCount: 6,
     status: 'active',
   },
   {
@@ -851,7 +851,7 @@ export const researchDomains: ResearchDomain[] = [
     relatedDomains: ['ai-neuroscience', 'ai-healthcare', 'ai-personal-productivity'],
     relatedBlogPosts: [],
     lastUpdated: '2026-02-06',
-    sourceCount: 16,
+    sourceCount: 10,
     status: 'active',
   },
   {
@@ -933,7 +933,7 @@ export const researchDomains: ResearchDomain[] = [
     relatedDomains: ['mcp-ecosystem', 'agent-benchmarks', 'coding-assistants', 'enterprise-ai', 'ai-agent-config'],
     relatedBlogPosts: ['/blog/claude-opus-4-6-analysis-2026', '/blog/claude-code-2-1-mcp-revolution', '/blog/ultimate-guide-ai-coding-agents-2026'],
     lastUpdated: '2026-02-06',
-    sourceCount: 18,
+    sourceCount: 10,
     status: 'active',
   },
   {
@@ -1023,7 +1023,7 @@ export const researchDomains: ResearchDomain[] = [
     relatedDomains: ['mcp-ecosystem', 'coding-assistants', 'multi-agent-systems', 'production-patterns'],
     relatedBlogPosts: ['/blog/build-your-own-jarvis-claude-code', '/blog/claude-code-2-1-mcp-revolution', '/blog/acos-zero-to-production-quickstart'],
     lastUpdated: '2026-02-06',
-    sourceCount: 12,
+    sourceCount: 10,
     status: 'active',
   },
   {
@@ -1158,7 +1158,7 @@ export const researchDomains: ResearchDomain[] = [
     relatedDomains: ['ai-mental-health', 'ai-personal-productivity', 'enterprise-ai'],
     relatedBlogPosts: [],
     lastUpdated: '2026-02-06',
-    sourceCount: 22,
+    sourceCount: 10,
     status: 'active',
   },
   {
@@ -1227,7 +1227,7 @@ export const researchDomains: ResearchDomain[] = [
     relatedDomains: ['creator-economy-ai', 'generative-ai', 'ai-education'],
     relatedBlogPosts: ['/blog/suno-music-production-workflow'],
     lastUpdated: '2026-02-06',
-    sourceCount: 18,
+    sourceCount: 9,
     status: 'active',
   },
   {
@@ -1296,7 +1296,7 @@ export const researchDomains: ResearchDomain[] = [
     relatedDomains: ['ai-mental-health', 'ai-education', 'ai-healthcare'],
     relatedBlogPosts: [],
     lastUpdated: '2026-02-06',
-    sourceCount: 16,
+    sourceCount: 9,
     status: 'active',
   },
   {
@@ -1360,7 +1360,7 @@ export const researchDomains: ResearchDomain[] = [
     relatedDomains: ['ai-mental-health', 'ai-neuroscience', 'ai-personal-productivity'],
     relatedBlogPosts: [],
     lastUpdated: '2026-02-06',
-    sourceCount: 14,
+    sourceCount: 11,
     status: 'active',
   },
   {
@@ -1421,7 +1421,7 @@ export const researchDomains: ResearchDomain[] = [
     relatedDomains: ['ai-creative-tools', 'generative-ai', 'coding-assistants'],
     relatedBlogPosts: ['/blog/agentic-creator-os-complete-guide', '/blog/agentic-workflows-save-hours'],
     lastUpdated: '2026-02-06',
-    sourceCount: 14,
+    sourceCount: 10,
     status: 'active',
   },
 ]

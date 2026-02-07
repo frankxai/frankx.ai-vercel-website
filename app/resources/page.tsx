@@ -17,9 +17,6 @@ import {
   Star,
   Wand2,
 } from 'lucide-react'
-import PremiumCard from '@/components/ui/PremiumCard'
-import type { GradientPreset } from '@/components/ui/PremiumCard'
-import { trackEvent } from '@/lib/analytics'
 
 function ResourcesBackground() {
   const shouldReduceMotion = useReducedMotion()
@@ -245,11 +242,9 @@ function ResourceGrid({
   title,
   subtitle,
   items,
-  gradient = 'emerald',
 }: {
   title: string
   subtitle: string
-  gradient?: GradientPreset
   items: Array<{
     name: string
     description: string
@@ -258,8 +253,6 @@ function ResourceGrid({
     external?: boolean
   }>
 }) {
-  const gradients: GradientPreset[] = ['cyan', 'emerald', 'purple', 'gold', 'slate']
-
   return (
     <section className="py-12">
       <div className="mx-auto max-w-6xl px-6">
@@ -277,19 +270,19 @@ function ResourceGrid({
         </motion.div>
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {items.map((item, i) => {
+          {items.map((item) => {
             const Icon = item.icon
             const isExternal = item.external
+            const LinkComponent = isExternal ? 'a' : Link
+            const linkProps = isExternal
+              ? { href: item.href, target: '_blank', rel: 'noopener noreferrer' }
+              : { href: item.href }
 
             return (
-              <PremiumCard
+              <LinkComponent
                 key={item.name}
-                href={item.href}
-                external={isExternal}
-                gradient={gradients[i % gradients.length]}
-                mouseGlow
-                padding="p-5"
-                onClick={() => trackEvent('resource_card_click', { name: item.name, section: title })}
+                {...linkProps}
+                className="group rounded-2xl border border-white/10 bg-white/[0.02] p-5 transition-all hover:-translate-y-1 hover:border-white/20 hover:bg-white/[0.04]"
               >
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-emerald-300">
                   <Icon className="h-5 w-5" />
@@ -303,7 +296,7 @@ function ResourceGrid({
                   Explore
                   <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
                 </div>
-              </PremiumCard>
+              </LinkComponent>
             )
           })}
         </div>

@@ -526,6 +526,23 @@ function MethodologySection() {
             )
           })}
         </div>
+
+        <div className="flex flex-wrap gap-3 mt-6">
+          <Link
+            href="/research/methodology"
+            className="inline-flex items-center gap-2 text-sm text-white/50 hover:text-white bg-white/[0.03] border border-white/[0.06] px-4 py-2 rounded-full transition-all hover:bg-white/[0.06]"
+          >
+            Full Methodology
+            <ArrowRight className="w-3 h-3" />
+          </Link>
+          <Link
+            href="/research/sources"
+            className="inline-flex items-center gap-2 text-sm text-white/50 hover:text-white bg-white/[0.03] border border-white/[0.06] px-4 py-2 rounded-full transition-all hover:bg-white/[0.06]"
+          >
+            Browse All {totalSources}+ Sources
+            <ArrowRight className="w-3 h-3" />
+          </Link>
+        </div>
       </div>
     </section>
   )

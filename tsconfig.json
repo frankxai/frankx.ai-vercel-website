@@ -72,6 +72,8 @@
     ".agent",
     ".claude-skills",
     "docs",
-    "scripts"
+    "scripts",
+    "agentic-creator-os",
+    "_archive"
   ]
 }

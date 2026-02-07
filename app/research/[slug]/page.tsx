@@ -1,6 +1,8 @@
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import { researchDomains, getDomainBySlug, getRelatedDomains } from '@/lib/research/domains'
+import { getSourcesForDomain } from '@/lib/research/sources'
+import { getClaimCountForDomain } from '@/lib/research/validated-claims'
 import ResearchDomainPage from './ResearchDomainPage'
 
 interface PageProps {
@@ -53,6 +55,8 @@ export default async function Page({ params }: PageProps) {
   }
 
   const relatedDomains = getRelatedDomains(slug)
+  const domainSources = getSourcesForDomain(slug)
+  const claimCount = getClaimCountForDomain(slug)
 
   // Generate FAQ from keyFindings (convert statements to Q&A pairs)
   const faqItems = domain.faq && domain.faq.length > 0
@@ -85,7 +89,14 @@ export default async function Page({ params }: PageProps) {
     mainEntityOfPage: `https://frankx.ai/research/${domain.slug}`,
     about: domain.keyFindings.slice(0, 3).join('. '),
     keywords: [domain.title, ...domain.highlights.map(h => h.label)].join(', '),
-    citation: `${domain.sourceCount} validated sources`,
+    citation: domainSources.length > 0
+      ? domainSources.map(src => ({
+          '@type': 'CreativeWork',
+          name: src.title,
+          url: src.url,
+          ...(src.date && { datePublished: src.date }),
+        }))
+      : `${domain.sourceCount} validated sources`,
   })
 
   const faqLd = JSON.stringify({
@@ -111,7 +122,7 @@ export default async function Page({ params }: PageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: faqLd }}
       />
-      <ResearchDomainPage domain={domain} relatedDomains={relatedDomains} />
+      <ResearchDomainPage domain={domain} relatedDomains={relatedDomains} claimCount={claimCount} />
     </>
   )
 }

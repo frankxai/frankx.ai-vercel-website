@@ -35,6 +35,7 @@ import {
   BarChart3,
 } from 'lucide-react'
 import type { ResearchDomain } from '@/lib/research/domains'
+import { getSourcesForDomain, sourceTypeLabels } from '@/lib/research/sources'
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Activity, Brain, Building2, Code, Compass, Cpu, Database, FileText,
@@ -99,19 +100,22 @@ function FAQItem({ question, answer, colors, defaultOpen }: {
 interface Props {
   domain: ResearchDomain
   relatedDomains: ResearchDomain[]
+  claimCount?: number
 }
 
-export default function ResearchDomainPage({ domain, relatedDomains }: Props) {
+export default function ResearchDomainPage({ domain, relatedDomains, claimCount = 0 }: Props) {
   const shouldReduceMotion = useReducedMotion()
   const Icon = iconMap[domain.icon] || Layers
   const colors = colorConfig[domain.color] || colorConfig.emerald
   const hasFaq = domain.faq && domain.faq.length > 0
+  const sources = getSourcesForDomain(domain.slug)
 
   // Build table of contents
   const tocItems = [
     ...domain.sections.map((s, i) => ({ id: `section-${i}`, label: s.title })),
     { id: 'findings', label: 'Key Findings' },
     ...(hasFaq ? [{ id: 'faq', label: 'FAQ' }] : []),
+    ...(sources.length > 0 ? [{ id: 'sources', label: `Sources (${sources.length})` }] : []),
     ...(relatedDomains.length > 0 ? [{ id: 'related', label: 'Related Research' }] : []),
   ]
 
@@ -219,6 +223,12 @@ export default function ResearchDomainPage({ domain, relatedDomains }: Props) {
                         <ShieldCheck className="w-3 h-3" />
                         {domain.sourceCount} sources validated
                       </span>
+                      {claimCount > 0 && (
+                        <span className="flex items-center gap-1.5">
+                          <CheckCircle2 className="w-3 h-3" />
+                          {claimCount} claims verified
+                        </span>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -337,6 +347,56 @@ export default function ResearchDomainPage({ domain, relatedDomains }: Props) {
                         defaultOpen={i === 0}
                       />
                     ))}
+                  </div>
+                </motion.div>
+              )}
+
+              {/* Sources & References */}
+              {sources.length > 0 && (
+                <motion.div
+                  id="sources"
+                  initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.42 }}
+                  className="mb-12"
+                >
+                  <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                    <FileText className={`h-5 w-5 ${colors.text}`} />
+                    Sources & References
+                  </h2>
+                  <div className={`rounded-2xl border ${colors.border} bg-white/[0.01] p-5`}>
+                    <p className="text-xs text-white/35 mb-4">
+                      {sources.length} validated sources · Last updated {domain.lastUpdated}
+                    </p>
+                    <div className="space-y-2.5">
+                      {sources.map((src, idx) => (
+                        <div key={idx} className="flex gap-3 pb-2.5 border-b border-white/[0.04] last:border-0 last:pb-0">
+                          <span className={`text-xs font-mono ${colors.text} flex-shrink-0 mt-0.5`}>
+                            [{idx + 1}]
+                          </span>
+                          <div className="flex-1 min-w-0">
+                            <a
+                              href={src.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-sm text-white/60 hover:text-white transition-colors inline-flex items-center gap-1 group"
+                            >
+                              <span className="break-words">{src.title}</span>
+                              <ArrowUpRight className="w-3 h-3 flex-shrink-0 opacity-0 group-hover:opacity-100 transition-opacity" />
+                            </a>
+                            <div className="flex items-center gap-2 mt-0.5">
+                              <span className="text-[10px] text-white/25">{src.name}</span>
+                              <span className={`text-[9px] font-medium px-1.5 py-0.5 rounded-full ${colors.bg} ${colors.text} opacity-60`}>
+                                {sourceTypeLabels[src.type]}
+                              </span>
+                              {src.date && (
+                                <span className="text-[10px] text-white/20">{src.date}</span>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 </motion.div>
               )}

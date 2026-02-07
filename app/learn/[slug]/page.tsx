@@ -1,6 +1,6 @@
 'use client'
 
-import Image from 'next/image'
+import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { useParams } from 'next/navigation'
 import { useState } from 'react'
@@ -20,7 +20,7 @@ import {
 } from 'lucide-react'
 import { learningPaths, type VideoResource } from '@/data/learning-paths'
 
-const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
+const iconMap: Record<string, React.ComponentType<{className?: string}>> = {
   brain: Brain,
   music: Music2,
   zap: Zap,
@@ -60,12 +60,10 @@ function VideoPlayer({ video, color }: { video: VideoResource; color: string }) 
           />
         ) : (
           <>
-            <Image
+            <img
               src={`https://img.youtube.com/vi/${video.youtubeId}/maxresdefault.jpg`}
               alt={video.title}
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 50vw"
+              className="absolute inset-0 w-full h-full object-cover"
             />
             <button
               onClick={() => setIsPlaying(true)}
@@ -138,7 +136,7 @@ export default function LearningPathPage() {
     )
   }
 
-  const Icon: React.ComponentType<{ className?: string }> = iconMap[path.icon] || BookOpen
+  const Icon = iconMap[path.icon] || BookOpen
   const colors = colorMap[path.color]
 
   return (
@@ -157,8 +155,10 @@ export default function LearningPathPage() {
             All Learning Paths
           </Link>
 
-          <div
-            className="grid lg:grid-cols-[1fr,300px] gap-12 animate-fade-in-up opacity-0 motion-reduce:animate-none"
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="grid lg:grid-cols-[1fr,300px] gap-12"
           >
             {/* Main content */}
             <div>
@@ -203,7 +203,7 @@ export default function LearningPathPage() {
                 ))}
               </ul>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -213,13 +213,14 @@ export default function LearningPathPage() {
 
         <div className="grid md:grid-cols-2 gap-6">
           {path.videos.map((video, i) => (
-            <div
+            <motion.div
               key={video.id}
-              className="animate-fade-in-up opacity-0 motion-reduce:animate-none"
-              style={{ animationDelay: `${(i * 0.1).toFixed(1)}s` }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.1 }}
             >
               <VideoPlayer video={video} color={path.color} />
-            </div>
+            </motion.div>
           ))}
         </div>
       </section>

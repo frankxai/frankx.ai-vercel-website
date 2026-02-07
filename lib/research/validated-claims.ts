@@ -167,6 +167,43 @@ export function getConsensusColor(consensus: ConsensusLevel): string {
   return colors[consensus];
 }
 
+/**
+ * Map domain slugs to claim category keywords for cross-referencing.
+ */
+const domainCategoryMap: Record<string, string[]> = {
+  'enterprise-ai': ['Market Size', 'Enterprise Adoption'],
+  'multi-agent-systems': ['Framework Adoption', 'Enterprise Adoption'],
+  'production-patterns': ['Production Patterns', 'Oracle OCI'],
+  'mcp-ecosystem': ['MCP Ecosystem', 'Company Metrics'],
+  'ai-ops': ['Production Patterns', 'Oracle OCI'],
+  'ai-neuroscience': ['Brain-Computer Interfaces', 'Neuromorphic Computing', 'Thought Decoding', 'Organoid Intelligence', 'Consciousness Research', 'Cognitive Enhancement', 'Landmark Research'],
+  'ai-mental-health': ['AI Mental Health'],
+  'generative-ai': ['Model Performance', 'Company Metrics'],
+  'ai-agent-config': ['MCP Ecosystem', 'Framework Adoption'],
+  'coding-assistants': ['Model Performance'],
+  'agent-benchmarks': ['Model Performance'],
+  'ai-security': ['Enterprise Adoption'],
+  'prompt-engineering': ['Model Performance'],
+}
+
+/**
+ * Get validated claims relevant to a specific research domain.
+ */
+export function getClaimsForDomain(slug: string): ValidatedClaim[] {
+  const categories = domainCategoryMap[slug]
+  if (!categories) return []
+  return Object.values(validatedClaims).filter(c =>
+    categories.includes(c.category)
+  )
+}
+
+/**
+ * Get claim count for a domain (for UI badges).
+ */
+export function getClaimCountForDomain(slug: string): number {
+  return getClaimsForDomain(slug).length
+}
+
 // ============================================
 // VALIDATED CLAIMS DATABASE
 // ============================================

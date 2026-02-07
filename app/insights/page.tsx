@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { motion } from 'framer-motion'
 import Link from 'next/link'
 import {
   Crown,
@@ -73,8 +74,10 @@ export default function InsightsPage() {
         <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-violet-500/10 rounded-full blur-[100px]" />
 
         <div className="relative max-w-6xl mx-auto px-6">
-          <div
-            className="text-center mb-12 animate-fade-in-up opacity-0 motion-reduce:animate-none"
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-center mb-12"
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-pink-500/10 border border-pink-500/20 mb-6">
               <Brain className="w-4 h-4 text-pink-400" />
@@ -92,12 +95,14 @@ export default function InsightsPage() {
               Deep dives from CORTEX, CIPHER, and the analysis crew.
               Patterns, learnings, and strategic observations.
             </p>
-          </div>
+          </motion.div>
 
           {/* Category Filters */}
-          <div
-            className="flex flex-wrap justify-center gap-3 mb-12 animate-fade-in-up opacity-0 motion-reduce:animate-none"
-            style={{ animationDelay: '0.1s' }}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="flex flex-wrap justify-center gap-3 mb-12"
           >
             <button
               onClick={() => setSelectedCategory(null)}
@@ -124,7 +129,7 @@ export default function InsightsPage() {
                 {cat.name}
               </button>
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -136,10 +141,12 @@ export default function InsightsPage() {
             const AgentIcon = iconMap[agent?.icon] || Brain
 
             return (
-              <article
+              <motion.article
                 key={insight.id}
-                className="group animate-fade-in-up opacity-0 motion-reduce:animate-none"
-                style={{ animationDelay: `${(index * 0.1).toFixed(1)}s` }}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                className="group"
               >
                 <div className="rounded-2xl border border-white/5 bg-white/[0.02] overflow-hidden hover:border-white/10 transition-all">
                   {/* Header */}
@@ -243,15 +250,17 @@ export default function InsightsPage() {
                     </div>
                   </div>
                 </div>
-              </article>
+              </motion.article>
             )
           })}
         </div>
 
         {/* Navigation */}
-        <div
-          className="mt-16 grid sm:grid-cols-3 gap-4 animate-fade-in opacity-0 motion-reduce:animate-none"
-          style={{ animationDelay: '0.5s' }}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5 }}
+          className="mt-16 grid sm:grid-cols-3 gap-4"
         >
           <Link
             href="/feed"
@@ -285,7 +294,7 @@ export default function InsightsPage() {
             </div>
             <ChevronRight className="w-4 h-4 text-slate-500 group-hover:translate-x-1 transition-transform" />
           </Link>
-        </div>
+        </motion.div>
       </section>
     </div>
   )

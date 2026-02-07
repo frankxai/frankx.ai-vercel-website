@@ -18,8 +18,6 @@ import {
 } from 'lucide-react'
 
 import { trackEvent } from '@/lib/analytics'
-import PremiumCard from '@/components/ui/PremiumCard'
-import type { GradientPreset } from '@/components/ui/PremiumCard'
 
 // Premium background
 function ProductsBackground() {
@@ -256,9 +254,6 @@ export default function ProductsPage() {
               {products.map((product, index) => {
                 const Icon = product.icon
                 const colors = colorMap[product.color as keyof typeof colorMap]
-                const gradientMap: Record<string, GradientPreset> = {
-                  violet: 'purple', emerald: 'emerald', cyan: 'cyan', amber: 'gold', rose: 'slate',
-                }
 
                 return (
                   <motion.div
@@ -268,62 +263,71 @@ export default function ProductsPage() {
                     transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
                     className={product.featured ? 'md:col-span-2 lg:col-span-1' : ''}
                   >
-                    <PremiumCard
+                    <Link
                       href={product.href}
-                      gradient={gradientMap[product.color] || 'cyan'}
-                      mouseGlow
-                      badge={product.featured ? 'Most Popular' : undefined}
-                      padding="p-8"
-                      className="h-full"
                       onClick={() =>
                         trackEvent('product_card_click', { productId: product.id })
                       }
+                      className="group block h-full"
                     >
-                      {/* Icon */}
                       <div
-                        className={`mb-6 flex h-14 w-14 items-center justify-center rounded-xl ${colors.icon}`}
+                        className={`relative flex h-full flex-col overflow-hidden rounded-2xl border ${colors.border} ${colors.bg} p-8 backdrop-blur-sm transition-all duration-500 group-hover:-translate-y-1 group-hover:shadow-xl ${colors.glow}`}
                       >
-                        <Icon className="h-7 w-7" />
-                      </div>
+                        {/* Featured badge */}
+                        {product.featured && (
+                          <div className="absolute right-6 top-6">
+                            <span className="rounded-full bg-cyan-500/20 px-3 py-1 text-xs font-medium text-cyan-400">
+                              Most Popular
+                            </span>
+                          </div>
+                        )}
 
-                      {/* Content */}
-                      <div className="flex-1">
-                        <p className="mb-1 text-xs font-medium uppercase tracking-[0.15em] text-slate-500">
-                          {product.tagline}
-                        </p>
-                        <h3 className="mb-3 text-2xl font-bold text-white">{product.name}</h3>
-                        <p className="mb-6 leading-relaxed text-slate-400">
-                          {product.description}
-                        </p>
-
-                        {/* Highlights */}
-                        <ul className="mb-8 space-y-3">
-                          {product.highlights.map((highlight) => (
-                            <li
-                              key={highlight}
-                              className="flex items-start gap-3 text-sm text-slate-300"
-                            >
-                              <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-emerald-400" />
-                              {highlight}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-
-                      {/* Status and CTA */}
-                      <div className="flex items-center justify-between border-t border-white/5 pt-6">
-                        <div className="flex items-center gap-2">
-                          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 text-sm font-medium">
-                            <Sparkles className="w-3.5 h-3.5" />
-                            Coming Soon
-                          </span>
+                        {/* Icon */}
+                        <div
+                          className={`mb-6 flex h-14 w-14 items-center justify-center rounded-xl ${colors.icon}`}
+                        >
+                          <Icon className="h-7 w-7" />
                         </div>
-                        <div className="flex items-center gap-2 text-slate-400 transition-colors group-hover:text-white">
-                          <span className="text-sm font-medium">Join Waitlist</span>
-                          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+
+                        {/* Content */}
+                        <div className="flex-1">
+                          <p className="mb-1 text-xs font-medium uppercase tracking-[0.15em] text-slate-500">
+                            {product.tagline}
+                          </p>
+                          <h3 className="mb-3 text-2xl font-bold text-white">{product.name}</h3>
+                          <p className="mb-6 leading-relaxed text-slate-400">
+                            {product.description}
+                          </p>
+
+                          {/* Highlights */}
+                          <ul className="mb-8 space-y-3">
+                            {product.highlights.map((highlight) => (
+                              <li
+                                key={highlight}
+                                className="flex items-start gap-3 text-sm text-slate-300"
+                              >
+                                <CheckCircle2 className="mt-0.5 h-4 w-4 flex-shrink-0 text-emerald-400" />
+                                {highlight}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+
+                        {/* Status and CTA */}
+                        <div className="flex items-center justify-between border-t border-white/5 pt-6">
+                          <div className="flex items-center gap-2">
+                            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 text-sm font-medium">
+                              <Sparkles className="w-3.5 h-3.5" />
+                              Coming Soon
+                            </span>
+                          </div>
+                          <div className="flex items-center gap-2 text-slate-400 transition-colors group-hover:text-white">
+                            <span className="text-sm font-medium">Join Waitlist</span>
+                            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                          </div>
                         </div>
                       </div>
-                    </PremiumCard>
+                    </Link>
                   </motion.div>
                 )
               })}
@@ -375,29 +379,26 @@ export default function ProductsPage() {
             </motion.div>
 
             <div className="grid md:grid-cols-3 gap-6">
-              {([
+              {[
                 {
                   title: 'Battle-Tested Prompts',
                   description: 'Every prompt has been used in real projects. No theoretical examples—just what actually works in production.',
                   icon: Sparkles,
                   color: 'emerald',
-                  gradient: 'emerald' as GradientPreset,
                 },
                 {
                   title: 'Workflow Templates',
                   description: 'Complete workflows you can adapt. From ideation to publishing, every step is documented and replicable.',
                   icon: Zap,
                   color: 'cyan',
-                  gradient: 'cyan' as GradientPreset,
                 },
                 {
                   title: 'Continuous Updates',
                   description: 'AI tools evolve fast. Your purchase includes all future updates as I refine and expand these systems.',
                   icon: Star,
                   color: 'violet',
-                  gradient: 'purple' as GradientPreset,
                 },
-              ] as const).map((item, i) => {
+              ].map((item, i) => {
                 const colorClasses: Record<string, string> = {
                   emerald: 'bg-emerald-500/10 text-emerald-400',
                   cyan: 'bg-cyan-500/10 text-cyan-400',
@@ -411,14 +412,13 @@ export default function ProductsPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.1 }}
+                    className="p-6 rounded-2xl border border-white/5 bg-white/[0.02]"
                   >
-                    <PremiumCard gradient={item.gradient} padding="p-6" className="h-full">
-                      <div className={`w-12 h-12 rounded-xl ${colorClasses[item.color]} flex items-center justify-center mb-4`}>
-                        <item.icon className="w-6 h-6" />
-                      </div>
-                      <h3 className="text-lg font-semibold text-white mb-2">{item.title}</h3>
-                      <p className="text-sm text-white/50 leading-relaxed">{item.description}</p>
-                    </PremiumCard>
+                    <div className={`w-12 h-12 rounded-xl ${colorClasses[item.color]} flex items-center justify-center mb-4`}>
+                      <item.icon className="w-6 h-6" />
+                    </div>
+                    <h3 className="text-lg font-semibold text-white mb-2">{item.title}</h3>
+                    <p className="text-sm text-white/50 leading-relaxed">{item.description}</p>
                   </motion.div>
                 )
               })}
@@ -458,23 +458,19 @@ export default function ProductsPage() {
                   q: "What do I get by joining the waitlist?",
                   a: "Waitlist members get priority access when products launch, exclusive early-bird pricing, and behind-the-scenes content showing how each system is built.",
                 },
-              ].map((faq, i) => {
-                const faqGradients: GradientPreset[] = ['cyan', 'emerald', 'gold', 'purple']
-                return (
-                  <motion.div
-                    key={faq.q}
-                    initial={{ opacity: 0, y: 10 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.05 }}
-                  >
-                    <PremiumCard gradient={faqGradients[i % faqGradients.length]} padding="p-6" lift={false}>
-                      <h3 className="text-base font-semibold text-white mb-2">{faq.q}</h3>
-                      <p className="text-sm text-white/50 leading-relaxed">{faq.a}</p>
-                    </PremiumCard>
-                  </motion.div>
-                )
-              })}
+              ].map((faq, i) => (
+                <motion.div
+                  key={faq.q}
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.05 }}
+                  className="p-6 rounded-xl border border-white/5 bg-white/[0.02]"
+                >
+                  <h3 className="text-base font-semibold text-white mb-2">{faq.q}</h3>
+                  <p className="text-sm text-white/50 leading-relaxed">{faq.a}</p>
+                </motion.div>
+              ))}
             </div>
           </div>
         </section>
