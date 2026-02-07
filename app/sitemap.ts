@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next'
 import fs from 'fs'
 import path from 'path'
+import matter from 'gray-matter'
 import { researchDomains } from '@/lib/research/domains'
 
 const BASE_URL = 'https://frankx.ai'
@@ -11,17 +12,27 @@ function getSlugFromFilename(filename: string): string {
   return filename.replace(/^\d+-/, '').replace(/\.mdx$/, '')
 }
 
-// Get all blog slugs from content/blog directory
-function getBlogSlugs(): string[] {
+// Get all blog slugs with dates from content/blog directory
+function getBlogEntries(): { slug: string; date: string }[] {
   const blogDir = path.join(process.cwd(), 'content/blog')
   try {
     const files = fs.readdirSync(blogDir)
-    const slugs = new Set(
-      files
-        .filter(file => file.endsWith('.mdx'))
-        .map(file => getSlugFromFilename(file))
-    )
-    return Array.from(slugs)
+    const seen = new Set<string>()
+    return files
+      .filter(file => file.endsWith('.mdx'))
+      .map(file => {
+        const slug = getSlugFromFilename(file)
+        if (seen.has(slug)) return null
+        seen.add(slug)
+        try {
+          const content = fs.readFileSync(path.join(blogDir, file), 'utf8')
+          const { data } = matter(content)
+          return { slug, date: data.lastUpdated || data.date || '' }
+        } catch {
+          return { slug, date: '' }
+        }
+      })
+      .filter((entry): entry is { slug: string; date: string } => entry !== null)
   } catch {
     return []
   }
@@ -166,6 +177,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/legal',
   ]
 
+  // Section pages (important navigation destinations)
+  const sectionPages = [
+    { url: '/soulbook', priority: 0.9, changeFrequency: 'monthly' as const },
+    { url: '/ai-world', priority: 0.8, changeFrequency: 'weekly' as const },
+    { url: '/ai-ops', priority: 0.8, changeFrequency: 'weekly' as const },
+    { url: '/ai-architect-academy', priority: 0.8, changeFrequency: 'monthly' as const },
+    { url: '/links', priority: 0.7, changeFrequency: 'weekly' as const },
+    { url: '/learn', priority: 0.7, changeFrequency: 'weekly' as const },
+    { url: '/showcase', priority: 0.7, changeFrequency: 'monthly' as const },
+    { url: '/downloads', priority: 0.7, changeFrequency: 'monthly' as const },
+    { url: '/changelog', priority: 0.5, changeFrequency: 'weekly' as const },
+    { url: '/design-system', priority: 0.5, changeFrequency: 'monthly' as const },
+    { url: '/ai-architect', priority: 0.7, changeFrequency: 'monthly' as const },
+    { url: '/music', priority: 0.6, changeFrequency: 'monthly' as const },
+    { url: '/prototypes', priority: 0.5, changeFrequency: 'monthly' as const },
+  ]
+
   // Legacy pages (lower priority, may redirect)
   const legacyPages = [
     '/founder-playbook',
@@ -184,7 +212,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ]
 
   // Get dynamic content
-  const blogSlugs = getBlogSlugs()
+  const blogEntries = getBlogEntries()
   const guideSlugs = getGuideSlugs()
   const productSlugs = getProductSlugs()
 
@@ -311,6 +339,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   })
 
+  // Section pages
+  sectionPages.forEach(page => {
+    entries.push({
+      url: `${BASE_URL}${page.url}`,
+      lastModified: currentDate,
+      changeFrequency: page.changeFrequency,
+      priority: page.priority,
+    })
+  })
+
   // Legacy pages
   legacyPages.forEach(page => {
     entries.push({
@@ -321,11 +359,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   })
 
-  // Blog posts (high priority - fresh content)
-  blogSlugs.forEach(slug => {
+  // Blog posts (high priority - use actual post dates)
+  blogEntries.forEach(entry => {
     entries.push({
-      url: `${BASE_URL}/blog/${slug}`,
-      lastModified: currentDate,
+      url: `${BASE_URL}/blog/${entry.slug}`,
+      lastModified: entry.date ? new Date(entry.date).toISOString() : currentDate,
       changeFrequency: 'monthly',
       priority: 0.8,
     })
