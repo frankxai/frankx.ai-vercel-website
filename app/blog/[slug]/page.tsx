@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation'
 import { ArrowLeft, ArrowRight, Calendar, Clock, Linkedin, Share2, Tag, Twitter } from 'lucide-react'
 
 import { MDXContent } from '@/components/blog/MDXContent'
+import RelatedResearch from '@/components/blog/RelatedResearch'
 import Recommendations from '@/components/recommendations/Recommendations'
 import { getAllBlogPosts, getBlogPost } from '@/lib/blog'
 import { createMetadata, siteConfig } from '@/lib/seo'
@@ -297,6 +298,8 @@ export default async function BlogPostPage({
                 </div>
               </div>
             )}
+
+            <RelatedResearch blogSlug={slug} />
           </div>
         </div>
 

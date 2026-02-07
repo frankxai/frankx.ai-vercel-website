@@ -80,6 +80,15 @@ const navItems: NavItem[] = [
       { name: 'Generative Creator OS', href: '/products/generative-creator-os' },
     ],
   },
+  {
+    name: 'Research',
+    href: '/research',
+    subItems: [
+      { name: 'Research Hub', href: '/research' },
+      { name: 'Source Browser', href: '/research/sources' },
+      { name: 'Methodology', href: '/research/methodology' },
+    ],
+  },
   { name: 'Blog', href: '/blog' },
   { name: 'About', href: '/about' },
 ]

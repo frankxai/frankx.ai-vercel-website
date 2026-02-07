@@ -97,6 +97,14 @@ export default async function Page({ params }: PageProps) {
           ...(src.date && { datePublished: src.date }),
         }))
       : `${domain.sourceCount} validated sources`,
+    breadcrumb: {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://frankx.ai' },
+        { '@type': 'ListItem', position: 2, name: 'Research Hub', item: 'https://frankx.ai/research' },
+        { '@type': 'ListItem', position: 3, name: domain.title, item: `https://frankx.ai/research/${domain.slug}` },
+      ],
+    },
   })
 
   const faqLd = JSON.stringify({

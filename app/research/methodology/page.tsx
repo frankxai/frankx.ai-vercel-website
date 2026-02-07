@@ -149,6 +149,14 @@ const methodologyLd = JSON.stringify({
   },
   dateModified: '2026-02-06',
   mainEntityOfPage: 'https://frankx.ai/research/methodology',
+  breadcrumb: {
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://frankx.ai' },
+      { '@type': 'ListItem', position: 2, name: 'Research Hub', item: 'https://frankx.ai/research' },
+      { '@type': 'ListItem', position: 3, name: 'Methodology', item: 'https://frankx.ai/research/methodology' },
+    ],
+  },
 })
 
 export default function MethodologyPage() {

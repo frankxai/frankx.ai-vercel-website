@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next'
 import fs from 'fs'
 import path from 'path'
+import { researchDomains } from '@/lib/research/domains'
 
 const BASE_URL = 'https://frankx.ai'
 
@@ -89,59 +90,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: '/music-lab', priority: 0.8, changeFrequency: 'weekly' as const },
   ]
 
-  // AI Architecture cluster (major content hub)
-  const aiArchitecturePages = [
-    '/ai-architect',
-    '/ai-architect-academy',
-    '/ai-architect/ai-coe-hub',
-    '/ai-architect/multi-cloud-comparison',
-    '/ai-architecture',
-    '/ai-architecture/blueprints',
-    '/ai-architecture/prototypes',
-    '/ai-architecture/templates',
-    '/ai-architecture/tools',
-    '/ai-architecture/multi-cloud-comparison',
-    '/ai-architectures',
-  ]
-
-  // AI Ops research pages
-  const aiOpsPages = [
-    '/ai-ops/accelerator-packs',
-    '/ai-ops/agi-ready',
-    '/ai-ops/architecture',
-    '/ai-ops/maturity',
-    '/ai-ops/models-2026',
-    '/ai-ops/patterns',
-  ]
-
-  // Research hub
-  const researchPages = [
-    '/research',
-    '/research/applications',
-    '/research/claims',
-    '/ai-world',
-  ]
-
-  // Product deep pages
-  const productDeepPages = [
-    '/products/agentic-creator-os',
-    '/products/creation-chronicles',
-    '/products/creative-ai-toolkit',
-    '/products/generative-creator-os',
-    '/products/suno-prompt-library',
-    '/products/vibe-os',
-  ]
-
-  // Soulbook pages (lead magnet product)
-  const soulbookPages = [
-    '/soulbook',
-    '/soulbook/7-pillars',
-    '/soulbook/golden-path',
-    '/soulbook/life-symphony',
-    '/soulbook/vault',
-    '/soulbook/assessment',
-  ]
-
   // Tool pages
   const toolPages = [
     '/tools',
@@ -175,23 +123,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/newsletter',
   ]
 
-  // Ritual pages (daily practice hub)
-  const ritualPages = [
-    '/rituals',
-    '/rituals/morning',
-    '/rituals/flow',
-    '/rituals/music',
-    '/rituals/focus',
-    '/rituals/transition',
-    '/rituals/evening',
-  ]
-
-  // Learning pages
+  // Learning and courses
   const learningPages = [
     '/courses',
     '/courses/conscious-ai-foundations',
     '/students/ikigai',
-    '/learn',
   ]
 
   // Content and creation pages
@@ -200,11 +136,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/creation-chronicles',
     '/intelligence-atlas',
     '/golden-age',
-    '/feed',
-    '/music',
-    '/showcase',
-    '/downloads',
-    '/changelog',
+    '/golden-age/chapter-01-when-creation-calls',
   ]
 
   // AI and agent pages
@@ -225,8 +157,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/goals',
     '/templates',
     '/resources/templates',
-    '/links',
-    '/prototypes',
   ]
 
   // Legal pages
@@ -234,9 +164,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/privacy',
     '/terms',
     '/legal',
-    '/legal/accessibility',
-    '/legal/affiliate-disclosure',
-    '/legal/dmca',
   ]
 
   // Legacy pages (lower priority, may redirect)
@@ -244,9 +171,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/founder-playbook',
     '/insights',
     '/thank-you',
+    '/enterprise',
     '/onboarding',
     '/dashboard',
-    '/realm',
+  ]
+
+  // Research hub pages
+  const researchPages = [
+    { url: '/research', priority: 0.9, changeFrequency: 'weekly' as const },
+    { url: '/research/sources', priority: 0.7, changeFrequency: 'weekly' as const },
+    { url: '/research/methodology', priority: 0.7, changeFrequency: 'monthly' as const },
   ]
 
   // Get dynamic content
@@ -267,63 +201,33 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   })
 
-  // AI Architecture pages (high-value content cluster)
-  aiArchitecturePages.forEach(page => {
-    entries.push({
-      url: `${BASE_URL}${page}`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    })
-  })
-
-  // AI Ops pages (research content)
-  aiOpsPages.forEach(page => {
-    entries.push({
-      url: `${BASE_URL}${page}`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly',
-      priority: 0.7,
-    })
-  })
-
-  // Research hub pages
-  researchPages.forEach(page => {
-    entries.push({
-      url: `${BASE_URL}${page}`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    })
-  })
-
-  // Product deep pages
-  productDeepPages.forEach(page => {
-    entries.push({
-      url: `${BASE_URL}${page}`,
-      lastModified: currentDate,
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    })
-  })
-
-  // Soulbook pages (lead magnet)
-  soulbookPages.forEach(page => {
-    entries.push({
-      url: `${BASE_URL}${page}`,
-      lastModified: currentDate,
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    })
-  })
-
-  // Product pages (from products.json)
+  // Product pages (dynamic)
   productSlugs.forEach(slug => {
     entries.push({
       url: `${BASE_URL}/products/${slug}`,
       lastModified: currentDate,
       changeFrequency: 'weekly',
       priority: 0.9,
+    })
+  })
+
+  // Research hub pages
+  researchPages.forEach(page => {
+    entries.push({
+      url: `${BASE_URL}${page.url}`,
+      lastModified: currentDate,
+      changeFrequency: page.changeFrequency,
+      priority: page.priority,
+    })
+  })
+
+  // Research domain pages (dynamic from registry)
+  researchDomains.forEach(domain => {
+    entries.push({
+      url: `${BASE_URL}/research/${domain.slug}`,
+      lastModified: domain.lastUpdated,
+      changeFrequency: 'weekly',
+      priority: 0.8,
     })
   })
 
@@ -354,16 +258,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: currentDate,
       changeFrequency: 'monthly',
       priority: 0.6,
-    })
-  })
-
-  // Ritual pages (daily practice hub - high engagement)
-  ritualPages.forEach(page => {
-    entries.push({
-      url: `${BASE_URL}${page}`,
-      lastModified: currentDate,
-      changeFrequency: 'daily',
-      priority: 0.8,
     })
   })
 
