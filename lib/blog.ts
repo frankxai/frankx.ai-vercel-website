@@ -34,6 +34,24 @@ export interface BlogPost {
   lastUpdated?: string // Freshness signal for search engines
 }
 
+// Normalize frontmatter field variants to canonical BlogPost fields
+function normalizeFrontmatter(data: Record<string, any>): Record<string, any> {
+  const normalized = { ...data }
+  if (!normalized.date && normalized.publishedAt) {
+    normalized.date = normalized.publishedAt
+  }
+  if (!normalized.description && normalized.excerpt) {
+    normalized.description = normalized.excerpt
+  }
+  if (!normalized.lastUpdated && normalized.updatedAt) {
+    normalized.lastUpdated = normalized.updatedAt
+  }
+  if (!normalized.keywords && normalized.seo?.keywords) {
+    normalized.keywords = normalized.seo.keywords
+  }
+  return normalized
+}
+
 export const getAllBlogPosts = cache((): BlogPost[] => {
   const fileNames = fs.readdirSync(blogDirectory)
   const allPostsData = fileNames
@@ -49,7 +67,7 @@ export const getAllBlogPosts = cache((): BlogPost[] => {
         slug,
         content,
         readingTime: readTime.text,
-        ...data,
+        ...normalizeFrontmatter(data),
       } as BlogPost
     })
 
@@ -69,7 +87,7 @@ export const getBlogPost = cache((slug: string): BlogPost | null => {
       slug,
       content,
       readingTime: readTime.text,
-      ...data,
+      ...normalizeFrontmatter(data),
     } as BlogPost
   } catch {
     return null
