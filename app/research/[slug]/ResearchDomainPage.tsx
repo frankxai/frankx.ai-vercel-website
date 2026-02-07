@@ -101,14 +101,23 @@ interface Props {
   domain: ResearchDomain
   relatedDomains: ResearchDomain[]
   claimCount?: number
+  blogPostTitles?: Record<string, string>
 }
 
-export default function ResearchDomainPage({ domain, relatedDomains, claimCount = 0 }: Props) {
+export default function ResearchDomainPage({ domain, relatedDomains, claimCount = 0, blogPostTitles = {} }: Props) {
   const shouldReduceMotion = useReducedMotion()
   const Icon = iconMap[domain.icon] || Layers
   const colors = colorConfig[domain.color] || colorConfig.emerald
   const hasFaq = domain.faq && domain.faq.length > 0
   const sources = getSourcesForDomain(domain.slug)
+
+  // Build a lookup: source label → first matching URL from registry
+  const sourceUrlMap: Record<string, string> = {}
+  for (const src of sources) {
+    if (!sourceUrlMap[src.name]) {
+      sourceUrlMap[src.name] = src.url
+    }
+  }
 
   // Build table of contents
   const tocItems = [
@@ -241,18 +250,38 @@ export default function ResearchDomainPage({ domain, relatedDomains, claimCount 
                 transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.1 }}
                 className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-12"
               >
-                {domain.highlights.map((h, i) => (
-                  <div
-                    key={i}
-                    className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-4"
-                  >
-                    <p className="text-2xl font-bold text-white mb-0.5">{h.stat}</p>
-                    <p className={`text-xs font-medium ${colors.text} mb-1`}>{h.label}</p>
-                    {h.source && (
-                      <p className="text-[10px] text-white/25">{h.source}</p>
-                    )}
-                  </div>
-                ))}
+                {domain.highlights.map((h, i) => {
+                  // Match source label to registry: "G2 Report" → "G2", "Gartner" → "Gartner"
+                  const sourceKey = h.source ? Object.keys(sourceUrlMap).find(
+                    name => h.source!.toLowerCase().startsWith(name.toLowerCase())
+                  ) : undefined
+                  const sourceUrl = sourceKey ? sourceUrlMap[sourceKey] : undefined
+
+                  return (
+                    <div
+                      key={i}
+                      className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-4"
+                    >
+                      <p className="text-2xl font-bold text-white mb-0.5">{h.stat}</p>
+                      <p className={`text-xs font-medium ${colors.text} mb-1`}>{h.label}</p>
+                      {h.source && (
+                        sourceUrl ? (
+                          <a
+                            href={sourceUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-[10px] text-white/25 hover:text-white/50 transition-colors inline-flex items-center gap-0.5"
+                          >
+                            {h.source}
+                            <ArrowUpRight className="w-2.5 h-2.5" />
+                          </a>
+                        ) : (
+                          <p className="text-[10px] text-white/25">{h.source}</p>
+                        )
+                      )}
+                    </div>
+                  )
+                })}
               </motion.div>
 
               {/* Sections with numbering */}
@@ -448,16 +477,18 @@ export default function ResearchDomainPage({ domain, relatedDomains, claimCount 
                   className="mb-12"
                 >
                   <h2 className="text-lg font-bold text-white mb-4">Published Articles</h2>
-                  <div className="flex flex-wrap gap-3">
+                  <div className="space-y-2">
                     {domain.relatedBlogPosts.map((post, i) => (
                       <Link
                         key={i}
                         href={post}
-                        className="group inline-flex items-center gap-2 px-4 py-2.5 rounded-full border border-white/[0.08] bg-white/[0.02] text-sm text-white/60 hover:bg-white/[0.05] hover:text-white transition-all"
+                        className="group flex items-center gap-3 px-4 py-3 rounded-xl border border-white/[0.06] bg-white/[0.02] hover:bg-white/[0.04] transition-all"
                       >
-                        <FileText className="w-3.5 h-3.5 text-white/30 group-hover:text-white/50" />
-                        Read Article
-                        <ArrowRight className="w-3 h-3 opacity-40 group-hover:opacity-70 transition-opacity" />
+                        <FileText className="w-4 h-4 text-white/25 group-hover:text-white/40 flex-shrink-0" />
+                        <span className="text-sm text-white/60 group-hover:text-white transition-colors line-clamp-1 flex-1">
+                          {blogPostTitles[post] || post.replace('/blog/', '').replace(/-/g, ' ')}
+                        </span>
+                        <ArrowRight className="w-3.5 h-3.5 text-white/20 group-hover:text-white/50 flex-shrink-0 transition-colors" />
                       </Link>
                     ))}
                   </div>

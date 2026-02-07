@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import { researchDomains, getDomainBySlug, getRelatedDomains } from '@/lib/research/domains'
 import { getSourcesForDomain } from '@/lib/research/sources'
 import { getClaimCountForDomain } from '@/lib/research/validated-claims'
+import { getBlogPost } from '@/lib/blog'
 import ResearchDomainPage from './ResearchDomainPage'
 
 interface PageProps {
@@ -57,6 +58,16 @@ export default async function Page({ params }: PageProps) {
   const relatedDomains = getRelatedDomains(slug)
   const domainSources = getSourcesForDomain(slug)
   const claimCount = getClaimCountForDomain(slug)
+
+  // Resolve blog post titles for display in "Published Articles" section
+  const blogPostTitles: Record<string, string> = {}
+  for (const postPath of domain.relatedBlogPosts) {
+    const postSlug = postPath.replace('/blog/', '')
+    const post = getBlogPost(postSlug)
+    if (post) {
+      blogPostTitles[postPath] = post.title
+    }
+  }
 
   // Generate FAQ from keyFindings (convert statements to Q&A pairs)
   const faqItems = domain.faq && domain.faq.length > 0
@@ -130,7 +141,7 @@ export default async function Page({ params }: PageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: faqLd }}
       />
-      <ResearchDomainPage domain={domain} relatedDomains={relatedDomains} claimCount={claimCount} />
+      <ResearchDomainPage domain={domain} relatedDomains={relatedDomains} claimCount={claimCount} blogPostTitles={blogPostTitles} />
     </>
   )
 }
