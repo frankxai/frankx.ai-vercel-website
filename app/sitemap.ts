@@ -132,6 +132,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/testimonials',
     '/affiliates',
     '/newsletter',
+    '/workshops',
+    '/team',
   ]
 
   // Learning and courses
@@ -148,6 +150,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/intelligence-atlas',
     '/golden-age',
     '/golden-age/chapter-01-when-creation-calls',
+    '/feed',
+    '/realm',
+    '/ai-art',
   ]
 
   // AI and agent pages
@@ -168,6 +173,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/goals',
     '/templates',
     '/resources/templates',
+    '/updates',
+    '/free-playbook',
   ]
 
   // Legal pages
@@ -190,8 +197,30 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: '/changelog', priority: 0.5, changeFrequency: 'weekly' as const },
     { url: '/design-system', priority: 0.5, changeFrequency: 'monthly' as const },
     { url: '/ai-architect', priority: 0.7, changeFrequency: 'monthly' as const },
+    { url: '/ai-architecture', priority: 0.7, changeFrequency: 'monthly' as const },
+    { url: '/ai-architectures', priority: 0.7, changeFrequency: 'monthly' as const },
     { url: '/music', priority: 0.6, changeFrequency: 'monthly' as const },
     { url: '/prototypes', priority: 0.5, changeFrequency: 'monthly' as const },
+  ]
+
+  // Sub-route pages (nested under parent sections)
+  const subRoutePages = [
+    // AI Ops sub-routes
+    { url: '/ai-ops/architecture', priority: 0.7, changeFrequency: 'monthly' as const },
+    { url: '/ai-ops/patterns', priority: 0.7, changeFrequency: 'monthly' as const },
+    { url: '/ai-ops/models-2026', priority: 0.7, changeFrequency: 'weekly' as const },
+    { url: '/ai-ops/maturity', priority: 0.7, changeFrequency: 'monthly' as const },
+    { url: '/ai-ops/accelerator-packs', priority: 0.7, changeFrequency: 'monthly' as const },
+    { url: '/ai-ops/agi-ready', priority: 0.7, changeFrequency: 'monthly' as const },
+    // AI Architect sub-routes
+    { url: '/ai-architect/ai-coe-hub', priority: 0.7, changeFrequency: 'monthly' as const },
+    { url: '/ai-architect/multi-cloud-comparison', priority: 0.7, changeFrequency: 'monthly' as const },
+    // Soulbook sub-routes
+    { url: '/soulbook/7-pillars', priority: 0.7, changeFrequency: 'monthly' as const },
+    { url: '/soulbook/assessment', priority: 0.7, changeFrequency: 'monthly' as const },
+    { url: '/soulbook/golden-path', priority: 0.7, changeFrequency: 'monthly' as const },
+    { url: '/soulbook/life-symphony', priority: 0.7, changeFrequency: 'monthly' as const },
+    { url: '/soulbook/vault', priority: 0.7, changeFrequency: 'monthly' as const },
   ]
 
   // Legacy pages (lower priority, may redirect)
@@ -356,6 +385,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: currentDate,
       changeFrequency: 'monthly',
       priority: 0.4,
+    })
+  })
+
+  // Sub-route pages
+  subRoutePages.forEach(page => {
+    entries.push({
+      url: `${BASE_URL}${page.url}`,
+      lastModified: currentDate,
+      changeFrequency: page.changeFrequency,
+      priority: page.priority,
     })
   })
 
