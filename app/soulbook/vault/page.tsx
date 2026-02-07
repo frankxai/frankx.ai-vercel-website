@@ -23,8 +23,7 @@ import {
   Award,
   Check,
 } from 'lucide-react';
-import GlassmorphicCard from '@/components/ui/GlassmorphicCard';
-import InteractiveCard from '@/components/ui/InteractiveCard';
+import PremiumCard from '@/components/ui/PremiumCard';
 import PremiumButton from '@/components/ui/PremiumButton';
 import { cn } from '@/lib/utils';
 
@@ -276,10 +275,8 @@ export default function VaultPage() {
               </div>
 
               <div className="flex gap-4">
-                <GlassmorphicCard
-                  variant="premium"
-                  gradient="aurora"
-                  border="subtle"
+                <PremiumCard
+                  glass="medium"
                   className="p-4 text-center min-w-[120px]"
                 >
                   <div className="flex items-center justify-center gap-2 mb-1">
@@ -287,11 +284,9 @@ export default function VaultPage() {
                     <span className="text-2xl font-bold text-white">{streak.current}</span>
                   </div>
                   <p className="text-xs text-slate-400">Day Streak</p>
-                </GlassmorphicCard>
-                <GlassmorphicCard
-                  variant="premium"
-                  gradient="aurora"
-                  border="subtle"
+                </PremiumCard>
+                <PremiumCard
+                  glass="medium"
                   className="p-4 text-center min-w-[120px]"
                 >
                   <div className="flex items-center justify-center gap-2 mb-1">
@@ -299,7 +294,7 @@ export default function VaultPage() {
                     <span className="text-2xl font-bold text-white">{completedGoals}</span>
                   </div>
                   <p className="text-xs text-slate-400">Goals Done</p>
-                </GlassmorphicCard>
+                </PremiumCard>
               </div>
             </div>
 
@@ -342,7 +337,7 @@ export default function VaultPage() {
                 className="space-y-8"
               >
                 {/* Overall Progress */}
-                <GlassmorphicCard variant="premium" gradient="aurora" border="glow" className="p-8">
+                <PremiumCard glass="medium" className="p-8">
                   <div className="flex items-center justify-between mb-6">
                     <div>
                       <h2 className="text-2xl font-bold text-white">Overall Progress</h2>
@@ -389,7 +384,7 @@ export default function VaultPage() {
                       );
                     })}
                   </div>
-                </GlassmorphicCard>
+                </PremiumCard>
 
                 {/* Pillar Cards Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -400,15 +395,14 @@ export default function VaultPage() {
                     const pillarEntries = journalEntries.filter((e) => e.pillarId === pillar.id);
 
                     return (
-                      <InteractiveCard
+                      <PremiumCard
                         key={pillar.id}
-                        glowColor={pillar.color === 'amber' ? 'yellow' : 'cyan'}
-                        intensity="medium"
+                        gradient={pillar.color === 'amber' ? 'gold' : 'cyan'}
+                        mouseGlow
+                        shine
                       >
-                        <GlassmorphicCard
-                          variant="premium"
-                          gradient={pillar.color === 'amber' ? 'aurora' : 'purple'}
-                          border="subtle"
+                        <PremiumCard
+                          glass="medium"
                           className="p-6"
                         >
                           <div className="flex items-center gap-3 mb-4">
@@ -460,8 +454,8 @@ export default function VaultPage() {
                           >
                             Add Entry
                           </PremiumButton>
-                        </GlassmorphicCard>
-                      </InteractiveCard>
+                        </PremiumCard>
+                      </PremiumCard>
                     );
                   })}
                 </div>
@@ -478,10 +472,8 @@ export default function VaultPage() {
               >
                 {/* Journal Input */}
                 <div className="lg:col-span-1">
-                  <GlassmorphicCard
-                    variant="premium"
-                    gradient="aurora"
-                    border="subtle"
+                  <PremiumCard
+                    glass="medium"
                     className="p-6 sticky top-8"
                   >
                     <h3 className="text-xl font-semibold text-white mb-4">New Entry</h3>
@@ -536,16 +528,14 @@ export default function VaultPage() {
                       <Plus className="w-5 h-5 mr-2" />
                       Add Entry
                     </PremiumButton>
-                  </GlassmorphicCard>
+                  </PremiumCard>
                 </div>
 
                 {/* Journal Entries */}
                 <div className="lg:col-span-2 space-y-4">
                   {journalEntries.length === 0 ? (
-                    <GlassmorphicCard
-                      variant="default"
-                      gradient="custom"
-                      border="subtle"
+                    <PremiumCard
+                      glass="subtle"
                       className="p-12 text-center"
                     >
                       <BookOpen className="w-12 h-12 text-slate-600 mx-auto mb-4" />
@@ -555,7 +545,7 @@ export default function VaultPage() {
                       <p className="text-slate-400">
                         Start journaling to track your journey across the 7 pillars.
                       </p>
-                    </GlassmorphicCard>
+                    </PremiumCard>
                   ) : (
                     journalEntries.map((entry) => {
                       const pillar = pillarConfig.find((p) => p.id === entry.pillarId);
@@ -572,10 +562,8 @@ export default function VaultPage() {
                           initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}
                         >
-                          <GlassmorphicCard
-                            variant="premium"
-                            gradient={pillar?.color === 'amber' ? 'aurora' : 'purple'}
-                            border="subtle"
+                          <PremiumCard
+                            glass="medium"
                             className="p-6"
                           >
                             <div className="flex items-start gap-4">
@@ -600,7 +588,7 @@ export default function VaultPage() {
                                 <p className="text-slate-300">{entry.content}</p>
                               </div>
                             </div>
-                          </GlassmorphicCard>
+                          </PremiumCard>
                         </motion.div>
                       );
                     })
@@ -619,10 +607,8 @@ export default function VaultPage() {
               >
                 {/* Goal Input */}
                 <div className="lg:col-span-1">
-                  <GlassmorphicCard
-                    variant="premium"
-                    gradient="aurora"
-                    border="subtle"
+                  <PremiumCard
+                    glass="medium"
                     className="p-6 sticky top-8"
                   >
                     <h3 className="text-xl font-semibold text-white mb-4">New Goal</h3>
@@ -678,16 +664,14 @@ export default function VaultPage() {
                       <Plus className="w-5 h-5 mr-2" />
                       Add Goal
                     </PremiumButton>
-                  </GlassmorphicCard>
+                  </PremiumCard>
                 </div>
 
                 {/* Goals List */}
                 <div className="lg:col-span-2 space-y-4">
                   {goals.length === 0 ? (
-                    <GlassmorphicCard
-                      variant="default"
-                      gradient="custom"
-                      border="subtle"
+                    <PremiumCard
+                      glass="subtle"
                       className="p-12 text-center"
                     >
                       <Target className="w-12 h-12 text-slate-600 mx-auto mb-4" />
@@ -697,7 +681,7 @@ export default function VaultPage() {
                       <p className="text-slate-400">
                         Set your first goal to start tracking your progress.
                       </p>
-                    </GlassmorphicCard>
+                    </PremiumCard>
                   ) : (
                     goals.map((goal) => {
                       const pillar = pillarConfig.find((p) => p.id === goal.pillarId);
@@ -708,10 +692,8 @@ export default function VaultPage() {
                           initial={{ opacity: 0, y: 10 }}
                           animate={{ opacity: 1, y: 0 }}
                         >
-                          <GlassmorphicCard
-                            variant="premium"
-                            gradient={pillar?.color === 'amber' ? 'aurora' : 'purple'}
-                            border="subtle"
+                          <PremiumCard
+                            glass="medium"
                             className="p-6"
                           >
                             <div className="flex items-center gap-4">
@@ -760,7 +742,7 @@ export default function VaultPage() {
                                 <Settings className="w-5 h-5" />
                               </button>
                             </div>
-                          </GlassmorphicCard>
+                          </PremiumCard>
                         </motion.div>
                       );
                     })
