@@ -206,6 +206,60 @@
   text-decoration: none;
 }
 
+/* ============================================================================
+   ARTICLE TYPOGRAPHY — Blog & Guide reading experience
+   Custom list markers, blockquote treatment, prose rhythm
+   ============================================================================ */
+
+/* Unordered list: emerald dot markers */
+.article-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.7em;
+  width: 5px;
+  height: 5px;
+  border-radius: 9999px;
+  background-color: rgb(52 211 153 / 0.6); /* emerald-400/60 */
+}
+
+/* Ordered list: emerald numbered markers */
+.article-ol {
+  counter-reset: article-counter;
+}
+
+.article-ol li {
+  counter-increment: article-counter;
+}
+
+.article-ol li::before {
+  content: counter(article-counter) '.';
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 0.85em;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: rgb(52 211 153 / 0.7); /* emerald-400/70 */
+}
+
+/* Blockquote serif treatment */
+.article-blockquote {
+  font-family: var(--font-quote, var(--font-serif)), 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+}
+
+/* Code block line-number gutter (future enhancement hook) */
+.article-code-block {
+  tab-size: 2;
+  -moz-tab-size: 2;
+}
+
+/* Smooth anchor scroll for heading links */
+.article-heading-anchor {
+  scroll-margin-top: 6rem;
+}
+
 /* Accessibility: Respect reduced motion preferences */
 @media (prefers-reduced-motion: reduce) {
   *,

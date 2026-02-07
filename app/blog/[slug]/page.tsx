@@ -243,11 +243,14 @@ export default async function BlogPostPage({
         </div>
 
         <div className="px-6 pt-12">
-          <div className="mx-auto max-w-4xl">
-            <div className="space-y-6 text-base leading-relaxed text-white/75">
+          <div className="mx-auto max-w-[680px]">
+            <div className="article-prose">
               <MDXContent source={post.content} />
             </div>
+          </div>
 
+          {/* Wider container for cards and meta sections */}
+          <div className="mx-auto max-w-4xl">
             <div className="mt-16 grid gap-6 md:grid-cols-3">
               <article className="group rounded-2xl border border-white/10 bg-white/[0.02] p-6 backdrop-blur-sm hover:border-emerald-500/30 hover:bg-white/[0.04] transition-all duration-300">
                 <div className="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-4">
