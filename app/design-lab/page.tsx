@@ -1,8 +1,9 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useRef, useCallback } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 import Link from 'next/link'
+import Image from 'next/image'
 import {
   ArrowRight,
   ArrowUpRight,
@@ -13,7 +14,9 @@ import {
   FlaskConical,
   Layout,
   Layers,
+  Leaf,
   Megaphone,
+  Palette,
   ShoppingBag,
   Star,
   Trophy,
@@ -44,6 +47,171 @@ const colorConfig: Record<string, { border: string; text: string; bg: string; gr
   blue: { border: 'border-blue-500/30', text: 'text-blue-400', bg: 'bg-blue-500/10', gradient: 'from-blue-500/20 to-blue-500/5', glow: 'shadow-blue-500/20' },
   orange: { border: 'border-orange-500/30', text: 'text-orange-400', bg: 'bg-orange-500/10', gradient: 'from-orange-500/20 to-orange-500/5', glow: 'shadow-orange-500/20' },
   teal: { border: 'border-teal-500/30', text: 'text-teal-400', bg: 'bg-teal-500/10', gradient: 'from-teal-500/20 to-teal-500/5', glow: 'shadow-teal-500/20' },
+}
+
+// ── Glow RGB values per color (for cursor-following border glow) ──
+
+const glowRgb: Record<string, string> = {
+  emerald: '16, 185, 129',
+  cyan: '6, 182, 212',
+  violet: '139, 92, 246',
+  amber: '245, 158, 11',
+  rose: '244, 63, 94',
+  blue: '59, 130, 246',
+  orange: '249, 115, 22',
+  teal: '20, 184, 166',
+}
+
+// ── GlowCard: cursor-following border glow ──
+
+function GlowCard({
+  children,
+  className = '',
+  color = 'teal',
+  href,
+}: {
+  children: React.ReactNode
+  className?: string
+  color?: string
+  href: string
+}) {
+  const cardRef = useRef<HTMLAnchorElement>(null)
+  const glowRef = useRef<HTMLDivElement>(null)
+
+  const handleMouseMove = useCallback(
+    (e: React.MouseEvent<HTMLAnchorElement>) => {
+      if (!cardRef.current || !glowRef.current) return
+      const rect = cardRef.current.getBoundingClientRect()
+      const x = e.clientX - rect.left
+      const y = e.clientY - rect.top
+      glowRef.current.style.background = `radial-gradient(500px circle at ${x}px ${y}px, rgba(${glowRgb[color] || glowRgb.teal}, 0.15), transparent 40%)`
+      glowRef.current.style.opacity = '1'
+    },
+    [color],
+  )
+
+  const handleMouseLeave = useCallback(() => {
+    if (!glowRef.current) return
+    glowRef.current.style.opacity = '0'
+  }, [])
+
+  return (
+    <Link
+      ref={cardRef}
+      href={href}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className={`group relative block rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6 h-full transition-all duration-300 hover:border-white/[0.15] ${className}`}
+    >
+      {/* Cursor-following glow overlay */}
+      <div
+        ref={glowRef}
+        className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-300"
+      />
+      {/* Subtle outer glow on hover */}
+      <div
+        className="pointer-events-none absolute -inset-px rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+        style={{
+          background: `radial-gradient(ellipse at 50% 0%, rgba(${glowRgb[color] || glowRgb.teal}, 0.08), transparent 70%)`,
+        }}
+      />
+      {children}
+    </Link>
+  )
+}
+
+// ── StatGlowCard: cursor-following glow for non-link cards ──
+
+function StatGlowCard({
+  children,
+  className = '',
+  color = 'teal',
+}: {
+  children: React.ReactNode
+  className?: string
+  color?: string
+}) {
+  const cardRef = useRef<HTMLDivElement>(null)
+  const glowRef = useRef<HTMLDivElement>(null)
+
+  const handleMouseMove = useCallback(
+    (e: React.MouseEvent<HTMLDivElement>) => {
+      if (!cardRef.current || !glowRef.current) return
+      const rect = cardRef.current.getBoundingClientRect()
+      const x = e.clientX - rect.left
+      const y = e.clientY - rect.top
+      glowRef.current.style.background = `radial-gradient(400px circle at ${x}px ${y}px, rgba(${glowRgb[color] || glowRgb.teal}, 0.12), transparent 40%)`
+      glowRef.current.style.opacity = '1'
+    },
+    [color],
+  )
+
+  const handleMouseLeave = useCallback(() => {
+    if (!glowRef.current) return
+    glowRef.current.style.opacity = '0'
+  }, [])
+
+  return (
+    <div
+      ref={cardRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className={`group relative rounded-xl border border-white/[0.06] bg-white/[0.02] p-4 text-center transition-all duration-300 hover:border-white/[0.12] ${className}`}
+    >
+      <div
+        ref={glowRef}
+        className="pointer-events-none absolute inset-0 rounded-xl opacity-0 transition-opacity duration-300"
+      />
+      <div className="relative z-10">{children}</div>
+    </div>
+  )
+}
+
+// ── StepGlowCard: cursor-following glow for How It Works steps ──
+
+function StepGlowCard({
+  children,
+  className = '',
+  color = 'teal',
+}: {
+  children: React.ReactNode
+  className?: string
+  color?: string
+}) {
+  const cardRef = useRef<HTMLDivElement>(null)
+  const glowRef = useRef<HTMLDivElement>(null)
+
+  const handleMouseMove = useCallback(
+    (e: React.MouseEvent<HTMLDivElement>) => {
+      if (!cardRef.current || !glowRef.current) return
+      const rect = cardRef.current.getBoundingClientRect()
+      const x = e.clientX - rect.left
+      const y = e.clientY - rect.top
+      glowRef.current.style.background = `radial-gradient(400px circle at ${x}px ${y}px, rgba(${glowRgb[color] || glowRgb.teal}, 0.10), transparent 40%)`
+      glowRef.current.style.opacity = '1'
+    },
+    [color],
+  )
+
+  const handleMouseLeave = useCallback(() => {
+    if (!glowRef.current) return
+    glowRef.current.style.opacity = '0'
+  }, [])
+
+  return (
+    <div
+      ref={cardRef}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      className={`group relative rounded-xl border border-white/[0.06] bg-white/[0.02] p-5 transition-all duration-300 hover:border-white/[0.12] ${className}`}
+    >
+      <div
+        ref={glowRef}
+        className="pointer-events-none absolute inset-0 rounded-xl opacity-0 transition-opacity duration-300"
+      />
+      <div className="relative z-10">{children}</div>
+    </div>
+  )
 }
 
 // ── Computed Stats ──
@@ -100,7 +268,7 @@ function HeroSection() {
 
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight leading-[1.1]">
             Design
-            <span className="block bg-gradient-to-r from-teal-400 via-cyan-400 to-violet-400 bg-clip-text text-transparent">
+            <span className="block bg-gradient-to-r from-emerald-400 via-cyan-400 to-violet-400 bg-clip-text text-transparent">
               Lab
             </span>
           </h1>
@@ -135,17 +303,17 @@ function HeroSection() {
           className="mt-14 grid grid-cols-2 md:grid-cols-5 gap-4"
         >
           {[
-            { label: 'Experiments', value: String(totalExperiments), icon: FlaskConical },
-            { label: 'Complete', value: String(completedExperiments), icon: Award },
-            { label: 'Agent Entries', value: String(totalEntries), icon: Zap },
-            { label: 'Winners', value: String(winnerCount), icon: Trophy },
-            { label: 'Productized', value: String(productizedCount), icon: ShoppingBag },
+            { label: 'Experiments', value: String(totalExperiments), icon: FlaskConical, glow: 'teal' },
+            { label: 'Complete', value: String(completedExperiments), icon: Award, glow: 'emerald' },
+            { label: 'Agent Entries', value: String(totalEntries), icon: Zap, glow: 'cyan' },
+            { label: 'Winners', value: String(winnerCount), icon: Trophy, glow: 'amber' },
+            { label: 'Productized', value: String(productizedCount), icon: ShoppingBag, glow: 'violet' },
           ].map((stat, i) => (
-            <div key={i} className="bg-white/[0.03] backdrop-blur-sm border border-white/[0.06] rounded-xl p-4">
+            <StatGlowCard key={i} color={stat.glow}>
               <stat.icon className="w-4 h-4 text-white/30 mb-2" />
               <p className="text-2xl font-bold text-white mb-0.5">{stat.value}</p>
               <p className="text-xs text-white/40">{stat.label}</p>
-            </div>
+            </StatGlowCard>
           ))}
         </motion.div>
       </div>
@@ -158,10 +326,10 @@ function HeroSection() {
 function HowItWorks() {
   const shouldReduceMotion = useReducedMotion()
   const steps = [
-    { title: 'Brief', description: 'Same design challenge given to all AI agents', icon: '1' },
-    { title: 'Build', description: 'Each agent creates their version independently', icon: '2' },
-    { title: 'Rate', description: 'Scored on design, code, a11y, performance, creativity', icon: '3' },
-    { title: 'Ship', description: 'Winners get productized and offered for sale', icon: '4' },
+    { title: 'Brief', description: 'Same design challenge given to all AI agents', icon: '1', color: 'emerald' },
+    { title: 'Build', description: 'Each agent creates their version independently', icon: '2', color: 'cyan' },
+    { title: 'Rate', description: 'Scored on design, code, a11y, performance, creativity', icon: '3', color: 'violet' },
+    { title: 'Ship', description: 'Winners get productized and offered for sale', icon: '4', color: 'amber' },
   ]
 
   return (
@@ -186,15 +354,139 @@ function HowItWorks() {
               initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.15 + index * 0.08 }}
-              className="bg-white/[0.02] border border-white/[0.06] rounded-xl p-5"
             >
-              <div className="w-8 h-8 rounded-lg bg-teal-500/10 border border-teal-500/20 flex items-center justify-center mb-3">
-                <span className="text-sm font-bold text-teal-400">{step.icon}</span>
-              </div>
-              <h3 className="text-sm font-bold text-white mb-1">{step.title}</h3>
-              <p className="text-xs text-white/40 leading-relaxed">{step.description}</p>
+              <StepGlowCard color={step.color}>
+                <div className="w-8 h-8 rounded-lg bg-teal-500/10 border border-teal-500/20 flex items-center justify-center mb-3">
+                  <span className="text-sm font-bold text-teal-400">{step.icon}</span>
+                </div>
+                <h3 className="text-sm font-bold text-white mb-1">{step.title}</h3>
+                <p className="text-xs text-white/40 leading-relaxed">{step.description}</p>
+              </StepGlowCard>
             </motion.div>
           ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// ── Design Studies Section ──
+
+const designStudies = [
+  {
+    title: 'Nature × Technology',
+    subtitle: '10 AI-generated concept images exploring organic intelligence meets dark technology',
+    href: '/design-lab/nature',
+    image: '/images/design-lab/nature-01-digital-garden.png',
+    color: 'emerald',
+    stats: [
+      { label: 'Concepts', value: '10' },
+      { label: 'Principles', value: '5' },
+    ],
+    tags: ['AI Images', 'Design System', 'CSS Tokens'],
+  },
+  {
+    title: 'Hub Redesign Variants',
+    subtitle: '6 key page redesign concepts — Homepage, Products, Blog, Labs, Inner Circle, ACOS',
+    href: '/design-lab/nature/variants',
+    image: '/images/design-lab/variant-homepage-nature.png',
+    color: 'cyan',
+    stats: [
+      { label: 'Variants', value: '6' },
+      { label: 'Phases', value: '3' },
+    ],
+    tags: ['Homepage', 'Products', 'Blog', 'Labs', 'ACOS'],
+  },
+]
+
+function DesignStudies() {
+  const shouldReduceMotion = useReducedMotion()
+
+  return (
+    <section className="py-12 md:py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.1 }}
+          className="mb-8"
+        >
+          <div className="flex items-center gap-3 mb-3">
+            <div className="p-2 bg-emerald-500/10 rounded-xl">
+              <Leaf className="w-5 h-5 text-emerald-400" />
+            </div>
+            <h2 className="text-2xl md:text-3xl font-bold text-white">Design Studies</h2>
+          </div>
+          <p className="text-white/50 max-w-2xl">
+            Deep explorations into design directions for FrankX.AI — from concept to implementation.
+          </p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-2 gap-6">
+          {designStudies.map((study, index) => {
+            const colors = colorConfig[study.color] || colorConfig.teal
+            return (
+              <motion.div
+                key={study.href}
+                initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.15 + index * 0.1 }}
+              >
+                <GlowCard href={study.href} color={study.color} className="!p-0 overflow-hidden">
+                  <div className="relative z-10">
+                    {/* Image */}
+                    <div className="relative h-48 md:h-56 overflow-hidden">
+                      <Image
+                        src={study.image}
+                        alt={study.title}
+                        fill
+                        className="object-cover object-center"
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/40 to-transparent" />
+                      {/* Stats overlay */}
+                      <div className="absolute bottom-4 left-4 flex gap-3">
+                        {study.stats.map(stat => (
+                          <div key={stat.label} className="px-3 py-1.5 rounded-lg bg-black/60 backdrop-blur-sm border border-white/10">
+                            <span className="text-sm font-bold text-white">{stat.value}</span>
+                            <span className="text-xs text-white/50 ml-1.5">{stat.label}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Content */}
+                    <div className="p-6">
+                      <h3 className="text-lg font-bold text-white mb-2 group-hover:text-white/95 transition-colors">
+                        {study.title}
+                      </h3>
+                      <p className="text-sm text-white/40 mb-4 leading-relaxed">
+                        {study.subtitle}
+                      </p>
+
+                      {/* Tags */}
+                      <div className="flex flex-wrap gap-2 mb-4">
+                        {study.tags.map(tag => (
+                          <span
+                            key={tag}
+                            className={`text-[10px] font-medium px-2.5 py-1 rounded-full ${colors.bg} ${colors.text}`}
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+
+                      {/* CTA */}
+                      <div className="flex items-center gap-2 text-sm font-medium text-white/60 group-hover:text-white/90 transition-colors">
+                        Explore
+                        <ArrowRight className="w-4 h-4" />
+                      </div>
+                    </div>
+                  </div>
+                </GlowCard>
+              </motion.div>
+            )
+          })}
         </div>
       </div>
     </section>
@@ -355,12 +647,10 @@ function ExperimentsGrid() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={shouldReduceMotion ? { duration: 0 } : { delay: Math.min(index * 0.04, 0.3) }}
                 >
-                  <Link
+                  <GlowCard
                     href={`/design-lab/${experiment.slug}`}
-                    className="group relative block rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6 h-full transition-all duration-300 hover:bg-white/[0.04] hover:border-white/[0.12]"
+                    color={experiment.color}
                   >
-                    <div className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${colors.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
-
                     <div className="relative z-10">
                       <div className="flex items-start justify-between mb-4">
                         <div className={`p-2.5 ${colors.bg} rounded-xl`}>
@@ -374,7 +664,7 @@ function ExperimentsGrid() {
                         </div>
                       </div>
 
-                      <h3 className="text-base font-bold text-white mb-1.5">
+                      <h3 className="text-base font-bold text-white mb-1.5 group-hover:text-white/95 transition-colors">
                         {experiment.title}
                       </h3>
                       <p className="text-sm text-white/40 mb-4 line-clamp-2">
@@ -435,7 +725,7 @@ function ExperimentsGrid() {
                         </span>
                       </div>
                     </div>
-                  </Link>
+                  </GlowCard>
                 </motion.div>
               )
             })}
@@ -531,6 +821,7 @@ export default function DesignLabPage() {
 
       <div className="relative z-10">
         <HeroSection />
+        <DesignStudies />
         <HowItWorks />
         <ExperimentsGrid />
         <CTASection />

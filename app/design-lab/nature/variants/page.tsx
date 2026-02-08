@@ -324,6 +324,27 @@ export default function NatureVariantsPage() {
 
                       {/* Details Panel (1 col) */}
                       <div className="space-y-4">
+                        {/* Live prototype link (homepage only) */}
+                        {index === 0 && (
+                          <Link
+                            href="/design-lab/nature/variants/homepage"
+                            className={`block rounded-xl border ${colors.border} p-4 transition-all hover:bg-white/[0.03]`}
+                            style={{ background: `${colorMap[variant.color]?.bg ? '' : ''}rgba(16,185,129,0.04)` }}
+                          >
+                            <div className="flex items-center justify-between">
+                              <div>
+                                <p className="text-[10px] font-semibold text-emerald-400 uppercase tracking-wider mb-1">
+                                  Live Prototype
+                                </p>
+                                <p className="text-sm text-white/70 font-medium">
+                                  View working implementation
+                                </p>
+                              </div>
+                              <ArrowRight className="w-4 h-4 text-emerald-400" />
+                            </div>
+                          </Link>
+                        )}
+
                         {/* Current page link */}
                         <div className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-4">
                           <p className="text-[10px] font-semibold text-white/30 uppercase tracking-wider mb-2">
