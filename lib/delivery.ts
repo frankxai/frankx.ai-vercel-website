@@ -25,7 +25,7 @@ export const DELIVERY_CONFIG: Record<string, DeliveryConfig> = {
   'vibe-os': {
     productId: 'vibe-os',
     deliveryType: 'pdf',
-    files: ['Vibe-OS-Guide-new.pdf'],
+    files: ['Vibe-OS-Guide.pdf'],
     accessCategories: ['music-creation', 'state-management', 'creative'],
     emailTemplateId: 'free-product',
   },
