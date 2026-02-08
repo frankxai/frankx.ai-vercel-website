@@ -19,7 +19,6 @@ import {
   MessageSquare
 } from 'lucide-react'
 
-import GlassmorphicCard from '@/components/ui/GlassmorphicCard'
 import PremiumButton from '@/components/ui/PremiumButton'
 
 /* ──────────────────────────────────────────────
@@ -267,11 +266,11 @@ export default function ACOSPage() {
           </p>
           <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {features.map((feature) => (
-              <GlassmorphicCard key={feature.title} variant="premium" className="p-6">
+              <div key={feature.title} className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-white/20">
                 <feature.icon className="mb-4 h-8 w-8 text-purple-400" />
                 <h3 className="text-lg font-semibold text-white">{feature.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-white/60">{feature.description}</p>
-              </GlassmorphicCard>
+              </div>
             ))}
           </div>
         </div>
