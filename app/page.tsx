@@ -1,12 +1,13 @@
+import HomePageElite from '@/components/home/HomePageElite'
 import { createMetadata } from '@/lib/seo'
 import JsonLd from '@/components/seo/JsonLd'
 import { FAQPageJsonLd } from '@/components/seo/JsonLd'
-import HomePageElite from '@/components/home/HomePageElite'
+import { getAllBlogPosts } from '@/lib/blog'
 
 export const metadata = createMetadata({
-  title: 'FrankX.AI | AI Architect & Music Creator',
+  title: 'FrankX.AI | AI Architect & Music Creator — Build What Matters',
   description:
-    'AI Architect at Oracle. Creator of 12K+ songs with Suno. Building intelligent systems, music, and creator tools in the Golden Age of Intelligence.',
+    'AI Architect at Oracle. Creator of 12K+ songs with Suno. Building intelligent systems, music, and creator tools in the Golden Age of Intelligence. Free tutorials, prompts, and open-source tools.',
   keywords: [
     'ai architect',
     'ai music creation',
@@ -16,6 +17,10 @@ export const metadata = createMetadata({
     'creator tools',
     'agentic workflows',
     'enterprise ai',
+    'claude code',
+    'multi-agent systems',
+    'ai coding agents',
+    'prompt engineering',
   ],
   path: '/',
 })
@@ -36,7 +41,6 @@ const personSchema = {
   name: 'Frank Riemer',
   jobTitle: 'AI Systems Architect',
   url: 'https://frankx.ai/about',
-  description: 'AI Architect at Oracle building enterprise AI systems. Creator of 12K+ AI-generated songs with Suno. Building practical tools and workflows for the Golden Age of Intelligence.',
   sameAs: [
     'https://linkedin.com/in/frank-x-riemer/',
     'https://github.com/frankxai',
@@ -48,12 +52,8 @@ const personSchema = {
     'AI Music Creation',
     'Suno AI',
     'Enterprise AI Strategy',
-    'Oracle Cloud Infrastructure',
+    'Oracle Cloud',
     'Agentic Workflows',
-    'Prompt Engineering',
-    'Multi-Agent Systems',
-    'RAG Architecture',
-    'AI Workflow Automation',
   ],
 }
 
@@ -65,17 +65,16 @@ const organizationSchema = {
     'https://linkedin.com/in/frank-x-riemer/',
     'https://github.com/frankxai',
     'https://suno.com/@frankx',
-    'https://x.com/frankxeth',
   ],
   description:
-    'Enterprise AI architecture, music production with Suno, and creator tools. Practical systems and workflows for builders in the Golden Age of Intelligence.',
+    'AI systems and creator tools. Building practical workflows for the Golden Age of Intelligence.',
 }
 
 const homepageFAQs = [
   {
     question: 'What is FrankX.AI?',
     answer:
-      'FrankX.AI is the personal hub of Frank Riemer — an AI Architect at Oracle and creator of 12,000+ AI-generated songs with Suno. The site features technical tutorials, AI architecture guides, music production workflows, and creator tools.',
+      'FrankX.AI is the personal hub of Frank Riemer — an AI Architect at Oracle and creator of 12,000+ AI-generated songs with Suno. The site features technical tutorials, AI architecture guides, music production workflows, and open-source creator tools.',
   },
   {
     question: 'What kind of content does FrankX publish?',
@@ -88,21 +87,32 @@ const homepageFAQs = [
       'Start with the Suno Prompt Engineering Complete Guide on the blog, which covers the 5-Layer Prompt Architecture, genre-specific techniques, and frequency science. FrankX has produced 12,000+ tracks and shares production workflows and prompt templates.',
   },
   {
-    question: 'What is the Agentic Creator OS?',
+    question: 'What is the Agentic Creator OS (ACOS)?',
     answer:
-      'The Agentic Creator OS is a framework for building AI-powered creative workflows. It combines multi-agent orchestration, prompt engineering, and automation tools to help creators ship content, music, and products faster using AI systems.',
+      'ACOS is an open-source operating system for Claude Code with 630+ skills, 40+ specialized agents, and 130+ commands. It turns Claude Code into a full creative production environment. Free on GitHub, with premium Creator Kit ($47) and Pro System ($197) tiers.',
   },
   {
     question: 'Does FrankX offer courses or coaching?',
     answer:
-      'FrankX offers free guides and tutorials on the blog, with premium courses and coaching programs in development. Join the waitlist at frankx.ai/coaching for early access to AI architecture and creator workflow training.',
+      'FrankX offers free guides and tutorials on the blog, with premium coaching programs in development. Join the waitlist at frankx.ai/coaching for early access to AI architecture and creator workflow training.',
   },
 ]
 
 export default function Page() {
+  const latestPosts = getAllBlogPosts()
+    .slice(0, 3)
+    .map((p) => ({
+      slug: p.slug,
+      title: p.title,
+      description: p.description,
+      category: p.category,
+      readingTime: p.readingTime,
+      date: p.date,
+    }))
+
   return (
     <>
-      <HomePageElite />
+      <HomePageElite latestPosts={latestPosts} faqs={homepageFAQs} />
       <JsonLd type="WebSite" data={websiteSchema} />
       <JsonLd type="Person" data={personSchema} />
       <JsonLd type="Organization" data={organizationSchema} />

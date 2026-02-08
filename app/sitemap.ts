@@ -163,6 +163,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/developers',
   ]
 
+  // Audience landing pages
+  const audiencePages = [
+    { url: '/for/creators', priority: 0.9, changeFrequency: 'monthly' as const },
+    { url: '/for/architects', priority: 0.9, changeFrequency: 'monthly' as const },
+  ]
+
   // Utility pages
   const utilityPages = [
     '/start',
@@ -370,6 +376,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Section pages
   sectionPages.forEach(page => {
+    entries.push({
+      url: `${BASE_URL}${page.url}`,
+      lastModified: currentDate,
+      changeFrequency: page.changeFrequency,
+      priority: page.priority,
+    })
+  })
+
+  // Audience landing pages
+  audiencePages.forEach(page => {
     entries.push({
       url: `${BASE_URL}${page.url}`,
       lastModified: currentDate,
