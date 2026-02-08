@@ -9,15 +9,21 @@ import {
   ArrowUpRight,
   Award,
   BarChart3,
+  Code2,
+  Command,
   Component,
   CreditCard,
+  Eye,
   FlaskConical,
+  GitBranch,
   Layout,
   Layers,
   Leaf,
   Megaphone,
+  MousePointerClick,
   Palette,
   ShoppingBag,
+  Sparkles,
   Star,
   Trophy,
   Zap,
@@ -370,7 +376,46 @@ function HowItWorks() {
   )
 }
 
-// ── Design Studies Section ──
+// ── Design Hub Navigation ──
+
+const hubSections = [
+  {
+    title: 'ACOS Redesign',
+    subtitle: 'Three design concepts for presenting 630+ skills: Command Center, Skill Galaxy, Flow Architecture',
+    href: '/design-lab/acos',
+    icon: Command,
+    color: 'violet',
+    badge: 'Live Prototypes',
+    stats: '3 concepts',
+  },
+  {
+    title: 'Design Excellence',
+    subtitle: 'Interactive design system reference: glassmorphism playground, color palette, typography scale, spacing grid',
+    href: '/design-lab/design-excellence',
+    icon: Eye,
+    color: 'amber',
+    badge: 'Interactive',
+    stats: '6 principles',
+  },
+  {
+    title: 'Frontend Patterns',
+    subtitle: 'Component pattern library with live demos and source code: hover effects, animations, micro-interactions',
+    href: '/design-lab/frontend-design',
+    icon: MousePointerClick,
+    color: 'emerald',
+    badge: 'Code + Preview',
+    stats: '10 patterns',
+  },
+  {
+    title: 'v0 Design Showcase',
+    subtitle: '16 premium AI-generated designs across two waves — v0-1.5-lg, v0-pro, and GPT-5 models',
+    href: '/design-lab/v0',
+    icon: Sparkles,
+    color: 'cyan',
+    badge: '16 Designs',
+    stats: '2 waves',
+  },
+]
 
 const designStudies = [
   {
@@ -399,7 +444,7 @@ const designStudies = [
   },
 ]
 
-function DesignStudies() {
+function DesignHub() {
   const shouldReduceMotion = useReducedMotion()
 
   return (
@@ -412,14 +457,67 @@ function DesignStudies() {
           className="mb-8"
         >
           <div className="flex items-center gap-3 mb-3">
+            <div className="p-2 bg-violet-500/10 rounded-xl">
+              <GitBranch className="w-5 h-5 text-violet-400" />
+            </div>
+            <h2 className="text-2xl md:text-3xl font-bold text-white">Explore</h2>
+          </div>
+          <p className="text-white/50 max-w-2xl">
+            Design systems, page redesigns, component patterns, and AI-generated explorations.
+          </p>
+        </motion.div>
+
+        {/* Hub Section Cards */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-10">
+          {hubSections.map((section, index) => {
+            const colors = colorConfig[section.color] || colorConfig.teal
+            return (
+              <motion.div
+                key={section.href}
+                initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.12 + index * 0.06 }}
+              >
+                <GlowCard href={section.href} color={section.color}>
+                  <div className="relative z-10">
+                    <div className="flex items-start justify-between mb-4">
+                      <div className={`p-2.5 ${colors.bg} rounded-xl`}>
+                        <section.icon className={`w-5 h-5 ${colors.text}`} />
+                      </div>
+                      <span className={`text-[9px] font-semibold px-2 py-0.5 rounded-full ${colors.bg} ${colors.text}`}>
+                        {section.badge}
+                      </span>
+                    </div>
+                    <h3 className="text-base font-bold text-white mb-1.5 group-hover:text-white/95 transition-colors">
+                      {section.title}
+                    </h3>
+                    <p className="text-xs text-white/35 mb-4 leading-relaxed line-clamp-3">
+                      {section.subtitle}
+                    </p>
+                    <div className="flex items-center justify-between pt-3 border-t border-white/[0.04]">
+                      <span className="text-[10px] text-white/25">{section.stats}</span>
+                      <ArrowRight className="w-3.5 h-3.5 text-white/20 group-hover:text-white/50 transition-colors" />
+                    </div>
+                  </div>
+                </GlowCard>
+              </motion.div>
+            )
+          })}
+        </div>
+
+        {/* Design Studies (image cards) */}
+        <motion.div
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.3 }}
+          className="mb-4"
+        >
+          <div className="flex items-center gap-3 mb-6">
             <div className="p-2 bg-emerald-500/10 rounded-xl">
               <Leaf className="w-5 h-5 text-emerald-400" />
             </div>
-            <h2 className="text-2xl md:text-3xl font-bold text-white">Design Studies</h2>
+            <h3 className="text-xl font-bold text-white">Design Studies</h3>
           </div>
-          <p className="text-white/50 max-w-2xl">
-            Deep explorations into design directions for FrankX.AI — from concept to implementation.
-          </p>
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-6">
@@ -430,11 +528,10 @@ function DesignStudies() {
                 key={study.href}
                 initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.15 + index * 0.1 }}
+                transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.35 + index * 0.1 }}
               >
                 <GlowCard href={study.href} color={study.color} className="!p-0 overflow-hidden">
                   <div className="relative z-10">
-                    {/* Image */}
                     <div className="relative h-48 md:h-56 overflow-hidden">
                       <Image
                         src={study.image}
@@ -444,7 +541,6 @@ function DesignStudies() {
                         sizes="(max-width: 768px) 100vw, 50vw"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/40 to-transparent" />
-                      {/* Stats overlay */}
                       <div className="absolute bottom-4 left-4 flex gap-3">
                         {study.stats.map(stat => (
                           <div key={stat.label} className="px-3 py-1.5 rounded-lg bg-black/60 backdrop-blur-sm border border-white/10">
@@ -454,32 +550,20 @@ function DesignStudies() {
                         ))}
                       </div>
                     </div>
-
-                    {/* Content */}
                     <div className="p-6">
                       <h3 className="text-lg font-bold text-white mb-2 group-hover:text-white/95 transition-colors">
                         {study.title}
                       </h3>
-                      <p className="text-sm text-white/40 mb-4 leading-relaxed">
-                        {study.subtitle}
-                      </p>
-
-                      {/* Tags */}
+                      <p className="text-sm text-white/40 mb-4 leading-relaxed">{study.subtitle}</p>
                       <div className="flex flex-wrap gap-2 mb-4">
                         {study.tags.map(tag => (
-                          <span
-                            key={tag}
-                            className={`text-[10px] font-medium px-2.5 py-1 rounded-full ${colors.bg} ${colors.text}`}
-                          >
+                          <span key={tag} className={`text-[10px] font-medium px-2.5 py-1 rounded-full ${colors.bg} ${colors.text}`}>
                             {tag}
                           </span>
                         ))}
                       </div>
-
-                      {/* CTA */}
                       <div className="flex items-center gap-2 text-sm font-medium text-white/60 group-hover:text-white/90 transition-colors">
-                        Explore
-                        <ArrowRight className="w-4 h-4" />
+                        Explore <ArrowRight className="w-4 h-4" />
                       </div>
                     </div>
                   </div>
@@ -821,7 +905,7 @@ export default function DesignLabPage() {
 
       <div className="relative z-10">
         <HeroSection />
-        <DesignStudies />
+        <DesignHub />
         <HowItWorks />
         <ExperimentsGrid />
         <CTASection />
