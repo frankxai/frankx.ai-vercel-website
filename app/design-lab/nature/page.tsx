@@ -621,16 +621,16 @@ export default function NatureDesignLabPage() {
           </p>
           <div className="flex flex-wrap items-center justify-center gap-4">
             <Link
-              href="/design-lab"
+              href="/design-lab/nature/variants"
               className="inline-flex items-center gap-2 rounded-lg bg-gradient-to-r from-emerald-500 to-cyan-500 px-6 py-3 font-semibold text-black transition-opacity hover:opacity-90"
             >
-              <ArrowLeft className="h-4 w-4" /> Back to Design Lab
+              View Hub Variants <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
-              href="/blog"
+              href="/design-lab"
               className="inline-flex items-center gap-2 rounded-lg border border-white/10 bg-white/[0.03] px-6 py-3 font-medium text-white/80 transition-colors hover:bg-white/[0.06]"
             >
-              Read the Blog <ArrowRight className="h-4 w-4" />
+              <ArrowLeft className="h-4 w-4" /> Back to Design Lab
             </Link>
           </div>
         </div>
