@@ -25,8 +25,8 @@ export const DELIVERY_CONFIG: Record<string, DeliveryConfig> = {
   'vibe-os': {
     productId: 'vibe-os',
     deliveryType: 'pdf',
-    files: ['vibe-os-complete-guide.pdf'],
-    accessCategories: ['music-creation'],
+    files: ['Vibe-OS-Guide.pdf'],
+    accessCategories: ['music-creation', 'state-management', 'creative'],
     emailTemplateId: 'free-product',
   },
   'creation-chronicles': {
@@ -38,8 +38,8 @@ export const DELIVERY_CONFIG: Record<string, DeliveryConfig> = {
   'generative-creator-os': {
     productId: 'generative-creator-os',
     deliveryType: 'access-code',
-    files: ['generative-creator-os-manual.pdf'],
-    accessCategories: ['image-generation', 'creative', 'writing'],
+    files: ['GenCreator-OS-Guide.pdf'],
+    accessCategories: ['image-generation', 'creative', 'writing', 'multi-modal'],
     emailTemplateId: 'premium-product',
   },
   'agentic-creator-os': {
