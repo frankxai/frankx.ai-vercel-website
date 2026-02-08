@@ -34,7 +34,6 @@
     "predeploy": "npm run sync:check"
   },
   "dependencies": {
-    "@google/genai": "^1.39.0",
     "@headlessui/react": "^2.2.9",
     "@heroicons/react": "^2.2.0",
     "@mdx-js/loader": "^3.1.0",
