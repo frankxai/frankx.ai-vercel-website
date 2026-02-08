@@ -215,7 +215,7 @@
       "color": "emerald",
       "status": "completed",
       "quality": "ultra-premium",
-      "deployed": false
+      "deployed": true
     },
     {
       "id": 16,
@@ -229,7 +229,7 @@
       "color": "blue",
       "status": "completed",
       "quality": "ultra-premium",
-      "deployed": false
+      "deployed": true
     }
   ]
 }
