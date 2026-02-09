@@ -227,6 +227,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: '/soulbook/golden-path', priority: 0.7, changeFrequency: 'monthly' as const },
     { url: '/soulbook/life-symphony', priority: 0.7, changeFrequency: 'monthly' as const },
     { url: '/soulbook/vault', priority: 0.7, changeFrequency: 'monthly' as const },
+    // Design Lab
+    { url: '/design-lab', priority: 0.6, changeFrequency: 'weekly' as const },
+    { url: '/design-lab/nature', priority: 0.6, changeFrequency: 'monthly' as const },
+    { url: '/design-lab/nature/variants', priority: 0.5, changeFrequency: 'monthly' as const },
+    { url: '/design-lab/v0', priority: 0.6, changeFrequency: 'monthly' as const },
+    { url: '/design-lab/acos', priority: 0.5, changeFrequency: 'monthly' as const },
+    // ACOS
+    { url: '/acos', priority: 0.7, changeFrequency: 'weekly' as const },
+    // Plan
+    { url: '/plan', priority: 0.6, changeFrequency: 'weekly' as const },
+    // Inspiration
+    { url: '/inspiration', priority: 0.6, changeFrequency: 'monthly' as const },
   ]
 
   // Legacy pages (lower priority, may redirect)

@@ -1,0 +1,204 @@
+{
+  "categories": [
+    {
+      "id": "ai-builders",
+      "label": "AI Builders",
+      "description": "Engineers and architects pushing the frontier of AI systems"
+    },
+    {
+      "id": "creator-economy",
+      "label": "Creator Economy",
+      "description": "Creators who turned knowledge into scalable businesses"
+    },
+    {
+      "id": "music-production",
+      "label": "Music & Audio",
+      "description": "Producers and artists shaping the future of AI music"
+    },
+    {
+      "id": "open-source",
+      "label": "Open Source",
+      "description": "Builders who ship in public and move the ecosystem forward"
+    },
+    {
+      "id": "enterprise-ai",
+      "label": "Enterprise AI",
+      "description": "Leaders scaling AI in production environments"
+    },
+    {
+      "id": "design-craft",
+      "label": "Design & Craft",
+      "description": "Designers and craftspeople setting the bar for quality"
+    }
+  ],
+  "people": [
+    {
+      "name": "Andrej Karpathy",
+      "category": "ai-builders",
+      "role": "AI Educator & Researcher",
+      "why": "Makes deep AI concepts accessible. His Zero to Hero series set the standard for AI education.",
+      "links": { "x": "https://x.com/karpathy", "youtube": "https://youtube.com/@AndrejKarpathy" },
+      "featured": true
+    },
+    {
+      "name": "Simon Willison",
+      "category": "ai-builders",
+      "role": "LLM Toolmaker & Blogger",
+      "why": "Ships tools (Datasette, llm CLI) and writes the most thorough LLM coverage on the internet. Build-in-public gold standard.",
+      "links": { "website": "https://simonwillison.net", "x": "https://x.com/simonw" },
+      "featured": true
+    },
+    {
+      "name": "Swyx (Shawn Wang)",
+      "category": "ai-builders",
+      "role": "AI Engineer & Community Builder",
+      "why": "Coined 'AI Engineer', runs Latent Space. Bridges research and production like nobody else.",
+      "links": { "website": "https://www.latent.space", "x": "https://x.com/swyx" },
+      "featured": true
+    },
+    {
+      "name": "Harrison Chase",
+      "category": "ai-builders",
+      "role": "CEO, LangChain",
+      "why": "Built the most adopted LLM framework. Moved fast, learned in public, shaped how people build with LLMs.",
+      "links": { "x": "https://x.com/hwchase17", "website": "https://langchain.com" },
+      "featured": false
+    },
+    {
+      "name": "Jeremy Howard",
+      "category": "ai-builders",
+      "role": "Co-founder, fast.ai",
+      "why": "Democratized deep learning. Practical AI education that actually works.",
+      "links": { "website": "https://www.fast.ai", "x": "https://x.com/jeremyphoward" },
+      "featured": false
+    },
+    {
+      "name": "Guillermo Rauch",
+      "category": "open-source",
+      "role": "CEO, Vercel",
+      "why": "Built the deployment platform that powers modern web. v0 is the best example of AI meeting developer tools.",
+      "links": { "x": "https://x.com/raaborern", "website": "https://vercel.com" },
+      "featured": true
+    },
+    {
+      "name": "Theo Browne",
+      "category": "open-source",
+      "role": "Creator, t3.gg",
+      "why": "Honest tech takes, ships fast, built a massive YouTube presence through pure technical depth.",
+      "links": { "x": "https://x.com/t3dotgg", "youtube": "https://youtube.com/@t3dotgg" },
+      "featured": false
+    },
+    {
+      "name": "Kent C. Dodds",
+      "category": "open-source",
+      "role": "Educator & OSS Author",
+      "why": "Testing Library, Epic Web. Turned deep React expertise into scalable education.",
+      "links": { "website": "https://kentcdodds.com", "x": "https://x.com/kentcdodds" },
+      "featured": false
+    },
+    {
+      "name": "Ali Abdaal",
+      "category": "creator-economy",
+      "role": "Creator & Productivity Expert",
+      "why": "Scaled from doctor to multi-million dollar creator business. Evidence-based productivity.",
+      "links": { "youtube": "https://youtube.com/@aliabdaal", "website": "https://aliabdaal.com" },
+      "featured": true
+    },
+    {
+      "name": "Tina Huang",
+      "category": "creator-economy",
+      "role": "Data Scientist & Creator",
+      "why": "Tech career content that resonates. Built audience through authentic technical storytelling.",
+      "links": { "youtube": "https://youtube.com/@TinaHuang1", "x": "https://x.com/TinaHuang1" },
+      "featured": false
+    },
+    {
+      "name": "Dan Koe",
+      "category": "creator-economy",
+      "role": "One-Person Business Architect",
+      "why": "Systemized the one-person business model. Clean design, deep thinking, no fluff.",
+      "links": { "website": "https://thedankoe.com", "x": "https://x.com/thedankoe" },
+      "featured": true
+    },
+    {
+      "name": "Sahil Lavingia",
+      "category": "creator-economy",
+      "role": "CEO, Gumroad",
+      "why": "Built the creator economy infrastructure. Transparent about building and failure.",
+      "links": { "x": "https://x.com/shl", "website": "https://sahillavingia.com" },
+      "featured": false
+    },
+    {
+      "name": "Udio Team",
+      "category": "music-production",
+      "role": "AI Music Platform",
+      "why": "Pushing the quality ceiling for AI-generated music. Competition drives the whole space forward.",
+      "links": { "website": "https://udio.com" },
+      "featured": false
+    },
+    {
+      "name": "Suno Team",
+      "category": "music-production",
+      "role": "AI Music Platform",
+      "why": "Made AI music creation accessible to everyone. v4 changed what's possible.",
+      "links": { "website": "https://suno.com" },
+      "featured": true
+    },
+    {
+      "name": "Rick Beato",
+      "category": "music-production",
+      "role": "Music Producer & Educator",
+      "why": "Deep music theory made accessible. The standard for quality music education on YouTube.",
+      "links": { "youtube": "https://youtube.com/@RickBeato" },
+      "featured": false
+    },
+    {
+      "name": "Andrew Ng",
+      "category": "enterprise-ai",
+      "role": "AI Pioneer & Educator",
+      "why": "Coursera ML course taught millions. Now building the AI enterprise playbook at Landing AI.",
+      "links": { "website": "https://www.andrewng.org", "x": "https://x.com/AndrewYNg" },
+      "featured": true
+    },
+    {
+      "name": "Chip Huyen",
+      "category": "enterprise-ai",
+      "role": "MLOps Author & Engineer",
+      "why": "Wrote the book on ML systems. Bridges research and production with clarity.",
+      "links": { "website": "https://huyenchip.com", "x": "https://x.com/chipro" },
+      "featured": false
+    },
+    {
+      "name": "Hamel Husain",
+      "category": "enterprise-ai",
+      "role": "ML Engineer & Advisor",
+      "why": "Practical LLM advice from real production experience. No hype, just what works.",
+      "links": { "website": "https://hamel.dev", "x": "https://x.com/HassenHamel" },
+      "featured": false
+    },
+    {
+      "name": "Rauno Freiberg",
+      "category": "design-craft",
+      "role": "Design Engineer, Vercel",
+      "why": "The intersection of design and engineering at the highest level. Every detail matters.",
+      "links": { "website": "https://rauno.me", "x": "https://x.com/raborern" },
+      "featured": true
+    },
+    {
+      "name": "Paco Coursey",
+      "category": "design-craft",
+      "role": "Design Engineer",
+      "why": "Minimal, precise web craft. cmdk and other tools that just feel right.",
+      "links": { "website": "https://paco.me", "x": "https://x.com/paaborern" },
+      "featured": false
+    },
+    {
+      "name": "Lee Robinson",
+      "category": "open-source",
+      "role": "VP DX, Vercel",
+      "why": "Best developer education in the Next.js ecosystem. Clear, practical, always shipping.",
+      "links": { "website": "https://leerob.io", "x": "https://x.com/leaborern" },
+      "featured": false
+    }
+  ]
+}
