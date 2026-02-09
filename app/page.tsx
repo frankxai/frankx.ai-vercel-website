@@ -7,7 +7,7 @@ import { getAllBlogPosts } from '@/lib/blog'
 export const metadata = createMetadata({
   title: 'FrankX.AI | AI Architect & Music Creator — Build What Matters',
   description:
-    'AI Architect at Oracle. Creator of 12K+ songs with Suno. Building intelligent systems, music, and creator tools in the Golden Age of Intelligence. Free tutorials, prompts, and open-source tools.',
+    'AI Architect at Oracle. Creator of 12K+ songs with Suno. Building intelligent systems, music, and creator tools. Free tutorials, prompts, and tools.',
   keywords: [
     'ai architect',
     'ai music creation',
