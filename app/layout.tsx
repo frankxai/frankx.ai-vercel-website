@@ -1,7 +1,9 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter, Playfair_Display, JetBrains_Mono } from 'next/font/google'
+import { Inter, Poppins, Playfair_Display, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 import Script from 'next/script'
+import { Analytics } from '@vercel/analytics/react'
+import { SpeedInsights } from '@vercel/speed-insights/next'
 
 import { cn } from '@/lib/utils'
 import { robotsConfig, siteConfig } from '@/lib/seo'
@@ -18,7 +20,15 @@ const inter = Inter({
   weight: ['300', '400', '500', '600', '700'],
 })
 
-// Playfair Display for editorial touches (classic, elegant Times-like italics)
+// Poppins for display headings (≥18px only per brand guidelines)
+const poppins = Poppins({
+  subsets: ['latin'],
+  variable: '--font-poppins',
+  display: 'swap',
+  weight: ['600', '700', '800'],
+})
+
+// Playfair Display for editorial touches (italic quotes only per brand)
 const playfair = Playfair_Display({
   subsets: ['latin'],
   variable: '--font-serif',
@@ -114,6 +124,7 @@ export default function RootLayout({
       <body
         className={cn(
           inter.variable,
+          poppins.variable,
           playfair.variable,
           jetbrains.variable,
           'font-sans dark bg-[#030712] text-white antialiased min-h-screen overflow-x-hidden'
@@ -136,10 +147,12 @@ export default function RootLayout({
             Skip to content
           </a>
           <NavigationMega />
-          <main id="main" className="min-h-screen overflow-x-hidden">
+          <div id="main" className="min-h-screen overflow-x-hidden">
             {children}
-          </main>
+          </div>
           <Footer />
+          <Analytics />
+          <SpeedInsights />
         </SessionProvider>
       </body>
     </html >

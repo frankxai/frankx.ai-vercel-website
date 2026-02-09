@@ -1,261 +1,155 @@
-'use client';
+import Link from 'next/link'
+import changelogData from '@/data/changelog-entries.json'
 
-import { useState, useEffect } from 'react';
-import Link from 'next/link';
-
-// Types
-interface CommitData {
-  hash: string;
-  message: string;
-  date: string;
-  repo: string;
-  category: string;
+const typeStyles: Record<string, { label: string; color: string; bg: string }> = {
+  shipped: { label: 'Shipped', color: 'text-emerald-400', bg: 'bg-emerald-400/10 border-emerald-400/20' },
+  improved: { label: 'Improved', color: 'text-cyan-400', bg: 'bg-cyan-400/10 border-cyan-400/20' },
+  fixed: { label: 'Fixed', color: 'text-amber-400', bg: 'bg-amber-400/10 border-amber-400/20' },
 }
 
-interface DayActivity {
-  date: string;
-  commits: number;
-  repos: string[];
+const impactDots: Record<string, string> = {
+  major: 'w-2.5 h-2.5 bg-emerald-400',
+  medium: 'w-2 h-2 bg-cyan-400',
+  small: 'w-1.5 h-1.5 bg-zinc-500',
 }
-
-// Generate mock data for the contribution graph (will be replaced by API)
-function generateContributionData(): DayActivity[] {
-  const days: DayActivity[] = [];
-  const now = new Date();
-
-  for (let i = 364; i >= 0; i--) {
-    const date = new Date(now);
-    date.setDate(date.getDate() - i);
-
-    // Simulate varying commit activity
-    const dayOfWeek = date.getDay();
-    const isWeekend = dayOfWeek === 0 || dayOfWeek === 6;
-    const baseCommits = isWeekend ? 2 : 5;
-    const variance = Math.random() * 10;
-    const commits = Math.max(0, Math.floor(baseCommits + variance - 3));
-
-    const possibleRepos = ['FrankX', 'Arcanea', 'oracle-work', 'vibe-os', 'claude-mem'];
-    const activeRepos = possibleRepos.filter(() => Math.random() > 0.6);
-
-    days.push({
-      date: date.toISOString().split('T')[0],
-      commits,
-      repos: activeRepos,
-    });
-  }
-
-  return days;
-}
-
-// Contribution intensity color
-function getIntensityColor(commits: number): string {
-  if (commits === 0) return 'bg-zinc-800';
-  if (commits <= 2) return 'bg-emerald-900';
-  if (commits <= 5) return 'bg-emerald-700';
-  if (commits <= 10) return 'bg-emerald-500';
-  return 'bg-emerald-400';
-}
-
-// Category icon
-function getCategoryIcon(category: string): string {
-  const icons: Record<string, string> = {
-    feature: '🚀',
-    fix: '🔧',
-    docs: '📝',
-    refactor: '♻️',
-    test: '🧪',
-    chore: '🔨',
-    style: '💅',
-    perf: '⚡',
-  };
-  return icons[category] || '📦';
-}
-
-// Recent commits (mock data)
-const recentCommits: CommitData[] = [
-  { hash: '8313670', message: 'feat: Add 8 premium hero images (Batch 2)', date: '2026-01-27', repo: 'Production', category: 'feature' },
-  { hash: 'ea2dc81', message: 'feat: Complete ACOS content series', date: '2026-01-27', repo: 'Production', category: 'feature' },
-  { hash: 'd749f35', message: 'feat: Add ACOS philosophy articles', date: '2026-01-27', repo: 'Production', category: 'feature' },
-  { hash: 'a50e2a0', message: 'fix: ESLint + security headers', date: '2026-01-27', repo: 'Production', category: 'fix' },
-  { hash: 'b1738ea', message: 'feat: Observability stack article', date: '2026-01-27', repo: 'Production', category: 'feature' },
-  { hash: '78ff1f4', message: 'fix: Sync WCAG improvements', date: '2026-01-27', repo: 'FrankX', category: 'fix' },
-  { hash: '97dd4d5', message: 'feat: Brand DNA integration', date: '2026-01-27', repo: 'FrankX', category: 'feature' },
-  { hash: '2ba2755', message: 'feat: ACOS deep-dive articles (batch 2)', date: '2026-01-26', repo: 'Production', category: 'feature' },
-];
 
 export default function ChangelogPage() {
-  const [contributionData, setContributionData] = useState<DayActivity[]>([]);
-  const [selectedDay, setSelectedDay] = useState<DayActivity | null>(null);
-
-  useEffect(() => {
-    setContributionData(generateContributionData());
-  }, []);
-
-  // Group by weeks for the grid
-  const weeks: DayActivity[][] = [];
-  for (let i = 0; i < contributionData.length; i += 7) {
-    weeks.push(contributionData.slice(i, i + 7));
-  }
-
-  // Stats
-  const totalCommits = contributionData.reduce((sum, d) => sum + d.commits, 0);
-  const activeDays = contributionData.filter(d => d.commits > 0).length;
-  const currentStreak = (() => {
-    let streak = 0;
-    for (let i = contributionData.length - 1; i >= 0; i--) {
-      if (contributionData[i].commits > 0) streak++;
-      else break;
-    }
-    return streak;
-  })();
-
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-[#030712]">
       {/* Header */}
-      <div className="border-b border-zinc-800">
-        <div className="max-w-6xl mx-auto px-4 py-8">
-          <Link href="/" className="text-zinc-500 hover:text-white text-sm mb-4 inline-block">
-            ← Back to Home
+      <section className="border-b border-white/5">
+        <div className="max-w-3xl mx-auto px-6 pt-24 pb-12">
+          <Link
+            href="/"
+            className="text-white/40 hover:text-white/70 text-sm transition-colors mb-6 inline-block"
+          >
+            Home
           </Link>
-          <h1 className="text-4xl font-bold mb-2">Development Changelog</h1>
-          <p className="text-zinc-400">
-            Real-time progress tracking across all FrankX projects
+          <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-4">
+            Changelog
+          </h1>
+          <p className="text-white/50 text-lg max-w-xl">
+            What shipped this week. Real progress, no fluff.
           </p>
         </div>
-      </div>
+      </section>
 
-      {/* Stats Row */}
-      <div className="border-b border-zinc-800">
-        <div className="max-w-6xl mx-auto px-4 py-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div
-              className="bg-zinc-900 rounded-lg p-4 animate-fade-in-up opacity-0 motion-reduce:animate-none"
-            >
-              <div className="text-3xl font-bold text-emerald-400">{totalCommits.toLocaleString()}</div>
-              <div className="text-zinc-500 text-sm">Total Commits (1yr)</div>
+      {/* Weeks */}
+      <div className="max-w-3xl mx-auto px-6 py-16">
+        {changelogData.weeks.map((week) => (
+          <div key={week.id} className="mb-20">
+            {/* Week Header */}
+            <div className="flex items-baseline gap-4 mb-3">
+              <h2 className="text-2xl font-bold">{week.label}</h2>
+              <span className="text-white/30 text-sm font-mono">{week.dateRange}</span>
             </div>
-            <div
-              className="bg-zinc-900 rounded-lg p-4 animate-fade-in-up opacity-0 motion-reduce:animate-none"
-              style={{ animationDelay: '0.1s' }}
-            >
-              <div className="text-3xl font-bold text-blue-400">{activeDays}</div>
-              <div className="text-zinc-500 text-sm">Active Days</div>
-            </div>
-            <div
-              className="bg-zinc-900 rounded-lg p-4 animate-fade-in-up opacity-0 motion-reduce:animate-none"
-              style={{ animationDelay: '0.2s' }}
-            >
-              <div className="text-3xl font-bold text-purple-400">{currentStreak}</div>
-              <div className="text-zinc-500 text-sm">Current Streak</div>
-            </div>
-            <div
-              className="bg-zinc-900 rounded-lg p-4 animate-fade-in-up opacity-0 motion-reduce:animate-none"
-              style={{ animationDelay: '0.3s' }}
-            >
-              <div className="text-3xl font-bold text-amber-400">6</div>
-              <div className="text-zinc-500 text-sm">Active Repos</div>
-            </div>
-          </div>
-        </div>
-      </div>
+            <p className="text-white/50 mb-6">{week.summary}</p>
 
-      {/* Contribution Graph */}
-      <div className="border-b border-zinc-800">
-        <div className="max-w-6xl mx-auto px-4 py-8">
-          <h2 className="text-xl font-semibold mb-4">Contribution Activity</h2>
-
-          <div className="overflow-x-auto">
-            <div className="flex gap-1 min-w-max">
-              {weeks.map((week, weekIndex) => (
-                <div key={weekIndex} className="flex flex-col gap-1">
-                  {week.map((day, dayIndex) => (
-                    <div
-                      key={day.date}
-                      className={`w-3 h-3 rounded-sm ${getIntensityColor(day.commits)} cursor-pointer hover:ring-2 hover:ring-white/30 animate-scale-in opacity-0 motion-reduce:animate-none`}
-                      title={`${day.date}: ${day.commits} commits`}
-                      onClick={() => setSelectedDay(day)}
-                      style={{ animationDelay: `${(weekIndex * 0.01 + dayIndex * 0.01).toFixed(2)}s` }}
-                    />
-                  ))}
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Legend */}
-          <div className="flex items-center gap-2 mt-4 text-sm text-zinc-500">
-            <span>Less</span>
-            <div className="w-3 h-3 rounded-sm bg-zinc-800" />
-            <div className="w-3 h-3 rounded-sm bg-emerald-900" />
-            <div className="w-3 h-3 rounded-sm bg-emerald-700" />
-            <div className="w-3 h-3 rounded-sm bg-emerald-500" />
-            <div className="w-3 h-3 rounded-sm bg-emerald-400" />
-            <span>More</span>
-          </div>
-
-          {/* Selected day details */}
-          {selectedDay && (
-            <div
-              className="mt-4 p-4 bg-zinc-900 rounded-lg animate-fade-in-up motion-reduce:animate-none"
-            >
-              <div className="font-semibold">{selectedDay.date}</div>
-              <div className="text-zinc-400">
-                {selectedDay.commits} commits
-                {selectedDay.repos.length > 0 && (
-                  <> in {selectedDay.repos.join(', ')}</>
-                )}
+            {/* Stats Bar */}
+            <div className="flex flex-wrap gap-6 mb-10 text-sm">
+              <div>
+                <span className="text-white/30">Commits</span>{' '}
+                <span className="text-emerald-400 font-mono font-semibold">{week.stats.commits}</span>
+              </div>
+              <div>
+                <span className="text-white/30">Lines</span>{' '}
+                <span className="text-cyan-400 font-mono font-semibold">+{week.stats.linesAdded.toLocaleString()}</span>
+              </div>
+              <div>
+                <span className="text-white/30">Files</span>{' '}
+                <span className="text-white/70 font-mono">{week.stats.filesChanged}</span>
+              </div>
+              <div>
+                <span className="text-white/30">New pages</span>{' '}
+                <span className="text-white/70 font-mono">{week.stats.newPages}</span>
+              </div>
+              <div>
+                <span className="text-white/30">Images</span>{' '}
+                <span className="text-white/70 font-mono">{week.stats.imagesGenerated}</span>
               </div>
             </div>
-          )}
-        </div>
-      </div>
 
-      {/* Recent Commits */}
-      <div className="max-w-6xl mx-auto px-4 py-8">
-        <h2 className="text-xl font-semibold mb-4">Recent Commits</h2>
+            {/* Timeline */}
+            <div className="relative">
+              {/* Vertical line */}
+              <div className="absolute left-[7px] top-2 bottom-2 w-px bg-white/5" />
 
-        <div className="space-y-2">
-          {recentCommits.map((commit, index) => (
-            <div
-              key={commit.hash}
-              className="flex items-center gap-4 p-3 bg-zinc-900 rounded-lg hover:bg-zinc-800 transition-colors animate-fade-in-up opacity-0 motion-reduce:animate-none"
-              style={{ animationDelay: `${(index * 0.05).toFixed(2)}s` }}
-            >
-              <span className="text-2xl">{getCategoryIcon(commit.category)}</span>
-              <div className="flex-1 min-w-0">
-                <div className="font-mono text-sm text-zinc-500">{commit.hash}</div>
-                <div className="truncate">{commit.message}</div>
-              </div>
-              <div className="text-right shrink-0">
-                <div className="text-sm text-emerald-400">{commit.repo}</div>
-                <div className="text-xs text-zinc-500">{commit.date}</div>
+              <div className="space-y-8">
+                {week.entries.map((entry) => {
+                  const style = typeStyles[entry.type] || typeStyles.shipped
+                  const dot = impactDots[entry.impact] || impactDots.small
+                  return (
+                    <div key={entry.id} className="relative pl-8">
+                      {/* Timeline dot */}
+                      <div className={`absolute left-0 top-2 rounded-full ${dot}`} />
+
+                      {/* Content */}
+                      <div className="group">
+                        <div className="flex items-center gap-3 mb-2">
+                          <span className={`text-xs font-medium px-2 py-0.5 rounded-full border ${style.bg} ${style.color}`}>
+                            {style.label}
+                          </span>
+                          <span className="text-white/20 text-xs font-mono">{entry.date}</span>
+                          {(entry as any).commit && (
+                            <span className="text-white/15 text-xs font-mono">{(entry as any).commit}</span>
+                          )}
+                        </div>
+                        <h3 className="text-lg font-semibold mb-1.5 group-hover:text-emerald-400 transition-colors">
+                          {entry.title}
+                        </h3>
+                        <p className="text-white/50 text-sm leading-relaxed">
+                          {entry.description}
+                        </p>
+                        {entry.tags && (
+                          <div className="flex flex-wrap gap-1.5 mt-3">
+                            {entry.tags.map((tag) => (
+                              <span
+                                key={tag}
+                                className="text-xs text-white/25 bg-white/3 px-2 py-0.5 rounded"
+                              >
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  )
+                })}
               </div>
             </div>
-          ))}
-        </div>
+          </div>
+        ))}
 
-        {/* View more link */}
-        <div className="mt-6 text-center">
-          <a
-            href="https://github.com/frankxai/frankx-logs"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-4 py-2 bg-zinc-800 hover:bg-zinc-700 rounded-lg transition-colors"
-          >
-            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-            </svg>
-            View Full Logs on GitHub
-          </a>
-        </div>
-      </div>
-
-      {/* Footer */}
-      <div className="border-t border-zinc-800 mt-12">
-        <div className="max-w-6xl mx-auto px-4 py-6 text-center text-zinc-500 text-sm">
-          Powered by AI Session Logging System • Updated in real-time
+        {/* Subscribe / Feed link */}
+        <div className="border-t border-white/5 pt-12 text-center">
+          <p className="text-white/30 text-sm mb-4">
+            Follow the build in real-time
+          </p>
+          <div className="flex justify-center gap-4">
+            <Link
+              href="/feed"
+              className="text-sm text-white/50 hover:text-white px-4 py-2 rounded-lg border border-white/10 hover:border-white/20 transition-all"
+            >
+              Live Feed
+            </Link>
+            <Link
+              href="/rss.xml"
+              className="text-sm text-white/50 hover:text-white px-4 py-2 rounded-lg border border-white/10 hover:border-white/20 transition-all"
+            >
+              RSS
+            </Link>
+            <a
+              href="https://github.com/frankxai"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-white/50 hover:text-white px-4 py-2 rounded-lg border border-white/10 hover:border-white/20 transition-all"
+            >
+              GitHub
+            </a>
+          </div>
         </div>
       </div>
     </div>
-  );
+  )
 }
