@@ -27,6 +27,18 @@ Modern creator platform built on Next.js 16 with AI-powered content generation, 
 | Analytics | Vercel Analytics + Plausible |
 | AI | Claude Code + ACOS skill system |
 
+## Project Status (Last Updated: 2026-01-13)
+
+**Phase**: Phase 1/2 transition (Foundation → Product Suite).  
+**Focus**: Stabilize core site quality, complete Vibe OS, launch initial digital products, and activate the 6‑agent team.
+
+### Known Health Signals
+- **TypeScript**: ~256 errors reported in the latest status report, including a critical blog form action mismatch and `GlassmorphicCard` prop issues.  
+- **Linting**: Currently disabled pending ESLint flat config migration.  
+- **Submodule Noise**: `arcanea-opencode` errors may be inflating TypeScript counts.
+
+> For full details, see `repo_status_report.md`.
+
 ## AI-Powered Development
 
 This site is built and maintained with **Agentic Creator OS (ACOS)** - a multi-agent system for content creation and site development.
@@ -149,6 +161,16 @@ npm run build
 npm run start
 ```
 
+### Quality & QA (Recommended)
+
+```bash
+# TypeScript only (reduce noise if submodules are excluded)
+npm run type-check
+
+# Linting (after ESLint flat config migration)
+npm run lint
+```
+
 ## Deployment
 
 Two-repo architecture for security:
@@ -192,6 +214,17 @@ git add -A && git commit -m "feat: update" && git push
 | LCP | <2.5s |
 | FID | <100ms |
 | CLS | <0.1 |
+
+## Branching & Releases
+
+This repo’s working branch is tracked locally. If you need a quick status snapshot:
+
+```bash
+git status -sb
+git log -5 --oneline
+```
+
+For broader historical context (branch comparison/testing), see `BRANCH-STATUS-AND-TESTING.md`.
 
 ## Brand
 
