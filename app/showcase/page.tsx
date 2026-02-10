@@ -3,7 +3,7 @@ import { BentoGrid, BentoCard } from '@/components/ui/magic-ui/bento-grid'
 import Marquee from '@/components/ui/magic-ui/marquee'
 import ShimmerButton from '@/components/ui/magic-ui/shimmer-button'
 import { SplitTextReveal } from '@/components/ui/SplitTextReveal'
-import { TiltCard } from '@/components/ui/TiltCard'
+import PremiumCard from '@/components/ui/PremiumCard'
 import { Music, Zap, Users, Trophy, Star, Heart } from 'lucide-react'
 
 export const metadata: Metadata = {
@@ -170,7 +170,7 @@ export default function ShowcasePage() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[Star, Heart, Zap].map((Icon, index) => (
-              <TiltCard key={index} className="h-full">
+              <PremiumCard key={index} tilt={true} className="h-full">
                 <div className="relative h-64 rounded-2xl bg-gradient-to-br from-white/10 to-white/5 border border-white/10 p-8 backdrop-blur-xl">
                   <Icon className="w-16 h-16 mb-4 text-purple-400" />
                   <h3 className="text-2xl font-bold text-white mb-2">
@@ -180,7 +180,7 @@ export default function ShowcasePage() {
                     Experience smooth 3D transforms that follow your cursor with spring physics
                   </p>
                 </div>
-              </TiltCard>
+              </PremiumCard>
             ))}
           </div>
         </div>

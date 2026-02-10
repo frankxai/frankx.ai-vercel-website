@@ -4,20 +4,20 @@
 ## 🎁 FREE: Lead Magnets (Bait)
 *Goal: Attract ideal customers and demonstrate value*
 
-### 1. **Soul Frequency Finder** (Free Assessment)
+### 1. **Creator System Assessment** (Free Assessment)
 - 5-minute quiz to discover your creator archetype
 - Personalized AI readiness score
-- Custom music frequency recommendation
+- Custom creator stack recommendation
 - Delivered via email with follow-up sequence
 
 ### 2. **AI Music Creation Starter Pack**
 - 10 Suno prompt templates for beginners
 - Quick-start video guide (15 min)
-- Vibrational frequency cheat sheet
+- Production frequency cheat sheet
 - Access to free community group
 
 ### 3. **The Generative Creator Manifesto** (eBook)
-- 30-page guide to soul-aligned AI
+- 30-page guide to building AI systems
 - 7-day email course included
 - Case studies and success stories
 - Framework introductions
@@ -26,7 +26,7 @@
 - AI tool of the week
 - Music creation prompt
 - Creator spotlight
-- Mini-lesson on consciousness tech
+- Mini-lesson on creative systems
 
 ## 💧 TRIPWIRE: Low-Ticket Offers ($7-$47)
 *Goal: Convert prospects to buyers, offset ad costs*
@@ -58,7 +58,7 @@
 ## 🚀 CORE OFFER: Mid-Ticket Products ($197-$997)
 *Goal: Main profit center, deliver transformation*
 
-### 1. **Soul-Aligned AI Accelerator** ($497)
+### 1. **GenCreator AI Accelerator** ($497)
 - 8-week online course
 - Live weekly Q&A calls
 - Complete framework system
@@ -68,7 +68,7 @@
 
 ### 2. **Music Producer Transformation** ($397)
 - 6-week Suno mastery program
-- Vibrational alignment training
+- Production workflow training
 - Commercial licensing guide
 - 100+ premium prompts
 - Monthly group coaching
@@ -134,7 +134,7 @@
 - Tool discounts
 - Early access to products
 
-### 2. **Soul Systems Academy** ($197/month)
+### 2. **GenCreator Academy** ($197/month)
 - New course monthly
 - Live workshops
 - Implementation support
@@ -158,30 +158,30 @@
 - Joint ventures
 - Brand collaboration
 
-### 2. **Enterprise Consciousness Tech** ($50,000+)
-- Full company transformation
-- Custom AI consciousness system
-- Team awakening program
+### 2. **Enterprise AI Systems** ($50,000+)
+- Full company AI transformation
+- Custom agentic AI system
+- Team enablement program
 - Ongoing partnership
 - Innovation lab access
 
 ## 📊 Product Development Priority
 
 ### Phase 1 (Months 1-2): Foundation
-1. ✅ Soul Frequency Finder (Free)
+1. ✅ Creator System Assessment (Free)
 2. ✅ Notion Life OS Template ($27)
 3. ✅ 100 Suno Mastery Prompts ($17)
 4. ✅ Newsletter Launch
 
 ### Phase 2 (Months 3-4): Core Products
-1. ⏳ Soul-Aligned AI Accelerator ($497)
+1. ⏳ GenCreator AI Accelerator ($497)
 2. ⏳ Creator Stack Bundle ($297)
 3. ⏳ Creator Collective ($47/mo)
 
 ### Phase 3 (Months 5-6): Scale
 1. ⏳ Music Producer Transformation ($397)
 2. ⏳ 1-on-1 Coaching ($9,997)
-3. ⏳ Soul Systems Academy ($197/mo)
+3. ⏳ GenCreator Academy ($197/mo)
 
 ### Phase 4 (Months 7-12): Premium
 1. ⏳ Mastermind Launch
@@ -232,10 +232,11 @@
 
 ## ✨ The Value Promise
 
-**Every product in the FrankX suite follows the S.O.U.L. principle:**
-- **S**imple enough for beginners
-- **O**utcomes clearly defined
-- **U**nique value proposition
-- **L**ife-changing potential
+**Every product in the FrankX suite follows the B.U.I.L.D. principle:**
+- **B**eginners can start immediately
+- **U**tility is immediately clear
+- **I**terate and compound over time
+- **L**everage systems, not effort
+- **D**esigned to be forked and customized
 
-*"From free to premium, every interaction with FrankX products moves you closer to your generative creator identity."*
+*"From free to premium, every FrankX product moves you from tool user to system architect."*

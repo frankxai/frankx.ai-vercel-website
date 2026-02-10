@@ -3,6 +3,7 @@ import { getAllGuides, getGuide } from '@/lib/guides'
 import { MDXContent } from '@/components/blog/MDXContent'
 import Link from 'next/link'
 import HeroImage from '@/components/ui/HeroImage'
+import Breadcrumbs from '@/components/seo/Breadcrumbs'
 
 // Static generation - content is read at build time
 export const dynamicParams = false
@@ -38,9 +39,12 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
     <div className="min-h-screen bg-[#030712]">
       <main className="pt-28 pb-20 px-6">
         <div className="max-w-4xl mx-auto">
-          <Link href="/guides" className="inline-flex items-center gap-2 text-emerald-400 hover:text-emerald-300 transition-colors text-sm font-medium">
-            ← All Guides
-          </Link>
+          <Breadcrumbs
+            items={[
+              { label: 'Guides', href: '/guides' },
+              { label: guide.title, href: `/guides/${guide.slug}` },
+            ]}
+          />
           <h1 className="text-4xl md:text-5xl font-bold text-white mt-6 mb-4">{guide.title}</h1>
           <div className="text-sm text-slate-400 mb-8 flex items-center gap-3">
             <span>{guide.readingTime}</span>

@@ -6,7 +6,7 @@ import SoulbookHero from '@/components/soulbook/SoulbookHero'
 import LifeBookSelector from '@/components/soulbook/LifeBookSelector'
 import PillarVisualizer from '@/components/soulbook/PillarVisualizer'
 import PremiumButton from '@/components/ui/PremiumButton'
-import GlassmorphicCard from '@/components/ui/GlassmorphicCard'
+import PremiumCard from '@/components/ui/PremiumCard'
 import JsonLd from '@/components/seo/JsonLd'
 import { philosophyStatements, pricingTiers } from '@/lib/soulbook/soulbook-data'
 
@@ -54,16 +54,14 @@ function PhilosophySection() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
             >
-              <GlassmorphicCard
-                variant="premium"
-                gradient="aurora"
-                hover
+              <PremiumCard
+                glass="medium"
                 className="h-full p-6 text-center"
               >
                 <span className="text-4xl mb-4 block">{statement.icon}</span>
                 <h3 className="text-lg font-bold text-white mb-2">{statement.title}</h3>
                 <p className="text-white/60 text-sm">{statement.description}</p>
-              </GlassmorphicCard>
+              </PremiumCard>
             </motion.div>
           ))}
         </div>
@@ -99,11 +97,9 @@ function PricingSection() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
             >
-              <GlassmorphicCard
-                variant={tier.popular ? 'luxury' : 'premium'}
-                gradient={tier.popular ? 'aurora' : 'custom'}
-                border={tier.popular ? 'glow' : 'subtle'}
-                hover
+              <PremiumCard
+                glass={tier.popular ? 'heavy' : 'medium'}
+                gradient={tier.popular ? 'purple' : undefined}
                 className="h-full p-6 flex flex-col"
               >
                 {tier.popular && (
@@ -138,7 +134,7 @@ function PricingSection() {
                 >
                   {tier.cta}
                 </PremiumButton>
-              </GlassmorphicCard>
+              </PremiumCard>
             </motion.div>
           ))}
         </div>
@@ -226,7 +222,7 @@ function FooterSection() {
           </div>
 
           <p className="text-sm text-white/40">
-            © 2025 FrankX.AI. All rights reserved.
+            © 2026 FrankX.AI. All rights reserved.
           </p>
         </div>
       </div>

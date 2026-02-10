@@ -27,6 +27,7 @@ export interface LifeBook {
   forWho: string[]
   testimonials: Testimonial[]
   guarantee: string
+  image?: string
 }
 
 export interface Testimonial {
@@ -50,6 +51,7 @@ export const lifeBooks: LifeBook[] = [
     gradient: 'from-amber-400 via-yellow-500 to-orange-600',
     accentGradient: 'from-yellow-300 via-amber-400 to-orange-500',
     icon: '🎼',
+    image: '/images/soulbook/life-symphony.png',
     duration: '12 weeks',
     sessions: 24,
     price: {
@@ -112,6 +114,7 @@ export const lifeBooks: LifeBook[] = [
     gradient: 'from-purple-400 via-violet-500 to-indigo-600',
     accentGradient: 'from-violet-400 via-purple-500 to-indigo-500',
     icon: '🛤️',
+    image: '/images/soulbook/golden-path.png',
     duration: '4 weeks',
     sessions: 8,
     price: {
@@ -172,6 +175,7 @@ export const lifeBooks: LifeBook[] = [
     gradient: 'from-emerald-400 via-green-500 to-teal-600',
     accentGradient: 'from-green-400 via-emerald-500 to-teal-500',
     icon: '🗽',
+    image: '/images/soulbook/seven-pillars.png',
     duration: '7 weeks (one pillar per week)',
     sessions: 14,
     price: {

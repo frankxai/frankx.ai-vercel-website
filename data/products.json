@@ -195,119 +195,122 @@
   {
     "id": "vibe-os",
     "slug": "vibe-os",
-    "name": "Vibe OS: Suno Music Mastery",
-    "category": "Music Intelligence",
-    "badge": "LAUNCH ARTISTS",
-    "headline": "From Emotional Vision to Finished Track in One Studio Session",
-    "subheadline": "50+ genre-specific Suno prompts + emotion mapping system + release playbooks. Go from blank page to a track you're proud to ship in 90 minutes.",
-    "promise": "Release consistent, high-quality music every week. Studio-tested frameworks that turn feelings into sound.",
-    "summary": "Structured sonic rituals, production polish, and monetization playbooks that make Suno your actual creative studio.",
+    "name": "Vibe OS: Creative State Management",
+    "category": "Creator Tools",
+    "badge": "FREE TOOL",
+    "headline": "Manage Your Creative Energy and Focus Like a Pro",
+    "subheadline": "Track your creative states, optimize your energy cycles, and build sustainable workflows. A practical system for creators who ship consistently.",
+    "promise": "Stop fighting your energy. Start working with your natural creative rhythms.",
+    "summary": "A builder-focused state management system with mood tracking, energy optimization, and workflow templates for consistent creative output.",
     "transformation": [
-      "Ship finished tracks in 60-90 minutes instead of weeks (tested across 500+ sessions)",
-      "Translate specific emotions into sonic cues using the Vibe OS emotion lattice system",
-      "Release 1 track per week consistently with genre templates, mixing guides, and publishing checklists",
-      "Move from experimentation to monetizable releases with licensing pathways and catalog strategies"
+      "Identify your peak creative hours and schedule deep work during your natural energy peaks",
+      "Track creative state patterns to understand what conditions produce your best work",
+      "Build sustainable workflows that match your energy cycles instead of fighting them",
+      "Reduce burnout and increase output with data-driven creative state management"
     ],
     "socialProof": {
       "stats": [
         {
-          "number": "500+",
-          "label": "Suno Sessions by Frank"
+          "number": "Free",
+          "label": "Always Free"
         },
         {
           "number": "Beta",
-          "label": "Early Access Available"
+          "label": "Active Development"
         }
       ],
       "quotes": []
     },
     "offer": {
-      "primaryPrice": 37,
-      "originalPrice": 67,
+      "primaryPrice": 0,
+      "primaryPriceDisplay": "Free",
       "currency": "USD",
-      "ctaPrimary": "Start Making Music",
-      "ctaPrimaryHref": "https://frankx.gumroad.com/l/vibe-os",
-      "ctaPrimaryTracking": "vibe-os-primary",
-      "ctaSecondary": "Talk with the Agent Team",
-      "ctaSecondaryHref": "mailto:hello@frankx.ai?subject=Vibe%20OS%20Consultation",
-      "ctaSecondaryTracking": "vibe-os-secondary",
+      "ctaPrimary": "Start Using Vibe OS",
+      "ctaPrimaryHref": "/products/vibe-os/app",
+      "ctaPrimaryTracking": "vibe-os-free-access",
+      "ctaSecondary": "View Documentation",
+      "ctaSecondaryHref": "/products/vibe-os/docs",
+      "ctaSecondaryTracking": "vibe-os-docs",
       "guarantee": {
-        "label": "Creative Breakthrough Guarantee",
-        "description": "Test the system for 30 days. If you don't produce music you're proud to release, we'll refund your purchase."
+        "label": "Open Source & Free Forever",
+        "description": "Vibe OS is free to use with no strings attached. Track your creative states and optimize your workflow without paying a penny."
       }
     },
     "modules": [
       {
-        "title": "Genre-Specific Prompt Vault",
-        "description": "50+ prompts spanning electronic, hip-hop, ambient, cinematic, and world styles with ready-to-use variations."
+        "title": "Energy State Tracker",
+        "description": "Log your creative energy levels throughout the day to identify patterns and optimize your schedule."
       },
       {
-        "title": "Creative Workflow Templates",
-        "description": "Step-by-step blueprints for ideation, drafting, polishing, and publishing across different project types."
+        "title": "Focus Mode Templates",
+        "description": "Pre-built workflows for deep work, brainstorming, editing, and admin tasks matched to different energy states."
       },
       {
-        "title": "Emotion Mapping System",
-        "description": "Translate feelings into sonic cues using the Vibe OS emotion lattice and micro-adjustment techniques."
+        "title": "Creative Cycle Dashboard",
+        "description": "Visualize your productivity patterns, peak hours, and energy cycles to make data-driven workflow decisions."
       },
       {
-        "title": "Production Enhancement Guide",
-        "description": "Post-Suno mixing, mastering, and arrangement tactics to reach label-ready quality."
+        "title": "State Management Playbooks",
+        "description": "Practical guides for transitioning between creative states, managing context switching, and maintaining flow."
       }
     ],
     "bonuses": [
       {
-        "title": "Mood Reference Library",
-        "value": "$27",
-        "description": "25 emotion archetypes with prompt modifiers, instrumentation notes, and pacing guidance."
+        "title": "Weekly Review Templates",
+        "value": "Free",
+        "description": "Structured reflection prompts to analyze your creative patterns and optimize future weeks."
       },
       {
-        "title": "Genre Deep-Dive Clinics",
-        "value": "$47",
-        "description": "Advanced walkthroughs for electronic, hip-hop, cinematic, and downtempo productions."
+        "title": "Energy Optimization Guide",
+        "value": "Free",
+        "description": "Science-backed strategies for managing energy, focus, and creative momentum."
       },
       {
-        "title": "Music Business Accelerator",
-        "value": "$97",
-        "description": "Revenue models, licensing templates, and release calendars to monetize your catalogue."
+        "title": "Notion Dashboard Template",
+        "value": "Free",
+        "description": "Ready-to-use Notion workspace for tracking states, projects, and productivity metrics."
       }
     ],
     "faq": [
       {
-        "question": "Do I need music theory or production experience?",
-        "answer": "No. Vibe OS includes beginner-friendly onboarding and explains every prompt so you can create professional results without prior training."
+        "question": "Is Vibe OS really free?",
+        "answer": "Yes. Vibe OS is completely free with no hidden costs, trials, or premium tiers. It's built for creators who want practical tools without the paywall."
       },
       {
-        "question": "Will my tracks sound generic if they are AI-assisted?",
-        "answer": "The emotion mapping system and iterative workflows help you dial in signature sounds, ensuring each track feels personal and distinctive."
+        "question": "How is this different from other productivity tools?",
+        "answer": "Vibe OS focuses specifically on creative work patterns and energy management. It's designed for creators, not corporate knowledge workers."
       },
       {
-        "question": "Can I release or sell music created with Vibe OS?",
-        "answer": "Yes. The toolkit covers distribution, licensing, and revenue pathways so you can confidently publish and monetize your music."
+        "question": "Do I need technical skills to use it?",
+        "answer": "No. Vibe OS is built for creators, not engineers. If you can use Notion or a spreadsheet, you can use Vibe OS."
+      },
+      {
+        "question": "Will there be a paid version?",
+        "answer": "Maybe someday, but the core Vibe OS will always be free. Any future premium features would be add-ons, not requirements."
       }
     ],
     "analyticsId": "vibe-os",
     "delivery": {
-      "methods": ["download", "whop"],
+      "methods": ["download", "gated"],
       "requiresEmail": false,
-      "whopProductId": "prod_vibe_os",
       "files": [
         {
-          "name": "Vibe OS Complete Guide",
+          "name": "Vibe OS Getting Started Guide",
           "format": "pdf",
-          "blobKey": "vibe-os-guide.pdf",
-          "description": "Complete AI music creation system with Suno workflows"
+          "blobKey": "vibe-os-getting-started.pdf",
+          "description": "Complete guide to creative state management and energy tracking"
         },
         {
-          "name": "Genre Prompt Pack",
-          "format": "pdf",
-          "blobKey": "vibe-os-genre-prompts.pdf",
-          "description": "50+ genre-specific Suno prompts"
+          "name": "Notion Dashboard Template",
+          "format": "notion",
+          "blobKey": "vibe-os-notion-template.zip",
+          "description": "Ready-to-use Notion workspace for state tracking"
         },
         {
-          "name": "Emotion Mapping System",
+          "name": "Energy Optimization Playbook",
           "format": "pdf",
-          "blobKey": "vibe-os-emotion-mapping.pdf",
-          "description": "Transform feelings into sonic cues"
+          "blobKey": "vibe-os-energy-playbook.pdf",
+          "description": "Science-backed strategies for sustainable creative work"
         }
       ]
     }
@@ -602,7 +605,7 @@
       "primaryPriceDisplay": "Apply for the Lab",
       "currency": "USD",
       "ctaPrimary": "Apply for the Lab",
-      "ctaPrimaryHref": "https://frankx.ck.page/creator-lab",
+      "ctaPrimaryHref": "/creator-lab",
       "ctaPrimaryTracking": "creator-lab-apply",
       "ctaSecondary": "Download Creator Lab Overview",
       "ctaSecondaryHref": "/creation-chronicles",
@@ -642,7 +645,7 @@
           "Community check-ins"
         ],
         "ctaLabel": "Get Starter Kit",
-        "ctaHref": "https://frankx.ck.page/creator-lab-starter"
+        "ctaHref": "/creator-lab-starter"
       },
       {
         "name": "Guided Cohort",
@@ -655,7 +658,7 @@
           "Launch + analytics review"
         ],
         "ctaLabel": "Apply for Cohort",
-        "ctaHref": "https://frankx.ck.page/creator-lab"
+        "ctaHref": "/creator-lab"
       },
       {
         "name": "Creator Residency",
@@ -686,6 +689,136 @@
       }
     ],
     "analyticsId": "agentic-creator-os"
+  },
+  {
+    "id": "suno-prompt-library",
+    "slug": "suno-prompt-library",
+    "name": "Suno Prompt Library Pack",
+    "category": "Music Intelligence",
+    "badge": "INSTANT ACCESS",
+    "headline": "100+ Battle-Tested Suno Prompts for Every Genre",
+    "subheadline": "Skip the prompt guessing game. Get the exact prompts that powered 500+ tracks across electronic, hip-hop, cinematic, ambient, and world music.",
+    "promise": "Stop wasting generations on prompts that don't work. Get proven prompts organized by genre, mood, and energy level.",
+    "summary": "A comprehensive prompt library extracted from 500+ Suno sessions, organized for instant use in any creative project.",
+    "transformation": [
+      "Access 100+ prompts that actually work—tested across 500+ generations with detailed success notes",
+      "Find the perfect prompt in seconds with genre, mood, and energy filters (no more scrolling through chaos)",
+      "Learn prompt patterns that unlock specific sounds (the 'why' behind each prompt so you can create your own)",
+      "Get bonus prompt modifiers for tempo, instrumentation, and vocal styles that stack with any base prompt"
+    ],
+    "socialProof": {
+      "stats": [
+        {
+          "number": "100+",
+          "label": "Curated Prompts"
+        },
+        {
+          "number": "500+",
+          "label": "Sessions Tested"
+        },
+        {
+          "number": "12",
+          "label": "Genre Categories"
+        }
+      ],
+      "quotes": []
+    },
+    "offer": {
+      "primaryPrice": 27,
+      "originalPrice": 47,
+      "currency": "USD",
+      "ctaPrimary": "Get Instant Access",
+      "ctaPrimaryHref": "https://frankx.gumroad.com/l/suno-prompt-library",
+      "ctaPrimaryTracking": "suno-prompt-library-primary",
+      "ctaSecondary": "Bundle with Vibe OS",
+      "ctaSecondaryHref": "/products/vibe-os",
+      "guarantee": {
+        "label": "Prompt Success Guarantee",
+        "description": "If these prompts don't improve your Suno output within 7 days, get a full refund. No questions asked."
+      }
+    },
+    "modules": [
+      {
+        "title": "Electronic & EDM Pack",
+        "description": "25 prompts for house, techno, trance, dubstep, and synthwave with BPM and energy modifiers."
+      },
+      {
+        "title": "Hip-Hop & R&B Pack",
+        "description": "20 prompts spanning boom bap, trap, lo-fi, and modern R&B with flow and vibe variations."
+      },
+      {
+        "title": "Cinematic & Ambient Pack",
+        "description": "25 prompts for film scores, meditation, focus music, and atmospheric soundscapes."
+      },
+      {
+        "title": "World & Fusion Pack",
+        "description": "15 prompts for afrobeats, Latin, reggae, and cross-cultural fusion experiments."
+      },
+      {
+        "title": "Modifier Library",
+        "description": "50+ stackable modifiers for tempo, instrumentation, vocals, and production style."
+      }
+    ],
+    "bonuses": [
+      {
+        "title": "Prompt Formula Cheatsheet",
+        "value": "$17",
+        "description": "One-page reference showing the anatomy of a perfect Suno prompt with fill-in templates."
+      },
+      {
+        "title": "Genre Quick-Start Cards",
+        "value": "$12",
+        "description": "Printable cards for the top 5 prompts in each genre—perfect for studio sessions."
+      },
+      {
+        "title": "Monthly Prompt Updates",
+        "value": "$47/yr",
+        "description": "New prompts added monthly as Suno evolves and new techniques emerge."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Are these prompts compatible with Suno v4/v4.5?",
+        "answer": "Yes. All prompts are tested on the latest Suno versions and updated when new features launch."
+      },
+      {
+        "question": "Can I modify and customize these prompts?",
+        "answer": "Absolutely. Each prompt includes notes on what to change and how the modifiers work together."
+      },
+      {
+        "question": "What format are the prompts delivered in?",
+        "answer": "PDF guide with searchable text + Notion database for easy filtering and organization."
+      },
+      {
+        "question": "How is this different from Vibe OS?",
+        "answer": "The Prompt Library is just the prompts. Vibe OS includes the full production system—workflows, emotion mapping, and release playbooks. This is the quick-start option."
+      }
+    ],
+    "analyticsId": "suno-prompt-library",
+    "delivery": {
+      "methods": ["download"],
+      "requiresEmail": false,
+      "files": [
+        {
+          "name": "Suno Prompt Library Guide",
+          "format": "pdf",
+          "blobKey": "suno-prompt-library-guide.pdf",
+          "description": "Complete 100+ prompt library with annotations"
+        },
+        {
+          "name": "Notion Database Template",
+          "format": "notion",
+          "blobKey": "suno-prompt-library-notion.zip",
+          "description": "Filterable Notion database with all prompts"
+        },
+        {
+          "name": "Quick-Start Cheatsheet",
+          "format": "pdf",
+          "blobKey": "suno-prompt-cheatsheet.pdf",
+          "description": "One-page prompt formula reference"
+        }
+      ]
+    }
   }
 ]
 

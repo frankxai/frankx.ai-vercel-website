@@ -1,0 +1,541 @@
+---
+title: "MCP Server Integration: Connect ACOS to Everything"
+description: "Master the Model Context Protocol. Learn how ACOS connects to browsers, databases, APIs, and external tools through 7 MCP servers. Build your own integrations."
+date: "2026-01-27"
+lastModified: "2026-01-27"
+author: "Frank"
+tags: ["mcp", "claude code", "integration", "api", "tutorial"]
+keywords: ["model context protocol", "mcp server", "claude mcp integration", "mcp tutorial", "claude code tools", "ai api integration"]
+category: "AI Architecture"
+image: '/images/blog/mcp-server-integration-hero.png'
+readingGoal: "Understand MCP architecture and connect ACOS to external tools and APIs."
+readingTime: '14 min'
+---
+
+# MCP Server Integration: Connect ACOS to Everything
+
+*How I extended Claude's capabilities with browser automation, image generation, and custom APIs.*
+
+---
+
+## TL;DR
+
+Model Context Protocol (MCP) is the standard for connecting Claude to external tools. ACOS includes 7 MCP servers: Browser (Playwright), Memory (Knowledge Graph), Sequential Thinking, Lyric Genius, Nano Banana (images), and custom Creator/Database servers. This guide covers how each works, when to use them, and how to build your own MCP server in 30 minutes.
+
+---
+
+## What Is Model Context Protocol (MCP)?
+
+MCP is Anthropic's open standard for connecting AI models to external capabilities. Think of it as USB for AI—a universal way to plug in new tools.
+
+**Without MCP:**
+```
+Claude → Limited to text generation
+         Can't browse web
+         Can't access databases
+         Can't generate images
+         Can't run code
+```
+
+**With MCP:**
+```
+Claude → MCP Server → Browser (Playwright)
+      → MCP Server → Database (PostgreSQL)
+      → MCP Server → Image Generator (Gemini)
+      → MCP Server → Any API you build
+```
+
+### Why MCP Matters for Creators
+
+| Capability | Without MCP | With MCP |
+|------------|-------------|----------|
+| Web Research | Copy-paste URLs | Automated browsing |
+| Image Creation | External tool | Native in workflow |
+| Data Storage | Manual file management | Persistent memory |
+| Custom Tools | Not possible | Build anything |
+
+---
+
+## The 7 MCP Servers in ACOS
+
+ACOS ships with 7 MCP server integrations:
+
+### 1. Browser (Playwright)
+
+**What It Does:** Full browser automation—navigate, click, screenshot, fill forms, extract data.
+
+**When to Use:**
+- Research that requires browsing multiple pages
+- Testing web applications
+- Scraping structured data
+- Taking screenshots for documentation
+
+**Example:**
+```bash
+/acos "Take a screenshot of the ACOS GitHub repo README"
+
+# Claude will:
+# 1. Open browser via Playwright MCP
+# 2. Navigate to github.com/frankxai/agentic-creator-os
+# 3. Take screenshot
+# 4. Return image in conversation
+```
+
+**Key Tools:**
+| Tool | Purpose |
+|------|---------|
+| `browser_navigate` | Go to URL |
+| `browser_click` | Click elements |
+| `browser_snapshot` | Get page accessibility tree |
+| `browser_take_screenshot` | Capture visual |
+| `browser_fill_form` | Enter form data |
+
+### 2. Memory (Knowledge Graph)
+
+**What It Does:** Persistent knowledge storage across sessions. Entities, relationships, observations.
+
+**When to Use:**
+- Storing information about projects
+- Building knowledge bases
+- Remembering user preferences
+- Tracking relationships between concepts
+
+**Example:**
+```bash
+/acos "Remember that the ACOS project uses 7 pillars architecture"
+
+# Claude will:
+# 1. Create entity: "ACOS"
+# 2. Create entity: "7 Pillars Architecture"
+# 3. Create relation: ACOS -> uses -> 7 Pillars
+# 4. Persist for future sessions
+```
+
+**Key Tools:**
+| Tool | Purpose |
+|------|---------|
+| `create_entities` | Add new knowledge nodes |
+| `create_relations` | Connect entities |
+| `add_observations` | Attach facts to entities |
+| `search_nodes` | Find stored knowledge |
+| `read_graph` | Get full knowledge state |
+
+### 3. Sequential Thinking
+
+**What It Does:** Extended reasoning for complex problems. Chain-of-thought with revision.
+
+**When to Use:**
+- Multi-step problem solving
+- Complex analysis
+- When you need Claude to "think harder"
+- Debugging intricate issues
+
+**Example:**
+```bash
+/council "Should I pivot my product strategy?"
+
+# The Sequential Thinking MCP enables:
+# 1. Break problem into components
+# 2. Analyze each component
+# 3. Revise reasoning based on new insights
+# 4. Synthesize final recommendation
+```
+
+**Key Tools:**
+| Tool | Purpose |
+|------|---------|
+| `sequentialthinking` | Extended reasoning chain |
+
+### 4. Lyric Genius
+
+**What It Does:** Advanced prompt engineering for Suno AI music generation.
+
+**When to Use:**
+- Creating music with specific styles
+- Genre-bending compositions
+- Lyric writing with techniques
+- Music prompt optimization
+
+**Example:**
+```bash
+/create-music "Epic orchestral piece about coding at midnight"
+
+# Lyric Genius MCP provides:
+# 1. Genre-specific vocabulary
+# 2. Structural templates
+# 3. Rhyme scheme suggestions
+# 4. Emotional arc guidance
+```
+
+**Key Tools:**
+| Tool | Purpose |
+|------|---------|
+| `get_lyric_technique` | Writing techniques |
+| `generate_creative_constraints` | Style constraints |
+| `compose_writing_prompt` | Full prompt construction |
+| `expand_lyrical_concept` | Develop ideas |
+
+### 5. Nano Banana (Image Generation)
+
+**What It Does:** Generate and edit images using Gemini's image model.
+
+**When to Use:**
+- Hero images for blog posts
+- Social media graphics
+- Concept visualization
+- Infographics and diagrams
+
+**Example:**
+```bash
+/infogenius "Create architecture diagram for microservices"
+
+# Nano Banana MCP:
+# 1. Constructs optimized prompt
+# 2. Calls Gemini image API
+# 3. Returns high-res PNG
+# 4. Includes grounding for accuracy
+```
+
+**Key Tools:**
+| Tool | Purpose |
+|------|---------|
+| `generate_image` | Create new images |
+| `upload_file` | Edit existing images |
+| `show_output_stats` | Usage metrics |
+
+### 6. Creator (Social APIs)
+
+**What It Does:** Connect to social platforms for publishing and analytics.
+
+**Capabilities:**
+- LinkedIn posting
+- Twitter/X threads
+- Instagram scheduling
+- Analytics retrieval
+
+**Note:** Requires API credentials configuration.
+
+### 7. Database (Content Storage)
+
+**What It Does:** Persistent content storage for articles, tracks, and inventory.
+
+**Capabilities:**
+- Store article drafts
+- Track music catalog
+- Manage content inventory
+- Query historical content
+
+---
+
+## How MCP Architecture Works
+
+### The Communication Pattern
+
+```
+┌─────────────────────────────────────────────────────────────────┐
+│                         CLAUDE CODE                              │
+│                                                                  │
+│  User: "Take a screenshot of frankx.ai"                         │
+│                              │                                   │
+│                              ▼                                   │
+│  ┌─────────────────────────────────────────────────────────┐   │
+│  │              TOOL SELECTION LAYER                        │   │
+│  │  Detects: screenshot request → needs Browser MCP         │   │
+│  └─────────────────────────────────────────────────────────┘   │
+│                              │                                   │
+└──────────────────────────────┼───────────────────────────────────┘
+                               │
+                               ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                      MCP SERVER (Playwright)                     │
+│                                                                  │
+│  1. Receives: browser_navigate("https://frankx.ai")             │
+│  2. Executes: Playwright launches browser                        │
+│  3. Receives: browser_take_screenshot()                          │
+│  4. Returns: Base64 encoded PNG                                  │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
+                               │
+                               ▼
+┌─────────────────────────────────────────────────────────────────┐
+│                         CLAUDE CODE                              │
+│                                                                  │
+│  Receives image, displays to user                                │
+│  "Here's the screenshot of frankx.ai"                           │
+│                                                                  │
+└─────────────────────────────────────────────────────────────────┘
+```
+
+### MCP Server Anatomy
+
+Every MCP server has three components:
+
+```typescript
+// 1. TOOLS - What actions the server can perform
+{
+  name: "browser_navigate",
+  description: "Navigate to a URL",
+  parameters: {
+    url: { type: "string", required: true }
+  }
+}
+
+// 2. RESOURCES - Data the server exposes
+{
+  uri: "browser://current-page",
+  description: "The current page state"
+}
+
+// 3. TRANSPORT - How Claude communicates
+// Options: stdio, HTTP, WebSocket
+```
+
+---
+
+## How to Build Your Own MCP Server
+
+### Step 1: Create the Project
+
+```bash
+mkdir my-mcp-server
+cd my-mcp-server
+npm init -y
+npm install @modelcontextprotocol/sdk
+```
+
+### Step 2: Define Your Tools
+
+```typescript
+// src/index.ts
+import { Server } from "@modelcontextprotocol/sdk/server/index.js";
+import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+
+const server = new Server({
+  name: "my-custom-server",
+  version: "1.0.0"
+}, {
+  capabilities: {
+    tools: {}
+  }
+});
+
+// Define a tool
+server.setRequestHandler("tools/list", async () => ({
+  tools: [{
+    name: "my_custom_tool",
+    description: "Does something useful",
+    inputSchema: {
+      type: "object",
+      properties: {
+        input: { type: "string", description: "The input" }
+      },
+      required: ["input"]
+    }
+  }]
+}));
+
+// Handle tool calls
+server.setRequestHandler("tools/call", async (request) => {
+  if (request.params.name === "my_custom_tool") {
+    const { input } = request.params.arguments;
+    // Your logic here
+    return {
+      content: [{ type: "text", text: `Processed: ${input}` }]
+    };
+  }
+});
+
+// Start server
+const transport = new StdioServerTransport();
+await server.connect(transport);
+```
+
+### Step 3: Configure in Claude Code
+
+```json
+// ~/.claude/settings.json
+{
+  "mcpServers": {
+    "my-custom-server": {
+      "command": "node",
+      "args": ["/path/to/my-mcp-server/dist/index.js"]
+    }
+  }
+}
+```
+
+### Step 4: Test It
+
+```bash
+# Build
+npm run build
+
+# Restart Claude Code
+claude
+
+# Use your tool
+"Use my_custom_tool with input 'hello world'"
+```
+
+---
+
+## Real-World MCP Integration Examples
+
+### Example 1: Research Pipeline with Browser
+
+```bash
+/research "Latest Claude Code features 2026"
+
+# MCP Flow:
+# 1. Browser MCP → Navigate to anthropic.com
+# 2. Browser MCP → Extract feature list
+# 3. Browser MCP → Navigate to GitHub releases
+# 4. Browser MCP → Extract changelog
+# 5. Memory MCP → Store findings
+# 6. Return synthesized research
+```
+
+### Example 2: Content Creation with Multiple MCPs
+
+```bash
+/factory "Blog post about MCP integration"
+
+# MCP Flow:
+# 1. Browser MCP → Research current MCP docs
+# 2. Memory MCP → Recall previous MCP knowledge
+# 3. Sequential Thinking → Structure article
+# 4. (Writing happens in Claude)
+# 5. Nano Banana MCP → Generate hero image
+# 6. Memory MCP → Store article metadata
+```
+
+### Example 3: Music Production Pipeline
+
+```bash
+/create-music "Synthwave track about AI consciousness"
+
+# MCP Flow:
+# 1. Lyric Genius MCP → Get synthwave conventions
+# 2. Lyric Genius MCP → Generate creative constraints
+# 3. Lyric Genius MCP → Compose optimized prompt
+# 4. (User takes prompt to Suno)
+# 5. Nano Banana MCP → Generate album art
+# 6. Memory MCP → Add to music inventory
+```
+
+---
+
+## MCP Best Practices
+
+### When to Use Which MCP
+
+| Need | MCP Server | Why |
+|------|-----------|-----|
+| Browse websites | Browser | Full page interaction |
+| Remember across sessions | Memory | Persistent knowledge |
+| Complex reasoning | Sequential Thinking | Extended chain-of-thought |
+| Generate images | Nano Banana | High-quality visuals |
+| Create music prompts | Lyric Genius | Specialized for Suno |
+| Custom integrations | Build your own | Unlimited possibilities |
+
+### Performance Tips
+
+1. **Batch browser operations** — Multiple navigations are slow; plan your path
+2. **Cache in Memory MCP** — Don't research the same thing twice
+3. **Use Sequential Thinking sparingly** — It's powerful but token-heavy
+4. **Optimize image prompts** — Better prompts = fewer regenerations
+
+### Security Considerations
+
+1. **API keys in environment** — Never in code
+2. **Sandbox browser sessions** — Don't log into sensitive accounts
+3. **Validate MCP server sources** — Only install trusted servers
+4. **Audit custom servers** — Review code before deployment
+
+---
+
+## Troubleshooting MCP Issues
+
+### Server Not Connecting
+
+```bash
+# Check if server is running
+ps aux | grep mcp
+
+# Verify config path
+cat ~/.claude/settings.json
+
+# Test server directly
+node /path/to/server/dist/index.js
+```
+
+### Tool Not Available
+
+```bash
+# List available tools
+/mcp-status
+
+# Check server capabilities
+# Server may not expose the tool you expect
+```
+
+### Slow Performance
+
+1. **Browser MCP** — Consider headless mode
+2. **Memory MCP** — Prune old entities periodically
+3. **Image generation** — Use appropriate resolution
+
+---
+
+## Frequently Asked Questions
+
+### What is MCP in Claude Code?
+
+Model Context Protocol (MCP) is Anthropic's standard for connecting Claude to external tools and data sources. It enables capabilities like web browsing, image generation, and database access.
+
+### How many MCP servers can I run?
+
+There's no hard limit, but each server consumes resources. ACOS typically runs 5-7 servers simultaneously without issues.
+
+### Can I build MCP servers in Python?
+
+Yes, the MCP SDK supports both TypeScript and Python. The patterns are similar.
+
+### Do MCP servers persist between sessions?
+
+The servers themselves restart with Claude Code. However, Memory MCP persists data to disk, surviving restarts.
+
+### Are MCP servers secure?
+
+MCP servers run locally with your permissions. They can access what you can access. Be cautious with untrusted servers.
+
+### How do I update an MCP server?
+
+Pull the latest code, rebuild, and restart Claude Code. No special migration needed for most updates.
+
+### Can MCP servers communicate with each other?
+
+Not directly through MCP. However, Claude can orchestrate multiple servers, passing data between them in the conversation.
+
+---
+
+## Next Steps
+
+1. **Explore existing servers** — Try each of the 7 ACOS MCP servers
+2. **Build a simple server** — Follow the guide above
+3. **Integrate your APIs** — Connect your own services
+4. **Share with community** — Contribute useful servers back
+
+---
+
+## Related Articles
+
+- [The Complete Guide to Agentic Creator OS v6](/blog/agentic-creator-os-complete-guide)
+- [Building Custom Skills for ACOS](/blog/building-custom-skills-acos)
+- [Swarm Intelligence: Multi-Agent Orchestration](/blog/swarm-intelligence-multi-agent-orchestration)
+
+---
+
+*MCP — The universal connector for AI capabilities.*
+
+*[MCP Specification](https://modelcontextprotocol.io/) | [GitHub](https://github.com/frankxai/agentic-creator-os) | [FrankX](https://frankx.ai)*

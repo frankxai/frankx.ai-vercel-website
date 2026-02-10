@@ -1,0 +1,29 @@
+{
+  "_description": "FrankX X/Twitter Posts Inventory",
+  "_instructions": "Track tweets, threads, and engagement here",
+  "_profileUrl": "https://x.com/YOUR_PROFILE",
+  "_lastUpdated": "2026-01-23",
+  "_count": 0,
+  "_template": {
+    "id": "x-2025-01-15-topic",
+    "type": "social",
+    "platform": "x-twitter",
+    "title": "Tweet hook",
+    "content": "Tweet text (280 chars max for single, longer for threads)...",
+    "brand": "frankx",
+    "status": "published",
+    "tags": ["topic"],
+    "createdAt": "2025-01-15",
+    "postType": "thread",
+    "url": "https://x.com/user/status/...",
+    "engagement": {
+      "likes": 50,
+      "comments": 10,
+      "shares": 15,
+      "impressions": 2000
+    },
+    "hashtags": [],
+    "bestPerforming": false
+  },
+  "posts": []
+}

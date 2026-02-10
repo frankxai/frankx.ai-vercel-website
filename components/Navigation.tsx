@@ -7,6 +7,7 @@ import { Menu, Transition } from '@headlessui/react'
 import { ChevronDown, Menu as MenuIcon, X } from 'lucide-react'
 
 import { LogoMarkMinimal } from '@/components/ui/LogoMark'
+import MobileBottomNav from './MobileBottomNav'
 
 import { cn } from '@/lib/utils'
 
@@ -19,6 +20,17 @@ type NavItem = {
 
 const navItems: NavItem[] = [
   { name: 'Home', href: '/' },
+  {
+    name: 'AI Architecture',
+    href: '/ai-architecture',
+    subItems: [
+      { name: 'Architecture Hub', href: '/ai-architecture' },
+      { name: 'Blueprints', href: '/ai-architecture/blueprints' },
+      { name: 'Prototypes (BYOK)', href: '/ai-architecture/prototypes' },
+      { name: 'Templates', href: '/ai-architecture/templates' },
+      { name: 'Tools', href: '/ai-architecture/tools' },
+    ],
+  },
   {
     name: 'For Creators',
     href: '/products/vibe-os',
@@ -46,6 +58,10 @@ const navItems: NavItem[] = [
     href: '/resources',
     subItems: [
       { name: "The Creator's Soulbook", href: '/soulbook' },
+      { name: 'Member Vault', href: '/vault' },
+      { name: 'Live Labs', href: '/labs' },
+      { name: 'Weekly Drops', href: '/drops' },
+      { name: 'Skill Builder', href: '/skills' },
       { name: 'Workshops', href: '/workshops' },
       { name: 'All Resources', href: '/resources' },
       { name: 'Prompt Library', href: '/prompt-library' },
@@ -64,6 +80,15 @@ const navItems: NavItem[] = [
       { name: 'Generative Creator OS', href: '/products/generative-creator-os' },
     ],
   },
+  {
+    name: 'Research',
+    href: '/research',
+    subItems: [
+      { name: 'Research Hub', href: '/research' },
+      { name: 'Source Browser', href: '/research/sources' },
+      { name: 'Methodology', href: '/research/methodology' },
+    ],
+  },
   { name: 'Blog', href: '/blog' },
   { name: 'About', href: '/about' },
 ]
@@ -73,7 +98,6 @@ export default function Navigation() {
   const pathname = usePathname()
 
   useEffect(() => {
-    // eslint-disable-next-line react-hooks/set-state-in-effect
     setIsOpen(false)
   }, [pathname])
 
@@ -84,10 +108,11 @@ export default function Navigation() {
   }
 
   return (
-    <nav
-      className="fixed top-0 w-full z-50 border-b border-white/5 bg-[#030712]/90 backdrop-blur-2xl"
-      aria-label="Main navigation"
-    >
+    <>
+      <nav
+        className="fixed top-0 w-full z-50 border-b border-white/5 bg-[#030712]/90 backdrop-blur-2xl"
+        aria-label="Main navigation"
+      >
       <div className="max-w-6xl mx-auto px-6 py-3">
         <div className="flex items-center justify-between">
           <Link
@@ -130,7 +155,7 @@ export default function Navigation() {
                       <div className="px-1 py-1 ">
                         {item.subItems.map((subItem) => (
                           <Menu.Item key={subItem.name}>
-                            {({ active }) => (
+                            {({ active }: { active: boolean }) => (
                               <Link
                                 href={subItem.href}
                                 className={cn(
@@ -250,5 +275,9 @@ export default function Navigation() {
         </div>
       </div>
     </nav>
+
+    {/* Mobile Bottom Navigation */}
+    <MobileBottomNav />
+  </>
   )
 }

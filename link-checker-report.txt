@@ -98,19 +98,19 @@ External link missing target: 4 issues
 --------------------------------------------------------------------------------
 
 1. Page: Realm
-   Href: https://frankx.ck.page/realm
+   Href: https://frankx.ai/realm
    Link text: "Join the Waitlist"
 
 2. Page: Realm
-   Href: https://frankx.ck.page/creation-chronicles
+   Href: https://frankx.ai/creation-chronicles
    Link text: "Join Creation Chronicles"
 
 3. Page: Realm
-   Href: https://frankx.ck.page/realm
+   Href: https://frankx.ai/realm
    Link text: "Join Waitlist"
 
 4. Page: Realm
-   Href: https://frankx.ck.page/realm
+   Href: https://frankx.ai/realm
    Link text: "Join the Waitlist"
 
 Other errors: 57 issues
@@ -808,19 +808,19 @@ Realm: 5 issues
    Status code: 404
 
 2. External link missing target="_blank"
-   Href: https://frankx.ck.page/realm
+   Href: https://frankx.ai/realm
    Link text: "Join the Waitlist"
 
 3. External link missing target="_blank"
-   Href: https://frankx.ck.page/creation-chronicles
+   Href: https://frankx.ai/creation-chronicles
    Link text: "Join Creation Chronicles"
 
 4. External link missing target="_blank"
-   Href: https://frankx.ck.page/realm
+   Href: https://frankx.ai/realm
    Link text: "Join Waitlist"
 
 5. External link missing target="_blank"
-   Href: https://frankx.ck.page/realm
+   Href: https://frankx.ai/realm
    Link text: "Join the Waitlist"
 
 

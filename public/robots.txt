@@ -1,5 +1,22 @@
 User-agent: *
 Allow: /
+Disallow: /v1
+Disallow: /v2
+Disallow: /v3
+Disallow: /v4
+Disallow: /v5
+Disallow: /v6
+Disallow: /v7
+Disallow: /v8
+Disallow: /v9
+Disallow: /v10
+Disallow: /music-lab-v1
+Disallow: /music-lab-v2
+Disallow: /music-lab-v3
+Disallow: /products-v1
+Disallow: /products-v2
+Disallow: /products-v3
 
 Sitemap: https://frankx.ai/sitemap.xml
+Sitemap: https://frankx.ai/research/sitemap.xml
 

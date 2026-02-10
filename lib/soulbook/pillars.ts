@@ -1,5 +1,5 @@
 // 7 Pillars of the Soulbook Framework
-// Each pillar represents a foundational aspect of conscious living and personal transformation
+// Each pillar represents a foundational aspect of intentional living and personal growth
 
 export interface Pillar {
   id: string
@@ -20,9 +20,9 @@ export const pillars: Pillar[] = [
   {
     id: 'consciousness',
     number: 1,
-    title: 'Consciousness & Awareness',
-    shortTitle: 'Consciousness',
-    description: 'The foundation of all transformation begins with Awareness. Cultivating present-moment consciousness creates the fertile ground for all other pillars to flourish.',
+    title: 'Awareness & Systems Thinking',
+    shortTitle: 'Awareness',
+    description: 'The foundation of all growth begins with Awareness. Cultivating present-moment focus and systems thinking creates the fertile ground for all other pillars to flourish.',
     icon: '🌟',
     color: 'amber',
     gradient: 'from-amber-400 via-yellow-500 to-orange-500',

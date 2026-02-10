@@ -22,6 +22,14 @@ export const metadata: Metadata = {
     title: 'The Golden Age of Creators',
     description: 'Discover how the creator economy and AI are reshaping what it means to build a creative life.',
     type: 'book',
+    images: [
+      {
+        url: '/images/golden-age/hero-golden-age.png',
+        width: 1584,
+        height: 672,
+        alt: 'The Golden Age of Creators - A creator conducting an orchestra of creative energy',
+      },
+    ],
   },
 };
 

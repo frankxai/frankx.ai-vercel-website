@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   ChevronRight,
@@ -15,8 +16,7 @@ import {
   Check,
   ArrowRight,
 } from 'lucide-react';
-import GlassmorphicCard from '@/components/ui/GlassmorphicCard';
-import InteractiveCard from '@/components/ui/InteractiveCard';
+import PremiumCard from '@/components/ui/PremiumCard';
 import PremiumButton from '@/components/ui/PremiumButton';
 import { cn } from '@/lib/utils';
 
@@ -303,14 +303,25 @@ export default function AssessmentPage() {
     const Icon = result.icon;
 
     return (
-      <div className="min-h-screen bg-[#030712] py-20 px-4">
-        <div className="max-w-4xl mx-auto">
+      <div className="min-h-screen bg-[#030712] py-20 px-4 relative overflow-hidden">
+        {/* Background */}
+        <div className="absolute inset-0">
+          <Image
+            src="/images/soulbook/hero-assessment.png"
+            alt="Soulbook assessment background"
+            fill
+            className="object-cover opacity-20"
+            quality={80}
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#030712]/50 via-[#030712]/80 to-[#030712]" />
+        </div>
+        <div className="relative z-10 max-w-4xl mx-auto">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6 }}
           >
-            <GlassmorphicCard variant="luxury" gradient="aurora" border="glow" className="p-8 md:p-12">
+            <PremiumCard glass="heavy" className="p-8 md:p-12">
               <div className="text-center mb-8">
                 <div
                   className={cn(
@@ -355,7 +366,7 @@ export default function AssessmentPage() {
                   Explore All Life Books
                 </PremiumButton>
               </div>
-            </GlassmorphicCard>
+            </PremiumCard>
           </motion.div>
         </div>
       </div>
@@ -366,7 +377,19 @@ export default function AssessmentPage() {
   const progress = (currentQuestion / questions.length) * 100;
 
   return (
-    <div className="min-h-screen bg-[#030712]">
+    <div className="min-h-screen bg-[#030712] relative overflow-hidden">
+      {/* Background */}
+      <div className="absolute inset-0">
+        <Image
+          src="/images/soulbook/hero-assessment.png"
+          alt="Soulbook assessment background"
+          fill
+          className="object-cover opacity-15"
+          quality={80}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#030712]/40 via-[#030712]/70 to-[#030712]" />
+      </div>
+
       {/* Progress Bar */}
       <div className="fixed top-0 left-0 right-0 h-1 bg-slate-800 z-50">
         <motion.div
@@ -378,14 +401,14 @@ export default function AssessmentPage() {
       </div>
 
       {/* Question Counter */}
-      <div className="pt-8 pb-4 px-4 text-center">
+      <div className="relative z-10 pt-8 pb-4 px-4 text-center">
         <span className="text-slate-500 text-sm">
           Question {currentQuestion} of {questions.length}
         </span>
       </div>
 
       {/* Question Section */}
-      <section className="py-8 px-4">
+      <section className="relative z-10 py-8 px-4">
         <div className="max-w-3xl mx-auto">
           <motion.div
             key={currentQuestion}
@@ -394,8 +417,8 @@ export default function AssessmentPage() {
             exit={{ opacity: 0, x: -20 }}
             transition={{ duration: 0.3 }}
           >
-            <InteractiveCard glowColor="yellow" intensity="medium">
-              <GlassmorphicCard variant="premium" gradient="aurora" border="subtle" className="p-8">
+            <PremiumCard gradient="gold" mouseGlow shine>
+              <PremiumCard glass="medium" className="p-8">
                 <h2 className="text-2xl md:text-3xl font-bold text-white mb-8">
                   {question.question}
                 </h2>
@@ -435,14 +458,14 @@ export default function AssessmentPage() {
                     </motion.button>
                   ))}
                 </div>
-              </GlassmorphicCard>
-            </InteractiveCard>
+              </PremiumCard>
+            </PremiumCard>
           </motion.div>
         </div>
       </section>
 
       {/* Navigation */}
-      <section className="py-8 px-4">
+      <section className="relative z-10 py-8 px-4">
         <div className="max-w-3xl mx-auto flex justify-between items-center">
           <PremiumButton
             variant="ghost"

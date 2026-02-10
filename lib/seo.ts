@@ -6,18 +6,19 @@ export const siteConfig = {
   name: 'FrankX Intelligence Hub',
   shortName: 'FrankX',
   description:
-    'FrankX equips creators, families, and executives with conscious AI strategy, Suno-powered creativity, and enterprise-ready systems.',
+    'AI Architect and Music Creator. Building intelligent systems, tools, and workflows for creators who ship.',
   url: siteUrl,
   twitter: '@frankxai',
   ogImage: '/api/og?title=FrankX%20Intelligence%20Hub',
   keywords: [
-    'conscious ai',
-    'ai strategy',
-    'soul frequency',
-    'ai music',
-    'ai governance',
-    'ai for families',
-    'oracle ai architect',
+    'ai architect',
+    'ai music creation',
+    'suno ai',
+    'oracle ai',
+    'agentic workflows',
+    'creator tools',
+    'enterprise ai',
+    'multi-agent systems',
   ],
 }
 

@@ -1,10 +1,11 @@
 'use client'
 
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
-import GlassmorphicCard from '@/components/ui/GlassmorphicCard'
+import PremiumCard from '@/components/ui/PremiumCard'
 import PremiumButton from '@/components/ui/PremiumButton'
 import { lifeBooks, LifeBook } from '@/lib/soulbook/soulbook-data'
 
@@ -41,11 +42,9 @@ function LifeBookCard({
       variants={cardVariants}
       className="relative"
     >
-      <GlassmorphicCard
-        variant={isSelected ? 'luxury' : 'premium'}
-        gradient={book.color === 'amber' ? 'aurora' : book.color === 'purple' ? 'purple' : 'aurora'}
-        border={isSelected ? 'glow' : 'subtle'}
-        hover
+      <PremiumCard
+        glass={isSelected ? 'heavy' : 'medium'}
+        gradient={isSelected ? 'purple' : undefined}
         className={cn(
           'h-full transition-all duration-500 cursor-pointer',
           isSelected ? 'scale-105' : 'hover:scale-[1.02]'
@@ -63,20 +62,49 @@ function LifeBookCard({
           />
         )}
 
-        <div className="relative p-8 h-full flex flex-col">
-          {/* Header */}
-          <div className="flex items-start justify-between mb-6">
-            <div className="text-5xl">{book.icon}</div>
+        {/* Card Image Header */}
+        {book.image && (
+          <div className="relative w-full h-48 overflow-hidden rounded-t-2xl">
+            <Image
+              src={book.image}
+              alt={book.title}
+              fill
+              className={cn(
+                'object-cover transition-transform duration-700',
+                isSelected ? 'scale-105' : 'group-hover:scale-105'
+              )}
+              sizes="(max-width: 768px) 100vw, 33vw"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
             {isSelected && (
               <motion.div
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
-                className="px-3 py-1 rounded-full text-xs font-semibold bg-amber-500/20 text-amber-300 border border-amber-500/30"
+                className="absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-semibold bg-amber-500/30 backdrop-blur-sm text-amber-300 border border-amber-500/30"
               >
                 Most Popular
               </motion.div>
             )}
+            <div className="absolute bottom-3 left-4 text-4xl drop-shadow-lg">{book.icon}</div>
           </div>
+        )}
+
+        <div className="relative p-8 h-full flex flex-col">
+          {/* Header (fallback when no image) */}
+          {!book.image && (
+            <div className="flex items-start justify-between mb-6">
+              <div className="text-5xl">{book.icon}</div>
+              {isSelected && (
+                <motion.div
+                  initial={{ scale: 0 }}
+                  animate={{ scale: 1 }}
+                  className="px-3 py-1 rounded-full text-xs font-semibold bg-amber-500/20 text-amber-300 border border-amber-500/30"
+                >
+                  Most Popular
+                </motion.div>
+              )}
+            </div>
+          )}
 
           {/* Title */}
           <h3 className={cn(
@@ -144,7 +172,7 @@ function LifeBookCard({
             View Details
           </PremiumButton>
         </div>
-      </GlassmorphicCard>
+      </PremiumCard>
     </motion.div>
   )
 }
@@ -199,16 +227,39 @@ export default function LifeBookSelector() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="mt-16 p-8 rounded-2xl bg-gradient-to-br from-white/5 to-white/0 border border-white/10"
+          className="mt-16 rounded-2xl bg-gradient-to-br from-white/5 to-white/0 border border-white/10 overflow-hidden"
         >
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div>
-              <div className="flex items-center gap-3 mb-4">
-                <span className="text-4xl">{lifeBooks[selectedBook].icon}</span>
-                <h3 className="text-2xl font-bold font-serif">
+          {/* Detail panel hero image */}
+          {lifeBooks[selectedBook].image && (
+            <div className="relative w-full h-48 sm:h-64">
+              <Image
+                src={lifeBooks[selectedBook].image!}
+                alt={lifeBooks[selectedBook].title}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 80vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
+              <div className="absolute bottom-6 left-8 flex items-center gap-3">
+                <span className="text-4xl drop-shadow-lg">{lifeBooks[selectedBook].icon}</span>
+                <h3 className="text-3xl font-bold font-serif text-white drop-shadow-lg">
                   {lifeBooks[selectedBook].title}
                 </h3>
               </div>
+            </div>
+          )}
+
+          <div className="p-8">
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+              {!lifeBooks[selectedBook].image && (
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="text-4xl">{lifeBooks[selectedBook].icon}</span>
+                  <h3 className="text-2xl font-bold font-serif">
+                    {lifeBooks[selectedBook].title}
+                  </h3>
+                </div>
+              )}
               <p className="text-white/70 mb-6">{lifeBooks[selectedBook].description}</p>
 
               {/* Outcomes */}
@@ -260,6 +311,7 @@ export default function LifeBookSelector() {
                 Start Your {lifeBooks[selectedBook].title} Journey — ${lifeBooks[selectedBook].price.current}
               </PremiumButton>
             </div>
+          </div>
           </div>
         </motion.div>
       </div>

@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef } from 'react'
 import { cn } from '@/lib/utils'
@@ -24,8 +25,21 @@ export default function SoulbookHero() {
       ref={containerRef}
       className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gradient-to-b from-midnight-950 via-midnight-900 to-black"
     >
+      {/* AI-generated hero image background */}
+      <div className="absolute inset-0">
+        <Image
+          src="/images/soulbook/hero-soulbook.png"
+          alt="Soulbook hero background"
+          fill
+          className="object-cover opacity-40"
+          priority
+          quality={90}
+          aria-hidden="true"
+        />
+      </div>
+
       {/* Animated background layers */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-amber-900/20 via-midnight-950 to-black" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-amber-900/20 via-midnight-950/80 to-black/90" />
       <div
         className="absolute inset-0 opacity-50"
         style={{ backgroundImage: `url("${dotPattern}")` }}

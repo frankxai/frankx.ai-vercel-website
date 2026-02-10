@@ -40,7 +40,7 @@ const navigation = {
     label: 'Music',
     featured: {
       title: 'AI Music Portfolio',
-      description: '10,000+ songs created with Suno AI. Explore the catalog.',
+      description: '12,000+ songs created with Suno AI. Explore the catalog.',
       href: '/music',
       badge: '500+ Public',
     },
@@ -81,20 +81,21 @@ const navigation = {
     ],
   },
   developers: {
-    label: 'Developers',
+    label: 'AI Architecture',
     featured: {
-      title: 'AI Architect Academy',
-      description: 'Master enterprise AI patterns, Claude Code skills, and production architectures.',
-      href: '/ai-architect-academy',
-      badge: 'New',
+      title: 'AI Architecture Hub',
+      description: 'Learn. Try. Build. Blueprints, BYOK prototypes, and production templates.',
+      href: '/ai-architecture',
+      badge: 'New Hub',
     },
     items: [
-      { name: 'AI Architect Academy', href: '/ai-architect-academy', icon: Building, description: '80+ skills, 20+ patterns' },
-      { name: 'Developer Hub', href: '/developers', icon: Code2, description: 'Ship 10x faster with AI' },
-      { name: 'Architecture Prototypes', href: '/prototypes', icon: Layers, description: 'Production blueprints' },
-      { name: 'Claude Code Mastery', href: '/prompt-library/agent-development', icon: Terminal, description: 'Prompts & patterns' },
-      { name: 'AI Patterns', href: '/ai-architect', icon: Workflow, description: 'Enterprise design patterns' },
-      { name: 'Coding Prompts', href: '/prompt-library/coding', icon: Bot, description: 'Automation workflows' },
+      { name: 'Architecture Hub', href: '/ai-architecture', icon: Network, description: 'Central hub for AI architecture' },
+      { name: 'AI World Showcase', href: '/ai-world', icon: Workflow, description: 'Oracle AI demo architectures' },
+      { name: 'Blueprints', href: '/ai-architecture/blueprints', icon: Layers, description: 'Diagrams & guides (FREE)' },
+      { name: 'Prototypes (BYOK)', href: '/ai-architecture/prototypes', icon: Terminal, description: 'Try with your API keys' },
+      { name: 'Templates', href: '/ai-architecture/templates', icon: Building, description: 'Starter kits ($29-199)' },
+      { name: 'Tools', href: '/ai-architecture/tools', icon: Code2, description: 'Curated resources' },
+      { name: 'Developer Hub', href: '/developers', icon: Bot, description: 'Ship 10x faster with AI' },
     ],
   },
   resources: {
@@ -105,19 +106,35 @@ const navigation = {
       href: '/resources',
       badge: 'Explore',
     },
-    items: [
-      { name: 'Resource Hub', href: '/resources', icon: Sparkles, description: 'All systems, guides, and tools' },
-      { name: 'The Golden Age of Creators', href: '/golden-age', icon: BookOpen, description: 'Book on creative transformation' },
-      { name: "The Creator's Soulbook", href: '/soulbook', icon: BookOpen, description: 'Your life transformation system' },
-      { name: 'Free Playbooks', href: '/free-playbook', icon: FileText, description: 'Start with quick wins' },
-      { name: 'Prompt Library', href: '/prompt-library', icon: BookOpen, description: 'Curated prompt stacks' },
-      { name: 'Research Hub', href: '/research', icon: Microscope, description: 'Daily intelligence operations' },
-      { name: 'Intelligence Atlas', href: '/intelligence-atlas', icon: Star, description: 'Flagship research' },
-      { name: 'AI Architect', href: '/ai-architect', icon: Network, description: 'Solution design & patterns' },
-      { name: 'Vibe OS', href: '/products/vibe-os', icon: Music, description: 'AI music system' },
-      { name: 'Agentic Creator OS', href: '/products/agentic-creator-os', icon: Bot, description: 'Agent workflows' },
-      { name: 'Arcanea', href: '/magic', icon: Wand2, description: 'Worldbuilding academy' },
-      { name: 'The Luminors', href: 'https://arcanea.app', icon: Heart, description: 'AI companions', external: true },
+    items: [],
+    groups: [
+      {
+        label: 'Content & Learning',
+        items: [
+          { name: 'The Golden Age of Creators', href: '/golden-age', icon: BookOpen, description: 'Book on creative transformation' },
+          { name: 'Free Playbooks', href: '/free-playbook', icon: FileText, description: 'Start with quick wins' },
+          { name: 'Prompt Library', href: '/prompt-library', icon: BookOpen, description: 'Curated prompt stacks' },
+          { name: 'Downloads', href: '/downloads', icon: FileText, description: 'PDFs & free resources' },
+        ],
+      },
+      {
+        label: 'Products & Systems',
+        items: [
+          { name: 'Vibe OS', href: '/products/vibe-os', icon: Music, description: 'AI music system' },
+          { name: 'Agentic Creator OS', href: '/products/agentic-creator-os', icon: Bot, description: 'Agent workflows' },
+          { name: "The Creator's Soulbook", href: '/soulbook', icon: BookOpen, description: 'Life transformation system' },
+          { name: 'Arcanea', href: '/magic', icon: Wand2, description: 'Worldbuilding academy' },
+        ],
+      },
+      {
+        label: 'Research & Intelligence',
+        items: [
+          { name: 'Research Hub', href: '/research', icon: Microscope, description: 'Daily intelligence operations' },
+          { name: 'Intelligence Atlas', href: '/intelligence-atlas', icon: Star, description: 'Flagship research' },
+          { name: 'AI Architect', href: '/ai-architect', icon: Network, description: 'Solution design & patterns' },
+          { name: 'The Luminors', href: 'https://arcanea.app', icon: Heart, description: 'AI companions', external: true },
+        ],
+      },
     ],
   },
 }
@@ -137,8 +154,83 @@ function Logo() {
   )
 }
 
-// Mega menu content component
+// Shared link item renderer
+function NavLinkItem({ item }: { item: { name: string; href: string; icon: React.ComponentType<{ className?: string }>; description: string; external?: boolean } }) {
+  const Icon = item.icon
+  const isExternal = item.external
+  const LinkComponent = isExternal ? 'a' : Link
+  const linkProps = isExternal
+    ? { href: item.href, target: '_blank' as const, rel: 'noopener noreferrer' }
+    : { href: item.href }
+
+  return (
+    <li>
+      <NavigationMenu.Link asChild>
+        <LinkComponent
+          {...linkProps}
+          className="group flex items-start gap-3 rounded-lg p-2.5 transition-colors hover:bg-white/5"
+        >
+          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white/5 text-slate-400 transition-colors group-hover:bg-white/10 group-hover:text-white">
+            <Icon className="h-4 w-4" />
+          </div>
+          <div className="flex-1 min-w-0">
+            <span className="flex items-center gap-1.5 text-sm font-medium text-white">
+              {item.name}
+              {isExternal && <ExternalLink className="h-3 w-3 text-slate-500" />}
+            </span>
+            <p className="text-xs text-slate-500">{item.description}</p>
+          </div>
+        </LinkComponent>
+      </NavigationMenu.Link>
+    </li>
+  )
+}
+
+// Multi-column mega menu for Resources
+function ResourcesMegaMenu() {
+  const data = navigation.resources
+
+  return (
+    <div className="w-[720px] p-5">
+      {/* Header with featured link */}
+      <div className="flex items-center justify-between mb-4 pb-3 border-b border-white/5">
+        <Link href={data.featured.href} className="group flex items-center gap-2">
+          <Sparkles className="h-4 w-4 text-emerald-400" />
+          <span className="text-sm font-semibold text-white group-hover:text-emerald-300 transition-colors">
+            {data.featured.title}
+          </span>
+          <ArrowRight className="h-3.5 w-3.5 text-white/30 group-hover:text-emerald-400 group-hover:translate-x-0.5 transition-all" />
+        </Link>
+        <span className="rounded-full bg-emerald-500/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-emerald-400">
+          {data.featured.badge}
+        </span>
+      </div>
+
+      {/* 3-column grid */}
+      <div className="grid grid-cols-3 gap-6">
+        {data.groups?.map((group) => (
+          <div key={group.label}>
+            <h4 className="text-[11px] font-semibold uppercase tracking-wider text-white/40 mb-2 px-2.5">
+              {group.label}
+            </h4>
+            <ul className="space-y-0.5">
+              {group.items.map((item) => (
+                <NavLinkItem key={item.name} item={item} />
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+// Standard mega menu content component
 function MegaMenuContent({ section }: { section: keyof typeof navigation }) {
+  if (section === 'resources') {
+    return <ResourcesMegaMenu />
+  }
+
   const data = navigation[section]
 
   return (
@@ -161,36 +253,9 @@ function MegaMenuContent({ section }: { section: keyof typeof navigation }) {
 
       {/* Links grid */}
       <ul className="grid grid-cols-1 gap-1">
-        {data.items.map((item) => {
-          const Icon = item.icon
-          const isExternal = 'external' in item && item.external
-          const LinkComponent = isExternal ? 'a' : Link
-          const linkProps = isExternal
-            ? { href: item.href, target: '_blank', rel: 'noopener noreferrer' }
-            : { href: item.href }
-
-          return (
-            <li key={item.name}>
-              <NavigationMenu.Link asChild>
-        <LinkComponent
-                  {...linkProps}
-                  className="group flex items-start gap-3 rounded-lg p-2.5 transition-colors hover:bg-white/5"
-                >
-                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white/5 text-slate-400 transition-colors group-hover:bg-white/10 group-hover:text-white">
-                    <Icon className="h-4 w-4" />
-                  </div>
-                  <div className="flex-1">
-                    <span className="flex items-center gap-1.5 text-sm font-medium text-white">
-                      {item.name}
-                      {isExternal && <ExternalLink className="h-3 w-3 text-slate-500" />}
-                    </span>
-                    <p className="text-xs text-slate-500">{item.description}</p>
-                  </div>
-                </LinkComponent>
-              </NavigationMenu.Link>
-            </li>
-          )
-        })}
+        {data.items.map((item) => (
+          <NavLinkItem key={item.name} item={item} />
+        ))}
       </ul>
     </div>
   )
@@ -369,6 +434,20 @@ export default function NavigationMega() {
               </Link>
             </NavigationMenu.Item>
 
+            <NavigationMenu.Item>
+              <Link
+                href="/contact"
+                className={cn(
+                  'rounded-md px-2.5 py-1.5 text-[13px] font-semibold transition-all',
+                  isActive('/contact')
+                    ? 'text-white bg-white/5'
+                    : 'text-slate-300 hover:text-white hover:bg-white/5'
+                )}
+              >
+                Contact
+              </Link>
+            </NavigationMenu.Item>
+
             <NavigationMenu.Indicator className="top-full z-10 flex h-2 items-end justify-center overflow-hidden transition-[width,transform_250ms_ease] data-[state=hidden]:animate-fadeOut data-[state=visible]:animate-fadeIn">
               <div className="relative top-[60%] h-2 w-2 rotate-45 rounded-tl-sm bg-slate-800 shadow-lg" />
             </NavigationMenu.Indicator>
@@ -430,6 +509,13 @@ export default function NavigationMega() {
               >
                 About
               </Link>
+              <Link
+                href="/contact"
+                onClick={() => setIsOpen(false)}
+                className="block rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base font-medium text-slate-300 transition-colors hover:bg-white/5 hover:text-white"
+              >
+                Contact
+              </Link>
 
               {/* Mobile CTA */}
               <div className="pt-3 sm:pt-4 pb-2">
@@ -454,6 +540,11 @@ function MobileSection({ section, onClose }: { section: keyof typeof navigation;
   const [expanded, setExpanded] = useState(false)
   const data = navigation[section]
 
+  // Collect all items: either from groups (resources) or direct items
+  const allItems = 'groups' in data && data.groups
+    ? (data.groups as Array<{ label: string; items: typeof data.items }>).flatMap((g) => g.items)
+    : data.items
+
   return (
     <div>
       <button
@@ -473,7 +564,7 @@ function MobileSection({ section, onClose }: { section: keyof typeof navigation;
             className="overflow-hidden"
           >
             <div className="space-y-0.5 pb-2 pl-2 sm:pl-4">
-              {data.items.map((item) => {
+              {allItems.map((item) => {
                 const Icon = item.icon
                 return (
                   <Link

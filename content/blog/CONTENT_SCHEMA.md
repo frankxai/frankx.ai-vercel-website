@@ -7,7 +7,7 @@
 | **Creator Systems** | Workflows, OS design, automation, productivity frameworks | Monday | Agentic Creator OS, Creative OS, SEO Masterplan |
 | **Vibe Sessions** | Music production, Suno AI, state engineering, sonic rituals | Wednesday | Music as Consciousness, State Change Science |
 | **Intelligence Dispatches** | AI strategy, Golden Age vision, enterprise insights | Friday | Intelligence Revolution, AI Guides, Roadmaps |
-| **Consciousness** | Soul-aligned AI, personal stories, spiritual technology | Special | Soul Frequency, AI Doesn't Have to Be Soulless |
+| **Creativity** | Purpose-driven AI, personal stories, creative systems | Special | Creative Frequency, AI Doesn't Have to Be Soulless |
 | **Flagship** | Major reports, atlases, comprehensive multi-chapter guides | Flagship | Intelligence Atlas, Golden Age Atlas |
 
 ## Required Frontmatter Schema
@@ -32,7 +32,7 @@ readingGoal: "" # "You'll learn..." statement (optional)
 - Use lowercase or Title Case consistently (prefer lowercase-kebab-case)
 - Maximum 5 tags per article
 - Reuse existing tags before creating new ones
-- Core tags: `ai-strategy`, `music`, `consciousness`, `automation`, `suno-ai`, `vibe-os`, `creator-os`, `golden-age`
+- Core tags: `ai-strategy`, `music`, `creativity`, `automation`, `suno-ai`, `vibe-os`, `creator-os`, `golden-age`
 
 ## File Naming
 

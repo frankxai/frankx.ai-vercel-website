@@ -34,6 +34,24 @@ export interface BlogPost {
   lastUpdated?: string // Freshness signal for search engines
 }
 
+// Normalize frontmatter field variants to canonical BlogPost fields
+function normalizeFrontmatter(data: Record<string, any>): Record<string, any> {
+  const normalized = { ...data }
+  if (!normalized.date && normalized.publishedAt) {
+    normalized.date = normalized.publishedAt
+  }
+  if (!normalized.description && normalized.excerpt) {
+    normalized.description = normalized.excerpt
+  }
+  if (!normalized.lastUpdated && normalized.updatedAt) {
+    normalized.lastUpdated = normalized.updatedAt
+  }
+  if (!normalized.keywords && normalized.seo?.keywords) {
+    normalized.keywords = normalized.seo.keywords
+  }
+  return normalized
+}
+
 export const getAllBlogPosts = cache((): BlogPost[] => {
   const fileNames = fs.readdirSync(blogDirectory)
   const allPostsData = fileNames
@@ -49,7 +67,7 @@ export const getAllBlogPosts = cache((): BlogPost[] => {
         slug,
         content,
         readingTime: readTime.text,
-        ...data,
+        ...normalizeFrontmatter(data),
       } as BlogPost
     })
 
@@ -69,7 +87,7 @@ export const getBlogPost = cache((slug: string): BlogPost | null => {
       slug,
       content,
       readingTime: readTime.text,
-      ...data,
+      ...normalizeFrontmatter(data),
     } as BlogPost
   } catch {
     return null
@@ -87,8 +105,49 @@ export function getPostsByCategory(category: string): BlogPost[] {
 }
 
 export function getPostsByTag(tag: string): BlogPost[] {
-  return getAllBlogPosts().filter(post => 
+  return getAllBlogPosts().filter(post =>
     post.tags.some(t => t.toLowerCase() === tag.toLowerCase())
   )
+}
+
+/**
+ * Extract FAQ pairs from MDX content body.
+ * Handles two formats:
+ *   1. **Q: Question?** followed by answer text
+ *   2. ### Question? followed by answer paragraph(s)
+ * Only looks within ## FAQ or ## Frequently Asked Questions sections.
+ */
+export function extractFAQFromContent(content: string): { question: string; answer: string }[] {
+  // Find the FAQ section
+  const faqMatch = content.match(/^## (?:FAQ|Frequently Asked[^\n]*)\n([\s\S]*?)(?=\n## [^#]|\n---\n|$)/m)
+  if (!faqMatch) return []
+
+  const faqSection = faqMatch[1]
+  const faqs: { question: string; answer: string }[] = []
+
+  // Pattern 1: **Q: Question?** \n Answer
+  const boldQPattern = /\*\*Q:\s*(.+?)\*\*\s*\n([\s\S]*?)(?=\*\*Q:|### |$)/g
+  let match
+  while ((match = boldQPattern.exec(faqSection)) !== null) {
+    const question = match[1].trim()
+    const answer = match[2].trim()
+    if (question && answer) {
+      faqs.push({ question, answer })
+    }
+  }
+
+  // Pattern 2: ### Question? \n\n Answer paragraph
+  if (faqs.length === 0) {
+    const h3Pattern = /### (.+?)\n\n([\s\S]*?)(?=\n### |\n## |$)/g
+    while ((match = h3Pattern.exec(faqSection)) !== null) {
+      const question = match[1].trim()
+      const answer = match[2].trim()
+      if (question && answer) {
+        faqs.push({ question, answer })
+      }
+    }
+  }
+
+  return faqs
 }
 

@@ -1,0 +1,427 @@
+---
+title: "SEO & AEO Optimization with ACOS: Rank in Search and AI Engines"
+description: "Master search and AI engine optimization with ACOS. Question-based structure, FAQ schemas, AI citation optimization, and the /factory pipeline for publish-ready content."
+date: "2026-01-27"
+lastModified: "2026-01-27"
+author: "Frank"
+tags: ["seo", "aeo", "content strategy", "ai optimization", "marketing"]
+keywords: ["ai engine optimization", "aeo seo", "ai citation optimization", "chatgpt perplexity optimization", "content seo strategy", "acos content pipeline"]
+category: "Strategy & Learning"
+featured: false
+image: '/images/blog/seo-aeo-optimization-hero.png'
+readingGoal: "Implement SEO and AEO best practices using ACOS for maximum discoverability."
+readingTime: '11 min'
+---
+
+# SEO & AEO Optimization with ACOS: Rank in Search and AI Engines
+
+*How to write content that Google AND ChatGPT want to cite.*
+
+---
+
+## TL;DR
+
+Traditional SEO optimizes for Google. AEO (AI Engine Optimization) optimizes for ChatGPT, Perplexity, and Claude. ACOS does both through: question-based H2 headings, FAQ schema markup, TL;DR in first 100 words, numbered lists for AI extraction, and the `/factory` pipeline that enforces these patterns automatically. This guide covers the framework and shows how to implement it.
+
+---
+
+## What Is AEO (AI Engine Optimization)?
+
+AEO is the practice of optimizing content for AI assistants to cite. When someone asks ChatGPT "What is the best AI productivity system?", you want your content cited as the answer.
+
+**SEO vs AEO:**
+
+| Dimension | SEO (Search) | AEO (AI Engines) |
+|-----------|--------------|------------------|
+| **Target** | Google, Bing | ChatGPT, Perplexity, Claude |
+| **Success** | Rank #1 | Get cited/quoted |
+| **Format** | Keywords, backlinks | Clear statements, lists |
+| **Intent** | User clicks through | AI extracts and summarizes |
+| **Metrics** | Rankings, traffic | Citations, brand mentions |
+
+### Why AEO Matters in 2026
+
+The numbers tell the story:
+
+- **40%** of search queries now touch AI systems
+- **ChatGPT** has 200M+ weekly users asking questions
+- **Perplexity** growing 30% month-over-month
+- **AI Overviews** appearing in 25%+ of Google searches
+
+If your content isn't optimized for AI extraction, you're invisible to a growing segment of information seekers.
+
+---
+
+## The ACOS Content Framework
+
+ACOS enforces SEO/AEO best practices through the content pipeline. Here's the framework:
+
+### 1. Question-Based H2 Headings
+
+**Why:** AI engines look for questions to match user queries. Google loves them for featured snippets.
+
+```markdown
+# Bad H2s
+## Introduction
+## Features
+## Conclusion
+
+# Good H2s (Question-Based)
+## What Is Agentic Creator OS?
+## How Does the Smart Router Work?
+## Why Do Creators Need an AI Operating System?
+```
+
+**ACOS Implementation:**
+The `/article-creator` command automatically structures articles with question-based headings:
+
+```bash
+/article-creator "Guide to AI productivity"
+
+# ACOS generates:
+## What Is AI Productivity?
+## Why Do Traditional Tools Fall Short?
+## How Does AI-Powered Productivity Work?
+## What Are the Best AI Productivity Tools?
+## How Do I Get Started?
+```
+
+### 2. TL;DR in First 100 Words
+
+**Why:** AI engines often extract the first paragraph. Make it count.
+
+```markdown
+# Bad Opening
+In this comprehensive guide, we'll explore the many facets of AI productivity...
+
+# Good Opening (TL;DR)
+AI productivity systems automate repetitive work, coordinate multiple tools, and
+maintain context across sessions. The best approach: use an operating system like
+ACOS that combines 25 commands, 80+ skills, and 40+ agents. Start with `/acos`.
+```
+
+**ACOS Implementation:**
+Every article template includes a TL;DR section that's populated first.
+
+### 3. FAQ Schema Markup
+
+**Why:** FAQ schema gets featured snippets and AI citations.
+
+```markdown
+## Frequently Asked Questions
+
+### What is ACOS?
+ACOS (Agentic Creator OS) is an open-source operating system for Claude Code
+that adds 25 commands, 80+ skills, and 40+ agents.
+
+### Is ACOS free?
+Yes, completely free and open source on GitHub.
+
+### How long does installation take?
+Under 10 minutes for the full setup.
+```
+
+**Schema Output:**
+```json
+{
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is ACOS?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ACOS (Agentic Creator OS) is an open-source operating system..."
+      }
+    }
+  ]
+}
+```
+
+### 4. Numbered Lists for AI Extraction
+
+**Why:** AI engines love extracting numbered lists. They're easy to parse and cite.
+
+```markdown
+# Bad
+There are several benefits including speed, quality, and consistency...
+
+# Good
+The 5 key benefits of ACOS:
+1. **Speed**: 10x faster content creation
+2. **Quality**: Built-in quality gates
+3. **Consistency**: Brand voice enforcement
+4. **Scale**: Handle more projects
+5. **Learning**: Skills compound over time
+```
+
+### 5. Clear Definitions
+
+**Why:** AI engines cite definitions verbatim.
+
+```markdown
+# Bad
+Multi-agent orchestration is kind of like having multiple AI helpers...
+
+# Good
+**Multi-agent orchestration** is the coordination of multiple specialized AI
+agents to complete complex tasks. Each agent handles a specific domain while
+an orchestrator manages handoffs and synthesizes outputs.
+```
+
+### 6. Internal Linking Strategy
+
+**Why:** Both Google and AI engines follow links to understand content relationships.
+
+```markdown
+## Hub and Spoke Model
+
+Hub Article: [Complete Guide to ACOS](/blog/agentic-creator-os-complete-guide)
+  ├── [Swarm Intelligence](/blog/swarm-intelligence-multi-agent-orchestration)
+  ├── [Use Cases by Creator Type](/blog/acos-use-cases-creator-types)
+  ├── [MCP Server Integration](/blog/mcp-server-integration-guide)
+  ├── [Building Custom Skills](/blog/building-custom-skills-acos)
+  └── [Quick Start Guide](/blog/acos-zero-to-production-quickstart)
+```
+
+**ACOS Implementation:**
+The `/article-creator` automatically suggests relevant internal links from your content inventory.
+
+---
+
+## The /factory Pipeline
+
+The `/factory` command enforces all SEO/AEO best practices automatically:
+
+```bash
+/factory "Complete guide to AI agents for enterprise"
+
+# Pipeline:
+1. RESEARCH → Gather current data, competitor analysis
+2. PLAN → Structure with question-based H2s
+3. DRAFT → Write with TL;DR, lists, definitions
+4. OPTIMIZE → Add FAQ section, internal links
+5. VALIDATE → Check SEO/AEO checklist
+6. PUBLISH → Deploy with schema markup
+```
+
+### The SEO/AEO Checklist (Automated)
+
+ACOS validates every article against:
+
+- [ ] TL;DR in first 100 words
+- [ ] Question-based H2 headings (5+ questions)
+- [ ] FAQ section (5-10 questions)
+- [ ] Numbered/bulleted lists (3+ per article)
+- [ ] Clear definitions for key terms
+- [ ] Internal links (3+ related articles)
+- [ ] Meta title under 60 characters
+- [ ] Meta description 150-160 characters
+- [ ] Schema markup (Article + FAQPage)
+- [ ] Reading time accurate
+
+---
+
+## AI Citation Optimization Techniques
+
+### Technique 1: Definitive Statements
+
+AI engines prefer citing clear, definitive statements over hedged language.
+
+```markdown
+# Bad (hedged)
+ACOS might help improve productivity for some users in certain situations.
+
+# Good (definitive)
+ACOS improves productivity by automating repetitive tasks and coordinating
+AI agents. Users report 10x faster content creation.
+```
+
+### Technique 2: Statistics and Numbers
+
+AI engines love citing specific numbers.
+
+```markdown
+# Bad
+ACOS has many commands and skills.
+
+# Good
+ACOS includes 25 commands, 80+ skills, and 40+ agents.
+```
+
+### Technique 3: Comparison Tables
+
+Tables are easy for AI to parse and cite.
+
+```markdown
+| Feature | ACOS | Traditional AI |
+|---------|------|----------------|
+| Commands | 25 | 0 |
+| Skills | 80+ | 0 |
+| Auto-activation | Yes | No |
+| Orchestration | Multi-agent | Single agent |
+```
+
+### Technique 4: Step-by-Step Instructions
+
+AI engines frequently cite how-to content.
+
+```markdown
+## How to Install ACOS
+
+1. Clone the repository: `git clone https://github.com/frankxai/agentic-creator-os`
+2. Enter the directory: `cd agentic-creator-os`
+3. Run the installer: `./install.sh`
+4. Launch Claude Code: `claude`
+5. Start ACOS: `/acos`
+```
+
+### Technique 5: Entity Optimization
+
+Mention your brand name clearly and consistently.
+
+```markdown
+# Bad
+This system helps with productivity...
+
+# Good
+**Agentic Creator OS (ACOS)** is an open-source operating system...
+```
+
+---
+
+## Measuring AEO Success
+
+### Method 1: Manual Citation Checks
+
+```bash
+# Ask ChatGPT
+"What is the best AI operating system for creators?"
+
+# Ask Perplexity
+"How do I set up an AI productivity system?"
+
+# Check if your content is cited
+```
+
+### Method 2: Brand Mention Tracking
+
+Use tools like:
+- Brand24
+- Mention
+- Google Alerts
+
+Track mentions of "ACOS", "Agentic Creator OS", "FrankX" in AI responses.
+
+### Method 3: Referral Traffic Analysis
+
+```
+Analytics → Acquisition → Referral
+Look for: chat.openai.com, perplexity.ai, claude.ai
+```
+
+### Method 4: Featured Snippet Tracking
+
+Use SEO tools to track featured snippet wins:
+- Ahrefs → Position tracking → SERP features
+- SEMrush → Position tracking → Featured snippets
+
+---
+
+## The Content Calendar for SEO/AEO
+
+### Weekly Rhythm
+
+| Day | Task | ACOS Command |
+|-----|------|--------------|
+| Monday | Plan week's content | `/plan-week` |
+| Tuesday | Research topics | `/research` |
+| Wednesday | Write article 1 | `/article-creator` |
+| Thursday | Write article 2 | `/article-creator` |
+| Friday | Optimize & publish | `/factory` |
+
+### Content Types by SEO/AEO Value
+
+| Type | SEO Value | AEO Value | Priority |
+|------|-----------|-----------|----------|
+| **How-to guides** | High | High | 1 |
+| **Comparison articles** | High | High | 1 |
+| **Definition pieces** | Medium | High | 2 |
+| **Listicles** | High | Medium | 2 |
+| **Case studies** | Medium | Medium | 3 |
+| **Opinion pieces** | Low | Low | 4 |
+
+---
+
+## ACOS SEO Skills
+
+ACOS includes specialized skills for SEO/AEO:
+
+### content-strategy Skill
+
+Auto-activates on: "blog", "article", "content", "write"
+
+Provides:
+- Content structure templates
+- Headline formulas
+- SEO checklist
+
+### seo-optimization Skill
+
+Auto-activates on: "SEO", "rank", "search", "keywords"
+
+Provides:
+- Keyword research patterns
+- On-page optimization
+- Technical SEO checks
+
+---
+
+## Frequently Asked Questions
+
+### What is AEO (AI Engine Optimization)?
+
+AEO is the practice of optimizing content to be cited by AI assistants like ChatGPT, Perplexity, and Claude. It focuses on clear statements, structured data, and definitive answers that AI can extract and quote.
+
+### How is AEO different from SEO?
+
+SEO optimizes for search engine rankings (Google). AEO optimizes for AI citations. Both use similar techniques (clear structure, good content) but AEO emphasizes extractable statements and FAQ schemas.
+
+### Does ACOS automate SEO/AEO?
+
+Yes. The `/factory` pipeline enforces SEO/AEO best practices: question-based headings, FAQ sections, schema markup, and internal linking are built into the content creation workflow.
+
+### How do I know if AI is citing my content?
+
+Manually check by asking ChatGPT/Perplexity questions related to your content. Track brand mentions and referral traffic from AI platforms.
+
+### What's the most important AEO technique?
+
+Clear, definitive statements that AI can quote directly. Avoid hedged language. State facts with numbers and specifics.
+
+### How often should I publish for SEO/AEO?
+
+Consistency matters more than frequency. 2-3 quality articles per week with proper optimization beats daily thin content.
+
+---
+
+## Next Steps
+
+1. **Audit existing content** — Check against the SEO/AEO checklist
+2. **Use `/factory`** — Let ACOS enforce best practices
+3. **Track citations** — Monitor AI mentions of your content
+4. **Iterate** — Double down on what gets cited
+
+---
+
+## Related Articles
+
+- [The Complete Guide to Agentic Creator OS v6](/blog/agentic-creator-os-complete-guide)
+- [ACOS Use Cases by Creator Type](/blog/acos-use-cases-creator-types)
+- [Building Custom Skills for ACOS](/blog/building-custom-skills-acos)
+
+---
+
+*Optimize once, rank everywhere. Search engines AND AI engines.*
+
+*[GitHub](https://github.com/frankxai/agentic-creator-os) | [FrankX](https://frankx.ai)*

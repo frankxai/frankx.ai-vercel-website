@@ -1,0 +1,149 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="550" viewBox="0 0 900 550">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f172a"/>
+      <stop offset="1" stop-color="#1e293b"/>
+    </linearGradient>
+    <linearGradient id="t1" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#06b6d4"/>
+      <stop offset="1" stop-color="#22d3ee"/>
+    </linearGradient>
+    <linearGradient id="t2" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#0ea5e9"/>
+      <stop offset="1" stop-color="#6366f1"/>
+    </linearGradient>
+    <linearGradient id="t3" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#8b5cf6"/>
+      <stop offset="1" stop-color="#a78bfa"/>
+    </linearGradient>
+    <linearGradient id="t4" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ec4899"/>
+      <stop offset="1" stop-color="#f472b6"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="900" height="550" fill="url(#bg)"/>
+
+  <!-- Title -->
+  <text x="450" y="35" fill="#f1f5f9" font-size="22" font-family="system-ui" font-weight="bold" text-anchor="middle">Agentic AI Maturity Model</text>
+
+  <!-- Tier 1 -->
+  <g transform="translate(30, 70)">
+    <rect width="200" height="100" rx="10" fill="#1e293b" stroke="url(#t1)" stroke-width="2"/>
+    <text x="100" y="25" fill="#06b6d4" font-size="14" font-family="system-ui" font-weight="bold" text-anchor="middle">TIER 1</text>
+    <text x="100" y="48" fill="#f1f5f9" font-size="13" font-family="system-ui" font-weight="bold" text-anchor="middle">Augmented Workflows</text>
+    <text x="100" y="68" fill="#94a3b8" font-size="10" font-family="system-ui" text-anchor="middle">AI assists, human decides</text>
+    <line x1="20" y1="80" x2="180" y2="80" stroke="#334155" stroke-width="1"/>
+    <text x="20" y="95" fill="#64748b" font-size="9" font-family="system-ui">&lt;50 decisions/day • $100-500/mo</text>
+  </g>
+
+  <!-- Arrow 1 -->
+  <path d="M240 120 L270 120" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Tier 2 -->
+  <g transform="translate(290, 70)">
+    <rect width="200" height="100" rx="10" fill="#1e293b" stroke="url(#t2)" stroke-width="2"/>
+    <text x="100" y="25" fill="#0ea5e9" font-size="14" font-family="system-ui" font-weight="bold" text-anchor="middle">TIER 2</text>
+    <text x="100" y="48" fill="#f1f5f9" font-size="13" font-family="system-ui" font-weight="bold" text-anchor="middle">Single Agent</text>
+    <text x="100" y="68" fill="#94a3b8" font-size="10" font-family="system-ui" text-anchor="middle">End-to-end with checkpoints</text>
+    <line x1="20" y1="80" x2="180" y2="80" stroke="#334155" stroke-width="1"/>
+    <text x="20" y="95" fill="#64748b" font-size="9" font-family="system-ui">50-500 workflows • $1K-5K/mo</text>
+  </g>
+
+  <!-- Arrow 2 -->
+  <path d="M500 120 L530 120" fill="none" stroke="#64748b" stroke-width="2"/>
+
+  <!-- Tier 3 -->
+  <g transform="translate(550, 70)">
+    <rect width="200" height="100" rx="10" fill="#1e293b" stroke="url(#t3)" stroke-width="2"/>
+    <text x="100" y="25" fill="#8b5cf6" font-size="14" font-family="system-ui" font-weight="bold" text-anchor="middle">TIER 3</text>
+    <text x="100" y="48" fill="#f1f5f9" font-size="13" font-family="system-ui" font-weight="bold" text-anchor="middle">Multi-Agent</text>
+    <text x="100" y="68" fill="#94a3b8" font-size="10" font-family="system-ui" text-anchor="middle">Collaborative agents + handoffs</text>
+    <line x1="20" y1="80" x2="180" y2="80" stroke="#334155" stroke-width="1"/>
+    <text x="20" y="95" fill="#64748b" font-size="9" font-family="system-ui">500-5K workflows • $5K-20K/mo</text>
+  </g>
+
+  <!-- Arrow 3 -->
+  <path d="M760 120 L790 120" fill="none" stroke="#64748b" stroke-width="2"/>
+
+  <!-- Tier 4 -->
+  <g transform="translate(810, 70)">
+    <rect width="80" height="100" rx="10" fill="#1e293b" stroke="url(#t4)" stroke-width="2"/>
+    <text x="40" y="25" fill="#ec4899" font-size="12" font-family="system-ui" font-weight="bold" text-anchor="middle">TIER 4</text>
+    <text x="40" y="50" fill="#f1f5f9" font-size="10" font-family="system-ui" font-weight="bold" text-anchor="middle">Platform</text>
+    <line x1="15" y1="65" x2="65" y2="65" stroke="#334155" stroke-width="1"/>
+    <text x="40" y="85" fill="#64748b" font-size="8" font-family="system-ui" text-anchor="middle">5K+</text>
+  </g>
+
+  <!-- Team sizes -->
+  <g transform="translate(30, 200)">
+    <text x="400" y="15" fill="#94a3b8" font-size="14" font-family="system-ui" text-anchor="middle">Team Requirements by Tier</text>
+
+    <!-- T1 -->
+    <rect x="0" y="35" width="200" height="70" rx="8" fill="#0f172a" stroke="#1e3a5f"/>
+    <text x="100" y="58" fill="#06b6d4" font-size="12" font-family="system-ui" font-weight="bold" text-anchor="middle">TIER 1 TEAM</text>
+    <text x="100" y="80" fill="#e2e8f0" font-size="11" font-family="system-ui" text-anchor="middle">1 engineer, part-time</text>
+    <text x="100" y="97" fill="#64748b" font-size="9" font-family="system-ui" text-anchor="middle">Risk: Minimal</text>
+  </g>
+
+  <!-- T2 -->
+  <g transform="translate(245, 200)">
+    <rect x="0" y="35" width="200" height="70" rx="8" fill="#0f172a" stroke="#1e3a5f"/>
+    <text x="100" y="58" fill="#0ea5e9" font-size="12" font-family="system-ui" font-weight="bold" text-anchor="middle">TIER 2 TEAM</text>
+    <text x="100" y="80" fill="#e2e8f0" font-size="11" font-family="system-ui" text-anchor="middle">1-2 engineers, dedicated</text>
+    <text x="100" y="97" fill="#64748b" font-size="9" font-family="system-ui" text-anchor="middle">Risk: Medium</text>
+  </g>
+
+  <!-- T3 -->
+  <g transform="translate(490, 200)">
+    <rect x="0" y="35" width="200" height="70" rx="8" fill="#0f172a" stroke="#1e3a5f"/>
+    <text x="100" y="58" fill="#8b5cf6" font-size="12" font-family="system-ui" font-weight="bold" text-anchor="middle">TIER 3 TEAM</text>
+    <text x="100" y="80" fill="#e2e8f0" font-size="11" font-family="system-ui" text-anchor="middle">3-5 engineers + platform</text>
+    <text x="100" y="97" fill="#64748b" font-size="9" font-family="system-ui" text-anchor="middle">Risk: Higher</text>
+  </g>
+
+  <!-- T4 -->
+  <g transform="translate(735, 200)">
+    <rect x="0" y="35" width="150" height="70" rx="8" fill="#0f172a" stroke="#1e3a5f"/>
+    <text x="75" y="58" fill="#ec4899" font-size="12" font-family="system-ui" font-weight="bold" text-anchor="middle">TIER 4 TEAM</text>
+    <text x="75" y="80" fill="#e2e8f0" font-size="11" font-family="system-ui" text-anchor="middle">10+ engineers</text>
+    <text x="75" y="97" fill="#64748b" font-size="9" font-family="system-ui" text-anchor="middle">Risk: Highest</text>
+  </g>
+
+  <!-- Insight box -->
+  <g transform="translate(30, 320)">
+    <rect width="855" height="60" rx="8" fill="#0f172a" stroke="#f59e0b" stroke-width="1"/>
+    <circle cx="30" cy="30" r="10" fill="#f59e0b"/>
+    <text x="30" y="35" fill="#1e293b" font-size="14" font-family="system-ui" font-weight="bold" text-anchor="middle">!</text>
+    <text x="55" y="25" fill="#f1f5f9" font-size="13" font-family="system-ui" font-weight="bold">Critical Insight</text>
+    <text x="55" y="45" fill="#94a3b8" font-size="11" font-family="system-ui">Most teams should be at Tier 1 or 2. Tier 3 and 4 are organizational capabilities, not technical achievements.</text>
+    <text x="55" y="62" fill="#64748b" font-size="10" font-family="system-ui">Think of it as going from a solo artist → duo → full band → stadium tour.</text>
+  </g>
+
+  <!-- Key decisions -->
+  <g transform="translate(30, 410)">
+    <text x="427" y="15" fill="#94a3b8" font-size="14" font-family="system-ui" text-anchor="middle">Key Architecture Decisions</text>
+
+    <!-- Decision 1-2 -->
+    <g transform="translate(0, 35)">
+      <rect x="0" y="0" width="270" height="50" rx="6" fill="#0f172a"/>
+      <text x="15" y="20" fill="#06b6d4" font-size="10" font-family="system-ui" font-weight="bold">T1→T2:</text>
+      <text x="65" y="20" fill="#e2e8f0" font-size="10" font-family="system-ui">Graph state machine + typed contracts</text>
+      <text x="15" y="38" fill="#64748b" font-size="9" font-family="system-ui">Adding autonomy requires explicit state tracking</text>
+    </g>
+
+    <g transform="translate(290, 35)">
+      <rect x="0" y="0" width="270" height="50" rx="6" fill="#0f172a"/>
+      <text x="15" y="20" fill="#0ea5e9" font-size="10" font-family="system-ui" font-weight="bold">T2→T3:</text>
+      <text x="65" y="20" fill="#e2e8f0" font-size="10" font-family="system-ui">Model routing + handoff protocols</text>
+      <text x="15" y="38" fill="#64748b" font-size="9" font-family="system-ui">Coordination introduces complexity and overhead</text>
+    </g>
+
+    <g transform="translate(580, 35)">
+      <rect x="0" y="0" width="305" height="50" rx="6" fill="#0f172a"/>
+      <text x="15" y="20" fill="#8b5cf6" font-size="10" font-family="system-ui" font-weight="bold">T3→T4:</text>
+      <text x="65" y="20" fill="#e2e8f0" font-size="10" font-family="system-ui">Multi-tenancy + self-service + compliance</text>
+      <text x="15" y="38" fill="#64748b" font-size="9" font-family="system-ui">Platform thinking, not just engineering</text>
+    </g>
+  </g>
+</svg>

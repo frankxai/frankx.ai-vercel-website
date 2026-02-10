@@ -3,8 +3,9 @@ import { notFound } from 'next/navigation'
 import { ArrowLeft, ArrowRight, Calendar, Clock, Linkedin, Share2, Tag, Twitter } from 'lucide-react'
 
 import { MDXContent } from '@/components/blog/MDXContent'
+import RelatedResearch from '@/components/blog/RelatedResearch'
 import Recommendations from '@/components/recommendations/Recommendations'
-import { getAllBlogPosts, getBlogPost } from '@/lib/blog'
+import { getAllBlogPosts, getBlogPost, extractFAQFromContent } from '@/lib/blog'
 import { createMetadata, siteConfig } from '@/lib/seo'
 import JsonLd from '@/components/seo/JsonLd'
 import Breadcrumbs from '@/components/seo/Breadcrumbs'
@@ -85,28 +86,50 @@ export default async function BlogPostPage({
     author: {
       '@type': 'Person',
       name: post.author,
+      url: 'https://frankx.ai',
+      jobTitle: 'AI Architect',
     },
     publisher: {
       '@type': 'Organization',
       name: siteConfig.name,
+      url: 'https://frankx.ai',
       logo: {
         '@type': 'ImageObject',
         url: new URL(siteConfig.ogImage, 'https://frankx.ai').toString(),
       },
     },
     datePublished: post.date,
-    dateModified: post.date,
+    dateModified: post.lastUpdated || post.date,
     mainEntityOfPage: {
       '@type': 'WebPage',
       '@id': canonicalUrl,
     },
     wordCount,
-    keywords: post.keywords?.join(', ') || post.tags.join(', '),
+    keywords: post.keywords?.join(', ') || post.tags?.join(', ') || post.category || '',
+    ...(post.tldr && { abstract: post.tldr }),
   }
+
+  // Extract FAQ from content body for FAQPage schema
+  const extractedFaqs = extractFAQFromContent(post.content)
 
   return (
     <div className="min-h-screen bg-[#030712] text-white">
       <JsonLd type="Article" data={articleSchema} />
+      {extractedFaqs.length > 0 && (
+        <JsonLd
+          type="FAQPage"
+          data={{
+            mainEntity: extractedFaqs.map(faq => ({
+              '@type': 'Question',
+              name: faq.question,
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: faq.answer,
+              },
+            })),
+          }}
+        />
+      )}
 
       {/* Aurora Background Effect */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
@@ -220,11 +243,14 @@ export default async function BlogPostPage({
         </div>
 
         <div className="px-6 pt-12">
-          <div className="mx-auto max-w-4xl">
-            <div className="space-y-6 text-base leading-relaxed text-white/75">
+          <div className="mx-auto max-w-[680px]">
+            <div className="article-prose">
               <MDXContent source={post.content} />
             </div>
+          </div>
 
+          {/* Wider container for cards and meta sections */}
+          <div className="mx-auto max-w-4xl">
             <div className="mt-16 grid gap-6 md:grid-cols-3">
               <article className="group rounded-2xl border border-white/10 bg-white/[0.02] p-6 backdrop-blur-sm hover:border-emerald-500/30 hover:bg-white/[0.04] transition-all duration-300">
                 <div className="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-4">
@@ -297,6 +323,8 @@ export default async function BlogPostPage({
                 </div>
               </div>
             )}
+
+            <RelatedResearch blogSlug={slug} />
           </div>
         </div>
 

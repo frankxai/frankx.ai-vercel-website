@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useTransform, useSpring, useReducedMotion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
+import Image from 'next/image'
 import { useRef, useState, useEffect } from 'react'
 import {
   ArrowRight,
@@ -12,10 +13,41 @@ import {
   BookOpen,
   Code2,
   ChevronRight,
+  ImageIcon,
+  Wand2,
+  Terminal,
+  FileText,
+  Package,
+  Mail,
+  ChevronDown,
 } from 'lucide-react'
 
 import { trackEvent } from '@/lib/analytics'
 import TrustedByBlock from '@/components/social-proof/TrustedByBlock'
+import { EmailSignup } from '@/components/email-signup'
+
+// ============================================================================
+// TYPES
+// ============================================================================
+
+interface LatestPost {
+  slug: string
+  title: string
+  description: string
+  category: string
+  readingTime: string
+  date: string
+}
+
+interface FAQItem {
+  question: string
+  answer: string
+}
+
+interface HomePageEliteProps {
+  latestPosts?: LatestPost[]
+  faqs?: FAQItem[]
+}
 
 // ============================================================================
 // DESIGN SYSTEM
@@ -24,7 +56,7 @@ import TrustedByBlock from '@/components/social-proof/TrustedByBlock'
 // Premium color palette - moving away from generic purple
 const colors = {
   // Deep blacks with warmth
-  bg: '#0a0a0b',
+  bg: '#0F172A',
   bgElevated: '#111113',
   bgSubtle: '#18181b',
 
@@ -53,7 +85,7 @@ function AuroraBackground() {
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none">
       {/* Base gradient */}
-      <div className="absolute inset-0 bg-[#0a0a0b]" />
+      <div className="absolute inset-0 bg-[#0F172A]" />
 
       {/* Aurora effect - contained within viewport to prevent overflow */}
       {/* Mobile: smaller, more contained gradients */}
@@ -142,13 +174,12 @@ const heroConcepts = [
   'intelligent systems',
   'music empire',
   'AI vision',
-  'Soulbook',
+  'agentic workflows',
   'Vibe OS',
   'GenCreator OS',
-  'Arcanea universe',
-  'Starlight system',
   'creative future',
   'golden age',
+  'next project',
 ]
 
 function RotatingWord() {
@@ -305,7 +336,7 @@ function Hero() {
               animate={{ opacity: 1 }}
               transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.4 }}
             >
-              AI Architect at Oracle. Creator of 10K+ songs with Suno.
+              AI Architect at Oracle. Creator of 12K+ songs with Suno.
               Everything I build goes here—open, documented, yours to use.
             </motion.p>
 
@@ -319,7 +350,7 @@ function Hero() {
               <Link
                 href="/start"
                 onClick={() => trackEvent('hero_cta_click', { type: 'primary' })}
-                className="group relative inline-flex items-center justify-center gap-2 sm:gap-3 bg-white text-black px-5 sm:px-7 py-3 sm:py-4 rounded-full font-semibold text-sm sm:text-base transition-all duration-300 hover:bg-white/90 hover:shadow-[0_0_40px_rgba(255,255,255,0.15)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98] active:shadow-[0_0_24px_rgba(255,255,255,0.2)]"
+                className="group relative inline-flex items-center justify-center gap-2 sm:gap-3 bg-white text-black px-5 sm:px-7 py-3 sm:py-4 rounded-full font-semibold text-sm sm:text-base transition-all duration-300 hover:bg-white/90 hover:shadow-[0_0_40px_rgba(255,255,255,0.15)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0F172A] active:scale-[0.98] active:shadow-[0_0_24px_rgba(255,255,255,0.2)]"
               >
                 Explore My Work
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
@@ -328,7 +359,7 @@ function Hero() {
               <Link
                 href="/music-lab"
                 onClick={() => trackEvent('hero_cta_click', { type: 'secondary' })}
-                className="group inline-flex items-center justify-center gap-2 sm:gap-3 px-5 sm:px-7 py-3 sm:py-4 rounded-full font-medium text-sm sm:text-base text-white/70 hover:text-white border border-white/10 hover:border-white/20 hover:bg-white/5 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98] active:border-white/30 active:bg-white/10"
+                className="group inline-flex items-center justify-center gap-2 sm:gap-3 px-5 sm:px-7 py-3 sm:py-4 rounded-full font-medium text-sm sm:text-base text-white/70 hover:text-white border border-white/10 hover:border-white/20 hover:bg-white/5 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0F172A] active:scale-[0.98] active:border-white/30 active:bg-white/10"
               >
                 <Play className="w-4 h-4" />
                 Listen to Music
@@ -337,7 +368,7 @@ function Hero() {
               <Link
                 href="/resources"
                 onClick={() => trackEvent('hero_cta_click', { type: 'resources' })}
-                className="group inline-flex items-center justify-center gap-2 sm:gap-3 px-5 sm:px-7 py-3 sm:py-4 rounded-full font-medium text-sm sm:text-base text-white/70 hover:text-white border border-white/10 hover:border-white/20 hover:bg-white/5 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98] active:border-white/30 active:bg-white/10"
+                className="group inline-flex items-center justify-center gap-2 sm:gap-3 px-5 sm:px-7 py-3 sm:py-4 rounded-full font-medium text-sm sm:text-base text-white/70 hover:text-white border border-white/10 hover:border-white/20 hover:bg-white/5 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0F172A] active:scale-[0.98] active:border-white/30 active:bg-white/10"
               >
                 <Sparkles className="w-4 h-4" />
                 Resource Hub
@@ -480,13 +511,13 @@ function StatsSection() {
           </blockquote>
         </motion.div>
 
-        {/* Journey markers - story-focused */}
-        <div className="grid grid-cols-2 gap-6 sm:gap-8 md:flex md:flex-wrap md-justify-center md:gap-x-16 lg:gap-x-24 md:gap-y-8">
+        {/* Journey markers - real numbers */}
+        <div className="grid grid-cols-2 gap-6 sm:gap-8 md:flex md:flex-wrap md:justify-center md:gap-x-16 lg:gap-x-24 md:gap-y-8">
           {[
-            { value: 'Music', label: 'Daily creative practice with Suno' },
-            { value: 'Systems', label: 'Building tools that serve the work' },
-            { value: 'Teaching', label: 'Sharing the process, not just results' },
-            { value: 'Open', label: 'Everything documented for you to use' },
+            { value: '12K+', label: 'AI songs created with Suno' },
+            { value: '70+', label: 'Technical articles published' },
+            { value: '630+', label: 'AI skills in ACOS' },
+            { value: '40+', label: 'Specialized AI agents' },
           ].map((stat, i) => (
             <motion.div
               key={stat.label}
@@ -567,7 +598,7 @@ function QuickStartSection() {
             >
               <Link
                 href={path.href}
-                className="group block p-4 sm:p-6 rounded-xl sm:rounded-2xl border border-white/5 bg-white/[0.02] hover:border-white/15 hover:bg-white/[0.04] transition-all h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.99] active:border-white/20"
+                className="group block p-4 sm:p-6 rounded-xl sm:rounded-2xl border border-white/5 bg-white/[0.02] hover:border-white/15 hover:bg-white/[0.04] transition-all h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0F172A] active:scale-[0.99] active:border-white/20"
               >
                 <div className="flex items-center justify-between mb-3 sm:mb-4">
                   <span className={`text-[10px] sm:text-xs font-medium px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full ${
@@ -668,7 +699,7 @@ function WhatIDo() {
             >
               <Link
                 href={item.href}
-                className="group relative block p-5 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl border border-white/5 overflow-hidden transition-all duration-500 hover:border-white/15 hover:-translate-y-1 h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.99] active:border-white/20"
+                className="group relative block p-5 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl border border-white/5 overflow-hidden transition-all duration-500 hover:border-white/15 hover:-translate-y-1 h-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0F172A] active:scale-[0.99] active:border-white/20"
               >
                 {/* Gradient background on hover */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${item.color} opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
@@ -769,7 +800,7 @@ function FeaturedResources() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: i * 0.05 }}
-              className="group flex items-center justify-between gap-3 p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] hover:border-white/10 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.99] active:border-white/20"
+              className="group flex items-center justify-between gap-3 p-4 sm:p-6 rounded-xl sm:rounded-2xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] hover:border-white/10 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0F172A] active:scale-[0.99] active:border-white/20"
             >
               <div className="min-w-0 flex-1">
                 <div className="text-[10px] sm:text-xs uppercase tracking-[0.12em] sm:tracking-[0.15em] text-white/30 mb-0.5 sm:mb-1">
@@ -783,6 +814,122 @@ function FeaturedResources() {
             </motion.a>
           ))}
         </div>
+      </div>
+    </section>
+  )
+}
+
+// ============================================================================
+// AI ART GALLERY PREVIEW
+// ============================================================================
+
+const featuredArtworks = [
+  {
+    src: '/images/ai-art/neural-network-brain.png',
+    title: 'Neural Synthesis I',
+    category: 'Abstract',
+  },
+  {
+    src: '/images/ai-art/chakra-energy-pillars.png',
+    title: 'Neural Wave',
+    category: 'Abstract',
+  },
+  {
+    src: '/images/ai-art/digital-data-stream.png',
+    title: 'Digital Aurora',
+    category: 'Nature Tech',
+  },
+  {
+    src: '/images/ai-art/golden-path-journey.png',
+    title: 'First Light',
+    category: 'Cosmic',
+  },
+]
+
+function AIArtGalleryPreview() {
+  return (
+    <section className="py-16 md:py-24 lg:py-32 border-t border-white/5">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8 md:mb-12"
+        >
+          <div>
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-medium mb-4">
+              <Wand2 className="w-3.5 h-3.5" />
+              AI-Generated Art
+            </div>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-semibold text-white mb-2 sm:mb-4 tracking-tight">
+              Visual Explorations
+            </h2>
+            <p className="text-base sm:text-lg md:text-xl text-white/50 max-w-xl">
+              Where artificial intelligence meets creative expression. Each piece generated with nano-banana AI.
+            </p>
+          </div>
+          <Link
+            href="/ai-art"
+            className="inline-flex items-center gap-2 text-sm sm:text-base text-white/60 hover:text-white transition-colors self-start sm:self-auto"
+          >
+            View full gallery
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+        </motion.div>
+
+        {/* Gallery Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4">
+          {featuredArtworks.map((artwork, i) => (
+            <motion.div
+              key={artwork.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
+            >
+              <Link
+                href="/ai-art"
+                className="group relative block aspect-square rounded-xl sm:rounded-2xl overflow-hidden border border-white/5 hover:border-white/20 transition-all"
+              >
+                <Image
+                  src={artwork.src}
+                  alt={artwork.title}
+                  fill
+                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  sizes="(max-width: 768px) 50vw, 25vw"
+                />
+                {/* Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                {/* Info */}
+                <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
+                  <p className="text-[10px] sm:text-xs uppercase tracking-wider text-emerald-400 mb-0.5">
+                    {artwork.category}
+                  </p>
+                  <h3 className="text-sm sm:text-base font-semibold text-white truncate">
+                    {artwork.title}
+                  </h3>
+                </div>
+              </Link>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Stats */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          className="flex items-center justify-center gap-6 sm:gap-8 mt-8 text-white/40 text-sm"
+        >
+          <div className="flex items-center gap-2">
+            <ImageIcon className="w-4 h-4" />
+            <span>20+ Artworks</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <Wand2 className="w-4 h-4" />
+            <span>nano-banana AI</span>
+          </div>
+        </motion.div>
       </div>
     </section>
   )
@@ -913,14 +1060,14 @@ function FinalCTA() {
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4">
               <Link
                 href="/start"
-                className="group inline-flex items-center justify-center gap-2 sm:gap-3 bg-white text-black px-6 sm:px-8 py-3 sm:py-4 rounded-full text-sm sm:text-base font-semibold transition-all duration-300 hover:bg-white/90 hover:shadow-[0_0_60px_rgba(255,255,255,0.2)] hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98]"
+                className="group inline-flex items-center justify-center gap-2 sm:gap-3 bg-white text-black px-6 sm:px-8 py-3 sm:py-4 rounded-full text-sm sm:text-base font-semibold transition-all duration-300 hover:bg-white/90 hover:shadow-[0_0_60px_rgba(255,255,255,0.2)] hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0F172A] active:scale-[0.98]"
               >
                 Pick Your Path
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </Link>
               <Link
                 href="/resources"
-                className="group inline-flex items-center justify-center gap-2 sm:gap-3 px-6 sm:px-8 py-3 sm:py-4 rounded-full text-sm sm:text-base font-medium text-white/60 hover:text-white border border-white/10 hover:border-white/20 hover:bg-white/5 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98] active:border-white/30 active:bg-white/10"
+                className="group inline-flex items-center justify-center gap-2 sm:gap-3 px-6 sm:px-8 py-3 sm:py-4 rounded-full text-sm sm:text-base font-medium text-white/60 hover:text-white border border-white/10 hover:border-white/20 hover:bg-white/5 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0F172A] active:scale-[0.98] active:border-white/30 active:bg-white/10"
               >
                 Browse Resources
                 <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
@@ -934,10 +1081,288 @@ function FinalCTA() {
 }
 
 // ============================================================================
+// LATEST ARTICLES - Dynamic blog posts from server
+// ============================================================================
+
+function LatestArticles({ posts }: { posts: LatestPost[] }) {
+  if (!posts || posts.length === 0) return null
+
+  return (
+    <section className="py-16 md:py-24 border-t border-white/5">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8 md:mb-12"
+        >
+          <div>
+            <p className="text-xs sm:text-sm font-medium uppercase tracking-[0.2em] sm:tracking-[0.25em] text-emerald-400/70 mb-3 md:mb-4">
+              Latest Articles
+            </p>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight">
+              Fresh from the blog
+            </h2>
+          </div>
+          <Link
+            href="/blog"
+            className="inline-flex items-center gap-2 text-sm sm:text-base text-white/60 hover:text-white transition-colors self-start sm:self-auto"
+          >
+            View all articles
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+        </motion.div>
+
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6">
+          {posts.map((post, i) => (
+            <motion.div
+              key={post.slug}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+            >
+              <Link href={`/blog/${post.slug}`} className="group block h-full">
+                <div className="h-full rounded-2xl border border-white/10 bg-white/[0.03] p-5 sm:p-6 backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.05]">
+                  <div className="flex items-center gap-3 mb-3">
+                    <span className="text-[10px] sm:text-xs font-medium px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 uppercase tracking-wider">
+                      {post.category}
+                    </span>
+                    <span className="text-xs text-white/30">{post.readingTime}</span>
+                  </div>
+                  <h3 className="text-base sm:text-lg font-semibold text-white mb-2 group-hover:text-emerald-400 transition-colors line-clamp-2">
+                    {post.title}
+                  </h3>
+                  <p className="text-sm text-white/50 line-clamp-2 leading-relaxed">
+                    {post.description}
+                  </p>
+                  <div className="mt-4 flex items-center gap-1.5 text-xs text-white/30 group-hover:text-white/50 transition-colors">
+                    <FileText className="w-3.5 h-3.5" />
+                    <span>Read article</span>
+                    <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
+                  </div>
+                </div>
+              </Link>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// ============================================================================
+// PRODUCTS & TOOLS SHOWCASE
+// ============================================================================
+
+const products = [
+  {
+    icon: Terminal,
+    title: 'Agentic Creator OS',
+    description: '630+ skills, 40+ agents, 130+ commands. The operating system for Claude Code.',
+    href: '/acos',
+    badge: 'Open Source',
+    gradient: 'from-purple-500/20 to-violet-500/5',
+    iconColor: 'text-purple-400',
+  },
+  {
+    icon: Sparkles,
+    title: 'Prompt Library',
+    description: 'Battle-tested prompts for writing, music, coding, and image generation.',
+    href: '/prompt-library',
+    badge: 'Free',
+    gradient: 'from-cyan-500/20 to-cyan-500/5',
+    iconColor: 'text-cyan-400',
+  },
+  {
+    icon: Package,
+    title: 'Creator Kit',
+    description: 'Premium templates, video guides, and direct support for ACOS.',
+    href: '/products',
+    badge: '$47',
+    gradient: 'from-amber-500/20 to-amber-500/5',
+    iconColor: 'text-amber-400',
+  },
+]
+
+function ProductsShowcase() {
+  return (
+    <section className="py-16 md:py-24 border-t border-white/5">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-8 md:mb-12"
+        >
+          <p className="text-xs sm:text-sm font-medium uppercase tracking-[0.2em] sm:tracking-[0.25em] text-emerald-400/70 mb-3 md:mb-4">
+            Products & Tools
+          </p>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight">
+            Built for builders
+          </h2>
+          <p className="mt-3 text-base sm:text-lg text-white/50 max-w-xl mx-auto">
+            Open-source tools and premium resources to accelerate your creative workflow.
+          </p>
+        </motion.div>
+
+        <div className="grid sm:grid-cols-3 gap-4 sm:gap-6">
+          {products.map((product, i) => (
+            <motion.div
+              key={product.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+            >
+              <Link href={product.href} className="group block h-full">
+                <div className={`h-full rounded-2xl border border-white/10 bg-gradient-to-br ${product.gradient} p-5 sm:p-6 backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-white/20`}>
+                  <div className="flex items-start justify-between mb-4">
+                    <div className="p-2.5 rounded-xl bg-white/5 group-hover:bg-white/10 transition-colors">
+                      <product.icon className={`w-5 h-5 ${product.iconColor}`} />
+                    </div>
+                    <span className="text-[10px] sm:text-xs font-medium px-2 py-0.5 rounded-full bg-white/10 text-white/70">
+                      {product.badge}
+                    </span>
+                  </div>
+                  <h3 className="text-base sm:text-lg font-semibold text-white mb-2 group-hover:text-emerald-400 transition-colors">
+                    {product.title}
+                  </h3>
+                  <p className="text-sm text-white/50 leading-relaxed">
+                    {product.description}
+                  </p>
+                  <div className="mt-4 flex items-center gap-1.5 text-xs text-white/30 group-hover:text-white/50 transition-colors">
+                    <span>Explore</span>
+                    <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
+                  </div>
+                </div>
+              </Link>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// ============================================================================
+// EMAIL SIGNUP CTA
+// ============================================================================
+
+function EmailCTA() {
+  return (
+    <section className="py-16 md:py-24 border-t border-white/5">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="relative rounded-2xl border border-white/10 bg-white/[0.03] p-8 sm:p-12 text-center backdrop-blur-sm overflow-hidden"
+        >
+          {/* Gradient glow */}
+          <div className="absolute -top-20 -right-20 w-40 h-40 bg-gradient-to-br from-emerald-500/20 to-cyan-500/20 blur-3xl rounded-full" />
+          <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-gradient-to-br from-purple-500/15 to-violet-500/15 blur-3xl rounded-full" />
+
+          <div className="relative">
+            <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-500/10">
+              <Mail className="h-6 w-6 text-emerald-400" />
+            </div>
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-3">
+              Stay in the loop
+            </h2>
+            <p className="text-sm sm:text-base text-white/50 mb-6 max-w-md mx-auto">
+              Weekly insights on AI music, architecture patterns, and creator tools. No spam, unsubscribe anytime.
+            </p>
+            <div className="max-w-sm mx-auto">
+              <EmailSignup
+                listType="newsletter"
+                placeholder="your@email.com"
+                buttonText="Subscribe"
+                compact
+              />
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  )
+}
+
+// ============================================================================
+// VISIBLE FAQ SECTION
+// ============================================================================
+
+function FAQSection({ faqs }: { faqs: FAQItem[] }) {
+  const [openIndex, setOpenIndex] = useState<number | null>(null)
+
+  if (!faqs || faqs.length === 0) return null
+
+  return (
+    <section className="py-16 md:py-24 border-t border-white/5 bg-white/[0.01]">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-8 md:mb-12"
+        >
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight">
+            Frequently Asked Questions
+          </h2>
+        </motion.div>
+
+        <div className="space-y-3">
+          {faqs.map((faq, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.05 }}
+            >
+              <button
+                onClick={() => setOpenIndex(openIndex === i ? null : i)}
+                className="w-full text-left rounded-xl border border-white/10 bg-white/[0.03] p-5 transition-all duration-200 hover:border-white/20 hover:bg-white/[0.05]"
+              >
+                <div className="flex items-center justify-between gap-4">
+                  <h3 className="text-sm sm:text-base font-semibold text-white pr-4">
+                    {faq.question}
+                  </h3>
+                  <ChevronDown
+                    className={`w-4 h-4 text-white/40 flex-shrink-0 transition-transform duration-200 ${
+                      openIndex === i ? 'rotate-180' : ''
+                    }`}
+                  />
+                </div>
+                <AnimatePresence>
+                  {openIndex === i && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                      className="overflow-hidden"
+                    >
+                      <p className="mt-3 text-sm text-white/50 leading-relaxed">
+                        {faq.answer}
+                      </p>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </button>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// ============================================================================
 // MAIN COMPONENT
 // ============================================================================
 
-export default function HomePageElite() {
+export default function HomePageElite({ latestPosts = [], faqs = [] }: HomePageEliteProps) {
   return (
     <main className="relative min-h-screen text-white overflow-x-hidden">
       <AuroraBackground />
@@ -949,8 +1374,13 @@ export default function HomePageElite() {
         <StatsSection />
         <WhatIDo />
         <QuickStartSection />
+        <LatestArticles posts={latestPosts} />
         <FeaturedResources />
+        <ProductsShowcase />
+        <AIArtGalleryPreview />
         <AboutSection />
+        <EmailCTA />
+        <FAQSection faqs={faqs} />
         <FinalCTA />
       </div>
     </main>

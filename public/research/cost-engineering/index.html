@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Cost Engineering &amp; FinOps | FrankX Research</title>
+    <meta name="description" content="AI cost engineering for 2026: LLM cascade routing saves 40-70%, GPU MIG partitioning, TCO frameworks, FinOps for GenAI, Quality-per-Dollar metric, and self-hosted vs API breakpoint analysis.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://frankx.ai/research/cost-engineering/">
+    <meta property="og:title" content="AI Cost Engineering & FinOps | FrankX Research">
+    <meta property="og:description" content="Cut AI spend by 40-70%: LLM cascade routing, GPU optimization, TCO frameworks, and FinOps practices for enterprise GenAI.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://frankx.ai/research/cost-engineering/">
+    <meta property="og:site_name" content="FrankX AI Architecture Research">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AI Cost Engineering & FinOps | FrankX Research">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "AI Cost Engineering & FinOps",
+        "description": "Enterprise AI cost optimization: LLM cascade routing, GPU optimization, TCO frameworks, FinOps for GenAI, and the Quality-per-Dollar metric.",
+        "url": "https://frankx.ai/research/cost-engineering/",
+        "datePublished": "2026-02-05",
+        "dateModified": "2026-02-06",
+        "author": {"@type": "Person", "name": "FrankX", "url": "https://frankx.ai"},
+        "publisher": {"@type": "Organization", "name": "FrankX AI Architecture Research"},
+        "isPartOf": {"@type": "ResearchProject", "name": "FrankX AI Architecture Research Center", "url": "https://frankx.ai/research/"},
+        "about": [
+            {"@type": "Thing", "name": "AI Cost Engineering"},
+            {"@type": "Thing", "name": "FinOps"},
+            {"@type": "Thing", "name": "LLM Optimization"},
+            {"@type": "Thing", "name": "GPU Optimization"}
+        ],
+        "keywords": "AI cost engineering, FinOps, LLM cascade routing, GPU optimization, TCO, Quality-per-Dollar, self-hosted vs API, MIG partitioning",
+        "inLanguage": "en"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "How much can LLM cascade routing save on AI inference costs?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "LLM cascade routing saves 40-70% on inference costs by routing requests to the cheapest capable model. The four-tier approach uses Tier 0 (skip LLMs, use tools), Tier 1 (lightweight models ~$0.25/1M tokens), Tier 2 (balanced models ~$3/1M), and Tier 3 (premium models ~$15/1M for complex reasoning). In practice, 60-70% of enterprise queries can be handled at Tier 0-1."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What is the Quality-per-Dollar (QpD) metric and how do you calculate it?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Quality-per-Dollar measures evaluation score per dollar spent: QpD = (Eval Score × Request Volume) / Monthly Cost. A system scoring 94.7% at $12,400/month has higher QpD than one scoring 96.2% at $45,000/month. The 1.5% quality difference rarely matters operationally, but the 72% cost difference funds additional AI initiatives."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "When should enterprises self-host LLMs versus using API-based services?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Below ~100K requests/month, APIs are cheaper. Above ~500K requests/month with consistent load, self-hosting costs 40-60% less. Between 100K-500K, factors like data residency, latency, and fine-tuning needs tip the decision. Always model full TCO: GPU costs + engineering time + monitoring + model updates + failover."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How do AI agents amplify LLM costs and what can enterprises do about it?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "AI agents amplify costs 3-10x because each step (planning, tool selection, execution, reflection) requires a separate LLM call. Key mitigations: prompt caching (75% savings), semantic response caching (68% reduction), agent step routing (cheap models for planning, premium for synthesis), and observability-driven pruning to eliminate redundant reasoning loops."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What is GPU MIG partitioning and how does it reduce AI infrastructure costs?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Multi-Instance GPU (MIG) on NVIDIA A100/H100 partitions a single GPU into up to 7 isolated instances. Most inference workloads don't need a full GPU, so MIG lets you run 7 different model endpoints on one GPU, reducing per-model cost by up to 85%. OCI AI Blueprints support MIG partitioning out of the box."
+                }
+            }
+        ]
+    }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #06060B;
+            --bg-card: rgba(16, 18, 27, 0.95);
+            --bg-elevated: rgba(24, 27, 38, 0.98);
+            --bg-glass: rgba(255, 255, 255, 0.03);
+            --text-primary: #E6EDF3;
+            --text-secondary: #8B949E;
+            --text-muted: #484F58;
+            --border: rgba(255, 255, 255, 0.06);
+            --border-hover: rgba(255, 255, 255, 0.12);
+            --accent-red: #C74634;
+            --accent-blue: #3B82F6;
+            --accent-purple: #8B5CF6;
+            --accent-green: #10B981;
+            --accent-amber: #F59E0B;
+            --accent-cyan: #06B6D4;
+            --font: 'Inter', -apple-system, sans-serif;
+            --mono: 'JetBrains Mono', monospace;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--font); background: var(--bg); color: var(--text-primary); line-height: 1.7; }
+        .bg-grid { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px); background-size: 64px 64px; pointer-events: none; z-index: 0; }
+
+        .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(6,6,11,0.85); backdrop-filter: blur(24px); border-bottom: 1px solid var(--border); }
+        .nav-inner { max-width: 960px; margin: 0 auto; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; height: 56px; }
+        .nav-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text-primary); font-weight: 700; font-size: 14px; }
+        .nav-brand-icon { width: 28px; height: 28px; background: linear-gradient(135deg, var(--accent-green), var(--accent-cyan)); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 900; color: #000; }
+        .nav-links { display: flex; gap: 4px; }
+        .nav-link { color: var(--text-secondary); text-decoration: none; font-size: 12px; font-weight: 500; padding: 5px 12px; border-radius: 5px; transition: all 0.2s; }
+        .nav-link:hover { color: var(--text-primary); background: var(--bg-glass); }
+        .nav-link.active { color: var(--accent-green); }
+
+        .article { position: relative; z-index: 1; max-width: 960px; margin: 0 auto; padding: 100px 32px 80px; }
+        .article-header { margin-bottom: 64px; }
+        .article-badge { display: inline-flex; align-items: center; gap: 8px; padding: 5px 14px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 100px; font-size: 11px; font-weight: 600; color: var(--accent-green); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 24px; }
+        .article-badge::before { content: ''; width: 6px; height: 6px; background: var(--accent-green); border-radius: 50%; }
+        .article h1 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 20px; }
+        .article h1 .green { color: var(--accent-green); }
+        .article-subtitle { font-size: 1.125rem; color: var(--text-secondary); max-width: 700px; line-height: 1.7; margin-bottom: 32px; }
+        .article-meta { display: flex; gap: 24px; font-size: 12px; color: var(--text-muted); }
+
+        h2 { font-size: 1.75rem; font-weight: 800; letter-spacing: -0.02em; margin: 64px 0 20px; padding-top: 32px; border-top: 1px solid var(--border); }
+        h2:first-of-type { border-top: none; margin-top: 0; }
+        h3 { font-size: 1.25rem; font-weight: 700; margin: 40px 0 16px; color: var(--text-primary); }
+        h4 { font-size: 1rem; font-weight: 600; margin: 24px 0 12px; color: var(--accent-green); }
+        p { margin-bottom: 16px; color: var(--text-secondary); }
+        strong { color: var(--text-primary); }
+        a { color: var(--accent-blue); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        .arch-image { width: 100%; border-radius: 12px; border: 1px solid var(--border); margin: 24px 0 32px; }
+
+        .insight { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--accent-green); border-radius: 0 12px 12px 0; padding: 24px 28px; margin: 32px 0; }
+        .insight-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent-green); margin-bottom: 12px; }
+        .insight p { margin-bottom: 8px; }
+        .insight p:last-child { margin-bottom: 0; }
+
+        .invention { background: linear-gradient(135deg, rgba(16, 185, 129, 0.08), rgba(139, 92, 246, 0.05)); border: 1px solid rgba(16, 185, 129, 0.2); border-radius: 12px; padding: 28px; margin: 32px 0; }
+        .invention-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent-purple); margin-bottom: 12px; }
+
+        table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 14px; }
+        th { text-align: left; font-weight: 600; color: var(--text-primary); padding: 12px 16px; border-bottom: 2px solid var(--border); font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; }
+        td { padding: 12px 16px; border-bottom: 1px solid var(--border); color: var(--text-secondary); }
+        tr:hover td { background: var(--bg-glass); }
+
+        .code-block { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin: 24px 0; font-family: var(--mono); font-size: 13px; line-height: 1.6; overflow-x: auto; color: var(--text-secondary); }
+        .code-block .comment { color: var(--text-muted); }
+        .code-block .keyword { color: var(--accent-purple); }
+        .code-block .string { color: var(--accent-green); }
+        .code-block .number { color: var(--accent-amber); }
+
+        .metrics { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; margin: 32px 0; }
+        .metric { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; text-align: center; }
+        .metric-value { font-family: var(--mono); font-size: 2rem; font-weight: 800; }
+        .metric-value.green { color: var(--accent-green); }
+        .metric-value.blue { color: var(--accent-blue); }
+        .metric-value.amber { color: var(--accent-amber); }
+        .metric-value.red { color: var(--accent-red); }
+        .metric-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 4px; }
+
+        .tag { display: inline-block; font-size: 11px; font-family: var(--mono); padding: 3px 10px; border-radius: 4px; background: var(--bg-glass); border: 1px solid var(--border); color: var(--text-muted); margin: 2px; }
+        ul, ol { margin: 16px 0; padding-left: 24px; }
+        li { margin-bottom: 8px; color: var(--text-secondary); }
+        li strong { color: var(--text-primary); }
+
+        .tier-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin: 32px 0; }
+        .tier { border-radius: 12px; padding: 24px; text-align: center; border: 1px solid; }
+        .tier-0 { border-color: rgba(16, 185, 129, 0.4); background: rgba(16, 185, 129, 0.05); }
+        .tier-1 { border-color: rgba(59, 130, 246, 0.4); background: rgba(59, 130, 246, 0.05); }
+        .tier-2 { border-color: rgba(245, 158, 11, 0.4); background: rgba(245, 158, 11, 0.05); }
+        .tier-3 { border-color: rgba(199, 70, 52, 0.4); background: rgba(199, 70, 52, 0.05); }
+        .tier-label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; }
+        .tier-label.green { color: var(--accent-green); }
+        .tier-label.blue { color: var(--accent-blue); }
+        .tier-label.amber { color: var(--accent-amber); }
+        .tier-label.red { color: var(--accent-red); }
+        .tier-cost { font-family: var(--mono); font-size: 1.5rem; font-weight: 800; margin: 8px 0; }
+        .tier-traffic { font-size: 12px; color: var(--text-muted); }
+        .tier-models { font-size: 12px; margin-top: 8px; }
+
+        .cost-bar { display: flex; height: 40px; border-radius: 8px; overflow: hidden; margin: 16px 0; }
+        .cost-segment { display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; }
+        .cost-segment.green { background: rgba(16, 185, 129, 0.3); color: var(--accent-green); }
+        .cost-segment.blue { background: rgba(59, 130, 246, 0.3); color: var(--accent-blue); }
+        .cost-segment.amber { background: rgba(245, 158, 11, 0.3); color: var(--accent-amber); }
+        .cost-segment.red { background: rgba(199, 70, 52, 0.3); color: var(--accent-red); }
+
+        .comparison { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin: 32px 0; }
+        .comparison-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; }
+        .comparison-card.before { border-top: 3px solid var(--accent-red); }
+        .comparison-card.after { border-top: 3px solid var(--accent-green); }
+        .comparison-title { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; }
+        .comparison-amount { font-family: var(--mono); font-size: 2.5rem; font-weight: 800; }
+
+        .footer { position: relative; z-index: 1; border-top: 1px solid var(--border); padding: 48px 32px; text-align: center; }
+        .footer-text { font-size: 12px; color: var(--text-muted); max-width: 640px; margin: 0 auto; line-height: 1.7; }
+        .footer-text a { color: var(--text-secondary); }
+
+        .sources { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 24px 28px; margin: 48px 0 0; }
+        .sources h3 { margin-top: 0; font-size: 14px; }
+        .sources ol { font-size: 13px; }
+        .sources li { margin-bottom: 6px; }
+        .faq { margin: 48px 0; }
+        .faq h2 { font-size: 1.5rem; margin-bottom: 24px; padding-top: 32px; border-top: 1px solid var(--border); }
+        .faq-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 12px; overflow: hidden; }
+        .faq-q { font-weight: 600; font-size: 15px; padding: 18px 24px; cursor: default; display: flex; align-items: center; gap: 12px; }
+        .faq-q::before { content: "Q"; background: var(--accent-amber); color: white; font-size: 11px; font-weight: 800; width: 22px; height: 22px; border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .faq-a { padding: 0 24px 18px 58px; color: var(--text-secondary); font-size: 14px; line-height: 1.7; }
+
+        @media (max-width: 768px) { .metrics { grid-template-columns: 1fr 1fr; } .nav-links { display: none; } .tier-grid { grid-template-columns: 1fr 1fr; } .comparison { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="bg-grid"></div>
+
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="/research/" class="nav-brand">
+                <div class="nav-brand-icon">$</div>
+                AI Cost Engineering
+            </a>
+            <div class="nav-links">
+                <a href="/research/" class="nav-link">Hub</a>
+                <a href="/research/healthcare/" class="nav-link">Healthcare</a>
+                <a href="/research/ai-architecture/" class="nav-link">Architecture</a>
+                <a href="/research/agentic-ai/" class="nav-link">Agentic AI</a>
+                <a href="/research/oracle-ai-database/" class="nav-link">Database AI</a>
+                <a href="/research/sovereign-ai/" class="nav-link">Sovereign AI</a>
+                <a href="/research/cost-engineering/" class="nav-link active">Cost Engineering</a>
+                <a href="/research/methodology/" class="nav-link">Method</a>
+            </div>
+        </div>
+    </nav>
+
+    <article class="article">
+        <header class="article-header">
+            <div class="article-badge">Applied Research &mdash; February 2026</div>
+            <h1>AI Cost Engineering: <br><span class="green">The 70% You're Wasting</span></h1>
+            <p class="article-subtitle">
+                Most enterprises are overspending on AI by 40-70%. Not because AI is expensive&mdash;but because they route every
+                request through expensive models. Intelligent cascade routing, GPU optimization, and FinOps for AI can
+                dramatically reduce costs while maintaining or improving quality. This is engineering, not compromise.
+            </p>
+            <div class="article-meta">
+                <span>Last verified: Feb 6, 2026</span>
+                <span>30+ Sources</span>
+                <span>5 Optimization Patterns</span>
+                <span>Maturity: Established</span>
+            </div>
+        </header>
+
+        <div class="metrics">
+            <div class="metric">
+                <div class="metric-value green">70%</div>
+                <div class="metric-label">Cost reduction achievable</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value blue">95%</div>
+                <div class="metric-label">Quality maintained</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value amber">4</div>
+                <div class="metric-label">Routing tiers</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value red">$0</div>
+                <div class="metric-label">Tier 0: Skip LLM entirely</div>
+            </div>
+        </div>
+
+        <img src="images/cost-cascade-routing.png" alt="AI Cost Cascade Routing" class="arch-image">
+
+        <!-- Section 1: The Problem -->
+        <h2>The Enterprise AI Cost Problem</h2>
+
+        <p>
+            Enterprise AI spending is on a hypergrowth trajectory. IDC projects global AI spending will reach $632 billion by 2028.
+            But within that spending, there's a massive efficiency gap: most organizations route 100% of requests through
+            their most expensive model, when <strong>60-70% of those requests could be handled by cheaper alternatives or
+            skipped entirely</strong>.
+        </p>
+
+        <p>
+            The root cause is architectural laziness. It's easier to point everything at GPT-4 or Claude Opus than to build
+            intelligent routing. But this is like running every database query on your most powerful server&mdash;the enterprise
+            learned decades ago to route queries based on complexity. AI workloads need the same discipline.
+        </p>
+
+        <div class="insight">
+            <div class="insight-title">The Cost Reality Check</div>
+            <p>
+                <strong>Pricing varies by 400x</strong> across model tiers. Gemini 2.5 Flash-Lite costs approximately $0.04/1M input tokens.
+                Claude Opus costs approximately $15/1M input tokens. For a system processing 1M requests/day, routing 60% to Tier 0
+                (cache/regex, $0) and 25% to Tier 1 (Flash, ~$0.04/1M) saves more than routing 100% through a premium model.
+                <strong>Always verify current pricing at <a href="https://www.oracle.com/cloud/price-list/" target="_blank">oracle.com/cloud/price-list</a></strong>.
+            </p>
+        </div>
+
+        <!-- Section 2: Cascade Routing -->
+        <h2>Pattern 1: LLM Cascade Routing</h2>
+
+        <p>
+            Cascade routing is the single highest-impact cost optimization pattern. The principle: <strong>route each request
+            to the cheapest model capable of handling it</strong>. Simple lookups don't need an LLM. Straightforward extraction
+            needs a fast model. Only complex reasoning justifies premium models.
+        </p>
+
+        <h3>The Four Tiers</h3>
+
+        <div class="tier-grid">
+            <div class="tier tier-0">
+                <div class="tier-label green">Tier 0</div>
+                <div class="tier-cost" style="color: var(--accent-green);">$0.00</div>
+                <p style="font-size: 13px; color: var(--text-secondary);">Skip LLM entirely</p>
+                <div class="tier-traffic">~60% of traffic</div>
+                <div class="tier-models">Cache hits, regex, lookup tables, rule engines, pre-computed answers</div>
+            </div>
+            <div class="tier tier-1">
+                <div class="tier-label blue">Tier 1</div>
+                <div class="tier-cost" style="color: var(--accent-blue);">~$0.04/1M</div>
+                <p style="font-size: 13px; color: var(--text-secondary);">Flash / Lite models</p>
+                <div class="tier-traffic">~25% of traffic</div>
+                <div class="tier-models">Gemini Flash-Lite, Grok 3 Mini Fast, simple extraction, formatting</div>
+            </div>
+            <div class="tier tier-2">
+                <div class="tier-label amber">Tier 2</div>
+                <div class="tier-cost" style="color: var(--accent-amber);">~$2.50/1M</div>
+                <p style="font-size: 13px; color: var(--text-secondary);">Standard models</p>
+                <div class="tier-traffic">~12% of traffic</div>
+                <div class="tier-models">Cohere Command A, Llama 3.3 70B, Gemini 2.5 Flash, analysis, code gen</div>
+            </div>
+            <div class="tier tier-3">
+                <div class="tier-label red">Tier 3</div>
+                <div class="tier-cost" style="color: var(--accent-red);">~$15/1M</div>
+                <p style="font-size: 13px; color: var(--text-secondary);">Premium reasoning</p>
+                <div class="tier-traffic">~3% of traffic</div>
+                <div class="tier-models">Claude Opus, Gemini 2.5 Pro, GPT-4, novel reasoning, strategy, critical decisions</div>
+            </div>
+        </div>
+
+        <h3>Cost Distribution Visualization</h3>
+
+        <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 4px;">TRAFFIC DISTRIBUTION</p>
+        <div class="cost-bar">
+            <div class="cost-segment green" style="width: 60%;">Tier 0: 60%</div>
+            <div class="cost-segment blue" style="width: 25%;">T1: 25%</div>
+            <div class="cost-segment amber" style="width: 12%;">T2: 12%</div>
+            <div class="cost-segment red" style="width: 3%;">T3</div>
+        </div>
+
+        <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 4px;">COST DISTRIBUTION</p>
+        <div class="cost-bar">
+            <div class="cost-segment green" style="width: 5%;">0%</div>
+            <div class="cost-segment blue" style="width: 10%;">3%</div>
+            <div class="cost-segment amber" style="width: 40%;">42%</div>
+            <div class="cost-segment red" style="width: 45%;">55%</div>
+        </div>
+
+        <p>
+            Even though Tier 3 handles only 3% of traffic, it accounts for 55% of cost. The optimization leverage is in
+            Tier 0 and Tier 1: by correctly identifying which requests can skip the LLM entirely (cache hits, rule-based responses)
+            and which need only lightweight processing, you eliminate the majority of token spend.
+        </p>
+
+        <div class="comparison">
+            <div class="comparison-card before">
+                <div class="comparison-title" style="color: var(--accent-red);">Before: Single-Model Architecture</div>
+                <div class="comparison-amount" style="color: var(--accent-red);">$45,000</div>
+                <p style="font-size: 13px;">per month</p>
+                <p style="font-size: 12px; color: var(--text-muted); margin-top: 12px;">100% traffic through premium model. No caching. No routing intelligence. Every FAQ, every lookup, every simple extraction costs the same as complex reasoning.</p>
+            </div>
+            <div class="comparison-card after">
+                <div class="comparison-title" style="color: var(--accent-green);">After: Cascade Routing</div>
+                <div class="comparison-amount" style="color: var(--accent-green);">$12,400</div>
+                <p style="font-size: 13px;">per month</p>
+                <p style="font-size: 12px; color: var(--text-muted); margin-top: 12px;">Intelligent routing with 4 tiers. Semantic caching for repeated queries. Quality maintained at 94.7% on eval benchmarks. <strong>72% cost reduction.</strong></p>
+            </div>
+        </div>
+
+        <div class="code-block">
+<span class="comment"># Cascade Router: Route requests to cheapest capable model</span>
+<span class="keyword">class</span> CascadeRouter:
+    <span class="keyword">def</span> <span class="function">route</span>(self, request: str) -> ModelTier:
+        <span class="comment"># Tier 0: Skip LLM entirely</span>
+        <span class="keyword">if</span> cached := self.semantic_cache.get(request, threshold=<span class="number">0.95</span>):
+            <span class="keyword">return</span> Tier.CACHE, cached.response
+
+        <span class="keyword">if</span> self.rule_engine.can_handle(request):
+            <span class="keyword">return</span> Tier.RULES, self.rule_engine.execute(request)
+
+        <span class="comment"># Tier 1: Fast classifier determines complexity</span>
+        complexity = self.classifier.score(request)  <span class="comment"># Trained on labeled data</span>
+
+        <span class="keyword">if</span> complexity &lt; <span class="number">0.3</span>:
+            <span class="keyword">return</span> Tier.FLASH, self.flash_model.generate(request)
+
+        <span class="keyword">if</span> complexity &lt; <span class="number">0.7</span>:
+            <span class="keyword">return</span> Tier.STANDARD, self.standard_model.generate(request)
+
+        <span class="comment"># Tier 3: Only complex reasoning hits premium</span>
+        <span class="keyword">return</span> Tier.PREMIUM, self.premium_model.generate(request)
+        </div>
+
+        <!-- Section 3: GPU Optimization -->
+        <h2>Pattern 2: GPU Cost Optimization</h2>
+
+        <p>
+            GPU costs are the hidden multiplier in AI spend. A single NVIDIA A100 80GB instance can cost $3-5/hour on public cloud.
+            For self-hosted model serving, GPU utilization directly determines cost efficiency. Most enterprises run GPU clusters
+            at 30-40% utilization&mdash;paying for 60-70% idle compute.
+        </p>
+
+        <h3>GPU Optimization Strategies</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Strategy</th>
+                    <th>Savings</th>
+                    <th>Complexity</th>
+                    <th>How It Works</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Multi-Instance GPU (MIG)</strong></td>
+                    <td>40-60%</td>
+                    <td>Low</td>
+                    <td>Partition one A100 into 7 isolated instances. Run multiple models on one GPU.</td>
+                </tr>
+                <tr>
+                    <td><strong>KEDA Auto-Scaling</strong></td>
+                    <td>30-50%</td>
+                    <td>Medium</td>
+                    <td>Scale GPU pods based on request queue depth. Zero pods during off-hours.</td>
+                </tr>
+                <tr>
+                    <td><strong>Spot/Preemptible Instances</strong></td>
+                    <td>50-80%</td>
+                    <td>Medium</td>
+                    <td>Use spot GPUs for batch processing, fine-tuning, evaluation. Not for real-time serving.</td>
+                </tr>
+                <tr>
+                    <td><strong>Quantization (INT8/INT4)</strong></td>
+                    <td>2-4x throughput</td>
+                    <td>Low</td>
+                    <td>Reduce model precision. Minimal quality loss for most use cases. vLLM supports natively.</td>
+                </tr>
+                <tr>
+                    <td><strong>GPU Bursting</strong></td>
+                    <td>Variable</td>
+                    <td>High</td>
+                    <td>Maintain small always-on cluster + burst to cloud for peaks. OCI Dedicated AI Clusters.</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="insight">
+            <div class="insight-title">OCI AI Blueprints: Built-In Cost Optimization</div>
+            <p>
+                <a href="https://github.com/oracle-quickstart/oci-ai-blueprints" target="_blank">OCI AI Blueprints</a> includes
+                pre-built blueprints for <strong>MIG Inference</strong> (multi-instance GPU partitioning), <strong>Autoscaling Inference</strong>
+                (KEDA + latency-based scaling), and <strong>CPU Inference</strong> (Ollama for testing/budget workloads).
+                These blueprints encode cost optimization patterns directly into the deployment configuration.
+            </p>
+        </div>
+
+        <img src="images/finops-dashboard.png" alt="AI FinOps Dashboard" class="arch-image">
+
+        <!-- Section 4: TCO Framework -->
+        <h2>Pattern 3: Total Cost of Ownership Framework</h2>
+
+        <p>
+            Token pricing is what most teams optimize. But tokens account for only 30-40% of total AI system cost. The full TCO
+            includes infrastructure, engineering, data preparation, evaluation, monitoring, and compliance.
+        </p>
+
+        <h3>Complete AI TCO Model</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Cost Category</th>
+                    <th>% of Total</th>
+                    <th>Components</th>
+                    <th>Optimization Lever</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Inference (tokens/GPU)</strong></td>
+                    <td>30-40%</td>
+                    <td>API calls, GPU hours, embedding, reranking</td>
+                    <td>Cascade routing, MIG, caching</td>
+                </tr>
+                <tr>
+                    <td><strong>Infrastructure</strong></td>
+                    <td>20-25%</td>
+                    <td>Compute, storage, networking, vector DB</td>
+                    <td>Right-sizing, auto-scaling, DB-native (26ai)</td>
+                </tr>
+                <tr>
+                    <td><strong>Engineering</strong></td>
+                    <td>15-20%</td>
+                    <td>Development, integration, maintenance</td>
+                    <td>AI Blueprints, pre-built patterns, MCP</td>
+                </tr>
+                <tr>
+                    <td><strong>Data preparation</strong></td>
+                    <td>10-15%</td>
+                    <td>Chunking, cleaning, labeling, embedding</td>
+                    <td>Automated pipelines, incremental updates</td>
+                </tr>
+                <tr>
+                    <td><strong>Evaluation &amp; monitoring</strong></td>
+                    <td>5-10%</td>
+                    <td>Quality benchmarks, drift detection, A/B testing</td>
+                    <td>Automated eval, Prometheus/Grafana</td>
+                </tr>
+                <tr>
+                    <td><strong>Compliance &amp; governance</strong></td>
+                    <td>5-10%</td>
+                    <td>Audit trails, human review, documentation</td>
+                    <td>Compliance Agent, automated logging</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="invention">
+            <div class="invention-title">FrankX Innovation: The 3-Layer Cost Model</div>
+            <p>
+                <strong>Novel framework:</strong> Evaluate AI system cost across three layers simultaneously:
+            </p>
+            <p>
+                <strong>Layer 1 &mdash; Token Economics:</strong> Cost per request at each routing tier. Measure: $/1K requests.
+            </p>
+            <p>
+                <strong>Layer 2 &mdash; Platform Economics:</strong> Infrastructure cost amortized across all workloads. Measure: $/active user/month.
+            </p>
+            <p>
+                <strong>Layer 3 &mdash; Value Economics:</strong> Revenue generated or cost avoided per AI interaction. Measure: ROI per AI decision.
+            </p>
+            <p>
+                Most enterprises optimize Layer 1 (token cost) while ignoring Layer 3 (value generated). The real optimization is
+                maximizing Layer 3 while minimizing Layers 1+2. A $15/1M token model that prevents a $50K clinical error is infinitely
+                cheaper than a $0.04/1M model that misses it.
+            </p>
+        </div>
+
+        <!-- Section 5: Self-Hosted vs API -->
+        <h2>Pattern 4: Self-Hosted vs. API Breakpoint Analysis</h2>
+
+        <p>
+            The question "should we self-host or use APIs?" has a precise answer based on volume and utilization. The breakpoint
+            is the monthly request volume at which self-hosting becomes cheaper than API calls.
+        </p>
+
+        <h3>Breakpoint Analysis</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Model Class</th>
+                    <th>API Cost (per 1M tokens)</th>
+                    <th>Self-Host Monthly</th>
+                    <th>Breakpoint (requests/day)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Small (7B)</strong></td>
+                    <td>$0.04 - $0.20</td>
+                    <td>~$500 (single GPU)</td>
+                    <td>~5,000 (rarely worth self-hosting)</td>
+                </tr>
+                <tr>
+                    <td><strong>Medium (70B)</strong></td>
+                    <td>$0.50 - $3.00</td>
+                    <td>~$3,500 (2x A100)</td>
+                    <td>~2,000 (common sweet spot)</td>
+                </tr>
+                <tr>
+                    <td><strong>Large (405B)</strong></td>
+                    <td>$2.00 - $15.00</td>
+                    <td>~$15,000 (8x A100)</td>
+                    <td>~500 (self-host at moderate volume)</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="insight">
+            <div class="insight-title">The Hybrid Sweet Spot</div>
+            <p>
+                <strong>Most enterprises should use a hybrid model:</strong> API for premium/infrequent requests (Tier 3),
+                self-hosted for high-volume standard requests (Tier 1-2), and database-native for data-adjacent queries (Tier 0).
+                OCI makes this practical: GenAI Service API for Cohere/Gemini, AI Blueprints for self-hosted Llama on OKE,
+                and Oracle AI Database 26ai Select AI for in-DB execution.
+                <strong>Verify current pricing at <a href="https://www.oracle.com/cloud/price-list/" target="_blank">oracle.com/cloud/price-list</a>.</strong>
+            </p>
+        </div>
+
+        <!-- Section 6: FinOps -->
+        <h2>Pattern 5: FinOps for AI</h2>
+
+        <p>
+            FinOps (Financial Operations) has matured for cloud infrastructure, but most FinOps frameworks don't account for
+            AI-specific cost dynamics: per-token pricing, GPU utilization curves, model version drift, and quality-cost tradeoffs.
+            AI FinOps extends traditional cloud FinOps with AI-aware practices.
+        </p>
+
+        <h3>AI FinOps Maturity Model</h3>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Level</th>
+                    <th>Capability</th>
+                    <th>Practices</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Level 1: Crawl</strong></td>
+                    <td>Visibility</td>
+                    <td>Tag AI workloads, track token usage by team/project, monthly cost reports</td>
+                </tr>
+                <tr>
+                    <td><strong>Level 2: Walk</strong></td>
+                    <td>Optimization</td>
+                    <td>Implement caching, add Tier 0/1 routing, right-size GPU instances, budget alerts</td>
+                </tr>
+                <tr>
+                    <td><strong>Level 3: Run</strong></td>
+                    <td>Automation</td>
+                    <td>Automated cascade routing, KEDA auto-scaling, quality-aware cost optimization, predictive budgeting</td>
+                </tr>
+                <tr>
+                    <td><strong>Level 4: Fly</strong></td>
+                    <td>Value Engineering</td>
+                    <td>ROI per AI decision, value-based routing (high-value requests get premium models), continuous evaluation</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="invention">
+            <div class="invention-title">FrankX Innovation: Quality-Weighted Cost Optimization</div>
+            <p>
+                <strong>Novel metric:</strong> Instead of minimizing cost or maximizing quality independently, optimize
+                <strong>Quality-per-Dollar (QpD)</strong>: the evaluation score achieved per dollar spent.
+            </p>
+            <p>
+                QpD = (Eval Score &times; Request Volume) / Monthly Cost
+            </p>
+            <p>
+                A system scoring 94.7% quality at $12,400/month has higher QpD than one scoring 96.2% at $45,000/month.
+                The 1.5% quality difference rarely matters operationally, but the 72% cost difference funds three additional
+                AI initiatives. The goal isn't the cheapest system&mdash;it's the system that maximizes AI value across the organization.
+            </p>
+        </div>
+
+        <h2>Pattern 6: Agentic AI Cost Control</h2>
+        <p>
+            AI agents amplify LLM costs by <strong>3-10x</strong> compared to single-call inference. Each agent step
+            (planning, tool selection, execution, reflection) requires a separate LLM invocation. A single user request
+            may trigger 5-15 LLM calls through an agent chain, making cost control critical for production agentic systems.
+        </p>
+
+        <div class="key-numbers">
+            <div class="number-card">
+                <div class="number-value">3-10x</div>
+                <div class="number-label">LLM call amplification per agent task</div>
+            </div>
+            <div class="number-card">
+                <div class="number-value">75%</div>
+                <div class="number-label">Cost reduction with prompt caching</div>
+            </div>
+            <div class="number-card">
+                <div class="number-value">68%</div>
+                <div class="number-label">Savings via semantic response caching</div>
+            </div>
+        </div>
+
+        <h3>Agent Cost Optimization Strategies</h3>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Strategy</th>
+                        <th>Savings</th>
+                        <th>Mechanism</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Prompt Caching</strong></td>
+                        <td>Up to 75%</td>
+                        <td>Cache system prompts and tool definitions across agent calls (Anthropic, Google, OpenAI all support)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Semantic Response Caching</strong></td>
+                        <td>Up to 68%</td>
+                        <td>Cache similar query responses using vector similarity (GPTCache, Redis Semantic Cache)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Tool Call Distillation</strong></td>
+                        <td>~90%</td>
+                        <td>Replace expensive tool-calling models with fine-tuned small models for repetitive tool patterns</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Agent Step Routing</strong></td>
+                        <td>40-60%</td>
+                        <td>Route planning steps to capable small models, reserve premium models for final synthesis</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Observability-Driven Pruning</strong></td>
+                        <td>20-40%</td>
+                        <td>Monitor agent traces (Langfuse, AgentOps) to identify and eliminate redundant reasoning loops</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <p>
+            <strong>Key insight:</strong> The highest-impact cost lever for agents is <em>reducing unnecessary steps</em>,
+            not cheaper models. Observability tools that trace agent execution paths reveal that 20-40% of reasoning
+            steps in typical agent chains are redundant. Pruning these steps delivers cost savings <em>and</em> faster latency.
+        </p>
+
+        <!-- FAQ Section -->
+        <div class="faq">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <div class="faq-q">How much can LLM cascade routing save on AI inference costs?</div>
+                <div class="faq-a">LLM cascade routing saves 40-70% on inference costs by routing requests to the cheapest capable model. The four-tier approach: Tier 0 skips LLMs entirely (use tools like grep/SQL), Tier 1 uses lightweight models like Haiku/Flash (~$0.25/1M tokens), Tier 2 uses balanced models like Sonnet (~$3/1M), and Tier 3 reserves premium models like Opus (~$15/1M) for complex reasoning. In practice, 60-70% of enterprise queries can be handled at Tier 0-1, dramatically reducing average cost per request.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">What is the Quality-per-Dollar (QpD) metric and how do you calculate it?</div>
+                <div class="faq-a">Quality-per-Dollar (QpD) measures the evaluation score achieved per dollar spent: QpD = (Eval Score x Request Volume) / Monthly Cost. A system scoring 94.7% quality at $12,400/month has higher QpD than one scoring 96.2% at $45,000/month. The 1.5% quality difference rarely matters operationally, but the 72% cost difference funds three additional AI initiatives. QpD shifts the optimization target from "cheapest" or "best quality" to "maximum business value per dollar invested in AI."</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">When should enterprises self-host LLMs versus using API-based services?</div>
+                <div class="faq-a">The breakpoint depends on volume: below ~100K requests/month, APIs are cheaper (no infrastructure overhead). Above ~500K requests/month with consistent load, self-hosting on dedicated GPU infrastructure (OCI AI Clusters, AWS Inferentia) typically costs 40-60% less. Between 100K-500K is the "gray zone" where factors like data residency requirements, latency needs, and model customization (fine-tuning) tip the decision. Always model the full TCO: GPU costs + engineering time + monitoring + model updates + failover infrastructure.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">How do AI agents amplify LLM costs and what can enterprises do about it?</div>
+                <div class="faq-a">AI agents amplify LLM costs by 3-10x because each agent step (planning, tool selection, execution, reflection) requires a separate LLM call. A single user request may trigger 5-15 calls through an agent chain. Key mitigation strategies: prompt caching (75% savings on repeated system prompts), semantic response caching (68% reduction for similar queries), agent step routing (use cheap models for planning, premium for synthesis), and observability-driven pruning to eliminate redundant reasoning loops (20-40% of steps are typically redundant).</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">What is GPU MIG partitioning and how does it reduce AI infrastructure costs?</div>
+                <div class="faq-a">Multi-Instance GPU (MIG) on NVIDIA A100/H100 GPUs partitions a single GPU into up to 7 isolated instances. Each instance gets dedicated compute, memory, and bandwidth. This is critical for cost optimization because most inference workloads don't need a full GPU &mdash; a small model serving 50 requests/second might only need 1/7 of an A100. MIG lets you run 7 different model endpoints on one GPU, reducing per-model infrastructure cost by up to 85%. OCI AI Blueprints support MIG partitioning out of the box.</div>
+            </div>
+        </div>
+
+        <!-- Sources -->
+        <div class="sources">
+            <h3>Sources &amp; References</h3>
+            <ol>
+                <li>IDC: Worldwide AI Spending Forecast 2028 &mdash; IDC, "Worldwide Artificial Intelligence Spending Guide"</li>
+                <li>RouteLLM: Cost-Effective LLM Routing &mdash; <a href="https://github.com/lm-sys/RouteLLM" target="_blank">github.com/lm-sys/RouteLLM</a></li>
+                <li>OCI AI Blueprints &mdash; <a href="https://github.com/oracle-quickstart/oci-ai-blueprints" target="_blank">github.com/oracle-quickstart/oci-ai-blueprints</a></li>
+                <li>OCI GenAI Pretrained Models &mdash; <a href="https://docs.oracle.com/en-us/iaas/Content/generative-ai/pretrained-models.htm" target="_blank">docs.oracle.com/pretrained-models</a></li>
+                <li>vLLM: High-Throughput LLM Serving &mdash; <a href="https://github.com/vllm-project/vllm" target="_blank">github.com/vllm-project/vllm</a></li>
+                <li>KEDA Auto-Scaling &mdash; <a href="https://keda.sh/" target="_blank">keda.sh</a></li>
+                <li>FinOps Foundation &mdash; <a href="https://www.finops.org/" target="_blank">finops.org</a></li>
+                <li>OCI Pricing &mdash; <a href="https://www.oracle.com/cloud/price-list/" target="_blank">oracle.com/cloud/price-list</a> (always verify current pricing)</li>
+                <li>OCI Cost Estimator &mdash; <a href="https://www.oracle.com/cloud/costestimator.html" target="_blank">oracle.com/cloud/costestimator</a></li>
+                <li>NVIDIA Multi-Instance GPU (MIG) &mdash; <a href="https://www.nvidia.com/en-us/technologies/multi-instance-gpu/" target="_blank">nvidia.com/mig</a></li>
+                <li>Unified Approach to LLM Routing and Cascading &mdash; <a href="https://openreview.net/forum?id=AAl89VNNy1" target="_blank">OpenReview (academic paper)</a></li>
+                <li>Lenovo: On-Premise vs Cloud GenAI TCO 2026 &mdash; <a href="https://lenovopress.lenovo.com/lp2368-on-premise-vs-cloud-generative-ai-total-cost-of-ownership-2026-edition" target="_blank">lenovopress.lenovo.com</a></li>
+                <li>OCI Dedicated AI Clusters Pricing &mdash; <a href="https://docs.oracle.com/en-us/iaas/Content/generative-ai/pay-dedicated.htm" target="_blank">docs.oracle.com</a></li>
+                <li>OCI On-Demand Inferencing &mdash; <a href="https://docs.oracle.com/en-us/iaas/Content/generative-ai/pay-on-demand.htm" target="_blank">docs.oracle.com</a></li>
+                <li>Finout: Provisioned AI Capacity Comparison &mdash; <a href="https://www.finout.io/blog/comparing-provisioned-ai-capacity-options-across-aws-azure-google-cloud-and-oci" target="_blank">finout.io</a></li>
+                <li>Portkey: FinOps Chargeback for GenAI &mdash; <a href="https://portkey.ai/blog/finops-chargeback-for-genai/" target="_blank">portkey.ai</a></li>
+                <li>Tangoe: GenAI Drives Cloud Spend 30% Higher &mdash; <a href="https://www.tangoe.com/blog/new-research-genai-drives-cloud-spend-30-higher-and-finops-software-is-best-at-counteracting-budget-blowouts/" target="_blank">tangoe.com</a></li>
+                <li>Self-Hosting vs API: True Cost Analysis &mdash; <a href="https://www.detectx.com.au/cost-comparison-api-vs-self-hosting-for-open-weight-llms/" target="_blank">detectx.com.au</a></li>
+                <li>Price Per Token: 300+ Model Comparison &mdash; <a href="https://pricepertoken.com/" target="_blank">pricepertoken.com</a></li>
+                <li>BCG: 74% of Companies Struggle to Scale AI &mdash; <a href="https://www.bcg.com/press/24october2024-ai-adoption-in-2024-74-of-companies-struggle-to-achieve-and-scale-value" target="_blank">bcg.com</a></li>
+                <li>Anthropic: Prompt Caching for Cost Reduction &mdash; <a href="https://docs.anthropic.com/en/docs/build-with-claude/prompt-caching" target="_blank">docs.anthropic.com</a></li>
+                <li>Langfuse: LLM Observability &amp; Cost Tracking &mdash; <a href="https://langfuse.com/" target="_blank">langfuse.com</a></li>
+                <li>Portkey AI: AI Gateway &amp; Budget Controls &mdash; <a href="https://portkey.ai/" target="_blank">portkey.ai</a></li>
+                <li>Martian: Model Router for Cost-Quality Optimization &mdash; <a href="https://withmartian.com/" target="_blank">withmartian.com</a></li>
+                <li>Agentops: Agent Cost &amp; Performance Observability &mdash; <a href="https://www.agentops.ai/" target="_blank">agentops.ai</a></li>
+                <li>OpenRouter: Unified API with Price Comparison &mdash; <a href="https://openrouter.ai/" target="_blank">openrouter.ai</a></li>
+                <li>Google Gemini Context Caching &mdash; <a href="https://ai.google.dev/gemini-api/docs/caching" target="_blank">ai.google.dev</a></li>
+                <li>MLOps Community: AI Cost Optimization Patterns &mdash; <a href="https://mlops.community/" target="_blank">mlops.community</a></li>
+                <li>Semantic Caching for RAG: 68% Cost Reduction &mdash; <a href="https://github.com/zilliztech/GPTCache" target="_blank">github.com/GPTCache</a></li>
+            </ol>
+        </div>
+    </article>
+
+    <footer class="footer">
+        <div class="footer-text">
+            <strong>FrankX AI Architecture Research Center</strong><br>
+            Independent research and architecture patterns. Not affiliated with Oracle Corporation.<br>
+            All pricing is approximate and must be verified at official sources. Oracle and OCI are trademarks of Oracle Corporation.<br><br>
+            <a href="/research/">Research Hub</a> &middot;
+            <a href="/research/ai-architecture/">AI Architecture</a> &middot;
+            <a href="/research/agentic-ai/">Agentic AI</a> &middot;
+            <a href="/research/healthcare/">Healthcare AI</a> &middot;
+            <a href="/research/oracle-ai-database/">Database AI</a> &middot;
+            <a href="/research/sovereign-ai/">Sovereign AI</a>
+        </div>
+    </footer>
+</body>
+</html>

@@ -15,7 +15,7 @@ import {
   Sparkles,
 } from 'lucide-react'
 
-import GlassmorphicCard from '@/components/ui/GlassmorphicCard'
+import PremiumCard from '@/components/ui/PremiumCard'
 import PremiumButton from '@/components/ui/PremiumButton'
 
 const ikigaiCircles = [
@@ -187,14 +187,14 @@ export default function WorkshopPage() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
               >
-                <GlassmorphicCard variant="luxury" border="subtle" className="h-full p-6">
+                <PremiumCard glass="heavy" className="h-full p-6">
                   <div className="mb-4 flex items-center justify-between">
                     <CheckCircle className="h-8 w-8 text-emerald-400" />
                     <span className="text-sm font-medium text-purple-300">{section.duration}</span>
                   </div>
                   <h3 className="mb-3 text-xl font-bold text-slate-100">{section.title}</h3>
                   <p className="text-base text-slate-300 leading-relaxed">{section.description}</p>
-                </GlassmorphicCard>
+                </PremiumCard>
               </motion.div>
             ))}
           </div>
@@ -217,7 +217,7 @@ export default function WorkshopPage() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.15 }}
               >
-                <GlassmorphicCard variant="luxury" border="glow" className="h-full p-8">
+                <PremiumCard glass="heavy" gradient="purple" className="h-full p-8">
                   <circle.icon className={`mb-4 h-12 w-12 ${colorClasses[circle.color as keyof typeof colorClasses].text}`} />
                   <h3 className="mb-4 text-2xl font-bold text-slate-100">{circle.title}</h3>
 
@@ -229,7 +229,7 @@ export default function WorkshopPage() {
                       </li>
                     ))}
                   </ul>
-                </GlassmorphicCard>
+                </PremiumCard>
               </motion.div>
             ))}
           </div>
@@ -246,7 +246,7 @@ export default function WorkshopPage() {
       {/* Privacy & Export */}
       <section className="py-16">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-          <GlassmorphicCard variant="luxury" border="glow" className="p-8 text-center">
+          <PremiumCard glass="heavy" gradient="purple" className="p-8 text-center">
             <Download className="mx-auto mb-4 h-12 w-12 text-blue-400" />
             <h3 className="mb-4 text-3xl font-bold text-slate-100">Privacy First</h3>
             <p className="mb-6 text-lg text-slate-300 leading-relaxed">
@@ -267,7 +267,7 @@ export default function WorkshopPage() {
                 No Account Required
               </span>
             </div>
-          </GlassmorphicCard>
+          </PremiumCard>
         </div>
       </section>
 

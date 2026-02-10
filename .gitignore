@@ -60,3 +60,10 @@ agentic-creator-os/
 # AI Skills templates (not for production)
 Claude-Code-AI-Architect-Skills/
 tina-frankx/
+
+# Local tooling + archives
+.claude/skills/3d-design/
+.claude/skills/frankx-design/
+.claude/skills/frontend-design/
+backups/
+C:\\Users\\Frank\\.claude\\plugins\\marketplaces\\claude-plugins-official/

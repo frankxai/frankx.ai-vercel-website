@@ -41,6 +41,7 @@
     "tests",
     "_repo_remote_frankx_website",
     "agentic-creator-os-mcp",
+    "agentic-creator-os-npm",
     "arcanea-opencode",
     "backups",
     "claude-agentic-creator-os",
@@ -71,6 +72,8 @@
     ".agent",
     ".claude-skills",
     "docs",
-    "scripts"
+    "scripts",
+    "agentic-creator-os",
+    "_archive"
   ]
 }

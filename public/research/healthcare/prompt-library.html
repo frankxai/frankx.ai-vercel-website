@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Prompt Library | Clinical AI Templates</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --oracle-red: #C74634;
+            --bg-dark: #0A0A0F;
+            --bg-card: rgba(22, 27, 34, 0.95);
+            --bg-elevated: rgba(30, 35, 44, 0.98);
+            --text-primary: #E6EDF3;
+            --text-secondary: #8B949E;
+            --text-muted: #6E7681;
+            --border: rgba(255, 255, 255, 0.08);
+            --green: #10B981;
+            --green-dim: rgba(16, 185, 129, 0.15);
+            --blue: #3B82F6;
+            --blue-dim: rgba(59, 130, 246, 0.15);
+            --purple: #8B5CF6;
+            --purple-dim: rgba(139, 92, 246, 0.15);
+            --amber: #F59E0B;
+            --amber-dim: rgba(245, 158, 11, 0.15);
+            --cyan: #06B6D4;
+            --cyan-dim: rgba(6, 182, 212, 0.15);
+            --font: 'Inter', -apple-system, sans-serif;
+            --mono: 'JetBrains Mono', monospace;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 56px;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 700;
+            font-size: 15px;
+        }
+
+        .nav-brand svg { width: 28px; height: 28px; }
+
+        .nav-links { display: flex; gap: 4px; }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.15s;
+        }
+
+        .nav-link:hover { color: var(--text-primary); background: rgba(255,255,255,0.06); }
+        .nav-link.active { color: var(--amber); background: var(--amber-dim); }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 100px 24px 60px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 40px;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .hero p {
+            font-size: 16px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 32px;
+        }
+
+        /* Filter Tabs */
+        .filter-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .filter-tab {
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.15s;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--border);
+            color: var(--text-secondary);
+        }
+
+        .filter-tab:hover {
+            background: rgba(255,255,255,0.08);
+            color: var(--text-primary);
+        }
+
+        .filter-tab.active {
+            background: var(--purple-dim);
+            border-color: var(--purple);
+            color: var(--purple);
+        }
+
+        /* Prompt Grid */
+        .prompt-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            padding-bottom: 60px;
+        }
+
+        .prompt-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.2s;
+        }
+
+        .prompt-card:hover {
+            border-color: var(--purple);
+            transform: translateY(-2px);
+        }
+
+        .prompt-header {
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .prompt-meta {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .prompt-category {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .prompt-category.diagnostic { color: var(--green); }
+        .prompt-category.reporting { color: var(--blue); }
+        .prompt-category.research { color: var(--purple); }
+        .prompt-category.analysis { color: var(--amber); }
+
+        .prompt-title {
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .prompt-tier {
+            font-size: 10px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .prompt-tier.tier-0 { background: var(--green-dim); color: var(--green); }
+        .prompt-tier.tier-1 { background: var(--blue-dim); color: var(--blue); }
+        .prompt-tier.tier-2 { background: var(--purple-dim); color: var(--purple); }
+
+        .prompt-body {
+            padding: 16px 20px;
+        }
+
+        .prompt-desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        .prompt-template {
+            background: rgba(13, 17, 23, 0.95);
+            border-radius: 8px;
+            padding: 14px;
+            font-family: var(--mono);
+            font-size: 11px;
+            line-height: 1.6;
+            margin-bottom: 12px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            color: var(--text-secondary);
+        }
+
+        .prompt-template .var {
+            color: var(--cyan);
+            background: var(--cyan-dim);
+            padding: 1px 4px;
+            border-radius: 3px;
+        }
+
+        .prompt-template .keyword {
+            color: #FF7B72;
+        }
+
+        .prompt-template .string {
+            color: #A5D6FF;
+        }
+
+        .prompt-footer {
+            padding: 12px 20px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .prompt-tags {
+            display: flex;
+            gap: 6px;
+        }
+
+        .prompt-tag {
+            font-size: 10px;
+            padding: 3px 8px;
+            border-radius: 4px;
+            background: rgba(255,255,255,0.05);
+            color: var(--text-muted);
+        }
+
+        .copy-btn {
+            padding: 6px 12px;
+            border-radius: 6px;
+            background: var(--purple);
+            color: white;
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: all 0.15s;
+        }
+
+        .copy-btn:hover {
+            background: #7C3AED;
+        }
+
+        /* Full Width Cards */
+        .prompt-card.full {
+            grid-column: 1 / -1;
+        }
+
+        /* SQL Syntax */
+        .sql { font-family: var(--mono); }
+        .sql-keyword { color: #FF7B72; }
+        .sql-function { color: #D2A8FF; }
+        .sql-string { color: #A5D6FF; }
+        .sql-number { color: #79C0FF; }
+        .sql-comment { color: var(--text-muted); }
+
+        /* Footer */
+        footer {
+            padding: 40px 24px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 12px;
+            border-top: 1px solid var(--border);
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-brand">
+                <svg viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#C74634"/><text x="16" y="22" text-anchor="middle" fill="white" font-size="16" font-weight="bold">P</text></svg>
+                Pediatric Leukemia AI
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Overview</a>
+                <a href="agentic-architecture.html" class="nav-link">Agentic AI</a>
+                <a href="prototype-dashboard.html" class="nav-link">Dashboard</a>
+                <a href="prompt-library.html" class="nav-link active">Prompt Library</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <h1>Clinical AI Prompt Library</h1>
+        <p>Production-ready prompts for diagnostic analysis, report generation, literature retrieval, and research queries. Ready to deploy with Select AI.</p>
+    </section>
+
+    <div class="container">
+        <!-- Filter Tabs -->
+        <div class="filter-tabs">
+            <div class="filter-tab active">All Prompts</div>
+            <div class="filter-tab">Diagnostic</div>
+            <div class="filter-tab">Reporting</div>
+            <div class="filter-tab">Research</div>
+            <div class="filter-tab">Analysis</div>
+            <div class="filter-tab">Tier 0 (Free)</div>
+            <div class="filter-tab">Tier 1 (OSS)</div>
+            <div class="filter-tab">Tier 2 (API)</div>
+        </div>
+
+        <!-- Prompt Grid -->
+        <div class="prompt-grid">
+            <!-- Diagnostic Summary -->
+            <div class="prompt-card full">
+                <div class="prompt-header">
+                    <div class="prompt-meta">
+                        <span class="prompt-category diagnostic">Diagnostic</span>
+                        <span class="prompt-title">Comprehensive Diagnostic Summary</span>
+                    </div>
+                    <span class="prompt-tier tier-2">Tier 2 • Cohere Command A</span>
+                </div>
+                <div class="prompt-body">
+                    <p class="prompt-desc">Generates a WHO 2022-compliant diagnostic summary integrating morphology, immunophenotype, and molecular findings. Includes risk stratification and similar case references.</p>
+                    <div class="prompt-template"><span class="sql-keyword">SELECT</span> <span class="sql-function">AI</span> <span class="sql-string">'Generate a comprehensive diagnostic summary for this patient.
+
+Include:
+1. WHO 2022 classification with confidence score
+2. Key morphological features and FAB type
+3. Immunophenotype interpretation (highlight aberrant markers)
+4. Molecular findings and prognostic impact
+5. Risk stratification (ELN 2022 / International Oncology criteria)
+6. Top 5 similar historical cases with outcomes
+7. Recommended additional workup if any gaps exist
+
+Format as structured sections. Flag any discrepancies between modalities.'</span>
+<span class="sql-keyword">USING</span>
+  patient_id <span class="sql-keyword">=></span> <span class="var">{{PATIENT_ID}}</span>,
+  include_vectors <span class="sql-keyword">=></span> <span class="sql-keyword">TRUE</span>,
+  similar_cases_count <span class="sql-keyword">=></span> <span class="sql-number">5</span>,
+  language <span class="sql-keyword">=></span> <span class="sql-string">'en'</span>
+<span class="sql-keyword">PROFILE</span> diagnostic_agent;</div>
+                </div>
+                <div class="prompt-footer">
+                    <div class="prompt-tags">
+                        <span class="prompt-tag">WHO 2022</span>
+                        <span class="prompt-tag">Vector Search</span>
+                        <span class="prompt-tag">Multi-modal</span>
+                    </div>
+                    <button class="copy-btn">Copy Prompt</button>
+                </div>
+            </div>
+
+            <!-- Similar Case Search -->
+            <div class="prompt-card">
+                <div class="prompt-header">
+                    <div class="prompt-meta">
+                        <span class="prompt-category diagnostic">Diagnostic</span>
+                        <span class="prompt-title">Similar Case Search</span>
+                    </div>
+                    <span class="prompt-tier tier-0">Tier 0 • Database</span>
+                </div>
+                <div class="prompt-body">
+                    <p class="prompt-desc">Pure SQL vector similarity search — no LLM tokens consumed. Returns most similar historical cases with outcomes.</p>
+                    <div class="prompt-template"><span class="sql-comment">-- No LLM needed: pure vector search</span>
+<span class="sql-keyword">SELECT</span>
+  p.patient_id,
+  o.diagnosis_date,
+  o.outcome_status,
+  o.event_free_survival_months,
+  <span class="sql-function">ROUND</span>(<span class="sql-number">1</span> - <span class="sql-function">VECTOR_DISTANCE</span>(
+    p.diagnosis_vec,
+    (<span class="sql-keyword">SELECT</span> diagnosis_vec
+     <span class="sql-keyword">FROM</span> patient_embeddings
+     <span class="sql-keyword">WHERE</span> patient_id = <span class="var">{{PATIENT_ID}}</span>),
+    COSINE
+  ), <span class="sql-number">3</span>) <span class="sql-keyword">AS</span> similarity
+<span class="sql-keyword">FROM</span> patient_embeddings p
+<span class="sql-keyword">JOIN</span> treatment_outcomes o
+  <span class="sql-keyword">ON</span> p.patient_id = o.patient_id
+<span class="sql-keyword">WHERE</span> p.patient_id != <span class="var">{{PATIENT_ID}}</span>
+<span class="sql-keyword">ORDER BY</span> similarity <span class="sql-keyword">DESC</span>
+<span class="sql-keyword">FETCH FIRST</span> <span class="sql-number">10</span> <span class="sql-keyword">ROWS ONLY</span>;</div>
+                </div>
+                <div class="prompt-footer">
+                    <div class="prompt-tags">
+                        <span class="prompt-tag">HNSW</span>
+                        <span class="prompt-tag">Cosine</span>
+                    </div>
+                    <button class="copy-btn">Copy SQL</button>
+                </div>
+            </div>
+
+            <!-- Morphology Explanation -->
+            <div class="prompt-card">
+                <div class="prompt-header">
+                    <div class="prompt-meta">
+                        <span class="prompt-category diagnostic">Diagnostic</span>
+                        <span class="prompt-title">Morphology Explanation</span>
+                    </div>
+                    <span class="prompt-tier tier-1">Tier 1 • Llama 3.3</span>
+                </div>
+                <div class="prompt-body">
+                    <p class="prompt-desc">Explains AI morphology classification in pathologist-friendly language. Highlights key features that drove the classification.</p>
+                    <div class="prompt-template"><span class="sql-keyword">SELECT</span> <span class="sql-function">AI</span> <span class="sql-string">'Explain the morphology AI classification for this case.
+
+The model classified this as: {{CLASSIFICATION}}
+Confidence: {{CONFIDENCE}}%
+
+Describe:
+1. Key cytological features supporting this classification
+2. Nuclear-to-cytoplasmic ratio observations
+3. Presence/absence of Auer rods
+4. Granulation patterns
+5. Any atypical features that reduced confidence
+
+Use terminology appropriate for a reviewing pathologist.'</span>
+<span class="sql-keyword">USING</span> patient_id <span class="sql-keyword">=></span> <span class="var">{{PATIENT_ID}}</span>
+<span class="sql-keyword">PROFILE</span> morphology_agent;</div>
+                </div>
+                <div class="prompt-footer">
+                    <div class="prompt-tags">
+                        <span class="prompt-tag">Vision</span>
+                        <span class="prompt-tag">Explainability</span>
+                    </div>
+                    <button class="copy-btn">Copy Prompt</button>
+                </div>
+            </div>
+
+            <!-- Tumor Board Summary -->
+            <div class="prompt-card">
+                <div class="prompt-header">
+                    <div class="prompt-meta">
+                        <span class="prompt-category reporting">Reporting</span>
+                        <span class="prompt-title">Tumor Board Summary</span>
+                    </div>
+                    <span class="prompt-tier tier-2">Tier 2 • Cohere Command A</span>
+                </div>
+                <div class="prompt-body">
+                    <p class="prompt-desc">Generates a structured case presentation for tumor board review with relevant literature and treatment options.</p>
+                    <div class="prompt-template"><span class="sql-keyword">SELECT</span> <span class="sql-function">AI</span> <span class="sql-string">'Prepare a tumor board presentation for this patient.
+
+Structure:
+## Patient Overview
+- Demographics, presenting symptoms, timeline
+
+## Diagnostic Summary
+- Morphology, immunophenotype, molecular (brief)
+
+## Risk Stratification
+- ELN 2022 / International Oncology risk group
+- Key prognostic factors
+
+## Similar Historical Cases (top 3)
+- Brief comparison and outcomes
+
+## Treatment Options
+- Standard of care recommendation
+- Alternative approaches with evidence
+- Relevant clinical trials
+
+## Discussion Points
+- Outstanding questions
+- Areas of uncertainty
+
+Max 500 words. Cite guidelines where applicable.'</span>
+<span class="sql-keyword">USING</span> patient_id <span class="sql-keyword">=></span> <span class="var">{{PATIENT_ID}}</span>
+<span class="sql-keyword">PROFILE</span> tumor_board_agent;</div>
+                </div>
+                <div class="prompt-footer">
+                    <div class="prompt-tags">
+                        <span class="prompt-tag">RAG</span>
+                        <span class="prompt-tag">Guidelines</span>
+                    </div>
+                    <button class="copy-btn">Copy Prompt</button>
+                </div>
+            </div>
+
+            <!-- Literature Search -->
+            <div class="prompt-card">
+                <div class="prompt-header">
+                    <div class="prompt-meta">
+                        <span class="prompt-category research">Research</span>
+                        <span class="prompt-title">Literature RAG Query</span>
+                    </div>
+                    <span class="prompt-tier tier-1">Tier 1 • PubMedBERT + Rerank</span>
+                </div>
+                <div class="prompt-body">
+                    <p class="prompt-desc">Retrieves and ranks relevant publications based on patient characteristics. Returns citations with relevance scores.</p>
+                    <div class="prompt-template"><span class="sql-comment">-- Hybrid search: keyword + semantic</span>
+<span class="sql-keyword">WITH</span> patient_context <span class="sql-keyword">AS</span> (
+  <span class="sql-keyword">SELECT</span> diagnosis, mutations, risk_group
+  <span class="sql-keyword">FROM</span> patient_summary
+  <span class="sql-keyword">WHERE</span> patient_id = <span class="var">{{PATIENT_ID}}</span>
+)
+<span class="sql-keyword">SELECT</span>
+  l.pmid,
+  l.title,
+  l.authors,
+  l.journal,
+  l.pub_year,
+  <span class="sql-function">RERANK_SCORE</span>(
+    l.abstract_embedding,
+    p.diagnosis || ' ' || p.mutations,
+    'cohere-rerank-3.5'
+  ) <span class="sql-keyword">AS</span> relevance
+<span class="sql-keyword">FROM</span> literature_embeddings l
+<span class="sql-keyword">CROSS JOIN</span> patient_context p
+<span class="sql-keyword">WHERE</span> <span class="sql-function">VECTOR_DISTANCE</span>(
+  l.abstract_embedding,
+  <span class="sql-function">EMBED</span>(p.diagnosis || ' ' || p.mutations),
+  COSINE
+) < <span class="sql-number">0.3</span>
+<span class="sql-keyword">ORDER BY</span> relevance <span class="sql-keyword">DESC</span>
+<span class="sql-keyword">FETCH FIRST</span> <span class="sql-number">20</span> <span class="sql-keyword">ROWS ONLY</span>;</div>
+                </div>
+                <div class="prompt-footer">
+                    <div class="prompt-tags">
+                        <span class="prompt-tag">Hybrid Search</span>
+                        <span class="prompt-tag">Reranking</span>
+                    </div>
+                    <button class="copy-btn">Copy SQL</button>
+                </div>
+            </div>
+
+            <!-- Risk Factor Analysis -->
+            <div class="prompt-card">
+                <div class="prompt-header">
+                    <div class="prompt-meta">
+                        <span class="prompt-category analysis">Analysis</span>
+                        <span class="prompt-title">Risk Factor Analysis</span>
+                    </div>
+                    <span class="prompt-tier tier-0">Tier 0 • Oracle ML</span>
+                </div>
+                <div class="prompt-body">
+                    <p class="prompt-desc">Explains XGBoost risk model predictions using SHAP values. No LLM needed — pure ML interpretability.</p>
+                    <div class="prompt-template"><span class="sql-comment">-- Model explanation via Oracle ML</span>
+<span class="sql-keyword">SELECT</span>
+  feature_name,
+  feature_value,
+  shap_value,
+  <span class="sql-keyword">CASE</span>
+    <span class="sql-keyword">WHEN</span> shap_value > <span class="sql-number">0</span> <span class="sql-keyword">THEN</span> <span class="sql-string">'Increases risk'</span>
+    <span class="sql-keyword">ELSE</span> <span class="sql-string">'Decreases risk'</span>
+  <span class="sql-keyword">END</span> <span class="sql-keyword">AS</span> impact_direction,
+  <span class="sql-function">ABS</span>(shap_value) <span class="sql-keyword">AS</span> impact_magnitude
+<span class="sql-keyword">FROM</span> <span class="sql-function">DBMS_DATA_MINING.EXPLAIN_MODEL</span>(
+  model_name <span class="sql-keyword">=></span> <span class="sql-string">'RELAPSE_RISK_XGBOOST'</span>,
+  patient_id <span class="sql-keyword">=></span> <span class="var">{{PATIENT_ID}}</span>
+)
+<span class="sql-keyword">ORDER BY</span> impact_magnitude <span class="sql-keyword">DESC</span>
+<span class="sql-keyword">FETCH FIRST</span> <span class="sql-number">10</span> <span class="sql-keyword">ROWS ONLY</span>;</div>
+                </div>
+                <div class="prompt-footer">
+                    <div class="prompt-tags">
+                        <span class="prompt-tag">XGBoost</span>
+                        <span class="prompt-tag">SHAP</span>
+                    </div>
+                    <button class="copy-btn">Copy SQL</button>
+                </div>
+            </div>
+
+            <!-- Drug Interaction Check -->
+            <div class="prompt-card">
+                <div class="prompt-header">
+                    <div class="prompt-meta">
+                        <span class="prompt-category analysis">Analysis</span>
+                        <span class="prompt-title">Drug Interaction Check</span>
+                    </div>
+                    <span class="prompt-tier tier-1">Tier 1 • Llama 3.3</span>
+                </div>
+                <div class="prompt-body">
+                    <p class="prompt-desc">Checks for potential drug-drug and drug-gene interactions based on patient's molecular profile and proposed treatment.</p>
+                    <div class="prompt-template"><span class="sql-keyword">SELECT</span> <span class="sql-function">AI</span> <span class="sql-string">'Check drug interactions for this patient.
+
+Proposed treatment: {{TREATMENT_PROTOCOL}}
+Patient mutations: {{MUTATIONS}}
+
+Analyze:
+1. Drug-drug interactions in the proposed regimen
+2. Drug-gene interactions based on mutations
+3. Pharmacogenomic considerations
+4. Dose adjustment recommendations if any
+
+Flag any serious interactions as CRITICAL.'</span>
+<span class="sql-keyword">USING</span>
+  patient_id <span class="sql-keyword">=></span> <span class="var">{{PATIENT_ID}}</span>,
+  knowledge_base <span class="sql-keyword">=></span> <span class="sql-string">'DRUGBANK_INTERACTIONS'</span>
+<span class="sql-keyword">PROFILE</span> pharmacology_agent;</div>
+                </div>
+                <div class="prompt-footer">
+                    <div class="prompt-tags">
+                        <span class="prompt-tag">Safety</span>
+                        <span class="prompt-tag">PGx</span>
+                    </div>
+                    <button class="copy-btn">Copy Prompt</button>
+                </div>
+            </div>
+
+            <!-- Cohort Query -->
+            <div class="prompt-card">
+                <div class="prompt-header">
+                    <div class="prompt-meta">
+                        <span class="prompt-category research">Research</span>
+                        <span class="prompt-title">Research Cohort Builder</span>
+                    </div>
+                    <span class="prompt-tier tier-0">Tier 0 • Database</span>
+                </div>
+                <div class="prompt-body">
+                    <p class="prompt-desc">Natural language to SQL cohort definition using Select AI. Researcher describes criteria, system generates optimized query.</p>
+                    <div class="prompt-template"><span class="sql-keyword">SELECT</span> <span class="sql-function">AI</span> <span class="sql-string">'Create a research cohort query for:
+
+Inclusion criteria:
+- AML patients diagnosed between 2015-2024
+- Age 1-18 at diagnosis
+- Have t(8;21) or inv(16) cytogenetics
+- Received International Oncology protocol therapy
+- At least 3 years follow-up
+
+Exclusion criteria:
+- Secondary AML
+- Down syndrome
+- Lost to follow-up before 12 months
+
+Return: patient_id, diagnosis_date, cytogenetics,
+        treatment_arm, outcome_status, EFS_months'</span>
+<span class="sql-keyword">PROFILE</span> sql_generator;</div>
+                </div>
+                <div class="prompt-footer">
+                    <div class="prompt-tags">
+                        <span class="prompt-tag">Text-to-SQL</span>
+                        <span class="prompt-tag">Cohort</span>
+                    </div>
+                    <button class="copy-btn">Copy Prompt</button>
+                </div>
+            </div>
+
+            <!-- Translation -->
+            <div class="prompt-card full">
+                <div class="prompt-header">
+                    <div class="prompt-meta">
+                        <span class="prompt-category reporting">Reporting</span>
+                        <span class="prompt-title">Multilingual Report Generation</span>
+                    </div>
+                    <span class="prompt-tier tier-2">Tier 2 • Cohere Command A</span>
+                </div>
+                <div class="prompt-body">
+                    <p class="prompt-desc">Generates diagnostic reports in multiple languages for global telemedicine collaboration (Resource-Limited Regions, Central Asia). Maintains medical terminology accuracy.</p>
+                    <div class="prompt-template"><span class="sql-keyword">SELECT</span> <span class="sql-function">AI</span> <span class="sql-string">'Generate a diagnostic report for telemedicine review.
+
+Patient: {{PATIENT_ID}}
+Target language: {{TARGET_LANGUAGE}}  -- 'ru', 'kk', 'de', 'en'
+
+Requirements:
+1. Structured format matching local clinical standards
+2. Preserve medical terminology (provide original English terms in parentheses)
+3. Include WHO 2022 classification
+4. Summarize similar cases from International Oncology network
+5. Preliminary treatment recommendation based on guidelines
+6. Flag any findings requiring urgent discussion
+
+Note: This is AI-generated content requiring expert review before clinical use.'</span>
+<span class="sql-keyword">USING</span>
+  patient_id <span class="sql-keyword">=></span> <span class="var">{{PATIENT_ID}}</span>,
+  target_language <span class="sql-keyword">=></span> <span class="var">{{TARGET_LANGUAGE}}</span>,
+  include_disclaimer <span class="sql-keyword">=></span> <span class="sql-keyword">TRUE</span>
+<span class="sql-keyword">PROFILE</span> multilingual_report_agent;</div>
+                </div>
+                <div class="prompt-footer">
+                    <div class="prompt-tags">
+                        <span class="prompt-tag">Telemedicine</span>
+                        <span class="prompt-tag">Translation</span>
+                        <span class="prompt-tag">Global</span>
+                    </div>
+                    <button class="copy-btn">Copy Prompt</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>Pediatric Leukemia AI Ecosystem — Clinical AI Prompt Library</p>
+        <p style="margin-top: 8px;">DISCLAIMER: These prompts are reference templates. All AI-generated clinical content requires expert validation before use.</p>
+    </footer>
+
+    <script>
+        // Copy functionality
+        document.querySelectorAll('.copy-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const card = this.closest('.prompt-card');
+                const template = card.querySelector('.prompt-template').textContent;
+                navigator.clipboard.writeText(template).then(() => {
+                    this.textContent = 'Copied!';
+                    setTimeout(() => {
+                        this.textContent = 'Copy Prompt';
+                    }, 2000);
+                });
+            });
+        });
+
+        // Filter tabs (demo)
+        document.querySelectorAll('.filter-tab').forEach(tab => {
+            tab.addEventListener('click', function() {
+                document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

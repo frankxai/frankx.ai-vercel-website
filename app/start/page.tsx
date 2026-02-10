@@ -78,7 +78,7 @@ const journeyPaths = [
     description: 'Learn how I create music with Suno AI. Prompts, workflows, and the creative process.',
     href: '/music-lab',
     color: 'emerald',
-    stats: '10K+ songs',
+    stats: '12K+ songs',
   },
   {
     id: 'learn',
@@ -104,11 +104,11 @@ const journeyPaths = [
     id: 'build',
     icon: Code,
     title: 'Build with AI',
-    subtitle: 'Resources & Tools',
-    description: 'Templates, guides, and frameworks for building your own AI-powered workflows.',
-    href: '/resources',
+    subtitle: 'Architecture Hub',
+    description: 'Blueprints, BYOK prototypes, and production templates for AI systems.',
+    href: '/ai-architecture',
     color: 'amber',
-    stats: '15+ resources',
+    stats: 'Blueprints & Templates',
   },
 ]
 

@@ -1,6 +1,8 @@
 import { MetadataRoute } from 'next'
 import fs from 'fs'
 import path from 'path'
+import matter from 'gray-matter'
+import { researchDomains } from '@/lib/research/domains'
 
 const BASE_URL = 'https://frankx.ai'
 
@@ -10,17 +12,27 @@ function getSlugFromFilename(filename: string): string {
   return filename.replace(/^\d+-/, '').replace(/\.mdx$/, '')
 }
 
-// Get all blog slugs from content/blog directory
-function getBlogSlugs(): string[] {
+// Get all blog slugs with dates from content/blog directory
+function getBlogEntries(): { slug: string; date: string }[] {
   const blogDir = path.join(process.cwd(), 'content/blog')
   try {
     const files = fs.readdirSync(blogDir)
-    const slugs = new Set(
-      files
-        .filter(file => file.endsWith('.mdx'))
-        .map(file => getSlugFromFilename(file))
-    )
-    return Array.from(slugs)
+    const seen = new Set<string>()
+    return files
+      .filter(file => file.endsWith('.mdx'))
+      .map(file => {
+        const slug = getSlugFromFilename(file)
+        if (seen.has(slug)) return null
+        seen.add(slug)
+        try {
+          const content = fs.readFileSync(path.join(blogDir, file), 'utf8')
+          const { data } = matter(content)
+          return { slug, date: data.lastUpdated || data.date || '' }
+        } catch {
+          return { slug, date: '' }
+        }
+      })
+      .filter((entry): entry is { slug: string; date: string } => entry !== null)
   } catch {
     return []
   }
@@ -112,9 +124,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/community',
     '/coaching',
     '/inner-circle',
+    '/vault',
+    '/labs',
+    '/drops',
+    '/skills',
+    '/skills/builder',
     '/testimonials',
     '/affiliates',
     '/newsletter',
+    '/workshops',
+    '/team',
   ]
 
   // Learning and courses
@@ -131,6 +150,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/intelligence-atlas',
     '/golden-age',
     '/golden-age/chapter-01-when-creation-calls',
+    '/feed',
+    '/realm',
+    '/ai-art',
   ]
 
   // AI and agent pages
@@ -139,6 +161,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/agent-team',
     '/agentic-ai-center',
     '/developers',
+  ]
+
+  // Audience landing pages
+  const audiencePages = [
+    { url: '/for/creators', priority: 0.9, changeFrequency: 'monthly' as const },
+    { url: '/for/architects', priority: 0.9, changeFrequency: 'monthly' as const },
   ]
 
   // Utility pages
@@ -151,6 +179,66 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/goals',
     '/templates',
     '/resources/templates',
+    '/updates',
+    '/free-playbook',
+  ]
+
+  // Legal pages
+  const legalPages = [
+    '/privacy',
+    '/terms',
+    '/legal',
+  ]
+
+  // Section pages (important navigation destinations)
+  const sectionPages = [
+    { url: '/soulbook', priority: 0.9, changeFrequency: 'monthly' as const },
+    { url: '/ai-world', priority: 0.8, changeFrequency: 'weekly' as const },
+    { url: '/ai-ops', priority: 0.8, changeFrequency: 'weekly' as const },
+    { url: '/ai-architect-academy', priority: 0.8, changeFrequency: 'monthly' as const },
+    { url: '/links', priority: 0.7, changeFrequency: 'weekly' as const },
+    { url: '/learn', priority: 0.7, changeFrequency: 'weekly' as const },
+    { url: '/showcase', priority: 0.7, changeFrequency: 'monthly' as const },
+    { url: '/downloads', priority: 0.7, changeFrequency: 'monthly' as const },
+    { url: '/changelog', priority: 0.5, changeFrequency: 'weekly' as const },
+    { url: '/design-system', priority: 0.5, changeFrequency: 'monthly' as const },
+    { url: '/ai-architect', priority: 0.7, changeFrequency: 'monthly' as const },
+    { url: '/ai-architecture', priority: 0.7, changeFrequency: 'monthly' as const },
+    { url: '/ai-architectures', priority: 0.7, changeFrequency: 'monthly' as const },
+    { url: '/music', priority: 0.6, changeFrequency: 'monthly' as const },
+    { url: '/prototypes', priority: 0.5, changeFrequency: 'monthly' as const },
+  ]
+
+  // Sub-route pages (nested under parent sections)
+  const subRoutePages = [
+    // AI Ops sub-routes
+    { url: '/ai-ops/architecture', priority: 0.7, changeFrequency: 'monthly' as const },
+    { url: '/ai-ops/patterns', priority: 0.7, changeFrequency: 'monthly' as const },
+    { url: '/ai-ops/models-2026', priority: 0.7, changeFrequency: 'weekly' as const },
+    { url: '/ai-ops/maturity', priority: 0.7, changeFrequency: 'monthly' as const },
+    { url: '/ai-ops/accelerator-packs', priority: 0.7, changeFrequency: 'monthly' as const },
+    { url: '/ai-ops/agi-ready', priority: 0.7, changeFrequency: 'monthly' as const },
+    // AI Architect sub-routes
+    { url: '/ai-architect/ai-coe-hub', priority: 0.7, changeFrequency: 'monthly' as const },
+    { url: '/ai-architect/multi-cloud-comparison', priority: 0.7, changeFrequency: 'monthly' as const },
+    // Soulbook sub-routes
+    { url: '/soulbook/7-pillars', priority: 0.7, changeFrequency: 'monthly' as const },
+    { url: '/soulbook/assessment', priority: 0.7, changeFrequency: 'monthly' as const },
+    { url: '/soulbook/golden-path', priority: 0.7, changeFrequency: 'monthly' as const },
+    { url: '/soulbook/life-symphony', priority: 0.7, changeFrequency: 'monthly' as const },
+    { url: '/soulbook/vault', priority: 0.7, changeFrequency: 'monthly' as const },
+    // Design Lab
+    { url: '/design-lab', priority: 0.6, changeFrequency: 'weekly' as const },
+    { url: '/design-lab/nature', priority: 0.6, changeFrequency: 'monthly' as const },
+    { url: '/design-lab/nature/variants', priority: 0.5, changeFrequency: 'monthly' as const },
+    { url: '/design-lab/v0', priority: 0.6, changeFrequency: 'monthly' as const },
+    { url: '/design-lab/acos', priority: 0.5, changeFrequency: 'monthly' as const },
+    // ACOS
+    { url: '/acos', priority: 0.7, changeFrequency: 'weekly' as const },
+    // Plan
+    { url: '/plan', priority: 0.6, changeFrequency: 'weekly' as const },
+    // Inspiration
+    { url: '/inspiration', priority: 0.6, changeFrequency: 'monthly' as const },
   ]
 
   // Legacy pages (lower priority, may redirect)
@@ -163,8 +251,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/dashboard',
   ]
 
+  // Research hub pages
+  const researchPages = [
+    { url: '/research', priority: 0.9, changeFrequency: 'weekly' as const },
+    { url: '/research/sources', priority: 0.7, changeFrequency: 'weekly' as const },
+    { url: '/research/methodology', priority: 0.7, changeFrequency: 'monthly' as const },
+  ]
+
   // Get dynamic content
-  const blogSlugs = getBlogSlugs()
+  const blogEntries = getBlogEntries()
   const guideSlugs = getGuideSlugs()
   const productSlugs = getProductSlugs()
 
@@ -188,6 +283,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: currentDate,
       changeFrequency: 'weekly',
       priority: 0.9,
+    })
+  })
+
+  // Research hub pages
+  researchPages.forEach(page => {
+    entries.push({
+      url: `${BASE_URL}${page.url}`,
+      lastModified: currentDate,
+      changeFrequency: page.changeFrequency,
+      priority: page.priority,
+    })
+  })
+
+  // Research domain pages (dynamic from registry)
+  researchDomains.forEach(domain => {
+    entries.push({
+      url: `${BASE_URL}/research/${domain.slug}`,
+      lastModified: domain.lastUpdated,
+      changeFrequency: 'weekly',
+      priority: 0.8,
     })
   })
 
@@ -261,6 +376,36 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   })
 
+  // Legal pages
+  legalPages.forEach(page => {
+    entries.push({
+      url: `${BASE_URL}${page}`,
+      lastModified: currentDate,
+      changeFrequency: 'yearly',
+      priority: 0.3,
+    })
+  })
+
+  // Section pages
+  sectionPages.forEach(page => {
+    entries.push({
+      url: `${BASE_URL}${page.url}`,
+      lastModified: currentDate,
+      changeFrequency: page.changeFrequency,
+      priority: page.priority,
+    })
+  })
+
+  // Audience landing pages
+  audiencePages.forEach(page => {
+    entries.push({
+      url: `${BASE_URL}${page.url}`,
+      lastModified: currentDate,
+      changeFrequency: page.changeFrequency,
+      priority: page.priority,
+    })
+  })
+
   // Legacy pages
   legacyPages.forEach(page => {
     entries.push({
@@ -271,11 +416,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   })
 
-  // Blog posts (high priority - fresh content)
-  blogSlugs.forEach(slug => {
+  // Sub-route pages
+  subRoutePages.forEach(page => {
     entries.push({
-      url: `${BASE_URL}/blog/${slug}`,
+      url: `${BASE_URL}${page.url}`,
       lastModified: currentDate,
+      changeFrequency: page.changeFrequency,
+      priority: page.priority,
+    })
+  })
+
+  // Blog posts (high priority - use actual post dates)
+  blogEntries.forEach(entry => {
+    entries.push({
+      url: `${BASE_URL}/blog/${entry.slug}`,
+      lastModified: entry.date ? new Date(entry.date).toISOString() : currentDate,
       changeFrequency: 'monthly',
       priority: 0.8,
     })

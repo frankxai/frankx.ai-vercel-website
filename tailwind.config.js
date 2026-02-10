@@ -243,9 +243,12 @@ module.exports = {
       // See /lib/design-system.ts for full scale
       // =====================================================
       fontFamily: {
+        // INTER - Primary brand font for all body/UI text (DO NOT CHANGE)
         sans: ['var(--font-inter)', 'Inter', 'system-ui', '-apple-system', 'sans-serif'],
         display: ['var(--font-inter)', 'Inter', 'system-ui', 'sans-serif'],
-        serif: ['"Times New Roman"', 'Times', 'Georgia', 'serif'],
+        // CORMORANT GARAMOND - For quotes, blockquotes, and editorial italic ONLY
+        serif: ['var(--font-quote)', 'Cormorant Garamond', 'Georgia', 'serif'],
+        quote: ['var(--font-quote)', 'Cormorant Garamond', 'Georgia', 'serif'],
         mono: ['var(--font-mono)', 'JetBrains Mono', 'Menlo', 'Monaco', 'monospace'],
       },
       fontSize: {
@@ -316,8 +319,10 @@ module.exports = {
       // ANIMATIONS - Consistent motion
       // =====================================================
       animation: {
-        'fade-in': 'fadeIn 0.5s ease-in-out',
-        'fade-in-up': 'fadeInUp 0.6s ease-out',
+        'fade-in': 'fadeIn 0.6s ease-out forwards',
+        'fade-in-up': 'fadeInUp 0.6s ease-out forwards',
+        'fade-in-down': 'fadeInDown 0.6s ease-out forwards',
+        'scale-in': 'scaleInSmooth 0.5s ease-out forwards',
         'slide-up': 'slideUp 0.5s ease-out',
         'slide-down': 'slideDown 0.5s ease-out',
         'pulse-slow': 'pulse 3s infinite',
@@ -326,6 +331,8 @@ module.exports = {
         'gradient': 'gradient 15s ease infinite',
         float: 'float 6s ease-in-out infinite',
         'logo-marquee': 'logoMarquee 40s linear infinite',
+        'aurora-1': 'aurora1 30s ease-in-out infinite',
+        'aurora-2': 'aurora2 25s ease-in-out infinite',
 
         // Radix Navigation animations
         scaleIn: 'scaleIn 200ms ease',
@@ -354,6 +361,14 @@ module.exports = {
         fadeInUp: {
           '0%': { opacity: '0', transform: 'translateY(20px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        fadeInDown: {
+          '0%': { opacity: '0', transform: 'translateY(-20px)' },
+          '100%': { opacity: '1', transform: 'translateY(0)' },
+        },
+        scaleInSmooth: {
+          '0%': { opacity: '0', transform: 'scale(0.95)' },
+          '100%': { opacity: '1', transform: 'scale(1)' },
         },
         slideUp: {
           '0%': { transform: 'translateY(100%)' },
@@ -388,6 +403,14 @@ module.exports = {
         logoMarquee: {
           '0%': { transform: 'translateX(0)' },
           '100%': { transform: 'translateX(-50%)' },
+        },
+        aurora1: {
+          '0%, 100%': { transform: 'translate(0, 0) scale(1)' },
+          '50%': { transform: 'translate(50px, 30px) scale(1.05)' },
+        },
+        aurora2: {
+          '0%, 100%': { transform: 'translate(0, 0) scale(1)' },
+          '50%': { transform: 'translate(-40px, -20px) scale(1.08)' },
         },
 
         // Radix Navigation keyframes

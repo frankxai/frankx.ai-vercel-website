@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { Mail, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
-import GlassmorphicCard from '../ui/GlassmorphicCard';
+import PremiumCard from '../ui/PremiumCard';
 import { trackEvent } from '@/lib/analytics';
 
 interface EmailCaptureFormProps {
@@ -29,7 +29,7 @@ const EmailCaptureForm: React.FC<EmailCaptureFormProps> = ({
   };
 
   return (
-    <GlassmorphicCard variant="premium" className={className}>
+    <PremiumCard glass="medium" className={className}>
       <div className="p-8">
         <h3 className="text-2xl font-bold text-white mb-2">{title}</h3>
         <p className="text-slate-300 mb-6">{description}</p>
@@ -63,7 +63,7 @@ const EmailCaptureForm: React.FC<EmailCaptureFormProps> = ({
           </form>
         )}
       </div>
-    </GlassmorphicCard>
+    </PremiumCard>
   );
 };
 

@@ -1,7 +1,4 @@
-'use client'
-
 import Link from 'next/link'
-import { motion } from 'framer-motion'
 import {
   Rocket,
   Bug,
@@ -13,7 +10,7 @@ import {
   ExternalLink,
 } from 'lucide-react'
 
-import GlassmorphicCard from '@/components/ui/GlassmorphicCard'
+import PremiumCard from '@/components/ui/PremiumCard'
 
 // Update entries - Add new entries at the top
 const updates = [
@@ -109,11 +106,7 @@ export default function UpdatesPage() {
             Back to Home
           </Link>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
+          <div className="animate-fade-in-up opacity-0 motion-reduce:animate-none">
             <span className="mb-4 inline-block rounded-full border border-white/15 bg-white/10 px-4 py-1 text-xs font-semibold uppercase tracking-[0.35em] text-white/70">
               Changelog
             </span>
@@ -123,7 +116,7 @@ export default function UpdatesPage() {
             <p className="mx-auto mt-4 max-w-2xl text-lg text-slate-300">
               Track the evolution of FrankX.AI. New features, improvements, and fixes shipped to production.
             </p>
-          </motion.div>
+          </div>
         </div>
       </header>
 
@@ -139,17 +132,15 @@ export default function UpdatesPage() {
               const colorClass = typeColors[update.type as keyof typeof typeColors] || typeColors.feature
 
               return (
-                <motion.div
+                <div
                   key={update.version}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: index * 0.1 }}
-                  className="relative pl-0 md:pl-20"
+                  className="relative pl-0 md:pl-20 animate-fade-in-up opacity-0 motion-reduce:animate-none"
+                  style={{ animationDelay: `${(index * 0.1).toFixed(1)}s` }}
                 >
                   {/* Timeline dot */}
                   <div className="absolute left-6 top-6 hidden h-4 w-4 rounded-full border-2 border-emerald-500 bg-slate-950 md:block" />
 
-                  <GlassmorphicCard variant="luxury" border="glow" className="p-6">
+                  <PremiumCard glass="heavy" gradient="purple" className="p-6">
                     <div className="mb-4 flex flex-wrap items-center gap-3">
                       <span className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium ${colorClass}`}>
                         <Icon className="h-3.5 w-3.5" />
@@ -175,21 +166,19 @@ export default function UpdatesPage() {
                         </li>
                       ))}
                     </ul>
-                  </GlassmorphicCard>
-                </motion.div>
+                  </PremiumCard>
+                </div>
               )
             })}
           </div>
         </div>
 
         {/* Footer CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5 }}
-          className="mt-16 text-center"
+        <div
+          className="mt-16 text-center animate-fade-in-up opacity-0 motion-reduce:animate-none"
+          style={{ animationDelay: '0.5s' }}
         >
-          <GlassmorphicCard variant="luxury" border="glow" className="p-8">
+          <PremiumCard glass="heavy" gradient="purple" className="p-8">
             <h3 className="mb-2 text-xl font-bold text-slate-100">Stay Updated</h3>
             <p className="mb-4 text-slate-300">
               Join the Creation Chronicles for weekly updates on new features and content.
@@ -201,8 +190,8 @@ export default function UpdatesPage() {
               Join Inner Circle
               <ExternalLink className="h-4 w-4" />
             </Link>
-          </GlassmorphicCard>
-        </motion.div>
+          </PremiumCard>
+        </div>
       </main>
     </div>
   )

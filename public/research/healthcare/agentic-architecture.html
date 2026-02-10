@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agentic AI Architecture | Cost-Effective LLM Orchestration</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --oracle-red: #C74634;
+            --bg-dark: #0A0A0F;
+            --bg-card: rgba(22, 27, 34, 0.95);
+            --bg-elevated: rgba(30, 35, 44, 0.98);
+            --text-primary: #E6EDF3;
+            --text-secondary: #8B949E;
+            --text-muted: #6E7681;
+            --border: rgba(255, 255, 255, 0.08);
+            --green: #10B981;
+            --green-dim: rgba(16, 185, 129, 0.15);
+            --blue: #3B82F6;
+            --blue-dim: rgba(59, 130, 246, 0.15);
+            --purple: #8B5CF6;
+            --purple-dim: rgba(139, 92, 246, 0.15);
+            --amber: #F59E0B;
+            --amber-dim: rgba(245, 158, 11, 0.15);
+            --cyan: #06B6D4;
+            --cyan-dim: rgba(6, 182, 212, 0.15);
+            --font: 'Inter', -apple-system, sans-serif;
+            --mono: 'JetBrains Mono', monospace;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 56px;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 700;
+            font-size: 15px;
+        }
+
+        .nav-brand svg { width: 28px; height: 28px; }
+
+        .nav-links { display: flex; gap: 4px; }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 500;
+            transition: all 0.15s;
+        }
+
+        .nav-link:hover { color: var(--text-primary); background: rgba(255,255,255,0.06); }
+        .nav-link.active { color: var(--purple); background: var(--purple-dim); }
+
+        /* Hero */
+        .hero {
+            padding: 120px 24px 80px;
+            text-align: center;
+            background: linear-gradient(180deg, rgba(139, 92, 246, 0.08) 0%, var(--bg-dark) 100%);
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--purple-dim);
+            color: var(--purple);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--purple) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 32px;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+        }
+
+        .hero-stat {
+            text-align: center;
+        }
+
+        .hero-stat-value {
+            font-size: 32px;
+            font-weight: 800;
+            color: var(--green);
+            font-family: var(--mono);
+        }
+
+        .hero-stat-label {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Section */
+        .section {
+            padding: 80px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .section-label {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--purple);
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .section-desc {
+            font-size: 16px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Cost Comparison */
+        .cost-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .cost-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cost-card.highlight {
+            border-color: var(--green);
+            background: linear-gradient(135deg, var(--green-dim) 0%, var(--bg-card) 100%);
+        }
+
+        .cost-card.highlight::before {
+            content: 'RECOMMENDED';
+            position: absolute;
+            top: 12px;
+            right: -28px;
+            background: var(--green);
+            color: white;
+            font-size: 9px;
+            font-weight: 700;
+            padding: 4px 32px;
+            transform: rotate(45deg);
+        }
+
+        .cost-tier {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .cost-name {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .cost-price {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        .cost-price strong {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--text-primary);
+            font-family: var(--mono);
+        }
+
+        .cost-features {
+            list-style: none;
+        }
+
+        .cost-features li {
+            font-size: 13px;
+            padding: 8px 0;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .cost-features li:last-child { border-bottom: none; }
+
+        .cost-features .check { color: var(--green); }
+        .cost-features .neutral { color: var(--amber); }
+
+        /* Architecture Diagram */
+        .arch-diagram {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 40px;
+            margin-bottom: 40px;
+        }
+
+        .arch-title {
+            text-align: center;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 32px;
+        }
+
+        .arch-layers {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .arch-layer {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .arch-layer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .arch-layer-title {
+            font-size: 14px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .arch-layer-badge {
+            font-size: 10px;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .arch-components {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .arch-component {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 12px 16px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .arch-component.oss {
+            border-color: var(--green);
+            background: var(--green-dim);
+        }
+
+        .arch-component.oracle {
+            border-color: var(--oracle-red);
+            background: rgba(199, 70, 52, 0.1);
+        }
+
+        .arch-component.gpu {
+            border-color: var(--cyan);
+            background: var(--cyan-dim);
+        }
+
+        .arch-arrow {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 20px;
+        }
+
+        /* Code Blocks */
+        .code-block {
+            background: rgba(13, 17, 23, 0.95);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 24px;
+        }
+
+        .code-header {
+            background: rgba(255,255,255,0.03);
+            padding: 12px 16px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .code-title {
+            font-size: 12px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .code-lang {
+            font-size: 10px;
+            color: var(--text-muted);
+            font-family: var(--mono);
+        }
+
+        .code-content {
+            padding: 20px;
+            font-family: var(--mono);
+            font-size: 12px;
+            line-height: 1.7;
+            overflow-x: auto;
+        }
+
+        .sql-keyword { color: #FF7B72; }
+        .sql-function { color: #D2A8FF; }
+        .sql-string { color: #A5D6FF; }
+        .sql-number { color: #79C0FF; }
+        .sql-comment { color: var(--text-muted); }
+        .sql-type { color: #7EE787; }
+
+        /* Agent Cards */
+        .agent-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .agent-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            transition: all 0.2s;
+        }
+
+        .agent-card:hover {
+            border-color: var(--purple);
+            transform: translateY(-2px);
+        }
+
+        .agent-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--purple-dim);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
+
+        .agent-name {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .agent-desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+
+        .agent-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .agent-tech-tag {
+            font-size: 10px;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .agent-tech-tag.db { background: var(--blue-dim); color: var(--blue); }
+        .agent-tech-tag.llm { background: var(--purple-dim); color: var(--purple); }
+        .agent-tech-tag.oss { background: var(--green-dim); color: var(--green); }
+
+        /* Comparison Table */
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 16px 20px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .comparison-table th {
+            background: rgba(255,255,255,0.03);
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .comparison-table td {
+            font-size: 13px;
+        }
+
+        .comparison-table tr:last-child td { border-bottom: none; }
+
+        .table-highlight {
+            background: var(--green-dim);
+            color: var(--green);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 12px;
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 24px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="index.html" class="nav-brand">
+                <svg viewBox="0 0 32 32"><rect width="32" height="32" rx="6" fill="#C74634"/><text x="16" y="22" text-anchor="middle" fill="white" font-size="16" font-weight="bold">P</text></svg>
+                Pediatric Leukemia AI
+            </a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Overview</a>
+                <a href="index.html#matrix" class="nav-link">Priority Matrix</a>
+                <a href="architecture.html" class="nav-link">DB2AI Architecture</a>
+                <a href="agentic-architecture.html" class="nav-link active">Agentic AI</a>
+                <a href="prototype-dashboard.html" class="nav-link">Dashboard Prototype</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-badge">
+            <span>🤖</span>
+            Cost-Effective AI Architecture
+        </div>
+        <h1>Agentic AI on Oracle Cloud</h1>
+        <p>A genius approach combining Select AI agents, OSS models on Dedicated AI Clusters, and Oracle AI Database 26ai — reducing costs by 90% while maintaining enterprise-grade capabilities.</p>
+        <div class="hero-stats">
+            <div class="hero-stat">
+                <div class="hero-stat-value">90%</div>
+                <div class="hero-stat-label">Cost Reduction vs Pure API</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-value"><1s</div>
+                <div class="hero-stat-label">Avg Query Latency</div>
+            </div>
+            <div class="hero-stat">
+                <div class="hero-stat-value">100%</div>
+                <div class="hero-stat-label">EU Data Residency</div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container">
+        <!-- Cost Comparison -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-label">Cost Analysis</div>
+                <h2 class="section-title">Three-Tier Model Strategy</h2>
+                <p class="section-desc">Route queries intelligently to the cheapest capable model — most clinical queries don't need frontier models.</p>
+            </div>
+
+            <div class="cost-grid">
+                <div class="cost-card">
+                    <div class="cost-tier">Tier 0</div>
+                    <div class="cost-name">Database-Native</div>
+                    <div class="cost-price"><strong>$0</strong> / query</div>
+                    <ul class="cost-features">
+                        <li><span class="check">✓</span> Select AI Agent (in-DB)</li>
+                        <li><span class="check">✓</span> Vector similarity search</li>
+                        <li><span class="check">✓</span> SQL pattern matching</li>
+                        <li><span class="check">✓</span> Cached embeddings</li>
+                        <li><span class="neutral">~</span> Limited reasoning</li>
+                    </ul>
+                </div>
+
+                <div class="cost-card highlight">
+                    <div class="cost-tier">Tier 1</div>
+                    <div class="cost-name">OSS on OKE</div>
+                    <div class="cost-price"><strong>$0.002</strong> / 1K tokens</div>
+                    <ul class="cost-features">
+                        <li><span class="check">✓</span> Llama 3.3 70B (vLLM)</li>
+                        <li><span class="check">✓</span> BiomedCLIP fine-tuned</li>
+                        <li><span class="check">✓</span> PubMedBERT embeddings</li>
+                        <li><span class="check">✓</span> Full data control</li>
+                        <li><span class="check">✓</span> Custom fine-tuning</li>
+                    </ul>
+                </div>
+
+                <div class="cost-card">
+                    <div class="cost-tier">Tier 2</div>
+                    <div class="cost-name">OCI GenAI API</div>
+                    <div class="cost-price"><strong>$0.015</strong> / 1K tokens</div>
+                    <ul class="cost-features">
+                        <li><span class="check">✓</span> Cohere Command A Reasoning</li>
+                        <li><span class="check">✓</span> 256K context window</li>
+                        <li><span class="check">✓</span> Multi-step reasoning</li>
+                        <li><span class="check">✓</span> Vision capabilities</li>
+                        <li><span class="check">✓</span> Enterprise SLA</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="arch-diagram">
+                <div class="arch-title">Query Routing Architecture</div>
+                <div class="arch-layers">
+                    <div class="arch-layer">
+                        <div class="arch-layer-header">
+                            <div class="arch-layer-title">
+                                <span>📥</span> Incoming Query
+                            </div>
+                        </div>
+                        <div class="arch-components">
+                            <div class="arch-component oracle">Oracle APEX Portal</div>
+                            <div class="arch-component oracle">REST API Gateway</div>
+                            <div class="arch-component oracle">OCI Functions</div>
+                        </div>
+                    </div>
+
+                    <div class="arch-arrow">↓ Query Classification</div>
+
+                    <div class="arch-layer">
+                        <div class="arch-layer-header">
+                            <div class="arch-layer-title">
+                                <span>🧠</span> Intelligent Router
+                                <span class="arch-layer-badge" style="background: var(--purple-dim); color: var(--purple);">LLM-FREE</span>
+                            </div>
+                        </div>
+                        <div class="arch-components">
+                            <div class="arch-component">Regex Pattern Matching</div>
+                            <div class="arch-component">Query Complexity Score</div>
+                            <div class="arch-component">Token Count Estimator</div>
+                            <div class="arch-component">Intent Classification (FastText)</div>
+                        </div>
+                    </div>
+
+                    <div class="arch-arrow">↓ Route to Optimal Tier</div>
+
+                    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px;">
+                        <div class="arch-layer" style="border-color: var(--green);">
+                            <div class="arch-layer-header">
+                                <div class="arch-layer-title">
+                                    <span>💾</span> Tier 0
+                                </div>
+                                <span class="arch-layer-badge" style="background: var(--green-dim); color: var(--green);">FREE</span>
+                            </div>
+                            <div class="arch-components" style="flex-direction: column;">
+                                <div class="arch-component oracle">Select AI Agent</div>
+                                <div class="arch-component oracle">HNSW Vector Search</div>
+                            </div>
+                        </div>
+
+                        <div class="arch-layer" style="border-color: var(--blue);">
+                            <div class="arch-layer-header">
+                                <div class="arch-layer-title">
+                                    <span>🚀</span> Tier 1
+                                </div>
+                                <span class="arch-layer-badge" style="background: var(--blue-dim); color: var(--blue);">$0.002/1K</span>
+                            </div>
+                            <div class="arch-components" style="flex-direction: column;">
+                                <div class="arch-component oss">Llama 3.3 70B</div>
+                                <div class="arch-component gpu">vLLM on A100</div>
+                            </div>
+                        </div>
+
+                        <div class="arch-layer" style="border-color: var(--purple);">
+                            <div class="arch-layer-header">
+                                <div class="arch-layer-title">
+                                    <span>⚡</span> Tier 2
+                                </div>
+                                <span class="arch-layer-badge" style="background: var(--purple-dim); color: var(--purple);">$0.015/1K</span>
+                            </div>
+                            <div class="arch-components" style="flex-direction: column;">
+                                <div class="arch-component oracle">Cohere Command A</div>
+                                <div class="arch-component oracle">OCI GenAI API</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Select AI Deep Dive -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-label">Database-Native AI</div>
+                <h2 class="section-title">Select AI: The Genius Pattern</h2>
+                <p class="section-desc">Execute AI queries directly in SQL — no API calls, no network latency, no token costs for structured data retrieval.</p>
+            </div>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-title">
+                        <span>💡</span>
+                        Diagnostic Agent — In-Database AI Query
+                    </div>
+                    <span class="code-lang">PL/SQL</span>
+                </div>
+                <div class="code-content">
+<span class="sql-comment">-- Create an AI Agent Profile for Diagnostic Analysis</span>
+<span class="sql-keyword">BEGIN</span>
+  DBMS_CLOUD_AI.CREATE_PROFILE(
+    profile_name <span class="sql-keyword">=></span> <span class="sql-string">'DIAGNOSTIC_AGENT'</span>,
+    attributes   <span class="sql-keyword">=></span> <span class="sql-string">'{
+      "provider": "cohere",
+      "model": "command-a-03-2025",
+      "credential_name": "OCI_GENAI_CRED",
+      "object_list": [
+        {"owner": "PAED_AI", "name": "PATIENTS"},
+        {"owner": "PAED_AI", "name": "MORPHOLOGY_VECTORS"},
+        {"owner": "PAED_AI", "name": "MOLECULAR_PROFILES"},
+        {"owner": "PAED_AI", "name": "TREATMENT_OUTCOMES"}
+      ],
+      "conversation_memory": true,
+      "temperature": 0.1
+    }'</span>
+  );
+<span class="sql-keyword">END;</span>
+/
+
+<span class="sql-comment">-- Natural Language Query with Vector Context</span>
+<span class="sql-keyword">SELECT</span> <span class="sql-function">AI</span> <span class="sql-string">'Find similar patients to AML-2024-0847
+    and show their treatment outcomes.
+    Explain the molecular similarities.'</span>
+<span class="sql-keyword">USING</span>
+  patient_context <span class="sql-keyword">=></span> (
+    <span class="sql-keyword">SELECT</span>
+      diagnosis_vector,
+      molecular_vector,
+      immuno_vector
+    <span class="sql-keyword">FROM</span> patient_vectors
+    <span class="sql-keyword">WHERE</span> patient_id <span class="sql-keyword">=</span> <span class="sql-string">'AML-2024-0847'</span>
+  ),
+  similarity_search <span class="sql-keyword">=></span> <span class="sql-keyword">TRUE</span>,
+  top_k <span class="sql-keyword">=></span> <span class="sql-number">10</span>
+<span class="sql-keyword">PROFILE</span> diagnostic_agent;
+                </div>
+            </div>
+
+            <div class="code-block">
+                <div class="code-header">
+                    <div class="code-title">
+                        <span>🔬</span>
+                        Hybrid Vector Search — Multi-Modal Similarity
+                    </div>
+                    <span class="code-lang">SQL</span>
+                </div>
+                <div class="code-content">
+<span class="sql-comment">-- Multi-Vector Patient Similarity with HNSW Index</span>
+<span class="sql-keyword">CREATE TABLE</span> patient_embeddings (
+  patient_id       <span class="sql-type">VARCHAR2(20)</span> <span class="sql-keyword">PRIMARY KEY</span>,
+  diagnosis_vec    <span class="sql-type">VECTOR(1536, FLOAT32)</span>,  <span class="sql-comment">-- Cohere Embed 4</span>
+  morphology_vec   <span class="sql-type">VECTOR(512, FLOAT32)</span>,   <span class="sql-comment">-- BiomedCLIP fine-tuned</span>
+  immuno_vec       <span class="sql-type">VECTOR(256, FLOAT32)</span>,   <span class="sql-comment">-- Custom MLP encoder</span>
+  molecular_vec    <span class="sql-type">VECTOR(256, FLOAT32)</span>,   <span class="sql-comment">-- Mutation signature</span>
+  treatment_vec    <span class="sql-type">VECTOR(128, FLOAT32)</span>    <span class="sql-comment">-- Protocol response</span>
+);
+
+<span class="sql-comment">-- Create HNSW indexes for sub-millisecond search</span>
+<span class="sql-keyword">CREATE VECTOR INDEX</span> idx_diagnosis_hnsw
+  <span class="sql-keyword">ON</span> patient_embeddings(diagnosis_vec)
+  <span class="sql-keyword">ORGANIZATION</span> INMEMORY NEIGHBOR GRAPH
+  <span class="sql-keyword">DISTANCE</span> COSINE
+  <span class="sql-keyword">WITH TARGET ACCURACY</span> <span class="sql-number">95</span>;
+
+<span class="sql-comment">-- Weighted multi-vector similarity query</span>
+<span class="sql-keyword">SELECT</span>
+  p.patient_id,
+  o.outcome_status,
+  o.event_free_survival_months,
+  (
+    <span class="sql-number">0.3</span> <span class="sql-keyword">*</span> <span class="sql-function">VECTOR_DISTANCE</span>(p.diagnosis_vec, :query_diag, COSINE) <span class="sql-keyword">+</span>
+    <span class="sql-number">0.25</span> <span class="sql-keyword">*</span> <span class="sql-function">VECTOR_DISTANCE</span>(p.molecular_vec, :query_mol, COSINE) <span class="sql-keyword">+</span>
+    <span class="sql-number">0.25</span> <span class="sql-keyword">*</span> <span class="sql-function">VECTOR_DISTANCE</span>(p.morphology_vec, :query_morph, COSINE) <span class="sql-keyword">+</span>
+    <span class="sql-number">0.2</span> <span class="sql-keyword">*</span> <span class="sql-function">VECTOR_DISTANCE</span>(p.immuno_vec, :query_immuno, COSINE)
+  ) <span class="sql-keyword">AS</span> weighted_similarity
+<span class="sql-keyword">FROM</span> patient_embeddings p
+<span class="sql-keyword">JOIN</span> treatment_outcomes o <span class="sql-keyword">ON</span> p.patient_id <span class="sql-keyword">=</span> o.patient_id
+<span class="sql-keyword">ORDER BY</span> weighted_similarity
+<span class="sql-keyword">FETCH FIRST</span> <span class="sql-number">10</span> <span class="sql-keyword">ROWS ONLY</span>;
+                </div>
+            </div>
+        </section>
+
+        <!-- Agent Types -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-label">Agent Catalog</div>
+                <h2 class="section-title">Pre-Built Clinical AI Agents</h2>
+                <p class="section-desc">Deploy specialized agents for each clinical workflow — all running on cost-effective infrastructure.</p>
+            </div>
+
+            <div class="agent-grid">
+                <div class="agent-card">
+                    <div class="agent-icon">🔬</div>
+                    <div class="agent-name">Diagnostic Agent</div>
+                    <div class="agent-desc">Analyzes morphology, immunophenotype, and molecular data. Generates WHO 2022 classification with confidence scores and retrieves similar historical cases.</div>
+                    <div class="agent-tech">
+                        <span class="agent-tech-tag db">Select AI</span>
+                        <span class="agent-tech-tag db">Vector Search</span>
+                        <span class="agent-tech-tag oss">BiomedCLIP</span>
+                        <span class="agent-tech-tag llm">Cohere (fallback)</span>
+                    </div>
+                </div>
+
+                <div class="agent-card">
+                    <div class="agent-icon">📋</div>
+                    <div class="agent-name">Report Agent</div>
+                    <div class="agent-desc">Generates structured diagnostic reports, tumor board summaries, and treatment recommendations. Multi-language support for global collaboration.</div>
+                    <div class="agent-tech">
+                        <span class="agent-tech-tag oss">Llama 3.3 70B</span>
+                        <span class="agent-tech-tag db">JSON Duality</span>
+                        <span class="agent-tech-tag llm">Translation API</span>
+                    </div>
+                </div>
+
+                <div class="agent-card">
+                    <div class="agent-icon">📚</div>
+                    <div class="agent-name">Literature RAG Agent</div>
+                    <div class="agent-desc">Retrieves and synthesizes relevant publications from PubMed, clinical guidelines, and International Oncology protocols. Reranks by clinical relevance.</div>
+                    <div class="agent-tech">
+                        <span class="agent-tech-tag oss">PubMedBERT</span>
+                        <span class="agent-tech-tag db">Hybrid Search</span>
+                        <span class="agent-tech-tag llm">Cohere Rerank</span>
+                    </div>
+                </div>
+
+                <div class="agent-card">
+                    <div class="agent-icon">🎯</div>
+                    <div class="agent-name">Risk Stratification Agent</div>
+                    <div class="agent-desc">Calculates relapse risk using XGBoost models trained on 2,900+ historical outcomes. Explains contributing factors in natural language.</div>
+                    <div class="agent-tech">
+                        <span class="agent-tech-tag db">Oracle ML</span>
+                        <span class="agent-tech-tag oss">XGBoost</span>
+                        <span class="agent-tech-tag db">Select AI</span>
+                    </div>
+                </div>
+
+                <div class="agent-card">
+                    <div class="agent-icon">💊</div>
+                    <div class="agent-name">Drug Repurposing Agent</div>
+                    <div class="agent-desc">Identifies potential therapeutic candidates using drug-target interaction graphs and molecular similarity networks.</div>
+                    <div class="agent-tech">
+                        <span class="agent-tech-tag db">Graph Studio</span>
+                        <span class="agent-tech-tag oss">DeepDRK</span>
+                        <span class="agent-tech-tag llm">Cohere Embed</span>
+                    </div>
+                </div>
+
+                <div class="agent-card">
+                    <div class="agent-icon">🧪</div>
+                    <div class="agent-name">Trial Matching Agent</div>
+                    <div class="agent-desc">Matches patients to eligible clinical trials based on molecular profile, demographics, and treatment history.</div>
+                    <div class="agent-tech">
+                        <span class="agent-tech-tag db">Vector Match</span>
+                        <span class="agent-tech-tag db">Rule Engine</span>
+                        <span class="agent-tech-tag oss">ClinicalBERT</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- OSS Stack -->
+        <section class="section">
+            <div class="section-header">
+                <div class="section-label">Open Source Stack</div>
+                <h2 class="section-title">Self-Hosted Models on OCI AI Blueprints</h2>
+                <p class="section-desc">Deploy production-grade OSS models using OCI AI Blueprints — no ML ops expertise required.</p>
+            </div>
+
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Model</th>
+                        <th>Use Case</th>
+                        <th>OCI Blueprint</th>
+                        <th>GPU Shape</th>
+                        <th>Est. Cost</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Llama 3.3 70B</strong></td>
+                        <td>General reasoning, reports</td>
+                        <td>LLM Inference (vLLM)</td>
+                        <td>2x A100 80GB</td>
+                        <td><span class="table-highlight">$2.40/hr</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Llama 3.2 11B Vision</strong></td>
+                        <td>Morphology image analysis</td>
+                        <td>Multi-modal Inference</td>
+                        <td>1x A10 24GB</td>
+                        <td><span class="table-highlight">$1.20/hr</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>BiomedCLIP</strong></td>
+                        <td>Cell classification</td>
+                        <td>Custom (OCI Data Science)</td>
+                        <td>1x A10 24GB</td>
+                        <td><span class="table-highlight">$1.20/hr</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>PubMedBERT</strong></td>
+                        <td>Literature embeddings</td>
+                        <td>Embedding Service</td>
+                        <td>CPU (VM.Standard3)</td>
+                        <td><span class="table-highlight">$0.08/hr</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Mistral 7B</strong></td>
+                        <td>Fast drafts, extraction</td>
+                        <td>CPU Inference (Ollama)</td>
+                        <td>CPU (VM.Standard.E5)</td>
+                        <td><span class="table-highlight">$0.12/hr</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+
+    <footer>
+        <p>Oracle Cloud Infrastructure — Agentic AI Architecture • Pediatric Leukemia AI Ecosystem</p>
+        <p style="margin-top: 8px;">DISCLAIMER: Unofficial reference architecture. Not affiliated with Oracle Corporation.</p>
+    </footer>
+</body>
+</html>

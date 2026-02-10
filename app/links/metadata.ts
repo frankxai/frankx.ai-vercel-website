@@ -9,7 +9,7 @@ import { SCHEMA_SAME_AS, SOCIAL_META } from '@/lib/social-links'
 export const metadata: Metadata = createMetadata({
   title: 'Frank X. Riemer | AI Architect & Music Creator - All Links',
   description:
-    'Connect with Frank X. Riemer. AI Architect at Oracle. Creator of 10K+ songs with Suno. Get the Creative AI Toolkit, explore Vibe OS, join the Inner Circle, and access all resources.',
+    'Connect with Frank X. Riemer. AI Architect at Oracle. Creator of 12K+ songs with Suno. Get the Creative AI Toolkit, explore Vibe OS, join the Inner Circle, and access all resources.',
   path: '/links',
   keywords: [
     'frank x riemer',

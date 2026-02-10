@@ -18,7 +18,7 @@ export default function HeroImage({
   subtitle,
   src,
   alt,
-  priority = false,
+  priority = true,
   className,
 }: HeroImageProps) {
   if (src) {

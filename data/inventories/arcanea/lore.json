@@ -1,0 +1,28 @@
+{
+  "_description": "Arcanea Universe Lore Inventory",
+  "_brand": "arcanea",
+  "_instructions": "Track all world-building content: characters, locations, factions, magic systems",
+  "_lastUpdated": "2026-01-23",
+  "_count": 0,
+  "_template": {
+    "id": "lore-slug",
+    "type": "lore",
+    "title": "Lore Entry Title",
+    "description": "Brief description",
+    "brand": "arcanea",
+    "status": "published",
+    "tags": ["character", "location", "faction"],
+    "createdAt": "2025-01-01",
+    "category": "character",
+    "canonLevel": "core",
+    "timeline": "Era of Awakening",
+    "relatedLore": ["related-entry-1", "related-entry-2"],
+    "firstAppearance": "Chapter 1 of Arcanea Chronicles",
+    "content": "Full lore text...",
+    "metadata": {
+      "faction": "The Architects",
+      "abilities": ["Void Walking", "Dream Sight"]
+    }
+  },
+  "entries": []
+}

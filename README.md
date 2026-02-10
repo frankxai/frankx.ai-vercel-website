@@ -1,117 +1,209 @@
-# FrankX.AI - Creator Intelligence Platform
+# FrankX.ai - Elite Creator & AI Architect Platform
 
-Next.js 15 marketing site for FrankX - conscious AI systems for creators, families, and professionals. Powers the public landing pages, products, workshops, and resource hubs at [frankx.ai](https://frankx.ai).
+Modern creator platform built on Next.js 16 with AI-powered content generation, multi-agent orchestration, and enterprise-grade architecture patterns. Powers [frankx.ai](https://frankx.ai).
 
-## Live Site Status
+## Live Site
 
-| Section | URL | Status |
-|---------|-----|--------|
-| Homepage | [frankx.ai](https://frankx.ai) | Live |
-| Products | [/products](https://frankx.ai/products) | Live |
-| Workshops | [/workshops](https://frankx.ai/workshops) | Live |
-| Blog | [/blog](https://frankx.ai/blog) | Live |
-| Research Hub | [/research](https://frankx.ai/research) | Live |
-| Soulbook | [/soulbook](https://frankx.ai/soulbook) | Live |
-| Inner Circle | [/inner-circle](https://frankx.ai/inner-circle) | Live |
-| Updates | [/updates](https://frankx.ai/updates) | Live |
+| Hub | URL | Description |
+|-----|-----|-------------|
+| Homepage | [frankx.ai](https://frankx.ai) | Elite creator value prop |
+| Products | [/products](https://frankx.ai/products) | Digital products & tools |
+| Blog | [/blog](https://frankx.ai/blog) | AI tutorials & insights |
+| AI Architect | [/ai-architect](https://frankx.ai/ai-architect) | Enterprise AI patterns |
+| Music Lab | [/music-lab](https://frankx.ai/music-lab) | Suno AI & music production |
+| Resources | [/resources](https://frankx.ai/resources) | Free downloads & templates |
+| Links | [/links](https://frankx.ai/links) | Social links hub |
 
 ## Tech Stack
 
-- **Framework**: Next.js 15 with App Router
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS + Custom Design System
-- **Content**: MDX/Markdown for blog and guides
-- **Hosting**: Vercel (auto-deploys from main)
-- **Email**: Resend + ConvertKit integration
-- **Analytics**: Vercel Analytics
+| Layer | Technology |
+|-------|------------|
+| Framework | **Next.js 16.1** with App Router & Turbopack |
+| Language | TypeScript (strict mode) |
+| Styling | Tailwind CSS v4 + custom design tokens |
+| Content | MDX with custom components |
+| Hosting | Vercel (Edge Functions, ISR) |
+| Email | Resend + React Email templates |
+| Analytics | Vercel Analytics + Plausible |
+| AI | Claude Code + ACOS skill system |
 
-## Git Architecture
+## AI-Powered Development
 
-```
-FrankX (Development)
-├── origin → git@github.com:frankxai/FrankX.git (private)
-└── vercel-website → git@github.com:frankxai/frankx.ai-vercel-website.git (production)
+This site is built and maintained with **Agentic Creator OS (ACOS)** - a multi-agent system for content creation and site development.
 
-Workflow:
-1. Develop on preview branch
-2. Push to vercel-website/main for production
-3. Vercel auto-deploys from frankx.ai-vercel-website
-```
-
-## Local Development
+### Key Commands
 
 ```bash
-# Install dependencies
+# Content generation
+/infogenius          # Research-grounded visual generation
+/superintelligence   # Deep analysis for complex decisions
+/article-creator     # Blog post generation pipeline
+/suno-prompt         # Music prompt engineering
+
+# Development
+/code-review         # Automated code review
+/verify-deploy       # Deployment verification
+/planning-with-files # Structured task planning
+```
+
+### Skill System
+
+40+ specialized skills organized into pillars:
+- **Creative**: Content, music, visuals
+- **Technical**: Architecture, development, DevOps
+- **Business**: Strategy, products, marketing
+- **Personal**: Productivity, learning
+- **System**: Orchestration, planning, memory
+
+## Ecosystem Overview
+
+### System Architecture
+
+![Ecosystem Overview](docs/diagrams/01-ecosystem-overview.png)
+
+The FrankX platform operates as a unified creator ecosystem with four core layers:
+
+| Layer | Purpose | Components |
+|-------|---------|------------|
+| **ACOS** | Agentic Creator OS | 25 commands, 80+ skills, 40+ agents |
+| **Content Engine** | Multi-format creation | Blog, music, visuals, products |
+| **Distribution** | Multi-platform reach | Web, social, email, community |
+| **Infrastructure** | Production backbone | Vercel, Supabase, R2, Inngest |
+
+### Technical Architecture
+
+![Tech Stack](docs/diagrams/02-tech-stack-architecture.png)
+
+### Content Pipeline
+
+![Content Flow](docs/diagrams/03-content-universe-flow.png)
+
+### Creator Journey
+
+![Creator Funnel](docs/diagrams/04-creator-journey-funnel.png)
+
+### All Diagrams
+
+| Diagram | Description |
+|---------|-------------|
+| [01-ecosystem-overview](docs/diagrams/01-ecosystem-overview.png) | Complete system map |
+| [02-tech-stack-architecture](docs/diagrams/02-tech-stack-architecture.png) | Technology layers |
+| [03-content-universe-flow](docs/diagrams/03-content-universe-flow.png) | Content pipeline |
+| [04-creator-journey-funnel](docs/diagrams/04-creator-journey-funnel.png) | User progression |
+| [05-agentic-ai-architecture](docs/diagrams/05-agentic-ai-architecture.png) | AI agent system |
+| [06-vibe-os-production-flow](docs/diagrams/06-vibe-os-production-flow.png) | Product workflow |
+| [07-product-ladder-detailed](docs/diagrams/07-product-ladder-detailed.png) | Product funnel |
+| [08-brand-identity-system](docs/diagrams/08-brand-identity-system.png) | Brand architecture |
+| [09-arcanea-platform-architecture](docs/diagrams/09-arcanea-platform-architecture.png) | Arcanea gates |
+| [10-ai-music-academy-structure](docs/diagrams/10-ai-music-academy-structure.png) | Music production |
+| [11-newsletter-blog-flow](docs/diagrams/11-newsletter-blog-flow.png) | Email + content |
+| [12-data-flow-architecture](docs/diagrams/12-data-flow-architecture.png) | Data pipeline |
+
+## Architecture
+
+```
+app/                    # Next.js App Router pages
+├── products/           # Product landing pages
+├── blog/               # Blog with MDX content
+├── ai-architect/       # Enterprise AI hub
+├── music-lab/          # Music production hub
+├── resources/          # Downloads & templates
+└── api/                # API routes
+
+components/             # React components
+├── ui/                 # Design system primitives
+├── sections/           # Page sections
+├── home/               # Homepage variants
+└── blog/               # Blog components
+
+content/                # MDX content
+├── blog/               # 50+ articles
+└── guides/             # Resource guides
+
+lib/                    # Utilities
+├── blog.ts             # Blog utilities
+├── prompts.ts          # Prompt library (400+)
+└── team-members.ts     # AI team definitions
+
+public/                 # Static assets
+├── images/             # Optimized images
+└── reading/            # Generated reading site
+```
+
+## Development
+
+```bash
+# Install
 npm install
 
-# Start dev server (http://localhost:3000)
+# Dev server (localhost:3000)
 npm run dev
 
 # Quality checks
-npm run lint
-npm run type-check
+npm run lint && npm run type-check
+
+# Production build
 npm run build
-```
 
-## Testing & Verification
-
-```bash
-# Smoke tests (recommended)
-npm run test:smoke        # Local
-npm run test:smoke:prod   # Production
-
-# E2E tests (requires Playwright)
-npm run test:e2e
-npm run test:e2e:ui
-
-# Deployment verification
-/verify-deploy  # In Claude Code
-```
-
-## Content Structure
-
-```
-app/                    # Route files and pages
-├── products/           # Product landing pages
-├── workshops/          # AI workshops hub
-├── blog/               # Blog listing
-├── research/           # Research intelligence hub
-├── soulbook/           # Soulbook framework
-├── updates/            # Changelog
-└── ...
-
-components/             # Shared UI components
-├── ui/                 # Primitives (buttons, cards)
-├── sections/           # Page sections
-└── seo/                # SEO components
-
-content/                # MDX/Markdown sources
-├── blog/               # Blog articles
-└── guides/             # Resource guides
-
-lib/                    # Utilities and helpers
-public/                 # Static assets
-scripts/                # Build scripts
+# Preview production
+npm run start
 ```
 
 ## Deployment
 
-1. **Development**: Work on `preview` branch
-2. **Production**: Push to `vercel-website/main`
-   ```bash
-   git push vercel-website preview:main
-   ```
-3. Vercel auto-deploys to [frankx.ai](https://frankx.ai)
+Two-repo architecture for security:
 
-## Key Features
+```
+FrankX (Private)                    Production (Public)
+├── .claude/         ─── private
+├── research/        ─── private
+├── app/             ───────────►   ├── app/
+├── components/      ───────────►   ├── components/
+├── content/         ───────────►   ├── content/
+└── public/          ───────────►   └── public/
+```
 
-- **Products**: Vibe OS, Soulbook, Creative AI Toolkit
-- **Workshops**: AI workshops for creators and students
-- **Research Hub**: Multi-agent research intelligence
-- **Soulbook**: Life transformation framework
-- **Blog**: AI insights and tutorials
-- **Email System**: PDF delivery, newsletters
+**Deploy workflow:**
+```bash
+# 1. Develop in FrankX repo
+# 2. Copy to production worktree
+cp -r content/blog/* .worktrees/vercel-ui-ux/content/blog/
 
-## License
+# 3. Commit and push
+cd .worktrees/vercel-ui-ux
+git add -A && git commit -m "feat: update" && git push
+```
+
+## Products
+
+| Product | Price | Description |
+|---------|-------|-------------|
+| Vibe OS | $37 | Life design system in Notion |
+| Creative AI Toolkit | $47 | Prompt templates & workflows |
+| Suno Prompt Library | $27 | 400+ music prompts |
+| ACOS | $297+ | Multi-agent creator system |
+| Creation Chronicles | $497+ | Premium content course |
+
+## Performance Targets
+
+| Metric | Target |
+|--------|--------|
+| Lighthouse | >90 |
+| LCP | <2.5s |
+| FID | <100ms |
+| CLS | <0.1 |
+
+## Brand
+
+**Frank = Elite Creator + AI Architect**
+
+- 500+ AI songs created
+- Oracle AI Architect certified
+- Enterprise-grade systems
+- Humble excellence in execution
+
+---
+
+Built with Next.js 16, TypeScript, and Claude Code.
 
 Copyright FrankX. All rights reserved.

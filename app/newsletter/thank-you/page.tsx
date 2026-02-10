@@ -140,7 +140,7 @@ export default function NewsletterThankYouPage() {
             <p className="text-sm text-gray-400 mb-4">Join the community:</p>
             <div className="flex items-center justify-center gap-4">
               <a
-                href="https://twitter.com/frankxai"
+                href="https://x.com/frankxeth"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-cyan-400 transition-colors"
@@ -150,7 +150,7 @@ export default function NewsletterThankYouPage() {
                 </svg>
               </a>
               <a
-                href="https://linkedin.com/in/frankguzmanai"
+                href="https://www.linkedin.com/in/frank-x-riemer/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-gray-400 hover:text-cyan-400 transition-colors"

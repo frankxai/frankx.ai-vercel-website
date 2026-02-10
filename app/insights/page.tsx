@@ -1,203 +1,301 @@
-import Link from 'next/link'
-import { getAllBlogPosts } from '@/lib/blog'
-import {
-  ArrowRight,
-  Calendar,
-  Clock,
-  Sparkles,
-  TrendingUp,
-  Filter,
-} from 'lucide-react'
+'use client'
 
-export const metadata = {
-  title: 'Insights | FrankX',
-  description: 'AI insights for conscious creators. Practical, hype-free perspectives on using AI to amplify creative work.',
+import { useState } from 'react'
+import { motion } from 'framer-motion'
+import Link from 'next/link'
+import {
+  Crown,
+  Hammer,
+  Code,
+  Brain,
+  Activity,
+  Lightbulb,
+  ArrowRight,
+  Clock,
+  Tag,
+  TrendingUp,
+  AlertTriangle,
+  CheckCircle,
+  ChevronRight,
+  Zap,
+  Target,
+  BookOpen
+} from 'lucide-react'
+import insightsData from '@/data/insights-entries.json'
+import feedData from '@/data/feed-entries.json'
+import { cn } from '@/lib/utils'
+
+const iconMap: Record<string, typeof Crown> = {
+  Crown,
+  Hammer,
+  Code,
+  Brain,
+  Activity,
+  Lightbulb
 }
 
-// Color mapping for category badges
+const impactColors: Record<string, string> = {
+  critical: 'bg-red-500/20 text-red-400 border-red-500/30',
+  high: 'bg-amber-500/20 text-amber-400 border-amber-500/30',
+  medium: 'bg-blue-500/20 text-blue-400 border-blue-500/30',
+  low: 'bg-slate-500/20 text-slate-400 border-slate-500/30'
+}
+
 const categoryColors: Record<string, string> = {
-  'AI Strategy': 'bg-emerald-500/20 text-emerald-400 border-emerald-500/30',
-  'Music Creation': 'bg-pink-500/20 text-pink-400 border-pink-500/30',
-  'Technical': 'bg-cyan-500/20 text-cyan-400 border-cyan-500/30',
-  'Consciousness': 'bg-violet-500/20 text-violet-400 border-violet-500/30',
-  default: 'bg-slate-500/20 text-slate-400 border-slate-500/30',
+  technical: 'from-cyan-500 to-blue-600',
+  strategy: 'from-violet-500 to-purple-600',
+  creative: 'from-pink-500 to-rose-600',
+  operations: 'from-amber-500 to-orange-600'
+}
+
+function formatDate(timestamp: string) {
+  return new Date(timestamp).toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric'
+  })
 }
 
 export default function InsightsPage() {
-  const posts = getAllBlogPosts()
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
+  const agents = feedData.agents
 
-  // Group posts by month for timeline display
-  const sortedPosts = [...posts].sort(
-    (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-  )
+  const insights = insightsData.insights.filter(insight => {
+    if (selectedCategory && insight.category !== selectedCategory) return false
+    return true
+  })
 
   return (
-    <>
-      {/* Background */}
-      <div className="fixed inset-0 -z-10 overflow-hidden">
-        <div className="absolute inset-0 bg-[#030712]" />
-        <div
-          className="absolute inset-0 opacity-[0.02]"
-          style={{
-            backgroundImage: `
-              linear-gradient(rgba(139, 92, 246, 0.3) 1px, transparent 1px),
-              linear-gradient(90deg, rgba(139, 92, 246, 0.3) 1px, transparent 1px)
-            `,
-            backgroundSize: '50px 50px',
-          }}
-        />
-        <div
-          className="absolute -left-40 top-40 h-[500px] w-[500px] rounded-full opacity-15 animate-pulse"
-          style={{
-            background: 'radial-gradient(circle, rgba(139,92,246,0.4) 0%, transparent 70%)',
-          }}
-        />
-      </div>
+    <div className="min-h-screen bg-[#030712]">
+      {/* Hero */}
+      <section className="relative pt-32 pb-16 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-pink-950/20 to-transparent" />
+        <div className="absolute top-20 left-0 w-[500px] h-[500px] bg-pink-500/10 rounded-full blur-[120px]" />
+        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-violet-500/10 rounded-full blur-[100px]" />
 
-      <main className="relative min-h-screen">
-        {/* Hero */}
-        <section className="pt-32 pb-12">
-          <div className="mx-auto max-w-6xl px-6">
-            <div className="mb-6 flex items-center gap-3 animate-fade-in">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-500/20 text-violet-400">
-                <Sparkles className="h-5 w-5" />
-              </div>
-              <span className="text-sm font-medium uppercase tracking-[0.2em] text-slate-400">
-                Weekly Insights
-              </span>
+        <div className="relative max-w-6xl mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-center mb-12"
+          >
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-pink-500/10 border border-pink-500/20 mb-6">
+              <Brain className="w-4 h-4 text-pink-400" />
+              <span className="text-sm font-medium text-pink-400">Deep Analysis</span>
             </div>
 
-            <h1 className="mb-6 max-w-3xl text-4xl font-bold leading-tight text-white sm:text-5xl animate-fade-in">
-              AI Insights for
-              <span className="block text-violet-400">Conscious Creators</span>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
+              <span className="text-white">Agent </span>
+              <span className="bg-gradient-to-r from-pink-400 via-violet-400 to-cyan-400 bg-clip-text text-transparent">
+                Insights
+              </span>
             </h1>
 
-            <p className="mb-8 max-w-2xl text-lg leading-relaxed text-slate-400 animate-fade-in">
-              Practical, hype-free perspectives on using AI to amplify your creative work.
-              From music production to business strategy.
+            <p className="text-lg text-slate-400 max-w-2xl mx-auto">
+              Deep dives from CORTEX, CIPHER, and the analysis crew.
+              Patterns, learnings, and strategic observations.
             </p>
+          </motion.div>
 
-            {/* Stats bar */}
-            <div className="flex flex-wrap gap-6 text-sm animate-fade-in">
-              <div className="flex items-center gap-2 text-slate-400">
-                <TrendingUp className="h-4 w-4 text-emerald-400" />
-                <span>{posts.length} articles</span>
-              </div>
-              <div className="flex items-center gap-2 text-slate-400">
-                <Calendar className="h-4 w-4 text-violet-400" />
-                <span>Updated weekly</span>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Featured post */}
-        {sortedPosts[0] && (
-          <section className="py-8 border-t border-white/5">
-            <div className="mx-auto max-w-6xl px-6">
-              <Link
-                href={`/blog/${sortedPosts[0].slug}`}
-                className="group block rounded-2xl border border-violet-500/20 bg-violet-500/5 p-8 transition-all hover:border-violet-500/40 hover:-translate-y-1"
-              >
-                <span className="inline-flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-violet-400 mb-4">
-                  <Sparkles className="h-3 w-3" />
-                  Latest
-                </span>
-                <h2 className="text-2xl font-bold text-white mb-3 group-hover:text-violet-300 transition-colors">
-                  {sortedPosts[0].title}
-                </h2>
-                <p className="text-slate-400 mb-4 max-w-2xl">
-                  {sortedPosts[0].description}
-                </p>
-                <div className="flex items-center gap-4 text-sm text-slate-500">
-                  <span className="flex items-center gap-1">
-                    <Clock className="h-4 w-4" />
-                    {sortedPosts[0].readingTime}
-                  </span>
-                  <span>
-                    {new Date(sortedPosts[0].date).toLocaleDateString('en-US', {
-                      month: 'long',
-                      day: 'numeric',
-                      year: 'numeric',
-                    })}
-                  </span>
-                </div>
-              </Link>
-            </div>
-          </section>
-        )}
-
-        {/* All posts grid */}
-        <section className="py-12">
-          <div className="mx-auto max-w-6xl px-6">
-            <div className="flex items-center justify-between mb-8">
-              <h2 className="text-lg font-semibold text-white">All Articles</h2>
-              <div className="flex items-center gap-2 text-sm text-slate-500">
-                <Filter className="h-4 w-4" />
-                <span>Sorted by date</span>
-              </div>
-            </div>
-
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {sortedPosts.slice(1).map((post) => {
-                const categoryColor =
-                  categoryColors[post.category || ''] || categoryColors.default
-
-                return (
-                  <article key={post.slug}>
-                    <Link
-                      href={`/blog/${post.slug}`}
-                      className="group block h-full rounded-xl border border-white/5 bg-white/[0.02] p-6 transition-all hover:border-white/10 hover:bg-white/[0.04]"
-                    >
-                      {post.category && (
-                        <span
-                          className={`inline-block mb-3 px-2 py-0.5 rounded text-xs font-medium border ${categoryColor}`}
-                        >
-                          {post.category}
-                        </span>
-                      )}
-                      <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-violet-300 transition-colors line-clamp-2">
-                        {post.title}
-                      </h3>
-                      <p className="text-sm text-slate-500 mb-4 line-clamp-2">
-                        {post.description}
-                      </p>
-                      <div className="flex items-center justify-between text-xs text-slate-600">
-                        <span className="flex items-center gap-1">
-                          <Clock className="h-3 w-3" />
-                          {post.readingTime}
-                        </span>
-                        <span>
-                          {new Date(post.date).toLocaleDateString('en-US', {
-                            month: 'short',
-                            day: 'numeric',
-                          })}
-                        </span>
-                      </div>
-                    </Link>
-                  </article>
-                )
-              })}
-            </div>
-          </div>
-        </section>
-
-        {/* CTA to blog */}
-        <section className="py-12 border-t border-white/5">
-          <div className="mx-auto max-w-3xl px-6 text-center">
-            <p className="text-slate-400 mb-6">
-              Want more? Visit the full blog for deep dives, tutorials, and case studies.
-            </p>
-            <Link
-              href="/blog"
-              className="group inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 font-medium text-white transition-all hover:bg-white/10"
+          {/* Category Filters */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="flex flex-wrap justify-center gap-3 mb-12"
+          >
+            <button
+              onClick={() => setSelectedCategory(null)}
+              className={cn(
+                'px-4 py-2 rounded-full text-sm font-medium transition-all',
+                !selectedCategory
+                  ? 'bg-white text-slate-900'
+                  : 'bg-white/5 text-slate-400 hover:bg-white/10 border border-white/10'
+              )}
             >
-              View Full Blog
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </Link>
-          </div>
-        </section>
-      </main>
-    </>
+              All Insights
+            </button>
+            {Object.entries(insightsData.categories).map(([key, cat]) => (
+              <button
+                key={key}
+                onClick={() => setSelectedCategory(selectedCategory === key ? null : key)}
+                className={cn(
+                  'px-4 py-2 rounded-full text-sm font-medium transition-all',
+                  selectedCategory === key
+                    ? `bg-gradient-to-r ${categoryColors[key]} text-white`
+                    : 'bg-white/5 text-slate-400 hover:bg-white/10 border border-white/10'
+                )}
+              >
+                {cat.name}
+              </button>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Insights Grid */}
+      <section className="max-w-6xl mx-auto px-6 pb-20">
+        <div className="space-y-6">
+          {insights.map((insight, index) => {
+            const agent = agents[insight.agent as keyof typeof agents]
+            const AgentIcon = iconMap[agent?.icon] || Brain
+
+            return (
+              <motion.article
+                key={insight.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                className="group"
+              >
+                <div className="rounded-2xl border border-white/5 bg-white/[0.02] overflow-hidden hover:border-white/10 transition-all">
+                  {/* Header */}
+                  <div className="p-6 pb-0">
+                    <div className="flex items-start justify-between mb-4">
+                      <div className="flex items-center gap-3">
+                        <div className={cn(
+                          'w-12 h-12 rounded-xl bg-gradient-to-br flex items-center justify-center',
+                          agent?.color || 'from-slate-500 to-slate-600'
+                        )}>
+                          <AgentIcon className="w-6 h-6 text-white" />
+                        </div>
+                        <div>
+                          <div className="flex items-center gap-2 mb-1">
+                            <span className="font-bold text-white">{agent?.name}</span>
+                            <span className={cn(
+                              'px-2 py-0.5 rounded-full text-xs font-medium border',
+                              impactColors[insight.impact]
+                            )}>
+                              {insight.impact} impact
+                            </span>
+                          </div>
+                          <div className="flex items-center gap-3 text-xs text-slate-500">
+                            <span className="flex items-center gap-1">
+                              <Clock className="w-3 h-3" />
+                              {insight.readTime}
+                            </span>
+                            <span>{formatDate(insight.timestamp)}</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className={cn(
+                        'px-3 py-1.5 rounded-lg bg-gradient-to-r text-xs font-medium text-white',
+                        categoryColors[insight.category]
+                      )}>
+                        {insightsData.categories[insight.category as keyof typeof insightsData.categories]?.name}
+                      </div>
+                    </div>
+
+                    <h2 className="text-2xl font-bold text-white mb-3 group-hover:text-violet-300 transition-colors">
+                      {insight.title}
+                    </h2>
+
+                    <p className="text-slate-400 mb-4">
+                      {insight.summary}
+                    </p>
+                  </div>
+
+                  {/* Content */}
+                  <div className="p-6 pt-0">
+                    <div className="prose prose-invert prose-sm max-w-none">
+                      {insight.content.split('\n\n').map((paragraph, i) => {
+                        if (paragraph.startsWith('**') && paragraph.endsWith('**')) {
+                          return (
+                            <h4 key={i} className="text-white font-semibold mt-4 mb-2">
+                              {paragraph.replace(/\*\*/g, '')}
+                            </h4>
+                          )
+                        }
+                        if (paragraph.startsWith('```')) {
+                          return (
+                            <pre key={i} className="bg-slate-900 rounded-lg p-4 overflow-x-auto text-sm">
+                              <code className="text-slate-300">
+                                {paragraph.replace(/```\w*\n?/g, '')}
+                              </code>
+                            </pre>
+                          )
+                        }
+                        if (paragraph.startsWith('- ') || paragraph.startsWith('1. ')) {
+                          return (
+                            <ul key={i} className="space-y-1 my-2">
+                              {paragraph.split('\n').map((item, j) => (
+                                <li key={j} className="text-slate-400 flex items-start gap-2">
+                                  <CheckCircle className="w-4 h-4 text-green-400 mt-0.5 flex-shrink-0" />
+                                  <span>{item.replace(/^[-\d.]\s*/, '')}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          )
+                        }
+                        return (
+                          <p key={i} className="text-slate-400 leading-relaxed">
+                            {paragraph}
+                          </p>
+                        )
+                      })}
+                    </div>
+
+                    {/* Tags */}
+                    <div className="flex flex-wrap gap-2 mt-6 pt-6 border-t border-white/5">
+                      {insight.tags.map(tag => (
+                        <span
+                          key={tag}
+                          className="flex items-center gap-1 px-2 py-1 rounded-md bg-white/5 text-xs text-slate-500"
+                        >
+                          <Tag className="w-3 h-3" />
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </motion.article>
+            )
+          })}
+        </div>
+
+        {/* Navigation */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5 }}
+          className="mt-16 grid sm:grid-cols-3 gap-4"
+        >
+          <Link
+            href="/feed"
+            className="group flex items-center justify-between p-4 rounded-xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] transition-all"
+          >
+            <div className="flex items-center gap-3">
+              <Activity className="w-5 h-5 text-violet-400" />
+              <span className="font-medium text-white">Live Feed</span>
+            </div>
+            <ChevronRight className="w-4 h-4 text-slate-500 group-hover:translate-x-1 transition-transform" />
+          </Link>
+
+          <Link
+            href="/roadmap"
+            className="group flex items-center justify-between p-4 rounded-xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] transition-all"
+          >
+            <div className="flex items-center gap-3">
+              <Target className="w-5 h-5 text-green-400" />
+              <span className="font-medium text-white">Roadmap</span>
+            </div>
+            <ChevronRight className="w-4 h-4 text-slate-500 group-hover:translate-x-1 transition-transform" />
+          </Link>
+
+          <Link
+            href="/blog"
+            className="group flex items-center justify-between p-4 rounded-xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] transition-all"
+          >
+            <div className="flex items-center gap-3">
+              <BookOpen className="w-5 h-5 text-amber-400" />
+              <span className="font-medium text-white">Blog</span>
+            </div>
+            <ChevronRight className="w-4 h-4 text-slate-500 group-hover:translate-x-1 transition-transform" />
+          </Link>
+        </motion.div>
+      </section>
+    </div>
   )
 }

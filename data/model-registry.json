@@ -1,0 +1,240 @@
+{
+  "_description": "FrankX Frontier Model Registry - Single source of truth for all AI model data",
+  "_version": "1.0.0",
+  "_updated": "2026-02-06",
+  "_maintainer": "FrankX Intelligence Pipeline (/new-model command)",
+
+  "models": {
+    "claude-opus-4-6": {
+      "name": "Claude Opus 4.6",
+      "id": "claude-opus-4-6",
+      "organization": "anthropic",
+      "family": "claude",
+      "released": "2026-02-05",
+      "status": "ga",
+      "architecture": "dense",
+      "context_window": 200000,
+      "context_window_beta": 1000000,
+      "max_output_tokens": 128000,
+      "modalities": ["text", "vision", "code"],
+      "pricing": {
+        "input_per_1m": 5.0,
+        "output_per_1m": 25.0,
+        "input_premium_per_1m": 10.0,
+        "output_premium_per_1m": 37.50,
+        "us_only_multiplier": 1.1
+      },
+      "benchmarks": {
+        "terminal_bench_2": 65.4,
+        "arc_agi_2": 68.8,
+        "osworld": 72.7,
+        "biglaw_bench": 90.2,
+        "mrcr_v2_1m": 76.0,
+        "humanitys_last_exam": "leads_all_models",
+        "gdpval_aa": "+144 Elo vs GPT-5.2",
+        "browsecomp": "best_performance"
+      },
+      "key_capabilities": [
+        "Adaptive thinking (auto-determines reasoning depth)",
+        "1M token context window (beta)",
+        "128K output tokens (2x previous)",
+        "Agent Teams (parallel Claude Code agents)",
+        "Compaction API (server-side context summarization)",
+        "Enhanced agentic coding and debugging",
+        "Lowest over-refusal rate in Claude family",
+        "Fine-grained tool streaming (GA)",
+        "Data residency controls (US-only option)"
+      ],
+      "api_features": {
+        "adaptive_thinking": "thinking: {type: 'adaptive'}",
+        "effort_levels": ["low", "medium", "high", "max"],
+        "compaction": "beta",
+        "structured_outputs": "output_config.format",
+        "fine_grained_streaming": "ga"
+      },
+      "breaking_changes": [
+        "Prefilling assistant messages returns 400 error",
+        "budget_tokens deprecated (use adaptive thinking + effort)",
+        "output_format moved to output_config.format",
+        "interleaved-thinking beta header deprecated"
+      ],
+      "changelog_vs_previous": [
+        "1M context window (up from 200K)",
+        "128K output tokens (up from 64K)",
+        "Adaptive thinking replaces manual budget_tokens",
+        "Compaction API for infinite conversations",
+        "Agent Teams for parallel execution",
+        "Terminal-Bench 2.0: 65.4% (up from 59.8%)",
+        "ARC-AGI-2: 68.8% (up from 37.6%)",
+        "OSWorld: 72.7% (up from 66.3%)",
+        "GDPval-AA: +190 Elo improvement"
+      ],
+      "acos_tier": "opus",
+      "frankx_notes": "This is THE model for complex architecture, research synthesis, and long-running agent sessions. The 1M context + compaction enables effectively infinite conversations. Agent Teams align with ACOS Layer 4 Swarm Orchestration.",
+      "sources": [
+        "https://www.anthropic.com/news/claude-opus-4-6",
+        "https://platform.claude.com/docs/en/about-claude/models/whats-new-claude-4-6",
+        "https://siliconangle.com/2026/02/05/anthropic-rolls-claude-opus-4-6-1-million-token-context-support/",
+        "https://thenewstack.io/anthropics-opus-4-6-is-a-step-change-for-the-enterprise/"
+      ]
+    },
+    "claude-opus-4-5": {
+      "name": "Claude Opus 4.5",
+      "id": "claude-opus-4-5",
+      "organization": "anthropic",
+      "family": "claude",
+      "released": "2025-11-01",
+      "status": "available",
+      "architecture": "dense",
+      "context_window": 200000,
+      "max_output_tokens": 64000,
+      "modalities": ["text", "vision", "code"],
+      "pricing": {
+        "input_per_1m": 5.0,
+        "output_per_1m": 25.0
+      },
+      "benchmarks": {
+        "swe_bench_verified": 80.9,
+        "terminal_bench_2": 59.8,
+        "arc_agi_2": 37.6,
+        "osworld": 66.3
+      },
+      "acos_tier": "opus",
+      "sources": ["https://www.anthropic.com/news/claude-opus-4-5"]
+    },
+    "claude-sonnet-4-5": {
+      "name": "Claude Sonnet 4.5",
+      "id": "claude-sonnet-4-5-20250929",
+      "organization": "anthropic",
+      "family": "claude",
+      "released": "2025-09-29",
+      "status": "available",
+      "architecture": "dense",
+      "context_window": 200000,
+      "max_output_tokens": 64000,
+      "modalities": ["text", "vision", "code"],
+      "pricing": {
+        "input_per_1m": 3.0,
+        "output_per_1m": 15.0
+      },
+      "acos_tier": "sonnet",
+      "sources": []
+    },
+    "claude-haiku-4-5": {
+      "name": "Claude Haiku 4.5",
+      "id": "claude-haiku-4-5-20251001",
+      "organization": "anthropic",
+      "family": "claude",
+      "released": "2025-10-01",
+      "status": "available",
+      "architecture": "dense",
+      "context_window": 200000,
+      "max_output_tokens": 16000,
+      "modalities": ["text", "vision", "code"],
+      "pricing": {
+        "input_per_1m": 0.80,
+        "output_per_1m": 4.0
+      },
+      "acos_tier": "haiku",
+      "sources": []
+    },
+    "grok-4-1": {
+      "name": "Grok 4.1",
+      "id": "grok-4.1",
+      "organization": "xai",
+      "family": "grok",
+      "released": "2025-11-01",
+      "status": "ga",
+      "architecture": "dense",
+      "context_window": 2000000,
+      "modalities": ["text", "vision"],
+      "benchmarks": {
+        "lmarena_elo": 1483,
+        "hallucination_reduction": "65%"
+      },
+      "sources": ["https://x.ai/news/grok-4-1"]
+    },
+    "gpt-5-2-pro": {
+      "name": "GPT-5.2 Pro",
+      "id": "gpt-5.2-pro",
+      "organization": "openai",
+      "family": "gpt",
+      "released": "2026-01-01",
+      "status": "ga",
+      "architecture": "dense",
+      "context_window": 196000,
+      "modalities": ["text", "vision", "audio"],
+      "benchmarks": {
+        "arc_agi_1": "90%",
+        "arc_agi_2": 54.2
+      },
+      "sources": []
+    },
+    "gemini-3-pro": {
+      "name": "Gemini 3 Pro",
+      "id": "gemini-3-pro",
+      "organization": "google",
+      "family": "gemini",
+      "released": "2025-12-01",
+      "status": "ga",
+      "architecture": "dense",
+      "context_window": 2000000,
+      "modalities": ["text", "vision", "audio", "video"],
+      "benchmarks": {
+        "mmmu_pro": 81.0,
+        "arc_agi_2": 45.1
+      },
+      "sources": []
+    },
+    "llama-4-maverick": {
+      "name": "Llama 4 Maverick",
+      "id": "llama-4-maverick",
+      "organization": "meta",
+      "family": "llama",
+      "released": "2025-12-01",
+      "status": "ga",
+      "architecture": "moe",
+      "parameters": "400B total, 17B active",
+      "context_window": 1000000,
+      "modalities": ["text", "vision"],
+      "sources": []
+    }
+  },
+
+  "organizations": {
+    "anthropic": {
+      "name": "Anthropic",
+      "url": "https://anthropic.com",
+      "models": ["claude-opus-4-6", "claude-opus-4-5", "claude-sonnet-4-5", "claude-haiku-4-5"]
+    },
+    "openai": {
+      "name": "OpenAI",
+      "url": "https://openai.com",
+      "models": ["gpt-5-2-pro"]
+    },
+    "google": {
+      "name": "Google DeepMind",
+      "url": "https://deepmind.google",
+      "models": ["gemini-3-pro"]
+    },
+    "xai": {
+      "name": "xAI",
+      "url": "https://x.ai",
+      "models": ["grok-4-1"]
+    },
+    "meta": {
+      "name": "Meta AI",
+      "url": "https://ai.meta.com",
+      "models": ["llama-4-maverick"]
+    }
+  },
+
+  "acos_routing": {
+    "note": "Maps registry models to ACOS routing tiers",
+    "opus": "claude-opus-4-6",
+    "sonnet": "claude-sonnet-4-5",
+    "haiku": "claude-haiku-4-5"
+  },
+
+  "last_updated": "2026-02-06"
+}

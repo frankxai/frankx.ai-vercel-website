@@ -1,536 +1,249 @@
 ---
-title: "Production Agentic AI Systems: Architecture Patterns That Actually Ship"
-description: "Move beyond demos to production-grade agentic systems. Learn the architecture patterns, state management strategies, and observability practices that separate real systems from weekend projects."
-date: "2026-01-12"
-author: "Frank X"
-category: "AI Architecture"
+title: "Enterprise Agentic Architecture: Decision Framework for Production"
+description: "Most agentic AI projects stall at demo because teams optimize for the wrong things. This architectural decision framework separates shipped products from abandoned experiments."
+date: "2026-01-21"
+lastUpdated: "2026-01-22"
+author: "Frank"
+category: "Intelligence Dispatches"
 tags:
-  - Agentic AI
-  - Production Systems
-  - LangGraph
-  - Claude SDK
-  - MCP
-  - System Design
+  - agentic-ai
+  - enterprise-architecture
+  - production-systems
+  - decision-framework
+  - ai-strategy
 keywords:
-  - production agentic ai
-  - agentic ai architecture patterns
-  - langgraph production deployment
-  - multi-agent orchestration
-  - ai system design 2026
-  - claude sdk production
-  - mcp server architecture
-image: '/images/blog/production-agentic-ai-systems.svg'
-readingGoal: "Walk away with a production-ready architecture pattern you can implement this week."
+  - enterprise agentic ai architecture
+  - agentic ai decision framework
+  - production ai systems architecture
+  - ai architecture patterns 2026
+  - when to use agentic ai
+  - agentic ai maturity model
+image: '/images/blog/production-agentic-ai-systems-hero.png'
+readingGoal: "Walk away with a decision framework and maturity assessment for your agentic AI initiative."
 featured: true
+schema: ["Article", "FAQPage"]
 ---
 
-# Production Agentic AI Systems: Architecture Patterns That Actually Ship
+# Enterprise Agentic Architecture: Decision Framework for Production
 
-**TL;DR**: Most agentic AI demos are glorified chatbots with loops. Production systems require graph-based state machines, explicit failure modes, human-in-the-loop checkpoints, and observability from day one. This guide gives you the patterns that separate shipped products from weekend experiments.
-
----
-
-## The Gap Between Demo and Production
-
-Picture this: 2 AM in the studio. You've built an agent that researches, writes, and publishes content. In the demo, it's magic. In production, it hallucinates a CEO quote, publishes to the wrong channel, and costs you a client.
-
-**The problem isn't the AI. It's the architecture.**
-
-Most tutorials teach you to chain prompts in a loop. Real systems need:
-
-- **Explicit state transitions** - Know exactly where you are in the workflow
-- **Failure recovery** - When step 4 fails, don't restart from step 1
-- **Human checkpoints** - Critical decisions need human eyes
-- **Observability** - When something breaks at 3 AM, you need to know why
-
-Let me show you how to build systems that don't embarrass you.
+**TL;DR**: The question isn't "how do I build agentic AI?" It's "should I, and at what maturity level?" This framework helps you decide if you're building a solo acoustic act or a full symphony orchestra—and how to architect for the performance you actually need.
 
 ---
 
-## The Five Pillars of Production Agentic Systems
+## The Studio Session: From Demo to Production
 
-### Pillar 1: Graph-Based Orchestration
+The studio monitors are humming. It's 2 AM, and your prototype just nailed the perfect run. It reasoned, it executed, it delivered. You feel that rush—the same one I get when a track finally comes together after hours of mixing.
 
-Forget linear chains. Production agents are **state machines**.
+But here's the cold reality check: **A great demo is like a great solo in the shower. It's not ready for the stadium tour.**
 
-```
-┌─────────────┐     ┌─────────────┐     ┌─────────────┐
-│   INTAKE    │────▶│   RESEARCH  │────▶│   DRAFT     │
-└─────────────┘     └─────────────┘     └─────────────┘
-                          │                    │
-                          ▼                    ▼
-                    ┌─────────────┐     ┌─────────────┐
-                    │   VERIFY    │◀────│   REVIEW    │
-                    └─────────────┘     └─────────────┘
-                          │
-                          ▼
-                    ┌─────────────┐
-                    │   PUBLISH   │
-                    └─────────────┘
-```
+Every enterprise leader I talk to shares the same struggle:
+> "We built a demo in two weeks. Six months later, we're still debating how to deploy it."
 
-Each node is a **state**. Each edge is a **conditional transition**. The system always knows where it is, and can resume from any point.
-
-**LangGraph Implementation Pattern:**
-
-```python
-from langgraph.graph import StateGraph, END
-from typing import TypedDict, Literal
-
-class ContentState(TypedDict):
-    topic: str
-    research: list[str]
-    draft: str
-    review_status: Literal["pending", "approved", "rejected"]
-    error: str | None
-
-def research_node(state: ContentState) -> ContentState:
-    # Research logic with explicit error handling
-    try:
-        research = perform_research(state["topic"])
-        return {"research": research, "error": None}
-    except ResearchError as e:
-        return {"error": f"research_failed: {e}"}
-
-def should_continue(state: ContentState) -> str:
-    if state.get("error"):
-        return "error_handler"
-    if state["review_status"] == "rejected":
-        return "draft"  # Loop back
-    return "publish"
-
-# Build the graph
-workflow = StateGraph(ContentState)
-workflow.add_node("research", research_node)
-workflow.add_node("draft", draft_node)
-workflow.add_node("review", review_node)
-workflow.add_node("publish", publish_node)
-workflow.add_node("error_handler", error_handler)
-
-workflow.add_conditional_edges("review", should_continue)
-```
-
-**Why this matters**: When your review node rejects a draft at 2 AM, the system loops back to drafting—not to research. State is preserved. Work isn't lost.
+The problem isn't the code. It's the composition. You're trying to score a film before you've written the main theme. This guide isn't about the syntax of agents; it's about the **rhythm of production**. It teaches you when to let the agents improvise, when to force them to follow the sheet music, and how to build a stage that doesn't collapse under the weight of the performance.
 
 ---
 
-### Pillar 2: Typed State Management
+## The Producer's Board: A Decision Framework
 
-The biggest production killer? **Unstructured state**.
+Before we lay down a single track of code, we need to look at the mixing board. Adjust your levels based on these four faders:
 
-Demo code passes dictionaries around. Production code uses **typed state contracts**.
+![Decision Framework](/images/blog/production-agentic-ai-systems-decision-framework.svg)
+
+Your answers here define your lineup. Don't hire a symphony when you just need a DJ.
+
+---
+
+## The Four-Tier Maturity Model (From Solo to Symphony)
+
+Most teams over-engineer because they try to go straight to the symphony without learning to play the instrument first. Let's look at the progression.
+
+![Maturity Model](/images/blog/production-agentic-ai-systems-maturity-model.svg)
+
+**Critical insight**: Most of you should be rocking Tier 1 or 2. Tier 3 and 4 are for when you've sold out the stadium.
+
+---
+
+## Reference Architecture: The Six-Plane Stage
+
+Whether you're playing a dive bar or Wembley, you need a stage, instruments, and sound. In agentic systems, we call this the Six-Plane Model.
+
+![Six-Plane Architecture](/images/blog/production-agentic-ai-systems-six-plane.svg)
+
+---
+
+## Architectural Decisions (The Rider)
+
+Every tour has a rider—the non-negotiables. Here are the Architectural Decision Records (ADRs) you need for each level of fame.
+
+### Tier 1 → Tier 2: Going Autonomous
+| Decision | Context | Choice | Trade-off |
+|----------|---------|--------|-----------|
+| **Orchestration** | Tracking the song structure | Graph-based state machine | +Explicit rhythm / -Takes time to compose |
+| **State Management** | Keeping everyone in tune | Typed state contracts (Pydantic) | +No bad notes / -More prep work |
+| **Error Handling** | The show must go on | Retry limits + exponential backoff | +Resilience / -Can slow the tempo |
+| **Quality Gates** | Catching bad takes | Multi-stage validation | +Quality / -Latency |
+
+### Tier 2 → Tier 3: The Ensemble
+| Decision | Context | Choice | Trade-off |
+|----------|---------|--------|-----------|
+| **Agent Selection** | Who plays the solo? | Model routing layer | +Best sound per instrument / -Complex wiring |
+| **Handoff Protocol** | Passing the melody | Structured handoff schema | +Clarity / -Overhead |
+| **Failure Isolation** | Broken string? | Circuit breaker per agent | +Band keeps playing / -One part missing |
+| **Human Checkpoints** | The Producer's final listen | Async approval queue | +Safety / -Wait time |
+
+### Tier 3 → Tier 4: The Label Platform
+| Decision | Context | Choice | Trade-off |
+|----------|---------|--------|-----------|
+| **Multi-Tenancy** | Multiple bands, one studio | Namespace isolation | +Efficiency / -Noisy neighbors |
+| **Self-Service** | DIY recording | Declarative workflow specs | +Speed / -Governance |
+| **Cost Allocation** | Who pays for the studio time? | Per-workflow token tracking | +Accountability / -Instrumentation cost |
+
+---
+
+## The Cost-Complexity Curve
+
+Don't buy a stadium sound system for a coffee shop gig. This is where budgets die.
+
+![Cost vs Complexity](/images/blog/production-agentic-ai-systems-cost-complexity.svg)
+
+---
+
+## When NOT to Use Agentic AI
+
+Sometimes, you don't need AI. You just need a spreadsheet.
+
+| Your Situation | Agentic AI? | Better Alternative |
+|----------------|-------------|-------------------|
+| Workflow has < 3 steps | **No** | Simple API calls |
+| Predictable inputs & outputs | **No** | Traditional automation |
+| No budget for rehearsals | **No** | Pre-built SaaS tools |
+| Zero tolerance for wrong notes | **No** | Human-only workflow |
+| Novel situations requiring improv | **Yes** | **This is the jam.** |
+
+---
+
+## Failure Mode Analysis (The Feedback Loop)
+
+When the mic feeds back, it ruins the show. Here's how to stop the screeching before it starts.
+
+| Failure Mode | The Symptom | The Fix |
+|--------------|-------------|---------|
+| **Infinite Loop** | The agent gets stuck on a riff | MAX_RETRIES=3 + backoff |
+| **State Corruption** | The band is playing different songs | Pydantic validation on every bar |
+| **Silent Failure** | The solo ended but no one clapped | Multi-stage output validation |
+| **Hallucination Cascade** | One wrong note ruins the chord | Cross-agent fact-checking |
+| **Cost Explosion** | The studio bill is astronomical | Token budgets + auto-throttle |
+
+---
+
+## Implementation Roadmap (The Rehearsal Schedule)
+
+Don't book the gig until you've practiced. Here's your schedule:
+
+![Implementation Roadmap](/images/blog/production-agentic-ai-systems-roadmap.svg)
+
+### Code Example: State Contract (Tier 2+)
 
 ```python
 from pydantic import BaseModel, Field
-from datetime import datetime
 from enum import Enum
+from datetime import datetime
+from typing import Optional
 
-class WorkflowPhase(str, Enum):
-    INTAKE = "intake"
-    RESEARCH = "research"
-    DRAFT = "draft"
-    REVIEW = "review"
+class WorkflowState(str, Enum):
+    """The song structure—everyone needs to know the key and time signature."""
+    PENDING = "pending"
+    RESEARCHING = "researching"
+    DRAFTING = "drafting"
+    REVIEWING = "reviewing"
     APPROVED = "approved"
-    PUBLISHED = "published"
     FAILED = "failed"
 
-class AgentState(BaseModel):
-    """Immutable state contract for content workflow."""
+class ResearchResult(BaseModel):
+    """Each section needs its own sheet music."""
+    sources: list[str] = Field(..., min_items=1)
+    summary: str = Field(..., min_length=50, max_length=500)
+    confidence: float = Field(..., ge=0.0, le=1.0)
 
-    # Identity
-    workflow_id: str = Field(..., description="Unique workflow identifier")
-    created_at: datetime = Field(default_factory=datetime.utcnow)
-
-    # Current phase
-    phase: WorkflowPhase = WorkflowPhase.INTAKE
-    phase_entered_at: datetime = Field(default_factory=datetime.utcnow)
-
-    # Accumulated work
-    topic: str
-    research_sources: list[str] = Field(default_factory=list)
-    draft_versions: list[str] = Field(default_factory=list)
-
-    # Decisions
-    review_feedback: list[str] = Field(default_factory=list)
-    human_approver: str | None = None
-
-    # Observability
-    token_usage: int = 0
+class AgentWorkflowState(BaseModel):
+    """The state contract—validation on every transition."""
+    workflow_id: str
+    current_state: WorkflowState = WorkflowState.PENDING
+    research_result: Optional[ResearchResult] = None
+    draft_content: Optional[str] = None
     retry_count: int = 0
-    error_log: list[str] = Field(default_factory=list)
-
-    class Config:
-        frozen = True  # Immutable after creation
+    created_at: datetime = Field(default_factory=datetime.utcnow)
+    token_budget_remaining: int = Field(default=10000)
+    
+    def transition_to(self, new_state: WorkflowState) -> None:
+        """Explicit state transitions prevent silent corruption."""
+        valid_transitions = {
+            WorkflowState.PENDING: [WorkflowState.RESEARCHING],
+            WorkflowState.RESEARCHING: [WorkflowState.DRAFTING, WorkflowState.FAILED],
+            WorkflowState.DRAFTING: [WorkflowState.REVIEWING, WorkflowState.FAILED],
+            WorkflowState.REVIEWING: [WorkflowState.APPROVED, WorkflowState.FAILED],
+        }
+        
+        if new_state not in valid_transitions.get(self.current_state, []):
+            raise ValueError(f"Cannot transition from {self.current_state} to {new_state}")
+        
+        self.current_state = new_state
 ```
 
-**The pattern**: Every state transition creates a **new state object**. The old state is preserved in your audit log. You can replay any workflow from any point.
+This is your **state contract**—it keeps everyone in tune. Pydantic validates on every bar change, and explicit transitions prevent the "wrong song" problem.
 
 ---
 
-### Pillar 3: Human-in-the-Loop Checkpoints
+## Framework Comparison
 
-Here's the uncomfortable truth: **You can't trust AI with everything.**
+| Framework | Best For | The Vibe | Tier Match |
+|-----------|----------|----------|------------|
+| **Claude SDK** | Native apps, prototyping | **Indie Rock** | Tier 1-2 |
+| **LangGraph** | Complex state machines | **Prog Rock** | Tier 2-3 |
+| **CrewAI** | Role-based collaboration | **Jazz Improv** | Tier 2-3 |
+| **OCI Agent Platform** | Enterprise governance | **Symphony Hall** | Tier 3-4 |
 
-Production systems need explicit breakpoints where humans approve, redirect, or override.
-
-```python
-class HumanCheckpoint:
-    """Pause workflow for human decision."""
-
-    def __init__(self, checkpoint_type: str, timeout_hours: int = 24):
-        self.checkpoint_type = checkpoint_type
-        self.timeout = timeout_hours
-
-    async def wait_for_decision(
-        self,
-        state: AgentState,
-        options: list[str]
-    ) -> str:
-        # Create approval request
-        request = await create_approval_request(
-            workflow_id=state.workflow_id,
-            checkpoint=self.checkpoint_type,
-            context=state.dict(),
-            options=options,
-            expires_at=datetime.utcnow() + timedelta(hours=self.timeout)
-        )
-
-        # Notify relevant humans
-        await notify_approvers(request)
-
-        # Wait for decision (with timeout)
-        decision = await poll_for_decision(request.id, self.timeout)
-
-        if decision.timed_out:
-            return "timeout_default"  # Safe fallback
-
-        return decision.choice
-
-# Usage in workflow
-async def review_node(state: AgentState) -> AgentState:
-    checkpoint = HumanCheckpoint("content_review")
-
-    decision = await checkpoint.wait_for_decision(
-        state,
-        options=["approve", "request_changes", "reject"]
-    )
-
-    return state.copy(update={
-        "review_status": decision,
-        "phase": WorkflowPhase.APPROVED if decision == "approve" else WorkflowPhase.DRAFT
-    })
-```
-
-**Where to place checkpoints:**
-
-| Checkpoint | Trigger | Options |
-|------------|---------|---------|
-| Content approval | Before publish | Approve, Edit, Reject |
-| Budget threshold | Token usage > limit | Continue, Pause, Cancel |
-| Sensitive detection | PII/legal flags | Approve, Redact, Escalate |
-| External action | API calls, emails | Confirm, Modify, Skip |
+**Frank's Take**: Start with the Claude SDK or LangGraph. Don't rent the Symphony Hall until you can fill the seats.
 
 ---
 
-### Pillar 4: Tool Calling Architecture (MCP)
+## FAQ: Studio Notes
 
-The **Model Context Protocol (MCP)** is the standard for giving agents access to tools. Think of it as USB-C for AI—one protocol, infinite capabilities.
+**Q: Does this actually save money?**
+Only if the work requires *improvisation*. If it's routine, use a script. If it requires judgment (handling the 20% of exceptions), then yes—agents are your affordable session musicians.
 
-**MCP Server Structure:**
+**Q: How do I stop hallucinations?**
+Three layers of soundproofing: (1) Constrain the tools (don't give the drummer a trumpet). (2) Verify the output (listen to the playback). (3) Human approval for the hit singles (high stakes).
 
-```python
-from mcp import Server, Tool, Resource
+**Q: Minimum team size?**
+Tier 1: You on a laptop. Tier 2: You and a dedicated engineer. Tier 3: A small band (3-5 devs). Tier 4: A full production crew (10+).
 
-# Define your tool server
-server = Server("content-tools")
+**Q: Same model for everyone?**
+No. You don't use a Stradivarius to hammer a nail. Use cheaper models for simple tasks (classification) and the heavy hitters (Claude 3.5 Sonnet, GPT-4o) for the complex solos.
 
-@server.tool()
-async def search_knowledge_base(
-    query: str,
-    max_results: int = 10
-) -> list[dict]:
-    """Search internal knowledge base for relevant content."""
-    results = await kb_client.search(query, limit=max_results)
-    return [
-        {"title": r.title, "content": r.snippet, "url": r.url}
-        for r in results
-    ]
-
-@server.tool()
-async def publish_to_cms(
-    title: str,
-    content: str,
-    category: str,
-    schedule_time: datetime | None = None
-) -> dict:
-    """Publish content to the CMS."""
-    # Validation before action
-    if len(content) < 500:
-        raise ToolError("Content too short for publication")
-
-    result = await cms_client.create_post(
-        title=title,
-        body=content,
-        category=category,
-        publish_at=schedule_time or datetime.utcnow()
-    )
-
-    return {"post_id": result.id, "url": result.public_url}
-
-@server.resource("kb://")
-async def get_knowledge_base_entry(uri: str) -> Resource:
-    """Retrieve a specific knowledge base entry."""
-    entry_id = uri.replace("kb://", "")
-    entry = await kb_client.get(entry_id)
-    return Resource(
-        uri=uri,
-        content=entry.content,
-        mime_type="text/markdown"
-    )
-```
-
-**Production MCP patterns:**
-
-1. **Rate limiting** - Don't let agents spam your APIs
-2. **Cost tracking** - Log every tool call with estimated cost
-3. **Sandboxing** - Tools can't access production data in dev mode
-4. **Audit logging** - Every tool invocation is recorded
+**Q: How do I test this?**
+Unit tests for the notes. Integration tests for the melody. Golden set evaluations for the soul. Never test against live LLMs in your CI pipeline—that's like rehearsing during the show.
 
 ---
 
-### Pillar 5: Observability From Day One
+## Your Next Step
 
-If you can't see it, you can't fix it. Production agentic systems need observability built in, not bolted on.
+1.  **Check your tier**: Are you a soloist or a conductor?
+2.  **Set the stage**: Answer the decision framework.
+3.  **Start simple**: You can always add instruments later. Removing them is harder.
 
-**The Observability Stack:**
+Ready to build your ensemble? Check out the [Architecture Blueprint](/blog/production-llm-agents-oci-part-1-architecture) to see the full setup, or explore the [Enterprise Agent Roadmap](/blog/enterprise-agent-roadmap) to plan your tour.
 
-```python
-from opentelemetry import trace
-from opentelemetry.trace import Status, StatusCode
-import structlog
+For deep research on these patterns, dive into our [AI CoE Hub](/research).
 
-logger = structlog.get_logger()
-tracer = trace.get_tracer("agent-workflow")
+*Let's make some noise.*
 
-class ObservableAgent:
-    def __init__(self, workflow_id: str):
-        self.workflow_id = workflow_id
-        self.span_context = {}
-
-    async def execute_node(
-        self,
-        node_name: str,
-        state: AgentState,
-        node_fn: Callable
-    ) -> AgentState:
-        with tracer.start_as_current_span(
-            f"node.{node_name}",
-            attributes={
-                "workflow.id": self.workflow_id,
-                "workflow.phase": state.phase.value,
-                "node.name": node_name,
-            }
-        ) as span:
-            start_time = time.time()
-
-            try:
-                # Execute the node
-                new_state = await node_fn(state)
-
-                # Log success metrics
-                span.set_status(Status(StatusCode.OK))
-                span.set_attribute("node.duration_ms", (time.time() - start_time) * 1000)
-                span.set_attribute("node.token_delta", new_state.token_usage - state.token_usage)
-
-                logger.info(
-                    "node_completed",
-                    workflow_id=self.workflow_id,
-                    node=node_name,
-                    duration_ms=(time.time() - start_time) * 1000,
-                    new_phase=new_state.phase.value
-                )
-
-                return new_state
-
-            except Exception as e:
-                span.set_status(Status(StatusCode.ERROR, str(e)))
-                span.record_exception(e)
-
-                logger.error(
-                    "node_failed",
-                    workflow_id=self.workflow_id,
-                    node=node_name,
-                    error=str(e),
-                    state_snapshot=state.dict()
-                )
-
-                raise
-```
-
-**What to track:**
-
-| Metric | Why | Alert Threshold |
-|--------|-----|-----------------|
-| Node duration | Detect slowdowns | p95 > 30s |
-| Token usage | Cost control | > 100k tokens/workflow |
-| Retry count | Instability signal | > 3 retries |
-| Human wait time | Bottleneck detection | > 4 hours |
-| Error rate | Quality signal | > 5% |
+[hello@frankx.ai](mailto:hello@frankx.ai?subject=Agentic%20Architecture%20Consultation)
 
 ---
 
-## The Complete Architecture
+## Related Articles
 
-Putting it all together:
-
-```
-┌──────────────────────────────────────────────────────────────┐
-│                     ORCHESTRATION LAYER                       │
-│  ┌─────────────────────────────────────────────────────────┐ │
-│  │              LangGraph State Machine                      │ │
-│  │   [Intake] → [Research] → [Draft] → [Review] → [Publish] │ │
-│  └─────────────────────────────────────────────────────────┘ │
-└──────────────────────────────────────────────────────────────┘
-                              │
-                              ▼
-┌──────────────────────────────────────────────────────────────┐
-│                      AGENT LAYER                              │
-│  ┌────────────┐  ┌────────────┐  ┌────────────┐             │
-│  │  Research  │  │   Draft    │  │   Review   │             │
-│  │   Agent    │  │   Agent    │  │   Agent    │             │
-│  │  (Claude)  │  │   (GPT-4)  │  │  (Claude)  │             │
-│  └────────────┘  └────────────┘  └────────────┘             │
-└──────────────────────────────────────────────────────────────┘
-                              │
-                              ▼
-┌──────────────────────────────────────────────────────────────┐
-│                       TOOL LAYER (MCP)                        │
-│  ┌──────────┐  ┌──────────┐  ┌──────────┐  ┌──────────┐    │
-│  │Knowledge │  │   CMS    │  │  Search  │  │  Email   │    │
-│  │   Base   │  │  Publish │  │   API    │  │  Sender  │    │
-│  └──────────┘  └──────────┘  └──────────┘  └──────────┘    │
-└──────────────────────────────────────────────────────────────┘
-                              │
-                              ▼
-┌──────────────────────────────────────────────────────────────┐
-│                    OBSERVABILITY LAYER                        │
-│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐          │
-│  │   Traces    │  │    Logs     │  │   Metrics   │          │
-│  │  (Jaeger)   │  │ (DataDog)   │  │(Prometheus) │          │
-│  └─────────────┘  └─────────────┘  └─────────────┘          │
-└──────────────────────────────────────────────────────────────┘
-```
-
----
-
-## Framework Selection Guide
-
-Choosing the right framework matters. Here's the honest breakdown:
-
-| Framework | Best For | Watch Out For |
-|-----------|----------|---------------|
-| **LangGraph** | Complex state machines, enterprise workflows | Steeper learning curve |
-| **Claude SDK** | Claude-native apps, simple flows | Vendor lock-in |
-| **CrewAI** | Multi-agent collaboration, role-based | Less control over routing |
-| **OpenAI Agents** | GPT-native, function calling | Less flexible state management |
-| **Custom** | Full control, unique requirements | Build everything yourself |
-
-**My recommendation for 2026**: Start with **LangGraph** for orchestration + **Claude SDK** for agent implementation + **MCP** for tool calling. This gives you:
-
-- Explicit state machine control (LangGraph)
-- Best-in-class reasoning (Claude)
-- Standardized tool access (MCP)
-- Vendor flexibility (swap agents without rewriting orchestration)
-
----
-
-## Common Production Failures (And How to Prevent Them)
-
-### Failure 1: The Infinite Loop
-
-**Symptom**: Agent keeps retrying the same failed action.
-
-**Prevention**:
-```python
-MAX_RETRIES = 3
-
-def with_retry_limit(state: AgentState, node_name: str) -> bool:
-    node_retries = state.retry_counts.get(node_name, 0)
-    if node_retries >= MAX_RETRIES:
-        logger.error(f"Max retries exceeded for {node_name}")
-        return False  # Move to error handling
-    return True
-```
-
-### Failure 2: State Corruption
-
-**Symptom**: Workflow continues with partial/invalid state.
-
-**Prevention**: Use Pydantic validation on every state transition.
-
-```python
-def transition_state(current: AgentState, updates: dict) -> AgentState:
-    try:
-        return current.copy(update=updates)  # Pydantic validates
-    except ValidationError as e:
-        raise StateCorruptionError(f"Invalid state transition: {e}")
-```
-
-### Failure 3: Silent Failures
-
-**Symptom**: Agent "completes" but output is garbage.
-
-**Prevention**: Add quality gates with explicit pass/fail criteria.
-
-```python
-def quality_gate(content: str, min_length: int = 500) -> bool:
-    checks = [
-        len(content) >= min_length,
-        not contains_placeholder_text(content),
-        not contains_hallucinated_quotes(content),
-        readability_score(content) > 0.6,
-    ]
-    return all(checks)
-```
-
----
-
-## Your Next Session
-
-Here's your production checklist:
-
-1. **Replace your chain with a graph** - Map your workflow as states and transitions
-2. **Add typed state** - Define your state contract with Pydantic
-3. **Insert one human checkpoint** - Start with content approval before publish
-4. **Add basic observability** - Structured logging for every node execution
-5. **Set failure limits** - Max retries, token budgets, timeout thresholds
-
-You don't need to implement everything at once. Start with the graph. The rest follows.
-
----
-
-## FAQ
-
-**Q: When should I use agentic AI vs. traditional automation?**
-
-Use agentic AI when the workflow requires **reasoning about novel situations**. If every input maps predictably to an output, use traditional automation—it's faster and cheaper.
-
-**Q: How do I handle agent costs in production?**
-
-Set token budgets per workflow. Track usage at the node level. Alert when any single workflow exceeds 50k tokens. Most production workflows should complete under 20k tokens.
-
-**Q: What's the minimum team size to run production agentic systems?**
-
-One engineer can run a production agentic system if you have proper observability. The bottleneck isn't headcount—it's operational maturity. Start with good logging.
-
-**Q: Should I build my own orchestration or use a framework?**
-
-Use a framework (LangGraph, CrewAI) unless you have specific requirements the framework can't handle. Building your own orchestration is a 6-month project minimum.
-
-**Q: How do I test agentic workflows?**
-
-Test at three levels: (1) Unit tests for individual nodes, (2) Integration tests for state transitions, (3) End-to-end tests with mock LLM responses. Never test against live LLMs in CI—it's slow and expensive.
-
----
-
-Ready to go deeper? The [Conscious AI Integration OS](/blog/conscious-ai-integration-operating-system) covers governance, and the [Enterprise Agent Roadmap](/blog/enterprise-agent-roadmap) shows organizational topology. For hands-on implementation support, reach out at [hello@frankx.ai](mailto:hello@frankx.ai?subject=Production%20Agentic%20Systems).
+- [Production LLM Agents on OCI: Architecture](/blog/production-llm-agents-oci-part-1-architecture) — Full blueprint for enterprise deployment
+- [Multi-Agent Orchestration Patterns](/blog/multi-agent-orchestration-patterns-2026) — Coordination strategies that scale
+- [What is Agentic AI?](/blog/what-is-agentic-ai) — The fundamentals explained

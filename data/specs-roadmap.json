@@ -1,5 +1,5 @@
 {
-  "vision": "Make FrankX.ai the intelligence operating system for creators, families, and executives by blending conscious AI adoption, music-led expression, and enterprise-grade governance.",
+  "vision": "Make FrankX.ai the intelligence operating system for creators, families, and executives by blending agentic AI adoption, music-led expression, and enterprise-grade governance.",
   "pillars": [
     {
       "title": "Creative AI Tools",
@@ -24,91 +24,118 @@
   ],
   "milestones": [
     {
-      "quarter": "Q1 2025",
-      "focus": "Launch Volume I of the Intelligence Atlas, refresh FrankX product positioning, and publish weekly creative intelligence dispatches.",
+      "quarter": "Q1 2026",
+      "focus": "Build interconnected content infrastructure with Agent Feed, Insights, and curated intelligence system.",
       "deliverables": [
-        "FrankX Intelligence Atlas Vol. I live with executive summary and call-to-action loops",
-        "Roadmap landing page aggregating specs, rituals, and upcoming drops",
-        "SEO content expansion targeting agentic AI, creative OS, and enterprise governance keywords"
+        "Agent Feed (/feed) - Real-time curated updates from AI agents",
+        "Agent Insights (/insights) - Deep analysis and pattern recognition",
+        "Privacy-first architecture - No session logging, curated content only",
+        "Interconnected navigation across feed, insights, roadmap, newsletter"
       ]
     },
     {
-      "quarter": "Q2 2025",
-      "focus": "Ship Volumes II–IV, release Atlas-backed product playbooks, and formalize governance templates for clients.",
+      "quarter": "Q2 2026",
+      "focus": "Scale content automation with /factory integration and multi-output publishing.",
       "deliverables": [
-        "Volume II multi-agent creative studios guide with templates",
-        "Agentic Creator OS onboarding revamp with evaluation harness",
-        "Governance maturity toolkit and executive briefing series"
+        "Factory automation triggers feed entries on publish",
+        "Agent commentary system with APEX, FORGE, CIPHER personalities",
+        "Newsletter archive with curated agent picks",
+        "SEO surge on agentic AI and creative OS keywords"
       ]
     },
     {
-      "quarter": "Q3 2025",
-      "focus": "Scale revenue engines, expand community rituals, and publish infrastructure sustainability research.",
+      "quarter": "Q3 2026",
+      "focus": "Enterprise-grade agent orchestration and governance tooling.",
       "deliverables": [
-        "Volume III and IV derived product bundles with price ladders",
-        "Community Resonance Loop automation and reporting dashboards",
-        "Infrastructure + sustainability atlas drop with partner spotlights"
+        "Multi-agent orchestration documentation",
+        "Governance maturity toolkit for enterprise clients",
+        "Community Resonance Loop automation",
+        "Partner spotlight integrations"
       ]
     }
   ],
   "rituals": [
     {
-      "name": "Daily Intelligence Operations",
+      "name": "Daily Feed Updates",
       "cadence": "Daily",
-      "owner": "Agent collective",
-      "description": "Log content, product, and community updates with accountable owners and next steps.",
-      "source": "docs/DAILY_INTELLIGENCE_OPERATIONS.md"
+      "owner": "PULSE Agent",
+      "description": "Generate curated feed entries from shipped work and published content.",
+      "source": "/feed"
     },
     {
-      "name": "Atlas Sync",
+      "name": "Weekly Insights",
       "cadence": "Weekly",
-      "owner": "Research & Strategy",
-      "description": "Review signals, adoption metrics, and field telemetry to prioritize roadmap experiments.",
-      "source": "content/blog/frankx-intelligence-atlas-volume-1.mdx"
+      "owner": "CORTEX Agent",
+      "description": "Deep analysis of patterns, learnings, and strategic observations.",
+      "source": "/insights"
+    },
+    {
+      "name": "Factory Runs",
+      "cadence": "On-demand",
+      "owner": "FORGE Agent",
+      "description": "Full publishing pipeline from research to multi-channel output.",
+      "source": "/factory command"
     },
     {
       "name": "Launch Calibration",
       "cadence": "Monthly",
-      "owner": "Growth",
-      "description": "Align SEO, product funnels, and partner activations against quarterly milestones and KPIs.",
+      "owner": "APEX Agent",
+      "description": "Align SEO, product funnels, and partner activations against quarterly milestones.",
       "source": "docs/SEO_MARKETING_STRATEGY.md"
     }
   ],
   "signals": [
     {
-      "name": "Atlas Volume Delivery",
-      "metric": "10,000 words per volume with changelog updates",
-      "target": "Publish each volume on a monthly cadence across 2025",
-      "source": "content/blog/frankx-intelligence-atlas-volume-1.mdx"
+      "name": "Feed Engagement",
+      "metric": "Daily active feed entries with agent commentary",
+      "target": "5+ curated entries per week with >80% positive sentiment"
+    },
+    {
+      "name": "Insight Depth",
+      "metric": "Weekly deep-dive insights with actionable patterns",
+      "target": "2+ high-impact insights per week"
     },
     {
       "name": "Creative OS Adoption",
-      "metric": "Conversion rate from Vibe OS and Agentic Creator OS landing pages",
-      "target": "Lift qualified leads by 35% via new CTA pathways",
-      "source": "docs/CONTENT_STRATEGY.md"
+      "metric": "Conversion rate from feed/insights to newsletter signup",
+      "target": "Lift qualified leads by 35% via new content pathways"
     },
     {
-      "name": "Governance Readiness",
-      "metric": "Clients advancing to Level 3 in the governance maturity model",
-      "target": "Move 60% of active partners into integrated governance rituals by Q3",
-      "source": "content/blog/frankx-intelligence-atlas-volume-1.mdx"
+      "name": "Content Interconnection",
+      "metric": "Internal link density across feed/insights/roadmap/blog",
+      "target": "Every page links to 3+ related pages"
     }
   ],
   "nextActions": [
     {
-      "title": "Publish Volume II research outline",
-      "status": "blocked",
-      "note": "Awaiting interviews from Suno studio and enterprise partners."
+      "title": "Deploy Agent Feed & Insights",
+      "status": "shipping",
+      "note": "New /feed and /insights pages with APEX, FORGE, CIPHER, CORTEX agent personalities. Privacy-first, no session logging."
     },
     {
-      "title": "Activate automation for roadmap checks",
-      "status": "done",
-      "note": "Daily CLI summarizes pillars, current milestones, and open actions. The output is logged in docs/DAILY_INTELLIGENCE_OPERATIONS.md"
+      "title": "Integrate /factory with feed system",
+      "status": "in-progress",
+      "note": "When /factory runs, automatically generate feed entry and update roadmap status."
+    },
+    {
+      "title": "Newsletter archive expansion",
+      "status": "blocked",
+      "note": "Awaiting content curation system for agent-picked newsletter highlights."
     },
     {
       "title": "Launch creative SEO surge",
       "status": "shipping",
-      "note": "New article series rolls out weekly to dominate agentic AI searches."
+      "note": "New article series targeting agentic AI and privacy-first agent architecture."
     }
-  ]
+  ],
+  "agents": {
+    "APEX": "Strategic intelligence and leadership decisions",
+    "FORGE": "Production, shipping, and building",
+    "CIPHER": "Technical deep dives and code analysis",
+    "CORTEX": "Pattern analysis and insights",
+    "VECTOR": "Planning and direction",
+    "PULSE": "Real-time status and monitoring",
+    "GRID": "Infrastructure and systems",
+    "SPARK": "Creative direction and ideas"
+  }
 }

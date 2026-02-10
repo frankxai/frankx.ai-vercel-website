@@ -30,13 +30,20 @@ export const metadata = createMetadata({
 
 const structuredData = {
   '@context': 'https://schema.org',
-  '@type': 'Service',
+  '@type': 'Product',
   name: product.name,
   description: product.promise,
-  provider: {
-    '@type': 'Organization',
-    name: 'FrankX.ai'
-  }
+  brand: {
+    '@type': 'Brand',
+    name: 'FrankX.ai',
+  },
+  offers: {
+    '@type': 'Offer',
+    price: String(product.offer.primaryPrice),
+    priceCurrency: product.offer.currency || 'USD',
+    availability: 'https://schema.org/InStock',
+    priceValidUntil: '2026-12-31',
+  },
 }
 
 export default function AgenticCreatorOSPage() {

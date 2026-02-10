@@ -1,10 +1,21 @@
 'use client'
 
+import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useState, useMemo } from 'react'
 import { cn } from '@/lib/utils'
-import GlassmorphicCard from '@/components/ui/GlassmorphicCard'
+import PremiumCard from '@/components/ui/PremiumCard'
 import { pillars, Pillar } from '@/lib/soulbook/pillars'
+
+const pillarImages: Record<string, string> = {
+  consciousness: '/images/soulbook/pillar-consciousness.png',
+  identity: '/images/soulbook/pillar-identity.png',
+  'emotional-mastery': '/images/soulbook/pillar-emotional-mastery.png',
+  relationships: '/images/soulbook/pillar-relationships.png',
+  vitality: '/images/soulbook/pillar-vitality.png',
+  purpose: '/images/soulbook/pillar-purpose.png',
+  creation: '/images/soulbook/pillar-creation.png',
+}
 
 const pillarColors: Record<string, string> = {
   amber: 'from-amber-400 to-orange-500',
@@ -107,9 +118,8 @@ function PillarDetail({
       exit={{ opacity: 0, x: 50 }}
       className="absolute right-0 top-0 h-full w-full md:w-96"
     >
-      <GlassmorphicCard
-        variant="premium"
-        gradient="aurora"
+      <PremiumCard
+        glass="medium"
         className="h-full overflow-y-auto"
       >
         <div className="p-6">
@@ -132,6 +142,20 @@ function PillarDetail({
               </svg>
             </button>
           </div>
+
+          {/* Pillar Visual */}
+          {pillarImages[pillar.id] && (
+            <div className="relative w-full h-40 rounded-xl overflow-hidden mb-6">
+              <Image
+                src={pillarImages[pillar.id]}
+                alt={pillar.title}
+                fill
+                className="object-cover"
+                sizes="384px"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+            </div>
+          )}
 
           {/* Description */}
           <p className="text-white/70 mb-6">{pillar.description}</p>
@@ -194,7 +218,7 @@ function PillarDetail({
             </ul>
           </div>
         </div>
-      </GlassmorphicCard>
+      </PremiumCard>
     </motion.div>
   )
 }
@@ -242,6 +266,16 @@ export default function PillarVisualizer() {
     <section className="py-24 px-6 relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-black via-midnight-950 to-black" />
+      <div className="absolute inset-0">
+        <Image
+          src="/images/soulbook/seven-pillars.png"
+          alt="Seven Pillars of Soulbook visualization"
+          fill
+          className="object-cover opacity-10"
+          quality={80}
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-midnight-950/80 to-black/90" />
+      </div>
 
       <div className="relative z-10 max-w-6xl mx-auto">
         {/* Section header */}

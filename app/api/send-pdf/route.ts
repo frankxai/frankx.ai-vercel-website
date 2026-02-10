@@ -163,11 +163,11 @@ export async function POST(request: NextRequest) {
           🏠 frankx.ai
         </a>
         <span style="color: #64748b;">•</span>
-        <a href="https://twitter.com/frankxai" style="color: #22d3ee; text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s;">
-          𝕏 Twitter
+        <a href="https://x.com/frankxeth" style="color: #22d3ee; text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s;">
+          𝕏 X
         </a>
         <span style="color: #64748b;">•</span>
-        <a href="https://linkedin.com/in/frankguzmanai" style="color: #22d3ee; text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s;">
+        <a href="https://www.linkedin.com/in/frank-x-riemer/" style="color: #22d3ee; text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s;">
           💼 LinkedIn
         </a>
       </div>

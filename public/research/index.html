@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Architecture Research Center | FrankX</title>
+    <meta name="description" content="Enterprise AI architecture research center: Healthcare AI, RAG systems, agentic orchestration, Oracle AI Database 26ai, sovereign AI deployment, and cost engineering patterns. 190+ verified sources.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://frankx.ai/research/">
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="AI Architecture Research Center | FrankX">
+    <meta property="og:description" content="Enterprise AI architecture research: 6 research areas, 60+ architecture diagrams, 190+ verified sources. Healthcare AI, RAG, Agentic AI, Oracle Database 26ai, Sovereign AI, Cost Engineering.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://frankx.ai/research/">
+    <meta property="og:site_name" content="FrankX AI Architecture Research">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="AI Architecture Research Center | FrankX">
+    <meta name="twitter:description" content="Enterprise AI architecture research: 6 areas, 60+ diagrams, 190+ verified sources.">
+
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ResearchProject",
+        "name": "FrankX AI Architecture Research Center",
+        "description": "Enterprise AI architecture research center covering Healthcare AI, RAG systems, agentic orchestration, Oracle AI Database 26ai, sovereign AI deployment, and cost engineering patterns.",
+        "url": "https://frankx.ai/research/",
+        "dateModified": "2026-02-06",
+        "inLanguage": "en",
+        "author": {
+            "@type": "Person",
+            "name": "FrankX",
+            "url": "https://frankx.ai",
+            "jobTitle": "AI Cloud Architect",
+            "knowsAbout": ["Enterprise AI Architecture", "Oracle Cloud Infrastructure", "Multi-Agent Systems", "RAG Architecture", "Healthcare AI", "Sovereign AI", "Cost Engineering"]
+        },
+        "about": [
+            {"@type": "Thing", "name": "Enterprise AI Architecture"},
+            {"@type": "Thing", "name": "Oracle Cloud Infrastructure"},
+            {"@type": "Thing", "name": "Multi-Agent Orchestration"},
+            {"@type": "Thing", "name": "RAG Architecture"},
+            {"@type": "Thing", "name": "Sovereign AI"},
+            {"@type": "Thing", "name": "AI Cost Engineering"}
+        ],
+        "hasPart": [
+            {"@type": "TechArticle", "name": "Healthcare AI Diagnostics", "url": "https://frankx.ai/research/healthcare/"},
+            {"@type": "TechArticle", "name": "Enterprise RAG Architecture", "url": "https://frankx.ai/research/ai-architecture/"},
+            {"@type": "TechArticle", "name": "Agentic AI & Multi-Agent Orchestration", "url": "https://frankx.ai/research/agentic-ai/"},
+            {"@type": "TechArticle", "name": "Oracle AI Database 26ai", "url": "https://frankx.ai/research/oracle-ai-database/"},
+            {"@type": "TechArticle", "name": "Sovereign AI & Private Agent Factory", "url": "https://frankx.ai/research/sovereign-ai/"},
+            {"@type": "TechArticle", "name": "AI Cost Engineering & FinOps", "url": "https://frankx.ai/research/cost-engineering/"}
+        ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "What is the FrankX AI Architecture Research Center?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "An independent research hub covering enterprise AI architecture patterns across six domains: RAG architecture, agentic AI, Oracle AI Database 26ai, sovereign AI, AI cost engineering, and healthcare AI diagnostics. Based on 210+ verified sources, updated with a 90-day freshness cycle."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Who is this research for?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Enterprise AI architects, cloud solution architects, technology leaders evaluating AI platforms, and engineering teams building production AI systems. The research focuses on architectural patterns and implementation guidance with verified sources and real-world trade-offs."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How often is the research updated?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "All research portals are verified against current official sources at least every 90 days, with critical updates applied within 48 hours. Each page displays a Last verified date for content freshness assessment."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Is this affiliated with Oracle Corporation?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "No. This is an independent research project, not affiliated with, endorsed by, or sponsored by Oracle Corporation. The research covers OCI among other platforms because it offers strong enterprise AI capabilities. All trademarks belong to their respective owners."
+                }
+            }
+        ]
+    }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #06060B;
+            --bg-card: rgba(16, 18, 27, 0.95);
+            --bg-elevated: rgba(24, 27, 38, 0.98);
+            --bg-glass: rgba(255, 255, 255, 0.03);
+            --text-primary: #E6EDF3;
+            --text-secondary: #8B949E;
+            --text-muted: #484F58;
+            --border: rgba(255, 255, 255, 0.06);
+            --border-hover: rgba(255, 255, 255, 0.12);
+            --accent-red: #C74634;
+            --accent-blue: #3B82F6;
+            --accent-purple: #8B5CF6;
+            --accent-green: #10B981;
+            --accent-amber: #F59E0B;
+            --accent-cyan: #06B6D4;
+            --accent-pink: #EC4899;
+            --glow-red: rgba(199, 70, 52, 0.15);
+            --glow-blue: rgba(59, 130, 246, 0.15);
+            --glow-purple: rgba(139, 92, 246, 0.15);
+            --font: 'Inter', -apple-system, sans-serif;
+            --mono: 'JetBrains Mono', monospace;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated background grid */
+        .bg-grid {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
+            background-size: 64px 64px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .bg-glow {
+            position: fixed;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.4;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .bg-glow-1 {
+            top: -200px;
+            right: -100px;
+            background: radial-gradient(circle, var(--glow-red), transparent 70%);
+        }
+
+        .bg-glow-2 {
+            bottom: 20%;
+            left: -200px;
+            background: radial-gradient(circle, var(--glow-blue), transparent 70%);
+        }
+
+        .bg-glow-3 {
+            top: 50%;
+            right: -100px;
+            background: radial-gradient(circle, var(--glow-purple), transparent 70%);
+        }
+
+        /* Navigation */
+        .nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            background: rgba(6, 6, 11, 0.85);
+            backdrop-filter: blur(24px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-inner {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 32px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 800;
+            font-size: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-brand-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, var(--accent-red), var(--accent-purple));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            font-weight: 900;
+        }
+
+        .nav-links { display: flex; gap: 6px; align-items: center; }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            padding: 6px 14px;
+            border-radius: 6px;
+            transition: all 0.2s;
+        }
+
+        .nav-link:hover { color: var(--text-primary); background: var(--bg-glass); }
+        .nav-link.active { color: var(--text-primary); background: rgba(199, 70, 52, 0.12); }
+
+        /* Hero */
+        .hero {
+            position: relative;
+            z-index: 1;
+            padding: 140px 32px 80px;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 16px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--accent-cyan);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 32px;
+        }
+
+        .hero-badge::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background: var(--accent-green);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            letter-spacing: -0.03em;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, #fff 0%, #a8b4c0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            max-width: 640px;
+            margin: 0 auto 48px;
+            line-height: 1.7;
+        }
+
+        /* Stats bar */
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 48px;
+            padding: 24px 0;
+            margin-bottom: 24px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 800;
+            font-family: var(--mono);
+            letter-spacing: -0.02em;
+        }
+
+        .stat-value.red { color: var(--accent-red); }
+        .stat-value.blue { color: var(--accent-blue); }
+        .stat-value.purple { color: var(--accent-purple); }
+        .stat-value.green { color: var(--accent-green); }
+
+        .stat-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-top: 4px;
+        }
+
+        /* Section */
+        .section {
+            position: relative;
+            z-index: 1;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 32px 80px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+
+        .section-label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--text-muted);
+            padding: 4px 12px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+        }
+
+        .section-line {
+            flex: 1;
+            height: 1px;
+            background: var(--border);
+        }
+
+        /* Research cards grid */
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 24px;
+        }
+
+        .research-card {
+            position: relative;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 32px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .research-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            border-radius: 16px 16px 0 0;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .research-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-4px);
+            box-shadow: 0 24px 48px rgba(0, 0, 0, 0.3);
+        }
+
+        .research-card:hover::before { opacity: 1; }
+
+        .research-card.healthcare::before { background: linear-gradient(90deg, var(--accent-green), var(--accent-cyan)); }
+        .research-card.rag::before { background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple)); }
+        .research-card.agentic::before { background: linear-gradient(90deg, var(--accent-purple), var(--accent-pink)); }
+        .research-card.llm::before { background: linear-gradient(90deg, var(--accent-amber), var(--accent-red)); }
+        .research-card.federated::before { background: linear-gradient(90deg, var(--accent-cyan), var(--accent-blue)); }
+        .research-card.vector::before { background: linear-gradient(90deg, var(--accent-red), var(--accent-amber)); }
+
+        .card-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border);
+        }
+
+        .card-icon.healthcare { background: rgba(16, 185, 129, 0.1); color: var(--accent-green); }
+        .card-icon.rag { background: rgba(59, 130, 246, 0.1); color: var(--accent-blue); }
+        .card-icon.agentic { background: rgba(139, 92, 246, 0.1); color: var(--accent-purple); }
+        .card-icon.llm { background: rgba(245, 158, 11, 0.1); color: var(--accent-amber); }
+        .card-icon.federated { background: rgba(6, 182, 212, 0.1); color: var(--accent-cyan); }
+        .card-icon.vector { background: rgba(199, 70, 52, 0.1); color: var(--accent-red); }
+
+        .card-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 10px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            padding: 3px 10px;
+            border-radius: 100px;
+            margin-bottom: 16px;
+            width: fit-content;
+        }
+
+        .card-status.live { background: rgba(16, 185, 129, 0.15); color: var(--accent-green); }
+        .card-status.established { background: rgba(59, 130, 246, 0.15); color: var(--accent-blue); }
+        .card-status.new { background: rgba(139, 92, 246, 0.15); color: var(--accent-purple); }
+        .card-status.research { background: rgba(59, 130, 246, 0.15); color: var(--accent-blue); }
+
+        .card-title {
+            font-size: 1.35rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 12px;
+            line-height: 1.3;
+        }
+
+        .card-description {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.65;
+            margin-bottom: 24px;
+            flex: 1;
+        }
+
+        .card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-bottom: 20px;
+        }
+
+        .card-tag {
+            font-size: 11px;
+            font-family: var(--mono);
+            padding: 3px 10px;
+            border-radius: 4px;
+            background: var(--bg-glass);
+            border: 1px solid var(--border);
+            color: var(--text-muted);
+        }
+
+        .card-metrics {
+            display: flex;
+            gap: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+        }
+
+        .card-metric {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-metric-value {
+            font-family: var(--mono);
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .card-metric-label {
+            font-size: 10px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .card-arrow {
+            position: absolute;
+            top: 32px;
+            right: 32px;
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            transition: all 0.3s;
+        }
+
+        .research-card:hover .card-arrow {
+            color: var(--text-primary);
+            border-color: var(--border-hover);
+            transform: translate(2px, -2px);
+        }
+
+        /* Featured card - spans full width */
+        .research-card.featured {
+            grid-column: 1 / -1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            padding: 40px;
+        }
+
+        .featured-content { display: flex; flex-direction: column; }
+        .featured-visual {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 280px;
+        }
+
+        .featured-visual img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Architecture patterns section */
+        .patterns-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+
+        .pattern-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 24px;
+            transition: all 0.2s;
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .pattern-card:hover {
+            border-color: var(--border-hover);
+            transform: translateY(-2px);
+        }
+
+        .pattern-number {
+            font-family: var(--mono);
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+        }
+
+        .pattern-title {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            letter-spacing: -0.01em;
+        }
+
+        .pattern-desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+
+        /* Tech stack showcase */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 12px;
+        }
+
+        .tech-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 16px;
+            text-align: center;
+            transition: all 0.2s;
+        }
+
+        .tech-item:hover { border-color: var(--border-hover); }
+
+        .tech-name {
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .tech-category {
+            font-size: 10px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        /* Footer */
+        .footer {
+            position: relative;
+            z-index: 1;
+            border-top: 1px solid var(--border);
+            padding: 48px 32px;
+            text-align: center;
+        }
+
+        .footer-text {
+            font-size: 13px;
+            color: var(--text-muted);
+            max-width: 640px;
+            margin: 0 auto;
+            line-height: 1.7;
+        }
+
+        .footer-text a {
+            color: var(--text-secondary);
+            text-decoration: none;
+        }
+
+        .footer-text a:hover { color: var(--text-primary); }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-top: 16px;
+        }
+
+        .footer-link {
+            font-size: 12px;
+            color: var(--text-muted);
+            text-decoration: none;
+        }
+
+        .footer-link:hover { color: var(--text-secondary); }
+
+        .faq { max-width: 960px; margin: 0 auto; padding: 64px 32px 0; }
+        .faq h2 { font-size: 1.5rem; margin-bottom: 24px; }
+        .faq-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 12px; overflow: hidden; }
+        .faq-q { font-weight: 600; font-size: 15px; padding: 18px 24px; display: flex; align-items: center; gap: 12px; }
+        .faq-q::before { content: "Q"; background: var(--accent-cyan); color: white; font-size: 11px; font-weight: 800; width: 22px; height: 22px; border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .faq-a { padding: 0 24px 18px 58px; color: var(--text-secondary); font-size: 14px; line-height: 1.7; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .research-grid { grid-template-columns: 1fr; }
+            .research-card.featured { grid-template-columns: 1fr; }
+            .patterns-grid { grid-template-columns: 1fr; }
+            .stats-bar { gap: 24px; flex-wrap: wrap; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-grid"></div>
+    <div class="bg-glow bg-glow-1"></div>
+    <div class="bg-glow bg-glow-2"></div>
+    <div class="bg-glow bg-glow-3"></div>
+
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="/" class="nav-brand">
+                <div class="nav-brand-icon">FX</div>
+                AI Architecture Research
+            </a>
+            <div class="nav-links">
+                <a href="/research/" class="nav-link active">Research</a>
+                <a href="/research/healthcare/" class="nav-link">Healthcare</a>
+                <a href="/research/ai-architecture/" class="nav-link">Architecture</a>
+                <a href="/research/agentic-ai/" class="nav-link">Agentic AI</a>
+                <a href="/research/oracle-ai-database/" class="nav-link">Database AI</a>
+                <a href="/research/sovereign-ai/" class="nav-link">Sovereign AI</a>
+                <a href="/research/cost-engineering/" class="nav-link">Cost</a>
+                <a href="/research/methodology/" class="nav-link">Method</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-badge">Research Center &mdash; Updated Feb 2026</div>
+        <h1>Enterprise AI Architecture Patterns</h1>
+        <p>Reference architectures, production patterns, and research for building enterprise-grade AI systems. From diagnostic AI pipelines to agentic orchestration&mdash;real patterns from real engagements.</p>
+
+        <div class="stats-bar">
+            <div class="stat">
+                <div class="stat-value red">6</div>
+                <div class="stat-label">Research Areas</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value blue">63+</div>
+                <div class="stat-label">Architecture Diagrams</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value purple">210+</div>
+                <div class="stat-label">Verified Sources</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value green">Feb 2026</div>
+                <div class="stat-label">Last Verified</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Research -->
+    <section class="section">
+        <div class="section-header">
+            <span class="section-label">Featured</span>
+            <div class="section-line"></div>
+        </div>
+
+        <div class="research-grid">
+            <!-- Featured: Healthcare AI -->
+            <a href="/research/healthcare/" class="research-card featured healthcare">
+                <div class="featured-content">
+                    <div class="card-icon healthcare">&#9764;</div>
+                    <div class="card-status live">&#9670; Comprehensive &mdash; 9 Pages</div>
+                    <div class="card-title">AI-Powered Healthcare Diagnostics Ecosystem</div>
+                    <div class="card-description">
+                        Reference architecture for AI-driven diagnostic optimization in clinical research.
+                        Four-pillar framework: Diagnostic AI, Intelligent Infrastructure, Therapy Acceleration,
+                        and Global Collaboration. Features OCI Vision for morphology analysis, vector search
+                        for genomic data, federated learning for multi-institution research, and LLM cascade
+                        routing for 40-70% cost optimization.
+                    </div>
+                    <div class="card-tags">
+                        <span class="card-tag">OCI Vision</span>
+                        <span class="card-tag">Database 26ai</span>
+                        <span class="card-tag">Federated Learning</span>
+                        <span class="card-tag">GenAI</span>
+                        <span class="card-tag">Vector Search</span>
+                    </div>
+                    <div class="card-metrics">
+                        <div class="card-metric">
+                            <span class="card-metric-value">6</span>
+                            <span class="card-metric-label">Pages</span>
+                        </div>
+                        <div class="card-metric">
+                            <span class="card-metric-value">14</span>
+                            <span class="card-metric-label">Architecture Diagrams</span>
+                        </div>
+                        <div class="card-metric">
+                            <span class="card-metric-value">4</span>
+                            <span class="card-metric-label">Pillars</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="featured-visual">
+                    <img src="healthcare/images/four-pillars-architecture.png" alt="Healthcare AI Four Pillars Architecture" loading="lazy">
+                </div>
+                <div class="card-arrow">&nearr;</div>
+            </a>
+
+            <!-- Enterprise RAG Architecture -->
+            <a href="/research/ai-architecture/" class="research-card rag">
+                <div class="card-icon rag">&#9881;</div>
+                <div class="card-status established">&#9670; Established &mdash; 18+ Sources</div>
+                <div class="card-title">Production Enterprise RAG Architecture</div>
+                <div class="card-description">
+                    Multi-layered RAG patterns that go beyond simple retriever-generator pipelines.
+                    Evaluation, observability, guardrails, and governance as first-class architectural
+                    components. Cross-vendor synthesis from Google Vertex AI, Anthropic, and Oracle
+                    reference architectures with real cost analysis.
+                </div>
+                <div class="card-tags">
+                    <span class="card-tag">RAG</span>
+                    <span class="card-tag">Vector Search</span>
+                    <span class="card-tag">Embeddings</span>
+                    <span class="card-tag">Reranking</span>
+                </div>
+                <div class="card-metrics">
+                    <div class="card-metric">
+                        <span class="card-metric-value">8</span>
+                        <span class="card-metric-label">Layers</span>
+                    </div>
+                    <div class="card-metric">
+                        <span class="card-metric-value">3</span>
+                        <span class="card-metric-label">Vendor Patterns</span>
+                    </div>
+                </div>
+                <div class="card-arrow">&nearr;</div>
+            </a>
+
+            <!-- Agentic AI -->
+            <a href="/research/agentic-ai/" class="research-card agentic">
+                <div class="card-icon agentic">&#9889;</div>
+                <div class="card-status established">&#9670; Established &mdash; 23+ Sources</div>
+                <div class="card-title">Agentic AI &amp; Multi-Agent Orchestration</div>
+                <div class="card-description">
+                    Enterprise agent architecture patterns: MCP integration, Google ADK, A2A protocol,
+                    multi-agent coordination, and the Linux Foundation Agentic AI Foundation.
+                    Includes BCG Agent capability mapping, agent security analysis, and Oracle
+                    Select AI Agent for database-native autonomous workflows.
+                </div>
+                <div class="card-tags">
+                    <span class="card-tag">MCP</span>
+                    <span class="card-tag">Google ADK</span>
+                    <span class="card-tag">A2A Protocol</span>
+                    <span class="card-tag">Agent Security</span>
+                </div>
+                <div class="card-metrics">
+                    <div class="card-metric">
+                        <span class="card-metric-value">5</span>
+                        <span class="card-metric-label">Agent Types</span>
+                    </div>
+                    <div class="card-metric">
+                        <span class="card-metric-value">3</span>
+                        <span class="card-metric-label">Deployment Patterns</span>
+                    </div>
+                </div>
+                <div class="card-arrow">&nearr;</div>
+            </a>
+
+            <!-- Oracle AI Database 26ai -->
+            <a href="/research/oracle-ai-database/" class="research-card llm">
+                <div class="card-icon llm">&#9741;</div>
+                <div class="card-status established">&#9670; Established &mdash; 25+ Sources</div>
+                <div class="card-title">Oracle AI Database 26ai: DB-Native AI</div>
+                <div class="card-description">
+                    The database-native AI paradigm shift. Select AI Agent runs LLM inference
+                    from SQL. Unified Hybrid Vector Search combines HNSW, IVF, and full-text
+                    in one query. MCP integration turns the database into an agent platform.
+                    JSON Duality Views as AI context windows. GraphRAG with Property Graph.
+                </div>
+                <div class="card-tags">
+                    <span class="card-tag">Select AI</span>
+                    <span class="card-tag">Vector Search</span>
+                    <span class="card-tag">MCP</span>
+                    <span class="card-tag">GraphRAG</span>
+                </div>
+                <div class="card-metrics">
+                    <div class="card-metric">
+                        <span class="card-metric-value">6</span>
+                        <span class="card-metric-label">Capabilities</span>
+                    </div>
+                    <div class="card-metric">
+                        <span class="card-metric-value">0ms</span>
+                        <span class="card-metric-label">Data Movement</span>
+                    </div>
+                </div>
+                <div class="card-arrow">&nearr;</div>
+            </a>
+
+            <!-- Sovereign AI -->
+            <a href="/research/sovereign-ai/" class="research-card vector">
+                <div class="card-icon vector">&#9888;</div>
+                <div class="card-status established">&#9670; Established &mdash; 21+ Sources</div>
+                <div class="card-title">Sovereign AI &amp; Private Agent Factory</div>
+                <div class="card-description">
+                    Air-gapped AI deployment for regulated industries. Private Agent Factory
+                    pattern deploys multi-agent systems on controlled infrastructure. Three
+                    security zones, EU AI Act compliance architecture, OCI Dedicated Region,
+                    and quantum-safe encryption for defense-grade AI systems.
+                </div>
+                <div class="card-tags">
+                    <span class="card-tag">EU AI Act</span>
+                    <span class="card-tag">Air-Gapped</span>
+                    <span class="card-tag">Zero Trust</span>
+                    <span class="card-tag">GDPR</span>
+                </div>
+                <div class="card-metrics">
+                    <div class="card-metric">
+                        <span class="card-metric-value">3</span>
+                        <span class="card-metric-label">Security Zones</span>
+                    </div>
+                    <div class="card-metric">
+                        <span class="card-metric-value">100%</span>
+                        <span class="card-metric-label">Data Sovereignty</span>
+                    </div>
+                </div>
+                <div class="card-arrow">&nearr;</div>
+            </a>
+
+            <!-- AI Cost Engineering -->
+            <a href="/research/cost-engineering/" class="research-card federated">
+                <div class="card-icon federated">&#10070;</div>
+                <div class="card-status established">&#9670; Established &mdash; 30+ Sources</div>
+                <div class="card-title">AI Cost Engineering &amp; FinOps</div>
+                <div class="card-description">
+                    Cut AI spend by 40-70% with intelligent cascade routing, GPU optimization,
+                    and FinOps practices for GenAI. Includes agentic AI cost control (3-10x LLM
+                    amplification patterns), prompt caching, semantic response caching, TCO
+                    frameworks, and the Quality-per-Dollar (QpD) metric.
+                </div>
+                <div class="card-tags">
+                    <span class="card-tag">Agent Cost Control</span>
+                    <span class="card-tag">Cascade Routing</span>
+                    <span class="card-tag">FinOps</span>
+                    <span class="card-tag">TCO</span>
+                </div>
+                <div class="card-metrics">
+                    <div class="card-metric">
+                        <span class="card-metric-value">70%</span>
+                        <span class="card-metric-label">Cost Reduction</span>
+                    </div>
+                    <div class="card-metric">
+                        <span class="card-metric-value">5</span>
+                        <span class="card-metric-label">Patterns</span>
+                    </div>
+                </div>
+                <div class="card-arrow">&nearr;</div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Architecture Patterns Quick Reference -->
+    <section class="section">
+        <div class="section-header">
+            <span class="section-label">Patterns</span>
+            <div class="section-line"></div>
+        </div>
+
+        <div class="patterns-grid">
+            <div class="pattern-card">
+                <div class="pattern-number">PATTERN 01</div>
+                <div class="pattern-title">LLM Cascade Routing</div>
+                <div class="pattern-desc">Route tasks to cheapest capable model. Skip LLM entirely for 80% of structured data tasks.</div>
+            </div>
+            <div class="pattern-card">
+                <div class="pattern-number">PATTERN 02</div>
+                <div class="pattern-title">RAG with Evaluation Loop</div>
+                <div class="pattern-desc">Continuous retrieval quality measurement. Semantic caching, hybrid search, metadata filtering.</div>
+            </div>
+            <div class="pattern-card">
+                <div class="pattern-number">PATTERN 03</div>
+                <div class="pattern-title">Federated Model Training</div>
+                <div class="pattern-desc">Train across institutional boundaries without centralizing data. Dynamic governance modeling.</div>
+            </div>
+            <div class="pattern-card">
+                <div class="pattern-number">PATTERN 04</div>
+                <div class="pattern-title">Multi-Agent Orchestration</div>
+                <div class="pattern-desc">Specialized agents with MCP tool access. Knowledge Agent, Analysis Agent, Research Agent.</div>
+            </div>
+            <div class="pattern-card">
+                <div class="pattern-number">PATTERN 05</div>
+                <div class="pattern-title">Sovereign AI Deployment</div>
+                <div class="pattern-desc">Private Agent Factory for data sovereignty. In-database agents with Database 26ai security.</div>
+            </div>
+            <div class="pattern-card">
+                <div class="pattern-number">PATTERN 06</div>
+                <div class="pattern-title">Diagnostic AI Pipeline</div>
+                <div class="pattern-desc">OCI Vision + custom model training. Image ingestion, preprocessing, classification, reporting.</div>
+            </div>
+            <div class="pattern-card">
+                <div class="pattern-number">PATTERN 07</div>
+                <div class="pattern-title">Clinical Decision Support</div>
+                <div class="pattern-desc">RAG-powered case analysis with similar case matching. Literature-backed recommendations.</div>
+            </div>
+            <div class="pattern-card">
+                <div class="pattern-number">PATTERN 08</div>
+                <div class="pattern-title">GPU Bursting Strategy</div>
+                <div class="pattern-desc">On-demand A100/H100 for training, preemptible for batch. 50%+ savings vs. reserved capacity.</div>
+            </div>
+            <div class="pattern-card">
+                <div class="pattern-number">PATTERN 09</div>
+                <div class="pattern-title">Digital Twin Data Model</div>
+                <div class="pattern-desc">Unified entity representation combining multimodal data sources. JSON Duality + Property Graph.</div>
+            </div>
+            <div class="pattern-card">
+                <div class="pattern-number">PATTERN 10</div>
+                <div class="pattern-title">Drug Discovery Pipeline</div>
+                <div class="pattern-desc">AI-driven molecular docking, drug repurposing, and virtual screening on OCI HPC.</div>
+            </div>
+            <div class="pattern-card">
+                <div class="pattern-number">PATTERN 11</div>
+                <div class="pattern-title">Compliance Landing Zone</div>
+                <div class="pattern-desc">HIPAA/GDPR/HITRUST pre-configured OCI landing zones with zero-trust architecture.</div>
+            </div>
+            <div class="pattern-card">
+                <div class="pattern-number">PATTERN 12</div>
+                <div class="pattern-title">MCP Integration Bridge</div>
+                <div class="pattern-desc">Model Context Protocol for connecting agents to enterprise tools. OIC one-click MCP servers.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Technology Stack -->
+    <section class="section">
+        <div class="section-header">
+            <span class="section-label">Technology Stack</span>
+            <div class="section-line"></div>
+        </div>
+
+        <div class="tech-grid">
+            <div class="tech-item">
+                <div class="tech-name">OCI GenAI</div>
+                <div class="tech-category">AI Service</div>
+            </div>
+            <div class="tech-item">
+                <div class="tech-name">Database 26ai</div>
+                <div class="tech-category">Vector + Graph</div>
+            </div>
+            <div class="tech-item">
+                <div class="tech-name">OCI Vision</div>
+                <div class="tech-category">Image AI</div>
+            </div>
+            <div class="tech-item">
+                <div class="tech-name">Cohere Command A</div>
+                <div class="tech-category">Enterprise LLM</div>
+            </div>
+            <div class="tech-item">
+                <div class="tech-name">Gemini 2.5</div>
+                <div class="tech-category">Multimodal</div>
+            </div>
+            <div class="tech-item">
+                <div class="tech-name">Llama 4 Maverick</div>
+                <div class="tech-category">Agentic MoE</div>
+            </div>
+            <div class="tech-item">
+                <div class="tech-name">Cohere Embed 4</div>
+                <div class="tech-category">Embeddings</div>
+            </div>
+            <div class="tech-item">
+                <div class="tech-name">Rerank 3.5</div>
+                <div class="tech-category">Retrieval</div>
+            </div>
+            <div class="tech-item">
+                <div class="tech-name">OCI Data Science</div>
+                <div class="tech-category">ML Platform</div>
+            </div>
+            <div class="tech-item">
+                <div class="tech-name">OCI Functions</div>
+                <div class="tech-category">Serverless</div>
+            </div>
+            <div class="tech-item">
+                <div class="tech-name">OKE</div>
+                <div class="tech-category">Kubernetes</div>
+            </div>
+            <div class="tech-item">
+                <div class="tech-name">AI Blueprints</div>
+                <div class="tech-category">Deployment</div>
+            </div>
+            <div class="tech-item">
+                <div class="tech-name">NVIDIA Parabricks</div>
+                <div class="tech-category">Genomics</div>
+            </div>
+            <div class="tech-item">
+                <div class="tech-name">SymetryML</div>
+                <div class="tech-category">Federated AI</div>
+            </div>
+            <div class="tech-item">
+                <div class="tech-name">MCP Protocol</div>
+                <div class="tech-category">Integration</div>
+            </div>
+            <div class="tech-item">
+                <div class="tech-name">OCI Data Safe</div>
+                <div class="tech-category">Governance</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <div class="faq">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-item">
+            <div class="faq-q">What is the FrankX AI Architecture Research Center?</div>
+            <div class="faq-a">An independent research hub covering enterprise AI architecture patterns across six domains: RAG and production AI architecture, agentic AI and multi-agent orchestration, Oracle AI Database 26ai capabilities, sovereign AI and private deployment, AI cost engineering and FinOps, and healthcare AI diagnostics. All content is based on 210+ verified sources from official documentation, academic papers, and industry reports, updated regularly with a 90-day freshness cycle.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">Who is this research for?</div>
+            <div class="faq-a">Enterprise AI architects, cloud solution architects, technology leaders evaluating AI platforms, and engineering teams building production AI systems. The research focuses on architectural patterns and implementation guidance rather than marketing claims &mdash; every recommendation includes verified sources, implementation considerations, and real-world trade-offs. The methodology page documents our five-stage research process and source validation criteria.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">How often is the research updated?</div>
+            <div class="faq-a">All research portals are verified against current official sources at least every 90 days, with critical updates (new product releases, pricing changes, security advisories) applied within 48 hours. Each page displays a "Last verified" date so you can assess content freshness. The AI and cloud landscape changes rapidly &mdash; architecture guidance from 6 months ago may already be outdated, which is why continuous verification is a core part of our methodology.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">Is this affiliated with Oracle Corporation?</div>
+            <div class="faq-a">No. This is an independent research project. It is not affiliated with, endorsed by, or sponsored by Oracle Corporation. The research covers Oracle Cloud Infrastructure among other cloud platforms because OCI offers strong enterprise AI capabilities. All trademarks belong to their respective owners. The research prioritizes accuracy and practical utility over vendor advocacy.</div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-text">
+            <strong>AI Architecture Research Center</strong> by <a href="/">FrankX</a><br>
+            Reference architectures and patterns for enterprise AI systems.
+            All content reflects general architectural patterns&mdash;no proprietary customer data is included.
+            <br><br>
+            <em>Disclaimer: This is an independent research project. Not affiliated with, endorsed by, or sponsored by Oracle Corporation.
+            Oracle, OCI, and related marks are trademarks of Oracle Corporation.</em>
+        </div>
+        <div class="footer-links">
+            <a href="/" class="footer-link">FrankX Home</a>
+            <a href="/research/healthcare/" class="footer-link">Healthcare AI</a>
+            <a href="/research/ai-architecture/" class="footer-link">Architecture</a>
+            <a href="/research/agentic-ai/" class="footer-link">Agentic AI</a>
+            <a href="/research/oracle-ai-database/" class="footer-link">Database AI</a>
+            <a href="/research/sovereign-ai/" class="footer-link">Sovereign AI</a>
+            <a href="/research/cost-engineering/" class="footer-link">Cost Engineering</a>
+            <a href="/research/methodology/" class="footer-link">Methodology</a>
+        </div>
+    </footer>
+</body>
+</html>
