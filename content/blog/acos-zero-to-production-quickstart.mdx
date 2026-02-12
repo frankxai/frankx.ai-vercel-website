@@ -5,17 +5,24 @@ date: "2026-01-27"
 lastModified: "2026-01-27"
 author: "Frank"
 tags: ["tutorial", "getting started", "quick start", "claude code", "beginner"]
-keywords: ["acos quick start", "agentic creator os tutorial", "claude code setup", "ai productivity setup", "acos installation"]
+keywords:
+  [
+    "acos quick start",
+    "agentic creator os tutorial",
+    "claude code setup",
+    "ai productivity setup",
+    "acos installation",
+  ]
 category: "Tutorials"
 featured: true
-image: '/images/blog/acos-quick-start-hero.png'
+image: "/images/blog/acos-quick-start-hero.png"
 readingGoal: "Install ACOS and run your first automated workflow in under 10 minutes."
-readingTime: '6 min'
+readingTime: "6 min"
 ---
 
 # ACOS Quick Start: Zero to Production in 10 Minutes
 
-*From clone to creating in one coffee break.*
+_From clone to creating in one coffee break._
 
 ---
 
@@ -37,13 +44,14 @@ That's it. You now have 25 commands, 80+ skills, and 40+ agents. This guide walk
 
 Before starting, you need:
 
-| Requirement | How to Check | Install Link |
-|-------------|--------------|--------------|
-| **Node.js 18+** | `node --version` | [nodejs.org](https://nodejs.org) |
+| Requirement         | How to Check       | Install Link                                           |
+| ------------------- | ------------------ | ------------------------------------------------------ |
+| **Node.js 18+**     | `node --version`   | [nodejs.org](https://nodejs.org)                       |
 | **Claude Code CLI** | `claude --version` | [claude.ai/claude-code](https://claude.ai/claude-code) |
-| **Git** | `git --version` | [git-scm.com](https://git-scm.com) |
+| **Git**             | `git --version`    | [git-scm.com](https://git-scm.com)                     |
 
 **Quick Check:**
+
 ```bash
 node --version    # Should show v18.x or higher
 claude --version  # Should show claude-code version
@@ -68,6 +76,7 @@ ls
 ```
 
 You should see:
+
 ```
 README.md
 CLAUDE.md
@@ -93,12 +102,14 @@ chmod +x install.sh
 ```
 
 **What the installer does:**
+
 1. Copies commands to `~/.claude/commands/`
 2. Copies skills to `~/.claude/skills/`
 3. Sets up configuration files
 4. Validates your environment
 
 You'll see output like:
+
 ```
 [ACOS] Installing Agentic Creator OS v6.0...
 [ACOS] Copying 25 commands...
@@ -129,22 +140,19 @@ You're now in the Claude Code CLI. The ACOS context is automatically loaded beca
 
 You'll see the ACOS system status:
 
-```
-╔═══════════════════════════════════════════════════════════════════╗
-║                    AGENTIC CREATOR OS v6.0                         ║
-║          "The Operating System for Golden Age Creators"            ║
-╠═══════════════════════════════════════════════════════════════════╣
-║  Commands: 25 │ Skills: 80+ │ Agents: 40+ │ Workflows: 8          ║
-╚═══════════════════════════════════════════════════════════════════╝
+<Diagram
+  src="/images/diagrams/blog/acos-zero-to-production-quickstart/acos-system-status.svg"
+  alt="Agentic Creator OS system status with command, skill, agent, and workflow counts"
+  caption="ACOS status snapshot shown after running /acos."
+/>
 
-Available Commands:
-- /article-creator    Write a blog post
-- /create-music       Produce a track
-- /spec               Build a feature
-- /infogenius         Generate images
-- /starlight-architect Design AI systems
-...
-```
+Available command examples:
+
+- `/article-creator` write a blog post
+- `/create-music` produce a track
+- `/spec` build a feature
+- `/infogenius` generate images
+- `/starlight-architect` design AI systems
 
 ---
 
@@ -157,11 +165,13 @@ Let's write a blog post to test the system:
 ```
 
 ACOS will ask:
+
 - **Topic**: What do you want to write about?
 - **Audience**: Who's reading this?
 - **Goal**: What should readers learn/do?
 
 **Example Session:**
+
 ```
 You: /article-creator
 
@@ -183,17 +193,18 @@ ACOS: [Loads content-strategy skill automatically]
 
 ### 25 Commands
 
-| Category | Commands |
-|----------|----------|
-| **Creation** | `/article-creator`, `/create-music`, `/infogenius`, `/factory` |
-| **Strategy** | `/starlight-architect`, `/council`, `/research`, `/plan-week` |
-| **Development** | `/spec`, `/nextjs-deploy`, `/ux-design`, `/automation-dev` |
-| **System** | `/acos`, `/inventory-status`, `/mcp-status`, `/publish` |
-| **Quality** | `/review-content`, `/classify-content`, `/polish-content` |
+| Category        | Commands                                                       |
+| --------------- | -------------------------------------------------------------- |
+| **Creation**    | `/article-creator`, `/create-music`, `/infogenius`, `/factory` |
+| **Strategy**    | `/starlight-architect`, `/council`, `/research`, `/plan-week`  |
+| **Development** | `/spec`, `/nextjs-deploy`, `/ux-design`, `/automation-dev`     |
+| **System**      | `/acos`, `/inventory-status`, `/mcp-status`, `/publish`        |
+| **Quality**     | `/review-content`, `/classify-content`, `/polish-content`      |
 
 ### 80+ Skills (Auto-Activating)
 
 Skills load automatically based on context:
+
 - Say "write a blog" → `content-strategy` loads
 - Say "build a feature" → `implementation-planning` loads
 - Say "create music" → `suno-ai-mastery` loads
@@ -201,6 +212,7 @@ Skills load automatically based on context:
 ### 40+ Agents
 
 Specialized AI personas for different domains:
+
 - **Starlight Orchestrator**: Meta-coordination
 - **Creation Engine**: Content and products
 - **Frequency Alchemist**: Music production
@@ -211,6 +223,7 @@ Specialized AI personas for different domains:
 ## Quick Command Reference
 
 ### Content Creation
+
 ```bash
 /article-creator              # Write a blog post
 /create-music                 # Produce a Suno track
@@ -219,6 +232,7 @@ Specialized AI personas for different domains:
 ```
 
 ### Strategy & Planning
+
 ```bash
 /starlight-architect          # Design AI systems
 /council                      # Multi-agent strategic council
@@ -227,6 +241,7 @@ Specialized AI personas for different domains:
 ```
 
 ### Development
+
 ```bash
 /spec                         # Spec-driven feature development
 /nextjs-deploy                # Deploy to Vercel
@@ -234,6 +249,7 @@ Specialized AI personas for different domains:
 ```
 
 ### System
+
 ```bash
 /acos                         # Smart router (start here)
 /inventory-status             # Content dashboard
@@ -274,9 +290,11 @@ triggers:
 # My Custom Skill
 
 ## When to Use
+
 [Describe when this skill should activate]
 
 ## Patterns
+
 [Your domain knowledge here]
 ```
 
@@ -289,6 +307,7 @@ Check which MCP servers are available:
 ```
 
 Configure in Claude Code settings for:
+
 - Browser automation (Playwright)
 - Image generation (Nano Banana)
 - Music prompts (Lyric Genius)
@@ -325,13 +344,13 @@ Make sure you're in a directory with a `CLAUDE.md` file, or the `agentic-creator
 
 You're set up. Here's where to go next:
 
-| Goal | Resource |
-|------|----------|
-| **Understand the architecture** | [Complete Guide to ACOS v6](/blog/agentic-creator-os-complete-guide) |
+| Goal                             | Resource                                                                 |
+| -------------------------------- | ------------------------------------------------------------------------ |
+| **Understand the architecture**  | [Complete Guide to ACOS v6](/blog/agentic-creator-os-complete-guide)     |
 | **Learn orchestration patterns** | [Swarm Intelligence](/blog/swarm-intelligence-multi-agent-orchestration) |
-| **Find your workflow** | [Use Cases by Creator Type](/blog/acos-use-cases-creator-types) |
-| **Connect external tools** | [MCP Server Integration](/blog/mcp-server-integration-guide) |
-| **Build custom skills** | [Building Custom Skills](/blog/building-custom-skills-acos) |
+| **Find your workflow**           | [Use Cases by Creator Type](/blog/acos-use-cases-creator-types)          |
+| **Connect external tools**       | [MCP Server Integration](/blog/mcp-server-integration-guide)             |
+| **Build custom skills**          | [Building Custom Skills](/blog/building-custom-skills-acos)              |
 
 ---
 
@@ -361,13 +380,13 @@ GitHub Issues: [github.com/frankxai/agentic-creator-os/issues](https://github.co
 
 ## Summary
 
-| Step | Time | Action |
-|------|------|--------|
-| 1 | 30s | `git clone` the repo |
-| 2 | 1m | Run `./install.sh` |
-| 3 | 30s | Launch `claude` |
-| 4 | 1m | Run `/acos` |
-| 5 | 5m | Create your first content |
+| Step | Time | Action                    |
+| ---- | ---- | ------------------------- |
+| 1    | 30s  | `git clone` the repo      |
+| 2    | 1m   | Run `./install.sh`        |
+| 3    | 30s  | Launch `claude`           |
+| 4    | 1m   | Run `/acos`               |
+| 5    | 5m   | Create your first content |
 
 **Total: ~8 minutes to first output.**
 
@@ -375,9 +394,9 @@ Welcome to Agentic Creator OS.
 
 ---
 
-*Start creating. The system handles the rest.*
+_Start creating. The system handles the rest._
 
-*[GitHub](https://github.com/frankxai/agentic-creator-os) | [Full Documentation](/blog/agentic-creator-os-complete-guide) | [FrankX](https://frankx.ai)*
+_[GitHub](https://github.com/frankxai/agentic-creator-os) | [Full Documentation](/blog/agentic-creator-os-complete-guide) | [FrankX](https://frankx.ai)_
 
 ---
 

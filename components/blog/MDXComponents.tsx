@@ -3,6 +3,7 @@ import Link from 'next/link'
 import type { ComponentPropsWithoutRef, ReactNode } from 'react'
 import type { MDXComponents } from 'mdx/types'
 import AffiliateLink from '@/components/affiliates/AffiliateLink'
+import Diagram from '@/components/blog/Diagram'
 
 // Embed components for immersive media
 import {
@@ -254,6 +255,7 @@ export const mdxComponents: MDXComponents = {
 
   // ── Custom components ─────────────────────────────────────────────────
   Image: CustomImage,
+  Diagram,
   Callout,
   AffiliateLink,
   Link,

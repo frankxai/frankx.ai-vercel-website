@@ -1,12 +1,12 @@
 ---
 title: "AWS Bedrock AgentCore Deep Dive: Production Patterns for Enterprise AI Agents"
 description: "A comprehensive guide to building production-ready AI agents on AWS using Bedrock, AgentCore, and the Strands framework. Learn the architectural patterns, security controls, and operational best practices that power enterprise agent deployments."
-date: "2026-01-21"
 publishedAt: "2026-01-21"
 updatedAt: "2026-01-21"
 author: "Frank"
 category: "AI Architecture"
-tags: ["AWS", "Bedrock", "AgentCore", "AI Agents", "Production AI", "Enterprise AI"]
+tags:
+  ["AWS", "Bedrock", "AgentCore", "AI Agents", "Production AI", "Enterprise AI"]
 image: "/images/blog/aws-bedrock-agents.png"
 featured: false
 series: "Production Agent Patterns"
@@ -22,6 +22,7 @@ seriesPart: 2
 This is Part 2 of the [Production Agent Patterns](/blog/production-agent-patterns-7-pillars) series. If you haven't read Part 1, start there for the 7 Pillars framework that guides this analysis.
 
 **Series Navigation:**
+
 1. [The 7 Pillars of Production Agent Systems](/blog/production-agent-patterns-7-pillars)
 2. **AWS Bedrock AgentCore Deep Dive** (this post)
 3. Google Vertex AI Agent Engine Deep Dive (coming soon)
@@ -37,33 +38,19 @@ This is Part 2 of the [Production Agent Patterns](/blog/production-agent-pattern
 
 AWS doesn't offer just one way to build agents—they offer three, each optimized for different use cases:
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                    AWS AGENT STACK                              │
-├─────────────────────────────────────────────────────────────────┤
-│                                                                 │
-│  ┌─────────────┐   ┌─────────────┐   ┌─────────────┐          │
-│  │   BEDROCK   │   │  AGENTCORE  │   │   STRANDS   │          │
-│  │   AGENTS    │   │             │   │  FRAMEWORK  │          │
-│  ├─────────────┤   ├─────────────┤   ├─────────────┤          │
-│  │ Managed     │   │ Runtime for │   │ Open-source │          │
-│  │ No-code     │   │ any         │   │ Multi-agent │          │
-│  │ Quick start │   │ framework   │   │ Orchestrate │          │
-│  └─────────────┘   └─────────────┘   └─────────────┘          │
-│        ▲                 ▲                 ▲                   │
-│        │                 │                 │                   │
-│  Simplicity ◀────────────┼────────────▶ Control               │
-│                                                                 │
-└─────────────────────────────────────────────────────────────────┘
-```
+<Diagram
+  src="/images/diagrams/blog/production-agent-patterns-aws-bedrock/legacy-diagram-01.svg"
+  alt="AWS's Three-Tier Agent Architecture diagram 1"
+  caption="AWS's Three-Tier Agent Architecture"
+/>
 
 ### When to Use What
 
-| Tier | Best For | Trade-off |
-|------|----------|-----------|
-| **Bedrock Agents** | Rapid prototyping, simple use cases | Less flexibility |
-| **AgentCore** | Production workloads, enterprise | More setup |
-| **Strands** | Complex multi-agent, custom orchestration | Most complex |
+| Tier               | Best For                                  | Trade-off        |
+| ------------------ | ----------------------------------------- | ---------------- |
+| **Bedrock Agents** | Rapid prototyping, simple use cases       | Less flexibility |
+| **AgentCore**      | Production workloads, enterprise          | More setup       |
+| **Strands**        | Complex multi-agent, custom orchestration | Most complex     |
 
 ---
 
@@ -255,33 +242,14 @@ agent = Agent(
 
 AWS recommends keeping business logic OUTSIDE the model:
 
-```
-User Query
-    │
-    ▼
-┌─────────────────┐
-│   LLM Plans     │ ──▶ "I should search the database"
-└────────┬────────┘
-         │
-         ▼
-┌─────────────────┐
-│  JSON Action    │ ──▶ {"action": "db_query", "params": {...}}
-│  (Structured)   │
-└────────┬────────┘
-         │
-         ▼
-┌─────────────────┐
-│ Action Router   │ ──▶ Validates, authorizes, executes
-│ (Your Code)     │
-└────────┬────────┘
-         │
-         ▼
-┌─────────────────┐
-│   Execute       │ ──▶ Actual database query
-└─────────────────┘
-```
+<Diagram
+  src="/images/diagrams/blog/production-agent-patterns-aws-bedrock/legacy-diagram-02.svg"
+  alt="The Action Router Pattern diagram 2"
+  caption="The Action Router Pattern"
+/>
 
 This pattern ensures:
+
 - **Predictable behavior**: Your code controls execution
 - **Security**: Validation happens in your code, not the LLM
 - **Auditability**: Every action is logged and traceable
@@ -327,13 +295,13 @@ async def run_agent(query: str):
 
 ### What to Track
 
-| Metric | Why It Matters |
-|--------|---------------|
-| `InvocationLatency` | User experience |
-| `TokensPerInvocation` | Cost management |
-| `GuardrailBlockRate` | Safety signal |
-| `ToolCallSuccess` | Reliability |
-| `MemoryHitRate` | Context effectiveness |
+| Metric                | Why It Matters        |
+| --------------------- | --------------------- |
+| `InvocationLatency`   | User experience       |
+| `TokensPerInvocation` | Cost management       |
+| `GuardrailBlockRate`  | Safety signal         |
+| `ToolCallSuccess`     | Reliability           |
+| `MemoryHitRate`       | Context effectiveness |
 
 ---
 
@@ -345,30 +313,24 @@ AWS's security model is the most mature, built on IAM integration.
 
 ```json
 {
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Effect": "Allow",
-            "Action": [
-                "bedrock:InvokeModel",
-                "bedrock:InvokeAgent"
-            ],
-            "Resource": "arn:aws:bedrock:*:*:agent/*"
-        },
-        {
-            "Effect": "Allow",
-            "Action": [
-                "dynamodb:GetItem",
-                "dynamodb:Query"
-            ],
-            "Resource": "arn:aws:dynamodb:*:*:table/AgentMemory",
-            "Condition": {
-                "ForAllValues:StringEquals": {
-                    "dynamodb:LeadingKeys": ["${aws:PrincipalTag/AgentId}"]
-                }
-            }
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": ["bedrock:InvokeModel", "bedrock:InvokeAgent"],
+      "Resource": "arn:aws:bedrock:*:*:agent/*"
+    },
+    {
+      "Effect": "Allow",
+      "Action": ["dynamodb:GetItem", "dynamodb:Query"],
+      "Resource": "arn:aws:dynamodb:*:*:table/AgentMemory",
+      "Condition": {
+        "ForAllValues:StringEquals": {
+          "dynamodb:LeadingKeys": ["${aws:PrincipalTag/AgentId}"]
         }
-    ]
+      }
+    }
+  ]
 }
 ```
 
@@ -466,11 +428,11 @@ agent = Agent(
 
 ### Cost Comparison
 
-| Model | Input (per 1M) | Output (per 1M) | Best For |
-|-------|---------------|-----------------|----------|
-| Claude Sonnet 4 | $3.00 | $15.00 | Complex reasoning |
-| Claude Haiku | $0.25 | $1.25 | Simple tasks |
-| Llama 3.3 70B | $2.65 | $3.50 | Cost-sensitive |
+| Model           | Input (per 1M) | Output (per 1M) | Best For          |
+| --------------- | -------------- | --------------- | ----------------- |
+| Claude Sonnet 4 | $3.00          | $15.00          | Complex reasoning |
+| Claude Haiku    | $0.25          | $1.25           | Simple tasks      |
+| Llama 3.3 70B   | $2.65          | $3.50           | Cost-sensitive    |
 
 ---
 

@@ -2,11 +2,21 @@
 title: "The Ultimate Guide to AI Coding Agents in 2026: Claude Code, OpenCode, Cline, and Beyond"
 description: "Master AI-powered development with the complete guide to coding agents. Learn to set up Claude Code, OpenCode, Cline, Roo Code, and build your evolution from basic prompts to multi-agent orchestration."
 author: "Frank"
-date: "2026-01-16"
 publishedAt: "2026-01-16"
 updatedAt: "2026-01-16"
-category: "AI & Systems"
-tags: ["AI Coding Agents", "Claude Code", "OpenCode", "Cline", "MCP Servers", "Agentic AI", "Developer Tools"]
+category: "Technology"
+tags:
+  [
+    "AI Coding Agents",
+    "Claude Code",
+    "OpenCode",
+    "Cline",
+    "MCP Servers",
+    "Agentic AI",
+    "Developer Tools",
+  ]
+image: "/blog/ai-coding-agents-guide/og.png"
+featured: true
 readingTime: "25 min"
 tldr: "AI coding agents like Claude Code, OpenCode, and Cline transform development by combining LLM intelligence with tool execution. This guide covers setup, configuration, the evolution framework (CLAUDE.md, skill.md, agent.md), MCP servers, and multi-agent orchestration. Start with Claude Code for the best experience, then evolve your system as you master each level."
 seo:
@@ -43,36 +53,23 @@ Unlike simple code completion tools, agents can handle complex, multi-step tasks
 
 ### Major Players in 2026
 
-| Agent | Creator | Best For | License |
-|-------|---------|----------|---------|
+| Agent           | Creator   | Best For                                      | License     |
+| --------------- | --------- | --------------------------------------------- | ----------- |
 | **Claude Code** | Anthropic | Official Claude integration, best MCP support | Proprietary |
-| **OpenCode** | Community | Customization, open-source, extensibility | Open Source |
-| **Cline** | Community | VS Code users, visual feedback | Open Source |
-| **Roo Code** | Community | Multi-model experimentation | Open Source |
-| **Kilo Code** | Community | Lightweight, quick tasks | Open Source |
+| **OpenCode**    | Community | Customization, open-source, extensibility     | Open Source |
+| **Cline**       | Community | VS Code users, visual feedback                | Open Source |
+| **Roo Code**    | Community | Multi-model experimentation                   | Open Source |
+| **Kilo Code**   | Community | Lightweight, quick tasks                      | Open Source |
 
 ### How Agents Work
 
 Every coding agent follows a similar architecture:
 
-```
-┌─────────────────────────────────────────────────────────┐
-│                    AI CODING AGENT                       │
-├─────────────────────────────────────────────────────────┤
-│                                                          │
-│   ┌──────────┐    ┌──────────┐    ┌──────────┐         │
-│   │ PERCEIVE │───>│  REASON  │───>│   ACT    │         │
-│   │          │    │          │    │          │         │
-│   │ Read code│    │ Understand│   │ Write    │         │
-│   │ See files│    │ Plan     │    │ Execute  │         │
-│   │ Get input│    │ Decide   │    │ Modify   │         │
-│   └──────────┘    └──────────┘    └──────────┘         │
-│        │                                │               │
-│        └────────────────────────────────┘               │
-│                    FEEDBACK LOOP                        │
-│                                                          │
-└─────────────────────────────────────────────────────────┘
-```
+<Diagram
+  src="/images/diagrams/blog/ultimate-guide-ai-coding-agents-2026/legacy-diagram-01.svg"
+  alt="How Agents Work diagram 1"
+  caption="How Agents Work"
+/>
 
 The agent perceives your request and codebase, reasons about the best approach, takes action, and uses feedback to refine its work.
 
@@ -115,13 +112,13 @@ claude
 
 ### Essential Commands
 
-| Command | Purpose |
-|---------|---------|
-| `/help` | Show all available commands |
-| `/clear` | Clear conversation history |
+| Command    | Purpose                         |
+| ---------- | ------------------------------- |
+| `/help`    | Show all available commands     |
+| `/clear`   | Clear conversation history      |
 | `/compact` | Compress context to save tokens |
-| `/model` | Switch between Claude models |
-| `/mcp` | Manage MCP server connections |
+| `/model`   | Switch between Claude models    |
+| `/mcp`     | Manage MCP server connections   |
 
 ---
 
@@ -176,6 +173,7 @@ opencode plugin install oh-my-opencode
 ```
 
 This adds:
+
 - Enhanced git integration
 - Code review automation
 - Project scaffolding templates
@@ -206,19 +204,23 @@ Your first evolution. Create a `CLAUDE.md` file in your project root:
 # My Project
 
 ## Overview
+
 This is a Next.js 15 e-commerce platform.
 
 ## Tech Stack
+
 - TypeScript
 - Next.js 15 (App Router)
 - PostgreSQL with Drizzle
 
 ## Conventions
+
 - Functional components only
-- Tests in __tests__ folders
+- Tests in **tests** folders
 - Use pnpm
 
 ## Current Focus
+
 Working on checkout flow.
 ```
 
@@ -234,14 +236,17 @@ Package your knowledge into reusable skills:
 ## Core Principles
 
 ### Strict Mode Always
+
 Enable strict mode in tsconfig.json.
 
 ### Use Type Guards
+
 function isUser(value: unknown): value is User {
-  return typeof value === 'object' && 'name' in value;
+return typeof value === 'object' && 'name' in value;
 }
 
 ## When to Use
+
 - Writing new TypeScript code
 - Reviewing TypeScript PRs
 ```
@@ -256,21 +261,27 @@ Create specialized agents with distinct behaviors:
 # Code Reviewer Agent
 
 ## Identity
+
 You are a meticulous senior code reviewer.
 
 ## Personality
+
 - Thorough but not pedantic
 - Explains the "why" behind suggestions
 - Prioritizes critical issues
 
 ## Response Format
+
 ## Review Summary
+
 [Assessment]
 
 ## Critical Issues
+
 [Must fix]
 
 ## Suggestions
+
 [Nice to have]
 ```
 
@@ -288,11 +299,15 @@ const server = new Server({
 });
 
 server.setRequestHandler("tools/list", async () => ({
-  tools: [{
-    name: "query_customers",
-    description: "Query customer data",
-    inputSchema: { /* ... */ }
-  }]
+  tools: [
+    {
+      name: "query_customers",
+      description: "Query customer data",
+      inputSchema: {
+        /* ... */
+      },
+    },
+  ],
 }));
 ```
 
@@ -332,11 +347,11 @@ Before MCP, every integration was custom. Now:
 
 ### Core Components
 
-| Component | Purpose | Example |
-|-----------|---------|---------|
-| **Resources** | Expose data to models | Database schemas |
-| **Tools** | Let models take actions | Send email, query API |
-| **Prompts** | Reusable templates | Code review prompt |
+| Component     | Purpose                 | Example               |
+| ------------- | ----------------------- | --------------------- |
+| **Resources** | Expose data to models   | Database schemas      |
+| **Tools**     | Let models take actions | Send email, query API |
+| **Prompts**   | Reusable templates      | Code review prompt    |
 
 ### Popular MCP Servers
 
@@ -351,16 +366,17 @@ Before MCP, every integration was custom. Now:
 
 ### When to Use Public APIs vs Private Infrastructure
 
-| Use Case | Recommendation |
-|----------|----------------|
-| Experimentation | Public APIs (OpenAI, Anthropic) |
+| Use Case                       | Recommendation                                  |
+| ------------------------------ | ----------------------------------------------- |
+| Experimentation                | Public APIs (OpenAI, Anthropic)                 |
 | Production with sensitive data | Private deployment (Oracle GenAI, Azure OpenAI) |
-| Regulatory compliance | Dedicated AI clusters |
-| Custom fine-tuning needed | Self-hosted (Llama) or dedicated clusters |
+| Regulatory compliance          | Dedicated AI clusters                           |
+| Custom fine-tuning needed      | Self-hosted (Llama) or dedicated clusters       |
 
 ### Oracle GenAI for Enterprise
 
 For enterprises requiring:
+
 - Data sovereignty
 - Regulatory compliance (HIPAA, SOC2)
 - Consistent performance guarantees
@@ -390,11 +406,11 @@ AI agents are powerful but not infallible. Always review generated code.
 
 ### 5. Use the Right Model for the Task
 
-| Task | Recommended Model |
-|------|------------------|
-| Quick questions | Claude Haiku |
-| General coding | Claude Sonnet |
-| Complex architecture | Claude Opus |
+| Task                 | Recommended Model |
+| -------------------- | ----------------- |
+| Quick questions      | Claude Haiku      |
+| General coding       | Claude Sonnet     |
+| Complex architecture | Claude Opus       |
 
 ---
 
@@ -425,6 +441,7 @@ OpenCode with local models (Llama, CodeLlama) works completely offline. Claude C
 ## Getting Started Today
 
 1. **Install Claude Code** (recommended for beginners)
+
    ```bash
    npm install -g @anthropic-ai/claude-code
    ```
@@ -457,7 +474,7 @@ Ready to begin? [Start the free AI Coding Agents workshop](/workshops/ai-coding-
 
 ---
 
-*This guide is part of the FrankX Workshop System. Updated January 2026.*
+_This guide is part of the FrankX Workshop System. Updated January 2026._
 
 ---
 

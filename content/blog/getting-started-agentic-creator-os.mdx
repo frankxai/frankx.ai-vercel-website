@@ -5,17 +5,24 @@ date: "2026-01-21"
 lastModified: "2026-01-22"
 author: "Frank"
 tags: ["tutorial", "claude code", "agentic ai", "getting started"]
-keywords: ["agentic creator os tutorial", "claude code setup", "mcp server guide", "ai automation beginners", "personal ai system setup"]
+keywords:
+  [
+    "agentic creator os tutorial",
+    "claude code setup",
+    "mcp server guide",
+    "ai automation beginners",
+    "personal ai system setup",
+  ]
 category: "Tutorials"
 featured: true
-image: '/images/blog/getting-started-agentic-creator-os-hero.png'
+image: "/images/blog/getting-started-agentic-creator-os-hero.png"
 readingGoal: "Set up your own Agentic Creator OS and run your first automated workflow."
-readingTime: '15 min'
+readingTime: "15 min"
 ---
 
 # Getting Started with Agentic Creator OS
 
-*The same system running my website, my music production, and my Oracle projects.*
+_The same system running my website, my music production, and my Oracle projects._
 
 ---
 
@@ -28,6 +35,7 @@ Clone the repo. Run the installer. Build the MCP servers. Configure Claude Code.
 This guide walks you through setting up the [Agentic Creator OS](https://github.com/frankxai/agentic-creator-os) from scratch. I built this after realizing my Claude Code sessions were getting too fragmented—different contexts, different skills, no coherent system. Now everything lives in one place.
 
 **Prerequisites:**
+
 - Basic command line familiarity (cd, ls, npm)
 - Node.js 18+ installed
 - Claude Code CLI installed ([get it here](https://claude.ai/claude-code))
@@ -41,17 +49,11 @@ Let's build.
 
 The Agentic Creator OS transforms Claude Code from a chat tool into a full operating system with:
 
-```
-┌─────────────────────────────────────────────┐
-│         YOUR AI OPERATING SYSTEM            │
-├─────────────────────────────────────────────┤
-│  📝 Content    - Write blogs, scripts       │
-│  🔧 Dev        - Build, deploy, fix         │
-│  🎨 Design     - Create visuals, assets     │
-│  📊 Marketing  - SEO, analytics, social     │
-│  💼 Business   - CRM, invoices, reports     │
-└─────────────────────────────────────────────┘
-```
+<Diagram
+  src="/images/diagrams/blog/getting-started-agentic-creator-os/legacy-diagram-01.svg"
+  alt="What You're Building diagram 1"
+  caption="What You're Building"
+/>
 
 Think of it as having 5 AI employees that work together to run your projects.
 
@@ -73,6 +75,7 @@ ls -la
 ```
 
 You should see:
+
 - `departments/` - The 5 AI department configurations
 - `mcp-servers/` - Local tools for Claude Code
 - `skills/` - Workflow definitions
@@ -94,6 +97,7 @@ chmod +x install.sh
 ```
 
 This installs:
+
 - Skills to `~/.claude/skills/`
 - Agent configs to `~/.claude/agents/`
 - Workflow templates to `~/.claude/workflows/`
@@ -120,6 +124,7 @@ npm run build:all
 ```
 
 This compiles 6 MCP servers:
+
 1. **filesystem** - Read, write, search files
 2. **database** - Local SQLite operations
 3. **browser** - Automated web actions
@@ -147,11 +152,15 @@ Or edit directly at `~/.config/claude/settings.json`:
   "mcpServers": {
     "filesystem": {
       "command": "node",
-      "args": ["path/to/agentic-creator-os/mcp-servers/filesystem-mcp/build/index.js"]
+      "args": [
+        "path/to/agentic-creator-os/mcp-servers/filesystem-mcp/build/index.js"
+      ]
     },
     "database": {
       "command": "node",
-      "args": ["path/to/agentic-creator-os/mcp-servers/database-mcp/build/index.js"]
+      "args": [
+        "path/to/agentic-creator-os/mcp-servers/database-mcp/build/index.js"
+      ]
     }
     // Add other servers as needed
   }
@@ -178,19 +187,23 @@ Add your context:
 # My Intelligence System
 
 ## Who I Am
+
 I'm a [your role] building [your project].
 
 ## Current Project
+
 - Name: [Project Name]
 - Goal: [What you're building]
 - Stack: [Your technologies]
 
 ## My Preferences
+
 - I prefer [X] over [Y]
 - Always [do this thing]
 - Never [do that thing]
 
 ## Active Tasks
+
 - [ ] [Task 1]
 - [ ] [Task 2]
 ```
@@ -214,11 +227,13 @@ Then try:
 ```
 
 Claude should:
+
 1. Read your CLAUDE.md for context
 2. Use your preferences
 3. Generate content in your style
 
 Try more commands:
+
 - "Create a Twitter thread about [topic]"
 - "Draft an email to [recipient]"
 - "Write documentation for [feature]"
@@ -234,6 +249,7 @@ Now let's run a complete workflow. If you have the `/publish` skill installed:
 ```
 
 This triggers:
+
 1. Content department writes the post
 2. Design department creates a hero image (if configured)
 3. Dev department deploys to your site
@@ -255,6 +271,7 @@ Create custom skills in `~/.claude/skills/`:
 # /my-custom-workflow
 
 When activated, do:
+
 1. [Step 1]
 2. [Step 2]
 3. [Step 3]
@@ -273,16 +290,19 @@ Add templates for common tasks in `workflows/`.
 ## Common Issues & Solutions
 
 ### "MCP server not found"
+
 - Check that the path in settings.json is correct
 - Verify the server was built successfully
 - Try rebuilding with `npm run build:all`
 
 ### "Command not recognized"
+
 - Ensure skills were installed to `~/.claude/skills/`
 - Re-run `./install.sh`
 - Check Claude Code is reading from the right config
 
 ### "Context seems wrong"
+
 - Verify CLAUDE.md exists in your project root
 - Check file isn't too large (keep under 10KB)
 - Update context with current project state
@@ -294,16 +314,19 @@ Add templates for common tasks in `workflows/`.
 Now that you have the basics working:
 
 ### Level 1: Daily Usage
+
 - Use Content department for writing tasks
 - Use Dev department for coding help
 - Build your CLAUDE.md over time
 
 ### Level 2: Workflow Creation
+
 - Create custom skills for your repeated tasks
 - Set up automation triggers
 - Connect external services
 
 ### Level 3: Full Automation
+
 - Deploy MCP servers for email, browser automation
 - Build end-to-end workflows
 - Share your setup with the community
@@ -313,14 +336,17 @@ Now that you have the basics working:
 ## Resources
 
 ### Official
+
 - [GitHub Repository](https://github.com/frankxai/agentic-creator-os) - Source code and updates
 - [Claude Code Docs](https://docs.anthropic.com/en/docs/claude-code) - Official Claude Code documentation
 
 ### Tutorials
+
 - [Build Your Own Jarvis](/blog/build-your-own-jarvis-claude-code) - Deep dive on the architecture
 - [Why Every Creator Needs This](/blog/creator-intelligence-systems-2026) - The vision behind the system
 
 ### Community
+
 - [GitHub Discussions](https://github.com/frankxai/agentic-creator-os/discussions) - Ask questions
 - [Discord](#) - Join the creator community (coming soon)
 
@@ -360,23 +386,29 @@ Start small. Build the habit. Watch your productivity compound.
 ## FAQ
 
 ### How long does setup take?
+
 30-60 minutes for basic installation. Another hour or two to customize CLAUDE.md and create your first custom skills. The system becomes more valuable the more context you feed it.
 
 ### Do I need coding experience?
+
 Basic command line familiarity is required (cd, npm, git clone). You don't need to write code—just follow the steps. The MCP servers come pre-built.
 
 ### What's the difference between this and just using Claude Code?
+
 Raw Claude Code starts fresh each session. Agentic Creator OS gives it persistent context about you, your projects, and your preferences. It's the difference between a smart assistant and one that actually knows your work.
 
 ### Can I use this for a team?
+
 The current version is designed for solo creators. Team features (shared contexts, role-based access) are on the roadmap. For now, each team member would run their own instance.
 
 ### What if I get stuck?
+
 Open an issue on [GitHub](https://github.com/frankxai/agentic-creator-os/issues). The community is active and I respond to questions directly.
 
 ---
 
 **Related:**
+
 - [Build Your Own Jarvis with Claude Code](/blog/build-your-own-jarvis-claude-code)
 - [Why Every Creator Needs an Intelligence System](/blog/creator-intelligence-systems-2026)
 - [Agentic AI: The Shift From Tools to Collaborators](/blog/what-is-agentic-ai)

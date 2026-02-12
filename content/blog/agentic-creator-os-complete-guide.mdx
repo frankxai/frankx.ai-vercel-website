@@ -4,18 +4,34 @@ description: "Master the AI operating system that transforms Claude Code into a 
 date: "2026-01-27"
 lastModified: "2026-01-27"
 author: "Frank"
-tags: ["agentic ai", "claude code", "ai operating system", "tutorial", "productivity"]
-keywords: ["agentic creator os", "ai operating system", "claude code productivity", "multi-agent orchestration", "ai workflow automation", "creator os", "acos v6"]
+tags:
+  [
+    "agentic ai",
+    "claude code",
+    "ai operating system",
+    "tutorial",
+    "productivity",
+  ]
+keywords:
+  [
+    "agentic creator os",
+    "ai operating system",
+    "claude code productivity",
+    "multi-agent orchestration",
+    "ai workflow automation",
+    "creator os",
+    "acos v6",
+  ]
 category: "Creator Systems"
 featured: true
-image: '/images/blog/agentic-creator-os-complete-guide-hero.png'
+image: "/images/blog/agentic-creator-os-complete-guide-hero.png"
 readingGoal: "Understand what ACOS is, how it works, and how to start using it to transform your creative workflow."
-readingTime: '18 min'
+readingTime: "18 min"
 ---
 
 # The Complete Guide to Agentic Creator OS v6: Your AI Operating System
 
-*The system behind 12,000+ AI songs, this website, and enterprise Oracle projects.*
+_The system behind 12,000+ AI songs, this website, and enterprise Oracle projects._
 
 ---
 
@@ -30,10 +46,12 @@ Agentic Creator OS (ACOS) transforms Claude Code from a chat tool into a full op
 Agentic Creator OS is a **superintelligent operating system for generative creators**—a complete intelligence layer that transforms how you work with AI.
 
 Think of it as the difference between:
+
 - **A chat tool** (ask questions, get answers, lose context)
 - **An operating system** (persistent skills, coordinated agents, automated workflows)
 
 If you've ever felt frustrated by:
+
 - Losing your best prompts across sessions
 - AI outputs that don't sound like you
 - Juggling 10 different AI tools without a system
@@ -41,15 +59,11 @@ If you've ever felt frustrated by:
 
 ...then ACOS is the solution.
 
-```
-╔═══════════════════════════════════════════════════════════════════╗
-║                    AGENTIC CREATOR OS v6.0                         ║
-║          "The Operating System for Golden Age Creators"            ║
-╠═══════════════════════════════════════════════════════════════════╣
-║  Commands: 25 │ Skills: 80+ │ Agents: 40+ │ Workflows: 8          ║
-║  Status: Production │ Install: 5 minutes │ Code: Zero             ║
-╚═══════════════════════════════════════════════════════════════════╝
-```
+<Diagram
+  src="/images/diagrams/blog/agentic-creator-os-complete-guide/legacy-diagram-01.svg"
+  alt="What Is Agentic Creator OS? diagram 1"
+  caption="What Is Agentic Creator OS?"
+/>
 
 ---
 
@@ -58,6 +72,7 @@ If you've ever felt frustrated by:
 ### The Problem: Fragmented AI Work
 
 Most creators use AI like this:
+
 1. Open ChatGPT/Claude
 2. Write a prompt
 3. Get a response
@@ -65,6 +80,7 @@ Most creators use AI like this:
 5. Repeat (losing all context)
 
 This creates:
+
 - **Tool roulette**: Jumping between AI tools with no continuity
 - **Prompt amnesia**: Forgetting which prompts worked
 - **Voice dilution**: Generic AI output that doesn't sound like you
@@ -73,12 +89,14 @@ This creates:
 ### The Solution: An Operating System
 
 ACOS gives you:
+
 - **Persistent skills** that remember how you work
 - **Specialized agents** that maintain your voice
 - **Automated workflows** that compound your output
 - **Quality gates** that catch mistakes before publishing
 
 The same system runs my:
+
 - **Music production**: 12,000+ Suno tracks
 - **This website**: 50+ blog articles
 - **Enterprise work**: Oracle AI architecture
@@ -98,12 +116,14 @@ Version 7 centers on `/acos`—the single entry point to everything.
 ```
 
 That's it. The smart router:
+
 1. **Detects your intent** from natural language
 2. **Routes to the best command** automatically
 3. **Loads relevant skills** without manual invocation
 4. **Shows a menu** when intent is ambiguous
 
 Examples:
+
 ```
 /acos "write a blog post about AI agents"
   → Routes to /article-creator
@@ -141,6 +161,7 @@ The `skill-rules.json` file contains 22 activation rules:
 ```
 
 When you say "write a blog post," ACOS:
+
 1. Detects the keyword "blog"
 2. Loads the `content-strategy` skill automatically
 3. Routes to `/article-creator`
@@ -150,12 +171,12 @@ When you say "write a blog post," ACOS:
 
 Hooks are automated checkpoints that run at key moments:
 
-| Hook Type | When It Runs | What It Does |
-|-----------|--------------|--------------|
-| **SessionStart** | When you open Claude | Loads ACOS context |
-| **PreToolUse** | Before writing files | Checks brand voice |
-| **PostToolUse** | After writing files | Validates quality |
-| **Notification** | When patterns match | Suggests relevant skills |
+| Hook Type        | When It Runs         | What It Does             |
+| ---------------- | -------------------- | ------------------------ |
+| **SessionStart** | When you open Claude | Loads ACOS context       |
+| **PreToolUse**   | Before writing files | Checks brand voice       |
+| **PostToolUse**  | After writing files  | Validates quality        |
+| **Notification** | When patterns match  | Suggests relevant skills |
 
 Example: The brand voice hook catches phrases like "synergy" or "leverage" and suggests alternatives before you publish.
 
@@ -173,6 +194,7 @@ ACOS is built on 7 foundational pillars that work together:
 **Purpose**: Domain expertise that loads on-demand
 
 Skills are organized by category:
+
 - **Technical** (18): TDD, debugging, MCP architecture, React patterns
 - **Creative** (8): Brand voice, Suno AI, content strategy
 - **Business** (4): OCI services, product management
@@ -180,6 +202,7 @@ Skills are organized by category:
 - **System** (5): ACOS core, orchestration, planning
 
 Each skill follows the **500-Line Rule**:
+
 ```
 SKILL.md: <500 lines (core instructions)
 resources/patterns.md: <500 lines (detailed patterns)
@@ -197,15 +220,16 @@ This enables **progressive disclosure**—Claude loads only what's needed, when 
 
 Key agents include:
 
-| Agent | Domain | When to Use |
-|-------|--------|-------------|
-| **Starlight Orchestrator** | Meta-coordination | Complex multi-step tasks |
-| **Visionary** | Strategy, foresight | Big decisions |
-| **Creation Engine** | Content, products | Writing and publishing |
-| **Technical Translator** | AI education | Explaining complex topics |
-| **Frequency Alchemist** | Music, audio | Suno production |
+| Agent                      | Domain              | When to Use               |
+| -------------------------- | ------------------- | ------------------------- |
+| **Starlight Orchestrator** | Meta-coordination   | Complex multi-step tasks  |
+| **Visionary**              | Strategy, foresight | Big decisions             |
+| **Creation Engine**        | Content, products   | Writing and publishing    |
+| **Technical Translator**   | AI education        | Explaining complex topics |
+| **Frequency Alchemist**    | Music, audio        | Suno production           |
 
 Agents can work individually or as a **weighted synthesis**:
+
 ```
 Visionary (30%) + Creation Engine (25%) + Technical Translator (25%) + Frequency Alchemist (20%)
 = Coordinated response blending all perspectives
@@ -216,25 +240,25 @@ Visionary (30%) + Creation Engine (25%) + Technical Translator (25%) + Frequency
 **What**: 8 orchestrated pipelines
 **Purpose**: Complex multi-step operations
 
-| Workflow | Pattern | Example |
-|----------|---------|---------|
-| Content Creation | Pipeline | Research → Write → Edit → Publish |
-| Social Distribution | Parallel | LinkedIn + Twitter + Newsletter simultaneously |
-| Code Review | Multi-agent | 3 reviewers check different aspects |
-| Strategic Decision | Weighted | Experts vote with different weights |
+| Workflow            | Pattern     | Example                                        |
+| ------------------- | ----------- | ---------------------------------------------- |
+| Content Creation    | Pipeline    | Research → Write → Edit → Publish              |
+| Social Distribution | Parallel    | LinkedIn + Twitter + Newsletter simultaneously |
+| Code Review         | Multi-agent | 3 reviewers check different aspects            |
+| Strategic Decision  | Weighted    | Experts vote with different weights            |
 
 ### Pillar 4: MCP Servers Layer (Tools)
 
 **What**: 5+ external tool integrations
 **Purpose**: Connect Claude to the outside world
 
-| Server | Capability |
-|--------|------------|
+| Server                   | Capability                           |
+| ------------------------ | ------------------------------------ |
 | **Browser (Playwright)** | Web automation, testing, screenshots |
-| **Memory** | Persistent knowledge graphs |
-| **Sequential Thinking** | Complex multi-step reasoning |
-| **Lyric Genius** | Suno prompt engineering |
-| **Nano Banana** | Image generation via Gemini |
+| **Memory**               | Persistent knowledge graphs          |
+| **Sequential Thinking**  | Complex multi-step reasoning         |
+| **Lyric Genius**         | Suno prompt engineering              |
+| **Nano Banana**          | Image generation via Gemini          |
 
 ### Pillar 5: Templates Layer (Patterns)
 
@@ -242,6 +266,7 @@ Visionary (30%) + Creation Engine (25%) + Technical Translator (25%) + Frequency
 **Purpose**: Consistent quality without reinventing
 
 Templates include:
+
 - Social media posts (LinkedIn, Twitter, Instagram)
 - Blog article structures
 - Product descriptions
@@ -252,14 +277,14 @@ Templates include:
 **What**: Project-specific customizations
 **Purpose**: Different voices for different projects
 
-```
-instances/
-├── frankx/          # FrankX brand settings
-├── client-project/  # Client voice settings
-└── _template/       # Template for new projects
-```
+<Diagram
+  src="/images/diagrams/blog/agentic-creator-os-complete-guide/legacy-diagram-02.svg"
+  alt="Pillar 6: Instances Layer (Configuration) diagram 2"
+  caption="Pillar 6: Instances Layer (Configuration)"
+/>
 
 Each instance configures:
+
 - Brand voice and tone
 - Banned phrases
 - Required keywords
@@ -272,6 +297,7 @@ Each instance configures:
 **Purpose**: The orchestrator of orchestrators
 
 The Starlight Orchestrator sits above all other components:
+
 - Routes complex requests to the right subsystems
 - Preserves context across agent handoffs
 - Monitors system health
@@ -285,53 +311,53 @@ ACOS v6 ships with 25 commands across 5 categories:
 
 ### Creation Commands (8)
 
-| Command | Description |
-|---------|-------------|
-| `/article-creator` | Guided blog article creation |
-| `/create-music` | Suno music production pipeline |
-| `/infogenius` | Research-grounded image generation |
-| `/generate-images` | Direct image generation |
-| `/generate-social` | Platform-optimized social content |
-| `/factory` | Full pipeline: research → publish |
-| `/products-creation` | Digital products and courses |
-| `/author-team` | Book writing with AI team |
+| Command              | Description                        |
+| -------------------- | ---------------------------------- |
+| `/article-creator`   | Guided blog article creation       |
+| `/create-music`      | Suno music production pipeline     |
+| `/infogenius`        | Research-grounded image generation |
+| `/generate-images`   | Direct image generation            |
+| `/generate-social`   | Platform-optimized social content  |
+| `/factory`           | Full pipeline: research → publish  |
+| `/products-creation` | Digital products and courses       |
+| `/author-team`       | Book writing with AI team          |
 
 ### Strategy Commands (5)
 
-| Command | Description |
-|---------|-------------|
-| `/starlight-architect` | Enterprise AI system design |
-| `/council` | Multi-agent strategic council |
-| `/research` | Daily intelligence operations |
-| `/plan-week` | Weekly content planning |
-| `/harvest` | Prompt discovery and collection |
+| Command                | Description                     |
+| ---------------------- | ------------------------------- |
+| `/starlight-architect` | Enterprise AI system design     |
+| `/council`             | Multi-agent strategic council   |
+| `/research`            | Daily intelligence operations   |
+| `/plan-week`           | Weekly content planning         |
+| `/harvest`             | Prompt discovery and collection |
 
 ### Development Commands (4)
 
-| Command | Description |
-|---------|-------------|
-| `/spec` | Spec-driven feature development |
-| `/nextjs-deploy` | Next.js + Vercel deployment |
-| `/ux-design` | UI/UX design workflows |
-| `/automation-dev` | MCP servers and automation |
+| Command           | Description                     |
+| ----------------- | ------------------------------- |
+| `/spec`           | Spec-driven feature development |
+| `/nextjs-deploy`  | Next.js + Vercel deployment     |
+| `/ux-design`      | UI/UX design workflows          |
+| `/automation-dev` | MCP servers and automation      |
 
 ### System Commands (5)
 
-| Command | Description |
-|---------|-------------|
-| `/acos` | Smart router (single entry point) |
-| `/planning-with-files` | Manus-style file planning |
-| `/inventory-status` | Content inventory dashboard |
-| `/mcp-status` | MCP server health |
-| `/publish` | Content publishing with quality gates |
+| Command                | Description                           |
+| ---------------------- | ------------------------------------- |
+| `/acos`                | Smart router (single entry point)     |
+| `/planning-with-files` | Manus-style file planning             |
+| `/inventory-status`    | Content inventory dashboard           |
+| `/mcp-status`          | MCP server health                     |
+| `/publish`             | Content publishing with quality gates |
 
 ### Quality Commands (3)
 
-| Command | Description |
-|---------|-------------|
-| `/review-content` | Content quality review |
+| Command             | Description                        |
+| ------------------- | ---------------------------------- |
+| `/review-content`   | Content quality review             |
 | `/classify-content` | Content routing and classification |
-| `/polish-content` | Polish to publish-ready |
+| `/polish-content`   | Polish to publish-ready            |
 
 ---
 
@@ -422,15 +448,16 @@ After installation, try these:
 
 ## What's the Difference Between ACOS v5 and v6?
 
-| Feature | v5 | v6 |
-|---------|-----|-----|
-| Entry Point | Multiple commands | `/acos` smart router |
-| Skill Activation | Manual `/skill` | Auto-activation |
-| Hooks | None | 4 categories |
-| Commands in Repo | 14 | 25 (100%) |
-| GitHub Sources | 5 | 14 credited |
+| Feature          | v5                | v6                   |
+| ---------------- | ----------------- | -------------------- |
+| Entry Point      | Multiple commands | `/acos` smart router |
+| Skill Activation | Manual `/skill`   | Auto-activation      |
+| Hooks            | None              | 4 categories         |
+| Commands in Repo | 14                | 25 (100%)            |
+| GitHub Sources   | 5                 | 14 credited          |
 
 v6 philosophy: **The Front Door**
+
 - One command to access everything
 - Skills load without asking
 - Quality gates run automatically
@@ -439,15 +466,16 @@ v6 philosophy: **The Front Door**
 
 ## What Makes ACOS Different from Other AI Tools?
 
-| Tool | Approach | ACOS Advantage |
-|------|----------|----------------|
-| ChatGPT | Single model chat | Multi-agent orchestration |
-| Claude.ai | Web chat interface | File-based persistence |
-| Cursor | Code editor focus | Full creator stack |
-| LangChain | Python code required | Configuration-first, no code |
-| CrewAI | Developer-only | Creator-friendly, markdown-based |
+| Tool      | Approach             | ACOS Advantage                   |
+| --------- | -------------------- | -------------------------------- |
+| ChatGPT   | Single model chat    | Multi-agent orchestration        |
+| Claude.ai | Web chat interface   | File-based persistence           |
+| Cursor    | Code editor focus    | Full creator stack               |
+| LangChain | Python code required | Configuration-first, no code     |
+| CrewAI    | Developer-only       | Creator-friendly, markdown-based |
 
 **ACOS unique value**:
+
 1. **Zero code required** — Markdown and JSON only
 2. **Creator-centric** — Built for content, music, design
 3. **Progressive disclosure** — Load only what you need
@@ -487,8 +515,8 @@ Copy the `templates/SKILL_TEMPLATE.md` file, fill in your patterns, and save to 
 
 ### What's the difference between skills and agents?
 
-**Skills** are knowledge modules—they tell Claude *what* to know.
-**Agents** are personas—they tell Claude *how* to behave.
+**Skills** are knowledge modules—they tell Claude _what_ to know.
+**Agents** are personas—they tell Claude _how_ to behave.
 
 ### Can I contribute to ACOS?
 
@@ -523,6 +551,6 @@ Ready to start? Here's your path:
 
 ---
 
-*Agentic Creator OS v6.0 — The Operating System for Golden Age Creators*
+_Agentic Creator OS v6.0 — The Operating System for Golden Age Creators_
 
-*[GitHub](https://github.com/frankxai/agentic-creator-os) | [Documentation](https://github.com/frankxai/agentic-creator-os/blob/main/README.md) | [FrankX](https://frankx.ai)*
+_[GitHub](https://github.com/frankxai/agentic-creator-os) | [Documentation](https://github.com/frankxai/agentic-creator-os/blob/main/README.md) | [FrankX](https://frankx.ai)_

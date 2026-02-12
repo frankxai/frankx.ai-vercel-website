@@ -4,18 +4,27 @@ description: "Discover which Agentic Creator OS workflows match your creator arc
 date: "2026-01-27"
 lastModified: "2026-01-27"
 author: "Frank"
-tags: ["agentic ai", "creator workflows", "use cases", "productivity", "tutorial"]
-keywords: ["ai for content creators", "ai for writers", "ai for musicians", "ai for developers", "ai workflow by profession", "acos use cases"]
+tags:
+  ["agentic ai", "creator workflows", "use cases", "productivity", "tutorial"]
+keywords:
+  [
+    "ai for content creators",
+    "ai for writers",
+    "ai for musicians",
+    "ai for developers",
+    "ai workflow by profession",
+    "acos use cases",
+  ]
 category: "Creator Systems"
 featured: false
-image: '/images/blog/acos-use-cases-creator-types-hero.png'
+image: "/images/blog/acos-use-cases-creator-types-hero.png"
 readingGoal: "Identify your creator archetype and configure ACOS for your specific workflow needs."
-readingTime: '12 min'
+readingTime: "12 min"
 ---
 
 # ACOS Use Cases: Find Your Creator Type and Ideal Workflow
 
-*Not everyone creates the same way. Here's how to configure ACOS for your archetype.*
+_Not everyone creates the same way. Here's how to configure ACOS for your archetype._
 
 ---
 
@@ -29,14 +38,14 @@ ACOS serves 6 creator archetypes: **Writers** (content → publication pipeline)
 
 Before diving into ACOS, identify which archetype best describes your work:
 
-| Archetype | Primary Output | Pain Points | ACOS Solution |
-|-----------|---------------|-------------|---------------|
-| **The Writer** | Articles, books, scripts | Blank page syndrome, editing loops | Content pipeline automation |
-| **The Developer** | Code, apps, features | Context switching, spec drift | Spec-driven development |
-| **The Musician** | Tracks, albums, scores | Prompt iteration, distribution | Suno integration + publishing |
-| **The Entrepreneur** | Strategy, decisions, launches | Information overload, analysis paralysis | Multi-agent council |
-| **The Course Creator** | Courses, workshops, ebooks | Content organization, production | Knowledge → product pipeline |
-| **The Agency Owner** | Client deliverables | Scaling, consistency, handoffs | Department automation |
+| Archetype              | Primary Output                | Pain Points                              | ACOS Solution                 |
+| ---------------------- | ----------------------------- | ---------------------------------------- | ----------------------------- |
+| **The Writer**         | Articles, books, scripts      | Blank page syndrome, editing loops       | Content pipeline automation   |
+| **The Developer**      | Code, apps, features          | Context switching, spec drift            | Spec-driven development       |
+| **The Musician**       | Tracks, albums, scores        | Prompt iteration, distribution           | Suno integration + publishing |
+| **The Entrepreneur**   | Strategy, decisions, launches | Information overload, analysis paralysis | Multi-agent council           |
+| **The Course Creator** | Courses, workshops, ebooks    | Content organization, production         | Knowledge → product pipeline  |
+| **The Agency Owner**   | Client deliverables           | Scaling, consistency, handoffs           | Department automation         |
 
 Most creators are **hybrids**—combining 2-3 archetypes. That's fine. Start with your primary and expand.
 
@@ -45,9 +54,11 @@ Most creators are **hybrids**—combining 2-3 archetypes. That's fine. Start wit
 ## The Writer: Content → Publication Pipeline
 
 ### Who You Are
+
 You write blog posts, newsletters, books, scripts, or documentation. Your challenge is moving from idea to published piece without getting stuck in endless revision cycles.
 
 ### Your Pain Points
+
 - **Blank page syndrome**: Starting is the hardest part
 - **Research rabbit holes**: Hours disappear gathering information
 - **Editing loops**: Never feeling "done"
@@ -56,6 +67,7 @@ You write blog posts, newsletters, books, scripts, or documentation. Your challe
 ### Your ACOS Setup
 
 **Primary Commands:**
+
 ```bash
 /article-creator    # Guided blog post creation
 /factory            # Full pipeline: research → publish
@@ -64,22 +76,21 @@ You write blog posts, newsletters, books, scripts, or documentation. Your challe
 ```
 
 **Recommended Skills:**
+
 - `content-strategy` — Auto-activates on "blog", "article", "write"
 - `excellence-book-writing` — For long-form projects
 - `seo-optimization` — For search visibility
 
 **Your Workflow:**
 
-```
-┌─────────────┐    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐
-│   IDEATE    │───►│  RESEARCH   │───►│   DRAFT     │───►│   PUBLISH   │
-│             │    │             │    │             │    │             │
-│ /plan-week  │    │ /research   │    │ /article-   │    │ /publish    │
-│             │    │             │    │  creator    │    │             │
-└─────────────┘    └─────────────┘    └─────────────┘    └─────────────┘
-```
+<Diagram
+  src="/images/diagrams/blog/acos-use-cases-creator-types/legacy-diagram-01.svg"
+  alt="Your ACOS Setup diagram 1"
+  caption="Your ACOS Setup"
+/>
 
 **Quick Start:**
+
 ```bash
 # Your first writing session
 /acos "write a blog post about [your topic]"
@@ -92,6 +103,7 @@ You write blog posts, newsletters, books, scripts, or documentation. Your challe
 ```
 
 ### Writer Pro Tips
+
 1. **Use `/plan-week`** every Monday to batch your content ideas
 2. **Let research agent work first**—don't start writing until you have sources
 3. **Trust the polish agent**—it catches things you miss after hours of staring
@@ -101,9 +113,11 @@ You write blog posts, newsletters, books, scripts, or documentation. Your challe
 ## The Developer: Spec → Ship Workflow
 
 ### Who You Are
+
 You build software—features, apps, tools, integrations. Your challenge is translating requirements into working code without losing track of the original intent.
 
 ### Your Pain Points
+
 - **Spec drift**: What you build doesn't match what was asked
 - **Context switching**: Jumping between planning and coding
 - **Testing gaps**: Forgetting edge cases
@@ -112,6 +126,7 @@ You build software—features, apps, tools, integrations. Your challenge is tran
 ### Your ACOS Setup
 
 **Primary Commands:**
+
 ```bash
 /spec               # Spec-driven feature development
 /automation-dev     # MCP servers and tooling
@@ -120,6 +135,7 @@ You build software—features, apps, tools, integrations. Your challenge is tran
 ```
 
 **Recommended Skills:**
+
 - `test-driven-development` — Auto-activates on "test", "spec", "feature"
 - `implementation-planning` — For complex features
 - `systematic-debugging` — When things break
@@ -127,16 +143,14 @@ You build software—features, apps, tools, integrations. Your challenge is tran
 
 **Your Workflow:**
 
-```
-┌─────────────┐    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐
-│   SPEC      │───►│   DESIGN    │───►│   BUILD     │───►│   SHIP      │
-│             │    │             │    │             │    │             │
-│ /spec       │    │ /ux-design  │    │ (coding)    │    │ /nextjs-    │
-│             │    │             │    │             │    │  deploy     │
-└─────────────┘    └─────────────┘    └─────────────┘    └─────────────┘
-```
+<Diagram
+  src="/images/diagrams/blog/acos-use-cases-creator-types/legacy-diagram-02.svg"
+  alt="Your ACOS Setup diagram 2"
+  caption="Your ACOS Setup"
+/>
 
 **Quick Start:**
+
 ```bash
 # Your first feature build
 /spec "Add user authentication with OAuth"
@@ -149,6 +163,7 @@ You build software—features, apps, tools, integrations. Your challenge is tran
 ```
 
 ### Developer Pro Tips
+
 1. **Never skip the spec**—`/spec` creates the contract you code against
 2. **Use Task agents** for exploration—don't read every file yourself
 3. **Let `/automation-dev`** build your MCP servers—it knows the patterns
@@ -158,9 +173,11 @@ You build software—features, apps, tools, integrations. Your challenge is tran
 ## The Musician: Idea → Track → Distribution
 
 ### Who You Are
+
 You create music—songs, soundscapes, scores, beats. Your challenge is turning musical ideas into finished, distributed tracks without getting lost in infinite iteration.
 
 ### Your Pain Points
+
 - **Prompt iteration**: Finding the right Suno prompt takes forever
 - **Style consistency**: Keeping a coherent sound across tracks
 - **Distribution complexity**: Getting music onto platforms
@@ -169,6 +186,7 @@ You create music—songs, soundscapes, scores, beats. Your challenge is turning 
 ### Your ACOS Setup
 
 **Primary Commands:**
+
 ```bash
 /create-music       # Full Suno production pipeline
 /generate-images    # Album art and visuals
@@ -177,24 +195,24 @@ You create music—songs, soundscapes, scores, beats. Your challenge is turning 
 ```
 
 **Recommended Skills:**
+
 - `suno-ai-mastery` — Auto-activates on "music", "track", "song", "Suno"
 - `frankx-brand` — For consistent aesthetic (customize for your brand)
 
 **MCP Servers:**
+
 - `lyric-genius` — Advanced prompt engineering for Suno
 
 **Your Workflow:**
 
-```
-┌─────────────┐    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐
-│   CONCEPT   │───►│  GENERATE   │───►│   REFINE    │───►│  DISTRIBUTE │
-│             │    │             │    │             │    │             │
-│ Idea/mood   │    │ /create-    │    │ Iterate     │    │ /generate-  │
-│ description │    │  music      │    │ prompts     │    │  social     │
-└─────────────┘    └─────────────┘    └─────────────┘    └─────────────┘
-```
+<Diagram
+  src="/images/diagrams/blog/acos-use-cases-creator-types/legacy-diagram-03.svg"
+  alt="Your ACOS Setup diagram 3"
+  caption="Your ACOS Setup"
+/>
 
 **Quick Start:**
+
 ```bash
 # Your first track
 /create-music "Epic orchestral piece about overcoming adversity,
@@ -209,6 +227,7 @@ You create music—songs, soundscapes, scores, beats. Your challenge is turning 
 ```
 
 ### Musician Pro Tips
+
 1. **Describe emotion, not just genre**—"melancholic determination" beats "sad rock"
 2. **Use Lyric Genius MCP** for advanced prompt crafting
 3. **Batch your sessions**—create 5 tracks, then distribute all at once
@@ -218,9 +237,11 @@ You create music—songs, soundscapes, scores, beats. Your challenge is turning 
 ## The Entrepreneur: Strategy → Execution System
 
 ### Who You Are
+
 You run a business—making decisions, launching products, managing growth. Your challenge is cutting through information overload to make good decisions fast.
 
 ### Your Pain Points
+
 - **Analysis paralysis**: Too much information, no clear path
 - **Execution gaps**: Great strategy, poor follow-through
 - **Scaling yourself**: Can't be everywhere at once
@@ -229,6 +250,7 @@ You run a business—making decisions, launching products, managing growth. Your
 ### Your ACOS Setup
 
 **Primary Commands:**
+
 ```bash
 /starlight-architect  # Enterprise AI system design
 /council              # Multi-agent strategic decisions
@@ -237,22 +259,21 @@ You run a business—making decisions, launching products, managing growth. Your
 ```
 
 **Recommended Skills:**
+
 - `product-management` — Auto-activates on "launch", "product", "roadmap"
 - `content-strategy` — For marketing execution
 - `oci-services-expert` — If you're in enterprise/Oracle space
 
 **Your Workflow:**
 
-```
-┌─────────────┐    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐
-│  RESEARCH   │───►│  STRATEGIZE │───►│   DECIDE    │───►│   EXECUTE   │
-│             │    │             │    │             │    │             │
-│ /research   │    │ /starlight- │    │ /council    │    │ /plan-week  │
-│             │    │  architect  │    │             │    │             │
-└─────────────┘    └─────────────┘    └─────────────┘    └─────────────┘
-```
+<Diagram
+  src="/images/diagrams/blog/acos-use-cases-creator-types/legacy-diagram-04.svg"
+  alt="Your ACOS Setup diagram 4"
+  caption="Your ACOS Setup"
+/>
 
 **Quick Start:**
+
 ```bash
 # Your first strategic decision
 /council "Should I launch a premium tier for my SaaS product?
@@ -267,6 +288,7 @@ You run a business—making decisions, launching products, managing growth. Your
 ```
 
 ### Entrepreneur Pro Tips
+
 1. **Use `/council` for big decisions**—it forces multiple perspectives
 2. **`/research` before `/council`**—better inputs = better decisions
 3. **Make `/plan-week` a Sunday ritual**—start each week with clarity
@@ -276,9 +298,11 @@ You run a business—making decisions, launching products, managing growth. Your
 ## The Course Creator: Knowledge → Product Pipeline
 
 ### Who You Are
+
 You package expertise into courses, workshops, ebooks, and educational products. Your challenge is organizing knowledge into learnable sequences and actually shipping.
 
 ### Your Pain Points
+
 - **Curriculum overwhelm**: Too much to teach, where to start?
 - **Production bottleneck**: Recording, editing, publishing is slow
 - **Consistency**: Maintaining quality across modules
@@ -287,6 +311,7 @@ You package expertise into courses, workshops, ebooks, and educational products.
 ### Your ACOS Setup
 
 **Primary Commands:**
+
 ```bash
 /products-creation   # Digital product development
 /article-creator     # Course companion content
@@ -295,22 +320,21 @@ You package expertise into courses, workshops, ebooks, and educational products.
 ```
 
 **Recommended Skills:**
+
 - `excellence-book-writing` — Auto-activates for educational content
 - `content-strategy` — For curriculum planning
 - `coaching-program-design` — If you do 1:1 or cohort programs
 
 **Your Workflow:**
 
-```
-┌─────────────┐    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐
-│  OUTLINE    │───►│   CREATE    │───►│   PACKAGE   │───►│   LAUNCH    │
-│             │    │             │    │             │    │             │
-│ Curriculum  │    │ /products-  │    │ Platform    │    │ /generate-  │
-│ design      │    │  creation   │    │ setup       │    │  social     │
-└─────────────┘    └─────────────┘    └─────────────┘    └─────────────┘
-```
+<Diagram
+  src="/images/diagrams/blog/acos-use-cases-creator-types/legacy-diagram-05.svg"
+  alt="Your ACOS Setup diagram 5"
+  caption="Your ACOS Setup"
+/>
 
 **Quick Start:**
+
 ```bash
 # Your first course module
 /products-creation "Create Module 1 of a course on
@@ -326,6 +350,7 @@ You package expertise into courses, workshops, ebooks, and educational products.
 ```
 
 ### Course Creator Pro Tips
+
 1. **Start with one module, not the whole course**—ship and iterate
 2. **Use `/article-creator`** to create free content that leads to paid
 3. **`/generate-social`** can create a full launch sequence
@@ -335,9 +360,11 @@ You package expertise into courses, workshops, ebooks, and educational products.
 ## The Agency Owner: Client → Delivery Automation
 
 ### Who You Are
+
 You run an agency—delivering services to multiple clients with a team. Your challenge is maintaining quality and consistency while scaling.
 
 ### Your Pain Points
+
 - **Scaling quality**: More clients = more variance
 - **Onboarding overhead**: Every client is a fresh start
 - **Team consistency**: Different people, different outputs
@@ -346,6 +373,7 @@ You run an agency—delivering services to multiple clients with a team. Your ch
 ### Your ACOS Setup
 
 **Primary Commands:**
+
 ```bash
 /starlight-architect  # System design for client projects
 /spec                 # Scoped deliverables
@@ -354,22 +382,21 @@ You run an agency—delivering services to multiple clients with a team. Your ch
 ```
 
 **Recommended Skills:**
+
 - `implementation-planning` — For project scoping
 - `content-strategy` — If you do content/marketing services
 - `mcp-architecture` — For technical integrations
 
 **Your Workflow:**
 
-```
-┌─────────────┐    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐
-│  ONBOARD    │───►│   SCOPE     │───►│   DELIVER   │───►│   REVIEW    │
-│             │    │             │    │             │    │             │
-│ Client      │    │ /spec       │    │ (execution) │    │ /review-    │
-│ discovery   │    │             │    │             │    │  content    │
-└─────────────┘    └─────────────┘    └─────────────┘    └─────────────┘
-```
+<Diagram
+  src="/images/diagrams/blog/acos-use-cases-creator-types/legacy-diagram-06.svg"
+  alt="Your ACOS Setup diagram 6"
+  caption="Your ACOS Setup"
+/>
 
 **Quick Start:**
+
 ```bash
 # Your first client project
 /spec "Website redesign for [Client Name]
@@ -385,6 +412,7 @@ You run an agency—delivering services to multiple clients with a team. Your ch
 ```
 
 ### Agency Owner Pro Tips
+
 1. **Create client instances**—each client gets their own brand config
 2. **Use `/review-content`** as quality gate before client delivery
 3. **Document everything in planning files**—reduces "how did we do X last time?"
@@ -396,21 +424,25 @@ You run an agency—delivering services to multiple clients with a team. Your ch
 Most real creators combine multiple archetypes. Here are common hybrids:
 
 ### Writer + Entrepreneur (Solopreneur)
+
 **Primary:** Content that drives business
 **Commands:** `/factory` → `/generate-social` → `/plan-week`
 **Flow:** Write → Distribute → Monetize
 
 ### Developer + Course Creator (Educator)
+
 **Primary:** Technical education products
 **Commands:** `/spec` → `/products-creation` → `/article-creator`
 **Flow:** Build → Document → Teach
 
 ### Musician + Entrepreneur (Artist-Business)
+
 **Primary:** Music as business
 **Commands:** `/create-music` → `/generate-social` → `/inventory-status`
 **Flow:** Create → Promote → Track
 
 ### Writer + Developer (Technical Writer)
+
 **Primary:** Documentation and tutorials
 **Commands:** `/article-creator` + `/spec` integration
 **Flow:** Understand → Document → Publish
@@ -419,14 +451,14 @@ Most real creators combine multiple archetypes. Here are common hybrids:
 
 ## Setup Recommendations by Type
 
-| Archetype | First Command | First Skill | First MCP |
-|-----------|--------------|-------------|-----------|
-| Writer | `/article-creator` | content-strategy | Memory |
-| Developer | `/spec` | test-driven-development | Browser |
-| Musician | `/create-music` | suno-ai-mastery | Lyric Genius |
-| Entrepreneur | `/council` | product-management | Sequential Thinking |
-| Course Creator | `/products-creation` | excellence-book-writing | Memory |
-| Agency Owner | `/starlight-architect` | implementation-planning | Browser |
+| Archetype      | First Command          | First Skill             | First MCP           |
+| -------------- | ---------------------- | ----------------------- | ------------------- |
+| Writer         | `/article-creator`     | content-strategy        | Memory              |
+| Developer      | `/spec`                | test-driven-development | Browser             |
+| Musician       | `/create-music`        | suno-ai-mastery         | Lyric Genius        |
+| Entrepreneur   | `/council`             | product-management      | Sequential Thinking |
+| Course Creator | `/products-creation`   | excellence-book-writing | Memory              |
+| Agency Owner   | `/starlight-architect` | implementation-planning | Browser             |
 
 ---
 
@@ -473,6 +505,6 @@ Yes. Workflows are YAML files. You can chain any commands together. See [Buildin
 
 ---
 
-*Find your archetype. Configure your system. Create at scale.*
+_Find your archetype. Configure your system. Create at scale._
 
-*[GitHub](https://github.com/frankxai/agentic-creator-os) | [FrankX](https://frankx.ai)*
+_[GitHub](https://github.com/frankxai/agentic-creator-os) | [FrankX](https://frankx.ai)_

@@ -5,16 +5,25 @@ date: "2026-01-27"
 lastModified: "2026-01-27"
 author: "Frank"
 tags: ["mcp", "claude code", "integration", "api", "tutorial"]
-keywords: ["model context protocol", "mcp server", "claude mcp integration", "mcp tutorial", "claude code tools", "ai api integration"]
+keywords:
+  [
+    "model context protocol",
+    "mcp server",
+    "claude mcp integration",
+    "mcp tutorial",
+    "claude code tools",
+    "ai api integration",
+  ]
 category: "AI Architecture"
-image: '/images/blog/mcp-server-integration-hero.png'
+featured: true
+image: "/images/blog/mcp-server-integration-hero.png"
 readingGoal: "Understand MCP architecture and connect ACOS to external tools and APIs."
-readingTime: '14 min'
+readingTime: "14 min"
 ---
 
 # MCP Server Integration: Connect ACOS to Everything
 
-*How I extended Claude's capabilities with browser automation, image generation, and custom APIs.*
+_How I extended Claude's capabilities with browser automation, image generation, and custom APIs._
 
 ---
 
@@ -29,6 +38,7 @@ Model Context Protocol (MCP) is the standard for connecting Claude to external t
 MCP is Anthropic's open standard for connecting AI models to external capabilities. Think of it as USB for AI—a universal way to plug in new tools.
 
 **Without MCP:**
+
 ```
 Claude → Limited to text generation
          Can't browse web
@@ -38,6 +48,7 @@ Claude → Limited to text generation
 ```
 
 **With MCP:**
+
 ```
 Claude → MCP Server → Browser (Playwright)
       → MCP Server → Database (PostgreSQL)
@@ -47,12 +58,12 @@ Claude → MCP Server → Browser (Playwright)
 
 ### Why MCP Matters for Creators
 
-| Capability | Without MCP | With MCP |
-|------------|-------------|----------|
-| Web Research | Copy-paste URLs | Automated browsing |
-| Image Creation | External tool | Native in workflow |
-| Data Storage | Manual file management | Persistent memory |
-| Custom Tools | Not possible | Build anything |
+| Capability     | Without MCP            | With MCP           |
+| -------------- | ---------------------- | ------------------ |
+| Web Research   | Copy-paste URLs        | Automated browsing |
+| Image Creation | External tool          | Native in workflow |
+| Data Storage   | Manual file management | Persistent memory  |
+| Custom Tools   | Not possible           | Build anything     |
 
 ---
 
@@ -65,12 +76,14 @@ ACOS ships with 7 MCP server integrations:
 **What It Does:** Full browser automation—navigate, click, screenshot, fill forms, extract data.
 
 **When to Use:**
+
 - Research that requires browsing multiple pages
 - Testing web applications
 - Scraping structured data
 - Taking screenshots for documentation
 
 **Example:**
+
 ```bash
 /acos "Take a screenshot of the ACOS GitHub repo README"
 
@@ -95,12 +108,14 @@ ACOS ships with 7 MCP server integrations:
 **What It Does:** Persistent knowledge storage across sessions. Entities, relationships, observations.
 
 **When to Use:**
+
 - Storing information about projects
 - Building knowledge bases
 - Remembering user preferences
 - Tracking relationships between concepts
 
 **Example:**
+
 ```bash
 /acos "Remember that the ACOS project uses 7 pillars architecture"
 
@@ -125,12 +140,14 @@ ACOS ships with 7 MCP server integrations:
 **What It Does:** Extended reasoning for complex problems. Chain-of-thought with revision.
 
 **When to Use:**
+
 - Multi-step problem solving
 - Complex analysis
 - When you need Claude to "think harder"
 - Debugging intricate issues
 
 **Example:**
+
 ```bash
 /council "Should I pivot my product strategy?"
 
@@ -151,12 +168,14 @@ ACOS ships with 7 MCP server integrations:
 **What It Does:** Advanced prompt engineering for Suno AI music generation.
 
 **When to Use:**
+
 - Creating music with specific styles
 - Genre-bending compositions
 - Lyric writing with techniques
 - Music prompt optimization
 
 **Example:**
+
 ```bash
 /create-music "Epic orchestral piece about coding at midnight"
 
@@ -180,12 +199,14 @@ ACOS ships with 7 MCP server integrations:
 **What It Does:** Generate and edit images using Gemini's image model.
 
 **When to Use:**
+
 - Hero images for blog posts
 - Social media graphics
 - Concept visualization
 - Infographics and diagrams
 
 **Example:**
+
 ```bash
 /infogenius "Create architecture diagram for microservices"
 
@@ -208,6 +229,7 @@ ACOS ships with 7 MCP server integrations:
 **What It Does:** Connect to social platforms for publishing and analytics.
 
 **Capabilities:**
+
 - LinkedIn posting
 - Twitter/X threads
 - Instagram scheduling
@@ -220,6 +242,7 @@ ACOS ships with 7 MCP server integrations:
 **What It Does:** Persistent content storage for articles, tracks, and inventory.
 
 **Capabilities:**
+
 - Store article drafts
 - Track music catalog
 - Manage content inventory
@@ -231,40 +254,11 @@ ACOS ships with 7 MCP server integrations:
 
 ### The Communication Pattern
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                         CLAUDE CODE                              │
-│                                                                  │
-│  User: "Take a screenshot of frankx.ai"                         │
-│                              │                                   │
-│                              ▼                                   │
-│  ┌─────────────────────────────────────────────────────────┐   │
-│  │              TOOL SELECTION LAYER                        │   │
-│  │  Detects: screenshot request → needs Browser MCP         │   │
-│  └─────────────────────────────────────────────────────────┘   │
-│                              │                                   │
-└──────────────────────────────┼───────────────────────────────────┘
-                               │
-                               ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                      MCP SERVER (Playwright)                     │
-│                                                                  │
-│  1. Receives: browser_navigate("https://frankx.ai")             │
-│  2. Executes: Playwright launches browser                        │
-│  3. Receives: browser_take_screenshot()                          │
-│  4. Returns: Base64 encoded PNG                                  │
-│                                                                  │
-└─────────────────────────────────────────────────────────────────┘
-                               │
-                               ▼
-┌─────────────────────────────────────────────────────────────────┐
-│                         CLAUDE CODE                              │
-│                                                                  │
-│  Receives image, displays to user                                │
-│  "Here's the screenshot of frankx.ai"                           │
-│                                                                  │
-└─────────────────────────────────────────────────────────────────┘
-```
+<Diagram
+  src="/images/diagrams/blog/mcp-server-integration-guide/mcp-communication-pattern.svg"
+  alt="MCP communication flow from Claude Code to Playwright MCP server and back"
+  caption="Screenshot request flow: Claude routes to Browser MCP, Playwright executes, image result returns to user."
+/>
 
 ### MCP Server Anatomy
 
@@ -310,28 +304,33 @@ npm install @modelcontextprotocol/sdk
 import { Server } from "@modelcontextprotocol/sdk/server/index.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 
-const server = new Server({
-  name: "my-custom-server",
-  version: "1.0.0"
-}, {
-  capabilities: {
-    tools: {}
-  }
-});
+const server = new Server(
+  {
+    name: "my-custom-server",
+    version: "1.0.0",
+  },
+  {
+    capabilities: {
+      tools: {},
+    },
+  },
+);
 
 // Define a tool
 server.setRequestHandler("tools/list", async () => ({
-  tools: [{
-    name: "my_custom_tool",
-    description: "Does something useful",
-    inputSchema: {
-      type: "object",
-      properties: {
-        input: { type: "string", description: "The input" }
+  tools: [
+    {
+      name: "my_custom_tool",
+      description: "Does something useful",
+      inputSchema: {
+        type: "object",
+        properties: {
+          input: { type: "string", description: "The input" },
+        },
+        required: ["input"],
       },
-      required: ["input"]
-    }
-  }]
+    },
+  ],
 }));
 
 // Handle tool calls
@@ -340,7 +339,7 @@ server.setRequestHandler("tools/call", async (request) => {
     const { input } = request.params.arguments;
     // Your logic here
     return {
-      content: [{ type: "text", text: `Processed: ${input}` }]
+      content: [{ type: "text", text: `Processed: ${input}` }],
     };
   }
 });
@@ -429,14 +428,14 @@ claude
 
 ### When to Use Which MCP
 
-| Need | MCP Server | Why |
-|------|-----------|-----|
-| Browse websites | Browser | Full page interaction |
-| Remember across sessions | Memory | Persistent knowledge |
-| Complex reasoning | Sequential Thinking | Extended chain-of-thought |
-| Generate images | Nano Banana | High-quality visuals |
-| Create music prompts | Lyric Genius | Specialized for Suno |
-| Custom integrations | Build your own | Unlimited possibilities |
+| Need                     | MCP Server          | Why                       |
+| ------------------------ | ------------------- | ------------------------- |
+| Browse websites          | Browser             | Full page interaction     |
+| Remember across sessions | Memory              | Persistent knowledge      |
+| Complex reasoning        | Sequential Thinking | Extended chain-of-thought |
+| Generate images          | Nano Banana         | High-quality visuals      |
+| Create music prompts     | Lyric Genius        | Specialized for Suno      |
+| Custom integrations      | Build your own      | Unlimited possibilities   |
 
 ### Performance Tips
 
@@ -536,6 +535,6 @@ Not directly through MCP. However, Claude can orchestrate multiple servers, pass
 
 ---
 
-*MCP — The universal connector for AI capabilities.*
+_MCP — The universal connector for AI capabilities._
 
-*[MCP Specification](https://modelcontextprotocol.io/) | [GitHub](https://github.com/frankxai/agentic-creator-os) | [FrankX](https://frankx.ai)*
+_[MCP Specification](https://modelcontextprotocol.io/) | [GitHub](https://github.com/frankxai/agentic-creator-os) | [FrankX](https://frankx.ai)_

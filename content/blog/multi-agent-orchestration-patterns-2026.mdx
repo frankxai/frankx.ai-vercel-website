@@ -5,8 +5,16 @@ date: "2026-01-26"
 author: "Frank"
 category: "AI & Systems"
 tags: ["Multi-Agent", "LangGraph", "CrewAI", "Orchestration", "Production AI"]
-keywords: ["multi-agent orchestration", "agent handoff patterns", "langgraph state management", "production ai agents", "agent observability"]
+keywords:
+  [
+    "multi-agent orchestration",
+    "agent handoff patterns",
+    "langgraph state management",
+    "production ai agents",
+    "agent observability",
+  ]
 image: "/images/blog/multi-agent-orchestration.png"
+featured: true
 ---
 
 Picture this: You're orchestrating a track with four producers in different cities. Each has their specialty—drums, melody, bass, vocals. The magic isn't in any single element. It's in how they hand off to each other, when they sync, how they recover when someone drops the beat.
@@ -41,11 +49,13 @@ The simplest pattern. Agent A completes, passes output to Agent B.
 ```
 
 **When to use:**
+
 - Linear workflows with clear stages
 - Each stage has different expertise requirements
 - Output of one stage is input to next
 
 **Implementation considerations:**
+
 - Define clear contracts between agents (what format? what fields?)
 - Handle partial failures (what if Analysis fails but Research succeeded?)
 - Consider checkpointing (can you resume from middle?)
@@ -54,18 +64,20 @@ The simplest pattern. Agent A completes, passes output to Agent B.
 
 Multiple agents work simultaneously, results merge.
 
-```
-                    ┌→ [Market Research] ─┐
-[Coordinator] ──────┼→ [Tech Research]   ─┼→ [Synthesizer]
-                    └→ [Competitor Intel] ─┘
-```
+<Diagram
+  src="/images/diagrams/blog/multi-agent-orchestration-patterns-2026/legacy-diagram-01.svg"
+  alt="Parallel Handoff (Fan-Out/Fan-In) diagram 1"
+  caption="Parallel Handoff (Fan-Out/Fan-In)"
+/>
 
 **When to use:**
+
 - Independent subtasks that don't depend on each other
 - Time-sensitive operations where parallelism matters
 - Diverse expertise needed simultaneously
 
 **Implementation considerations:**
+
 - Define merge strategy (how do you combine results?)
 - Handle stragglers (wait for all? timeout?)
 - Manage token budgets across parallel branches
@@ -74,22 +86,20 @@ Multiple agents work simultaneously, results merge.
 
 Manager agent delegates to specialists, aggregates results.
 
-```
-[Manager Agent]
-       │
-       ├──→ [Specialist A] (delegate task 1)
-       ├──→ [Specialist B] (delegate task 2)
-       └──→ [Specialist C] (delegate task 3)
-       │
-[Manager aggregates and decides]
-```
+<Diagram
+  src="/images/diagrams/blog/multi-agent-orchestration-patterns-2026/legacy-diagram-02.svg"
+  alt="Hierarchical Handoff (Delegation) diagram 2"
+  caption="Hierarchical Handoff (Delegation)"
+/>
 
 **When to use:**
+
 - Complex problems requiring decomposition
 - When you need a "thinking" layer above execution
 - Dynamic task allocation based on problem analysis
 
 **Implementation considerations:**
+
 - Manager needs strong reasoning (use capable model)
 - Define delegation protocol (how does manager assign?)
 - Handle re-delegation (what if specialist can't complete?)
@@ -98,20 +108,20 @@ Manager agent delegates to specialists, aggregates results.
 
 Agents pass work back and forth until quality threshold met.
 
-```
-[Generator] ←──→ [Critic]
-     ↓
-(iterate until quality score > threshold)
-     ↓
-[Output]
-```
+<Diagram
+  src="/images/diagrams/blog/multi-agent-orchestration-patterns-2026/legacy-diagram-03.svg"
+  alt="Iterative Handoff (Loop) diagram 3"
+  caption="Iterative Handoff (Loop)"
+/>
 
 **When to use:**
+
 - Quality-sensitive outputs
 - Creative generation with refinement
 - Code generation with testing
 
 **Implementation considerations:**
+
 - Define termination criteria (how many iterations max?)
 - Prevent infinite loops (score trending wrong direction?)
 - Balance quality vs cost (each iteration costs tokens)
@@ -146,11 +156,13 @@ def research_agent(state: SharedState) -> SharedState:
 ```
 
 **Pros:**
+
 - Simple mental model
 - Easy debugging (inspect state at any point)
 - Natural for graph-based frameworks (LangGraph)
 
 **Cons:**
+
 - Potential for conflicts (two agents write same key)
 - State can grow large (context window concerns)
 - Harder to parallelize (locking?)
@@ -172,11 +184,13 @@ class ResearchActor:
 ```
 
 **Pros:**
+
 - Natural isolation (each agent is independent)
 - Scales well (no shared state bottleneck)
 - Maps to distributed systems patterns
 
 **Cons:**
+
 - More complex coordination
 - Message format design is critical
 - Harder to inspect "global" state
@@ -204,11 +218,13 @@ def get_current_state(events):
 ```
 
 **Pros:**
+
 - Complete audit trail
 - Time-travel debugging
 - Natural for compliance requirements
 
 **Cons:**
+
 - More complex implementation
 - Storage growth over time
 - Replay can be slow for long histories
@@ -326,34 +342,22 @@ async def research_agent(state):
 
 ### Metrics to Track
 
-| Metric | Why It Matters |
-|--------|----------------|
-| **Latency per agent** | Identify bottlenecks |
-| **Token usage per agent** | Cost attribution |
-| **Success/failure rates** | Reliability tracking |
-| **Handoff counts** | Flow analysis |
+| Metric                    | Why It Matters           |
+| ------------------------- | ------------------------ |
+| **Latency per agent**     | Identify bottlenecks     |
+| **Token usage per agent** | Cost attribution         |
+| **Success/failure rates** | Reliability tracking     |
+| **Handoff counts**        | Flow analysis            |
 | **Human escalation rate** | Automation effectiveness |
-| **Quality scores** | Output monitoring |
+| **Quality scores**        | Output monitoring        |
 
 ### Trace Visualization
 
-```
-Request: "Analyze competitor landscape"
-├── [00:00.000] Coordinator receives request
-├── [00:00.050] Decomposes into 3 subtasks
-├── [00:00.100] Fan-out to specialists
-│   ├── [00:00.100] Market Research Agent
-│   │   ├── [00:02.500] Web search
-│   │   └── [00:05.000] Complete (2500 tokens)
-│   ├── [00:00.100] Tech Research Agent
-│   │   ├── [00:03.000] API calls
-│   │   └── [00:06.500] Complete (3200 tokens)
-│   └── [00:00.100] Competitor Intel Agent
-│       ├── [00:04.000] Data extraction
-│       └── [00:08.000] Complete (2800 tokens)
-├── [00:08.100] Fan-in: Synthesizer
-└── [00:12.000] Response complete (total: 9500 tokens)
-```
+<Diagram
+  src="/images/diagrams/blog/multi-agent-orchestration-patterns-2026/legacy-diagram-04.svg"
+  alt="Trace Visualization diagram 4"
+  caption="Trace Visualization"
+/>
 
 ### Alerting Rules
 
@@ -377,49 +381,34 @@ alerts:
 
 ## Putting It Together: A Reference Architecture
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                        API Gateway                               │
-│                    (rate limiting, auth)                         │
-├─────────────────────────────────────────────────────────────────┤
-│                     Orchestrator Layer                           │
-│              (LangGraph / CrewAI / Custom)                       │
-│                                                                  │
-│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐              │
-│  │ Coordinator │→ │ Specialists │→ │ Synthesizer │              │
-│  └─────────────┘  └─────────────┘  └─────────────┘              │
-│         ↓               ↓               ↓                        │
-├─────────────────────────────────────────────────────────────────┤
-│                     State Management                             │
-│           (Redis / PostgreSQL / Event Store)                     │
-├─────────────────────────────────────────────────────────────────┤
-│                     Tool Layer (MCP)                             │
-│  ┌────────┐  ┌────────┐  ┌────────┐  ┌────────┐                │
-│  │  Web   │  │Database│  │  APIs  │  │  Files │                │
-│  └────────┘  └────────┘  └────────┘  └────────┘                │
-├─────────────────────────────────────────────────────────────────┤
-│                    Observability Layer                           │
-│         (OpenTelemetry / LangSmith / Custom)                     │
-└─────────────────────────────────────────────────────────────────┘
-```
+<Diagram
+  src="/images/diagrams/blog/multi-agent-orchestration-patterns-2026/legacy-diagram-05.svg"
+  alt="Putting It Together: A Reference Architecture diagram 5"
+  caption="Putting It Together: A Reference Architecture"
+/>
 
 ---
 
 ## Frequently Asked Questions
 
 ### How many agents should a system have?
+
 Start with the minimum needed. Each agent adds complexity. A well-designed 3-agent system beats a poorly-designed 10-agent system. Scale up when you have evidence of need.
 
 ### Should I use one framework or mix them?
+
 Use one primary framework for orchestration. Mix only when you have specific needs (e.g., LangGraph for orchestration, CrewAI agents for specific tasks). Complexity is the enemy.
 
 ### How do I debug multi-agent failures?
+
 Structured logging + trace visualization. You need to see the full flow to diagnose issues. Invest in observability before you need it.
 
 ### What's the biggest mistake teams make?
+
 Starting with complex architectures before validating the use case. Build the simplest thing that could work, measure, then add complexity.
 
 ### How do I handle agent disagreements?
+
 Define arbitration rules upfront. Options: majority vote, confidence weighting, hierarchical override, human escalation. Pick one and be consistent.
 
 ---
@@ -436,11 +425,12 @@ The 72% of enterprise projects using multi-agent systems didn't get there by cho
 
 ---
 
-*Building multi-agent systems? [Check the AI Architecture Hub](/ai-architecture) for blueprints, BYOK prototypes, and deployment templates.*
+_Building multi-agent systems? [Check the AI Architecture Hub](/ai-architecture) for blueprints, BYOK prototypes, and deployment templates._
 
 ---
 
 **Sources:**
+
 - [LangGraph Documentation](https://python.langchain.com/docs/langgraph)
 - [CrewAI Documentation](https://docs.crewai.com/)
 - [Microsoft AutoGen](https://microsoft.github.io/autogen/)

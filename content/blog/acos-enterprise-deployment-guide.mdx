@@ -5,17 +5,24 @@ date: "2026-01-27"
 lastModified: "2026-01-27"
 author: "Frank"
 tags: ["enterprise", "deployment", "governance", "teams", "acos"]
-keywords: ["enterprise ai deployment", "ai governance", "team ai orchestration", "acos enterprise", "ai for teams"]
+keywords:
+  [
+    "enterprise ai deployment",
+    "ai governance",
+    "team ai orchestration",
+    "acos enterprise",
+    "ai for teams",
+  ]
 category: "AI Architecture"
 featured: false
-image: '/images/blog/acos-enterprise-hero.png'
+image: "/images/blog/acos-enterprise-hero.png"
 readingGoal: "Deploy ACOS to your team with proper governance, access control, and scaling patterns."
-readingTime: '12 min'
+readingTime: "12 min"
 ---
 
 # ACOS for Enterprise: Team Deployment and Governance Guide
 
-*From solo creator to coordinated team. Scale without losing control.*
+_From solo creator to coordinated team. Scale without losing control._
 
 ---
 
@@ -33,13 +40,13 @@ Enterprise ACOS: Multiple people, multiple brands, coordinated governance.
 
 **The Challenges:**
 
-| Challenge | Solo | Enterprise |
-|-----------|------|------------|
-| Brand consistency | Your brain | Documented + enforced |
-| Quality control | Trust yourself | Approval workflows |
-| Access control | N/A | Role-based permissions |
-| Audit trail | N/A | Required for compliance |
-| Scaling | N/A | Distributed instances |
+| Challenge         | Solo           | Enterprise              |
+| ----------------- | -------------- | ----------------------- |
+| Brand consistency | Your brain     | Documented + enforced   |
+| Quality control   | Trust yourself | Approval workflows      |
+| Access control    | N/A            | Role-based permissions  |
+| Audit trail       | N/A            | Required for compliance |
+| Scaling           | N/A            | Distributed instances   |
 
 ---
 
@@ -47,30 +54,25 @@ Enterprise ACOS: Multiple people, multiple brands, coordinated governance.
 
 ACOS organizes team capabilities into 5 departments:
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                      STARLIGHT ORCHESTRATOR                      │
-│                    (Meta-Coordination Layer)                     │
-└─────────────────────────────────────────────────────────────────┘
-         │            │            │            │            │
-         ▼            ▼            ▼            ▼            ▼
-    ┌─────────┐  ┌─────────┐  ┌─────────┐  ┌─────────┐  ┌─────────┐
-    │ CONTENT │  │ DESIGN  │  │   DEV   │  │MARKETING│  │BUSINESS │
-    │  DEPT   │  │  DEPT   │  │  DEPT   │  │  DEPT   │  │  DEPT   │
-    └─────────┘  └─────────┘  └─────────┘  └─────────┘  └─────────┘
-```
+<Diagram
+  src="/images/diagrams/blog/acos-enterprise-deployment-guide/legacy-diagram-01.svg"
+  alt="The Department Model diagram 1"
+  caption="The Department Model"
+/>
 
 ### Content Department
 
 **Responsibility:** Written content, documentation, copywriting
 
 **Roles:**
+
 - Content Lead (strategy, editorial calendar)
 - Writer (drafts, articles)
 - Editor (review, polish)
 - Publisher (deployment, distribution)
 
 **Commands:**
+
 - `/article-creator`
 - `/factory`
 - `/polish-content`
@@ -81,12 +83,14 @@ ACOS organizes team capabilities into 5 departments:
 **Responsibility:** Visual assets, UI/UX, brand materials
 
 **Roles:**
+
 - Design Lead (visual strategy)
 - Visual Designer (graphics, images)
 - UX Designer (interfaces, flows)
 - Brand Guardian (consistency)
 
 **Commands:**
+
 - `/infogenius`
 - `/ux-design`
 - `/generate-images`
@@ -96,12 +100,14 @@ ACOS organizes team capabilities into 5 departments:
 **Responsibility:** Code, integrations, automation
 
 **Roles:**
+
 - Tech Lead (architecture)
 - Frontend (UI implementation)
 - Backend (APIs, data)
 - DevOps (deployment, infrastructure)
 
 **Commands:**
+
 - `/spec`
 - `/nextjs-deploy`
 - `/automation-dev`
@@ -111,12 +117,14 @@ ACOS organizes team capabilities into 5 departments:
 **Responsibility:** Growth, distribution, analytics
 
 **Roles:**
+
 - Marketing Lead (strategy)
 - Growth (acquisition, conversion)
 - Social (distribution)
 - Analytics (measurement)
 
 **Commands:**
+
 - `/generate-social`
 - `/research`
 - SEO/AEO workflows
@@ -126,12 +134,14 @@ ACOS organizes team capabilities into 5 departments:
 **Responsibility:** Strategy, operations, revenue
 
 **Roles:**
+
 - Strategy Lead
 - Operations
 - Sales
 - Finance
 
 **Commands:**
+
 - `/starlight-architect`
 - `/council`
 - `/plan-week`
@@ -142,18 +152,11 @@ ACOS organizes team capabilities into 5 departments:
 
 Each team/client/brand gets an instance configuration:
 
-```
-instances/
-├── acme-corp/           # Client 1
-│   ├── config.json
-│   ├── brand-voice.md
-│   └── skills/          # Client-specific skills
-├── internal/            # Internal brand
-│   ├── config.json
-│   └── brand-voice.md
-└── _template/           # Template for new clients
-    └── config.json
-```
+<Diagram
+  src="/images/diagrams/blog/acos-enterprise-deployment-guide/legacy-diagram-02.svg"
+  alt="Instance Configuration for Teams diagram 2"
+  caption="Instance Configuration for Teams"
+/>
 
 ### config.json Structure
 
@@ -268,6 +271,7 @@ Track all significant actions:
 ```
 
 **Log Entry Example:**
+
 ```json
 {
   "timestamp": "2026-01-27T14:30:00Z",
@@ -364,19 +368,11 @@ roles:
 
 All teams share one ACOS installation, separated by instances:
 
-```
-┌─────────────────────────────────────────┐
-│            CENTRAL ACOS HUB              │
-│                                          │
-│  ┌──────────┐  ┌──────────┐  ┌────────┐ │
-│  │ Instance │  │ Instance │  │Instance│ │
-│  │  Acme    │  │  Beta    │  │Internal│ │
-│  └──────────┘  └──────────┘  └────────┘ │
-│                                          │
-│          Shared Skills Library           │
-│          Central Governance              │
-└─────────────────────────────────────────┘
-```
+<Diagram
+  src="/images/diagrams/blog/acos-enterprise-deployment-guide/legacy-diagram-03.svg"
+  alt="Pattern 1: Centralized Hub diagram 3"
+  caption="Pattern 1: Centralized Hub"
+/>
 
 **Best For:** Small-medium teams (5-30 people)
 
@@ -384,22 +380,11 @@ All teams share one ACOS installation, separated by instances:
 
 Each department/client gets their own ACOS installation:
 
-```
-┌──────────────┐  ┌──────────────┐  ┌──────────────┐
-│  Acme ACOS   │  │  Beta ACOS   │  │Internal ACOS │
-│              │  │              │  │              │
-│ Own skills   │  │ Own skills   │  │ Own skills   │
-│ Own agents   │  │ Own agents   │  │ Own agents   │
-│ Own config   │  │ Own config   │  │ Own config   │
-└──────────────┘  └──────────────┘  └──────────────┘
-         │                │                │
-         └────────────────┼────────────────┘
-                          ▼
-              ┌──────────────────────┐
-              │  Shared Skill Repo   │
-              │  (Git-based sync)    │
-              └──────────────────────┘
-```
+<Diagram
+  src="/images/diagrams/blog/acos-enterprise-deployment-guide/legacy-diagram-04.svg"
+  alt="Pattern 2: Federated Instances diagram 4"
+  caption="Pattern 2: Federated Instances"
+/>
 
 **Best For:** Large teams (30-100+), multi-client agencies
 
@@ -407,19 +392,11 @@ Each department/client gets their own ACOS installation:
 
 Core skills shared, client-specific customization local:
 
-```
-┌─────────────────────────────────────────┐
-│            CORE SKILL LIBRARY            │
-│   (Maintained centrally, version-locked) │
-└─────────────────────────────────────────┘
-                    ↓ sync
-┌──────────────┐  ┌──────────────┐  ┌──────────────┐
-│  Client A    │  │  Client B    │  │  Internal    │
-│              │  │              │  │              │
-│ + A skills   │  │ + B skills   │  │ + Int skills │
-│ + A config   │  │ + B config   │  │ + Int config │
-└──────────────┘  └──────────────┘  └──────────────┘
-```
+<Diagram
+  src="/images/diagrams/blog/acos-enterprise-deployment-guide/legacy-diagram-05.svg"
+  alt="Pattern 3: Hybrid diagram 5"
+  caption="Pattern 3: Hybrid"
+/>
 
 **Best For:** Agencies with diverse clients
 
@@ -530,28 +507,28 @@ Core skills shared, client-specific customization local:
 
 ### Productivity Metrics
 
-| Metric | Measurement | Target |
-|--------|-------------|--------|
-| Content velocity | Articles/week | +50% |
-| Time to publish | Hours from draft | -40% |
-| Review cycles | Rounds per piece | -30% |
-| Error rate | Issues post-publish | -60% |
+| Metric           | Measurement         | Target |
+| ---------------- | ------------------- | ------ |
+| Content velocity | Articles/week       | +50%   |
+| Time to publish  | Hours from draft    | -40%   |
+| Review cycles    | Rounds per piece    | -30%   |
+| Error rate       | Issues post-publish | -60%   |
 
 ### Governance Metrics
 
-| Metric | Measurement | Target |
-|--------|-------------|--------|
-| Approval time | Hours to approve | Under 24h |
-| Compliance rate | Audit pass rate | Above 95% |
-| Incident rate | Governance violations | Under 5/month |
+| Metric          | Measurement           | Target        |
+| --------------- | --------------------- | ------------- |
+| Approval time   | Hours to approve      | Under 24h     |
+| Compliance rate | Audit pass rate       | Above 95%     |
+| Incident rate   | Governance violations | Under 5/month |
 
 ### Adoption Metrics
 
-| Metric | Measurement | Target |
-|--------|-------------|--------|
-| DAU | Daily active users | >80% |
-| Command usage | Commands/user/day | >5 |
-| Skill adoption | Skills loaded/session | >3 |
+| Metric         | Measurement           | Target |
+| -------------- | --------------------- | ------ |
+| DAU            | Daily active users    | >80%   |
+| Command usage  | Commands/user/day     | >5     |
+| Skill adoption | Skills loaded/session | >3     |
 
 ---
 
@@ -601,6 +578,6 @@ Governance workflows catch issues before publish. Audit logs track what happened
 
 ---
 
-*Scale AI-powered creation. Maintain control and quality.*
+_Scale AI-powered creation. Maintain control and quality._
 
-*[GitHub](https://github.com/frankxai/agentic-creator-os) | [FrankX](https://frankx.ai)*
+_[GitHub](https://github.com/frankxai/agentic-creator-os) | [FrankX](https://frankx.ai)_

@@ -5,17 +5,24 @@ date: "2026-01-27"
 lastModified: "2026-01-27"
 author: "Frank"
 tags: ["tutorial", "claude code", "skills", "development", "acos"]
-keywords: ["claude code skills", "acos custom skills", "skill-rules.json", "ai skill development", "claude code tutorial"]
-category: "Workshops & Tutorials"
+keywords:
+  [
+    "claude code skills",
+    "acos custom skills",
+    "skill-rules.json",
+    "ai skill development",
+    "claude code tutorial",
+  ]
+category: "Tutorials"
 featured: false
-image: '/images/blog/building-custom-skills-hero.png'
+image: "/images/blog/building-custom-skills-hero.png"
 readingGoal: "Build and deploy your first custom ACOS skill with auto-activation."
-readingTime: '12 min'
+readingTime: "12 min"
 ---
 
 # Building Custom Skills for ACOS: The Complete Developer Guide
 
-*Extend ACOS with your own domain expertise.*
+_Extend ACOS with your own domain expertise._
 
 ---
 
@@ -32,6 +39,7 @@ Skills are **domain knowledge modules** that load into Claude's context when rel
 **Example: The `suno-ai-mastery` Skill**
 
 When you say "help me create a synthwave track," ACOS:
+
 1. Detects keywords: "create", "track"
 2. Checks `skill-rules.json` for matches
 3. Finds rule: `suno-ai-mastery` triggers on music keywords
@@ -42,15 +50,15 @@ You never typed `/skill suno-ai-mastery`. It just happened.
 
 ### Skills vs. Agents vs. Commands
 
-| Component | What It Is | When It Loads |
-|-----------|-----------|---------------|
-| **Skill** | Domain knowledge | Auto-activates on context |
-| **Agent** | Persona/behavior | Invoked for specific tasks |
-| **Command** | Entry point | User types `/command` |
+| Component   | What It Is       | When It Loads              |
+| ----------- | ---------------- | -------------------------- |
+| **Skill**   | Domain knowledge | Auto-activates on context  |
+| **Agent**   | Persona/behavior | Invoked for specific tasks |
+| **Command** | Entry point      | User types `/command`      |
 
-Skills teach Claude *what to know*.
-Agents tell Claude *how to behave*.
-Commands are *how users invoke things*.
+Skills teach Claude _what to know_.
+Agents tell Claude _how to behave_.
+Commands are _how users invoke things_.
 
 ---
 
@@ -69,7 +77,7 @@ triggers:
   - keyword1
   - keyword2
   - keyword3
-category: technical  # or creative, business, personal, system
+category: technical # or creative, business, personal, system
 related_skills:
   - other-skill-1
   - other-skill-2
@@ -78,18 +86,23 @@ related_skills:
 # MARKDOWN CONTENT
 
 ## Purpose
+
 What this skill teaches Claude.
 
 ## When to Use
+
 Specific scenarios where this skill applies.
 
 ## Core Patterns
+
 The actual knowledge, with code examples.
 
 ## Anti-Patterns
+
 What NOT to do.
 
 ## Examples
+
 Real, working examples.
 ```
 
@@ -109,15 +122,12 @@ Level 3: Resources folder (unlimited)
 ```
 
 **Directory Structure:**
-```
-skills/
-└── my-skill/
-    ├── SKILL.md           # Main file (<500 lines)
-    └── resources/
-        ├── patterns.md    # Detailed patterns
-        ├── examples.md    # Extended examples
-        └── reference.md   # API/config reference
-```
+
+<Diagram
+  src="/images/diagrams/blog/building-custom-skills-acos/skill-directory-structure.svg"
+  alt="Recommended ACOS skill directory structure with SKILL.md and resources"
+  caption="Recommended skill layout: concise core instructions with deep references in resources."
+/>
 
 ---
 
@@ -134,7 +144,7 @@ cd ~/.claude/skills/api-documentation
 
 ### Step 2: Write the Skill File
 
-```markdown
+````markdown
 ---
 name: api-documentation
 description: "Best practices for writing clear, complete API documentation"
@@ -162,6 +172,7 @@ This skill teaches Claude how to write API documentation that developers actuall
 ## When to Use
 
 Activate this skill when:
+
 - Writing documentation for REST APIs
 - Creating OpenAPI/Swagger specs
 - Documenting endpoint behavior
@@ -173,7 +184,7 @@ Activate this skill when:
 
 Every endpoint should document:
 
-```markdown
+````markdown
 ## `POST /api/users`
 
 Create a new user account.
@@ -187,6 +198,7 @@ Create a new user account.
 | `Content-Type` | Yes | `application/json` |
 
 **Body:**
+
 ```json
 {
   "email": "user@example.com",
@@ -194,6 +206,8 @@ Create a new user account.
   "role": "member"
 }
 ```
+````
+````
 
 **Parameters:**
 | Field | Type | Required | Description |
@@ -205,6 +219,7 @@ Create a new user account.
 ### Response
 
 **Success (201 Created):**
+
 ```json
 {
   "id": "usr_abc123",
@@ -230,7 +245,8 @@ curl -X POST https://api.example.com/api/users \
   -H "Content-Type: application/json" \
   -d '{"email": "user@example.com", "name": "John Doe"}'
 ```
-```
+
+````
 
 ### Pattern 2: Error Documentation
 
@@ -257,10 +273,11 @@ Always document errors with:
     ]
   }
 }
-```
+````
 
 **Fix:** Check that all required fields are present and correctly formatted.
-```
+
+````
 
 ### Pattern 3: Authentication Section
 
@@ -271,7 +288,7 @@ All API requests require a Bearer token in the Authorization header:
 
 ```bash
 Authorization: Bearer YOUR_API_KEY
-```
+````
 
 ### Getting Your API Key
 
@@ -287,6 +304,7 @@ Tokens expire after 30 days. Refresh using:
 ```bash
 POST /api/auth/refresh
 ```
+
 ```
 
 ## Anti-Patterns
@@ -295,15 +313,21 @@ POST /api/auth/refresh
 
 ❌ Bad:
 ```
+
 ## Create User
+
 Creates a user.
+
 ```
 
 ✅ Good:
 ```
+
 ## Create User
+
 Creates a new user account in your organization.
 The user will receive an email invitation to set their password.
+
 ```
 
 ### Don't: Skip Error Cases
@@ -338,7 +362,14 @@ Edit `~/.claude/skill-rules.json`:
     {
       "skill": "api-documentation",
       "triggers": {
-        "keywords": ["api docs", "api documentation", "document api", "endpoint", "swagger", "openapi"],
+        "keywords": [
+          "api docs",
+          "api documentation",
+          "document api",
+          "endpoint",
+          "swagger",
+          "openapi"
+        ],
         "filePatterns": ["**/api/**/*.md", "**/docs/api/**/*"],
         "commands": []
       },
@@ -373,11 +404,13 @@ The first thing after Purpose should be explicit activation criteria:
 ## When to Use
 
 Activate this skill when:
+
 - User mentions [specific keywords]
 - Working with [specific file types]
 - Task involves [specific domain]
 
 Do NOT use when:
+
 - [Situation where skill doesn't apply]
 ```
 
@@ -385,20 +418,23 @@ Do NOT use when:
 
 Every pattern needs a complete, copy-paste-ready example:
 
-```markdown
+````markdown
 ### Pattern: Rate Limiting Headers
 
 ❌ Abstract:
 "Include rate limit headers in responses"
 
 ✅ Concrete:
+
 ```http
 HTTP/1.1 200 OK
 X-RateLimit-Limit: 1000
 X-RateLimit-Remaining: 999
 X-RateLimit-Reset: 1706356800
 ```
-```
+````
+
+````
 
 ### 3. Include Anti-Patterns
 
@@ -414,15 +450,17 @@ Show what NOT to do. This prevents Claude from making common mistakes:
 class UserCreationRequestValidatorFactory {
   // 50 lines of abstraction
 }
-```
+````
 
 ✅ Good:
+
 ```typescript
 function validateUser(data) {
   // Direct validation
 }
 ```
-```
+
+````
 
 ### 4. Link Related Skills
 
@@ -434,7 +472,7 @@ Help Claude know when to combine skills:
 - `test-driven-development` - When writing tests for the API
 - `security-best-practices` - For authentication patterns
 - `typescript-patterns` - If using TypeScript SDK
-```
+````
 
 ### 5. Keep It Scannable
 
@@ -443,13 +481,13 @@ Use tables, code blocks, and bullet points. Claude (and humans) scan before read
 ```markdown
 ## Quick Reference
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/users` | List all users |
-| POST | `/users` | Create user |
-| GET | `/users/:id` | Get user by ID |
-| PUT | `/users/:id` | Update user |
-| DELETE | `/users/:id` | Delete user |
+| Method | Endpoint     | Description    |
+| ------ | ------------ | -------------- |
+| GET    | `/users`     | List all users |
+| POST   | `/users`     | Create user    |
+| GET    | `/users/:id` | Get user by ID |
+| PUT    | `/users/:id` | Update user    |
+| DELETE | `/users/:id` | Delete user    |
 ```
 
 ---
@@ -468,8 +506,8 @@ The auto-activation system uses `skill-rules.json` with these properties:
         "filePatterns": ["**/*.tsx", "src/components/**/*"],
         "commands": ["/article-creator", "/spec"]
       },
-      "priority": "high",  // high, medium, low
-      "maxConcurrent": 3   // Max skills loaded at once
+      "priority": "high", // high, medium, low
+      "maxConcurrent": 3 // Max skills loaded at once
     }
   ]
 }
@@ -477,11 +515,11 @@ The auto-activation system uses `skill-rules.json` with these properties:
 
 ### Trigger Types
 
-| Type | How It Works | Example |
-|------|--------------|---------|
-| `keywords` | Matches words in user message | `["react", "component", "hook"]` |
-| `filePatterns` | Matches files being edited | `["**/*.tsx", "**/*.jsx"]` |
-| `commands` | Activates when command runs | `["/spec", "/article-creator"]` |
+| Type           | How It Works                  | Example                          |
+| -------------- | ----------------------------- | -------------------------------- |
+| `keywords`     | Matches words in user message | `["react", "component", "hook"]` |
+| `filePatterns` | Matches files being edited    | `["**/*.tsx", "**/*.jsx"]`       |
+| `commands`     | Activates when command runs   | `["/spec", "/article-creator"]`  |
 
 ### Priority Levels
 
@@ -496,9 +534,9 @@ Triggers are OR-based. Any match activates the skill:
 ```json
 {
   "triggers": {
-    "keywords": ["react"],     // OR
+    "keywords": ["react"], // OR
     "filePatterns": ["*.tsx"], // OR
-    "commands": ["/spec"]      // Any of these triggers activation
+    "commands": ["/spec"] // Any of these triggers activation
   }
 }
 ```
@@ -515,13 +553,11 @@ Keep in `~/.claude/skills/`. Works on your machine only.
 
 Add to project's `.claude/skills/`:
 
-```
-my-project/
-└── .claude/
-    └── skills/
-        └── my-skill/
-            └── SKILL.md
-```
+<Diagram
+  src="/images/diagrams/blog/building-custom-skills-acos/project-skill-placement.svg"
+  alt="Project-level skill placement inside .claude/skills directory"
+  caption="Project-scoped installation path for sharing a skill with collaborators."
+/>
 
 Committed to repo, works for anyone who clones.
 
@@ -533,6 +569,7 @@ Committed to repo, works for anyone who clones.
 4. Submit pull request
 
 **Contribution Checklist:**
+
 - [ ] Under 500 lines
 - [ ] YAML frontmatter complete
 - [ ] Working code examples
@@ -590,6 +627,6 @@ Yes! Skills are just Claude Code skills. ACOS adds auto-activation and the curat
 
 ---
 
-*Build skills. Share knowledge. Extend the ecosystem.*
+_Build skills. Share knowledge. Extend the ecosystem._
 
-*[Skill Template](https://github.com/frankxai/agentic-creator-os/blob/main/templates/SKILL_TEMPLATE.md) | [GitHub](https://github.com/frankxai/agentic-creator-os) | [FrankX](https://frankx.ai)*
+_[Skill Template](https://github.com/frankxai/agentic-creator-os/blob/main/templates/SKILL_TEMPLATE.md) | [GitHub](https://github.com/frankxai/agentic-creator-os) | [FrankX](https://frankx.ai)_

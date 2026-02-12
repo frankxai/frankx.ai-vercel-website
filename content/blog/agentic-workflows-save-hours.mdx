@@ -5,17 +5,24 @@ date: "2026-01-22"
 lastModified: "2026-01-22"
 author: "Frank"
 tags: ["workflows", "automation", "productivity", "agentic ai"]
-keywords: ["ai workflow automation", "creator productivity", "agentic workflows", "save time with ai", "automation templates"]
+keywords:
+  [
+    "ai workflow automation",
+    "creator productivity",
+    "agentic workflows",
+    "save time with ai",
+    "automation templates",
+  ]
 category: "Creator Systems"
 featured: false
-image: '/images/blog/agentic-workflows-save-hours-hero.png'
+image: "/images/blog/agentic-workflows-save-hours-hero.png"
 readingGoal: "Copy 5 production-ready workflows to automate your most time-consuming tasks."
-readingTime: '12 min'
+readingTime: "12 min"
 ---
 
 # 5 Agentic Workflows That Save Creators 10+ Hours Per Week
 
-*The exact workflows running my content, consulting, and development.*
+_The exact workflows running my content, consulting, and development._
 
 ---
 
@@ -43,6 +50,7 @@ The [Agentic Creator OS](https://github.com/frankxai/agentic-creator-os) runs th
 /publish "Blog Title Here"
 
 Steps:
+
 1. CONTENT: Research topic, write draft, add SEO
 2. DESIGN: Generate hero image, format visuals
 3. DEV: Create MDX file, deploy to production
@@ -52,6 +60,7 @@ Steps:
 ### What Happens
 
 **Step 1: Content Creation**
+
 ```
 → Research trending content on topic
 → Create outline based on your style
@@ -61,6 +70,7 @@ Steps:
 ```
 
 **Step 2: Visual Assets**
+
 ```
 → Generate hero image matching brand
 → Create OG image for social sharing
@@ -68,6 +78,7 @@ Steps:
 ```
 
 **Step 3: Deployment**
+
 ```
 → Create MDX file with frontmatter
 → Run build verification
@@ -76,6 +87,7 @@ Steps:
 ```
 
 **Step 4: Distribution**
+
 ```
 → Generate LinkedIn post
 → Create Twitter thread
@@ -93,21 +105,25 @@ Create `~/.claude/skills/publish.md`:
 When I say "/publish [title]", execute this workflow:
 
 ## Phase 1: Content
+
 - Research: Find 3-5 top articles on this topic
 - Outline: Create H2/H3 structure matching my blog style
 - Draft: Write 1,500+ words with code examples where relevant
 - SEO: Add 5+ FAQ questions at the end
 
 ## Phase 2: Assets
+
 - Hero: Generate image with topic visualization
 - Meta: Create title (60 chars), description (155 chars)
 
 ## Phase 3: Deploy
+
 - File: Create content/blog/[slug].mdx
 - Build: Verify no errors
 - Deploy: Push to production
 
 ## Phase 4: Social
+
 - LinkedIn: 1,300 char post with hook
 - Twitter: 5-7 tweet thread
 - Output: Display all content for review
@@ -129,6 +145,7 @@ Wait for my approval before deploying.
 /weekly-ops
 
 Steps:
+
 1. ANALYTICS: Pull traffic, engagement, revenue data
 2. CONTENT: List published content and performance
 3. BUSINESS: Revenue summary, new leads, tasks completed
@@ -141,25 +158,30 @@ Steps:
 ## Weekly Operations Report: Jan 20-26, 2026
 
 ### Traffic & Engagement
+
 - Website visits: 2,340 (+15% vs last week)
 - Blog views: 1,230 (top: "Jarvis Tutorial" at 450)
 - Newsletter: 234 opens, 12% click rate
 
 ### Content Published
+
 1. "Build Your Own Jarvis" - 450 views
 2. "Creator Intelligence Systems" - 320 views
 3. "Getting Started Guide" - [scheduled for Tuesday]
 
 ### Revenue
+
 - Pro tier signups: 3 ($891)
 - Consulting inquiries: 2
 
 ### GitHub
+
 - Stars: 47 (+23 this week)
 - Issues opened: 5
 - PRs merged: 2
 
 ### Next Week Priorities
+
 1. Complete tutorial video
 2. Launch newsletter campaign
 3. Publish 3 more blog posts
@@ -173,12 +195,14 @@ Steps:
 Generate weekly operations report:
 
 ## Data Sources
+
 - Read analytics from /dashboard if available
 - Count blog posts published this week
 - Check git log for commits
 - Review products.json for revenue indicators
 
 ## Report Format
+
 1. **Summary**: 3-bullet overview
 2. **Content**: What was published, performance
 3. **Business**: Revenue, leads, growth
@@ -202,6 +226,7 @@ Output as formatted markdown.
 /onboard "Client Name" type:consulting
 
 Steps:
+
 1. BUSINESS: Create CRM entry, project folder structure
 2. CONTENT: Generate welcome email, kickoff agenda
 3. DEV: Set up project repository (if needed)
@@ -211,6 +236,7 @@ Steps:
 ### What Happens
 
 **CRM Entry Created**:
+
 ```json
 {
   "client": "Acme Corp",
@@ -225,15 +251,15 @@ Steps:
 ```
 
 **Folder Structure**:
-```
-/clients/acme-corp/
-├── brief.md
-├── meetings/
-├── deliverables/
-└── invoices/
-```
+
+<Diagram
+  src="/images/diagrams/blog/agentic-workflows-save-hours/legacy-diagram-01.svg"
+  alt="What Happens diagram 1"
+  caption="What Happens"
+/>
 
 **Welcome Email Draft**:
+
 ```markdown
 Subject: Welcome to FrankX - Let's Build Something Great
 
@@ -276,6 +302,7 @@ Output all generated content for review.
 /repurpose "blog-post-slug"
 
 Steps:
+
 1. READ: Extract key points from blog post
 2. SOCIAL: Generate LinkedIn post, Twitter thread
 3. VIDEO: Create video script outline
@@ -287,6 +314,7 @@ Steps:
 Takes one blog post and creates:
 
 **LinkedIn Post** (1,300 chars):
+
 ```
 Every creator I talk to wants the same thing:
 
@@ -304,6 +332,7 @@ Here's how to build it (free): [link]
 ```
 
 **Twitter Thread** (7 tweets):
+
 ```
 1/ Every creator wants their own Jarvis.
 
@@ -316,6 +345,7 @@ Here's how to build one (for free):
 ```
 
 **Video Script Outline**:
+
 ```
 Hook (0-10s): "What if you had your own Jarvis?"
 Problem (10-45s): Generic AI doesn't know you
@@ -363,6 +393,7 @@ Output all versions for review and scheduling.
 /review feature:authentication
 
 Steps:
+
 1. DEV: Scan code changes, identify issues
 2. CONTENT: Generate documentation
 3. TEST: Suggest test cases
@@ -372,39 +403,47 @@ Steps:
 ### What Happens
 
 **Code Review**:
+
 ```markdown
 ## Review: Authentication Feature
 
 ### Changes Analyzed
+
 - lib/auth.ts (82 lines added)
 - middleware.ts (23 lines modified)
 - app/api/auth/route.ts (new file)
 
 ### Findings
+
 ✅ Good: Rate limiting implemented
 ✅ Good: Input validation present
 ⚠️ Note: Consider adding refresh token rotation
 ❌ Issue: Missing error logging in catch block
 
 ### Recommendations
+
 1. Add error logging at line 45
 2. Consider implementing token refresh
 3. Add integration tests for edge cases
 ```
 
 **Documentation Generated**:
+
 ```markdown
 # Authentication System
 
 ## Overview
+
 JWT-based authentication with email/password login.
 
 ## Endpoints
+
 - POST /api/auth/login - Authenticate user
 - POST /api/auth/logout - Clear session
 - GET /api/auth/me - Get current user
 
 ## Usage
+
 [Code examples]
 ```
 
@@ -439,14 +478,12 @@ Output review for my approval before creating PR.
 ### Step 1: Copy the Patterns
 
 Create skill files for each workflow:
-```
-~/.claude/skills/
-├── publish.md
-├── weekly-ops.md
-├── onboard.md
-├── repurpose.md
-└── review.md
-```
+
+<Diagram
+  src="/images/diagrams/blog/agentic-workflows-save-hours/legacy-diagram-02.svg"
+  alt="Step 1: Copy the Patterns diagram 2"
+  caption="Step 1: Copy the Patterns"
+/>
 
 ### Step 2: Customize to Your Needs
 
@@ -465,6 +502,7 @@ Create skill files for each workflow:
 ### Step 4: Stack and Automate
 
 Once workflows are solid:
+
 - Chain workflows together
 - Set up triggers (if your setup supports it)
 - Build daily/weekly rituals around them
@@ -473,13 +511,13 @@ Once workflows are solid:
 
 ## Time Savings Calculator
 
-| Workflow | Manual | Automated | Frequency | Weekly Savings |
-|----------|--------|-----------|-----------|----------------|
-| Blog Publishing | 4 hrs | 30 min | 2x/week | 7 hrs |
-| Weekly Ops | 2 hrs | 10 min | 1x/week | 1.8 hrs |
-| Client Onboarding | 1.5 hrs | 15 min | 2x/month | 0.6 hrs |
-| Content Repurposing | 1.5 hrs | 10 min | 3x/week | 4 hrs |
-| Code Review | 1.5 hrs | 20 min | 2x/week | 2.3 hrs |
+| Workflow            | Manual  | Automated | Frequency | Weekly Savings |
+| ------------------- | ------- | --------- | --------- | -------------- |
+| Blog Publishing     | 4 hrs   | 30 min    | 2x/week   | 7 hrs          |
+| Weekly Ops          | 2 hrs   | 10 min    | 1x/week   | 1.8 hrs        |
+| Client Onboarding   | 1.5 hrs | 15 min    | 2x/month  | 0.6 hrs        |
+| Content Repurposing | 1.5 hrs | 10 min    | 3x/week   | 4 hrs          |
+| Code Review         | 1.5 hrs | 20 min    | 2x/week   | 2.3 hrs        |
 
 **Total Weekly Savings: ~16 hours**
 
@@ -512,23 +550,29 @@ Compound automation beats scattered optimization every time.
 ## FAQ
 
 ### Can I use these without the full Agentic Creator OS?
+
 Yes. Each workflow is a standalone skill file. Create the markdown file in `~/.claude/skills/` and it works with vanilla Claude Code. The full system adds coordination between departments.
 
 ### How do I connect to my analytics/CRM/email?
+
 MCP servers handle integrations. The Agentic Creator OS includes pre-built servers for common tools. Custom integrations require writing an MCP server or using the API directly in your workflow.
 
 ### What if a workflow fails partway through?
+
 Each workflow asks for approval before destructive actions (deploying, sending emails). If something fails, you can re-run from that step. Add error handling in your skill file as you learn what can break.
 
 ### Are these workflows specific to creators?
+
 The patterns apply broadly—developers, consultants, anyone with repetitive knowledge work. The examples use creator terminology but the underlying automation transfers.
 
 ### How long to set up all five workflows?
+
 About 2-3 hours total. Start with one, run it for a week, then add the next. Compound automation works better than scattered optimization.
 
 ---
 
 **Related:**
+
 - [Getting Started with Agentic Creator OS](/blog/getting-started-agentic-creator-os)
 - [Build Your Own Jarvis with Claude Code](/blog/build-your-own-jarvis-claude-code)
 - [What is Agentic AI?](/blog/what-is-agentic-ai)

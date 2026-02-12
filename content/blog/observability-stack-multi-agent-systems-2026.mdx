@@ -5,7 +5,15 @@ date: "2026-01-27"
 author: "AI Architect"
 category: "AI Architecture"
 tags: ["observability", "multi-agent", "langsmith", "production", "monitoring"]
-keywords: ["ai observability", "langsmith", "multi-agent monitoring", "ai agent tracing", "llm observability"]
+keywords:
+  [
+    "ai observability",
+    "langsmith",
+    "multi-agent monitoring",
+    "ai agent tracing",
+    "llm observability",
+  ]
+image: "/images/blog/production-agentic-ai-systems-hero.png"
 ---
 
 **TL;DR**: Production multi-agent systems require a comprehensive observability stack covering metrics, traces, logs, and evaluations. LangSmith leads for LangGraph users, W&B Weave excels at multi-agent visualization, and Langfuse offers open-source flexibility. Without proper observability, Gartner predicts 60% of AI agent deployments will fail by 2027.
@@ -20,12 +28,12 @@ According to [Gartner's predictions](https://www.gartner.com/en/articles/strateg
 
 The observability challenge in multi-agent systems is fundamentally different from traditional software:
 
-| Traditional Software | Multi-Agent Systems |
-|---------------------|---------------------|
-| Deterministic flows | Probabilistic behavior |
-| Predictable costs | Variable token usage |
-| Binary success/failure | Quality gradients |
-| Static debugging | Dynamic reasoning chains |
+| Traditional Software   | Multi-Agent Systems      |
+| ---------------------- | ------------------------ |
+| Deterministic flows    | Probabilistic behavior   |
+| Predictable costs      | Variable token usage     |
+| Binary success/failure | Quality gradients        |
+| Static debugging       | Dynamic reasoning chains |
 
 ---
 
@@ -33,20 +41,11 @@ The observability challenge in multi-agent systems is fundamentally different fr
 
 The modern AI observability stack has four layers:
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                    OBSERVABILITY LAYERS                     │
-├─────────────────────────────────────────────────────────────┤
-│  METRICS        │  TRACES         │  LOGS          │ EVALS  │
-│  - Latency      │  - Agent calls  │  - Errors      │ - RAGAS│
-│  - Token usage  │  - Tool usage   │  - Decisions   │ - Custom│
-│  - Costs        │  - Handoffs     │  - Context     │ - A/B  │
-│  - Throughput   │  - Dependencies │  - User input  │        │
-├─────────────────────────────────────────────────────────────┤
-│                    COLLECTION LAYER                         │
-│  OpenTelemetry │ Vendor SDKs │ Custom Instrumentation      │
-└─────────────────────────────────────────────────────────────┘
-```
+<Diagram
+  src="/images/diagrams/blog/observability-stack-multi-agent-systems-2026/observability-layers.svg"
+  alt="AI observability stack layers showing metrics, traces, logs, evaluations, and collection layer"
+  caption="Four-layer observability stack: metrics, traces, logs, and evaluations on top of shared instrumentation."
+/>
 
 Each layer answers different questions:
 
@@ -66,6 +65,7 @@ LangSmith is the first-party observability platform for LangChain and LangGraph 
 **Best for**: Teams standardized on LangChain/LangGraph
 
 **Key features**:
+
 - Automatic trace capture for LangGraph
 - Prompt versioning and A/B testing
 - Built-in evaluation datasets
@@ -90,6 +90,7 @@ W&B Weave extends the ML-native observability platform to agents. It excels at *
 **Best for**: ML teams, complex multi-agent research
 
 **Key features**:
+
 - Multi-agent trace visualization
 - Experiment comparison
 - Model registry integration
@@ -104,6 +105,7 @@ Langfuse is the open-source alternative that you can self-host. If you have priv
 **Best for**: Cost-conscious teams, privacy requirements, open-source preference
 
 **Key features**:
+
 - Self-hosted option
 - Framework agnostic
 - Cost tracking built-in
@@ -118,6 +120,7 @@ OpenTelemetry is the vendor-neutral standard. While it requires more setup, it i
 **Best for**: Teams with existing observability, multi-cloud environments
 
 **Key features**:
+
 - Industry standard format
 - Integrates with DataDog, Grafana, etc.
 - No vendor lock-in
@@ -129,29 +132,29 @@ OpenTelemetry is the vendor-neutral standard. While it requires more setup, it i
 
 ### Latency Metrics
 
-| Metric | Description | Target |
-|--------|-------------|--------|
-| p50 latency | Median response time | Under 2s |
-| p95 latency | 95th percentile | Under 5s |
-| p99 latency | Worst case | Under 10s |
-| Time to first token | Streaming start | Under 500ms |
+| Metric              | Description          | Target      |
+| ------------------- | -------------------- | ----------- |
+| p50 latency         | Median response time | Under 2s    |
+| p95 latency         | 95th percentile      | Under 5s    |
+| p99 latency         | Worst case           | Under 10s   |
+| Time to first token | Streaming start      | Under 500ms |
 
 ### Cost Metrics
 
-| Metric | Description | Alert Threshold |
-|--------|-------------|-----------------|
-| Cost per query | Average token cost | >$0.10 |
-| Daily spend | Total daily cost | Budget limit |
-| Token waste | Unused context | >30% |
+| Metric         | Description        | Alert Threshold |
+| -------------- | ------------------ | --------------- |
+| Cost per query | Average token cost | >$0.10          |
+| Daily spend    | Total daily cost   | Budget limit    |
+| Token waste    | Unused context     | >30%            |
 
 ### Quality Metrics
 
-| Metric | Description | Target |
-|--------|-------------|--------|
-| Success rate | Queries completed | >99% |
-| Relevance score | Answer quality | >0.85 |
-| Faithfulness | Grounded in context | >0.9 |
-| User satisfaction | Thumbs up/down | >80% |
+| Metric            | Description         | Target |
+| ----------------- | ------------------- | ------ |
+| Success rate      | Queries completed   | >99%   |
+| Relevance score   | Answer quality      | >0.85  |
+| Faithfulness      | Grounded in context | >0.9   |
+| User satisfaction | Thumbs up/down      | >80%   |
 
 ---
 
@@ -159,30 +162,18 @@ OpenTelemetry is the vendor-neutral standard. While it requires more setup, it i
 
 Use this decision framework:
 
-```
-START: What's your primary constraint?
-│
-├── Budget-conscious, open-source preferred?
-│   └── Langfuse (self-hosted)
-│
-├── Using LangGraph, want seamless integration?
-│   └── LangSmith
-│
-├── Complex multi-agent, ML team?
-│   └── W&B Weave
-│
-├── Existing APM, want to integrate?
-│   └── OpenTelemetry + existing stack
-│
-└── Enterprise, need everything?
-    └── LangSmith + DataDog/Grafana
-```
+<Diagram
+  src="/images/diagrams/blog/observability-stack-multi-agent-systems-2026/tool-selection-decision-tree.svg"
+  alt="Decision tree for choosing AI observability tools based on budget, stack, and team complexity"
+  caption="Observability tool selection flow based on constraints and existing platform choices."
+/>
 
 ---
 
 ## What Are the Production Checklist Items for AI Observability?
 
 ### Before Launch
+
 - [ ] Tracing enabled for all agents
 - [ ] Token tracking configured
 - [ ] Cost alerts set up
@@ -191,6 +182,7 @@ START: What's your primary constraint?
 - [ ] Evaluation datasets created
 
 ### Ongoing Operations
+
 - [ ] Daily cost review
 - [ ] Weekly quality audits
 - [ ] Monthly optimization review
@@ -240,4 +232,4 @@ The most critical metrics for production AI agents are: p95 latency (user experi
 
 ---
 
-*Built with research from the [FrankX Research Intelligence](/research) layer. All statistics validated with multiple sources.*
+_Built with research from the [FrankX Research Intelligence](/research) layer. All statistics validated with multiple sources._

@@ -1,12 +1,21 @@
 ---
-title: 'Production LLMs & AI Agents on OCI: Part 1 - The Six-Plane Enterprise Architecture'
-date: '2026-01-21'
-description: 'The complete enterprise architecture blueprint for deploying production-grade LLM and agentic AI systems on Oracle Cloud Infrastructure. Six architectural planes, OCI service mapping, and the decision framework that gets you from demo to deployment.'
-image: '/images/blog/oci-genai-architecture-hero.jpg'
-tags: ['Enterprise AI', 'OCI', 'Architecture', 'LLM', 'Production Systems', 'Oracle', 'Agentic AI']
+title: "Production LLMs & AI Agents on OCI: Part 1 - The Six-Plane Enterprise Architecture"
+date: "2026-01-21"
+description: "The complete enterprise architecture blueprint for deploying production-grade LLM and agentic AI systems on Oracle Cloud Infrastructure. Six architectural planes, OCI service mapping, and the decision framework that gets you from demo to deployment."
+image: "/images/blog/oci-genai-architecture-hero.jpg"
+tags:
+  [
+    "Enterprise AI",
+    "OCI",
+    "Architecture",
+    "LLM",
+    "Production Systems",
+    "Oracle",
+    "Agentic AI",
+  ]
 author: "Frank"
-category: 'AI Architecture'
-readingTime: '18 min read'
+category: "Enterprise AI"
+readingTime: "18 min read"
 ---
 
 # Production LLMs and AI Agents on OCI: The Six-Plane Enterprise Architecture
@@ -23,34 +32,11 @@ Most are still running that same demo six months later.
 
 The bottleneck isn't the model. It's everything around it:
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                    THE DEMO-TO-PRODUCTION GAP                    │
-├─────────────────────────────────────────────────────────────────┤
-│                                                                  │
-│  DEMO ARCHITECTURE              PRODUCTION ARCHITECTURE          │
-│  ─────────────────              ─────────────────────            │
-│  ┌─────────────────┐           ┌─────────────────────────────┐  │
-│  │   LLM API Call  │           │  Identity & Access Control  │  │
-│  └────────┬────────┘           ├─────────────────────────────┤  │
-│           │                    │  Network Security & WAF     │  │
-│           ▼                    ├─────────────────────────────┤  │
-│  ┌─────────────────┐           │  Rate Limiting & Quotas     │  │
-│  │   JSON Output   │           ├─────────────────────────────┤  │
-│  └─────────────────┘           │  Orchestration & State      │  │
-│                                ├─────────────────────────────┤  │
-│  Total: 1 component            │  Data Retrieval & RAG       │  │
-│                                ├─────────────────────────────┤  │
-│                                │  Model Selection & Routing  │  │
-│                                ├─────────────────────────────┤  │
-│                                │  Observability & Audit      │  │
-│                                ├─────────────────────────────┤  │
-│                                │  CI/CD & Evaluation         │  │
-│                                └─────────────────────────────┘  │
-│                                Total: 8+ components             │
-│                                                                  │
-└─────────────────────────────────────────────────────────────────┘
-```
+<Diagram
+  src="/images/diagrams/blog/production-llm-agents-oci-part-1-architecture/legacy-diagram-01.svg"
+  alt="Why Architecture Matters More Than Models diagram 1"
+  caption="Why Architecture Matters More Than Models"
+/>
 
 The LLM is a dependency. The system is a product.
 
@@ -59,52 +45,17 @@ The LLM is a dependency. The system is a product.
 ## The Six-Plane Enterprise Architecture
 
 This framework organizes production GenAI systems into six architectural planes. Each plane has:
+
 - **Clear responsibility boundaries**
 - **Dedicated OCI services**
 - **Specific governance controls**
 - **Failure isolation**
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                                                                  │
-│                    ┌─────────────────────────┐                   │
-│                    │   1. EXPERIENCE PLANE    │                   │
-│                    │   Web · Mobile · Chat    │                   │
-│                    │   Agent UIs · APEX       │                   │
-│                    └───────────┬─────────────┘                   │
-│                                │                                  │
-│                    ┌───────────▼─────────────┐                   │
-│                    │ 2. INGRESS & POLICY     │                   │
-│                    │    PLANE                │                   │
-│                    │ WAF · API GW · AuthN/Z  │                   │
-│                    │ Rate Limits · Routing   │                   │
-│                    └───────────┬─────────────┘                   │
-│                                │                                  │
-│         ┌──────────────────────┼──────────────────────┐          │
-│         │                      │                      │          │
-│         ▼                      ▼                      ▼          │
-│  ┌─────────────┐      ┌─────────────┐      ┌─────────────┐      │
-│  │ 3. ORCH-    │      │ 4. DATA &   │      │ 5. MODEL    │      │
-│  │    ESTRATION│◄────►│    RETRIEVAL│◄────►│    PLANE    │      │
-│  │    PLANE    │      │    PLANE    │      │             │      │
-│  │             │      │             │      │ OCI GenAI   │      │
-│  │ Agent Svc   │      │ Vector DB   │      │ Cohere/Meta │      │
-│  │ LangGraph   │      │ 23ai        │      │ Llama       │      │
-│  │ State Mgmt  │      │ Object Stor │      │ Fine-tunes  │      │
-│  └──────┬──────┘      └──────┬──────┘      └──────┬──────┘      │
-│         │                    │                    │              │
-│         └────────────────────┼────────────────────┘              │
-│                              │                                    │
-│                    ┌─────────▼─────────────┐                     │
-│                    │ 6. OPERATIONS &       │                     │
-│                    │    GOVERNANCE PLANE   │                     │
-│                    │ Logging · APM · Audit │                     │
-│                    │ Evaluation · CI/CD    │                     │
-│                    │ Prompt Library        │                     │
-│                    └───────────────────────┘                     │
-│                                                                  │
-└─────────────────────────────────────────────────────────────────┘
-```
+<Diagram
+  src="/images/diagrams/blog/production-llm-agents-oci-part-1-architecture/legacy-diagram-02.svg"
+  alt="The Six-Plane Enterprise Architecture diagram 2"
+  caption="The Six-Plane Enterprise Architecture"
+/>
 
 ---
 
@@ -113,6 +64,7 @@ This framework organizes production GenAI systems into six architectural planes.
 **Responsibility**: User-facing interfaces that consume AI capabilities
 
 **Key Characteristics**:
+
 - Must handle streaming responses gracefully
 - Show intermediate steps for agentic workflows
 - Support human-in-the-loop approval flows
@@ -120,36 +72,20 @@ This framework organizes production GenAI systems into six architectural planes.
 
 **OCI Service Mapping**:
 
-| Component | OCI Service | Alternative |
-|-----------|-------------|-------------|
-| Web/Mobile UI | OCI APEX | Custom React/Next.js on OKE |
-| Chat Interface | Digital Assistant | Custom chat on OCI Functions |
-| Admin Console | OCI Console Extensions | Custom dashboard |
-| API Consumers | Any client via REST | SDK-based integration |
+| Component      | OCI Service            | Alternative                  |
+| -------------- | ---------------------- | ---------------------------- |
+| Web/Mobile UI  | OCI APEX               | Custom React/Next.js on OKE  |
+| Chat Interface | Digital Assistant      | Custom chat on OCI Functions |
+| Admin Console  | OCI Console Extensions | Custom dashboard             |
+| API Consumers  | Any client via REST    | SDK-based integration        |
 
 **Architecture Decision: APEX vs. Custom**
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                    EXPERIENCE PLANE DECISION                     │
-├─────────────────────────────────────────────────────────────────┤
-│                                                                  │
-│  USE OCI APEX WHEN:                                              │
-│  ├─ Rapid prototyping required (days, not weeks)                 │
-│  ├─ Internal enterprise users are primary audience               │
-│  ├─ Database-first architecture (Oracle DB 23ai)                 │
-│  ├─ Select AI integration for natural language → SQL             │
-│  └─ Limited frontend engineering capacity                        │
-│                                                                  │
-│  USE CUSTOM UI (OKE/Functions) WHEN:                             │
-│  ├─ External customer-facing product                             │
-│  ├─ Complex agent interaction patterns                           │
-│  ├─ Real-time streaming with custom visualization                │
-│  ├─ Mobile-native experience required                            │
-│  └─ Design system integration with existing apps                 │
-│                                                                  │
-└─────────────────────────────────────────────────────────────────┘
-```
+<Diagram
+  src="/images/diagrams/blog/production-llm-agents-oci-part-1-architecture/legacy-diagram-03.svg"
+  alt="Plane 1: Experience Plane diagram 3"
+  caption="Plane 1: Experience Plane"
+/>
 
 ---
 
@@ -158,65 +94,36 @@ This framework organizes production GenAI systems into six architectural planes.
 **Responsibility**: Security boundary, traffic management, tenant governance
 
 **Why This Plane Fails First**:
+
 - Agents making tool calls can generate 10-100x the API traffic of a simple chat
 - Token costs can explode without per-tenant quotas
 - Unauthenticated endpoints become prompt injection vectors
 
 **OCI Service Mapping**:
 
-| Component | OCI Service | Configuration |
-|-----------|-------------|---------------|
-| Edge Protection | OCI WAF | Rate limiting, geo-blocking, bot mitigation |
-| API Management | OCI API Gateway | AuthN/Z, request transformation, throttling |
-| Identity | OCI IAM + Identity Domains | OIDC, SAML, MFA enforcement |
-| Secrets | OCI Vault | API keys, model credentials, encryption keys |
-| DNS & CDN | OCI DNS + Edge Services | Global routing, caching static assets |
+| Component       | OCI Service                | Configuration                                |
+| --------------- | -------------------------- | -------------------------------------------- |
+| Edge Protection | OCI WAF                    | Rate limiting, geo-blocking, bot mitigation  |
+| API Management  | OCI API Gateway            | AuthN/Z, request transformation, throttling  |
+| Identity        | OCI IAM + Identity Domains | OIDC, SAML, MFA enforcement                  |
+| Secrets         | OCI Vault                  | API keys, model credentials, encryption keys |
+| DNS & CDN       | OCI DNS + Edge Services    | Global routing, caching static assets        |
 
 **Reference Architecture: Multi-Tenant API Layer**
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                     INGRESS & POLICY PLANE                       │
-├─────────────────────────────────────────────────────────────────┤
-│                                                                  │
-│  Internet                                                        │
-│      │                                                           │
-│      ▼                                                           │
-│  ┌────────────────────────────────────────────────┐              │
-│  │                  OCI WAF                        │              │
-│  │  ├─ Rate Limiting (1000 req/min/tenant)        │              │
-│  │  ├─ Geo-blocking (sovereign compliance)        │              │
-│  │  ├─ Bot Detection                              │              │
-│  │  └─ Injection Pattern Detection                │              │
-│  └───────────────────┬────────────────────────────┘              │
-│                      │                                           │
-│                      ▼                                           │
-│  ┌────────────────────────────────────────────────┐              │
-│  │             OCI API Gateway                     │              │
-│  │  ├─ JWT Validation (Identity Domains)          │              │
-│  │  ├─ Tenant Extraction (from token claims)      │              │
-│  │  ├─ Request Transformation                     │              │
-│  │  ├─ Usage Metering (Logging Analytics)         │              │
-│  │  └─ Backend Routing (tenant → namespace)       │              │
-│  └───────────────────┬────────────────────────────┘              │
-│                      │                                           │
-│          ┌───────────┼───────────┐                               │
-│          ▼           ▼           ▼                               │
-│     ┌─────────┐ ┌─────────┐ ┌─────────┐                          │
-│     │Tenant A │ │Tenant B │ │Tenant C │                          │
-│     │Namespace│ │Namespace│ │Namespace│                          │
-│     └─────────┘ └─────────┘ └─────────┘                          │
-│                                                                  │
-└─────────────────────────────────────────────────────────────────┘
-```
+<Diagram
+  src="/images/diagrams/blog/production-llm-agents-oci-part-1-architecture/legacy-diagram-04.svg"
+  alt="Plane 2: Ingress &amp; Policy Plane diagram 4"
+  caption="Plane 2: Ingress &amp; Policy Plane"
+/>
 
 **Critical Controls**:
 
-| Control | Implementation | Why It Matters |
-|---------|----------------|----------------|
-| Per-Tenant Token Budget | API Gateway + Logging Analytics | Prevents one tenant from consuming all model capacity |
-| Request Signing | OCI Vault + API Gateway | Prevents replay attacks and request tampering |
-| Prompt Injection Detection | WAF Rules + Custom Functions | First line of defense against adversarial inputs |
+| Control                    | Implementation                  | Why It Matters                                        |
+| -------------------------- | ------------------------------- | ----------------------------------------------------- |
+| Per-Tenant Token Budget    | API Gateway + Logging Analytics | Prevents one tenant from consuming all model capacity |
+| Request Signing            | OCI Vault + API Gateway         | Prevents replay attacks and request tampering         |
+| Prompt Injection Detection | WAF Rules + Custom Functions    | First line of defense against adversarial inputs      |
 
 ---
 
@@ -226,56 +133,31 @@ This framework organizes production GenAI systems into six architectural planes.
 
 **The Core Decision**: Managed Agents vs. Framework Agents
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                 ORCHESTRATION PLANE DECISION                     │
-├─────────────────────────────────────────────────────────────────┤
-│                                                                  │
-│  ┌─────────────────────────┐  ┌─────────────────────────┐       │
-│  │   MANAGED AGENTS        │  │   FRAMEWORK AGENTS      │       │
-│  │   (OCI AI Agent Platform)│  │   (LangGraph on OKE)    │       │
-│  ├─────────────────────────┤  ├─────────────────────────┤       │
-│  │ ✓ Zero infrastructure   │  │ ✓ Full orchestration    │       │
-│  │   management            │  │   control               │       │
-│  │ ✓ Built-in tool         │  │ ✓ Custom state machines │       │
-│  │   integrations          │  │ ✓ Complex branching     │       │
-│  │ ✓ Declarative config    │  │ ✓ Framework flexibility │       │
-│  │ ✓ Automatic scaling     │  │ ✓ Multi-model routing   │       │
-│  ├─────────────────────────┤  ├─────────────────────────┤       │
-│  │ × Limited customization │  │ × Operational overhead  │       │
-│  │ × Fixed tool patterns   │  │ × Build state/memory    │       │
-│  │ × Vendor-specific       │  │ × Scaling complexity    │       │
-│  └─────────────────────────┘  └─────────────────────────┘       │
-│                                                                  │
-│  DECISION CRITERIA:                                              │
-│  ├─ Workflow complexity > 5 states → Framework                   │
-│  ├─ Team < 3 engineers → Managed                                 │
-│  ├─ Custom tools required → Framework                            │
-│  ├─ Rapid deployment priority → Managed                          │
-│  └─ Multi-cloud portability → Framework                          │
-│                                                                  │
-└─────────────────────────────────────────────────────────────────┘
-```
+<Diagram
+  src="/images/diagrams/blog/production-llm-agents-oci-part-1-architecture/legacy-diagram-05.svg"
+  alt="Plane 3: Orchestration Plane diagram 5"
+  caption="Plane 3: Orchestration Plane"
+/>
 
 **OCI Service Mapping**:
 
-| Component | Managed (Agent Platform) | Framework (LangGraph) |
-|-----------|--------------------------|----------------------|
-| Runtime | OCI AI Agent Platform | OKE + Container Instances |
-| State | Built-in | Redis on OCI / Autonomous JSON |
-| Memory | Built-in sessions | Custom implementation |
-| Tools | Pre-built connectors | MCP servers on Cloud Run |
-| Scaling | Automatic | HPA + KEDA |
+| Component | Managed (Agent Platform) | Framework (LangGraph)          |
+| --------- | ------------------------ | ------------------------------ |
+| Runtime   | OCI AI Agent Platform    | OKE + Container Instances      |
+| State     | Built-in                 | Redis on OCI / Autonomous JSON |
+| Memory    | Built-in sessions        | Custom implementation          |
+| Tools     | Pre-built connectors     | MCP servers on Cloud Run       |
+| Scaling   | Automatic                | HPA + KEDA                     |
 
 **Orchestration Patterns on OCI** (Detailed in [Part 2](/blog/production-llm-agents-oci-part-2-agent-patterns)):
 
-| Pattern | OCI Implementation | Use Case |
-|---------|-------------------|----------|
-| Sequential | Agent Platform workflow | Document processing pipeline |
-| Concurrent | OKE parallel pods | Multi-perspective analysis |
-| Handoff | Agent-to-agent routing | Customer service escalation |
-| Orchestrator-Worker | Parent agent + child agents | Complex research tasks |
-| Human-in-Loop | APEX approval UI + agent | High-stakes decisions |
+| Pattern             | OCI Implementation          | Use Case                     |
+| ------------------- | --------------------------- | ---------------------------- |
+| Sequential          | Agent Platform workflow     | Document processing pipeline |
+| Concurrent          | OKE parallel pods           | Multi-perspective analysis   |
+| Handoff             | Agent-to-agent routing      | Customer service escalation  |
+| Orchestrator-Worker | Parent agent + child agents | Complex research tasks       |
+| Human-in-Loop       | APEX approval UI + agent    | High-stakes decisions        |
 
 ---
 
@@ -286,65 +168,28 @@ This framework organizes production GenAI systems into six architectural planes.
 **Oracle's Differentiator**: Native Vector Search in Oracle Database 23ai
 
 Unlike bolt-on vector stores, Oracle Database 23ai provides:
+
 - **Unified data model**: Vectors alongside relational data
 - **ACID transactions**: Vector operations in the same transaction as business data
 - **Enterprise security**: Row-level security applies to vector content
 - **SQL integration**: `VECTOR_DISTANCE()` in standard SQL queries
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                    DATA & RETRIEVAL PLANE                        │
-├─────────────────────────────────────────────────────────────────┤
-│                                                                  │
-│  ┌─────────────────────────────────────────────────────────────┐│
-│  │              DOCUMENT INGESTION PIPELINE                     ││
-│  │                                                              ││
-│  │  Object Storage   OCI Data Integration   Processing          ││
-│  │  ┌──────────┐    ┌──────────────────┐   ┌──────────────┐    ││
-│  │  │  PDFs    │───►│   Extract Text   │──►│   Chunking   │    ││
-│  │  │  Docs    │    │   Clean/Normalize│   │   Overlap    │    ││
-│  │  │  HTML    │    │   Metadata       │   │   Strategy   │    ││
-│  │  └──────────┘    └──────────────────┘   └──────┬───────┘    ││
-│  │                                                 │            ││
-│  └─────────────────────────────────────────────────┼────────────┘│
-│                                                    │             │
-│  ┌─────────────────────────────────────────────────▼────────────┐│
-│  │                  EMBEDDING & STORAGE                         ││
-│  │                                                              ││
-│  │  OCI Generative AI          Oracle Database 23ai             ││
-│  │  ┌──────────────┐          ┌────────────────────────┐       ││
-│  │  │ Cohere Embed │─────────►│  VECTOR column type    │       ││
-│  │  │ Model        │          │  ├─ HNSW Index         │       ││
-│  │  │              │          │  ├─ IVF Index          │       ││
-│  │  └──────────────┘          │  └─ Hybrid search      │       ││
-│  │                            └────────────────────────┘       ││
-│  └──────────────────────────────────────────────────────────────┘│
-│                                                                  │
-│  ┌──────────────────────────────────────────────────────────────┐│
-│  │                  RETRIEVAL PATTERNS                          ││
-│  │                                                              ││
-│  │  Pattern          OCI Implementation                         ││
-│  │  ────────────────────────────────────────────────            ││
-│  │  Vector Search    VECTOR_DISTANCE() in SQL                   ││
-│  │  Hybrid Search    Vector + Full-text + Filters               ││
-│  │  Select AI        Natural language → SQL                     ││
-│  │  Graph RAG        Property Graph + Vector (23ai)             ││
-│  │                                                              ││
-│  └──────────────────────────────────────────────────────────────┘│
-│                                                                  │
-└─────────────────────────────────────────────────────────────────┘
-```
+<Diagram
+  src="/images/diagrams/blog/production-llm-agents-oci-part-1-architecture/legacy-diagram-06.svg"
+  alt="Plane 4: Data &amp; Retrieval Plane diagram 6"
+  caption="Plane 4: Data &amp; Retrieval Plane"
+/>
 
 **OCI Service Mapping**:
 
-| Component | OCI Service | Alternative |
-|-----------|-------------|-------------|
-| Document Storage | Object Storage | None needed |
-| Processing | OCI Data Integration / Functions | Custom on OKE |
-| Embedding | OCI Generative AI (Cohere Embed) | Self-hosted models |
-| Vector Store | Oracle Database 23ai | OpenSearch (if multi-cloud) |
-| Structured Data | Autonomous Database | MySQL HeatWave |
-| Graph Data | Oracle Property Graph (23ai) | None comparable |
+| Component        | OCI Service                      | Alternative                 |
+| ---------------- | -------------------------------- | --------------------------- |
+| Document Storage | Object Storage                   | None needed                 |
+| Processing       | OCI Data Integration / Functions | Custom on OKE               |
+| Embedding        | OCI Generative AI (Cohere Embed) | Self-hosted models          |
+| Vector Store     | Oracle Database 23ai             | OpenSearch (if multi-cloud) |
+| Structured Data  | Autonomous Database              | MySQL HeatWave              |
+| Graph Data       | Oracle Property Graph (23ai)     | None comparable             |
 
 **The Select AI Pattern** (Zero-Hallucination SQL):
 
@@ -366,67 +211,21 @@ SELECT AI 'Show me top 10 customers by revenue this quarter'
 
 **OCI Generative AI: Model-Agnostic Enterprise AI**
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                       MODEL PLANE                                │
-├─────────────────────────────────────────────────────────────────┤
-│                                                                  │
-│  ┌──────────────────────────────────────────────────────────┐   │
-│  │               OCI GENERATIVE AI SERVICE                   │   │
-│  │                                                           │   │
-│  │  ┌─────────────┐ ┌─────────────┐ ┌─────────────┐         │   │
-│  │  │   Cohere    │ │    Meta     │ │   Mistral   │         │   │
-│  │  │ Command R+  │ │  Llama 3.3 │ │  Large/Med  │         │   │
-│  │  │ Embed v3    │ │  Llama 3.2 │ │             │         │   │
-│  │  └─────────────┘ └─────────────┘ └─────────────┘         │   │
-│  │                                                           │   │
-│  │  ┌─────────────┐ ┌─────────────┐ ┌─────────────┐         │   │
-│  │  │     xAI     │ │   Google    │ │   Custom    │         │   │
-│  │  │    Grok     │ │  (coming)   │ │   Import    │         │   │
-│  │  │             │ │   Gemini    │ │   BYOM      │         │   │
-│  │  └─────────────┘ └─────────────┘ └─────────────┘         │   │
-│  │                                                           │   │
-│  └──────────────────────────────────────────────────────────┘   │
-│                                                                  │
-│  ┌──────────────────────────────────────────────────────────┐   │
-│  │               DEPLOYMENT OPTIONS                          │   │
-│  │                                                           │   │
-│  │  Option              Best For                 Cost Model  │   │
-│  │  ────────────────────────────────────────────────────── │   │
-│  │  On-Demand           Dev/test, variable load   Pay/token  │   │
-│  │  Dedicated Cluster   Production, isolation    Reserved   │   │
-│  │  Fine-tuned Model    Domain-specific          Training+   │   │
-│  │  Model Import        BYOM, custom weights     Hosting     │   │
-│  │                                                           │   │
-│  └──────────────────────────────────────────────────────────┘   │
-│                                                                  │
-│  ┌──────────────────────────────────────────────────────────┐   │
-│  │               MODEL SELECTION POLICY                      │   │
-│  │                                                           │   │
-│  │  ┌─────────────────────────────────────────────────────┐ │   │
-│  │  │  Task Type        Recommended Model    Fallback     │ │   │
-│  │  │  ─────────────────────────────────────────────────  │ │   │
-│  │  │  Complex reasoning  Cohere Command R+   Llama 3.3   │ │   │
-│  │  │  Code generation    Llama 3.3 70B      Mistral     │ │   │
-│  │  │  Embedding          Cohere Embed v3     —           │ │   │
-│  │  │  Classification     Llama 3.2 8B       Mistral Med │ │   │
-│  │  │  Summarization      Command R+          Llama 3.3   │ │   │
-│  │  └─────────────────────────────────────────────────────┘ │   │
-│  │                                                           │   │
-│  └──────────────────────────────────────────────────────────┘   │
-│                                                                  │
-└─────────────────────────────────────────────────────────────────┘
-```
+<Diagram
+  src="/images/diagrams/blog/production-llm-agents-oci-part-1-architecture/legacy-diagram-07.svg"
+  alt="Plane 5: Model Plane diagram 7"
+  caption="Plane 5: Model Plane"
+/>
 
 **Enterprise Security Controls**:
 
-| Control | Implementation |
-|---------|----------------|
-| Data Residency | Sovereign Cloud regions (UK, EU, US Gov) |
-| Network Isolation | Private endpoints, no public internet |
-| Encryption | Customer-managed keys (OCI Vault) |
-| Access Control | Fine-grained IAM policies per model |
-| Audit | All API calls logged to Logging Analytics |
+| Control           | Implementation                            |
+| ----------------- | ----------------------------------------- |
+| Data Residency    | Sovereign Cloud regions (UK, EU, US Gov)  |
+| Network Isolation | Private endpoints, no public internet     |
+| Encryption        | Customer-managed keys (OCI Vault)         |
+| Access Control    | Fine-grained IAM policies per model       |
+| Audit             | All API calls logged to Logging Analytics |
 
 ---
 
@@ -435,73 +234,28 @@ SELECT AI 'Show me top 10 customers by revenue this quarter'
 **Responsibility**: Observability, evaluation, CI/CD, audit, lifecycle management
 
 **Why This Plane Is Non-Negotiable**:
+
 - AI systems behave non-deterministically
 - Quality degrades silently without evaluation
 - Compliance requires complete audit trails
 - Debugging multi-agent systems requires distributed tracing
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│               OPERATIONS & GOVERNANCE PLANE                      │
-├─────────────────────────────────────────────────────────────────┤
-│                                                                  │
-│  ┌────────────────────────────────────────────────────────────┐ │
-│  │                    OBSERVABILITY STACK                      │ │
-│  │                                                             │ │
-│  │  ┌──────────────┐  ┌──────────────┐  ┌──────────────┐      │ │
-│  │  │   LOGGING    │  │   TRACING    │  │   METRICS    │      │ │
-│  │  │              │  │              │  │              │      │ │
-│  │  │ OCI Logging  │  │  OCI APM     │  │ OCI         │      │ │
-│  │  │ Analytics    │  │  Distributed │  │ Monitoring  │      │ │
-│  │  │              │  │  Tracing     │  │             │      │ │
-│  │  │ • Prompts    │  │ • Agent spans│  │ • Latency   │      │ │
-│  │  │ • Responses  │  │ • Tool calls │  │ • Tokens    │      │ │
-│  │  │ • Errors     │  │ • LLM calls  │  │ • Errors    │      │ │
-│  │  │ • Tokens     │  │ • Handoffs   │  │ • Cost      │      │ │
-│  │  └──────────────┘  └──────────────┘  └──────────────┘      │ │
-│  │                                                             │ │
-│  └────────────────────────────────────────────────────────────┘ │
-│                                                                  │
-│  ┌────────────────────────────────────────────────────────────┐ │
-│  │                    EVALUATION PIPELINE                      │ │
-│  │                                                             │ │
-│  │  Golden Set     →    Evaluation    →    Regression         │ │
-│  │  Curation            Execution          Detection          │ │
-│  │                                                             │ │
-│  │  ┌──────────┐     ┌──────────────┐    ┌──────────────┐     │ │
-│  │  │ Reference│     │ Run against  │    │ Compare to   │     │ │
-│  │  │ Q&A pairs│────►│ current model│───►│ baseline     │     │ │
-│  │  │          │     │              │    │ Alert if <   │     │ │
-│  │  └──────────┘     └──────────────┘    └──────────────┘     │ │
-│  │                                                             │ │
-│  └────────────────────────────────────────────────────────────┘ │
-│                                                                  │
-│  ┌────────────────────────────────────────────────────────────┐ │
-│  │                    GOVERNANCE CONTROLS                      │ │
-│  │                                                             │ │
-│  │  Control              OCI Service          Purpose          │ │
-│  │  ──────────────────────────────────────────────────────── │ │
-│  │  Audit Trail          OCI Audit + Logging  Compliance       │ │
-│  │  Prompt Library       Object Storage       Version control  │ │
-│  │  Model Registry       OCI Registry         Model versions   │ │
-│  │  Cost Allocation      Cost Management      Chargeback       │ │
-│  │  Access Review        IAM Access Advisor   Least privilege  │ │
-│  │                                                             │ │
-│  └────────────────────────────────────────────────────────────┘ │
-│                                                                  │
-└─────────────────────────────────────────────────────────────────┘
-```
+<Diagram
+  src="/images/diagrams/blog/production-llm-agents-oci-part-1-architecture/legacy-diagram-08.svg"
+  alt="Plane 6: Operations &amp; Governance Plane diagram 8"
+  caption="Plane 6: Operations &amp; Governance Plane"
+/>
 
 **OCI Service Mapping**:
 
-| Component | OCI Service | Integration |
-|-----------|-------------|-------------|
-| Logging | OCI Logging + Logging Analytics | Ingest all agent/model traffic |
-| Tracing | OCI APM | OpenTelemetry instrumentation |
-| Metrics | OCI Monitoring | Custom metrics + dashboards |
-| Alerting | OCI Notifications | Slack, PagerDuty, email |
-| Audit | OCI Audit | Immutable compliance records |
-| CI/CD | OCI DevOps | Model deployment pipelines |
+| Component | OCI Service                     | Integration                    |
+| --------- | ------------------------------- | ------------------------------ |
+| Logging   | OCI Logging + Logging Analytics | Ingest all agent/model traffic |
+| Tracing   | OCI APM                         | OpenTelemetry instrumentation  |
+| Metrics   | OCI Monitoring                  | Custom metrics + dashboards    |
+| Alerting  | OCI Notifications               | Slack, PagerDuty, email        |
+| Audit     | OCI Audit                       | Immutable compliance records   |
+| CI/CD     | OCI DevOps                      | Model deployment pipelines     |
 
 ---
 
@@ -509,39 +263,23 @@ SELECT AI 'Show me top 10 customers by revenue this quarter'
 
 **One-Page Reference: All Six Planes**
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                OCI SERVICE MAPPING BY PLANE                      │
-├───────────────┬─────────────────────────────────────────────────┤
-│ EXPERIENCE    │ APEX · Digital Assistant · OKE · Functions      │
-├───────────────┼─────────────────────────────────────────────────┤
-│ INGRESS &     │ WAF · API Gateway · IAM · Identity Domains ·    │
-│ POLICY        │ Vault · DNS · Load Balancer                     │
-├───────────────┼─────────────────────────────────────────────────┤
-│ ORCHESTRATION │ AI Agent Platform · OKE · Container Instances · │
-│               │ Functions · Redis (OCI Cache)                   │
-├───────────────┼─────────────────────────────────────────────────┤
-│ DATA &        │ Autonomous Database 23ai · Object Storage ·     │
-│ RETRIEVAL     │ Data Integration · OpenSearch · Property Graph  │
-├───────────────┼─────────────────────────────────────────────────┤
-│ MODEL         │ OCI Generative AI · AI Clusters · Model Import  │
-├───────────────┼─────────────────────────────────────────────────┤
-│ OPERATIONS &  │ Logging Analytics · APM · Monitoring · Audit ·  │
-│ GOVERNANCE    │ DevOps · Notifications · Cost Management        │
-└───────────────┴─────────────────────────────────────────────────┘
-```
+<Diagram
+  src="/images/diagrams/blog/production-llm-agents-oci-part-1-architecture/legacy-diagram-09.svg"
+  alt="Complete OCI Service Mapping diagram 9"
+  caption="Complete OCI Service Mapping"
+/>
 
 ---
 
 ## Multi-Cloud Positioning: When to Choose OCI
 
-| Decision Factor | Choose OCI When | Consider Alternatives When |
-|-----------------|-----------------|---------------------------|
-| **Data residency** | Sovereign Cloud regions required | Global-only workloads OK |
-| **Database integration** | Oracle DB is source of truth | Greenfield with no Oracle |
-| **Model flexibility** | Need multi-provider models | Committed to single vendor |
-| **Enterprise security** | Strict compliance (HIPAA, FedRAMP) | Startup-scale security OK |
-| **Cost predictability** | Dedicated AI clusters preferred | Variable pay-per-token OK |
+| Decision Factor          | Choose OCI When                    | Consider Alternatives When |
+| ------------------------ | ---------------------------------- | -------------------------- |
+| **Data residency**       | Sovereign Cloud regions required   | Global-only workloads OK   |
+| **Database integration** | Oracle DB is source of truth       | Greenfield with no Oracle  |
+| **Model flexibility**    | Need multi-provider models         | Committed to single vendor |
+| **Enterprise security**  | Strict compliance (HIPAA, FedRAMP) | Startup-scale security OK  |
+| **Cost predictability**  | Dedicated AI clusters preferred    | Variable pay-per-token OK  |
 
 ---
 
@@ -573,9 +311,10 @@ Implement per-tenant token budgets at the API Gateway, use dedicated AI clusters
 
 ---
 
-*This is Part 1 of a 3-part series on production LLM and agentic AI systems on OCI.*
+_This is Part 1 of a 3-part series on production LLM and agentic AI systems on OCI._
 
 **Sources:**
+
 - [Microsoft Agent Framework Design Patterns](https://learn.microsoft.com/en-us/azure/architecture/ai-ml/guide/ai-agent-design-patterns)
 - [Google Cloud Agent Design Patterns](https://cloud.google.com/blog/topics/partners/building-scalable-ai-agents-design-patterns-with-agent-engine-on-google-cloud)
 - [OCI Generative AI Documentation](https://docs.oracle.com/en-us/iaas/Content/generative-ai/home.htm)

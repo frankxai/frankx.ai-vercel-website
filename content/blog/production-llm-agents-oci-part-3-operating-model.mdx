@@ -1,14 +1,23 @@
 ---
-title: 'Production LLMs & AI Agents on OCI: Part 3 - The Operating Model'
-date: '2026-01-21'
-lastUpdated: '2026-01-21'
-description: 'The definitive guide to operating production AI systems. 5-stage maturity model, evaluation pipelines, MLOps for GenAI, incident response runbooks, cost optimization, and team operating models.'
-image: '/images/blog/production-llm-agents-oci-part-3-hero.png'
-tags: ['Enterprise AI', 'OCI', 'Governance', 'Observability', 'MLOps', 'Oracle', 'Operating Model']
+title: "Production LLMs & AI Agents on OCI: Part 3 - The Operating Model"
+date: "2026-01-21"
+lastUpdated: "2026-01-21"
+description: "The definitive guide to operating production AI systems. 5-stage maturity model, evaluation pipelines, MLOps for GenAI, incident response runbooks, cost optimization, and team operating models."
+image: "/images/blog/production-llm-agents-oci-part-3-hero.png"
+tags:
+  [
+    "Enterprise AI",
+    "OCI",
+    "Governance",
+    "Observability",
+    "MLOps",
+    "Oracle",
+    "Operating Model",
+  ]
 author: "Frank"
-category: 'Enterprise AI'
-readingTime: '25 min read'
-series: 'Production LLMs & AI Agents on OCI'
+category: "Enterprise AI"
+readingTime: "25 min read"
+series: "Production LLMs & AI Agents on OCI"
 seriesPart: 3
 ---
 
@@ -22,43 +31,21 @@ seriesPart: 3
 
 Most GenAI projects invest 90% effort on models and 10% on operations. Production systems require the inverse: **the model is a dependency; the operating model is the product.**
 
-```
-┌─────────────────────────────────────────────────────────────────────────┐
-│                     THE OPERATING MODEL INVERSION                        │
-├─────────────────────────────────────────────────────────────────────────┤
-│                                                                          │
-│   POC/Prototype Effort                Production Effort                  │
-│   ───────────────────                 ─────────────────                  │
-│                                                                          │
-│   ┌─────────────────┐                ┌─────────────────┐                │
-│   │                 │                │ Governance  15% │                │
-│   │                 │                ├─────────────────┤                │
-│   │   Model/Prompt  │                │ Observability   │                │
-│   │      90%        │                │      20%        │                │
-│   │                 │                ├─────────────────┤                │
-│   │                 │                │ Evaluation 15%  │                │
-│   ├─────────────────┤                ├─────────────────┤                │
-│   │  Operations 10% │                │ Cost Mgmt  10%  │                │
-│   └─────────────────┘                ├─────────────────┤                │
-│                                      │ Security   15%  │                │
-│                                      ├─────────────────┤                │
-│                                      │Model/Prompt 25% │                │
-│                                      └─────────────────┘                │
-│                                                                          │
-│   "Let's see if it works"            "Let's make it reliable"           │
-│                                                                          │
-└─────────────────────────────────────────────────────────────────────────┘
-```
+<Diagram
+  src="/images/diagrams/blog/production-llm-agents-oci-part-3-operating-model/legacy-diagram-01.svg"
+  alt="The Operating Model Imperative diagram 1"
+  caption="The Operating Model Imperative"
+/>
 
 An operating model answers these critical questions:
 
-| Question | Why It Matters | Consequence of Not Answering |
-|----------|----------------|------------------------------|
-| How do we version prompt changes? | Reproducibility, rollback capability | Cannot diagnose regressions |
-| How do we know if quality is degrading? | Early detection of model drift | Users discover issues before you |
-| How do we control costs? | Budget predictability | Surprise bills, service shutdown |
-| How do we respond to incidents? | Mean Time To Recovery | Extended outages, reputation damage |
-| How do we maintain compliance? | Regulatory requirements | Fines, audit failures |
+| Question                                | Why It Matters                       | Consequence of Not Answering        |
+| --------------------------------------- | ------------------------------------ | ----------------------------------- |
+| How do we version prompt changes?       | Reproducibility, rollback capability | Cannot diagnose regressions         |
+| How do we know if quality is degrading? | Early detection of model drift       | Users discover issues before you    |
+| How do we control costs?                | Budget predictability                | Surprise bills, service shutdown    |
+| How do we respond to incidents?         | Mean Time To Recovery                | Extended outages, reputation damage |
+| How do we maintain compliance?          | Regulatory requirements              | Fines, audit failures               |
 
 ---
 
@@ -66,53 +53,27 @@ An operating model answers these critical questions:
 
 Based on production learnings from enterprise deployments and aligned with industry frameworks like Google's ADK maturity guidance.
 
-```
-┌─────────────────────────────────────────────────────────────────────────┐
-│                    5-STAGE AI OPERATIONS MATURITY                        │
-├─────────────────────────────────────────────────────────────────────────┤
-│                                                                          │
-│  STAGE 5: AUTONOMOUS ────────────────────────────────────────────────── │
-│  │  Self-healing, self-optimizing systems                               │
-│  │  AI monitors AI, predictive scaling, autonomous cost optimization    │
-│  │  Team: Strategic oversight only                                      │
-│  ▼                                                                       │
-│  STAGE 4: OPTIMIZED ─────────────────────────────────────────────────── │
-│  │  ML-driven operations, A/B testing at scale                          │
-│  │  Automated quality gates, dynamic routing                            │
-│  │  Team: Focus on capability expansion                                 │
-│  ▼                                                                       │
-│  STAGE 3: MEASURED ──────────────────────────────────────────────────── │
-│  │  Full observability, SLOs defined and tracked                        │
-│  │  Evaluation pipelines in CI/CD, cost allocation                      │
-│  │  Team: Proactive improvement                                         │
-│  ▼                                                                       │
-│  STAGE 2: MANAGED ───────────────────────────────────────────────────── │
-│  │  Basic monitoring, manual quality checks                             │
-│  │  Prompt versioning, incident response defined                        │
-│  │  Team: Reactive operations                                           │
-│  ▼                                                                       │
-│  STAGE 1: AD-HOC ────────────────────────────────────────────────────── │
-│     No versioning, no monitoring, no quality gates                      │
-│     "It works on my laptop"                                             │
-│     Team: Heroic firefighting                                           │
-│                                                                          │
-└─────────────────────────────────────────────────────────────────────────┘
-```
+<Diagram
+  src="/images/diagrams/blog/production-llm-agents-oci-part-3-operating-model/legacy-diagram-02.svg"
+  alt="The 5-Stage AI Operations Maturity Model diagram 2"
+  caption="The 5-Stage AI Operations Maturity Model"
+/>
 
 ### Maturity Assessment Scorecard
 
 Rate your current state (1-5) for each dimension:
 
-| Dimension | Stage 1 | Stage 2 | Stage 3 | Stage 4 | Stage 5 |
-|-----------|---------|---------|---------|---------|---------|
-| **Versioning** | None | Git for prompts | Semantic versioning + registry | Automated promotion | ML-selected versions |
-| **Monitoring** | None | Error logs only | Full traces + metrics | Anomaly detection | Predictive alerts |
-| **Evaluation** | Manual testing | Golden sets | Automated in CI/CD | Online A/B tests | Continuous learning |
-| **Cost Mgmt** | None | Bill review | Per-request tracking | Budget enforcement | Dynamic optimization |
-| **Incident Response** | Ad-hoc | Runbooks | Automated detection | Auto-remediation | Predictive prevention |
-| **Governance** | None | Manual review | Policy-as-code | Automated compliance | Continuous audit |
+| Dimension             | Stage 1        | Stage 2         | Stage 3                        | Stage 4              | Stage 5               |
+| --------------------- | -------------- | --------------- | ------------------------------ | -------------------- | --------------------- |
+| **Versioning**        | None           | Git for prompts | Semantic versioning + registry | Automated promotion  | ML-selected versions  |
+| **Monitoring**        | None           | Error logs only | Full traces + metrics          | Anomaly detection    | Predictive alerts     |
+| **Evaluation**        | Manual testing | Golden sets     | Automated in CI/CD             | Online A/B tests     | Continuous learning   |
+| **Cost Mgmt**         | None           | Bill review     | Per-request tracking           | Budget enforcement   | Dynamic optimization  |
+| **Incident Response** | Ad-hoc         | Runbooks        | Automated detection            | Auto-remediation     | Predictive prevention |
+| **Governance**        | None           | Manual review   | Policy-as-code                 | Automated compliance | Continuous audit      |
 
 **Scoring:**
+
 - 6-12: Stage 1 (Ad-hoc)
 - 13-18: Stage 2 (Managed)
 - 19-24: Stage 3 (Measured)
@@ -125,37 +86,14 @@ Rate your current state (1-5) for each dimension:
 
 ### Stage 1 → Stage 2: Foundation (Weeks 1-4)
 
-```
-┌─────────────────────────────────────────────────────────────────────────┐
-│                    STAGE 2 IMPLEMENTATION                                │
-├─────────────────────────────────────────────────────────────────────────┤
-│                                                                          │
-│  Week 1: Version Control                                                 │
-│  ├─ Move prompts to Git repository                                      │
-│  ├─ Define naming conventions                                           │
-│  └─ Create prompt registry YAML                                         │
-│                                                                          │
-│  Week 2: Basic Monitoring                                                │
-│  ├─ Enable OCI Logging for all requests                                 │
-│  ├─ Create error dashboards in OCI Monitoring                           │
-│  └─ Set up basic alerting (errors, latency)                             │
-│                                                                          │
-│  Week 3: Incident Response                                               │
-│  ├─ Document runbooks for common failures                               │
-│  ├─ Define severity levels                                              │
-│  └─ Establish on-call rotation                                          │
-│                                                                          │
-│  Week 4: Quality Baseline                                                │
-│  ├─ Create initial golden test set (20-50 cases)                        │
-│  ├─ Manual evaluation process                                           │
-│  └─ Document known limitations                                          │
-│                                                                          │
-│  OCI Services: Logging, Monitoring, Identity Domains                     │
-│                                                                          │
-└─────────────────────────────────────────────────────────────────────────┘
-```
+<Diagram
+  src="/images/diagrams/blog/production-llm-agents-oci-part-3-operating-model/legacy-diagram-03.svg"
+  alt="Stage 1 → Stage 2: Foundation (Weeks 1-4) diagram 3"
+  caption="Stage 1 → Stage 2: Foundation (Weeks 1-4)"
+/>
 
 **Key Deliverables:**
+
 - Prompt repository structure
 - OCI Logging enabled
 - Basic dashboard with error rates
@@ -164,81 +102,29 @@ Rate your current state (1-5) for each dimension:
 
 ### Stage 2 → Stage 3: Measurement (Weeks 5-12)
 
-```
-┌─────────────────────────────────────────────────────────────────────────┐
-│                    STAGE 3 IMPLEMENTATION                                │
-├─────────────────────────────────────────────────────────────────────────┤
-│                                                                          │
-│  Weeks 5-6: Full Observability                                           │
-│  ├─ Instrument with OpenTelemetry                                       │
-│  ├─ Deploy OCI APM for distributed tracing                              │
-│  ├─ Create SLO dashboards                                               │
-│  └─ Implement log correlation                                           │
-│                                                                          │
-│  Weeks 7-8: Evaluation Pipeline                                          │
-│  ├─ Expand golden set to 200+ cases                                     │
-│  ├─ Integrate evaluation into CI/CD                                     │
-│  ├─ Implement semantic similarity metrics                               │
-│  └─ Add latency/cost assertions                                         │
-│                                                                          │
-│  Weeks 9-10: Cost Management                                             │
-│  ├─ Tag all resources for cost allocation                               │
-│  ├─ Implement per-request cost tracking                                 │
-│  ├─ Create cost dashboards by tenant/use-case                           │
-│  └─ Set up budget alerts                                                │
-│                                                                          │
-│  Weeks 11-12: Governance                                                 │
-│  ├─ Define prompt review process                                        │
-│  ├─ Implement approval workflows                                        │
-│  ├─ Create audit trail for changes                                      │
-│  └─ Document compliance requirements                                    │
-│                                                                          │
-│  OCI Services: APM, Functions, DevOps Pipelines, Cost Analysis           │
-│                                                                          │
-└─────────────────────────────────────────────────────────────────────────┘
-```
+<Diagram
+  src="/images/diagrams/blog/production-llm-agents-oci-part-3-operating-model/legacy-diagram-04.svg"
+  alt="Stage 2 → Stage 3: Measurement (Weeks 5-12) diagram 4"
+  caption="Stage 2 → Stage 3: Measurement (Weeks 5-12)"
+/>
 
 ### Stage 3 → Stage 4: Optimization (Months 4-6)
 
-| Capability | Implementation | OCI Service |
-|------------|----------------|-------------|
-| A/B Testing | Traffic splitting for prompt variants | OCI API Gateway + Feature Flags |
-| Dynamic Routing | Route to optimal model based on query | OCI Functions + Generative AI |
-| Automated Quality Gates | Block deployments below quality threshold | OCI DevOps + Functions |
-| Anomaly Detection | ML-based detection of quality degradation | OCI Anomaly Detection |
-| Cost Optimization | Automatic model downgrade under budget pressure | OCI Functions + Budgets |
+| Capability              | Implementation                                  | OCI Service                     |
+| ----------------------- | ----------------------------------------------- | ------------------------------- |
+| A/B Testing             | Traffic splitting for prompt variants           | OCI API Gateway + Feature Flags |
+| Dynamic Routing         | Route to optimal model based on query           | OCI Functions + Generative AI   |
+| Automated Quality Gates | Block deployments below quality threshold       | OCI DevOps + Functions          |
+| Anomaly Detection       | ML-based detection of quality degradation       | OCI Anomaly Detection           |
+| Cost Optimization       | Automatic model downgrade under budget pressure | OCI Functions + Budgets         |
 
 ### Stage 4 → Stage 5: Autonomy (Month 6+)
 
-```
-┌─────────────────────────────────────────────────────────────────────────┐
-│                    AUTONOMOUS OPERATIONS ARCHITECTURE                    │
-├─────────────────────────────────────────────────────────────────────────┤
-│                                                                          │
-│  ┌─────────────────┐     ┌─────────────────┐     ┌─────────────────┐   │
-│  │  Self-Healing   │     │  Self-Optimizing│     │  Self-Learning  │   │
-│  │                 │     │                 │     │                 │   │
-│  │ • Auto-rollback │     │ • Dynamic model │     │ • Continuous    │   │
-│  │ • Circuit break │     │   selection     │     │   fine-tuning   │   │
-│  │ • Failover      │     │ • Cost/quality  │     │ • Feedback loop │   │
-│  │                 │     │   balancing     │     │   integration   │   │
-│  └────────┬────────┘     └────────┬────────┘     └────────┬────────┘   │
-│           │                       │                       │             │
-│           └───────────────────────┼───────────────────────┘             │
-│                                   │                                     │
-│                           ┌───────▼───────┐                             │
-│                           │   AI Control  │                             │
-│                           │     Plane     │                             │
-│                           │               │                             │
-│                           │  OCI AI Agent │                             │
-│                           │  Platform +   │                             │
-│                           │  Functions    │                             │
-│                           └───────────────┘                             │
-│                                                                          │
-│  Human Role: Strategic decisions, exception handling, capability design │
-│                                                                          │
-└─────────────────────────────────────────────────────────────────────────┘
-```
+<Diagram
+  src="/images/diagrams/blog/production-llm-agents-oci-part-3-operating-model/legacy-diagram-05.svg"
+  alt="Stage 4 → Stage 5: Autonomy (Month 6+) diagram 5"
+  caption="Stage 4 → Stage 5: Autonomy (Month 6+)"
+/>
 
 ---
 
@@ -246,148 +132,37 @@ Rate your current state (1-5) for each dimension:
 
 ### The Four Pillars of AI Observability
 
-```
-┌─────────────────────────────────────────────────────────────────────────┐
-│                    AI OBSERVABILITY PILLARS                              │
-├─────────────────────────────────────────────────────────────────────────┤
-│                                                                          │
-│  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐    │
-│  │   TRACES    │  │   METRICS   │  │    LOGS     │  │   EVALS     │    │
-│  │             │  │             │  │             │  │             │    │
-│  │ Request     │  │ Latency     │  │ Payloads    │  │ Quality     │    │
-│  │ journey     │  │ Throughput  │  │ Decisions   │  │ scores      │    │
-│  │ through     │  │ Token count │  │ Errors      │  │ Regression  │    │
-│  │ system      │  │ Cost        │  │ Tool calls  │  │ detection   │    │
-│  │             │  │             │  │             │  │             │    │
-│  │ "What       │  │ "How is it  │  │ "What       │  │ "Is it      │    │
-│  │  happened?" │  │  performing"│  │  decided?"  │  │  working?"  │    │
-│  │             │  │             │  │             │  │             │    │
-│  │ OCI APM     │  │ OCI         │  │ OCI         │  │ Custom +    │    │
-│  │ + OTEL      │  │ Monitoring  │  │ Logging     │  │ Functions   │    │
-│  └─────────────┘  └─────────────┘  └─────────────┘  └─────────────┘    │
-│                                                                          │
-│                              │                                          │
-│                              ▼                                          │
-│                   ┌─────────────────────┐                               │
-│                   │   Unified Console   │                               │
-│                   │                     │                               │
-│                   │   OCI Observability │                               │
-│                   │   & Management      │                               │
-│                   └─────────────────────┘                               │
-│                                                                          │
-└─────────────────────────────────────────────────────────────────────────┘
-```
+<Diagram
+  src="/images/diagrams/blog/production-llm-agents-oci-part-3-operating-model/legacy-diagram-06.svg"
+  alt="The Four Pillars of AI Observability diagram 6"
+  caption="The Four Pillars of AI Observability"
+/>
 
 ### Distributed Trace Structure
 
-```
-┌─────────────────────────────────────────────────────────────────────────┐
-│                    AGENT TRACE ANATOMY                                   │
-├─────────────────────────────────────────────────────────────────────────┤
-│                                                                          │
-│  Trace ID: abc123                                                        │
-│  Duration: 4.2s                                                          │
-│  Status: Success                                                         │
-│                                                                          │
-│  ├─ SPAN: api_request (800ms)                                           │
-│  │   ├─ http.method: POST                                               │
-│  │   ├─ http.url: /api/agent/query                                      │
-│  │   └─ user.id: tenant-xyz                                             │
-│  │                                                                       │
-│  ├─ SPAN: agent_orchestration (3200ms)                                  │
-│  │   ├─ agent.name: sales-assistant                                     │
-│  │   ├─ agent.version: v2.1.0                                           │
-│  │   │                                                                   │
-│  │   ├─ SPAN: llm_call_planning (400ms)                                 │
-│  │   │   ├─ model: cohere.command-r-plus                                │
-│  │   │   ├─ tokens.input: 850                                           │
-│  │   │   ├─ tokens.output: 120                                          │
-│  │   │   └─ cost.usd: 0.0034                                            │
-│  │   │                                                                   │
-│  │   ├─ SPAN: tool_execution (1800ms)                                   │
-│  │   │   ├─ tool.name: search_knowledge_base                            │
-│  │   │   ├─ tool.input: "Q3 revenue by region"                          │
-│  │   │   │                                                               │
-│  │   │   ├─ SPAN: vector_search (600ms)                                 │
-│  │   │   │   ├─ db: autonomous-db-23ai                                  │
-│  │   │   │   ├─ results.count: 5                                        │
-│  │   │   │   └─ similarity.min: 0.82                                    │
-│  │   │   │                                                               │
-│  │   │   └─ SPAN: rerank (200ms)                                        │
-│  │   │       └─ model: cohere.rerank-v3                                 │
-│  │   │                                                                   │
-│  │   └─ SPAN: llm_call_synthesis (1000ms)                               │
-│  │       ├─ model: cohere.command-r-plus                                │
-│  │       ├─ tokens.input: 2100                                          │
-│  │       ├─ tokens.output: 450                                          │
-│  │       ├─ cost.usd: 0.0089                                            │
-│  │       └─ groundedness.score: 0.94                                    │
-│  │                                                                       │
-│  └─ SPAN: response_streaming (200ms)                                    │
-│                                                                          │
-│  TOTAL COST: $0.0123                                                     │
-│  QUALITY: groundedness=0.94, relevance=0.91                              │
-│                                                                          │
-└─────────────────────────────────────────────────────────────────────────┘
-```
+<Diagram
+  src="/images/diagrams/blog/production-llm-agents-oci-part-3-operating-model/legacy-diagram-07.svg"
+  alt="Distributed Trace Structure diagram 7"
+  caption="Distributed Trace Structure"
+/>
 
 ### SLO Definition Framework
 
-| SLO Category | Metric | Target | Burn Rate Alert | OCI Implementation |
-|--------------|--------|--------|-----------------|-------------------|
-| **Availability** | Success rate | 99.9% | 1% in 1hr | OCI Monitoring Alarms |
-| **Latency** | P95 response time | < 5s | P95 > 8s | APM Service Level Objectives |
-| **Quality** | Groundedness score | > 90% | < 85% avg | Custom metrics + Functions |
-| **Cost** | Cost per query | < $0.05 | > $0.10 avg | Cost Analysis + Budgets |
-| **Safety** | Harmful output rate | < 0.1% | Any detection | Logging + Content Moderation |
+| SLO Category     | Metric              | Target  | Burn Rate Alert | OCI Implementation           |
+| ---------------- | ------------------- | ------- | --------------- | ---------------------------- |
+| **Availability** | Success rate        | 99.9%   | 1% in 1hr       | OCI Monitoring Alarms        |
+| **Latency**      | P95 response time   | < 5s    | P95 > 8s        | APM Service Level Objectives |
+| **Quality**      | Groundedness score  | > 90%   | < 85% avg       | Custom metrics + Functions   |
+| **Cost**         | Cost per query      | < $0.05 | > $0.10 avg     | Cost Analysis + Budgets      |
+| **Safety**       | Harmful output rate | < 0.1%  | Any detection   | Logging + Content Moderation |
 
 ### OCI Observability Stack
 
-```
-┌─────────────────────────────────────────────────────────────────────────┐
-│                    OCI OBSERVABILITY STACK                               │
-├─────────────────────────────────────────────────────────────────────────┤
-│                                                                          │
-│  Application Layer                                                       │
-│  ┌─────────────────────────────────────────────────────────────────┐    │
-│  │  Your AI Application (Instrumented with OpenTelemetry)          │    │
-│  └─────────────────────────────────────────────────────────────────┘    │
-│                              │                                          │
-│                              ▼                                          │
-│  Collection Layer                                                        │
-│  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐         │
-│  │ OCI APM Agent   │  │ OCI Logging     │  │ OCI Connector  │         │
-│  │ (Traces)        │  │ Agent (Logs)    │  │ Hub (Metrics)  │         │
-│  └────────┬────────┘  └────────┬────────┘  └────────┬───────┘         │
-│           │                    │                    │                   │
-│           ▼                    ▼                    ▼                   │
-│  Storage Layer                                                          │
-│  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐         │
-│  │ APM Trace       │  │ Logging         │  │ Monitoring      │         │
-│  │ Storage         │  │ Service         │  │ Metrics         │         │
-│  └────────┬────────┘  └────────┬────────┘  └────────┬───────┘         │
-│           │                    │                    │                   │
-│           └────────────────────┼────────────────────┘                   │
-│                                ▼                                        │
-│  Analysis Layer                                                          │
-│  ┌─────────────────────────────────────────────────────────────────┐    │
-│  │                    OCI Logging Analytics                        │    │
-│  │                                                                  │    │
-│  │  • Log correlation with traces                                  │    │
-│  │  • ML-powered anomaly detection                                 │    │
-│  │  • Custom dashboards                                            │    │
-│  │  • Saved searches for common patterns                           │    │
-│  └─────────────────────────────────────────────────────────────────┘    │
-│                                │                                        │
-│                                ▼                                        │
-│  Alerting Layer                                                          │
-│  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐         │
-│  │ OCI Alarms      │  │ Notifications   │  │ Events Service  │         │
-│  │ (Thresholds)    │  │ (PagerDuty,etc) │  │ (Automation)    │         │
-│  └─────────────────┘  └─────────────────┘  └─────────────────┘         │
-│                                                                          │
-└─────────────────────────────────────────────────────────────────────────┘
-```
+<Diagram
+  src="/images/diagrams/blog/production-llm-agents-oci-part-3-operating-model/legacy-diagram-08.svg"
+  alt="OCI Observability Stack diagram 8"
+  caption="OCI Observability Stack"
+/>
 
 ---
 
@@ -395,171 +170,38 @@ Rate your current state (1-5) for each dimension:
 
 ### Offline vs Online Evaluation
 
-```
-┌─────────────────────────────────────────────────────────────────────────┐
-│                    EVALUATION ARCHITECTURE                               │
-├─────────────────────────────────────────────────────────────────────────┤
-│                                                                          │
-│  OFFLINE EVALUATION (Pre-deployment)                                     │
-│  ────────────────────────────────────                                    │
-│                                                                          │
-│  ┌─────────┐    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐  │
-│  │ Golden  │───▶│   Agent     │───▶│  Evaluator  │───▶│   Quality   │  │
-│  │ Dataset │    │   Under     │    │  Functions  │    │   Gate      │  │
-│  │         │    │   Test      │    │             │    │             │  │
-│  │ 500+    │    │             │    │ • Semantic  │    │ Pass: ≥95%  │  │
-│  │ cases   │    │             │    │ • Factual   │    │ Fail: <95%  │  │
-│  │         │    │             │    │ • Safety    │    │             │  │
-│  └─────────┘    └─────────────┘    └─────────────┘    └──────┬──────┘  │
-│                                                               │         │
-│                                           ┌───────────────────┴───┐     │
-│                                           │                       │     │
-│                                           ▼                       ▼     │
-│                                    ┌──────────┐            ┌──────────┐ │
-│                                    │  Deploy  │            │  Block   │ │
-│                                    └──────────┘            └──────────┘ │
-│                                                                          │
-│  ═══════════════════════════════════════════════════════════════════    │
-│                                                                          │
-│  ONLINE EVALUATION (Post-deployment)                                     │
-│  ───────────────────────────────────                                     │
-│                                                                          │
-│  ┌─────────┐    ┌─────────────┐    ┌─────────────┐    ┌─────────────┐  │
-│  │  Live   │───▶│ Production  │───▶│  Sampling   │───▶│  Dashboard  │  │
-│  │ Traffic │    │   Agent     │    │  Evaluator  │    │  + Alerts   │  │
-│  │         │    │             │    │             │    │             │  │
-│  │         │    │             │    │ Sample 5%   │    │ SLO breach  │  │
-│  │         │    │             │    │ of requests │    │ detection   │  │
-│  └─────────┘    └─────────────┘    └─────────────┘    └─────────────┘  │
-│                        │                                                 │
-│                        ▼                                                 │
-│                 ┌─────────────┐                                          │
-│                 │  User       │ ──▶ Explicit feedback collection        │
-│                 │  Feedback   │     (thumbs up/down, corrections)       │
-│                 └─────────────┘                                          │
-│                                                                          │
-└─────────────────────────────────────────────────────────────────────────┘
-```
+<Diagram
+  src="/images/diagrams/blog/production-llm-agents-oci-part-3-operating-model/legacy-diagram-09.svg"
+  alt="Offline vs Online Evaluation diagram 9"
+  caption="Offline vs Online Evaluation"
+/>
 
 ### Evaluation Metrics Framework
 
-| Category | Metric | Measurement Method | Target | OCI Implementation |
-|----------|--------|-------------------|--------|-------------------|
-| **Semantic** | Response relevance | Embedding similarity to expected | > 0.85 | Functions + Generative AI |
-| **Factual** | Groundedness | Citation verification | > 0.90 | Functions + custom |
-| **Completeness** | Coverage | Checklist evaluation | > 0.80 | LLM-as-judge |
-| **Safety** | Harmful content | Classifier detection | < 0.001 | Content Moderation API |
-| **Latency** | Response time | P95 measurement | < 5s | APM |
-| **Cost** | Per-request cost | Token tracking | < $0.05 | Custom metrics |
+| Category         | Metric             | Measurement Method               | Target  | OCI Implementation        |
+| ---------------- | ------------------ | -------------------------------- | ------- | ------------------------- |
+| **Semantic**     | Response relevance | Embedding similarity to expected | > 0.85  | Functions + Generative AI |
+| **Factual**      | Groundedness       | Citation verification            | > 0.90  | Functions + custom        |
+| **Completeness** | Coverage           | Checklist evaluation             | > 0.80  | LLM-as-judge              |
+| **Safety**       | Harmful content    | Classifier detection             | < 0.001 | Content Moderation API    |
+| **Latency**      | Response time      | P95 measurement                  | < 5s    | APM                       |
+| **Cost**         | Per-request cost   | Token tracking                   | < $0.05 | Custom metrics            |
 
 ### Golden Set Design
 
-```
-┌─────────────────────────────────────────────────────────────────────────┐
-│                    GOLDEN SET ARCHITECTURE                               │
-├─────────────────────────────────────────────────────────────────────────┤
-│                                                                          │
-│  Golden Set Repository                                                   │
-│  ├── test_cases/                                                        │
-│  │   ├── category_customer_service/                                     │
-│  │   │   ├── refund_requests.yaml        (50 cases)                     │
-│  │   │   ├── product_inquiries.yaml      (50 cases)                     │
-│  │   │   └── escalation_scenarios.yaml   (30 cases)                     │
-│  │   ├── category_technical_support/                                    │
-│  │   │   ├── troubleshooting.yaml        (40 cases)                     │
-│  │   │   └── how_to_guides.yaml          (30 cases)                     │
-│  │   └── category_edge_cases/                                           │
-│  │       ├── adversarial_inputs.yaml     (50 cases)                     │
-│  │       ├── out_of_scope.yaml           (30 cases)                     │
-│  │       └── language_variations.yaml    (20 cases)                     │
-│  └── evaluators/                                                        │
-│      ├── semantic_similarity.py                                         │
-│      ├── groundedness_check.py                                          │
-│      └── safety_classifier.py                                           │
-│                                                                          │
-│  Test Case Schema:                                                       │
-│  ┌─────────────────────────────────────────────────────────────────┐    │
-│  │  id: "cs-refund-001"                                            │    │
-│  │  category: "customer_service"                                   │    │
-│  │  input: "I want to return my order from last week"              │    │
-│  │  context:                                                       │    │
-│  │    order_id: "ORD-12345"                                        │    │
-│  │    order_date: "2026-01-14"                                     │    │
-│  │    status: "delivered"                                          │    │
-│  │  expected:                                                      │    │
-│  │    tool_calls: ["get_order", "initiate_return"]                 │    │
-│  │    must_contain: ["return label", "refund timeline"]            │    │
-│  │    must_not_contain: ["cannot", "unable"]                       │    │
-│  │  constraints:                                                   │    │
-│  │    max_latency_ms: 5000                                         │    │
-│  │    max_tool_calls: 3                                            │    │
-│  └─────────────────────────────────────────────────────────────────┘    │
-│                                                                          │
-│  Coverage Requirements:                                                  │
-│  • Minimum 500 total test cases                                         │
-│  • 20% adversarial/edge cases                                           │
-│  • 10% out-of-scope queries                                             │
-│  • Updated monthly with production failures                              │
-│                                                                          │
-└─────────────────────────────────────────────────────────────────────────┘
-```
+<Diagram
+  src="/images/diagrams/blog/production-llm-agents-oci-part-3-operating-model/legacy-diagram-10.svg"
+  alt="Golden Set Design diagram 10"
+  caption="Golden Set Design"
+/>
 
 ### CI/CD Integration
 
-```
-┌─────────────────────────────────────────────────────────────────────────┐
-│                    EVALUATION IN CI/CD PIPELINE                          │
-├─────────────────────────────────────────────────────────────────────────┤
-│                                                                          │
-│  ┌────────────┐                                                          │
-│  │ Developer  │                                                          │
-│  │ pushes     │                                                          │
-│  │ prompt     │                                                          │
-│  │ change     │                                                          │
-│  └─────┬──────┘                                                          │
-│        │                                                                 │
-│        ▼                                                                 │
-│  ┌────────────┐   ┌────────────┐   ┌────────────┐   ┌────────────┐     │
-│  │   Lint     │──▶│   Unit     │──▶│  Golden    │──▶│  Staging   │     │
-│  │   Check    │   │   Tests    │   │  Set Eval  │   │  Deploy    │     │
-│  └────────────┘   └────────────┘   └─────┬──────┘   └─────┬──────┘     │
-│                                          │                │             │
-│                                          ▼                ▼             │
-│                                    ┌────────────┐   ┌────────────┐     │
-│                                    │  Quality   │   │  Smoke     │     │
-│                                    │  Gate      │   │  Tests     │     │
-│                                    │            │   │            │     │
-│                                    │ Pass ≥95%  │   │ Key flows  │     │
-│                                    │ Latency OK │   │ working    │     │
-│                                    │ Cost OK    │   │            │     │
-│                                    └─────┬──────┘   └─────┬──────┘     │
-│                                          │                │             │
-│                                          └───────┬────────┘             │
-│                                                  │                      │
-│                                                  ▼                      │
-│                                          ┌────────────┐                 │
-│                                          │ Production │                 │
-│                                          │ Deploy     │                 │
-│                                          │ (Canary)   │                 │
-│                                          └────────────┘                 │
-│                                                                          │
-│  OCI DevOps Pipeline YAML:                                               │
-│  ┌─────────────────────────────────────────────────────────────────┐    │
-│  │  stages:                                                        │    │
-│  │    - stage: evaluate                                            │    │
-│  │      jobs:                                                      │    │
-│  │        - job: golden_set                                        │    │
-│  │          steps:                                                 │    │
-│  │            - run: python -m eval.golden_set                     │    │
-│  │                     --min-pass-rate 0.95                        │    │
-│  │                     --max-avg-latency 3000                      │    │
-│  │                     --max-avg-cost 0.05                         │    │
-│  │            - publish: eval-results.json                         │    │
-│  │          failOn: quality_gate_failed                            │    │
-│  └─────────────────────────────────────────────────────────────────┘    │
-│                                                                          │
-└─────────────────────────────────────────────────────────────────────────┘
-```
+<Diagram
+  src="/images/diagrams/blog/production-llm-agents-oci-part-3-operating-model/legacy-diagram-11.svg"
+  alt="CI/CD Integration diagram 11"
+  caption="CI/CD Integration"
+/>
 
 ---
 
@@ -567,143 +209,30 @@ Rate your current state (1-5) for each dimension:
 
 ### Prompts as Code
 
-```
-┌─────────────────────────────────────────────────────────────────────────┐
-│                    PROMPT REPOSITORY STRUCTURE                           │
-├─────────────────────────────────────────────────────────────────────────┤
-│                                                                          │
-│  prompts/                                                                │
-│  ├── agents/                                                            │
-│  │   ├── sales-assistant/                                               │
-│  │   │   ├── v1.0.0/                                                    │
-│  │   │   │   ├── system.md            # System prompt                   │
-│  │   │   │   ├── tools.yaml           # Tool definitions                │
-│  │   │   │   ├── examples.json        # Few-shot examples               │
-│  │   │   │   ├── guardrails.yaml      # Safety rules                    │
-│  │   │   │   └── metadata.yaml        # Version info                    │
-│  │   │   ├── v1.1.0/                                                    │
-│  │   │   │   └── ...                                                    │
-│  │   │   └── CHANGELOG.md                                               │
-│  │   │                                                                   │
-│  │   └── support-agent/                                                 │
-│  │       └── ...                                                        │
-│  │                                                                       │
-│  ├── components/                       # Reusable components            │
-│  │   ├── personality/                                                   │
-│  │   │   ├── professional.md                                            │
-│  │   │   └── friendly.md                                                │
-│  │   └── guardrails/                                                    │
-│  │       ├── pii-protection.yaml                                        │
-│  │       └── competitor-mentions.yaml                                   │
-│  │                                                                       │
-│  ├── registry.yaml                     # Agent registry                 │
-│  └── templates/                        # Agent templates                │
-│      └── ...                                                            │
-│                                                                          │
-│  Registry Schema (registry.yaml):                                        │
-│  ┌─────────────────────────────────────────────────────────────────┐    │
-│  │  agents:                                                        │    │
-│  │    sales-assistant:                                             │    │
-│  │      production: v1.1.0                                         │    │
-│  │      staging: v1.2.0-beta                                       │    │
-│  │      deprecated: [v0.9.0]                                       │    │
-│  │      model: cohere.command-r-plus                               │    │
-│  │      owner: sales-team                                          │    │
-│  │      review_required: true                                      │    │
-│  └─────────────────────────────────────────────────────────────────┘    │
-│                                                                          │
-└─────────────────────────────────────────────────────────────────────────┘
-```
+<Diagram
+  src="/images/diagrams/blog/production-llm-agents-oci-part-3-operating-model/legacy-diagram-12.svg"
+  alt="Prompts as Code diagram 12"
+  caption="Prompts as Code"
+/>
 
 ### Deployment Strategies
 
-```
-┌─────────────────────────────────────────────────────────────────────────┐
-│                    DEPLOYMENT STRATEGY COMPARISON                        │
-├─────────────────────────────────────────────────────────────────────────┤
-│                                                                          │
-│  BLUE/GREEN DEPLOYMENT                                                   │
-│  ─────────────────────                                                   │
-│                                                                          │
-│  ┌───────────┐     ┌───────────────────────────────────┐                │
-│  │   Load    │     │              ██ Blue (v1.0)       │                │
-│  │  Balancer │────▶│   100%       ██████████████████   │                │
-│  │           │     │              ░░ Green (v1.1)      │                │
-│  └───────────┘     │   0%         ░░░░░░░░░░░░░░░░░░   │                │
-│                    └───────────────────────────────────┘                │
-│                                    │                                     │
-│                                    ▼ Switch                              │
-│                    ┌───────────────────────────────────┐                │
-│                    │              ░░ Blue (v1.0)       │                │
-│                    │   0%         ░░░░░░░░░░░░░░░░░░   │                │
-│                    │              ██ Green (v1.1)      │                │
-│                    │   100%       ██████████████████   │                │
-│                    └───────────────────────────────────┘                │
-│                                                                          │
-│  Best for: Major changes, instant rollback needed                        │
-│  OCI: API Gateway + Functions with versioned aliases                    │
-│                                                                          │
-│  ═══════════════════════════════════════════════════════════════════    │
-│                                                                          │
-│  CANARY DEPLOYMENT                                                       │
-│  ─────────────────                                                       │
-│                                                                          │
-│  ┌───────────┐     ┌───────────────────────────────────┐                │
-│  │   Load    │     │              ██ v1.0              │                │
-│  │  Balancer │────▶│   95%        ████████████████████ │                │
-│  │           │     │              ░░ v1.1 (canary)     │                │
-│  └───────────┘     │   5%         ░░                   │                │
-│                    └───────────────────────────────────┘                │
-│                                    │                                     │
-│                                    ▼ Gradual                             │
-│                    ┌───────────────────────────────────┐                │
-│                    │              ██ v1.0              │                │
-│                    │   70%        ██████████████████   │                │
-│                    │              ░░ v1.1              │                │
-│                    │   30%        ░░░░░░░░             │                │
-│                    └───────────────────────────────────┘                │
-│                                    │                                     │
-│                                    ▼ Complete                            │
-│                    ┌───────────────────────────────────┐                │
-│                    │              ░░ v1.1              │                │
-│                    │   100%       ████████████████████ │                │
-│                    └───────────────────────────────────┘                │
-│                                                                          │
-│  Best for: Incremental improvements, A/B testing                         │
-│  OCI: API Gateway traffic splitting                                      │
-│                                                                          │
-│  ═══════════════════════════════════════════════════════════════════    │
-│                                                                          │
-│  SHADOW DEPLOYMENT                                                       │
-│  ─────────────────                                                       │
-│                                                                          │
-│  ┌───────────┐     ┌───────────────────────────────────┐                │
-│  │  Request  │────▶│   ██ Production v1.0              │───▶ Response  │
-│  │           │     │   ██████████████████████████████   │                │
-│  │           │     └───────────────────────────────────┘                │
-│  │           │                    │ Copy                                │
-│  │           │                    ▼                                      │
-│  │           │     ┌───────────────────────────────────┐                │
-│  │           │     │   ░░ Shadow v1.1                  │───▶ Log only  │
-│  │           │     │   ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░  │    (discard) │
-│  └───────────┘     └───────────────────────────────────┘                │
-│                                                                          │
-│  Best for: Testing new models, no user impact                            │
-│  OCI: Functions + Streaming for dual processing                          │
-│                                                                          │
-└─────────────────────────────────────────────────────────────────────────┘
-```
+<Diagram
+  src="/images/diagrams/blog/production-llm-agents-oci-part-3-operating-model/legacy-diagram-13.svg"
+  alt="Deployment Strategies diagram 13"
+  caption="Deployment Strategies"
+/>
 
 ### Deployment Decision Framework
 
-| Factor | Blue/Green | Canary | Shadow |
-|--------|-----------|--------|--------|
-| **Risk tolerance** | Low | Very low | None |
-| **Rollback time** | Instant | Fast | N/A |
-| **Resource cost** | 2x during deploy | 1.05x | 2x always |
-| **Comparison data** | Before/after | Statistical | Side-by-side |
-| **User impact on failure** | None (if quick) | Minimal (5%) | None |
-| **Best use case** | Breaking changes | Optimizations | Model swaps |
+| Factor                     | Blue/Green       | Canary        | Shadow       |
+| -------------------------- | ---------------- | ------------- | ------------ |
+| **Risk tolerance**         | Low              | Very low      | None         |
+| **Rollback time**          | Instant          | Fast          | N/A          |
+| **Resource cost**          | 2x during deploy | 1.05x         | 2x always    |
+| **Comparison data**        | Before/after     | Statistical   | Side-by-side |
+| **User impact on failure** | None (if quick)  | Minimal (5%)  | None         |
+| **Best use case**          | Breaking changes | Optimizations | Model swaps  |
 
 ---
 
@@ -711,115 +240,41 @@ Rate your current state (1-5) for each dimension:
 
 ### Cost Attribution Model
 
-```
-┌─────────────────────────────────────────────────────────────────────────┐
-│                    COST ATTRIBUTION HIERARCHY                            │
-├─────────────────────────────────────────────────────────────────────────┤
-│                                                                          │
-│                        ┌─────────────────┐                               │
-│                        │  Organization   │                               │
-│                        │  Total: $50,000 │                               │
-│                        └────────┬────────┘                               │
-│                                 │                                        │
-│              ┌──────────────────┼──────────────────┐                     │
-│              │                  │                  │                     │
-│              ▼                  ▼                  ▼                     │
-│     ┌────────────────┐ ┌────────────────┐ ┌────────────────┐            │
-│     │  Business Unit │ │  Business Unit │ │  Business Unit │            │
-│     │  Sales: $20K   │ │  Support: $15K │ │  Ops: $15K     │            │
-│     └───────┬────────┘ └────────┬───────┘ └────────┬───────┘            │
-│             │                   │                  │                     │
-│    ┌────────┴────────┐    ┌─────┴─────┐     ┌─────┴─────┐               │
-│    │                 │    │           │     │           │               │
-│    ▼                 ▼    ▼           ▼     ▼           ▼               │
-│ ┌──────────┐ ┌──────────┐ ┌────────┐ ┌────────┐ ┌────────┐             │
-│ │ Sales    │ │ Lead     │ │Support │ │ Chat   │ │  SRE   │             │
-│ │ Agent    │ │ Scoring  │ │ Agent  │ │  Bot   │ │ Agent  │             │
-│ │ $12,000  │ │ $8,000   │ │$10,000 │ │ $5,000 │ │$15,000 │             │
-│ └──────────┘ └──────────┘ └────────┘ └────────┘ └────────┘             │
-│                                                                          │
-│  Attribution Tags:                                                       │
-│  • business_unit: sales | support | operations                          │
-│  • agent: sales-assistant | support-agent | sre-agent                   │
-│  • tenant: customer-xyz | internal                                      │
-│  • environment: prod | staging | dev                                    │
-│                                                                          │
-└─────────────────────────────────────────────────────────────────────────┘
-```
+<Diagram
+  src="/images/diagrams/blog/production-llm-agents-oci-part-3-operating-model/legacy-diagram-14.svg"
+  alt="Cost Attribution Model diagram 14"
+  caption="Cost Attribution Model"
+/>
 
 ### Cost Components Breakdown
 
-| Component | Typical Share | Optimization Strategy | OCI Control |
-|-----------|--------------|----------------------|-------------|
-| **LLM Inference** | 40-60% | Prompt optimization, caching, model selection | Generative AI pricing tiers |
-| **Embedding** | 10-20% | Batch processing, caching | Generative AI embed pricing |
-| **Vector DB** | 10-15% | Index optimization, partitioning | Autonomous DB tiers |
-| **Compute** | 10-20% | Right-sizing, autoscaling | OKE node pools, Functions |
-| **Storage** | 5-10% | Tiering, lifecycle policies | Object Storage tiers |
-| **Network** | 5-10% | Regional deployment | VCN optimization |
+| Component         | Typical Share | Optimization Strategy                         | OCI Control                 |
+| ----------------- | ------------- | --------------------------------------------- | --------------------------- |
+| **LLM Inference** | 40-60%        | Prompt optimization, caching, model selection | Generative AI pricing tiers |
+| **Embedding**     | 10-20%        | Batch processing, caching                     | Generative AI embed pricing |
+| **Vector DB**     | 10-15%        | Index optimization, partitioning              | Autonomous DB tiers         |
+| **Compute**       | 10-20%        | Right-sizing, autoscaling                     | OKE node pools, Functions   |
+| **Storage**       | 5-10%         | Tiering, lifecycle policies                   | Object Storage tiers        |
+| **Network**       | 5-10%         | Regional deployment                           | VCN optimization            |
 
 ### Cost Control Mechanisms
 
-```
-┌─────────────────────────────────────────────────────────────────────────┐
-│                    COST CONTROL HIERARCHY                                │
-├─────────────────────────────────────────────────────────────────────────┤
-│                                                                          │
-│  LAYER 1: Per-Request Limits                                             │
-│  ┌─────────────────────────────────────────────────────────────────┐    │
-│  │  if request.estimated_cost > $0.50:                             │    │
-│  │      reject("Request exceeds per-request limit")                │    │
-│  │  if request.token_count > 100000:                               │    │
-│  │      reject("Request exceeds token limit")                      │    │
-│  └─────────────────────────────────────────────────────────────────┘    │
-│                                    │                                     │
-│                                    ▼                                     │
-│  LAYER 2: Per-User Limits (Rate Limiting)                                │
-│  ┌─────────────────────────────────────────────────────────────────┐    │
-│  │  user_daily_cost = sum(requests_today)                          │    │
-│  │  if user_daily_cost > $10:                                      │    │
-│  │      throttle(user_id, until="tomorrow")                        │    │
-│  │      notify_user("Daily limit reached")                         │    │
-│  └─────────────────────────────────────────────────────────────────┘    │
-│                                    │                                     │
-│                                    ▼                                     │
-│  LAYER 3: Per-Tenant Limits (Budget Enforcement)                         │
-│  ┌─────────────────────────────────────────────────────────────────┐    │
-│  │  tenant_monthly_cost = sum(requests_this_month)                 │    │
-│  │  if tenant_monthly_cost > tenant.budget * 0.8:                  │    │
-│  │      alert("80% of budget consumed")                            │    │
-│  │  if tenant_monthly_cost > tenant.budget:                        │    │
-│  │      downgrade_model(tenant_id)  # Use cheaper model            │    │
-│  │      # OR block_requests(tenant_id)                             │    │
-│  └─────────────────────────────────────────────────────────────────┘    │
-│                                    │                                     │
-│                                    ▼                                     │
-│  LAYER 4: Organization Limits (Hard Stops)                               │
-│  ┌─────────────────────────────────────────────────────────────────┐    │
-│  │  if org_monthly_cost > org.hard_limit:                          │    │
-│  │      emergency_shutdown()                                       │    │
-│  │      page_oncall("Cost limit exceeded")                         │    │
-│  └─────────────────────────────────────────────────────────────────┘    │
-│                                                                          │
-│  OCI Implementation:                                                     │
-│  • OCI Budgets for alerts and tracking                                  │
-│  • Functions for enforcement logic                                       │
-│  • API Gateway for rate limiting                                         │
-│  • Events + Notifications for alerting                                   │
-│                                                                          │
-└─────────────────────────────────────────────────────────────────────────┘
-```
+<Diagram
+  src="/images/diagrams/blog/production-llm-agents-oci-part-3-operating-model/legacy-diagram-15.svg"
+  alt="Cost Control Mechanisms diagram 15"
+  caption="Cost Control Mechanisms"
+/>
 
 ### Cost Optimization Strategies
 
-| Strategy | Effort | Savings | Implementation |
-|----------|--------|---------|----------------|
-| **Prompt caching** | Medium | 20-40% | OCI Functions + Redis |
-| **Model tiering** | Low | 30-50% | Route simple queries to smaller models |
-| **Batch embedding** | Low | 10-20% | Queue and batch embedding requests |
-| **Response caching** | Medium | 15-30% | Cache common queries |
-| **Token optimization** | High | 10-20% | Prompt engineering |
-| **Semantic caching** | High | 20-40% | Cache similar queries |
+| Strategy               | Effort | Savings | Implementation                         |
+| ---------------------- | ------ | ------- | -------------------------------------- |
+| **Prompt caching**     | Medium | 20-40%  | OCI Functions + Redis                  |
+| **Model tiering**      | Low    | 30-50%  | Route simple queries to smaller models |
+| **Batch embedding**    | Low    | 10-20%  | Queue and batch embedding requests     |
+| **Response caching**   | Medium | 15-30%  | Cache common queries                   |
+| **Token optimization** | High   | 10-20%  | Prompt engineering                     |
+| **Semantic caching**   | High   | 20-40%  | Cache similar queries                  |
 
 ---
 
@@ -827,144 +282,38 @@ Rate your current state (1-5) for each dimension:
 
 ### Incident Classification Matrix
 
-```
-┌─────────────────────────────────────────────────────────────────────────┐
-│                    INCIDENT SEVERITY MATRIX                              │
-├─────────────────────────────────────────────────────────────────────────┤
-│                                                                          │
-│           │ Low Impact        │ High Impact          │ Critical         │
-│  ─────────┼───────────────────┼──────────────────────┼────────────────  │
-│           │                   │                      │                  │
-│  High     │ P3 - Medium       │ P2 - High            │ P1 - Critical    │
-│  Frequency│ Occasional        │ Widespread quality   │ Service down     │
-│           │ incorrect         │ degradation          │ Data breach      │
-│           │ responses         │                      │                  │
-│           │                   │                      │                  │
-│           │ Response: 4hr     │ Response: 1hr        │ Response: 15min  │
-│           │ Resolve: 24hr     │ Resolve: 8hr         │ Resolve: 4hr     │
-│  ─────────┼───────────────────┼──────────────────────┼────────────────  │
-│           │                   │                      │                  │
-│  Low      │ P4 - Low          │ P3 - Medium          │ P2 - High        │
-│  Frequency│ Edge case         │ Specific use case    │ Targeted attack  │
-│           │ failures          │ broken               │ Compliance issue │
-│           │                   │                      │                  │
-│           │ Response: 24hr    │ Response: 4hr        │ Response: 1hr    │
-│           │ Resolve: 72hr     │ Resolve: 24hr        │ Resolve: 8hr     │
-│           │                   │                      │                  │
-│  ─────────┴───────────────────┴──────────────────────┴────────────────  │
-│                                                                          │
-└─────────────────────────────────────────────────────────────────────────┘
-```
+<Diagram
+  src="/images/diagrams/blog/production-llm-agents-oci-part-3-operating-model/legacy-diagram-16.svg"
+  alt="Incident Classification Matrix diagram 16"
+  caption="Incident Classification Matrix"
+/>
 
 ### Incident Response Runbooks
 
-```
-┌─────────────────────────────────────────────────────────────────────────┐
-│                    RUNBOOK: Model Quality Degradation                    │
-├─────────────────────────────────────────────────────────────────────────┤
-│                                                                          │
-│  TRIGGER: Groundedness score drops below 85% for 15+ minutes             │
-│  SEVERITY: P2 (High)                                                     │
-│                                                                          │
-│  STEP 1: Confirm the Issue (5 min)                                       │
-│  ┌─────────────────────────────────────────────────────────────────┐    │
-│  │  □ Check Logging Analytics for error patterns                   │    │
-│  │  □ Review recent deployments in DevOps                          │    │
-│  │  □ Check OCI Generative AI service status                       │    │
-│  │  □ Sample 5 recent requests manually                            │    │
-│  └─────────────────────────────────────────────────────────────────┘    │
-│                                                                          │
-│  STEP 2: Identify Root Cause (10 min)                                    │
-│  ┌─────────────────────────────────────────────────────────────────┐    │
-│  │  Common Causes:                                                 │    │
-│  │  □ Recent prompt change? → Check prompt registry                │    │
-│  │  □ Knowledge base update? → Check vector DB logs                │    │
-│  │  □ Model endpoint issue? → Check Generative AI metrics          │    │
-│  │  □ Upstream data change? → Check integration logs               │    │
-│  └─────────────────────────────────────────────────────────────────┘    │
-│                                                                          │
-│  STEP 3: Mitigate (15 min)                                               │
-│  ┌─────────────────────────────────────────────────────────────────┐    │
-│  │  IF prompt change:                                              │    │
-│  │    → Roll back to previous version in registry                  │    │
-│  │    → Deploy via blue/green switch                               │    │
-│  │                                                                  │    │
-│  │  IF model issue:                                                │    │
-│  │    → Switch to fallback model (cohere.command-r)                │    │
-│  │    → Enable degraded mode                                       │    │
-│  │                                                                  │    │
-│  │  IF knowledge base:                                             │    │
-│  │    → Disable RAG, use model-only responses                      │    │
-│  │    → Roll back KB to previous snapshot                          │    │
-│  └─────────────────────────────────────────────────────────────────┘    │
-│                                                                          │
-│  STEP 4: Communicate (Ongoing)                                           │
-│  ┌─────────────────────────────────────────────────────────────────┐    │
-│  │  □ Update incident channel with status                          │    │
-│  │  □ Notify stakeholders if customer-facing                       │    │
-│  │  □ Update status page if applicable                             │    │
-│  └─────────────────────────────────────────────────────────────────┘    │
-│                                                                          │
-│  STEP 5: Resolve and Review                                              │
-│  ┌─────────────────────────────────────────────────────────────────┐    │
-│  │  □ Confirm metrics back to normal                               │    │
-│  │  □ Document root cause                                          │    │
-│  │  □ Schedule post-mortem if P1/P2                                │    │
-│  │  □ Create follow-up tickets for prevention                      │    │
-│  └─────────────────────────────────────────────────────────────────┘    │
-│                                                                          │
-└─────────────────────────────────────────────────────────────────────────┘
-```
+<Diagram
+  src="/images/diagrams/blog/production-llm-agents-oci-part-3-operating-model/legacy-diagram-17.svg"
+  alt="Incident Response Runbooks diagram 17"
+  caption="Incident Response Runbooks"
+/>
 
 ### Common Incident Types
 
-| Incident Type | Detection | Immediate Action | OCI Tools |
-|---------------|-----------|------------------|-----------|
-| **Model timeout** | APM latency spike | Switch to fallback model | Generative AI + Functions |
-| **Tool failure** | Error rate increase | Circuit breaker + fallback | Functions + Logging |
-| **Quality degradation** | Eval score drop | Roll back prompt | DevOps + Monitoring |
-| **Cost overrun** | Budget alert | Rate limit + downgrade | Budgets + API Gateway |
-| **Prompt injection** | Pattern detection | Block + investigate | Logging Analytics |
-| **Data breach** | Audit anomaly | Isolate + investigate | Security Zones + Audit |
+| Incident Type           | Detection           | Immediate Action           | OCI Tools                 |
+| ----------------------- | ------------------- | -------------------------- | ------------------------- |
+| **Model timeout**       | APM latency spike   | Switch to fallback model   | Generative AI + Functions |
+| **Tool failure**        | Error rate increase | Circuit breaker + fallback | Functions + Logging       |
+| **Quality degradation** | Eval score drop     | Roll back prompt           | DevOps + Monitoring       |
+| **Cost overrun**        | Budget alert        | Rate limit + downgrade     | Budgets + API Gateway     |
+| **Prompt injection**    | Pattern detection   | Block + investigate        | Logging Analytics         |
+| **Data breach**         | Audit anomaly       | Isolate + investigate      | Security Zones + Audit    |
 
 ### Automated Remediation
 
-```
-┌─────────────────────────────────────────────────────────────────────────┐
-│                    AUTO-REMEDIATION ARCHITECTURE                         │
-├─────────────────────────────────────────────────────────────────────────┤
-│                                                                          │
-│  ┌──────────────┐     ┌──────────────┐     ┌──────────────┐            │
-│  │ OCI Alarms   │────▶│ OCI Events   │────▶│ OCI Functions │            │
-│  │              │     │              │     │              │            │
-│  │ • Latency    │     │ • Trigger    │     │ • Evaluate   │            │
-│  │ • Error rate │     │   events     │     │   severity   │            │
-│  │ • Quality    │     │              │     │ • Execute    │            │
-│  │              │     │              │     │   playbook   │            │
-│  └──────────────┘     └──────────────┘     └──────┬───────┘            │
-│                                                   │                     │
-│                       ┌───────────────────────────┴───────────────┐     │
-│                       │                                           │     │
-│                       ▼                                           ▼     │
-│              ┌──────────────┐                           ┌──────────────┐│
-│              │ Auto Actions │                           │ Human Review ││
-│              │              │                           │              ││
-│              │ • Rollback   │                           │ • P1/P2      ││
-│              │ • Scale      │                           │ • Novel      ││
-│              │ • Failover   │                           │   issues     ││
-│              │ • Rate limit │                           │              ││
-│              └──────────────┘                           └──────────────┘│
-│                                                                          │
-│  Auto-Remediation Rules:                                                 │
-│  ┌─────────────────────────────────────────────────────────────────┐    │
-│  │  - IF latency_p95 > 10s FOR 5min THEN scale_up()                │    │
-│  │  - IF error_rate > 5% FOR 3min THEN enable_circuit_breaker()    │    │
-│  │  - IF quality_score < 80% FOR 10min THEN rollback_prompt()      │    │
-│  │  - IF cost_rate > 2x_baseline FOR 1hr THEN enable_rate_limit()  │    │
-│  └─────────────────────────────────────────────────────────────────┘    │
-│                                                                          │
-└─────────────────────────────────────────────────────────────────────────┘
-```
+<Diagram
+  src="/images/diagrams/blog/production-llm-agents-oci-part-3-operating-model/legacy-diagram-18.svg"
+  alt="Automated Remediation diagram 18"
+  caption="Automated Remediation"
+/>
 
 ---
 
@@ -972,71 +321,30 @@ Rate your current state (1-5) for each dimension:
 
 ### Security Control Framework
 
-```
-┌─────────────────────────────────────────────────────────────────────────┐
-│                    AI SECURITY CONTROL LAYERS                            │
-├─────────────────────────────────────────────────────────────────────────┤
-│                                                                          │
-│  LAYER 1: Input Protection                                               │
-│  ┌─────────────────────────────────────────────────────────────────┐    │
-│  │  • Prompt injection detection (pattern matching + ML)           │    │
-│  │  • Input sanitization and escaping                              │    │
-│  │  • Length limits (max tokens)                                   │    │
-│  │  • Rate limiting per user/tenant                                │    │
-│  │  OCI: API Gateway + WAF + Functions                             │    │
-│  └─────────────────────────────────────────────────────────────────┘    │
-│                                    │                                     │
-│                                    ▼                                     │
-│  LAYER 2: Processing Protection                                          │
-│  ┌─────────────────────────────────────────────────────────────────┐    │
-│  │  • Tool execution sandboxing                                    │    │
-│  │  • Least-privilege data access                                  │    │
-│  │  • Context isolation between tenants                            │    │
-│  │  • Timeout enforcement                                          │    │
-│  │  OCI: Container Security + Identity Domains + Functions         │    │
-│  └─────────────────────────────────────────────────────────────────┘    │
-│                                    │                                     │
-│                                    ▼                                     │
-│  LAYER 3: Output Protection                                              │
-│  ┌─────────────────────────────────────────────────────────────────┐    │
-│  │  • PII detection and redaction                                  │    │
-│  │  • Harmful content filtering                                    │    │
-│  │  • Citation verification                                        │    │
-│  │  • Competitor mention filtering                                 │    │
-│  │  OCI: Functions + Content Moderation + Logging                  │    │
-│  └─────────────────────────────────────────────────────────────────┘    │
-│                                    │                                     │
-│                                    ▼                                     │
-│  LAYER 4: Audit and Compliance                                           │
-│  ┌─────────────────────────────────────────────────────────────────┐    │
-│  │  • Full request/response logging (with PII redaction)           │    │
-│  │  • Model decision audit trail                                   │    │
-│  │  • Access control audit                                         │    │
-│  │  • Compliance reporting                                         │    │
-│  │  OCI: Logging + Audit + Data Safe + Compliance Reports          │    │
-│  └─────────────────────────────────────────────────────────────────┘    │
-│                                                                          │
-└─────────────────────────────────────────────────────────────────────────┘
-```
+<Diagram
+  src="/images/diagrams/blog/production-llm-agents-oci-part-3-operating-model/legacy-diagram-19.svg"
+  alt="Security Control Framework diagram 19"
+  caption="Security Control Framework"
+/>
 
 ### Data Classification and Handling
 
-| Classification | Description | Allowed Models | Logging | OCI Controls |
-|----------------|-------------|----------------|---------|--------------|
-| **Public** | Non-sensitive, shareable | All | Full | Standard |
-| **Internal** | Business-sensitive | OCI-hosted only | Metadata | Private endpoints |
-| **Confidential** | Customer data, PII | Dedicated cluster | Audit only | Customer keys |
-| **Restricted** | Regulated data | Private Agent Factory | Audit only | Data residency |
+| Classification   | Description              | Allowed Models        | Logging    | OCI Controls      |
+| ---------------- | ------------------------ | --------------------- | ---------- | ----------------- |
+| **Public**       | Non-sensitive, shareable | All                   | Full       | Standard          |
+| **Internal**     | Business-sensitive       | OCI-hosted only       | Metadata   | Private endpoints |
+| **Confidential** | Customer data, PII       | Dedicated cluster     | Audit only | Customer keys     |
+| **Restricted**   | Regulated data           | Private Agent Factory | Audit only | Data residency    |
 
 ### Compliance Mapping
 
-| Requirement | Control | OCI Implementation |
-|-------------|---------|-------------------|
-| **GDPR Art. 17** | Data deletion | Object Storage lifecycle + DB purge |
-| **GDPR Art. 22** | Explainability | Trace logging + decision audit |
-| **SOC 2 CC6.1** | Access control | Identity Domains + Policies |
-| **HIPAA** | PHI protection | Data Safe + Encryption + Audit |
-| **PCI DSS** | Cardholder data | Tokenization + Isolation |
+| Requirement      | Control         | OCI Implementation                  |
+| ---------------- | --------------- | ----------------------------------- |
+| **GDPR Art. 17** | Data deletion   | Object Storage lifecycle + DB purge |
+| **GDPR Art. 22** | Explainability  | Trace logging + decision audit      |
+| **SOC 2 CC6.1**  | Access control  | Identity Domains + Policies         |
+| **HIPAA**        | PHI protection  | Data Safe + Encryption + Audit      |
+| **PCI DSS**      | Cardholder data | Tokenization + Isolation            |
 
 ---
 
@@ -1044,64 +352,28 @@ Rate your current state (1-5) for each dimension:
 
 ### Roles and Responsibilities
 
-```
-┌─────────────────────────────────────────────────────────────────────────┐
-│                    AI PLATFORM TEAM STRUCTURE                            │
-├─────────────────────────────────────────────────────────────────────────┤
-│                                                                          │
-│                        ┌─────────────────┐                               │
-│                        │   AI Platform   │                               │
-│                        │     Lead        │                               │
-│                        │                 │                               │
-│                        │ • Strategy      │                               │
-│                        │ • Standards     │                               │
-│                        │ • Escalation    │                               │
-│                        └────────┬────────┘                               │
-│                                 │                                        │
-│           ┌─────────────────────┼─────────────────────┐                  │
-│           │                     │                     │                  │
-│           ▼                     ▼                     ▼                  │
-│  ┌────────────────┐   ┌────────────────┐   ┌────────────────┐           │
-│  │   ML Engineer  │   │  Platform Eng  │   │ Prompt Engineer│           │
-│  │                │   │                │   │                │           │
-│  │ • Model ops    │   │ • Infra        │   │ • Agent design │           │
-│  │ • Evaluation   │   │ • Observability│   │ • Quality      │           │
-│  │ • Fine-tuning  │   │ • Security     │   │ • Testing      │           │
-│  └────────────────┘   └────────────────┘   └────────────────┘           │
-│                                                                          │
-│  RACI Matrix:                                                            │
-│  ┌───────────────────────────────────────────────────────────────┐      │
-│  │  Activity          │ Lead │ ML Eng │ Platform │ Prompt Eng   │      │
-│  │  ─────────────────────────────────────────────────────────────│      │
-│  │  Model selection   │  A   │   R    │    C     │     C        │      │
-│  │  Prompt design     │  A   │   C    │    I     │     R        │      │
-│  │  Infrastructure    │  A   │   C    │    R     │     I        │      │
-│  │  Quality gates     │  A   │   R    │    C     │     R        │      │
-│  │  Incident response │  A   │   R    │    R     │     C        │      │
-│  │  Cost management   │  R   │   C    │    R     │     I        │      │
-│  └───────────────────────────────────────────────────────────────┘      │
-│                                                                          │
-│  R = Responsible, A = Accountable, C = Consulted, I = Informed          │
-│                                                                          │
-└─────────────────────────────────────────────────────────────────────────┘
-```
+<Diagram
+  src="/images/diagrams/blog/production-llm-agents-oci-part-3-operating-model/legacy-diagram-20.svg"
+  alt="Roles and Responsibilities diagram 20"
+  caption="Roles and Responsibilities"
+/>
 
 ### On-Call Structure
 
-| Rotation | Scope | Hours | Escalation |
-|----------|-------|-------|------------|
-| **Primary** | All P1/P2 incidents | 24/7 | ML Engineer or Platform Eng |
-| **Secondary** | Escalation backup | 24/7 | AI Platform Lead |
-| **Specialist** | Model-specific issues | Business hours | ML Engineer (on-call) |
+| Rotation       | Scope                 | Hours          | Escalation                  |
+| -------------- | --------------------- | -------------- | --------------------------- |
+| **Primary**    | All P1/P2 incidents   | 24/7           | ML Engineer or Platform Eng |
+| **Secondary**  | Escalation backup     | 24/7           | AI Platform Lead            |
+| **Specialist** | Model-specific issues | Business hours | ML Engineer (on-call)       |
 
 ### Communication Channels
 
-| Channel | Purpose | Response Time |
-|---------|---------|---------------|
-| **#ai-platform-alerts** | Automated alerts | Monitor during on-call |
-| **#ai-platform-support** | Team support requests | 4 hours (business) |
-| **#ai-platform-incidents** | Active incident coordination | Immediate |
-| **Weekly AI Ops Review** | Metrics review, improvements | Weekly |
+| Channel                    | Purpose                      | Response Time          |
+| -------------------------- | ---------------------------- | ---------------------- |
+| **#ai-platform-alerts**    | Automated alerts             | Monitor during on-call |
+| **#ai-platform-support**   | Team support requests        | 4 hours (business)     |
+| **#ai-platform-incidents** | Active incident coordination | Immediate              |
+| **Weekly AI Ops Review**   | Metrics review, improvements | Weekly                 |
 
 ---
 
@@ -1109,28 +381,28 @@ Rate your current state (1-5) for each dimension:
 
 ### Pre-Launch Checklist
 
-| Category | Item | Required | Notes |
-|----------|------|----------|-------|
-| **Security** | RBAC configured | Yes | Identity Domains |
-| **Security** | Network isolation | Yes | VCN + Private endpoints |
-| **Security** | Secrets management | Yes | OCI Vault |
-| **Security** | Input validation | Yes | Functions + WAF |
-| **Reliability** | Timeouts configured | Yes | All external calls |
-| **Reliability** | Retries with backoff | Yes | Transient failures |
-| **Reliability** | Fallback behavior | Yes | Graceful degradation |
-| **Reliability** | Circuit breakers | Recommended | High-frequency tools |
-| **Quality** | Golden set tests | Yes | 500+ cases |
-| **Quality** | CI/CD integration | Yes | DevOps pipelines |
-| **Quality** | Online evaluation | Recommended | Sampling |
-| **Cost** | Budget alerts | Yes | OCI Budgets |
-| **Cost** | Rate limiting | Yes | API Gateway |
-| **Cost** | Cost attribution | Recommended | Tagging |
-| **Observability** | Distributed tracing | Yes | APM + OpenTelemetry |
-| **Observability** | SLOs defined | Yes | Monitoring |
-| **Observability** | Alerting configured | Yes | Notifications |
-| **Governance** | Prompt versioning | Yes | Git repository |
-| **Governance** | Audit logging | Yes | Logging + Audit |
-| **Governance** | Runbooks documented | Yes | At least 3 |
+| Category          | Item                 | Required    | Notes                   |
+| ----------------- | -------------------- | ----------- | ----------------------- |
+| **Security**      | RBAC configured      | Yes         | Identity Domains        |
+| **Security**      | Network isolation    | Yes         | VCN + Private endpoints |
+| **Security**      | Secrets management   | Yes         | OCI Vault               |
+| **Security**      | Input validation     | Yes         | Functions + WAF         |
+| **Reliability**   | Timeouts configured  | Yes         | All external calls      |
+| **Reliability**   | Retries with backoff | Yes         | Transient failures      |
+| **Reliability**   | Fallback behavior    | Yes         | Graceful degradation    |
+| **Reliability**   | Circuit breakers     | Recommended | High-frequency tools    |
+| **Quality**       | Golden set tests     | Yes         | 500+ cases              |
+| **Quality**       | CI/CD integration    | Yes         | DevOps pipelines        |
+| **Quality**       | Online evaluation    | Recommended | Sampling                |
+| **Cost**          | Budget alerts        | Yes         | OCI Budgets             |
+| **Cost**          | Rate limiting        | Yes         | API Gateway             |
+| **Cost**          | Cost attribution     | Recommended | Tagging                 |
+| **Observability** | Distributed tracing  | Yes         | APM + OpenTelemetry     |
+| **Observability** | SLOs defined         | Yes         | Monitoring              |
+| **Observability** | Alerting configured  | Yes         | Notifications           |
+| **Governance**    | Prompt versioning    | Yes         | Git repository          |
+| **Governance**    | Audit logging        | Yes         | Logging + Audit         |
+| **Governance**    | Runbooks documented  | Yes         | At least 3              |
 
 ### Launch Day Checklist
 
@@ -1155,13 +427,13 @@ This three-part series has provided a comprehensive framework for production AI 
 
 ### Next Steps
 
-| Maturity Stage | Recommended Actions |
-|----------------|---------------------|
-| **Stage 1** | Start with [Part 1](/blog/production-llm-agents-oci-part-1-architecture) architecture patterns |
-| **Stage 2** | Implement basic monitoring and prompt versioning |
-| **Stage 3** | Build evaluation pipelines using this guide |
-| **Stage 4** | Implement A/B testing and automated quality gates |
-| **Stage 5** | Design autonomous operations architecture |
+| Maturity Stage | Recommended Actions                                                                            |
+| -------------- | ---------------------------------------------------------------------------------------------- |
+| **Stage 1**    | Start with [Part 1](/blog/production-llm-agents-oci-part-1-architecture) architecture patterns |
+| **Stage 2**    | Implement basic monitoring and prompt versioning                                               |
+| **Stage 3**    | Build evaluation pipelines using this guide                                                    |
+| **Stage 4**    | Implement A/B testing and automated quality gates                                              |
+| **Stage 5**    | Design autonomous operations architecture                                                      |
 
 ---
 
@@ -1176,7 +448,7 @@ This three-part series has provided a comprehensive framework for production AI 
 
 ---
 
-*Visit the [AI CoE Hub](/ai-architect/ai-coe-hub) for all resources, decision frameworks, and links to Oracle Architecture Center patterns.*
+_Visit the [AI CoE Hub](/ai-architect/ai-coe-hub) for all resources, decision frameworks, and links to Oracle Architecture Center patterns._
 
 ---
 

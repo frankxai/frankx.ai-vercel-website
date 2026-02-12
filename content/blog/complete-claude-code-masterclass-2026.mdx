@@ -36,21 +36,12 @@ Understanding the architecture helps you configure for success.
 
 ### How Sessions Work
 
-```
-┌─────────────────────────────────────────────────────┐
-│                   Claude Code Session                │
-├─────────────────────────────────────────────────────┤
-│  ┌─────────────┐    ┌─────────────┐    ┌─────────┐ │
-│  │ Context     │◄──►│ Agent Core  │◄──►│ Tools   │ │
-│  │ Memory      │    │ (Planning)  │    │         │ │
-│  └─────────────┘    └─────────────┘    └────┬────┘ │
-│         ▲                   │                │       │
-│         │                   ▼                ▼       │
-│  ┌──────┴────────────────────┴──────────────┴───┐   │
-│  │           Your Project Files & Git            │   │
-│  └────────────────────────────────────────────────   │
-└─────────────────────────────────────────────────────┘
-```
+<Diagram
+  src="/images/diagrams/blog/complete-claude-code-masterclass-2026/legacy-diagram-01.svg"
+  alt="How Sessions Work diagram 1"
+  caption="How Sessions Work"
+/>
+
 
 The session persists until you explicitly end it. This means Claude remembers your project structure, coding preferences, and accumulated context across work sessions.
 
@@ -220,21 +211,12 @@ Single-agent workflows get you far, but multi-agent systems let you parallelize 
 
 Rather than one agent doing everything, specialize agents for different concerns:
 
-```
-┌────────────────────────────────────────────────────────────┐
-│                    Orchestrator Agent                        │
-│  (Coordinates, validates, manages handoffs)                  │
-└─────────────────────────┬──────────────────────────────────┘
-                          │
-        ┌─────────────────┼─────────────────┐
-        ▼                 ▼                 ▼
-┌───────────────┐ ┌───────────────┐ ┌───────────────┐
-│   Code Agent  │ │  Test Agent   │ │  Docs Agent   │
-│  • Writes     │ │  • Tests      │ │  • Updates    │
-│  • Refactors  │ │  • Validates  │ │  • Documents  │
-│  • Reviews    │ │  • Coverage   │ │  • READMEs    │
-└───────────────┘ └───────────────┘ └───────────────┘
-```
+<Diagram
+  src="/images/diagrams/blog/complete-claude-code-masterclass-2026/legacy-diagram-02.svg"
+  alt="Agent Specialization Pattern diagram 2"
+  caption="Agent Specialization Pattern"
+/>
+
 
 ### Implementing Agent Handoffs
 
