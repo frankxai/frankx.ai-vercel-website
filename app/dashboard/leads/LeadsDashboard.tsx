@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { Search, Download, Mail, Filter, Calendar, Building, Briefcase } from 'lucide-react'
 import type { PDFLead } from '@/lib/types/pdf-analytics'
 
@@ -13,15 +13,7 @@ export default function LeadsDashboard() {
   const [filterGuide, setFilterGuide] = useState<string>('all')
   const [filterInterest, setFilterInterest] = useState<string>('all')
 
-  useEffect(() => {
-    fetchLeads()
-  }, [])
-
-  useEffect(() => {
-    filterLeadsData()
-  }, [searchQuery, filterGuide, filterInterest, leads])
-
-  async function fetchLeads() {
+  const fetchLeads = useCallback(async () => {
     setIsLoading(true)
     setError(null)
 
@@ -41,9 +33,8 @@ export default function LeadsDashboard() {
     } finally {
       setIsLoading(false)
     }
-  }
-
-  function filterLeadsData() {
+  }, [])
+  const filterLeadsData = useCallback(() => {
     let filtered = [...leads]
 
     // Search filter
@@ -66,9 +57,16 @@ export default function LeadsDashboard() {
     if (filterInterest !== 'all') {
       filtered = filtered.filter(lead => lead.primaryInterest === filterInterest)
     }
-
     setFilteredLeads(filtered)
-  }
+  }, [leads, searchQuery, filterGuide, filterInterest])
+
+  useEffect(() => {
+    fetchLeads()
+  }, [fetchLeads])
+
+  useEffect(() => {
+    filterLeadsData()
+  }, [filterLeadsData])
 
   function exportToCSV() {
     const headers = [

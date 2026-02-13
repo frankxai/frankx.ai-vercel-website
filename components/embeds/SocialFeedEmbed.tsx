@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
+import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ExternalLink, Play, Heart, MessageCircle, Share2, X, Maximize2 } from 'lucide-react'
 
@@ -112,10 +113,13 @@ function SocialPostCard({
         onClick={onOpenLightbox}
       >
         {post.thumbnailUrl ? (
-          <img
+          <Image
             src={post.thumbnailUrl}
             alt={post.title || 'Social media post'}
-            className="w-full h-full object-cover"
+            fill
+            unoptimized
+            sizes="(max-width: 768px) 100vw, 33vw"
+            className="object-cover"
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#18181b] to-[#0a0a0b]">
@@ -159,9 +163,12 @@ function SocialPostCard({
         {post.author && (
           <div className="flex items-center gap-2 mb-2">
             {post.authorAvatar && (
-              <img
+              <Image
                 src={post.authorAvatar}
                 alt={post.author}
+                width={24}
+                height={24}
+                unoptimized
                 className="w-6 h-6 rounded-full"
               />
             )}

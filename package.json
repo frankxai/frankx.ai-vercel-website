@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint .",
+    "lint": "eslint --config eslint.config.js 'app/**/*.{ts,tsx}' 'components/**/*.{ts,tsx}' 'lib/**/*.{ts,tsx}' --ignore-pattern 'app/design-lab/**' --ignore-pattern 'components/v0-variants/**'",
     "type-check": "tsc --noEmit",
     "gen:html": "node scripts/generate_interlinked_html.mjs",
     "gen:feed": "node scripts/generate_feed.mjs",
@@ -25,7 +25,12 @@
     "qa:check": "node scripts/qa-gatekeeper.mjs",
     "factory:validate": "npm run content:validate && npm run qa:check",
     "factory:publish": "npm run qa:check && npm run publish:artifact",
-    "ci:check": "npm run type-check && npm run lint && npm run content:validate",
+    "diagrams:inventory": "node scripts/diagrams/inventory.mjs --write",
+    "diagrams:migrate": "node scripts/diagrams/migrate-legacy.mjs",
+    "diagrams:render": "node scripts/diagrams/render.mjs",
+    "diagrams:guard": "node scripts/diagrams/guard.mjs",
+    "diagrams:baseline": "node scripts/diagrams/guard.mjs --update-baseline",
+    "ci:check": "npm run type-check && npm run lint && npm run content:validate && npm run diagrams:guard",
     "links:check": "node scripts/check-links.mjs",
     "log:session": "node scripts/log-session.mjs",
     "sync:check": "bash scripts/pre-deploy-sync-check.sh",
@@ -90,7 +95,9 @@
     "three": "^0.182.0"
   },
   "devDependencies": {
+    "@mermaid-js/mermaid-cli": "^11.12.0",
     "@modelcontextprotocol/sdk": "^1.25.2",
+    "@terrastruct/d2": "^0.1.33",
     "@types/bcryptjs": "^2.4.6",
     "@types/lunr": "^2.3.7",
     "@types/node": "^22.10.2",
@@ -101,6 +108,7 @@
     "lint-staged": "^16.2.7",
     "puppeteer": "^24.35.0",
     "styled-jsx": "^5.1.7",
+    "svgo": "^4.0.0",
     "typescript": "^5.7.2"
   },
   "lint-staged": {

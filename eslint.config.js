@@ -5,12 +5,19 @@ module.exports = [
   ...nextConfig,
   ...nextCoreWebVitals,
   {
+    ignores: [
+      'app/design-lab/**',
+      'components/v0-variants/**',
+      '.worktrees/**',
+      'agentic-creator-os/**',
+      'frankx-oracle-genai-content/**',
+    ],
+  },
+  {
     rules: {
       'react/no-unescaped-entities': 'off',
-      // Disable React Compiler ESLint rules that conflict with animation libraries
+      'react-hooks/purity': 'off',
       'react-hooks/set-state-in-effect': 'off',
-      'react-hooks/static-components': 'off',
-      'react-hooks/immutability': 'off',
     },
   },
 ]

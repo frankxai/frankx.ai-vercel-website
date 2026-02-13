@@ -55,15 +55,29 @@ components/**/CLAUDE.md
 data/**/CLAUDE.md
 lib/**/CLAUDE.md
 FrankX.AI - Vercel Website/
-agentic-creator-os/
+# Agentic Creator OS - ignore MCP package, track core files
+agentic-creator-os/*
+!agentic-creator-os/ACOS-V4-SPEC.md
+!agentic-creator-os/ACOS-V5-SPEC.md
+!agentic-creator-os/CLAUDE.md
+!agentic-creator-os/ARCHITECTURE.md
+!agentic-creator-os/hub-generator/
 .claude-skills/CLAUDE.md
 # AI Skills templates (not for production)
 Claude-Code-AI-Architect-Skills/
 tina-frankx/
 
-# Local tooling + archives
-.claude/skills/3d-design/
-.claude/skills/frankx-design/
-.claude/skills/frontend-design/
-backups/
+# Local artifacts (multi-agent + tooling)
+.worktrees/
+.playwright-mcp/
+.claude-plugins-fcakyon/
+_archive/
+repo_sync_report.md
+research/production-llm-agents-2026/
 C:\\Users\\Frank\\.claude\\plugins\\marketplaces\\claude-plugins-official/
+
+# Local runtime artifacts
+.claude-flow/daemon.pid
+.claude-flow/daemon-state.json
+.claude-flow/learning/
+nul

@@ -1,0 +1,14 @@
+* text=auto
+
+# Always use LF for executable scripts
+*.sh text eol=lf
+
+# Keep common source/config files normalized
+*.ts text
+*.tsx text
+*.js text
+*.mjs text
+*.json text
+*.md text
+*.mdx text
+*.css text

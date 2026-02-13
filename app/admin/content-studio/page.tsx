@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 import {
   Sparkles,
   Clock,
@@ -230,11 +231,13 @@ export default function ContentStudioPage() {
                     {/* Image Preview - uses thumbnail (12KB) instead of full (600KB) */}
                     {(item.thumbnailUrl || item.imageUrl) ? (
                       <div className="w-24 h-24 rounded-xl overflow-hidden flex-shrink-0 bg-slate-700 relative group">
-                        <img
-                          src={item.thumbnailUrl || item.imageUrl}
+                        <Image
+                          src={item.thumbnailUrl || item.imageUrl!}
                           alt={item.title}
-                          className="w-full h-full object-cover"
-                          loading="lazy"
+                          fill
+                          unoptimized
+                          sizes="96px"
+                          className="object-cover"
                         />
                         <button
                           onClick={() => downloadImage(item.imageUrl!, `${item.id}.png`)}
@@ -385,10 +388,13 @@ export default function ContentStudioPage() {
                         {/* Full Image */}
                         {item.imageUrl && (
                           <div className="w-64 flex-shrink-0">
-                            <img
+                            <Image
                               src={item.imageUrl}
                               alt={item.title}
-                              className="w-full rounded-xl"
+                              width={1024}
+                              height={1024}
+                              unoptimized
+                              className="w-full h-auto rounded-xl"
                             />
                             <button
                               onClick={() => downloadImage(item.imageUrl!, `${item.id}.png`)}

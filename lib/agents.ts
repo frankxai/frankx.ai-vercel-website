@@ -71,12 +71,12 @@ export const claudeAgents: ClaudeAgent[] = [
     cta: { label: 'Enter the Music Lab', href: '/music-lab' },
   },
   {
-    id: 'luminor-oracle',
-    name: 'Luminor Oracle',
+    id: 'visionary',
+    name: 'Visionary',
     focus: 'Strategic Foresight & Scenario Design',
-    role: 'Future-casts strategy from a 2124 vantage point to stress test today’s decisions.',
+    role: "Future-casts strategy from a 2124 vantage point to stress test today's decisions.",
     icon: Telescope,
-    image: '/images/agents/luminor-oracle.svg',
+    image: '/images/agents/visionary.svg',
     workflows: [
       'Signal scanning rituals analyzing regulatory, cultural, and technology shifts.',
       'Future scenario modeling to evaluate long-horizon bets.',
