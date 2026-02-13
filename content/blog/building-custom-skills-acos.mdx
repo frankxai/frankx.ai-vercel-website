@@ -123,11 +123,15 @@ Level 3: Resources folder (unlimited)
 
 **Directory Structure:**
 
-<Diagram
-  src="/images/diagrams/blog/building-custom-skills-acos/skill-directory-structure.svg"
-  alt="Recommended ACOS skill directory structure with SKILL.md and resources"
-  caption="Recommended skill layout: concise core instructions with deep references in resources."
-/>
+```
+~/.claude/skills/your-skill/
+├── SKILL.md              # Core instructions (Level 1)
+├── CLAUDE.md             # Auto-loaded context (Level 2)
+└── resources/            # Deep references (Level 3)
+    ├── examples.md
+    ├── patterns.md
+    └── advanced.md
+```
 
 ---
 
@@ -553,11 +557,16 @@ Keep in `~/.claude/skills/`. Works on your machine only.
 
 Add to project's `.claude/skills/`:
 
-<Diagram
-  src="/images/diagrams/blog/building-custom-skills-acos/project-skill-placement.svg"
-  alt="Project-level skill placement inside .claude/skills directory"
-  caption="Project-scoped installation path for sharing a skill with collaborators."
-/>
+```
+your-project/
+├── .claude/
+│   └── skills/
+│       └── your-skill/
+│           └── SKILL.md
+├── src/
+├── package.json
+└── ...
+```
 
 Committed to repo, works for anyone who clones.
 

@@ -135,7 +135,7 @@ const nextConfig = {
         destination: '/courses?highlight=ai-business-strategy',
         permanent: false,
       },
-      // AI Architecture Hub redirects
+      // AI Architecture Hub redirects - consolidate all variants to single hub
       {
         source: '/prototypes',
         destination: '/ai-architecture/blueprints',
@@ -144,6 +144,16 @@ const nextConfig = {
       {
         source: '/ai-architectures',
         destination: '/ai-architecture',
+        permanent: true,
+      },
+      {
+        source: '/ai-architect',
+        destination: '/ai-architecture',
+        permanent: true,
+      },
+      {
+        source: '/ai-architect/:path*',
+        destination: '/ai-architecture/:path*',
         permanent: true,
       },
       // Product page redirects to main pages

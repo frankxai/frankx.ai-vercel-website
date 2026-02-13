@@ -1,5 +1,3 @@
-import Footer from '@/components/Footer'
-import Navigation from '@/components/Navigation'
 import { DepartmentSection } from '@/components/team/DepartmentSection'
 import { departments, getMembersByDepartment, teamMembers } from '@/lib/team-members'
 import { getIcon } from '@/lib/icon-map'
@@ -43,7 +41,6 @@ export default function TeamPage() {
 
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100">
-      <Navigation />
       <main className="px-6 pt-28 pb-20">
         <div className="mx-auto max-w-7xl space-y-16">
           {/* Hero Section */}
@@ -268,7 +265,6 @@ export default function TeamPage() {
           </section>
         </div>
       </main>
-      <Footer />
     </div>
   )
 }
