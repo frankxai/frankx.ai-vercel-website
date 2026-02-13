@@ -162,6 +162,12 @@ const nextConfig = {
         destination: '/soulbook',
         permanent: true,
       },
+      // Gallery consolidation
+      {
+        source: '/ai-art',
+        destination: '/gallery',
+        permanent: true,
+      },
     ]
   },
   outputFileTracingRoot: __dirname,
