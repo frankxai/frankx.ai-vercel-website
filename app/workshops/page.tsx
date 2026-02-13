@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import { motion } from 'framer-motion'
 import Link from 'next/link'
 import {
   Code2,
@@ -267,8 +268,10 @@ function WorkshopCard({ workshop }: { workshop: Workshop }) {
   const Icon = workshop.icon
 
   return (
-    <div
-      className="group relative animate-fade-in-up opacity-0 motion-reduce:animate-none"
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="group relative"
     >
       <div
         className={`absolute inset-0 rounded-2xl bg-gradient-to-br ${workshop.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}
@@ -366,7 +369,7 @@ function WorkshopCard({ workshop }: { workshop: Workshop }) {
           </a>
         </div>
       </div>
-    </div>
+    </motion.div>
   )
 }
 
@@ -510,8 +513,11 @@ export default function WorkshopsPage() {
         <div className="absolute top-20 right-1/4 w-96 h-96 bg-violet-500/10 rounded-full blur-3xl" />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div
-            className="text-center animate-fade-in-up opacity-0 motion-reduce:animate-none"
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-center"
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-cyan-500/30 bg-cyan-500/10 mb-6">
               <Terminal className="w-4 h-4 text-cyan-400" />
@@ -548,7 +554,7 @@ export default function WorkshopsPage() {
                 Quality Certified
               </span>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 

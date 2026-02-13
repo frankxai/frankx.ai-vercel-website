@@ -24,11 +24,13 @@ module.exports = {
         // See /lib/design-system.ts for full documentation
         // =====================================================
 
-        // BACKGROUNDS - Universal deep space foundation
-        void: '#0a0a0b',          // Deepest black - main background
-        space: '#111113',         // Primary elevated - cards, modals
-        elevated: '#18181b',      // Secondary elevated - hover states
-        subtle: '#1f1f23',        // Tertiary - borders, dividers
+        // BACKGROUNDS - Dark-first Foundation (Brand v2.0)
+        void: '#0a0a0b',          // Page background
+        space: '#111113',         // Section background
+        navy: '#0F172A',          // Brand primary dark
+        elevated: '#1a1a1f',      // Card backgrounds
+        subtle: '#252530',        // Hover states
+        'muted-bg': '#3a3a4a',    // Disabled states
 
         // TECH SPECTRUM - For AI/technical content (emerald/cyan)
         tech: {
@@ -48,8 +50,18 @@ module.exports = {
           glow: 'rgba(245, 158, 11, 0.15)',
         },
 
-        // HYBRID - Strategic bridge color (purple)
-        hybrid: '#8b5cf6',        // Purple-500 - rare, intentional use
+        // BRAND ACCENTS (v2.0)
+        'brand-purple': '#AB47C7',
+        'brand-blue': '#43BFE3',
+        'brand-magenta': '#E040FB',
+        'brand-obsidian': '#1E0A3C',
+        'brand-arcanea-glow': '#7C3AED',
+        'brand-gold': '#F59E0B',
+        'brand-rose': '#F43F5E',
+        'brand-starlight': '#38BDF8',
+
+        // HYBRID - Legacy alias
+        hybrid: '#AB47C7',        // Brand purple
 
         // SEMANTIC COLORS - Status and feedback
         success: {
@@ -230,12 +242,15 @@ module.exports = {
       // BACKGROUND GRADIENTS - Ambient effects
       // =====================================================
       backgroundImage: {
-        'tech-aurora': 'radial-gradient(ellipse at center, rgba(16, 185, 129, 0.06) 0%, transparent 70%)',
-        'soul-aurora': 'radial-gradient(ellipse at center, rgba(245, 158, 11, 0.06) 0%, transparent 70%)',
-        'midnight-radial': 'radial-gradient(circle at 20% 20%, rgba(92, 136, 245, 0.18), transparent 55%)',
-        'aurora-vortex': 'radial-gradient(circle at 80% 10%, rgba(67, 191, 227, 0.22), transparent 45%)',
-        'pulse-halo': 'radial-gradient(circle at 50% 80%, rgba(171, 71, 199, 0.18), transparent 55%)',
-        'glass-light': 'linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.04) 100%)',
+        // Brand v2.0 aurora gradients (LOW opacity)
+        'tech-aurora': 'radial-gradient(ellipse 120% 80% at 20% 50%, rgba(171,71,199,0.12), transparent 60%), radial-gradient(ellipse 100% 60% at 80% 30%, rgba(67,191,227,0.08), transparent 50%)',
+        'soul-aurora': 'radial-gradient(ellipse 120% 80% at 30% 60%, rgba(245,158,11,0.15), transparent 60%), radial-gradient(ellipse 100% 60% at 70% 20%, rgba(249,112,102,0.12), transparent 50%)',
+        'brand-gradient': 'linear-gradient(135deg, #AB47C7, #43BFE3)',
+        // Legacy (preserved for backward compat)
+        'midnight-radial': 'radial-gradient(circle at 20% 20%, rgba(171, 71, 199, 0.12), transparent 55%)',
+        'aurora-vortex': 'radial-gradient(circle at 80% 10%, rgba(67, 191, 227, 0.08), transparent 45%)',
+        'pulse-halo': 'radial-gradient(circle at 50% 80%, rgba(171, 71, 199, 0.12), transparent 55%)',
+        'glass-light': 'linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%)',
       },
 
       // =====================================================
@@ -245,10 +260,12 @@ module.exports = {
       fontFamily: {
         // INTER - Primary brand font for all body/UI text (DO NOT CHANGE)
         sans: ['var(--font-inter)', 'Inter', 'system-ui', '-apple-system', 'sans-serif'],
-        display: ['var(--font-inter)', 'Inter', 'system-ui', 'sans-serif'],
-        // CORMORANT GARAMOND - For quotes, blockquotes, and editorial italic ONLY
-        serif: ['var(--font-quote)', 'Cormorant Garamond', 'Georgia', 'serif'],
-        quote: ['var(--font-quote)', 'Cormorant Garamond', 'Georgia', 'serif'],
+        // POPPINS - Display headings only (≥18px per brand v2.0)
+        display: ['var(--font-poppins)', 'Poppins', 'system-ui', 'sans-serif'],
+        // PLAYFAIR DISPLAY - Editorial italic quotes ONLY
+        serif: ['var(--font-serif)', 'Playfair Display', 'Georgia', 'serif'],
+        quote: ['var(--font-serif)', 'Playfair Display', 'Georgia', 'serif'],
+        // JETBRAINS MONO - Code blocks and inline code
         mono: ['var(--font-mono)', 'JetBrains Mono', 'Menlo', 'Monaco', 'monospace'],
       },
       fontSize: {
@@ -303,10 +320,17 @@ module.exports = {
       // SHADOWS - Elevation hierarchy
       // =====================================================
       boxShadow: {
-        // Glow effects
+        // Brand v2.0 glow effects
+        'glow-purple': '0 0 40px rgba(171, 71, 199, 0.35)',
+        'glow-blue': '0 0 40px rgba(67, 191, 227, 0.35)',
+        'glow-emerald': '0 0 40px rgba(16, 185, 129, 0.35)',
+        'glow-gold': '0 0 40px rgba(245, 158, 11, 0.35)',
+        'glow-magenta': '0 0 40px rgba(224, 64, 251, 0.35)',
+        'glow-arcanea': '0 0 40px rgba(124, 58, 237, 0.35)',
+        // Legacy aliases
         'glow-tech': '0 0 40px rgba(16, 185, 129, 0.35)',
         'glow-soul': '0 0 40px rgba(245, 158, 11, 0.35)',
-        'soul-glow': '0 0 40px rgb(107 70 193 / 0.45)', // Legacy
+        'soul-glow': '0 0 40px rgba(171, 71, 199, 0.45)',
 
         // Standard elevation
         glass: '0 20px 60px rgb(8 15 33 / 0.45)',
@@ -319,10 +343,8 @@ module.exports = {
       // ANIMATIONS - Consistent motion
       // =====================================================
       animation: {
-        'fade-in': 'fadeIn 0.6s ease-out forwards',
-        'fade-in-up': 'fadeInUp 0.6s ease-out forwards',
-        'fade-in-down': 'fadeInDown 0.6s ease-out forwards',
-        'scale-in': 'scaleInSmooth 0.5s ease-out forwards',
+        'fade-in': 'fadeIn 0.5s ease-in-out',
+        'fade-in-up': 'fadeInUp 0.6s ease-out',
         'slide-up': 'slideUp 0.5s ease-out',
         'slide-down': 'slideDown 0.5s ease-out',
         'pulse-slow': 'pulse 3s infinite',
@@ -331,8 +353,6 @@ module.exports = {
         'gradient': 'gradient 15s ease infinite',
         float: 'float 6s ease-in-out infinite',
         'logo-marquee': 'logoMarquee 40s linear infinite',
-        'aurora-1': 'aurora1 30s ease-in-out infinite',
-        'aurora-2': 'aurora2 25s ease-in-out infinite',
 
         // Radix Navigation animations
         scaleIn: 'scaleIn 200ms ease',
@@ -361,14 +381,6 @@ module.exports = {
         fadeInUp: {
           '0%': { opacity: '0', transform: 'translateY(20px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
-        },
-        fadeInDown: {
-          '0%': { opacity: '0', transform: 'translateY(-20px)' },
-          '100%': { opacity: '1', transform: 'translateY(0)' },
-        },
-        scaleInSmooth: {
-          '0%': { opacity: '0', transform: 'scale(0.95)' },
-          '100%': { opacity: '1', transform: 'scale(1)' },
         },
         slideUp: {
           '0%': { transform: 'translateY(100%)' },
@@ -403,14 +415,6 @@ module.exports = {
         logoMarquee: {
           '0%': { transform: 'translateX(0)' },
           '100%': { transform: 'translateX(-50%)' },
-        },
-        aurora1: {
-          '0%, 100%': { transform: 'translate(0, 0) scale(1)' },
-          '50%': { transform: 'translate(50px, 30px) scale(1.05)' },
-        },
-        aurora2: {
-          '0%, 100%': { transform: 'translate(0, 0) scale(1)' },
-          '50%': { transform: 'translate(-40px, -20px) scale(1.08)' },
         },
 
         // Radix Navigation keyframes

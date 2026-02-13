@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import PremiumCard from '../ui/PremiumCard';
+import GlassmorphicCard from '../ui/GlassmorphicCard';
 import { trackEvent } from '@/lib/analytics';
 
 interface CallToActionProps {
@@ -22,7 +22,7 @@ const CallToAction: React.FC<CallToActionProps> = ({
   className,
 }) => {
   return (
-    <PremiumCard glass="heavy" className={cn('p-8 text-center', className)}>
+    <GlassmorphicCard variant="luxury" className={cn('p-8 text-center', className)}>
       <h3 className="text-3xl font-bold text-white mb-4">{title}</h3>
       <p className="text-slate-300 mb-8 max-w-2xl mx-auto">{description}</p>
       <Link
@@ -32,7 +32,7 @@ const CallToAction: React.FC<CallToActionProps> = ({
       >
         {buttonText} <ArrowRight className="w-5 h-5 ml-2" />
       </Link>
-    </PremiumCard>
+    </GlassmorphicCard>
   );
 };
 

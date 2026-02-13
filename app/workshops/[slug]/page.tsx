@@ -1,6 +1,7 @@
 'use client'
 
 import { useParams } from 'next/navigation'
+import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import {
@@ -626,9 +627,11 @@ Four levels guide your journey: Awakening (first steps), Building (creating syst
 
 function ModuleCard({ module, index }: { module: Module; index: number }) {
   return (
-    <div
-      className="group relative animate-fade-in-up opacity-0 motion-reduce:animate-none"
-      style={{ animationDelay: `${(index * 0.1).toFixed(1)}s` }}
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: index * 0.1 }}
+      className="group relative"
     >
       <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
       <div className="relative p-6 rounded-2xl border border-white/10 bg-zinc-900/50 backdrop-blur-sm hover:border-white/20 transition-all">
@@ -658,7 +661,7 @@ function ModuleCard({ module, index }: { module: Module; index: number }) {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   )
 }
 
@@ -697,7 +700,11 @@ export default function WorkshopDetailPage() {
             All Workshops
           </Link>
 
-          <div className="animate-fade-in-up opacity-0 motion-reduce:animate-none">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
             {/* Icon and Badges */}
             <div className="flex items-center gap-4 mb-6">
               <div className={`p-4 rounded-2xl bg-gradient-to-br ${workshop.gradient} ${workshop.color}`}>
@@ -758,7 +765,7 @@ export default function WorkshopDetailPage() {
                 View on GitHub
               </a>
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
@@ -768,14 +775,16 @@ export default function WorkshopDetailPage() {
           <h2 className="text-3xl font-bold text-white mb-8">What You'll Learn</h2>
           <div className="grid md:grid-cols-2 gap-4">
             {workshop.outcomes.map((outcome, index) => (
-              <div
+              <motion.div
                 key={index}
-                className="flex items-start gap-3 p-4 rounded-xl bg-zinc-900/50 border border-white/5 animate-fade-in-up opacity-0 motion-reduce:animate-none"
-                style={{ animationDelay: `${(index * 0.1).toFixed(1)}s` }}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: index * 0.1 }}
+                className="flex items-start gap-3 p-4 rounded-xl bg-zinc-900/50 border border-white/5"
               >
                 <CheckCircle className="w-5 h-5 text-emerald-400 mt-0.5 flex-shrink-0" />
                 <span className="text-zinc-300">{outcome}</span>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>

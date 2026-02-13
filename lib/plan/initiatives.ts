@@ -471,10 +471,11 @@ export const planInitiatives: PlanInitiative[] = [
     icon: 'FlaskConical',
     color: 'teal',
     track: 'creative',
-    status: 'in-progress',
+    status: 'shipped',
     priority: 'high',
-    progress: 85,
+    progress: 100,
     startedAt: '2026-02-07',
+    shippedAt: '2026-02-07',
     targetDate: '2026-02-10',
     highlights: [
       { stat: '3', label: 'Seed Experiments' },
@@ -486,11 +487,11 @@ export const planInitiatives: PlanInitiative[] = [
       { id: 'dl-2', title: 'Build hub page with experiment grid', status: 'done', assignedAgent: 'FORGE', completedAt: '2026-02-07' },
       { id: 'dl-3', title: 'Build detail pages with agent comparison', status: 'done', assignedAgent: 'FORGE', completedAt: '2026-02-07' },
       { id: 'dl-4', title: 'Add to plan initiative registry', status: 'done', assignedAgent: 'VECTOR', completedAt: '2026-02-07' },
-      { id: 'dl-5', title: 'Deploy to production', status: 'pending', assignedAgent: 'GRID' },
+      { id: 'dl-5', title: 'Deploy to production', status: 'done', assignedAgent: 'GRID', completedAt: '2026-02-07' },
     ],
     milestones: [
       { title: 'Data registry + 3 seed experiments', targetDate: '2026-02-08', status: 'hit' },
-      { title: 'Hub + detail pages deployed', targetDate: '2026-02-10', status: 'upcoming' },
+      { title: 'Hub + detail pages deployed', targetDate: '2026-02-10', status: 'hit' },
     ],
     agentComments: [
       { agent: 'APEX', timestamp: '2026-02-07T20:00:00Z', content: 'Design Lab is a unique content angle. No competitor is publicly benchmarking AI coding tools at design tasks. This positions Frank as the authority on AI-assisted design quality.', type: 'insight' },

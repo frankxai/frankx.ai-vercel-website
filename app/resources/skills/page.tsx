@@ -5,7 +5,7 @@ import { ArrowLeft, Download, Code, Sparkles, Terminal, Brain, Music, BookOpen, 
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 
-import PremiumCard from '@/components/ui/PremiumCard'
+import GlassmorphicCard from '@/components/ui/GlassmorphicCard'
 import PremiumButton from '@/components/ui/PremiumButton'
 
 const skillCategories = [
@@ -153,10 +153,10 @@ export default function SkillsPage() {
                 { label: 'Categories', value: '6' },
                 { label: 'Open Source', value: 'Yes' },
               ].map((stat) => (
-                <PremiumCard key={stat.label} glass="subtle" className="p-4">
+                <GlassmorphicCard key={stat.label} variant="default" border="subtle" className="p-4">
                   <p className="text-2xl font-bold text-blue-400">{stat.value}</p>
                   <p className="text-sm text-slate-500">{stat.label}</p>
-                </PremiumCard>
+                </GlassmorphicCard>
               ))}
             </div>
           </motion.div>
@@ -171,7 +171,7 @@ export default function SkillsPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <PremiumCard glass="heavy" gradient="purple" className="p-8">
+            <GlassmorphicCard variant="luxury" border="glow" className="p-8">
               <div className="flex items-start gap-4 mb-6">
                 <div className="p-3 rounded-xl bg-blue-500/20">
                   <Sparkles className="h-6 w-6 text-blue-400" />
@@ -190,7 +190,7 @@ export default function SkillsPage() {
                 <p className="text-blue-300">/skill suno-ai-mastery</p>
                 <p className="text-slate-400 mt-2"># Claude now has expert knowledge in Suno AI music production</p>
               </div>
-            </PremiumCard>
+            </GlassmorphicCard>
           </motion.div>
         </div>
       </section>
@@ -219,7 +219,7 @@ export default function SkillsPage() {
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
                 >
-                  <PremiumCard glass="subtle" className="p-6 h-full">
+                  <GlassmorphicCard variant="default" border="subtle" hover className="p-6 h-full">
                     <div className={`inline-flex h-12 w-12 items-center justify-center rounded-xl bg-${category.color}-500/20 text-${category.color}-400 mb-4`}>
                       <IconComponent className="h-6 w-6" />
                     </div>
@@ -238,7 +238,7 @@ export default function SkillsPage() {
                         </code>
                       ))}
                     </div>
-                  </PremiumCard>
+                  </GlassmorphicCard>
                 </motion.div>
               )
             })}
@@ -268,7 +268,7 @@ export default function SkillsPage() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
               >
-                <PremiumCard glass="subtle" className="p-6">
+                <GlassmorphicCard variant="default" border="subtle" className="p-6">
                   <div className="flex items-center justify-between gap-4">
                     <div className="flex-grow">
                       <h3 className="text-lg font-semibold text-slate-200 mb-1">{skill.name}</h3>
@@ -291,7 +291,7 @@ export default function SkillsPage() {
                       )}
                     </button>
                   </div>
-                </PremiumCard>
+                </GlassmorphicCard>
               </motion.div>
             ))}
           </div>
@@ -339,7 +339,7 @@ export default function SkillsPage() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
               >
-                <PremiumCard glass="subtle" className="p-6">
+                <GlassmorphicCard variant="default" border="subtle" className="p-6">
                   <div className="flex gap-6">
                     <div className="flex-shrink-0">
                       <div className="w-10 h-10 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center font-bold">
@@ -357,7 +357,7 @@ export default function SkillsPage() {
                       <CheckCircle className="h-6 w-6 text-green-500/50" />
                     </div>
                   </div>
-                </PremiumCard>
+                </GlassmorphicCard>
               </motion.div>
             ))}
           </div>
@@ -372,7 +372,7 @@ export default function SkillsPage() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <PremiumCard glass="heavy" gradient="purple" className="p-8 text-center bg-gradient-to-br from-amber-950/30 to-slate-950">
+            <GlassmorphicCard variant="luxury" border="glow" className="p-8 text-center bg-gradient-to-br from-amber-950/30 to-slate-950">
               <BookOpen className="h-10 w-10 text-amber-400 mx-auto mb-4" />
               <h2 className="text-2xl font-bold text-slate-100 mb-4">
                 Part of the Soulbook Ecosystem
@@ -390,7 +390,7 @@ export default function SkillsPage() {
                   Download Vault
                 </PremiumButton>
               </div>
-            </PremiumCard>
+            </GlassmorphicCard>
           </motion.div>
         </div>
       </section>

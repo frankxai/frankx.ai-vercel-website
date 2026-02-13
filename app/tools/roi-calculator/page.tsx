@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect, useCallback } from 'react'
+import { motion } from 'framer-motion'
 import {
   Calculator,
   TrendingUp,
@@ -21,7 +22,7 @@ import {
 } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
-import PremiumCard from '@/components/ui/PremiumCard'
+import GlassmorphicCard from '@/components/ui/GlassmorphicCard'
 import PremiumButton from '@/components/ui/PremiumButton'
 import {
   StaggerContainer,
@@ -288,7 +289,7 @@ export default function ROICalculatorPage() {
                 <div className="lg:col-span-2 space-y-8">
                   {/* Cost Inputs */}
                   <StaggerItem>
-                    <PremiumCard glass="medium" className="p-8">
+                    <GlassmorphicCard variant="premium" className="p-8">
                       <h2 className="text-2xl font-semibold mb-6 flex items-center text-slate-100">
                         <DollarSign className="w-6 h-6 mr-3 text-red-400" />
                         Investment Costs
@@ -339,12 +340,12 @@ export default function ROICalculatorPage() {
                           />
                         </div>
                       </div>
-                    </PremiumCard>
+                    </GlassmorphicCard>
                   </StaggerItem>
 
                   {/* Team Information */}
                   <StaggerItem>
-                    <PremiumCard glass="medium" className="p-8">
+                    <GlassmorphicCard variant="premium" className="p-8">
                       <h2 className="text-2xl font-semibold mb-6 flex items-center text-slate-100">
                         <Users className="w-6 h-6 mr-3 text-blue-400" />
                         Team Information
@@ -373,12 +374,12 @@ export default function ROICalculatorPage() {
                           />
                         </div>
                       </div>
-                    </PremiumCard>
+                    </GlassmorphicCard>
                   </StaggerItem>
 
                   {/* Benefit Projections */}
                   <StaggerItem>
-                    <PremiumCard glass="medium" className="p-8">
+                    <GlassmorphicCard variant="premium" className="p-8">
                       <h2 className="text-2xl font-semibold mb-6 flex items-center text-slate-100">
                         <TrendingUp className="w-6 h-6 mr-3 text-green-400" />
                         Expected Benefits
@@ -429,12 +430,12 @@ export default function ROICalculatorPage() {
                           />
                         </div>
                       </div>
-                    </PremiumCard>
+                    </GlassmorphicCard>
                   </StaggerItem>
 
                   {/* Timeline */}
                   <StaggerItem>
-                    <PremiumCard glass="medium" className="p-8">
+                    <GlassmorphicCard variant="premium" className="p-8">
                       <h2 className="text-2xl font-semibold mb-6 flex items-center text-slate-100">
                         <Clock className="w-6 h-6 mr-3 text-purple-400" />
                         Timeline
@@ -463,14 +464,14 @@ export default function ROICalculatorPage() {
                           />
                         </div>
                       </div>
-                    </PremiumCard>
+                    </GlassmorphicCard>
                   </StaggerItem>
                 </div>
 
                 {/* Live Results Preview */}
                 <div className="space-y-6">
                   <StaggerItem>
-                    <PremiumCard glass="heavy" className="p-8 sticky top-24">
+                    <GlassmorphicCard variant="luxury" className="p-8 sticky top-24">
                       <h3 className="text-xl font-semibold mb-6 text-slate-100">Live Results</h3>
                       {results && (
                         <div className="space-y-6">
@@ -526,7 +527,7 @@ export default function ROICalculatorPage() {
                           </div>
                         </div>
                       )}
-                    </PremiumCard>
+                    </GlassmorphicCard>
                   </StaggerItem>
                 </div>
               </>
@@ -539,7 +540,7 @@ export default function ROICalculatorPage() {
                   <div className="grid lg:grid-cols-3 gap-8">
                     {/* Key Metrics */}
                     <div className="lg:col-span-2 space-y-8">
-                      <PremiumCard glass="heavy" className="p-8">
+                      <GlassmorphicCard variant="luxury" className="p-8">
                         <h2 className="text-2xl font-semibold mb-8 text-slate-100">Key Metrics</h2>
                         <div className="grid md:grid-cols-2 gap-8">
                           <div className="text-center">
@@ -585,10 +586,10 @@ export default function ROICalculatorPage() {
                             </div>
                           </div>
                         </div>
-                      </PremiumCard>
+                      </GlassmorphicCard>
 
                       {/* Investment Breakdown */}
-                      <PremiumCard glass="medium" className="p-8">
+                      <GlassmorphicCard variant="premium" className="p-8">
                         <h3 className="text-xl font-semibold mb-6 text-slate-100">Investment vs Benefits</h3>
                         <div className="space-y-6">
                           <div>
@@ -625,12 +626,12 @@ export default function ROICalculatorPage() {
                             </div>
                           </div>
                         </div>
-                      </PremiumCard>
+                      </GlassmorphicCard>
                     </div>
 
                     {/* Risk Assessment */}
                     <div className="space-y-8">
-                      <PremiumCard glass="medium" className="p-6">
+                      <GlassmorphicCard variant="premium" className="p-6">
                         <h3 className="text-lg font-semibold mb-6 text-slate-100 flex items-center">
                           <Shield className="w-5 h-5 mr-2 text-yellow-400" />
                           Risk Assessment
@@ -649,9 +650,9 @@ export default function ROICalculatorPage() {
                             </div>
                           )
                         })()}
-                      </PremiumCard>
+                      </GlassmorphicCard>
 
-                      <PremiumCard glass="medium" className="p-6">
+                      <GlassmorphicCard variant="premium" className="p-6">
                         <h3 className="text-lg font-semibold mb-6 text-slate-100">Key Insights</h3>
                         <div className="space-y-4 text-sm">
                           {results.roiPercentage > 200 && (
@@ -679,9 +680,9 @@ export default function ROICalculatorPage() {
                             </div>
                           )}
                         </div>
-                      </PremiumCard>
+                      </GlassmorphicCard>
 
-                      <PremiumCard glass="medium" className="p-6">
+                      <GlassmorphicCard variant="premium" className="p-6">
                         <h3 className="text-lg font-semibold mb-4 text-slate-100">Actions</h3>
                         <div className="space-y-3">
                           <PremiumButton variant="luxury" size="sm" className="w-full" onClick={() => setActiveTab('report')}>
@@ -697,7 +698,7 @@ export default function ROICalculatorPage() {
                             Plan Strategy
                           </PremiumButton>
                         </div>
-                      </PremiumCard>
+                      </GlassmorphicCard>
                     </div>
                   </div>
                 </StaggerItem>
@@ -708,7 +709,7 @@ export default function ROICalculatorPage() {
             {activeTab === 'report' && results && (
               <div className="lg:col-span-3">
                 <StaggerItem>
-                  <PremiumCard glass="heavy" className="p-12">
+                  <GlassmorphicCard variant="luxury" className="p-12">
                     <div className="text-center mb-12">
                       <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-slate-100 to-green-200 bg-clip-text text-transparent">
                         Executive AI ROI Report
@@ -851,7 +852,7 @@ export default function ROICalculatorPage() {
                         </div>
                       </div>
                     </div>
-                  </PremiumCard>
+                  </GlassmorphicCard>
                 </StaggerItem>
               </div>
             )}

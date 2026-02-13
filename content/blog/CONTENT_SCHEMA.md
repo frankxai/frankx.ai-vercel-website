@@ -20,7 +20,7 @@ date: "YYYY-MM-DD" # ISO format
 author: "FrankX" # Always FrankX unless guest
 category: "" # One of 5 approved categories above
 tags: [] # 3-5 tags, lowercase-kebab-case preferred
-image: "/images/blog/..." # Hero image path
+image: "/images/blog/blog-hero-aurora.svg" # Hero image path
 featured: false # true for pillar content
 keywords: [] # SEO keywords (optional)
 readingGoal: "" # "You'll learn..." statement (optional)

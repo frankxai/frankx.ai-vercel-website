@@ -1,0 +1,17 @@
+flowchart TB
+    subgraph LAYERS["Observability Layers"]
+        direction LR
+        METRICS["Metrics<br/>Latency, token usage,<br/>costs, throughput"]
+        TRACES["Traces<br/>Agent calls, tool usage,<br/>handoffs, dependencies"]
+        LOGS["Logs<br/>Errors, decisions,<br/>context, user input"]
+        EVALS["Evaluations<br/>RAGAS, custom checks,<br/>A/B comparisons"]
+    end
+
+    COLLECTION["Collection Layer<br/>OpenTelemetry, vendor SDKs,<br/>custom instrumentation"]
+
+    LAYERS --> COLLECTION
+
+    classDef layer fill:#0f172a,stroke:#22d3ee,color:#e2e8f0,stroke-width:1.5px
+    classDef foundation fill:#064e3b,stroke:#10b981,color:#ecfeff,stroke-width:2px
+    class METRICS,TRACES,LOGS,EVALS layer
+    class COLLECTION foundation

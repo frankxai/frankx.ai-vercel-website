@@ -97,7 +97,7 @@ const instructors = [
     company: 'FrankX.AI',
     bio: 'Pioneer in conscious AI implementation with 200+ successful enterprise transformations.',
     expertise: ['AI Strategy', 'Conscious AI', 'Enterprise Transformation', 'Ethical AI'],
-    image: '/images/frank-avatar.jpg' // This would be a real image path
+    image: '/images/team/luminor-prime.png'
   },
   {
     name: 'Dr. Sarah Chen',
@@ -105,7 +105,7 @@ const instructors = [
     company: 'MIT AI Lab',
     bio: 'Leading researcher in AI ethics and human-centered design with 50+ published papers.',
     expertise: ['AI Ethics', 'Human-AI Interaction', 'Responsible AI', 'Research'],
-    image: '/images/sarah-avatar.jpg'
+    image: '/images/team/lumi.png'
   },
   {
     name: 'Michael Rodriguez',
@@ -113,7 +113,7 @@ const instructors = [
     company: 'Former Google AI',
     bio: 'Former Google AI architect with expertise in large-scale AI system design and implementation.',
     expertise: ['System Architecture', 'Scalable AI', 'Technical Implementation', 'Cloud AI'],
-    image: '/images/michael-avatar.jpg'
+    image: '/images/team/nova.png'
   }
 ]
 

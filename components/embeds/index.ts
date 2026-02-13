@@ -27,7 +27,7 @@
  *   artworks={[
  *     {
  *       id: '1',
- *       src: '/images/ai-art/piece1.png',
+ *       src: '/images/ai-art/neural-network-brain.png',
  *       title: 'Cosmic Neural Network',
  *       prompt: 'cosmic neural network, glowing synapses...',
  *       model: 'midjourney',

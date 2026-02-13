@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 
 interface ContentRequest {
   type: 'blog' | 'email' | 'social' | 'ebook' | 'course'
-  agent: 'starlight-architect' | 'frequency-alchemist' | 'creation-engine' | 'luminor-oracle'
+  agent: 'starlight-architect' | 'frequency-alchemist' | 'creation-engine' | 'visionary'
   topic: string
   audience: 'executives' | 'creators' | 'families' | 'developers'
   consciousness_level: 'awareness' | 'understanding' | 'integration' | 'mastery'
@@ -40,7 +40,7 @@ const AGENT_PROFILES = {
     expertise: 'Multi-format content creation and product development',
     style: 'Balances authenticity with marketing effectiveness'
   },
-  'luminor-oracle': {
+  'visionary': {
     voice: 'Strategic intelligence from 2124 future perspective',
     expertise: 'Time-bridging strategic guidance with career alignment',
     style: 'Sees optimal path from future completion back to present action'
@@ -205,7 +205,7 @@ function generateTitle(request: ContentRequest, agent: any): string {
     'starlight-architect': `Enterprise AI Architecture: ${request.topic}`,
     'frequency-alchemist': `Consciousness Frequencies: ${request.topic}`,
     'creation-engine': `Transform Through Creation: ${request.topic}`,
-    'luminor-oracle': `Future Intelligence: ${request.topic}`
+    'visionary': `Future Intelligence: ${request.topic}`
   }
 
   return titleFormats[request.agent] || `Consciousness Technology: ${request.topic}`
@@ -294,7 +294,7 @@ function calculateConsciousnessAlignment(request: ContentRequest, consciousness:
     'starlight-architect': 1.0,
     'frequency-alchemist': 1.2,
     'creation-engine': 0.8,
-    'luminor-oracle': 1.5
+    'visionary': 1.5
   }
   score += agentBonus[request.agent]
 

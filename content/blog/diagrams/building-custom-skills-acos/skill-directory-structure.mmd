@@ -1,0 +1,12 @@
+flowchart TD
+    ROOT["skills/"] --> SKILL_DIR["my-skill/"]
+    SKILL_DIR --> SKILL_MD["SKILL.md<br/>Main file (&lt;500 lines)"]
+    SKILL_DIR --> RESOURCES["resources/"]
+    RESOURCES --> PATTERNS["patterns.md<br/>Detailed patterns"]
+    RESOURCES --> EXAMPLES["examples.md<br/>Extended examples"]
+    RESOURCES --> REFERENCE["reference.md<br/>API and config reference"]
+
+    classDef root fill:#064e3b,stroke:#10b981,color:#ecfeff,stroke-width:2px
+    classDef node fill:#0f172a,stroke:#22d3ee,color:#e2e8f0,stroke-width:1.5px
+    class ROOT,SKILL_DIR root
+    class SKILL_MD,RESOURCES,PATTERNS,EXAMPLES,REFERENCE node

@@ -19,7 +19,7 @@ import {
   Music,
 } from 'lucide-react'
 
-import PremiumCard from '@/components/ui/PremiumCard'
+import GlassmorphicCard from '@/components/ui/GlassmorphicCard'
 import PremiumButton from '@/components/ui/PremiumButton'
 
 // Creator Role Tracks
@@ -325,9 +325,10 @@ export default function RolesPage() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
               >
-                <PremiumCard
-                  glass="heavy"
-                  gradient={selectedRole === role.id ? 'purple' : undefined}
+                <GlassmorphicCard
+                  variant="luxury"
+                  border={selectedRole === role.id ? 'glow' : 'subtle'}
+                  hover
                   className={`group h-full p-6 cursor-pointer transition-all ${
                     selectedRole === role.id ? 'ring-2 ring-purple-500' : ''
                   }`}
@@ -354,7 +355,7 @@ export default function RolesPage() {
                       </span>
                     )}
                   </div>
-                </PremiumCard>
+                </GlassmorphicCard>
               </motion.div>
             ))}
           </div>
@@ -375,7 +376,7 @@ export default function RolesPage() {
           className="py-16 bg-gradient-to-b from-slate-950 to-slate-900"
         >
           <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-            <PremiumCard glass="heavy" gradient="purple" className="p-8">
+            <GlassmorphicCard variant="luxury" border="glow" className="p-8">
               <div className="mb-6 flex items-center gap-4">
                 <selected.icon className={`h-12 w-12 text-${selected.color}-400`} />
                 <div>
@@ -451,7 +452,7 @@ export default function RolesPage() {
                   <ArrowLeft className="ml-2 h-5 w-5 rotate-180" />
                 </PremiumButton>
               </div>
-            </PremiumCard>
+            </GlassmorphicCard>
           </div>
         </motion.section>
       )}
@@ -472,11 +473,11 @@ export default function RolesPage() {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
               >
-                <PremiumCard glass="heavy" className="h-full p-6">
+                <GlassmorphicCard variant="luxury" border="subtle" className="h-full p-6">
                   <h3 className="mb-2 text-xl font-bold text-slate-100">{item.industry}</h3>
                   <p className="mb-4 text-sm text-blue-300">{item.companies}</p>
                   <p className="text-base text-slate-300 leading-relaxed">{item.insight}</p>
-                </PremiumCard>
+                </GlassmorphicCard>
               </motion.div>
             ))}
           </div>

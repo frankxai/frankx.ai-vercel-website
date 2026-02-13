@@ -70,10 +70,8 @@ Use it when you need to:
 ## Multi-agent workflows
 
 - **Feature build**: Story and copy -> Architecture -> Prototype -> QA polish -> Documentation.
-- **Content launch**: Writing (see [AI Writing System](/guides/ai-writing-system)) -> UI components -> SEO optimization -> Social rollout -> Monitor.
+- **Content launch**: Writing -> UI components -> SEO optimization -> Social rollout -> Monitor.
 - **Bug fix**: Investigate -> Review/test -> Architecture review if needed.
-
-For a deeper understanding of how these workflows fit into the full creator toolkit, see [The Creator AI Stack 2026](/guides/creator-ai-stack-2026) and [The Golden Age of Intelligence](/guides/modern-guide).
 
 ---
 
@@ -113,43 +111,5 @@ Use the standard template for every transfer:
 
 ## Next steps
 
-- Read the [Skills Library Playbook](/guides/skills-library-playbook) to activate the right skills for each workflow.
-- Browse [all guides](/guides) for implementation playbooks and system deep dives.
-
----
-
-## Frequently Asked Questions
-
-### What is an Agent Collective Operating System?
-
-An Agent Collective OS is the coordination layer that orchestrates multiple AI agents working together on creative and technical projects. Instead of using a single AI assistant for everything, the OS defines roles (Visionary, Builder, Guardian), workflows (feature build, content launch, bug fix), and handoff protocols so specialized agents collaborate efficiently — like a well-run team where everyone knows their role and communication is clear.
-
-### How is this different from just using ChatGPT or Claude for everything?
-
-Using a single AI chat for everything works for simple tasks but breaks down for complex projects that span multiple domains. The Agent Collective OS assigns specialized agents to their strengths — one agent handles content writing, another handles code architecture, another handles QA and accessibility. The coordination layer ensures they share context and maintain consistent quality, producing results no single agent conversation could achieve.
-
-### What roles exist in the Agent Collective and what does each one do?
-
-Seven core roles: Visionary (narrative direction, creative strategy), Product Strategist (roadmap, pricing, launch sequencing), Creator Collective (copy, visuals, music, interactive content), Builder Engineer (code, automation, infrastructure), Guardian (QA, performance, accessibility), Launch Captain (community activation, partnerships), and Research Scout (market intelligence, trend analysis). Each role maps to specific agent profiles and skill sets.
-
-### How do agents hand off work to each other without losing context?
-
-The handoff protocol is a standardized template every agent follows: What's Done (completed work), What's Needed (next steps for the receiving agent), Files Changed (specific file paths), and Notes (context, decisions, blockers). This template ensures zero context loss between agents. It's the same principle as engineering team handoffs, adapted for AI agent workflows.
-
-### Can I implement this system for my own projects?
-
-Yes. Start simple: (1) Define 2-3 agent roles matching your common tasks (e.g., Writer, Developer, Reviewer). (2) Create skill documents for each role. (3) Establish a handoff template. (4) Run one project through the system. You don't need the full seven-role setup immediately. Even a basic Writer → Reviewer pipeline with structured handoffs improves quality over ad-hoc AI usage. Scale roles as your projects demand.
-
-### What does the daily operating loop look like in practice?
-
-Five steps repeated daily: (1) Align — check roadmap, define today's deliverable. (2) Build — work in 90-minute focus blocks with async check-ins. (3) Validate — run lint, responsive testing, QA checks. (4) Publish — deploy, schedule, or queue with context. (5) Log — record learnings, metrics, and next experiments. This cadence ensures consistent shipping while capturing learnings that improve future execution.
-
-### How do design standards stay consistent across agents?
-
-The design language standards are codified in shared skill documents: dark glassmorphic surfaces with aurora gradients, specific motion patterns (parallax, magnetic hovers), typography pairings (Inter + Playfair Display), and accessibility requirements (contrast ratios, keyboard nav, reduced motion, text alternatives). Every agent references these standards. The Guardian role specifically validates compliance during QA.
-
-### What's the deployment ritual and why does it matter?
-
-The deployment ritual is: pull latest changes, resolve conflicts locally, run `npm run lint` and `npm run build` before shipping, commit with clear messages, verify the deployment, and log highlights and risks for the next agent. This matters because it prevents broken deployments, ensures code quality, and creates an audit trail. Without it, agents might push conflicting changes or skip quality checks, leading to production issues.
-
----
+- Read the Skills Library Playbook to activate the right skills for each workflow.
+- Review the agent team overview at `/agent-team` if you need deployment support.

@@ -1,0 +1,94 @@
+direction: down
+
+classes: {
+  title: {
+    style: {
+      fill: "#082E49"
+      stroke: "#38BDF8"
+      stroke-width: 3
+      font-color: "#E0F2FE"
+      font-size: 18
+      border-radius: 16
+      shadow: true
+    }
+  }
+  layer: {
+    style: {
+      fill: "#0B1220"
+      stroke: "#22D3EE"
+      stroke-width: 2
+      font-color: "#E2E8F0"
+      font-size: 15
+      border-radius: 14
+      shadow: true
+    }
+  }
+  foundation: {
+    style: {
+      fill: "#0B3B2E"
+      stroke: "#34D399"
+      stroke-width: 3
+      font-color: "#ECFEFF"
+      font-size: 16
+      border-radius: 16
+      shadow: true
+    }
+  }
+}
+
+title: "Observability Layers" { class: title }
+metrics: "Metrics\nLatency, token usage, costs, throughput" { class: layer }
+traces: "Traces\nAgent calls, tool usage, handoffs, dependencies" { class: layer }
+logs: "Logs\nErrors, decisions, context, user input" { class: layer }
+evals: "Evaluations\nRAGAS, custom checks, A/B comparisons" { class: layer }
+
+collection: "Collection Layer\nOpenTelemetry, vendor SDKs, custom instrumentation" { class: foundation }
+
+title -> metrics: {
+  style: {
+    stroke: "#67E8F9"
+    stroke-width: 2
+  }
+}
+title -> traces: {
+  style: {
+    stroke: "#67E8F9"
+    stroke-width: 2
+  }
+}
+title -> logs: {
+  style: {
+    stroke: "#67E8F9"
+    stroke-width: 2
+  }
+}
+title -> evals: {
+  style: {
+    stroke: "#67E8F9"
+    stroke-width: 2
+  }
+}
+metrics -> collection: {
+  style: {
+    stroke: "#34D399"
+    stroke-width: 3
+  }
+}
+traces -> collection: {
+  style: {
+    stroke: "#34D399"
+    stroke-width: 3
+  }
+}
+logs -> collection: {
+  style: {
+    stroke: "#34D399"
+    stroke-width: 3
+  }
+}
+evals -> collection: {
+  style: {
+    stroke: "#34D399"
+    stroke-width: 3
+  }
+}

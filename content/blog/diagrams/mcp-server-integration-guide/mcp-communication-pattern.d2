@@ -1,0 +1,60 @@
+direction: down
+
+classes: {
+  actor: {
+    style: {
+      fill: "#0A1F38"
+      stroke: "#38BDF8"
+      stroke-width: 2
+      font-color: "#E0F2FE"
+      font-size: 16
+      border-radius: 14
+      shadow: true
+    }
+  }
+  process: {
+    style: {
+      fill: "#0B1220"
+      stroke: "#22D3EE"
+      stroke-width: 2
+      font-color: "#E2E8F0"
+      font-size: 15
+      border-radius: 14
+      shadow: true
+    }
+  }
+  server: {
+    style: {
+      fill: "#0B3B2E"
+      stroke: "#34D399"
+      stroke-width: 3
+      font-color: "#ECFEFF"
+      font-size: 15
+      border-radius: 16
+      shadow: true
+    }
+  }
+}
+
+request: "User Request\nTake a screenshot of frankx.ai" { class: actor }
+claude_in: "Claude Code" { class: actor }
+selector: "Tool Selection Layer\nDetects Browser MCP requirement" { class: process }
+mcp: "Playwright MCP Server\n1) browser_navigate()\n2) Launch browser\n3) browser_take_screenshot()\n4) Return image payload" { class: server }
+claude_out: "Claude Code Response\nDisplays screenshot to user" { class: actor }
+
+request -> claude_in: { style: {
+    stroke: "#67E8F9"
+    stroke-width: 2
+  } }
+claude_in -> selector: { style: {
+    stroke: "#67E8F9"
+    stroke-width: 2
+  } }
+selector -> mcp: { style: {
+    stroke: "#34D399"
+    stroke-width: 3
+  } }
+mcp -> claude_out: { style: {
+    stroke: "#34D399"
+    stroke-width: 3
+  } }

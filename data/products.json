@@ -819,6 +819,251 @@
         }
       ]
     }
+  },
+  {
+    "id": "aurora-ui-kit",
+    "slug": "aurora-ui-kit",
+    "name": "Aurora UI Kit",
+    "category": "Design + AI",
+    "badge": "NEW",
+    "headline": "30 Premium Components with AI Generation Built In",
+    "subheadline": "Production-ready Next.js components with glassmorphism, animations, and a Claude Code skill that generates new components in the same design language on demand.",
+    "promise": "Stop building UI from scratch. Get 30 polished components plus an AI system that creates new ones matching your design system.",
+    "summary": "A premium component library combining hand-crafted Next.js + Tailwind components with an agentic AI layer that generates custom variants on demand.",
+    "transformation": [
+      "Drop 30 production-ready components into any Next.js project — PremiumCard, AuroraGradient, ShimmerButton, and more",
+      "Use the included Claude Code skill to generate new components that match the Aurora design language",
+      "Ship polished UIs in hours instead of weeks with pre-built dark/light mode, responsive layouts, and micro-interactions",
+      "Customize everything with documented design tokens — colors, spacing, animations, glass levels"
+    ],
+    "socialProof": {
+      "stats": [
+        {
+          "number": "30+",
+          "label": "Components"
+        },
+        {
+          "number": "6",
+          "label": "Animation Systems"
+        },
+        {
+          "number": "AI",
+          "label": "Generation Skill"
+        }
+      ],
+      "quotes": []
+    },
+    "offer": {
+      "primaryPrice": 19,
+      "originalPrice": 39,
+      "currency": "USD",
+      "ctaPrimary": "Get Aurora UI Kit",
+      "ctaPrimaryHref": "https://frankx.gumroad.com/l/aurora-ui-kit",
+      "ctaPrimaryTracking": "aurora-ui-kit-primary",
+      "ctaSecondary": "Preview Components",
+      "ctaSecondaryHref": "/design-lab",
+      "guarantee": {
+        "label": "Ship It Guarantee",
+        "description": "If you can't ship a polished UI within 48 hours of purchase, get a full refund."
+      }
+    },
+    "modules": [
+      {
+        "title": "Premium Component Library",
+        "description": "30+ components: PremiumCard (5 gradient presets, 4 glass levels, tilt, glow), AuroraGradient (6 variants), ShimmerButton, MagneticHover, FloatingElement, CursorSpotlight, and more."
+      },
+      {
+        "title": "Animation Systems",
+        "description": "MorphingBackground, SplitTextReveal, Marquee, ParallaxContainer, StaggerContainer — all with prefers-reduced-motion support."
+      },
+      {
+        "title": "AI Generation Skill",
+        "description": "Claude Code skill that understands the Aurora design language. Tell it 'create a pricing card with aurora style' and it generates matching code."
+      },
+      {
+        "title": "Design Token System",
+        "description": "Configurable color palettes, spacing scales, glass levels, and animation timings. Change one token, update the entire kit."
+      }
+    ],
+    "bonuses": [
+      {
+        "title": "6 Page Templates",
+        "value": "$29",
+        "description": "Landing page, dashboard, pricing, blog, portfolio, and 404 — all built with Aurora components."
+      },
+      {
+        "title": "Figma Design Tokens",
+        "value": "$15",
+        "description": "Matching Figma variables for designer-developer handoff."
+      }
+    ],
+    "faq": [
+      {
+        "question": "What tech stack does this require?",
+        "answer": "Next.js 14+, React 18+, Tailwind CSS 3+, and TypeScript. Components use zero external animation libraries — pure CSS + React."
+      },
+      {
+        "question": "What makes this different from shadcn/ui?",
+        "answer": "Aurora UI Kit is a design-forward layer that sits on top of shadcn. While shadcn gives you unstyled primitives, Aurora gives you the visual polish — glassmorphism, gradients, micro-interactions, and the AI skill to generate more."
+      },
+      {
+        "question": "How does the AI generation skill work?",
+        "answer": "It's a Claude Code skill file (.claude/skills/) that you drop into your project. When activated, you can describe components in natural language and it generates code matching Aurora's design patterns."
+      },
+      {
+        "question": "Can I use this in commercial projects?",
+        "answer": "Yes. MIT license. Use in unlimited personal and commercial projects."
+      }
+    ],
+    "analyticsId": "aurora-ui-kit",
+    "delivery": {
+      "methods": ["download"],
+      "requiresEmail": false,
+      "files": [
+        {
+          "name": "Aurora UI Kit",
+          "format": "zip",
+          "blobKey": "aurora-ui-kit.zip",
+          "description": "Complete component library with AI skill"
+        },
+        {
+          "name": "Documentation",
+          "format": "pdf",
+          "blobKey": "aurora-ui-kit-docs.pdf",
+          "description": "Component API reference and customization guide"
+        }
+      ]
+    }
+  },
+  {
+    "id": "agentic-content-engine",
+    "slug": "agentic-content-engine",
+    "name": "Agentic Content Engine",
+    "category": "Design + AI",
+    "badge": "AGENTIC",
+    "headline": "Your AI-Powered Content Production System",
+    "subheadline": "A complete Next.js content platform with built-in AI writing assistance, SEO optimization, social distribution automation, and analytics. Not a template — a system.",
+    "promise": "Go from idea to published, SEO-optimized, socially distributed content in under 30 minutes. Every single time.",
+    "summary": "Production-ready content management system combining a premium blog platform with agentic AI capabilities for writing, SEO, and distribution.",
+    "transformation": [
+      "Publish SEO-optimized articles with AI-assisted writing that maintains your voice and style",
+      "Auto-generate social media posts for every article across Twitter/X, LinkedIn, and newsletter formats",
+      "Track content performance with built-in analytics dashboard — pageviews, time on page, conversion events",
+      "Use Claude Code skills to run your entire content pipeline from the terminal: research, write, optimize, publish"
+    ],
+    "socialProof": {
+      "stats": [
+        {
+          "number": "AI",
+          "label": "Writing Assistant"
+        },
+        {
+          "number": "SEO",
+          "label": "Auto-Optimization"
+        },
+        {
+          "number": "5",
+          "label": "Distribution Channels"
+        }
+      ],
+      "quotes": []
+    },
+    "offer": {
+      "primaryPrice": 97,
+      "originalPrice": 197,
+      "currency": "USD",
+      "ctaPrimary": "Get Content Engine",
+      "ctaPrimaryHref": "https://frankx.gumroad.com/l/agentic-content-engine",
+      "ctaPrimaryTracking": "agentic-content-engine-primary",
+      "ctaSecondary": "See It In Action",
+      "ctaSecondaryHref": "/blog",
+      "guarantee": {
+        "label": "Content Velocity Guarantee",
+        "description": "Publish your first AI-assisted article within 24 hours of setup or get a full refund."
+      }
+    },
+    "modules": [
+      {
+        "title": "Premium Blog Platform",
+        "description": "MDX-powered blog with syntax highlighting, table of contents, reading time, related posts, and responsive images. Dark/light mode. Schema markup built in."
+      },
+      {
+        "title": "AI Writing Pipeline",
+        "description": "Claude Code skills for research, outlining, drafting, and editing. Prompt library with 20+ content templates. Voice calibration system to match your style."
+      },
+      {
+        "title": "SEO Engine",
+        "description": "Automatic meta tag generation, FAQ schema injection, internal linking suggestions, and keyword density analysis. Every article optimized before publish."
+      },
+      {
+        "title": "Social Distribution",
+        "description": "One-click generation of Twitter threads, LinkedIn posts, newsletter editions, and RSS feeds from any article. Scheduled publishing support."
+      },
+      {
+        "title": "Analytics Dashboard",
+        "description": "Built-in analytics with pageviews, popular posts, reading patterns, and conversion tracking. No third-party scripts required."
+      }
+    ],
+    "bonuses": [
+      {
+        "title": "Content Calendar Template",
+        "value": "$47",
+        "description": "Notion + Airtable template for planning, tracking, and managing your content pipeline."
+      },
+      {
+        "title": "SEO Keyword Research Kit",
+        "value": "$27",
+        "description": "Python scripts for keyword research, competitor analysis, and content gap identification."
+      },
+      {
+        "title": "Email Newsletter Integration",
+        "value": "$37",
+        "description": "Resend-powered newsletter system with subscriber management and automated sends."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Is this a WordPress alternative?",
+        "answer": "Yes, but faster. Built on Next.js with static generation, so pages load instantly. No database required — content lives in MDX files in your repo."
+      },
+      {
+        "question": "Do I need Claude Code to use this?",
+        "answer": "The blog platform works standalone. The AI writing pipeline and automation features require Claude Code (free tier works). The skills activate automatically when Claude Code is installed."
+      },
+      {
+        "question": "How does the AI maintain my voice?",
+        "answer": "The system includes a voice calibration prompt that learns from your existing content. Feed it 3-5 of your best articles and it adapts to your style, tone, and vocabulary."
+      },
+      {
+        "question": "Can I deploy this on Vercel for free?",
+        "answer": "Yes. The hobby tier on Vercel handles most content sites. The system is optimized for static generation so hosting costs stay minimal."
+      }
+    ],
+    "analyticsId": "agentic-content-engine",
+    "delivery": {
+      "methods": ["download"],
+      "requiresEmail": false,
+      "files": [
+        {
+          "name": "Agentic Content Engine",
+          "format": "zip",
+          "blobKey": "agentic-content-engine.zip",
+          "description": "Complete Next.js content platform with AI skills"
+        },
+        {
+          "name": "Setup Guide",
+          "format": "pdf",
+          "blobKey": "content-engine-setup.pdf",
+          "description": "Step-by-step deployment and customization guide"
+        },
+        {
+          "name": "Python SEO Scripts",
+          "format": "zip",
+          "blobKey": "content-engine-seo-scripts.zip",
+          "description": "Keyword research and content analysis tools"
+        }
+      ]
+    }
   }
 ]
 

@@ -1,0 +1,59 @@
+direction: down
+
+classes: {
+  path: {
+    style: {
+      fill: "#0B1220"
+      stroke: "#22D3EE"
+      stroke-width: 2
+      font-color: "#E2E8F0"
+      font-size: 15
+      border-radius: 12
+      shadow: true
+    }
+  }
+  core: {
+    style: {
+      fill: "#0B3B2E"
+      stroke: "#34D399"
+      stroke-width: 3
+      font-color: "#ECFEFF"
+      font-size: 16
+      border-radius: 14
+      shadow: true
+    }
+  }
+}
+
+skills: "skills/" { class: core }
+my_skill: "my-skill/" { class: core }
+skill_md: "SKILL.md\nMain file (<500 lines)" { class: path }
+resources: "resources/" { class: path }
+patterns: "patterns.md\nDetailed patterns" { class: path }
+examples: "examples.md\nExtended examples" { class: path }
+reference: "reference.md\nAPI and config reference" { class: path }
+
+skills -> my_skill: { style: {
+    stroke: "#67E8F9"
+    stroke-width: 2
+  } }
+my_skill -> skill_md: { style: {
+    stroke: "#67E8F9"
+    stroke-width: 2
+  } }
+my_skill -> resources: { style: {
+    stroke: "#67E8F9"
+    stroke-width: 2
+  } }
+resources -> patterns: { style: {
+    stroke: "#67E8F9"
+    stroke-width: 2
+  } }
+resources -> examples: { style: {
+    stroke: "#67E8F9"
+    stroke-width: 2
+  } }
+resources -> reference: { style: {
+    stroke: "#67E8F9"
+    stroke-width: 2
+  } }

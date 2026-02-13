@@ -13,9 +13,9 @@
     "tags": ["topic", "format"],
     "createdAt": "2025-01-01",
     "platform": "youtube",
-    "youtubeId": "dQw4w9WgXcQ",
-    "url": "https://youtube.com/watch?v=dQw4w9WgXcQ",
-    "thumbnail": "/images/videos/thumbnail.jpg",
+    "youtubeId": "",
+    "url": "",
+    "thumbnail": "/images/brand/og-template.png",
     "duration": "12:34",
     "category": "tutorial",
     "chapters": [

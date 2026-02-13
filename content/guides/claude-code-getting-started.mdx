@@ -15,7 +15,7 @@ Claude Code is Anthropic's command-line interface for AI-assisted software devel
 
 ## What Claude Code Does
 
-Claude Code brings AI directly into your terminal. Unlike web-based chat interfaces like [Claude.ai](/guides/claude-anthropic-guide) or [ChatGPT](/guides/openai-chatgpt-guide):
+Claude Code brings AI directly into your terminal. Unlike web-based chat interfaces:
 
 - **Context-aware** - It understands your entire codebase
 - **Action-oriented** - It can read, write, and execute
@@ -342,8 +342,6 @@ Run a pre-deployment check:
 3. **Use context** - Create CLAUDE.md for project conventions
 4. **Verify outputs** - Review generated code before committing
 
-For effective prompting patterns beyond code, see our [Top 50 AI Prompts collection](/guides/top-50-ai-prompts), which includes 10 coding-specific templates.
-
 ---
 
 ## Next Steps
@@ -352,50 +350,6 @@ For effective prompting patterns beyond code, see our [Top 50 AI Prompts collect
 2. Create a `CLAUDE.md` with project context
 3. Try the morning standup workflow for a week
 4. Build custom commands for your repetitive tasks
-
----
-
-## Frequently Asked Questions
-
-### What is Claude Code and how is it different from Claude.ai?
-
-Claude Code is Anthropic's command-line interface (CLI) tool that brings AI directly into your terminal. Unlike Claude.ai (the web chat interface), Claude Code can read your entire codebase, write and edit files, run commands, and manage git workflows. It understands your project structure and can take action — not just suggest. Think of Claude.ai as a conversation partner and Claude Code as a hands-on development collaborator.
-
-### Do I need to be an experienced developer to use Claude Code?
-
-You need basic terminal comfort — navigating directories, running commands, and understanding file structures. But you don't need to be a senior developer. Claude Code is particularly valuable for intermediate developers because it explains concepts while building, essentially teaching as it works. If you can open a terminal and run `npm install`, you can use Claude Code effectively.
-
-### How much does Claude Code cost?
-
-Claude Code uses your Anthropic API credits (pay-per-token) or is included with a Claude Max subscription. API costs vary by model: Haiku for quick tasks is cheapest, Sonnet for daily development is moderate, and Opus for complex architecture work costs more. A typical development session might cost $0.50-5.00 depending on complexity and model choice. Monitor your usage at console.anthropic.com.
-
-### What's the best model to use with Claude Code?
-
-Sonnet is the best default for daily development — fast, capable, and cost-effective. Use Opus for complex architecture decisions, difficult debugging, or when you need the deepest reasoning. Use Haiku for quick questions, simple file changes, or when you want fast answers without deep analysis. You can switch models mid-session with the `/model` command.
-
-### What is CLAUDE.md and why do I need it?
-
-CLAUDE.md is a markdown file in your project root that Claude Code reads automatically at the start of every session. It provides persistent context about your project: architecture decisions, coding conventions, important file locations, and team patterns. Without it, Claude Code starts fresh each session. With a good CLAUDE.md, it immediately understands your project's context and conventions, producing more relevant and consistent results.
-
-### Can Claude Code break my project or make destructive changes?
-
-Claude Code asks permission before executing commands or modifying files. You control what it can do through permission settings. That said, always use version control (git) and review changes before committing. Claude Code integrates well with git — it can show you diffs of what it changed and help write commit messages. For extra safety, work on feature branches.
-
-### How does Claude Code handle large codebases?
-
-Claude Code indexes your project structure and reads files on demand — it doesn't load everything into memory at once. For large monorepos, it can navigate effectively by understanding directory structure and following imports. Point it to specific files when you know what to change (this is faster), or let it explore when you need broader analysis. CLAUDE.md helps by documenting where key logic lives.
-
-### Can I use Claude Code with VS Code or other editors?
-
-Claude Code is a standalone terminal tool that works alongside any editor. Many developers run Claude Code in one terminal pane while editing in VS Code in another. There's also a VS Code extension for tighter integration. The key benefit of the CLI approach is that it works with any editor, any terminal, and any workflow.
-
-### What are custom slash commands and how do I create them?
-
-Custom slash commands let you save frequently-used prompts as reusable commands. Create a `.claude/commands/` directory in your project and add markdown files — each file becomes a command. For example, `.claude/commands/review.md` containing review instructions becomes `/project:review`. This is powerful for standardizing team workflows like code review, deployment checklists, or documentation generation.
-
-### How do I get the best results from Claude Code?
-
-Three key practices: (1) Be specific about files — say "read src/auth/login.ts and fix the validation bug" instead of "fix the login bug." (2) Provide context about why — "we need JWTs because we're deploying to multiple regions" leads to better architecture decisions. (3) Break complex tasks into steps — instead of "build an auth system," work through it piece by piece: model first, then routes, then middleware. See our [Claude AI Guide](/guides/claude-anthropic-guide) for more prompting strategies.
 
 ---
 

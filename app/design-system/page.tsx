@@ -2,9 +2,69 @@ import { Metadata } from 'next'
 import AuroraGradient from '@/components/ui/AuroraGradient'
 
 export const metadata: Metadata = {
-  title: 'Design System | FrankX.AI',
-  description: 'FrankX design system components, gradients, and patterns.',
+  title: 'Design System | FrankX',
+  description: 'FrankX Brand System v2.0 — Colors, typography, glassmorphism, spacing, gradients, and component patterns.',
 }
+
+/* ============================================================
+   BRAND v2.0 DATA
+   ============================================================ */
+
+const brandAccents = [
+  { name: 'Purple', hex: '#AB47C7', domain: 'Intelligence, ACOS', tw: 'bg-[#AB47C7]' },
+  { name: 'Blue', hex: '#43BFE3', domain: 'Technology, Vibe OS', tw: 'bg-[#43BFE3]' },
+  { name: 'Magenta', hex: '#E040FB', domain: 'GenCreator OS, Multi-modal', tw: 'bg-[#E040FB]' },
+  { name: 'Emerald', hex: '#10B981', domain: 'Success, Labs, CTAs', tw: 'bg-[#10B981]' },
+  { name: 'Obsidian', hex: '#1E0A3C', domain: 'Arcanea, Cosmos', tw: 'bg-[#1E0A3C]' },
+  { name: 'Arcanea Glow', hex: '#7C3AED', domain: 'Arcanea accent', tw: 'bg-[#7C3AED]' },
+  { name: 'Rose', hex: '#F43F5E', domain: 'Errors, destructive', tw: 'bg-[#F43F5E]' },
+]
+
+const foundations = [
+  { name: 'Void', hex: '#0a0a0b', desc: 'Page background', tw: 'bg-[#0a0a0b]' },
+  { name: 'Space', hex: '#111113', desc: 'Section background', tw: 'bg-[#111113]' },
+  { name: 'Navy', hex: '#0F172A', desc: 'Brand primary dark', tw: 'bg-[#0F172A]' },
+  { name: 'Elevated', hex: '#1a1a1f', desc: 'Card backgrounds', tw: 'bg-[#1a1a1f]' },
+  { name: 'Subtle', hex: '#252530', desc: 'Hover states', tw: 'bg-[#252530]' },
+  { name: 'Muted', hex: '#3a3a4a', desc: 'Disabled states', tw: 'bg-[#3a3a4a]' },
+]
+
+const textLevels = [
+  { name: 'Primary', opacity: '0.95', ratio: '~18.5:1', level: 'AAA', style: 'text-white/95' },
+  { name: 'Secondary', opacity: '0.72', ratio: '~11.2:1', level: 'AAA', style: 'text-white/[0.72]' },
+  { name: 'Tertiary', opacity: '0.48', ratio: '~7.5:1', level: 'AAA', style: 'text-white/[0.48]' },
+  { name: 'Muted', opacity: '0.32', ratio: '~5.0:1', level: 'AA', style: 'text-white/[0.32]' },
+]
+
+const glassLevels = [
+  { name: 'Ghost', opacity: '0.02', use: 'Hover backgrounds' },
+  { name: 'Standard', opacity: '0.03', use: 'Default cards' },
+  { name: 'Elevated', opacity: '0.05', use: 'Active/focused' },
+  { name: 'Strong', opacity: '0.08', use: 'Tooltips, popovers' },
+]
+
+const typeScale = [
+  { role: 'Display', font: 'Poppins', weight: '800', size: '72px', lh: '1.05' },
+  { role: 'H1', font: 'Poppins', weight: '700', size: '48px', lh: '1.15' },
+  { role: 'H2', font: 'Poppins', weight: '700', size: '36px', lh: '1.2' },
+  { role: 'H3', font: 'Poppins', weight: '600', size: '28px', lh: '1.25' },
+  { role: 'Body Large', font: 'Inter', weight: '400', size: '20px', lh: '1.65' },
+  { role: 'Body', font: 'Inter', weight: '400', size: '17px', lh: '1.7' },
+  { role: 'Caption', font: 'Inter', weight: '500', size: '13px', lh: '1.5' },
+  { role: 'Code', font: 'JetBrains Mono', weight: '400', size: '14px', lh: '1.7' },
+]
+
+const spacingScale = [
+  { token: 'tight', value: '4px' },
+  { token: 'compact', value: '8px' },
+  { token: 'default', value: '12px' },
+  { token: 'standard', value: '16px' },
+  { token: 'medium', value: '24px' },
+  { token: 'large', value: '32px' },
+  { token: 'xl', value: '48px' },
+  { token: '2xl', value: '64px' },
+  { token: '3xl', value: '80px' },
+]
 
 const gradientVariants = [
   {
@@ -55,27 +115,163 @@ const intensityLevels = ['subtle', 'normal', 'vibrant'] as const
 
 export default function DesignSystemPage() {
   return (
-    <div className="min-h-screen bg-[#030712]">
+    <div className="min-h-screen bg-[#0a0a0b]">
       <main className="pt-28 pb-20 px-6">
         <div className="max-w-7xl mx-auto">
           {/* Header */}
           <div className="mb-16">
-            <span className="inline-flex items-center rounded-full border border-purple-500/30 bg-purple-500/10 px-4 py-1.5 text-sm font-medium text-purple-400 mb-6">
-              Design System
+            <span className="inline-flex items-center rounded-full border border-[#AB47C7]/30 bg-[#AB47C7]/10 px-4 py-1.5 text-sm font-medium text-[#AB47C7] mb-6">
+              Brand System v2.0
             </span>
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-              Aurora Gradient System
+            <h1 className="text-4xl md:text-5xl font-display font-bold text-white/95 mb-4">
+              FrankX Design System
             </h1>
-            <p className="text-lg text-white/60 max-w-3xl">
-              The FrankX signature gradient creates depth and visual interest through layered
-              radial gradients with a subtle noise texture. Available in six variants for
-              different content contexts.
+            <p className="text-lg text-white/[0.72] max-w-3xl">
+              Colors, typography, glassmorphism, spacing, gradients, and component patterns.
+              Build what matters.
             </p>
           </div>
 
-          {/* Gradient Variants */}
+          {/* ================================================================
+             COLOR PALETTE
+             ================================================================ */}
           <section className="mb-20">
-            <h2 className="text-2xl font-bold text-white mb-8">Gradient Variants</h2>
+            <h2 className="text-2xl font-display font-bold text-white/95 mb-2">Color Palette</h2>
+            <p className="text-white/[0.48] mb-8">Dark-first foundation with six accent colors mapped to product domains.</p>
+
+            {/* Foundation */}
+            <h3 className="text-lg font-semibold text-white/[0.72] mb-4">Foundation</h3>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4 mb-10">
+              {foundations.map((c) => (
+                <div key={c.name}>
+                  <div className={`${c.tw} h-20 rounded-xl border border-white/[0.06]`} />
+                  <p className="text-sm font-semibold text-white/[0.72] mt-2">{c.name}</p>
+                  <p className="text-xs font-mono text-white/[0.48]">{c.hex}</p>
+                  <p className="text-xs text-white/[0.32]">{c.desc}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* Accents */}
+            <h3 className="text-lg font-semibold text-white/[0.72] mb-4">Accents</h3>
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-4 mb-10">
+              {brandAccents.map((c) => (
+                <div key={c.name}>
+                  <div className={`${c.tw} h-20 rounded-xl`} />
+                  <p className="text-sm font-semibold text-white/[0.72] mt-2">{c.name}</p>
+                  <p className="text-xs font-mono text-white/[0.48]">{c.hex}</p>
+                  <p className="text-xs text-white/[0.32]">{c.domain}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* Brand Gradient */}
+            <h3 className="text-lg font-semibold text-white/[0.72] mb-4">Brand Gradient</h3>
+            <div className="h-16 rounded-xl" style={{ background: 'linear-gradient(135deg, #AB47C7, #43BFE3)' }} />
+            <p className="text-xs font-mono text-white/[0.48] mt-2">linear-gradient(135deg, #AB47C7, #43BFE3)</p>
+          </section>
+
+          {/* Text Hierarchy */}
+          <section className="mb-20">
+            <h2 className="text-2xl font-display font-bold text-white/95 mb-2">Text Hierarchy</h2>
+            <p className="text-white/[0.48] mb-8">Four opacity levels with WCAG contrast ratios on void background.</p>
+            <div className="space-y-6">
+              {textLevels.map((t) => (
+                <div key={t.name} className="flex items-baseline gap-6">
+                  <span className={`${t.style} text-2xl font-semibold min-w-[200px]`}>
+                    The quick brown fox
+                  </span>
+                  <span className="text-sm text-white/[0.48] min-w-[80px]">{t.name}</span>
+                  <span className="text-xs font-mono text-white/[0.32]">opacity: {t.opacity}</span>
+                  <span className={`text-xs font-mono px-2 py-0.5 rounded ${t.level === 'AAA' ? 'bg-[#10B981]/15 text-[#10B981]' : 'bg-[#F59E0B]/15 text-[#F59E0B]'}`}>
+                    {t.level} {t.ratio}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* ================================================================
+             TYPOGRAPHY
+             ================================================================ */}
+          <section className="mb-20">
+            <h2 className="text-2xl font-display font-bold text-white/95 mb-2">Typography</h2>
+            <p className="text-white/[0.48] mb-8">Poppins for display, Inter for body, JetBrains Mono for code, Playfair Display for editorial quotes.</p>
+
+            <div className="space-y-6">
+              {typeScale.map((t) => (
+                <div key={t.role} className="flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-6 pb-4 border-b border-white/[0.06]">
+                  <span
+                    className={`${t.font === 'Poppins' ? 'font-display' : t.font === 'JetBrains Mono' ? 'font-mono' : 'font-sans'} min-w-[300px]`}
+                    style={{ fontSize: t.size, fontWeight: Number(t.weight), lineHeight: t.lh }}
+                  >
+                    {t.role === 'Code' ? '<code>Build what matters.</code>' : 'Build what matters.'}
+                  </span>
+                  <div className="flex gap-4 text-xs text-white/[0.32]">
+                    <span>{t.font}</span>
+                    <span className="font-mono">{t.size}</span>
+                    <span className="font-mono">w{t.weight}</span>
+                    <span className="font-mono">lh {t.lh}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* ================================================================
+             GLASSMORPHISM
+             ================================================================ */}
+          <section className="mb-20">
+            <h2 className="text-2xl font-display font-bold text-white/95 mb-2">Glassmorphism</h2>
+            <p className="text-white/[0.48] mb-8">Four opacity levels. Standard = 0.03. Never exceed 0.08. Blur: 18px.</p>
+
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {glassLevels.map((g) => (
+                <div
+                  key={g.name}
+                  className="rounded-2xl border border-white/[0.06] p-6 backdrop-blur-[18px]"
+                  style={{ background: `rgba(255,255,255,${g.opacity})` }}
+                >
+                  <h3 className="text-lg font-semibold text-white/95 mb-1">{g.name}</h3>
+                  <p className="text-sm text-white/[0.48] mb-3">{g.use}</p>
+                  <span className="text-xs font-mono text-[#10B981] bg-[#10B981]/10 px-2 py-1 rounded">
+                    opacity: {g.opacity}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* ================================================================
+             SPACING
+             ================================================================ */}
+          <section className="mb-20">
+            <h2 className="text-2xl font-display font-bold text-white/95 mb-2">Spacing Scale</h2>
+            <p className="text-white/[0.48] mb-8">4px base grid. All spacing is a multiple of 4.</p>
+
+            <div className="space-y-3">
+              {spacingScale.map((s) => (
+                <div key={s.token} className="flex items-center gap-4">
+                  <span className="text-sm text-white/[0.72] w-20">{s.token}</span>
+                  <div
+                    className="h-3 bg-[#AB47C7] rounded-full"
+                    style={{ width: s.value }}
+                  />
+                  <span className="text-xs font-mono text-white/[0.32]">{s.value}</span>
+                </div>
+              ))}
+            </div>
+          </section>
+
+          {/* ================================================================
+             AURORA GRADIENTS (existing section)
+             ================================================================ */}
+          <section className="mb-20">
+            <h2 className="text-2xl font-display font-bold text-white/95 mb-2">Aurora Gradient System</h2>
+            <p className="text-white/[0.48] mb-8">
+              Layered radial gradients with subtle noise texture. Six variants for different content contexts.
+            </p>
+
             <div className="grid gap-8">
               {gradientVariants.map((item) => (
                 <div key={item.variant} className="grid lg:grid-cols-2 gap-6 items-stretch">

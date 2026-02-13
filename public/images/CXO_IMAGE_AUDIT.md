@@ -144,7 +144,7 @@ Runway:        ~35 months before hitting limit
 |------|---------|-------|
 | creation-engine.svg | Abstract gradient | Not distinctive |
 | frequency-alchemist.svg | Abstract gradient | Not distinctive |
-| luminor-oracle.svg | Abstract gradient | Not distinctive |
+| visionary.svg | Abstract gradient | Not distinctive |
 | starlight-architect.svg | Abstract gradient | Not distinctive |
 
 **Issue:** All 4 are nearly identical abstract shapes. Not useful as actual agent avatars.

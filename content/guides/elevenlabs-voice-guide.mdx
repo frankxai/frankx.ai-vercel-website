@@ -231,16 +231,16 @@ ElevenLabs output is good, but post-processing improves it:
 
 ### Content Repurposing Pipeline
 
-Turn one piece of content into many formats using your [AI Writing System](/guides/ai-writing-system):
+Turn one piece of content into many formats:
 
-1. **Write** - Create article or script with [Claude](/guides/claude-anthropic-guide)
+1. **Write** - Create article or script with Claude
 2. **Generate** - Convert to audio with ElevenLabs
 3. **Distribute** - Publish as podcast, video narration, or audio article
 4. **Clip** - Extract highlights for social media
 
 ### Vibe OS Integration
 
-For music creators using [Suno](/guides/suno-prompt-playbook) and our Vibe OS system:
+For music creators using our Vibe OS system:
 - Generate spoken word intros/outros
 - Create guided meditation narration
 - Add voice elements to ambient tracks
@@ -343,50 +343,6 @@ For developers and automation:
 3. Experiment with voice settings
 4. Create one production piece (video voiceover, podcast segment, or audio article)
 5. Explore [complementary AI tools](/guides) for your full workflow
-
----
-
-## Frequently Asked Questions
-
-### How natural does ElevenLabs voice AI actually sound?
-
-ElevenLabs produces the most natural AI voices currently available. In blind tests, listeners often can't distinguish ElevenLabs output from human narration, especially with the right voice selection and settings. The prosody (rhythm, stress, intonation) is remarkably human-like. That said, very long passages occasionally produce artifacts, which is why generating in sections and doing basic post-processing is recommended.
-
-### Can I clone my own voice with ElevenLabs?
-
-Yes. Instant Voice Cloning requires just 1+ minute of clean audio and produces a usable clone in seconds — good for quick projects. Professional Voice Cloning (Pro tier+) uses 30+ minutes of audio for higher quality and consistency. Both require you to confirm you have rights to the voice being cloned. Clone quality depends heavily on your source audio — clean, consistent recordings without background noise produce the best results.
-
-### How much does ElevenLabs cost and which plan should I choose?
-
-Plans range from free (10,000 characters/month) to Scale ($330/month for 2 million characters). For most creators, the Creator plan at $22/month provides 100,000 characters — enough for about 10-15 minutes of generated audio, or roughly 2-3 blog posts converted to audio per month. If you're producing YouTube videos or a weekly podcast, consider the Pro plan at $99/month for its 500,000 character limit and professional voice cloning access.
-
-### Can I use ElevenLabs audio commercially?
-
-Yes, all paid plans include commercial usage rights. You can use generated audio in YouTube videos, podcasts, courses, audiobooks, and any other commercial content. The free tier has limited commercial rights — check current terms. For cloned voices, you must have explicit permission from the voice owner. Always verify current licensing terms on the ElevenLabs website before publishing.
-
-### How do I make AI-generated narration sound more natural?
-
-Three techniques make the biggest difference: (1) Write for speech, not reading — use contractions, shorter sentences, and natural phrasing. (2) Adjust voice settings — lower stability for more expressiveness in storytelling, higher for professional narration. (3) Use SSML markup to add pauses (`<break time="500ms"/>`), emphasis, and speed changes. Generating in sections rather than one long block also improves consistency.
-
-### What's the difference between ElevenLabs and other text-to-speech tools?
-
-ElevenLabs leads in voice naturalness, emotional range, and voice cloning quality. Play.ht is the closest competitor with similar quality. Amazon Polly and Google TTS are cheaper but sound more robotic — fine for notifications, not for creative content. Murf AI offers a good middle ground. For creative work where the voice quality directly affects audience engagement, ElevenLabs is worth the premium.
-
-### Can I create a full audiobook with ElevenLabs?
-
-Yes, creators are producing full audiobooks with ElevenLabs. The process: chunk your book into chapters, use consistent voice settings throughout, generate chapter by chapter, then do post-processing (normalization, compression, chapter markers). For a 50,000-word book, you'll need approximately 300,000-400,000 characters, which fits within the Pro or Scale plan. The result is professional enough for Audible and other audiobook platforms.
-
-### How do I handle pronunciation issues or mispronounced words?
-
-ElevenLabs handles most words well, but technical terms, brand names, or unusual words sometimes get mispronounced. Solutions: (1) Use phonetic spelling ("Soo-no" instead of "Suno"). (2) Use SSML `<phoneme>` tags for precise control. (3) Regenerate the specific section — sometimes a second generation gets it right. (4) For persistent issues, generate the problem word separately and splice it in during post-production.
-
-### What audio format and quality does ElevenLabs output?
-
-ElevenLabs outputs MP3 (128kbps by default, up to 192kbps) and PCM/WAV formats. For podcasts and web content, MP3 at 128kbps is sufficient. For audiobooks or professional video production, use the highest quality setting or PCM format. Always normalize the output audio and apply light compression before publishing — this ensures consistent volume levels across sections and episodes.
-
-### How do I integrate ElevenLabs into my content workflow?
-
-The most effective workflow: Write content in [Claude](/guides/claude-anthropic-guide), then convert to speech-optimized text (contractions, natural phrasing), generate audio in ElevenLabs, do basic post-processing (normalize, compress, trim), and distribute across platforms. For automation, use the ElevenLabs API to build pipelines that automatically generate audio versions of your blog posts or newsletter editions.
 
 ---
 

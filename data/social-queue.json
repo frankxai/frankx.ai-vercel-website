@@ -1,0 +1,61 @@
+{
+  "queue": [
+    {
+      "id": "social-2026-0209-mcp-doctor",
+      "source": "mcp-doctor-claude-code-server-optimization",
+      "createdAt": "2026-02-09T18:00:00Z",
+      "status": "draft",
+      "platforms": {
+        "twitter": {
+          "content": [
+            "I had 18 MCP servers loading every Claude Code session. 8 were broken. 4 were duplicates. Session startup was slow and tools failed silently.\n\nSo I built a tool to fix it.",
+            "The problem nobody talks about: MCP servers accumulate silently. You install a few manually. Plugins auto-install others. Claude.ai connectors add more. Before long, your config is 1,000 lines across 4 scopes.",
+            "Three failure patterns I found after debugging all 18:\n\n1. Scope confusion — same server in user + project scope\n2. Silent failures — broken servers give a brief warning and vanish\n3. No tiering — every server loads every session, even the ones you use once a month",
+            "mcp-doctor does in 10 seconds what took me 30 minutes:\n\n- Scans all scopes (user, project, claude.ai)\n- Health checks each server with real MCP handshakes\n- Detects duplicates and missing env vars\n- Recommends always-on vs on-demand vs remove",
+            "Results on my own setup:\n\n18 servers → 5 always-on\n8 broken → 0 broken\n4 duplicates → 0 duplicates\nHealth score: 50/100 → 100/100",
+            "It includes 10 preset packs: web-developer, content-creator, ai-architect, data-engineer, devops, security, minimal.\n\nEach pack tells you exactly which MCPs to keep always-on and which to add on-demand.",
+            "Free, open source, MIT licensed.\n\nnpx mcp-doctor audit\n\nhttps://frankx.ai/blog/mcp-doctor-claude-code-server-optimization"
+          ],
+          "status": "draft"
+        },
+        "linkedin": {
+          "content": "I had 18 MCP servers loading every Claude Code session.\n8 were broken. I didn't know.\n\nMCP servers are the extensibility layer that makes Claude Code powerful — browser automation, memory, image generation, Slack integration. But they accumulate silently.\n\nPlugins auto-install them. Claude.ai connectors add more. Your colleague shares a config with 5 servers you don't need. Before long, every session spawns 18 processes and half of them fail quietly.\n\nAfter spending 30 minutes manually debugging my setup, I identified three patterns that trip up every Claude Code user:\n\n1. Scope confusion — servers registered across 4 different scopes with duplicates\n2. Silent failures — broken servers show a brief warning and disappear\n3. No tiering — everything loads at startup whether you need it or not\n\nSo I built mcp-doctor. A TypeScript CLI that:\n- Scans your entire Claude Code config across all scopes\n- Health-checks each server with actual MCP handshakes\n- Detects duplicates, missing env vars, scope conflicts\n- Recommends always-on vs on-demand vs remove\n- Generates copy-paste fix commands\n\nResults on my own setup: 18 servers down to 5 always-on. Zero broken. Zero duplicates. Noticeably faster startup.\n\nIt also includes 10 preset packs (web-developer, ai-architect, content-creator, minimal, etc.) so you can start with a curated setup instead of guessing.\n\nFree and open source. Run it in 10 seconds:\nnpx mcp-doctor audit\n\nFull writeup on the blog with the technical details.\n\n#ClaudeCode #MCP #DeveloperTools #AITooling #OpenSource",
+          "status": "draft"
+        },
+        "newsletter": {
+          "subject": "I built a doctor for broken MCP servers",
+          "preview": "18 servers. 8 broken. Here's the fix.",
+          "body": "I had 18 MCP servers loading every Claude Code session. Eight were broken. Four were duplicates. Session startup was slow and tools failed silently — and there was zero tooling to tell me what was wrong.\n\nSo I built mcp-doctor.\n\nIt scans your entire Claude Code config across all scopes, health-checks each server with real MCP handshakes, detects duplicates and missing environment variables, and gives you copy-paste fix commands. Took my setup from 18 broken servers to 5 clean always-on servers in under a minute.\n\nIt also includes 10 preset packs (web-developer, ai-architect, content-creator, etc.) so you can start with a curated setup instead of accumulating random servers over time.\n\nFree, open source, MIT licensed: npx mcp-doctor audit\n\nFull technical writeup here: https://frankx.ai/blog/mcp-doctor-claude-code-server-optimization",
+          "status": "draft"
+        }
+      }
+    }
+  ],
+  "config": {
+    "platforms": {
+      "twitter": {
+        "handle": "@frankxai",
+        "maxChars": 280,
+        "threadMax": 8,
+        "connected": false,
+        "note": "Add X/Twitter posting via Zapier: zapier.com → Create Action → Post Tweet"
+      },
+      "linkedin": {
+        "profile": "frankx",
+        "maxChars": 3000,
+        "connected": false,
+        "note": "Add LinkedIn posting via Zapier: zapier.com → Create Action → Create Share Update"
+      },
+      "newsletter": {
+        "provider": "resend",
+        "connected": true,
+        "note": "Uses Resend MCP for email delivery"
+      }
+    },
+    "schedule": {
+      "twitter": "Day 0 +2h after publish",
+      "linkedin": "Day 0 +4h after publish",
+      "newsletter": "Day 7 (weekly digest)"
+    }
+  }
+}

@@ -31,11 +31,11 @@ const agents: Agent[] = [
     accentColor: 'purple',
   },
   {
-    id: 'luminor-oracle',
-    name: 'Luminor Oracle',
+    id: 'visionary',
+    name: 'Visionary',
     title: 'Strategic Intelligence',
     description: 'Future visioning and business guidance',
-    imagePath: '/images/agents/luminor-oracle.svg',
+    imagePath: '/images/agents/visionary.svg',
     accentColor: 'blue',
   },
   {

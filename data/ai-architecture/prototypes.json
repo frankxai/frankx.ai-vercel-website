@@ -44,9 +44,27 @@
         }
       ],
       "flows": [
-        { "id": "f1", "from": "ingestion", "to": "chunker", "label": "Raw documents", "dataType": "Files" },
-        { "id": "f2", "from": "chunker", "to": "vectordb", "label": "Embeddings", "dataType": "Vectors" },
-        { "id": "f3", "from": "vectordb", "to": "llm", "label": "Retrieved chunks", "dataType": "Text" }
+        {
+          "id": "f1",
+          "from": "ingestion",
+          "to": "chunker",
+          "label": "Raw documents",
+          "dataType": "Files"
+        },
+        {
+          "id": "f2",
+          "from": "chunker",
+          "to": "vectordb",
+          "label": "Embeddings",
+          "dataType": "Vectors"
+        },
+        {
+          "id": "f3",
+          "from": "vectordb",
+          "to": "llm",
+          "label": "Retrieved chunks",
+          "dataType": "Text"
+        }
       ]
     },
     "implementationSteps": [
@@ -60,7 +78,10 @@
           "Set up embedding service",
           "Implement basic ingestion pipeline"
         ],
-        "deliverables": ["Working ingestion pipeline", "Vector DB with initial documents"],
+        "deliverables": [
+          "Working ingestion pipeline",
+          "Vector DB with initial documents"
+        ],
         "estimatedDuration": "2 weeks"
       },
       {
@@ -73,7 +94,10 @@
           "Configure LLM with RAG prompt",
           "Add citation extraction"
         ],
-        "deliverables": ["Functional Q&A endpoint", "Citation support"],
+        "deliverables": [
+          "Functional Q&A endpoint",
+          "Citation support"
+        ],
         "estimatedDuration": "2 weeks"
       },
       {
@@ -86,7 +110,10 @@
           "Set up monitoring and logging",
           "Performance optimization"
         ],
-        "deliverables": ["Production-ready system", "Monitoring dashboard"],
+        "deliverables": [
+          "Production-ready system",
+          "Monitoring dashboard"
+        ],
         "estimatedDuration": "2 weeks"
       }
     ],
@@ -99,20 +126,54 @@
         "description": "Basic RAG query with citation support"
       }
     ],
-    "relatedPatterns": ["rag-production", "vector-database-selection", "ai-gateway"],
-    "cloudProviders": ["aws", "gcp", "azure", "oci"],
-    "technologies": ["LangChain", "Pinecone", "Claude", "Python"],
+    "relatedPatterns": [
+      "rag-production",
+      "vector-database-selection",
+      "ai-gateway"
+    ],
+    "cloudProviders": [
+      "aws",
+      "gcp",
+      "azure",
+      "oci"
+    ],
+    "technologies": [
+      "LangChain",
+      "Pinecone",
+      "Claude",
+      "Python"
+    ],
     "estimatedCost": {
       "monthly": 2500,
       "annual": 30000,
       "currency": "USD",
       "breakdown": [
-        { "category": "Vector Database", "amount": 800, "percentage": 32 },
-        { "category": "LLM API", "amount": 1000, "percentage": 40 },
-        { "category": "Compute", "amount": 500, "percentage": 20 },
-        { "category": "Storage", "amount": 200, "percentage": 8 }
+        {
+          "category": "Vector Database",
+          "amount": 800,
+          "percentage": 32
+        },
+        {
+          "category": "LLM API",
+          "amount": 1000,
+          "percentage": 40
+        },
+        {
+          "category": "Compute",
+          "amount": 500,
+          "percentage": 20
+        },
+        {
+          "category": "Storage",
+          "amount": 200,
+          "percentage": 8
+        }
       ],
-      "assumptions": ["100K queries/month", "10K documents indexed", "GPT-4 for generation"]
+      "assumptions": [
+        "100K queries/month",
+        "10K documents indexed",
+        "GPT-4 for generation"
+      ]
     },
     "timeToImplement": "6-8 weeks",
     "useCases": [
@@ -125,7 +186,13 @@
     "updatedAt": "2026-01-16T00:00:00Z",
     "publishedAt": "2026-01-10T00:00:00Z",
     "metaDescription": "Build a production-grade enterprise RAG platform for document Q&A with source citations",
-    "keywords": ["RAG", "enterprise AI", "document Q&A", "vector database", "LLM"]
+    "keywords": [
+      "RAG",
+      "enterprise AI",
+      "document Q&A",
+      "vector database",
+      "LLM"
+    ]
   },
   {
     "id": "multi-agent-code-assistant",
@@ -185,14 +252,26 @@
           "Implement orchestrator state machine",
           "Build tool integrations (file system, git)"
         ],
-        "deliverables": ["Agent specifications", "Orchestrator implementation"],
+        "deliverables": [
+          "Agent specifications",
+          "Orchestrator implementation"
+        ],
         "estimatedDuration": "2 weeks"
       }
     ],
     "codeExamples": [],
-    "relatedPatterns": ["multi-agent-orchestration", "mcp-server-architecture"],
-    "cloudProviders": ["multi-cloud"],
-    "technologies": ["LangGraph", "Claude Agent SDK", "Python"],
+    "relatedPatterns": [
+      "multi-agent-orchestration",
+      "mcp-server-architecture"
+    ],
+    "cloudProviders": [
+      "multi-cloud"
+    ],
+    "technologies": [
+      "LangGraph",
+      "Claude Agent SDK",
+      "Python"
+    ],
     "timeToImplement": "4-6 weeks",
     "useCases": [
       "Autonomous feature development",
@@ -269,10 +348,34 @@
         }
       ],
       "flows": [
-        { "id": "f1", "from": "claude-code", "to": "content-pipeline", "label": "Generated content", "dataType": "MDX" },
-        { "id": "f2", "from": "mcp-servers", "to": "content-pipeline", "label": "Tools & data", "dataType": "API" },
-        { "id": "f3", "from": "content-pipeline", "to": "seo-engine", "label": "Optimization", "dataType": "JSON" },
-        { "id": "f4", "from": "content-pipeline", "to": "vercel", "label": "Deploy", "dataType": "Build" }
+        {
+          "id": "f1",
+          "from": "claude-code",
+          "to": "content-pipeline",
+          "label": "Generated content",
+          "dataType": "MDX"
+        },
+        {
+          "id": "f2",
+          "from": "mcp-servers",
+          "to": "content-pipeline",
+          "label": "Tools & data",
+          "dataType": "API"
+        },
+        {
+          "id": "f3",
+          "from": "content-pipeline",
+          "to": "seo-engine",
+          "label": "Optimization",
+          "dataType": "JSON"
+        },
+        {
+          "id": "f4",
+          "from": "content-pipeline",
+          "to": "vercel",
+          "label": "Deploy",
+          "dataType": "Build"
+        }
       ]
     },
     "implementationSteps": [
@@ -286,7 +389,10 @@
           "Configure MCP server connections",
           "Create custom skills and commands"
         ],
-        "deliverables": ["Working Claude Code environment", "MCP integration"],
+        "deliverables": [
+          "Working Claude Code environment",
+          "MCP integration"
+        ],
         "estimatedDuration": "1 week"
       },
       {
@@ -299,7 +405,10 @@
           "Voice-optimized content formatting",
           "Automated internal linking"
         ],
-        "deliverables": ["Publishing pipeline", "SEO automation"],
+        "deliverables": [
+          "Publishing pipeline",
+          "SEO automation"
+        ],
         "estimatedDuration": "2 weeks"
       },
       {
@@ -312,7 +421,10 @@
           "Analytics dashboard",
           "Performance monitoring"
         ],
-        "deliverables": ["Distribution system", "Analytics"],
+        "deliverables": [
+          "Distribution system",
+          "Analytics"
+        ],
         "estimatedDuration": "2 weeks"
       }
     ],
@@ -325,20 +437,52 @@
         "description": "Example MCP server configuration for content creation"
       }
     ],
-    "relatedPatterns": ["ai-gateway", "mcp-server-architecture", "llmops"],
-    "cloudProviders": ["multi-cloud"],
-    "technologies": ["Next.js 16", "Claude Code", "MCP", "ElevenLabs", "TypeScript"],
+    "relatedPatterns": [
+      "ai-gateway",
+      "mcp-server-architecture",
+      "llmops"
+    ],
+    "cloudProviders": [
+      "multi-cloud"
+    ],
+    "technologies": [
+      "Next.js 16",
+      "Claude Code",
+      "MCP",
+      "ElevenLabs",
+      "TypeScript"
+    ],
     "estimatedCost": {
       "monthly": 500,
       "annual": 6000,
       "currency": "USD",
       "breakdown": [
-        { "category": "Claude API", "amount": 200, "percentage": 40 },
-        { "category": "Vercel Pro", "amount": 100, "percentage": 20 },
-        { "category": "ElevenLabs", "amount": 100, "percentage": 20 },
-        { "category": "Neon + Other", "amount": 100, "percentage": 20 }
+        {
+          "category": "Claude API",
+          "amount": 200,
+          "percentage": 40
+        },
+        {
+          "category": "Vercel Pro",
+          "amount": 100,
+          "percentage": 20
+        },
+        {
+          "category": "ElevenLabs",
+          "amount": 100,
+          "percentage": 20
+        },
+        {
+          "category": "Neon + Other",
+          "amount": 100,
+          "percentage": 20
+        }
       ],
-      "assumptions": ["~500 content pieces/month", "Voice generation for key content", "Pro tier services"]
+      "assumptions": [
+        "~500 content pieces/month",
+        "Voice generation for key content",
+        "Pro tier services"
+      ]
     },
     "timeToImplement": "4-5 weeks",
     "useCases": [
@@ -351,7 +495,13 @@
     "updatedAt": "2026-01-16T00:00:00Z",
     "publishedAt": "2026-01-16T00:00:00Z",
     "metaDescription": "Build an AI-powered content creation platform with Claude Code, MCP servers, and automated publishing",
-    "keywords": ["AI content creation", "Claude Code", "MCP", "content automation", "publishing platform"]
+    "keywords": [
+      "AI content creation",
+      "Claude Code",
+      "MCP",
+      "content automation",
+      "publishing platform"
+    ]
   },
   {
     "id": "arcanea-game-engine",
@@ -412,10 +562,34 @@
         }
       ],
       "flows": [
-        { "id": "a1", "from": "realm-manager", "to": "ai-narrator", "label": "World state", "dataType": "State" },
-        { "id": "a2", "from": "ai-narrator", "to": "quest-engine", "label": "Generated quests", "dataType": "Quest" },
-        { "id": "a3", "from": "quest-engine", "to": "music-gen", "label": "Scene triggers", "dataType": "Events" },
-        { "id": "a4", "from": "ai-narrator", "to": "lore-db", "label": "Lore queries", "dataType": "Vector" }
+        {
+          "id": "a1",
+          "from": "realm-manager",
+          "to": "ai-narrator",
+          "label": "World state",
+          "dataType": "State"
+        },
+        {
+          "id": "a2",
+          "from": "ai-narrator",
+          "to": "quest-engine",
+          "label": "Generated quests",
+          "dataType": "Quest"
+        },
+        {
+          "id": "a3",
+          "from": "quest-engine",
+          "to": "music-gen",
+          "label": "Scene triggers",
+          "dataType": "Events"
+        },
+        {
+          "id": "a4",
+          "from": "ai-narrator",
+          "to": "lore-db",
+          "label": "Lore queries",
+          "dataType": "Vector"
+        }
       ]
     },
     "implementationSteps": [
@@ -429,7 +603,10 @@
           "Build character relationship graph",
           "Create event broadcasting system"
         ],
-        "deliverables": ["Realm engine", "State management"],
+        "deliverables": [
+          "Realm engine",
+          "State management"
+        ],
         "estimatedDuration": "3 weeks"
       },
       {
@@ -442,7 +619,10 @@
           "Implement context window management",
           "Create quest generation pipeline"
         ],
-        "deliverables": ["AI narrator", "Quest generation"],
+        "deliverables": [
+          "AI narrator",
+          "Quest generation"
+        ],
         "estimatedDuration": "4 weeks"
       },
       {
@@ -455,7 +635,10 @@
           "Implement consequence tracking",
           "Create world evolution mechanics"
         ],
-        "deliverables": ["Adaptive music", "Living world"],
+        "deliverables": [
+          "Adaptive music",
+          "Living world"
+        ],
         "estimatedDuration": "4 weeks"
       }
     ],
@@ -468,20 +651,53 @@
         "description": "System prompt for the AI narrator"
       }
     ],
-    "relatedPatterns": ["multi-agent-orchestration", "rag-production", "ai-gateway"],
-    "cloudProviders": ["multi-cloud"],
-    "technologies": ["Phaser/Unity", "Claude Opus", "Vector DB", "Redis", "Suno AI", "TypeScript"],
+    "relatedPatterns": [
+      "multi-agent-orchestration",
+      "rag-production",
+      "ai-gateway"
+    ],
+    "cloudProviders": [
+      "multi-cloud"
+    ],
+    "technologies": [
+      "Phaser/Unity",
+      "Claude Opus",
+      "Vector DB",
+      "Redis",
+      "Suno AI",
+      "TypeScript"
+    ],
     "estimatedCost": {
       "monthly": 2000,
       "annual": 24000,
       "currency": "USD",
       "breakdown": [
-        { "category": "Claude API", "amount": 1000, "percentage": 50 },
-        { "category": "Suno AI", "amount": 400, "percentage": 20 },
-        { "category": "Infrastructure", "amount": 400, "percentage": 20 },
-        { "category": "Vector DB", "amount": 200, "percentage": 10 }
+        {
+          "category": "Claude API",
+          "amount": 1000,
+          "percentage": 50
+        },
+        {
+          "category": "Suno AI",
+          "amount": 400,
+          "percentage": 20
+        },
+        {
+          "category": "Infrastructure",
+          "amount": 400,
+          "percentage": 20
+        },
+        {
+          "category": "Vector DB",
+          "amount": 200,
+          "percentage": 10
+        }
       ],
-      "assumptions": ["~10K active players", "Moderate API usage per session", "Premium AI models"]
+      "assumptions": [
+        "~10K active players",
+        "Moderate API usage per session",
+        "Premium AI models"
+      ]
     },
     "timeToImplement": "10-12 weeks",
     "useCases": [
@@ -494,6 +710,297 @@
     "updatedAt": "2026-01-16T00:00:00Z",
     "publishedAt": "2026-01-16T00:00:00Z",
     "metaDescription": "Build an AI-driven game platform with dynamic narrative generation, procedural quests, and adaptive music",
-    "keywords": ["AI gaming", "dynamic narrative", "procedural generation", "Claude Opus", "game engine"]
+    "keywords": [
+      "AI gaming",
+      "dynamic narrative",
+      "procedural generation",
+      "Claude Opus",
+      "game engine"
+    ]
+  },
+  {
+    "id": "misinformation-guardian-platform",
+    "slug": "misinformation-guardian-platform",
+    "title": "Misinformation Guardian Platform",
+    "subtitle": "Live risk analysis, evidence scoring, and human escalation for high-stakes content",
+    "category": "security-governance",
+    "status": "published",
+    "difficulty": "advanced",
+    "overview": "A production-grade misinformation defense platform that analyzes live text or URLs, scores manipulation risk, extracts claims, and routes high-risk items to policy-aware human review with full auditability.",
+    "problem": "Creators, teams, and audiences face rapid misinformation spread across posts, videos, and articles. Manual verification cannot scale fast enough, and unstructured moderation often creates inconsistent outcomes.",
+    "solution": "Deploy a layered guardian architecture: intake normalization, multi-signal risk scoring, explainable verdicting, confidence-aware recommendations, and escalation workflows for sensitive domains such as health, elections, and finance.",
+    "architecture": {
+      "diagramType": "mermaid",
+      "diagram": "graph LR\\n    A[Input Gateway] --> B[Content Extractor]\\n    B --> C[Signal Engine]\\n    C --> D[Risk Fusion]\\n    D --> E[Policy Router]\\n    E --> F[Guardian API]\\n    E --> G[Human Review Queue]\\n    F --> H[UI + Integrations]\\n    C --> I[Evidence Store]\\n    G --> J[Decision Ledger]",
+      "components": [
+        {
+          "id": "input-gateway",
+          "name": "Input Gateway",
+          "type": "networking",
+          "description": "Receives URL/text submissions with schema validation, auth, and anti-abuse checks.",
+          "cloudService": "Next.js API Gateway / Cloudflare / API Gateway"
+        },
+        {
+          "id": "content-extractor",
+          "name": "Content Extractor",
+          "type": "compute",
+          "description": "Fetches and normalizes text from URLs or direct user payloads with SSRF safeguards.",
+          "cloudService": "Serverless Functions"
+        },
+        {
+          "id": "signal-engine",
+          "name": "Misinformation Signal Engine",
+          "type": "ai-service",
+          "description": "Runs manipulation heuristics, source checks, claim extraction, and anomaly scoring.",
+          "cloudService": "Guardian Rules + LLM Verifier"
+        },
+        {
+          "id": "risk-fusion",
+          "name": "Risk Fusion Layer",
+          "type": "compute",
+          "description": "Aggregates heterogeneous signals into calibrated risk score, verdict, and confidence.",
+          "cloudService": "Risk Scoring Service"
+        },
+        {
+          "id": "policy-router",
+          "name": "Policy Router",
+          "type": "security",
+          "description": "Applies policy bundles and determines auto-pass, warn, block, or human escalation.",
+          "cloudService": "OPA / Custom Policy Engine"
+        },
+        {
+          "id": "guardian-api",
+          "name": "Guardian Response API",
+          "type": "compute",
+          "description": "Returns explainable analysis payloads, recommendations, and evidence traces.",
+          "cloudService": "REST/GraphQL API"
+        },
+        {
+          "id": "human-review",
+          "name": "Human Review Queue",
+          "type": "compute",
+          "description": "Routes high-impact cases to analysts with triage SLA and adjudication tooling.",
+          "cloudService": "Queue + Review Console"
+        },
+        {
+          "id": "evidence-store",
+          "name": "Evidence Store",
+          "type": "database",
+          "description": "Stores signals, verdict history, source snapshots, and appeal metadata.",
+          "cloudService": "PostgreSQL + Object Storage"
+        },
+        {
+          "id": "decision-ledger",
+          "name": "Decision Ledger",
+          "type": "monitoring",
+          "description": "Immutable audit trail for policy decisions, reviewer actions, and model versions.",
+          "cloudService": "Data Warehouse + SIEM"
+        }
+      ],
+      "flows": [
+        {
+          "id": "g1",
+          "from": "input-gateway",
+          "to": "content-extractor",
+          "label": "Validated submission",
+          "dataType": "JSON"
+        },
+        {
+          "id": "g2",
+          "from": "content-extractor",
+          "to": "signal-engine",
+          "label": "Normalized content",
+          "dataType": "Text"
+        },
+        {
+          "id": "g3",
+          "from": "signal-engine",
+          "to": "risk-fusion",
+          "label": "Signal vectors",
+          "dataType": "Feature set"
+        },
+        {
+          "id": "g4",
+          "from": "risk-fusion",
+          "to": "policy-router",
+          "label": "Risk + confidence",
+          "dataType": "Score tuple"
+        },
+        {
+          "id": "g5",
+          "from": "policy-router",
+          "to": "guardian-api",
+          "label": "Decision payload",
+          "dataType": "JSON"
+        },
+        {
+          "id": "g6",
+          "from": "policy-router",
+          "to": "human-review",
+          "label": "Escalated cases",
+          "dataType": "Queue event"
+        },
+        {
+          "id": "g7",
+          "from": "signal-engine",
+          "to": "evidence-store",
+          "label": "Evidence artifacts",
+          "dataType": "Document + metadata"
+        },
+        {
+          "id": "g8",
+          "from": "human-review",
+          "to": "decision-ledger",
+          "label": "Adjudication",
+          "dataType": "Audit event"
+        },
+        {
+          "id": "g9",
+          "from": "guardian-api",
+          "to": "decision-ledger",
+          "label": "Returned verdict",
+          "dataType": "Response log"
+        }
+      ]
+    },
+    "implementationSteps": [
+      {
+        "phase": 1,
+        "title": "Guardian Core MVP",
+        "description": "Ship deterministic scoring with explainable outputs and basic URL ingestion.",
+        "tasks": [
+          "Implement input validation and anti-abuse controls",
+          "Build deterministic signal engine and calibrated risk scoring",
+          "Expose analysis endpoint + dashboard preview",
+          "Store analysis metadata for retrospective tuning"
+        ],
+        "deliverables": [
+          "Live analysis API",
+          "Guardian UI",
+          "Signal taxonomy v1"
+        ],
+        "estimatedDuration": "2-3 weeks"
+      },
+      {
+        "phase": 2,
+        "title": "Policy + Escalation Layer",
+        "description": "Introduce policy routing and high-risk human review workflows.",
+        "tasks": [
+          "Define policy bundles per domain (health, election, finance)",
+          "Implement escalation queue with triage SLA",
+          "Add reviewer notes, final disposition, and appeal path",
+          "Create feedback loop for signal tuning"
+        ],
+        "deliverables": [
+          "Policy router",
+          "Reviewer console",
+          "Appeal workflow"
+        ],
+        "estimatedDuration": "3-4 weeks"
+      },
+      {
+        "phase": 3,
+        "title": "Production Hardening",
+        "description": "Scale with observability, evaluation harnesses, and compliance controls.",
+        "tasks": [
+          "Add drift monitoring and false-positive/false-negative dashboards",
+          "Run red-team misinformation suites and threshold calibration",
+          "Implement full audit logging and retention policies",
+          "Enable canary release + rollback procedures for policy/model updates"
+        ],
+        "deliverables": [
+          "Ops dashboards",
+          "Evaluation pipelines",
+          "Runbooks + SLOs"
+        ],
+        "estimatedDuration": "3 weeks"
+      }
+    ],
+    "codeExamples": [
+      {
+        "id": "guardian-risk-pipeline",
+        "title": "Risk Fusion Pipeline (TypeScript)",
+        "language": "typescript",
+        "description": "Combines weighted signal impacts into a bounded risk score with explainability.",
+        "code": "type Signal = { id: string; impact: number }\\n\\nexport function computeRisk(signals: Signal[]) {\\n  const baseRisk = 28\\n  const score = signals.reduce((sum, signal) => sum + signal.impact, baseRisk)\\n  const bounded = Math.max(0, Math.min(100, score))\\n\\n  return {\\n    score: bounded,\\n    verdict: bounded >= 76 ? 'critical' : bounded >= 56 ? 'high' : bounded >= 36 ? 'guarded' : 'low',\\n    explanation: signals.map((s) => s.id),\\n  }\\n}"
+      },
+      {
+        "id": "policy-routing",
+        "title": "Policy Routing Example (YAML)",
+        "language": "yaml",
+        "description": "Escalate high-risk health/election content to human review.",
+        "code": "policies:\\n  - id: high_impact_escalation\\n    when:\\n      risk_score: '>=56'\\n      domain: ['health', 'election', 'finance']\\n    action: 'human_review_required'\\n    sla: '15m'\\n\\n  - id: guarded_warning\\n    when:\\n      risk_score: '>=36'\\n    action: 'show_warning_with_sources'"
+      }
+    ],
+    "relatedPatterns": [
+      "security-governance",
+      "multi-agent-orchestration",
+      "observability"
+    ],
+    "cloudProviders": [
+      "aws",
+      "gcp",
+      "azure",
+      "oci",
+      "multi-cloud"
+    ],
+    "technologies": [
+      "Next.js",
+      "TypeScript",
+      "XYFlow",
+      "PostgreSQL",
+      "OPA",
+      "OpenTelemetry"
+    ],
+    "estimatedCost": {
+      "monthly": 6800,
+      "annual": 81600,
+      "currency": "USD",
+      "breakdown": [
+        {
+          "category": "Inference + Scoring",
+          "amount": 2100,
+          "percentage": 31
+        },
+        {
+          "category": "Data + Storage",
+          "amount": 1100,
+          "percentage": 16
+        },
+        {
+          "category": "Queue + Review Ops",
+          "amount": 1700,
+          "percentage": 25
+        },
+        {
+          "category": "Observability + Security",
+          "amount": 1900,
+          "percentage": 28
+        }
+      ],
+      "assumptions": [
+        "300K analyses per month",
+        "5-10% escalation rate to human review",
+        "Multi-region deployment with 99.9% availability target"
+      ]
+    },
+    "timeToImplement": "8-10 weeks",
+    "useCases": [
+      "Creator moderation support",
+      "Editorial integrity screening",
+      "High-risk topic escalation workflows",
+      "Brand safety and trust operations"
+    ],
+    "createdAt": "2026-02-12T00:00:00Z",
+    "updatedAt": "2026-02-12T00:00:00Z",
+    "publishedAt": "2026-02-12T00:00:00Z",
+    "metaDescription": "Deploy a production misinformation guardian with live risk analysis, policy routing, human review, and explainable AI decisions.",
+    "keywords": [
+      "misinformation",
+      "trust and safety",
+      "content moderation",
+      "ai governance",
+      "risk scoring"
+    ]
   }
 ]

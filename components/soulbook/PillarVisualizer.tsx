@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useState, useMemo } from 'react'
 import { cn } from '@/lib/utils'
-import PremiumCard from '@/components/ui/PremiumCard'
+import GlassmorphicCard from '@/components/ui/GlassmorphicCard'
 import { pillars, Pillar } from '@/lib/soulbook/pillars'
 
 const pillarImages: Record<string, string> = {
@@ -118,8 +118,9 @@ function PillarDetail({
       exit={{ opacity: 0, x: 50 }}
       className="absolute right-0 top-0 h-full w-full md:w-96"
     >
-      <PremiumCard
-        glass="medium"
+      <GlassmorphicCard
+        variant="premium"
+        gradient="aurora"
         className="h-full overflow-y-auto"
       >
         <div className="p-6">
@@ -218,7 +219,7 @@ function PillarDetail({
             </ul>
           </div>
         </div>
-      </PremiumCard>
+      </GlassmorphicCard>
     </motion.div>
   )
 }

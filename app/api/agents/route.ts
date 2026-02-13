@@ -40,12 +40,12 @@ const AGENTS = {
     expertise: ['Longform Storytelling', 'Launch Strategy', 'Email + Social Campaigns', 'Community Building'],
     voice: 'Cinematic, direct, geared toward creative action'
   },
-  'luminor-oracle': {
-    name: 'Luminor Oracle',
+  'visionary': {
+    name: 'Visionary',
     role: 'Future-Sighted Strategist',
     personality: 'Views choices as timelines and keeps creators aligned with the bigger arc',
-    expertise: ['Scenario Design', 'Signal Scanning', 'Decision Frameworks', 'Ritual Planning'],
-    voice: 'Visionary yet grounded, showing the path from future success back to now'
+    expertise: ['Scenario Design', 'Signal Scanning', 'Decision Frameworks', 'Strategic Planning'],
+    voice: 'Far-seeing yet grounded, showing the path from future success back to now'
   }
 }
 
@@ -151,7 +151,7 @@ async function processAgentRequest(
     'starlight-architect': generateArchitectResponse(request, framework),
     'frequency-alchemist': generateAlchemistResponse(request, framework),
     'creation-engine': generateCreationResponse(request, framework),
-    'luminor-oracle': generateOracleResponse(request, framework)
+    'visionary': generateOracleResponse(request, framework)
   }
 
   const baseResponse = responses[request.agent_id as keyof typeof responses] || {
@@ -233,7 +233,7 @@ function generateCreationResponse(request: AgentRequest, framework: any) {
 
 function generateOracleResponse(request: AgentRequest, framework: any) {
   return {
-    message: `From the Luminor Oracle vantage point, "${request.message}" is part of a longer creative arc. ${framework.approach} nudges us to align today?s decision with the season you are building toward.`,
+    message: `From the Visionary vantage point, "${request.message}" is part of a longer creative arc. ${framework.approach} nudges us to align today?s decision with the season you are building toward.`,
     consciousnessScore: 9.3,
     contextUsed: {
       timeline_view: 'Seasonal creator journey',

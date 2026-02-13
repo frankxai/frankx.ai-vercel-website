@@ -5,7 +5,7 @@ import { ArrowRight, BadgeCheck } from 'lucide-react';
 import AffiliateLink from './AffiliateLink';
 import AffiliateBadge from './AffiliateBadge';
 import { cn } from '@/lib/utils';
-import PremiumCard from '../ui/PremiumCard';
+import GlassmorphicCard from '../ui/GlassmorphicCard';
 
 interface AffiliateCardProps {
   affiliate: Affiliate;
@@ -19,9 +19,10 @@ const AffiliateCard: React.FC<AffiliateCardProps> = ({
   className,
 }) => {
   return (
-    <PremiumCard
+    <GlassmorphicCard
       className={cn('p-6 flex flex-col h-full', className)}
-      glass="heavy"
+      variant="luxury"
+      hover
     >
       <AffiliateBadge />
       <div className="flex-grow">
@@ -51,7 +52,7 @@ const AffiliateCard: React.FC<AffiliateCardProps> = ({
           Get Started <ArrowRight className="w-4 h-4 ml-2" />
         </AffiliateLink>
       </div>
-    </PremiumCard>
+    </GlassmorphicCard>
   );
 };
 

@@ -29,7 +29,7 @@
       "featured": true,
       "seoTitle": "The Complete Suno Prompt Engineering Guide: From Beginner to Pro",
       "seoDescription": "Master Suno AI music creation with proven prompt formulas from 500+ sessions. Learn genre-specific techniques, advanced modifiers, and the anatomy of prompts that generate professional tracks.",
-      "ogImage": "/images/blog/suno-prompt-engineering-complete-guide/header.jpg",
+      "ogImage": "/images/blog/suno-prompt-engineering-complete-guide-hero.png",
       "author": "Frank"
     },
     {
@@ -593,7 +593,7 @@
       "featured": false,
       "seoTitle": "5 Agentic Workflows That Save Creators 10+ Hours Per Week",
       "seoDescription": "Production workflows I use daily: blog publishing, ops reports, client onboarding, content repurposing, code review. Copy these patterns and automate the grind.",
-      "ogImage": "/images/blog/agentic-workflows.svg",
+      "ogImage": "/images/blog/agentic-workflows-save-hours-hero.png",
       "author": "Frank"
     },
     {
@@ -624,7 +624,7 @@
       "featured": true,
       "seoTitle": "AGI in 2026: What Current Progress Means for Students, Creators, and Your Career",
       "seoDescription": "Expert predictions range from 'AGI by 2026' to 'decades away.' Here's what the actual progress means for students, personal growth, and economic opportunities right now.",
-      "ogImage": "/images/blog/intelligence-revolution-header.webp",
+      "ogImage": "/images/blog/intelligence-revolution-hero.png",
       "author": "Frank"
     },
     {
@@ -647,7 +647,7 @@
       "featured": false,
       "seoTitle": "Launching the AI Center of Excellence: A New Era for FrankX",
       "seoDescription": null,
-      "ogImage": "/images/blog/ai-coe-launch.jpg",
+      "ogImage": "/images/blog/ai-coe-launch-hero.png",
       "author": "Frank"
     },
     {
@@ -677,7 +677,7 @@
       "featured": true,
       "seoTitle": "Building a Research Intelligence System: How I Use AI Agents for Daily Knowledge Operations",
       "seoDescription": "A deep dive into the multi-agent research system powering FrankX.AI - five specialized agents, three workflow modes, and a publication pipeline optimized for the AI age.",
-      "ogImage": "/images/blog/research-system-header.webp",
+      "ogImage": "/images/blog/building-research-intelligence-system-hero.png",
       "author": "Frank"
     },
     {
@@ -708,7 +708,7 @@
       "featured": false,
       "seoTitle": "EU Inc Explained: The '28th Regime' That Could Finally Unify European Startups",
       "seoDescription": "The European Commission just announced EU Inc - a pan-European company structure promising 48-hour incorporation across all member states. Here's what it means for founders, investors, and the European startup ecosystem.",
-      "ogImage": "/images/blog/eu-inc-header.webp",
+      "ogImage": "/images/blog/eu-inc-28th-regime-european-startups-hero.png",
       "author": "Frank"
     },
     {
@@ -736,7 +736,7 @@
       "featured": true,
       "seoTitle": "Getting Started with Agentic Creator OS",
       "seoDescription": "Set up your own AI operating system in 30 minutes. Step-by-step guide to installing departments, MCP servers, and running your first automated workflow.",
-      "ogImage": "/images/blog/getting-started-agentic-os.svg",
+      "ogImage": "/images/blog/getting-started-agentic-creator-os-hero.png",
       "author": "Frank"
     },
     {
@@ -911,7 +911,7 @@
       "featured": true,
       "seoTitle": "Build Your Own Jarvis: Turn Claude Code Into Your Personal Intelligence System",
       "seoDescription": "Stop using AI tools like everyone else. Build a personal AI system that knows your work, executes your workflows, and gets smarter every day. Here's exactly how.",
-      "ogImage": "/images/blog/jarvis-intelligence-system.svg",
+      "ogImage": "/images/blog/build-your-own-jarvis-hero.png",
       "author": "Frank"
     },
     {
@@ -940,7 +940,7 @@
       "featured": true,
       "seoTitle": "Why Every Creator Needs an Intelligence System in 2026",
       "seoDescription": "The creators who thrive in 2026 won't be those with the best tools—they'll be those with the best systems. Here's why personal AI intelligence systems are the new competitive advantage.",
-      "ogImage": "/images/blog/creator-intelligence-2026.svg",
+      "ogImage": "/images/blog/creator-intelligence-systems-2026-hero.png",
       "author": "Frank"
     },
     {
@@ -969,7 +969,7 @@
       "featured": true,
       "seoTitle": "The 7 Pillars of Production Agent Systems: What Actually Matters in 2026",
       "seoDescription": "2026 marks the shift from AI demos to production deployments. Here's the architectural framework that emerged from analyzing AWS, Azure, Google Cloud, OpenAI, Anthropic, and Oracle's approaches to production-ready AI agents.",
-      "ogImage": "/images/blog/production-agent-pillars.png",
+      "ogImage": "/images/blog/production-agent-patterns-7-pillars-hero.png",
       "author": "Frank"
     },
     {
@@ -1282,7 +1282,7 @@
       "featured": true,
       "seoTitle": "The Science of Using Music to Change Your State",
       "seoDescription": "How tempo, mode, and lyrics create predictable emotional outcomes—backed by peer-reviewed research",
-      "ogImage": "/images/blog/science-state-change.jpg",
+      "ogImage": "/images/blog/science-of-state-change-music-hero.png",
       "author": "Frank"
     },
     {
@@ -1367,7 +1367,7 @@
       "featured": true,
       "seoTitle": "The Soul Frequency Framework: How to Find Your Authentic Creative Voice in the AI Age",
       "seoDescription": "Everyone has a unique creative frequency — a way of expressing that's authentically yours. Here's how to discover yours and use AI to amplify it, not mask it.",
-      "ogImage": "/images/blog/soul-frequency-framework-hero.png",
+      "ogImage": "/images/blog/soul-frequency-framework.svg",
       "author": "Frank"
     }
   ]

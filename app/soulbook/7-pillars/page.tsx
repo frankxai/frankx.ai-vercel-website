@@ -17,7 +17,8 @@ import {
   Target,
   ArrowRight,
 } from 'lucide-react';
-import PremiumCard from '@/components/ui/PremiumCard';
+import GlassmorphicCard from '@/components/ui/GlassmorphicCard';
+import InteractiveCard from '@/components/ui/InteractiveCard';
 import PremiumButton from '@/components/ui/PremiumButton';
 import { cn } from '@/lib/utils';
 
@@ -176,14 +177,15 @@ function PillarCard({
 
   return (
     <motion.div variants={itemVariants}>
-      <PremiumCard
-        gradient={pillar.color === 'amber' ? 'gold' : 'cyan'}
-        mouseGlow
-        shine
+      <InteractiveCard
+        glowColor={pillar.color === 'amber' ? 'yellow' : 'cyan'}
+        intensity="medium"
         className="h-full"
       >
-        <PremiumCard
-          glass="medium"
+        <GlassmorphicCard
+          variant="premium"
+          gradient={pillar.color === 'amber' ? 'aurora' : 'purple'}
+          border="subtle"
           className="h-full"
         >
           <div className="p-6">
@@ -292,8 +294,8 @@ function PillarCard({
               )}
             </AnimatePresence>
           </div>
-        </PremiumCard>
-      </PremiumCard>
+        </GlassmorphicCard>
+      </InteractiveCard>
     </motion.div>
   );
 }
@@ -381,7 +383,7 @@ export default function SevenPillarsPage() {
       {/* Bottom CTA */}
       <section className="py-20 px-4">
         <div className="max-w-4xl mx-auto">
-          <PremiumCard glass="heavy" className="p-12 text-center">
+          <GlassmorphicCard variant="luxury" gradient="aurora" border="glow" className="p-12 text-center">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -399,7 +401,7 @@ export default function SevenPillarsPage() {
                 Begin Your Assessment
               </PremiumButton>
             </motion.div>
-          </PremiumCard>
+          </GlassmorphicCard>
         </div>
       </section>
     </div>

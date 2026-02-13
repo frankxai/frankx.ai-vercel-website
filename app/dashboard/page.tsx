@@ -28,7 +28,7 @@ import {
 import Link from 'next/link'
 
 import { cn } from '@/lib/utils'
-import PremiumCard from '@/components/ui/PremiumCard'
+import GlassmorphicCard from '@/components/ui/GlassmorphicCard'
 import PremiumButton from '@/components/ui/PremiumButton'
 import {
   StaggerContainer,
@@ -288,7 +288,7 @@ export default function DashboardPage() {
 
               {/* Progress Overview */}
               <div className="grid md:grid-cols-4 gap-6 mb-8">
-                <PremiumCard glass="heavy" className="p-6">
+                <GlassmorphicCard variant="luxury" className="p-6">
                   <div className="flex items-center justify-between mb-4">
                     <div>
                       <p className="text-slate-400 text-sm">Level</p>
@@ -312,9 +312,9 @@ export default function DashboardPage() {
                       />
                     </div>
                   </div>
-                </PremiumCard>
+                </GlassmorphicCard>
 
-                <PremiumCard glass="heavy" className="p-6">
+                <GlassmorphicCard variant="luxury" className="p-6">
                   <div className="flex items-center justify-between mb-4">
                     <div>
                       <p className="text-slate-400 text-sm">Streak</p>
@@ -325,9 +325,9 @@ export default function DashboardPage() {
                     </div>
                   </div>
                   <p className="text-xs text-slate-400">Days in a row</p>
-                </PremiumCard>
+                </GlassmorphicCard>
 
-                <PremiumCard glass="heavy" className="p-6">
+                <GlassmorphicCard variant="luxury" className="p-6">
                   <div className="flex items-center justify-between mb-4">
                     <div>
                       <p className="text-slate-400 text-sm">Rank</p>
@@ -338,9 +338,9 @@ export default function DashboardPage() {
                     </div>
                   </div>
                   <p className="text-xs text-slate-400">{userProgress.stats.totalPoints} total points</p>
-                </PremiumCard>
+                </GlassmorphicCard>
 
-                <PremiumCard glass="heavy" className="p-6">
+                <GlassmorphicCard variant="luxury" className="p-6">
                   <div className="flex items-center justify-between mb-4">
                     <div>
                       <p className="text-slate-400 text-sm">Achievements</p>
@@ -351,7 +351,7 @@ export default function DashboardPage() {
                     </div>
                   </div>
                   <p className="text-xs text-slate-400">Unlocked</p>
-                </PremiumCard>
+                </GlassmorphicCard>
               </div>
             </div>
           </StaggerItem>
@@ -362,7 +362,7 @@ export default function DashboardPage() {
             <div className="lg:col-span-2 space-y-8">
               {/* Current Goals */}
               <StaggerItem>
-                <PremiumCard glass="medium" className="p-8">
+                <GlassmorphicCard variant="premium" className="p-8">
                   <div className="flex items-center justify-between mb-6">
                     <h2 className="text-2xl font-semibold text-slate-100 flex items-center">
                       <Target className="w-6 h-6 mr-3 text-purple-400" />
@@ -415,12 +415,12 @@ export default function DashboardPage() {
                       </motion.div>
                     ))}
                   </div>
-                </PremiumCard>
+                </GlassmorphicCard>
               </StaggerItem>
 
               {/* Personalized Recommendations */}
               <StaggerItem>
-                <PremiumCard glass="medium" className="p-8">
+                <GlassmorphicCard variant="premium" className="p-8">
                   <div className="flex items-center justify-between mb-6">
                     <h2 className="text-2xl font-semibold text-slate-100 flex items-center">
                       <Lightbulb className="w-6 h-6 mr-3 text-yellow-400" />
@@ -471,7 +471,7 @@ export default function DashboardPage() {
                       </motion.div>
                     ))}
                   </div>
-                </PremiumCard>
+                </GlassmorphicCard>
               </StaggerItem>
             </div>
 
@@ -479,7 +479,7 @@ export default function DashboardPage() {
             <div className="space-y-8">
               {/* Recent Activity */}
               <StaggerItem>
-                <PremiumCard glass="medium" className="p-6">
+                <GlassmorphicCard variant="premium" className="p-6">
                   <h2 className="text-xl font-semibold text-slate-100 mb-6 flex items-center">
                     <Clock className="w-5 h-5 mr-3 text-cyan-400" />
                     Recent Activity
@@ -516,12 +516,12 @@ export default function DashboardPage() {
                       </motion.div>
                     ))}
                   </div>
-                </PremiumCard>
+                </GlassmorphicCard>
               </StaggerItem>
 
               {/* Latest Achievements */}
               <StaggerItem>
-                <PremiumCard glass="medium" className="p-6">
+                <GlassmorphicCard variant="premium" className="p-6">
                   <h2 className="text-xl font-semibold text-slate-100 mb-6 flex items-center">
                     <Award className="w-5 h-5 mr-3 text-yellow-400" />
                     Recent Achievements
@@ -568,12 +568,12 @@ export default function DashboardPage() {
                       <ChevronRight className="w-4 h-4 ml-2" />
                     </PremiumButton>
                   </div>
-                </PremiumCard>
+                </GlassmorphicCard>
               </StaggerItem>
 
               {/* Quick Actions */}
               <StaggerItem>
-                <PremiumCard glass="medium" className="p-6">
+                <GlassmorphicCard variant="premium" className="p-6">
                   <h2 className="text-xl font-semibold text-slate-100 mb-6">Quick Actions</h2>
                   <div className="grid grid-cols-2 gap-3">
                     <PremiumButton variant="ghost" size="sm" href="/tools" className="flex-col h-20">
@@ -593,7 +593,7 @@ export default function DashboardPage() {
                       Assess
                     </PremiumButton>
                   </div>
-                </PremiumCard>
+                </GlassmorphicCard>
               </StaggerItem>
             </div>
           </div>

@@ -1,0 +1,49 @@
+direction: right
+
+classes: {
+  path: {
+    style: {
+      fill: "#0B1220"
+      stroke: "#22D3EE"
+      stroke-width: 2
+      font-color: "#E2E8F0"
+      font-size: 15
+      border-radius: 12
+      shadow: true
+    }
+  }
+  terminal: {
+    style: {
+      fill: "#0B3B2E"
+      stroke: "#34D399"
+      stroke-width: 3
+      font-color: "#ECFEFF"
+      font-size: 16
+      border-radius: 14
+      shadow: true
+    }
+  }
+}
+
+project: "my-project/" { class: path }
+claude: ".claude/" { class: path }
+skills: "skills/" { class: path }
+my_skill: "my-skill/" { class: path }
+skill_file: "SKILL.md" { class: terminal }
+
+project -> claude: { style: {
+    stroke: "#67E8F9"
+    stroke-width: 2
+  } }
+claude -> skills: { style: {
+    stroke: "#67E8F9"
+    stroke-width: 2
+  } }
+skills -> my_skill: { style: {
+    stroke: "#67E8F9"
+    stroke-width: 2
+  } }
+my_skill -> skill_file: { style: {
+    stroke: "#34D399"
+    stroke-width: 3
+  } }

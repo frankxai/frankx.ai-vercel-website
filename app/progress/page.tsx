@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import PremiumCard from '@/components/ui/PremiumCard'
+import { GlassmorphicCard } from '@/components/glassmorphic-card'
 import { PremiumButton } from '@/components/premium-button'
 import progressData from '@/data/progress-tracker.json'
 
@@ -201,7 +201,7 @@ function PillarShowcaseCard({ pillar, index }: { pillar: any; index: number }) {
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1 }}
     >
-      <PremiumCard glass="subtle"
+      <GlassmorphicCard
         onClick={() => setExpanded(!expanded)}
         className="cursor-pointer hover:border-slate-600 transition-all duration-300 h-full"
       >
@@ -272,7 +272,7 @@ function PillarShowcaseCard({ pillar, index }: { pillar: any; index: number }) {
             </div>
           )}
         </div>
-      </PremiumCard>
+      </GlassmorphicCard>
     </motion.div>
   )
 }
@@ -341,7 +341,7 @@ function AssessmentView({
           animate={{ opacity: 1, x: 0 }}
           exit={{ opacity: 0, x: -20 }}
         >
-          <PremiumCard glass="subtle">
+          <GlassmorphicCard>
             <div className="space-y-6">
               {/* Pillar Badge */}
               <div className="flex items-center gap-3">
@@ -388,7 +388,7 @@ function AssessmentView({
                 ))}
               </div>
             </div>
-          </PremiumCard>
+          </GlassmorphicCard>
         </motion.div>
       </AnimatePresence>
     </motion.div>
@@ -452,7 +452,7 @@ function ResultsView({
       </div>
 
       {/* Insights */}
-      <PremiumCard glass="subtle">
+      <GlassmorphicCard>
         <div className="space-y-4">
           <h3 className="text-2xl font-bold text-white">Your Strengths</h3>
           <p className="text-slate-300">{results.archetype.strengths}</p>
@@ -460,7 +460,7 @@ function ResultsView({
           <h3 className="text-2xl font-bold text-white mt-6">Recommended Next Steps</h3>
           <p className="text-slate-300">{results.archetype.nextSteps}</p>
         </div>
-      </PremiumCard>
+      </GlassmorphicCard>
 
       {/* Personalized Recommendations */}
       <div className="space-y-6">
@@ -492,7 +492,7 @@ function PillarScoreCard({ pillar, score }: { pillar: PillarKey; score: number }
   const percentage = (score / 5) * 100
 
   return (
-    <PremiumCard glass="subtle" className="p-4">
+    <GlassmorphicCard className="p-4">
       <div className="space-y-3">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
@@ -519,7 +519,7 @@ function PillarScoreCard({ pillar, score }: { pillar: PillarKey; score: number }
           {score === 1 && "Great opportunity for growth and transformation."}
         </div>
       </div>
-    </PremiumCard>
+    </GlassmorphicCard>
   )
 }
 
@@ -562,7 +562,7 @@ function RecommendationsGrid({ pillarScores }: { pillarScores: Record<PillarKey,
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: index * 0.1 }}
         >
-          <PremiumCard glass="subtle" className="h-full hover:border-slate-500 transition-all">
+          <GlassmorphicCard className="h-full hover:border-slate-500 transition-all">
             <div className="space-y-3">
               <div className="flex items-center gap-2">
                 <span className="text-2xl">{rec.pillarData.icon}</span>
@@ -592,7 +592,7 @@ function RecommendationsGrid({ pillarScores }: { pillarScores: Record<PillarKey,
                  'Learn More'}
               </PremiumButton>
             </div>
-          </PremiumCard>
+          </GlassmorphicCard>
         </motion.div>
       ))}
     </div>
