@@ -172,15 +172,17 @@ const nextConfig = {
         headers: [
           {
             key: 'Content-Security-Policy',
+            // CSP: Keep in sync with ALL iframe embeds and external scripts in the codebase
+            // Audit: grep -r '<iframe' app/ components/ to find all embed sources
             value: [
               "default-src 'self'",
-              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vercel.live https://va.vercel-scripts.com",
+              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://vercel.live https://va.vercel-scripts.com https://plausible.io",
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
               "font-src 'self' https://fonts.gstatic.com data:",
               "img-src 'self' data: blob: https: http:",
               "media-src 'self' https:",
-              "frame-src 'self' https://suno.com https://*.suno.com https://www.youtube.com https://vercel.live",
-              "connect-src 'self' https://vitals.vercel-insights.com https://va.vercel-scripts.com https://*.vercel.app",
+              "frame-src 'self' https://suno.com https://*.suno.com https://www.youtube.com https://open.spotify.com https://embeds.beehiiv.com https://vercel.live",
+              "connect-src 'self' https://vitals.vercel-insights.com https://va.vercel-scripts.com https://*.vercel.app https://plausible.io",
             ].join('; '),
           },
           {
