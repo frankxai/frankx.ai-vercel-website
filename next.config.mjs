@@ -179,7 +179,7 @@ const nextConfig = {
               "font-src 'self' https://fonts.gstatic.com data:",
               "img-src 'self' data: blob: https: http:",
               "media-src 'self' https:",
-              "frame-src 'self' https://suno.com https://www.youtube.com https://vercel.live",
+              "frame-src 'self' https://suno.com https://*.suno.com https://www.youtube.com https://vercel.live",
               "connect-src 'self' https://vitals.vercel-insights.com https://va.vercel-scripts.com https://*.vercel.app",
             ].join('; '),
           },
