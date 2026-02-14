@@ -1,0 +1,50 @@
+{
+  "total_books": 6,
+  "total_chapters": 30,
+  "total_reviews": 8,
+  "books": [
+    {
+      "slug": "love-and-poetry",
+      "title": "Love & Poetry",
+      "status": "published",
+      "chapters": 5,
+      "icon": "rose"
+    },
+    {
+      "slug": "spartan-mindset",
+      "title": "Spartan Mindset",
+      "status": "in-progress",
+      "chapters": 5,
+      "icon": "red"
+    },
+    {
+      "slug": "golden-age",
+      "title": "Golden Age",
+      "status": "published",
+      "chapters": 3,
+      "icon": "amber"
+    },
+    {
+      "slug": "self-development",
+      "title": "Self-Development",
+      "status": "in-progress",
+      "chapters": 7,
+      "icon": "emerald"
+    },
+    {
+      "slug": "imagination",
+      "title": "Imagination",
+      "status": "in-progress",
+      "chapters": 5,
+      "icon": "violet"
+    },
+    {
+      "slug": "manifestation",
+      "title": "Manifestation",
+      "status": "in-progress",
+      "chapters": 5,
+      "icon": "gold"
+    }
+  ],
+  "last_updated": "2026-02-14"
+}
