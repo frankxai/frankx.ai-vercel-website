@@ -5,29 +5,12 @@ import Link from 'next/link'
 
 // ─── Music Theory ───────────────────────────────────────────────────
 
-const NOTE_NAMES = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
-const DISPLAY_NAMES = ['C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'Ab', 'A', 'Bb', 'B']
+const NOTE_LABELS = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B']
+const DISPLAY_LABELS = ['C', 'C#', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'Ab', 'A', 'Bb', 'B']
 
-function midiToFreq(midi: number): number {
-  return 440 * Math.pow(2, (midi - 69) / 12)
-}
-
-function midiToNote(midi: number): string {
-  return NOTE_NAMES[midi % 12] + (Math.floor(midi / 12) - 1)
-}
-
-function midiToDisplay(midi: number): string {
-  return DISPLAY_NAMES[midi % 12] + (Math.floor(midi / 12) - 1)
-}
-
-function isBlack(midi: number): boolean {
-  return [1, 3, 6, 8, 10].includes(midi % 12)
-}
-
-// Stereo pan position: low notes left, high notes right (-1 to 1)
-function midiToPan(midi: number): number {
-  return ((midi - 48) / 48) * 0.7 // C3=left, C7=right, clamped
-}
+function midiToNote(m: number) { return NOTE_LABELS[m % 12] + (Math.floor(m / 12) - 1) }
+function midiToDisplay(m: number) { return DISPLAY_LABELS[m % 12] + (Math.floor(m / 12) - 1) }
+function isBlack(m: number) { return [1, 3, 6, 8, 10].includes(m % 12) }
 
 const KEY_MAP: Record<string, number> = {
   z: 0, s: 1, x: 2, d: 3, c: 4, v: 5, g: 6,
@@ -36,32 +19,67 @@ const KEY_MAP: Record<string, number> = {
   t: 19, '6': 20, y: 21, '7': 22, u: 23, i: 24,
 }
 
-// ─── Piano Audio Engine ─────────────────────────────────────────────
+// ─── Salamander Grand Piano Samples ─────────────────────────────────
 //
-// Enhanced additive synthesis:
-// - 3 chorused fundamental oscillators (wider, warmer)
-// - 6 upper harmonics with inharmonicity + low-pass warmth
-// - Stereo panning (low=left, high=right)
-// - Longer, more natural sustain and release
-// - Hammer attack noise with body resonance
-// - Damper noise on release
-// - Warm reverb (3s tail)
-// - Sustain pedal support
-// - Dynamic compression
+// Real recordings of a Yamaha C5 concert grand piano.
+// Sampled every 3 semitones (A, C, D#, F#) across the full range.
+// Intermediate notes use playbackRate pitch shifting (max ±1.5 semitones).
+// Source: Salamander Grand Piano V3, CC BY 3.0
+// Hosted at the Tone.js CDN.
 
-class PianoEngine {
+const SAMPLE_CDN = 'https://tonejs.github.io/audio/salamander/'
+
+const SAMPLE_NOTES: { name: string; midi: number }[] = [
+  { name: 'A0', midi: 21 },  { name: 'C1', midi: 24 },
+  { name: 'Ds1', midi: 27 }, { name: 'Fs1', midi: 30 },
+  { name: 'A1', midi: 33 },  { name: 'C2', midi: 36 },
+  { name: 'Ds2', midi: 39 }, { name: 'Fs2', midi: 42 },
+  { name: 'A2', midi: 45 },  { name: 'C3', midi: 48 },
+  { name: 'Ds3', midi: 51 }, { name: 'Fs3', midi: 54 },
+  { name: 'A3', midi: 57 },  { name: 'C4', midi: 60 },
+  { name: 'Ds4', midi: 63 }, { name: 'Fs4', midi: 66 },
+  { name: 'A4', midi: 69 },  { name: 'C5', midi: 72 },
+  { name: 'Ds5', midi: 75 }, { name: 'Fs5', midi: 78 },
+  { name: 'A5', midi: 81 },  { name: 'C6', midi: 84 },
+  { name: 'Ds6', midi: 87 }, { name: 'Fs6', midi: 90 },
+  { name: 'A6', midi: 93 },  { name: 'C7', midi: 96 },
+  { name: 'Ds7', midi: 99 }, { name: 'Fs7', midi: 102 },
+  { name: 'A7', midi: 105 }, { name: 'C8', midi: 108 },
+]
+
+const TOTAL_SAMPLES = SAMPLE_NOTES.length
+
+// ─── Grand Piano Engine ─────────────────────────────────────────────
+//
+// Sample-based playback with:
+// - Real Yamaha C5 grand piano recordings
+// - Pitch interpolation via playbackRate (max 1.5 semitones)
+// - Velocity → gain + lowpass filter (soft = warm, hard = bright)
+// - Stereo panning (low=left, high=right, subtle)
+// - Concert hall reverb (3s tail, 18% wet)
+// - Warmth EQ: low-shelf boost + gentle high rolloff
+// - Sustain pedal with deferred damper release
+// - Damper release envelope (80ms time constant)
+// - Synthesis fallback while samples load
+
+class GrandPianoEngine {
   private ctx: AudioContext | null = null
+  private buffers = new Map<string, AudioBuffer>()
   private master: GainNode | null = null
   private reverb: ConvolverNode | null = null
   private compressor: DynamicsCompressorNode | null = null
-  private warmth: BiquadFilterNode | null = null
   sustain = false
   private sustainedNotes = new Set<number>()
   private active = new Map<number, {
-    nodes: (OscillatorNode | AudioBufferSourceNode)[]
-    noteMaster: GainNode
+    source: AudioBufferSourceNode | OscillatorNode[]
+    noteGain: GainNode
     panner: StereoPannerNode
+    isSynth: boolean
   }>()
+
+  loaded = 0
+  ready = false
+  private progressCbs: (() => void)[] = []
 
   async init() {
     if (this.ctx) {
@@ -71,366 +89,351 @@ class PianoEngine {
 
     this.ctx = new AudioContext({ sampleRate: 44100 })
 
-    // Compressor
+    // ── Signal chain ──
+    // source → velFilter → noteGain → panner → master → dry ──→ warmth → compressor → out
+    //                                                   → reverb → wet ─↗
+
     this.compressor = this.ctx.createDynamicsCompressor()
-    this.compressor.threshold.value = -20
-    this.compressor.knee.value = 15
-    this.compressor.ratio.value = 3
-    this.compressor.attack.value = 0.003
-    this.compressor.release.value = 0.15
+    this.compressor.threshold.value = -18
+    this.compressor.knee.value = 12
+    this.compressor.ratio.value = 3.5
+    this.compressor.attack.value = 0.002
+    this.compressor.release.value = 0.12
     this.compressor.connect(this.ctx.destination)
 
-    // Warmth filter (gentle high-shelf rolloff)
-    this.warmth = this.ctx.createBiquadFilter()
-    this.warmth.type = 'lowshelf'
-    this.warmth.frequency.value = 800
-    this.warmth.gain.value = 3
-    this.warmth.connect(this.compressor)
+    // Warmth: low-shelf boost
+    const warmth = this.ctx.createBiquadFilter()
+    warmth.type = 'peaking'
+    warmth.frequency.value = 350
+    warmth.Q.value = 0.6
+    warmth.gain.value = 2.5
+    warmth.connect(this.compressor)
 
-    // High-frequency softener
-    const hiCut = this.ctx.createBiquadFilter()
-    hiCut.type = 'lowpass'
-    hiCut.frequency.value = 6000
-    hiCut.Q.value = 0.5
-    hiCut.connect(this.warmth)
+    // Gentle high rolloff for warmth
+    const hiRolloff = this.ctx.createBiquadFilter()
+    hiRolloff.type = 'lowpass'
+    hiRolloff.frequency.value = 9000
+    hiRolloff.Q.value = 0.4
+    hiRolloff.connect(warmth)
 
-    // Master gain
     this.master = this.ctx.createGain()
-    this.master.gain.value = 0.38
+    this.master.gain.value = 0.9
 
     // Reverb
     this.reverb = this.ctx.createConvolver()
-    this.reverb.buffer = this.generateIR()
+    this.reverb.buffer = this.buildIR()
 
-    // Dry/wet
     const dry = this.ctx.createGain()
-    dry.gain.value = 0.68
+    dry.gain.value = 0.82
     const wet = this.ctx.createGain()
-    wet.gain.value = 0.32
+    wet.gain.value = 0.18
 
     this.master.connect(dry)
     this.master.connect(this.reverb)
     this.reverb.connect(wet)
-    dry.connect(hiCut)
-    wet.connect(hiCut)
+    dry.connect(hiRolloff)
+    wet.connect(hiRolloff)
+
+    // Start loading samples immediately
+    this.loadAllSamples()
   }
 
-  private generateIR(): AudioBuffer {
+  private buildIR(): AudioBuffer {
     const ctx = this.ctx!
     const rate = ctx.sampleRate
-    const len = rate * 3 // 3-second reverb tail
+    const len = rate * 3
     const buf = ctx.createBuffer(2, len, rate)
-
     for (let ch = 0; ch < 2; ch++) {
       const d = buf.getChannelData(ch)
       for (let i = 0; i < len; i++) {
         const t = i / rate
-        // Early reflections (first 80ms)
-        const early = t < 0.08
-          ? 0.4 * (Math.random() * 2 - 1) * (1 - t / 0.08)
-          : 0
-        // Late diffuse tail with slower decay
-        const late = Math.exp(-2.5 * t) * (Math.random() * 2 - 1)
-        // Slight stereo decorrelation
-        const stereo = ch === 0 ? 1.0 : 0.95
-        d[i] = (early + late) * 0.3 * stereo
+        const early = t < 0.07 ? 0.3 * (Math.random() * 2 - 1) * (1 - t / 0.07) : 0
+        const late = Math.exp(-2.2 * t) * (Math.random() * 2 - 1)
+        d[i] = (early + late) * 0.22 * (ch === 0 ? 1.0 : 0.96)
       }
     }
     return buf
   }
 
+  private async loadAllSamples() {
+    // Load in parallel batches (6 at a time to avoid overwhelming)
+    const batchSize = 6
+    for (let i = 0; i < SAMPLE_NOTES.length; i += batchSize) {
+      const batch = SAMPLE_NOTES.slice(i, i + batchSize)
+      await Promise.all(batch.map(s => this.loadSample(s.name)))
+    }
+    this.ready = true
+    this.progressCbs.forEach(cb => cb())
+  }
+
+  private async loadSample(name: string) {
+    if (!this.ctx) return
+    try {
+      const res = await fetch(`${SAMPLE_CDN}${name}.mp3`)
+      if (!res.ok) throw new Error(`HTTP ${res.status}`)
+      const data = await res.arrayBuffer()
+      const buffer = await this.ctx.decodeAudioData(data)
+      this.buffers.set(name, buffer)
+    } catch {
+      // Sample failed to load — synthesis fallback will handle this note
+    }
+    this.loaded++
+    this.progressCbs.forEach(cb => cb())
+  }
+
+  onProgress(cb: () => void) { this.progressCbs.push(cb) }
+
+  private findNearest(midi: number): { name: string; midi: number } | null {
+    let best = SAMPLE_NOTES[0]
+    let bestDist = Math.abs(midi - best.midi)
+    for (const s of SAMPLE_NOTES) {
+      const d = Math.abs(midi - s.midi)
+      if (d < bestDist) { bestDist = d; best = s }
+    }
+    return this.buffers.has(best.name) ? best : null
+  }
+
   noteOn(midi: number, velocity = 0.75) {
     if (!this.ctx || !this.master) return
-    if (this.active.has(midi)) this.noteOff(midi)
+    if (this.active.has(midi)) this.quickFade(midi)
     this.sustainedNotes.delete(midi)
 
-    const ctx = this.ctx
+    const sample = this.findNearest(midi)
+    if (sample) {
+      this.playSample(midi, velocity, sample)
+    } else {
+      this.playSynth(midi, velocity)
+    }
+  }
+
+  private playSample(midi: number, velocity: number, sample: { name: string; midi: number }) {
+    const ctx = this.ctx!
     const now = ctx.currentTime
-    const freq = midiToFreq(midi)
+    const buffer = this.buffers.get(sample.name)!
 
-    // Note-dependent characteristics
-    const sustain = 1.2 + 2.0 * Math.max(0, 1 - (midi - 36) / 60)
-    const brightness = 0.6 + 0.4 * Math.min(1, (midi - 36) / 48) // high notes brighter
-    const pan = midiToPan(midi)
+    // Pitch shift
+    const rate = Math.pow(2, (midi - sample.midi) / 12)
 
-    // Stereo panner
+    // Stereo (subtle — samples already have natural stereo)
     const panner = ctx.createStereoPanner()
-    panner.pan.value = pan
-    panner.connect(this.master)
+    panner.pan.value = ((midi - 48) / 48) * 0.35
+    panner.connect(this.master!)
 
-    // Per-note gain
-    const noteMaster = ctx.createGain()
-    noteMaster.gain.value = velocity
-    noteMaster.connect(panner)
+    // Velocity → gain
+    const noteGain = ctx.createGain()
+    noteGain.gain.value = 0.25 + velocity * 0.75
+    noteGain.connect(panner)
 
-    const nodes: OscillatorNode[] = []
+    // Velocity → brightness filter
+    const velFilter = ctx.createBiquadFilter()
+    velFilter.type = 'lowpass'
+    velFilter.frequency.value = 1800 + velocity * 12000 // 1.8kHz (ppp) → 13.8kHz (fff)
+    velFilter.Q.value = 0.6
+    velFilter.connect(noteGain)
 
-    // ── Fundamental: 3 chorused oscillators for warmth ──
-    for (const detune of [-4, 0, 4]) {
-      const osc = ctx.createOscillator()
-      const g = ctx.createGain()
-      osc.type = 'sine'
-      osc.frequency.value = freq
-      osc.detune.value = detune
+    const source = ctx.createBufferSource()
+    source.buffer = buffer
+    source.playbackRate.value = rate
+    source.connect(velFilter)
+    source.start(now)
 
-      const peak = 0.38 * velocity
-      g.gain.setValueAtTime(0, now)
-      g.gain.linearRampToValueAtTime(peak, now + 0.002)
-      // Natural piano decay: fast initial drop, then long sustain
-      g.gain.setTargetAtTime(peak * 0.5, now + 0.002, 0.08)
-      g.gain.setTargetAtTime(peak * 0.25, now + 0.08, 0.5)
-      g.gain.setTargetAtTime(0.0001, now + 0.5, sustain)
-
-      osc.connect(g)
-      g.connect(noteMaster)
-      osc.start(now)
-      osc.stop(now + sustain * 5 + 1)
-      nodes.push(osc)
-    }
-
-    // ── Upper harmonics ──
-    const harmonics = [
-      { ratio: 2,   amp: 0.45 * brightness, decay: sustain * 0.7  },
-      { ratio: 3,   amp: 0.28 * brightness, decay: sustain * 0.55 },
-      { ratio: 4,   amp: 0.16 * brightness, decay: sustain * 0.42 },
-      { ratio: 5,   amp: 0.09 * brightness, decay: sustain * 0.32 },
-      { ratio: 6,   amp: 0.05 * brightness, decay: sustain * 0.25 },
-      { ratio: 7,   amp: 0.025 * brightness, decay: sustain * 0.2 },
-    ]
-
-    for (const h of harmonics) {
-      const osc = ctx.createOscillator()
-      const g = ctx.createGain()
-      osc.type = 'sine'
-      // Inharmonicity
-      osc.frequency.value = freq * h.ratio * (1 + 0.0004 * h.ratio * h.ratio)
-
-      const peak = h.amp * velocity
-      g.gain.setValueAtTime(0, now)
-      g.gain.linearRampToValueAtTime(peak, now + 0.002)
-      g.gain.setTargetAtTime(peak * 0.35, now + 0.002, 0.06)
-      g.gain.setTargetAtTime(0.0001, now + 0.06, h.decay)
-
-      osc.connect(g)
-      g.connect(noteMaster)
-      osc.start(now)
-      osc.stop(now + h.decay * 5 + 1)
-      nodes.push(osc)
-    }
-
-    // ── Hammer noise ──
-    try {
-      const noiseLen = ctx.sampleRate * 0.03
-      const noiseBuf = ctx.createBuffer(1, noiseLen, ctx.sampleRate)
-      const nd = noiseBuf.getChannelData(0)
-      for (let i = 0; i < noiseLen; i++) {
-        nd[i] = (Math.random() * 2 - 1) * Math.exp(-i / (noiseLen * 0.08))
-      }
-      const src = ctx.createBufferSource()
-      src.buffer = noiseBuf
-
-      const filt = ctx.createBiquadFilter()
-      filt.type = 'bandpass'
-      filt.frequency.value = Math.min(freq * 2.5, 7000)
-      filt.Q.value = 1.2
-
-      const ng = ctx.createGain()
-      ng.gain.value = 0.09 * velocity
-
-      src.connect(filt)
-      filt.connect(ng)
-      ng.connect(noteMaster)
-      src.start(now)
-    } catch { /* ok */ }
-
-    // ── Body resonance (sub-harmonic warmth for lower notes) ──
-    if (midi < 72) {
-      try {
-        const sub = ctx.createOscillator()
-        const sg = ctx.createGain()
-        sub.type = 'sine'
-        sub.frequency.value = freq * 0.5 // sub-octave
-        const subAmp = 0.06 * velocity * Math.max(0, 1 - (midi - 36) / 36)
-        sg.gain.setValueAtTime(0, now)
-        sg.gain.linearRampToValueAtTime(subAmp, now + 0.01)
-        sg.gain.setTargetAtTime(0.0001, now + 0.01, sustain * 0.3)
-        sub.connect(sg)
-        sg.connect(noteMaster)
-        sub.start(now)
-        sub.stop(now + sustain * 2)
-        nodes.push(sub)
-      } catch { /* ok */ }
-    }
-
-    this.active.set(midi, { nodes, noteMaster, panner })
+    this.active.set(midi, { source, noteGain, panner, isSynth: false })
   }
 
-  noteOff(midi: number) {
-    // If sustain pedal is held, defer the release
-    if (this.sustain) {
-      this.sustainedNotes.add(midi)
-      return
+  // Synthesis fallback while samples are loading
+  private playSynth(midi: number, velocity: number) {
+    const ctx = this.ctx!
+    const now = ctx.currentTime
+    const freq = 440 * Math.pow(2, (midi - 69) / 12)
+    const sus = 1.0 + 1.8 * Math.max(0, 1 - (midi - 36) / 60)
+
+    const panner = ctx.createStereoPanner()
+    panner.pan.value = ((midi - 48) / 48) * 0.35
+    panner.connect(this.master!)
+
+    const noteGain = ctx.createGain()
+    noteGain.gain.value = velocity * 0.6
+    noteGain.connect(panner)
+
+    const oscs: OscillatorNode[] = []
+    for (const det of [-3, 0, 3]) {
+      const o = ctx.createOscillator()
+      const g = ctx.createGain()
+      o.type = 'sine'
+      o.frequency.value = freq
+      o.detune.value = det
+      const p = 0.3 * velocity
+      g.gain.setValueAtTime(0, now)
+      g.gain.linearRampToValueAtTime(p, now + 0.002)
+      g.gain.setTargetAtTime(p * 0.25, now + 0.08, sus)
+      g.gain.setTargetAtTime(0.0001, now + sus, sus * 0.5)
+      o.connect(g)
+      g.connect(noteGain)
+      o.start(now)
+      o.stop(now + sus * 4)
+      oscs.push(o)
     }
 
-    this.releaseNote(midi)
+    // @ts-expect-error — union type for synth fallback
+    this.active.set(midi, { source: oscs, noteGain, panner, isSynth: true })
   }
 
-  private releaseNote(midi: number) {
+  private quickFade(midi: number) {
     const note = this.active.get(midi)
     if (!note || !this.ctx) return
-
     const now = this.ctx.currentTime
-
-    // Smooth release (longer than before for more natural feel)
-    note.noteMaster.gain.cancelScheduledValues(now)
-    note.noteMaster.gain.setValueAtTime(note.noteMaster.gain.value, now)
-    note.noteMaster.gain.setTargetAtTime(0.0001, now, 0.18)
-
-    // Damper noise (subtle thud when key releases)
-    try {
-      const noiseLen = this.ctx.sampleRate * 0.015
-      const buf = this.ctx.createBuffer(1, noiseLen, this.ctx.sampleRate)
-      const d = buf.getChannelData(0)
-      for (let i = 0; i < noiseLen; i++) {
-        d[i] = (Math.random() * 2 - 1) * Math.exp(-i / (noiseLen * 0.06)) * 0.03
+    note.noteGain.gain.setValueAtTime(note.noteGain.gain.value, now)
+    note.noteGain.gain.linearRampToValueAtTime(0, now + 0.025)
+    if (note.isSynth) {
+      for (const o of note.source as OscillatorNode[]) {
+        try { o.stop(now + 0.04) } catch { /* ok */ }
       }
-      const src = this.ctx.createBufferSource()
-      src.buffer = buf
-      src.connect(note.panner)
-      src.start(now)
-    } catch { /* ok */ }
-
-    for (const osc of note.nodes) {
-      try { osc.stop(now + 0.8) } catch { /* ok */ }
+    } else {
+      try { (note.source as AudioBufferSourceNode).stop(now + 0.04) } catch { /* ok */ }
     }
-
     this.active.delete(midi)
   }
 
-  releaseSustainedNotes() {
-    for (const midi of this.sustainedNotes) {
-      this.releaseNote(midi)
+  noteOff(midi: number) {
+    if (this.sustain) { this.sustainedNotes.add(midi); return }
+    this.damperRelease(midi)
+  }
+
+  private damperRelease(midi: number) {
+    const note = this.active.get(midi)
+    if (!note || !this.ctx) return
+    const now = this.ctx.currentTime
+
+    // Natural damper: 80ms time constant ≈ feels like felt touching string
+    note.noteGain.gain.cancelScheduledValues(now)
+    note.noteGain.gain.setValueAtTime(note.noteGain.gain.value, now)
+    note.noteGain.gain.setTargetAtTime(0.0001, now, 0.08)
+
+    if (note.isSynth) {
+      for (const o of note.source as OscillatorNode[]) {
+        try { o.stop(now + 0.5) } catch { /* ok */ }
+      }
+    } else {
+      try { (note.source as AudioBufferSourceNode).stop(now + 0.5) } catch { /* ok */ }
     }
+    this.active.delete(midi)
+  }
+
+  releaseSustained() {
+    for (const midi of this.sustainedNotes) this.damperRelease(midi)
     this.sustainedNotes.clear()
   }
 
   destroy() {
-    for (const [midi] of this.active) this.releaseNote(midi)
-    if (this.ctx) {
-      try { this.ctx.close() } catch { /* ok */ }
-      this.ctx = null
-    }
+    for (const [midi] of this.active) this.damperRelease(midi)
+    if (this.ctx) { try { this.ctx.close() } catch { /* ok */ } }
+    this.ctx = null
   }
 }
 
 // ─── Key Layout ─────────────────────────────────────────────────────
 
-interface KeyInfo {
-  midi: number
-  note: string
-  black: boolean
-}
+interface KeyInfo { midi: number; note: string; black: boolean }
 
-function buildKeys(baseOctave: number, octaves: number): KeyInfo[] {
-  const start = (baseOctave + 1) * 12
-  const end = start + octaves * 12
+function buildKeys(base: number, oct: number): KeyInfo[] {
+  const start = (base + 1) * 12
   const keys: KeyInfo[] = []
-  for (let m = start; m <= end; m++) {
+  for (let m = start; m <= start + oct * 12; m++) {
     keys.push({ midi: m, note: midiToNote(m), black: isBlack(m) })
   }
   return keys
 }
 
-// ─── Piano Page ─────────────────────────────────────────────────────
+// ─── Page ───────────────────────────────────────────────────────────
 
 export default function PianoPage() {
-  const engineRef = useRef<PianoEngine | null>(null)
+  const engineRef = useRef<GrandPianoEngine | null>(null)
   const [pressed, setPressed] = useState<Set<number>>(new Set())
   const [octave, setOctave] = useState(3)
   const [sustainOn, setSustainOn] = useState(false)
   const [lastNote, setLastNote] = useState<string | null>(null)
+  const [loadCount, setLoadCount] = useState(0)
+  const [samplesReady, setSamplesReady] = useState(false)
   const touchMap = useRef<Map<number, number>>(new Map())
+  const pianoRef = useRef<HTMLDivElement>(null)
 
   const keys = buildKeys(octave, 2)
   const whites = keys.filter(k => !k.black)
   const blacks = keys.filter(k => k.black)
   const ww = 100 / whites.length
 
+  // ── Engine ──
   const getEngine = useCallback(async () => {
-    if (!engineRef.current) engineRef.current = new PianoEngine()
+    if (!engineRef.current) {
+      const eng = new GrandPianoEngine()
+      eng.onProgress(() => {
+        setLoadCount(eng.loaded)
+        if (eng.ready) setSamplesReady(true)
+      })
+      engineRef.current = eng
+    }
     await engineRef.current.init()
     return engineRef.current
   }, [])
 
-  useEffect(() => {
-    return () => { engineRef.current?.destroy() }
-  }, [])
+  useEffect(() => () => { engineRef.current?.destroy() }, [])
 
-  const noteOn = useCallback(async (midi: number) => {
+  // ── Note on/off ──
+  const noteOn = useCallback(async (midi: number, vel?: number) => {
     const eng = await getEngine()
-    eng.noteOn(midi)
+    eng.noteOn(midi, vel)
     setPressed(prev => new Set(prev).add(midi))
     setLastNote(midiToDisplay(midi))
   }, [getEngine])
 
   const noteOff = useCallback((midi: number) => {
     engineRef.current?.noteOff(midi)
-    // Only remove from visual pressed if sustain is off
     if (!engineRef.current?.sustain) {
-      setPressed(prev => {
-        const next = new Set(prev)
-        next.delete(midi)
-        return next
-      })
+      setPressed(prev => { const n = new Set(prev); n.delete(midi); return n })
     }
   }, [])
 
-  // Sustain pedal toggle
   const toggleSustain = useCallback(async () => {
     const eng = await getEngine()
-    const newState = !eng.sustain
-    eng.sustain = newState
-    setSustainOn(newState)
-    if (!newState) {
-      eng.releaseSustainedNotes()
+    eng.sustain = !eng.sustain
+    setSustainOn(eng.sustain)
+    if (!eng.sustain) {
+      eng.releaseSustained()
       setPressed(new Set())
     }
   }, [getEngine])
 
-  // Keyboard input
+  // ── Keyboard ──
   useEffect(() => {
     const held = new Set<string>()
-
     function down(e: KeyboardEvent) {
       if (e.repeat || e.metaKey || e.ctrlKey) return
       const k = e.key.toLowerCase()
       if (k in KEY_MAP && !held.has(k)) {
-        e.preventDefault()
-        held.add(k)
+        e.preventDefault(); held.add(k)
         noteOn((octave + 1) * 12 + KEY_MAP[k])
       }
       if (k === '[') setOctave(o => Math.max(1, o - 1))
       if (k === ']') setOctave(o => Math.min(6, o + 1))
       if (k === ' ') { e.preventDefault(); toggleSustain() }
     }
-
     function up(e: KeyboardEvent) {
       const k = e.key.toLowerCase()
-      if (k in KEY_MAP) {
-        held.delete(k)
-        noteOff((octave + 1) * 12 + KEY_MAP[k])
-      }
+      if (k in KEY_MAP) { held.delete(k); noteOff((octave + 1) * 12 + KEY_MAP[k]) }
     }
-
     window.addEventListener('keydown', down)
     window.addEventListener('keyup', up)
-    return () => {
-      window.removeEventListener('keydown', down)
-      window.removeEventListener('keyup', up)
-    }
+    return () => { window.removeEventListener('keydown', down); window.removeEventListener('keyup', up) }
   }, [octave, noteOn, noteOff, toggleSustain])
 
-  // Touch helpers
+  // ── Touch: velocity from Y position (top=soft, bottom=hard) ──
+  function velFromTouch(touch: Touch): number {
+    if (!pianoRef.current) return 0.7
+    const rect = pianoRef.current.getBoundingClientRect()
+    const relY = Math.max(0, Math.min(1, (touch.clientY - rect.top) / rect.height))
+    return 0.25 + relY * 0.75
+  }
+
   function midiAt(x: number, y: number): number | null {
     const el = document.elementFromPoint(x, y)
     const v = el?.getAttribute('data-midi')
@@ -444,7 +447,7 @@ export default function PianoPage() {
       const midi = midiAt(t.clientX, t.clientY)
       if (midi !== null) {
         touchMap.current.set(t.identifier, midi)
-        noteOn(midi)
+        noteOn(midi, velFromTouch(t))
       }
     }
   }
@@ -458,7 +461,7 @@ export default function PianoPage() {
       if (midi !== null && midi !== prev) {
         if (prev !== undefined) noteOff(prev)
         touchMap.current.set(t.identifier, midi)
-        noteOn(midi)
+        noteOn(midi, velFromTouch(t))
       }
     }
   }
@@ -468,21 +471,19 @@ export default function PianoPage() {
     for (let i = 0; i < e.changedTouches.length; i++) {
       const t = e.changedTouches[i]
       const midi = touchMap.current.get(t.identifier)
-      if (midi !== undefined) {
-        noteOff(midi)
-        touchMap.current.delete(t.identifier)
-      }
+      if (midi !== undefined) { noteOff(midi); touchMap.current.delete(t.identifier) }
     }
   }
 
   function blackPos(midi: number): number {
-    const whitesBefore = keys.filter(k => !k.black && k.midi < midi).length
-    return whitesBefore * ww - ww * 0.3
+    return keys.filter(k => !k.black && k.midi < midi).length * ww - ww * 0.3
   }
+
+  const loading = loadCount > 0 && !samplesReady
 
   return (
     <div className="bg-[#0a0a0f] min-h-[100dvh] flex flex-col overflow-hidden select-none">
-      {/* Ambient glow */}
+      {/* Ambient */}
       <div className="fixed inset-0 pointer-events-none" aria-hidden="true">
         <div className="absolute w-[500px] h-[500px] bg-rose-500/[0.025] rounded-full blur-[180px] top-1/4 left-1/3" />
         <div className="absolute w-80 h-80 bg-violet-500/[0.02] rounded-full blur-[120px] bottom-1/3 right-1/4" />
@@ -490,71 +491,66 @@ export default function PianoPage() {
       </div>
 
       {/* Header */}
-      <header className="relative z-10 text-center pt-5 md:pt-8 pb-2 px-6">
-        <p className="font-cursive text-3xl md:text-4xl text-rose-200/60 mb-1">
-          For Tien
-        </p>
-        <p className="text-white/20 text-xs tracking-[0.25em] uppercase">
-          Play something beautiful
+      <header className="relative z-10 text-center pt-5 md:pt-7 pb-1 px-6">
+        <p className="font-cursive text-3xl md:text-4xl text-rose-200/60 mb-0.5">For Tien</p>
+        <p className="text-white/20 text-[10px] tracking-[0.25em] uppercase">
+          Yamaha C5 Grand Piano
         </p>
       </header>
 
-      {/* Note display */}
-      <div className="relative z-10 text-center h-10 flex items-center justify-center">
+      {/* Note + loading display */}
+      <div className="relative z-10 text-center h-9 flex items-center justify-center gap-3">
         {lastNote && (
-          <span
-            key={lastNote}
-            className="text-rose-300/40 text-lg font-mono tracking-wider animate-[fadeIn_0.15s_ease-out]"
-          >
+          <span key={lastNote + Date.now()} className="text-rose-300/40 text-lg font-mono tracking-wider animate-[fadeIn_0.1s_ease-out]">
             {lastNote}
           </span>
+        )}
+        {loading && (
+          <span className="text-white/15 text-[10px] tracking-wide">
+            Loading {loadCount}/{TOTAL_SAMPLES}
+          </span>
+        )}
+        {samplesReady && loadCount > 0 && !lastNote && (
+          <span className="text-white/10 text-[10px] tracking-wide">Grand Piano ready</span>
         )}
       </div>
 
       {/* Controls */}
-      <div className="relative z-10 flex items-center justify-center gap-4 py-2">
+      <div className="relative z-10 flex items-center justify-center gap-3 py-1.5">
         <button
           onClick={() => setOctave(o => Math.max(1, o - 1))}
-          className="px-3.5 py-1.5 rounded-lg border border-white/8 text-white/30 text-xs tracking-wide hover:border-rose-400/20 hover:text-rose-200/45 transition-all active:scale-95"
-          aria-label="Lower octave"
+          className="px-3 py-1.5 rounded-lg border border-white/8 text-white/28 text-[11px] tracking-wide hover:border-rose-400/20 hover:text-rose-200/45 transition-all active:scale-95"
         >
           Lower
         </button>
-
-        <span className="text-white/20 text-xs font-mono tracking-wider min-w-[80px] text-center">
-          C{octave} — C{octave + 2}
+        <span className="text-white/18 text-[11px] font-mono tracking-wider min-w-[72px] text-center">
+          C{octave}–C{octave + 2}
         </span>
-
         <button
           onClick={() => setOctave(o => Math.min(6, o + 1))}
-          className="px-3.5 py-1.5 rounded-lg border border-white/8 text-white/30 text-xs tracking-wide hover:border-rose-400/20 hover:text-rose-200/45 transition-all active:scale-95"
-          aria-label="Higher octave"
+          className="px-3 py-1.5 rounded-lg border border-white/8 text-white/28 text-[11px] tracking-wide hover:border-rose-400/20 hover:text-rose-200/45 transition-all active:scale-95"
         >
           Higher
         </button>
-
-        <div className="w-px h-4 bg-white/8" />
-
+        <div className="w-px h-3.5 bg-white/8" />
         <button
           onClick={toggleSustain}
-          className={`
-            px-3.5 py-1.5 rounded-lg text-xs tracking-wide transition-all active:scale-95
-            ${sustainOn
-              ? 'border border-rose-400/30 bg-rose-500/10 text-rose-200/60'
-              : 'border border-white/8 text-white/30 hover:border-rose-400/20 hover:text-rose-200/45'
-            }
-          `}
-          aria-label="Toggle sustain pedal"
+          className={`px-3 py-1.5 rounded-lg text-[11px] tracking-wide transition-all active:scale-95 ${
+            sustainOn
+              ? 'border border-rose-400/30 bg-rose-500/10 text-rose-200/60 shadow-[0_0_12px_rgba(244,114,182,0.1)]'
+              : 'border border-white/8 text-white/28 hover:border-rose-400/20 hover:text-rose-200/45'
+          }`}
         >
           Sustain
         </button>
       </div>
 
       {/* Piano */}
-      <div className="flex-1 flex items-end pb-3 md:pb-6 px-1 md:px-4 relative z-10">
-        <div className="w-full rounded-t-xl bg-gradient-to-b from-[#1a1218] to-[#0f0a0d] border border-white/[0.06] border-b-0 p-1.5 pt-2.5 md:p-3 md:pt-4 shadow-[0_-4px_50px_rgba(244,114,182,0.04)]">
+      <div className="flex-1 flex items-end pb-2 md:pb-5 px-0.5 md:px-3 relative z-10">
+        <div className="w-full rounded-t-xl bg-gradient-to-b from-[#1c1318] via-[#14101a] to-[#0d090c] border border-white/[0.05] border-b-0 p-1 pt-2 md:p-2.5 md:pt-3.5 shadow-[0_-6px_60px_rgba(244,114,182,0.03)]">
           <div
-            className="relative w-full h-[220px] sm:h-[270px] md:h-[320px] lg:h-[370px]"
+            ref={pianoRef}
+            className="relative w-full h-[230px] sm:h-[275px] md:h-[330px] lg:h-[380px]"
             onTouchStart={onTouchStart}
             onTouchMove={onTouchMove}
             onTouchEnd={onTouchEnd}
@@ -562,52 +558,34 @@ export default function PianoPage() {
             style={{ touchAction: 'none' }}
           >
             {/* White keys */}
-            <div className="absolute inset-0 flex gap-[1.5px]">
-              {whites.map((k) => {
-                const active = pressed.has(k.midi)
+            <div className="absolute inset-0 flex gap-[1px]">
+              {whites.map(k => {
+                const on = pressed.has(k.midi)
                 const isC = k.note.startsWith('C') && !k.note.includes('#')
                 return (
                   <button
                     key={k.midi}
                     data-midi={k.midi}
-                    className="relative flex-1 rounded-b-lg outline-none"
+                    className="relative flex-1 rounded-b-[6px] outline-none"
                     style={{
-                      background: active
-                        ? 'linear-gradient(to bottom, #fce4ec, #f8d7da)'
-                        : 'linear-gradient(to bottom, #f7f4f1, #ebe7e3)',
-                      boxShadow: active
-                        ? '0 0 28px rgba(244,114,182,0.35), inset 0 -2px 4px rgba(244,114,182,0.12), 0 2px 0 rgba(0,0,0,0.1)'
-                        : 'inset -1px 0 0 rgba(0,0,0,0.06), inset 0 -4px 8px rgba(0,0,0,0.05), 0 4px 0 rgba(0,0,0,0.08)',
-                      transform: active ? 'translateY(2px)' : 'translateY(0)',
-                      transition: 'transform 30ms ease-out, background 30ms ease-out, box-shadow 30ms ease-out',
+                      background: on
+                        ? 'linear-gradient(180deg, #fce8ef 0%, #f9dde2 40%, #f3cdd5 100%)'
+                        : 'linear-gradient(180deg, #f8f5f2 0%, #f0ece8 30%, #e6e2dd 100%)',
+                      boxShadow: on
+                        ? '0 0 30px rgba(244,114,182,0.3), 0 1px 0 rgba(0,0,0,0.12), inset 0 -2px 3px rgba(244,114,182,0.08)'
+                        : 'inset -1px 0 0 rgba(0,0,0,0.05), 0 4px 0 rgba(0,0,0,0.07), inset 0 -6px 10px rgba(0,0,0,0.04)',
+                      transform: on ? 'translateY(2px) scaleY(0.997)' : 'translateY(0)',
+                      transition: 'all 25ms ease-out',
                     }}
-                    onPointerDown={(e) => {
-                      if (e.pointerType === 'touch') return
-                      e.preventDefault()
-                      noteOn(k.midi)
-                    }}
-                    onPointerUp={(e) => {
-                      if (e.pointerType === 'touch') return
-                      noteOff(k.midi)
-                    }}
-                    onPointerLeave={(e) => {
-                      if (e.pointerType === 'touch') return
-                      if (pressed.has(k.midi)) noteOff(k.midi)
-                    }}
+                    onPointerDown={e => { if (e.pointerType !== 'touch') { e.preventDefault(); noteOn(k.midi) } }}
+                    onPointerUp={e => { if (e.pointerType !== 'touch') noteOff(k.midi) }}
+                    onPointerLeave={e => { if (e.pointerType !== 'touch' && pressed.has(k.midi)) noteOff(k.midi) }}
                   >
-                    {/* Active glow */}
-                    {active && (
-                      <span
-                        className="absolute inset-x-0 bottom-0 h-1/3 rounded-b-lg pointer-events-none"
-                        style={{
-                          background: 'linear-gradient(to top, rgba(244,114,182,0.15), transparent)',
-                        }}
-                      />
+                    {on && (
+                      <span className="absolute inset-x-0 bottom-0 h-1/4 rounded-b-[6px] pointer-events-none" style={{ background: 'linear-gradient(to top, rgba(244,114,182,0.12), transparent)' }} />
                     )}
                     {isC && (
-                      <span className="absolute bottom-2.5 left-1/2 -translate-x-1/2 text-[9px] text-black/18 font-mono pointer-events-none">
-                        {k.note}
-                      </span>
+                      <span className="absolute bottom-2 left-1/2 -translate-x-1/2 text-[8px] text-black/15 font-mono pointer-events-none">{k.note}</span>
                     )}
                   </button>
                 )
@@ -615,40 +593,29 @@ export default function PianoPage() {
             </div>
 
             {/* Black keys */}
-            {blacks.map((k) => {
-              const active = pressed.has(k.midi)
-              const left = blackPos(k.midi)
+            {blacks.map(k => {
+              const on = pressed.has(k.midi)
               return (
                 <button
                   key={k.midi}
                   data-midi={k.midi}
-                  className="absolute top-0 z-10 rounded-b-md outline-none"
+                  className="absolute top-0 z-10 rounded-b-[5px] outline-none"
                   style={{
-                    left: `${left}%`,
-                    width: `${ww * 0.62}%`,
-                    height: '62%',
-                    background: active
-                      ? 'linear-gradient(to bottom, #4a1530, #3a1025)'
-                      : 'linear-gradient(to bottom, #222226, #141416)',
-                    boxShadow: active
-                      ? '0 0 20px rgba(244,114,182,0.4), inset 0 1px 0 rgba(255,255,255,0.05), 0 1px 0 rgba(0,0,0,0.3)'
-                      : '2px 4px 8px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.04), inset 0 -1px 0 rgba(255,255,255,0.02)',
-                    transform: active ? 'translateY(1px)' : 'translateY(0)',
-                    transition: 'transform 30ms ease-out, background 30ms ease-out, box-shadow 30ms ease-out',
+                    left: `${blackPos(k.midi)}%`,
+                    width: `${ww * 0.6}%`,
+                    height: '63%',
+                    background: on
+                      ? 'linear-gradient(180deg, #4a1530 0%, #381025 60%, #2d0c1e 100%)'
+                      : 'linear-gradient(180deg, #252528 0%, #1a1a1d 50%, #131315 100%)',
+                    boxShadow: on
+                      ? '0 0 22px rgba(244,114,182,0.35), 0 1px 0 rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.04)'
+                      : '2px 5px 10px rgba(0,0,0,0.6), -1px 0 3px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.03), inset 0 -1px 2px rgba(255,255,255,0.015)',
+                    transform: on ? 'translateY(1.5px)' : 'translateY(0)',
+                    transition: 'all 25ms ease-out',
                   }}
-                  onPointerDown={(e) => {
-                    if (e.pointerType === 'touch') return
-                    e.preventDefault()
-                    noteOn(k.midi)
-                  }}
-                  onPointerUp={(e) => {
-                    if (e.pointerType === 'touch') return
-                    noteOff(k.midi)
-                  }}
-                  onPointerLeave={(e) => {
-                    if (e.pointerType === 'touch') return
-                    if (pressed.has(k.midi)) noteOff(k.midi)
-                  }}
+                  onPointerDown={e => { if (e.pointerType !== 'touch') { e.preventDefault(); noteOn(k.midi) } }}
+                  onPointerUp={e => { if (e.pointerType !== 'touch') noteOff(k.midi) }}
+                  onPointerLeave={e => { if (e.pointerType !== 'touch' && pressed.has(k.midi)) noteOff(k.midi) }}
                 />
               )
             })}
@@ -657,21 +624,18 @@ export default function PianoPage() {
       </div>
 
       {/* Footer */}
-      <div className="relative z-10 text-center pb-4 md:pb-6 space-y-2">
-        <p className="text-white/10 text-[10px] tracking-wide hidden md:block">
-          Z–M lower · Q–U upper · [ ] octave · Space sustain
+      <div className="relative z-10 text-center pb-3 md:pb-5 space-y-1.5">
+        <p className="text-white/8 text-[9px] tracking-wide hidden md:block">
+          Z–M lower · Q–U upper · [ ] octave · Space sustain · Touch higher on key = softer
         </p>
-        <Link
-          href="/valentines-day/tien"
-          className="inline-block text-rose-300/20 text-xs hover:text-rose-300/40 transition-colors"
-        >
+        <Link href="/valentines-day/tien" className="inline-block text-rose-300/18 text-[11px] hover:text-rose-300/35 transition-colors">
           Back to letter
         </Link>
       </div>
 
       <style jsx>{`
         @keyframes fadeIn {
-          from { opacity: 0; transform: translateY(4px); }
+          from { opacity: 0; transform: translateY(3px); }
           to { opacity: 1; transform: translateY(0); }
         }
       `}</style>
