@@ -8,6 +8,8 @@ type JsonLdType =
   | 'WebSite'
   | 'Article'
   | 'Product'
+  | 'Book'
+  | 'Review'
   | 'BreadcrumbList'
   | 'FAQPage'
   | 'HowTo'
