@@ -1,6 +1,70 @@
 {
   "weeks": [
     {
+      "id": "week-2026-08",
+      "label": "Week 8",
+      "dateRange": "Feb 10-14, 2026",
+      "summary": "Intelligence week. ACOS evolved from v8 to v10 with autonomous intelligence, safety guarantees, and Starlight integration. Investor vertical launched. Valentine's Day experiences shipped.",
+      "stats": {
+        "commits": 12,
+        "linesAdded": 28000,
+        "filesChanged": 180,
+        "newPages": 8,
+        "imagesGenerated": 25
+      },
+      "entries": [
+        {
+          "id": "cl-2026-0214-acos-v10",
+          "date": "2026-02-14",
+          "type": "shipped",
+          "title": "ACOS v10 — Autonomous Intelligence",
+          "description": "Five new safety and intelligence systems: Experience Replay (learns from past successes), Agent IAM (least-privilege access control), Immutable Audit Trail (append-only logging), Confidence Circuit Breaker (stops cascading failures), Conservative Self-Modify Gate (auto-reverts bad changes). Intelligence score jumped from 72 to 93/100. Hooks optimized from 15 to 7. 22 curated skills, 8 specialist agents, 6 IAM-scoped profiles.",
+          "tags": ["acos", "intelligence", "safety", "agents"],
+          "commit": "93539d0",
+          "impact": "major"
+        },
+        {
+          "id": "cl-2026-0214-investor",
+          "date": "2026-02-14",
+          "type": "shipped",
+          "title": "Investor Intelligence Vertical",
+          "description": "New /investor hub with 4 sub-pages (agents, workflows, architectures, tools). 14 products across dual-track pricing: Institutional (VCs/Angels/PE) $97-697 and Individual (retail/traders) $27-147. Adaptive mega-menu with compact/medium/grouped layouts.",
+          "tags": ["investor", "products", "navigation"],
+          "commit": "d5aec51",
+          "impact": "major"
+        },
+        {
+          "id": "cl-2026-0214-starlight",
+          "date": "2026-02-14",
+          "type": "shipped",
+          "title": "Starlight Intelligence System v4.0",
+          "description": "Universal intelligence layer with ACOS bi-directional sync. 8 modules (ContextEngine, MemoryManager, AgentRouter, OrchestrationEngine, SyncBridge, ScoreEngine). Trajectories flow up from ACOS, context flows down from Starlight. 109 memory entries synced.",
+          "tags": ["starlight", "intelligence", "integration"],
+          "commit": "1b2c559",
+          "impact": "medium"
+        },
+        {
+          "id": "cl-2026-0214-valentines",
+          "date": "2026-02-14",
+          "type": "shipped",
+          "title": "Valentine's Day Interactive Experiences",
+          "description": "Personal Valentine's letter with Vietnamese poetry, timeline data, AI artwork (Vietnamese-Dutch fusion), and interactive piano synthesizer using Web Audio API with Salamander Grand Piano samples. Multi-language poetry section.",
+          "tags": ["valentines", "interactive", "music", "personal"],
+          "commits": ["latest"],
+          "impact": "medium"
+        },
+        {
+          "id": "cl-2026-0214-performance",
+          "date": "2026-02-13",
+          "type": "improved",
+          "title": "Hook System Optimization",
+          "description": "Trimmed from 15 hooks to 7 for WSL multi-instance stability. Removed informational-only PreToolUse guidance hooks, heavy PostToolUse learning-hooks, consolidated tracking. Per-tool-use subprocess spawns reduced from 5-6 to 1-2. Safe for 3-4 concurrent instances on 16GB RAM.",
+          "tags": ["performance", "hooks", "wsl"],
+          "impact": "medium"
+        }
+      ]
+    },
+    {
       "id": "week-2026-06",
       "label": "Week 6",
       "dateRange": "Feb 2-9, 2026",
