@@ -98,8 +98,9 @@ const navigation = {
     },
     items: [
       { name: 'Games Lab', href: '/games', icon: Gamepad2, description: 'Hub for browser games' },
-      { name: 'Memory Match', href: '/games/memory-match', icon: Puzzle, description: 'AI-powered card game' },
-      { name: 'Game Dev Research', href: '/research/agentic-game-development', icon: Brain, description: 'Agentic game development' },
+      { name: 'Crystal Match', href: '/games/crystal-match', icon: Puzzle, description: 'Match-3 puzzle game' },
+      { name: 'Neon Runner', href: '/games/neon-runner', icon: Trophy, description: '3D endless runner' },
+      { name: 'Memory Match', href: '/games/memory-match', icon: Brain, description: 'Card memory game' },
     ],
   },
   developers: {

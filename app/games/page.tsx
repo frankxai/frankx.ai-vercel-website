@@ -175,6 +175,24 @@ function HeroSection() {
 function PlayNowSection() {
   const games = [
     {
+      title: 'Crystal Match',
+      description: 'Swap and match colorful crystals in this Candy Crush-style puzzle. Combos, cascades, and 30-move challenge.',
+      href: '/games/crystal-match',
+      badge: 'Play Now',
+      color: 'fuchsia',
+      icon: Sparkles,
+      status: 'live' as const,
+    },
+    {
+      title: 'Neon Runner',
+      description: '3D endless runner through a neon world. Swipe to dodge, jump, and slide — Subway Surfers meets cyberpunk.',
+      href: '/games/neon-runner',
+      badge: 'Play Now',
+      color: 'cyan',
+      icon: Zap,
+      status: 'live' as const,
+    },
+    {
       title: 'Memory Match',
       description: 'Test your memory by matching pairs of cards. Three difficulty levels, star ratings, and a timer.',
       href: '/games/memory-match',
@@ -188,17 +206,8 @@ function PlayNowSection() {
       description: 'AI-generated trivia questions across topics. Adaptive difficulty that learns your strengths.',
       href: '/games',
       badge: 'Coming Soon',
-      color: 'cyan',
-      icon: Brain,
-      status: 'coming' as const,
-    },
-    {
-      title: 'Word Forge',
-      description: 'Wordle-inspired word game with daily challenges and an unlimited practice mode.',
-      href: '/games',
-      badge: 'Coming Soon',
       color: 'amber',
-      icon: Puzzle,
+      icon: Brain,
       status: 'coming' as const,
     },
   ]
@@ -207,6 +216,7 @@ function PlayNowSection() {
     violet: { border: 'border-violet-500/30', bg: 'bg-violet-500/10', text: 'text-violet-400' },
     cyan: { border: 'border-cyan-500/30', bg: 'bg-cyan-500/10', text: 'text-cyan-400' },
     amber: { border: 'border-amber-500/30', bg: 'bg-amber-500/10', text: 'text-amber-400' },
+    fuchsia: { border: 'border-fuchsia-500/30', bg: 'bg-fuchsia-500/10', text: 'text-fuchsia-400' },
   }
 
   return (
@@ -226,7 +236,7 @@ function PlayNowSection() {
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-3 gap-4">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {games.map((game, i) => {
             const colors = colorMap[game.color]
             const isLive = game.status === 'live'
