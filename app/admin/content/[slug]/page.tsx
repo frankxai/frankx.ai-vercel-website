@@ -19,7 +19,16 @@ import {
   Calendar,
   BookOpen,
   Send,
+  ImageIcon,
+  X,
 } from 'lucide-react'
+
+interface MediaAsset {
+  type: 'hero' | 'infographic' | 'social' | 'thumbnail' | 'other'
+  path: string
+  filename: string
+  hasThumbnail: boolean
+}
 
 interface ArticleDetail {
   slug: string
@@ -35,6 +44,10 @@ interface ArticleDetail {
   image?: string
   readingTime?: string
   wordCount: number
+  media: MediaAsset[]
+  mediaCount: number
+  hasHeroImage: boolean
+  hasThumbnail: boolean
 }
 
 interface SocialQueueItem {
@@ -52,6 +65,7 @@ export default function ContentDetailPage() {
   const [social, setSocial] = useState<SocialQueueItem | null>(null)
   const [loading, setLoading] = useState(true)
   const [copied, setCopied] = useState<string | null>(null)
+  const [lightbox, setLightbox] = useState<string | null>(null)
 
   useEffect(() => {
     loadDetail()
@@ -204,6 +218,77 @@ export default function ContentDetailPage() {
             </button>
           </div>
         </div>
+
+        {/* Media Gallery */}
+        {article.media && article.media.length > 0 ? (
+          <div className="space-y-4">
+            <h2 className="text-lg font-semibold flex items-center gap-2">
+              <ImageIcon className="w-4 h-4 text-purple-400" />
+              Media Assets
+              <span className="text-xs text-white/30 font-normal">{article.mediaCount} file{article.mediaCount > 1 ? 's' : ''}</span>
+            </h2>
+
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+              {article.media.map((asset) => (
+                <button
+                  key={asset.filename}
+                  onClick={() => setLightbox(asset.path)}
+                  className="group relative rounded-xl overflow-hidden border border-white/[0.06] bg-white/[0.02] hover:border-purple-500/30 transition-colors aspect-video"
+                >
+                  <img
+                    src={asset.path}
+                    alt={asset.filename}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="absolute bottom-0 left-0 right-0 p-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                    <p className="text-xs text-white truncate">{asset.filename}</p>
+                    <span className={`inline-block mt-0.5 text-[10px] rounded-full px-1.5 py-0.5 ${
+                      asset.type === 'hero' ? 'bg-cyan-500/30 text-cyan-300' :
+                      asset.type === 'infographic' ? 'bg-purple-500/30 text-purple-300' :
+                      asset.type === 'social' ? 'bg-sky-500/30 text-sky-300' :
+                      'bg-white/10 text-white/50'
+                    }`}>
+                      {asset.type}
+                    </span>
+                    {asset.hasThumbnail && (
+                      <span className="inline-block mt-0.5 ml-1 text-[10px] rounded-full px-1.5 py-0.5 bg-emerald-500/30 text-emerald-300">thumb</span>
+                    )}
+                  </div>
+                </button>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-8 text-center">
+            <ImageIcon className="w-8 h-8 text-white/15 mx-auto mb-3" />
+            <p className="text-sm text-white/40 mb-2">No media assets found</p>
+            <p className="text-xs text-white/25">
+              Run <code className="text-purple-400/60">/infogenius {slug}</code> to generate images
+            </p>
+          </div>
+        )}
+
+        {/* Lightbox */}
+        {lightbox && (
+          <div
+            className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-8"
+            onClick={() => setLightbox(null)}
+          >
+            <button
+              onClick={() => setLightbox(null)}
+              className="absolute top-6 right-6 p-2 rounded-lg bg-white/10 text-white/70 hover:text-white"
+            >
+              <X className="w-5 h-5" />
+            </button>
+            <img
+              src={lightbox}
+              alt=""
+              className="max-w-full max-h-full object-contain rounded-lg"
+              onClick={(e) => e.stopPropagation()}
+            />
+          </div>
+        )}
 
         {/* Social Content */}
         {social ? (

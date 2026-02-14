@@ -22,9 +22,18 @@ import {
   Check,
   Eye,
   Zap,
+  ImageIcon,
+  Film,
 } from 'lucide-react'
 
 // ─── Types ─────────────────────────────────────────────────────
+
+interface MediaAsset {
+  type: 'hero' | 'infographic' | 'social' | 'thumbnail' | 'other'
+  path: string
+  filename: string
+  hasThumbnail: boolean
+}
 
 interface ContentItem {
   slug: string
@@ -37,6 +46,10 @@ interface ContentItem {
   image?: string
   readingTime?: string
   wordCount: number
+  media: MediaAsset[]
+  mediaCount: number
+  hasHeroImage: boolean
+  hasThumbnail: boolean
   hasSocial: boolean
   socialPlatforms: string[]
   socialStatus: Record<string, string>
@@ -149,6 +162,20 @@ function ContentRow({ item, onCopySlug }: { item: ContentItem; onCopySlug: (slug
         </div>
       </div>
 
+      {/* Media Indicators */}
+      <div className="flex items-center gap-1.5 w-16">
+        {item.mediaCount > 0 ? (
+          <span className="flex items-center gap-1 text-xs text-purple-300" title={`${item.mediaCount} media asset${item.mediaCount > 1 ? 's' : ''}`}>
+            <ImageIcon className="w-3.5 h-3.5" />
+            {item.mediaCount}
+          </span>
+        ) : (
+          <span className="text-xs text-white/15" title="No media assets">
+            <ImageIcon className="w-3.5 h-3.5" />
+          </span>
+        )}
+      </div>
+
       {/* Social Coverage */}
       <div className="flex items-center gap-2">
         {item.hasSocial ? (
@@ -198,7 +225,7 @@ export default function ContentCommandCenter() {
   const [stats, setStats] = useState<PipelineStats | null>(null)
   const [loading, setLoading] = useState(true)
   const [search, setSearch] = useState('')
-  const [filter, setFilter] = useState<'all' | 'needs-social' | 'featured' | 'distributed'>('all')
+  const [filter, setFilter] = useState<'all' | 'needs-social' | 'needs-images' | 'featured' | 'distributed'>('all')
   const [copied, setCopied] = useState<string | null>(null)
 
   useEffect(() => {
@@ -240,6 +267,7 @@ export default function ContentCommandCenter() {
       }
     }
     if (filter === 'needs-social') return !item.hasSocial && item.pipelineStage !== 'draft'
+    if (filter === 'needs-images') return !item.hasHeroImage
     if (filter === 'featured') return item.featured
     if (filter === 'distributed') return item.hasSocial
     return true
@@ -313,10 +341,11 @@ export default function ContentCommandCenter() {
             sub="Articles without distribution"
           />
           <StatCard
-            label="Published"
-            value={stats?.published || 0}
-            icon={CheckCircle2}
-            accent="bg-emerald-500/20"
+            label="Media Assets"
+            value={content.reduce((sum, c) => sum + c.mediaCount, 0)}
+            icon={ImageIcon}
+            accent="bg-purple-500/20"
+            sub={`${content.filter(c => c.hasHeroImage).length} with hero images`}
           />
         </div>
 
@@ -365,19 +394,28 @@ export default function ContentCommandCenter() {
           </div>
 
           <div className="flex items-center gap-1.5">
-            {(['all', 'needs-social', 'featured', 'distributed'] as const).map(f => (
-              <button
-                key={f}
-                onClick={() => setFilter(f)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
-                  filter === f
-                    ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/30'
-                    : 'bg-white/[0.04] text-white/40 border border-transparent hover:text-white/60'
-                }`}
-              >
-                {f === 'all' ? 'All' : f === 'needs-social' ? 'Needs Social' : f === 'featured' ? 'Featured' : 'Distributed'}
-              </button>
-            ))}
+            {(['all', 'needs-social', 'needs-images', 'featured', 'distributed'] as const).map(f => {
+              const labels: Record<string, string> = {
+                all: 'All',
+                'needs-social': 'Needs Social',
+                'needs-images': 'Needs Images',
+                featured: 'Featured',
+                distributed: 'Distributed',
+              }
+              return (
+                <button
+                  key={f}
+                  onClick={() => setFilter(f)}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
+                    filter === f
+                      ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/30'
+                      : 'bg-white/[0.04] text-white/40 border border-transparent hover:text-white/60'
+                  }`}
+                >
+                  {labels[f]}
+                </button>
+              )
+            })}
           </div>
         </div>
 
@@ -386,6 +424,7 @@ export default function ContentCommandCenter() {
           {/* Header */}
           <div className="flex items-center gap-4 px-4 py-2.5 border-b border-white/[0.06] text-xs text-white/30">
             <div className="flex-1">Article</div>
+            <div className="w-16 text-center">Media</div>
             <div className="w-28 text-center">Social</div>
             <div className="w-24 text-center">Stage</div>
             <div className="w-20" />

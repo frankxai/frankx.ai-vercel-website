@@ -35,6 +35,13 @@ export interface SocialQueueItem {
   platforms: Record<string, SocialPost>
 }
 
+export interface MediaAsset {
+  type: 'hero' | 'infographic' | 'social' | 'thumbnail' | 'other'
+  path: string
+  filename: string
+  hasThumbnail: boolean
+}
+
 export interface ContentItem {
   slug: string
   title: string
@@ -46,6 +53,11 @@ export interface ContentItem {
   image?: string
   readingTime?: string
   wordCount: number
+  // Media assets
+  media: MediaAsset[]
+  mediaCount: number
+  hasHeroImage: boolean
+  hasThumbnail: boolean
   // Social coverage
   hasSocial: boolean
   socialPlatforms: string[]
@@ -77,6 +89,7 @@ export interface PipelineStats {
 
 const ROOT = process.cwd()
 const BLOG_DIR = join(ROOT, 'content', 'blog')
+const BLOG_IMAGES_DIR = join(ROOT, 'public', 'images', 'blog')
 const SOCIAL_QUEUE_PATH = join(ROOT, 'data', 'social-queue.json')
 const CONTENT_QUEUE_PATH = join(ROOT, 'data', 'content-queue', 'queue.json')
 const BLOG_INVENTORY_PATH = join(ROOT, 'data', 'inventories', 'frankx', 'blog-articles.json')
@@ -161,6 +174,69 @@ function getBlogArticlesFromMDX(): BlogArticle[] {
   return articles
 }
 
+// ─── Media asset scanning ──────────────────────────────────────
+
+function scanMediaForSlug(slug: string, heroImagePath?: string): MediaAsset[] {
+  if (!existsSync(BLOG_IMAGES_DIR)) return []
+
+  try {
+    const allFiles = readdirSync(BLOG_IMAGES_DIR)
+    const assets: MediaAsset[] = []
+
+    // Build slug prefix for partial matching (first 2-3 hyphen-delimited words)
+    // e.g. "acos-v10-autonomous-intelligence" → tries "acos-v10" (2-word prefix)
+    const slugParts = slug.split('-')
+    const slugPrefix = slugParts.length > 2 ? slugParts.slice(0, 2).join('-') : slug
+
+    // Match files that start with the slug, contain it, or match the prefix
+    const matchingFiles = allFiles.filter(f => {
+      const lower = f.toLowerCase()
+      if (lower.startsWith(slug) || lower.includes(slug)) return true
+      // Partial prefix match (e.g. "acos-v10" matches "acos-v10-social-infographic.png")
+      if (slugPrefix.length >= 6 && lower.startsWith(slugPrefix)) return true
+      // Match hero image filename from frontmatter
+      if (heroImagePath) {
+        const heroFilename = heroImagePath.split('/').pop()?.toLowerCase()
+        if (heroFilename) {
+          const heroBase = heroFilename.replace(/\.[^.]+$/, '')
+          if (lower.startsWith(heroBase)) return true
+        }
+      }
+      return false
+    })
+
+    // Also check for files referenced by the article's hero image
+    const imageExts = ['.png', '.jpg', '.jpeg', '.webp', '.svg', '.gif', '.mp4', '.webm']
+
+    for (const file of matchingFiles) {
+      const ext = file.substring(file.lastIndexOf('.')).toLowerCase()
+      if (!imageExts.includes(ext)) continue
+      if (file.includes('_thumb')) continue // skip thumbnails, tracked via hasThumbnail
+
+      const hasThumbnail = matchingFiles.some(
+        f => f === file.replace(ext, '_thumb.jpeg') || f === file.replace(ext, '_thumb.png')
+      )
+
+      let type: MediaAsset['type'] = 'other'
+      if (file.includes('hero')) type = 'hero'
+      else if (file.includes('twitter') || file.includes('linkedin') || file.includes('social')) type = 'social'
+      else if (file.includes('infographic') || file.includes('diagram') || file.includes('architecture') || file.includes('stack') || file.includes('flow')) type = 'infographic'
+      else type = 'hero' // Default: if it matches the slug, it's likely the hero
+
+      assets.push({
+        type,
+        path: `/images/blog/${file}`,
+        filename: file,
+        hasThumbnail,
+      })
+    }
+
+    return assets
+  } catch {
+    return []
+  }
+}
+
 // ─── Social coverage mapping ───────────────────────────────────
 
 function buildSocialCoverageMap(): Map<string, { platforms: string[]; statuses: Record<string, string> }> {
@@ -217,6 +293,9 @@ export function getAllContent(): ContentItem[] {
     const hasSocial = !!social
     const socialPlatforms = social?.platforms || []
     const socialStatus = social?.statuses || {}
+    const media = scanMediaForSlug(article.slug, article.image)
+    const hasHeroImage = !!article.image || media.some(m => m.type === 'hero')
+    const hasThumbnail = media.some(m => m.hasThumbnail)
 
     return {
       slug: article.slug,
@@ -229,6 +308,10 @@ export function getAllContent(): ContentItem[] {
       image: article.image,
       readingTime: article.readingTime,
       wordCount: article.wordCount,
+      media,
+      mediaCount: media.length,
+      hasHeroImage,
+      hasThumbnail,
       hasSocial,
       socialPlatforms,
       socialStatus,
