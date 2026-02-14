@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { CherryBlossoms } from '@/components/valentines/CherryBlossoms'
@@ -13,15 +13,16 @@ import { HiddenHeart } from '@/components/valentines/HiddenHeart'
 
 function SectionImage({ src, alt }: { src: string; alt: string }) {
   return (
-    <div className="relative w-full h-48 md:h-72 overflow-hidden" aria-hidden="true">
+    <div className="relative w-full h-56 md:h-80 lg:h-96 overflow-hidden" aria-hidden="true">
       <Image
         src={src}
         alt={alt}
         fill
-        className="object-cover opacity-30"
+        className="object-cover opacity-40 scale-105"
         sizes="100vw"
       />
       <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0f] via-transparent to-[#0a0a0f]" />
+      <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0f]/30 via-transparent to-[#0a0a0f]/30" />
     </div>
   )
 }
@@ -216,6 +217,84 @@ const universeCards = [
   },
 ]
 
+const vietnamesePoems = [
+  {
+    title: 'Yêu',
+    author: 'Xuân Diệu',
+    lines: [
+      ['Yêu là chết ở trong lòng một ít'],
+      ['Vì mấy khi yêu mà chắc được yêu'],
+      ['Cho rất nhiều song nhận chẳng bao nhiêu'],
+      ['Người ta phụ hoặc thờ ơ chẳng biết.'],
+      [''],
+      ['Nhưng mà yêu! Yêu vẫn cứ là yêu!'],
+      ['Như sóng nước vỗ hoài trên ghềnh đá,'],
+      ['Vẫn thương yêu cho đến phút cuối cùng.'],
+    ],
+    translation:
+      'To love is to die a little inside, for how often can we be certain our love is returned? We give so much, yet receive so little. But to love! To love is still to love! Like waves crashing endlessly upon the shore — we love until the very last moment.',
+    accent: 'teal' as const,
+  },
+  {
+    title: 'Tương Tư',
+    author: 'Nguyễn Bính',
+    lines: [
+      ['Thôn Đoài ngồi nhớ thôn Đông,'],
+      ['Một người chín nhớ mười mong một người.'],
+      ['Gió mưa là bệnh của giời,'],
+      ['Tương tư là bệnh của tôi yêu nàng.'],
+    ],
+    translation:
+      'From the western village, I sit longing for the eastern one. One heart aches with every kind of yearning for another. Rain and wind are the ailments of the sky. Longing is the ailment of my love for you.',
+    accent: 'rose' as const,
+  },
+  {
+    title: 'Đợi Anh Về',
+    author: 'Hữu Loan',
+    lines: [
+      ['Em ơi đợi anh về'],
+      ['Đợi anh hoài em nhé'],
+      ['Mưa rơi phố đầy'],
+      ['Em ơi em đợi'],
+      ['Tình đầu như trăng soi'],
+      ['Yêu em mãi mãi thôi.'],
+    ],
+    translation:
+      'My love, wait for me to return. Wait for me always, my dear. The rain fills the streets. My love, please wait. First love shines like moonlight. I love you forever and always.',
+    accent: 'gold' as const,
+  },
+]
+
+const timelineMoments = [
+  { year: '2018', label: 'The Beginning', detail: 'Two worlds collided' },
+  { year: '2019', label: 'Growing Roots', detail: 'Learning each other\'s languages — of love, of silence, of laughter' },
+  { year: '2020', label: 'The Crucible', detail: 'When the world stopped, we held on tighter' },
+  { year: '2021', label: 'Amsterdam', detail: 'A city of water became our home' },
+  { year: '2022', label: 'Building', detail: 'Dreams became blueprints became rooms we lived in' },
+  { year: '2023', label: 'IJburg', detail: 'Where the sunrise finds us every morning' },
+  { year: '2024', label: 'Deepening', detail: 'The kind of knowing that only years can give' },
+  { year: '2025', label: 'Together', detail: 'Still choosing. Still growing. Still us.' },
+  { year: '2026', label: 'This Moment', detail: 'Every year, more sure than the last' },
+]
+
+// ─── Scroll Progress ────────────────────────────────────────────────
+
+function ScrollProgress() {
+  const [progress, setProgress] = useState(0)
+
+  useEffect(() => {
+    function handleScroll() {
+      const scrollTop = window.scrollY
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight
+      setProgress(docHeight > 0 ? (scrollTop / docHeight) * 100 : 0)
+    }
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  return <div className="scroll-progress" style={{ width: `${progress}%` }} />
+}
+
 // ─── Component ──────────────────────────────────────────────────────
 
 export default function TienPage() {
@@ -285,6 +364,7 @@ export default function TienPage() {
         transition={{ delay: 0.8, duration: 1.5 }}
         className={isOpen ? '' : 'pointer-events-none h-0 overflow-hidden'}
       >
+        {isOpen && <ScrollProgress />}
         {isOpen && <CherryBlossoms intensity="light" />}
 
         {/* ─── Section 1: Opening Words ───────────────────────── */}
@@ -408,6 +488,50 @@ export default function TienPage() {
         {/* ── Visual: German Romantic Garden ───────────────────── */}
         <SectionImage src="/images/valentines/german-poetry.png" alt="" />
 
+        {/* ─── Section 3b: Nhà Thơ Tình Yêu — Vietnamese Poetry ── */}
+        <section className="relative px-6 py-20 md:py-32">
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0f] via-[#0a0d0e] to-[#0a0a0f]" />
+
+          <div className="relative z-20 max-w-2xl mx-auto">
+            <ScrollReveal>
+              <h2 className="font-display text-2xl md:text-4xl text-white/40 text-center mb-4 font-light tracking-wide">
+                Nhà Thơ Tình Yêu
+              </h2>
+              <p className="text-center text-white/20 text-sm mb-16 italic">Poets of Love — for your Vietnamese heart</p>
+            </ScrollReveal>
+
+            <div className="space-y-14">
+              {vietnamesePoems.map((poem, i) => (
+                <ScrollReveal key={i} delay={i * 0.15}>
+                  <div className="relative p-8 md:p-10 rounded-2xl backdrop-blur-sm border border-white/5 bg-gradient-to-br from-teal-500/[0.02] to-amber-500/[0.01] animate-breathe">
+                    <p className="font-display text-lg md:text-xl text-white/60 mb-1 font-light italic">
+                      {poem.title}
+                    </p>
+                    <p className="text-xs text-white/30 tracking-wide mb-6">{poem.author}</p>
+
+                    <div className="font-serif italic text-base md:text-lg text-white/80 leading-[1.9] mb-6">
+                      {poem.lines.map((line, j) => (
+                        <p key={j} className={line[0] === '' ? 'h-4' : ''}>
+                          {line[0]}
+                        </p>
+                      ))}
+                    </div>
+
+                    <div className="pt-4 border-t border-white/[0.06]">
+                      <p className="text-sm text-white/30 italic leading-relaxed">
+                        {poem.translation}
+                      </p>
+                    </div>
+                  </div>
+                </ScrollReveal>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── Visual: Vietnamese Lanterns on Amsterdam Canal ──── */}
+        <SectionImage src="/images/valentines/vietnamese-love.png" alt="" />
+
         {/* ─── Section 4: Our Universe ────────────────────────── */}
         <section className="relative px-6 py-20 md:py-32">
           <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0f] via-[#0a0c10] to-[#0a0a0f]" />
@@ -431,6 +555,46 @@ export default function TienPage() {
                   />
                 </ScrollReveal>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ─── Section 4b: Our Timeline ────────────────────────── */}
+        <section className="relative px-6 py-20 md:py-32">
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0f] via-[#0d0a0f] to-[#0a0a0f]" />
+
+          <div className="relative z-20 max-w-2xl mx-auto">
+            <ScrollReveal>
+              <h2 className="font-display text-2xl md:text-4xl text-white/40 text-center mb-16 font-light tracking-wide">
+                Our Story in Time
+              </h2>
+            </ScrollReveal>
+
+            <div className="relative">
+              <div className="timeline-line" />
+
+              <div className="space-y-12 md:space-y-16">
+                {timelineMoments.map((moment, i) => (
+                  <ScrollReveal key={i} delay={i * 0.08}>
+                    <div className={`relative flex items-start gap-6 md:gap-10 ${
+                      i % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
+                    }`}>
+                      {/* Mobile: always left-aligned */}
+                      <div className="flex-shrink-0 relative z-10 pl-[12px] md:pl-0 md:absolute md:left-1/2 md:-translate-x-1/2">
+                        <div className="timeline-dot" />
+                      </div>
+
+                      <div className={`flex-1 pl-6 md:pl-0 ${
+                        i % 2 === 0 ? 'md:text-right md:pr-16' : 'md:text-left md:pl-16'
+                      }`}>
+                        <p className="font-mono text-xs text-rose-400/40 tracking-wider mb-1">{moment.year}</p>
+                        <p className="font-display text-lg text-white/70 font-light">{moment.label}</p>
+                        <p className="text-sm text-white/35 mt-1 italic">{moment.detail}</p>
+                      </div>
+                    </div>
+                  </ScrollReveal>
+                ))}
+              </div>
             </div>
           </div>
         </section>

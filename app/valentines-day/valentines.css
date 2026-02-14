@@ -98,6 +98,42 @@
   font-family: var(--font-cursive), 'Dancing Script', cursive;
 }
 
+/* Scroll Progress Bar */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #f472b6, #d4a373, #8b5cf6);
+  z-index: 100;
+  transition: width 50ms linear;
+}
+
+/* Timeline line */
+.timeline-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, rgba(244, 114, 182, 0.2), rgba(139, 92, 246, 0.2), transparent);
+}
+@media (max-width: 767px) {
+  .timeline-line {
+    left: 20px;
+  }
+}
+
+/* Timeline dot */
+.timeline-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(244, 114, 182, 0.4);
+  border: 1px solid rgba(244, 114, 182, 0.3);
+  box-shadow: 0 0 12px rgba(244, 114, 182, 0.2);
+}
+
 /* Reduce motion */
 @media (prefers-reduced-motion: reduce) {
   .cherry-petal,
