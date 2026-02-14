@@ -8,6 +8,7 @@ import { ScrollReveal } from '@/components/valentines/ScrollReveal'
 import { QuoteCard } from '@/components/valentines/QuoteCard'
 import { FloatingOrb } from '@/components/valentines/FloatingOrb'
 import { HiddenHeart } from '@/components/valentines/HiddenHeart'
+import Link from 'next/link'
 
 // ─── Visual Divider ────────────────────────────────────────────────
 
@@ -803,6 +804,23 @@ export default function TienPage() {
                 &ldquo;Love is the whole thing. We are only pieces.&rdquo;
               </p>
               <p className="text-sm text-rose-300/30 mt-4">— Rumi</p>
+            </ScrollReveal>
+          </div>
+        </section>
+
+        {/* ─── Piano Link ────────────────────────────────────── */}
+        <section className="relative px-6 py-12 bg-[#0a0a0f]">
+          <div className="relative z-20 text-center">
+            <ScrollReveal>
+              <Link
+                href="/valentines-day/tien/piano"
+                className="inline-flex items-center gap-3 px-8 py-3 rounded-full border border-rose-400/15 text-rose-200/40 text-sm tracking-[0.15em] hover:bg-rose-500/[0.06] hover:border-rose-400/25 hover:text-rose-200/60 transition-all duration-500"
+              >
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-4 h-4">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 9l10.5-3m0 6.553v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 11-.99-3.467l2.31-.66a2.25 2.25 0 001.632-2.163zm0 0V2.25L9 5.25v10.303m0 0v3.75a2.25 2.25 0 01-1.632 2.163l-1.32.377a1.803 1.803 0 01-.99-3.467l2.31-.66A2.25 2.25 0 009 15.553z" />
+                </svg>
+                Play Piano
+              </Link>
             </ScrollReveal>
           </div>
         </section>
