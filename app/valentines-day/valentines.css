@@ -28,6 +28,31 @@
   will-change: transform;
 }
 
+/* Rose Petals — deeper, warmer, slightly larger than cherry */
+.rose-petal {
+  background: radial-gradient(ellipse at 30% 30%, #fda4af 0%, #e11d48 50%, #9f1239 80%, transparent 100%);
+  border-radius: 50% 10% 50% 10%;
+  animation: petal-fall linear infinite;
+  will-change: transform;
+  filter: blur(0.3px);
+}
+
+.rose-petal-light {
+  background: radial-gradient(ellipse at 40% 20%, #fecdd3 0%, #fb7185 50%, #e11d48 80%, transparent 100%);
+  border-radius: 45% 5% 50% 15%;
+  animation: petal-fall linear infinite;
+  will-change: transform;
+  filter: blur(0.2px);
+}
+
+/* Section divider — thin gradient line */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(244, 114, 182, 0.15), rgba(212, 163, 115, 0.15), rgba(139, 92, 246, 0.1), transparent);
+  margin: 0 auto;
+  max-width: 200px;
+}
+
 /* Floating Particles */
 @keyframes float-particle {
   0%, 100% {
@@ -137,6 +162,8 @@
 /* Reduce motion */
 @media (prefers-reduced-motion: reduce) {
   .cherry-petal,
+  .rose-petal,
+  .rose-petal-light,
   .animate-float-particle,
   .animate-breathe,
   .animate-gentle-float,

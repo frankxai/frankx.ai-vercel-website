@@ -26,17 +26,17 @@ const dancingScript = Dancing_Script({
 })
 
 export const metadata: Metadata = {
-  title: "Love, Engineered with Soul | FrankX.ai",
-  description: "An AI Architect's approach to the most human thing: love. Where intelligence meets the heart.",
+  title: "In Praise of Love — Poems & Passages for Today | FrankX.ai",
+  description: "A curated collection of love poetry, literary passages, and meditations from Rumi, Neruda, Shakespeare, Rilke, and more. For anyone, on any day.",
   openGraph: {
-    title: "Love, Engineered with Soul",
-    description: "Where intelligence meets the heart.",
+    title: "In Praise of Love — Poems & Passages for Today",
+    description: "Poetry, literature, and meditations about love in all its forms. Share it with someone.",
     images: ["/images/valentines/og-valentines-2026.png"],
   },
   twitter: {
     card: 'summary_large_image',
-    title: "Love, Engineered with Soul | FrankX.ai",
-    description: "Where intelligence meets the heart.",
+    title: "In Praise of Love — Poems & Passages for Today",
+    description: "Poetry, literature, and meditations about love in all its forms. Share it with someone.",
   },
 }
 
