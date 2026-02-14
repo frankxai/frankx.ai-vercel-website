@@ -1,0 +1,122 @@
+/* Valentine's Day — Animations & Styles */
+
+/* Cherry Blossom Falling */
+@keyframes petal-fall {
+  0% {
+    transform: translateY(-5vh) translateX(0) rotate(0deg) scale(1);
+    opacity: 0;
+  }
+  5% {
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateY(50vh) translateX(var(--drift, 20px)) rotate(360deg) scale(0.9);
+  }
+  95% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: translateY(105vh) translateX(calc(var(--drift, 20px) * -1)) rotate(720deg) scale(0.7);
+    opacity: 0;
+  }
+}
+
+.cherry-petal {
+  background: radial-gradient(ellipse at 30% 30%, #fda4af 0%, #f472b6 60%, transparent 100%);
+  border-radius: 50% 0 50% 0;
+  animation: petal-fall linear infinite;
+  will-change: transform;
+}
+
+/* Floating Particles */
+@keyframes float-particle {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+  }
+  25% {
+    transform: translateY(-20px) translateX(10px);
+  }
+  50% {
+    transform: translateY(-10px) translateX(-5px);
+  }
+  75% {
+    transform: translateY(-30px) translateX(-10px);
+  }
+}
+
+.animate-float-particle {
+  animation: float-particle ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Breathing Glow */
+@keyframes breathe {
+  0%, 100% { box-shadow: 0 0 20px rgba(244, 114, 182, 0.05); }
+  50% { box-shadow: 0 0 40px rgba(244, 114, 182, 0.15); }
+}
+
+.animate-breathe {
+  animation: breathe 4s ease-in-out infinite;
+}
+
+/* Gentle Float */
+@keyframes gentle-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.animate-gentle-float {
+  animation: gentle-float 6s ease-in-out infinite;
+}
+
+/* Heart Pulse */
+@keyframes heart-pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+.animate-heart-pulse {
+  animation: heart-pulse 2s ease-in-out infinite;
+}
+
+/* Gradient text */
+.valentine-gradient-text {
+  background: linear-gradient(135deg, #f472b6, #d4a373, #8b5cf6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Font utilities for Valentine's pages */
+.font-display {
+  font-family: var(--font-display), 'Cormorant Garamond', serif;
+}
+.font-body-serif {
+  font-family: var(--font-body-serif), 'Lora', serif;
+}
+.font-cursive {
+  font-family: var(--font-cursive), 'Dancing Script', cursive;
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .cherry-petal,
+  .animate-float-particle,
+  .animate-breathe,
+  .animate-gentle-float,
+  .animate-heart-pulse {
+    animation: none !important;
+  }
+}
+
+/* Valentine's scrollbar */
+.valentine-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+.valentine-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.valentine-scroll::-webkit-scrollbar-thumb {
+  background: rgba(244, 114, 182, 0.2);
+  border-radius: 2px;
+}
