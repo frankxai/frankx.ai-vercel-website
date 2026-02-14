@@ -1,12 +1,30 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { CherryBlossoms } from '@/components/valentines/CherryBlossoms'
 import { ScrollReveal } from '@/components/valentines/ScrollReveal'
 import { QuoteCard } from '@/components/valentines/QuoteCard'
 import { FloatingOrb } from '@/components/valentines/FloatingOrb'
 import { HiddenHeart } from '@/components/valentines/HiddenHeart'
+
+// ─── Visual Divider ────────────────────────────────────────────────
+
+function SectionImage({ src, alt }: { src: string; alt: string }) {
+  return (
+    <div className="relative w-full h-48 md:h-72 overflow-hidden" aria-hidden="true">
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        className="object-cover opacity-30"
+        sizes="100vw"
+      />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0f] via-transparent to-[#0a0a0f]" />
+    </div>
+  )
+}
 
 // ─── Data ──────────────────────────────────────────────────────────
 
@@ -43,6 +61,64 @@ const rumiQuotes = [
   {
     quote:
       'Through Love all that is bitter will be sweet, Through Love all that is copper will be gold, Through Love all dregs will turn to purest wine, Through Love all pain will turn to medicine.',
+    accent: 'violet' as const,
+  },
+]
+
+const germanPoems = [
+  {
+    title: 'Was es ist',
+    author: 'Erich Fried',
+    lines: [
+      ['Es ist Unsinn', 'sagt die Vernunft'],
+      ['Es ist was es ist', 'sagt die Liebe'],
+      [''],
+      ['Es ist Unglück', 'sagt die Berechnung'],
+      ['Es ist nichts als Schmerz', 'sagt die Angst'],
+      ['Es ist aussichtslos', 'sagt die Einsicht'],
+      ['Es ist was es ist', 'sagt die Liebe'],
+      [''],
+      ['Es ist lächerlich', 'sagt der Stolz'],
+      ['Es ist leichtsinnig', 'sagt die Vorsicht'],
+      ['Es ist unmöglich', 'sagt die Erfahrung'],
+      ['Es ist was es ist', 'sagt die Liebe'],
+    ],
+    translation:
+      'It is what it is, says Love.',
+    accent: 'rose' as const,
+  },
+  {
+    title: 'Nähe des Geliebten',
+    author: 'Johann Wolfgang von Goethe',
+    lines: [
+      ['Ich denke dein, wenn mir der Sonne Schimmer', 'vom Meere strahlt;'],
+      ['Ich denke dein, wenn sich des Mondes Flimmer', 'in Quellen malt.'],
+      [''],
+      ['Ich sehe dich, wenn auf dem fernen Wege', 'der Staub sich hebt;'],
+      ['In tiefer Nacht, wenn auf dem schmalen Stege', 'der Wandrer bebt.'],
+      [''],
+      ['Ich bin bei dir, du seist auch noch so ferne,', 'du bist mir nah!'],
+      ['Die Sonne sinkt, bald leuchten mir die Sterne.', 'O wärst du da!'],
+    ],
+    translation:
+      'I think of you when the sun shimmers from the sea. I think of you when the moon glimmers in the springs. I am with you, however far away you are — you are near to me.',
+    accent: 'gold' as const,
+  },
+  {
+    title: 'Liebes-Lied',
+    author: 'Rainer Maria Rilke',
+    lines: [
+      ['Wie soll ich meine Seele halten, dass'],
+      ['sie nicht an deine rührt? Wie soll ich sie'],
+      ['hinheben über dich zu andern Dingen?'],
+      [''],
+      ['Ach gerne möcht ich sie bei irgendwas'],
+      ['Verlorenem im Dunkel unterbringen'],
+      ['an einer fremden stillen Stelle, die'],
+      ['nicht weiterschwingt, wenn deine Tiefen schwingen.'],
+    ],
+    translation:
+      'How shall I hold my soul so that it does not touch yours? How shall I lift it over you to other things? I would so much like to place it among lost things in the dark, in some quiet, unknown place that does not vibrate when your depths vibrate.',
     accent: 'violet' as const,
   },
 ]
@@ -91,7 +167,7 @@ const wisdomQuotes = [
   },
   {
     quote:
-      "If you love a flower, don't pick it up. Because if you pick it up it dies and ceases to be what you love. So if you love a flower, let it be. Love is not about possession. Love is about appreciation.",
+      "If you love a flower, let it be. Love is about appreciation.",
     author: 'Osho',
     accent: 'violet' as const,
   },
@@ -110,7 +186,7 @@ const universeCards = [
   },
   {
     title: 'Eight Years',
-    description: "Time didn't pass. It deepened.",
+    description: 'Time deepened. And so did we.',
     glow: 'rose' as const,
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-7 h-7">
@@ -120,7 +196,7 @@ const universeCards = [
   },
   {
     title: 'Two Cultures',
-    description: 'German discipline meets Vietnamese grace.',
+    description: 'German soul meets Vietnamese grace. Both whole. Both beautiful.',
     glow: 'gold' as const,
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="w-7 h-7">
@@ -156,7 +232,6 @@ export default function TienPage() {
             exit={{ opacity: 0 }}
             transition={{ duration: 1.8, ease: 'easeInOut' }}
           >
-            {/* Ambient glows */}
             <div className="absolute w-72 h-72 bg-rose-500/[0.06] rounded-full blur-[100px]" />
             <div className="absolute w-56 h-56 bg-violet-500/[0.04] rounded-full blur-[80px] translate-x-24 translate-y-16" />
             <div className="absolute w-40 h-40 bg-amber-500/[0.03] rounded-full blur-[60px] -translate-x-20 -translate-y-12" />
@@ -210,12 +285,10 @@ export default function TienPage() {
         transition={{ delay: 0.8, duration: 1.5 }}
         className={isOpen ? '' : 'pointer-events-none h-0 overflow-hidden'}
       >
-        {/* Cherry Blossoms — only render after opening */}
         {isOpen && <CherryBlossoms intensity="light" />}
 
         {/* ─── Section 1: Opening Words ───────────────────────── */}
         <section className="relative min-h-screen flex flex-col items-center justify-center px-6 py-24">
-          {/* Warm ambient background */}
           <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0f] via-[#100a0e] to-[#0a0a0f]" />
 
           <div className="relative z-20 max-w-2xl mx-auto text-center">
@@ -233,21 +306,30 @@ export default function TienPage() {
               <div className="space-y-6 font-body-serif text-lg md:text-xl text-white/70 leading-relaxed italic text-left">
                 <p>Tien,</p>
                 <p>
-                  Eight years of learning what love actually means.
-                  Not the fireworks kind — the kind that stays.
-                  The kind that makes coffee when the other one forgets to sleep.
-                  The kind that builds a life, quietly, persistently,
+                  Eight years of discovering what love truly means.
+                  You are every kind of fireworks —
+                  the ones that light up the sky,
+                  and the ones that glow softly
+                  long after everyone else has gone home.
+                </p>
+                <p>
+                  You are the one who makes coffee
+                  exactly when I need it.
+                  The one who builds a life, beautifully, persistently,
                   in a city made of water.
                 </p>
                 <p>
-                  You are the most consistent force in my life.
-                  Not loud, not dramatic — just there.
-                  Every morning. Steady as the tide in IJburg.
+                  You are the most extraordinary force in my life.
+                  Present as the sunrise. Steady as the tide.
+                  Every morning. Always. IJburg.
                 </p>
               </div>
             </ScrollReveal>
           </div>
         </section>
+
+        {/* ── Visual: Love Energy ─────────────────────────────── */}
+        <SectionImage src="/images/valentines/love-fireworks.png" alt="" />
 
         {/* ─── Section 2: What I See When I See You ───────────── */}
         <section className="relative px-6 py-20 md:py-32">
@@ -275,7 +357,58 @@ export default function TienPage() {
           </div>
         </section>
 
-        {/* ─── Section 3: Our Universe ────────────────────────── */}
+        {/* ── Visual: Cherry Blossoms ─────────────────────────── */}
+        <SectionImage src="/images/valentines/cherry-blossom.png" alt="" />
+
+        {/* ─── Section 3: Dichter der Liebe — German Poetry ───── */}
+        <section className="relative px-6 py-20 md:py-32">
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0f] via-[#0e0a0d] to-[#0a0a0f]" />
+
+          <div className="relative z-20 max-w-2xl mx-auto">
+            <ScrollReveal>
+              <h2 className="font-display text-2xl md:text-4xl text-white/40 text-center mb-4 font-light tracking-wide">
+                Dichter der Liebe
+              </h2>
+              <p className="text-center text-white/20 text-sm mb-16 italic">Poets of Love</p>
+            </ScrollReveal>
+
+            <div className="space-y-14">
+              {germanPoems.map((poem, i) => (
+                <ScrollReveal key={i} delay={i * 0.15}>
+                  <div className="relative p-8 md:p-10 rounded-2xl backdrop-blur-sm border border-white/5 bg-gradient-to-br from-white/[0.03] to-white/[0.01] animate-breathe">
+                    {/* Title */}
+                    <p className="font-display text-lg md:text-xl text-white/60 mb-1 font-light italic">
+                      {poem.title}
+                    </p>
+                    <p className="text-xs text-white/30 tracking-wide mb-6">{poem.author}</p>
+
+                    {/* German text */}
+                    <div className="font-serif italic text-base md:text-lg text-white/80 leading-[1.9] mb-6">
+                      {poem.lines.map((line, j) => (
+                        <p key={j} className={line[0] === '' ? 'h-4' : ''}>
+                          {line[0]}
+                          {line[1] && <span className="text-white/50"> {line[1]}</span>}
+                        </p>
+                      ))}
+                    </div>
+
+                    {/* English translation */}
+                    <div className="pt-4 border-t border-white/[0.06]">
+                      <p className="text-sm text-white/30 italic leading-relaxed">
+                        {poem.translation}
+                      </p>
+                    </div>
+                  </div>
+                </ScrollReveal>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── Visual: German Romantic Garden ───────────────────── */}
+        <SectionImage src="/images/valentines/german-poetry.png" alt="" />
+
+        {/* ─── Section 4: Our Universe ────────────────────────── */}
         <section className="relative px-6 py-20 md:py-32">
           <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0f] via-[#0a0c10] to-[#0a0a0f]" />
 
@@ -302,7 +435,10 @@ export default function TienPage() {
           </div>
         </section>
 
-        {/* ─── Section 4: Wisdom from the Masters ─────────────── */}
+        {/* ── Visual: Cultures United — Vietnamese Lanterns on Amsterdam Canal ── */}
+        <SectionImage src="/images/valentines/cultures-united.png" alt="" />
+
+        {/* ─── Section 5: Wisdom from the Masters ─────────────── */}
         <section className="relative px-6 py-20 md:py-32">
           <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0f] via-[#100a0d] to-[#0a0a0f]" />
 
@@ -329,11 +465,70 @@ export default function TienPage() {
           </div>
         </section>
 
-        {/* ─── Section 5: A Poem for You ──────────────────────── */}
+        {/* ── Visual: Two Souls Merging ────────────────────────── */}
+        <SectionImage src="/images/valentines/two-souls.png" alt="" />
+
+        {/* ─── Section 6: The Art of Loving ───────────────────── */}
+        <section className="relative px-6 py-20 md:py-32">
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0f] via-[#0d0a0e] to-[#0a0a0f]" />
+          <div className="absolute left-1/2 top-1/3 -translate-x-1/2 w-80 h-80 bg-amber-500/[0.02] rounded-full blur-[100px]" />
+
+          <div className="relative z-20 max-w-2xl mx-auto">
+            <ScrollReveal>
+              <h2 className="font-display text-2xl md:text-4xl text-white/40 text-center mb-4 font-light tracking-wide">
+                The Art of Loving
+              </h2>
+              <p className="text-center text-white/20 text-sm mb-16 italic">Die Kunst des Liebens</p>
+            </ScrollReveal>
+
+            {/* Erich Fromm */}
+            <ScrollReveal delay={0.2}>
+              <div className="p-8 md:p-10 rounded-2xl bg-white/[0.02] border border-white/[0.06] backdrop-blur-sm mb-10">
+                <p className="font-body-serif text-base md:text-lg text-white/60 leading-relaxed italic mb-6">
+                  &ldquo;Love is an activity, a standing in — a giving, a creating.
+                  To love someone means to care, to take responsibility,
+                  to respect, and to know that person deeply.
+                  It is the active concern for the life and growth
+                  of that which we love.&rdquo;
+                </p>
+                <p className="text-sm text-amber-300/50">
+                  Erich Fromm <span className="text-white/25">— The Art of Loving, 1956</span>
+                </p>
+              </div>
+            </ScrollReveal>
+
+            {/* Personal Essay */}
+            <ScrollReveal delay={0.4}>
+              <div className="p-8 md:p-10 rounded-2xl bg-white/[0.02] border border-white/[0.06] backdrop-blur-sm">
+                <p className="font-display text-lg text-white/50 mb-4 italic font-light">What Eight Years Teach</p>
+                <div className="font-body-serif text-base md:text-lg text-white/55 leading-relaxed italic space-y-4">
+                  <p>
+                    Eight years is long enough to see someone completely.
+                    Every strength, every habit, every tender place.
+                    And it is exactly long enough to understand
+                    that love is choosing someone —
+                    wholly, with full knowledge of who they are —
+                    and saying: <span className="text-rose-300/60">yes. Again. Every morning. Yes.</span>
+                  </p>
+                  <p>
+                    The greatest love stories are written
+                    in ordinary mornings.
+                    In the coffee that appears. In the hand that reaches.
+                    In the quiet way two people learn
+                    to be a home for each other.
+                  </p>
+                </div>
+              </div>
+            </ScrollReveal>
+          </div>
+        </section>
+
+        {/* ── Visual: Lotus Bloom ──────────────────────────────── */}
+        <SectionImage src="/images/valentines/lotus-bloom.png" alt="" />
+
+        {/* ─── Section 7: A Poem for You ──────────────────────── */}
         <section className="relative px-6 py-20 md:py-32">
           <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0f] via-[#0f0a0e] to-[#0a0a0f]" />
-
-          {/* Ambient glow */}
           <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-rose-500/[0.04] rounded-full blur-[120px]" />
 
           <div className="relative z-20 max-w-xl mx-auto">
@@ -357,20 +552,21 @@ export default function TienPage() {
                 </div>
 
                 <div>
-                  <p>Eight years.</p>
-                  <p>Not the years of fireworks and grand gestures,</p>
-                  <p>but the years of quiet mornings in IJburg,</p>
-                  <p>of your coffee appearing when I forget to sleep,</p>
-                  <p>of building something that has no deploy button,</p>
-                  <p>no version control — just the slow, brave choice</p>
-                  <p>to stay.</p>
+                  <p>Eight years of mornings in IJburg,</p>
+                  <p>of your coffee arriving exactly when I need it,</p>
+                  <p>of your laughter filling every room,</p>
+                  <p>of building something by hand, by heart,</p>
+                  <p>by the slow, brave choice</p>
+                  <p>to stay and grow together.</p>
                 </div>
 
                 <div>
                   <p>They say love is patient.</p>
-                  <p>I say love is you, waiting for me</p>
+                  <p>I say love is you —</p>
+                  <p>the way you wait for me</p>
                   <p>to finish one more line of code,</p>
-                  <p>then gently closing the laptop.</p>
+                  <p>then gently close the laptop</p>
+                  <p>and take my hand.</p>
                 </div>
 
                 <div>
@@ -389,14 +585,17 @@ export default function TienPage() {
                 <div>
                   <p className="text-rose-300/60">That field.</p>
                   <p className="text-rose-300/60">Every morning.</p>
-                  <p className="text-rose-300/60">Still.</p>
+                  <p className="text-rose-300/60">Still yours.</p>
                 </div>
               </div>
             </ScrollReveal>
           </div>
         </section>
 
-        {/* ─── Section 6: The Promise ─────────────────────────── */}
+        {/* ── Visual: Amsterdam Water ──────────────────────────── */}
+        <SectionImage src="/images/valentines/amsterdam-water.png" alt="" />
+
+        {/* ─── Section 8: The Promise ─────────────────────────── */}
         <section className="relative px-6 py-20 md:py-32">
           <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0f] via-[#100a0d] to-[#0a0a0f]" />
           <div className="absolute left-1/2 top-1/3 -translate-x-1/2 w-80 h-80 bg-amber-500/[0.03] rounded-full blur-[100px]" />
@@ -405,12 +604,15 @@ export default function TienPage() {
             <ScrollReveal>
               <div className="font-body-serif text-lg md:text-xl text-white/60 leading-relaxed italic space-y-6">
                 <p>
-                  I don&apos;t have roses that last a week.
+                  I have something better than roses that last a week.
                 </p>
                 <p>
                   I have this — a page that lives as long as the internet does.
                   Built with the same tools I use to build everything else,
-                  but aimed at the only thing that actually matters.
+                  aimed at the only thing that truly matters.
+                </p>
+                <p>
+                  You. Us. This life we chose.
                 </p>
               </div>
             </ScrollReveal>
