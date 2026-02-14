@@ -1,0 +1,214 @@
+{
+  "version": "8.0.0",
+  "description": "ACOS v8 — Curated Creator Intelligence. Every skill earns its place.",
+  "profiles_path": ".claude/skills/profiles/",
+  "optimization": {
+    "strategy": "lazy-load",
+    "max_concurrent_skills": 3,
+    "priority_order": ["critical", "high", "medium"],
+    "security": {
+      "block_patterns": [
+        "*-penetration-*",
+        "*-exploit-*",
+        "*-injection-*",
+        "*-privilege-escalation*",
+        "*-vulnerability-*",
+        "*-malware*",
+        "*-reverse-engineer*",
+        "*-red-team*",
+        "*-attack*"
+      ],
+      "block_irrelevant": [
+        "shopify-*",
+        "wordpress-*",
+        "unity-*",
+        "flutter-*",
+        "swift*",
+        "godot-*",
+        "minecraft-*",
+        "ios-*",
+        "android-*",
+        "dotnet-*",
+        "csharp-*",
+        "java-pro",
+        "ruby-*",
+        "php-*",
+        "scala-*",
+        "haskell-*",
+        "julia-*",
+        "elixir-*",
+        "rust-*",
+        "golang-*",
+        "cpp-*",
+        "c-pro",
+        "avalonia-*",
+        "makepad-*",
+        "expo-*",
+        "react-native-*",
+        "solidity-*",
+        "defi-*",
+        "nft-*",
+        "web3-*",
+        "blockchain-*"
+      ],
+      "audit_note": "All skills are from MIT-licensed public repos. Prompt injection risk mitigated by lazy-load + keyword-gated activation. Skills never auto-execute — they only inject context when explicitly triggered."
+    }
+  },
+  "skill_profiles": {
+    "frankx-web": {
+      "description": "Next.js + Tailwind + Vercel stack development",
+      "auto_activate_on": {
+        "file_patterns": ["app/**/*.tsx", "components/**/*.tsx", "lib/**/*.ts"],
+        "keywords": ["component", "page", "layout", "vercel", "deploy"]
+      }
+    },
+    "content-creation": {
+      "description": "Blog posts, articles, SEO content",
+      "auto_activate_on": {
+        "file_patterns": ["content/**/*.mdx"],
+        "keywords": ["article", "blog", "seo", "publish", "write"]
+      }
+    },
+    "music-production": {
+      "description": "AI music with Suno",
+      "auto_activate_on": {
+        "keywords": ["suno", "music", "song", "track", "lyrics"]
+      }
+    },
+    "oracle-enterprise": {
+      "description": "Oracle Cloud and enterprise AI",
+      "auto_activate_on": {
+        "keywords": ["oracle", "oci", "enterprise", "adk"]
+      }
+    },
+    "agent-development": {
+      "description": "AI agent and MCP infrastructure",
+      "auto_activate_on": {
+        "file_patterns": [".claude/**/*"],
+        "keywords": ["agent", "mcp", "hook", "skill", "acos"]
+      }
+    },
+    "product-creation": {
+      "description": "Digital products, templates, packages",
+      "auto_activate_on": {
+        "file_patterns": ["data/products.json", "app/products/**/*"],
+        "keywords": ["product", "template", "package", "sell", "gumroad"]
+      }
+    },
+    "book-publishing": {
+      "description": "Book writing, chapter creation, PDF/EPUB generation, library reviews",
+      "auto_activate_on": {
+        "file_patterns": ["content/books/**/*", "app/books/**/*", "app/library/**/*", "data/book-reviews.ts"],
+        "keywords": ["book", "chapter", "poetry", "spartan", "self-development", "imagination", "manifestation", "golden-age", "library", "review", "cover image", "pdf generation", "epub"]
+      },
+      "skill_path": ".claude/skills/book-publishing/SKILL.md",
+      "priority": "high"
+    }
+  },
+  "core_skills": {
+    "always_available": ["frankx-brand", "acos"],
+    "description": "Loaded every session. frankx-brand ensures voice consistency. acos provides routing intelligence."
+  },
+  "skills": {
+    "frankx-brand": {
+      "type": "domain",
+      "priority": "critical",
+      "description": "Official FrankX brand standards — voice, visual, positioning",
+      "triggers": {
+        "keywords": ["frankx", "brand", "article", "blog post", "content", "publish"],
+        "files": ["content/**/*.mdx"]
+      }
+    },
+    "vercel-react-best-practices": {
+      "type": "technical",
+      "priority": "high",
+      "description": "40+ React/Next.js optimization rules from Vercel",
+      "triggers": {
+        "keywords": ["react", "component", "hook", "state", "performance", "optimization"],
+        "files": ["**/*.tsx", "**/*.jsx", "app/**/*", "components/**/*"]
+      }
+    },
+    "next-best-practices": {
+      "type": "technical",
+      "priority": "high",
+      "description": "Next.js App Router fundamentals and patterns",
+      "triggers": {
+        "keywords": ["next.js", "app router", "server component", "route", "middleware"],
+        "files": ["app/**/*", "middleware.ts", "next.config.*"]
+      }
+    },
+    "seo-fundamentals": {
+      "type": "domain",
+      "priority": "high",
+      "description": "Core SEO principles for content optimization",
+      "triggers": {
+        "keywords": ["seo", "meta", "schema", "keywords", "ranking", "search"],
+        "files": ["lib/seo.ts", "components/seo/**/*"]
+      }
+    },
+    "schema-markup": {
+      "type": "domain",
+      "priority": "medium",
+      "description": "Structured data and JSON-LD schemas",
+      "triggers": {
+        "keywords": ["schema", "json-ld", "structured data", "rich snippet"],
+        "files": ["components/seo/**/*"]
+      }
+    },
+    "seo-content-writer": {
+      "type": "domain",
+      "priority": "medium",
+      "description": "SEO-optimized content creation",
+      "triggers": {
+        "keywords": ["article", "blog", "content", "headline", "meta description"],
+        "files": ["content/**/*.mdx"]
+      }
+    },
+    "web-design-guidelines": {
+      "type": "design",
+      "priority": "medium",
+      "description": "Visual design principles for web",
+      "triggers": {
+        "keywords": ["design", "layout", "visual", "spacing", "color"],
+        "files": ["components/**/*.tsx"]
+      }
+    },
+    "tailwind-css-patterns": {
+      "type": "technical",
+      "priority": "medium",
+      "description": "Utility-first CSS with Tailwind",
+      "triggers": {
+        "keywords": ["tailwind", "css", "style", "class", "responsive"],
+        "files": ["**/*.tsx", "tailwind.config.*"]
+      }
+    },
+    "suno-ai-mastery": {
+      "type": "domain",
+      "priority": "medium",
+      "description": "AI music creation with Suno",
+      "triggers": {
+        "keywords": ["suno", "music", "song", "prompt", "genre"],
+        "files": []
+      }
+    },
+    "typescript-docs": {
+      "type": "technical",
+      "priority": "medium",
+      "description": "TypeScript best practices and patterns",
+      "triggers": {
+        "keywords": ["typescript", "type", "interface", "generic"],
+        "files": ["**/*.ts", "**/*.tsx", "tsconfig.json"]
+      }
+    },
+    "book-publishing": {
+      "type": "domain",
+      "priority": "high",
+      "description": "FrankX book publishing — 6 books, voice profiles, PDF/EPUB pipeline",
+      "triggers": {
+        "keywords": ["book", "chapter", "poetry", "spartan", "manifestation", "imagination", "library", "epub", "pdf generation"],
+        "files": ["content/books/**/*", "app/books/**/*", "app/library/**/*", "data/book-reviews.ts"]
+      },
+      "skill_path": ".claude/skills/book-publishing/SKILL.md"
+    }
+  }
+}
