@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
+import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { RosePetals } from '@/components/valentines/RosePetals'
 import { ParticleField } from '@/components/valentines/ParticleField'
@@ -585,6 +586,31 @@ export default function ValentinesDayPage() {
                 </p>
               </div>
             </div>
+          </ScrollReveal>
+        </div>
+      </section>
+
+      {/* ─── Book CTA ─────────────────────────────────────────── */}
+      <section className="relative px-6 py-16 md:py-20">
+        <div className="absolute inset-0 bg-[#0a0a0f]" />
+        <div className="relative z-20 max-w-lg mx-auto text-center">
+          <ScrollReveal>
+            <p className="text-rose-300/40 text-xs tracking-[0.2em] uppercase mb-3">Read More</p>
+            <h2 className="font-serif italic text-2xl md:text-3xl text-white/50 mb-4">
+              Love &amp; Poetry
+            </h2>
+            <p className="text-white/30 text-sm leading-relaxed mb-8 max-w-md mx-auto">
+              Rumi, Rilke, Goethe, Vietnamese love poetry, and original verse — collected into a free book you can read online.
+            </p>
+            <Link
+              href="/books/love-and-poetry"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-300 text-sm font-medium hover:bg-rose-500/20 transition-colors"
+            >
+              Read the Book
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+              </svg>
+            </Link>
           </ScrollReveal>
         </div>
       </section>
