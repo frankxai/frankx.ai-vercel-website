@@ -17,7 +17,9 @@ import {
   Target,
   BookOpen,
   ArrowUpRight,
+  Download,
 } from 'lucide-react'
+import { EmailSignup } from '@/components/email-signup'
 
 // ============================================================================
 // BACKGROUND
@@ -147,6 +149,100 @@ function HeroSection() {
               </div>
             </div>
           </motion.div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// ============================================================================
+// PLAY INSTRUMENTS
+// ============================================================================
+
+const instruments = [
+  {
+    name: 'Grand Piano',
+    description: 'Real Yamaha C5 concert grand recordings. Velocity-sensitive touch, sustain pedal, stereo imaging.',
+    href: '/music-lab/piano',
+    color: 'from-cyan-500/15 to-blue-600/10',
+    accent: 'text-cyan-400',
+    border: 'border-cyan-500/20 hover:border-cyan-400/30',
+    icon: Music,
+    tag: 'Salamander V3',
+  },
+  {
+    name: 'Tropical Pads',
+    description: '16-pad DJ controller with marimba, steel drums, pluck synths and more. Kygo-style tropical house.',
+    href: '/music-lab/dj-pads',
+    color: 'from-rose-500/15 to-pink-600/10',
+    accent: 'text-rose-400',
+    border: 'border-rose-500/20 hover:border-rose-400/30',
+    icon: Layers,
+    tag: '16 Pads',
+  },
+  {
+    name: 'Xylophone for Kids',
+    description: 'Rainbow pentatonic xylophone — every note sounds beautiful together. Designed for little hands.',
+    href: '/music-lab/for-kids/xylophone',
+    color: 'from-purple-500/15 to-violet-600/10',
+    accent: 'text-purple-400',
+    border: 'border-purple-500/20 hover:border-purple-400/30',
+    icon: Sparkles,
+    tag: 'For Kids',
+  },
+]
+
+function InstrumentsSection() {
+  return (
+    <section className="py-20 border-b border-white/5">
+      <div className="max-w-5xl mx-auto px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-12"
+        >
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/20 mb-6">
+            <Play className="w-4 h-4 text-cyan-400" />
+            <span className="text-sm font-medium text-cyan-300">Play Now</span>
+          </div>
+          <h2 className="text-3xl md:text-4xl font-semibold text-white mb-4">
+            Browser instruments
+          </h2>
+          <p className="text-lg text-white/50 max-w-2xl mx-auto">
+            Play real instruments in your browser. No downloads, no accounts.
+            Touch-optimized for iPad and iPhone.
+          </p>
+        </motion.div>
+
+        <div className="grid md:grid-cols-3 gap-6">
+          {instruments.map((inst, i) => (
+            <motion.div
+              key={inst.name}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.1 }}
+            >
+              <Link
+                href={inst.href}
+                className={`block p-6 rounded-2xl bg-gradient-to-br ${inst.color} border ${inst.border} transition-all hover:shadow-lg group`}
+              >
+                <div className="flex items-center justify-between mb-4">
+                  <div className={`w-11 h-11 rounded-xl bg-white/5 flex items-center justify-center`}>
+                    <inst.icon className={`w-5 h-5 ${inst.accent}`} />
+                  </div>
+                  <span className={`text-[10px] tracking-wider uppercase ${inst.accent} opacity-60`}>{inst.tag}</span>
+                </div>
+                <h3 className="text-lg font-semibold text-white mb-2">{inst.name}</h3>
+                <p className="text-white/45 text-sm leading-relaxed mb-4">{inst.description}</p>
+                <span className={`inline-flex items-center gap-2 text-sm ${inst.accent} group-hover:gap-3 transition-all`}>
+                  Play now
+                  <ArrowRight className="w-4 h-4" />
+                </span>
+              </Link>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
@@ -392,6 +488,71 @@ function PromptExamplesSection() {
 }
 
 // ============================================================================
+// FREE PROMPTS LEAD MAGNET
+// ============================================================================
+
+function FreePromptsSection() {
+  return (
+    <section className="py-24 border-t border-white/5">
+      <div className="max-w-4xl mx-auto px-6">
+        <div className="relative">
+          <div className="absolute -inset-4 bg-gradient-to-br from-emerald-500/10 via-cyan-500/5 to-violet-500/10 blur-3xl opacity-50" />
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="relative bg-white/[0.02] border border-emerald-500/20 rounded-3xl p-8 md:p-12"
+          >
+            <div className="grid md:grid-cols-[1.2fr,1fr] gap-10 items-center">
+              <div>
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-6">
+                  <Download className="w-3.5 h-3.5 text-emerald-400" />
+                  <span className="text-xs font-medium text-emerald-300">Free Download</span>
+                </div>
+
+                <h2 className="text-2xl md:text-3xl font-semibold text-white mb-4">
+                  5 Prompts That Made My Best Suno Tracks
+                </h2>
+
+                <p className="text-white/50 mb-6 leading-relaxed">
+                  The exact prompts behind 500+ plays. Each one includes a breakdown
+                  of why it works and variations to try. Copy, paste, create.
+                </p>
+
+                <ul className="space-y-3 text-sm text-white/60 mb-2">
+                  <li className="flex items-start gap-2">
+                    <span className="text-emerald-400 mt-0.5">&#10003;</span>
+                    <span>5 real prompts from tracks with 77-142 plays each</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-emerald-400 mt-0.5">&#10003;</span>
+                    <span>Prompt engineering breakdown for each track</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <span className="text-emerald-400 mt-0.5">&#10003;</span>
+                    <span>Power words cheat sheet and common mistakes</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <EmailSignup
+                  listType="music-lab"
+                  placeholder="Your email"
+                  buttonText="Get Free Prompts"
+                  showName
+                  className="w-full"
+                />
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// ============================================================================
 // CTA - VIBE OS
 // ============================================================================
 
@@ -459,9 +620,11 @@ export default function MusicLabPage() {
 
       <div className="relative z-10">
         <HeroSection />
+        <InstrumentsSection />
         <WhatIsSection />
         <GetStartedSection />
         <PromptExamplesSection />
+        <FreePromptsSection />
         <CTASection />
       </div>
     </main>
