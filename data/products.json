@@ -1064,6 +1064,69 @@
         }
       ]
     }
+  },
+  {
+    "id": "5-suno-prompts",
+    "slug": "5-suno-prompts",
+    "name": "5 Prompts That Made My Best Suno Tracks",
+    "category": "Music Intelligence",
+    "badge": "FREE DOWNLOAD",
+    "headline": "The Exact Prompts Behind My Top Suno Tracks",
+    "subheadline": "Copy the 5 prompts that generated 500+ plays. Each with breakdowns of why it works and variations to try.",
+    "promise": "Skip the guessing. Get proven prompts that actually produce great Suno tracks.",
+    "summary": "Free guide with 5 battle-tested Suno prompts, a power words cheat sheet, and common mistakes to avoid.",
+    "transformation": [
+      "Copy 5 proven prompts directly into Suno for immediate results",
+      "Understand the specific keywords that control Suno output quality",
+      "Learn genre fusion techniques that create original sounds",
+      "Get a power words cheat sheet for any future prompt"
+    ],
+    "socialProof": {
+      "stats": [
+        { "number": "500+", "label": "Tracks Created" },
+        { "number": "142", "label": "Top Plays" },
+        { "number": "5", "label": "Proven Prompts" }
+      ],
+      "quotes": []
+    },
+    "offer": {
+      "primaryPrice": 0,
+      "primaryPriceDisplay": "Free",
+      "currency": "USD",
+      "ctaPrimary": "Get Free Prompts",
+      "ctaPrimaryHref": "/music-lab",
+      "ctaPrimaryTracking": "5-suno-prompts-download",
+      "ctaSecondary": "Full Prompt Library",
+      "ctaSecondaryHref": "/products/suno-prompt-library",
+      "guarantee": {
+        "label": "Instant Access",
+        "description": "Enter your email and get the PDF delivered immediately. No spam, unsubscribe anytime."
+      }
+    },
+    "modules": [],
+    "faq": [
+      {
+        "question": "Do these prompts work with Suno v4?",
+        "answer": "Yes. All prompts are tested on v4 and newer. They work with any recent Suno version."
+      },
+      {
+        "question": "Is this really free?",
+        "answer": "Yes. Enter your email and the PDF is delivered instantly. We also offer a full 100+ prompt library for $27."
+      }
+    ],
+    "analyticsId": "5-suno-prompts",
+    "delivery": {
+      "methods": ["download", "gated"],
+      "requiresEmail": true,
+      "files": [
+        {
+          "name": "5 Suno Prompts Guide",
+          "format": "pdf",
+          "blobKey": "5-suno-prompts.pdf",
+          "description": "5 battle-tested Suno prompts with breakdowns and cheat sheet"
+        }
+      ]
+    }
   }
 ]
 

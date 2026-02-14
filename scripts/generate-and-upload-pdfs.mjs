@@ -23,6 +23,12 @@ const PDFS = [
     htmlPath: join(projectRoot, 'public/pdf-templates/vibe-os-guide.html'),
     title: 'Vibe OS AI Music Creation Guide',
     blobKey: 'vibe-os-guide.pdf'
+  },
+  {
+    name: '5-suno-prompts',
+    htmlPath: join(projectRoot, 'public/pdf-templates/5-suno-prompts.html'),
+    title: '5 Prompts That Made My Best Suno Tracks',
+    blobKey: '5-suno-prompts.pdf'
   }
 ]
 

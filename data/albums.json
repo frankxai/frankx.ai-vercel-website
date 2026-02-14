@@ -1,0 +1,117 @@
+{
+  "_description": "FrankX Album Collections — genre-based packaging of Suno tracks",
+  "_lastUpdated": "2026-02-14",
+  "albums": [
+    {
+      "id": "golden-frequencies",
+      "title": "Golden Frequencies",
+      "subtitle": "Healing Frequencies & World Choirs",
+      "description": "Neoclassical healing frequencies — 528Hz, 963Hz, sound bowls, and world choirs from Mongolian to Native American traditions.",
+      "genre": "Neoclassical / Ambient / World",
+      "trackIds": [
+        "golden-frequencies-v4",
+        "golden-frequency-choir-1",
+        "golden-frequencies-v5",
+        "golden-frequency-v3",
+        "golden-frequency-choir-native",
+        "golden-frequency-choir-male-native",
+        "golden-frequency-choir-extended",
+        "golden-frequency-choir-mongolian",
+        "golden-frequency-choir-mongolian-2"
+      ],
+      "coverImage": null,
+      "color": "amber",
+      "price": 9.99,
+      "lemonSqueezyProductId": null,
+      "playlistUrl": "https://suno.com/playlist/77e7f75f-24b4-4c8f-b02c-10eff76a7052",
+      "releaseDate": null,
+      "status": "draft"
+    },
+    {
+      "id": "arcanea-soundtrack",
+      "title": "Arcanea: The Soundtrack",
+      "subtitle": "Epic Fantasy Orchestra & Elvish Choirs",
+      "description": "Original soundtrack for the Arcanea universe. Epic orchestral fantasy with invented elvish language, cinematic choirs, and arena rock.",
+      "genre": "Orchestral / Fantasy / Arena Rock",
+      "trackIds": [
+        "arcanea-light-me-up",
+        "arcanean-legends",
+        "arcanean-starlight",
+        "arcanea-awaken"
+      ],
+      "coverImage": null,
+      "color": "rose",
+      "price": 7.99,
+      "lemonSqueezyProductId": null,
+      "playlistUrl": "https://suno.com/playlist/898c6c67-1b25-495f-82ce-53d9139d9a25",
+      "releaseDate": null,
+      "status": "draft"
+    },
+    {
+      "id": "electric-soul",
+      "title": "Electric Soul",
+      "subtitle": "Rock, EDM & Orchestral Anthems",
+      "description": "High-energy fusion of rock, EDM, metalcore, and orchestral arrangements. Anthems for the creative mind.",
+      "genre": "Rock / EDM / Orchestral",
+      "trackIds": [
+        "golden-age-of-intelligence",
+        "lumina",
+        "art-of-soulful-living",
+        "trust-in-yourself",
+        "starlight-delight-remastered",
+        "create-millions-of-starlights"
+      ],
+      "coverImage": null,
+      "color": "violet",
+      "price": 9.99,
+      "lemonSqueezyProductId": null,
+      "playlistUrl": null,
+      "releaseDate": null,
+      "status": "draft"
+    },
+    {
+      "id": "vibe-state",
+      "title": "Vibe State",
+      "subtitle": "Hip Hop, R&B & Vocal Tracks",
+      "description": "Sophisticated hip hop and vocal-driven tracks. Female vocal features, bass-heavy production, lyrical depth.",
+      "genre": "Hip Hop / R&B / Vocal",
+      "trackIds": [
+        "vibe-os-track",
+        "i-feel-the-vibe",
+        "the-awakening",
+        "magical-times",
+        "beast-mode-switch"
+      ],
+      "coverImage": null,
+      "color": "cyan",
+      "price": 9.99,
+      "lemonSqueezyProductId": null,
+      "playlistUrl": null,
+      "releaseDate": null,
+      "status": "draft"
+    },
+    {
+      "id": "tech-house-sessions",
+      "title": "Tech House Sessions",
+      "subtitle": "Driving Grooves & Dance Floor Energy",
+      "description": "Driving tech house grooves, dance floor fillers, and movement-ready beats.",
+      "genre": "Tech House / Dance / Electronic",
+      "trackIds": [
+        "i-want-to-build-a-free-world",
+        "i-want-to-be-free",
+        "feel-your-magic",
+        "need-to-feel-your-magic-v2",
+        "magical-world-v3",
+        "golden-frequency-floor",
+        "we-are-millions-of-starlights"
+      ],
+      "coverImage": null,
+      "color": "emerald",
+      "price": 9.99,
+      "lemonSqueezyProductId": null,
+      "playlistUrl": null,
+      "releaseDate": null,
+      "status": "draft"
+    }
+  ]
+}

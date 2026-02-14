@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { cn } from '@/lib/utils'
 
 interface EmailSignupProps {
-  listType?: 'newsletter' | 'creation-chronicles' | 'inner-circle'
+  listType?: 'newsletter' | 'creation-chronicles' | 'inner-circle' | 'music-lab'
   placeholder?: string
   buttonText?: string
   className?: string

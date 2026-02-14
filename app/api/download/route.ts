@@ -132,9 +132,21 @@ export async function POST(request: NextRequest) {
       )
     }
 
-    // TODO: Store email for newsletter/follow-up
-    // This would integrate with ConvertKit, Resend, or similar
-    console.log(`Download request from ${email} for ${product.name}`)
+    // Add contact to Resend audience for follow-up
+    const RESEND_API_KEY = process.env.RESEND_API_KEY
+    if (RESEND_API_KEY) {
+      fetch(`https://api.resend.com/audiences/4d2e913e-6903-4dd4-8749-c02cdb844331/contacts`, {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${RESEND_API_KEY}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email,
+          unsubscribed: false,
+        }),
+      }).catch((err) => console.error('Resend contact error:', err))
+    }
 
     // Generate direct download URL from your blob storage
     const downloadUrl = `${BLOB_BASE_URL}/${file.blobKey}`

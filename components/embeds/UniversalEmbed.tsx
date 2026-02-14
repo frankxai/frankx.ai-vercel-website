@@ -15,6 +15,7 @@ type EmbedType =
   | 'twitter'
   | 'spotify'
   | 'soundcloud'
+  | 'suno'
   | 'vimeo'
   | 'figma'
   | 'codepen'
@@ -92,6 +93,12 @@ const embedConfigs: Record<
     getEmbedUrl: (id) =>
       `https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/${id}&color=%23ff5500&auto_play=false&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false`,
     getDirectUrl: (id) => `https://soundcloud.com/tracks/${id}`,
+  },
+  suno: {
+    name: 'Suno',
+    color: '#10b981',
+    getEmbedUrl: (id) => `https://suno.com/embed/${id}`,
+    getDirectUrl: (id) => `https://suno.com/song/${id}`,
   },
   vimeo: {
     name: 'Vimeo',
@@ -314,6 +321,10 @@ export function FigmaEmbed(props: Omit<UniversalEmbedProps, 'type'>) {
 
 export function CodePenEmbed(props: Omit<UniversalEmbedProps, 'type'>) {
   return <UniversalEmbed type="codepen" {...props} />
+}
+
+export function SunoEmbed(props: Omit<UniversalEmbedProps, 'type'>) {
+  return <UniversalEmbed type="suno" {...props} />
 }
 
 export function LoomEmbed(props: Omit<UniversalEmbedProps, 'type'>) {
