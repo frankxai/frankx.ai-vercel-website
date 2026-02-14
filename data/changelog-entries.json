@@ -18,49 +18,57 @@
           "date": "2026-02-14",
           "type": "shipped",
           "title": "ACOS v10 — Autonomous Intelligence",
-          "description": "Five new safety and intelligence systems: Experience Replay (learns from past successes), Agent IAM (least-privilege access control), Immutable Audit Trail (append-only logging), Confidence Circuit Breaker (stops cascading failures), Conservative Self-Modify Gate (auto-reverts bad changes). Intelligence score jumped from 72 to 93/100. Hooks optimized from 15 to 7. 22 curated skills, 8 specialist agents, 6 IAM-scoped profiles.",
+          "description": "Five new safety and intelligence systems: Experience Replay, Agent IAM, Immutable Audit Trail, Confidence Circuit Breaker, and Conservative Self-Modify Gate. Intelligence score jumped from 72 to 93/100. Hooks optimized from 15 to 7.",
           "tags": ["acos", "intelligence", "safety", "agents"],
           "commit": "93539d0",
-          "impact": "major"
+          "impact": "major",
+          "image": "/images/acos/acos-v10-architecture.png",
+          "blogUrl": "/blog/acos-v10-autonomous-intelligence",
+          "metrics": { "label": "Intelligence", "before": "72", "after": "93", "unit": "/100" }
         },
         {
           "id": "cl-2026-0214-investor",
           "date": "2026-02-14",
           "type": "shipped",
           "title": "Investor Intelligence Vertical",
-          "description": "New /investor hub with 4 sub-pages (agents, workflows, architectures, tools). 14 products across dual-track pricing: Institutional (VCs/Angels/PE) $97-697 and Individual (retail/traders) $27-147. Adaptive mega-menu with compact/medium/grouped layouts.",
+          "description": "New /investor hub with 4 sub-pages. 14 products across dual-track pricing: Institutional $97-697 and Individual $27-147. Adaptive mega-menu with compact/medium/grouped layouts.",
           "tags": ["investor", "products", "navigation"],
           "commit": "d5aec51",
-          "impact": "major"
+          "impact": "major",
+          "url": "/investor",
+          "metrics": { "label": "Products", "before": "0", "after": "14", "unit": "" }
         },
         {
           "id": "cl-2026-0214-starlight",
           "date": "2026-02-14",
           "type": "shipped",
           "title": "Starlight Intelligence System v4.0",
-          "description": "Universal intelligence layer with ACOS bi-directional sync. 8 modules (ContextEngine, MemoryManager, AgentRouter, OrchestrationEngine, SyncBridge, ScoreEngine). Trajectories flow up from ACOS, context flows down from Starlight. 109 memory entries synced.",
+          "description": "Universal intelligence layer with ACOS bi-directional sync. 8 modules including SyncBridge and ScoreEngine. 109 memory entries synced across sessions.",
           "tags": ["starlight", "intelligence", "integration"],
           "commit": "1b2c559",
-          "impact": "medium"
+          "impact": "medium",
+          "blogUrl": "/blog/frankx-intelligence-ecosystem-complete-guide"
         },
         {
           "id": "cl-2026-0214-valentines",
           "date": "2026-02-14",
           "type": "shipped",
           "title": "Valentine's Day Interactive Experiences",
-          "description": "Personal Valentine's letter with Vietnamese poetry, timeline data, AI artwork (Vietnamese-Dutch fusion), and interactive piano synthesizer using Web Audio API with Salamander Grand Piano samples. Multi-language poetry section.",
-          "tags": ["valentines", "interactive", "music", "personal"],
+          "description": "Personal letter with Vietnamese poetry, AI artwork, and interactive piano synthesizer using Web Audio API with Salamander Grand Piano samples.",
+          "tags": ["valentines", "interactive", "music"],
           "commits": ["latest"],
-          "impact": "medium"
+          "impact": "medium",
+          "url": "/valentines-day/tien"
         },
         {
           "id": "cl-2026-0214-performance",
           "date": "2026-02-13",
           "type": "improved",
           "title": "Hook System Optimization",
-          "description": "Trimmed from 15 hooks to 7 for WSL multi-instance stability. Removed informational-only PreToolUse guidance hooks, heavy PostToolUse learning-hooks, consolidated tracking. Per-tool-use subprocess spawns reduced from 5-6 to 1-2. Safe for 3-4 concurrent instances on 16GB RAM.",
+          "description": "Trimmed from 15 hooks to 7. Per-tool-use subprocess spawns reduced from 5-6 to 1-2. Safe for 3-4 concurrent Claude Code instances on 16GB RAM.",
           "tags": ["performance", "hooks", "wsl"],
-          "impact": "medium"
+          "impact": "medium",
+          "metrics": { "label": "Hooks", "before": "15", "after": "7", "unit": "" }
         }
       ]
     },
@@ -82,47 +90,52 @@
           "date": "2026-02-07",
           "type": "shipped",
           "title": "ACOS v7.0 — Unified Orchestration",
-          "description": "Complete integration of claude-flow V3 into ACOS. Unified auto-router with intelligent complexity detection, Ultraworld creative swarm for Arcanea, 83 new command files, 4 hook modules, hierarchical swarm topology with anti-drift. 630+ skills, 40+ agents, 130+ commands.",
+          "description": "Complete integration of claude-flow V3 into ACOS. Unified auto-router with intelligent complexity detection, Ultraworld creative swarm, hierarchical swarm topology with anti-drift.",
           "tags": ["acos", "infrastructure", "agents"],
           "commit": "90ee862",
-          "impact": "major"
+          "impact": "major",
+          "blogUrl": "/blog/agentic-creator-os-complete-guide",
+          "image": "/images/acos/acos-hero.png"
         },
         {
           "id": "cl-2026-0209-research",
           "date": "2026-02-06",
           "type": "shipped",
           "title": "7 Research Portals — Enterprise AI Authority",
-          "description": "Launched Healthcare (Project Prometheus), AI Architecture, Agentic AI, AI Ops, Oracle Database, Sovereign AI, and Cost Engineering research portals. 164 validated sources, schema.org structured data, FAQPage schema, dedicated sitemap. Full SEO trust infrastructure.",
+          "description": "Healthcare, AI Architecture, Agentic AI, AI Ops, Oracle Database, Sovereign AI, and Cost Engineering. 164 validated sources, schema.org structured data, dedicated sitemap.",
           "tags": ["research", "seo", "content"],
           "commits": ["0de33c0", "b2d3ca5", "901984b", "e18a4e5"],
-          "impact": "major"
+          "impact": "major",
+          "url": "/research"
         },
         {
           "id": "cl-2026-0209-aiops",
           "date": "2026-02-06",
           "type": "shipped",
           "title": "AI Ops Intelligence Hub",
-          "description": "Full /ai-ops section with 6 sub-routes: architecture patterns, implementation patterns, 2026 model landscape, maturity model, OCI accelerator packs, AGI-ready knowledge systems. 14 architecture infographics.",
+          "description": "Full /ai-ops section with 6 sub-routes: architecture patterns, implementation patterns, 2026 model landscape, maturity model, OCI accelerator packs.",
           "tags": ["ai-ops", "enterprise", "research"],
           "commit": "91a59a1",
-          "impact": "medium"
+          "impact": "medium",
+          "url": "/ai-ops"
         },
         {
           "id": "cl-2026-0209-seo",
           "date": "2026-02-06",
           "type": "improved",
           "title": "Research SEO & Discoverability",
-          "description": "Phase 1 trust infrastructure: methodology page, schema.org Article + FAQPage markup on all 7 portals, dedicated research sitemap, enriched sources with 164 validated references. FAQ sections with 5+ questions per portal.",
+          "description": "Phase 1 trust infrastructure: methodology page, schema.org Article + FAQPage markup on all 7 portals, dedicated research sitemap, enriched sources with 164 validated references.",
           "tags": ["seo", "research", "discoverability"],
           "commits": ["de9db8d", "2b750ad", "c9f9684"],
-          "impact": "medium"
+          "impact": "medium",
+          "blogUrl": "/blog/seo-aeo-optimization-acos"
         },
         {
           "id": "cl-2026-0209-design",
           "date": "2026-02-08",
           "type": "shipped",
           "title": "Family Tree Design System — 15 Variants",
-          "description": "Interactive genealogical visualization system for the Riemer-Gorte family with 15 distinct design variants. Connection graphs, hierarchical trees, timeline views. Data-driven React components with shared family data model.",
+          "description": "Interactive genealogical visualization with 15 design variants. Connection graphs, hierarchical trees, timeline views.",
           "tags": ["design", "family", "visualization"],
           "commits": ["004315b", "d011f62", "2c2cf4d", "54dd0fa"],
           "impact": "medium"
@@ -132,7 +145,7 @@
           "date": "2026-02-04",
           "type": "improved",
           "title": "ACOS Visual Identity — Imagen 4 Ultra",
-          "description": "Three iterations of ACOS visuals using Imagen 4, culminating in Ultra-quality renders. Guardian-enhanced aesthetics, Arcanea ecosystem themes, golden age imagery. 9 premium images, 23 MB total.",
+          "description": "Three iterations of ACOS visuals using Imagen 4, culminating in Ultra-quality renders. 9 premium images, 23 MB total.",
           "tags": ["design", "acos", "visuals"],
           "commits": ["2c61c32", "bbd181f", "6f5af96"],
           "impact": "small"
