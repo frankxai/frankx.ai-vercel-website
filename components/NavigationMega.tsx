@@ -30,6 +30,14 @@ import {
   Network,
   Microscope,
   Building,
+  TrendingUp,
+  Wrench,
+  Download,
+  Compass,
+  Gamepad2,
+  Puzzle,
+  Brain,
+  Trophy,
 } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
@@ -80,6 +88,20 @@ const navigation = {
       { name: 'AI Assessment', href: '/ai-assessment', icon: Target, description: 'Find your path' },
     ],
   },
+  games: {
+    label: 'Games',
+    featured: {
+      title: 'Games Lab',
+      description: 'Browser games built with AI. Play, learn, and build your own.',
+      href: '/games',
+      badge: 'New',
+    },
+    items: [
+      { name: 'Games Lab', href: '/games', icon: Gamepad2, description: 'Hub for browser games' },
+      { name: 'Memory Match', href: '/games/memory-match', icon: Puzzle, description: 'AI-powered card game' },
+      { name: 'Game Dev Research', href: '/research/agentic-game-development', icon: Brain, description: 'Agentic game development' },
+    ],
+  },
   developers: {
     label: 'AI Architecture',
     featured: {
@@ -98,6 +120,22 @@ const navigation = {
       { name: 'Developer Hub', href: '/developers', icon: Bot, description: 'Ship 10x faster with AI' },
     ],
   },
+  investor: {
+    label: 'Investors',
+    featured: {
+      title: 'Investor Intelligence',
+      description: 'AI agents, n8n workflows, and system architectures for smarter deal flow.',
+      href: '/investor',
+      badge: 'New',
+    },
+    items: [
+      { name: 'Intelligence Hub', href: '/investor', icon: TrendingUp, description: 'Central hub for investor AI tools' },
+      { name: 'AI Agent Packs', href: '/investor/agents', icon: Bot, description: 'Due diligence & deal flow agents' },
+      { name: 'Workflow Templates', href: '/investor/workflows', icon: Workflow, description: 'n8n automated pipelines' },
+      { name: 'Architectures', href: '/investor/architectures', icon: Network, description: 'Intelligence system blueprints' },
+      { name: 'Tools & Templates', href: '/investor/tools', icon: Wrench, description: 'Notion, Obsidian, workspace configs' },
+    ],
+  },
   resources: {
     label: 'Resources',
     featured: {
@@ -112,7 +150,7 @@ const navigation = {
       { name: "The Creator's Soulbook", href: '/soulbook', icon: BookOpen, description: 'Your life transformation system' },
       { name: 'Free Playbooks', href: '/free-playbook', icon: FileText, description: 'Start with quick wins' },
       { name: 'Prompt Library', href: '/prompt-library', icon: BookOpen, description: 'Curated prompt stacks' },
-      { name: 'Downloads', href: '/downloads', icon: FileText, description: 'PDFs & free resources' },
+      { name: 'Downloads', href: '/downloads', icon: Download, description: 'PDFs & free resources' },
       { name: 'Research Hub', href: '/research', icon: Microscope, description: 'Daily intelligence operations' },
       { name: 'Intelligence Atlas', href: '/intelligence-atlas', icon: Star, description: 'Flagship research' },
       { name: 'AI Architect', href: '/ai-architect', icon: Network, description: 'Solution design & patterns' },
@@ -120,6 +158,20 @@ const navigation = {
       { name: 'Agentic Creator OS', href: '/products/agentic-creator-os', icon: Bot, description: 'Agent workflows' },
       { name: 'Arcanea', href: '/magic', icon: Wand2, description: 'Worldbuilding academy' },
       { name: 'The Luminors', href: 'https://arcanea.app', icon: Heart, description: 'AI companions', external: true },
+    ],
+    groups: [
+      {
+        label: 'Products & Systems',
+        items: ['Resource Hub', 'Vibe OS', 'Agentic Creator OS', 'Arcanea', 'The Luminors'],
+      },
+      {
+        label: 'Learn & Read',
+        items: ['The Golden Age of Creators', "The Creator's Soulbook", 'Free Playbooks', 'Prompt Library'],
+      },
+      {
+        label: 'Research & Tools',
+        items: ['Downloads', 'Research Hub', 'Intelligence Atlas', 'AI Architect'],
+      },
     ],
   },
 }
@@ -139,61 +191,132 @@ function Logo() {
   )
 }
 
-// Mega menu content component
-function MegaMenuContent({ section }: { section: keyof typeof navigation }) {
-  const data = navigation[section]
+// Shared menu link renderer
+function MenuLink({ item }: { item: (typeof navigation)[keyof typeof navigation]['items'][0] }) {
+  const Icon = item.icon
+  const isExternal = 'external' in item && item.external
+  const LinkComponent = isExternal ? 'a' : Link
+  const linkProps = isExternal
+    ? { href: item.href, target: '_blank', rel: 'noopener noreferrer' }
+    : { href: item.href }
 
   return (
-    <div className="grid w-[600px] gap-4 p-4 md:grid-cols-[200px_1fr]">
-      {/* Featured card */}
-      <Link
-        href={data.featured.href}
-        className="group relative flex flex-col justify-end overflow-hidden rounded-xl bg-gradient-to-b from-slate-800/50 to-slate-900/80 p-5 transition-all hover:from-slate-800/70 hover:to-slate-900"
-      >
-        <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-cyan-500/10 to-violet-500/10 opacity-0 transition-opacity group-hover:opacity-100" />
-        <span className="mb-2 inline-block w-fit rounded-full bg-white/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-white/70">
-          {data.featured.badge}
-        </span>
-        <h4 className="text-base font-semibold text-white">{data.featured.title}</h4>
-        <p className="mt-1 text-xs leading-relaxed text-slate-400">
-          {data.featured.description}
-        </p>
-        <ArrowRight className="mt-3 h-4 w-4 text-white/50 transition-transform group-hover:translate-x-1 group-hover:text-white" />
-      </Link>
-
-      {/* Links grid */}
-      <ul className="grid grid-cols-1 gap-1">
-        {data.items.map((item) => {
-          const Icon = item.icon
-          const isExternal = 'external' in item && item.external
-          const LinkComponent = isExternal ? 'a' : Link
-          const linkProps = isExternal
-            ? { href: item.href, target: '_blank', rel: 'noopener noreferrer' }
-            : { href: item.href }
-
-          return (
-            <li key={item.name}>
-              <NavigationMenu.Link asChild>
+    <li>
+      <NavigationMenu.Link asChild>
         <LinkComponent
-                  {...linkProps}
-                  className="group flex items-start gap-3 rounded-lg p-2.5 transition-colors hover:bg-white/5"
-                >
-                  <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white/5 text-slate-400 transition-colors group-hover:bg-white/10 group-hover:text-white">
-                    <Icon className="h-4 w-4" />
-                  </div>
-                  <div className="flex-1">
-                    <span className="flex items-center gap-1.5 text-sm font-medium text-white">
-                      {item.name}
-                      {isExternal && <ExternalLink className="h-3 w-3 text-slate-500" />}
-                    </span>
-                    <p className="text-xs text-slate-500">{item.description}</p>
-                  </div>
-                </LinkComponent>
-              </NavigationMenu.Link>
-            </li>
-          )
-        })}
-      </ul>
+          {...linkProps}
+          className="group flex items-start gap-3 rounded-lg p-2 transition-colors hover:bg-white/5"
+        >
+          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-md bg-white/5 text-slate-400 transition-colors group-hover:bg-white/10 group-hover:text-white">
+            <Icon className="h-3.5 w-3.5" />
+          </div>
+          <div className="flex-1 min-w-0">
+            <span className="flex items-center gap-1.5 text-[13px] font-medium text-white">
+              {item.name}
+              {isExternal && <ExternalLink className="h-3 w-3 text-slate-500" />}
+            </span>
+            <p className="text-[11px] leading-tight text-slate-500">{item.description}</p>
+          </div>
+        </LinkComponent>
+      </NavigationMenu.Link>
+    </li>
+  )
+}
+
+// Featured card component used in all mega menus
+function FeaturedCard({ data }: { data: (typeof navigation)[keyof typeof navigation] }) {
+  return (
+    <Link
+      href={data.featured.href}
+      className="group relative flex flex-col justify-end overflow-hidden rounded-xl bg-gradient-to-b from-slate-800/50 to-slate-900/80 p-5 transition-all hover:from-slate-800/70 hover:to-slate-900"
+    >
+      <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/10 via-cyan-500/10 to-violet-500/10 opacity-0 transition-opacity group-hover:opacity-100" />
+      <span className="mb-2 inline-block w-fit rounded-full bg-white/10 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-white/70">
+        {data.featured.badge}
+      </span>
+      <h4 className="text-base font-semibold text-white">{data.featured.title}</h4>
+      <p className="mt-1 text-xs leading-relaxed text-slate-400">
+        {data.featured.description}
+      </p>
+      <ArrowRight className="mt-3 h-4 w-4 text-white/50 transition-transform group-hover:translate-x-1 group-hover:text-white" />
+    </Link>
+  )
+}
+
+// Adaptive mega menu content — layout scales with item count
+function MegaMenuContent({ section }: { section: keyof typeof navigation }) {
+  const data = navigation[section]
+  const itemCount = data.items.length
+  const hasGroups = 'groups' in data && data.groups
+
+  // Large grouped layout (Resources: 9+ items with semantic groups)
+  if (hasGroups) {
+    const groups = (data as typeof data & { groups: { label: string; items: string[] }[] }).groups
+    return (
+      <div className="w-[820px] p-4">
+        <div className="grid grid-cols-[200px_1fr] gap-4">
+          <FeaturedCard data={data} />
+          <div className="grid grid-cols-3 gap-4">
+            {groups.map((group) => {
+              const groupItems = group.items
+                .map((name) => data.items.find((i) => i.name === name))
+                .filter(Boolean) as (typeof data.items)[0][]
+              return (
+                <div key={group.label}>
+                  <h5 className="mb-2 px-2 text-[10px] font-bold uppercase tracking-[0.15em] text-slate-500">
+                    {group.label}
+                  </h5>
+                  <ul className="space-y-0.5">
+                    {groupItems.map((item) => (
+                      <MenuLink key={item.name} item={item} />
+                    ))}
+                  </ul>
+                </div>
+              )
+            })}
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  // Medium 2-column layout (Developers: 6-8 items)
+  if (itemCount > 5) {
+    const midpoint = Math.ceil(itemCount / 2)
+    const col1 = data.items.slice(0, midpoint)
+    const col2 = data.items.slice(midpoint)
+    return (
+      <div className="w-[700px] p-4">
+        <div className="grid grid-cols-[200px_1fr] gap-4">
+          <FeaturedCard data={data} />
+          <div className="grid grid-cols-2 gap-3">
+            <ul className="space-y-0.5">
+              {col1.map((item) => (
+                <MenuLink key={item.name} item={item} />
+              ))}
+            </ul>
+            <ul className="space-y-0.5">
+              {col2.map((item) => (
+                <MenuLink key={item.name} item={item} />
+              ))}
+            </ul>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
+  // Compact single-column layout (Music, Creators, Students, Investor: ≤5 items)
+  return (
+    <div className="w-[560px] p-4">
+      <div className="grid grid-cols-[200px_1fr] gap-4">
+        <FeaturedCard data={data} />
+        <ul className="space-y-0.5">
+          {data.items.map((item) => (
+            <MenuLink key={item.name} item={item} />
+          ))}
+        </ul>
+      </div>
     </div>
   )
 }
@@ -325,11 +448,27 @@ export default function NavigationMega() {
               </NavigationMenu.Content>
             </NavigationMenu.Item>
 
+            {/* Games */}
+            <NavigationMenu.Item>
+              <NavTrigger>Games</NavTrigger>
+              <NavigationMenu.Content className="absolute left-0 top-0 data-[motion=from-end]:animate-enterFromRight data-[motion=from-start]:animate-enterFromLeft data-[motion=to-end]:animate-exitToRight data-[motion=to-start]:animate-exitToLeft">
+                <MegaMenuContent section="games" />
+              </NavigationMenu.Content>
+            </NavigationMenu.Item>
+
             {/* Developers */}
             <NavigationMenu.Item>
               <NavTrigger>Developers</NavTrigger>
               <NavigationMenu.Content className="absolute left-0 top-0 data-[motion=from-end]:animate-enterFromRight data-[motion=from-start]:animate-enterFromLeft data-[motion=to-end]:animate-exitToRight data-[motion=to-start]:animate-exitToLeft">
                 <MegaMenuContent section="developers" />
+              </NavigationMenu.Content>
+            </NavigationMenu.Item>
+
+            {/* Investors */}
+            <NavigationMenu.Item>
+              <NavTrigger>Investors</NavTrigger>
+              <NavigationMenu.Content className="absolute left-0 top-0 data-[motion=from-end]:animate-enterFromRight data-[motion=from-start]:animate-enterFromLeft data-[motion=to-end]:animate-exitToRight data-[motion=to-start]:animate-exitToLeft">
+                <MegaMenuContent section="investor" />
               </NavigationMenu.Content>
             </NavigationMenu.Item>
 
