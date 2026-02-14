@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { Inter, Poppins, Playfair_Display, JetBrains_Mono } from 'next/font/google'
 import './globals.css'
 import Script from 'next/script'
-import { Analytics } from '@vercel/analytics/react'
+import { Analytics } from '@vercel/analytics/next'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 
 import { cn } from '@/lib/utils'
