@@ -229,7 +229,7 @@ The barriers that kept creative industries exclusive—geography, wealth, creden
 
 This is not theoretical. This is measurable.
 
-A 2025 study found that 34% of new professional creators come from demographics historically underrepresented in creative industries. The tools are diversifying who gets to create professionally.
+Early data suggests the proportion of new professional creators from historically underrepresented demographics is growing as barriers to entry fall. The tools are diversifying who gets to create professionally.
 
 The golden age is not just about volume of creation. It is about who gets to participate in creation.
 

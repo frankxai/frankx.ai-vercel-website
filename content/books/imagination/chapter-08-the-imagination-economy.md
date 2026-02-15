@@ -77,7 +77,7 @@ This amplification dramatically increases imagination's economic value. When exe
 
 The time allocation inverts: 10% execution, 90% vision. The person with clear imagination and refined taste can now produce 10x or 100x more finished work because execution no longer bottlenecks output. But imagination itself can't be automated—you still need the human to imagine what's worth creating.
 
-As Peter Drucker observed decades before AI: *"The best way to predict the future is to create it."* AI gives us unprecedented tools for creation. But imagination determines what future we create.
+AI gives us unprecedented tools for creation. But imagination determines what future we create.
 
 ## VI. The New Competitive Advantages
 

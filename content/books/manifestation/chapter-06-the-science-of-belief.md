@@ -39,7 +39,7 @@ Seligman later inverted his own research, developing the framework of learned op
 
 ## IV. The Reticular Activating System: Your Brain's Filter
 
-Your brain processes roughly 11 million bits of sensory information per second. Your conscious mind can handle about 40 bits per second. To bridge this gap, your brain employs a filter called the Reticular Activating System (RAS).
+According to estimates popularized by Tor Norretranders in *The User Illusion*, your brain processes roughly 11 million bits of sensory information per second. Your conscious mind can handle about 40 bits per second. To bridge this gap, your brain employs a filter called the Reticular Activating System (RAS).
 
 The RAS determines what information reaches your conscious awareness based on what you've marked as important. When you buy a new car, you suddenly see that model everywhere. The cars were always there. Your RAS now recognizes them as relevant.
 

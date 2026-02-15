@@ -21,7 +21,7 @@ This is the power and the patience requirement of compounding. Progress appears 
 
 Jeff Bezos observed, "All overnight successes take about 10 years." The public sees the breakthrough. They overlook the decade of groundwork that made the breakthrough possible.
 
-James Dyson created 5,126 failed prototypes before producing the bagless vacuum that made him a billionaire. Sara Blakely spent years selling fax machines before launching Spanx. J.K. Rowling was rejected by twelve publishers before Harry Potter found a home.
+James Dyson created 5,127 failed prototypes before producing the bagless vacuum that made him a billionaire. Sara Blakely spent years selling fax machines before launching Spanx. J.K. Rowling was rejected by twelve publishers before Harry Potter found a home.
 
 The pattern repeats across domains: long periods of obscure effort, then sudden visibility. The visibility is not the cause of success. The obscure effort is. The visibility is the result of compounding reaching critical mass.
 
@@ -95,7 +95,7 @@ Dave Brailsford took over British Cycling in 2003 when the team had won a single
 
 Better bike seats. More aerodynamic clothing. Improved tire grip. Optimized sleep conditions. Hand-washing protocols to reduce illness. Each change was tiny. The cumulative effect was transformative.
 
-Within five years, British cyclists dominated the Olympics. Within ten years, they won 178 world championships and 66 Olympic medals.
+Within five years, British cyclists dominated the Olympics. Over the following decade, they became the most decorated cycling program in the world, claiming dozens of world championship titles and Olympic gold medals.
 
 This principle applies to manifestation. You improve your morning routine by 1%. You refine your visualization practice by 1%. You increase your evidence documentation quality by 1%. You upgrade your environment by 1%. You expand your belief by 1%.
 
