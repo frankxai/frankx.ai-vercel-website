@@ -10,11 +10,15 @@ import {
 } from 'lucide-react'
 
 import prototypesData from '@/data/ai-architecture/prototypes.json'
+import deployData from '@/data/deploy-targets.json'
 import { CATEGORY_META, CLOUD_PROVIDER_META, DIFFICULTY_META } from '@/types/ai-architecture'
 import type { ArchitecturePrototype } from '@/types/ai-architecture'
+import type { BlueprintDeployConfig, DeployTarget } from '@/types/affiliates'
 import { BlueprintDiagramWrapper } from './BlueprintDiagramWrapper'
+import { DeployButtonGroup } from '@/components/deploy/DeployButtonGroup'
 
 const blueprints = prototypesData as ArchitecturePrototype[]
+const deployConfigs = deployData.blueprints as BlueprintDeployConfig[]
 
 interface Props {
   params: Promise<{ slug: string }>
@@ -106,10 +110,28 @@ export default async function BlueprintPage({ params }: Props) {
         </div>
       </section>
 
-      {/* Actions */}
+      {/* Deploy & Actions */}
       <section className="py-8 border-b border-white/5">
         <div className="mx-auto max-w-4xl px-6">
-          <div className="flex flex-wrap gap-4">
+          {/* Deploy Buttons (affiliate-tracked) */}
+          {(() => {
+            const config = deployConfigs.find((c) => c.blueprintSlug === blueprint.slug)
+            if (config && config.deployTargets.length > 0) {
+              return (
+                <DeployButtonGroup
+                  targets={config.deployTargets as DeployTarget[]}
+                  blueprintSlug={blueprint.slug}
+                  githubTemplateUrl={config.githubTemplateUrl || undefined}
+                  purchaseUrl={config.purchaseUrl || undefined}
+                  className="mb-6"
+                />
+              )
+            }
+            return null
+          })()}
+
+          {/* Secondary Actions */}
+          <div className="flex flex-wrap gap-3">
             <Link
               href="/ai-architecture/prototypes"
               className="flex items-center gap-2 rounded-full bg-violet-500 px-5 py-2.5 font-semibold text-white transition-all hover:-translate-y-0.5"
@@ -124,15 +146,6 @@ export default async function BlueprintPage({ params }: Props) {
               <Package className="h-4 w-4" />
               Get Template
             </Link>
-            <a
-              href="https://aistudio.google.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-2 rounded-full border border-white/20 px-5 py-2.5 font-semibold text-white transition-all hover:bg-white/10"
-            >
-              Open in AI Studio
-              <ExternalLink className="h-4 w-4" />
-            </a>
           </div>
         </div>
       </section>
@@ -352,8 +365,27 @@ export default async function BlueprintPage({ params }: Props) {
         <div className="mx-auto max-w-4xl px-6 text-center">
           <h2 className="mb-4 text-2xl font-bold text-white">Ready to Build?</h2>
           <p className="mb-6 text-slate-400">
-            Try the interactive prototype or get the production-ready template.
+            Deploy this architecture in minutes, or get the production-ready template with full source code.
           </p>
+
+          {/* Deploy buttons repeated at bottom for conversion */}
+          {(() => {
+            const config = deployConfigs.find((c) => c.blueprintSlug === blueprint.slug)
+            if (config && config.deployTargets.length > 0) {
+              return (
+                <div className="mb-8 flex justify-center">
+                  <DeployButtonGroup
+                    targets={config.deployTargets as DeployTarget[]}
+                    blueprintSlug={blueprint.slug}
+                    githubTemplateUrl={config.githubTemplateUrl || undefined}
+                    purchaseUrl={config.purchaseUrl || undefined}
+                  />
+                </div>
+              )
+            }
+            return null
+          })()}
+
           <div className="flex flex-wrap justify-center gap-4">
             <Link
               href="/ai-architecture/prototypes"

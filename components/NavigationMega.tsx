@@ -38,10 +38,7 @@ import {
   Puzzle,
   Brain,
   Trophy,
-  Type,
-  Grid3x3,
-  Waypoints,
-  Swords,
+  ShoppingBag,
 } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
@@ -73,7 +70,7 @@ const navigation = {
     },
     items: [
       { name: 'Prompt Library', href: '/prompt-library', icon: Sparkles, description: '200+ curated prompts' },
-      { name: 'Templates', href: '/templates', icon: FileText, description: 'Ready-to-use workflows' },
+      { name: 'Templates', href: '/shop/templates', icon: FileText, description: 'Skill packs, workflows & starters' },
       { name: 'Creation Chronicles', href: '/creation-chronicles', icon: BookOpen, description: 'Behind the scenes' },
     ],
   },
@@ -102,13 +99,8 @@ const navigation = {
     },
     items: [
       { name: 'Games Lab', href: '/games', icon: Gamepad2, description: 'Hub for browser games' },
-      { name: 'Crystal Match', href: '/games/crystal-match', icon: Puzzle, description: 'Match-3 puzzle game' },
-      { name: 'Neon Runner', href: '/games/neon-runner', icon: Trophy, description: '3D endless runner' },
-      { name: 'Memory Match', href: '/games/memory-match', icon: Brain, description: 'Card memory game' },
-      { name: 'Word Forge', href: '/games/word-forge', icon: Type, description: 'Daily word puzzle' },
-      { name: '2048 Neon', href: '/games/neon-2048', icon: Grid3x3, description: 'Sliding number puzzle' },
-      { name: 'Snake Neon', href: '/games/snake-neon', icon: Waypoints, description: 'Classic snake reimagined' },
-      { name: 'Neon Depths', href: '/games/neon-depths', icon: Swords, description: 'Roguelike dungeon crawler' },
+      { name: 'Memory Match', href: '/games/memory-match', icon: Puzzle, description: 'AI-powered card game' },
+      { name: 'Game Dev Research', href: '/research/agentic-game-development', icon: Brain, description: 'Agentic game development' },
     ],
   },
   developers: {
@@ -155,6 +147,7 @@ const navigation = {
     },
     items: [
       { name: 'Resource Hub', href: '/resources', icon: Sparkles, description: 'All systems, guides, and tools' },
+      { name: 'Shop', href: '/shop', icon: ShoppingBag, description: 'Templates, tools & digital products' },
       { name: 'The Golden Age of Creators', href: '/golden-age', icon: BookOpen, description: 'Book on creative transformation' },
       { name: "The Creator's Soulbook", href: '/soulbook', icon: BookOpen, description: 'Your life transformation system' },
       { name: 'Free Playbooks', href: '/free-playbook', icon: FileText, description: 'Start with quick wins' },
@@ -163,6 +156,7 @@ const navigation = {
       { name: 'Research Hub', href: '/research', icon: Microscope, description: 'Daily intelligence operations' },
       { name: 'Intelligence Atlas', href: '/intelligence-atlas', icon: Star, description: 'Flagship research' },
       { name: 'AI Architect', href: '/ai-architect', icon: Network, description: 'Solution design & patterns' },
+      { name: 'ArcaneaVault', href: '/vault', icon: Layers, description: 'Visual asset library' },
       { name: 'Vibe OS', href: '/products/vibe-os', icon: Music, description: 'AI music system' },
       { name: 'Agentic Creator OS', href: '/products/agentic-creator-os', icon: Bot, description: 'Agent workflows' },
       { name: 'Arcanea', href: '/magic', icon: Wand2, description: 'Worldbuilding academy' },
@@ -171,7 +165,7 @@ const navigation = {
     groups: [
       {
         label: 'Products & Systems',
-        items: ['Resource Hub', 'Vibe OS', 'Agentic Creator OS', 'Arcanea', 'The Luminors'],
+        items: ['Resource Hub', 'Shop', 'Vibe OS', 'Agentic Creator OS', 'Arcanea', 'The Luminors'],
       },
       {
         label: 'Learn & Read',
@@ -179,7 +173,7 @@ const navigation = {
       },
       {
         label: 'Research & Tools',
-        items: ['Downloads', 'Research Hub', 'Intelligence Atlas', 'AI Architect'],
+        items: ['Downloads', 'Research Hub', 'Intelligence Atlas', 'AI Architect', 'ArcaneaVault'],
       },
     ],
   },

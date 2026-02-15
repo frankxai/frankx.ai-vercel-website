@@ -1,0 +1,192 @@
+{
+  "blueprints": [
+    {
+      "blueprintSlug": "enterprise-rag-platform",
+      "deployTargets": [
+        {
+          "platform": "railway",
+          "label": "Deploy Backend to Railway",
+          "deployUrl": "https://railway.app/template/enterprise-rag",
+          "variant": "primary"
+        },
+        {
+          "platform": "vercel",
+          "label": "Deploy Frontend to Vercel",
+          "deployUrl": "https://vercel.com/new/clone?repository-url=https://github.com/frankxai/rag-starter-kit",
+          "variant": "secondary"
+        },
+        {
+          "platform": "n8n",
+          "label": "Import n8n Workflow",
+          "deployUrl": "https://n8n.io/workflows/enterprise-rag-ingestion",
+          "variant": "outline"
+        }
+      ],
+      "purchaseUrl": "",
+      "githubTemplateUrl": "https://github.com/frankxai/rag-starter-kit"
+    },
+    {
+      "blueprintSlug": "multi-agent-code-assistant",
+      "deployTargets": [
+        {
+          "platform": "railway",
+          "label": "Deploy to Railway",
+          "deployUrl": "https://railway.app/template/multi-agent-assistant",
+          "variant": "primary"
+        },
+        {
+          "platform": "n8n",
+          "label": "Import n8n Workflow",
+          "deployUrl": "https://n8n.io/workflows/multi-agent-orchestration",
+          "variant": "outline"
+        }
+      ],
+      "purchaseUrl": "",
+      "githubTemplateUrl": "https://github.com/frankxai/multi-agent-framework"
+    },
+    {
+      "blueprintSlug": "frankx-ai-platform",
+      "deployTargets": [
+        {
+          "platform": "vercel",
+          "label": "Deploy to Vercel",
+          "deployUrl": "https://vercel.com/new/clone?repository-url=https://github.com/frankxai/content-platform-starter",
+          "variant": "primary"
+        },
+        {
+          "platform": "n8n",
+          "label": "Import Content Pipeline",
+          "deployUrl": "https://n8n.io/workflows/content-automation-pipeline",
+          "variant": "outline"
+        }
+      ],
+      "purchaseUrl": "",
+      "githubTemplateUrl": "https://github.com/frankxai/content-platform-starter"
+    },
+    {
+      "blueprintSlug": "arcanea-game-engine",
+      "deployTargets": [
+        {
+          "platform": "railway",
+          "label": "Deploy to Railway",
+          "deployUrl": "https://railway.app/template/arcanea-engine",
+          "variant": "primary"
+        },
+        {
+          "platform": "n8n",
+          "label": "Import Quest Workflows",
+          "deployUrl": "https://n8n.io/workflows/game-quest-engine",
+          "variant": "outline"
+        }
+      ],
+      "purchaseUrl": "",
+      "githubTemplateUrl": ""
+    },
+    {
+      "blueprintSlug": "misinformation-guardian-platform",
+      "deployTargets": [
+        {
+          "platform": "railway",
+          "label": "Deploy Pipeline to Railway",
+          "deployUrl": "https://railway.app/template/misinfo-guardian",
+          "variant": "primary"
+        },
+        {
+          "platform": "vercel",
+          "label": "Deploy Dashboard to Vercel",
+          "deployUrl": "https://vercel.com/new/clone?repository-url=https://github.com/frankxai/misinfo-guardian-dashboard",
+          "variant": "secondary"
+        },
+        {
+          "platform": "n8n",
+          "label": "Import Alert Workflows",
+          "deployUrl": "https://n8n.io/workflows/misinfo-alert-pipeline",
+          "variant": "outline"
+        }
+      ],
+      "purchaseUrl": "",
+      "githubTemplateUrl": ""
+    }
+  ],
+  "templateProducts": [
+    {
+      "id": "rag-starter-kit",
+      "slug": "rag-starter-kit",
+      "blueprintSlug": "enterprise-rag-platform",
+      "price": 49,
+      "originalPrice": 79,
+      "status": "coming-soon",
+      "lemonSqueezyVariantId": "",
+      "polarProductId": "",
+      "deployPlatforms": ["vercel", "railway"]
+    },
+    {
+      "id": "multi-agent-framework",
+      "slug": "multi-agent-framework",
+      "blueprintSlug": "multi-agent-code-assistant",
+      "price": 99,
+      "originalPrice": 149,
+      "status": "coming-soon",
+      "lemonSqueezyVariantId": "",
+      "polarProductId": "",
+      "deployPlatforms": ["railway"]
+    },
+    {
+      "id": "ai-chat-widget",
+      "slug": "ai-chat-widget",
+      "blueprintSlug": null,
+      "price": 29,
+      "originalPrice": 49,
+      "status": "coming-soon",
+      "lemonSqueezyVariantId": "",
+      "polarProductId": "",
+      "deployPlatforms": ["vercel"]
+    },
+    {
+      "id": "mcp-server-starter",
+      "slug": "mcp-server-starter",
+      "blueprintSlug": null,
+      "price": 49,
+      "originalPrice": 69,
+      "status": "coming-soon",
+      "lemonSqueezyVariantId": "",
+      "polarProductId": "",
+      "deployPlatforms": ["railway"]
+    },
+    {
+      "id": "enterprise-rag-platform",
+      "slug": "enterprise-rag-platform",
+      "blueprintSlug": "enterprise-rag-platform",
+      "price": 199,
+      "originalPrice": 299,
+      "status": "coming-soon",
+      "lemonSqueezyVariantId": "",
+      "polarProductId": "",
+      "deployPlatforms": ["vercel", "railway"]
+    },
+    {
+      "id": "llmops-pipeline",
+      "slug": "llmops-pipeline",
+      "blueprintSlug": null,
+      "price": 79,
+      "originalPrice": 119,
+      "status": "coming-soon",
+      "lemonSqueezyVariantId": "",
+      "polarProductId": "",
+      "deployPlatforms": ["railway"]
+    }
+  ],
+  "_meta": {
+    "description": "Deploy targets and template product config. Affiliate IDs loaded from env vars at runtime.",
+    "envVars": {
+      "RAILWAY_REFERRAL_CODE": "Your Railway affiliate referral code",
+      "N8N_AFFILIATE_ID": "Your n8n PartnerStack affiliate ID",
+      "VERCEL_AFFILIATE_ID": "Your Vercel/Dub partner ID",
+      "BETTERSTACK_AFFILIATE_ID": "Your Better Stack affiliate ID",
+      "LEMON_SQUEEZY_STORE_ID": "Your Lemon Squeezy store ID",
+      "POLAR_STORE_ID": "Your Polar.sh organization slug"
+    },
+    "lastUpdated": "2026-02-14",
+    "oracleNonCompeteNote": "All deploy platforms listed are app-layer PaaS or SaaS tools, NOT IaaS competitors to Oracle."
+  }
+}

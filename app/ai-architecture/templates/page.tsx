@@ -16,7 +16,8 @@ import {
   ExternalLink,
 } from 'lucide-react'
 
-// Template products (coming soon)
+// Template products — status drives button state.
+// Set status to 'active' + add lemonSqueezyVariantId when ready to sell.
 const templates = [
   {
     id: 'rag-starter-kit',
@@ -32,11 +33,13 @@ const templates = [
       'Multi-provider (Claude, GPT, OCI)',
       'PDF/DOCX ingestion',
       'Source citations',
-      'One-click Vercel deploy',
+      'One-click deploy (Vercel + Railway)',
     ],
     techStack: ['Next.js', 'Pinecone', 'Vercel AI SDK', 'TypeScript'],
     includesOCI: true,
-    status: 'coming-soon',
+    status: 'coming-soon' as 'coming-soon' | 'active',
+    lemonSqueezyVariantId: '',  // Set when Lemon Squeezy product is created
+    deployPlatforms: ['vercel', 'railway'],
   },
   {
     id: 'multi-agent-framework',
@@ -56,7 +59,9 @@ const templates = [
     ],
     techStack: ['LangGraph', 'Python', 'Claude/GPT', 'Redis'],
     includesOCI: true,
-    status: 'coming-soon',
+    status: 'coming-soon' as 'coming-soon' | 'active',
+    lemonSqueezyVariantId: '',
+    deployPlatforms: ['railway'],
   },
   {
     id: 'ai-chat-widget',
@@ -76,7 +81,9 @@ const templates = [
     ],
     techStack: ['React', 'Vercel AI SDK', 'Tailwind CSS'],
     includesOCI: false,
-    status: 'coming-soon',
+    status: 'coming-soon' as 'coming-soon' | 'active',
+    lemonSqueezyVariantId: '',
+    deployPlatforms: ['vercel'],
   },
   {
     id: 'mcp-server-starter',
@@ -96,7 +103,9 @@ const templates = [
     ],
     techStack: ['TypeScript', 'MCP SDK', 'Node.js'],
     includesOCI: false,
-    status: 'coming-soon',
+    status: 'coming-soon' as 'coming-soon' | 'active',
+    lemonSqueezyVariantId: '',
+    deployPlatforms: ['railway'],
   },
   {
     id: 'enterprise-rag-platform',
@@ -116,7 +125,9 @@ const templates = [
     ],
     techStack: ['Next.js', 'PostgreSQL', 'NextAuth', 'Terraform'],
     includesOCI: true,
-    status: 'coming-soon',
+    status: 'coming-soon' as 'coming-soon' | 'active',
+    lemonSqueezyVariantId: '',
+    deployPlatforms: ['vercel', 'railway'],
   },
   {
     id: 'llmops-pipeline',
@@ -136,7 +147,9 @@ const templates = [
     ],
     techStack: ['Python', 'FastAPI', 'PostgreSQL', 'Langfuse'],
     includesOCI: true,
-    status: 'coming-soon',
+    status: 'coming-soon' as 'coming-soon' | 'active',
+    lemonSqueezyVariantId: '',
+    deployPlatforms: ['railway'],
   },
 ]
 
@@ -254,13 +267,25 @@ function TemplateCard({
           ))}
         </div>
 
-        {/* Button */}
-        <button
-          disabled
-          className="flex w-full items-center justify-center gap-2 rounded-lg bg-white/10 px-4 py-2.5 font-semibold text-slate-400 cursor-not-allowed"
-        >
-          Coming Soon
-        </button>
+        {/* Purchase / Coming Soon Button */}
+        {template.status === 'active' && template.lemonSqueezyVariantId ? (
+          <a
+            href={`https://frankx.lemonsqueezy.com/checkout/buy/${template.lemonSqueezyVariantId}?checkout[custom][template_id]=${template.id}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex w-full items-center justify-center gap-2 rounded-lg bg-emerald-500 px-4 py-2.5 font-semibold text-white transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-emerald-500/25"
+          >
+            Get Template — ${template.price}
+            <ExternalLink className="h-3.5 w-3.5" />
+          </a>
+        ) : (
+          <button
+            disabled
+            className="flex w-full items-center justify-center gap-2 rounded-lg bg-white/10 px-4 py-2.5 font-semibold text-slate-400 cursor-not-allowed"
+          >
+            Coming Soon
+          </button>
+        )}
       </div>
     </motion.div>
   )
@@ -314,7 +339,7 @@ export default function TemplatesPage() {
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {[
               { label: 'Full Source Code', desc: 'No obfuscation, yours forever' },
-              { label: 'One-Click Deploy', desc: 'Vercel, Railway, Render' },
+              { label: 'One-Click Deploy', desc: 'Vercel, Railway, n8n' },
               { label: 'Video Walkthrough', desc: 'Setup & customization guide' },
               { label: 'Discord Support', desc: 'Community help channel' },
             ].map((item) => (
