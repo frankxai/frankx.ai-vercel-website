@@ -38,6 +38,9 @@ import {
   Puzzle,
   Brain,
   Trophy,
+  Type,
+  Grid3x3,
+  Waypoints,
 } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
@@ -101,6 +104,9 @@ const navigation = {
       { name: 'Crystal Match', href: '/games/crystal-match', icon: Puzzle, description: 'Match-3 puzzle game' },
       { name: 'Neon Runner', href: '/games/neon-runner', icon: Trophy, description: '3D endless runner' },
       { name: 'Memory Match', href: '/games/memory-match', icon: Brain, description: 'Card memory game' },
+      { name: 'Word Forge', href: '/games/word-forge', icon: Type, description: 'Daily word puzzle' },
+      { name: '2048 Neon', href: '/games/neon-2048', icon: Grid3x3, description: 'Sliding number puzzle' },
+      { name: 'Snake Neon', href: '/games/snake-neon', icon: Waypoints, description: 'Classic snake reimagined' },
     ],
   },
   developers: {

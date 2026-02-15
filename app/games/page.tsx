@@ -33,6 +33,9 @@ import {
   Network,
   Wifi,
   Shield,
+  Type,
+  Grid3x3,
+  Waypoints,
 } from 'lucide-react'
 
 // ============================================================================
@@ -202,13 +205,31 @@ function PlayNowSection() {
       status: 'live' as const,
     },
     {
-      title: 'AI Quiz',
-      description: 'AI-generated trivia questions across topics. Adaptive difficulty that learns your strengths.',
-      href: '/games',
-      badge: 'Coming Soon',
+      title: 'Word Forge',
+      description: 'Guess the 5-letter word in 6 tries. Color-coded clues guide your guesses. Daily challenge + unlimited.',
+      href: '/games/word-forge',
+      badge: 'Play Now',
+      color: 'emerald',
+      icon: Type,
+      status: 'live' as const,
+    },
+    {
+      title: '2048 Neon',
+      description: 'Slide numbered tiles to combine them and reach 2048. Neon-lit strategy puzzle with undo support.',
+      href: '/games/neon-2048',
+      badge: 'Play Now',
       color: 'amber',
-      icon: Brain,
-      status: 'coming' as const,
+      icon: Grid3x3,
+      status: 'live' as const,
+    },
+    {
+      title: 'Snake Neon',
+      description: 'Classic snake reimagined with neon trails and progressive speed. Swipe or arrow keys.',
+      href: '/games/snake-neon',
+      badge: 'Play Now',
+      color: 'lime',
+      icon: Waypoints,
+      status: 'live' as const,
     },
   ]
 
@@ -217,6 +238,8 @@ function PlayNowSection() {
     cyan: { border: 'border-cyan-500/30', bg: 'bg-cyan-500/10', text: 'text-cyan-400' },
     amber: { border: 'border-amber-500/30', bg: 'bg-amber-500/10', text: 'text-amber-400' },
     fuchsia: { border: 'border-fuchsia-500/30', bg: 'bg-fuchsia-500/10', text: 'text-fuchsia-400' },
+    emerald: { border: 'border-emerald-500/30', bg: 'bg-emerald-500/10', text: 'text-emerald-400' },
+    lime: { border: 'border-lime-500/30', bg: 'bg-lime-500/10', text: 'text-lime-400' },
   }
 
   return (
@@ -236,7 +259,7 @@ function PlayNowSection() {
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
           {games.map((game, i) => {
             const colors = colorMap[game.color]
             const isLive = game.status === 'live'
