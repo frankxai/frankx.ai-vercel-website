@@ -20,6 +20,9 @@ import {
   BookOpen,
   Send,
   ImageIcon,
+  TrendingUp,
+  AlertTriangle,
+  CheckCircle,
   X,
 } from 'lucide-react'
 
@@ -56,6 +59,135 @@ interface SocialQueueItem {
   createdAt: string
   status: string
   platforms: Record<string, { content: string | string[]; status: string }>
+}
+
+// ─── SEO Score ────────────────────────────────────────────────
+
+interface SeoResult {
+  score: number
+  checks: { label: string; status: 'pass' | 'warn' | 'fail'; detail: string }[]
+}
+
+function calculateSeo(article: ArticleDetail, hasSocial: boolean): SeoResult {
+  const checks: SeoResult['checks'] = []
+
+  // Title
+  if (!article.title) {
+    checks.push({ label: 'Title', status: 'fail', detail: 'Missing title' })
+  } else if (article.title.length >= 30 && article.title.length <= 70) {
+    checks.push({ label: 'Title', status: 'pass', detail: `${article.title.length} chars (30-70 optimal)` })
+  } else {
+    checks.push({ label: 'Title', status: 'warn', detail: `${article.title.length} chars (aim for 30-70)` })
+  }
+
+  // Description
+  if (!article.description) {
+    checks.push({ label: 'Description', status: 'fail', detail: 'Missing meta description' })
+  } else if (article.description.length >= 120 && article.description.length <= 160) {
+    checks.push({ label: 'Description', status: 'pass', detail: `${article.description.length} chars (120-160 optimal)` })
+  } else {
+    checks.push({ label: 'Description', status: 'warn', detail: `${article.description.length} chars (aim for 120-160)` })
+  }
+
+  // Hero image
+  if (article.hasHeroImage) {
+    checks.push({ label: 'Hero image', status: 'pass', detail: 'Present' })
+  } else {
+    checks.push({ label: 'Hero image', status: 'fail', detail: 'Missing — hurts CTR and social sharing' })
+  }
+
+  // Word count
+  if (article.wordCount >= 2000) {
+    checks.push({ label: 'Content depth', status: 'pass', detail: `${article.wordCount.toLocaleString()} words (deep)` })
+  } else if (article.wordCount >= 1000) {
+    checks.push({ label: 'Content depth', status: 'pass', detail: `${article.wordCount.toLocaleString()} words` })
+  } else {
+    checks.push({ label: 'Content depth', status: 'warn', detail: `${article.wordCount.toLocaleString()} words (aim for 1000+)` })
+  }
+
+  // Tags
+  if (article.tags.length >= 3) {
+    checks.push({ label: 'Tags', status: 'pass', detail: `${article.tags.length} tags` })
+  } else if (article.tags.length > 0) {
+    checks.push({ label: 'Tags', status: 'warn', detail: `${article.tags.length} tag(s) — aim for 3+` })
+  } else {
+    checks.push({ label: 'Tags', status: 'fail', detail: 'No tags set' })
+  }
+
+  // Keywords
+  if (article.keywords && article.keywords.length > 0) {
+    checks.push({ label: 'Keywords', status: 'pass', detail: `${article.keywords.length} keywords` })
+  } else {
+    checks.push({ label: 'Keywords', status: 'warn', detail: 'No explicit keywords set' })
+  }
+
+  // Social coverage
+  if (hasSocial) {
+    checks.push({ label: 'Social content', status: 'pass', detail: 'Generated' })
+  } else {
+    checks.push({ label: 'Social content', status: 'warn', detail: 'Not yet generated' })
+  }
+
+  // Date
+  if (article.date) {
+    checks.push({ label: 'Publish date', status: 'pass', detail: article.date })
+  } else {
+    checks.push({ label: 'Publish date', status: 'fail', detail: 'Missing date' })
+  }
+
+  const score = Math.round(
+    (checks.filter(c => c.status === 'pass').length / checks.length) * 100
+  )
+
+  return { score, checks }
+}
+
+function SeoScoreCard({ article, hasSocial }: { article: ArticleDetail; hasSocial: boolean }) {
+  const seo = calculateSeo(article, hasSocial)
+
+  const scoreColor = seo.score >= 80 ? 'text-emerald-400'
+    : seo.score >= 60 ? 'text-cyan-400'
+    : seo.score >= 40 ? 'text-amber-400'
+    : 'text-red-400'
+
+  const ringColor = seo.score >= 80 ? 'border-emerald-500/30'
+    : seo.score >= 60 ? 'border-cyan-500/30'
+    : seo.score >= 40 ? 'border-amber-500/30'
+    : 'border-red-500/30'
+
+  return (
+    <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] overflow-hidden">
+      <div className="flex items-center gap-2 px-5 py-3 border-b border-white/[0.06]">
+        <TrendingUp className="w-4 h-4 text-cyan-400" />
+        <span className="text-sm font-medium">SEO Score</span>
+      </div>
+      <div className="p-5">
+        <div className="flex items-start gap-6">
+          {/* Score ring */}
+          <div className={`w-20 h-20 rounded-full border-4 ${ringColor} flex items-center justify-center flex-shrink-0`}>
+            <span className={`text-2xl font-bold ${scoreColor}`}>{seo.score}</span>
+          </div>
+
+          {/* Checks */}
+          <div className="flex-1 space-y-2">
+            {seo.checks.map(check => (
+              <div key={check.label} className="flex items-center gap-2 text-xs">
+                {check.status === 'pass' ? (
+                  <CheckCircle className="w-3.5 h-3.5 text-emerald-400 flex-shrink-0" />
+                ) : check.status === 'warn' ? (
+                  <AlertTriangle className="w-3.5 h-3.5 text-amber-400 flex-shrink-0" />
+                ) : (
+                  <X className="w-3.5 h-3.5 text-red-400 flex-shrink-0" />
+                )}
+                <span className="text-white/60 w-24 flex-shrink-0">{check.label}</span>
+                <span className="text-white/40">{check.detail}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  )
 }
 
 export default function ContentDetailPage() {
@@ -219,6 +351,9 @@ export default function ContentDetailPage() {
           </div>
         </div>
 
+        {/* SEO Score Card */}
+        <SeoScoreCard article={article} hasSocial={!!social} />
+
         {/* Media Gallery */}
         {article.media && article.media.length > 0 ? (
           <div className="space-y-4">
@@ -330,15 +465,44 @@ export default function ContentDetailPage() {
                   <div className="px-5 py-4">
                     {Array.isArray(data.content) ? (
                       <div className="space-y-3">
-                        {data.content.map((tweet: string, i: number) => (
-                          <div key={i} className="flex gap-3">
-                            <span className="text-xs text-white/20 font-mono w-5 flex-shrink-0 pt-0.5">{i + 1}.</span>
-                            <p className="text-sm text-white/70 leading-relaxed whitespace-pre-wrap">{tweet}</p>
-                          </div>
-                        ))}
+                        {data.content.map((tweet: string, i: number) => {
+                          const charCount = tweet.length
+                          const isOverLimit = platform === 'twitter' && charCount > 280
+                          const isNearLimit = platform === 'twitter' && charCount > 250
+                          return (
+                            <div key={i} className={`flex gap-3 p-2 rounded-lg ${isOverLimit ? 'bg-red-500/5 border border-red-500/10' : ''}`}>
+                              <span className="text-xs text-white/20 font-mono w-5 flex-shrink-0 pt-0.5">{i + 1}.</span>
+                              <div className="flex-1">
+                                <p className="text-sm text-white/70 leading-relaxed whitespace-pre-wrap">{tweet}</p>
+                                <div className="flex items-center justify-between mt-1.5">
+                                  <button
+                                    onClick={(e) => { e.stopPropagation(); copyText(tweet, `${platform}-${i}`) }}
+                                    className="text-[10px] text-white/25 hover:text-white/50 transition-colors"
+                                  >
+                                    {copied === `${platform}-${i}` ? 'Copied' : 'Copy tweet'}
+                                  </button>
+                                  <span className={`text-[10px] font-mono ${
+                                    isOverLimit ? 'text-red-400' : isNearLimit ? 'text-amber-400' : 'text-white/25'
+                                  }`}>
+                                    {charCount}{platform === 'twitter' ? '/280' : ''} chars
+                                  </span>
+                                </div>
+                              </div>
+                            </div>
+                          )
+                        })}
                       </div>
                     ) : (
-                      <p className="text-sm text-white/70 leading-relaxed whitespace-pre-wrap">{data.content}</p>
+                      <div>
+                        <p className="text-sm text-white/70 leading-relaxed whitespace-pre-wrap">{data.content}</p>
+                        <div className="flex items-center justify-end mt-2">
+                          <span className={`text-[10px] font-mono ${
+                            platform === 'linkedin' && (data.content as string).length > 3000 ? 'text-red-400' : 'text-white/25'
+                          }`}>
+                            {(data.content as string).length}{platform === 'linkedin' ? '/3000' : ''} chars
+                          </span>
+                        </div>
+                      </div>
                     )}
                   </div>
                 </div>
