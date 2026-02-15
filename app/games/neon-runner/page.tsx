@@ -3,6 +3,7 @@
 import { useState, useCallback, useRef, useEffect } from 'react'
 import Link from 'next/link'
 import { ArrowLeft, RotateCcw, Trophy, Play } from 'lucide-react'
+import { ParticleSystem, ScreenShake, FlashEffect, NEON, NEON_BURST } from '@/lib/games/effects'
 
 // ============================================================================
 // CONSTANTS
@@ -47,6 +48,11 @@ function GameCanvas({
   isPlaying: boolean
 }) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
+  const fxRef = useRef({
+    particles: new ParticleSystem(),
+    shake: new ScreenShake(),
+    flash: new FlashEffect(),
+  })
   const gameState = useRef({
     playerLane: 1,
     targetLane: 1,
@@ -66,6 +72,8 @@ function GameCanvas({
     obstacleIdCounter: 0,
     alive: true,
     laneTransition: 0,
+    nearMissIds: new Set<number>(),
+    frameCount: 0,
   })
 
   const touchStart = useRef<{ x: number; y: number } | null>(null)
@@ -117,12 +125,17 @@ function GameCanvas({
     gs.coinItems = gs.coinItems.filter(c => c.z > gs.distance - 10)
   }, [])
 
-  // Check collisions
-  const checkCollision = useCallback(() => {
+  // Check collisions + near misses + coin pickup
+  const checkCollision = useCallback((w: number, h: number, centerX: number, horizon: number, groundY: number) => {
     const gs = gameState.current
+    const fx = fxRef.current
     const px = LANES[gs.playerLane]
     const py = gs.playerY
     const pz = gs.distance
+
+    // Player screen position for effects
+    const playerScreenX = centerX + (gs.playerX / LANE_WIDTH) * (w * 0.22)
+    const playerBaseY = groundY - 10
 
     for (const obs of gs.obstacles) {
       const ox = LANES[obs.lane]
@@ -133,11 +146,35 @@ function GameCanvas({
       if (Math.abs(ox - px) > PLAYER_SIZE + 0.3) continue
 
       // Height check
-      if (obs.type === 'low' && py > 0.8) continue // Can jump over low
-      if (obs.type === 'low' && gs.isSliding) continue // Can slide under... wait, low = slide under
-      if (obs.type === 'barrier' && py > 1.2) continue // Can jump over barrier
+      if (obs.type === 'low' && py > 0.8) continue
+      if (obs.type === 'low' && gs.isSliding) continue
+      if (obs.type === 'barrier' && py > 1.2) continue
 
-      return true // Collision!
+      // DEATH — particle explosion + shake + flash
+      fx.particles.burst(playerScreenX, playerBaseY - 25, 30, NEON.purple, {
+        speed: 5, size: 4, life: 40, colors: [NEON.purple, NEON.rose, NEON.violet],
+      })
+      fx.shake.trigger(10, 15)
+      fx.flash.trigger('#f43f5e', 10)
+      return true
+    }
+
+    // Near-miss detection
+    for (const obs of gs.obstacles) {
+      if (gs.nearMissIds.has(obs.id)) continue
+      const ox = LANES[obs.lane]
+      const oz = obs.z
+      const zDist = oz - pz
+      // Just passed (within 0.5-2.0 behind) and same lane ± 1
+      if (zDist < -0.5 && zDist > -2.0 && Math.abs(ox - px) < PLAYER_SIZE + 0.8) {
+        gs.nearMissIds.add(obs.id)
+        gs.score += 25 // Near miss bonus
+        fx.flash.trigger(NEON.violet, 4)
+        fx.particles.burst(playerScreenX, playerBaseY - 30, 5, NEON.violet, {
+          speed: 2, size: 2, life: 15, shape: 'spark',
+        })
+        fx.particles.addFloatingText(playerScreenX, playerBaseY - 50, 'CLOSE!', NEON.violet, 30)
+      }
     }
 
     // Coin collection
@@ -148,6 +185,12 @@ function GameCanvas({
       if (Math.abs(cz - pz) < 1.0 && Math.abs(cx - px) < PLAYER_SIZE + 0.3) {
         coin.collected = true
         gs.coins++
+        // Coin collect burst
+        const coinScreenX = centerX + (cx / LANE_WIDTH) * (w * 0.22)
+        fx.particles.burst(coinScreenX, playerBaseY - 30, 8, NEON.amber, {
+          speed: 3, size: 2.5, life: 20, colors: [NEON.amber, '#fbbf24'],
+        })
+        fx.particles.addFloatingText(coinScreenX, playerBaseY - 50, '+1', NEON.amber, 25)
       }
     }
 
@@ -182,6 +225,9 @@ function GameCanvas({
     gs.nextObstacleZ = 30
     gs.obstacleIdCounter = 0
     gs.alive = true
+    gs.nearMissIds = new Set()
+    gs.frameCount = 0
+    fxRef.current.particles.clear()
 
     function resizeCanvas() {
       if (!canvas) return
@@ -226,15 +272,10 @@ function GameCanvas({
         if (gs.slideTimer <= 0) gs.isSliding = false
       }
 
+      gs.frameCount++
+      const fx = fxRef.current
+
       spawnObstacles()
-
-      if (checkCollision()) {
-        gs.alive = false
-        onGameOver(gs.score, gs.coins)
-        return
-      }
-
-      onScoreUpdate(gs.score, gs.coins)
 
       // ---- RENDER ----
       ctx.clearRect(0, 0, w, h)
@@ -251,6 +292,26 @@ function GameCanvas({
       const horizon = h * 0.35
       const groundY = h * 0.9
       const centerX = w / 2
+
+      // Apply screen shake offset
+      const shakeOffset = fx.shake.update()
+      ctx.save()
+      ctx.translate(shakeOffset.x, shakeOffset.y)
+
+      // Check collisions (needs screen coords)
+      if (checkCollision(w, h, centerX, horizon, groundY)) {
+        // Let effects render one more frame for death explosion
+        fx.particles.update()
+        fx.particles.draw(ctx)
+        fx.flash.update()
+        fx.flash.draw(ctx, w, h)
+        ctx.restore()
+        gs.alive = false
+        onGameOver(gs.score, gs.coins)
+        return
+      }
+
+      onScoreUpdate(gs.score, gs.coins)
 
       // Grid lines (road)
       ctx.strokeStyle = 'rgba(168, 85, 247, 0.15)'
@@ -393,6 +454,40 @@ function GameCanvas({
         3
       )
       ctx.fill()
+
+      // Particle trail behind player (every 2nd frame)
+      if (gs.frameCount % 2 === 0) {
+        fx.particles.burst(
+          playerScreenX + (Math.random() - 0.5) * 8,
+          playerBaseY - 2 - jumpOffset,
+          1, NEON.violet,
+          { speed: 1.5, size: 2, life: 12, gravity: 0.02, shape: 'spark',
+            angle: Math.PI / 2, spread: 0.5, colors: [NEON.violet, NEON.purple, NEON.cyan] }
+        )
+      }
+
+      // Speed lines at edges (intensity scales with speed)
+      const speedRatio = Math.min((gs.speed - SPEED_INITIAL) / 0.15, 1)
+      if (speedRatio > 0.1 && gs.frameCount % 3 === 0) {
+        const numLines = Math.floor(speedRatio * 3)
+        for (let i = 0; i < numLines; i++) {
+          const side = Math.random() < 0.5 ? 0 : 1
+          const sx = side === 0 ? Math.random() * w * 0.15 : w - Math.random() * w * 0.15
+          const sy = horizon + Math.random() * (groundY - horizon) * 0.6
+          fx.particles.burst(sx, sy, 1, 'rgba(168,85,247,0.4)', {
+            speed: 0.5, size: 1, life: 8, gravity: 0, shape: 'spark',
+            angle: Math.PI / 2, spread: 0.2,
+          })
+        }
+      }
+
+      // Update & draw effects
+      fx.particles.update()
+      fx.particles.draw(ctx)
+      fx.flash.update()
+      fx.flash.draw(ctx, w, h)
+
+      ctx.restore() // Undo shake offset
 
       animFrameRef.current = requestAnimationFrame(gameLoop)
     }

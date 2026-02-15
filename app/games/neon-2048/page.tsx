@@ -4,6 +4,34 @@ import { useState, useEffect, useCallback, useRef } from 'react'
 import Link from 'next/link'
 import { ArrowLeft, RotateCcw, Undo2, Trophy } from 'lucide-react'
 
+// ── CSS Animations ──────────────────────────────────
+const GAME_STYLES = `
+@keyframes tile-pop {
+  0% { transform: scale(0); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+@keyframes tile-merge {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.25); }
+  100% { transform: scale(1); }
+}
+@keyframes score-bump {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); color: #fbbf24; }
+  100% { transform: scale(1); }
+}
+@keyframes board-shake-2048 {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-2px); }
+  75% { transform: translateX(2px); }
+}
+.tile-new { animation: tile-pop 0.2s ease-out; }
+.tile-merged { animation: tile-merge 0.2s ease-out; }
+.score-bumping { animation: score-bump 0.3s ease-out; }
+.board-shake-2048 { animation: board-shake-2048 0.15s ease-in-out; }
+`
+
 // ── Types ──────────────────────────────────────────────
 type Cell = number // 0 = empty, 2/4/8/16/...
 type Grid = Cell[][]
@@ -157,6 +185,9 @@ export default function Neon2048Page() {
   const [won, setWon] = useState(false)
   const [keepPlaying, setKeepPlaying] = useState(false)
   const [history, setHistory] = useState<{ grid: Grid; score: number }[]>([])
+  const [scoreBump, setScoreBump] = useState(false)
+  const [boardShake, setBoardShake] = useState(false)
+  const [lastScoreGain, setLastScoreGain] = useState(0)
   const touchStartRef = useRef<{ x: number; y: number } | null>(null)
   const containerRef = useRef<HTMLDivElement>(null)
 
@@ -180,6 +211,19 @@ export default function Neon2048Page() {
       const newGrid = addRandomTile(result.grid)
       const newScore = score + result.scored
       setScore(newScore)
+      setLastScoreGain(result.scored)
+
+      // Score bump animation
+      if (result.scored > 0) {
+        setScoreBump(true)
+        setTimeout(() => setScoreBump(false), 350)
+      }
+
+      // Board shake on big merges (128+)
+      if (result.scored >= 128) {
+        setBoardShake(true)
+        setTimeout(() => setBoardShake(false), 200)
+      }
 
       if (newScore > bestScore) {
         setBestScore(newScore)
@@ -271,6 +315,7 @@ export default function Neon2048Page() {
 
   return (
     <div className="min-h-screen bg-[#0a0a1a] text-white flex flex-col">
+      <style dangerouslySetInnerHTML={{ __html: GAME_STYLES }} />
       {/* Header */}
       <div className="p-4 flex items-center gap-3 border-b border-white/5">
         <Link href="/games" className="p-2 rounded-lg hover:bg-white/5 transition-colors">
@@ -287,7 +332,7 @@ export default function Neon2048Page() {
         <div className="flex gap-3">
           <div className="bg-white/5 rounded-lg px-4 py-2 text-center min-w-[80px]">
             <div className="text-[10px] uppercase text-white/40 tracking-wider">Score</div>
-            <div className="text-lg font-bold text-amber-400">{score.toLocaleString()}</div>
+            <div className={`text-lg font-bold text-amber-400 ${scoreBump ? 'score-bumping' : ''}`}>{score.toLocaleString()}</div>
           </div>
           <div className="bg-white/5 rounded-lg px-4 py-2 text-center min-w-[80px]">
             <div className="text-[10px] uppercase text-white/40 tracking-wider">Best</div>
@@ -316,7 +361,7 @@ export default function Neon2048Page() {
       {/* Game Grid */}
       <div className="flex-1 flex items-start justify-center px-4 pt-2 pb-8">
         <div ref={containerRef} className="w-full max-w-[400px] touch-none select-none">
-          <div className="relative aspect-square bg-white/[0.03] rounded-2xl p-2 sm:p-3 border border-white/5">
+          <div className={`relative aspect-square bg-white/[0.03] rounded-2xl p-2 sm:p-3 border border-white/5 ${boardShake ? 'board-shake-2048' : ''}`}>
             <div className="grid grid-cols-4 gap-1.5 sm:gap-2 h-full">
               {grid.flat().map((value, i) => {
                 const style = getTileStyle(value)

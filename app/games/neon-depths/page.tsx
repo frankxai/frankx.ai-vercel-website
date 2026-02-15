@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import Link from 'next/link'
 import { ArrowLeft, RotateCcw, Play, ChevronUp, ChevronDown, ChevronLeft, ChevronRight, Clock } from 'lucide-react'
+import { ParticleSystem, ScreenShake, FlashEffect, NEON, NEON_BURST } from '@/lib/games/effects'
 
 // ══════════════════════════════════════════════════════
 // TYPES & CONSTANTS
@@ -539,6 +540,7 @@ export default function NeonDepthsPage() {
   const [bestScore, setBestScore] = useState(0)
   const animRef = useRef(0)
   const touchStartRef = useRef<{ x: number; y: number } | null>(null)
+  const fxRef = useRef({ particles: new ParticleSystem(), shake: new ScreenShake(), flash: new FlashEffect() })
 
   const cellSize = Math.max(14, Math.min(Math.floor(canvasSize.w / 24), 20))
 
@@ -567,7 +569,16 @@ export default function NeonDepthsPage() {
     const ctx = canvas.getContext('2d')
     if (!ctx) return
     animRef.current++
+    const fx = fxRef.current
+    const shakeOffset = fx.shake.update()
+    ctx.save()
+    ctx.translate(shakeOffset.x, shakeOffset.y)
     drawGame(ctx, gsRef.current, cellSize, canvasSize.w, canvasSize.h, animRef.current)
+    fx.particles.update()
+    fx.particles.draw(ctx)
+    ctx.restore()
+    fx.flash.update()
+    fx.flash.draw(ctx, canvasSize.w, canvasSize.h)
   }, [cellSize, canvasSize])
 
   // Animation loop for pulsing effects
@@ -596,6 +607,14 @@ export default function NeonDepthsPage() {
   const handleTurn = useCallback((dx: number, dy: number) => {
     const gs = gsRef.current
     if (gs.status !== 'playing') return
+    const fx = fxRef.current
+
+    // Convert grid pos to canvas screen pos (for particles)
+    const toScreen = (gx: number, gy: number) => {
+      const offsetX = Math.max(0, Math.min(gs.player.x * cellSize - canvasSize.w / 2 + cellSize / 2, MAP_W * cellSize - canvasSize.w))
+      const offsetY = Math.max(0, Math.min(gs.player.y * cellSize - canvasSize.h / 2 + cellSize / 2, MAP_H * cellSize - canvasSize.h))
+      return { x: gx * cellSize - offsetX + cellSize / 2, y: gy * cellSize - offsetY + cellSize / 2 }
+    }
 
     const p = gs.player
     const nx = p.x + dx
@@ -614,11 +633,15 @@ export default function NeonDepthsPage() {
         target.alive = false
         const xpGain = target.kind === 'hunter' ? 25 : target.kind === 'turret' ? 20 : 15
         p.xp += xpGain
-        setScore(s => {
-          const newS = s + xpGain
-          return newS
-        })
+        setScore(s => s + xpGain)
         addMessage(`Defeated ${target.kind}! +${xpGain} XP`)
+
+        // Death explosion particles + shake + floating XP
+        const ePos = toScreen(target.x, target.y)
+        const eColor = ENEMY_COLORS[target.kind].fill
+        fx.particles.burst(ePos.x, ePos.y, 15, eColor, { speed: 4, size: 3, life: 25, colors: [eColor, NEON.white] })
+        fx.shake.trigger(4, 6)
+        fx.particles.addFloatingText(ePos.x, ePos.y - 8, `+${xpGain}`, NEON.amber, 35)
 
         // Level up check
         const xpNeeded = p.level * 80
@@ -629,9 +652,18 @@ export default function NeonDepthsPage() {
           p.hp = Math.min(p.hp + 30, p.maxHp)
           p.dmg += 2
           addMessage(`Level ${p.level}! HP & damage up`)
+          const lvlPos = toScreen(p.x, p.y)
+          fx.particles.burst(lvlPos.x, lvlPos.y, 20, NEON.cyan, { speed: 4, size: 3, life: 30, colors: NEON_BURST })
+          fx.flash.trigger(NEON.cyan, 6)
+          fx.shake.trigger(3, 5)
         }
       } else {
         addMessage(`Hit ${target.kind} for ${p.dmg} dmg`)
+        // Hit particles
+        const hitPos = toScreen(target.x, target.y)
+        fx.particles.burst(hitPos.x, hitPos.y, 6, ENEMY_COLORS[target.kind].fill, { speed: 2, size: 2, life: 15 })
+        fx.particles.addFloatingText(hitPos.x, hitPos.y - 8, `-${p.dmg}`, NEON.white, 25)
+        fx.shake.trigger(2, 4)
       }
     } else {
       // Move player
@@ -642,12 +674,18 @@ export default function NeonDepthsPage() {
       const item = gs.items.find(i => !i.taken && i.x === nx && i.y === ny)
       if (item) {
         item.taken = true
+        const itemPos = toScreen(item.x, item.y)
         if (item.kind === 'health') {
           p.hp = Math.min(p.hp + item.value, p.maxHp)
           addMessage(`Health potion! +${item.value} HP`)
+          fx.particles.burst(itemPos.x, itemPos.y, 10, NEON.emerald, { speed: 2, size: 2, life: 20, shape: 'spark' })
+          fx.particles.addFloatingText(itemPos.x, itemPos.y - 8, `+${item.value} HP`, NEON.emerald, 30)
         } else {
           p.dmg += item.value
           addMessage(`Neon Blade! +${item.value} damage`)
+          fx.particles.burst(itemPos.x, itemPos.y, 12, NEON.amber, { speed: 3, size: 2, life: 20, shape: 'spark' })
+          fx.particles.addFloatingText(itemPos.x, itemPos.y - 8, `+${item.value} DMG`, NEON.amber, 30)
+          fx.flash.trigger(NEON.amber, 4)
         }
         setScore(s => s + 10)
       }
@@ -692,6 +730,11 @@ export default function NeonDepthsPage() {
         if (hasLOS(e.x, e.y, p.x, p.y, gs.tiles, 5)) {
           p.hp -= e.dmg
           addMessage(`Turret zaps you! -${e.dmg} HP`)
+          const pPos = toScreen(p.x, p.y)
+          fx.particles.burst(pPos.x, pPos.y, 8, NEON.violet, { speed: 3, size: 2, life: 15 })
+          fx.particles.addFloatingText(pPos.x, pPos.y - 8, `-${e.dmg}`, NEON.rose, 25)
+          fx.flash.trigger(NEON.violet, 5)
+          fx.shake.trigger(3, 5)
         }
         continue
       }
@@ -700,6 +743,11 @@ export default function NeonDepthsPage() {
       if (next.x === p.x && next.y === p.y) {
         p.hp -= e.dmg
         addMessage(`${e.kind} hits you! -${e.dmg} HP`)
+        const pPos = toScreen(p.x, p.y)
+        fx.particles.burst(pPos.x, pPos.y, 6, NEON.rose, { speed: 2, size: 2, life: 12 })
+        fx.particles.addFloatingText(pPos.x, pPos.y - 8, `-${e.dmg}`, NEON.rose, 25)
+        fx.flash.trigger(NEON.rose, 4)
+        fx.shake.trigger(3, 5)
       } else {
         e.x = next.x
         e.y = next.y
@@ -711,6 +759,10 @@ export default function NeonDepthsPage() {
       p.hp = 0
       gs.status = 'defeat'
       addMessage('You have been defeated...')
+      const dPos = toScreen(p.x, p.y)
+      fx.particles.burst(dPos.x, dPos.y, 30, NEON.rose, { speed: 5, size: 4, life: 40, colors: [NEON.rose, NEON.amber, NEON.white] })
+      fx.flash.trigger(NEON.rose, 10)
+      fx.shake.trigger(8, 12)
       setScore(s => {
         if (s > bestScore) {
           setBestScore(s)
@@ -729,6 +781,7 @@ export default function NeonDepthsPage() {
   const startGame = useCallback(() => {
     setScore(0)
     gsRef.current = initFloor(1)
+    fxRef.current.particles.clear()
     forceRender(n => n + 1)
     draw()
   }, [draw])

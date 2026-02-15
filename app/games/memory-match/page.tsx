@@ -96,11 +96,13 @@ function GameCard({
   card,
   isFlipped,
   isDisabled,
+  isWrong,
   onClick,
 }: {
   card: Card
   isFlipped: boolean
   isDisabled: boolean
+  isWrong: boolean
   onClick: () => void
 }) {
   return (
@@ -113,8 +115,14 @@ function GameCard({
       <motion.div
         className="relative w-full h-full"
         initial={false}
-        animate={{ rotateY: isFlipped || card.matched ? 180 : 0 }}
-        transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+        animate={{
+          rotateY: isFlipped || card.matched ? 180 : 0,
+          x: isWrong ? [0, -4, 4, -3, 2, 0] : 0,
+        }}
+        transition={isWrong
+          ? { x: { duration: 0.4, ease: 'easeInOut' }, rotateY: { duration: 0.4, ease: [0.4, 0, 0.2, 1] } }
+          : { duration: 0.4, ease: [0.4, 0, 0.2, 1] }
+        }
         style={{ transformStyle: 'preserve-3d' }}
       >
         {/* Back face (hidden state) */}
@@ -127,9 +135,11 @@ function GameCard({
 
         {/* Front face (revealed state) */}
         <div
-          className={`absolute inset-0 rounded-xl border flex items-center justify-center ${
+          className={`absolute inset-0 rounded-xl border flex items-center justify-center transition-colors duration-200 ${
             card.matched
               ? 'bg-emerald-500/10 border-emerald-500/30'
+              : isWrong
+              ? 'bg-rose-500/10 border-rose-500/40'
               : 'bg-white/[0.04] border-violet-500/30'
           }`}
           style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
@@ -286,6 +296,8 @@ export default function MemoryMatchPage() {
   const [gameComplete, setGameComplete] = useState(false)
   const [isChecking, setIsChecking] = useState(false)
   const [showDifficultyPicker, setShowDifficultyPicker] = useState(true)
+  const [wrongPair, setWrongPair] = useState<number[]>([])
+  const [lastMatch, setLastMatch] = useState<string>('')
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null)
 
   const config = difficultyConfig[difficulty]
@@ -340,7 +352,9 @@ export default function MemoryMatchPage() {
 
         const [first, second] = newFlipped
         if (cards[first].symbol === cards[second].symbol) {
-          // Match
+          // Match — celebrate
+          setLastMatch(cards[first].symbol)
+          setTimeout(() => setLastMatch(''), 600)
           setTimeout(() => {
             setCards((prev) =>
               prev.map((c, i) =>
@@ -351,8 +365,10 @@ export default function MemoryMatchPage() {
             setIsChecking(false)
           }, 500)
         } else {
-          // No match — flip back
+          // No match — shake wrong pair
+          setWrongPair([first, second])
           setTimeout(() => {
+            setWrongPair([])
             setFlipped([])
             setIsChecking(false)
           }, 800)
@@ -494,6 +510,7 @@ export default function MemoryMatchPage() {
               card={card}
               isFlipped={flipped.includes(index)}
               isDisabled={isChecking}
+              isWrong={wrongPair.includes(index)}
               onClick={() => handleCardClick(index)}
             />
           ))}

@@ -4,6 +4,34 @@ import { useState, useCallback, useEffect } from 'react'
 import Link from 'next/link'
 import { ArrowLeft, RotateCcw, Trophy, Share2, Infinity } from 'lucide-react'
 
+// ── Game Animations ─────────────────────────────────
+const GAME_STYLES = `
+@keyframes letter-flip {
+  0% { transform: scaleY(1); }
+  45% { transform: scaleY(0); }
+  55% { transform: scaleY(0); }
+  100% { transform: scaleY(1); }
+}
+@keyframes letter-bounce {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+@keyframes key-press {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(0.92); }
+}
+@keyframes win-bounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-8px); }
+  60% { transform: translateY(-4px); }
+}
+.letter-reveal { animation: letter-flip 0.5s ease-in-out forwards; }
+.letter-type { animation: letter-bounce 0.1s ease-out; }
+.key-active { animation: key-press 0.1s ease-out; }
+.win-dance { animation: win-bounce 0.6s ease-in-out; }
+`
+
 // ============================================================================
 // WORD LIST (curated common 5-letter words)
 // ============================================================================
@@ -305,6 +333,7 @@ export default function WordForgePage() {
 
   return (
     <div className="min-h-[100dvh] bg-[#030712] flex flex-col">
+      <style dangerouslySetInnerHTML={{ __html: GAME_STYLES }} />
       {/* Header */}
       <header className="sticky top-0 z-20 bg-[#030712]/90 backdrop-blur-sm border-b border-white/[0.06]">
         <div className="max-w-lg mx-auto px-4 py-3 flex items-center justify-between">
@@ -355,17 +384,24 @@ export default function WordForgePage() {
         <div className={`grid grid-rows-6 gap-[6px] ${shake ? 'animate-[shake_0.5s_ease-in-out]' : ''}`}>
           {rows.map((row, ri) => (
             <div key={ri} className="grid grid-cols-5 gap-[6px]">
-              {row.map((cell, ci) => (
-                <div
-                  key={ci}
-                  className={`w-[56px] h-[56px] sm:w-[62px] sm:h-[62px] flex items-center justify-center border-2 rounded-lg text-xl font-bold transition-all duration-300 ${STATE_COLORS[cell.state]}`}
-                  style={{
-                    animationDelay: ri < guesses.length ? `${ci * 100}ms` : undefined,
-                  }}
-                >
-                  {cell.letter}
-                </div>
-              ))}
+              {row.map((cell, ci) => {
+                const isRevealed = ri < guesses.length
+                const isCurrentRow = ri === guesses.length
+                const isTyping = isCurrentRow && cell.letter !== ''
+                const isWinRow = gameStatus === 'won' && ri === guesses.length - 1
+
+                return (
+                  <div
+                    key={ci}
+                    className={`w-[56px] h-[56px] sm:w-[62px] sm:h-[62px] flex items-center justify-center border-2 rounded-lg text-xl font-bold transition-all duration-300 ${STATE_COLORS[cell.state]} ${isRevealed ? 'letter-reveal' : ''} ${isTyping ? 'letter-type' : ''} ${isWinRow ? 'win-dance' : ''}`}
+                    style={{
+                      animationDelay: isRevealed ? `${ci * 120}ms` : isWinRow ? `${ci * 80}ms` : undefined,
+                    }}
+                  >
+                    {cell.letter}
+                  </div>
+                )
+              })}
             </div>
           ))}
         </div>

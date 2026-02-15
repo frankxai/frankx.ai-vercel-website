@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import Link from 'next/link'
 import { ArrowLeft, RotateCcw, Play, ChevronUp, ChevronDown, ChevronLeft, ChevronRight } from 'lucide-react'
+import { ParticleSystem, ScreenShake, FlashEffect, NEON } from '@/lib/games/effects'
 
 // ── Constants ─────────────────────────────────────────
 const GRID_SIZE = 20
@@ -47,6 +48,11 @@ export default function SnakeNeonPage() {
   const tickRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const gameStateRef = useRef(gameState)
   const touchStartRef = useRef<{ x: number; y: number } | null>(null)
+  const fxRef = useRef({
+    particles: new ParticleSystem(),
+    shake: new ScreenShake(),
+    flash: new FlashEffect(),
+  })
 
   // Sync gameState to ref
   useEffect(() => { gameStateRef.current = gameState }, [gameState])
@@ -177,6 +183,21 @@ export default function SnakeNeonPage() {
       }
       ctx.globalAlpha = 1
     }
+
+    // Effects system: update and draw
+    const effects = fxRef.current
+    const shakeOff = effects.shake.update()
+    if (shakeOff.x !== 0 || shakeOff.y !== 0) {
+      ctx.save()
+      ctx.translate(shakeOff.x, shakeOff.y)
+    }
+    effects.particles.update()
+    effects.particles.draw(ctx)
+    effects.flash.update()
+    effects.flash.draw(ctx, canvasSize, canvasSize)
+    if (shakeOff.x !== 0 || shakeOff.y !== 0) {
+      ctx.restore()
+    }
   }, [cellSize, canvasSize])
 
   // ── Game tick ───────────────────────────────────────
@@ -194,8 +215,19 @@ export default function SnakeNeonPage() {
     else if (dir === 'left') head.x -= 1
     else if (dir === 'right') head.x += 1
 
+    const fx = fxRef.current
+    const cs = cellSize
+
     // Wall collision
     if (head.x < 0 || head.x >= GRID_SIZE || head.y < 0 || head.y >= GRID_SIZE) {
+      // Death explosion at last valid head position
+      const deathX = snake[0].x * cs + cs / 2
+      const deathY = snake[0].y * cs + cs / 2
+      fx.particles.burst(deathX, deathY, 25, NEON.rose, {
+        speed: 4, size: 3.5, life: 35, colors: [NEON.rose, NEON.purple, NEON.violet],
+      })
+      fx.shake.trigger(8, 12)
+      fx.flash.trigger('#f43f5e', 8)
       setGameState('gameover')
       draw()
       return
@@ -203,6 +235,13 @@ export default function SnakeNeonPage() {
 
     // Self collision
     if (snake.some(s => s.x === head.x && s.y === head.y)) {
+      const deathX = head.x * cs + cs / 2
+      const deathY = head.y * cs + cs / 2
+      fx.particles.burst(deathX, deathY, 25, NEON.rose, {
+        speed: 4, size: 3.5, life: 35, colors: [NEON.rose, NEON.purple, NEON.violet],
+      })
+      fx.shake.trigger(8, 12)
+      fx.flash.trigger('#f43f5e', 8)
       setGameState('gameover')
       draw()
       return
@@ -216,6 +255,16 @@ export default function SnakeNeonPage() {
       // Ate food — don't remove tail
       scoreRef.current += 10
       setScore(scoreRef.current)
+
+      // Food eat burst
+      const eatX = food.x * cs + cs / 2
+      const eatY = food.y * cs + cs / 2
+      fx.particles.burst(eatX, eatY, 12, NEON.amber, {
+        speed: 3, size: 2.5, life: 20, colors: [NEON.amber, '#fbbf24', NEON.emerald],
+      })
+      fx.particles.addFloatingText(eatX, eatY - 10, '+10', NEON.amber, 25)
+      fx.flash.trigger(NEON.amber, 3)
+      fx.shake.trigger(2, 4)
 
       // Update high score
       if (scoreRef.current > (parseInt(localStorage.getItem('snakeNeon-best') || '0', 10))) {
@@ -247,6 +296,7 @@ export default function SnakeNeonPage() {
     scoreRef.current = 0
     speedRef.current = INITIAL_SPEED
     setScore(0)
+    fxRef.current.particles.clear()
     spawnFood()
     setGameState('playing')
 

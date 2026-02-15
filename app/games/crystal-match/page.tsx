@@ -4,6 +4,52 @@ import { useState, useCallback, useRef, useEffect } from 'react'
 import Link from 'next/link'
 import { ArrowLeft, RotateCcw, Trophy, Zap, Star } from 'lucide-react'
 
+// ── CSS for game-specific animations ──
+const GAME_STYLES = `
+@keyframes gem-pop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+  100% { transform: scale(0); opacity: 0; }
+}
+@keyframes board-shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-3px) rotate(-0.5deg); }
+  75% { transform: translateX(3px) rotate(0.5deg); }
+}
+@keyframes score-float {
+  0% { opacity: 1; transform: translateY(0) scale(1); }
+  100% { opacity: 0; transform: translateY(-50px) scale(0.7); }
+}
+@keyframes combo-pulse {
+  0% { transform: scale(0.5); opacity: 0; }
+  60% { transform: scale(1.2); }
+  100% { transform: scale(1); opacity: 1; }
+}
+@keyframes gem-select-pulse {
+  0%, 100% { box-shadow: 0 0 15px var(--gem-glow), 0 0 30px var(--gem-glow); transform: scale(1.08); }
+  50% { box-shadow: 0 0 25px var(--gem-glow), 0 0 50px var(--gem-glow); transform: scale(1.12); }
+}
+@keyframes reject-shake {
+  0%, 100% { transform: translateX(0); }
+  20% { transform: translateX(-4px); }
+  40% { transform: translateX(4px); }
+  60% { transform: translateX(-3px); }
+  80% { transform: translateX(2px); }
+}
+@keyframes new-gem-drop {
+  0% { opacity: 0; transform: translateY(-20px) scale(0.6); }
+  60% { transform: translateY(3px) scale(1.05); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+.gem-matched { animation: gem-pop 0.3s ease-out forwards; }
+.board-shaking { animation: board-shake 0.15s ease-in-out; }
+.board-reject { animation: reject-shake 0.3s ease-in-out; }
+.score-float { animation: score-float 0.8s ease-out forwards; pointer-events: none; }
+.combo-enter { animation: combo-pulse 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+.gem-selecting { animation: gem-select-pulse 0.6s ease-in-out infinite; }
+.gem-new { animation: new-gem-drop 0.35s ease-out forwards; }
+`
+
 // ============================================================================
 // TYPES & CONSTANTS
 // ============================================================================
@@ -182,6 +228,12 @@ function GemCell({
   const gem = GEMS[cell.gemId]
   if (!gem) return <div className="aspect-square" />
 
+  const animClass = isMatched
+    ? 'gem-matched'
+    : isSelected
+    ? 'gem-selecting'
+    : ''
+
   return (
     <div
       className="aspect-square p-[6%] cursor-pointer select-none touch-none"
@@ -190,15 +242,14 @@ function GemCell({
       aria-label={`${gem.label} at row ${row + 1}, column ${col + 1}`}
     >
       <div
-        className={`w-full h-full rounded-xl transition-all duration-200 ${
-          isSelected ? 'scale-110 ring-2 ring-white/60' : 'scale-100'
-        } ${isMatched ? 'animate-pulse scale-0 opacity-0' : ''}`}
+        className={`w-full h-full rounded-xl transition-all duration-150 ${animClass}`}
         style={{
+          '--gem-glow': gem.glow,
           background: `radial-gradient(circle at 35% 35%, ${gem.color}dd, ${gem.color}88, ${gem.color}44)`,
           boxShadow: isSelected
             ? `0 0 20px ${gem.glow}, 0 0 40px ${gem.glow}`
             : `0 2px 8px ${gem.glow}, inset 0 1px 2px rgba(255,255,255,0.3)`,
-        }}
+        } as React.CSSProperties}
       >
         {/* Inner shine */}
         <div
@@ -216,6 +267,10 @@ function GemCell({
 // GAME COMPONENT
 // ============================================================================
 
+type FloatingScore = { id: number; x: number; y: number; text: string; color: string }
+
+let floatIdCounter = 0
+
 export default function CrystalMatchPage() {
   const [board, setBoard] = useState<Cell[][]>(() => createBoard())
   const [selected, setSelected] = useState<Position | null>(null)
@@ -226,6 +281,9 @@ export default function CrystalMatchPage() {
   const [gameOver, setGameOver] = useState(false)
   const [isAnimating, setIsAnimating] = useState(false)
   const [matchedCells, setMatchedCells] = useState<Set<string>>(new Set())
+  const [boardAnim, setBoardAnim] = useState<'' | 'board-shaking' | 'board-reject'>('')
+  const [floatingScores, setFloatingScores] = useState<FloatingScore[]>([])
+  const [lastPoints, setLastPoints] = useState(0)
 
   const dragStart = useRef<{ x: number; y: number; row: number; col: number } | null>(null)
   const boardRef = useRef<HTMLDivElement>(null)
@@ -234,6 +292,14 @@ export default function CrystalMatchPage() {
   useEffect(() => {
     const saved = localStorage.getItem('crystal-match-best')
     if (saved) setBestScore(parseInt(saved, 10))
+  }, [])
+
+  // Helper: spawn floating score at board center
+  const addFloatingScore = useCallback((text: string, color: string) => {
+    const id = ++floatIdCounter
+    // Position relative to board center
+    setFloatingScores(prev => [...prev, { id, x: 50, y: 40, text, color }])
+    setTimeout(() => setFloatingScores(prev => prev.filter(f => f.id !== id)), 850)
   }, [])
 
   const handleSwap = useCallback(
@@ -249,10 +315,12 @@ export default function CrystalMatchPage() {
       const matches = findMatches(swapped)
 
       if (matches.size === 0) {
-        // Invalid swap — briefly show then revert
+        // Invalid swap — reject shake + revert
         setBoard(swapped)
-        await new Promise(r => setTimeout(r, 200))
+        setBoardAnim('board-reject')
+        await new Promise(r => setTimeout(r, 300))
         setBoard(board)
+        setBoardAnim('')
         setIsAnimating(false)
         return
       }
@@ -270,9 +338,16 @@ export default function CrystalMatchPage() {
       const [finalBoard, points, cascadeCount] = processBoard(swapped)
       setMatchedCells(new Set())
       setBoard(finalBoard)
+      setLastPoints(points)
+
+      // Floating score popup
+      if (points > 0) {
+        const color = cascadeCount > 2 ? '#F59E0B' : cascadeCount > 1 ? '#22d3ee' : '#E2E8F0'
+        addFloatingScore(`+${points}`, color)
+      }
+
       setScore(s => {
         const newScore = s + points
-        // Update best score
         setBestScore(prev => {
           const best = Math.max(prev, newScore)
           localStorage.setItem('crystal-match-best', String(best))
@@ -280,7 +355,16 @@ export default function CrystalMatchPage() {
         })
         return newScore
       })
-      setCombo(cascadeCount > 1 ? cascadeCount : 0)
+
+      // Board shake on cascades
+      if (cascadeCount > 1) {
+        setBoardAnim('board-shaking')
+        setTimeout(() => setBoardAnim(''), 200)
+        setCombo(cascadeCount)
+        setTimeout(() => setCombo(0), 1800)
+      } else {
+        setCombo(0)
+      }
 
       // Check game over
       if (moves - 1 <= 0) {
@@ -288,14 +372,9 @@ export default function CrystalMatchPage() {
         setGameOver(true)
       }
 
-      // Clear combo display after a moment
-      if (cascadeCount > 1) {
-        setTimeout(() => setCombo(0), 1500)
-      }
-
       setIsAnimating(false)
     },
-    [board, isAnimating, gameOver, moves]
+    [board, isAnimating, gameOver, moves, addFloatingScore]
   )
 
   const handlePointerDown = useCallback(
@@ -363,13 +442,21 @@ export default function CrystalMatchPage() {
     setScore(0)
     setMoves(30)
     setCombo(0)
+    setBestScore(prev => {
+      const saved = localStorage.getItem('crystal-match-best')
+      return saved ? parseInt(saved, 10) : prev
+    })
     setGameOver(false)
     setMatchedCells(new Set())
     setIsAnimating(false)
+    setBoardAnim('')
+    setFloatingScores([])
+    setLastPoints(0)
   }, [])
 
   return (
     <div className="min-h-screen bg-[#030712] flex flex-col">
+      <style dangerouslySetInnerHTML={{ __html: GAME_STYLES }} />
       {/* Header */}
       <header className="sticky top-0 z-20 bg-[#030712]/90 backdrop-blur-sm border-b border-white/[0.06]">
         <div className="max-w-lg mx-auto px-4 py-3 flex items-center justify-between">
@@ -405,8 +492,9 @@ export default function CrystalMatchPage() {
           </div>
 
           {combo > 1 && (
-            <div className="px-3 py-1 rounded-full bg-amber-500/20 border border-amber-500/30 animate-bounce">
-              <span className="text-sm font-bold text-amber-300">{combo}x Combo!</span>
+            <div key={combo} className="combo-enter px-3 py-1.5 rounded-full bg-amber-500/20 border border-amber-500/30"
+              style={{ boxShadow: '0 0 12px rgba(245,158,11,0.3)' }}>
+              <span className="text-sm font-bold text-amber-300">{combo}x Cascade!</span>
             </div>
           )}
 
@@ -414,7 +502,7 @@ export default function CrystalMatchPage() {
             <Zap className="w-4 h-4 text-cyan-400" />
             <div className="text-right">
               <div className="text-xs text-white/40">Moves</div>
-              <div className={`text-lg font-semibold tabular-nums ${moves <= 5 ? 'text-red-400' : 'text-white'}`}>
+              <div className={`text-lg font-semibold tabular-nums ${moves <= 5 ? 'text-red-400 animate-pulse' : 'text-white'}`}>
                 {moves}
               </div>
             </div>
@@ -430,28 +518,47 @@ export default function CrystalMatchPage() {
 
       {/* Game Board */}
       <div className="flex-1 flex items-start justify-center px-4 pb-8">
-        <div
-          ref={boardRef}
-          className="w-full max-w-lg aspect-square rounded-2xl bg-white/[0.02] border border-white/[0.08] p-2 touch-none select-none"
-          style={{
-            display: 'grid',
-            gridTemplateColumns: `repeat(${BOARD_SIZE}, 1fr)`,
-            gridTemplateRows: `repeat(${BOARD_SIZE}, 1fr)`,
-          }}
-        >
-          {board.map((row, r) =>
-            row.map((cell, c) => (
-              <GemCell
-                key={cell.key}
-                cell={cell}
-                row={r}
-                col={c}
-                isSelected={selected?.row === r && selected?.col === c}
-                isMatched={matchedCells.has(`${r},${c}`)}
-                onPointerDown={handlePointerDown}
-              />
-            ))
-          )}
+        <div className="relative w-full max-w-lg">
+          <div
+            ref={boardRef}
+            className={`w-full aspect-square rounded-2xl bg-white/[0.02] border border-white/[0.08] p-2 touch-none select-none ${boardAnim}`}
+            style={{
+              display: 'grid',
+              gridTemplateColumns: `repeat(${BOARD_SIZE}, 1fr)`,
+              gridTemplateRows: `repeat(${BOARD_SIZE}, 1fr)`,
+            }}
+          >
+            {board.map((row, r) =>
+              row.map((cell, c) => (
+                <GemCell
+                  key={cell.key}
+                  cell={cell}
+                  row={r}
+                  col={c}
+                  isSelected={selected?.row === r && selected?.col === c}
+                  isMatched={matchedCells.has(`${r},${c}`)}
+                  onPointerDown={handlePointerDown}
+                />
+              ))
+            )}
+          </div>
+
+          {/* Floating Score Popups */}
+          {floatingScores.map(fs => (
+            <div
+              key={fs.id}
+              className="score-float absolute text-2xl font-bold pointer-events-none z-10"
+              style={{
+                left: `${fs.x}%`,
+                top: `${fs.y}%`,
+                color: fs.color,
+                textShadow: `0 0 12px ${fs.color}, 0 0 24px ${fs.color}`,
+                transform: 'translateX(-50%)',
+              }}
+            >
+              {fs.text}
+            </div>
+          ))}
         </div>
       </div>
 
