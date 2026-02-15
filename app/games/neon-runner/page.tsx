@@ -74,6 +74,8 @@ function GameCanvas({
     laneTransition: 0,
     nearMissIds: new Set<number>(),
     frameCount: 0,
+    bankAngle: 0,
+    prevPlayerX: 0,
   })
 
   const touchStart = useRef<{ x: number; y: number } | null>(null)
@@ -227,6 +229,8 @@ function GameCanvas({
     gs.alive = true
     gs.nearMissIds = new Set()
     gs.frameCount = 0
+    gs.bankAngle = 0
+    gs.prevPlayerX = LANES[1]
     fxRef.current.particles.clear()
 
     function resizeCanvas() {
@@ -254,6 +258,11 @@ function GameCanvas({
       // Player lane movement (smooth)
       const targetX = LANES[gs.playerLane]
       gs.playerX += (targetX - gs.playerX) * 0.15
+
+      // Bank tilt — player leans into lane changes
+      const lateralV = gs.playerX - gs.prevPlayerX
+      gs.bankAngle += (lateralV * 150 - gs.bankAngle) * 0.12
+      gs.prevPlayerX = gs.playerX
 
       // Jump physics
       if (gs.isJumping) {
@@ -421,39 +430,33 @@ function GameCanvas({
         ctx.shadowBlur = 0
       }
 
-      // Render player
+      // Render player (with bank tilt rotation)
       const playerScreenX = centerX + (gs.playerX / LANE_WIDTH) * (w * 0.22)
       const playerBaseY = groundY - 10
       const jumpOffset = gs.playerY * 100
       const playerH = gs.isSliding ? 20 : 45
       const playerW = 28
 
+      ctx.save()
+      ctx.translate(playerScreenX, playerBaseY - playerH / 2 - jumpOffset)
+      ctx.rotate(gs.bankAngle * Math.PI / 180)
+
       // Player glow
       ctx.shadowColor = '#a855f7'
       ctx.shadowBlur = 20
       ctx.fillStyle = 'rgba(168, 85, 247, 0.9)'
       ctx.beginPath()
-      ctx.roundRect(
-        playerScreenX - playerW / 2,
-        playerBaseY - playerH - jumpOffset,
-        playerW,
-        playerH,
-        6
-      )
+      ctx.roundRect(-playerW / 2, -playerH / 2, playerW, playerH, 6)
       ctx.fill()
       ctx.shadowBlur = 0
 
       // Player highlight
       ctx.fillStyle = 'rgba(255, 255, 255, 0.25)'
       ctx.beginPath()
-      ctx.roundRect(
-        playerScreenX - playerW / 2 + 4,
-        playerBaseY - playerH - jumpOffset + 3,
-        playerW - 8,
-        playerH * 0.4,
-        3
-      )
+      ctx.roundRect(-playerW / 2 + 4, -playerH / 2 + 3, playerW - 8, playerH * 0.4, 3)
       ctx.fill()
+
+      ctx.restore()
 
       // Particle trail behind player (every 2nd frame)
       if (gs.frameCount % 2 === 0) {

@@ -266,3 +266,224 @@ export const NEON = {
 
 /** Get array of brand neon colors for multi-color particle bursts */
 export const NEON_BURST = [NEON.cyan, NEON.violet, NEON.amber, NEON.emerald, NEON.fuchsia]
+
+// ── Interpolation Helpers ────────────────────────────
+export const lerp = (a: number, b: number, t: number) => a + (b - a) * t
+export const clamp = (v: number, min: number, max: number) => Math.min(Math.max(v, min), max)
+export const smoothstep = (a: number, b: number, t: number) => {
+  const x = clamp((t - a) / (b - a), 0, 1)
+  return x * x * (3 - 2 * x)
+}
+
+/** Smooth value interpolation — attach to any numeric value for eased transitions */
+export class AnimatedValue {
+  current: number
+  target: number
+  speed: number
+
+  constructor(initial: number, speed: number = 0.1) {
+    this.current = initial
+    this.target = initial
+    this.speed = speed
+  }
+
+  update(dt: number = 1) {
+    this.current = lerp(this.current, this.target, 1 - Math.pow(1 - this.speed, dt))
+    if (Math.abs(this.current - this.target) < 0.01) this.current = this.target
+  }
+
+  set(value: number) { this.target = value }
+  snap(value: number) { this.current = this.target = value }
+  get done() { return this.current === this.target }
+}
+
+// ── Timer / Sequencer ────────────────────────────────
+export class GameTimer {
+  private timers: { remaining: number; fn: () => void; repeat: number }[] = []
+
+  /** Run fn after `frames` frames */
+  after(frames: number, fn: () => void) {
+    this.timers.push({ remaining: frames, fn, repeat: 0 })
+  }
+
+  /** Run fn every `frames` frames */
+  every(frames: number, fn: () => void) {
+    this.timers.push({ remaining: frames, fn, repeat: frames })
+  }
+
+  update() {
+    for (let i = this.timers.length - 1; i >= 0; i--) {
+      const t = this.timers[i]
+      t.remaining--
+      if (t.remaining <= 0) {
+        t.fn()
+        if (t.repeat > 0) {
+          t.remaining = t.repeat
+        } else {
+          this.timers.splice(i, 1)
+        }
+      }
+    }
+  }
+
+  clear() { this.timers = [] }
+}
+
+/** Chain timed callbacks: sequence([{delay: 5, fn: ()=>{}}, ...]) */
+export function sequence(steps: { delay: number; fn: () => void }[]) {
+  const timer = new GameTimer()
+  let cumulative = 0
+  for (const step of steps) {
+    cumulative += step.delay
+    timer.after(cumulative, step.fn)
+  }
+  return timer
+}
+
+// ── Hitstop ──────────────────────────────────────────
+export class Hitstop {
+  private remaining = 0
+
+  /** Freeze for N frames */
+  freeze(frames: number) { this.remaining = Math.max(this.remaining, frames) }
+
+  /** Call each frame — returns true if game should skip entity updates */
+  get shouldSkip(): boolean {
+    if (this.remaining > 0) { this.remaining--; return true }
+    return false
+  }
+
+  get active() { return this.remaining > 0 }
+}
+
+// ── Audio Stubs (Web Audio oscillator SFX) ───────────
+export class GameAudio {
+  private ctx: AudioContext | null = null
+  muted = true
+
+  private getCtx(): AudioContext | null {
+    if (this.muted) return null
+    if (!this.ctx) {
+      try { this.ctx = new AudioContext() } catch { return null }
+    }
+    return this.ctx
+  }
+
+  /** Short UI blip */
+  blip(freq: number = 440, dur: number = 0.06) {
+    const ctx = this.getCtx()
+    if (!ctx) return
+    const osc = ctx.createOscillator()
+    const gain = ctx.createGain()
+    osc.connect(gain).connect(ctx.destination)
+    osc.frequency.value = freq
+    osc.type = 'sine'
+    gain.gain.setValueAtTime(0.15, ctx.currentTime)
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + dur)
+    osc.start(); osc.stop(ctx.currentTime + dur)
+  }
+
+  /** Frequency sweep for transitions */
+  sweep(f1: number, f2: number, dur: number = 0.2) {
+    const ctx = this.getCtx()
+    if (!ctx) return
+    const osc = ctx.createOscillator()
+    const gain = ctx.createGain()
+    osc.connect(gain).connect(ctx.destination)
+    osc.frequency.setValueAtTime(f1, ctx.currentTime)
+    osc.frequency.exponentialRampToValueAtTime(f2, ctx.currentTime + dur)
+    gain.gain.setValueAtTime(0.1, ctx.currentTime)
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + dur)
+    osc.start(); osc.stop(ctx.currentTime + dur)
+  }
+
+  /** White noise burst for impacts */
+  noise(dur: number = 0.08) {
+    const ctx = this.getCtx()
+    if (!ctx) return
+    const buf = ctx.createBuffer(1, ctx.sampleRate * dur, ctx.sampleRate)
+    const data = buf.getChannelData(0)
+    for (let i = 0; i < data.length; i++) data[i] = Math.random() * 2 - 1
+    const src = ctx.createBufferSource()
+    const gain = ctx.createGain()
+    src.buffer = buf
+    src.connect(gain).connect(ctx.destination)
+    gain.gain.setValueAtTime(0.08, ctx.currentTime)
+    gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + dur)
+    src.start()
+  }
+
+  /** Victory chord */
+  chord(freqs: number[], dur: number = 0.4) {
+    for (const f of freqs) this.blip(f, dur)
+  }
+}
+
+// ── Ambient Particle Presets ─────────────────────────
+/** Slow-drifting dust motes */
+export function ambientDust(ps: ParticleSystem, w: number, h: number, count: number = 2) {
+  for (let i = 0; i < count && ps.count < 30; i++) {
+    ps.particles.push({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      vx: (Math.random() - 0.5) * 0.15,
+      vy: -0.1 - Math.random() * 0.2,
+      life: 80 + Math.random() * 40,
+      maxLife: 120,
+      size: 0.5 + Math.random() * 1,
+      color: 'rgba(255,255,255,0.3)',
+      alpha: 0.2,
+      gravity: -0.005,
+      decay: 0,
+      shape: 'spark',
+    })
+  }
+}
+
+/** Pulsing glow aura around an entity */
+export function ambientGlow(ps: ParticleSystem, x: number, y: number, r: number, color: string) {
+  if (ps.count > 50) return
+  const angle = Math.random() * Math.PI * 2
+  ps.particles.push({
+    x: x + Math.cos(angle) * r * 0.6,
+    y: y + Math.sin(angle) * r * 0.6,
+    vx: Math.cos(angle) * 0.2,
+    vy: Math.sin(angle) * 0.2 - 0.3,
+    life: 20 + Math.random() * 15,
+    maxLife: 35,
+    size: 1.5 + Math.random() * 1.5,
+    color,
+    alpha: 0.5,
+    gravity: -0.01,
+    decay: 0,
+    shape: 'spark',
+  })
+}
+
+/** Victory confetti burst */
+export function confettiBurst(ps: ParticleSystem, x: number, y: number) {
+  const colors = [NEON.cyan, NEON.violet, NEON.amber, NEON.emerald, NEON.rose, NEON.fuchsia, '#fff']
+  ps.burst(x, y, 50, '', {
+    speed: 6, size: 3, life: 60, gravity: 0.12,
+    colors, shape: 'square',
+  })
+}
+
+// ── Color Utilities ──────────────────────────────────
+export function hexToRGBA(hex: string, alpha: number): string {
+  const r = parseInt(hex.slice(1, 3), 16)
+  const g = parseInt(hex.slice(3, 5), 16)
+  const b = parseInt(hex.slice(5, 7), 16)
+  return `rgba(${r},${g},${b},${alpha})`
+}
+
+export function lerpColor(c1: string, c2: string, t: number): string {
+  const r1 = parseInt(c1.slice(1, 3), 16), g1 = parseInt(c1.slice(3, 5), 16), b1 = parseInt(c1.slice(5, 7), 16)
+  const r2 = parseInt(c2.slice(1, 3), 16), g2 = parseInt(c2.slice(3, 5), 16), b2 = parseInt(c2.slice(5, 7), 16)
+  const r = Math.round(lerp(r1, r2, t)), g = Math.round(lerp(g1, g2, t)), b = Math.round(lerp(b1, b2, t))
+  return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`
+}
+
+export function pulseAlpha(time: number, speed: number = 0.003): number {
+  return 0.5 + 0.5 * Math.sin(time * speed)
+}

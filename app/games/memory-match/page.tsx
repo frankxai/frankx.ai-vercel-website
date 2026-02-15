@@ -505,14 +505,24 @@ export default function MemoryMatchPage() {
       <div className="max-w-xl mx-auto px-4 pb-12">
         <div className={`grid ${config.cols} gap-2 sm:gap-3`}>
           {cards.map((card, index) => (
-            <GameCard
+            <motion.div
               key={card.id}
-              card={card}
-              isFlipped={flipped.includes(index)}
-              isDisabled={isChecking}
-              isWrong={wrongPair.includes(index)}
-              onClick={() => handleCardClick(index)}
-            />
+              initial={{ opacity: 0, y: 20, scale: 0.85 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              transition={{
+                delay: index * 0.035,
+                duration: 0.35,
+                ease: [0.34, 1.56, 0.64, 1],
+              }}
+            >
+              <GameCard
+                card={card}
+                isFlipped={flipped.includes(index)}
+                isDisabled={isChecking}
+                isWrong={wrongPair.includes(index)}
+                onClick={() => handleCardClick(index)}
+              />
+            </motion.div>
           ))}
         </div>
       </div>

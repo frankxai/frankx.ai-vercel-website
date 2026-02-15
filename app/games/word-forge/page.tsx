@@ -7,29 +7,47 @@ import { ArrowLeft, RotateCcw, Trophy, Share2, Infinity } from 'lucide-react'
 // ── Game Animations ─────────────────────────────────
 const GAME_STYLES = `
 @keyframes letter-flip {
-  0% { transform: scaleY(1); }
-  45% { transform: scaleY(0); }
-  55% { transform: scaleY(0); }
-  100% { transform: scaleY(1); }
+  0% { transform: scaleY(1) rotateX(0deg); }
+  40% { transform: scaleY(0) rotateX(90deg); }
+  60% { transform: scaleY(0) rotateX(90deg); }
+  100% { transform: scaleY(1) rotateX(0deg); }
 }
 @keyframes letter-bounce {
   0% { transform: scale(1); }
-  50% { transform: scale(1.15); }
+  40% { transform: scale(1.2); }
+  70% { transform: scale(0.95); }
   100% { transform: scale(1); }
 }
 @keyframes key-press {
   0%, 100% { transform: scale(1); }
-  50% { transform: scale(0.92); }
+  50% { transform: scale(0.9); }
 }
 @keyframes win-bounce {
-  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-  40% { transform: translateY(-8px); }
-  60% { transform: translateY(-4px); }
+  0% { transform: translateY(0) scale(1); }
+  30% { transform: translateY(-12px) scale(1.08); }
+  50% { transform: translateY(0) scale(1); }
+  70% { transform: translateY(-5px) scale(1.03); }
+  100% { transform: translateY(0) scale(1); }
 }
-.letter-reveal { animation: letter-flip 0.5s ease-in-out forwards; }
-.letter-type { animation: letter-bounce 0.1s ease-out; }
+@keyframes row-shake {
+  0%, 100% { transform: translateX(0); }
+  15% { transform: translateX(-5px); }
+  30% { transform: translateX(5px); }
+  45% { transform: translateX(-4px); }
+  60% { transform: translateX(3px); }
+  75% { transform: translateX(-2px); }
+  90% { transform: translateX(1px); }
+}
+@keyframes wrong-flash {
+  0% { border-color: rgba(244, 63, 94, 0.6); background: rgba(244, 63, 94, 0.1); }
+  100% { border-color: rgba(255,255,255,0.12); background: transparent; }
+}
+.letter-reveal { animation: letter-flip 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+.letter-type { animation: letter-bounce 0.12s cubic-bezier(0.34, 1.56, 0.64, 1); }
 .key-active { animation: key-press 0.1s ease-out; }
-.win-dance { animation: win-bounce 0.6s ease-in-out; }
+.win-dance { animation: win-bounce 0.7s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.row-shake { animation: row-shake 0.5s ease-in-out; }
+.wrong-flash { animation: wrong-flash 0.4s ease-out; }
 `
 
 // ============================================================================
@@ -381,7 +399,7 @@ export default function WordForgePage() {
 
       {/* Grid */}
       <div className="flex-1 flex items-start justify-center px-4 pt-2">
-        <div className={`grid grid-rows-6 gap-[6px] ${shake ? 'animate-[shake_0.5s_ease-in-out]' : ''}`}>
+        <div className={`grid grid-rows-6 gap-[6px] ${shake ? 'row-shake' : ''}`}>
           {rows.map((row, ri) => (
             <div key={ri} className="grid grid-cols-5 gap-[6px]">
               {row.map((cell, ci) => {

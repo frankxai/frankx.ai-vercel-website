@@ -47,6 +47,9 @@ export default function SnakeNeonPage() {
   const speedRef = useRef(INITIAL_SPEED)
   const tickRef = useRef<ReturnType<typeof setTimeout> | null>(null)
   const gameStateRef = useRef(gameState)
+  const prevSnakeRef = useRef<Point[]>([])
+  const lastTickTimeRef = useRef(0)
+  const animFrameRef = useRef<number>(0)
   const touchStartRef = useRef<{ x: number; y: number } | null>(null)
   const fxRef = useRef({
     particles: new ParticleSystem(),
@@ -120,46 +123,57 @@ export default function SnakeNeonPage() {
 
     const snake = snakeRef.current
     const food = foodRef.current
+    const now = performance.now()
 
-    // Food glow
-    const fx = food.x * cs + cs / 2
-    const fy = food.y * cs + cs / 2
-    const foodGlow = ctx.createRadialGradient(fx, fy, 0, fx, fy, cs * 1.5)
-    foodGlow.addColorStop(0, 'rgba(245, 158, 11, 0.3)')
+    // ── Interpolation: smooth slide between ticks ────
+    const prev = prevSnakeRef.current
+    const elapsed = now - lastTickTimeRef.current
+    const tickProgress = lastTickTimeRef.current > 0 ? Math.min(elapsed / speedRef.current, 1) : 1
+    const t = 1 - Math.pow(1 - tickProgress, 3) // outCubic easing
+
+    // ── Food idle pulse ────
+    const foodPulse = 0.35 + 0.05 * Math.sin(now * 0.004)
+    const foodGlowSize = 1.5 + 0.3 * Math.sin(now * 0.003)
+    const foodAlpha = 0.25 + 0.1 * Math.sin(now * 0.005)
+
+    const fxPos = food.x * cs + cs / 2
+    const fyPos = food.y * cs + cs / 2
+    const foodGlow = ctx.createRadialGradient(fxPos, fyPos, 0, fxPos, fyPos, cs * foodGlowSize)
+    foodGlow.addColorStop(0, `rgba(245, 158, 11, ${foodAlpha})`)
     foodGlow.addColorStop(1, 'rgba(245, 158, 11, 0)')
     ctx.fillStyle = foodGlow
     ctx.fillRect(food.x * cs - cs, food.y * cs - cs, cs * 3, cs * 3)
 
-    // Food
+    // Food orb
     ctx.fillStyle = '#F59E0B'
     ctx.shadowColor = '#F59E0B'
-    ctx.shadowBlur = 8
+    ctx.shadowBlur = 8 + 4 * Math.sin(now * 0.004)
     ctx.beginPath()
-    ctx.arc(fx, fy, cs * 0.35, 0, Math.PI * 2)
+    ctx.arc(fxPos, fyPos, cs * foodPulse, 0, Math.PI * 2)
     ctx.fill()
     ctx.shadowBlur = 0
 
-    // Snake segments (from tail to head for proper layering)
+    // ── Snake segments (interpolated, tail to head) ──
     for (let i = snake.length - 1; i >= 0; i--) {
       const seg = snake[i]
+      const prevSeg = prev[i] || seg
+      // Interpolate between previous and current grid positions
+      const interpX = (prevSeg.x + (seg.x - prevSeg.x) * t) * cs
+      const interpY = (prevSeg.y + (seg.y - prevSeg.y) * t) * cs
+
       const color = getSegmentColor(i, snake.length)
       const isHead = i === 0
       const size = isHead ? cs * 0.9 : cs * 0.8
       const offset = (cs - size) / 2
 
       // Glow effect
-      if (isHead) {
-        ctx.shadowColor = color
-        ctx.shadowBlur = 12
-      } else {
-        ctx.shadowColor = color
-        ctx.shadowBlur = 4
-      }
+      ctx.shadowColor = color
+      ctx.shadowBlur = isHead ? 12 : 4
 
       ctx.fillStyle = color
       const radius = isHead ? size * 0.35 : size * 0.25
-      const x = seg.x * cs + offset
-      const y = seg.y * cs + offset
+      const x = interpX + offset
+      const y = interpY + offset
 
       ctx.beginPath()
       ctx.moveTo(x + radius, y)
@@ -204,6 +218,10 @@ export default function SnakeNeonPage() {
   const tick = useCallback(() => {
     if (gameStateRef.current !== 'playing') return
 
+    // Save previous positions for smooth interpolation
+    prevSnakeRef.current = snakeRef.current.map(s => ({ ...s }))
+    lastTickTimeRef.current = performance.now()
+
     const snake = snakeRef.current
     dirRef.current = nextDirRef.current
     const dir = dirRef.current
@@ -218,32 +236,39 @@ export default function SnakeNeonPage() {
     const fx = fxRef.current
     const cs = cellSize
 
-    // Wall collision
+    // Wall collision — sequential head-to-tail death explosion
     if (head.x < 0 || head.x >= GRID_SIZE || head.y < 0 || head.y >= GRID_SIZE) {
-      // Death explosion at last valid head position
-      const deathX = snake[0].x * cs + cs / 2
-      const deathY = snake[0].y * cs + cs / 2
-      fx.particles.burst(deathX, deathY, 25, NEON.rose, {
-        speed: 4, size: 3.5, life: 35, colors: [NEON.rose, NEON.purple, NEON.violet],
+      const deathSnake = [...snake]
+      deathSnake.forEach((seg, idx) => {
+        setTimeout(() => {
+          fx.particles.burst(seg.x * cs + cs / 2, seg.y * cs + cs / 2, 6,
+            getSegmentColor(idx, deathSnake.length), {
+            speed: 3, size: 2.5, life: 25,
+            colors: [getSegmentColor(idx, deathSnake.length), NEON.rose, NEON.violet],
+          })
+        }, idx * 30)
       })
-      fx.shake.trigger(8, 12)
+      fx.shake.trigger(8, 15)
       fx.flash.trigger('#f43f5e', 8)
       setGameState('gameover')
-      draw()
       return
     }
 
-    // Self collision
+    // Self collision — sequential death
     if (snake.some(s => s.x === head.x && s.y === head.y)) {
-      const deathX = head.x * cs + cs / 2
-      const deathY = head.y * cs + cs / 2
-      fx.particles.burst(deathX, deathY, 25, NEON.rose, {
-        speed: 4, size: 3.5, life: 35, colors: [NEON.rose, NEON.purple, NEON.violet],
+      const deathSnake = [...snake]
+      deathSnake.forEach((seg, idx) => {
+        setTimeout(() => {
+          fx.particles.burst(seg.x * cs + cs / 2, seg.y * cs + cs / 2, 6,
+            getSegmentColor(idx, deathSnake.length), {
+            speed: 3, size: 2.5, life: 25,
+            colors: [getSegmentColor(idx, deathSnake.length), NEON.rose, NEON.violet],
+          })
+        }, idx * 30)
       })
-      fx.shake.trigger(8, 12)
+      fx.shake.trigger(8, 15)
       fx.flash.trigger('#f43f5e', 8)
       setGameState('gameover')
-      draw()
       return
     }
 
@@ -282,15 +307,16 @@ export default function SnakeNeonPage() {
     }
 
     snakeRef.current = newSnake
-    draw()
 
-    // Schedule next tick
+    // Schedule next tick (render loop handles drawing)
     tickRef.current = setTimeout(tick, speedRef.current)
-  }, [draw, spawnFood])
+  }, [cellSize, spawnFood])
 
   // ── Start game ──────────────────────────────────────
   const startGame = useCallback(() => {
     snakeRef.current = [{ x: 10, y: 10 }]
+    prevSnakeRef.current = [{ x: 10, y: 10 }]
+    lastTickTimeRef.current = performance.now()
     dirRef.current = 'right'
     nextDirRef.current = 'right'
     scoreRef.current = 0
@@ -300,14 +326,12 @@ export default function SnakeNeonPage() {
     spawnFood()
     setGameState('playing')
 
-    // Start loop
+    // Start game tick loop (render loop runs independently)
     if (tickRef.current) clearTimeout(tickRef.current)
-    // Need slight delay so gameStateRef updates
     setTimeout(() => {
-      draw()
       tickRef.current = setTimeout(tick, speedRef.current)
     }, 50)
-  }, [spawnFood, draw, tick])
+  }, [spawnFood, tick])
 
   // Cleanup on unmount
   useEffect(() => {
@@ -316,9 +340,14 @@ export default function SnakeNeonPage() {
     }
   }, [])
 
-  // ── Draw initial state ──────────────────────────────
+  // ── Continuous render loop (decoupled from tick) ────
   useEffect(() => {
-    draw()
+    const loop = () => {
+      draw()
+      animFrameRef.current = requestAnimationFrame(loop)
+    }
+    animFrameRef.current = requestAnimationFrame(loop)
+    return () => cancelAnimationFrame(animFrameRef.current)
   }, [draw, canvasSize])
 
   // ── Keyboard controls ───────────────────────────────

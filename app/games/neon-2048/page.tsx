@@ -7,29 +7,48 @@ import { ArrowLeft, RotateCcw, Undo2, Trophy } from 'lucide-react'
 // ── CSS Animations ──────────────────────────────────
 const GAME_STYLES = `
 @keyframes tile-pop {
-  0% { transform: scale(0); }
-  50% { transform: scale(1.15); }
+  0% { transform: scale(0); opacity: 0; }
+  60% { transform: scale(1.15); opacity: 1; }
+  80% { transform: scale(0.95); }
   100% { transform: scale(1); }
 }
 @keyframes tile-merge {
   0% { transform: scale(1); }
-  40% { transform: scale(1.25); }
+  25% { transform: scale(0.82); }
+  55% { transform: scale(1.22); }
+  75% { transform: scale(0.96); }
   100% { transform: scale(1); }
+}
+@keyframes big-merge {
+  0% { transform: scale(1); filter: brightness(1); }
+  20% { transform: scale(0.8); }
+  50% { transform: scale(1.3); filter: brightness(1.5); }
+  70% { transform: scale(0.95); filter: brightness(1.1); }
+  100% { transform: scale(1); filter: brightness(1); }
 }
 @keyframes score-bump {
   0% { transform: scale(1); }
-  50% { transform: scale(1.2); color: #fbbf24; }
+  50% { transform: scale(1.3); color: #fbbf24; }
   100% { transform: scale(1); }
 }
 @keyframes board-shake-2048 {
   0%, 100% { transform: translateX(0); }
-  25% { transform: translateX(-2px); }
-  75% { transform: translateX(2px); }
+  20% { transform: translateX(-3px) rotate(-0.5deg); }
+  40% { transform: translateX(3px) rotate(0.5deg); }
+  60% { transform: translateX(-2px); }
+  80% { transform: translateX(1px); }
 }
-.tile-new { animation: tile-pop 0.2s ease-out; }
-.tile-merged { animation: tile-merge 0.2s ease-out; }
+@keyframes score-float {
+  0% { opacity: 1; transform: translateY(0) scale(1); }
+  70% { opacity: 0.7; }
+  100% { opacity: 0; transform: translateY(-40px) scale(0.7); }
+}
+.tile-new { animation: tile-pop 0.28s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.tile-merged { animation: tile-merge 0.32s cubic-bezier(0.34, 1.56, 0.64, 1); }
+.tile-big-merge { animation: big-merge 0.45s cubic-bezier(0.34, 1.56, 0.64, 1); }
 .score-bumping { animation: score-bump 0.3s ease-out; }
-.board-shake-2048 { animation: board-shake-2048 0.15s ease-in-out; }
+.board-shake-2048 { animation: board-shake-2048 0.2s ease-in-out; }
+.score-float { animation: score-float 0.9s ease-out forwards; pointer-events: none; }
 `
 
 // ── Types ──────────────────────────────────────────────
@@ -330,9 +349,14 @@ export default function Neon2048Page() {
       {/* Score Bar */}
       <div className="px-4 py-3 flex items-center justify-between">
         <div className="flex gap-3">
-          <div className="bg-white/5 rounded-lg px-4 py-2 text-center min-w-[80px]">
+          <div className="relative bg-white/5 rounded-lg px-4 py-2 text-center min-w-[80px]">
             <div className="text-[10px] uppercase text-white/40 tracking-wider">Score</div>
             <div className={`text-lg font-bold text-amber-400 ${scoreBump ? 'score-bumping' : ''}`}>{score.toLocaleString()}</div>
+            {scoreBump && lastScoreGain > 0 && (
+              <div key={score} className="absolute -top-2 left-1/2 -translate-x-1/2 text-sm font-bold text-amber-300 score-float">
+                +{lastScoreGain}
+              </div>
+            )}
           </div>
           <div className="bg-white/5 rounded-lg px-4 py-2 text-center min-w-[80px]">
             <div className="text-[10px] uppercase text-white/40 tracking-wider">Best</div>
