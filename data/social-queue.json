@@ -1,6 +1,39 @@
 {
   "queue": [
     {
+      "id": "social-2026-0215-ecosystem",
+      "source": "frankx-intelligence-ecosystem-complete-guide",
+      "createdAt": "2026-02-15T12:00:00Z",
+      "status": "draft",
+      "platforms": {
+        "twitter": {
+          "content": [
+            "I built 5 interconnected AI systems that compound every session.\n\nIntelligence score: 91/100.\n109 synced memories. 59 trajectories. 4 creative modalities.\n\n12,000+ AI songs. 70+ blog articles. One person.\n\nHere's how the full stack works:",
+            "Most creators collect tools. A writing app here, an image generator there, an automation platform somewhere else.\n\nThe tools don't talk to each other. Context gets lost between sessions. Every project starts from zero.\n\nThat's a toolbox. Not a system.",
+            "An ecosystem is different. Each component feeds into the others.\n\nYour creative state informs your content generation.\nYour generation trains your operating system.\nYour OS syncs to persistent memory.\nYour memory compounds into intelligence.\n\nEvery session builds on the last.",
+            "Layer 1: Vibe OS — creative state management.\nRPM Model + precision AI music for neurological state shifts. Alpha for writing. Beta for coding. Theta for brainstorming.\n\nLayer 2: GenCreator OS — unified text, image, music, code generation with cross-modal context.",
+            "Layer 3: ACOS v10 — the autonomous operating system.\n\n22 curated skills. 8 specialist agents. 6 IAM-scoped profiles.\n\nEvery prompt gets classified into 1 of 8 domains and routed to the right agent with the right tools pre-loaded.\n\nIntelligence score: 93/100.",
+            "Layer 4: Starlight Intelligence System v4 — the memory layer.\n\nPersistent knowledge vaults. ACOS trajectory sync. 4-component intelligence scoring.\n\nACOS makes Claude Code intelligent within a session.\nSIS makes it intelligent across sessions.\nAcross projects.\nAcross time.",
+            "The real power is the feedback loops.\n\nState → Creation → Learning → Smarter next session.\nError → Memory → Prevention → Failure avoided.\nConfig change → Score check → Auto-revert if worse.\n\nNot theoretical. Running right now. Every article I write makes the system better at writing articles.",
+            "The compounding curve after 30 days:\n\nDay 1: Intelligence ~40/100. Sessions are generic.\nDay 7: 10+ trajectories. Experience replay kicks in.\nDay 14: Circuit breaker prevents 3 repeated failures. ~65/100.\nDay 30: 60+ trajectories, 100+ memories. 2-hour sessions → 45 min. ~85/100.",
+            "The entire core stack is free and open-source.\n\nACOS: github.com/frankxai/acos-config\nSIS v4: github.com/frankxai/Starlight-Intelligence-System\nSoulbook: frankx.ai/downloads/preview/soulbook\n\nPaid tiers save time with pre-built configs. But the locked features are zero.",
+            "Full technical breakdown — all 5 layers, installation order, feedback loops, value architecture, and current metrics:\n\nhttps://frankx.ai/blog/frankx-intelligence-ecosystem-complete-guide\n\nStart with ACOS if you use Claude Code. Start with Vibe OS if you want better creative states. Each system works independently."
+          ],
+          "status": "draft"
+        },
+        "linkedin": {
+          "content": "I built 5 AI systems that compound into each other. Here's the architecture.\n\n12,000+ AI songs. 70+ blog articles. 15+ premium infographics. One person.\n\nThe output isn't the point. The architecture is.\n\nMost creators collect disconnected tools. A writing app. An image generator. An automation platform. Nothing shares context. Every project starts from zero.\n\nI spent the last year building something different: an ecosystem where each system feeds into the next.\n\nThe 5 Layers:\n\n1. Vibe OS — Creative state management using the RPM Model with precision AI music. State engineering, not hoping for inspiration.\n\n2. GenCreator OS — Unified generation across text, image, music, and code. The key: cross-modal context. The image knows the article's theme.\n\n3. ACOS v10 — Autonomous operating system for Claude Code. 22 skills. 8 agents. 6 access-controlled profiles. Intelligence score: 93/100.\n\n4. Starlight Intelligence System v4 — Persistent memory across sessions. Trajectory classification. Intelligence scoring: 91/100, Grade S.\n\n5. Arcanea — 10-Gate creative progression. Technology without direction is noise.\n\nWhat makes this an ecosystem: feedback loops. State → creation → learning → smarter next session. Every session builds on the last.\n\nThe compounding curve: Day 1 intelligence ~40. Day 30: ~85. 2-hour sessions now take 45 minutes.\n\nThe entire core stack is free and open-source.\n\nFull breakdown: frankx.ai/blog/frankx-intelligence-ecosystem-complete-guide\n\nHow are you handling context persistence across AI sessions?\n\n#ArtificialIntelligence #AIArchitecture #CreatorEconomy #OpenSource #DevTools",
+          "status": "draft"
+        },
+        "newsletter": {
+          "subject": "5 AI systems that compound into each other",
+          "preview": "Intelligence score: 91/100. Here's the full architecture.",
+          "body": "I built 5 AI systems that compound every session. Here's the architecture behind 12,000+ AI songs, 70+ blog articles, and a creator business that runs while I sleep.\n\nVibe OS manages creative state through AI music. GenCreator OS unifies text, image, music, and code generation. ACOS v10 is an autonomous operating system for Claude Code with 22 skills and 8 agents. Starlight Intelligence System v4 provides persistent memory and trajectory learning. Arcanea wraps it all in a 10-Gate creative progression framework.\n\nThe key: feedback loops. State informs creation. Creation trains the OS. The OS syncs to memory. Memory compounds into intelligence. Every session makes the next one smarter.\n\nAfter 109 synced memories and 59 trajectories, the intelligence score sits at 91/100.\n\nThe entire core stack is free and open-source. Paid tiers save time with pre-built configs — the features aren't locked.\n\nFull technical breakdown with installation order, feedback loop diagrams, and value architecture:\nhttps://frankx.ai/blog/frankx-intelligence-ecosystem-complete-guide",
+          "status": "draft"
+        }
+      }
+    },
+    {
       "id": "social-2026-0215-acos-v10",
       "source": "acos-v10-autonomous-intelligence",
       "createdAt": "2026-02-15T01:00:00Z",
