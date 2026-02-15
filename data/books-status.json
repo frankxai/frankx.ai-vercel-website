@@ -1,50 +1,80 @@
 {
   "total_books": 6,
-  "total_chapters": 30,
+  "total_chapters": 49,
   "total_reviews": 8,
   "books": [
     {
       "slug": "love-and-poetry",
       "title": "Love & Poetry",
       "status": "published",
-      "chapters": 5,
-      "icon": "rose"
+      "chapters": 8,
+      "chapters_written": 8,
+      "has_pdf": false,
+      "has_epub": false,
+      "icon": "rose",
+      "next_action": "Generate PDF and list in shop",
+      "strategy": "Lead magnet for creative audience. Cross-link from Valentine's pages."
     },
     {
       "slug": "spartan-mindset",
       "title": "Spartan Mindset",
-      "status": "in-progress",
-      "chapters": 5,
-      "icon": "red"
+      "status": "published",
+      "chapters": 10,
+      "chapters_written": 10,
+      "has_pdf": false,
+      "has_epub": false,
+      "icon": "red",
+      "next_action": "Generate PDF and list in shop",
+      "strategy": "Male self-improvement audience. Gym + discipline + mental toughness."
     },
     {
       "slug": "golden-age",
       "title": "Golden Age",
       "status": "published",
-      "chapters": 3,
-      "icon": "amber"
+      "chapters": 5,
+      "chapters_written": 5,
+      "has_pdf": false,
+      "has_epub": false,
+      "icon": "amber",
+      "next_action": "Generate PDF and list in shop",
+      "strategy": "Flagship creator economy thesis. Funnel to AI Architect services."
     },
     {
       "slug": "self-development",
       "title": "Self-Development",
-      "status": "in-progress",
-      "chapters": 7,
-      "icon": "emerald"
+      "status": "published",
+      "chapters": 10,
+      "chapters_written": 10,
+      "has_pdf": false,
+      "has_epub": false,
+      "icon": "emerald",
+      "next_action": "Generate PDF and list in shop",
+      "strategy": "Soulbook 7 Pillars expanded. Personal brand authority piece."
     },
     {
       "slug": "imagination",
       "title": "Imagination",
-      "status": "in-progress",
-      "chapters": 5,
-      "icon": "violet"
+      "status": "published",
+      "chapters": 8,
+      "chapters_written": 8,
+      "has_pdf": false,
+      "has_epub": false,
+      "icon": "violet",
+      "next_action": "Generate PDF and list in shop",
+      "strategy": "Creative professionals. Mental models + visualization techniques."
     },
     {
       "slug": "manifestation",
       "title": "Manifestation",
-      "status": "in-progress",
-      "chapters": 5,
-      "icon": "gold"
+      "status": "published",
+      "chapters": 8,
+      "chapters_written": 8,
+      "has_pdf": false,
+      "has_epub": false,
+      "icon": "gold",
+      "next_action": "Generate PDF and list in shop",
+      "strategy": "Psychology + AI-age approach. Broader self-help audience."
     }
   ],
-  "last_updated": "2026-02-14"
+  "last_updated": "2026-02-15"
 }
