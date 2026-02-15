@@ -231,6 +231,15 @@ function PlayNowSection() {
       icon: Waypoints,
       status: 'live' as const,
     },
+    {
+      title: 'Neon Depths',
+      description: 'Roguelike dungeon crawler with procedural maps, 3 AI enemy types, fog of war, and strategic combat.',
+      href: '/games/neon-depths',
+      badge: 'New',
+      color: 'rose',
+      icon: Swords,
+      status: 'live' as const,
+    },
   ]
 
   const colorMap: Record<string, { border: string; bg: string; text: string }> = {
@@ -240,6 +249,7 @@ function PlayNowSection() {
     fuchsia: { border: 'border-fuchsia-500/30', bg: 'bg-fuchsia-500/10', text: 'text-fuchsia-400' },
     emerald: { border: 'border-emerald-500/30', bg: 'bg-emerald-500/10', text: 'text-emerald-400' },
     lime: { border: 'border-lime-500/30', bg: 'bg-lime-500/10', text: 'text-lime-400' },
+    rose: { border: 'border-rose-500/30', bg: 'bg-rose-500/10', text: 'text-rose-400' },
   }
 
   return (

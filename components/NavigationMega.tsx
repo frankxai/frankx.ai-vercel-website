@@ -41,6 +41,7 @@ import {
   Type,
   Grid3x3,
   Waypoints,
+  Swords,
 } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
@@ -107,6 +108,7 @@ const navigation = {
       { name: 'Word Forge', href: '/games/word-forge', icon: Type, description: 'Daily word puzzle' },
       { name: '2048 Neon', href: '/games/neon-2048', icon: Grid3x3, description: 'Sliding number puzzle' },
       { name: 'Snake Neon', href: '/games/snake-neon', icon: Waypoints, description: 'Classic snake reimagined' },
+      { name: 'Neon Depths', href: '/games/neon-depths', icon: Swords, description: 'Roguelike dungeon crawler' },
     ],
   },
   developers: {

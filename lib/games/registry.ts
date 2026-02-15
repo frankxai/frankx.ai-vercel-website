@@ -195,6 +195,31 @@ export const games: GameEntry[] = [
     releaseDate: '2026-02-15',
     version: '1.0.0',
   },
+  {
+    slug: 'neon-depths',
+    title: 'Neon Depths',
+    description: 'Turn-based roguelike dungeon crawler. Procedural BSP dungeons, 3 enemy AI types with pathfinding, fog of war, items, multi-floor progression.',
+    shortDescription: 'Roguelike dungeon crawler',
+    href: '/games/neon-depths',
+    status: 'live',
+    category: 'rpg',
+    engine: 'canvas2d',
+    color: 'rose',
+    icon: 'Swords',
+    controls: { touch: true, keyboard: true, swipe: true },
+    features: ['Procedural BSP dungeons', '3 enemy AI types', 'BFS pathfinding', 'Fog of war', 'Turn-based combat', 'XP leveling', '5-floor progression'],
+    quality: {
+      fpsTarget: 60,
+      touchTargetSize: 56,
+      bundleOverhead: '0KB',
+      firstPaint: '<1s',
+      inputLatency: '<16ms',
+      mobileScore: 4,
+      desktopScore: 5,
+    },
+    releaseDate: '2026-02-15',
+    version: '1.0.0',
+  },
 ]
 
 // Helpers
