@@ -12,8 +12,6 @@ import {
   Mail,
   ChevronRight,
   Search,
-  Filter,
-  ArrowUpRight,
   Clock,
   CheckCircle2,
   AlertCircle,
@@ -23,7 +21,9 @@ import {
   Eye,
   Zap,
   ImageIcon,
-  Film,
+  LayoutGrid,
+  List,
+  X,
 } from 'lucide-react'
 
 // ─── Types ─────────────────────────────────────────────────────
@@ -67,93 +67,172 @@ interface PipelineStats {
   platformCounts: Record<string, number>
 }
 
-// ─── Stat Card ─────────────────────────────────────────────────
-
-function StatCard({
-  label,
-  value,
-  icon: Icon,
-  accent,
-  sub,
-}: {
-  label: string
-  value: string | number
-  icon: React.ComponentType<{ className?: string }>
-  accent: string
-  sub?: string
-}) {
-  return (
-    <div className="rounded-2xl border border-white/[0.06] bg-white/[0.03] p-5 backdrop-blur-sm">
-      <div className="flex items-center justify-between mb-3">
-        <span className="text-sm text-white/50">{label}</span>
-        <div className={`rounded-lg p-2 ${accent}`}>
-          <Icon className="w-4 h-4 text-white" />
-        </div>
-      </div>
-      <p className="text-3xl font-semibold text-white tracking-tight">{value}</p>
-      {sub && <p className="text-xs text-white/40 mt-1">{sub}</p>}
-    </div>
-  )
-}
-
-// ─── Platform Badge ────────────────────────────────────────────
-
-function PlatformBadge({ platform, status }: { platform: string; status: string }) {
-  const config: Record<string, { icon: React.ComponentType<{ className?: string }>; color: string }> = {
-    twitter: { icon: Twitter, color: 'text-sky-400' },
-    linkedin: { icon: Linkedin, color: 'text-blue-400' },
-    newsletter: { icon: Mail, color: 'text-emerald-400' },
-  }
-  const { icon: Icon, color } = config[platform] || { icon: Send, color: 'text-white/50' }
-
-  return (
-    <div className="flex items-center gap-1.5" title={`${platform}: ${status}`}>
-      <Icon className={`w-3.5 h-3.5 ${color}`} />
-      {status === 'published' ? (
-        <CheckCircle2 className="w-3 h-3 text-emerald-400" />
-      ) : status === 'draft' ? (
-        <Clock className="w-3 h-3 text-amber-400" />
-      ) : null}
-    </div>
-  )
-}
-
-// ─── Pipeline Stage Badge ──────────────────────────────────────
+// ─── Stage Badge ──────────────────────────────────────────────
 
 function StageBadge({ stage }: { stage: string }) {
   const styles: Record<string, string> = {
-    draft: 'bg-white/10 text-white/60',
-    review: 'bg-amber-500/20 text-amber-300',
-    images: 'bg-purple-500/20 text-purple-300',
-    published: 'bg-emerald-500/20 text-emerald-300',
-    distributed: 'bg-cyan-500/20 text-cyan-300',
-    analyzed: 'bg-blue-500/20 text-blue-300',
+    draft: 'bg-black/60 text-white/60 border-white/10',
+    review: 'bg-amber-500/20 text-amber-300 border-amber-500/30',
+    images: 'bg-purple-500/20 text-purple-300 border-purple-500/30',
+    published: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30',
+    distributed: 'bg-cyan-500/20 text-cyan-300 border-cyan-500/30',
+    analyzed: 'bg-blue-500/20 text-blue-300 border-blue-500/30',
   }
 
   return (
-    <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${styles[stage] || styles.draft}`}>
+    <span className={`inline-flex items-center rounded-full px-2 py-0.5 text-[10px] font-medium border backdrop-blur-sm ${styles[stage] || styles.draft}`}>
       {stage}
     </span>
   )
 }
 
-// ─── Content Row ───────────────────────────────────────────────
+// ─── Content Card (Visual Feed) ───────────────────────────────
 
-function ContentRow({ item, onCopySlug }: { item: ContentItem; onCopySlug: (slug: string) => void }) {
+function ContentCard({ item, onCopy }: { item: ContentItem; onCopy: (text: string) => void }) {
+  const heroSrc = item.image || item.media.find(m => m.type === 'hero')?.path
+
+  const platformIcons: Record<string, React.ComponentType<{ className?: string }>> = {
+    twitter: Twitter,
+    linkedin: Linkedin,
+    newsletter: Mail,
+  }
+
   return (
-    <div className="group flex items-center gap-4 px-4 py-3 rounded-xl hover:bg-white/[0.03] transition-colors">
+    <Link
+      href={`/admin/content/${item.slug}`}
+      className="group relative rounded-2xl border border-white/[0.06] bg-white/[0.02] overflow-hidden hover:border-white/[0.12] transition-all duration-200"
+    >
+      {/* Image Area */}
+      <div className="relative aspect-video bg-gradient-to-br from-white/[0.03] to-white/[0.01] overflow-hidden">
+        {heroSrc ? (
+          <img
+            src={heroSrc}
+            alt=""
+            className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
+          />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center">
+            <FileText className="w-10 h-10 text-white/10" />
+          </div>
+        )}
+
+        {/* Overlay gradient */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+
+        {/* Top-left badges */}
+        <div className="absolute top-3 left-3 flex items-center gap-1.5">
+          <StageBadge stage={item.pipelineStage} />
+          {item.featured && (
+            <span className="flex items-center gap-1 rounded-full bg-amber-500/20 border border-amber-500/30 px-2 py-0.5 text-[10px] text-amber-300 backdrop-blur-sm">
+              <Sparkles className="w-2.5 h-2.5" />
+              featured
+            </span>
+          )}
+        </div>
+
+        {/* Top-right media count */}
+        {item.mediaCount > 0 && (
+          <div className="absolute top-3 right-3 flex items-center gap-1 rounded-full bg-black/50 border border-white/10 px-2 py-0.5 text-[10px] text-white/70 backdrop-blur-sm">
+            <ImageIcon className="w-2.5 h-2.5" />
+            {item.mediaCount}
+          </div>
+        )}
+
+        {/* Bottom overlay: title + social */}
+        <div className="absolute bottom-0 left-0 right-0 p-4">
+          <h3 className="text-sm font-semibold text-white leading-tight line-clamp-2 group-hover:text-cyan-200 transition-colors">
+            {item.title}
+          </h3>
+          <div className="flex items-center justify-between mt-2">
+            <div className="flex items-center gap-2 text-[11px] text-white/50">
+              <span>{item.date || 'No date'}</span>
+              <span className="text-white/20">|</span>
+              <span>{item.readingTime}</span>
+            </div>
+            {/* Social badges */}
+            <div className="flex items-center gap-1.5">
+              {item.hasSocial ? (
+                item.socialPlatforms.map(p => {
+                  const Icon = platformIcons[p] || Send
+                  return (
+                    <div key={p} className="flex items-center gap-0.5" title={`${p}: ${item.socialStatus[p]}`}>
+                      <Icon className="w-3 h-3 text-white/50" />
+                      {item.socialStatus[p] === 'published' ? (
+                        <CheckCircle2 className="w-2.5 h-2.5 text-emerald-400" />
+                      ) : (
+                        <Clock className="w-2.5 h-2.5 text-amber-400" />
+                      )}
+                    </div>
+                  )
+                })
+              ) : null}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Card body: description + meta */}
+      <div className="p-4">
+        <p className="text-xs text-white/40 line-clamp-2 leading-relaxed">{item.description}</p>
+        <div className="flex items-center gap-2 mt-3 flex-wrap">
+          <span className="text-[10px] text-white/25 bg-white/[0.04] rounded-full px-2 py-0.5">{item.category}</span>
+          <span className="text-[10px] text-white/25">{item.wordCount.toLocaleString()} words</span>
+          {!item.hasSocial && item.pipelineStage !== 'draft' && (
+            <span className="text-[10px] text-amber-400/70 bg-amber-500/10 rounded-full px-2 py-0.5">needs social</span>
+          )}
+        </div>
+      </div>
+
+      {/* Hover actions */}
+      <div className="absolute top-3 right-3 flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity z-10">
+        <button
+          onClick={(e) => { e.preventDefault(); e.stopPropagation(); onCopy(item.slug) }}
+          className="p-1.5 rounded-lg bg-black/60 border border-white/10 text-white/60 hover:text-white backdrop-blur-sm"
+          title="Copy slug"
+        >
+          <Copy className="w-3 h-3" />
+        </button>
+        <Link
+          href={`/blog/${item.slug}`}
+          onClick={(e) => e.stopPropagation()}
+          className="p-1.5 rounded-lg bg-black/60 border border-white/10 text-white/60 hover:text-white backdrop-blur-sm"
+          title="View live"
+        >
+          <Eye className="w-3 h-3" />
+        </Link>
+      </div>
+    </Link>
+  )
+}
+
+// ─── Content Row (List View) ──────────────────────────────────
+
+function ContentRow({ item, onCopy }: { item: ContentItem; onCopy: (text: string) => void }) {
+  const heroSrc = item.image || item.media.find(m => m.type === 'hero')?.path
+
+  return (
+    <Link
+      href={`/admin/content/${item.slug}`}
+      className="group flex items-center gap-4 px-4 py-3 rounded-xl hover:bg-white/[0.03] transition-colors"
+    >
+      {/* Thumbnail */}
+      <div className="w-20 h-12 rounded-lg overflow-hidden bg-white/[0.03] flex-shrink-0">
+        {heroSrc ? (
+          <img src={heroSrc} alt="" className="w-full h-full object-cover" />
+        ) : (
+          <div className="w-full h-full flex items-center justify-center">
+            <FileText className="w-4 h-4 text-white/10" />
+          </div>
+        )}
+      </div>
+
       {/* Title + Meta */}
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-2">
-          <Link
-            href={`/admin/content/${item.slug}`}
-            className="text-sm font-medium text-white/90 hover:text-white truncate"
-          >
+          <span className="text-sm font-medium text-white/90 group-hover:text-white truncate">
             {item.title}
-          </Link>
-          {item.featured && (
-            <Sparkles className="w-3.5 h-3.5 text-amber-400 flex-shrink-0" />
-          )}
+          </span>
+          {item.featured && <Sparkles className="w-3.5 h-3.5 text-amber-400 flex-shrink-0" />}
         </div>
         <div className="flex items-center gap-3 mt-1">
           <span className="text-xs text-white/40">{item.date || 'No date'}</span>
@@ -162,59 +241,25 @@ function ContentRow({ item, onCopySlug }: { item: ContentItem; onCopySlug: (slug
         </div>
       </div>
 
-      {/* Media Indicators */}
-      <div className="flex items-center gap-1.5 w-16">
-        {item.mediaCount > 0 ? (
-          <span className="flex items-center gap-1 text-xs text-purple-300" title={`${item.mediaCount} media asset${item.mediaCount > 1 ? 's' : ''}`}>
-            <ImageIcon className="w-3.5 h-3.5" />
-            {item.mediaCount}
-          </span>
-        ) : (
-          <span className="text-xs text-white/15" title="No media assets">
-            <ImageIcon className="w-3.5 h-3.5" />
-          </span>
-        )}
-      </div>
-
-      {/* Social Coverage */}
+      {/* Social */}
       <div className="flex items-center gap-2">
         {item.hasSocial ? (
-          item.socialPlatforms.map(p => (
-            <PlatformBadge key={p} platform={p} status={item.socialStatus[p] || 'draft'} />
-          ))
+          item.socialPlatforms.map(p => {
+            const icons: Record<string, React.ComponentType<{ className?: string }>> = {
+              twitter: Twitter, linkedin: Linkedin, newsletter: Mail,
+            }
+            const Icon = icons[p] || Send
+            return <Icon key={p} className="w-3.5 h-3.5 text-white/40" />
+          })
         ) : (
           <span className="text-xs text-white/20">No social</span>
         )}
       </div>
 
-      {/* Stage */}
       <StageBadge stage={item.pipelineStage} />
 
-      {/* Actions */}
-      <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-        <button
-          onClick={() => onCopySlug(item.slug)}
-          className="p-1.5 rounded-lg hover:bg-white/10 text-white/40 hover:text-white"
-          title="Copy slug for /generate-social"
-        >
-          <Copy className="w-3.5 h-3.5" />
-        </button>
-        <Link
-          href={`/blog/${item.slug}`}
-          className="p-1.5 rounded-lg hover:bg-white/10 text-white/40 hover:text-white"
-          title="View article"
-        >
-          <Eye className="w-3.5 h-3.5" />
-        </Link>
-        <Link
-          href={`/admin/content/${item.slug}`}
-          className="p-1.5 rounded-lg hover:bg-white/10 text-white/40 hover:text-white"
-          title="Content detail"
-        >
-          <ChevronRight className="w-3.5 h-3.5" />
-        </Link>
-      </div>
-    </div>
+      <ChevronRight className="w-4 h-4 text-white/20 group-hover:text-white/50 transition-colors" />
+    </Link>
   )
 }
 
@@ -225,7 +270,8 @@ export default function ContentCommandCenter() {
   const [stats, setStats] = useState<PipelineStats | null>(null)
   const [loading, setLoading] = useState(true)
   const [search, setSearch] = useState('')
-  const [filter, setFilter] = useState<'all' | 'needs-social' | 'needs-images' | 'featured' | 'distributed'>('all')
+  const [filter, setFilter] = useState<'all' | 'needs-social' | 'needs-images' | 'featured' | 'distributed' | 'has-media'>('all')
+  const [view, setView] = useState<'feed' | 'list'>('feed')
   const [copied, setCopied] = useState<string | null>(null)
 
   useEffect(() => {
@@ -248,17 +294,14 @@ export default function ContentCommandCenter() {
     }
   }
 
-  const copySlug = async (slug: string) => {
+  const copyText = async (text: string) => {
     try {
-      await navigator.clipboard.writeText(slug)
-      setCopied(slug)
+      await navigator.clipboard.writeText(text)
+      setCopied(text)
       setTimeout(() => setCopied(null), 2000)
-    } catch {
-      // Fallback: just select
-    }
+    } catch {}
   }
 
-  // Filtering
   const filtered = content.filter(item => {
     if (search) {
       const q = search.toLowerCase()
@@ -270,6 +313,7 @@ export default function ContentCommandCenter() {
     if (filter === 'needs-images') return !item.hasHeroImage
     if (filter === 'featured') return item.featured
     if (filter === 'distributed') return item.hasSocial
+    if (filter === 'has-media') return item.mediaCount > 0
     return true
   })
 
@@ -278,11 +322,14 @@ export default function ContentCommandCenter() {
       <div className="min-h-screen bg-[#0a0e1a] flex items-center justify-center">
         <div className="flex items-center gap-3 text-white/50">
           <div className="w-5 h-5 border-2 border-white/20 border-t-cyan-400 rounded-full animate-spin" />
-          Loading content data...
+          Loading content feed...
         </div>
       </div>
     )
   }
+
+  const totalMedia = content.reduce((sum, c) => sum + c.mediaCount, 0)
+  const withImages = content.filter(c => c.hasHeroImage).length
 
   return (
     <div className="min-h-screen bg-[#0a0e1a] text-white">
@@ -290,19 +337,35 @@ export default function ContentCommandCenter() {
       <header className="sticky top-0 z-40 border-b border-white/[0.06] bg-[#0a0e1a]/80 backdrop-blur-xl">
         <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <div className="flex items-center gap-3">
-                <div className="p-2 rounded-xl bg-gradient-to-br from-cyan-500/20 to-purple-500/20 border border-cyan-500/20">
-                  <Layers className="w-5 h-5 text-cyan-400" />
-                </div>
-                <div>
-                  <h1 className="text-lg font-semibold">Content Command Center</h1>
-                  <p className="text-xs text-white/40">{stats?.total || 0} articles | {stats?.socialCoverage || 0}% social coverage</p>
-                </div>
+            <div className="flex items-center gap-3">
+              <div className="p-2 rounded-xl bg-gradient-to-br from-cyan-500/20 to-purple-500/20 border border-cyan-500/20">
+                <Layers className="w-5 h-5 text-cyan-400" />
+              </div>
+              <div>
+                <h1 className="text-lg font-semibold">Content Studio</h1>
+                <p className="text-xs text-white/40">{stats?.total || 0} articles | {totalMedia} images | {stats?.socialCoverage || 0}% social</p>
               </div>
             </div>
 
             <div className="flex items-center gap-3">
+              {/* View toggle */}
+              <div className="flex items-center bg-white/[0.04] rounded-lg border border-white/[0.08] p-0.5">
+                <button
+                  onClick={() => setView('feed')}
+                  className={`p-1.5 rounded-md transition-colors ${view === 'feed' ? 'bg-white/10 text-white' : 'text-white/40 hover:text-white/60'}`}
+                  title="Feed view"
+                >
+                  <LayoutGrid className="w-4 h-4" />
+                </button>
+                <button
+                  onClick={() => setView('list')}
+                  className={`p-1.5 rounded-md transition-colors ${view === 'list' ? 'bg-white/10 text-white' : 'text-white/40 hover:text-white/60'}`}
+                  title="List view"
+                >
+                  <List className="w-4 h-4" />
+                </button>
+              </div>
+
               <Link
                 href="/admin/content/pipeline"
                 className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-white/10 text-sm text-white/60 hover:text-white hover:border-white/20 transition-colors"
@@ -310,78 +373,34 @@ export default function ContentCommandCenter() {
                 <BarChart3 className="w-4 h-4" />
                 Pipeline
               </Link>
-              <Link
-                href="/admin/content-studio"
-                className="flex items-center gap-2 px-3 py-1.5 rounded-lg border border-white/10 text-sm text-white/60 hover:text-white hover:border-white/20 transition-colors"
-              >
-                <Send className="w-4 h-4" />
-                Social Studio
-              </Link>
             </div>
           </div>
         </div>
       </header>
 
       <div className="max-w-7xl mx-auto px-6 py-6">
-        {/* Stats Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-          <StatCard label="Total Articles" value={stats?.total || 0} icon={FileText} accent="bg-cyan-500/20" />
-          <StatCard
-            label="Social Coverage"
-            value={`${stats?.socialCoverage || 0}%`}
-            icon={Send}
-            accent="bg-purple-500/20"
-            sub={`${stats?.withSocial || 0} of ${stats?.total || 0} articles`}
-          />
-          <StatCard
-            label="Needs Social"
-            value={stats?.withoutSocial || 0}
-            icon={AlertCircle}
-            accent="bg-amber-500/20"
-            sub="Articles without distribution"
-          />
-          <StatCard
-            label="Media Assets"
-            value={content.reduce((sum, c) => sum + c.mediaCount, 0)}
-            icon={ImageIcon}
-            accent="bg-purple-500/20"
-            sub={`${content.filter(c => c.hasHeroImage).length} with hero images`}
-          />
-        </div>
-
-        {/* ACOS Quick Actions */}
-        <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-4 mb-8">
-          <div className="flex items-center gap-2 mb-3">
-            <Zap className="w-4 h-4 text-amber-400" />
-            <span className="text-sm font-medium text-white/70">ACOS Commands</span>
+        {/* Quick Stats Bar */}
+        <div className="flex items-center gap-6 mb-6 px-1 text-sm">
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 rounded-full bg-cyan-400" />
+            <span className="text-white/50">{stats?.total || 0} articles</span>
           </div>
-          <div className="flex flex-wrap gap-2">
-            {[
-              { cmd: '/generate-social [slug]', desc: 'Generate social content' },
-              { cmd: '/frankx-ai-blog', desc: 'Create new blog post' },
-              { cmd: '/frankx-ai-content-pipeline', desc: 'Full pipeline' },
-              { cmd: '/publish', desc: 'Publish to production' },
-              { cmd: '/frankx-ai-seo', desc: 'SEO optimization' },
-            ].map(({ cmd, desc }) => (
-              <button
-                key={cmd}
-                onClick={() => copySlug(cmd)}
-                className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-white/[0.04] border border-white/[0.08] text-xs text-white/60 hover:text-white hover:border-white/15 transition-all group"
-                title={desc}
-              >
-                <code className="text-cyan-400/80 group-hover:text-cyan-300">{cmd}</code>
-                {copied === cmd ? (
-                  <Check className="w-3 h-3 text-emerald-400" />
-                ) : (
-                  <Copy className="w-3 h-3 opacity-0 group-hover:opacity-50" />
-                )}
-              </button>
-            ))}
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 rounded-full bg-purple-400" />
+            <span className="text-white/50">{totalMedia} media</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 rounded-full bg-emerald-400" />
+            <span className="text-white/50">{withImages} with images</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 rounded-full bg-amber-400" />
+            <span className="text-white/50">{stats?.withoutSocial || 0} need social</span>
           </div>
         </div>
 
         {/* Search + Filter */}
-        <div className="flex items-center gap-3 mb-4">
+        <div className="flex items-center gap-3 mb-6">
           <div className="relative flex-1 max-w-md">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-white/30" />
             <input
@@ -391,22 +410,28 @@ export default function ContentCommandCenter() {
               placeholder="Search articles..."
               className="w-full pl-10 pr-4 py-2 rounded-xl bg-white/[0.04] border border-white/[0.08] text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-cyan-500/30"
             />
+            {search && (
+              <button onClick={() => setSearch('')} className="absolute right-3 top-1/2 -translate-y-1/2 text-white/30 hover:text-white/60">
+                <X className="w-3.5 h-3.5" />
+              </button>
+            )}
           </div>
 
-          <div className="flex items-center gap-1.5">
-            {(['all', 'needs-social', 'needs-images', 'featured', 'distributed'] as const).map(f => {
+          <div className="flex items-center gap-1.5 overflow-x-auto">
+            {(['all', 'featured', 'has-media', 'needs-social', 'distributed', 'needs-images'] as const).map(f => {
               const labels: Record<string, string> = {
                 all: 'All',
-                'needs-social': 'Needs Social',
-                'needs-images': 'Needs Images',
                 featured: 'Featured',
+                'has-media': 'With Media',
+                'needs-social': 'Needs Social',
                 distributed: 'Distributed',
+                'needs-images': 'No Images',
               }
               return (
                 <button
                   key={f}
                   onClick={() => setFilter(f)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
+                  className={`px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-colors ${
                     filter === f
                       ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/30'
                       : 'bg-white/[0.04] text-white/40 border border-transparent hover:text-white/60'
@@ -419,42 +444,39 @@ export default function ContentCommandCenter() {
           </div>
         </div>
 
-        {/* Content Table */}
-        <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] overflow-hidden">
-          {/* Header */}
-          <div className="flex items-center gap-4 px-4 py-2.5 border-b border-white/[0.06] text-xs text-white/30">
-            <div className="flex-1">Article</div>
-            <div className="w-16 text-center">Media</div>
-            <div className="w-28 text-center">Social</div>
-            <div className="w-24 text-center">Stage</div>
-            <div className="w-20" />
+        {/* Content Feed */}
+        {filtered.length === 0 ? (
+          <div className="py-20 text-center text-white/30 text-sm">
+            {search ? 'No articles match your search.' : 'No articles found.'}
           </div>
-
-          {/* Rows */}
-          <div className="divide-y divide-white/[0.03]">
-            {filtered.length === 0 ? (
-              <div className="px-4 py-12 text-center text-white/30 text-sm">
-                {search ? 'No articles match your search.' : 'No articles found.'}
-              </div>
-            ) : (
-              filtered.map(item => (
-                <ContentRow key={item.slug} item={item} onCopySlug={copySlug} />
-              ))
-            )}
+        ) : view === 'feed' ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            {filtered.map(item => (
+              <ContentCard key={item.slug} item={item} onCopy={copyText} />
+            ))}
           </div>
-        </div>
+        ) : (
+          <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] overflow-hidden divide-y divide-white/[0.03]">
+            {filtered.map(item => (
+              <ContentRow key={item.slug} item={item} onCopy={copyText} />
+            ))}
+          </div>
+        )}
 
-        {/* Footer Stats */}
-        <div className="flex items-center justify-between mt-4 px-2 text-xs text-white/30">
+        {/* Footer */}
+        <div className="flex items-center justify-between mt-6 px-2 text-xs text-white/30">
           <span>Showing {filtered.length} of {content.length} articles</span>
-          <span>
+          <div className="flex items-center gap-4">
             {copied && (
               <span className="text-emerald-400">
                 <Check className="w-3 h-3 inline mr-1" />
                 Copied: {copied}
               </span>
             )}
-          </span>
+            <Link href="/admin/content/pipeline" className="text-white/30 hover:text-white/50 transition-colors">
+              View pipeline
+            </Link>
+          </div>
         </div>
       </div>
     </div>

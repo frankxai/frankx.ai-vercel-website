@@ -1,6 +1,39 @@
 {
   "queue": [
     {
+      "id": "social-2026-0215-acos-v10",
+      "source": "acos-v10-autonomous-intelligence",
+      "createdAt": "2026-02-15T01:00:00Z",
+      "status": "draft",
+      "platforms": {
+        "twitter": {
+          "content": [
+            "I built an AI operating system that improves itself every session.\n\nIntelligence score: 72 → 93 out of 100.\n\n5 new safety systems prevent it from breaking itself.\n\n22 skills. 8 agents. 6 access-controlled profiles.\n\nHere's how it works:",
+            "The hardest problem in agentic AI isn't making it smart.\n\nIt's preventing smart systems from modifying their own config and making themselves dumber.\n\nACOS v9.3 could learn. But it couldn't validate whether what it learned was actually an improvement.",
+            "v10 adds 5 systems that solve this:\n\n1. Experience Replay — remembers what worked\n2. Agent IAM — least-privilege access control\n3. Immutable Audit Trail — every action logged\n4. Circuit Breaker — stops cascading failures\n5. Self-Modify Gate — auto-reverts bad changes",
+            "Experience Replay: every session generates a trajectory — tools used, order, outcome.\n\nWhen you start a new task, the system finds the 2 most similar past successes and injects them as context.\n\n60+ trajectories. 67% avg success rate. Getting better.",
+            "Agent IAM scopes each of 6 profiles to exactly the tools and directories they need.\n\nMusic producer can't edit system configs. Content writer can't run bash.\n\nLeast-privilege for AI agents. Same principle as enterprise security.",
+            "Circuit Breaker tracks failures per file:\n- 3 failures: warning\n- 5 failures: restricted\n- 8 failures: full stop\n\nPrevents the most common AI failure mode: trying the same broken approach 8 times.",
+            "Self-Modify Gate — the most important safety system.\n\n1. Snapshot config\n2. Apply change\n3. Re-score intelligence\n4. Score drops >5pts? Auto-revert.\n\nThe system can evolve. It can never make itself significantly dumber.",
+            "v10 is also faster.\n\nHooks: 15 → 7. Subprocess spawns per tool: 5-6 → 1-2.\n\nRemoved informational-only hooks. Consolidated tracking. Less noise. More signal.",
+            "The honest version: v7 claimed 630+ skills and 158 agents.\n\nAn audit revealed 630 were unvetted npm installs. 158 were empty session timestamps.\n\nv8-v10 rebuilt on truth. 22 real skills. 8 real agents. Every number verified.",
+            "ACOS is open-source and free.\n\nFull breakdown of all 5 systems:\nhttps://frankx.ai/blog/acos-v10-autonomous-intelligence\n\nGitHub: https://github.com/frankxai/agentic-creator-os\n\nType /acos and describe what you want. The system handles the rest."
+          ],
+          "status": "draft"
+        },
+        "linkedin": {
+          "content": "I shipped an AI operating system that scores 93/100 on an intelligence benchmark. Up from 72 in the previous version.\n\nThe difference isn't more features. It's 5 safety systems that let the system modify its own rules without breaking itself.\n\nThe Core Problem: Every agentic system faces the same trap — the smarter it gets, the more it can modify its own configuration. Unchecked self-modification eventually makes it worse.\n\n5 Systems That Fix This:\n\n1. Experience Replay — finds 2 most similar past successes, injects as context\n2. Agent IAM — 6 profiles scoped to exactly the tools/directories they need\n3. Immutable Audit Trail — append-only JSONL logging every action\n4. Circuit Breaker — 3 failures = warning, 5 = restricted, 8 = full stop\n5. Self-Modify Gate — snapshots config, re-scores after changes, auto-reverts if score drops >5 points\n\nThe Honest Part: v7 claimed 630+ skills and 158 agents. An audit revealed 630 were unvetted npm installs and 158 were empty timestamps. v8-v10 rebuilt on verified numbers.\n\nResults: Intelligence 72→93 (+29%), Hooks 15→7 (-53%), Subprocess spawns 5-6→1-2.\n\nOpen-source: github.com/frankxai/agentic-creator-os\n\nHow are you handling self-modification safety in your agentic systems?\n\n#ArtificialIntelligence #AIEngineering #DevTools #OpenSource",
+          "status": "draft"
+        },
+        "newsletter": {
+          "subject": "ACOS v10: The AI system that improves itself (safely)",
+          "preview": "Intelligence score: 72 → 93. Here are the 5 systems that make it work.",
+          "body": "I shipped ACOS v10 — the version where the Agentic Creator OS becomes self-improving with safety guarantees.\n\nIntelligence score jumped from 72 to 93 out of 100. The key: 5 new systems that let it modify its own rules while preventing it from making itself dumber.\n\nExperience Replay remembers what worked. Agent IAM enforces least-privilege. Immutable Audit Trail logs everything. Circuit Breaker stops cascading failures. Self-Modify Gate auto-reverts bad config changes.\n\n22 curated skills. 8 specialist agents. 6 access-controlled profiles.\n\nThe honest version: v7 claimed 630+ skills. An audit revealed they were unvetted npm installs. v10 is built on truth.\n\nFree and open-source: https://frankx.ai/blog/acos-v10-autonomous-intelligence",
+          "status": "draft"
+        }
+      }
+    },
+    {
       "id": "social-2026-0209-mcp-doctor",
       "source": "mcp-doctor-claude-code-server-optimization",
       "createdAt": "2026-02-09T18:00:00Z",
