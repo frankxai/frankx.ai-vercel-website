@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import SoulbookIcon from '@/components/soulbook/SoulbookIcon'
+import PillarProgress from '@/components/soulbook/PillarProgress'
 import SparkBorder from '@/components/ui/SparkBorder'
 import PremiumButton from '@/components/ui/PremiumButton'
 import JsonLd from '@/components/seo/JsonLd'
@@ -201,6 +202,15 @@ export default function SoulbookPage() {
 
         {/* Fade to black */}
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent pointer-events-none" />
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════
+          YOUR PROGRESS (only shows if user has read at least 1)
+      ═══════════════════════════════════════════════════════════ */}
+      <section className="px-6">
+        <div className="max-w-2xl mx-auto">
+          <PillarProgress />
+        </div>
       </section>
 
       {/* ═══════════════════════════════════════════════════════════
@@ -413,27 +423,59 @@ export default function SoulbookPage() {
       </section>
 
       {/* ═══════════════════════════════════════════════════════════
-          NEWSLETTER
+          GET THE FRAMEWORK
       ═══════════════════════════════════════════════════════════ */}
       <section className="py-20 px-6 border-t border-white/[0.04]">
-        <div className="max-w-xl mx-auto text-center">
+        <div className="max-w-3xl mx-auto">
           <Reveal>
-            <h2 className="text-2xl font-bold mb-3 tracking-tight">
-              Get the Framework Guide
-            </h2>
-            <p className="text-white/30 text-sm mb-6 leading-relaxed">
-              A weekly email with practical exercises for each pillar.
-              No spam. No guru language. Just useful things.
-            </p>
-            <Link
-              href="/newsletter"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-white/[0.04] border border-white/[0.08] text-sm text-white/60 hover:text-white hover:bg-white/[0.08] transition-all duration-200"
-            >
-              Subscribe to the newsletter
-              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-              </svg>
-            </Link>
+            <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
+              <div className="flex-1 text-center md:text-left">
+                <h2 className="text-2xl font-bold mb-3 tracking-tight">
+                  Get the Framework Guide
+                </h2>
+                <p className="text-white/30 text-sm mb-5 leading-relaxed">
+                  All 7 pillars on one page — key practices, reflection questions, and how to use them. Print it, save it, put it on your wall.
+                </p>
+                <div className="flex flex-col sm:flex-row items-center gap-3 justify-center md:justify-start">
+                  <Link
+                    href="/soulbook/framework"
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-amber-500/15 border border-amber-500/25 text-amber-300 text-sm font-medium hover:bg-amber-500/25 transition-all"
+                  >
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                    </svg>
+                    View &amp; Save as PDF
+                  </Link>
+                  <Link
+                    href="/newsletter"
+                    className="inline-flex items-center gap-2 text-sm text-white/30 hover:text-white/50 transition-colors"
+                  >
+                    Or subscribe for weekly exercises
+                    <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                    </svg>
+                  </Link>
+                </div>
+              </div>
+
+              {/* Mini pillar preview */}
+              <div className="w-48 shrink-0 hidden md:block">
+                <div className="rounded-xl border border-white/[0.06] bg-white/[0.015] p-4 space-y-2">
+                  {pillars.slice(0, 4).map((p) => {
+                    const c = colorClasses[p.color] || colorClasses.amber
+                    return (
+                      <div key={p.number} className="flex items-center gap-2">
+                        <div className={`w-5 h-5 rounded ${c.bg} flex items-center justify-center shrink-0`}>
+                          <span className="text-[9px] font-mono text-white/30">{p.number}</span>
+                        </div>
+                        <span className="text-[11px] text-white/30">{p.title}</span>
+                      </div>
+                    )
+                  })}
+                  <div className="text-[10px] text-white/15 pl-7">+3 more...</div>
+                </div>
+              </div>
+            </div>
           </Reveal>
         </div>
       </section>

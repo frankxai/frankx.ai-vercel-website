@@ -1,8 +1,10 @@
 'use client';
 
+import { useEffect, useRef } from 'react';
 import ChapterFeedback from './ChapterFeedback';
 import ChapterShareButtons from './ChapterShareButtons';
 import { EmailSignup } from '@/components/email-signup';
+import { markChapterRead } from '@/lib/reading-progress';
 
 interface ChapterEndZoneProps {
   bookSlug: string;
@@ -25,8 +27,27 @@ export default function ChapterEndZone({
   themeId,
   borderClass,
 }: ChapterEndZoneProps) {
+  const zoneRef = useRef<HTMLDivElement>(null);
+
+  // Mark chapter as read when user scrolls to this zone
+  useEffect(() => {
+    const el = zoneRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          markChapterRead(bookSlug, chapterSlug);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [bookSlug, chapterSlug]);
+
   return (
-    <div className="mt-16 mb-12 space-y-0">
+    <div ref={zoneRef} className="mt-16 mb-12 space-y-0">
       {/* Divider */}
       <div className={`border-t ${borderClass} mb-8`} />
 
