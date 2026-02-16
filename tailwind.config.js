@@ -267,6 +267,8 @@ module.exports = {
         quote: ['var(--font-serif)', 'Playfair Display', 'Georgia', 'serif'],
         // JETBRAINS MONO - Code blocks and inline code
         mono: ['var(--font-mono)', 'JetBrains Mono', 'Menlo', 'Monaco', 'monospace'],
+        // LORA - Book body reading text (transitional serif, screen-optimized)
+        book: ['var(--font-lora)', 'Lora', 'Georgia', 'serif'],
       },
       fontSize: {
         // Display sizes
@@ -444,6 +446,26 @@ module.exports = {
         },
       },
 
+      typography: {
+        DEFAULT: {
+          css: {
+            '--tw-prose-body': 'rgba(255, 255, 255, 0.75)',
+            '--tw-prose-headings': 'rgba(255, 255, 255, 0.95)',
+            '--tw-prose-lead': 'rgba(255, 255, 255, 0.65)',
+            '--tw-prose-links': 'rgba(255, 255, 255, 0.85)',
+            '--tw-prose-bold': 'rgba(255, 255, 255, 0.95)',
+            '--tw-prose-counters': 'rgba(255, 255, 255, 0.5)',
+            '--tw-prose-bullets': 'rgba(255, 255, 255, 0.4)',
+            '--tw-prose-hr': 'rgba(255, 255, 255, 0.1)',
+            '--tw-prose-quotes': 'rgba(255, 255, 255, 0.8)',
+            '--tw-prose-quote-borders': 'rgba(255, 255, 255, 0.2)',
+            '--tw-prose-captions': 'rgba(255, 255, 255, 0.5)',
+            '--tw-prose-code': 'rgba(255, 255, 255, 0.85)',
+            '--tw-prose-pre-code': 'rgba(255, 255, 255, 0.85)',
+            '--tw-prose-pre-bg': 'rgba(0, 0, 0, 0.5)',
+          },
+        },
+      },
       backdropBlur: {
         xs: '2px',
       },
@@ -452,5 +474,8 @@ module.exports = {
       },
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [
+    require('@tailwindcss/typography'),
+    require('tailwindcss-animate'),
+  ],
 }

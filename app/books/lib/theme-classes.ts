@@ -36,6 +36,8 @@ export interface ThemeClasses {
   hoverRing: string;
   // Gradient text
   gradientText: string;
+  // Decorative chapter number
+  chapterNumberColor: string;
 }
 
 const themeMap: Record<string, ThemeClasses> = {
@@ -59,6 +61,7 @@ const themeMap: Record<string, ThemeClasses> = {
     hoverBorder: 'hover:border-rose-500',
     hoverRing: 'focus:ring-rose-500/50',
     gradientText: 'bg-gradient-to-r from-rose-300 via-pink-200 to-violet-300 bg-clip-text text-transparent',
+    chapterNumberColor: 'text-rose-400',
   },
   'spartan-mindset': {
     progressGradient: 'bg-gradient-to-r from-red-600 via-red-500 to-orange-500',
@@ -80,6 +83,7 @@ const themeMap: Record<string, ThemeClasses> = {
     hoverBorder: 'hover:border-red-600',
     hoverRing: 'focus:ring-red-600/50',
     gradientText: 'bg-gradient-to-r from-red-300 via-orange-200 to-amber-300 bg-clip-text text-transparent',
+    chapterNumberColor: 'text-red-500',
   },
   'golden-age': {
     progressGradient: 'bg-gradient-to-r from-amber-500 via-indigo-500 to-amber-500',
@@ -101,6 +105,7 @@ const themeMap: Record<string, ThemeClasses> = {
     hoverBorder: 'hover:border-amber-500',
     hoverRing: 'focus:ring-amber-500/50',
     gradientText: 'bg-gradient-to-r from-amber-300 via-orange-200 to-indigo-300 bg-clip-text text-transparent',
+    chapterNumberColor: 'text-amber-400',
   },
   'self-development': {
     progressGradient: 'bg-gradient-to-r from-emerald-500 via-teal-400 to-cyan-500',
@@ -122,6 +127,7 @@ const themeMap: Record<string, ThemeClasses> = {
     hoverBorder: 'hover:border-emerald-500',
     hoverRing: 'focus:ring-emerald-500/50',
     gradientText: 'bg-gradient-to-r from-emerald-300 via-teal-200 to-cyan-300 bg-clip-text text-transparent',
+    chapterNumberColor: 'text-emerald-400',
   },
   imagination: {
     progressGradient: 'bg-gradient-to-r from-violet-500 via-purple-400 to-cyan-400',
@@ -143,6 +149,7 @@ const themeMap: Record<string, ThemeClasses> = {
     hoverBorder: 'hover:border-violet-500',
     hoverRing: 'focus:ring-violet-500/50',
     gradientText: 'bg-gradient-to-r from-violet-300 via-purple-200 to-cyan-300 bg-clip-text text-transparent',
+    chapterNumberColor: 'text-violet-400',
   },
   manifestation: {
     progressGradient: 'bg-gradient-to-r from-amber-400 via-yellow-300 to-purple-500',
@@ -164,6 +171,7 @@ const themeMap: Record<string, ThemeClasses> = {
     hoverBorder: 'hover:border-amber-400',
     hoverRing: 'focus:ring-amber-400/50',
     gradientText: 'bg-gradient-to-r from-amber-200 via-yellow-100 to-purple-300 bg-clip-text text-transparent',
+    chapterNumberColor: 'text-amber-300',
   },
 };
 

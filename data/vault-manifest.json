@@ -1,11 +1,11 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-02-15T01:32:26.971Z",
-  "totalAssets": 484,
+  "generatedAt": "2026-02-16T01:43:54.043Z",
+  "totalAssets": 477,
   "totalCollections": 30,
-  "totalSize": 361435990,
+  "totalSize": 357664701,
   "formats": {
-    "png": 317,
+    "png": 310,
     "svg": 153,
     "jpeg": 5,
     "jpg": 9
@@ -83,7 +83,7 @@
       "id": "blog",
       "name": "Blog Heroes",
       "description": "Editorial hero images and illustrations for blog articles — swarm intelligence, AI architecture, creator studios.",
-      "count": 141,
+      "count": 138,
       "coverImage": "/images/blog/122e43a8-45fe-4476-b36c-378c1abb8fa5.png",
       "accent": "from-amber-500/20 to-orange-500/20",
       "borderAccent": "border-amber-500/30",
@@ -487,7 +487,7 @@
             "social",
             "infographic"
           ],
-          "createdAt": "2026-02-15"
+          "createdAt": "2026-02-14"
         },
         {
           "id": "blog/acos-v25-technical-architecture",
@@ -745,23 +745,6 @@
             "hero"
           ],
           "createdAt": "2026-01-26"
-        },
-        {
-          "id": "blog/ai-dd-agents",
-          "filename": "ai-dd-agents.png",
-          "src": "/images/blog/ai-dd-agents.png",
-          "thumbnail": "/images/blog/ai-dd-agents_thumb.jpeg",
-          "collection": "blog",
-          "format": "png",
-          "width": 1376,
-          "height": 768,
-          "fileSize": 773709,
-          "title": "Ai Dd Agents",
-          "tags": [
-            "blog",
-            "agents"
-          ],
-          "createdAt": "2026-02-15"
         },
         {
           "id": "blog/ai-doesnt-have-to-be-soulless",
@@ -1276,25 +1259,6 @@
           "createdAt": "2026-01-29"
         },
         {
-          "id": "blog/deal-flow-pipeline",
-          "filename": "deal-flow-pipeline.png",
-          "src": "/images/blog/deal-flow-pipeline.png",
-          "thumbnail": "/images/blog/deal-flow-pipeline_thumb.jpeg",
-          "collection": "blog",
-          "format": "png",
-          "width": 1376,
-          "height": 768,
-          "fileSize": 591941,
-          "title": "Deal Flow Pipeline",
-          "tags": [
-            "blog",
-            "deal",
-            "flow",
-            "pipeline"
-          ],
-          "createdAt": "2026-02-15"
-        },
-        {
           "id": "blog/ecosystem-architecture-davinci",
           "filename": "ecosystem-architecture-davinci.png",
           "src": "/images/blog/ecosystem-architecture-davinci.png",
@@ -1311,7 +1275,7 @@
             "architecture",
             "davinci"
           ],
-          "createdAt": "2026-02-15"
+          "createdAt": "2026-02-14"
         },
         {
           "id": "blog/ecosystem-intelligence-stack",
@@ -1330,7 +1294,7 @@
             "intelligence",
             "stack"
           ],
-          "createdAt": "2026-02-15"
+          "createdAt": "2026-02-14"
         },
         {
           "id": "blog/ecosystem-value-flow",
@@ -1349,7 +1313,7 @@
             "value",
             "flow"
           ],
-          "createdAt": "2026-02-15"
+          "createdAt": "2026-02-14"
         },
         {
           "id": "blog/ee442a07-3830-42e9-95bd-2a1737a29ff3",
@@ -1702,24 +1666,6 @@
             "first"
           ],
           "createdAt": "2025-11-14"
-        },
-        {
-          "id": "blog/iacos-research-os",
-          "filename": "iacos-research-os.png",
-          "src": "/images/blog/iacos-research-os.png",
-          "thumbnail": "/images/blog/iacos-research-os_thumb.jpeg",
-          "collection": "blog",
-          "format": "png",
-          "width": 1376,
-          "height": 768,
-          "fileSize": 793427,
-          "title": "Iacos Research Os",
-          "tags": [
-            "blog",
-            "iacos",
-            "research"
-          ],
-          "createdAt": "2026-02-15"
         },
         {
           "id": "blog/intelligence-atlas-governance",
@@ -4046,7 +3992,7 @@
       "id": "acos",
       "name": "ACOS Visual Assets",
       "description": "Architecture diagrams, workflow visualizations, and screenshots for the Agentic Creator OS documentation.",
-      "count": 21,
+      "count": 17,
       "coverImage": "/images/acos/acos-3-phase-workflow.png",
       "accent": "from-emerald-500/20 to-teal-500/20",
       "borderAccent": "border-emerald-500/30",
@@ -4122,45 +4068,7 @@
             "v10",
             "architecture"
           ],
-          "createdAt": "2026-02-15"
-        },
-        {
-          "id": "acos/acos-v10-blog-screenshot",
-          "filename": "acos-v10-blog-screenshot.png",
-          "src": "/images/acos/acos-v10-blog-screenshot.png",
-          "thumbnail": null,
-          "collection": "acos",
-          "format": "png",
-          "width": 1908,
-          "height": 1008,
-          "fileSize": 533804,
-          "title": "Acos V10 Blog Screenshot",
-          "tags": [
-            "acos",
-            "v10",
-            "blog",
-            "screenshot"
-          ],
-          "createdAt": "2026-02-15"
-        },
-        {
-          "id": "acos/acos-v10-changelog-screenshot",
-          "filename": "acos-v10-changelog-screenshot.png",
-          "src": "/images/acos/acos-v10-changelog-screenshot.png",
-          "thumbnail": null,
-          "collection": "acos",
-          "format": "png",
-          "width": 1908,
-          "height": 1008,
-          "fileSize": 135791,
-          "title": "Acos V10 Changelog Screenshot",
-          "tags": [
-            "acos",
-            "v10",
-            "changelog",
-            "screenshot"
-          ],
-          "createdAt": "2026-02-15"
+          "createdAt": "2026-02-14"
         },
         {
           "id": "acos/acos-workflow-architecture",
@@ -4197,42 +4105,6 @@
             "ecosystem"
           ],
           "createdAt": "2026-02-06"
-        },
-        {
-          "id": "acos/changelog-v2-live",
-          "filename": "changelog-v2-live.png",
-          "src": "/images/acos/changelog-v2-live.png",
-          "thumbnail": null,
-          "collection": "acos",
-          "format": "png",
-          "width": 1893,
-          "height": 4915,
-          "fileSize": 802087,
-          "title": "Changelog V2 Live",
-          "tags": [
-            "acos",
-            "changelog",
-            "live"
-          ],
-          "createdAt": "2026-02-15"
-        },
-        {
-          "id": "acos/changelog-v2-screenshot",
-          "filename": "changelog-v2-screenshot.png",
-          "src": "/images/acos/changelog-v2-screenshot.png",
-          "thumbnail": null,
-          "collection": "acos",
-          "format": "png",
-          "width": 1908,
-          "height": 1008,
-          "fileSize": 140530,
-          "title": "Changelog V2 Screenshot",
-          "tags": [
-            "acos",
-            "changelog",
-            "screenshot"
-          ],
-          "createdAt": "2026-02-15"
         },
         {
           "id": "acos/creation-pipeline",
@@ -5256,7 +5128,7 @@
             "amsterdam",
             "water"
           ],
-          "createdAt": "2026-02-15"
+          "createdAt": "2026-02-14"
         },
         {
           "id": "valentines/cherry-blossom",
@@ -5274,7 +5146,7 @@
             "cherry",
             "blossom"
           ],
-          "createdAt": "2026-02-15"
+          "createdAt": "2026-02-14"
         },
         {
           "id": "valentines/cultures-united",
@@ -5292,7 +5164,7 @@
             "cultures",
             "united"
           ],
-          "createdAt": "2026-02-15"
+          "createdAt": "2026-02-14"
         },
         {
           "id": "valentines/german-poetry",
@@ -5310,7 +5182,7 @@
             "german",
             "poetry"
           ],
-          "createdAt": "2026-02-15"
+          "createdAt": "2026-02-14"
         },
         {
           "id": "valentines/hero-celestial",
@@ -5328,7 +5200,7 @@
             "hero",
             "celestial"
           ],
-          "createdAt": "2026-02-15"
+          "createdAt": "2026-02-14"
         },
         {
           "id": "valentines/lotus-bloom",
@@ -5346,7 +5218,7 @@
             "lotus",
             "bloom"
           ],
-          "createdAt": "2026-02-15"
+          "createdAt": "2026-02-14"
         },
         {
           "id": "valentines/love-art",
@@ -5364,7 +5236,7 @@
             "love",
             "art"
           ],
-          "createdAt": "2026-02-15"
+          "createdAt": "2026-02-14"
         },
         {
           "id": "valentines/love-fireworks",
@@ -5382,7 +5254,7 @@
             "love",
             "fireworks"
           ],
-          "createdAt": "2026-02-15"
+          "createdAt": "2026-02-14"
         },
         {
           "id": "valentines/og-valentines-2026",
@@ -5399,13 +5271,13 @@
             "valentines",
             "2026"
           ],
-          "createdAt": "2026-02-15"
+          "createdAt": "2026-02-14"
         },
         {
           "id": "valentines/rose-petals-hero",
           "filename": "rose-petals-hero.png",
           "src": "/images/valentines/rose-petals-hero.png",
-          "thumbnail": "/images/valentines/rose-petals-hero_thumb.jpeg",
+          "thumbnail": null,
           "collection": "valentines",
           "format": "png",
           "width": 1376,
@@ -5418,7 +5290,7 @@
             "petals",
             "hero"
           ],
-          "createdAt": "2026-02-15"
+          "createdAt": "2026-02-14"
         },
         {
           "id": "valentines/two-souls",
@@ -5436,7 +5308,7 @@
             "two",
             "souls"
           ],
-          "createdAt": "2026-02-15"
+          "createdAt": "2026-02-14"
         },
         {
           "id": "valentines/vietnamese-love",
@@ -5454,7 +5326,7 @@
             "vietnamese",
             "love"
           ],
-          "createdAt": "2026-02-15"
+          "createdAt": "2026-02-14"
         }
       ]
     },
@@ -5609,7 +5481,7 @@
           "id": "books/imagination-cover",
           "filename": "imagination-cover.png",
           "src": "/images/books/imagination-cover.png",
-          "thumbnail": "/images/books/imagination-cover_thumb.jpeg",
+          "thumbnail": null,
           "collection": "books",
           "format": "png",
           "width": 848,
@@ -5627,7 +5499,7 @@
           "id": "books/love-and-poetry-cover",
           "filename": "love-and-poetry-cover.png",
           "src": "/images/books/love-and-poetry-cover.png",
-          "thumbnail": "/images/books/love-and-poetry-cover_thumb.jpeg",
+          "thumbnail": null,
           "collection": "books",
           "format": "png",
           "width": 848,
@@ -5647,7 +5519,7 @@
           "id": "books/manifestation-cover",
           "filename": "manifestation-cover.png",
           "src": "/images/books/manifestation-cover.png",
-          "thumbnail": "/images/books/manifestation-cover_thumb.jpeg",
+          "thumbnail": null,
           "collection": "books",
           "format": "png",
           "width": 848,
@@ -5665,7 +5537,7 @@
           "id": "books/self-development-cover",
           "filename": "self-development-cover.png",
           "src": "/images/books/self-development-cover.png",
-          "thumbnail": "/images/books/self-development-cover_thumb.jpeg",
+          "thumbnail": null,
           "collection": "books",
           "format": "png",
           "width": 848,
@@ -5684,7 +5556,7 @@
           "id": "books/spartan-mindset-cover",
           "filename": "spartan-mindset-cover.png",
           "src": "/images/books/spartan-mindset-cover.png",
-          "thumbnail": "/images/books/spartan-mindset-cover_thumb.jpeg",
+          "thumbnail": null,
           "collection": "books",
           "format": "png",
           "width": 848,
@@ -7420,7 +7292,7 @@
             "future",
             "lab"
           ],
-          "createdAt": "2026-02-15"
+          "createdAt": "2026-02-13"
         },
         {
           "id": "gallery/biotech-grand-piano",
@@ -7439,7 +7311,7 @@
             "grand",
             "piano"
           ],
-          "createdAt": "2026-02-15"
+          "createdAt": "2026-02-13"
         },
         {
           "id": "gallery/biotech-hex-drum-pads",
@@ -7459,7 +7331,7 @@
             "drum",
             "pads"
           ],
-          "createdAt": "2026-02-15"
+          "createdAt": "2026-02-13"
         },
         {
           "id": "gallery/biotech-soundboard-mycelium",
@@ -7478,7 +7350,7 @@
             "soundboard",
             "mycelium"
           ],
-          "createdAt": "2026-02-15"
+          "createdAt": "2026-02-13"
         },
         {
           "id": "gallery/biotech-synthesis-controller",
@@ -7497,7 +7369,7 @@
             "synthesis",
             "controller"
           ],
-          "createdAt": "2026-02-15"
+          "createdAt": "2026-02-13"
         },
         {
           "id": "gallery/biotech-violin-blueprint",
@@ -7516,7 +7388,7 @@
             "violin",
             "blueprint"
           ],
-          "createdAt": "2026-02-15"
+          "createdAt": "2026-02-13"
         }
       ]
     },
