@@ -258,7 +258,7 @@ export default function FrameworkPage() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5 print:gap-3">
             {[
-              { step: '01', title: 'Assess', desc: 'Rate each pillar 1-10. Which scores lowest? That's where you start.' },
+              { step: '01', title: 'Assess', desc: 'Rate each pillar 1-10. Which scores lowest? That\u2019s where you start.' },
               { step: '02', title: 'Read', desc: 'Read the full chapter for your weakest pillar. Each is practical and immediately useful.' },
               { step: '03', title: 'Practice', desc: 'Pick one key practice per pillar. Apply daily for 30 days. Small actions compound.' },
             ].map((item, i) => (

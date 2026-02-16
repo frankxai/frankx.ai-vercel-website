@@ -26,7 +26,7 @@ export default function MusicDashboardPage() {
   const allTracks = getAllTracks()
   const playlists = getPlaylists()
 
-  // Serialize for client component
+  // Serialize for client component (strip non-serializable Track objects)
   const serializedData = {
     stats,
     trackAnalytics: trackAnalytics.map((a) => ({
@@ -46,28 +46,27 @@ export default function MusicDashboardPage() {
     })),
     genreDistribution,
     albumAnalytics: albumAnalytics.map((a) => ({
-      id: a.id,
-      title: a.title,
-      subtitle: a.subtitle,
-      genre: a.genre,
-      color: a.color,
-      price: a.price,
-      status: a.status,
-      trackCount: a.trackIds.length,
-      resolvedCount: a.resolvedTracks.length,
+      id: a.album.id,
+      title: a.album.title,
+      subtitle: a.album.subtitle,
+      genre: a.album.genre,
+      color: a.album.color,
+      price: a.album.price,
+      status: a.album.status,
+      trackCount: a.trackCount,
       totalPlays: a.totalPlays,
       totalLikes: a.totalLikes,
-      avgEngagement: a.avgEngagement,
-      missingTracks: a.missingTracks,
-      playlistUrl: a.playlistUrl,
-      lemonSqueezyProductId: a.lemonSqueezyProductId,
-      coverImage: a.coverImage,
+      engagementRate: a.engagementRate,
+      playlistUrl: a.album.playlistUrl,
+      lemonSqueezyProductId: a.album.lemonSqueezyProductId,
+      coverImage: a.album.coverImage,
     })),
     playlistAnalytics: playlistAnalytics.map((p) => ({
       name: p.name,
       songs: p.songs,
       url: p.url,
-      matchedTracks: p.matchedTracks.length,
+      tracksIndexed: p.tracksIndexed,
+      totalPlays: p.totalPlays,
     })),
     distroKidCandidates: distroKidCandidates.slice(0, 15).map((a) => ({
       id: a.track.id,

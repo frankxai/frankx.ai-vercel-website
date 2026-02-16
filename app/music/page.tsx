@@ -26,8 +26,6 @@ import {
   getAlbums,
   getAlbumTracks,
   getMusicStats,
-  getPlaylists,
-  getAllGenres,
   type Track,
   type Album,
 } from '@/lib/music'
@@ -36,16 +34,15 @@ import {
 // DATA FROM LIB
 // ============================================================================
 
-const topTracks = getTopTracks(8)
+const topTracks = getTopTracks(6)
 const albums = getAlbums()
 const musicStats = getMusicStats()
-const playlists = getPlaylists()
 
 const stats = [
-  { value: `${musicStats.totalTracks}+`, label: 'Songs on Suno' },
-  { value: musicStats.hooks, label: 'Total Plays' },
+  { value: `${musicStats.totalTracks}+`, label: 'Public Tracks' },
   { value: String(musicStats.followers), label: 'Followers' },
-  { value: String(musicStats.playlists), label: 'Playlists' },
+  { value: musicStats.hooks, label: 'Hooks' },
+  { value: String(musicStats.albums), label: 'Albums' },
 ]
 
 // ============================================================================
@@ -125,11 +122,11 @@ function HeroSection() {
                 <ExternalLink className="w-4 h-4" />
               </a>
               <Link
-                href="/music-lab"
+                href="/music/brainstorm"
                 className="inline-flex items-center gap-3 border border-white/20 text-white px-7 py-4 rounded-full font-semibold transition-all hover:bg-white/5"
               >
                 <Sparkles className="w-4 h-4" />
-                Learn to Create
+                Brainstorm Ideas
               </Link>
             </div>
           </motion.div>
@@ -205,7 +202,7 @@ function FeaturedTracksSection() {
           className="mb-12"
         >
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Top Tracks</h2>
-          <p className="text-lg text-white/50">Most played tracks from {musicStats.indexedTracks} indexed songs</p>
+          <p className="text-lg text-white/50">Most played tracks from the catalog</p>
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-6">
@@ -396,71 +393,6 @@ function AlbumsSection() {
 }
 
 // ============================================================================
-// PLAYLISTS
-// ============================================================================
-
-const playlistIcons: Record<string, typeof Headphones> = {
-  'Golden Frequencies': Waves,
-  'Training': Zap,
-  'Singing in the Shower': Music,
-  'Think & Grow Rich': Flame,
-  'Arcanean Choir': Globe,
-  'Mind Palace': Sparkles,
-  'Japanese Instrumental Dreams': Globe,
-  'Open Heart': Heart,
-}
-
-function PlaylistsSection() {
-  const featured = playlists.filter((p) => p.songs >= 3).sort((a, b) => b.songs - a.songs)
-
-  return (
-    <section className="py-20 border-t border-white/5">
-      <div className="max-w-6xl mx-auto px-6">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-12"
-        >
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Playlists</h2>
-          <p className="text-lg text-white/50">{playlists.length} curated playlists across genres and moods</p>
-        </motion.div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {featured.map((pl, i) => {
-            const Icon = playlistIcons[pl.name] || Headphones
-            return (
-              <motion.a
-                key={pl.name}
-                href={pl.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.05 }}
-                className="group bg-white/[0.02] border border-white/10 rounded-2xl p-5 hover:border-white/20 hover:bg-white/[0.04] transition-all"
-              >
-                <div className="flex items-center gap-4">
-                  <div className="p-2.5 rounded-xl bg-white/5 group-hover:bg-white/10 transition-colors">
-                    <Icon className="w-5 h-5 text-white/60 group-hover:text-white/80 transition-colors" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="font-semibold text-white truncate">{pl.name}</p>
-                    <p className="text-sm text-white/40">{pl.songs} songs</p>
-                  </div>
-                  <ExternalLink className="w-4 h-4 text-white/20 group-hover:text-white/50 transition-colors shrink-0" />
-                </div>
-              </motion.a>
-            )
-          })}
-        </div>
-      </div>
-    </section>
-  )
-}
-
-// ============================================================================
 // CTA
 // ============================================================================
 
@@ -483,19 +415,19 @@ function CTASection() {
 
           <div className="flex flex-wrap justify-center gap-4">
             <Link
-              href="/music-lab"
+              href="/music/brainstorm"
               className="inline-flex items-center gap-3 bg-white text-black px-8 py-4 rounded-full text-lg font-semibold transition-all hover:bg-white/90 hover:shadow-[0_0_40px_rgba(255,255,255,0.15)]"
             >
               <Sparkles className="w-5 h-5" />
-              Learn AI Music Creation
+              Brainstorm New Ideas
               <ArrowRight className="w-4 h-4" />
             </Link>
             <Link
-              href="/products/suno-prompt-library"
+              href="/music-lab"
               className="inline-flex items-center gap-3 border border-white/20 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all hover:bg-white/5"
             >
               <BookOpen className="w-4 h-4" />
-              Suno Prompt Library
+              Learn AI Music Creation
             </Link>
           </div>
         </motion.div>
@@ -518,7 +450,6 @@ export default function MusicPage() {
         <StatsSection />
         <FeaturedTracksSection />
         <AlbumsSection />
-        <PlaylistsSection />
         <CTASection />
       </div>
     </main>
