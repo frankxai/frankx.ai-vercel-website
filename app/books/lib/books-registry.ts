@@ -407,3 +407,23 @@ export function getPublishedBooks(): BookConfig[] {
 export function getAllBookSlugs(): string[] {
   return booksRegistry.map((b) => b.slug);
 }
+
+const ARCANEA_SLUGS = new Set([
+  'arcanea-bestiary',
+  'arcanea-chronicles',
+  'arcanea-creator-principles',
+  'arcanea-legends',
+  'arcanea-wisdom-scrolls',
+]);
+
+export function getCoreBooks(): BookConfig[] {
+  return booksRegistry.filter(
+    (b) => b.status !== 'draft' && !ARCANEA_SLUGS.has(b.slug)
+  );
+}
+
+export function getArcaneanBooks(): BookConfig[] {
+  return booksRegistry.filter(
+    (b) => b.status !== 'draft' && ARCANEA_SLUGS.has(b.slug)
+  );
+}
