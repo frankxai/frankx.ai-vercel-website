@@ -1,0 +1,164 @@
+/* ─── Year of the Fire Horse — Custom Animations ─────────────── */
+
+/* Scroll progress bar — fire gradient */
+.fire-scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #ef4444, #f59e0b, #ef4444);
+  z-index: 100;
+  transition: width 50ms linear;
+}
+
+/* Ember float — floating ember particles */
+@keyframes ember-float {
+  0%, 100% {
+    transform: translateY(0) translateX(0) scale(1);
+    opacity: var(--ember-opacity, 0.2);
+  }
+  25% {
+    transform: translateY(-15px) translateX(5px) scale(1.1);
+    opacity: calc(var(--ember-opacity, 0.2) * 1.3);
+  }
+  50% {
+    transform: translateY(-8px) translateX(-3px) scale(0.95);
+    opacity: var(--ember-opacity, 0.2);
+  }
+  75% {
+    transform: translateY(-20px) translateX(8px) scale(1.05);
+    opacity: calc(var(--ember-opacity, 0.2) * 0.8);
+  }
+}
+
+.animate-ember-float {
+  animation: ember-float var(--ember-duration, 6s) ease-in-out infinite;
+  animation-delay: var(--ember-delay, 0s);
+}
+
+/* Flame breathe — subtle fire glow pulse on cards */
+@keyframes flame-breathe {
+  0%, 100% {
+    box-shadow:
+      0 0 20px rgba(245, 158, 11, 0.03),
+      0 0 60px rgba(239, 68, 68, 0.02);
+  }
+  50% {
+    box-shadow:
+      0 0 30px rgba(245, 158, 11, 0.06),
+      0 0 80px rgba(239, 68, 68, 0.04);
+  }
+}
+
+.animate-flame-breathe {
+  animation: flame-breathe 4s ease-in-out infinite;
+}
+
+/* Character glow — subtle pulse for Chinese characters */
+@keyframes character-glow {
+  0%, 100% {
+    text-shadow:
+      0 0 20px rgba(245, 158, 11, 0.15),
+      0 0 40px rgba(239, 68, 68, 0.08);
+    opacity: 0.12;
+  }
+  50% {
+    text-shadow:
+      0 0 30px rgba(245, 158, 11, 0.25),
+      0 0 60px rgba(239, 68, 68, 0.15);
+    opacity: 0.18;
+  }
+}
+
+.animate-character-glow {
+  animation: character-glow 6s ease-in-out infinite;
+}
+
+/* Gentle float — for decorative elements */
+@keyframes gentle-drift {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-gentle-drift {
+  animation: gentle-drift 6s ease-in-out infinite;
+}
+
+/* Section divider — fire gradient line */
+.fire-divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(245, 158, 11, 0.2),
+    rgba(239, 68, 68, 0.15),
+    rgba(245, 158, 11, 0.2),
+    transparent
+  );
+  margin: 0 auto;
+  max-width: 200px;
+}
+
+/* Custom scrollbar — fire themed */
+.fire-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.fire-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.fire-scroll::-webkit-scrollbar-thumb {
+  background: rgba(245, 158, 11, 0.15);
+  border-radius: 3px;
+}
+
+.fire-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(245, 158, 11, 0.3);
+}
+
+/* Food card hover effect */
+.food-card {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.food-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(245, 158, 11, 0.15);
+  box-shadow: 0 0 30px rgba(245, 158, 11, 0.05);
+}
+
+/* Principle number — large decorative number */
+.principle-number {
+  font-variant-numeric: tabular-nums;
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.6), rgba(239, 68, 68, 0.4));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Accessibility — respect motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .animate-ember-float,
+  .animate-flame-breathe,
+  .animate-character-glow,
+  .animate-gentle-drift {
+    animation: none;
+  }
+
+  .fire-scroll-progress {
+    transition: none;
+  }
+
+  .food-card {
+    transition: none;
+  }
+
+  .food-card:hover {
+    transform: none;
+  }
+}
