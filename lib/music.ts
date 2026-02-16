@@ -108,21 +108,102 @@ export function getPublishedAlbums(): Album[] {
 // ── Stats ──────────────────────────────────────────────────────────────────
 
 export function getMusicStats() {
-  const profileStats = musicInventory._profileStats
+  const profileStats = musicInventory._profileStats as Record<string, unknown>
   return {
-    totalTracks: musicInventory._estimatedTotal,
+    totalTracks: (musicInventory as Record<string, unknown>)._totalOnSuno as number || musicInventory._count,
     indexedTracks: musicInventory._count,
-    followers: profileStats.followers,
-    hooks: profileStats.hooks,
-    likes: profileStats.likes,
+    followers: profileStats.followers as number,
+    hooks: String(profileStats.totalPlaysDisplay || profileStats.hooks || '0'),
+    likes: String(profileStats.totalLikesDisplay || profileStats.likes || '0'),
     playlists: musicInventory._playlists.length,
     albums: albums.length,
+    totalPlays: (profileStats.totalPlays as number) || 0,
     profileUrl: musicInventory._sunoProfileUrl,
   }
 }
 
 export function getPlaylists() {
   return musicInventory._playlists
+}
+
+// ── Analytics ─────────────────────────────────────────────────────────────
+
+export interface TrackAnalytics {
+  track: Track
+  engagementRate: number // likes/plays percentage
+  rank: number
+  tier: 'breakout' | 'strong' | 'growing' | 'new'
+}
+
+export function getTrackAnalytics(): TrackAnalytics[] {
+  const withPlays = tracks.filter((t) => t.plays && t.plays > 0)
+  const sorted = [...withPlays].sort((a, b) => (b.plays || 0) - (a.plays || 0))
+  return sorted.map((track, i) => ({
+    track,
+    engagementRate: track.plays ? Math.round(((track.likes || 0) / track.plays) * 1000) / 10 : 0,
+    rank: i + 1,
+    tier: (track.plays || 0) >= 100 ? 'breakout'
+      : (track.plays || 0) >= 50 ? 'strong'
+      : (track.plays || 0) >= 20 ? 'growing'
+      : 'new',
+  }))
+}
+
+export function getGenreDistribution(): { genre: string; count: number; totalPlays: number; avgPlays: number }[] {
+  const genreMap = new Map<string, { count: number; totalPlays: number }>()
+  tracks.forEach((t) => {
+    t.genre?.forEach((g) => {
+      const entry = genreMap.get(g) || { count: 0, totalPlays: 0 }
+      entry.count++
+      entry.totalPlays += t.plays || 0
+      genreMap.set(g, entry)
+    })
+  })
+  return [...genreMap.entries()]
+    .map(([genre, data]) => ({
+      genre,
+      count: data.count,
+      totalPlays: data.totalPlays,
+      avgPlays: data.count > 0 ? Math.round(data.totalPlays / data.count) : 0,
+    }))
+    .sort((a, b) => b.totalPlays - a.totalPlays)
+}
+
+export function getPlaylistAnalytics() {
+  const playlists = musicInventory._playlists
+  return playlists.map((p) => ({
+    ...p,
+    matchedTracks: tracks.filter((t) => t.playlist === p.name),
+  }))
+}
+
+export function getAlbumAnalytics() {
+  return albums.map((album) => {
+    const albumTracks = getAlbumTracks(album.id)
+    const totalPlays = albumTracks.reduce((sum, t) => sum + (t.plays || 0), 0)
+    const totalLikes = albumTracks.reduce((sum, t) => sum + (t.likes || 0), 0)
+    const avgEngagement = totalPlays > 0 ? Math.round((totalLikes / totalPlays) * 1000) / 10 : 0
+    return {
+      ...album,
+      resolvedTracks: albumTracks,
+      totalPlays,
+      totalLikes,
+      avgEngagement,
+      missingTracks: album.trackIds.length - albumTracks.length,
+    }
+  })
+}
+
+export function getDistroKidCandidates(): TrackAnalytics[] {
+  return getTrackAnalytics()
+    .filter((a) => a.track.sunoId && a.track.duration)
+    .filter((a) => (a.track.plays || 0) >= 20 || a.engagementRate >= 25)
+    .sort((a, b) => {
+      // Score: 60% plays + 40% engagement
+      const scoreA = ((a.track.plays || 0) * 0.6) + (a.engagementRate * 4)
+      const scoreB = ((b.track.plays || 0) * 0.6) + (b.engagementRate * 4)
+      return scoreB - scoreA
+    })
 }
 
 // ── Helpers ────────────────────────────────────────────────────────────────
