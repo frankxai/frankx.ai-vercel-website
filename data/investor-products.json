@@ -1,0 +1,483 @@
+[
+  {
+    "id": "inv-starter-kit",
+    "slug": "investor-starter-kit",
+    "title": "Investor Intelligence Starter Kit",
+    "subtitle": "Get started with AI-powered investment research",
+    "description": "A free starter pack with 5 Claude Code prompts for stock screening, a basic Notion deal tracker template, and a PDF guide to AI-powered investment research workflows.",
+    "category": "tools",
+    "track": "both",
+    "price": 0,
+    "priceLabel": "Free",
+    "badge": "FREE",
+    "complexity": "starter",
+    "icon": "gift",
+    "useCases": [
+      "Getting started with AI investing",
+      "Basic stock screening",
+      "Deal tracking"
+    ],
+    "techStack": ["Claude Code", "Notion", "PDF"],
+    "integrations": ["claude-code", "notion"],
+    "highlights": [
+      "5 Claude Code prompts for stock screening",
+      "Notion deal tracker template",
+      "PDF guide to AI investment research",
+      "Quick-start setup in under 10 minutes"
+    ],
+    "cta": {
+      "label": "Download Free",
+      "href": "https://github.com/frankxai/investor-intelligence"
+    },
+    "status": "published"
+  },
+  {
+    "id": "inv-deal-flow-crm",
+    "slug": "deal-flow-crm-notion",
+    "title": "Deal Flow CRM",
+    "subtitle": "Notion template for VC and angel deal management",
+    "description": "Pre-built Notion database with deal pipeline stages, LP relationship tracker, portfolio company dashboard, due diligence checklist templates, and meeting notes system. Built for VCs and angels managing 10-100+ deals.",
+    "category": "tools",
+    "track": "institutional",
+    "price": 27,
+    "priceLabel": "$27",
+    "badge": null,
+    "complexity": "starter",
+    "icon": "layout-dashboard",
+    "useCases": [
+      "Deal pipeline management",
+      "LP relationship tracking",
+      "Due diligence checklists"
+    ],
+    "techStack": ["Notion"],
+    "integrations": ["notion"],
+    "highlights": [
+      "7-stage deal pipeline with Kanban view",
+      "LP relationship tracker with commitment history",
+      "Due diligence checklist templates (25+ items)",
+      "Portfolio company dashboard with KPI tracking",
+      "Meeting notes linked to deals automatically"
+    ],
+    "cta": {
+      "label": "Get Template",
+      "href": "/investor/tools"
+    },
+    "status": "published"
+  },
+  {
+    "id": "inv-deal-sourcing-n8n",
+    "slug": "n8n-deal-sourcing-pipeline",
+    "title": "n8n Deal Sourcing Pipeline",
+    "subtitle": "Automated deal discovery and filtering",
+    "description": "An n8n workflow that monitors startup databases and RSS feeds, filters by your investment criteria (stage, sector, geography), and sends a daily digest with scored opportunities. Syncs automatically to Notion or Airtable.",
+    "category": "workflows",
+    "track": "institutional",
+    "price": 37,
+    "priceLabel": "$37",
+    "badge": null,
+    "complexity": "starter",
+    "icon": "workflow",
+    "useCases": [
+      "Automated deal sourcing",
+      "Criteria-based filtering",
+      "Daily deal digest"
+    ],
+    "techStack": ["n8n", "RSS", "Notion"],
+    "integrations": ["n8n", "notion", "airtable"],
+    "highlights": [
+      "Monitors 5+ startup data sources",
+      "Custom criteria filtering (stage, sector, geo)",
+      "Daily email digest with scored opportunities",
+      "Auto-sync to Notion or Airtable",
+      "Setup guide included (30 min install)"
+    ],
+    "cta": {
+      "label": "Get Workflow",
+      "href": "/investor/workflows"
+    },
+    "status": "published"
+  },
+  {
+    "id": "inv-due-diligence-pack",
+    "slug": "due-diligence-agent-pack",
+    "title": "Due Diligence Agent Pack",
+    "subtitle": "5 AI agents that produce a 15-page DD report",
+    "description": "Five specialized AI agents that work together to analyze any company: Company Profiler, Financial Analyzer, Competitive Intelligence, Market Sizer, and Risk Assessor. Feed in a company name and get a comprehensive due diligence report. Includes Claude Code skills and n8n orchestration.",
+    "category": "agents",
+    "track": "institutional",
+    "price": 197,
+    "priceLabel": "$197",
+    "badge": "Popular",
+    "complexity": "professional",
+    "icon": "search",
+    "useCases": [
+      "Startup due diligence",
+      "Company analysis",
+      "Risk assessment",
+      "Market sizing"
+    ],
+    "techStack": ["Claude Code", "n8n", "Coworker"],
+    "integrations": ["claude-code", "n8n", "coworker"],
+    "highlights": [
+      "5 specialized analysis agents",
+      "Generates 15-page DD report automatically",
+      "Company Profiler: team, traction, product analysis",
+      "Financial Analyzer: revenue model, burn rate, runway",
+      "Competitive Intelligence: market positioning, moats",
+      "Market Sizer: TAM/SAM/SOM estimation",
+      "Risk Assessor: red flags, regulatory, technical risk"
+    ],
+    "cta": {
+      "label": "Get Agent Pack",
+      "href": "/investor/agents"
+    },
+    "status": "published"
+  },
+  {
+    "id": "inv-lp-reporting",
+    "slug": "lp-reporting-automation",
+    "title": "LP Reporting Automation",
+    "subtitle": "Automated quarterly LP reports with AI narratives",
+    "description": "A complete system for automating quarterly LP reports. Data collection agents pull metrics from portfolio companies, aggregate performance data, generate AI-written narratives, produce formatted PDFs, and distribute via email. Built with Claude Code agents and n8n workflows.",
+    "category": "agents",
+    "track": "institutional",
+    "price": 297,
+    "priceLabel": "$297",
+    "badge": null,
+    "complexity": "professional",
+    "icon": "file-text",
+    "useCases": [
+      "LP quarterly reports",
+      "Portfolio metric aggregation",
+      "Automated narrative generation"
+    ],
+    "techStack": ["Claude Code", "n8n", "Resend", "PDF"],
+    "integrations": ["claude-code", "n8n", "resend"],
+    "highlights": [
+      "Automated portfolio data collection",
+      "Performance metric aggregation across companies",
+      "AI-generated narrative commentary",
+      "Branded PDF report generation",
+      "Email distribution via Resend",
+      "Saves 20+ hours per quarterly cycle"
+    ],
+    "cta": {
+      "label": "Get System",
+      "href": "/investor/agents"
+    },
+    "status": "published"
+  },
+  {
+    "id": "inv-competitive-intel",
+    "slug": "competitive-intelligence-system",
+    "title": "Competitive Intelligence System",
+    "subtitle": "Automated competitor tracking and weekly briefings",
+    "description": "Three n8n workflows plus Claude analysis agents that monitor competitor activity, aggregate news and patent filings, and produce weekly competitive intelligence briefings. Includes a Notion dashboard for tracking competitor moves over time.",
+    "category": "workflows",
+    "track": "institutional",
+    "price": 97,
+    "priceLabel": "$97",
+    "badge": null,
+    "complexity": "professional",
+    "icon": "eye",
+    "useCases": [
+      "Competitor monitoring",
+      "Patent tracking",
+      "Market intelligence"
+    ],
+    "techStack": ["n8n", "Claude Code", "Notion"],
+    "integrations": ["n8n", "claude-code", "notion"],
+    "highlights": [
+      "3 n8n workflows (competitor, news, patents)",
+      "Claude AI analysis of competitive positioning",
+      "Notion dashboard for longitudinal tracking",
+      "Weekly automated briefing emails",
+      "Customizable competitor watchlist"
+    ],
+    "cta": {
+      "label": "Get System",
+      "href": "/investor/workflows"
+    },
+    "status": "published"
+  },
+  {
+    "id": "inv-intelligence-platform",
+    "slug": "investor-intelligence-platform",
+    "title": "Investor Intelligence Platform",
+    "subtitle": "Full-stack architecture for institutional intelligence",
+    "description": "Complete system architecture blueprint for building an institutional-grade intelligence platform. Includes data ingestion pipelines (SEC filings, news, market data), vector database for semantic search across documents, multi-agent orchestration for research tasks, dashboard specifications, and Infrastructure-as-Code templates for deployment.",
+    "category": "architectures",
+    "track": "institutional",
+    "price": 497,
+    "priceLabel": "$497",
+    "badge": "Premium",
+    "complexity": "enterprise",
+    "icon": "network",
+    "useCases": [
+      "Intelligence platform build",
+      "Data pipeline architecture",
+      "Multi-agent research"
+    ],
+    "techStack": ["Claude Code", "n8n", "Vector DB", "Next.js", "OCI/AWS"],
+    "integrations": ["claude-code", "n8n", "pinecone", "next"],
+    "highlights": [
+      "Complete system architecture documentation",
+      "Data ingestion: SEC filings, news, market feeds",
+      "Vector DB for semantic document search",
+      "Multi-agent orchestration layer",
+      "Dashboard UI specifications",
+      "IaC templates (Terraform/Pulumi)",
+      "Deployment guides for OCI and AWS"
+    ],
+    "cta": {
+      "label": "Get Architecture",
+      "href": "/investor/architectures"
+    },
+    "status": "published"
+  },
+  {
+    "id": "inv-deal-flow-engine",
+    "slug": "deal-flow-intelligence-engine",
+    "title": "Deal Flow Intelligence Engine",
+    "subtitle": "8 automated workflows from sourcing to decision",
+    "description": "End-to-end automated deal sourcing system with 8 n8n workflows covering: source monitoring, initial screening, company enrichment, thesis matching, deal scoring, CRM synchronization, team notification, and weekly pipeline digest. The complete pipeline from discovery to investment committee.",
+    "category": "workflows",
+    "track": "institutional",
+    "price": 297,
+    "priceLabel": "$297",
+    "badge": null,
+    "complexity": "enterprise",
+    "icon": "git-branch",
+    "useCases": [
+      "End-to-end deal flow",
+      "Automated screening",
+      "Thesis matching"
+    ],
+    "techStack": ["n8n", "Claude Code", "Notion", "Slack"],
+    "integrations": ["n8n", "claude-code", "notion", "slack"],
+    "highlights": [
+      "8 interconnected n8n workflows",
+      "Source monitoring across databases and networks",
+      "AI-powered initial screening and scoring",
+      "Company enrichment from multiple data sources",
+      "Investment thesis matching algorithm",
+      "CRM sync with deal scores",
+      "Team Slack notifications for high-score deals",
+      "Weekly pipeline digest report"
+    ],
+    "cta": {
+      "label": "Get Engine",
+      "href": "/investor/workflows"
+    },
+    "status": "published"
+  },
+  {
+    "id": "inv-portfolio-tracker",
+    "slug": "portfolio-tracker-obsidian",
+    "title": "Portfolio Tracker Vault",
+    "subtitle": "Obsidian vault for personal investment tracking",
+    "description": "A structured Obsidian vault with templates for quarterly portfolio reviews, company metric tracking, investment thesis journals, and performance logging. Designed for individual investors who want a private, offline-first system for tracking their portfolio and validating their theses over time.",
+    "category": "tools",
+    "track": "individual",
+    "price": 27,
+    "priceLabel": "$27",
+    "badge": null,
+    "complexity": "starter",
+    "icon": "book-open",
+    "useCases": [
+      "Portfolio tracking",
+      "Thesis journaling",
+      "Quarterly reviews"
+    ],
+    "techStack": ["Obsidian"],
+    "integrations": ["obsidian"],
+    "highlights": [
+      "Quarterly review templates with prompts",
+      "Company metric tracking dashboards",
+      "Investment thesis journal templates",
+      "Performance logging with graph views",
+      "Private, offline-first — your data stays local"
+    ],
+    "cta": {
+      "label": "Get Vault",
+      "href": "/investor/tools"
+    },
+    "status": "published"
+  },
+  {
+    "id": "inv-market-research-prompts",
+    "slug": "market-research-prompt-pack",
+    "title": "Market Research Prompt Pack",
+    "subtitle": "20+ prompts for stock screening and sector analysis",
+    "description": "A curated collection of 20+ Claude and GPT prompts specifically designed for investment research: competitive landscape analysis, TAM/SAM/SOM estimation, earnings call extraction, 10-K filing analysis, and sector mapping. Includes a Claude Code workspace configuration for seamless workflow.",
+    "category": "agents",
+    "track": "individual",
+    "price": 47,
+    "priceLabel": "$47",
+    "badge": null,
+    "complexity": "starter",
+    "icon": "bar-chart",
+    "useCases": [
+      "Stock screening",
+      "Sector analysis",
+      "Earnings extraction",
+      "10-K analysis"
+    ],
+    "techStack": ["Claude Code", "GPT"],
+    "integrations": ["claude-code"],
+    "highlights": [
+      "20+ battle-tested research prompts",
+      "Competitive landscape analysis framework",
+      "TAM/SAM/SOM estimation methodology",
+      "Earnings call key metrics extraction",
+      "10-K filing analysis workflow",
+      "Claude Code workspace config included"
+    ],
+    "cta": {
+      "label": "Get Prompt Pack",
+      "href": "/investor/agents"
+    },
+    "status": "published"
+  },
+  {
+    "id": "inv-stock-research-agent",
+    "slug": "stock-research-agent",
+    "title": "Stock Research Agent",
+    "subtitle": "Claude Code workspace for fundamental analysis",
+    "description": "A pre-configured Claude Code workspace optimized for individual stock research. Includes skills for fundamental analysis, earnings comparison across quarters, sector mapping, and valuation modeling. Drop in a ticker symbol and get structured analysis.",
+    "category": "agents",
+    "track": "individual",
+    "price": 97,
+    "priceLabel": "$97",
+    "badge": null,
+    "complexity": "professional",
+    "icon": "trending-up",
+    "useCases": [
+      "Fundamental analysis",
+      "Earnings comparison",
+      "Sector mapping",
+      "Valuation"
+    ],
+    "techStack": ["Claude Code", "Coworker"],
+    "integrations": ["claude-code", "coworker"],
+    "highlights": [
+      "Pre-configured Claude Code workspace",
+      "Fundamental analysis skill set",
+      "Quarterly earnings comparison tools",
+      "Sector mapping and peer analysis",
+      "Valuation model templates",
+      "Works with any publicly traded company"
+    ],
+    "cta": {
+      "label": "Get Agent",
+      "href": "/investor/agents"
+    },
+    "status": "published"
+  },
+  {
+    "id": "inv-sentiment-analyzer",
+    "slug": "market-sentiment-analyzer",
+    "title": "Market Sentiment Analyzer",
+    "subtitle": "n8n workflow for news and social sentiment scoring",
+    "description": "An n8n workflow paired with a Claude analysis agent that monitors financial news and social media for sentiment signals. Scores sentiment by ticker, sector, or custom watchlist, and triggers alerts when sentiment shifts significantly. Includes daily digest and historical tracking.",
+    "category": "workflows",
+    "track": "individual",
+    "price": 97,
+    "priceLabel": "$97",
+    "badge": null,
+    "complexity": "professional",
+    "icon": "activity",
+    "useCases": ["Sentiment analysis", "News monitoring", "Alert triggers"],
+    "techStack": ["n8n", "Claude Code"],
+    "integrations": ["n8n", "claude-code"],
+    "highlights": [
+      "Real-time news and social sentiment monitoring",
+      "Ticker-level and sector-level scoring",
+      "Custom watchlist support",
+      "Significant shift alerts via email or Slack",
+      "Daily sentiment digest",
+      "Historical sentiment tracking"
+    ],
+    "cta": {
+      "label": "Get Analyzer",
+      "href": "/investor/workflows"
+    },
+    "status": "published"
+  },
+  {
+    "id": "inv-research-workspace",
+    "slug": "investor-research-workspace",
+    "title": "Investor Research Workspace",
+    "subtitle": "Complete Claude Code + Coworker setup for research",
+    "description": "A fully configured workspace for Claude Code and Anthropic Coworker, pre-loaded with 30+ investment research prompts, research methodology templates, source validation workflows, and custom skills for financial analysis. The all-in-one environment for AI-powered investment research.",
+    "category": "tools",
+    "track": "both",
+    "price": 147,
+    "priceLabel": "$147",
+    "badge": "Best Value",
+    "complexity": "professional",
+    "icon": "terminal",
+    "useCases": [
+      "Research workspace setup",
+      "Multi-tool research",
+      "Source validation"
+    ],
+    "techStack": ["Claude Code", "Coworker", "Obsidian"],
+    "integrations": ["claude-code", "coworker", "obsidian"],
+    "highlights": [
+      "30+ investment research prompts",
+      "Research methodology templates",
+      "Source validation workflows",
+      "Custom Claude Code skills for finance",
+      "Coworker agent configurations",
+      "Works for both institutional and individual investors"
+    ],
+    "cta": {
+      "label": "Get Workspace",
+      "href": "/investor/tools"
+    },
+    "status": "published"
+  },
+  {
+    "id": "inv-complete-stack",
+    "slug": "complete-investor-ai-stack",
+    "title": "The Complete Investor AI Stack",
+    "subtitle": "Everything bundled at 40% off",
+    "description": "The ultimate bundle: every institutional product in one package. Includes Due Diligence Agent Pack, Competitive Intelligence System, Investor Intelligence Platform architecture, and LP Reporting Automation. All agents, workflows, architectures, and templates — shipped as one cohesive system.",
+    "category": "architectures",
+    "track": "institutional",
+    "price": 697,
+    "priceLabel": "$697",
+    "badge": "Bundle",
+    "complexity": "enterprise",
+    "icon": "layers",
+    "useCases": [
+      "Full investor stack",
+      "Enterprise deployment",
+      "Complete intelligence system"
+    ],
+    "techStack": [
+      "Claude Code",
+      "n8n",
+      "Coworker",
+      "Notion",
+      "Vector DB",
+      "OCI/AWS"
+    ],
+    "integrations": ["claude-code", "n8n", "coworker", "notion", "pinecone"],
+    "highlights": [
+      "Due Diligence Agent Pack ($197 value)",
+      "Competitive Intelligence System ($97 value)",
+      "Investor Intelligence Platform ($497 value)",
+      "LP Reporting Automation ($297 value)",
+      "Total value: $1,088 — You pay: $697",
+      "One cohesive system, not separate tools",
+      "Priority setup support via email"
+    ],
+    "cta": {
+      "label": "Get Full Stack",
+      "href": "/investor/architectures"
+    },
+    "status": "published"
+  }
+]
