@@ -1,0 +1,118 @@
+/* Mama Music Page — Warm & Elegant Styles */
+
+/* Soft golden particle float */
+@keyframes golden-float {
+  0%, 100% {
+    transform: translateY(0) translateX(0);
+  }
+  25% {
+    transform: translateY(-15px) translateX(8px);
+  }
+  50% {
+    transform: translateY(-8px) translateX(-4px);
+  }
+  75% {
+    transform: translateY(-22px) translateX(-8px);
+  }
+}
+
+.animate-golden-float {
+  animation: golden-float ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Gentle breathing glow — warm amber */
+@keyframes mama-breathe {
+  0%, 100% { box-shadow: 0 0 20px rgba(245, 158, 11, 0.05); }
+  50% { box-shadow: 0 0 40px rgba(245, 158, 11, 0.12); }
+}
+
+.animate-mama-breathe {
+  animation: mama-breathe 5s ease-in-out infinite;
+}
+
+/* Musical note drift */
+@keyframes note-drift {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.6;
+  }
+  90% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateY(-60vh) rotate(15deg);
+    opacity: 0;
+  }
+}
+
+.animate-note-drift {
+  animation: note-drift linear infinite;
+  will-change: transform;
+}
+
+/* Section divider — warm gradient */
+.mama-divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(245, 158, 11, 0.15),
+    rgba(217, 119, 6, 0.12),
+    rgba(245, 158, 11, 0.15),
+    transparent
+  );
+  margin: 0 auto;
+  max-width: 200px;
+}
+
+/* Font utilities */
+.font-display {
+  font-family: var(--font-display), 'Cormorant Garamond', serif;
+}
+.font-body-serif {
+  font-family: var(--font-body-serif), 'Lora', serif;
+}
+
+/* Warm gradient text */
+.mama-gradient-text {
+  background: linear-gradient(135deg, #f59e0b, #d97706, #b45309);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Scroll progress — warm amber */
+.mama-scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #f59e0b, #d97706, #92400e);
+  z-index: 100;
+  transition: width 50ms linear;
+}
+
+/* Scrollbar */
+.mama-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+.mama-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.mama-scroll::-webkit-scrollbar-thumb {
+  background: rgba(245, 158, 11, 0.2);
+  border-radius: 2px;
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .animate-golden-float,
+  .animate-mama-breathe,
+  .animate-note-drift {
+    animation: none !important;
+  }
+}
