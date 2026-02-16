@@ -364,7 +364,7 @@ export function premiumNewsletterEmail(data: NewsletterData): { subject: string;
                             Frank Guzman
                           </p>
                           <p style="margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 13px; color: #64748b;">
-                            Musician &rarr; AI Architect at Oracle
+                            AI Architect &amp; Music Creator
                           </p>
                         </td>
                       </tr>
@@ -399,7 +399,7 @@ export function premiumNewsletterEmail(data: NewsletterData): { subject: string;
                           <p style="margin: 0; font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-size: 11px; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em;">Creators</p>
                         </td>
                         <td style="padding: 16px 24px; text-align: center;">
-                          <p style="margin: 0 0 4px 0; font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-size: 20px; font-weight: 700; color: #a78bfa;">Oracle</p>
+                          <p style="margin: 0 0 4px 0; font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-size: 20px; font-weight: 700; color: #a78bfa;">Enterprise</p>
                           <p style="margin: 0; font-family: -apple-system, BlinkMacSystemFont, sans-serif; font-size: 11px; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em;">AI Architect</p>
                         </td>
                       </tr>
@@ -441,7 +441,7 @@ export function samplePremiumNewsletter(): { subject: string; html: string } {
     issueNumber: 1,
     headline: 'Welcome to the Golden Age of Creator AI',
     subheadline: 'Your weekly dispatch from the intersection of music, AI, and conscious creation.',
-    personalNote: "It's 2 AM. I'm in the studio, and something magical just happened. After 500+ AI-generated songs and years building enterprise AI at Oracle, I've realized we're living in the most exciting time to be a creator. This newsletter is how I share what I'm learning in the trenches.",
+    personalNote: "It's 2 AM. I'm in the studio, and something magical just happened. After 500+ AI-generated songs and years building enterprise AI systems, I've realized we're living in the most exciting time to be a creator. This newsletter is how I share what I'm learning in the trenches.",
     sections: [
       {
         icon: '🎵',

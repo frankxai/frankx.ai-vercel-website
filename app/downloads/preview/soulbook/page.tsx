@@ -24,9 +24,8 @@ export default function SoulbookPreviewPage() {
   // Generate stable sessionId on mount using lazy state initializer
   const [sessionId] = useState(() => `session-${Date.now()}`)
 
-  // Use HTML template as primary source (PDFs are empty directory)
-  // Fallback chain: PDF → HTML template → Error
-  const pdfUrl = '/pdfs/soulbook-guide.pdf'
+  // PDF at /products/, HTML template as fallback
+  const pdfUrl = '/products/soulbook-7-pillars-framework.pdf'
   const htmlFallbackUrl = '/pdf-templates/soulbook-guide.html'
 
   return (
@@ -64,7 +63,7 @@ export default function SoulbookPreviewPage() {
           </p>
 
           <p className="text-base text-gray-400 max-w-2xl mx-auto mb-8">
-            The same principles I use to balance 500+ AI songs, enterprise architecture at Oracle, and conscious creation. Think of this as your studio manual for authentic, transformative work.
+            The same principles I use to balance 500+ AI songs, enterprise AI architecture, and creative work. Think of this as your studio manual for authentic, transformative work.
           </p>
 
           {/* Stats */}

@@ -21,7 +21,7 @@ import { FAQPageJsonLd } from '@/components/seo/JsonLd'
 const aboutFaqs = [
   {
     question: 'Who is Frank and what is FrankX.AI?',
-    answer: 'Frank is an AI Architect at Oracle\'s Center of Excellence by day and a prolific AI music creator by night. FrankX.AI is his personal hub sharing everything learned from building enterprise AI systems and creating 12,000+ songs with Suno AI, providing tools and frameworks for creators to build their own AI-powered creative practice.'
+    answer: 'Frank is an AI Architect by day and a prolific AI music creator by night. He currently works at Oracle, but all views and content on this site are entirely his own. FrankX.AI is his personal hub sharing everything learned from building enterprise AI systems and creating 12,000+ songs with Suno AI, providing tools and frameworks for creators to build their own AI-powered creative practice.'
   },
   {
     question: 'What makes FrankX.AI different from other AI resources?',
@@ -114,7 +114,7 @@ const journey = [
     icon: Briefcase,
     title: 'Enterprise AI',
     description:
-      'Senior AI Architect at Oracle\'s Center of Excellence. I build AI systems for global organizations that work in the real world.',
+      'AI Architect building enterprise AI systems for global organizations. All views on this site are my own.',
     color: 'emerald',
   },
   {
@@ -217,8 +217,8 @@ export default function AboutPage() {
                 >
                   <p>
                     Create music, art, content—explore with me the infinite intelligence
-                    of the golden age. By day, I architect enterprise AI systems at Oracle's
-                    Center of Excellence. By night, I create music with Suno AI.
+                    of the golden age. By day, I architect enterprise AI systems.
+                    By night, I create music with Suno AI. All views here are my own.
                   </p>
                   <p>
                     12,000+ songs. Countless experiments. Everything I learn goes here—

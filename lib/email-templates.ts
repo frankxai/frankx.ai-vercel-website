@@ -208,7 +208,7 @@ export function newsletterWelcomeEmail(data: {
           </h1>
 
           <p style="font-size: 16px; color: #CBD5E1; line-height: 1.75; margin: 0 0 16px 0;">
-            I'm Frank. I build enterprise AI systems at Oracle during the day. At night I'm in the studio — 500+ AI-generated songs and counting.
+            I'm Frank. I build enterprise AI systems during the day. At night I'm in the studio — 500+ AI-generated songs and counting.
           </p>
 
           <p style="font-size: 15px; color: #94a3b8; line-height: 1.75; margin: 0 0 32px 0;">

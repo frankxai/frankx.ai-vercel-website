@@ -78,9 +78,13 @@ export async function POST(request: NextRequest) {
       guideId: guideSlug
     })
 
+    // Make download URL absolute for email context
+    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://frankx.ai'
+    const absolutePdfUrl = pdfUrl.startsWith('http') ? pdfUrl : `${baseUrl}${pdfUrl}`
+
     // Send email with Resend
     const { data, error } = await resend.emails.send({
-      from: 'Frank from FrankX.AI <frank@frankx.ai>',
+      from: 'Frank from FrankX.AI <frank@mail.frankx.ai>',
       to: [leadData.email],
       subject: `Your ${pdfTitle} Guide from FrankX.AI`,
       html: `
@@ -111,7 +115,7 @@ export async function POST(request: NextRequest) {
       </h1>
 
       <p style="font-size: 17px; color: #CBD5E1; line-height: 1.7; margin: 0 0 16px 0;">
-        Picture this: same frameworks I used to create 500+ AI songs and build enterprise systems at Oracle - now in your hands.
+        Picture this: same frameworks I used to create 500+ AI songs and build enterprise AI systems - now in your hands.
       </p>
 
       <p style="font-size: 16px; color: #94a3b8; line-height: 1.7; margin: 0 0 28px 0;">
@@ -130,7 +134,7 @@ export async function POST(request: NextRequest) {
       </div>
 
       <div style="text-align: center; margin: 36px 0;">
-        <a href="${pdfUrl}"
+        <a href="${absolutePdfUrl}"
            style="display: inline-block; padding: 18px 40px; background: linear-gradient(135deg, #06b6d4 0%, #8B5CF6 50%, #9333ea 100%); color: white; text-decoration: none; border-radius: 16px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 17px; box-shadow: 0 12px 32px rgba(6, 182, 212, 0.4); transition: all 0.3s;">
           Download Your Guide →
         </a>
@@ -153,7 +157,7 @@ export async function POST(request: NextRequest) {
           Frank Guzman
         </p>
         <p style="font-size: 13px; color: #94a3b8; margin: 0; line-height: 1.6;">
-          Musician → AI Architect at Oracle<br>
+          AI Architect & Music Creator<br>
           <span style="color: #22d3ee;">500+ AI Songs</span> | <span style="color: #8B5CF6;">Enterprise AI Systems</span>
         </p>
       </div>

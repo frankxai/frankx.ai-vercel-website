@@ -3,7 +3,7 @@ import { createMetadata } from '@/lib/seo'
 export const metadata = createMetadata({
   title: 'For AI Architects — Enterprise Patterns & Multi-Agent Systems | FrankX.AI',
   description:
-    'Production AI architecture patterns from an Oracle AI Architect. Multi-agent systems, RAG architectures, agentic workflows, and enterprise deployment guides. 630+ skills, 40+ agents in open-source ACOS.',
+    'Production AI architecture patterns from a practicing AI Architect. Multi-agent systems, RAG architectures, agentic workflows, and enterprise deployment guides.',
   keywords: [
     'ai architect',
     'enterprise ai architecture',

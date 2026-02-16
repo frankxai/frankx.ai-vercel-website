@@ -9,7 +9,9 @@ keywords: ["oracle ai agents", "oci genai agents", "langgraph vs crewai", "enter
 image: "/images/blog/oracle-genai-comparison.png"
 ---
 
-**TL;DR**: OCI GenAI Agents offers zero-cost AI agents with native Oracle integration and enterprise guardrails. LangGraph provides graph-based orchestration for complex stateful workflows. CrewAI excels at role-based team simulations. Your choice depends on existing infrastructure, compliance requirements, and workflow complexity.
+**TL;DR**: Oracle offers two distinct AI agent approaches: OCI GenAI Agents (a paid managed RAG service) and Fusion AI Agents (50+ pre-built agents included with Fusion Cloud). LangGraph provides graph-based orchestration for complex stateful workflows. CrewAI excels at role-based team simulations. Your choice depends on existing infrastructure, compliance requirements, and workflow complexity.
+
+*Disclaimer: I work at Oracle as an AI Architect. All views and analysis in this article are my own and do not represent Oracle's official position.*
 
 ---
 
@@ -17,7 +19,7 @@ image: "/images/blog/oracle-genai-comparison.png"
 
 The AI agent market is moving from "interesting demo" to "production requirement." Gartner predicts 40% of enterprise applications will embed AI agents by end of 2026. The question isn't whether to adopt agents—it's which framework matches your infrastructure and use cases.
 
-For Oracle customers specifically, this decision has a non-obvious dimension: OCI GenAI Agents comes at no additional cost within Fusion Cloud. That changes the calculus significantly.
+For Oracle customers specifically, this decision has a non-obvious dimension: Oracle Fusion AI Agents come included with Fusion Cloud subscriptions at no additional cost—though OCI GenAI Agents (for building custom RAG-based agents) has its own pricing model.
 
 ---
 
@@ -25,7 +27,7 @@ For Oracle customers specifically, this decision has a non-obvious dimension: OC
 
 | Framework | Primary Use Case | Deployment Model | Cost Model |
 |-----------|------------------|------------------|------------|
-| **OCI GenAI Agents** | Oracle ecosystem integration, RAG on enterprise data | Fully managed | Included with Fusion Cloud |
+| **OCI GenAI Agents** | Oracle ecosystem integration, RAG on enterprise data | Fully managed | Pay-per-use (OCI pricing) |
 | **LangGraph** | Complex stateful workflows with branching logic | Self-hosted or LangGraph Platform | Open source + infrastructure |
 | **CrewAI** | Role-based team coordination, rapid prototyping | Self-hosted or AMP Suite | Open source + infrastructure |
 
@@ -58,18 +60,27 @@ OCI Generative AI Agents is a fully managed service that combines LLMs with AI t
 - PII detection and protection
 - Context retention across conversation turns
 
+### Important: Two Distinct Oracle Agent Products
+
+Oracle actually offers **two separate AI agent products** that are often confused:
+
+1. **OCI Generative AI Agents** — A paid OCI service for building custom RAG-based agents on your data. Priced per-transaction or via dedicated AI clusters.
+2. **Oracle Fusion AI Agents** — 50+ pre-built agents embedded in Fusion Cloud Applications (ERP, HCM, SCM, CX). These are included with Fusion Cloud subscriptions at no additional cost.
+
+This article primarily covers OCI GenAI Agents as the developer-facing platform. The Fusion AI Agents are a separate, application-embedded offering.
+
 ### What Makes It Different
 
-1. **Zero additional cost** for Fusion Cloud customers
-2. **50+ pre-built agents** embedded in Fusion Applications (finance, HR, supply chain, sales)
+1. **Native Oracle data integration** — Direct access to Oracle Database 23ai, OCI Object Storage, and OpenSearch
+2. **50+ pre-built Fusion AI Agents** (separate product, included with Fusion Cloud)
 3. **AI Agent Marketplace** with 100+ partner-built agents
-4. **Google Gemini on OCI**—Oracle is the only hyperscaler besides GCP to offer managed Gemini
-5. **Native security framework** inherits Fusion Applications access controls automatically
+4. **Google Gemini on OCI** — Oracle is the only hyperscaler besides GCP to offer managed Gemini
+5. **Native security framework** inherits OCI IAM and compliance controls
 
 ### Best For
 
 - Oracle Database customers needing RAG on existing data
-- Fusion Cloud users wanting embedded AI without new infrastructure
+- Fusion Cloud users wanting embedded AI (see Fusion AI Agents, included at no extra cost)
 - Enterprises requiring SOC2/compliance without additional validation
 - Teams wanting managed service over DIY orchestration
 
@@ -182,7 +193,7 @@ CrewAI agents can directly reference MCP servers in configuration using URLs or 
 ✅ You're already on Oracle Fusion Cloud or Oracle Database 23ai
 ✅ You need RAG on enterprise data with minimal setup
 ✅ Compliance/security inheritance from existing Oracle infrastructure matters
-✅ Budget constraint—included at no additional cost
+✅ Budget constraint—Fusion AI Agents included at no additional cost; OCI GenAI Agents has competitive pay-per-use pricing
 ✅ You want managed service, not DIY orchestration
 
 ### Choose LangGraph If:
@@ -212,7 +223,7 @@ CrewAI agents can directly reference MCP servers in configuration using URLs or 
 | **State Persistence** | Built-in | Built-in | Requires AMP |
 | **MCP Support** | Via OCI APIs | Adapter | Native config |
 | **Observability** | OCI Console | LangSmith | AMP Suite |
-| **Cost** | Included w/Fusion | Open source + infra | Open source + infra |
+| **Cost** | Pay-per-use (OCI) | Open source + infra | Open source + infra |
 | **Oracle Integration** | Native | Manual | Manual |
 | **HIPAA/SOC2** | Via Oracle | Self-implement | AMP certified |
 | **On-premise** | No (OCI only) | Yes | Yes |
@@ -244,8 +255,8 @@ No. It's a managed OCI service. For multi-cloud, consider LangGraph or CrewAI wi
 ### Is LangGraph harder to learn than CrewAI?
 Yes. LangGraph requires understanding graph theory and state machines. CrewAI uses intuitive role-based metaphors. The tradeoff is control vs. speed-to-start.
 
-### Do I need to pay extra for OCI GenAI Agents?
-No. It's included with Oracle Fusion Cloud subscriptions at no additional cost.
+### Do I need to pay for OCI GenAI Agents?
+Yes. OCI GenAI Agents is a paid OCI service with per-transaction pricing. However, Oracle Fusion AI Agents (the 50+ pre-built agents embedded in Fusion Cloud Applications) are included with Fusion Cloud subscriptions at no additional cost. These are two separate products.
 
 ### Can LangGraph and CrewAI use Oracle data?
 Yes. Both can integrate with Oracle databases via standard connectors. You'd need to build the integration vs. OCI's native approach.
@@ -260,7 +271,7 @@ CrewAI → LangGraph for production is common. Some Oracle teams start with OCI 
 
 ## Key Takeaways
 
-1. **OCI GenAI Agents**: Best for Oracle-native deployments with zero additional cost and managed simplicity
+1. **OCI GenAI Agents**: Best for Oracle-native deployments with managed RAG and enterprise data integration
 2. **LangGraph**: Best for complex stateful workflows requiring production-grade orchestration
 3. **CrewAI**: Best for rapid prototyping and role-based coordination
 4. **All three are production-viable**—the choice is about fit, not capability
@@ -270,15 +281,18 @@ The 72% of enterprise AI projects using multi-agent architectures aren't all usi
 
 ---
 
-*Building enterprise AI agents? [Check the AI Architecture Hub](/ai-architecture) for blueprints covering RAG, multi-agent patterns, and OCI integration.*
+*Building enterprise AI agents? [Check the AI Architecture Hub](/ai-architecture) for blueprints covering RAG, multi-agent patterns, and cloud integration.*
 
 ---
+
+*All views expressed in this article are my own and do not represent Oracle's official position. This analysis is based on publicly available documentation.*
 
 **Sources:**
 - [Oracle AI Agent Platform](https://www.oracle.com/artificial-intelligence/generative-ai/agents/)
 - [Oracle AI Agent Studio](https://www.oracle.com/applications/dawn-of-ai-enterprise-agent-workforce/)
 - [Oracle Fusion Applications AI Agents](https://www.oracle.com/applications/fusion-ai/ai-agents/)
 - [OCI GenAI Agents Documentation](https://docs.oracle.com/en-us/iaas/Content/generative-ai-agents/overview.htm)
+- [OCI GenAI Agents Pricing](https://www.oracle.com/artificial-intelligence/generative-ai/agents/pricing/)
 - [LangGraph vs CrewAI - ZenML](https://www.zenml.io/blog/langgraph-vs-crewai)
 - [CrewAI vs LangGraph vs AutoGen - DataCamp](https://www.datacamp.com/tutorial/crewai-vs-langgraph-vs-autogen)
 - [IBM: Comparing AI Agent Frameworks](https://developer.ibm.com/articles/awb-comparing-ai-agent-frameworks-crewai-langgraph-and-beeai/)

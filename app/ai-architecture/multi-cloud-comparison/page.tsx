@@ -318,7 +318,7 @@ function HeroSection() {
           <p className="text-lg md:text-xl text-white/60 mb-8 leading-relaxed max-w-3xl">
             Independent analysis of AWS, Google Cloud, Azure, and Oracle Cloud for building
             AI-powered creator platforms. Real cost comparisons, architecture patterns,
-            and decision frameworks from an Oracle AI Architect.
+            and decision frameworks from a practicing AI Architect.
           </p>
 
           <div className="flex flex-wrap gap-3">
@@ -700,8 +700,8 @@ export default function AIArchitecturePage() {
         {/* Footer note */}
         <div className="max-w-6xl mx-auto px-4 sm:px-6 pb-16 text-center">
           <p className="text-sm text-white/40">
-            This is independent technical research by Frank, Oracle AI Architect.
-            Not endorsed by or representing Oracle, AWS, Google, or Microsoft.
+            This is independent technical research by Frank. All views are my own.
+            Not endorsed by or representing any cloud provider.
           </p>
         </div>
       </div>
