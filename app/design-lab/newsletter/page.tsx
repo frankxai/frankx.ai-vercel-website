@@ -1,8 +1,10 @@
 'use client'
 
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useRef } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 import Link from 'next/link'
+import SparkBorder from '@/components/ui/SparkBorder'
+import { GlowButton } from '@/components/ui/GlowButton'
 import {
   ArrowLeft,
   ArrowRight,
@@ -19,9 +21,21 @@ import {
   Workflow,
   Clock,
   Send,
+  Code2,
 } from 'lucide-react'
 
-// ── Email Palette ──
+// ── Animation Constants ────────────────────────────────────────────
+
+const fadeIn = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
+}
+
+const stagger = {
+  visible: { transition: { staggerChildren: 0.08, delayChildren: 0.1 } },
+}
+
+// ── Email Palette ──────────────────────────────────────────────────
 
 const foundationColors = [
   { name: 'Background', hex: '#111827', css: 'gray-900', use: 'Email body background' },
@@ -38,7 +52,7 @@ const accentPalettes = [
   { name: 'Rose', hex: '#fb7185', templates: ['(Reserved — Win-back)'], role: 'Re-engagement' },
 ]
 
-// ── Design Principles ──
+// ── Design Principles ──────────────────────────────────────────────
 
 const principles = [
   {
@@ -73,7 +87,7 @@ const principles = [
   },
 ]
 
-// ── Typography Scale ──
+// ── Typography Scale ──────────────────────────────────────────────
 
 const emailTypeScale = [
   { name: 'H1', size: '24–32px', weight: 700, leading: '1.2–1.3', use: 'Email title (one per email)', desktop: '32px via @media' },
@@ -86,7 +100,7 @@ const emailTypeScale = [
   { name: 'Micro', size: '11px', weight: 400, leading: '1.6', use: 'Unsubscribe, CAN-SPAM', desktop: '—' },
 ]
 
-// ── Template Catalog ──
+// ── Template Catalog ──────────────────────────────────────────────
 
 const seriesTemplates = [
   { id: 8, name: 'Weekly Digest', accent: '#8b5cf6', description: 'Curated highlights from the week — articles, projects, and insights' },
@@ -98,636 +112,652 @@ const seriesTemplates = [
 ]
 
 const transactionalTemplates = [
-  { id: 1, name: 'PDF Guide Delivery', accent: '#22d3ee', description: 'Download link with guide preview and feature highlights' },
-  { id: 2, name: 'Newsletter Welcome', accent: '#8b5cf6', description: 'Onboarding with four "What to Expect" pillars' },
-  { id: 3, name: 'Test Email', accent: '#22d3ee', description: 'Diagnostic template for delivery and rendering tests' },
-  { id: 4, name: 'Community Broadcast', accent: '#8b5cf6', description: 'Announcements and updates to the full subscriber base' },
-  { id: 5, name: 'Music Prompts', accent: '#34d399', description: 'Curated AI music prompts with genre tags and Suno links' },
-  { id: 6, name: 'Purchase Confirmation', accent: '#8b5cf6', description: 'Order receipt with download links and support info' },
-  { id: 7, name: 'Album Release', accent: '#34d399', description: 'New album announcement with tracklist and streaming links' },
+  { id: 1, name: 'Welcome', accent: '#8b5cf6', description: 'First email after signup — sets expectations, links to key resources' },
+  { id: 2, name: 'Purchase Confirmation', accent: '#8b5cf6', description: 'Order details, download links, receipt, and next steps' },
+  { id: 3, name: 'PDF Delivery', accent: '#22d3ee', description: 'Clean utility template — one CTA, direct download access' },
+  { id: 4, name: 'Music Prompt Pack', accent: '#34d399', description: 'Template for delivering Suno prompt collections' },
+  { id: 5, name: 'Album Release', accent: '#34d399', description: 'Music drop announcement with streaming links and story' },
+  { id: 6, name: 'Inner Circle CTA', accent: '#fbbf24', description: 'Invitation to join the Inner Circle with premium copy' },
+  { id: 7, name: 'Test Email', accent: '#22d3ee', description: 'Internal test template with all helpers rendered' },
 ]
-
-// ── Helper Primitives ──
 
 const helperPrimitives = [
-  {
-    name: 'ctaButton',
-    signature: '(text, url, color?)',
-    description: 'Primary call-to-action. Rounded-8px, 16px/600 weight, centered. Includes Outlook VML roundrect fallback.',
-    preview: 'button',
-    accent: '#8b5cf6',
-  },
-  {
-    name: 'outlineButton',
-    signature: '(text, url)',
-    description: 'Secondary action. Transparent background with #374151 border. Same 320px max-width as CTA.',
-    preview: 'outline',
-    accent: '#374151',
-  },
-  {
-    name: 'divider',
-    signature: '()',
-    description: 'Section separator. 1px border-top #1f2937 with 36px top padding. Creates breathing room.',
-    preview: 'divider',
-    accent: '#1f2937',
-  },
-  {
-    name: 'label',
-    signature: '(text, color?)',
-    description: 'Section marker. 11px, uppercase, 0.1em letter-spacing, 700 weight. Sets context for what follows.',
-    preview: 'label',
-    accent: '#8b5cf6',
-  },
-  {
-    name: 'ps',
-    signature: '(text)',
-    description: 'Post-script block. Border-top separator + "P.S." in bold #d1d5db, body in #9ca3af. Personal touch.',
-    preview: 'ps',
-    accent: '#9ca3af',
-  },
+  { name: 'ctaButton()', params: 'text, url, color', output: 'Solid filled button, 50px height, Outlook VML fallback', color: '#8b5cf6' },
+  { name: 'outlineButton()', params: 'text, url', output: 'Transparent button with gray border, secondary action', color: '#374151' },
+  { name: 'divider()', params: 'none', output: '1px gray-800 border-top with 36px top padding', color: '#1f2937' },
+  { name: 'label()', params: 'text, color', output: '11px uppercase label above sections', color: '#8b5cf6' },
+  { name: 'ps()', params: 'text', output: 'P.S. block with top divider and muted styling', color: '#9ca3af' },
 ]
-
-// ── Evolution Timeline ──
 
 const evolution = [
-  { version: 'v1', title: 'Foundation', date: 'Jan 2026', description: 'Basic branded emails. Manual HTML construction, inconsistent styles across templates.', color: '#6b7280' },
-  { version: 'v2', title: 'Mobile-First', date: 'Jan 2026', description: 'System font stack, inline styles for Gmail compatibility, responsive @media desktop enhancements.', color: '#22d3ee' },
-  { version: 'v3', title: 'Consolidation', date: 'Feb 2026', description: 'Helper primitives extracted. Visual system standardized. Template count grew to 7.', color: '#34d399' },
-  { version: 'v4', title: 'Oasis of Calm', date: 'Feb 2026', description: 'Monochrome + one accent. Typography-driven. 6 series templates. Total: 13 templates, 5 helpers.', color: '#8b5cf6', active: true },
+  { version: 'v1', name: 'Rainbow Chaos', description: 'Multiple accent colors per email. Cards nested 3 levels deep. Visual overload.', year: '2024 Q2' },
+  { version: 'v2', name: 'Soft Minimalism', description: 'Monochrome only. Too minimal — lacked energy and brand personality.', year: '2024 Q3' },
+  { version: 'v3', name: 'Dual Accent', description: 'Primary + secondary accent. Better than v1 but still confusing hierarchy.', year: '2024 Q4' },
+  { version: 'v4', name: 'Oasis of Calm', description: 'One accent per email. Typography-driven. Generous space. Final form.', year: '2025 Q1', active: true },
 ]
 
-// ── Color Swatch Component ──
+// ── Components ─────────────────────────────────────────────────────
 
-function ColorSwatch({ hex, name, detail }: { hex: string; name: string; detail: string }) {
+interface SectionProps {
+  children: React.ReactNode
+  id?: string
+  className?: string
+}
+
+function Section({ children, id, className = '' }: SectionProps) {
+  return (
+    <section id={id} className={`py-20 ${className}`}>
+      <div className="mx-auto max-w-6xl px-6">
+        {children}
+      </div>
+    </section>
+  )
+}
+
+interface ColorSwatchProps {
+  name: string
+  hex: string
+  onClick?: () => void
+  active?: boolean
+}
+
+function ColorSwatch({ name, hex, onClick, active = false }: ColorSwatchProps) {
   const [copied, setCopied] = useState(false)
+
+  const handleClick = () => {
+    navigator.clipboard.writeText(hex)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 1500)
+    if (onClick) onClick()
+  }
 
   return (
     <button
-      onClick={() => {
-        navigator.clipboard.writeText(hex)
-        setCopied(true)
-        setTimeout(() => setCopied(false), 1500)
-      }}
-      className="group text-left"
+      onClick={handleClick}
+      className={`group relative flex items-center gap-3 rounded-xl p-3 transition-all ${
+        active ? 'bg-white/[0.06] border border-white/[0.12]' : 'hover:bg-white/[0.03]'
+      }`}
     >
-      <div
-        className="h-16 rounded-lg border border-white/[0.06] mb-2 transition-all group-hover:border-white/[0.15] group-hover:scale-[1.02]"
-        style={{ backgroundColor: hex }}
-      />
-      <div className="flex items-center gap-1.5">
-        <span className="text-xs font-medium text-white/70">{name}</span>
-        {copied && <Check className="w-3 h-3 text-emerald-400" />}
+      <div className="h-10 w-10 rounded-lg shrink-0" style={{ backgroundColor: hex }} />
+      <div className="text-left">
+        <div className="text-sm font-semibold text-white">{name}</div>
+        <div className="text-xs text-slate-400 font-mono">{hex}</div>
       </div>
-      <p className="text-[10px] text-white/30">{detail}</p>
-      <p className="text-[10px] font-mono text-white/20 group-hover:text-white/50 transition-colors">{hex}</p>
+      {copied && (
+        <Check className="absolute right-3 h-4 w-4 text-emerald-400" />
+      )}
     </button>
   )
 }
 
-// ── Section Wrapper ──
-
-function Section({
-  id,
-  icon: Icon,
-  title,
-  subtitle,
-  color,
-  children,
-}: {
-  id: string
-  icon: React.ComponentType<{ className?: string }>
-  title: string
-  subtitle: string
-  color: string
-  children: React.ReactNode
-}) {
-  const shouldReduceMotion = useReducedMotion()
-
+function AccentPreview({ selectedAccent }: { selectedAccent: string }) {
   return (
-    <motion.section
-      id={id}
-      initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-50px' }}
-      transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.5 }}
-      className="py-16 border-t border-white/[0.04]"
-    >
-      <div className="flex items-center gap-3 mb-2">
-        <div className="p-2 rounded-xl" style={{ backgroundColor: color + '15' }}>
-          <Icon className="w-5 h-5" style={{ color }} />
+    <div className="rounded-2xl border border-white/[0.06] bg-white/[0.03] backdrop-blur-xl p-6">
+      <div className="space-y-4">
+        {/* Top accent bar */}
+        <div className="h-1 w-24 rounded-full transition-colors duration-300" style={{ backgroundColor: selectedAccent }} />
+
+        {/* Mock email content */}
+        <div>
+          <h4 className="text-lg font-bold text-white mb-2">Your Weekly Digest</h4>
+          <p className="text-sm text-slate-300 leading-relaxed">
+            This week: AI music production techniques, new Suno v4 features, and exclusive templates for Inner Circle members.
+          </p>
         </div>
-        <h2 className="text-2xl font-bold text-white">{title}</h2>
-      </div>
-      <p className="text-white/40 text-sm mb-8 max-w-2xl">{subtitle}</p>
-      {children}
-    </motion.section>
-  )
-}
 
-// ── Accent Selector Preview ──
-
-function AccentPreview() {
-  const [activeAccent, setActiveAccent] = useState(accentPalettes[0])
-
-  return (
-    <div className="mt-8 grid md:grid-cols-2 gap-6">
-      {/* Accent selector */}
-      <div>
-        <h3 className="text-xs uppercase tracking-wider text-white/30 mb-4 font-semibold">Select Accent</h3>
-        <div className="space-y-2">
-          {accentPalettes.map(a => (
-            <button
-              key={a.name}
-              onClick={() => setActiveAccent(a)}
-              className={`w-full flex items-center gap-3 p-3 rounded-lg text-left transition-all ${
-                activeAccent.name === a.name
-                  ? 'bg-white/[0.06] border border-white/[0.12]'
-                  : 'bg-white/[0.01] border border-white/[0.04] hover:border-white/[0.08]'
-              }`}
-            >
-              <div className="w-5 h-5 rounded-full shrink-0" style={{ backgroundColor: a.hex }} />
-              <div className="flex-1 min-w-0">
-                <span className="text-xs font-medium text-white/80">{a.name}</span>
-                <span className="text-[10px] text-white/30 ml-2">{a.role}</span>
-              </div>
-              {activeAccent.name === a.name && <Check className="w-3 h-3 text-white/50 shrink-0" />}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {/* Mini email preview */}
-      <div>
-        <h3 className="text-xs uppercase tracking-wider text-white/30 mb-4 font-semibold">Email Preview</h3>
-        <div className="rounded-xl overflow-hidden border border-white/[0.06]" style={{ backgroundColor: '#111827' }}>
-          {/* Top accent border */}
-          <div className="h-[3px]" style={{ backgroundColor: activeAccent.hex }} />
-
-          <div className="p-6">
-            {/* Logo */}
-            <p style={{ fontSize: 14, fontWeight: 700, marginBottom: 20 }}>
-              <span style={{ color: activeAccent.hex }}>FrankX</span>
-              <span style={{ color: '#6b7280' }}>.</span>
-              <span style={{ color: activeAccent.hex }}>AI</span>
-            </p>
-
-            {/* Label */}
-            <p className="text-[10px] font-bold uppercase tracking-widest mb-2" style={{ color: activeAccent.hex }}>
-              This week
-            </p>
-
-            {/* Title */}
-            <h3 className="text-base font-bold text-white/90 mb-3 leading-tight">
-              Building systems that think for you
-            </h3>
-
-            {/* Body */}
-            <p className="text-xs text-[#d1d5db] leading-relaxed mb-4">
-              Three things landed this week — a new agent architecture, a music production workflow, and a template that ships...
-            </p>
-
-            {/* CTA */}
-            <div
-              className="rounded-lg px-4 py-2.5 text-center text-xs font-semibold text-white"
-              style={{ backgroundColor: activeAccent.hex }}
-            >
-              Read More
-            </div>
-
-            {/* Divider */}
-            <div className="mt-5 pt-4 border-t border-[#1f2937]">
-              <p className="text-[9px] text-[#6b7280]">Frank Riemer &middot; AI Architect</p>
-            </div>
+        {/* Mock CTA button */}
+        <div className="pt-2">
+          <div
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold text-white text-sm transition-colors duration-300"
+            style={{ backgroundColor: selectedAccent }}
+          >
+            <span>Read This Week's Issue</span>
+            <ArrowRight className="h-4 w-4" />
           </div>
         </div>
-        <p className="text-[10px] text-white/20 mt-3 text-center">
-          Interactive preview — click accents to see the change
-        </p>
       </div>
     </div>
   )
 }
 
-// ── Template Card ──
-
-function TemplateCard({ id, name, accent, description }: { id: number; name: string; accent: string; description: string }) {
+function TemplateCard({ template, onMouseMove, onMouseLeave }: {
+  template: { id: number; name: string; accent: string; description: string }
+  onMouseMove?: (e: React.MouseEvent<HTMLDivElement>) => void
+  onMouseLeave?: (e: React.MouseEvent<HTMLDivElement>) => void
+}) {
   return (
-    <div className="group p-4 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:border-white/[0.12] transition-all">
-      <div className="h-[3px] rounded-full mb-4 w-12" style={{ backgroundColor: accent }} />
-      <div className="flex items-start justify-between mb-2">
-        <h4 className="text-sm font-bold text-white">{name}</h4>
-        <span className="text-[9px] font-mono text-white/20 shrink-0 ml-2">#{id}</span>
+    <motion.div
+      variants={fadeIn}
+      whileHover={{ scale: 1.02, y: -2 }}
+      transition={{ duration: 0.3 }}
+      className="group relative"
+      onMouseMove={onMouseMove}
+      onMouseLeave={onMouseLeave}
+    >
+      <div className="relative p-5 rounded-xl bg-white/[0.03] border border-white/[0.06] hover:border-white/[0.12] backdrop-blur-sm transition-colors">
+        {/* Accent bar that expands on hover */}
+        <div
+          className="h-1 rounded-full mb-5 w-16 group-hover:w-24 transition-all duration-300"
+          style={{ backgroundColor: template.accent }}
+        />
+
+        {/* Content */}
+        <div className="space-y-2">
+          <h4 className="text-base font-semibold text-white">{template.name}</h4>
+          <p className="text-sm text-slate-400 leading-relaxed">{template.description}</p>
+        </div>
+
+        {/* Template ID badge */}
+        <div className="mt-4 inline-flex items-center gap-1.5 px-2 py-1 rounded-md bg-white/[0.05] backdrop-blur-sm border border-white/[0.06]">
+          <Code2 className="h-3 w-3 text-slate-500" />
+          <span className="text-xs text-slate-500 font-mono">T{template.id}</span>
+        </div>
+
+        {/* Hover glow effect (CSS variable driven) */}
+        <div
+          className="absolute inset-0 rounded-[inherit] opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"
+          style={{
+            background: `radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), ${template.accent}10, transparent 40%)`
+          }}
+        />
       </div>
-      <p className="text-xs text-white/35 leading-relaxed">{description}</p>
-    </div>
+    </motion.div>
   )
 }
 
-// ── Main Page ──
+// ── Main Component ────────────────────────────────────────────────
 
-export default function NewsletterDesignSystemPage() {
+export default function ArcaneaComposePage() {
+  const [selectedAccent, setSelectedAccent] = useState('#8b5cf6')
   const shouldReduceMotion = useReducedMotion()
-  const [copiedHelper, setCopiedHelper] = useState<string | null>(null)
 
-  const copySignature = useCallback((name: string, sig: string) => {
-    navigator.clipboard.writeText(`${name}${sig}`)
-    setCopiedHelper(name)
-    setTimeout(() => setCopiedHelper(null), 1500)
+  const handleMouseMoveOnCard = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    const card = e.currentTarget
+    const rect = card.getBoundingClientRect()
+    const x = e.clientX - rect.left
+    const y = e.clientY - rect.top
+    card.style.setProperty('--mouse-x', `${x}px`)
+    card.style.setProperty('--mouse-y', `${y}px`)
+  }, [])
+
+  const handleMouseLeaveCard = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    e.currentTarget.style.removeProperty('--mouse-x')
+    e.currentTarget.style.removeProperty('--mouse-y')
   }, [])
 
   return (
-    <main className="relative min-h-screen bg-[#0a0a0b] text-white overflow-hidden">
-      {/* Background */}
+    <>
+      {/* Animated Background — 3 blobs + particles */}
       <div className="fixed inset-0 pointer-events-none">
         <div className="absolute inset-0 bg-[#0a0a0b]" />
-        <div
-          className="absolute top-0 left-1/4 w-[60%] h-[40%]"
-          style={{ background: 'radial-gradient(ellipse at center, rgba(139,92,246,0.03) 0%, transparent 70%)', filter: 'blur(100px)' }}
-        />
-        <div
-          className="absolute bottom-1/4 right-0 w-[40%] h-[40%]"
-          style={{ background: 'radial-gradient(ellipse at center, rgba(251,113,133,0.02) 0%, transparent 70%)', filter: 'blur(100px)' }}
-        />
+
+        {/* Blob 1: Violet (top-left, 20s) */}
+        {!shouldReduceMotion && (
+          <motion.div
+            className="absolute top-1/4 left-1/4 w-[600px] h-[600px] rounded-full blur-[140px]"
+            style={{ background: 'radial-gradient(circle, rgba(139,92,246,0.12) 0%, transparent 70%)' }}
+            animate={{ x: [0, 100, 0], y: [0, -50, 0], scale: [1, 1.1, 1] }}
+            transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
+          />
+        )}
+
+        {/* Blob 2: Gold (bottom-right, 25s) */}
+        {!shouldReduceMotion && (
+          <motion.div
+            className="absolute bottom-1/3 right-1/4 w-[500px] h-[500px] rounded-full blur-[120px]"
+            style={{ background: 'radial-gradient(circle, rgba(245,158,11,0.08) 0%, transparent 70%)' }}
+            animate={{ x: [0, -80, 0], y: [0, 60, 0], scale: [1, 1.15, 1] }}
+            transition={{ duration: 25, repeat: Infinity, ease: 'easeInOut', delay: 5 }}
+          />
+        )}
+
+        {/* Blob 3: Cyan (top-right, 30s) */}
+        {!shouldReduceMotion && (
+          <motion.div
+            className="absolute top-1/2 right-1/3 w-[400px] h-[400px] rounded-full blur-[100px]"
+            style={{ background: 'radial-gradient(circle, rgba(34,211,238,0.06) 0%, transparent 70%)' }}
+            animate={{ x: [0, 120, 0], y: [0, -70, 0], scale: [1, 1.2, 1] }}
+            transition={{ duration: 30, repeat: Infinity, ease: 'easeInOut', delay: 10 }}
+          />
+        )}
+
+        {/* 12 Floating Particles */}
+        {!shouldReduceMotion && [...Array(12)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-1 h-1 rounded-full bg-white/20"
+            style={{ left: `${10 + i * 7}%`, top: `${20 + (i % 3) * 20}%` }}
+            animate={{ y: [0, -100, 0], opacity: [0.2, 0.5, 0.2] }}
+            transition={{ duration: 8 + i * 0.5, repeat: Infinity, ease: 'easeInOut', delay: i * 0.3 }}
+          />
+        ))}
       </div>
 
-      <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Navigation */}
-        <div className="pt-24 pb-4">
-          <Link
-            href="/design-lab"
-            className="inline-flex items-center gap-2 text-sm text-white/40 hover:text-white/70 transition-colors"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            Design Lab
-          </Link>
-        </div>
-
+      {/* Content */}
+      <main className="relative">
         {/* Hero */}
-        <motion.div
-          initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.6 }}
-          className="pb-8"
-        >
-          <div className="inline-flex items-center gap-2 mb-6 px-3 py-1.5 rounded-full bg-violet-500/10 border border-violet-500/20">
-            <Mail className="w-3 h-3 text-violet-400" />
-            <span className="text-xs font-semibold text-violet-400 tracking-wider uppercase">Email Design System</span>
-          </div>
+        <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
+          <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.1 }}
+              className="mb-4 inline-flex items-center gap-2 rounded-full border border-violet-500/20 bg-violet-500/10 px-4 py-1.5"
+            >
+              <Mail className="h-4 w-4 text-violet-400" />
+              <span className="text-sm font-medium text-violet-400">Email Design System</span>
+            </motion.div>
 
-          <h1 className="text-4xl md:text-5xl font-bold text-white mb-4 leading-[1.1]">
-            Arcanea
-            <span className="block bg-gradient-to-r from-violet-400 via-rose-400 to-amber-400 bg-clip-text text-transparent">
-              Compose
-            </span>
-          </h1>
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+              className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold leading-[1.05] mb-6"
+            >
+              <span className="block text-white">Arcanea</span>
+              <span className="block bg-gradient-to-r from-violet-400 via-rose-400 to-amber-400 bg-clip-text text-transparent">
+                Compose
+              </span>
+            </motion.h1>
 
-          <p className="text-lg text-white/50 max-w-2xl leading-relaxed mb-4">
-            13 templates. 5 accent palettes. One design philosophy: the{' '}
-            <span className="text-white/70 font-medium">Oasis of Calm</span>.
-          </p>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.3 }}
+              className="mx-auto max-w-2xl text-lg leading-relaxed text-slate-300 mb-10 sm:text-xl"
+            >
+              13 email templates, 5 accent palettes, and a design philosophy that makes subscribers want to open your emails.
+              No nested cards, no rainbow chaos—just clarity.
+            </motion.p>
 
-          <p className="text-sm text-white/30 max-w-2xl leading-relaxed mb-8">
-            Every email from FrankX.AI uses this system — monochrome dark backgrounds with a single accent
-            color, typography that does the work of design, and whitespace that respects the reader.
-          </p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.4 }}
+              className="flex flex-col sm:flex-row items-center justify-center gap-4"
+            >
+              <SparkBorder color="violet" speed="normal" hoverOnly={true}>
+                <GlowButton variant="primary" size="lg" color="violet" href="#templates">
+                  <Mail className="w-5 h-5" />
+                  Explore Templates
+                </GlowButton>
+              </SparkBorder>
 
-          {/* Quick nav */}
-          <div className="flex flex-wrap gap-2">
-            {[
-              { label: 'Philosophy', href: '#philosophy' },
-              { label: 'Colors', href: '#colors' },
-              { label: 'Typography', href: '#typography' },
-              { label: 'Templates', href: '#templates' },
-              { label: 'Components', href: '#components' },
-              { label: 'Integration', href: '#integration' },
-              { label: 'Evolution', href: '#evolution' },
-            ].map(n => (
-              <a
-                key={n.label}
-                href={n.href}
-                className="px-3 py-1.5 rounded-lg text-xs text-white/40 border border-white/[0.06] hover:border-white/[0.15] hover:text-white/70 transition-all"
-              >
-                {n.label}
-              </a>
-            ))}
-          </div>
-        </motion.div>
+              <GlowButton variant="secondary" size="lg" href="/newsletter">
+                Subscribe to the Newsletter
+              </GlowButton>
+            </motion.div>
 
-        {/* ── 1. Design Philosophy ── */}
-        <Section
-          id="philosophy"
-          icon={Sparkles}
-          title="Design Philosophy"
-          subtitle="Five rules that govern every email from FrankX.AI. Fewer rules, stronger identity."
-          color="#8b5cf6"
-        >
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {principles.map(p => (
-              <div
-                key={p.title}
-                className="p-5 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:border-white/[0.12] transition-all"
-              >
-                <div
-                  className="w-10 h-10 rounded-xl flex items-center justify-center mb-3"
-                  style={{ backgroundColor: p.color + '12' }}
+            {/* Quick-nav pills */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.6 }}
+              className="mt-16 flex flex-wrap items-center justify-center gap-2 text-sm"
+            >
+              {['Philosophy', 'Colors', 'Typography', 'Templates'].map((section) => (
+                <a
+                  key={section}
+                  href={`#${section.toLowerCase()}`}
+                  className="px-3 py-1.5 rounded-full bg-white/[0.03] border border-white/[0.06] text-slate-400 hover:text-white hover:bg-white/[0.06] transition-all"
                 >
-                  <p.icon className="w-5 h-5" style={{ color: p.color }} />
-                </div>
-                <h3 className="text-sm font-bold text-white mb-2">{p.title}</h3>
-                <p className="text-xs text-white/40 leading-relaxed">{p.description}</p>
-              </div>
-            ))}
-          </div>
-        </Section>
-
-        {/* ── 2. Color System ── */}
-        <Section
-          id="colors"
-          icon={Palette}
-          title="Color System"
-          subtitle="Monochrome foundation + five accent palettes. Click any swatch to copy hex. Click accents below to preview."
-          color="#8b5cf6"
-        >
-          {/* Foundation */}
-          <div className="mb-8">
-            <h3 className="text-xs uppercase tracking-wider text-white/30 mb-4 font-semibold">Foundation</h3>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-              {foundationColors.map(c => (
-                <ColorSwatch key={c.hex} hex={c.hex} name={c.name} detail={c.use} />
+                  {section}
+                </a>
               ))}
-            </div>
+            </motion.div>
           </div>
+        </section>
 
-          {/* Accents */}
-          <div className="mb-4">
-            <h3 className="text-xs uppercase tracking-wider text-white/30 mb-4 font-semibold">Accent Palettes</h3>
-            <div className="grid grid-cols-3 sm:grid-cols-5 gap-3">
-              {accentPalettes.map(c => (
-                <ColorSwatch key={c.hex} hex={c.hex} name={c.name} detail={c.role} />
-              ))}
+        {/* Philosophy */}
+        <Section id="philosophy">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-50px' }}
+            variants={stagger}
+            className="space-y-10"
+          >
+            <motion.div variants={fadeIn} className="text-center max-w-2xl mx-auto">
+              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">"Oasis of Calm"</h2>
+              <p className="text-lg text-slate-400">
+                Five principles that guide every template, helper, and design decision.
+              </p>
+            </motion.div>
+
+            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {principles.map((p, i) => {
+                const Icon = p.icon
+                return (
+                  <motion.div key={p.title} variants={fadeIn}>
+                    <SparkBorder
+                      color={i % 2 === 0 ? 'purple' : 'emerald'}
+                      speed="slow"
+                      hoverOnly={true}
+                      bg="#0a0a0b"
+                    >
+                      <motion.div
+                        whileHover={{ scale: 1.03, y: -4 }}
+                        transition={{ duration: 0.3 }}
+                        className="p-6 rounded-[inherit] bg-white/[0.03] backdrop-blur-xl h-full"
+                      >
+                        <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-white/[0.06]">
+                          <Icon className="h-6 w-6" style={{ color: p.color }} />
+                        </div>
+                        <h3 className="mb-2 text-lg font-semibold text-white">{p.title}</h3>
+                        <p className="text-sm text-slate-400 leading-relaxed">{p.description}</p>
+                      </motion.div>
+                    </SparkBorder>
+                  </motion.div>
+                )
+              })}
             </div>
-          </div>
-
-          {/* Interactive Accent Preview */}
-          <AccentPreview />
+          </motion.div>
         </Section>
 
-        {/* ── 3. Typography ── */}
-        <Section
-          id="typography"
-          icon={Type}
-          title="Typography Scale"
-          subtitle="System font stack. No web fonts in email — maximum compatibility, consistent rendering everywhere."
-          color="#d1d5db"
-        >
-          <div className="mb-4 p-4 rounded-xl bg-white/[0.02] border border-white/[0.04]">
-            <p className="text-[10px] uppercase tracking-wider text-white/30 mb-2 font-semibold">Font Stack</p>
-            <code className="text-xs text-white/50 font-mono">
-              -apple-system, BlinkMacSystemFont, &apos;Segoe UI&apos;, Roboto, Helvetica, Arial, sans-serif
-            </code>
-          </div>
+        {/* Colors */}
+        <Section id="colors" className="border-t border-white/[0.05]">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-50px' }}
+            variants={stagger}
+            className="space-y-10"
+          >
+            <motion.div variants={fadeIn} className="text-center max-w-2xl mx-auto">
+              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">Color System</h2>
+              <p className="text-lg text-slate-400">
+                Four foundation grays plus five accent colors. One accent per email—choose based on tone and intent.
+              </p>
+            </motion.div>
 
-          <div className="space-y-0">
-            {emailTypeScale.map(t => (
-              <div
-                key={t.name}
-                className="flex items-baseline gap-6 py-4 border-b border-white/[0.03] group"
-              >
-                <div className="w-24 shrink-0">
-                  <span className="text-[10px] font-mono text-white/20 group-hover:text-white/40 transition-colors">
-                    {t.name}
-                  </span>
+            <div className="grid gap-10 lg:grid-cols-2">
+              {/* Foundation */}
+              <motion.div variants={fadeIn} className="space-y-4">
+                <h3 className="text-lg font-semibold text-white">Foundation</h3>
+                <div className="space-y-2">
+                  {foundationColors.map((c) => (
+                    <ColorSwatch key={c.name} name={c.name} hex={c.hex} />
+                  ))}
                 </div>
-                <div className="flex-1 min-w-0">
-                  <p className="text-xs text-white/50 truncate">{t.use}</p>
+              </motion.div>
+
+              {/* Accents */}
+              <motion.div variants={fadeIn} className="space-y-4">
+                <h3 className="text-lg font-semibold text-white">Accents (choose one per email)</h3>
+                <div className="space-y-2">
+                  {accentPalettes.map((a) => (
+                    <ColorSwatch
+                      key={a.name}
+                      name={a.name}
+                      hex={a.hex}
+                      onClick={() => setSelectedAccent(a.hex)}
+                      active={selectedAccent === a.hex}
+                    />
+                  ))}
                 </div>
-                <div className="shrink-0 text-right hidden sm:block">
-                  <p className="text-[10px] font-mono text-white/25">{t.size} / {t.weight}</p>
-                  <p className="text-[10px] font-mono text-white/15">lh: {t.leading}</p>
+              </motion.div>
+            </div>
+
+            {/* Live Preview */}
+            <motion.div variants={fadeIn} className="max-w-md mx-auto">
+              <h3 className="text-sm font-semibold text-slate-400 mb-4 text-center">
+                Live Preview (click an accent above)
+              </h3>
+              <AccentPreview selectedAccent={selectedAccent} />
+            </motion.div>
+          </motion.div>
+        </Section>
+
+        {/* Typography */}
+        <Section id="typography" className="border-t border-white/[0.05]">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-50px' }}
+            variants={stagger}
+            className="space-y-10"
+          >
+            <motion.div variants={fadeIn} className="text-center max-w-2xl mx-auto">
+              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">Typography Scale</h2>
+              <p className="text-lg text-slate-400">
+                System font stack (no web fonts). Large specimens below—this IS the design.
+              </p>
+            </motion.div>
+
+            {/* Large Specimens */}
+            <motion.div variants={fadeIn} className="space-y-12">
+              {/* H1 */}
+              <div>
+                <div className="mb-3 text-xs uppercase tracking-wider text-slate-500 font-bold">H1 — Email Title</div>
+                <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-white leading-tight">
+                  Build what matters.
                 </div>
               </div>
-            ))}
-          </div>
-        </Section>
 
-        {/* ── 4. Template Gallery ── */}
-        <Section
-          id="templates"
-          icon={Mail}
-          title="Template Gallery"
-          subtitle="13 email templates across two categories. Each uses exactly one accent color."
-          color="#34d399"
-        >
-          {/* Series Templates */}
-          <div className="mb-8">
-            <div className="flex items-center gap-2 mb-4">
-              <h3 className="text-xs uppercase tracking-wider text-white/30 font-semibold">Series Templates</h3>
-              <span className="text-[9px] px-2 py-0.5 rounded-full bg-violet-500/10 text-violet-400 font-medium">v4</span>
-            </div>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {seriesTemplates.map(t => (
-                <TemplateCard key={t.id} {...t} />
-              ))}
-            </div>
-          </div>
-
-          {/* Transactional Templates */}
-          <div>
-            <h3 className="text-xs uppercase tracking-wider text-white/30 mb-4 font-semibold">Transactional Templates</h3>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {transactionalTemplates.map(t => (
-                <TemplateCard key={t.id} {...t} />
-              ))}
-            </div>
-          </div>
-        </Section>
-
-        {/* ── 5. Component Library ── */}
-        <Section
-          id="components"
-          icon={Layers}
-          title="Component Library"
-          subtitle="Five helper primitives. Every email is composed from these building blocks."
-          color="#fbbf24"
-        >
-          <div className="space-y-4">
-            {helperPrimitives.map(h => (
-              <div
-                key={h.name}
-                className="p-5 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:border-white/[0.10] transition-all"
-              >
-                <div className="flex items-start justify-between mb-3">
-                  <div>
-                    <h4 className="text-sm font-bold text-white font-mono">{h.name}</h4>
-                    <span className="text-[10px] font-mono text-white/30">{h.signature}</span>
-                  </div>
-                  <button
-                    onClick={() => copySignature(h.name, h.signature)}
-                    className="flex items-center gap-1 text-[10px] text-white/30 hover:text-white/60 transition-colors"
-                  >
-                    {copiedHelper === h.name ? (
-                      <><Check className="w-3 h-3 text-emerald-400" /> Copied</>
-                    ) : (
-                      <><Copy className="w-3 h-3" /> Copy</>
-                    )}
-                  </button>
+              {/* Body */}
+              <div>
+                <div className="mb-3 text-xs uppercase tracking-wider text-slate-500 font-bold">Body — Primary Content</div>
+                <div className="text-base sm:text-lg text-slate-300 leading-relaxed max-w-2xl">
+                  This week: AI music production techniques, new Suno v4 features, and exclusive templates for Inner Circle members. No fluff, no filler—just actionable intelligence for creators who ship.
                 </div>
-
-                {/* Visual preview */}
-                <div className="rounded-lg overflow-hidden border border-white/[0.04] mb-3" style={{ backgroundColor: '#111827' }}>
-                  <div className="p-4">
-                    {h.preview === 'button' && (
-                      <div className="rounded-lg px-5 py-3 text-center text-sm font-semibold text-white max-w-[200px] mx-auto" style={{ backgroundColor: h.accent }}>
-                        Call to Action
-                      </div>
-                    )}
-                    {h.preview === 'outline' && (
-                      <div className="rounded-lg px-5 py-3 text-center text-sm font-semibold text-[#e2e8f0] max-w-[200px] mx-auto border" style={{ borderColor: h.accent }}>
-                        Secondary
-                      </div>
-                    )}
-                    {h.preview === 'divider' && (
-                      <div className="pt-4">
-                        <div className="border-t" style={{ borderColor: h.accent }} />
-                      </div>
-                    )}
-                    {h.preview === 'label' && (
-                      <p className="text-[11px] font-bold uppercase tracking-widest" style={{ color: h.accent, letterSpacing: '0.1em' }}>
-                        Section Label
-                      </p>
-                    )}
-                    {h.preview === 'ps' && (
-                      <div className="pt-3 border-t border-[#1f2937]">
-                        <p className="text-sm" style={{ color: h.accent }}>
-                          <strong className="text-[#d1d5db]">P.S.</strong> This is a personal note at the end of the email.
-                        </p>
-                      </div>
-                    )}
-                  </div>
-                </div>
-
-                <p className="text-xs text-white/35 leading-relaxed">{h.description}</p>
               </div>
-            ))}
-          </div>
-        </Section>
 
-        {/* ── 6. Integration Architecture ── */}
-        <Section
-          id="integration"
-          icon={Workflow}
-          title="Integration"
-          subtitle="How the email system connects to frankx.ai. One subscribe API, three topic segments, automated flows."
-          color="#22d3ee"
-        >
-          {/* Flow diagram */}
-          <div className="flex flex-col sm:flex-row items-stretch gap-3 mb-8">
-            {[
-              { label: 'frankx.ai', sub: 'EmailSignup component', color: '#8b5cf6' },
-              { label: '/api/subscribe', sub: 'POST route', color: '#22d3ee' },
-              { label: 'Resend', sub: 'Contact + Topic', color: '#34d399' },
-              { label: 'Welcome Email', sub: 'Async delivery', color: '#fbbf24' },
-              { label: 'Series Flow', sub: 'Day 3 → 7 → 14', color: '#fb7185' },
-            ].map((step, i) => (
-              <div key={step.label} className="flex items-center gap-3 flex-1">
-                <div className="flex-1 p-3 rounded-lg bg-white/[0.02] border border-white/[0.06] text-center">
-                  <p className="text-xs font-semibold text-white mb-0.5">{step.label}</p>
-                  <p className="text-[10px] text-white/30">{step.sub}</p>
-                  <div className="h-[2px] w-8 mx-auto mt-2 rounded-full" style={{ backgroundColor: step.color }} />
+              {/* Label */}
+              <div>
+                <div className="mb-3 text-xs uppercase tracking-wider text-slate-500 font-bold">Label — Section Markers</div>
+                <div className="text-xs font-bold text-violet-400 uppercase tracking-wider">
+                  This Week's Highlights
                 </div>
-                {i < 4 && (
-                  <ArrowRight className="w-3 h-3 text-white/15 shrink-0 hidden sm:block" />
-                )}
               </div>
-            ))}
-          </div>
+            </motion.div>
 
-          {/* Integration points */}
-          <div className="grid sm:grid-cols-3 gap-4">
-            <div className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.06]">
-              <Send className="w-4 h-4 text-violet-400 mb-2" />
-              <h4 className="text-xs font-bold text-white mb-1">Resend API</h4>
-              <p className="text-[10px] text-white/30">Verified domain: mail.frankx.ai</p>
-              <p className="text-[10px] text-white/30">Rate limit: 2 req/s</p>
-            </div>
-            <div className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.06]">
-              <Layers className="w-4 h-4 text-emerald-400 mb-2" />
-              <h4 className="text-xs font-bold text-white mb-1">Topic Segments</h4>
-              <p className="text-[10px] text-white/30">newsletter, music-suno, product-updates</p>
-            </div>
-            <div className="p-4 rounded-xl bg-white/[0.02] border border-white/[0.06]">
-              <Smartphone className="w-4 h-4 text-cyan-400 mb-2" />
-              <h4 className="text-xs font-bold text-white mb-1">Subscribe Forms</h4>
-              <p className="text-[10px] text-white/30">EmailSignup component with listType variants</p>
-            </div>
-          </div>
+            {/* Type Scale Table */}
+            <motion.div variants={fadeIn} className="overflow-x-auto">
+              <table className="w-full text-left text-sm">
+                <thead>
+                  <tr className="border-b border-white/[0.06]">
+                    <th className="pb-3 font-semibold text-white">Name</th>
+                    <th className="pb-3 font-semibold text-white">Size</th>
+                    <th className="pb-3 font-semibold text-white">Weight</th>
+                    <th className="pb-3 font-semibold text-white">Use</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {emailTypeScale.map((t, i) => (
+                    <tr key={t.name} className={i !== emailTypeScale.length - 1 ? 'border-b border-white/[0.04]' : ''}>
+                      <td className="py-3 font-mono text-slate-300">{t.name}</td>
+                      <td className="py-3 text-slate-400">{t.size}</td>
+                      <td className="py-3 text-slate-400">{t.weight}</td>
+                      <td className="py-3 text-slate-500">{t.use}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </motion.div>
+          </motion.div>
         </Section>
 
-        {/* ── 7. Evolution Timeline ── */}
-        <Section
-          id="evolution"
-          icon={Clock}
-          title="Evolution"
-          subtitle="From basic HTML to a principled design system in four iterations."
-          color="#34d399"
-        >
-          <div className="space-y-0">
-            {evolution.map((v, i) => (
-              <div
-                key={v.version}
-                className={`flex gap-4 py-5 ${i < evolution.length - 1 ? 'border-b border-white/[0.03]' : ''}`}
-              >
-                {/* Timeline dot */}
-                <div className="flex flex-col items-center shrink-0">
-                  <div
-                    className={`w-3 h-3 rounded-full ${v.active ? 'ring-2 ring-offset-2 ring-offset-[#0a0a0b]' : ''}`}
-                    style={{ backgroundColor: v.color, ringColor: v.color }}
+        {/* Templates */}
+        <Section id="templates" className="border-t border-white/[0.05]">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-50px' }}
+            variants={stagger}
+            className="space-y-10"
+          >
+            <motion.div variants={fadeIn} className="text-center max-w-2xl mx-auto">
+              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">Template Gallery</h2>
+              <p className="text-lg text-slate-400">
+                13 production templates—6 for series content, 7 transactional. All built on the same helpers and design system.
+              </p>
+            </motion.div>
+
+            {/* Series Templates */}
+            <div className="space-y-6">
+              <div className="flex items-center gap-3">
+                <Workflow className="h-5 w-5 text-violet-400" />
+                <h3 className="text-xl font-semibold text-white">Series Templates (6)</h3>
+              </div>
+              <motion.div variants={stagger} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {seriesTemplates.map((t) => (
+                  <TemplateCard
+                    key={t.id}
+                    template={t}
+                    onMouseMove={handleMouseMoveOnCard}
+                    onMouseLeave={handleMouseLeaveCard}
                   />
-                  {i < evolution.length - 1 && (
-                    <div className="w-px flex-1 bg-white/[0.06] mt-2" />
-                  )}
-                </div>
+                ))}
+              </motion.div>
+            </div>
 
-                {/* Content */}
-                <div className="flex-1 min-w-0 -mt-1">
-                  <div className="flex items-center gap-2 mb-1">
-                    <span className="text-xs font-bold font-mono" style={{ color: v.color }}>{v.version}</span>
-                    <span className="text-sm font-semibold text-white">{v.title}</span>
-                    {v.active && (
-                      <span className="text-[9px] px-2 py-0.5 rounded-full bg-violet-500/10 text-violet-400 font-medium">Current</span>
-                    )}
-                  </div>
-                  <p className="text-[10px] text-white/20 mb-1">{v.date}</p>
-                  <p className="text-xs text-white/40 leading-relaxed">{v.description}</p>
-                </div>
+            {/* Transactional Templates */}
+            <div className="space-y-6 pt-6">
+              <div className="flex items-center gap-3">
+                <Send className="h-5 w-5 text-cyan-400" />
+                <h3 className="text-xl font-semibold text-white">Transactional Templates (7)</h3>
               </div>
-            ))}
-          </div>
+              <motion.div variants={stagger} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {transactionalTemplates.map((t) => (
+                  <TemplateCard
+                    key={t.id}
+                    template={t}
+                    onMouseMove={handleMouseMoveOnCard}
+                    onMouseLeave={handleMouseLeaveCard}
+                  />
+                ))}
+              </motion.div>
+            </div>
+          </motion.div>
         </Section>
 
-        {/* ── CTA Footer ── */}
-        <div className="pb-20 pt-8 text-center">
-          <p className="text-white/30 text-sm mb-6">
-            Experience these templates in your inbox.
-          </p>
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Link
-              href="/newsletter"
-              className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-full bg-violet-500/10 border border-violet-500/20 text-sm font-semibold text-violet-400 hover:bg-violet-500/20 transition-all"
-            >
-              <Mail className="w-4 h-4" />
-              Subscribe
-            </Link>
-            <Link
-              href="/design-lab"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/[0.04] border border-white/[0.08] text-sm text-white/60 hover:text-white/90 transition-all"
-            >
-              <ArrowLeft className="w-4 h-4" />
-              Design Lab
-            </Link>
-          </div>
-        </div>
-      </div>
-    </main>
+        {/* Components */}
+        <Section id="components" className="border-t border-white/[0.05]">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-50px' }}
+            variants={stagger}
+            className="space-y-10"
+          >
+            <motion.div variants={fadeIn} className="text-center max-w-2xl mx-auto">
+              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">Helper Primitives</h2>
+              <p className="text-lg text-slate-400">
+                Five reusable functions that generate inline-styled HTML for Gmail compatibility.
+              </p>
+            </motion.div>
+
+            <motion.div variants={stagger} className="grid gap-6 sm:grid-cols-2">
+              {helperPrimitives.map((h) => (
+                <motion.div key={h.name} variants={fadeIn}>
+                  <div className="p-5 rounded-xl bg-white/[0.03] border border-white/[0.06] backdrop-blur-sm space-y-3">
+                    <div className="flex items-start justify-between">
+                      <code className="text-sm font-semibold text-emerald-400">{h.name}</code>
+                      <div className="h-2 w-2 rounded-full" style={{ backgroundColor: h.color }} />
+                    </div>
+                    <p className="text-xs text-slate-500 font-mono">{h.params}</p>
+                    <p className="text-sm text-slate-400 leading-relaxed">{h.output}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+          </motion.div>
+        </Section>
+
+        {/* Evolution */}
+        <Section id="evolution" className="border-t border-white/[0.05]">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-50px' }}
+            variants={stagger}
+            className="space-y-10"
+          >
+            <motion.div variants={fadeIn} className="text-center max-w-2xl mx-auto">
+              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">Evolution Timeline</h2>
+              <p className="text-lg text-slate-400">
+                Four iterations to find the final form—v4 "Oasis of Calm" is the result.
+              </p>
+            </motion.div>
+
+            <motion.div variants={stagger} className="relative max-w-3xl mx-auto">
+              {/* Vertical line */}
+              <div className="absolute left-8 top-0 bottom-0 w-px bg-gradient-to-b from-violet-500/50 via-amber-500/50 to-emerald-500/50" />
+
+              <div className="space-y-8">
+                {evolution.map((e, i) => (
+                  <motion.div key={e.version} variants={fadeIn} className="relative pl-20">
+                    {/* Marker */}
+                    <div className="absolute left-6 top-1 h-5 w-5 rounded-full border-2 border-white/[0.12] bg-[#0a0a0b] flex items-center justify-center">
+                      {e.active && (
+                        <motion.div
+                          className="h-2 w-2 rounded-full bg-emerald-400"
+                          animate={{ scale: [1, 1.2, 1], opacity: [0.8, 1, 0.8] }}
+                          transition={{ duration: 2, repeat: Infinity }}
+                        />
+                      )}
+                    </div>
+
+                    <div className={`p-4 rounded-xl ${e.active ? 'bg-white/[0.06] border border-white/[0.12]' : 'bg-white/[0.02] border border-white/[0.04]'}`}>
+                      <div className="flex items-center gap-3 mb-2">
+                        <code className="text-sm font-bold text-white">{e.version}</code>
+                        <h4 className="text-base font-semibold text-white">{e.name}</h4>
+                        {e.active && (
+                          <span className="ml-auto text-xs font-semibold text-emerald-400 px-2 py-0.5 rounded-full bg-emerald-500/10 border border-emerald-500/20">
+                            Active
+                          </span>
+                        )}
+                      </div>
+                      <p className="text-sm text-slate-400">{e.description}</p>
+                      <p className="text-xs text-slate-600 mt-2">{e.year}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+          </motion.div>
+        </Section>
+
+        {/* CTA Footer */}
+        <Section className="border-t border-white/[0.05]">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center space-y-8"
+          >
+            <div>
+              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">Ready to experience it?</h2>
+              <p className="text-lg text-slate-400 max-w-xl mx-auto">
+                Subscribe to the newsletter and see these templates in action every week.
+              </p>
+            </div>
+
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <SparkBorder color="violet" speed="normal" hoverOnly={true}>
+                <GlowButton
+                  variant="primary"
+                  size="lg"
+                  color="violet"
+                  href="/newsletter"
+                  className="shadow-lg shadow-[#AB47C7]/30"
+                >
+                  <Mail className="w-5 h-5" />
+                  Subscribe to Newsletter
+                </GlowButton>
+              </SparkBorder>
+
+              <Link
+                href="/design-lab"
+                className="group flex items-center gap-2 text-slate-400 hover:text-white transition-colors"
+              >
+                <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
+                Back to Design Lab
+              </Link>
+            </div>
+          </motion.div>
+        </Section>
+      </main>
+    </>
   )
 }
