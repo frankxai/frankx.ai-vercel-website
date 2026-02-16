@@ -202,6 +202,43 @@ export default async function BookLandingPage({ params }: PageProps) {
           </div>
         </section>
 
+        {/* Cross-links for series books */}
+        {book.crossLinks && book.crossLinks.length > 0 && (() => {
+          const relatedBooks = book.crossLinks
+            .map((slug) => getBookBySlug(slug))
+            .filter((b): b is NonNullable<typeof b> => b != null && b.status !== 'draft');
+          if (relatedBooks.length === 0) return null;
+          return (
+            <section className="max-w-4xl mx-auto px-6 pb-16">
+              <div className="border-t border-white/5 pt-12">
+                <h2 className={`${fontClass} text-2xl font-bold text-white mb-6`}>
+                  More from the Arcanea Universe
+                </h2>
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {relatedBooks.map((related) => {
+                    const rtc = getThemeClasses(related.theme.id);
+                    return (
+                      <Link
+                        key={related.slug}
+                        href={`/books/${related.slug}`}
+                        className={`group p-5 rounded-xl border border-white/5 bg-white/[0.02] ${rtc.hoverBorder} hover:bg-white/[0.04] transition-all`}
+                      >
+                        <h3 className="font-semibold text-white group-hover:text-white/90 mb-1">
+                          {related.title}
+                        </h3>
+                        <p className="text-xs text-white/40 line-clamp-2">{related.subtitle}</p>
+                        <p className="text-xs text-white/30 mt-3">
+                          {related.chapters.filter((c) => c.published).length} chapters
+                        </p>
+                      </Link>
+                    );
+                  })}
+                </div>
+              </div>
+            </section>
+          );
+        })()}
+
         {/* Categories / Tags */}
         <section className="max-w-4xl mx-auto px-6 pb-24">
           <div className="flex flex-wrap gap-2">

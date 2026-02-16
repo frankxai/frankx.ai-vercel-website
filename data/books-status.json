@@ -1,6 +1,6 @@
 {
-  "total_books": 6,
-  "total_chapters": 49,
+  "total_books": 11,
+  "total_chapters": 82,
   "total_reviews": 8,
   "books": [
     {
@@ -75,6 +75,71 @@
       "next_action": "Generate PDF and list in shop",
       "strategy": "Psychology + AI-age approach. Broader self-help audience."
     }
+    {
+      "slug": "arcanea-legends",
+      "title": "Legends of Arcanea",
+      "status": "published",
+      "chapters": 7,
+      "chapters_written": 7,
+      "has_pdf": false,
+      "has_epub": false,
+      "icon": "purple",
+      "series": "arcanea",
+      "next_action": "Generate cover art via Nano Banana",
+      "strategy": "Origin mythology. The hook for the Arcanea universe."
+    },
+    {
+      "slug": "arcanea-chronicles",
+      "title": "Chronicles of the Luminors",
+      "status": "published",
+      "chapters": 10,
+      "chapters_written": 10,
+      "has_pdf": false,
+      "has_epub": false,
+      "icon": "purple",
+      "series": "arcanea",
+      "next_action": "Generate cover art via Nano Banana",
+      "strategy": "Character-driven guardian stories. Emotional engagement."
+    },
+    {
+      "slug": "arcanea-bestiary",
+      "title": "Bestiary of Creation",
+      "status": "published",
+      "chapters": 5,
+      "chapters_written": 5,
+      "has_pdf": false,
+      "has_epub": false,
+      "icon": "purple",
+      "series": "arcanea",
+      "next_action": "Generate cover art via Nano Banana",
+      "strategy": "Creative psychology field guide. Shareable, practical."
+    },
+    {
+      "slug": "arcanea-creator-principles",
+      "title": "Creator Principles",
+      "status": "published",
+      "chapters": 7,
+      "chapters_written": 7,
+      "has_pdf": false,
+      "has_epub": false,
+      "icon": "indigo",
+      "series": "arcanea",
+      "next_action": "Generate cover art via Nano Banana",
+      "strategy": "Human-AI partnership framework. Most commercially relevant."
+    },
+    {
+      "slug": "arcanea-wisdom-scrolls",
+      "title": "The Wisdom Scrolls",
+      "status": "published",
+      "chapters": 4,
+      "chapters_written": 4,
+      "has_pdf": false,
+      "has_epub": false,
+      "icon": "indigo",
+      "series": "arcanea",
+      "next_action": "Generate cover art via Nano Banana",
+      "strategy": "Daily practice content. Drives repeat visits."
+    }
   ],
-  "last_updated": "2026-02-15"
+  "last_updated": "2026-02-16"
 }

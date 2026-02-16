@@ -159,8 +159,9 @@ const navigation = {
       { name: 'ArcaneaVault', href: '/vault', icon: Layers, description: 'Visual asset library' },
       { name: 'Vibe OS', href: '/products/vibe-os', icon: Music, description: 'AI music system' },
       { name: 'Agentic Creator OS', href: '/products/agentic-creator-os', icon: Bot, description: 'Agent workflows' },
-      { name: 'Arcanea', href: '/magic', icon: Wand2, description: 'Worldbuilding academy' },
+      { name: 'Arcanea', href: '/books#arcanea', icon: Wand2, description: 'Mythological book universe' },
       { name: 'The Luminors', href: 'https://arcanea.app', icon: Heart, description: 'AI companions', external: true },
+      { name: 'The Library', href: '/books', icon: BookOpen, description: '11 books, free to read' },
     ],
     groups: [
       {
@@ -169,7 +170,7 @@ const navigation = {
       },
       {
         label: 'Learn & Read',
-        items: ['The Golden Age of Creators', "The Creator's Soulbook", 'Free Playbooks', 'Prompt Library'],
+        items: ['The Golden Age of Creators', "The Creator's Soulbook", 'Free Playbooks', 'Prompt Library', 'The Library'],
       },
       {
         label: 'Research & Tools',

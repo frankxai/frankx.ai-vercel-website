@@ -19,6 +19,7 @@ import {
   Layout,
   Layers,
   Leaf,
+  Mail,
   Megaphone,
   MousePointerClick,
   Palette,
@@ -414,6 +415,24 @@ const hubSections = [
     color: 'cyan',
     badge: '16 Designs',
     stats: '2 waves',
+  },
+  {
+    title: 'Arcanea Compose',
+    subtitle: 'Email design system: 13 templates, 5 accent palettes, "Oasis of Calm" typography-driven design',
+    href: '/design-lab/newsletter',
+    icon: Mail,
+    color: 'violet',
+    badge: 'Design System',
+    stats: '13 templates',
+  },
+  {
+    title: 'Arcanea Universe',
+    subtitle: 'Frequency-based color system, mythological typography, 10 Gates progression, and cosmic visual language',
+    href: '/design-lab/arcanea',
+    icon: Star,
+    color: 'violet',
+    badge: 'Design System',
+    stats: '10 gates',
   },
 ]
 

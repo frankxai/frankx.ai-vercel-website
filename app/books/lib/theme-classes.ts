@@ -36,8 +36,6 @@ export interface ThemeClasses {
   hoverRing: string;
   // Gradient text
   gradientText: string;
-  // Decorative chapter number
-  chapterNumberColor: string;
 }
 
 const themeMap: Record<string, ThemeClasses> = {
@@ -61,7 +59,6 @@ const themeMap: Record<string, ThemeClasses> = {
     hoverBorder: 'hover:border-rose-500',
     hoverRing: 'focus:ring-rose-500/50',
     gradientText: 'bg-gradient-to-r from-rose-300 via-pink-200 to-violet-300 bg-clip-text text-transparent',
-    chapterNumberColor: 'text-rose-400',
   },
   'spartan-mindset': {
     progressGradient: 'bg-gradient-to-r from-red-600 via-red-500 to-orange-500',
@@ -83,7 +80,6 @@ const themeMap: Record<string, ThemeClasses> = {
     hoverBorder: 'hover:border-red-600',
     hoverRing: 'focus:ring-red-600/50',
     gradientText: 'bg-gradient-to-r from-red-300 via-orange-200 to-amber-300 bg-clip-text text-transparent',
-    chapterNumberColor: 'text-red-500',
   },
   'golden-age': {
     progressGradient: 'bg-gradient-to-r from-amber-500 via-indigo-500 to-amber-500',
@@ -105,7 +101,6 @@ const themeMap: Record<string, ThemeClasses> = {
     hoverBorder: 'hover:border-amber-500',
     hoverRing: 'focus:ring-amber-500/50',
     gradientText: 'bg-gradient-to-r from-amber-300 via-orange-200 to-indigo-300 bg-clip-text text-transparent',
-    chapterNumberColor: 'text-amber-400',
   },
   'self-development': {
     progressGradient: 'bg-gradient-to-r from-emerald-500 via-teal-400 to-cyan-500',
@@ -127,7 +122,6 @@ const themeMap: Record<string, ThemeClasses> = {
     hoverBorder: 'hover:border-emerald-500',
     hoverRing: 'focus:ring-emerald-500/50',
     gradientText: 'bg-gradient-to-r from-emerald-300 via-teal-200 to-cyan-300 bg-clip-text text-transparent',
-    chapterNumberColor: 'text-emerald-400',
   },
   imagination: {
     progressGradient: 'bg-gradient-to-r from-violet-500 via-purple-400 to-cyan-400',
@@ -149,7 +143,6 @@ const themeMap: Record<string, ThemeClasses> = {
     hoverBorder: 'hover:border-violet-500',
     hoverRing: 'focus:ring-violet-500/50',
     gradientText: 'bg-gradient-to-r from-violet-300 via-purple-200 to-cyan-300 bg-clip-text text-transparent',
-    chapterNumberColor: 'text-violet-400',
   },
   manifestation: {
     progressGradient: 'bg-gradient-to-r from-amber-400 via-yellow-300 to-purple-500',
@@ -171,7 +164,50 @@ const themeMap: Record<string, ThemeClasses> = {
     hoverBorder: 'hover:border-amber-400',
     hoverRing: 'focus:ring-amber-400/50',
     gradientText: 'bg-gradient-to-r from-amber-200 via-yellow-100 to-purple-300 bg-clip-text text-transparent',
-    chapterNumberColor: 'text-amber-300',
+  },
+  // ─── Arcanea Lore (narrative/mythological books) ──────────────
+  'arcanea-lore': {
+    progressGradient: 'bg-gradient-to-r from-purple-600 via-violet-500 to-amber-400',
+    textPrimary: 'text-purple-400',
+    textAccent: 'text-amber-300',
+    borderPrimary: 'border-purple-500',
+    borderAccent: 'border-amber-500',
+    bgPrimary: 'bg-purple-500/10',
+    bgAccent: 'bg-amber-500/10',
+    bgPage: 'bg-[#070510]',
+    blockquoteBorder: 'border-purple-400',
+    blockquoteBg: 'bg-purple-900/10',
+    blockquoteText: 'text-purple-100',
+    linkColor: 'text-purple-400',
+    badgeBg: 'bg-purple-500/20',
+    badgeText: 'text-purple-300',
+    badgeBorder: 'border-purple-400/30',
+    tocActive: 'bg-purple-500/20 text-purple-200',
+    hoverBorder: 'hover:border-purple-500',
+    hoverRing: 'focus:ring-purple-500/50',
+    gradientText: 'bg-gradient-to-r from-purple-300 via-violet-200 to-amber-300 bg-clip-text text-transparent',
+  },
+  // ─── Arcanea Practice (teaching/practical books) ─────────────
+  'arcanea-practice': {
+    progressGradient: 'bg-gradient-to-r from-indigo-600 via-blue-500 to-amber-400',
+    textPrimary: 'text-indigo-400',
+    textAccent: 'text-amber-300',
+    borderPrimary: 'border-indigo-500',
+    borderAccent: 'border-amber-500',
+    bgPrimary: 'bg-indigo-500/10',
+    bgAccent: 'bg-amber-500/10',
+    bgPage: 'bg-[#05060f]',
+    blockquoteBorder: 'border-indigo-400',
+    blockquoteBg: 'bg-indigo-900/10',
+    blockquoteText: 'text-indigo-100',
+    linkColor: 'text-indigo-400',
+    badgeBg: 'bg-indigo-500/20',
+    badgeText: 'text-indigo-300',
+    badgeBorder: 'border-indigo-400/30',
+    tocActive: 'bg-indigo-500/20 text-indigo-200',
+    hoverBorder: 'hover:border-indigo-500',
+    hoverRing: 'focus:ring-indigo-500/50',
+    gradientText: 'bg-gradient-to-r from-indigo-300 via-blue-200 to-amber-300 bg-clip-text text-transparent',
   },
 };
 
