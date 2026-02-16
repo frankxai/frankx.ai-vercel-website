@@ -3,17 +3,17 @@ import type { ReactNode } from 'react'
 import SoulbookNavigation from '@/components/soulbook/SoulbookNavigation'
 
 export const metadata: Metadata = {
-  title: 'Soulbook | Transform Your Life Through the 7 Pillars',
-  description: 'A transformative journey through 7 pillars of conscious living. Discover who you truly are and create the life you were born to live with the Soulbook framework.',
+  title: 'Soulbook | 7 Pillars of a Complete Life — Free Framework',
+  description: 'A practical framework for building every dimension of your life: Energy, Mind, Soul, Craft, Capital, Circle, Legacy. 11 books, 82 chapters, all free to read.',
   openGraph: {
-    title: 'Soulbook | Transform Your Life Through the 7 Pillars',
-    description: 'A transformative journey through 7 pillars of conscious living. Discover who you truly are and create the life you were born to live.',
+    title: 'Soulbook | 7 Pillars of a Complete Life',
+    description: 'A practical framework for building every dimension of your life. 11 books, 82 chapters, all free to read.',
     images: [
       {
         url: 'https://frankx.ai/assets/soulbook-og.png',
         width: 1200,
         height: 630,
-        alt: 'Soulbook - Transform Your Life',
+        alt: 'Soulbook — 7 Pillars Framework',
       },
     ],
   },

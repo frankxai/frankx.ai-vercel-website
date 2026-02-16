@@ -359,12 +359,12 @@ export default function AssessmentPage() {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <PremiumButton variant="primary" size="lg" className="group">
-                  Start Your {result.title}
+                <PremiumButton variant="primary" size="lg" className="group" href="/books/self-development">
+                  Read The 7 Pillars
                   <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
                 </PremiumButton>
-                <PremiumButton variant="ghost" size="lg">
-                  Explore All Life Books
+                <PremiumButton variant="ghost" size="lg" href="/books">
+                  Explore All Books
                 </PremiumButton>
               </div>
             </GlassmorphicCard>
