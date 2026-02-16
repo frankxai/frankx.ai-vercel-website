@@ -8,6 +8,8 @@ import DOMPurify from 'isomorphic-dompurify';
 import BookProgress from './BookProgress';
 import BookTOC from './BookTOC';
 import BookChapterNav from './BookChapterNav';
+import SharePopover from './SharePopover';
+import ChapterEndZone from './ChapterEndZone';
 import type { BookChapter, BookTheme, TOCItem } from '../types';
 import { getThemeClasses } from '../lib/theme-classes';
 
@@ -74,6 +76,14 @@ export default function BookReader({
   return (
     <>
       <BookProgress gradientClass={tc.progressGradient} />
+
+      <SharePopover
+        bookTitle={bookTitle}
+        chapterTitle={chapter.title}
+        chapterNumber={chapter.number}
+        bookSlug={bookSlug}
+        chapterSlug={chapter.slug}
+      />
 
       <div className={`min-h-screen ${tc.bgPage} text-white`}>
         {/* Sticky Header */}
@@ -168,6 +178,17 @@ export default function BookReader({
                   prose-hr:border-white/10 prose-hr:my-12
                 `}
                 dangerouslySetInnerHTML={{ __html: htmlContent }}
+              />
+
+              <ChapterEndZone
+                bookSlug={bookSlug}
+                bookTitle={bookTitle}
+                chapterSlug={chapter.slug}
+                chapterTitle={chapter.title}
+                chapterNumber={chapter.number}
+                chapterDescription={chapter.description}
+                themeId={theme.id}
+                borderClass={`border-white/10`}
               />
 
               <BookChapterNav
