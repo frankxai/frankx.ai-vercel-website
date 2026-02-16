@@ -10,6 +10,7 @@ import BookTOC from './BookTOC';
 import BookChapterNav from './BookChapterNav';
 import SharePopover from './SharePopover';
 import ChapterEndZone from './ChapterEndZone';
+import PillarReflection from '@/components/soulbook/PillarReflection';
 import type { BookChapter, BookTheme, TOCItem } from '../types';
 import { getThemeClasses } from '../lib/theme-classes';
 
@@ -34,7 +35,8 @@ export default function BookReader({
 }: BookReaderProps) {
   const tc = getThemeClasses(theme.id);
   const isPoetry = chapter.type === 'poetry' || chapter.type === 'quotes';
-  const chapterNum = String(chapter.number).padStart(2, '0');
+  const fontClass = theme.headingFont === 'serif' ? 'font-serif' : 'font-sans';
+  const bodyFontClass = theme.bodyFont === 'serif' ? 'font-serif' : 'font-sans';
 
   const tocItems = useMemo(() => {
     const items: TOCItem[] = [];
@@ -66,26 +68,11 @@ export default function BookReader({
       );
     });
     const rawHtml = marked.parse(processed);
-    let html = DOMPurify.sanitize(rawHtml as string, {
+    return DOMPurify.sanitize(rawHtml as string, {
       ALLOWED_TAGS: ['p', 'br', 'strong', 'em', 'a', 'ul', 'ol', 'li', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'blockquote', 'code', 'pre', 'span', 'hr'],
       ALLOWED_ATTR: ['href', 'id', 'class', 'target', 'rel'],
     });
-
-    // Add drop cap class to first body paragraph (after first h2)
-    if (!isPoetry) {
-      const h2End = html.indexOf('</h2>');
-      if (h2End !== -1) {
-        const afterH2 = html.substring(h2End);
-        const firstP = afterH2.indexOf('<p>');
-        if (firstP !== -1) {
-          const insertPos = h2End + firstP;
-          html = html.substring(0, insertPos) + '<p class="drop-cap">' + html.substring(insertPos + 3);
-        }
-      }
-    }
-
-    return html;
-  }, [content, tocItems, isPoetry]);
+  }, [content, tocItems]);
 
   return (
     <>
@@ -112,7 +99,7 @@ export default function BookReader({
                 <span className="font-medium text-sm">{bookTitle}</span>
               </Link>
               <div className="flex items-center gap-4 text-sm text-white/40">
-                <span>Ch. {chapterNum}</span>
+                <span>Ch. {chapter.number}</span>
                 <span>{chapter.readingTime}</span>
               </div>
             </div>
@@ -124,7 +111,7 @@ export default function BookReader({
           <div className="relative w-full h-[40vh] sm:h-[50vh] overflow-hidden">
             <Image
               src={chapter.image}
-              alt={`Chapter ${chapterNum}: ${chapter.title}`}
+              alt={`Chapter ${chapter.number}: ${chapter.title}`}
               fill
               className="object-cover"
               priority
@@ -132,11 +119,11 @@ export default function BookReader({
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
             <div className="absolute bottom-0 left-0 right-0 p-8 sm:p-12">
-              <div className="max-w-[720px] mx-auto">
-                <p className="text-[0.65rem] uppercase tracking-[0.35em] text-white/60 font-medium mb-4">
-                  Chapter {chapterNum}
-                </p>
-                <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
+              <div className="max-w-3xl mx-auto">
+                <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full ${tc.badgeBg} backdrop-blur-sm ${tc.badgeText} text-sm font-medium border ${tc.badgeBorder} mb-4`}>
+                  Chapter {chapter.number}
+                </div>
+                <h1 className={`${fontClass} text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight`}>
                   {chapter.title}
                 </h1>
                 <p className="text-xl text-white/60 leading-relaxed mt-4 max-w-2xl">
@@ -150,32 +137,23 @@ export default function BookReader({
         {/* Main Content */}
         <div className="relative max-w-7xl mx-auto px-6 py-12 lg:py-20">
           <div className="lg:flex lg:gap-12">
-            <article className={`flex-1 max-w-[720px] ${isPoetry ? 'mx-auto' : ''}`}>
+            <article className={`flex-1 max-w-3xl ${isPoetry ? 'mx-auto' : ''}`}>
               {/* Header (if no hero image) */}
               {!chapter.image && (
-                <header className="relative space-y-4 mb-16 pb-12 border-b border-white/10">
-                  {/* Decorative background chapter number */}
-                  <div
-                    className={`absolute -top-6 -left-6 text-[8rem] sm:text-[10rem] font-serif font-bold leading-none ${tc.chapterNumberColor} opacity-[0.04] select-none pointer-events-none`}
-                    aria-hidden="true"
-                  >
-                    {chapterNum}
-                  </div>
-
+                <header className="space-y-6 mb-12 pb-12 border-b border-white/10">
                   {chapter.epigraph && (
-                    <blockquote className={`relative font-book italic text-lg text-white/50 border-l-2 ${tc.borderPrimary} pl-6 py-2`}>
+                    <blockquote className={`${fontClass} italic text-xl text-white/50 border-l-2 ${tc.borderPrimary} pl-6 py-2`}>
                       <p>{chapter.epigraph.text}</p>
                       <footer className="mt-2 text-sm text-white/30">— {chapter.epigraph.author}</footer>
                     </blockquote>
                   )}
-
-                  <p className="text-[0.65rem] uppercase tracking-[0.35em] text-white/40 font-medium">
-                    Chapter {chapterNum}
-                  </p>
-                  <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight">
+                  <div className={`inline-flex items-center gap-2 px-3 py-1.5 rounded-full ${tc.badgeBg} ${tc.badgeText} text-sm font-medium border ${tc.badgeBorder}`}>
+                    Chapter {chapter.number}
+                  </div>
+                  <h1 className={`${fontClass} text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight`}>
                     {chapter.title}
                   </h1>
-                  <p className="text-lg text-white/50 leading-relaxed max-w-xl">
+                  <p className="text-xl text-white/50 leading-relaxed">
                     {chapter.description}
                   </p>
                 </header>
@@ -183,25 +161,30 @@ export default function BookReader({
 
               {/* Chapter Content */}
               <div
-                className={`book-content prose prose-lg prose-invert max-w-none
+                className={`${bodyFontClass} prose prose-lg prose-invert max-w-none
                   ${isPoetry ? 'text-center leading-loose' : ''}
                   prose-headings:font-serif prose-headings:font-bold prose-headings:text-white
-                  prose-h2:text-3xl prose-h2:mt-16 prose-h2:mb-6 prose-h2:pt-8 prose-h2:border-t prose-h2:border-white/10
+                  prose-h2:text-3xl prose-h2:mt-12 prose-h2:mb-6 prose-h2:pt-8 prose-h2:border-t prose-h2:border-white/10
                   prose-h3:text-2xl prose-h3:mt-10 prose-h3:mb-4
-                  prose-p:text-white/75 prose-p:leading-[1.8] prose-p:mb-7
+                  prose-p:text-white/70 prose-p:leading-relaxed prose-p:mb-6
                   prose-strong:text-white prose-strong:font-semibold
                   prose-em:text-white/80
                   prose-blockquote:border-l-4 prose-blockquote:border-current
                   prose-blockquote:pl-6 prose-blockquote:py-4 prose-blockquote:pr-4 prose-blockquote:not-italic prose-blockquote:rounded-r-xl
                   prose-blockquote:text-white/80 prose-blockquote:bg-white/[0.02]
-                  prose-ul:my-8 prose-ul:space-y-3
-                  prose-ol:my-8 prose-ol:space-y-3
+                  prose-ul:my-6 prose-ul:space-y-2
+                  prose-ol:my-6 prose-ol:space-y-2
                   prose-li:text-white/70
                   prose-a:no-underline hover:prose-a:underline prose-a:font-medium
-                  prose-hr:border-white/10 prose-hr:my-16
+                  prose-hr:border-white/10 prose-hr:my-12
                 `}
                 dangerouslySetInnerHTML={{ __html: htmlContent }}
               />
+
+              {/* Pillar exercises — self-development chapters only */}
+              {bookSlug === 'self-development' && (
+                <PillarReflection chapterSlug={chapter.slug} />
+              )}
 
               <ChapterEndZone
                 bookSlug={bookSlug}
