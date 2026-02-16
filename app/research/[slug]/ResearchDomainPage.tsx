@@ -102,9 +102,10 @@ interface Props {
   relatedDomains: ResearchDomain[]
   claimCount?: number
   blogPostTitles?: Record<string, string>
+  actualSourceCount?: number
 }
 
-export default function ResearchDomainPage({ domain, relatedDomains, claimCount = 0, blogPostTitles = {} }: Props) {
+export default function ResearchDomainPage({ domain, relatedDomains, claimCount = 0, blogPostTitles = {}, actualSourceCount }: Props) {
   const shouldReduceMotion = useReducedMotion()
   const Icon = iconMap[domain.icon] || Layers
   const colors = colorConfig[domain.color] || colorConfig.emerald
@@ -230,7 +231,7 @@ export default function ResearchDomainPage({ domain, relatedDomains, claimCount 
                       </span>
                       <span className="flex items-center gap-1.5">
                         <ShieldCheck className="w-3 h-3" />
-                        {domain.sourceCount} sources validated
+                        {actualSourceCount ?? domain.sourceCount} sources validated
                       </span>
                       {claimCount > 0 && (
                         <span className="flex items-center gap-1.5">

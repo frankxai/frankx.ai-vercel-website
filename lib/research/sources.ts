@@ -193,7 +193,7 @@ export const domainSources: Record<string, ResearchSource[]> = {
     { name: 'Claude Code', title: 'CLAUDE.md Configuration — Claude Code Docs', url: 'https://code.claude.com/docs/en/claude-md', type: 'official' },
     { name: 'Claude Code', title: 'Skills Documentation', url: 'https://code.claude.com/docs/en/skills', type: 'official' },
     { name: 'Claude Code', title: 'Hooks Reference', url: 'https://code.claude.com/docs/en/hooks', type: 'official' },
-    { name: 'FrankX', title: 'ACOS — Agentic Creator Operating System', url: 'https://frankx.ai/products/agentic-creator-os', type: 'official' },
+    { name: 'Anthropic', title: 'Claude Code Configuration Best Practices', url: 'https://docs.anthropic.com/en/docs/claude-code/tutorials', type: 'official' },
     { name: 'Builder.io', title: 'The Complete Guide to CLAUDE.md', url: 'https://www.builder.io/blog/claude-md-guide', type: 'blog' },
     { name: 'HumanLayer', title: 'Writing a Good CLAUDE.md', url: 'https://www.humanlayer.dev/blog/writing-a-good-claude-md', type: 'blog' },
     { name: 'Anthropic', title: 'Model Context Protocol Specification', url: 'https://modelcontextprotocol.io/specification/2025-11-25', type: 'official' },
@@ -274,8 +274,79 @@ export const domainSources: Record<string, ResearchSource[]> = {
     { name: 'Google', title: 'How Google and the C2PA Are Increasing Transparency for Gen AI Content', url: 'https://blog.google/innovation-and-ai/products/google-gen-ai-content-transparency-c2pa/', type: 'official' },
     { name: 'AIM Research', title: 'Content Authenticity: Tools and Use Cases in 2026', url: 'https://research.aimultiple.com/content-authenticity/', type: 'blog' },
   ],
+
+  'agentic-game-development': [
+    { name: 'Jenova AI', title: 'AI Game Generator: The Complete 2026 Guide to AI-Powered Game Creation', url: 'https://www.jenova.ai/en/resources/ai-game-generator', date: '2026-01', type: 'blog' },
+    { name: 'Google Cloud', title: '2025 Games Report — 87% of Devs Use AI Agents', url: 'https://cloud.google.com/resources/games-report', date: '2025-08', type: 'industry-report' },
+    { name: 'PC Gamer', title: '87% of game developers are already using AI agents, Google survey shows', url: 'https://www.pcgamer.com/software/ai/87-percent-of-game-developers-are-already-using-ai-agents-and-over-a-third-use-ai-for-creative-elements-like-level-design-and-dialogue-according-to-a-new-google-survey/', date: '2025-08', type: 'news' },
+    { name: 'ByteIota', title: 'WebGPU 2026: 70% Browser Support, 15x Performance Gains', url: 'https://byteiota.com/webgpu-2026-70-browser-support-15x-performance-gains/', date: '2025-12', type: 'blog' },
+    { name: 'Can I Use', title: 'WebGPU Browser Support Tables', url: 'https://caniuse.com/webgpu', type: 'official' },
+    { name: 'Elsner Technologies', title: 'AI Game Development Tools for 2026 | Top Picks', url: 'https://www.elsner.com/ai-game-development-tools/', date: '2025-11', type: 'blog' },
+    { name: 'Phaser.io', title: 'Official Phaser 3 and Next.js Template', url: 'https://phaser.io/news/2024/03/official-phaser-3-and-nextjs-template', date: '2024-03', type: 'official' },
+    { name: 'GitHub (phaserjs)', title: 'Phaser TypeScript project template that uses Next.js', url: 'https://github.com/phaserjs/template-nextjs', type: 'official' },
+    { name: 'Utsubo', title: 'What Changed in Three.js 2026? WebGPU, Vibe Coding & Beyond', url: 'https://www.utsubo.com/blog/threejs-2026-what-changed', date: '2026-01', type: 'blog' },
+    { name: 'npm', title: '@react-three/fiber npm package', url: 'https://www.npmjs.com/package/@react-three/fiber', type: 'official' },
+    { name: 'Vercel', title: 'Do Vercel Serverless Functions support WebSocket connections?', url: 'https://vercel.com/kb/guide/do-vercel-serverless-functions-support-websocket-connections', type: 'official' },
+    { name: 'Scenario', title: 'Scenario | AI-Powered Game Art Generation Platform', url: 'https://www.scenario.com', type: 'official' },
+    { name: 'Inworld AI', title: 'Inworld AI | AI NPCs with Memory and Emotion', url: 'https://inworld.ai/', type: 'official' },
+    { name: 'AIVA', title: 'AIVA, the AI Music Generation Assistant', url: 'https://www.aiva.ai/', type: 'official' },
+    { name: 'Promethean AI', title: 'Promethean AI | AI Braintrust for Creative Teams', url: 'https://www.prometheanai.com', type: 'official' },
+    { name: 'Game Developer', title: 'Promethean AI aims to take the grunt work out of worldbuilding through AI', url: 'https://www.gamedeveloper.com/art/promethean-ai-aims-to-take-the-grunt-work-out-of-worldbuilding-through-ai', type: 'news' },
+    { name: 'Utsubo', title: 'Migrate Three.js to WebGPU (2026) — The Complete Checklist', url: 'https://www.utsubo.com/blog/webgpu-threejs-migration-guide', date: '2026-01', type: 'blog' },
+    { name: 'PixiJS', title: 'PixiJS | The HTML5 Creation Engine', url: 'https://pixijs.com/', type: 'official' },
+    { name: 'MDN Web Docs', title: 'Making PWA Games Work Offline with Service Workers', url: 'https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Tutorials/js13kGames/Offline_Service_workers', type: 'official' },
+    { name: 'web.dev', title: 'WebGPU is now supported in major browsers', url: 'https://web.dev/blog/webgpu-supported-major-browsers', date: '2025-09', type: 'official' },
+  ],
+
+  'investment-intelligence': [
+    { name: 'Thomson Reuters', title: 'How AI and Document Intelligence Are Changing the Legal Tech Game', url: 'https://legal.thomsonreuters.com/en/insights/articles/how-ai-and-document-intelligence-are-changing-the-legal-tech-game', type: 'official' },
+    { name: 'CPA Practice Advisor', title: 'Thomson Reuters Launches Agentic AI Solutions to Transform Tax, Audit and Accounting Workflows', url: 'https://www.cpapracticeadvisor.com/2025/11/05/thomson-reuters-launches-agentic-ai-solutions-to-transform-tax-audit-and-accounting-workflows/172307/', date: '2025-11', type: 'news' },
+    { name: 'Anthropic', title: 'Claude for Financial Services', url: 'https://www.anthropic.com/news/claude-for-financial-services', date: '2025-07', type: 'official' },
+    { name: 'Anthropic', title: 'Advancing Claude for Financial Services', url: 'https://www.anthropic.com/news/advancing-claude-for-financial-services', type: 'official' },
+    { name: 'PitchBook', title: 'AI agent startup n8n lands $2.5B valuation with $180M Series C', url: 'https://pitchbook.com/news/articles/ai-agent-startup-n8n-lands-2-5b-valuation-with-180m-series-c', date: '2025-10', type: 'news' },
+    { name: 'n8n Blog', title: 'n8n raises $180m to get AI closer to value with orchestration', url: 'https://blog.n8n.io/series-c/', date: '2025-10', type: 'official' },
+    { name: 'Bain & Company', title: 'Generative AI in M&A: You\'re Not Behind -- Yet', url: 'https://www.bain.com/insights/generative-ai-m-and-a-report-2025/', date: '2025-02', type: 'industry-report' },
+    { name: 'Morgan Stanley', title: 'AI in Software Development: Creating Jobs and Redefining Roles', url: 'https://www.morganstanley.com/insights/articles/ai-software-development-industry-growth', date: '2025-10', type: 'industry-report' },
+    { name: 'Kensho / S&P Global', title: 'LLM-ready API & MCP Server Overview', url: 'https://docs.kensho.com/llmreadyapi/overview', type: 'official' },
+    { name: 'S&P Global / Anthropic', title: 'S&P Global and Anthropic Announce Integration of Trusted Financial Data into Claude', url: 'https://www.prnewswire.com/news-releases/sp-global-and-anthropic-announce-integration-of-sp-globals-trusted-financial-data-into-claude-302505482.html', date: '2025-07', type: 'news' },
+    { name: 'A-Team Insight / LSEG', title: 'LSEG Launches AI-Ready Content via MCP Server on Databricks Marketplace', url: 'https://a-teaminsight.com/briefs/lseg-launches-first-phase-of-ai-ready-content-via-mcp-server-on-databricks-marketplace/', date: '2025-11', type: 'news' },
+    { name: 'EY (Ernst & Young)', title: 'How AI is sustainably transforming value creation in private equity', url: 'https://www.ey.com/en_ch/insights/strategy-transactions/ai-in-private-equity', date: '2025-11', type: 'industry-report' },
+    { name: 'The Hedge Fund Journal', title: 'Applying AI to Investment, Operational and Legal Due Diligence', url: 'https://thehedgefundjournal.com/vantager-ai-investment-operational-legal-due-diligence/', date: '2025-07', type: 'journal' },
+    { name: 'McKinsey & Company', title: 'Five ways to improve due diligence using gen AI', url: 'https://www.mckinsey.com/capabilities/transformation/our-insights/from-potential-to-performance-using-gen-ai-to-conduct-outside-in-diligence', type: 'industry-report' },
+    { name: 'McKinsey & Company', title: 'Global Private Markets Report 2025', url: 'https://www.mckinsey.com/industries/private-capital/our-insights/global-private-markets-report', date: '2025-03', type: 'industry-report' },
+  ],
 }
 
 export function getSourcesForDomain(slug: string): ResearchSource[] {
   return domainSources[slug] || []
+}
+
+/**
+ * Returns the actual registered source count for a domain.
+ * Use this instead of domain.sourceCount to avoid drift.
+ */
+export function getSourceCountForDomain(slug: string): number {
+  return (domainSources[slug] || []).length
+}
+
+/**
+ * Build-time validation: compare declared sourceCount with actual registered sources.
+ * Call this in development to catch mismatches early.
+ */
+export function validateSourceCounts(
+  domains: { slug: string; sourceCount: number; title: string }[]
+): { slug: string; title: string; declared: number; actual: number }[] {
+  const mismatches: { slug: string; title: string; declared: number; actual: number }[] = []
+  for (const domain of domains) {
+    const actual = (domainSources[domain.slug] || []).length
+    if (actual !== domain.sourceCount) {
+      mismatches.push({
+        slug: domain.slug,
+        title: domain.title,
+        declared: domain.sourceCount,
+        actual,
+      })
+    }
+  }
+  return mismatches
 }

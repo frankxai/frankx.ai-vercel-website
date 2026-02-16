@@ -8,9 +8,7 @@ import DOMPurify from 'isomorphic-dompurify';
 import BookProgress from './BookProgress';
 import BookTOC from './BookTOC';
 import BookChapterNav from './BookChapterNav';
-import SharePopover from './SharePopover';
 import ChapterEndZone from './ChapterEndZone';
-import PillarReflection from '@/components/soulbook/PillarReflection';
 import type { BookChapter, BookTheme, TOCItem } from '../types';
 import { getThemeClasses } from '../lib/theme-classes';
 
@@ -19,6 +17,7 @@ interface BookReaderProps {
   content: string;
   bookSlug: string;
   bookTitle: string;
+  bookCoverImage: string;
   theme: BookTheme;
   previousChapter?: BookChapter;
   nextChapter?: BookChapter;
@@ -29,6 +28,7 @@ export default function BookReader({
   content,
   bookSlug,
   bookTitle,
+  bookCoverImage,
   theme,
   previousChapter,
   nextChapter,
@@ -78,14 +78,6 @@ export default function BookReader({
     <>
       <BookProgress gradientClass={tc.progressGradient} />
 
-      <SharePopover
-        bookTitle={bookTitle}
-        chapterTitle={chapter.title}
-        chapterNumber={chapter.number}
-        bookSlug={bookSlug}
-        chapterSlug={chapter.slug}
-      />
-
       <div className={`min-h-screen ${tc.bgPage} text-white`}>
         {/* Sticky Header */}
         <header className="sticky top-0 z-30 bg-black/60 backdrop-blur-xl border-b border-white/5">
@@ -107,10 +99,10 @@ export default function BookReader({
         </header>
 
         {/* Chapter Hero Image */}
-        {chapter.image && (
+        {(chapter.image || bookCoverImage) && (
           <div className="relative w-full h-[40vh] sm:h-[50vh] overflow-hidden">
             <Image
-              src={chapter.image}
+              src={chapter.image || bookCoverImage}
               alt={`Chapter ${chapter.number}: ${chapter.title}`}
               fill
               className="object-cover"
@@ -138,8 +130,8 @@ export default function BookReader({
         <div className="relative max-w-7xl mx-auto px-6 py-12 lg:py-20">
           <div className="lg:flex lg:gap-12">
             <article className={`flex-1 max-w-3xl ${isPoetry ? 'mx-auto' : ''}`}>
-              {/* Header (if no hero image) */}
-              {!chapter.image && (
+              {/* Header (if no hero image fallback) */}
+              {!chapter.image && !bookCoverImage && (
                 <header className="space-y-6 mb-12 pb-12 border-b border-white/10">
                   {chapter.epigraph && (
                     <blockquote className={`${fontClass} italic text-xl text-white/50 border-l-2 ${tc.borderPrimary} pl-6 py-2`}>
@@ -181,11 +173,6 @@ export default function BookReader({
                 dangerouslySetInnerHTML={{ __html: htmlContent }}
               />
 
-              {/* Pillar exercises — self-development chapters only */}
-              {bookSlug === 'self-development' && (
-                <PillarReflection chapterSlug={chapter.slug} />
-              )}
-
               <ChapterEndZone
                 bookSlug={bookSlug}
                 bookTitle={bookTitle}
@@ -193,8 +180,9 @@ export default function BookReader({
                 chapterTitle={chapter.title}
                 chapterNumber={chapter.number}
                 chapterDescription={chapter.description}
+                chapterEpigraph={chapter.epigraph}
                 themeId={theme.id}
-                borderClass={`border-white/10`}
+                borderClass={tc.borderPrimary}
               />
 
               <BookChapterNav

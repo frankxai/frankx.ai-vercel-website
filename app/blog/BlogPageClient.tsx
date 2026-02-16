@@ -79,7 +79,7 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
               </span>
             </h1>
             <p className="text-lg md:text-xl text-white/60 leading-relaxed max-w-2xl">
-              Weekly insights on AI systems, creative workflows, and building in public. From Oracle architecture to Suno music production.
+              Weekly insights on AI systems, creative workflows, and building in public. From enterprise architecture to Suno music production.
             </p>
 
             {/* Stats */}
@@ -225,16 +225,16 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
             <span className="text-sm text-emerald-400">Weekly Insights</span>
           </div>
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
-            Join Creation Chronicles
+            Stay in the loop
           </h2>
           <p className="text-white/50 mb-8">
-            Get weekly insights on AI, creativity, and building in public.
+            Weekly insights on AI architecture, creative workflows, and building in public. No spam.
           </p>
           <Link
-            href="/free-playbook"
+            href="/newsletter"
             className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black rounded-full font-semibold hover:bg-white/90 transition-all"
           >
-            Get Free Playbooks
+            Subscribe to Newsletter
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>

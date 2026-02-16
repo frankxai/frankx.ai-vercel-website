@@ -32,6 +32,7 @@ import {
 } from 'lucide-react'
 import { researchDomains, researchAgents, domainCategories } from '@/lib/research/domains'
 import type { DomainCategory } from '@/lib/research/domains'
+import { getSourceCountForDomain } from '@/lib/research/sources'
 
 // Icon map for dynamic rendering
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -61,7 +62,7 @@ const featuredDomains = [...researchDomains]
   .sort((a, b) => b.lastUpdated.localeCompare(a.lastUpdated))
   .slice(0, 3)
 
-const totalSources = researchDomains.reduce((sum, d) => sum + d.sourceCount, 0)
+const totalSources = researchDomains.reduce((sum, d) => sum + (getSourceCountForDomain(d.slug) || d.sourceCount), 0)
 const totalFindings = researchDomains.reduce((sum, d) => sum + d.keyFindings.length, 0)
 
 function HeroSection() {
@@ -225,7 +226,7 @@ function FeaturedSpotlight() {
 
                     {/* Footer */}
                     <div className="flex items-center justify-between pt-3 border-t border-white/[0.04]">
-                      <span className="text-[10px] text-white/25">{domain.sourceCount} sources</span>
+                      <span className="text-[10px] text-white/25">{getSourceCountForDomain(domain.slug) || domain.sourceCount} sources</span>
                       <span className={`inline-flex items-center gap-1 text-xs font-medium ${colors.text} group-hover:gap-2 transition-all`}>
                         Read Brief
                         <ArrowRight className="w-3 h-3" />
@@ -376,7 +377,7 @@ function DomainsGrid() {
                       </div>
                       <div className="flex items-center gap-2">
                         <span className={`text-[10px] font-medium px-2 py-0.5 rounded-full ${colors.bg} ${colors.text}`}>
-                          {domain.sourceCount} sources
+                          {getSourceCountForDomain(domain.slug) || domain.sourceCount} sources
                         </span>
                         <ArrowUpRight className="w-4 h-4 text-white/20 group-hover:text-white/50 transition-colors" />
                       </div>

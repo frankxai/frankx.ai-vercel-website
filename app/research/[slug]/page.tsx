@@ -1,7 +1,7 @@
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import { researchDomains, getDomainBySlug, getRelatedDomains } from '@/lib/research/domains'
-import { getSourcesForDomain } from '@/lib/research/sources'
+import { getSourcesForDomain, getSourceCountForDomain } from '@/lib/research/sources'
 import { getClaimCountForDomain } from '@/lib/research/validated-claims'
 import { getBlogPost } from '@/lib/blog'
 import ResearchDomainPage from './ResearchDomainPage'
@@ -107,7 +107,7 @@ export default async function Page({ params }: PageProps) {
           url: src.url,
           ...(src.date && { datePublished: src.date }),
         }))
-      : `${domain.sourceCount} validated sources`,
+      : `${getSourceCountForDomain(slug) || domain.sourceCount} validated sources`,
     breadcrumb: {
       '@type': 'BreadcrumbList',
       itemListElement: [
@@ -141,7 +141,7 @@ export default async function Page({ params }: PageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: faqLd }}
       />
-      <ResearchDomainPage domain={domain} relatedDomains={relatedDomains} claimCount={claimCount} blogPostTitles={blogPostTitles} />
+      <ResearchDomainPage domain={domain} relatedDomains={relatedDomains} claimCount={claimCount} blogPostTitles={blogPostTitles} actualSourceCount={getSourceCountForDomain(slug)} />
     </>
   )
 }

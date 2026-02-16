@@ -30,6 +30,7 @@ export async function generateMetadata({ params }: PageProps) {
     title: `${chapter.title} | ${book.title}`,
     description: chapter.description,
     path: `/books/${bookSlug}/${chapter.slug}`,
+    image: chapter.image || book.coverImage,
     type: 'article',
     keywords: book.keywords,
     authors: [book.author],
@@ -96,6 +97,7 @@ export default async function ChapterPage({ params }: PageProps) {
         content={content}
         bookSlug={bookSlug}
         bookTitle={book.title}
+        bookCoverImage={book.coverImage}
         theme={book.theme}
         previousChapter={previousChapter}
         nextChapter={nextChapter}
