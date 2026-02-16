@@ -355,6 +355,15 @@ export default function NewsletterPage() {
                   Read the blog first
                 </Link>
               </div>
+              <p className="mt-6 text-sm text-slate-500">
+                Curious about the design?{' '}
+                <Link
+                  href="/design-lab/newsletter"
+                  className="text-violet-400 underline decoration-violet-400/30 transition-colors hover:text-violet-300"
+                >
+                  View Arcanea Compose design system
+                </Link>
+              </p>
             </motion.div>
           </div>
         </section>
