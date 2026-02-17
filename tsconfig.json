@@ -77,6 +77,8 @@
     "docs",
     "scripts",
     "agentic-creator-os",
-    "_archive"
+    "_archive",
+    "v1-enterprise-backup",
+    "lib/music-multi.ts"
   ]
 }

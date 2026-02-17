@@ -37,7 +37,7 @@ export async function POST(request: NextRequest) {
       accounts
     )
 
-    const savedPosts = generatedPosts.map(postData => createPost(postData))
+    const savedPosts = generatedPosts.map(postData => createPost(postData as Parameters<typeof createPost>[0]))
 
     return NextResponse.json({
       success: true,

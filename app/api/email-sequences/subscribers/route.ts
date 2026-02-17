@@ -69,10 +69,7 @@ export async function POST(request: NextRequest) {
     
     // Auto-enroll in welcome sequence if requested
     if (enrollInWelcome) {
-      const updatedSubscriber = enrollInSequence(subscriber.id, 'welcome-series')
-      if (updatedSubscriber) {
-        scheduleSequenceForSubscriber(updatedSubscriber, 'welcome-series')
-      }
+      scheduleSequenceForSubscriber(subscriber, 'welcome-series')
     }
     
     return NextResponse.json({ subscriber }, { status: 201 })

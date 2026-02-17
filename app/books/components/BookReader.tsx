@@ -180,7 +180,6 @@ export default function BookReader({
                 chapterTitle={chapter.title}
                 chapterNumber={chapter.number}
                 chapterDescription={chapter.description}
-                chapterEpigraph={chapter.epigraph}
                 themeId={theme.id}
                 borderClass={tc.borderPrimary}
               />

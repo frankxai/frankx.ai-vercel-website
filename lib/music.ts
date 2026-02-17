@@ -110,11 +110,11 @@ export function getPublishedAlbums(): Album[] {
 export function getMusicStats() {
   const profileStats = musicInventory._profileStats
   return {
-    totalTracks: musicInventory._estimatedTotal,
+    totalTracks: musicInventory._totalOnSuno,
     indexedTracks: musicInventory._count,
     followers: profileStats.followers,
-    hooks: profileStats.hooks,
-    likes: profileStats.likes,
+    totalPlays: profileStats.totalPlays,
+    totalLikes: profileStats.totalLikes,
     playlists: musicInventory._playlists.length,
     albums: albums.length,
     profileUrl: musicInventory._sunoProfileUrl,

@@ -411,7 +411,7 @@ export default function WordForgePage() {
                 return (
                   <div
                     key={ci}
-                    className={`w-[56px] h-[56px] sm:w-[62px] sm:h-[62px] flex items-center justify-center border-2 rounded-lg text-xl font-bold transition-all duration-300 ${STATE_COLORS[cell.state]} ${isRevealed ? 'letter-reveal' : ''} ${isTyping ? 'letter-type' : ''} ${isWinRow ? 'win-dance' : ''}`}
+                    className={`w-[56px] h-[56px] sm:w-[62px] sm:h-[62px] flex items-center justify-center border-2 rounded-lg text-xl font-bold transition-all duration-300 ${STATE_COLORS[cell.state as LetterState]} ${isRevealed ? 'letter-reveal' : ''} ${isTyping ? 'letter-type' : ''} ${isWinRow ? 'win-dance' : ''}`}
                     style={{
                       animationDelay: isRevealed ? `${ci * 120}ms` : isWinRow ? `${ci * 80}ms` : undefined,
                     }}

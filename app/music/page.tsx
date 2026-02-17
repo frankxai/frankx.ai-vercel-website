@@ -41,7 +41,7 @@ const musicStats = getMusicStats()
 const stats = [
   { value: `${musicStats.totalTracks}+`, label: 'Public Tracks' },
   { value: String(musicStats.followers), label: 'Followers' },
-  { value: musicStats.hooks, label: 'Hooks' },
+  { value: String(musicStats.totalPlays), label: 'Total Plays' },
   { value: String(musicStats.albums), label: 'Albums' },
 ]
 

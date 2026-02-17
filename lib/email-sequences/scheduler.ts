@@ -208,3 +208,6 @@ export async function triggerSequenceTest(
   
   scheduleSequenceForSubscriber(subscriber, sequenceId)
 }
+
+// Alias for API compatibility
+export const enrollInSequence = scheduleSequenceForSubscriber

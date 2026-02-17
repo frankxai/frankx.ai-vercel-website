@@ -20,9 +20,7 @@ export default function RevenueDashboardPage() {
   ).length
   const totalRevenuePotential = templates.reduce((sum, t) => sum + t.price, 0)
   const avgPrice = Math.round(totalRevenuePotential / totalTemplates)
-  const blueprintCount = (deployData as { blueprints?: unknown[] }).blueprints
-    ? ((deployData as { blueprints: { slug: string }[] }).blueprints).length
-    : 0
+  const blueprintCount = (deployData as { blueprints?: unknown[] }).blueprints?.length ?? 0
 
   const categoryBreakdown = templates.reduce(
     (acc, t) => {

@@ -120,7 +120,7 @@ export async function createPostsFromBlog(
       contentType: 'thread',
       status: 'draft',
       body: content.twitter.thread[0].body,
-      thread: content.twitter.thread,
+      thread: content.twitter.thread.map((t, i) => ({ order: i + 1, ...t })),
       hashtags: content.twitter.hashtags,
       source: {
         type: 'blog',

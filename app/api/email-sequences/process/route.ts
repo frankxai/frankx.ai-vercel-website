@@ -9,7 +9,7 @@ import { processPendingDeliveries } from '@/lib/email-sequences/scheduler'
  * {
  *   "crons": [{
  *     "path": "/api/email-sequences/process",
- *     "schedule": "*/15 * * * *"
+ *     "schedule": "* /15 * * * *"
  *   }]
  * }
  */

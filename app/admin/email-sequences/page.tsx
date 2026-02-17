@@ -54,7 +54,7 @@ export default function EmailSequencesPage() {
                   <div className="text-sm text-white/50">Avg Open Rate</div>
                 </div>
                 <div className="text-3xl font-bold">--%</div>
-                <div className="text-sm text-white/40 mt-1">Target: >40%</div>
+                <div className="text-sm text-white/40 mt-1">Target: &gt;40%</div>
               </div>
 
               <div className="rounded-xl border border-white/10 bg-white/[0.02] p-6">

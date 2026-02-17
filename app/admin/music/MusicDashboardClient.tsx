@@ -62,8 +62,8 @@ interface DashboardData {
     totalTracks: number
     indexedTracks: number
     followers: number
-    hooks: string
-    likes: string
+    totalPlays: number
+    totalLikes: number
     playlists: number
     albums: number
     profileUrl: string

@@ -57,7 +57,7 @@ function checkTriggerConditions(subscriber: Subscriber, sequence: EmailSequence)
     
     case 'inactivity':
       // Re-engagement - check days inactive
-      const conditions = trigger.conditions || {}
+      const conditions = (trigger.conditions || {}) as Record<string, any>
       const daysInactive = conditions.daysInactive || 30
       
       // Check if completed welcome series
@@ -85,7 +85,7 @@ function checkTriggerConditions(subscriber: Subscriber, sequence: EmailSequence)
     
     case 'purchase':
       // Upsell - check if purchased specific product
-      const productConditions = trigger.conditions || {}
+      const productConditions = (trigger.conditions || {}) as Record<string, any>
       const targetProductId = productConditions.productId
       
       // Check if has purchased target product
@@ -97,7 +97,7 @@ function checkTriggerConditions(subscriber: Subscriber, sequence: EmailSequence)
       // Check if doesn't have excluded products
       const excludeProducts = productConditions.excludeProducts || []
       if (subscriber.purchasedProducts && excludeProducts.length > 0) {
-        const hasExcluded = excludeProducts.some(pid => 
+        const hasExcluded = excludeProducts.some((pid: string) => 
           subscriber.purchasedProducts?.includes(pid)
         )
         if (hasExcluded) return false

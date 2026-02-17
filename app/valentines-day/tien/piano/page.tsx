@@ -273,8 +273,6 @@ class GrandPianoEngine {
       o.stop(now + sus * 4)
       oscs.push(o)
     }
-
-    // @ts-expect-error — union type for synth fallback
     this.active.set(midi, { source: oscs, noteGain, panner, isSynth: true })
   }
 
@@ -443,7 +441,7 @@ export default function PianoPage() {
   function onTouchStart(e: React.TouchEvent) {
     e.preventDefault()
     for (let i = 0; i < e.changedTouches.length; i++) {
-      const t = e.changedTouches[i]
+      const t = e.changedTouches[i] as unknown as Touch
       const midi = midiAt(t.clientX, t.clientY)
       if (midi !== null) {
         touchMap.current.set(t.identifier, midi)
@@ -455,7 +453,7 @@ export default function PianoPage() {
   function onTouchMove(e: React.TouchEvent) {
     e.preventDefault()
     for (let i = 0; i < e.changedTouches.length; i++) {
-      const t = e.changedTouches[i]
+      const t = e.changedTouches[i] as unknown as Touch
       const midi = midiAt(t.clientX, t.clientY)
       const prev = touchMap.current.get(t.identifier)
       if (midi !== null && midi !== prev) {
@@ -469,7 +467,7 @@ export default function PianoPage() {
   function onTouchEnd(e: React.TouchEvent) {
     e.preventDefault()
     for (let i = 0; i < e.changedTouches.length; i++) {
-      const t = e.changedTouches[i]
+      const t = e.changedTouches[i] as unknown as Touch
       const midi = touchMap.current.get(t.identifier)
       if (midi !== undefined) { noteOff(midi); touchMap.current.delete(t.identifier) }
     }
