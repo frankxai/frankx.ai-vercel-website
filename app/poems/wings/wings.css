@@ -1,0 +1,83 @@
+/* Wings — Single-poem immersive page */
+
+/* Feather drift */
+@keyframes feather-drift {
+  0% {
+    transform: translateY(105vh) translateX(0) rotate(0deg);
+    opacity: 0;
+  }
+  8% {
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(50vh) translateX(var(--drift, 30px)) rotate(180deg);
+  }
+  92% {
+    opacity: 0.3;
+  }
+  100% {
+    transform: translateY(-10vh) translateX(calc(var(--drift, 30px) * -0.6)) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.feather {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(200, 200, 220, 0.04) 100%
+  );
+  border-radius: 50% 0 50% 0;
+  animation: feather-drift linear infinite;
+  will-change: transform;
+  filter: blur(0.4px);
+}
+
+/* Soft breathing glow */
+@keyframes wings-breathe {
+  0%, 100% { box-shadow: 0 0 30px rgba(255, 255, 255, 0.02); }
+  50% { box-shadow: 0 0 60px rgba(255, 255, 255, 0.06); }
+}
+
+.animate-wings-breathe {
+  animation: wings-breathe 6s ease-in-out infinite;
+}
+
+/* Slow pulse for the heart line */
+@keyframes line-pulse {
+  0%, 100% { opacity: 0.15; }
+  50% { opacity: 0.35; }
+}
+
+.animate-line-pulse {
+  animation: line-pulse 4s ease-in-out infinite;
+}
+
+/* Font utilities */
+.font-display {
+  font-family: var(--font-display), 'Cormorant Garamond', serif;
+}
+.font-body-serif {
+  font-family: var(--font-body-serif), 'Lora', serif;
+}
+
+/* Scrollbar */
+.wings-scroll::-webkit-scrollbar {
+  width: 3px;
+}
+.wings-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.wings-scroll::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 2px;
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .feather,
+  .animate-wings-breathe,
+  .animate-line-pulse {
+    animation: none !important;
+  }
+}
