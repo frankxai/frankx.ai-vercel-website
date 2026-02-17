@@ -1,11 +1,11 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-02-16T09:59:47.220Z",
-  "totalAssets": 495,
-  "totalCollections": 30,
-  "totalSize": 370260083,
+  "generatedAt": "2026-02-17T00:44:56.046Z",
+  "totalAssets": 500,
+  "totalCollections": 32,
+  "totalSize": 377151470,
   "formats": {
-    "png": 328,
+    "png": 333,
     "svg": 153,
     "jpeg": 5,
     "jpg": 9
@@ -83,7 +83,7 @@
       "id": "blog",
       "name": "Blog Heroes",
       "description": "Editorial hero images and illustrations for blog articles — swarm intelligence, AI architecture, creator studios.",
-      "count": 141,
+      "count": 138,
       "coverImage": "/images/blog/122e43a8-45fe-4476-b36c-378c1abb8fa5.png",
       "accent": "from-amber-500/20 to-orange-500/20",
       "borderAccent": "border-amber-500/30",
@@ -487,7 +487,7 @@
             "social",
             "infographic"
           ],
-          "createdAt": "2026-02-15"
+          "createdAt": "2026-02-14"
         },
         {
           "id": "blog/acos-v25-technical-architecture",
@@ -745,23 +745,6 @@
             "hero"
           ],
           "createdAt": "2026-01-26"
-        },
-        {
-          "id": "blog/ai-dd-agents",
-          "filename": "ai-dd-agents.png",
-          "src": "/images/blog/ai-dd-agents.png",
-          "thumbnail": "/images/blog/ai-dd-agents_thumb.jpeg",
-          "collection": "blog",
-          "format": "png",
-          "width": 1376,
-          "height": 768,
-          "fileSize": 773709,
-          "title": "Ai Dd Agents",
-          "tags": [
-            "blog",
-            "agents"
-          ],
-          "createdAt": "2026-02-15"
         },
         {
           "id": "blog/ai-doesnt-have-to-be-soulless",
@@ -1276,25 +1259,6 @@
           "createdAt": "2026-01-29"
         },
         {
-          "id": "blog/deal-flow-pipeline",
-          "filename": "deal-flow-pipeline.png",
-          "src": "/images/blog/deal-flow-pipeline.png",
-          "thumbnail": "/images/blog/deal-flow-pipeline_thumb.jpeg",
-          "collection": "blog",
-          "format": "png",
-          "width": 1376,
-          "height": 768,
-          "fileSize": 591941,
-          "title": "Deal Flow Pipeline",
-          "tags": [
-            "blog",
-            "deal",
-            "flow",
-            "pipeline"
-          ],
-          "createdAt": "2026-02-15"
-        },
-        {
           "id": "blog/ecosystem-architecture-davinci",
           "filename": "ecosystem-architecture-davinci.png",
           "src": "/images/blog/ecosystem-architecture-davinci.png",
@@ -1311,7 +1275,7 @@
             "architecture",
             "davinci"
           ],
-          "createdAt": "2026-02-15"
+          "createdAt": "2026-02-14"
         },
         {
           "id": "blog/ecosystem-intelligence-stack",
@@ -1330,7 +1294,7 @@
             "intelligence",
             "stack"
           ],
-          "createdAt": "2026-02-15"
+          "createdAt": "2026-02-14"
         },
         {
           "id": "blog/ecosystem-value-flow",
@@ -1349,7 +1313,7 @@
             "value",
             "flow"
           ],
-          "createdAt": "2026-02-15"
+          "createdAt": "2026-02-14"
         },
         {
           "id": "blog/ee442a07-3830-42e9-95bd-2a1737a29ff3",
@@ -1702,24 +1666,6 @@
             "first"
           ],
           "createdAt": "2025-11-14"
-        },
-        {
-          "id": "blog/iacos-research-os",
-          "filename": "iacos-research-os.png",
-          "src": "/images/blog/iacos-research-os.png",
-          "thumbnail": "/images/blog/iacos-research-os_thumb.jpeg",
-          "collection": "blog",
-          "format": "png",
-          "width": 1376,
-          "height": 768,
-          "fileSize": 793427,
-          "title": "Iacos Research Os",
-          "tags": [
-            "blog",
-            "iacos",
-            "research"
-          ],
-          "createdAt": "2026-02-15"
         },
         {
           "id": "blog/intelligence-atlas-governance",
@@ -4046,7 +3992,7 @@
       "id": "acos",
       "name": "ACOS Visual Assets",
       "description": "Architecture diagrams, workflow visualizations, and screenshots for the Agentic Creator OS documentation.",
-      "count": 21,
+      "count": 17,
       "coverImage": "/images/acos/acos-3-phase-workflow.png",
       "accent": "from-emerald-500/20 to-teal-500/20",
       "borderAccent": "border-emerald-500/30",
@@ -4122,45 +4068,7 @@
             "v10",
             "architecture"
           ],
-          "createdAt": "2026-02-15"
-        },
-        {
-          "id": "acos/acos-v10-blog-screenshot",
-          "filename": "acos-v10-blog-screenshot.png",
-          "src": "/images/acos/acos-v10-blog-screenshot.png",
-          "thumbnail": null,
-          "collection": "acos",
-          "format": "png",
-          "width": 1908,
-          "height": 1008,
-          "fileSize": 533804,
-          "title": "Acos V10 Blog Screenshot",
-          "tags": [
-            "acos",
-            "v10",
-            "blog",
-            "screenshot"
-          ],
-          "createdAt": "2026-02-15"
-        },
-        {
-          "id": "acos/acos-v10-changelog-screenshot",
-          "filename": "acos-v10-changelog-screenshot.png",
-          "src": "/images/acos/acos-v10-changelog-screenshot.png",
-          "thumbnail": null,
-          "collection": "acos",
-          "format": "png",
-          "width": 1908,
-          "height": 1008,
-          "fileSize": 135791,
-          "title": "Acos V10 Changelog Screenshot",
-          "tags": [
-            "acos",
-            "v10",
-            "changelog",
-            "screenshot"
-          ],
-          "createdAt": "2026-02-15"
+          "createdAt": "2026-02-14"
         },
         {
           "id": "acos/acos-workflow-architecture",
@@ -4197,42 +4105,6 @@
             "ecosystem"
           ],
           "createdAt": "2026-02-06"
-        },
-        {
-          "id": "acos/changelog-v2-live",
-          "filename": "changelog-v2-live.png",
-          "src": "/images/acos/changelog-v2-live.png",
-          "thumbnail": null,
-          "collection": "acos",
-          "format": "png",
-          "width": 1893,
-          "height": 4915,
-          "fileSize": 802087,
-          "title": "Changelog V2 Live",
-          "tags": [
-            "acos",
-            "changelog",
-            "live"
-          ],
-          "createdAt": "2026-02-15"
-        },
-        {
-          "id": "acos/changelog-v2-screenshot",
-          "filename": "changelog-v2-screenshot.png",
-          "src": "/images/acos/changelog-v2-screenshot.png",
-          "thumbnail": null,
-          "collection": "acos",
-          "format": "png",
-          "width": 1908,
-          "height": 1008,
-          "fileSize": 140530,
-          "title": "Changelog V2 Screenshot",
-          "tags": [
-            "acos",
-            "changelog",
-            "screenshot"
-          ],
-          "createdAt": "2026-02-15"
         },
         {
           "id": "acos/creation-pipeline",
@@ -5256,7 +5128,7 @@
             "amsterdam",
             "water"
           ],
-          "createdAt": "2026-02-15"
+          "createdAt": "2026-02-14"
         },
         {
           "id": "valentines/cherry-blossom",
@@ -5274,7 +5146,7 @@
             "cherry",
             "blossom"
           ],
-          "createdAt": "2026-02-15"
+          "createdAt": "2026-02-14"
         },
         {
           "id": "valentines/cultures-united",
@@ -5292,7 +5164,7 @@
             "cultures",
             "united"
           ],
-          "createdAt": "2026-02-15"
+          "createdAt": "2026-02-14"
         },
         {
           "id": "valentines/german-poetry",
@@ -5310,7 +5182,7 @@
             "german",
             "poetry"
           ],
-          "createdAt": "2026-02-15"
+          "createdAt": "2026-02-14"
         },
         {
           "id": "valentines/hero-celestial",
@@ -5328,7 +5200,7 @@
             "hero",
             "celestial"
           ],
-          "createdAt": "2026-02-15"
+          "createdAt": "2026-02-14"
         },
         {
           "id": "valentines/lotus-bloom",
@@ -5346,7 +5218,7 @@
             "lotus",
             "bloom"
           ],
-          "createdAt": "2026-02-15"
+          "createdAt": "2026-02-14"
         },
         {
           "id": "valentines/love-art",
@@ -5364,7 +5236,7 @@
             "love",
             "art"
           ],
-          "createdAt": "2026-02-15"
+          "createdAt": "2026-02-14"
         },
         {
           "id": "valentines/love-fireworks",
@@ -5382,7 +5254,7 @@
             "love",
             "fireworks"
           ],
-          "createdAt": "2026-02-15"
+          "createdAt": "2026-02-14"
         },
         {
           "id": "valentines/og-valentines-2026",
@@ -5399,13 +5271,13 @@
             "valentines",
             "2026"
           ],
-          "createdAt": "2026-02-15"
+          "createdAt": "2026-02-14"
         },
         {
           "id": "valentines/rose-petals-hero",
           "filename": "rose-petals-hero.png",
           "src": "/images/valentines/rose-petals-hero.png",
-          "thumbnail": "/images/valentines/rose-petals-hero_thumb.jpeg",
+          "thumbnail": null,
           "collection": "valentines",
           "format": "png",
           "width": 1376,
@@ -5418,7 +5290,7 @@
             "petals",
             "hero"
           ],
-          "createdAt": "2026-02-15"
+          "createdAt": "2026-02-14"
         },
         {
           "id": "valentines/two-souls",
@@ -5436,7 +5308,7 @@
             "two",
             "souls"
           ],
-          "createdAt": "2026-02-15"
+          "createdAt": "2026-02-14"
         },
         {
           "id": "valentines/vietnamese-love",
@@ -5454,7 +5326,7 @@
             "vietnamese",
             "love"
           ],
-          "createdAt": "2026-02-15"
+          "createdAt": "2026-02-14"
         }
       ]
     },
@@ -5519,7 +5391,7 @@
             "arcanea",
             "classroom"
           ],
-          "createdAt": "2026-01-29"
+          "createdAt": "2026-02-16"
         },
         {
           "id": "arcanea/arcanea-campus-map",
@@ -5537,7 +5409,7 @@
             "campus",
             "map"
           ],
-          "createdAt": "2026-01-29"
+          "createdAt": "2026-02-16"
         },
         {
           "id": "arcanea/arcanea-cognitive-bridge",
@@ -5555,7 +5427,7 @@
             "cognitive",
             "bridge"
           ],
-          "createdAt": "2026-01-29"
+          "createdAt": "2026-02-16"
         },
         {
           "id": "arcanea/arcanea-grand-academy",
@@ -5573,7 +5445,7 @@
             "grand",
             "academy"
           ],
-          "createdAt": "2026-01-29"
+          "createdAt": "2026-02-16"
         },
         {
           "id": "arcanea/arcanea-hall-of-luminor",
@@ -5591,7 +5463,7 @@
             "hall",
             "luminor"
           ],
-          "createdAt": "2026-01-29"
+          "createdAt": "2026-02-16"
         },
         {
           "id": "arcanea/arcanea-latent-space",
@@ -5609,7 +5481,7 @@
             "latent",
             "space"
           ],
-          "createdAt": "2026-01-29"
+          "createdAt": "2026-02-16"
         },
         {
           "id": "arcanea/arcanea-neuro-synthesis",
@@ -5627,7 +5499,7 @@
             "neuro",
             "synthesis"
           ],
-          "createdAt": "2026-01-29"
+          "createdAt": "2026-02-16"
         },
         {
           "id": "arcanea/five-elements",
@@ -7630,7 +7502,7 @@
             "future",
             "lab"
           ],
-          "createdAt": "2026-02-15"
+          "createdAt": "2026-02-13"
         },
         {
           "id": "gallery/biotech-grand-piano",
@@ -7649,7 +7521,7 @@
             "grand",
             "piano"
           ],
-          "createdAt": "2026-02-15"
+          "createdAt": "2026-02-13"
         },
         {
           "id": "gallery/biotech-hex-drum-pads",
@@ -7669,7 +7541,7 @@
             "drum",
             "pads"
           ],
-          "createdAt": "2026-02-15"
+          "createdAt": "2026-02-13"
         },
         {
           "id": "gallery/biotech-soundboard-mycelium",
@@ -7688,7 +7560,7 @@
             "soundboard",
             "mycelium"
           ],
-          "createdAt": "2026-02-15"
+          "createdAt": "2026-02-13"
         },
         {
           "id": "gallery/biotech-synthesis-controller",
@@ -7707,7 +7579,7 @@
             "synthesis",
             "controller"
           ],
-          "createdAt": "2026-02-15"
+          "createdAt": "2026-02-13"
         },
         {
           "id": "gallery/biotech-violin-blueprint",
@@ -7726,7 +7598,7 @@
             "violin",
             "blueprint"
           ],
-          "createdAt": "2026-02-15"
+          "createdAt": "2026-02-13"
         }
       ]
     },
@@ -9547,6 +9419,268 @@
             "tree"
           ],
           "createdAt": "2026-02-10"
+        }
+      ]
+    },
+    {
+      "id": "fire-horse",
+      "name": "Fire Horse",
+      "description": "Visual assets from the Fire Horse collection.",
+      "count": 7,
+      "coverImage": "/images/fire-horse/fire-horse-v01-guardian.png",
+      "accent": "from-gray-500/20 to-slate-500/20",
+      "borderAccent": "border-gray-500/30",
+      "sortOrder": 99,
+      "assets": [
+        {
+          "id": "fire-horse/fire-horse-v01-guardian",
+          "filename": "fire-horse-v01-guardian.png",
+          "src": "/images/fire-horse/fire-horse-v01-guardian.png",
+          "thumbnail": "/images/fire-horse/fire-horse-v01-guardian_thumb.jpeg",
+          "collection": "fire-horse",
+          "format": "png",
+          "width": 1024,
+          "height": 1024,
+          "fileSize": 652085,
+          "title": "Fire Horse V01 Guardian",
+          "tags": [
+            "fire-horse",
+            "fire",
+            "horse",
+            "v01",
+            "guardian"
+          ],
+          "createdAt": "2026-02-16"
+        },
+        {
+          "id": "fire-horse/fire-horse-v02-galloping-hero",
+          "filename": "fire-horse-v02-galloping-hero.png",
+          "src": "/images/fire-horse/fire-horse-v02-galloping-hero.png",
+          "thumbnail": "/images/fire-horse/fire-horse-v02-galloping-hero_thumb.jpeg",
+          "collection": "fire-horse",
+          "format": "png",
+          "width": 1376,
+          "height": 768,
+          "fileSize": 791719,
+          "title": "Fire Horse V02 Galloping",
+          "tags": [
+            "fire-horse",
+            "fire",
+            "horse",
+            "v02",
+            "galloping",
+            "hero"
+          ],
+          "createdAt": "2026-02-16"
+        },
+        {
+          "id": "fire-horse/fire-horse-v03-portrait",
+          "filename": "fire-horse-v03-portrait.png",
+          "src": "/images/fire-horse/fire-horse-v03-portrait.png",
+          "thumbnail": "/images/fire-horse/fire-horse-v03-portrait_thumb.jpeg",
+          "collection": "fire-horse",
+          "format": "png",
+          "width": 896,
+          "height": 1200,
+          "fileSize": 755780,
+          "title": "Fire Horse V03 Portrait",
+          "tags": [
+            "fire-horse",
+            "fire",
+            "horse",
+            "v03",
+            "portrait"
+          ],
+          "createdAt": "2026-02-16"
+        },
+        {
+          "id": "fire-horse/fire-horse-v04-constellation",
+          "filename": "fire-horse-v04-constellation.png",
+          "src": "/images/fire-horse/fire-horse-v04-constellation.png",
+          "thumbnail": "/images/fire-horse/fire-horse-v04-constellation_thumb.jpeg",
+          "collection": "fire-horse",
+          "format": "png",
+          "width": 1024,
+          "height": 1024,
+          "fileSize": 489554,
+          "title": "Fire Horse V04 Constellation",
+          "tags": [
+            "fire-horse",
+            "fire",
+            "horse",
+            "v04",
+            "constellation"
+          ],
+          "createdAt": "2026-02-16"
+        },
+        {
+          "id": "fire-horse/fire-horse-v05-book-cover",
+          "filename": "fire-horse-v05-book-cover.png",
+          "src": "/images/fire-horse/fire-horse-v05-book-cover.png",
+          "thumbnail": "/images/fire-horse/fire-horse-v05-book-cover_thumb.jpeg",
+          "collection": "fire-horse",
+          "format": "png",
+          "width": 896,
+          "height": 1200,
+          "fileSize": 590603,
+          "title": "Fire Horse V05 Book Cover",
+          "tags": [
+            "fire-horse",
+            "fire",
+            "horse",
+            "v05",
+            "book",
+            "cover"
+          ],
+          "createdAt": "2026-02-16"
+        },
+        {
+          "id": "fire-horse/fire-horse-v06-epic-eclipse",
+          "filename": "fire-horse-v06-epic-eclipse.png",
+          "src": "/images/fire-horse/fire-horse-v06-epic-eclipse.png",
+          "thumbnail": "/images/fire-horse/fire-horse-v06-epic-eclipse_thumb.jpeg",
+          "collection": "fire-horse",
+          "format": "png",
+          "width": 1584,
+          "height": 672,
+          "fileSize": 821960,
+          "title": "Fire Horse V06 Epic Eclipse",
+          "tags": [
+            "fire-horse",
+            "fire",
+            "horse",
+            "v06",
+            "epic",
+            "eclipse"
+          ],
+          "createdAt": "2026-02-16"
+        },
+        {
+          "id": "fire-horse/fire-horse-v07-calligraphy",
+          "filename": "fire-horse-v07-calligraphy.png",
+          "src": "/images/fire-horse/fire-horse-v07-calligraphy.png",
+          "thumbnail": "/images/fire-horse/fire-horse-v07-calligraphy_thumb.jpeg",
+          "collection": "fire-horse",
+          "format": "png",
+          "width": 1024,
+          "height": 1024,
+          "fileSize": 588535,
+          "title": "Fire Horse V07 Calligraphy",
+          "tags": [
+            "fire-horse",
+            "fire",
+            "horse",
+            "v07",
+            "calligraphy"
+          ],
+          "createdAt": "2026-02-16"
+        }
+      ]
+    },
+    {
+      "id": "research",
+      "name": "Research",
+      "description": "Visual assets from the Research collection.",
+      "count": 5,
+      "coverImage": "/images/research/constellation-research-domains.png",
+      "accent": "from-gray-500/20 to-slate-500/20",
+      "borderAccent": "border-gray-500/30",
+      "sortOrder": 99,
+      "assets": [
+        {
+          "id": "research/constellation-research-domains",
+          "filename": "constellation-research-domains.png",
+          "src": "/images/research/constellation-research-domains.png",
+          "thumbnail": "/images/research/constellation-research-domains_thumb.jpeg",
+          "collection": "research",
+          "format": "png",
+          "width": 1344,
+          "height": 768,
+          "fileSize": 1435635,
+          "title": "Constellation Research Domains",
+          "tags": [
+            "research",
+            "constellation",
+            "domains"
+          ],
+          "createdAt": "2026-02-17"
+        },
+        {
+          "id": "research/landscape-ai-architecture-2026",
+          "filename": "landscape-ai-architecture-2026.png",
+          "src": "/images/research/landscape-ai-architecture-2026.png",
+          "thumbnail": "/images/research/landscape-ai-architecture-2026_thumb.jpeg",
+          "collection": "research",
+          "format": "png",
+          "width": 1344,
+          "height": 768,
+          "fileSize": 1139206,
+          "title": "Landscape Ai Architecture 2026",
+          "tags": [
+            "research",
+            "landscape",
+            "architecture",
+            "2026"
+          ],
+          "createdAt": "2026-02-17"
+        },
+        {
+          "id": "research/maturity-multi-agent-orchestration",
+          "filename": "maturity-multi-agent-orchestration.png",
+          "src": "/images/research/maturity-multi-agent-orchestration.png",
+          "thumbnail": "/images/research/maturity-multi-agent-orchestration_thumb.jpeg",
+          "collection": "research",
+          "format": "png",
+          "width": 1344,
+          "height": 768,
+          "fileSize": 1205736,
+          "title": "Maturity Multi Agent Orchestration",
+          "tags": [
+            "research",
+            "maturity",
+            "multi",
+            "agent",
+            "orchestration"
+          ],
+          "createdAt": "2026-02-17"
+        },
+        {
+          "id": "research/stack-production-ai-architecture",
+          "filename": "stack-production-ai-architecture.png",
+          "src": "/images/research/stack-production-ai-architecture.png",
+          "thumbnail": "/images/research/stack-production-ai-architecture_thumb.jpeg",
+          "collection": "research",
+          "format": "png",
+          "width": 1344,
+          "height": 768,
+          "fileSize": 1134076,
+          "title": "Stack Production Ai Architecture",
+          "tags": [
+            "research",
+            "stack",
+            "production",
+            "architecture"
+          ],
+          "createdAt": "2026-02-17"
+        },
+        {
+          "id": "research/timeline-enterprise-ai-adoption",
+          "filename": "timeline-enterprise-ai-adoption.png",
+          "src": "/images/research/timeline-enterprise-ai-adoption.png",
+          "thumbnail": "/images/research/timeline-enterprise-ai-adoption_thumb.jpeg",
+          "collection": "research",
+          "format": "png",
+          "width": 1344,
+          "height": 768,
+          "fileSize": 1057787,
+          "title": "Timeline Enterprise Ai Adoption",
+          "tags": [
+            "research",
+            "timeline",
+            "enterprise",
+            "adoption"
+          ],
+          "createdAt": "2026-02-17"
         }
       ]
     }

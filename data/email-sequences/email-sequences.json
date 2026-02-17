@@ -1,0 +1,153 @@
+{
+  "subscribers": [],
+  "sequences": [
+    {
+      "id": "welcome-series",
+      "name": "Welcome Series",
+      "description": "5-email onboarding sequence for new subscribers. Delivers immediate value, establishes expectations, guides to value ladder.",
+      "type": "welcome",
+      "active": true,
+      "trigger": {
+        "type": "signup",
+        "conditions": {}
+      },
+      "steps": [
+        {
+          "id": "welcome-01",
+          "order": 1,
+          "delay": 0,
+          "sendTime": null,
+          "template": {
+            "id": "welcome-01-template",
+            "name": "Welcome + Free Resource",
+            "subject": "Your free AI tool is ready (+ what's next)",
+            "preheader": "Here's the resource you requested, plus what you can expect from me",
+            "bodyHtml": "",
+            "trackOpens": true,
+            "trackClicks": true,
+            "createdAt": "2026-02-17T00:00:00Z",
+            "updatedAt": "2026-02-17T00:00:00Z"
+          },
+          "subject": "Your free AI tool is ready (+ what's next)",
+          "actions": [
+            {
+              "type": "tag",
+              "data": { "tag": "welcome-series-started" }
+            }
+          ]
+        },
+        {
+          "id": "welcome-02",
+          "order": 2,
+          "delay": 72,
+          "sendTime": "09:00",
+          "timezone": "UTC",
+          "template": {
+            "id": "welcome-02-template",
+            "name": "Best Content",
+            "subject": "The 3 AI articles that changed how I build systems",
+            "preheader": "From reactive to systematic in 6 months",
+            "bodyHtml": "",
+            "trackOpens": true,
+            "trackClicks": true,
+            "createdAt": "2026-02-17T00:00:00Z",
+            "updatedAt": "2026-02-17T00:00:00Z"
+          },
+          "subject": "The 3 AI articles that changed how I build systems"
+        },
+        {
+          "id": "welcome-03",
+          "order": 3,
+          "delay": 168,
+          "sendTime": "09:00",
+          "timezone": "UTC",
+          "template": {
+            "id": "welcome-03-template",
+            "name": "Origin Story",
+            "subject": "How I went from developer to AI architect",
+            "preheader": "The 18-month journey from code to systems thinking",
+            "bodyHtml": "",
+            "trackOpens": true,
+            "trackClicks": true,
+            "createdAt": "2026-02-17T00:00:00Z",
+            "updatedAt": "2026-02-17T00:00:00Z"
+          },
+          "subject": "How I went from developer to AI architect"
+        },
+        {
+          "id": "welcome-04",
+          "order": 4,
+          "delay": 336,
+          "sendTime": "09:00",
+          "timezone": "UTC",
+          "template": {
+            "id": "welcome-04-template",
+            "name": "Product Intro",
+            "subject": "The system I use to design complex AI architectures",
+            "preheader": "4 weeks to clarity on any AI project",
+            "bodyHtml": "",
+            "trackOpens": true,
+            "trackClicks": true,
+            "createdAt": "2026-02-17T00:00:00Z",
+            "updatedAt": "2026-02-17T00:00:00Z"
+          },
+          "subject": "The system I use to design complex AI architectures",
+          "actions": [
+            {
+              "type": "tag",
+              "data": { "tag": "golden-path-aware" }
+            }
+          ]
+        },
+        {
+          "id": "welcome-05",
+          "order": 5,
+          "delay": 720,
+          "sendTime": "09:00",
+          "timezone": "UTC",
+          "template": {
+            "id": "welcome-05-template",
+            "name": "Next Steps",
+            "subject": "Month 1 complete - here's what's next",
+            "preheader": "3 ways to keep learning + a question",
+            "bodyHtml": "",
+            "trackOpens": true,
+            "trackClicks": true,
+            "createdAt": "2026-02-17T00:00:00Z",
+            "updatedAt": "2026-02-17T00:00:00Z"
+          },
+          "subject": "Month 1 complete - here's what's next",
+          "actions": [
+            {
+              "type": "tag",
+              "data": { "tag": "welcome-series-completed" }
+            }
+          ]
+        }
+      ],
+      "analytics": {
+        "totalSubscribers": 0,
+        "activeSubscribers": 0,
+        "completedSubscribers": 0,
+        "unsubscribeRate": 0,
+        "openRate": 0,
+        "clickRate": 0,
+        "conversionRate": 0
+      },
+      "goals": [
+        {
+          "type": "purchase",
+          "productId": "golden-path"
+        },
+        {
+          "type": "engagement"
+        }
+      ],
+      "createdAt": "2026-02-17T00:00:00Z",
+      "updatedAt": "2026-02-17T00:00:00Z"
+    }
+  ],
+  "templates": [],
+  "deliveries": [],
+  "lastUpdated": "2026-02-17T00:00:00Z"
+}
