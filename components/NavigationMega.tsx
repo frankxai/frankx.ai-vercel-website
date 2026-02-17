@@ -60,6 +60,21 @@ const navigation = {
       { name: 'Suno Profile', href: 'https://suno.com/@frankx', icon: Layers, description: 'Full catalog on Suno', external: true },
     ],
   },
+  vibe: {
+    label: 'Vibe OS',
+    featured: {
+      title: 'Vibe OS Ecosystem',
+      description: 'AI agents, music creation, and intelligent orchestration.',
+      href: '/vibe',
+      badge: 'New',
+    },
+    items: [
+      { name: 'Vibe Hub', href: '/vibe', icon: Sparkles, description: 'AI agent ecosystem hub' },
+      { name: 'Music Producer', href: '/vibe/producer', icon: Music, description: 'Suno AI prompt engineering' },
+      { name: 'Agent Marketplace', href: '/vibe/agents', icon: Bot, description: 'Coming soon' },
+      { name: 'Arcanea Cloud', href: '/vibe/arcanea', icon: Wand2, description: 'Coming soon' },
+    ],
+  },
   creators: {
     label: 'Creators',
     featured: {
