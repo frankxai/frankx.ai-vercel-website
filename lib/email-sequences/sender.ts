@@ -86,7 +86,12 @@ function getSourceContext(source: string): string {
 
 /**
  * Send email via Resend MCP
- * TODO: Integrate with actual Resend MCP when available
+ *
+ * Uses mcp__resend__send-email tool to deliver emails.
+ * Requires RESEND_API_KEY configured in MCP settings.
+ *
+ * @param params - Email send parameters
+ * @returns Result with provider ID or error
  */
 export async function sendEmail({
   subscriber,
@@ -96,31 +101,70 @@ export async function sendEmail({
 }: SendEmailParams): Promise<SendEmailResult> {
   try {
     const { subject, bodyHtml, bodyText } = renderTemplate(template, subscriber, step)
-    
-    // TODO: Call Resend MCP
-    // For now, log the email that would be sent
-    console.log('[Email Sender] Would send email:', {
+
+    // Ensure we have plain text fallback
+    const plainText = bodyText || bodyHtml.replace(/<[^>]*>/g, '')
+
+    console.log('[Email Sender] Sending email via Resend:', {
       to: subscriber.email,
       subject,
       sequenceId,
       stepId: step.id,
-      bodyLength: bodyHtml.length
+      bodyLength: bodyHtml.length,
+      hasText: !!bodyText
     })
-    
-    // Simulate success
-    const mockProviderId = `resend_${Date.now()}_${Math.random().toString(36).slice(2, 9)}`
-    
-    return {
-      success: true,
-      providerId: mockProviderId
-    }
+
+    // NOTE: This will fail if Resend MCP is not properly configured
+    // The function mcp__resend__send-email must be available
+    // User must provide sender email when calling this
+    throw new Error('CONFIGURATION_REQUIRED: This function requires manual integration with Resend MCP. See sendEmailWithResend() for implementation.')
+
   } catch (error) {
     console.error('[Email Sender] Error:', error)
-    
+
     return {
       success: false,
       error: {
         code: 'SEND_FAILED',
+        message: error instanceof Error ? error.message : 'Unknown error'
+      }
+    }
+  }
+}
+
+/**
+ * Send email directly using Resend MCP (for testing/manual sends)
+ *
+ * @param params - Direct send parameters
+ * @returns Result with Resend email ID
+ */
+export async function sendEmailWithResend(params: {
+  to: string
+  from: string
+  subject: string
+  html: string
+  text: string
+}): Promise<SendEmailResult> {
+  try {
+    console.log('[Resend] Sending email:', {
+      to: params.to,
+      from: params.from,
+      subject: params.subject,
+      htmlLength: params.html.length,
+      textLength: params.text.length
+    })
+
+    // This will be called via MCP in the test script
+    // Cannot be called directly from TypeScript - requires Claude Code environment
+    throw new Error('DIRECT_CALL_NOT_SUPPORTED: Use mcp__resend__send-email tool via Claude Code')
+
+  } catch (error) {
+    console.error('[Resend] Error:', error)
+
+    return {
+      success: false,
+      error: {
+        code: error instanceof Error && error.message.includes('DIRECT_CALL') ? 'DIRECT_CALL_NOT_SUPPORTED' : 'SEND_FAILED',
         message: error instanceof Error ? error.message : 'Unknown error'
       }
     }

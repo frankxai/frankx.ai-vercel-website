@@ -51,24 +51,31 @@ export interface EmailTemplate {
   name: string
   subject: string
   preheader?: string
-  
+
   // Content
   bodyHtml: string
   bodyText?: string
-  
+
   // Variables available in template (e.g., {{firstName}}, {{productName}})
   variables?: string[]
-  
+
   // Personalization
   dynamicContent?: {
     condition: string // e.g., "source === 'soulbook'"
     content: string
   }[]
-  
+
+  // A/B Testing
+  variant?: {
+    testId: string
+    variantId: string
+    variantName: string
+  }
+
   // Tracking
   trackOpens: boolean
   trackClicks: boolean
-  
+
   // Metadata
   createdAt: string
   updatedAt: string
@@ -151,29 +158,37 @@ export interface EmailDelivery {
   sequenceId: string
   stepId: string
   templateId: string
-  
+
+  // A/B Testing
+  abTestId?: string
+  variantId?: string
+
   // Delivery
   status: EmailStatus
   scheduledFor: string
   sentAt?: string
-  
+
   // Tracking
   opened: boolean
   openedAt?: string
   clicked: boolean
   clickedAt?: string
   clickedUrls?: string[]
-  
+
+  // Device/Client data (from tracking pixel)
+  device?: 'mobile' | 'desktop' | 'tablet'
+  client?: 'appleMail' | 'gmail' | 'outlook' | 'other'
+
   // Errors
   error?: {
     code: string
     message: string
     timestamp: string
   }
-  
+
   // Provider (Resend)
   providerId?: string // Email ID from Resend
-  
+
   // Metadata
   createdAt: string
 }
