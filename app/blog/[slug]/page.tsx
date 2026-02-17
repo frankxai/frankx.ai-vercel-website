@@ -3,6 +3,9 @@ import { notFound } from 'next/navigation'
 import { ArrowLeft, ArrowRight, Calendar, Clock, Linkedin, Share2, Tag, Twitter } from 'lucide-react'
 
 import { MDXContent } from '@/components/blog/MDXContent'
+import BlogArticleContent from '@/components/blog/BlogArticleContent'
+import BlogReadingProgress from '@/components/blog/BlogReadingProgress'
+import BlogPostEndZone from '@/components/blog/BlogPostEndZone'
 import RelatedResearch from '@/components/blog/RelatedResearch'
 import Recommendations from '@/components/recommendations/Recommendations'
 import { getAllBlogPosts, getBlogPost, extractFAQFromContent } from '@/lib/blog'
@@ -112,8 +115,24 @@ export default async function BlogPostPage({
   // Extract FAQ from content body for FAQPage schema
   const extractedFaqs = extractFAQFromContent(post.content)
 
+  // Get 3 related posts for end zone
+  const relatedPosts = allPosts
+    .filter(p => p.slug !== slug && (
+      p.category === post.category ||
+      p.tags?.some(tag => post.tags?.includes(tag))
+    ))
+    .slice(0, 3)
+    .map(p => ({
+      slug: p.slug,
+      title: p.title,
+      description: p.description,
+      category: p.category,
+      readingTime: p.readingTime,
+    }))
+
   return (
     <div className="min-h-screen bg-[#030712] text-white">
+      <BlogReadingProgress wordCount={wordCount} />
       <JsonLd type="Article" data={articleSchema} />
       {extractedFaqs.length > 0 && (
         <JsonLd
@@ -244,9 +263,9 @@ export default async function BlogPostPage({
 
         <div className="px-6 pt-12">
           <div className="mx-auto max-w-[680px]">
-            <div className="article-prose">
+            <BlogArticleContent postTitle={post.title} postSlug={post.slug}>
               <MDXContent source={post.content} />
-            </div>
+            </BlogArticleContent>
           </div>
 
           {/* Wider container for cards and meta sections */}
@@ -324,36 +343,15 @@ export default async function BlogPostPage({
               </div>
             )}
 
-            <RelatedResearch blogSlug={slug} />
-          </div>
-        </div>
+            {/* Blog Post End Zone - replaces old newsletter section */}
+            <BlogPostEndZone
+              postSlug={post.slug}
+              postTitle={post.title}
+              postDescription={post.description}
+              relatedPosts={relatedPosts}
+            />
 
-        <div className="px-6 pt-20">
-          <div className="mx-auto max-w-3xl rounded-2xl border border-emerald-500/20 bg-gradient-to-br from-emerald-500/10 via-cyan-500/5 to-transparent p-10 text-center backdrop-blur-sm">
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-6">
-              <span className="text-lg">✨</span>
-              <span className="text-xs font-medium text-emerald-400">Weekly Intelligence</span>
-            </div>
-            <h3 className="text-3xl font-bold text-white mb-4">Stay in the intelligence loop</h3>
-            <p className="text-base text-white/60 leading-relaxed max-w-2xl mx-auto">
-              Join 1,000+ creators and executives receiving weekly field notes on conscious AI systems, music rituals, and agent strategy.
-            </p>
-            <form action="/api/newsletter" method="POST" className="mt-8 flex flex-col gap-3 sm:flex-row max-w-lg mx-auto">
-              <input
-                type="email"
-                name="email"
-                placeholder="Enter your email"
-                required
-                className="flex-1 rounded-xl border border-white/10 bg-white/5 px-5 py-3.5 text-sm text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-emerald-400/50 focus:border-emerald-400/50 transition-all"
-              />
-              <button
-                type="submit"
-                className="rounded-xl bg-gradient-to-r from-emerald-500 to-cyan-500 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 hover:-translate-y-0.5 transition-all"
-              >
-                Subscribe
-              </button>
-            </form>
-            <p className="mt-4 text-xs text-white/40">No spam. Unsubscribe anytime.</p>
+            <RelatedResearch blogSlug={slug} />
           </div>
         </div>
 
