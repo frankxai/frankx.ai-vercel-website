@@ -1,0 +1,208 @@
+[
+  {
+    "id": "claude-sonnet-4.5",
+    "name": "Claude 3.7 Sonnet",
+    "provider": "anthropic",
+    "capabilities": [
+      "text-generation",
+      "code-generation",
+      "reasoning",
+      "long-context"
+    ],
+    "contextWindow": 200000,
+    "latency": "medium",
+    "quality": "excellent",
+    "pricing": {
+      "input": 3,
+      "output": 15,
+      "cached": 0.3
+    },
+    "features": {
+      "streaming": true,
+      "functionCalling": true,
+      "vision": false,
+      "jsonMode": false,
+      "promptCaching": true
+    }
+  },
+  {
+    "id": "claude-opus-4.6",
+    "name": "Claude 4.6 Opus",
+    "provider": "anthropic",
+    "capabilities": [
+      "text-generation",
+      "code-generation",
+      "reasoning",
+      "long-context",
+      "vision"
+    ],
+    "contextWindow": 200000,
+    "latency": "slow",
+    "quality": "excellent",
+    "pricing": {
+      "input": 15,
+      "output": 75,
+      "cached": 1.5
+    },
+    "features": {
+      "streaming": true,
+      "functionCalling": true,
+      "vision": true,
+      "jsonMode": false,
+      "promptCaching": true
+    }
+  },
+  {
+    "id": "gpt-4o",
+    "name": "GPT-4o",
+    "provider": "openai",
+    "capabilities": [
+      "text-generation",
+      "code-generation",
+      "reasoning",
+      "vision",
+      "structured-output"
+    ],
+    "contextWindow": 128000,
+    "latency": "fast",
+    "quality": "great",
+    "pricing": {
+      "input": 2.5,
+      "output": 10
+    },
+    "features": {
+      "streaming": true,
+      "functionCalling": true,
+      "vision": true,
+      "jsonMode": true,
+      "promptCaching": false
+    }
+  },
+  {
+    "id": "gpt-4o-mini",
+    "name": "GPT-4o Mini",
+    "provider": "openai",
+    "capabilities": ["text-generation", "code-generation", "structured-output"],
+    "contextWindow": 128000,
+    "latency": "fast",
+    "quality": "good",
+    "pricing": {
+      "input": 0.15,
+      "output": 0.6
+    },
+    "features": {
+      "streaming": true,
+      "functionCalling": true,
+      "vision": false,
+      "jsonMode": true,
+      "promptCaching": false
+    }
+  },
+  {
+    "id": "o1",
+    "name": "o1 (Reasoning)",
+    "provider": "openai",
+    "capabilities": ["reasoning", "code-generation", "text-generation"],
+    "contextWindow": 200000,
+    "latency": "slow",
+    "quality": "excellent",
+    "pricing": {
+      "input": 15,
+      "output": 60
+    },
+    "features": {
+      "streaming": false,
+      "functionCalling": false,
+      "vision": false,
+      "jsonMode": false,
+      "promptCaching": false
+    }
+  },
+  {
+    "id": "gemini-2.0-pro",
+    "name": "Gemini 2.0 Pro",
+    "provider": "google",
+    "capabilities": [
+      "text-generation",
+      "code-generation",
+      "reasoning",
+      "vision",
+      "long-context",
+      "multimodal"
+    ],
+    "contextWindow": 1000000,
+    "latency": "medium",
+    "quality": "great",
+    "pricing": {
+      "input": 1.25,
+      "output": 5
+    },
+    "features": {
+      "streaming": true,
+      "functionCalling": true,
+      "vision": true,
+      "jsonMode": true,
+      "promptCaching": true
+    }
+  },
+  {
+    "id": "gemini-2.0-flash",
+    "name": "Gemini 2.0 Flash",
+    "provider": "google",
+    "capabilities": ["text-generation", "code-generation", "multimodal"],
+    "contextWindow": 1000000,
+    "latency": "fast",
+    "quality": "good",
+    "pricing": {
+      "input": 0.075,
+      "output": 0.3
+    },
+    "features": {
+      "streaming": true,
+      "functionCalling": true,
+      "vision": true,
+      "jsonMode": true,
+      "promptCaching": true
+    }
+  },
+  {
+    "id": "grok-2",
+    "name": "Grok 2",
+    "provider": "xai",
+    "capabilities": ["text-generation", "reasoning", "code-generation"],
+    "contextWindow": 128000,
+    "latency": "medium",
+    "quality": "great",
+    "pricing": {
+      "input": 5,
+      "output": 15
+    },
+    "features": {
+      "streaming": true,
+      "functionCalling": false,
+      "vision": false,
+      "jsonMode": false,
+      "promptCaching": false
+    }
+  },
+  {
+    "id": "llama-3.3-70b",
+    "name": "Llama 3.3 70B",
+    "provider": "meta",
+    "capabilities": ["text-generation", "code-generation", "reasoning"],
+    "contextWindow": 128000,
+    "latency": "medium",
+    "quality": "good",
+    "pricing": {
+      "input": 0.65,
+      "output": 0.65
+    },
+    "features": {
+      "streaming": true,
+      "functionCalling": false,
+      "vision": false,
+      "jsonMode": false,
+      "promptCaching": false
+    }
+  }
+]
