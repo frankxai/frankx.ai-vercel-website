@@ -255,6 +255,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Research hub pages
   const researchPages = [
     { url: '/research', priority: 0.9, changeFrequency: 'weekly' as const },
+    { url: '/research/visionaries', priority: 0.8, changeFrequency: 'monthly' as const },
     { url: '/research/sources', priority: 0.7, changeFrequency: 'weekly' as const },
     { url: '/research/methodology', priority: 0.7, changeFrequency: 'monthly' as const },
   ]

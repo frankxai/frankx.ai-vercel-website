@@ -3,6 +3,7 @@
 import { useState, useMemo } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 import Link from 'next/link'
+import Image from 'next/image'
 import {
   Activity,
   ArrowRight,
@@ -214,10 +215,12 @@ function VisualShowcaseSection() {
                 className="group relative bg-white/[0.02] border border-white/[0.06] rounded-2xl overflow-hidden hover:border-white/[0.12] transition-all"
               >
                 <div className="aspect-video relative overflow-hidden bg-black/40">
-                  <img
+                  <Image
                     src={infographic.image}
                     alt={infographic.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                   <div className={`absolute top-3 left-3 px-3 py-1 rounded-full ${colors.bg} border ${colors.border} backdrop-blur-sm`}>
                     <span className={`text-xs font-semibold ${colors.text}`}>
@@ -645,6 +648,13 @@ function MethodologySection() {
             className="inline-flex items-center gap-2 text-sm text-white/50 hover:text-white bg-white/[0.03] border border-white/[0.06] px-4 py-2 rounded-full transition-all hover:bg-white/[0.06]"
           >
             Browse All {totalSources}+ Sources
+            <ArrowRight className="w-3 h-3" />
+          </Link>
+          <Link
+            href="/research/visionaries"
+            className="inline-flex items-center gap-2 text-sm text-white/50 hover:text-white bg-white/[0.03] border border-white/[0.06] px-4 py-2 rounded-full transition-all hover:bg-white/[0.06]"
+          >
+            Visionaries Hub (Top 100)
             <ArrowRight className="w-3 h-3" />
           </Link>
         </div>
