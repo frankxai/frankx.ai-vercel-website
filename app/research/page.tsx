@@ -657,6 +657,13 @@ function MethodologySection() {
             Visionaries Hub (Top 100)
             <ArrowRight className="w-3 h-3" />
           </Link>
+          <Link
+            href="/research/entrepreneurs"
+            className="inline-flex items-center gap-2 text-sm text-white/50 hover:text-white bg-white/[0.03] border border-white/[0.06] px-4 py-2 rounded-full transition-all hover:bg-white/[0.06]"
+          >
+            People Archetypes
+            <ArrowRight className="w-3 h-3" />
+          </Link>
         </div>
       </div>
     </section>

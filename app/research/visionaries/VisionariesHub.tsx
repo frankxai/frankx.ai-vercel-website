@@ -24,6 +24,7 @@ import {
   type VisionaryCategory,
   type VisionaryQualityTag,
 } from '@/lib/research/visionaries'
+import { getPeopleGroupLinks } from '@/lib/research/people-groups'
 
 const colorConfig: Record<
   VisionaryCategory['color'],
@@ -129,6 +130,8 @@ export default function VisionariesHub() {
     })
   }, [])
 
+  const peopleGroupLinks = useMemo(() => getPeopleGroupLinks(), [])
+
   return (
     <main className="relative min-h-screen bg-[#0a0a0b] text-white overflow-hidden">
       <div className="fixed inset-0 overflow-hidden pointer-events-none -z-10">
@@ -231,6 +234,27 @@ export default function VisionariesHub() {
                 </div>
               ))}
             </motion.div>
+          </div>
+        </section>
+
+        <section className="pb-10">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-lg md:text-xl font-bold text-white mb-2">Browse by Archetype</h2>
+            <p className="text-white/55 mb-4">
+              If “visionaries” feels too broad, use these role-specific research indexes.
+            </p>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-3">
+              {peopleGroupLinks.map((entry) => (
+                <Link
+                  key={entry.key}
+                  href={entry.href}
+                  className="rounded-xl border border-white/[0.08] bg-white/[0.02] p-4 hover:bg-white/[0.05] transition-colors"
+                >
+                  <p className="text-sm font-semibold text-white mb-1">{entry.title}</p>
+                  <p className="text-xs text-white/45">{entry.count} profiles</p>
+                </Link>
+              ))}
+            </div>
           </div>
         </section>
 

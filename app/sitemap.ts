@@ -256,6 +256,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const researchPages = [
     { url: '/research', priority: 0.9, changeFrequency: 'weekly' as const },
     { url: '/research/visionaries', priority: 0.8, changeFrequency: 'monthly' as const },
+    { url: '/research/entrepreneurs', priority: 0.7, changeFrequency: 'monthly' as const },
+    { url: '/research/builders', priority: 0.7, changeFrequency: 'monthly' as const },
+    { url: '/research/content-creators', priority: 0.7, changeFrequency: 'monthly' as const },
+    { url: '/research/inventors', priority: 0.7, changeFrequency: 'monthly' as const },
+    { url: '/research/researcher', priority: 0.7, changeFrequency: 'monthly' as const },
+    { url: '/research/professors', priority: 0.7, changeFrequency: 'monthly' as const },
+    { url: '/research/doctors', priority: 0.7, changeFrequency: 'monthly' as const },
+    { url: '/research/investors', priority: 0.7, changeFrequency: 'monthly' as const },
+    { url: '/research/designers', priority: 0.7, changeFrequency: 'monthly' as const },
+    { url: '/research/producers', priority: 0.7, changeFrequency: 'monthly' as const },
     { url: '/research/sources', priority: 0.7, changeFrequency: 'weekly' as const },
     { url: '/research/methodology', priority: 0.7, changeFrequency: 'monthly' as const },
   ]
