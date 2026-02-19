@@ -62,6 +62,190 @@
           "status": "draft"
         }
       }
+    },
+    {
+      "id": "social-2026-0219-willison-ai-engineering",
+      "source": "ai-engineering-without-hype-willison",
+      "createdAt": "2026-02-19T11:15:00Z",
+      "status": "draft",
+      "platforms": {
+        "twitter": {
+          "content": [
+            "Simon Willison co-created Django and coined the term \"prompt injection.\"\n\nHis approach to AI engineering is the opposite of every hype thread you've read.\n\n3 principles that actually work in production:",
+            "Principle 1: Treat the LLM as an observed system.\n\nNot a black box. Not magic.\n\nType hints. Schema definitions. Structured constraints.\n\nThe clearer your boundaries, the less the model hallucinates. This is engineering, not vibes.",
+            "Principle 2: The exploratory coding loop.\n\nNever ask AI to \"build a whole app.\"\n\nInstead:\n- Small testable chunks\n- Immediate execution\n- Feed results back into context\n\nHigh frequency. Small surface area. That's how you ship reliable code with LLMs.",
+            "Principle 3: Assume the model is untrusted.\n\nNo direct shell access. No raw database queries. Hard boundaries between AI output and system execution.\n\nThe person who named prompt injection runs his own systems this way. That should tell you something.",
+            "The pattern across all 3 principles:\n\nConstraints make AI better, not worse.\n\nType hints > hope.\nSmall loops > big prompts.\nHard boundaries > trust.\n\nPragmatism scales. Magic doesn't.",
+            "Full breakdown with video timestamps and content atoms:\nhttps://frankx.ai/blog/ai-engineering-without-hype-willison\n\nIf you're building with LLMs, this is the protocol."
+          ],
+          "status": "draft"
+        },
+        "linkedin": {
+          "content": "Simon Willison co-created Django and coined the term \"prompt injection.\" His approach to AI engineering is the opposite of the hype cycle.\n\nNo magic. No promises. Just three principles that hold up in production.\n\n1. Treat the LLM as an observed system. Type hints and schema definitions reduce hallucination more than any clever prompt trick. The clearer your constraints, the more predictable the output.\n\n2. The exploratory coding loop. Never ask AI to build a whole app. Instead: small testable chunks, immediate execution, feed results back into context. High frequency iteration beats ambitious prompting every time.\n\n3. Assume the model is untrusted. No direct shell access. No raw database queries. Hard boundaries between AI output and system execution. This is the same principle behind enterprise security, applied to AI.\n\nThe pattern: constraints make AI better, not worse. Type hints over hope. Small loops over big prompts. Hard boundaries over trust.\n\nI wrote up the full protocol with video timestamps and practical extraction points for content creators and engineers.\n\nhttps://frankx.ai/blog/ai-engineering-without-hype-willison\n\nHow are you keeping pragmatism in your AI stack?\n\n#AIEngineering #LLMs #SimonWillison #SoftwareArchitecture #PracticalAI",
+          "status": "draft"
+        },
+        "newsletter": {
+          "subject": "The anti-hype AI engineering protocol",
+          "preview": "Simon Willison's 3 principles for building with LLMs that actually work.",
+          "body": "Simon Willison co-created Django and coined the term \"prompt injection.\" His approach to AI engineering is the most pragmatic I've seen.\n\nThree principles:\n\n1. Treat the LLM as an observed system — type hints and schema definitions beat clever prompting.\n2. Use the exploratory coding loop — small chunks, immediate execution, feed back into context.\n3. Assume the model is untrusted — hard boundaries between AI output and system execution.\n\nThe through line: constraints make AI systems better, not worse. This matches what we've learned building ACOS and every production AI system I've worked on.\n\nFull writeup with the video, timestamps, and content atoms: https://frankx.ai/blog/ai-engineering-without-hype-willison",
+          "status": "draft"
+        }
+      }
+    },
+    {
+      "id": "social-2026-0219-jarvis-claude-code",
+      "source": "build-your-own-jarvis-claude-code",
+      "pillar": "creator-tools",
+      "createdAt": "2026-02-19T12:00:00Z",
+      "status": "draft",
+      "calendarDate": "2026-02-20",
+      "platforms": {
+        "twitter": {
+          "content": [
+            "I turned Claude Code into a personal intelligence system that manages 12,000 songs, a production website, and enterprise consulting.\n\nNot a chatbot. An operating system.\n\nHere's the 3-layer architecture:",
+            "Layer 1: Knowledge.\n\nOne file — CLAUDE.md — in your project root.\n\nIt contains your projects, preferences, past decisions, and coding patterns.\n\nClaude reads it at session start. Every session starts where the last one ended. No re-explaining.",
+            "Layer 2: Execution.\n\nMCP servers connect Claude to your entire stack:\n- File system for code edits\n- Vercel for deployment\n- Slack for notifications\n- Resend for email\n\nIt doesn't just think. It does.",
+            "Layer 3: Intelligence.\n\nPattern recognition across sessions. The system learns which approaches work for your codebase.\n\nAfter 30 days: 60+ trajectories, 67% success rate, getting better.\n\nYour AI assistant has a memory now.",
+            "The setup takes 10 minutes:\n\n1. Create CLAUDE.md in project root\n2. Add your preferences and patterns\n3. Install 3-5 MCP servers\n4. Build your first skill (reusable workflow)\n\nIn 30 days you'll wonder how you worked without it.",
+            "Free, open source.\n\nhttps://frankx.ai/blog/build-your-own-jarvis-claude-code\n\nGitHub: github.com/frankxai/agentic-creator-os"
+          ],
+          "status": "draft"
+        },
+        "linkedin": {
+          "content": "I manage 12,000 AI-generated songs, a production website, and enterprise consulting projects. All through one tool: Claude Code, configured as a personal intelligence system.\n\nNot a chatbot you prompt from scratch every session. An actual operating system that knows your work.\n\nThe architecture has three layers:\n\n1. Knowledge Layer — a CLAUDE.md file in your project root that contains your projects, preferences, past decisions, and coding patterns. Claude reads it at every session start. No re-explaining.\n\n2. Execution Layer — MCP servers that connect Claude to your file system, deployment pipeline, Slack, email, and databases. The AI doesn't just suggest code. It edits files, deploys to Vercel, sends notifications.\n\n3. Intelligence Layer — Pattern recognition across sessions. The system tracks which approaches work (60+ trajectories, 67% success rate) and applies them to new tasks.\n\nThe setup takes 10 minutes. In 30 days, you'll have an AI system that knows your codebase, your preferences, and your workflow patterns.\n\nI open-sourced the whole system. Full tutorial with step-by-step instructions.\n\nhttps://frankx.ai/blog/build-your-own-jarvis-claude-code\n\nWhat's your current AI workflow look like?\n\n#ClaudeCode #AIProductivity #DeveloperTools #PersonalAI #OpenSource",
+          "status": "draft"
+        },
+        "newsletter": {
+          "subject": "Turn Claude Code into your personal Jarvis",
+          "preview": "3 layers: Knowledge, Execution, Intelligence. 10-minute setup.",
+          "body": "I built a personal intelligence system on top of Claude Code that manages 12,000 songs, a production website, and enterprise consulting.\n\nThe architecture: a Knowledge layer (CLAUDE.md context file), an Execution layer (MCP servers for deployment/email/Slack), and an Intelligence layer (pattern recognition across sessions).\n\nSetup takes 10 minutes. After 30 days, you'll have an AI that knows your codebase and workflow patterns.\n\nFree, open source: https://frankx.ai/blog/build-your-own-jarvis-claude-code",
+          "status": "draft"
+        }
+      }
+    },
+    {
+      "id": "social-2026-0219-great-transition",
+      "source": "the-great-transition-build-your-own-business",
+      "pillar": "ai-business",
+      "createdAt": "2026-02-19T12:00:00Z",
+      "status": "draft",
+      "calendarDate": "2026-02-21",
+      "platforms": {
+        "twitter": {
+          "content": [
+            "White-collar jobs are being automated faster than anyone expected.\n\nBut here's what most people miss: the same AI tools causing the disruption just made it cheaper than ever to start a business.\n\nThe transition from employee to builder is now the lowest-risk path.",
+            "The math changed.\n\n2020: Starting a business = $50k+ upfront, team of 5, 18 months to revenue.\n\n2026: Starting a business = $200/month in tools, team of 1 + AI agents, revenue in weeks.\n\nThe barrier to entry collapsed. The ceiling didn't.",
+            "Three things AI gave you that didn't exist 3 years ago:\n\n1. An engineering team (Claude Code, Cursor)\n2. A marketing department (content generation, SEO)\n3. A design studio (Midjourney, v0, Canva)\n\nOne person can now do what took 10.",
+            "The jobs most at risk are the ones that pay well but follow patterns:\n- Legal research\n- Financial analysis\n- Code review\n- Marketing copy\n\nThe safest position isn't inside a company. It's owning the business that deploys the AI.",
+            "This isn't about quitting your job tomorrow.\n\nIt's about building an asset on the side. Right now. While you still have a salary.\n\nThe window won't stay open forever.",
+            "Full breakdown with data and a 90-day action plan:\nhttps://frankx.ai/blog/the-great-transition-build-your-own-business"
+          ],
+          "status": "draft"
+        },
+        "linkedin": {
+          "content": "AI is automating white-collar jobs faster than most people are prepared for.\n\nBut the same tools causing the disruption have made it cheaper, faster, and more accessible than ever to build a business of your own.\n\nThe math changed fundamentally:\n\n2020: Starting a business meant $50k+ upfront, a team of 5, and 18 months to first revenue.\n\n2026: $200/month in AI tools, a team of one (you + AI agents), and revenue in weeks.\n\nThree things AI gave solopreneurs that didn't exist 3 years ago:\n\n1. An engineering team — Claude Code and Cursor can build production software\n2. A marketing department — content generation, SEO optimization, audience targeting\n3. A design studio — Midjourney, v0, Canva at enterprise quality\n\nThe jobs most at risk are well-paying pattern-following roles: legal research, financial analysis, code review, marketing copy. The safest position isn't being good at one of these jobs inside a company. It's owning the business that deploys the AI.\n\nThis isn't about quitting tomorrow. It's about building an asset on the side while you still have a salary.\n\nI wrote the full thesis with market data, case studies, and a 90-day action plan.\n\nhttps://frankx.ai/blog/the-great-transition-build-your-own-business\n\nAre you building something on the side?\n\n#Entrepreneurship #AItools #SolopreneurLife #FutureOfWork #BuildInPublic",
+          "status": "draft"
+        },
+        "newsletter": {
+          "subject": "The window is open (and it won't stay)",
+          "preview": "AI is making jobs vulnerable and businesses accessible. Same tools.",
+          "body": "AI is automating white-collar jobs faster than anyone expected. But the same tools causing the disruption just made it radically cheaper to build your own business.\n\n2020 startup cost: $50k+ and a team of 5. 2026: $200/month in tools and a team of 1 plus AI agents.\n\nThe safest position isn't being employed at a company that deploys AI. It's owning the business.\n\nFull thesis with market data and a 90-day action plan: https://frankx.ai/blog/the-great-transition-build-your-own-business",
+          "status": "draft"
+        }
+      }
+    },
+    {
+      "id": "social-2026-0219-suno-prompt-guide",
+      "source": "suno-prompt-engineering-complete-guide",
+      "pillar": "creative-systems",
+      "createdAt": "2026-02-19T12:00:00Z",
+      "status": "draft",
+      "calendarDate": "2026-02-28",
+      "platforms": {
+        "twitter": {
+          "content": [
+            "After 500+ tracks on Suno, I figured out why most prompts fail.\n\nSuno doesn't follow instructions. It captures vibes.\n\n\"Make the drums louder\" won't work.\n\"Powerful driving drums\" will.\n\nHere's the formula that actually works:",
+            "The Suno prompt formula:\n\nGenre + Tempo + Instruments + Vocals + Mood + Special Elements\n\nExample: \"Cinematic orchestral, 90 BPM, sweeping strings and brass, ethereal female vocals, triumphant and expansive, with a dramatic build\"\n\nThat's 10x better than \"epic movie music.\"",
+            "Genre stacking is the secret weapon.\n\nDon't write: \"rock\"\n\nWrite: \"Alternative rock meets post-punk, angular guitars, tight rhythm section, deadpan vocals\"\n\nThe more specific you are about the intersection, the more original the output.",
+            "Vocal control tips from 500 sessions:\n\n- \"Whispered verses, belted chorus\" gives dynamic range\n- \"Baritone\" or \"soprano\" sets register\n- \"No vocals, instrumental only\" when you want pure music\n- \"Humming intro\" creates atmosphere before lyrics hit",
+            "The biggest mistake: writing a prompt once and hoping.\n\nSuno is iterative. Generate 4 versions. Pick the best direction. Refine the prompt based on what worked. 3 rounds of this beats 1 perfect prompt every time.",
+            "Full guide with genre-specific formulas, 50+ tested prompts, and advanced techniques:\nhttps://frankx.ai/blog/suno-prompt-engineering-complete-guide\n\n500+ tracks. Here's everything I learned."
+          ],
+          "status": "draft"
+        },
+        "linkedin": {
+          "content": "I've created over 500 tracks on Suno AI. Here's the single biggest insight from all that experimentation:\n\nSuno doesn't follow instructions. It captures vibes.\n\n\"Make the drums louder\" won't work. \"Powerful driving drums\" will. This fundamental difference trips up almost everyone.\n\nThe formula that consistently produces good results:\n\nGenre + Tempo + Instruments + Vocals + Mood + Special Elements\n\nExample: \"Cinematic orchestral, 90 BPM, sweeping strings and brass, ethereal female vocals, triumphant and expansive, with a dramatic build\"\n\nThat generates something 10x better than \"epic movie music.\"\n\nThree techniques that changed my output quality:\n\n1. Genre stacking — don't write \"rock.\" Write \"Alternative rock meets post-punk, angular guitars, tight rhythm section, deadpan vocals.\" The intersection creates originality.\n\n2. Vocal control — \"whispered verses, belted chorus\" gives dynamic range. \"Baritone\" or \"soprano\" sets register.\n\n3. Iterative refinement — generate 4 versions, pick the best direction, refine. Three rounds beats one \"perfect\" prompt every time.\n\nI published the complete guide with 50+ tested prompt formulas across genres.\n\nhttps://frankx.ai/blog/suno-prompt-engineering-complete-guide\n\nAnyone else experimenting with AI music generation?\n\n#SunoAI #AIMusicProduction #PromptEngineering #CreativeAI #MusicProduction",
+          "status": "draft"
+        },
+        "newsletter": {
+          "subject": "500 tracks later: the Suno formula",
+          "preview": "Genre + Tempo + Instruments + Vocals + Mood. Here's why.",
+          "body": "After creating 500+ tracks on Suno AI, I've distilled everything into one insight: Suno doesn't follow instructions, it captures vibes.\n\nThe formula: Genre + Tempo + Instruments + Vocals + Mood + Special Elements.\n\nThree techniques that matter most: genre stacking for originality, vocal descriptors for control, and iterative refinement over single-shot prompting.\n\nComplete guide with 50+ tested prompts: https://frankx.ai/blog/suno-prompt-engineering-complete-guide",
+          "status": "draft"
+        }
+      }
+    },
+    {
+      "id": "social-2026-0219-claude-code-mastery",
+      "source": "claude-code-mastery-top-resources",
+      "pillar": "creator-tools",
+      "createdAt": "2026-02-19T12:00:00Z",
+      "status": "draft",
+      "calendarDate": "2026-02-25",
+      "platforms": {
+        "twitter": {
+          "content": [
+            "Claude Code went from beta CLI to the dominant AI pair programmer in 12 months.\n\nBut the documentation alone won't make you good at it.\n\nHere are the 5 resources that actually teach you how to think with Claude Code:",
+            "1. Simon Willison — The Architect.\n\nDoesn't just demo tools. Explains how LLMs think when they read your file system.\n\nHis \"LLM OS\" concept is essential for understanding what Claude Code actually does under the hood.",
+            "2. Fireship — The Speedrunner.\n\nWhen Anthropic drops a feature, Fireship has the fastest breakdown.\n\n100 Seconds of Claude Code updates > 45 minutes of reading release notes.",
+            "3. The official CLAUDE.md guide.\n\nMost people skip it. The context file is the single highest-leverage thing you can configure. It turns Claude from generic assistant to project-specific expert.",
+            "4. MCP Server ecosystem.\n\nClaude Code's real power is tool integration. Slack, Vercel, databases, image generation — all through MCP.\n\nUnderstanding MCP is the difference between chat and operating system.",
+            "Full list with direct links and learning paths:\nhttps://frankx.ai/blog/claude-code-mastery-top-resources"
+          ],
+          "status": "draft"
+        },
+        "linkedin": {
+          "content": "Claude Code has matured from a beta CLI into the dominant pair programmer for serious architects. It handles multi-file refactors, understands complex context windows, and integrates with any tool through MCP.\n\nBut mastering it requires more than reading the docs. You need to watch the masters at work.\n\nThe 5 resources that actually define the Claude Code meta right now:\n\n1. Simon Willison — explains how LLMs think when reading your file system. His \"LLM OS\" concept is foundational.\n\n2. Fireship — fastest, most concise breakdowns of every Anthropic feature drop.\n\n3. The official CLAUDE.md guide — the context file is the single highest-leverage configuration. Most people skip it.\n\n4. MCP server ecosystem — tool integration turns Claude from chatbot to operating system.\n\n5. The community patterns emerging from power users building production systems.\n\nI curated the full list with direct links and recommended learning order.\n\nhttps://frankx.ai/blog/claude-code-mastery-top-resources\n\nWhat's been your best Claude Code learning resource?\n\n#ClaudeCode #AIEngineering #DeveloperTools #Anthropic #PairProgramming",
+          "status": "draft"
+        },
+        "newsletter": {
+          "subject": "The 5 resources for Claude Code mastery",
+          "preview": "Beyond the docs: how to actually get good at AI pair programming.",
+          "body": "Claude Code is now the dominant AI pair programmer. But the docs alone won't make you effective.\n\nFive resources that matter: Simon Willison for LLM internals, Fireship for fast news, the CLAUDE.md configuration guide, the MCP server ecosystem, and community patterns from power users.\n\nCurated list with learning order: https://frankx.ai/blog/claude-code-mastery-top-resources",
+          "status": "draft"
+        }
+      }
+    },
+    {
+      "id": "social-2026-0219-agentic-roadmap-2026",
+      "source": "agentic-ai-roadmap-2026",
+      "pillar": "meta-content",
+      "createdAt": "2026-02-19T12:00:00Z",
+      "status": "draft",
+      "calendarDate": "2026-02-27",
+      "platforms": {
+        "twitter": {
+          "content": [
+            "72% of enterprise AI projects now use multi-agent architectures.\n\nUp from 23% in 2024.\n\nThe shift from \"single agent\" to \"agent ecosystem\" happened faster than anyone predicted.\n\nHere's the 2026 roadmap:",
+            "Three frameworks dominate:\n\n1. LangGraph — stateful workflows, graph-based orchestration\n2. CrewAI — team coordination, role-based agents\n3. MCP — universal tool integration (Claude's secret weapon)\n\nYou need to understand all three.",
+            "The market: $5.4B (2024) to $7.8B (2025), projected $52B by 2030.\n\n45.8% CAGR.\n\nOpenAI replaced Swarm with Agents SDK. Anthropic's MCP improved accuracy from 49% to 88% on complex tasks. Oracle launched 50+ pre-built agents.",
+            "For creators and solopreneurs: multi-agent systems let you build what used to require a team.\n\nContent pipeline: research agent + writer agent + SEO agent + distribution agent.\n\nAll coordinated. All automated. One person's business.",
+            "For enterprises: the governance question is now urgent.\n\nWho approves agent decisions? How do you audit multi-agent workflows? What happens when agents disagree?\n\nThe companies solving this in 2026 will own the next decade.",
+            "Full roadmap with activation checklists for creators, founders, and executives:\nhttps://frankx.ai/blog/agentic-ai-roadmap-2026"
+          ],
+          "status": "draft"
+        },
+        "linkedin": {
+          "content": "72% of enterprise AI projects now use multi-agent architectures. Up from 23% in 2024.\n\nThe AI agents market grew from $5.4B to $7.8B in one year, projected to reach $52B by 2030 at 45.8% CAGR.\n\nThree frameworks are defining the space:\n\n1. LangGraph for stateful workflows and graph-based orchestration\n2. CrewAI for team coordination and role-based agents\n3. MCP (Model Context Protocol) for universal tool integration — improved accuracy from 49% to 88% on complex tasks\n\nFor solopreneurs and creators: multi-agent systems let one person do what used to require 10. A content pipeline with research, writing, SEO, and distribution agents. All coordinated. All automated.\n\nFor enterprises: governance is now urgent. Who approves agent decisions? How do you audit multi-agent workflows? The companies solving this in 2026 will own the next decade.\n\nI published a comprehensive roadmap with activation checklists for three audiences: creators building AI-powered businesses, founders deploying agents in products, and executives governing agent ecosystems.\n\nhttps://frankx.ai/blog/agentic-ai-roadmap-2026\n\nWhere are you on the agent adoption curve?\n\n#AgenticAI #MultiAgentSystems #AIArchitecture #Enterprise #FutureOfWork",
+          "status": "draft"
+        },
+        "newsletter": {
+          "subject": "72% of enterprise AI is now multi-agent",
+          "preview": "The 2026 roadmap for creators, founders, and executives.",
+          "body": "The shift happened faster than predicted: 72% of enterprise AI projects now use multi-agent architectures, up from 23% in 2024.\n\nThree frameworks dominate: LangGraph (stateful workflows), CrewAI (team coordination), and MCP (universal tool integration).\n\nFor solopreneurs: multi-agent systems let one person build what used to require 10. For enterprises: governance is now the urgent question.\n\nFull roadmap: https://frankx.ai/blog/agentic-ai-roadmap-2026",
+          "status": "draft"
+        }
+      }
     }
   ],
   "config": {

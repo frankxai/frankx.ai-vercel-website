@@ -1,0 +1,227 @@
+[
+  {
+    "id": "VMj-3S1tku0",
+    "title": "The spelled-out intro to neural networks and backpropagation: building micrograd",
+    "channel": "Andrej Karpathy",
+    "category": "AI Architecture",
+    "status": "published",
+    "tags": ["neural networks", "python", "coding", "education"],
+    "persona": "architect"
+  },
+  {
+    "id": "pOLR5jE5Vjw",
+    "title": "The State of AI Engineering",
+    "channel": "Simon Willison",
+    "category": "AI Engineering",
+    "status": "published",
+    "tags": ["ai engineering", "llm", "security"],
+    "persona": "architect"
+  },
+  {
+    "id": "uRuLgar5XZw",
+    "title": "AI tools for software engineers, but without the hype",
+    "channel": "Simon Willison",
+    "category": "AI Engineering",
+    "status": "staged",
+    "tags": ["tools", "productivity", "coding"],
+    "persona": "developer"
+  },
+  {
+    "id": "Ta5g-OxjPO4",
+    "title": "Build Anything with Claude Code, Here's How",
+    "channel": "David Ondrej",
+    "category": "AI Engineering",
+    "status": "published",
+    "tags": ["claude", "tutorial", "build"],
+    "persona": "creator"
+  },
+  {
+    "id": "_y-4Q_y-4Q",
+    "title": "Claude Code: Everything You Need To Know",
+    "channel": "David Ondrej",
+    "category": "AI Engineering",
+    "status": "staged",
+    "tags": ["claude", "news", "update"],
+    "persona": "creator"
+  },
+  {
+    "id": "zdkGXDq1jqM",
+    "title": "How to Learn Anything (Feynman Technique)",
+    "channel": "Freedom in Thought",
+    "category": "Learning",
+    "status": "published",
+    "tags": ["learning", "mental models"],
+    "persona": "student"
+  },
+  {
+    "id": "n9iv24yI04nI",
+    "title": "Rick Rubin: The Creative Act",
+    "channel": "60 Minutes",
+    "category": "Creativity",
+    "status": "published",
+    "tags": ["creativity", "music", "philosophy"],
+    "persona": "creator"
+  },
+  {
+    "id": "BSjQk-7j3X0",
+    "title": "The Infinite Game",
+    "channel": "Simon Sinek",
+    "category": "Strategy",
+    "status": "published",
+    "tags": ["business", "mindset", "leadership"],
+    "persona": "investor"
+  },
+  {
+    "id": "Cqbleas1mmo",
+    "title": "The Psychology of Your Future Self",
+    "channel": "TED",
+    "category": "Mindset",
+    "status": "published",
+    "tags": ["psychology", "future", "planning"],
+    "persona": "student"
+  },
+  {
+    "id": "5MUvJv_sB64",
+    "title": "Sam Altman: OpenAI, GPT-5, Sora, Board Saga, Elon Musk, Ilya, Power & AGI",
+    "channel": "Lex Fridman",
+    "category": "Strategy",
+    "status": "published",
+    "tags": ["openai", "agi", "future"],
+    "persona": "investor"
+  },
+  {
+    "id": "dQw4w9WgXcQ",
+    "title": "Focus Frequency: Binaural Beats",
+    "channel": "FrankX Rituals",
+    "category": "Rituals",
+    "status": "published",
+    "tags": ["focus", "music", "ritual"],
+    "persona": "all"
+  },
+  {
+    "id": "jfKfPfyJRdk",
+    "title": "lofi hip hop radio - beats to relax/study to",
+    "channel": "Lofi Girl",
+    "category": "Rituals",
+    "status": "published",
+    "tags": ["lofi", "music", "focus"],
+    "persona": "all"
+  },
+  {
+    "id": "hY1-J8Wd1ng",
+    "title": "Deep Work Visualization",
+    "channel": "FrankX Rituals",
+    "category": "Rituals",
+    "status": "published",
+    "tags": ["meditation", "visualization"],
+    "persona": "all"
+  },
+  {
+    "id": "LnQcZk30-2I",
+    "title": "Andrew Huberman: Focus, Productivity & Creativity",
+    "channel": "Huberman Lab",
+    "category": "Mindset",
+    "status": "staged",
+    "tags": ["neuroscience", "productivity", "focus"],
+    "persona": "student"
+  },
+  {
+    "id": "z4Hh8-Q1E5I",
+    "title": "Naval Ravikant: The Angel Philosopher",
+    "channel": "Shane Parrish",
+    "category": "Strategy",
+    "status": "staged",
+    "tags": ["wealth", "happiness", "philosophy"],
+    "persona": "investor"
+  },
+  {
+    "id": "P-h2c7j7F7U",
+    "title": "The Science of Dopamine & Focus",
+    "channel": "Huberman Lab",
+    "category": "Mindset",
+    "status": "staged",
+    "tags": ["dopamine", "motivation", "neuroscience"],
+    "persona": "student"
+  },
+  {
+    "id": "d1e2f3g4h5i",
+    "title": "Building Agentic Workflows with LangChain",
+    "channel": "Harrison Chase",
+    "category": "AI Engineering",
+    "status": "staged",
+    "tags": ["agents", "langchain", "coding"],
+    "persona": "developer"
+  },
+  {
+    "id": "j6k7l8m9n0o",
+    "title": "Next.js 15: The Good, The Bad, and The Ugly",
+    "channel": "Theo - t3.gg",
+    "category": "AI Engineering",
+    "status": "staged",
+    "tags": ["nextjs", "webdev", "opinion"],
+    "persona": "developer"
+  },
+  {
+    "id": "p1q2r3s4t5u",
+    "title": "Why I'm Betting on Vercel AI SDK",
+    "channel": "Lee Robinson",
+    "category": "AI Engineering",
+    "status": "staged",
+    "tags": ["vercel", "sdk", "ai"],
+    "persona": "developer"
+  },
+  {
+    "id": "v6w7x8y9z0a",
+    "title": "The End of Coding as We Know It",
+    "channel": "Matt Wolfe",
+    "category": "Strategy",
+    "status": "staged",
+    "tags": ["future", "coding", "ai"],
+    "persona": "investor"
+  },
+  {
+    "id": "b1c2d3e4f5g",
+    "title": "How to Use Midjourney v7 for Professional Design",
+    "channel": "Tim Kawakami",
+    "category": "Creativity",
+    "status": "staged",
+    "tags": ["midjourney", "design", "ai art"],
+    "persona": "creator"
+  },
+  {
+    "id": "h6i7j8k9l0m",
+    "title": "Suno AI v4.5: Creating Radio-Ready Hits",
+    "channel": "FrankX",
+    "category": "Creativity",
+    "status": "staged",
+    "tags": ["suno", "music", "ai"],
+    "persona": "creator"
+  },
+  {
+    "id": "n1o2p3q4r5s",
+    "title": "The 4-Hour Work Week Revisited",
+    "channel": "Tim Ferriss",
+    "category": "Strategy",
+    "status": "staged",
+    "tags": ["lifestyle", "productivity", "automation"],
+    "persona": "investor"
+  },
+  {
+    "id": "t6u7v8w9x0y",
+    "title": "Atomic Habits: How to Get 1% Better Every Day",
+    "channel": "James Clear",
+    "category": "Mindset",
+    "status": "staged",
+    "tags": ["habits", "growth", "productivity"],
+    "persona": "student"
+  },
+  {
+    "id": "z1a2b3c4d5e",
+    "title": "The Almanack of Naval Ravikant (Audiobook)",
+    "channel": "Naval",
+    "category": "Strategy",
+    "status": "staged",
+    "tags": ["wealth", "wisdom", "audiobook"],
+    "persona": "investor"
+  }
+]

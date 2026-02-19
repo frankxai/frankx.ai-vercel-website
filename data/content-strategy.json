@@ -1,0 +1,243 @@
+{
+  "version": "1.0",
+  "updatedAt": "2026-02-19T11:30:00Z",
+  "philosophy": "Hub & Spoke content topology: every pillar has one Hub article that links to all Spoke articles. Each article atomizes into 6 platform formats. Distribution follows a 1→10 multiplier.",
+  "pillars": [
+    {
+      "id": "ai-architecture",
+      "name": "AI Architecture & Engineering",
+      "color": "#43BFE3",
+      "icon": "cpu",
+      "description": "Production AI systems, enterprise patterns, agent orchestration. Positions Frank as the technical authority.",
+      "audience": "Senior engineers, CTOs, AI architects, enterprise decision-makers",
+      "hubArticle": "frankx-intelligence-ecosystem-complete-guide",
+      "spokes": [
+        "production-llm-agents-oci-part-1-architecture",
+        "production-llm-agents-oci-part-2-agent-patterns",
+        "production-llm-agents-oci-part-3-operating-model",
+        "multi-agent-orchestration-patterns-2026",
+        "oracle-genai-agents-vs-langgraph-crewai-2026",
+        "production-agent-patterns-7-pillars",
+        "production-agent-patterns-aws-bedrock",
+        "production-agentic-ai-systems",
+        "observability-stack-multi-agent-systems-2026",
+        "enterprise-agent-roadmap",
+        "ai-engineering-without-hype-willison",
+        "karpathys-ai-vision-deep-dive",
+        "claude-opus-4-6-analysis-2026",
+        "ultimate-guide-ai-coding-agents-2026",
+        "what-is-agentic-ai",
+        "swarm-intelligence-multi-agent-orchestration"
+      ],
+      "contentAtoms": {
+        "blog": "Deep technical articles (2000-5000 words), architecture diagrams",
+        "xThread": "3-principle breakdowns, 'what I learned building X' frameworks",
+        "linkedin": "Architecture decision posts, enterprise lessons learned",
+        "youtubeShort": "60s architecture pattern explainers using Opus Pro clips from Karpathy/Willison videos",
+        "infographic": "System architecture diagrams via InfoGenius (futuristic style, expert audience)",
+        "newsletter": "Weekly 'AI Architecture Digest' with 1 deep insight + 3 links"
+      },
+      "tools": {
+        "infogenius": { "style": "futuristic", "audience": "expert", "aspectRatio": "16:9" },
+        "opusPro": "Clip key segments from YouTube index videos (Karpathy, Willison)",
+        "canva": "Architecture comparison cards (16:9 for LinkedIn, 1:1 for X)"
+      }
+    },
+    {
+      "id": "creator-tools",
+      "name": "Creator Tools & ACOS",
+      "color": "#AB47C7",
+      "icon": "terminal",
+      "description": "The Agentic Creator OS, Claude Code mastery, developer tools. Drives product adoption and open-source community.",
+      "audience": "Developers, creators using AI tools, Claude Code users, open-source community",
+      "hubArticle": "agentic-creator-os-complete-guide",
+      "spokes": [
+        "acos-v10-autonomous-intelligence",
+        "acos-zero-to-production-quickstart",
+        "acos-hooks-system-quality-gates",
+        "acos-enterprise-deployment-guide",
+        "acos-use-cases-creator-types",
+        "acos-philosophy-technology-amplifies",
+        "building-custom-skills-acos",
+        "seo-aeo-optimization-acos",
+        "mcp-server-integration-guide",
+        "mcp-doctor-claude-code-server-optimization",
+        "claude-code-2-1-mcp-revolution",
+        "claude-code-mastery-top-resources",
+        "build-your-own-jarvis-claude-code",
+        "getting-started-agentic-creator-os",
+        "30-minute-creator-os-quick-start",
+        "mcp-server-architecture-workshop",
+        "personal-ai-assistant-setup-workshop"
+      ],
+      "contentAtoms": {
+        "blog": "Tutorials, quickstarts, deep dives (1500-4000 words)",
+        "xThread": "'I built X in Y minutes' demos, tool comparisons, tips",
+        "linkedin": "Developer productivity stories, tool stack reveals",
+        "youtubeShort": "30-60s screen recordings of ACOS/Claude Code in action",
+        "infographic": "Workflow diagrams, feature comparisons via InfoGenius (technical style)",
+        "newsletter": "Monthly 'ACOS Changelog' + one power-user tip"
+      },
+      "tools": {
+        "infogenius": { "style": "technical", "audience": "college", "aspectRatio": "16:9" },
+        "opusPro": "Screen recordings of Claude Code workflows, before/after demos",
+        "canva": "Feature announcement cards, version comparison graphics"
+      }
+    },
+    {
+      "id": "ai-business",
+      "name": "AI Business & Opportunity",
+      "color": "#F59E0B",
+      "icon": "trending-up",
+      "description": "The Great Transition narrative, solopreneur opportunity, creator economy in the AI age. Broadest audience, highest viral potential.",
+      "audience": "Entrepreneurs, career changers, business leaders, aspiring solopreneurs",
+      "hubArticle": "the-great-transition-build-your-own-business",
+      "spokes": [
+        "intelligence-revolution-2025",
+        "golden-age-of-intelligence",
+        "08-golden-age-of-intelligence",
+        "reader-first-golden-age",
+        "golden-age-field-guide",
+        "agi-2026-opportunities-students-creators",
+        "creator-intelligence-systems-2026",
+        "eu-inc-28th-regime-european-startups",
+        "ai-agents-transform-due-diligence",
+        "building-deal-flow-pipelines-ai",
+        "iacos-investment-research-os",
+        "nvidia-ces-2026-physical-ai-revolution",
+        "conscious-ai-for-entrepreneurs",
+        "frankx-business-plan-canvas",
+        "ai-guide-for-families-and-professionals",
+        "props-to-the-builders-of-this-era"
+      ],
+      "contentAtoms": {
+        "blog": "Narrative essays, data-backed arguments (2000-4000 words)",
+        "xThread": "Bold claims with data, 'unpopular opinion' hooks, trend analysis",
+        "linkedin": "Career transition stories, market analysis, opportunity framing",
+        "youtubeShort": "60s 'did you know' data points from research, talking head + text overlay",
+        "infographic": "Market size charts, trend timelines via InfoGenius (standard style)",
+        "newsletter": "Bi-weekly 'Golden Age Dispatch' with market signals + one action item"
+      },
+      "tools": {
+        "infogenius": { "style": "standard", "audience": "highschool", "aspectRatio": "16:9" },
+        "opusPro": "Pull key stats/claims from blog for Shorts with text overlay",
+        "canva": "Data visualization cards, quote graphics, carousel posts"
+      }
+    },
+    {
+      "id": "creative-systems",
+      "name": "Creative Systems & Music",
+      "color": "#10B981",
+      "icon": "music",
+      "description": "AI music production, Vibe OS, creative frameworks. The fun, personality-driven pillar that makes Frank relatable and memorable.",
+      "audience": "Music producers, creators, artists, people curious about AI creativity",
+      "hubArticle": "suno-prompt-engineering-complete-guide",
+      "spokes": [
+        "music-as-consciousness-technology",
+        "suno-music-production-workflow",
+        "suno-ai-music-creation-workshop",
+        "vibe-os-creative-soul",
+        "vibe-os-platform-introduction",
+        "the-creative-os",
+        "soul-frequency-framework",
+        "02-the-soul-frequency-framework",
+        "01-ai-doesnt-have-to-be-soulless",
+        "ai-doesnt-have-to-be-soulless",
+        "science-of-state-change-music",
+        "creators-life-architecture-guide",
+        "creators-ai-toolkit-workshop"
+      ],
+      "contentAtoms": {
+        "blog": "Production guides, creative philosophy, workflow breakdowns (1500-3000 words)",
+        "xThread": "Song creation process threads, 'made this in 5 minutes' hooks",
+        "linkedin": "Creative process stories, AI-human collaboration insights",
+        "youtubeShort": "30s song snippet + generation process, Suno prompt reveals",
+        "infographic": "Workflow diagrams, genre prompt cheat sheets via InfoGenius (3d style)",
+        "newsletter": "Monthly 'Studio Sessions' with 3 songs + production notes"
+      },
+      "tools": {
+        "infogenius": { "style": "3d", "audience": "highschool", "aspectRatio": "1:1" },
+        "opusPro": "Clip Suno generation sessions, music + visual overlay",
+        "canva": "Album art style cards, genre cheat sheet carousels, before/after prompts"
+      }
+    },
+    {
+      "id": "meta-content",
+      "name": "Building in Public & Meta",
+      "color": "#EF4444",
+      "icon": "eye",
+      "description": "Behind the scenes, how the system works, lessons learned. The authenticity pillar that builds trust and community.",
+      "audience": "Builders, indie hackers, Claude Code power users, FrankX community",
+      "hubArticle": "brand-evolution-from-consciousness-to-systems",
+      "spokes": [
+        "agentic-creator-os",
+        "agentic-ai-roadmap-2025",
+        "agentic-ai-roadmap-2026",
+        "agentic-seo-publishing-masterplan",
+        "building-research-intelligence-system",
+        "conscious-ai-integration-operating-system",
+        "conscious-ai-framework",
+        "frankx-intelligence-atlas-volume-1",
+        "frankx-vision-mission-values",
+        "ai-coe-launch",
+        "misinformation-guardian-hackathon-build-log-2026",
+        "5c-prompt-engineering-mastery-workshop",
+        "agentic-workflows-save-hours"
+      ],
+      "contentAtoms": {
+        "blog": "Build logs, lessons learned, roadmap updates (1000-2500 words)",
+        "xThread": "Weekly 'shipped this week' threads, real metrics, honest mistakes",
+        "linkedin": "Milestone announcements, ecosystem updates, community shoutouts",
+        "youtubeShort": "Screen recordings of building process, 'watch me build X in 60s'",
+        "infographic": "Progress dashboards, ecosystem maps via InfoGenius (minimalist style)",
+        "newsletter": "Weekly 'Build Log' with what shipped + what's next"
+      },
+      "tools": {
+        "infogenius": { "style": "minimalist", "audience": "college", "aspectRatio": "16:9" },
+        "opusPro": "Screen recordings of Claude Code sessions, real development footage",
+        "canva": "Weekly recap cards, milestone announcements, changelog graphics"
+      }
+    }
+  ],
+  "atomizationRules": {
+    "blogToX": "Extract 3-5 key principles, each becomes a tweet. Hook tweet is a bold claim or question. Final tweet links back.",
+    "blogToLinkedIn": "Rewrite as personal narrative. First 2 lines must hook. Include 1 specific metric. End with soft question CTA.",
+    "blogToNewsletter": "Summarize in 3 paragraphs: what, why it matters, link to deep dive.",
+    "blogToShort": "Find the single most surprising insight. Script 30-60s around it. Text overlay + voiceover or music.",
+    "blogToInfographic": "Extract the framework/model/comparison. Use InfoGenius with pillar-specific style settings.",
+    "blogToCarousel": "Break into 5-8 slides in Canva. Slide 1 = hook, slides 2-7 = points, slide 8 = CTA."
+  },
+  "distributionSchedule": {
+    "monday": { "platform": "linkedin", "type": "thought leadership", "pillar": "ai-architecture" },
+    "tuesday": { "platform": "x", "type": "technical thread", "pillar": "creator-tools" },
+    "wednesday": { "platform": "linkedin", "type": "business insight", "pillar": "ai-business" },
+    "thursday": { "platform": "x", "type": "behind the scenes", "pillar": "meta-content" },
+    "friday": { "platform": "all", "type": "creative/fun", "pillar": "creative-systems" },
+    "saturday": { "platform": "newsletter", "type": "weekly digest", "pillar": "all" },
+    "sunday": { "platform": "youtube", "type": "short", "pillar": "rotating" }
+  },
+  "youtubeShorts": {
+    "sources": [
+      { "videoId": "VMj-3S1tku0", "title": "Karpathy Neural Nets", "clipIdeas": ["What is a neural network in 60s", "The backpropagation trick", "Why neural nets learn"] },
+      { "videoId": "pOLR5jE5Vjw", "title": "Willison AI Engineering", "clipIdeas": ["The exploratory coding loop", "Why RAG is overhyped", "Prompt injection in 60s"] },
+      { "videoId": "uRuLgar5XZw", "title": "Willison AI Tools", "clipIdeas": ["Type hints beat prompt tricks", "The no-hype AI stack", "LLMs are not magic"] },
+      { "videoId": "n9iv24yI04nI", "title": "Rick Rubin Creative Act", "clipIdeas": ["Remove ego from creation", "Listening is the art", "The universe creates through you"] }
+    ],
+    "tool": "Opus Pro (opus.pro) — AI-powered video clipping. Upload YouTube URL, auto-generates viral clips with captions.",
+    "workflow": "1. Upload video to Opus Pro → 2. Select top 3 clips → 3. Add FrankX watermark in Canva → 4. Upload to YouTube Shorts + X + LinkedIn"
+  },
+  "metrics": {
+    "weeklyTargets": {
+      "xPosts": 5,
+      "linkedinPosts": 3,
+      "newsletter": 1,
+      "youtubeShorts": 2,
+      "blogPosts": 1,
+      "infographics": 1
+    },
+    "hubSpokeRatio": "Each Hub should link to 8+ Spokes. Each Spoke links back to Hub + 2 sibling Spokes.",
+    "socializedPosts": 3,
+    "unsocializedPosts": 78,
+    "coverage": "3.7%"
+  }
+}
