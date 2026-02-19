@@ -6,39 +6,39 @@ import BlogPageClient from './BlogPageClient'
 
 const blogFaqs = [
   {
-    question: 'What topics does the FrankX blog cover?',
-    answer: 'The blog covers enterprise AI architecture, agentic AI systems, creative AI tools like Suno and Midjourney, production implementation patterns, and real-world insights from building AI systems at scale.'
+    question: 'What is Creation Chronicles?',
+    answer: 'Creation Chronicles is FrankX.AI\'s blog featuring weekly insights on building intelligence systems. It covers topics from enterprise AI architecture to creative AI applications like music production with Suno, sharing real-world learnings and practical implementation strategies.'
   },
   {
     question: 'How often is new content published?',
-    answer: 'New articles are published 2-3 times per week, covering AI implementation guides, architecture patterns, creative AI workflows, and insights from building production AI systems.'
+    answer: 'New articles are published 2-3 times per week, covering a range of topics including AI implementation guides, enterprise architecture patterns, creative AI workflows, and insights from building production AI systems.'
   },
   {
-    question: 'Who writes the articles?',
-    answer: 'All articles are written by Frank, an AI Architect and creator who builds enterprise AI systems and produces AI-generated music. Each article shares practical, hands-on experience rather than theory.'
+    question: 'What topics does Creation Chronicles cover?',
+    answer: 'The blog covers enterprise AI architecture, Oracle Cloud AI services, creative AI tools like Suno and Midjourney, agentic AI systems, AI implementation strategies, and personal insights from a musician-technologist\'s journey building with AI.'
   },
   {
     question: 'Can I get notified about new articles?',
-    answer: 'Yes, subscribe to the FrankX newsletter to receive weekly insights on AI systems, creative workflows, and new articles. Subscribe through any article page or the homepage.'
+    answer: 'Yes, you can join the FrankX.AI newsletter to receive notifications about new articles, exclusive content, and early access to resources. Subscribe through any article page or the homepage.'
   },
   {
     question: 'Are the articles suitable for beginners?',
-    answer: 'Yes, articles range from beginner-friendly introductions to advanced technical deep-dives. Each article is tagged by category, making it easy to find content matching your experience level.'
+    answer: 'Yes, articles range from beginner-friendly introductions to advanced technical deep-dives. Each article is tagged by category and difficulty, making it easy to find content matching your experience level.'
   }
 ]
 
 export const metadata = createMetadata({
-  title: 'Blog - What I\'m Building, What\'s Working',
+  title: 'Creation Chronicles - Building Intelligence Systems',
   description:
-    "Weekly insights on building with AI. From enterprise architecture to creating music with Suno. What's working, what isn't, and what I'm learning.",
+    "Inside the build. AI systems, creative workflows, and what's actually shipping — from enterprise architecture to AI music production.",
   keywords: [
     'ai blog',
-    'ai architecture blog',
+    'creation chronicles',
     'intelligence systems',
     'ai music',
     'suno ai',
     'enterprise ai',
-    'ai architect blog',
+    'oracle ai',
     'ai architecture',
   ],
   path: '/blog',

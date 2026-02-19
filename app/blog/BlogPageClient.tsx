@@ -2,8 +2,9 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
-import { ArrowRight, Sparkles, Filter, TrendingUp } from 'lucide-react'
+import { ArrowRight, Sparkles, Filter } from 'lucide-react'
 
 import BlogCard from '@/components/blog/BlogCard'
 import CategoryDropdown from '@/components/blog/CategoryDropdown'
@@ -44,60 +45,109 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
     return posts.filter((post) => post.category?.toLowerCase() === category.toLowerCase()).length
   }
 
+  // Latest post shown as hero when no filter is active
+  const latestPost = !selectedCategory ? posts[0] : null
+  const remainingPosts = latestPost ? posts.slice(1) : posts
+
   const filteredPosts = selectedCategory
-    ? posts.filter((post) => post.category?.toLowerCase() === selectedCategory.toLowerCase())
-    : posts
+    ? remainingPosts.filter((post) => post.category?.toLowerCase() === selectedCategory.toLowerCase())
+    : remainingPosts
 
   const featuredPosts = filteredPosts.filter((post) => post.featured).slice(0, 2)
   const regularPosts = filteredPosts.filter((post) => !post.featured)
 
   return (
     <main className="min-h-screen bg-[#030712] text-white">
-      {/* Hero with Aurora Background */}
-      <section className="relative pt-32 pb-16 px-6 overflow-hidden">
-        {/* Aurora Background Effect */}
+      {/* Editorial Hero */}
+      <section className="relative pt-28 pb-10 px-6 overflow-hidden">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-emerald-500/10 rounded-full blur-3xl animate-pulse" />
-          <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl animate-pulse delay-1000" />
-          <div className="absolute bottom-0 left-1/2 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-2000" />
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-emerald-500/8 rounded-full blur-3xl" />
+          <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-cyan-500/8 rounded-full blur-3xl" />
         </div>
 
         <div className="max-w-6xl mx-auto relative">
+          {/* Blog Identity Bar */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="max-w-3xl"
+            className="flex items-end justify-between mb-10"
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-6">
-              <Sparkles className="w-4 h-4 text-emerald-400" />
-              <span className="text-xs font-medium text-emerald-400">Creation Chronicles</span>
+            <div>
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-4">
+                <Sparkles className="w-4 h-4 text-emerald-400" />
+                <span className="text-xs font-medium text-emerald-400">Creation Chronicles</span>
+              </div>
+              <h1 className="text-3xl md:text-5xl font-bold text-white tracking-tight leading-tight">
+                Inside the build.
+              </h1>
+              <p className="mt-2 text-base text-white/40">
+                AI systems, creative workflows, and what&apos;s actually shipping.
+              </p>
             </div>
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 tracking-tight leading-tight">
-              What I'm building.
-              <span className="block mt-2 bg-gradient-to-r from-white/90 to-white/40 bg-clip-text text-transparent">
-                What's working.
-              </span>
-            </h1>
-            <p className="text-lg md:text-xl text-white/60 leading-relaxed max-w-2xl">
-              Weekly insights on AI systems, creative workflows, and building in public. From enterprise architecture to Suno music production.
-            </p>
-
-            {/* Stats */}
-            <div className="flex items-center gap-6 mt-8">
-              <div className="flex items-center gap-2">
-                <TrendingUp className="w-4 h-4 text-emerald-400" />
-                <span className="text-sm text-white/50">
-                  <span className="font-semibold text-white">{posts.length}</span> articles
-                </span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Filter className="w-4 h-4 text-cyan-400" />
-                <span className="text-sm text-white/50">
-                  <span className="font-semibold text-white">{categories.length}</span> categories
-                </span>
-              </div>
+            <div className="hidden md:flex items-center gap-5 text-sm text-white/40">
+              <span><span className="font-semibold text-white">{posts.length}</span> articles</span>
+              <span><span className="font-semibold text-white">{categories.length}</span> topics</span>
             </div>
           </motion.div>
+
+          {/* Latest Post Hero */}
+          {latestPost && (
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.12, duration: 0.6 }}
+            >
+              <Link href={`/blog/${latestPost.slug}`} className="group block">
+                <div className="relative rounded-2xl border border-white/10 bg-white/[0.03] overflow-hidden transition-all duration-300 hover:border-white/20 hover:bg-white/[0.05]">
+                  {latestPost.image ? (
+                    <div className="grid md:grid-cols-2 gap-0">
+                      <div className="relative aspect-[4/3] md:aspect-auto md:min-h-[280px] overflow-hidden">
+                        <Image
+                          src={latestPost.image}
+                          alt={latestPost.title}
+                          fill
+                          className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                        />
+                      </div>
+                      <div className="p-6 md:p-8 flex flex-col justify-center">
+                        <div className="flex items-center gap-3 mb-4">
+                          <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-[11px] font-medium text-emerald-400">{latestPost.category}</span>
+                          <span className="text-xs text-white/30">{latestPost.readingTime}</span>
+                        </div>
+                        <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-white mb-3 tracking-tight leading-tight">
+                          {latestPost.title}
+                        </h2>
+                        <p className="text-sm text-white/50 leading-relaxed line-clamp-3">
+                          {latestPost.description}
+                        </p>
+                        <div className="mt-6 flex items-center gap-2 text-emerald-400 text-sm font-medium">
+                          Read article
+                          <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                        </div>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="p-6 md:p-10">
+                      <div className="flex items-center gap-3 mb-4">
+                        <span className="px-2.5 py-0.5 rounded-full bg-emerald-500/10 text-[11px] font-medium text-emerald-400">{latestPost.category}</span>
+                        <span className="text-xs text-white/30">{latestPost.readingTime}</span>
+                      </div>
+                      <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-3 tracking-tight leading-tight">
+                        {latestPost.title}
+                      </h2>
+                      <p className="text-base text-white/50 max-w-2xl leading-relaxed">
+                        {latestPost.description}
+                      </p>
+                      <div className="mt-6 flex items-center gap-2 text-emerald-400 text-sm font-medium">
+                        Read article
+                        <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </Link>
+            </motion.div>
+          )}
         </div>
       </section>
 
@@ -225,16 +275,16 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
             <span className="text-sm text-emerald-400">Weekly Insights</span>
           </div>
           <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
-            Stay in the loop
+            Join Creation Chronicles
           </h2>
           <p className="text-white/50 mb-8">
-            Weekly insights on AI architecture, creative workflows, and building in public. No spam.
+            Get weekly insights on AI, creativity, and building in public.
           </p>
           <Link
-            href="/newsletter"
+            href="/free-playbook"
             className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black rounded-full font-semibold hover:bg-white/90 transition-all"
           >
-            Subscribe to Newsletter
+            Start Building
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>

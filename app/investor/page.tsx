@@ -14,13 +14,10 @@ import {
   Zap,
   Building2,
   User,
-  Briefcase,
   Gift,
   DollarSign,
   Layers,
   Shield,
-  Github,
-  ExternalLink,
 } from 'lucide-react'
 
 import { getFeaturedProducts, INVESTOR_CATEGORIES, type InvestorCategory } from '@/lib/investor'
@@ -201,23 +198,37 @@ function SectionCard({ section }: { section: (typeof hubSections)[0] }) {
 
 const audiences = [
   {
-    icon: Building2,
-    title: 'VC & PE Firms',
-    description: 'Automate deal flow screening, due diligence reports, and LP communications at scale.',
+    icon: User,
+    title: 'Everyday Investors',
+    description: 'Stocks, ETFs, and crypto on Revolut, eToro, and more — supercharged with AI research tools.',
     color: 'text-cyan-400 bg-cyan-500/15',
   },
   {
-    icon: User,
-    title: 'Angel Investors',
-    description: 'AI-powered research on a solo budget. Get institutional-grade analysis without the team.',
+    icon: TrendingUp,
+    title: 'Crypto & DeFi',
+    description: 'Navigate Crypto.com, SwissBorg, and Nexo with AI-powered analysis and yield optimization.',
     color: 'text-violet-400 bg-violet-500/15',
   },
   {
-    icon: Briefcase,
-    title: 'Individual Investors',
-    description: 'Stock screening, sentiment analysis, and portfolio tracking with AI-powered workflows.',
+    icon: Building2,
+    title: 'Institutional',
+    description: 'Deal flow automation, due diligence agents, and portfolio intelligence at scale.',
     color: 'text-emerald-400 bg-emerald-500/15',
   },
+]
+
+const platforms = [
+  { name: 'Revolut', tagline: 'Banking + investing', href: 'https://revolut.com', gradient: 'from-blue-500/20 to-cyan-500/20 border-blue-500/20' },
+  { name: 'eToro', tagline: 'Social & copy trading', href: 'https://etoro.com', gradient: 'from-green-500/20 to-emerald-500/20 border-green-500/20' },
+  { name: 'Crypto.com', tagline: 'Full crypto ecosystem', href: 'https://crypto.com', gradient: 'from-slate-500/20 to-blue-500/20 border-slate-500/20' },
+  { name: 'SwissBorg', tagline: 'Smart crypto wealth', href: 'https://swissborg.com', gradient: 'from-emerald-500/20 to-teal-500/20 border-emerald-500/20' },
+  { name: 'Nexo', tagline: 'Crypto yield & lending', href: 'https://nexo.com', gradient: 'from-blue-500/20 to-violet-500/20 border-blue-500/20' },
+]
+
+const aiResearchTools = [
+  { name: 'Perplexity Finance', description: 'AI-powered financial research with real-time data and cited sources. The starting point for any investment thesis.', icon: Search, color: 'text-cyan-400 bg-cyan-500/15' },
+  { name: 'Claude', description: 'Analyze 10-K filings, build investment theses, stress-test portfolios, and generate deep research reports.', icon: Bot, color: 'text-violet-400 bg-violet-500/15' },
+  { name: 'Claude Code', description: 'Turn your terminal into a research station. Track portfolios, scrape data, build dashboards, automate analysis.', icon: Layers, color: 'text-emerald-400 bg-emerald-500/15' },
 ]
 
 const valueTiers = [
@@ -247,7 +258,7 @@ export default function InvestorHubPage() {
                 <TrendingUp className="h-3.5 w-3.5 text-white" />
               </div>
               <span className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
-                Investor Intelligence
+                Invest Smarter with AI
               </span>
             </motion.div>
 
@@ -257,9 +268,9 @@ export default function InvestorHubPage() {
               transition={{ duration: 0.6, delay: 0.08 }}
               className="mb-6 max-w-4xl font-display text-4xl font-bold leading-[1.1] tracking-tight text-white sm:text-5xl lg:text-6xl"
             >
-              Research. Analyze.{' '}
+              Your AI{' '}
               <span className="bg-gradient-to-r from-amber-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent">
-                Deploy.
+                Investment Edge.
               </span>
             </motion.h1>
 
@@ -269,8 +280,8 @@ export default function InvestorHubPage() {
               transition={{ duration: 0.6, delay: 0.16 }}
               className="mb-10 max-w-2xl text-lg leading-relaxed text-slate-400"
             >
-              AI-powered investment research tools. From deal sourcing agents to portfolio
-              architectures — ship smarter investment workflows with Claude Code, n8n, and Coworker.
+              The platforms I invest on, the AI tools I research with, and the prompts
+              that give you an edge — whether you hold stocks, crypto, or both.
             </motion.p>
 
             <motion.div
@@ -280,19 +291,19 @@ export default function InvestorHubPage() {
               className="flex flex-wrap gap-4"
             >
               <Link
-                href="/investor/agents"
+                href="#platforms"
                 className="group inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-900 transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-white/10"
               >
-                <Bot className="h-4 w-4" />
-                Browse Agent Packs
+                <TrendingUp className="h-4 w-4" />
+                Platform Picks
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
               </Link>
               <Link
-                href="/investor/architectures"
+                href="#ai-tools"
                 className="group inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.04] px-6 py-3 text-sm font-semibold text-white backdrop-blur-sm transition-all hover:bg-white/10"
               >
-                <Network className="h-4 w-4" />
-                View Architectures
+                <Search className="h-4 w-4" />
+                AI Research Tools
               </Link>
             </motion.div>
           </div>
@@ -322,6 +333,92 @@ export default function InvestorHubPage() {
                 Deploy
               </span>
             </motion.div>
+          </div>
+        </section>
+
+        {/* Platforms I Use */}
+        <section id="platforms" className="py-12">
+          <div className="mx-auto max-w-6xl px-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="mb-8"
+            >
+              <p className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-emerald-400">
+                What I Use Daily
+              </p>
+              <h2 className="text-2xl font-bold text-white sm:text-3xl">
+                Investment Platforms
+              </h2>
+              <p className="mt-2 max-w-lg text-slate-400">
+                The platforms powering my portfolio — stocks, crypto, and yield.
+              </p>
+            </motion.div>
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+              {platforms.map((platform, i) => (
+                <motion.a
+                  key={platform.name}
+                  href={platform.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.08 }}
+                  className={`group rounded-xl border bg-gradient-to-br ${platform.gradient} p-5 backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:shadow-lg`}
+                >
+                  <p className="text-base font-bold text-white">{platform.name}</p>
+                  <p className="mt-1 text-xs text-slate-400">{platform.tagline}</p>
+                  <div className="mt-3 flex items-center gap-1 text-[11px] font-medium text-slate-500 transition-colors group-hover:text-white">
+                    Learn more <ArrowRight className="h-3 w-3" />
+                  </div>
+                </motion.a>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* AI Research Stack */}
+        <section id="ai-tools" className="border-y border-white/[0.04] py-12">
+          <div className="mx-auto max-w-6xl px-6">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="mb-8"
+            >
+              <p className="mb-2 text-xs font-semibold uppercase tracking-[0.2em] text-cyan-400">
+                AI-Powered Research
+              </p>
+              <h2 className="text-2xl font-bold text-white sm:text-3xl">
+                Your Research Stack
+              </h2>
+              <p className="mt-2 max-w-lg text-slate-400">
+                Three AI tools that replace hours of manual research. Use them together for maximum edge.
+              </p>
+            </motion.div>
+            <div className="grid gap-6 sm:grid-cols-3">
+              {aiResearchTools.map((tool, i) => {
+                const Icon = tool.icon
+                return (
+                  <motion.div
+                    key={tool.name}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.1 }}
+                    className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-6"
+                  >
+                    <div className={`mb-4 flex h-12 w-12 items-center justify-center rounded-xl ${tool.color}`}>
+                      <Icon className="h-6 w-6" />
+                    </div>
+                    <h3 className="mb-2 text-lg font-bold text-white">{tool.name}</h3>
+                    <p className="text-sm leading-relaxed text-slate-400">{tool.description}</p>
+                  </motion.div>
+                )
+              })}
+            </div>
           </div>
         </section>
 
@@ -457,7 +554,7 @@ export default function InvestorHubPage() {
               <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-white/[0.06] text-white">
                 <Shield className="h-6 w-6" />
               </div>
-              <h2 className="mb-3 text-2xl font-bold text-white">Built For Every Investor</h2>
+              <h2 className="mb-3 text-2xl font-bold text-white">Built For You</h2>
               <p className="mx-auto mb-10 max-w-lg text-slate-400">
                 Whether you manage a fund or your personal portfolio, these tools scale to your needs.
               </p>
@@ -488,65 +585,6 @@ export default function InvestorHubPage() {
           </div>
         </section>
 
-        {/* Open Source Framework Banner */}
-        <section className="border-t border-white/[0.04] py-16">
-          <div className="mx-auto max-w-5xl px-6">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="relative overflow-hidden rounded-2xl border border-slate-700/50 bg-white/[0.02] p-8 sm:p-10"
-            >
-              <div className="pointer-events-none absolute right-0 top-0 h-40 w-40 bg-cyan-500/10 blur-3xl" aria-hidden />
-              <div className="relative flex flex-col gap-8 sm:flex-row sm:items-center sm:justify-between">
-                <div className="flex-1">
-                  <div className="mb-4 flex items-center gap-3">
-                    <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-white/10 text-white">
-                      <Github className="h-5 w-5" />
-                    </div>
-                    <div>
-                      <p className="text-xs font-semibold uppercase tracking-[0.15em] text-slate-500">Open Source</p>
-                      <h3 className="text-lg font-bold text-white">IACOS Intelligence Framework</h3>
-                    </div>
-                  </div>
-                  <p className="mb-4 max-w-lg text-sm leading-relaxed text-slate-400">
-                    The Investor Agentic Creator OS — our open-source framework powering every product.
-                    6 specialized agents, 10 research skills, and the SAVST methodology. Fork it, customize it, deploy it.
-                  </p>
-                  <div className="flex flex-wrap gap-3">
-                    {['6 Agents', '10 Skills', 'SAVST Framework', 'Setup Guide'].map((tag) => (
-                      <span key={tag} className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-xs font-medium text-slate-400">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-                <div className="flex flex-col gap-3 sm:items-end">
-                  <a
-                    href="https://github.com/frankxai/investor-intelligence"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.06] px-5 py-2.5 text-sm font-semibold text-white transition-all hover:bg-white/10"
-                  >
-                    <Github className="h-4 w-4" />
-                    View on GitHub
-                    <ExternalLink className="h-3.5 w-3.5 text-slate-500" />
-                  </a>
-                  <a
-                    href="https://github.com/frankxai/investor-intelligence#readme"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-sm text-slate-500 transition-colors hover:text-white"
-                  >
-                    Read Setup Guide
-                    <ArrowRight className="h-3.5 w-3.5" />
-                  </a>
-                </div>
-              </div>
-            </motion.div>
-          </div>
-        </section>
-
         {/* CTA */}
         <section className="border-t border-white/[0.04] py-16">
           <div className="mx-auto max-w-4xl px-6 text-center">
@@ -564,20 +602,18 @@ export default function InvestorHubPage() {
                 <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-amber-500/15 text-amber-400">
                   <DollarSign className="h-7 w-7" />
                 </div>
-                <h3 className="mb-3 text-2xl font-bold text-white">Start With the Free Starter Kit</h3>
+                <h3 className="mb-3 text-2xl font-bold text-white">Start Investing Smarter Today</h3>
                 <p className="mx-auto mb-8 max-w-lg leading-relaxed text-slate-400">
-                  5 Claude Code prompts for stock screening, a Notion deal tracker, and a PDF guide
-                  to AI-powered investment research. No credit card required.
+                  Free investment prompts for Claude, a Perplexity research workflow guide, and a portfolio
+                  tracking template. No credit card, no catch — just better research.
                 </p>
-                <a
-                  href="https://github.com/frankxai/investor-intelligence"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <Link
+                  href="#"
                   className="inline-flex items-center gap-2 rounded-full bg-amber-500 px-6 py-3 text-sm font-semibold text-white transition-all hover:-translate-y-0.5 hover:bg-amber-400 hover:shadow-lg hover:shadow-amber-500/20"
                 >
                   Download Free Kit
                   <ArrowRight className="h-4 w-4" />
-                </a>
+                </Link>
               </div>
             </motion.div>
           </div>

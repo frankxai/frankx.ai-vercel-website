@@ -38,7 +38,6 @@ import {
   Puzzle,
   Brain,
   Trophy,
-  ShoppingBag,
 } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
@@ -85,7 +84,7 @@ const navigation = {
     },
     items: [
       { name: 'Prompt Library', href: '/prompt-library', icon: Sparkles, description: '200+ curated prompts' },
-      { name: 'Templates', href: '/shop/templates', icon: FileText, description: 'Skill packs, workflows & starters' },
+      { name: 'Templates', href: '/templates', icon: FileText, description: 'Ready-to-use workflows' },
       { name: 'Creation Chronicles', href: '/creation-chronicles', icon: BookOpen, description: 'Behind the scenes' },
     ],
   },
@@ -133,23 +132,23 @@ const navigation = {
       { name: 'Prototypes (BYOK)', href: '/ai-architecture/prototypes', icon: Terminal, description: 'Try with your API keys' },
       { name: 'Templates', href: '/ai-architecture/templates', icon: Building, description: 'Starter kits ($29-199)' },
       { name: 'Tools', href: '/ai-architecture/tools', icon: Code2, description: 'Curated resources' },
-      { name: 'Developer Hub', href: '/developers', icon: Bot, description: 'Ship 10x faster with AI' },
+      { name: 'Developer Hub', href: '/developers', icon: Bot, description: 'Build faster with AI workflows' },
     ],
   },
   investor: {
     label: 'Investors',
     featured: {
-      title: 'Investor Intelligence',
-      description: 'AI agents, n8n workflows, and system architectures for smarter deal flow.',
+      title: 'Invest with AI',
+      description: 'Platforms, research tools, and AI prompts to invest smarter.',
       href: '/investor',
       badge: 'New',
     },
     items: [
-      { name: 'Intelligence Hub', href: '/investor', icon: TrendingUp, description: 'Central hub for investor AI tools' },
-      { name: 'AI Agent Packs', href: '/investor/agents', icon: Bot, description: 'Due diligence & deal flow agents' },
-      { name: 'Workflow Templates', href: '/investor/workflows', icon: Workflow, description: 'n8n automated pipelines' },
-      { name: 'Architectures', href: '/investor/architectures', icon: Network, description: 'Intelligence system blueprints' },
-      { name: 'Tools & Templates', href: '/investor/tools', icon: Wrench, description: 'Notion, Obsidian, workspace configs' },
+      { name: 'Intelligence Hub', href: '/investor', icon: TrendingUp, description: 'AI-powered investing tools & research' },
+      { name: 'Platform Picks', href: '/investor#platforms', icon: Star, description: 'Revolut, eToro, Crypto.com & more' },
+      { name: 'AI Research Stack', href: '/investor#ai-tools', icon: Brain, description: 'Perplexity, Claude & GPT for investing' },
+      { name: 'Agent Packs', href: '/investor/agents', icon: Bot, description: 'Automated analysis & research agents' },
+      { name: 'Tools & Templates', href: '/investor/tools', icon: Wrench, description: 'Dashboards, trackers & workspace configs' },
     ],
   },
   resources: {
@@ -162,7 +161,6 @@ const navigation = {
     },
     items: [
       { name: 'Resource Hub', href: '/resources', icon: Sparkles, description: 'All systems, guides, and tools' },
-      { name: 'Shop', href: '/shop', icon: ShoppingBag, description: 'Templates, tools & digital products' },
       { name: 'The Golden Age of Creators', href: '/golden-age', icon: BookOpen, description: 'Book on creative transformation' },
       { name: "The Creator's Soulbook", href: '/soulbook', icon: BookOpen, description: 'Your life transformation system' },
       { name: 'Free Playbooks', href: '/free-playbook', icon: FileText, description: 'Start with quick wins' },
@@ -174,22 +172,23 @@ const navigation = {
       { name: 'ArcaneaVault', href: '/vault', icon: Layers, description: 'Visual asset library' },
       { name: 'Vibe OS', href: '/products/vibe-os', icon: Music, description: 'AI music system' },
       { name: 'Agentic Creator OS', href: '/products/agentic-creator-os', icon: Bot, description: 'Agent workflows' },
-      { name: 'Arcanea', href: '/books#arcanea', icon: Wand2, description: 'Mythological book universe' },
+      { name: 'Arcanea', href: '/magic', icon: Wand2, description: 'Worldbuilding academy' },
       { name: 'The Luminors', href: 'https://arcanea.app', icon: Heart, description: 'AI companions', external: true },
-      { name: 'The Library', href: '/books', icon: BookOpen, description: '11 books, free to read' },
+      { name: 'About', href: '/about', icon: Users, description: 'Story, mission & team' },
+      { name: 'Contact', href: '/contact', icon: Compass, description: 'Get in touch' },
     ],
     groups: [
       {
         label: 'Products & Systems',
-        items: ['Resource Hub', 'Shop', 'Vibe OS', 'Agentic Creator OS', 'Arcanea', 'The Luminors'],
+        items: ['Resource Hub', 'Vibe OS', 'Agentic Creator OS', 'Arcanea', 'The Luminors'],
       },
       {
         label: 'Learn & Read',
-        items: ['The Golden Age of Creators', "The Creator's Soulbook", 'Free Playbooks', 'Prompt Library', 'The Library'],
+        items: ['The Golden Age of Creators', "The Creator's Soulbook", 'Free Playbooks', 'Prompt Library', 'About'],
       },
       {
         label: 'Research & Tools',
-        items: ['Downloads', 'Research Hub', 'Intelligence Atlas', 'AI Architect', 'ArcaneaVault'],
+        items: ['Downloads', 'Research Hub', 'Intelligence Atlas', 'AI Architect', 'ArcaneaVault', 'Contact'],
       },
     ],
   },
@@ -514,33 +513,6 @@ export default function NavigationMega() {
               </Link>
             </NavigationMenu.Item>
 
-            <NavigationMenu.Item>
-              <Link
-                href="/about"
-                className={cn(
-                  'rounded-md px-2.5 py-1.5 text-[13px] font-semibold transition-all',
-                  isActive('/about')
-                    ? 'text-white bg-white/5'
-                    : 'text-slate-300 hover:text-white hover:bg-white/5'
-                )}
-              >
-                About
-              </Link>
-            </NavigationMenu.Item>
-
-            <NavigationMenu.Item>
-              <Link
-                href="/contact"
-                className={cn(
-                  'rounded-md px-2.5 py-1.5 text-[13px] font-semibold transition-all',
-                  isActive('/contact')
-                    ? 'text-white bg-white/5'
-                    : 'text-slate-300 hover:text-white hover:bg-white/5'
-                )}
-              >
-                Contact
-              </Link>
-            </NavigationMenu.Item>
 
             <NavigationMenu.Indicator className="top-full z-10 flex h-2 items-end justify-center overflow-hidden transition-[width,transform_250ms_ease] data-[state=hidden]:animate-fadeOut data-[state=visible]:animate-fadeIn">
               <div className="relative top-[60%] h-2 w-2 rotate-45 rounded-tl-sm bg-slate-800 shadow-lg" />
@@ -558,7 +530,7 @@ export default function NavigationMega() {
             href="/free-playbook"
             className="rounded-2xl bg-gradient-to-r from-emerald-600 to-cyan-600 px-4 py-2 text-sm font-semibold text-white transition-all hover:from-emerald-500 hover:to-cyan-500 hover:shadow-lg hover:shadow-emerald-500/20"
           >
-            Free Playbooks
+            Start Building
           </Link>
         </div>
 
@@ -596,20 +568,6 @@ export default function NavigationMega() {
               >
                 Blog
               </Link>
-              <Link
-                href="/about"
-                onClick={() => setIsOpen(false)}
-                className="block rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base font-medium text-slate-300 transition-colors hover:bg-white/5 hover:text-white"
-              >
-                About
-              </Link>
-              <Link
-                href="/contact"
-                onClick={() => setIsOpen(false)}
-                className="block rounded-lg px-3 sm:px-4 py-2.5 sm:py-3 text-sm sm:text-base font-medium text-slate-300 transition-colors hover:bg-white/5 hover:text-white"
-              >
-                Contact
-              </Link>
 
               {/* Mobile CTA */}
               <div className="pt-3 sm:pt-4 pb-2">
@@ -618,7 +576,7 @@ export default function NavigationMega() {
                   onClick={() => setIsOpen(false)}
                   className="block w-full rounded-2xl bg-gradient-to-r from-emerald-600 to-cyan-600 py-2.5 sm:py-3 text-center text-sm font-semibold text-white"
                 >
-                  Get Free Playbooks
+                  Start Building
                 </Link>
               </div>
             </div>
