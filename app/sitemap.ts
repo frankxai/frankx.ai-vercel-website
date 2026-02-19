@@ -192,6 +192,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/legal',
   ]
 
+  // Strategy and framework pages
+  const strategyPages = [
+    { url: '/youtube', priority: 0.9, changeFrequency: 'weekly' as const },
+    { url: '/opus-pro', priority: 0.8, changeFrequency: 'weekly' as const },
+  ]
+
+  // Video and Ritual pages
+  const videoPages = [
+    { url: '/watch', priority: 0.8, changeFrequency: 'weekly' as const },
+    { url: '/rituals', priority: 0.8, changeFrequency: 'monthly' as const },
+  ]
+
   // Section pages (important navigation destinations)
   const sectionPages = [
     { url: '/vision', priority: 0.8, changeFrequency: 'weekly' as const },
@@ -288,16 +300,35 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   })
 
-  // Research hub pages
-  researchPages.forEach(page => {
-    entries.push({
-      url: `${BASE_URL}${page.url}`,
-      lastModified: currentDate,
-      changeFrequency: page.changeFrequency,
-      priority: page.priority,
+    // Research hub pages
+    researchPages.forEach(page => {
+      entries.push({
+        url: `${BASE_URL}${page.url}`,
+        lastModified: currentDate,
+        changeFrequency: page.changeFrequency,
+        priority: page.priority,
+      })
     })
-  })
-
+  
+      // Strategy pages
+      strategyPages.forEach(page => {
+        entries.push({
+          url: `${BASE_URL}${page.url}`,
+          lastModified: currentDate,
+          changeFrequency: page.changeFrequency,
+          priority: page.priority,
+        })
+      })
+    
+      // Video pages
+      videoPages.forEach(page => {
+        entries.push({
+          url: `${BASE_URL}${page.url}`,
+          lastModified: currentDate,
+          changeFrequency: page.changeFrequency,
+          priority: page.priority,
+        })
+      })
   // Research domain pages (dynamic from registry)
   researchDomains.forEach(domain => {
     entries.push({

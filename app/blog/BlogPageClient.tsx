@@ -163,6 +163,24 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
               getCategoryCount={getCategoryCount}
             />
 
+            <div className="hidden md:flex items-center gap-2 border-l border-white/10 pl-4 ml-4">
+              <span className="text-xs font-medium text-white/40 uppercase tracking-wider">Frameworks:</span>
+              <Link 
+                href="/youtube" 
+                className="px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-white/70 hover:bg-white/10 transition-colors flex items-center gap-1.5"
+              >
+                <div className="w-1.5 h-1.5 rounded-full bg-red-500" />
+                Video Intelligence
+              </Link>
+              <Link 
+                href="/opus-pro" 
+                className="px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs text-white/70 hover:bg-white/10 transition-colors flex items-center gap-1.5"
+              >
+                <div className="w-1.5 h-1.5 rounded-full bg-purple-500" />
+                Short-Form Nexus
+              </Link>
+            </div>
+
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}

@@ -1,0 +1,125 @@
+[
+  {
+    "id": "VMj-3S1tku0",
+    "title": "The Spelled-out Intro to Neural Networks",
+    "author": "Andrej Karpathy",
+    "category": "AI Architecture",
+    "personas": ["developer", "architect"],
+    "tags": ["neural networks", "first principles", "coding"],
+    "description": "The gold standard for understanding AI. Karpathy builds a neural net from scratch in Python.",
+    "featured": true
+  },
+  {
+    "id": "pOLR5jE5Vjw",
+    "title": "The State of AI Engineering",
+    "author": "Simon Willison",
+    "category": "AI Engineering",
+    "personas": ["developer", "architect"],
+    "tags": ["llm", "engineering", "pragmatic"],
+    "description": "A pragmatic breakdown of what it means to be an AI Engineer in the modern era.",
+    "featured": true
+  },
+  {
+    "id": "zdkGXDq1jqM",
+    "title": "How to Learn Anything",
+    "author": "Feynman Technique",
+    "category": "Learning",
+    "personas": ["student", "creator"],
+    "tags": ["learning", "mental models", "growth"],
+    "description": "Master the art of learning with the Feynman technique. Essential for keeping up with AI velocity.",
+    "featured": false
+  },
+  {
+    "id": "n9iv24yI04nI",
+    "title": "Rick Rubin: The Creative Act",
+    "author": "60 Minutes",
+    "category": "Creativity",
+    "personas": ["creator", "artist"],
+    "tags": ["mindset", "art", "philosophy"],
+    "description": "Legendary producer Rick Rubin on listening to the universe and removing the ego from creation.",
+    "featured": true
+  },
+  {
+    "id": "uRuLgar5XZw",
+    "title": "AI Tools Without the Hype",
+    "author": "Simon Willison",
+    "category": "AI Engineering",
+    "personas": ["developer"],
+    "tags": ["tools", "coding", "productivity"],
+    "description": "Cutting through the marketing noise to find tools that actually ship code.",
+    "featured": false
+  },
+  {
+    "id": "Ta5g-OxjPO4",
+    "title": "Build Anything with Claude Code",
+    "author": "David Ondrej",
+    "category": "AI Engineering",
+    "personas": ["developer", "creator"],
+    "tags": ["claude", "coding", "tutorial"],
+    "description": "A hands-on build log showing the raw power of Claude 3.7's agentic coding capabilities.",
+    "featured": false
+  },
+  {
+    "id": "BSjQk-7j3X0",
+    "title": "The Infinite Game",
+    "author": "Simon Sinek",
+    "category": "Strategy",
+    "personas": ["investor", "architect"],
+    "tags": ["business", "mindset", "long-term"],
+    "description": "Why we are playing the wrong game in business and how to shift to an infinite mindset.",
+    "featured": true
+  },
+  {
+    "id": "Cqbleas1mmo",
+    "title": "The Psychology of Your Future Self",
+    "author": "Dr. Hal Hershfield",
+    "category": "Mindset",
+    "personas": ["student", "investor"],
+    "tags": ["psychology", "planning", "vision"],
+    "description": "Connecting with your future self to make better long-term decisions today.",
+    "featured": false
+  },
+  {
+    "id": "5MUvJv_sB64",
+    "title": "Sam Altman on The Future of AI",
+    "author": "Lex Fridman",
+    "category": "Strategy",
+    "personas": ["investor", "architect"],
+    "tags": ["agi", "future", "openai"],
+    "description": "A deep conversation on the trajectory of AGI and the societal shifts coming next.",
+    "featured": true
+  },
+  {
+    "id": "dQw4w9WgXcQ",
+    "title": "Morning Prime: Focus Frequency",
+    "author": "FrankX Rituals",
+    "category": "Rituals",
+    "personas": ["creator", "developer", "student", "investor"],
+    "tags": ["music", "focus", "morning"],
+    "description": "Binaural beats for deep work and morning alignment. Start your day here.",
+    "featured": true,
+    "isRitual": true
+  },
+  {
+    "id": "jfKfPfyJRdk",
+    "title": "Lofi Girl - chill beats to study/relax to",
+    "author": "Lofi Girl",
+    "category": "Rituals",
+    "personas": ["student", "developer"],
+    "tags": ["music", "focus", "background"],
+    "description": "The internet's favorite focus companion. Perfect for coding blocks.",
+    "featured": false,
+    "isRitual": true
+  },
+  {
+    "id": "hY1-J8Wd1ng",
+    "title": "Deep Work Visualization",
+    "author": "FrankX Rituals",
+    "category": "Rituals",
+    "personas": ["creator", "developer"],
+    "tags": ["meditation", "visualization", "prep"],
+    "description": "A 5-minute guided visualization to prime your brain for intense cognitive load.",
+    "featured": true,
+    "isRitual": true
+  }
+]
