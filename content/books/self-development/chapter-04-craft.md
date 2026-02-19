@@ -2,7 +2,7 @@
 
 ---
 
-*The fourth pillar. The bridge between who you are and what you create.*
+_The fourth pillar. The bridge between who you are and what you create._
 
 ---
 
@@ -87,4 +87,4 @@ This is the virtuous cycle of craft.
 
 ---
 
-*Craft is not about being the best. It is about being better than you were yesterday, and trusting that ten years of that will produce something extraordinary.*
+_Craft is not about being the best. It is about being better than you were yesterday, and trusting that ten years of that will produce something extraordinary._

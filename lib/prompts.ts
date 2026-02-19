@@ -3114,7 +3114,7 @@ Announcement:
   {
     id: 'aot-parallel-reasoning',
     title: 'Atom-of-Thoughts Parallel Reasoner',
-    description: 'Solve complex problems 3-5x faster using parallel atomic reasoning chains.',
+    description: 'Solve complex problems with structured parallel atomic reasoning chains.',
     content: `You are operating in ATOM-OF-THOUGHTS MODE. Solve this problem using parallel reasoning chains.
 
 **PROBLEM TO SOLVE:**

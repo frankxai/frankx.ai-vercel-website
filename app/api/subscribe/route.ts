@@ -25,6 +25,9 @@ const LIST_CONFIG: Record<string, { topics: string[] }> = {
   'music-lab': {
     topics: [TOPICS['music-suno'], TOPICS.newsletter],
   },
+  'courses-waitlist': {
+    topics: [TOPICS.newsletter],
+  },
 }
 
 async function sendWelcomeEmail(email: string, name: string, listType: string) {

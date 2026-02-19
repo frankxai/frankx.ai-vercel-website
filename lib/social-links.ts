@@ -127,40 +127,6 @@ export const SHARE_URLS = {
   },
 
   /**
-   * Generate WhatsApp share URL
-   * @param text - Message text
-   * @param url - URL to share
-   */
-  whatsapp: (text: string, url: string) => {
-    const params = new URLSearchParams({
-      text: `${text} ${url}`
-    })
-    return `https://wa.me/?${params.toString()}`
-  },
-
-  /**
-   * Generate Telegram share URL
-   * @param text - Message text
-   * @param url - URL to share
-   */
-  telegram: (text: string, url: string) => {
-    const params = new URLSearchParams({
-      url,
-      text
-    })
-    return `https://t.me/share/url?${params.toString()}`
-  },
-
-  /**
-   * Generate Facebook share URL
-   * @param url - URL to share
-   */
-  facebook: (url: string) => {
-    const params = new URLSearchParams({ u: url })
-    return `https://www.facebook.com/sharer/sharer.php?${params.toString()}`
-  },
-
-  /**
    * Generate email share
    * @param subject - Email subject
    * @param body - Email body
@@ -171,7 +137,22 @@ export const SHARE_URLS = {
       body
     })
     return `mailto:?${params.toString()}`
-  }
+  },
+
+  whatsapp: (text: string, url: string) => {
+    const params = new URLSearchParams({ text: `${text} ${url}` })
+    return `https://wa.me/?${params.toString()}`
+  },
+
+  telegram: (text: string, url: string) => {
+    const params = new URLSearchParams({ text, url })
+    return `https://t.me/share/url?${params.toString()}`
+  },
+
+  facebook: (url: string) => {
+    const params = new URLSearchParams({ u: url })
+    return `https://www.facebook.com/sharer/sharer.php?${params.toString()}`
+  },
 } as const
 
 /**

@@ -575,12 +575,7 @@
       "description": "Production workflows I use daily: blog publishing, ops reports, client onboarding, content repurposing, code review. Copy these patterns and automate the grind.",
       "brand": "frankx",
       "status": "published",
-      "tags": [
-        "workflows",
-        "automation",
-        "productivity",
-        "agentic ai"
-      ],
+      "tags": ["workflows", "automation", "productivity", "agentic ai"],
       "createdAt": "2026-01-22",
       "updatedAt": null,
       "slug": "agentic-workflows-save-hours",
@@ -718,12 +713,7 @@
       "description": "Set up your own AI operating system in 30 minutes. Step-by-step guide to installing departments, MCP servers, and running your first automated workflow.",
       "brand": "frankx",
       "status": "published",
-      "tags": [
-        "tutorial",
-        "claude code",
-        "agentic ai",
-        "getting started"
-      ],
+      "tags": ["tutorial", "claude code", "agentic ai", "getting started"],
       "createdAt": "2026-01-21",
       "updatedAt": null,
       "slug": "getting-started-agentic-creator-os",
@@ -1168,7 +1158,7 @@
       "id": "what-is-agentic-ai",
       "type": "blog",
       "title": "What is Agentic AI? The Shift From Tools to Collaborators",
-      "description": "Agentic AI doesn't wait for prompts—it acts. After building production agent systems at Oracle, here's what actually matters about autonomous AI.",
+      "description": "Agentic AI doesn't wait for prompts—it acts. After building production agent systems in enterprise, here's what actually matters about autonomous AI.",
       "brand": "frankx",
       "status": "published",
       "tags": [],
@@ -1183,7 +1173,7 @@
       "seriesOrder": null,
       "featured": false,
       "seoTitle": "What is Agentic AI? The Shift From Tools to Collaborators",
-      "seoDescription": "Agentic AI doesn't wait for prompts—it acts. After building production agent systems at Oracle, here's what actually matters about autonomous AI.",
+      "seoDescription": "Agentic AI doesn't wait for prompts—it acts. After building production agent systems in enterprise, here's what actually matters about autonomous AI.",
       "ogImage": "/images/blog/what-is-agentic-ai-hero.png",
       "author": "Frank"
     },
@@ -1263,13 +1253,7 @@
       "description": "How tempo, mode, and lyrics create predictable emotional outcomes—backed by peer-reviewed research",
       "brand": "frankx",
       "status": "published",
-      "tags": [
-        "music",
-        "psychology",
-        "productivity",
-        "creativity",
-        "vibe-os"
-      ],
+      "tags": ["music", "psychology", "productivity", "creativity", "vibe-os"],
       "createdAt": "2025-01-05",
       "updatedAt": null,
       "slug": "science-of-state-change-music",
@@ -1349,12 +1333,7 @@
       "description": "Everyone has a unique creative frequency — a way of expressing that's authentically yours. Here's how to discover yours and use AI to amplify it, not mask it.",
       "brand": "frankx",
       "status": "published",
-      "tags": [
-        "Creativity",
-        "Personal Development",
-        "AI Tools",
-        "Framework"
-      ],
+      "tags": ["Creativity", "Personal Development", "AI Tools", "Framework"],
       "createdAt": "2024-08-20",
       "updatedAt": null,
       "slug": "soul-frequency-framework",

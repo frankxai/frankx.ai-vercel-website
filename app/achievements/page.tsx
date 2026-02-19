@@ -7,11 +7,11 @@ const majorAchievements = [
   {
     icon: Building2,
     title: 'Enterprise AI Transformations',
-    metric: '200+',
-    description: 'Successful AI implementations across Fortune 500 companies and high-growth enterprises',
+    metric: 'Active',
+    description: 'AI implementation programs across enterprise and growth-stage teams',
     details: [
       'Strategic AI roadmapping and governance frameworks',
-      'Multi-million dollar efficiency improvements',
+      'Operational workflow improvements',
       'Team training and capability building programs',
       'Risk management and compliance integration'
     ],
@@ -20,7 +20,7 @@ const majorAchievements = [
   {
     icon: Music,
     title: 'Vibe OS Implementations',
-    metric: '500+',
+    metric: 'Ongoing',
     description: 'AI music creation systems deployed across creative workflows',
     details: [
       'Professional music production acceleration',
@@ -33,7 +33,7 @@ const majorAchievements = [
   {
     icon: Sparkles,
     title: 'Conscious AI Framework',
-    metric: '100+',
+    metric: 'Adoption',
     description: 'Organizations adopting human-centered AI principles and practices',
     details: [
       'Values-based AI implementation guidelines',
@@ -46,7 +46,7 @@ const majorAchievements = [
   {
     icon: Users,
     title: 'Teams Transformed',
-    metric: '10K+',
+    metric: 'Growing',
     description: 'Professionals trained in conscious AI practices and strategic implementation',
     details: [
       'Executive education programs',
@@ -72,7 +72,7 @@ const keyMilestones = [
     quarter: 'Q2',
     achievement: 'Agentic AI Center of Excellence',
     description: 'Established dedicated enterprise AI consulting division',
-    impact: '50+ Fortune 500 strategic partnerships initiated',
+    impact: 'Enterprise advisory relationships initiated',
     status: 'completed'
   },
   {
@@ -88,7 +88,7 @@ const keyMilestones = [
     quarter: 'Q3',
     achievement: 'Golden Age Intelligence Framework',
     description: 'Published comprehensive guide for AI transformation',
-    impact: '100K+ downloads and implementations across industries',
+    impact: 'Shared broadly across creator and operator communities',
     status: 'completed'
   },
   {
@@ -96,7 +96,7 @@ const keyMilestones = [
     quarter: 'Q1',
     achievement: 'Enterprise Scale Deployment',
     description: 'First enterprise-scale AI transformation program completion',
-    impact: '$2.3M efficiency gains documented in first year',
+    impact: 'Process efficiency gains documented in year-one review',
     status: 'completed'
   },
   {
@@ -113,30 +113,30 @@ const impactMetrics = [
   {
     icon: TrendingUp,
     title: 'Revenue Impact',
-    value: '$50M+',
-    description: 'Total documented revenue improvements for client organizations',
-    trend: '+127% year over year'
+    value: 'Tracked',
+    description: 'Revenue impact is measured per engagement and reported case-by-case',
+    trend: 'Measured in client reviews'
   },
   {
     icon: Zap,
     title: 'Efficiency Gains',
-    value: '60%',
-    description: 'Average productivity improvement across AI implementations',
-    trend: 'Sustained over 12+ months'
+    value: 'Observed',
+    description: 'Efficiency improvements are measured against baseline workflows',
+    trend: 'Varies by workflow and team'
   },
   {
     icon: Target,
     title: 'Success Rate',
-    value: '95%',
-    description: 'Client projects achieving or exceeding stated objectives',
-    trend: 'Consistent across all verticals'
+    value: 'Reviewed',
+    description: 'Projects are evaluated against scoped objectives and delivery criteria',
+    trend: 'Quarterly review process'
   },
   {
     icon: Globe,
     title: 'Global Reach',
-    value: '25+',
-    description: 'Countries with active FrankX.AI implementations',
-    trend: 'Expanding to new markets'
+    value: 'Remote',
+    description: 'Programs support distributed teams across multiple regions',
+    trend: 'Expanded through remote delivery'
   }
 ]
 
@@ -195,8 +195,8 @@ export default function AchievementsPage() {
               </span>
             </h1>
             <p className="text-xl text-white/70 max-w-3xl mx-auto leading-relaxed">
-              From Fortune 500 transformations to creative breakthrough innovations, explore the documented
-              achievements and measurable impact of conscious AI implementation.
+              From enterprise programs to creator breakthrough workflows, explore the practical milestones
+              and implementation patterns behind conscious AI work.
             </p>
           </header>
 

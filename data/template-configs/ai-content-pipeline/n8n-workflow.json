@@ -1,0 +1,55 @@
+{
+  "name": "AI Content Pipeline - FrankX Template",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [{ "field": "hours", "hoursInterval": 24 }]
+        }
+      },
+      "name": "Daily Trigger",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "url": "={{ $env.CONTENT_API_URL }}/api/generate",
+        "method": "POST",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            { "name": "type", "value": "blog" },
+            { "name": "topic", "value": "={{ $json.topic }}" }
+          ]
+        }
+      },
+      "name": "Generate Content",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [470, 300]
+    },
+    {
+      "parameters": {
+        "url": "={{ $env.CONTENT_API_URL }}/api/queue",
+        "method": "POST",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            { "name": "content", "value": "={{ $json.content }}" },
+            { "name": "status", "value": "draft" }
+          ]
+        }
+      },
+      "name": "Add to Queue",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [690, 300]
+    }
+  ],
+  "connections": {
+    "Daily Trigger": { "main": [[{ "node": "Generate Content", "type": "main", "index": 0 }]] },
+    "Generate Content": { "main": [[{ "node": "Add to Queue", "type": "main", "index": 0 }]] }
+  },
+  "_comment": "FrankX AI Content Pipeline template. Customize CONTENT_API_URL in n8n credentials."
+}

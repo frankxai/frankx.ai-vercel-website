@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Cloud Partner Program | FrankX Research</title>
+    <meta name="description" content="Google Cloud partner program: outcome-based model with 21 competencies, new Diamond tier, and AI-driven program management launching Q1 2026.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gcp-blue: #4285F4;
+            --gcp-green: #34A853;
+            --bg-dark: #0f172a;
+            --bg-darker: #020617;
+            --text-light: #e2e8f0;
+            --text-muted: #94a3b8;
+            --border-color: #1e293b;
+            --card-bg: #1e293b;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-darker);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        header {
+            background: var(--bg-dark);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--gcp-blue), var(--gcp-green));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .logo-text {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            margin-left: 2rem;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        nav a:hover { color: var(--gcp-blue); }
+
+        .hero {
+            background: linear-gradient(135deg, #4285F4 0%, #34A853 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+            border-bottom: 4px solid var(--gcp-blue);
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: white;
+        }
+
+        .hero .subtitle {
+            font-size: 1.2rem;
+            color: white;
+            margin-bottom: 2rem;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: white;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section {
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+            color: var(--gcp-blue);
+        }
+
+        .tier-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .tier-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 2rem;
+            border: 1px solid var(--border-color);
+            border-top: 4px solid var(--gcp-blue);
+        }
+
+        .tier-card h3 {
+            font-size: 1.3rem;
+            color: var(--gcp-blue);
+            margin-bottom: 0.75rem;
+        }
+
+        .tier-card .acv {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gcp-green);
+            margin-bottom: 0.5rem;
+        }
+
+        .tier-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .tier-card ul {
+            list-style: none;
+        }
+
+        .tier-card li {
+            padding: 0.5rem 0;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .tier-card li:last-child {
+            border-bottom: none;
+        }
+
+        .tier-card li::before {
+            content: "✓";
+            color: var(--gcp-blue);
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .outcome-section {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 2rem;
+            border-left: 4px solid var(--gcp-green);
+        }
+
+        .outcome-section h3 {
+            color: var(--gcp-green);
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+        }
+
+        .outcome-highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .outcome-item {
+            background: var(--bg-dark);
+            padding: 1.25rem;
+            border-radius: 8px;
+            border-top: 3px solid var(--gcp-blue);
+        }
+
+        .outcome-item h4 {
+            color: var(--gcp-blue);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .outcome-item p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .competency-section {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 2rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .competency-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .competency-category {
+            background: var(--bg-dark);
+            padding: 1.25rem;
+            border-radius: 8px;
+        }
+
+        .competency-category h4 {
+            color: var(--gcp-blue);
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .competency-category ul {
+            list-style: none;
+        }
+
+        .competency-category li {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            padding: 0.25rem 0;
+        }
+
+        .competency-category li::before {
+            content: "•";
+            color: var(--gcp-green);
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, var(--gcp-blue), var(--gcp-green));
+            padding: 3rem;
+            border-radius: 16px;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .cta-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: white;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: white;
+            color: var(--gcp-blue);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+        }
+
+        .cta-button.secondary {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+
+        footer {
+            background: var(--bg-dark);
+            border-top: 1px solid var(--border-color);
+            padding: 2rem;
+            margin-top: 4rem;
+            text-align: center;
+        }
+
+        footer p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        footer a {
+            color: var(--gcp-blue);
+            text-decoration: none;
+            margin: 0 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .tier-grid, .outcome-highlights, .competency-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon">F</div>
+                <div class="logo-text">FrankX Research</div>
+            </div>
+            <nav>
+                <a href="index.html">← Back to Hub</a>
+                <a href="comparison.html">Comparison</a>
+                <a href="https://frankx.ai/research/">All Research</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="hero">
+        <h1>Google Cloud Partner Program</h1>
+        <p class="subtitle">Outcome-based model with 21 competencies and new Diamond tier launching Q1 2026</p>
+        <div class="hero-stats">
+            <div class="stat">
+                <div class="stat-value">3 Tiers</div>
+                <div class="stat-label">Select / Premier / Diamond</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">21</div>
+                <div class="stat-label">Total Competencies</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">Q1 2026</div>
+                <div class="stat-label">New Program Launch</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="section">
+            <h2 class="section-title">2026 Partner Tier Structure</h2>
+            <p style="color: var(--text-muted); margin-bottom: 2rem;">Google Cloud overhauled its partner program with a new three-tier structure launching Q1 2026. Tiers based on partner co-sell ACV with six-month transition window for all partners.</p>
+            
+            <div class="tier-grid">
+                <div class="tier-card">
+                    <h3>Select</h3>
+                    <div class="acv">$250K ACV</div>
+                    <p>Entry tier for partners building Google Cloud practice</p>
+                    <ul>
+                        <li>$250K partner co-sell ACV</li>
+                        <li>Access to new partner portal</li>
+                        <li>Base enablement resources</li>
+                        <li>Competency framework access</li>
+                    </ul>
+                </div>
+
+                <div class="tier-card">
+                    <h3>Premier</h3>
+                    <div class="acv">$2M ACV</div>
+                    <p>Established partners with proven customer success</p>
+                    <ul>
+                        <li>$2M partner co-sell ACV</li>
+                        <li>Advanced GTM support</li>
+                        <li>Competency-based differentiation</li>
+                        <li>Priority enablement</li>
+                        <li>Co-innovation opportunities</li>
+                    </ul>
+                </div>
+
+                <div class="tier-card">
+                    <h3>Diamond (NEW)</h3>
+                    <div class="acv">$20M ACV</div>
+                    <p>Elite partners with global-scale capabilities</p>
+                    <ul>
+                        <li>$20M partner co-sell ACV</li>
+                        <li>20 implemented workloads</li>
+                        <li>30 co-sell influenced opportunities</li>
+                        <li>200 professional certifications</li>
+                        <li>Dedicated partner success team</li>
+                        <li>Maximum outcome-based rebates</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Outcome-Based Revenue Model</h2>
+            
+            <div class="outcome-section">
+                <h3>Variable Rewards Linked to Customer Success</h3>
+                <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Google Cloud pioneered outcome-based partner rewards in 2026, shifting from flat fees to variable incentives tied to real-world customer metrics. Rewards based on retention rates, ROI from migrations, and long-term engagement.</p>
+                
+                <div class="outcome-highlights">
+                    <div class="outcome-item">
+                        <h4>Retention Rewards</h4>
+                        <p>Bonuses tied to customer retention rates. Partners incentivized to ensure customer success, not just initial deal closure.</p>
+                    </div>
+                    
+                    <div class="outcome-item">
+                        <h4>Migration ROI</h4>
+                        <p>Variable rewards linked to measured ROI from customer migrations. Partners rewarded for demonstrable business value.</p>
+                    </div>
+                    
+                    <div class="outcome-item">
+                        <h4>Co-Sell Influence</h4>
+                        <p>Rewards for pre-sales influence, co-innovation, and post-sales support. Recognizes full lifecycle engagement.</p>
+                    </div>
+                    
+                    <div class="outcome-item">
+                        <h4>Service Delivery Quality</h4>
+                        <p>Bonuses for service delivery excellence. Customer satisfaction scores and NPS impact partner rewards.</p>
+                    </div>
+
+                    <div class="outcome-item">
+                        <h4>ISV Innovation</h4>
+                        <p>Rewards for ISV partners bringing innovative solutions. Encourages ecosystem platform development.</p>
+                    </div>
+                    
+                    <div class="outcome-item">
+                        <h4>AI/Automation</h4>
+                        <p>Reduced administrative burden via AI-driven program management. Automated rebate calculations and reporting.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">21 Competencies (Independent of Tier)</h2>
+            
+            <div class="competency-section">
+                <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Google Cloud introduced 21 competencies measuring <strong>Capacity</strong> (certifications, sales credentials) and <strong>Capability</strong> (pre-sales/post-sales contributions). Competencies operate independently from tier levels.</p>
+                
+                <div class="competency-grid">
+                    <div class="competency-category">
+                        <h4>6 Solution Competencies</h4>
+                        <ul>
+                            <li>Infrastructure</li>
+                            <li>Data & Analytics</li>
+                            <li>AI/ML</li>
+                            <li>Application Development</li>
+                            <li>Security</li>
+                            <li>Migration & Modernization</li>
+                        </ul>
+                    </div>
+
+                    <div class="competency-category">
+                        <h4>5 Product Competencies</h4>
+                        <ul>
+                            <li>Google Workspace</li>
+                            <li>Google Cloud Platform</li>
+                            <li>Google Maps Platform</li>
+                            <li>Chrome Enterprise</li>
+                            <li>AppSheet</li>
+                        </ul>
+                    </div>
+
+                    <div class="competency-category">
+                        <h4>10 Industry Competencies</h4>
+                        <ul>
+                            <li>Financial Services</li>
+                            <li>Healthcare & Life Sciences</li>
+                            <li>Retail</li>
+                            <li>Manufacturing</li>
+                            <li>Media & Entertainment</li>
+                            <li>Telecommunications</li>
+                            <li>Energy & Utilities</li>
+                            <li>Public Sector</li>
+                            <li>Education</li>
+                            <li>Nonprofits</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div style="margin-top: 2rem; padding: 1.5rem; background: var(--bg-dark); border-radius: 8px; border-left: 4px solid var(--gcp-green);">
+                    <h4 style="color: var(--gcp-green); margin-bottom: 0.75rem;">Competency Benefits</h4>
+                    <ul style="list-style: none; color: var(--text-muted); font-size: 0.9rem;">
+                        <li style="padding: 0.25rem 0;">✓ Marketplace badge differentiation</li>
+                        <li style="padding: 0.25rem 0;">✓ Customer discovery enhancement</li>
+                        <li style="padding: 0.25rem 0;">✓ Specialized enablement tracks</li>
+                        <li style="padding: 0.25rem 0;">✓ GTM co-marketing eligibility</li>
+                        <li style="padding: 0.25rem 0;">✓ Competency-specific funding opportunities</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Architecture Framework (6 Pillars)</h2>
+            
+            <div style="background: var(--card-bg); border-radius: 12px; padding: 2rem; border: 1px solid var(--border-color);">
+                <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Google Cloud Architecture Framework provides canonical best practices for partners and cloud users. Focus on security, reliability, performance, cost, operations, and sustainability.</p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem;">
+                    <div style="background: var(--bg-dark); padding: 1rem; border-radius: 8px; border-top: 3px solid var(--gcp-blue);">
+                        <h4 style="color: var(--gcp-blue); font-size: 1rem; margin-bottom: 0.5rem;">Security</h4>
+                        <p style="color: var(--text-muted); font-size: 0.85rem;">Zero-trust, IAM, encryption, compliance</p>
+                    </div>
+
+                    <div style="background: var(--bg-dark); padding: 1rem; border-radius: 8px; border-top: 3px solid var(--gcp-blue);">
+                        <h4 style="color: var(--gcp-blue); font-size: 1rem; margin-bottom: 0.5rem;">Reliability</h4>
+                        <p style="color: var(--text-muted); font-size: 0.85rem;">Availability, disaster recovery, SRE practices</p>
+                    </div>
+
+                    <div style="background: var(--bg-dark); padding: 1rem; border-radius: 8px; border-top: 3px solid var(--gcp-blue);">
+                        <h4 style="color: var(--gcp-blue); font-size: 1rem; margin-bottom: 0.5rem;">Performance</h4>
+                        <p style="color: var(--text-muted); font-size: 0.85rem;">Latency, scalability, resource efficiency</p>
+                    </div>
+
+                    <div style="background: var(--bg-dark); padding: 1rem; border-radius: 8px; border-top: 3px solid var(--gcp-blue);">
+                        <h4 style="color: var(--gcp-blue); font-size: 1rem; margin-bottom: 0.5rem;">Cost</h4>
+                        <p style="color: var(--text-muted); font-size: 0.85rem;">FinOps, right-sizing, commitment discounts</p>
+                    </div>
+
+                    <div style="background: var(--bg-dark); padding: 1rem; border-radius: 8px; border-top: 3px solid var(--gcp-blue);">
+                        <h4 style="color: var(--gcp-blue); font-size: 1rem; margin-bottom: 0.5rem;">Operations</h4>
+                        <p style="color: var(--text-muted); font-size: 0.85rem;">Observability, automation, DevOps</p>
+                    </div>
+
+                    <div style="background: var(--bg-dark); padding: 1rem; border-radius: 8px; border-top: 3px solid var(--gcp-blue);">
+                        <h4 style="color: var(--gcp-blue); font-size: 1rem; margin-bottom: 0.5rem;">Sustainability</h4>
+                        <p style="color: var(--text-muted); font-size: 0.85rem;">Carbon-neutral operations, energy efficiency</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2>Compare Google Cloud with Other Providers</h2>
+            <p>See how Google's outcome-based model and 21 competencies compare with Oracle OPN, AWS APN, and Microsoft Azure.</p>
+            <div class="cta-buttons">
+                <a href="comparison.html" class="cta-button">View Full Comparison</a>
+                <a href="index.html" class="cta-button secondary">Back to Hub</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p><a href="index.html">Cloud Partner Hub</a> | <a href="oracle.html">Oracle OPN</a> | <a href="aws.html">AWS APN</a> | <a href="azure.html">Azure Partners</a> | <a href="https://frankx.ai/research/">All Research</a></p>
+        <p style="margin-top: 1rem;">Google Cloud Partner Program Research | February 2026 | FrankX AI Architect</p>
+        <p>Google Cloud and related marks are trademarks of Google LLC. This is independent research.</p>
+    </footer>
+</body>
+</html>

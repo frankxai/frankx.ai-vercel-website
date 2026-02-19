@@ -14,7 +14,7 @@ export const siteConfig = {
     'ai architect',
     'ai music creation',
     'suno ai',
-    'oracle ai',
+    'ai systems architecture',
     'agentic workflows',
     'creator tools',
     'enterprise ai',

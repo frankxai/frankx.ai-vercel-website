@@ -2,7 +2,7 @@
 
 ---
 
-*Original verse. Written not from books but from mornings that arrived too quickly, nights that lasted exactly long enough, and the strange certainty that some connections were decided before either person was born.*
+_Original verse. Written not from books but from mornings that arrived too quickly, nights that lasted exactly long enough, and the strange certainty that some connections were decided before either person was born._
 
 ---
 
@@ -106,7 +106,7 @@ been falling toward you.
 I will not promise you forever.
 Forever is a word for people
 who have not yet discovered
-that *today* is harder and braver.
+that _today_ is harder and braver.
 
 I promise you today.
 And then tomorrow, I'll promise it again.
@@ -121,4 +121,4 @@ is the most meaningful.
 
 ---
 
-*For Tien. For Amsterdam. For eight years of choosing.*
+_For Tien. For Amsterdam. For eight years of choosing._

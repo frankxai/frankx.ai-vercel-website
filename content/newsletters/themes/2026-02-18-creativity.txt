@@ -1,0 +1,41 @@
+FRANKX NEWSLETTER | Creativity
+2026-02-18
+
+Hi Frank,
+
+Creativity Is Still a Human Craft
+
+In an AI-rich environment, creative edge comes from discernment. Good work now depends less on raw generation and more on edit quality, emotional clarity, and contribution to real people.
+
+INSIGHTS
+1. Community shapes creative quality
+Strong creative ecosystems accelerate learning and standards. Builders improve faster when they share process, feedback, and references openly.
+
+2. Constraint improves originality
+Define scope before you create: audience, medium, and desired effect. Constraint-first creation usually produces stronger and more coherent output.
+
+3. Meaning beats volume
+Publishing more is easy. Publishing work that helps someone think or feel differently is the real bar.
+
+BUILD THIS WEEK
+1. Create one piece with a strict constraint (format + audience + outcome).
+2. Edit once for clarity, once for emotional signal, once for usefulness.
+3. Share one learning note publicly with your source references.
+
+RESEARCH SIGNALS
+- Open Source Guides: Building Community
+  https://opensource.guide/building-community/
+  Practical patterns for sustainable contributor culture.
+- OECD Generative AI topic
+  https://www.oecd.org/en/topics/generative-ai.html
+  Useful context on where and how generative AI is being used.
+- Props to the Builders (FrankX)
+  https://www.frankx.ai/blog/props-to-the-builders-of-this-era
+  Current FrankX positioning on grounded collaboration and craft.
+
+CTA
+Read Creativity Essays: https://www.frankx.ai/blog/ai-doesnt-have-to-be-soulless
+
+---
+FrankX.ai
+Unsubscribe: {{RESEND_UNSUBSCRIBE_URL}}

@@ -2,7 +2,7 @@
 
 ---
 
-*Seven meditations on the heart, from the mystic poet who understood that love is the only language the universe truly speaks.*
+_Seven meditations on the heart, from the mystic poet who understood that love is the only language the universe truly speaks._
 
 ---
 
@@ -82,4 +82,4 @@ Love does not remove the hardness from life. It transmutes it. And that is bette
 
 ---
 
-*These are not ancient words about a distant time. These are instructions for right now.*
+_These are not ancient words about a distant time. These are instructions for right now._

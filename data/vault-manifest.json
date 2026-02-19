@@ -1,11 +1,11 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-02-17T00:44:56.046Z",
-  "totalAssets": 500,
-  "totalCollections": 32,
-  "totalSize": 377151470,
+  "generatedAt": "2026-02-14T23:58:58.887Z",
+  "totalAssets": 484,
+  "totalCollections": 30,
+  "totalSize": 361435990,
   "formats": {
-    "png": 333,
+    "png": 317,
     "svg": 153,
     "jpeg": 5,
     "jpg": 9
@@ -33,11 +33,7 @@
           "height": 768,
           "fileSize": 686484,
           "title": "Acos",
-          "tags": [
-            "root",
-            "acos",
-            "hero"
-          ],
+          "tags": ["root", "acos", "hero"],
           "createdAt": "2026-02-08"
         },
         {
@@ -51,12 +47,7 @@
           "height": 672,
           "fileSize": 547115,
           "title": "Github Profile Banner",
-          "tags": [
-            "root",
-            "github",
-            "profile",
-            "banner"
-          ],
+          "tags": ["root", "github", "profile", "banner"],
           "createdAt": "2026-02-13"
         },
         {
@@ -70,11 +61,7 @@
           "height": 768,
           "fileSize": 622354,
           "title": "Readme",
-          "tags": [
-            "root",
-            "readme",
-            "hero"
-          ],
+          "tags": ["root", "readme", "hero"],
           "createdAt": "2026-02-08"
         }
       ]
@@ -83,7 +70,7 @@
       "id": "blog",
       "name": "Blog Heroes",
       "description": "Editorial hero images and illustrations for blog articles — swarm intelligence, AI architecture, creator studios.",
-      "count": 138,
+      "count": 141,
       "coverImage": "/images/blog/122e43a8-45fe-4476-b36c-378c1abb8fa5.png",
       "accent": "from-amber-500/20 to-orange-500/20",
       "borderAccent": "border-amber-500/30",
@@ -100,9 +87,7 @@
           "height": 3072,
           "fileSize": 8273784,
           "title": "",
-          "tags": [
-            "blog"
-          ],
+          "tags": ["blog"],
           "createdAt": "2026-01-29"
         },
         {
@@ -116,9 +101,7 @@
           "height": 768,
           "fileSize": 275294,
           "title": "",
-          "tags": [
-            "blog"
-          ],
+          "tags": ["blog"],
           "createdAt": "2026-01-29"
         },
         {
@@ -132,14 +115,7 @@
           "height": 768,
           "fileSize": 576808,
           "title": "30 Minute Creator Os Quick Start",
-          "tags": [
-            "blog",
-            "minute",
-            "creator",
-            "quick",
-            "start",
-            "hero"
-          ],
+          "tags": ["blog", "minute", "creator", "quick", "start", "hero"],
           "createdAt": "2026-01-26"
         },
         {
@@ -153,9 +129,7 @@
           "height": 768,
           "fileSize": 828773,
           "title": "",
-          "tags": [
-            "blog"
-          ],
+          "tags": ["blog"],
           "createdAt": "2026-01-29"
         },
         {
@@ -169,9 +143,7 @@
           "height": 3072,
           "fileSize": 7729991,
           "title": "",
-          "tags": [
-            "blog"
-          ],
+          "tags": ["blog"],
           "createdAt": "2026-01-29"
         },
         {
@@ -185,9 +157,7 @@
           "height": 3072,
           "fileSize": 9025618,
           "title": "",
-          "tags": [
-            "blog"
-          ],
+          "tags": ["blog"],
           "createdAt": "2026-01-29"
         },
         {
@@ -201,9 +171,7 @@
           "height": 3072,
           "fileSize": 8203505,
           "title": "",
-          "tags": [
-            "blog"
-          ],
+          "tags": ["blog"],
           "createdAt": "2026-01-29"
         },
         {
@@ -217,9 +185,7 @@
           "height": 3072,
           "fileSize": 7440739,
           "title": "",
-          "tags": [
-            "blog"
-          ],
+          "tags": ["blog"],
           "createdAt": "2026-01-29"
         },
         {
@@ -233,9 +199,7 @@
           "height": 768,
           "fileSize": 895933,
           "title": "",
-          "tags": [
-            "blog"
-          ],
+          "tags": ["blog"],
           "createdAt": "2026-01-29"
         },
         {
@@ -249,9 +213,7 @@
           "height": 768,
           "fileSize": 799011,
           "title": "",
-          "tags": [
-            "blog"
-          ],
+          "tags": ["blog"],
           "createdAt": "2026-01-29"
         },
         {
@@ -265,9 +227,7 @@
           "height": 768,
           "fileSize": 800982,
           "title": "",
-          "tags": [
-            "blog"
-          ],
+          "tags": ["blog"],
           "createdAt": "2026-01-29"
         },
         {
@@ -281,9 +241,7 @@
           "height": 768,
           "fileSize": 868992,
           "title": "",
-          "tags": [
-            "blog"
-          ],
+          "tags": ["blog"],
           "createdAt": "2026-01-29"
         },
         {
@@ -297,9 +255,7 @@
           "height": 768,
           "fileSize": 737077,
           "title": "",
-          "tags": [
-            "blog"
-          ],
+          "tags": ["blog"],
           "createdAt": "2026-01-29"
         },
         {
@@ -313,9 +269,7 @@
           "height": 3072,
           "fileSize": 8156864,
           "title": "",
-          "tags": [
-            "blog"
-          ],
+          "tags": ["blog"],
           "createdAt": "2026-01-29"
         },
         {
@@ -329,9 +283,7 @@
           "height": 3072,
           "fileSize": 8350965,
           "title": "",
-          "tags": [
-            "blog"
-          ],
+          "tags": ["blog"],
           "createdAt": "2026-01-29"
         },
         {
@@ -345,9 +297,7 @@
           "height": 768,
           "fileSize": 798328,
           "title": "",
-          "tags": [
-            "blog"
-          ],
+          "tags": ["blog"],
           "createdAt": "2026-01-29"
         },
         {
@@ -361,13 +311,7 @@
           "height": 768,
           "fileSize": 750390,
           "title": "Acos Agent Orchestration Diagram",
-          "tags": [
-            "blog",
-            "acos",
-            "agent",
-            "orchestration",
-            "diagram"
-          ],
+          "tags": ["blog", "acos", "agent", "orchestration", "diagram"],
           "createdAt": "2026-01-29"
         },
         {
@@ -381,12 +325,7 @@
           "height": 768,
           "fileSize": 699623,
           "title": "Acos Enterprise",
-          "tags": [
-            "blog",
-            "acos",
-            "enterprise",
-            "hero"
-          ],
+          "tags": ["blog", "acos", "enterprise", "hero"],
           "createdAt": "2026-01-26"
         },
         {
@@ -400,12 +339,7 @@
           "height": 768,
           "fileSize": 709468,
           "title": "Acos Hooks",
-          "tags": [
-            "blog",
-            "acos",
-            "hooks",
-            "hero"
-          ],
+          "tags": ["blog", "acos", "hooks", "hero"],
           "createdAt": "2026-01-26"
         },
         {
@@ -419,12 +353,7 @@
           "height": 768,
           "fileSize": 706395,
           "title": "Acos Philosophy",
-          "tags": [
-            "blog",
-            "acos",
-            "philosophy",
-            "hero"
-          ],
+          "tags": ["blog", "acos", "philosophy", "hero"],
           "createdAt": "2026-01-26"
         },
         {
@@ -438,13 +367,7 @@
           "height": 768,
           "fileSize": 612267,
           "title": "Acos Quick Start",
-          "tags": [
-            "blog",
-            "acos",
-            "quick",
-            "start",
-            "hero"
-          ],
+          "tags": ["blog", "acos", "quick", "start", "hero"],
           "createdAt": "2026-01-26"
         },
         {
@@ -458,15 +381,7 @@
           "height": 768,
           "fileSize": 721208,
           "title": "Acos Use Cases Creator Types",
-          "tags": [
-            "blog",
-            "acos",
-            "use",
-            "cases",
-            "creator",
-            "types",
-            "hero"
-          ],
+          "tags": ["blog", "acos", "use", "cases", "creator", "types", "hero"],
           "createdAt": "2026-01-26"
         },
         {
@@ -480,13 +395,7 @@
           "height": 768,
           "fileSize": 760144,
           "title": "Acos V10 Social Infographic",
-          "tags": [
-            "blog",
-            "acos",
-            "v10",
-            "social",
-            "infographic"
-          ],
+          "tags": ["blog", "acos", "v10", "social", "infographic"],
           "createdAt": "2026-02-14"
         },
         {
@@ -500,13 +409,7 @@
           "height": 768,
           "fileSize": 934737,
           "title": "Acos V25 Technical Architecture",
-          "tags": [
-            "blog",
-            "acos",
-            "v25",
-            "technical",
-            "architecture"
-          ],
+          "tags": ["blog", "acos", "v25", "technical", "architecture"],
           "createdAt": "2026-01-29"
         },
         {
@@ -520,13 +423,7 @@
           "height": 768,
           "fileSize": 685015,
           "title": "Agentic Ai Roadmap 2026",
-          "tags": [
-            "blog",
-            "agentic",
-            "roadmap",
-            "2026",
-            "hero"
-          ],
+          "tags": ["blog", "agentic", "roadmap", "2026", "hero"],
           "createdAt": "2026-01-26"
         },
         {
@@ -540,11 +437,7 @@
           "height": null,
           "fileSize": 1395,
           "title": "Agentic Ai Roadmap",
-          "tags": [
-            "blog",
-            "agentic",
-            "roadmap"
-          ],
+          "tags": ["blog", "agentic", "roadmap"],
           "createdAt": "2025-11-14"
         },
         {
@@ -558,14 +451,7 @@
           "height": 768,
           "fileSize": 752387,
           "title": "Agentic Creator Os Complete Guide",
-          "tags": [
-            "blog",
-            "agentic",
-            "creator",
-            "complete",
-            "guide",
-            "hero"
-          ],
+          "tags": ["blog", "agentic", "creator", "complete", "guide", "hero"],
           "createdAt": "2026-01-30"
         },
         {
@@ -579,12 +465,7 @@
           "height": 768,
           "fileSize": 568008,
           "title": "Agentic Creator Os",
-          "tags": [
-            "blog",
-            "agentic",
-            "creator",
-            "hero"
-          ],
+          "tags": ["blog", "agentic", "creator", "hero"],
           "createdAt": "2026-01-30"
         },
         {
@@ -598,13 +479,7 @@
           "height": 1024,
           "fileSize": 1503620,
           "title": "Agentic Creator Os Roadmap 2025",
-          "tags": [
-            "blog",
-            "agentic",
-            "creator",
-            "roadmap",
-            "2025"
-          ],
+          "tags": ["blog", "agentic", "creator", "roadmap", "2025"],
           "createdAt": "2026-01-16"
         },
         {
@@ -618,11 +493,7 @@
           "height": null,
           "fileSize": 1834,
           "title": "Agentic Creator Os",
-          "tags": [
-            "blog",
-            "agentic",
-            "creator"
-          ],
+          "tags": ["blog", "agentic", "creator"],
           "createdAt": "2025-11-14"
         },
         {
@@ -636,12 +507,7 @@
           "height": 1024,
           "fileSize": 1278357,
           "title": "Agentic Roadmap 2025",
-          "tags": [
-            "blog",
-            "agentic",
-            "roadmap",
-            "2025"
-          ],
+          "tags": ["blog", "agentic", "roadmap", "2025"],
           "createdAt": "2026-01-23"
         },
         {
@@ -655,12 +521,7 @@
           "height": null,
           "fileSize": 3575,
           "title": "Agentic Seo Masterplan",
-          "tags": [
-            "blog",
-            "agentic",
-            "seo",
-            "masterplan"
-          ],
+          "tags": ["blog", "agentic", "seo", "masterplan"],
           "createdAt": "2026-01-23"
         },
         {
@@ -695,14 +556,7 @@
           "height": 768,
           "fileSize": 792822,
           "title": "Agentic Workflows Save Hours",
-          "tags": [
-            "blog",
-            "agentic",
-            "workflows",
-            "save",
-            "hours",
-            "hero"
-          ],
+          "tags": ["blog", "agentic", "workflows", "save", "hours", "hero"],
           "createdAt": "2026-01-27"
         },
         {
@@ -738,13 +592,22 @@
           "height": 768,
           "fileSize": 768175,
           "title": "Ai Coe Launch",
-          "tags": [
-            "blog",
-            "coe",
-            "launch",
-            "hero"
-          ],
+          "tags": ["blog", "coe", "launch", "hero"],
           "createdAt": "2026-01-26"
+        },
+        {
+          "id": "blog/ai-dd-agents",
+          "filename": "ai-dd-agents.png",
+          "src": "/images/blog/ai-dd-agents.png",
+          "thumbnail": "/images/blog/ai-dd-agents_thumb.jpeg",
+          "collection": "blog",
+          "format": "png",
+          "width": 1376,
+          "height": 768,
+          "fileSize": 773709,
+          "title": "Ai Dd Agents",
+          "tags": ["blog", "agents"],
+          "createdAt": "2026-02-14"
         },
         {
           "id": "blog/ai-doesnt-have-to-be-soulless",
@@ -757,12 +620,7 @@
           "height": 1024,
           "fileSize": 1348474,
           "title": "Ai Doesnt Have To Be Soulless",
-          "tags": [
-            "blog",
-            "doesnt",
-            "have",
-            "soulless"
-          ],
+          "tags": ["blog", "doesnt", "have", "soulless"],
           "createdAt": "2026-01-16"
         },
         {
@@ -776,11 +634,7 @@
           "height": null,
           "fileSize": 1271,
           "title": "Ai Family Guide",
-          "tags": [
-            "blog",
-            "family",
-            "guide"
-          ],
+          "tags": ["blog", "family", "guide"],
           "createdAt": "2025-11-14"
         },
         {
@@ -794,13 +648,7 @@
           "height": 768,
           "fileSize": 939345,
           "title": "Ai Guide Families Professionals Hero V2",
-          "tags": [
-            "blog",
-            "guide",
-            "families",
-            "professionals",
-            "hero"
-          ],
+          "tags": ["blog", "guide", "families", "professionals", "hero"],
           "createdAt": "2026-01-29"
         },
         {
@@ -814,13 +662,7 @@
           "height": 768,
           "fileSize": 939345,
           "title": "Ai Guide Families Professionals",
-          "tags": [
-            "blog",
-            "guide",
-            "families",
-            "professionals",
-            "hero"
-          ],
+          "tags": ["blog", "guide", "families", "professionals", "hero"],
           "createdAt": "2026-01-29"
         },
         {
@@ -834,12 +676,7 @@
           "height": null,
           "fileSize": 2127,
           "title": "Ai Soul Story",
-          "tags": [
-            "blog",
-            "soul",
-            "story",
-            "hero"
-          ],
+          "tags": ["blog", "soul", "story", "hero"],
           "createdAt": "2026-01-23"
         },
         {
@@ -853,11 +690,7 @@
           "height": null,
           "fileSize": 1260,
           "title": "Ai Soul Story",
-          "tags": [
-            "blog",
-            "soul",
-            "story"
-          ],
+          "tags": ["blog", "soul", "story"],
           "createdAt": "2025-11-14"
         },
         {
@@ -871,11 +704,7 @@
           "height": 1024,
           "fileSize": 775514,
           "title": "Ai Toolchain Motherboard",
-          "tags": [
-            "blog",
-            "toolchain",
-            "motherboard"
-          ],
+          "tags": ["blog", "toolchain", "motherboard"],
           "createdAt": "2026-01-29"
         },
         {
@@ -889,12 +718,7 @@
           "height": 768,
           "fileSize": 638491,
           "title": "Aws Bedrock Agents",
-          "tags": [
-            "blog",
-            "aws",
-            "bedrock",
-            "agents"
-          ],
+          "tags": ["blog", "aws", "bedrock", "agents"],
           "createdAt": "2026-01-30"
         },
         {
@@ -908,11 +732,7 @@
           "height": null,
           "fileSize": 4234,
           "title": "Blog Hero Aurora",
-          "tags": [
-            "blog",
-            "hero",
-            "aurora"
-          ],
+          "tags": ["blog", "hero", "aurora"],
           "createdAt": "2025-11-14"
         },
         {
@@ -947,14 +767,7 @@
           "height": 768,
           "fileSize": 809680,
           "title": "Build Your Own Jarvis",
-          "tags": [
-            "blog",
-            "build",
-            "your",
-            "own",
-            "jarvis",
-            "hero"
-          ],
+          "tags": ["blog", "build", "your", "own", "jarvis", "hero"],
           "createdAt": "2026-01-26"
         },
         {
@@ -968,13 +781,7 @@
           "height": 768,
           "fileSize": 798598,
           "title": "Building Custom Skills",
-          "tags": [
-            "blog",
-            "building",
-            "custom",
-            "skills",
-            "hero"
-          ],
+          "tags": ["blog", "building", "custom", "skills", "hero"],
           "createdAt": "2026-01-26"
         },
         {
@@ -1009,9 +816,7 @@
           "height": 1376,
           "fileSize": 664442,
           "title": "",
-          "tags": [
-            "blog"
-          ],
+          "tags": ["blog"],
           "createdAt": "2026-01-29"
         },
         {
@@ -1025,12 +830,7 @@
           "height": 768,
           "fileSize": 604052,
           "title": "Claude Code Mcp",
-          "tags": [
-            "blog",
-            "claude",
-            "code",
-            "mcp"
-          ],
+          "tags": ["blog", "claude", "code", "mcp"],
           "createdAt": "2026-01-26"
         },
         {
@@ -1044,12 +844,7 @@
           "height": 768,
           "fileSize": 683920,
           "title": "Conscious Ai Entrepreneurs",
-          "tags": [
-            "blog",
-            "conscious",
-            "entrepreneurs",
-            "hero"
-          ],
+          "tags": ["blog", "conscious", "entrepreneurs", "hero"],
           "createdAt": "2026-01-30"
         },
         {
@@ -1063,12 +858,7 @@
           "height": null,
           "fileSize": 4353,
           "title": "Conscious Ai Framework Header",
-          "tags": [
-            "blog",
-            "conscious",
-            "framework",
-            "header"
-          ],
+          "tags": ["blog", "conscious", "framework", "header"],
           "createdAt": "2026-01-23"
         },
         {
@@ -1082,12 +872,7 @@
           "height": 768,
           "fileSize": 591123,
           "title": "Conscious Ai Framework",
-          "tags": [
-            "blog",
-            "conscious",
-            "framework",
-            "hero"
-          ],
+          "tags": ["blog", "conscious", "framework", "hero"],
           "createdAt": "2026-01-27"
         },
         {
@@ -1101,12 +886,7 @@
           "height": 768,
           "fileSize": 615199,
           "title": "Conscious Ai Integration Os",
-          "tags": [
-            "blog",
-            "conscious",
-            "integration",
-            "hero"
-          ],
+          "tags": ["blog", "conscious", "integration", "hero"],
           "createdAt": "2026-01-26"
         },
         {
@@ -1120,11 +900,7 @@
           "height": 1024,
           "fileSize": 1551093,
           "title": "Conscious Ai Integration",
-          "tags": [
-            "blog",
-            "conscious",
-            "integration"
-          ],
+          "tags": ["blog", "conscious", "integration"],
           "createdAt": "2026-01-16"
         },
         {
@@ -1138,11 +914,7 @@
           "height": null,
           "fileSize": 1460,
           "title": "Conscious Ai Integration",
-          "tags": [
-            "blog",
-            "conscious",
-            "integration"
-          ],
+          "tags": ["blog", "conscious", "integration"],
           "createdAt": "2025-11-14"
         },
         {
@@ -1156,11 +928,7 @@
           "height": null,
           "fileSize": 1263,
           "title": "Conscious Entrepreneurs",
-          "tags": [
-            "blog",
-            "conscious",
-            "entrepreneurs"
-          ],
+          "tags": ["blog", "conscious", "entrepreneurs"],
           "createdAt": "2025-11-14"
         },
         {
@@ -1174,10 +942,7 @@
           "height": null,
           "fileSize": 4608,
           "title": "Creative Os",
-          "tags": [
-            "blog",
-            "creative"
-          ],
+          "tags": ["blog", "creative"],
           "createdAt": "2026-01-23"
         },
         {
@@ -1212,13 +977,7 @@
           "height": 768,
           "fileSize": 859269,
           "title": "Creators Ai Toolkit Workshop",
-          "tags": [
-            "blog",
-            "creators",
-            "toolkit",
-            "workshop",
-            "hero"
-          ],
+          "tags": ["blog", "creators", "toolkit", "workshop", "hero"],
           "createdAt": "2026-01-26"
         },
         {
@@ -1232,14 +991,7 @@
           "height": 768,
           "fileSize": 738186,
           "title": "Creators Life Architecture Guide",
-          "tags": [
-            "blog",
-            "creators",
-            "life",
-            "architecture",
-            "guide",
-            "hero"
-          ],
+          "tags": ["blog", "creators", "life", "architecture", "guide", "hero"],
           "createdAt": "2026-01-26"
         },
         {
@@ -1253,10 +1005,22 @@
           "height": 3072,
           "fileSize": 8394655,
           "title": "",
-          "tags": [
-            "blog"
-          ],
+          "tags": ["blog"],
           "createdAt": "2026-01-29"
+        },
+        {
+          "id": "blog/deal-flow-pipeline",
+          "filename": "deal-flow-pipeline.png",
+          "src": "/images/blog/deal-flow-pipeline.png",
+          "thumbnail": "/images/blog/deal-flow-pipeline_thumb.jpeg",
+          "collection": "blog",
+          "format": "png",
+          "width": 1376,
+          "height": 768,
+          "fileSize": 591941,
+          "title": "Deal Flow Pipeline",
+          "tags": ["blog", "deal", "flow", "pipeline"],
+          "createdAt": "2026-02-14"
         },
         {
           "id": "blog/ecosystem-architecture-davinci",
@@ -1269,12 +1033,7 @@
           "height": 768,
           "fileSize": 964467,
           "title": "Ecosystem Architecture Davinci",
-          "tags": [
-            "blog",
-            "ecosystem",
-            "architecture",
-            "davinci"
-          ],
+          "tags": ["blog", "ecosystem", "architecture", "davinci"],
           "createdAt": "2026-02-14"
         },
         {
@@ -1288,12 +1047,7 @@
           "height": 768,
           "fileSize": 1050596,
           "title": "Ecosystem Intelligence Stack",
-          "tags": [
-            "blog",
-            "ecosystem",
-            "intelligence",
-            "stack"
-          ],
+          "tags": ["blog", "ecosystem", "intelligence", "stack"],
           "createdAt": "2026-02-14"
         },
         {
@@ -1307,12 +1061,7 @@
           "height": 768,
           "fileSize": 865107,
           "title": "Ecosystem Value Flow",
-          "tags": [
-            "blog",
-            "ecosystem",
-            "value",
-            "flow"
-          ],
+          "tags": ["blog", "ecosystem", "value", "flow"],
           "createdAt": "2026-02-14"
         },
         {
@@ -1326,9 +1075,7 @@
           "height": 3072,
           "fileSize": 7604492,
           "title": "",
-          "tags": [
-            "blog"
-          ],
+          "tags": ["blog"],
           "createdAt": "2026-01-29"
         },
         {
@@ -1342,13 +1089,7 @@
           "height": null,
           "fileSize": 4868,
           "title": "Enterprise Agent Roadmap Header",
-          "tags": [
-            "blog",
-            "enterprise",
-            "agent",
-            "roadmap",
-            "header"
-          ],
+          "tags": ["blog", "enterprise", "agent", "roadmap", "header"],
           "createdAt": "2026-01-23"
         },
         {
@@ -1362,13 +1103,7 @@
           "height": 768,
           "fileSize": 805133,
           "title": "Enterprise Agent Roadmap",
-          "tags": [
-            "blog",
-            "enterprise",
-            "agent",
-            "roadmap",
-            "hero"
-          ],
+          "tags": ["blog", "enterprise", "agent", "roadmap", "hero"],
           "createdAt": "2026-01-26"
         },
         {
@@ -1382,12 +1117,7 @@
           "height": null,
           "fileSize": 2169,
           "title": "Enterprise Briefing Week 39",
-          "tags": [
-            "blog",
-            "enterprise",
-            "briefing",
-            "week"
-          ],
+          "tags": ["blog", "enterprise", "briefing", "week"],
           "createdAt": "2026-01-23"
         },
         {
@@ -1401,12 +1131,7 @@
           "height": null,
           "fileSize": 1990,
           "title": "Enterprise Briefing Week 40",
-          "tags": [
-            "blog",
-            "enterprise",
-            "briefing",
-            "week"
-          ],
+          "tags": ["blog", "enterprise", "briefing", "week"],
           "createdAt": "2026-01-23"
         },
         {
@@ -1420,11 +1145,7 @@
           "height": null,
           "fileSize": 1868,
           "title": "Enterprise Intelligence Os",
-          "tags": [
-            "blog",
-            "enterprise",
-            "intelligence"
-          ],
+          "tags": ["blog", "enterprise", "intelligence"],
           "createdAt": "2025-11-14"
         },
         {
@@ -1460,9 +1181,7 @@
           "height": 768,
           "fileSize": 636588,
           "title": "",
-          "tags": [
-            "blog"
-          ],
+          "tags": ["blog"],
           "createdAt": "2026-01-29"
         },
         {
@@ -1476,14 +1195,7 @@
           "height": 768,
           "fileSize": 672233,
           "title": "Frankx Business Plan Canvas",
-          "tags": [
-            "blog",
-            "frankx",
-            "business",
-            "plan",
-            "canvas",
-            "hero"
-          ],
+          "tags": ["blog", "frankx", "business", "plan", "canvas", "hero"],
           "createdAt": "2026-01-30"
         },
         {
@@ -1497,13 +1209,7 @@
           "height": 768,
           "fileSize": 737103,
           "title": "Frankx Intelligence Atlas",
-          "tags": [
-            "blog",
-            "frankx",
-            "intelligence",
-            "atlas",
-            "hero"
-          ],
+          "tags": ["blog", "frankx", "intelligence", "atlas", "hero"],
           "createdAt": "2026-01-26"
         },
         {
@@ -1517,14 +1223,7 @@
           "height": 768,
           "fileSize": 807742,
           "title": "Frankx Vision Mission Values",
-          "tags": [
-            "blog",
-            "frankx",
-            "vision",
-            "mission",
-            "values",
-            "hero"
-          ],
+          "tags": ["blog", "frankx", "vision", "mission", "values", "hero"],
           "createdAt": "2026-01-30"
         },
         {
@@ -1538,14 +1237,7 @@
           "height": 768,
           "fileSize": 512019,
           "title": "Getting Started Agentic Creator Os",
-          "tags": [
-            "blog",
-            "getting",
-            "started",
-            "agentic",
-            "creator",
-            "hero"
-          ],
+          "tags": ["blog", "getting", "started", "agentic", "creator", "hero"],
           "createdAt": "2026-01-27"
         },
         {
@@ -1559,14 +1251,7 @@
           "height": 768,
           "fileSize": 859661,
           "title": "Golden Age Field Guide",
-          "tags": [
-            "blog",
-            "golden",
-            "age",
-            "field",
-            "guide",
-            "hero"
-          ],
+          "tags": ["blog", "golden", "age", "field", "guide", "hero"],
           "createdAt": "2026-01-30"
         },
         {
@@ -1580,12 +1265,7 @@
           "height": null,
           "fileSize": 1458,
           "title": "Golden Age Flagship",
-          "tags": [
-            "blog",
-            "golden",
-            "age",
-            "flagship"
-          ],
+          "tags": ["blog", "golden", "age", "flagship"],
           "createdAt": "2025-11-14"
         },
         {
@@ -1599,13 +1279,7 @@
           "height": null,
           "fileSize": 4118,
           "title": "Golden Age Intelligence Panels",
-          "tags": [
-            "blog",
-            "golden",
-            "age",
-            "intelligence",
-            "panels"
-          ],
+          "tags": ["blog", "golden", "age", "intelligence", "panels"],
           "createdAt": "2025-11-14"
         },
         {
@@ -1619,12 +1293,7 @@
           "height": 1024,
           "fileSize": 1391060,
           "title": "Golden Age Intelligence",
-          "tags": [
-            "blog",
-            "golden",
-            "age",
-            "intelligence"
-          ],
+          "tags": ["blog", "golden", "age", "intelligence"],
           "createdAt": "2026-01-23"
         },
         {
@@ -1638,13 +1307,7 @@
           "height": 768,
           "fileSize": 722345,
           "title": "Golden Age Of Intelligence",
-          "tags": [
-            "blog",
-            "golden",
-            "age",
-            "intelligence",
-            "hero"
-          ],
+          "tags": ["blog", "golden", "age", "intelligence", "hero"],
           "createdAt": "2026-01-26"
         },
         {
@@ -1658,14 +1321,22 @@
           "height": null,
           "fileSize": 1436,
           "title": "Golden Age Reader First",
-          "tags": [
-            "blog",
-            "golden",
-            "age",
-            "reader",
-            "first"
-          ],
+          "tags": ["blog", "golden", "age", "reader", "first"],
           "createdAt": "2025-11-14"
+        },
+        {
+          "id": "blog/iacos-research-os",
+          "filename": "iacos-research-os.png",
+          "src": "/images/blog/iacos-research-os.png",
+          "thumbnail": "/images/blog/iacos-research-os_thumb.jpeg",
+          "collection": "blog",
+          "format": "png",
+          "width": 1376,
+          "height": 768,
+          "fileSize": 793427,
+          "title": "Iacos Research Os",
+          "tags": ["blog", "iacos", "research"],
+          "createdAt": "2026-02-14"
         },
         {
           "id": "blog/intelligence-atlas-governance",
@@ -1678,12 +1349,7 @@
           "height": null,
           "fileSize": 1916,
           "title": "Intelligence Atlas Governance",
-          "tags": [
-            "blog",
-            "intelligence",
-            "atlas",
-            "governance"
-          ],
+          "tags": ["blog", "intelligence", "atlas", "governance"],
           "createdAt": "2025-11-14"
         },
         {
@@ -1697,12 +1363,7 @@
           "height": null,
           "fileSize": 1827,
           "title": "Intelligence Atlas Signal",
-          "tags": [
-            "blog",
-            "intelligence",
-            "atlas",
-            "signal"
-          ],
+          "tags": ["blog", "intelligence", "atlas", "signal"],
           "createdAt": "2025-11-14"
         },
         {
@@ -1716,12 +1377,7 @@
           "height": 1024,
           "fileSize": 1714443,
           "title": "Intelligence Atlas Volume 1",
-          "tags": [
-            "blog",
-            "intelligence",
-            "atlas",
-            "volume"
-          ],
+          "tags": ["blog", "intelligence", "atlas", "volume"],
           "createdAt": "2026-01-16"
         },
         {
@@ -1735,12 +1391,7 @@
           "height": null,
           "fileSize": 1665,
           "title": "Intelligence Atlas Volume 1",
-          "tags": [
-            "blog",
-            "intelligence",
-            "atlas",
-            "volume"
-          ],
+          "tags": ["blog", "intelligence", "atlas", "volume"],
           "createdAt": "2025-11-14"
         },
         {
@@ -1754,12 +1405,7 @@
           "height": null,
           "fileSize": 2778,
           "title": "Intelligence Atlas Workflow",
-          "tags": [
-            "blog",
-            "intelligence",
-            "atlas",
-            "workflow"
-          ],
+          "tags": ["blog", "intelligence", "atlas", "workflow"],
           "createdAt": "2025-11-14"
         },
         {
@@ -1773,12 +1419,7 @@
           "height": 1024,
           "fileSize": 1552718,
           "title": "Intelligence Revolution 2025",
-          "tags": [
-            "blog",
-            "intelligence",
-            "revolution",
-            "2025"
-          ],
+          "tags": ["blog", "intelligence", "revolution", "2025"],
           "createdAt": "2026-01-16"
         },
         {
@@ -1792,12 +1433,7 @@
           "height": 768,
           "fileSize": 1002116,
           "title": "Intelligence Revolution",
-          "tags": [
-            "blog",
-            "intelligence",
-            "revolution",
-            "hero"
-          ],
+          "tags": ["blog", "intelligence", "revolution", "hero"],
           "createdAt": "2026-01-27"
         },
         {
@@ -1811,12 +1447,7 @@
           "height": null,
           "fileSize": 1532,
           "title": "Intelligence Revolution",
-          "tags": [
-            "blog",
-            "intelligence",
-            "revolution",
-            "hero"
-          ],
+          "tags": ["blog", "intelligence", "revolution", "hero"],
           "createdAt": "2025-11-14"
         },
         {
@@ -1830,12 +1461,7 @@
           "height": 768,
           "fileSize": 607706,
           "title": "Mcp Doctor",
-          "tags": [
-            "blog",
-            "mcp",
-            "doctor",
-            "hero"
-          ],
+          "tags": ["blog", "mcp", "doctor", "hero"],
           "createdAt": "2026-02-08"
         },
         {
@@ -1849,14 +1475,7 @@
           "height": 768,
           "fileSize": 687579,
           "title": "Mcp Server Architecture Workshop",
-          "tags": [
-            "blog",
-            "mcp",
-            "server",
-            "architecture",
-            "workshop",
-            "hero"
-          ],
+          "tags": ["blog", "mcp", "server", "architecture", "workshop", "hero"],
           "createdAt": "2026-01-26"
         },
         {
@@ -1870,13 +1489,7 @@
           "height": 768,
           "fileSize": 698618,
           "title": "Mcp Server Integration",
-          "tags": [
-            "blog",
-            "mcp",
-            "server",
-            "integration",
-            "hero"
-          ],
+          "tags": ["blog", "mcp", "server", "integration", "hero"],
           "createdAt": "2026-01-26"
         },
         {
@@ -1890,13 +1503,7 @@
           "height": 923,
           "fileSize": 79044,
           "title": "Misinformation Guardian Custom Gpt",
-          "tags": [
-            "blog",
-            "misinformation",
-            "guardian",
-            "custom",
-            "gpt"
-          ],
+          "tags": ["blog", "misinformation", "guardian", "custom", "gpt"],
           "createdAt": "2026-02-12"
         },
         {
@@ -1910,13 +1517,7 @@
           "height": 804,
           "fileSize": 239008,
           "title": "Misinformation Guardian Hackathon",
-          "tags": [
-            "blog",
-            "misinformation",
-            "guardian",
-            "hackathon",
-            "hero"
-          ],
+          "tags": ["blog", "misinformation", "guardian", "hackathon", "hero"],
           "createdAt": "2026-02-12"
         },
         {
@@ -1992,12 +1593,7 @@
           "height": 768,
           "fileSize": 602412,
           "title": "Multi Agent Orchestration",
-          "tags": [
-            "blog",
-            "multi",
-            "agent",
-            "orchestration"
-          ],
+          "tags": ["blog", "multi", "agent", "orchestration"],
           "createdAt": "2026-01-26"
         },
         {
@@ -2011,13 +1607,7 @@
           "height": 768,
           "fileSize": 709393,
           "title": "Music As Consciousness Technology",
-          "tags": [
-            "blog",
-            "music",
-            "consciousness",
-            "technology",
-            "hero"
-          ],
+          "tags": ["blog", "music", "consciousness", "technology", "hero"],
           "createdAt": "2026-01-27"
         },
         {
@@ -2031,11 +1621,7 @@
           "height": 1024,
           "fileSize": 1501113,
           "title": "Music Consciousness",
-          "tags": [
-            "blog",
-            "music",
-            "consciousness"
-          ],
+          "tags": ["blog", "music", "consciousness"],
           "createdAt": "2026-01-23"
         },
         {
@@ -2049,11 +1635,7 @@
           "height": null,
           "fileSize": 1268,
           "title": "Music Consciousness",
-          "tags": [
-            "blog",
-            "music",
-            "consciousness"
-          ],
+          "tags": ["blog", "music", "consciousness"],
           "createdAt": "2025-11-14"
         },
         {
@@ -2067,12 +1649,7 @@
           "height": 768,
           "fileSize": 575021,
           "title": "Nvidia Physical Ai",
-          "tags": [
-            "blog",
-            "nvidia",
-            "physical",
-            "hero"
-          ],
+          "tags": ["blog", "nvidia", "physical", "hero"],
           "createdAt": "2026-01-30"
         },
         {
@@ -2086,13 +1663,7 @@
           "height": 1024,
           "fileSize": 1642235,
           "title": "Oci Agent Patterns",
-          "tags": [
-            "blog",
-            "oci",
-            "agent",
-            "patterns",
-            "hero"
-          ],
+          "tags": ["blog", "oci", "agent", "patterns", "hero"],
           "createdAt": "2026-01-23"
         },
         {
@@ -2106,13 +1677,7 @@
           "height": 1024,
           "fileSize": 1553515,
           "title": "Oci Genai Architecture",
-          "tags": [
-            "blog",
-            "oci",
-            "genai",
-            "architecture",
-            "hero"
-          ],
+          "tags": ["blog", "oci", "genai", "architecture", "hero"],
           "createdAt": "2026-01-23"
         },
         {
@@ -2126,13 +1691,7 @@
           "height": 1024,
           "fileSize": 1365683,
           "title": "Oci Operating Model",
-          "tags": [
-            "blog",
-            "oci",
-            "operating",
-            "model",
-            "hero"
-          ],
+          "tags": ["blog", "oci", "operating", "model", "hero"],
           "createdAt": "2026-01-23"
         },
         {
@@ -2146,12 +1705,7 @@
           "height": 768,
           "fileSize": 727645,
           "title": "Oracle Genai Comparison",
-          "tags": [
-            "blog",
-            "oracle",
-            "genai",
-            "comparison"
-          ],
+          "tags": ["blog", "oracle", "genai", "comparison"],
           "createdAt": "2026-01-26"
         },
         {
@@ -2165,12 +1719,7 @@
           "height": 768,
           "fileSize": 756876,
           "title": "Orchestrator Core Agents",
-          "tags": [
-            "blog",
-            "orchestrator",
-            "core",
-            "agents"
-          ],
+          "tags": ["blog", "orchestrator", "core", "agents"],
           "createdAt": "2026-01-29"
         },
         {
@@ -2268,13 +1817,7 @@
           "height": 768,
           "fileSize": 552096,
           "title": "Production Agentic Ai Systems",
-          "tags": [
-            "blog",
-            "production",
-            "agentic",
-            "systems",
-            "hero"
-          ],
+          "tags": ["blog", "production", "agentic", "systems", "hero"],
           "createdAt": "2026-01-26"
         },
         {
@@ -2309,13 +1852,7 @@
           "height": null,
           "fileSize": 9439,
           "title": "Production Agentic Ai Systems Roadmap",
-          "tags": [
-            "blog",
-            "production",
-            "agentic",
-            "systems",
-            "roadmap"
-          ],
+          "tags": ["blog", "production", "agentic", "systems", "roadmap"],
           "createdAt": "2026-01-23"
         },
         {
@@ -2329,14 +1866,7 @@
           "height": null,
           "fileSize": 10573,
           "title": "Production Agentic Ai Systems Six Plane",
-          "tags": [
-            "blog",
-            "production",
-            "agentic",
-            "systems",
-            "six",
-            "plane"
-          ],
+          "tags": ["blog", "production", "agentic", "systems", "six", "plane"],
           "createdAt": "2026-01-23"
         },
         {
@@ -2350,12 +1880,7 @@
           "height": null,
           "fileSize": 10482,
           "title": "Production Agentic Ai Systems",
-          "tags": [
-            "blog",
-            "production",
-            "agentic",
-            "systems"
-          ],
+          "tags": ["blog", "production", "agentic", "systems"],
           "createdAt": "2026-01-23"
         },
         {
@@ -2412,14 +1937,7 @@
           "height": 768,
           "fileSize": 642772,
           "title": "Reader First Golden Age",
-          "tags": [
-            "blog",
-            "reader",
-            "first",
-            "golden",
-            "age",
-            "hero"
-          ],
+          "tags": ["blog", "reader", "first", "golden", "age", "hero"],
           "createdAt": "2026-01-26"
         },
         {
@@ -2433,14 +1951,7 @@
           "height": 768,
           "fileSize": 935263,
           "title": "Science Of State Change Music",
-          "tags": [
-            "blog",
-            "science",
-            "state",
-            "change",
-            "music",
-            "hero"
-          ],
+          "tags": ["blog", "science", "state", "change", "music", "hero"],
           "createdAt": "2026-01-26"
         },
         {
@@ -2454,13 +1965,7 @@
           "height": 768,
           "fileSize": 814671,
           "title": "Seo Aeo Optimization",
-          "tags": [
-            "blog",
-            "seo",
-            "aeo",
-            "optimization",
-            "hero"
-          ],
+          "tags": ["blog", "seo", "aeo", "optimization", "hero"],
           "createdAt": "2026-01-26"
         },
         {
@@ -2474,13 +1979,7 @@
           "height": 768,
           "fileSize": 700978,
           "title": "Six Plane Enterprise Ai Architecture",
-          "tags": [
-            "blog",
-            "six",
-            "plane",
-            "enterprise",
-            "architecture"
-          ],
+          "tags": ["blog", "six", "plane", "enterprise", "architecture"],
           "createdAt": "2026-01-29"
         },
         {
@@ -2494,12 +1993,7 @@
           "height": null,
           "fileSize": 1250,
           "title": "Soul Frequency Framework",
-          "tags": [
-            "blog",
-            "soul",
-            "frequency",
-            "framework"
-          ],
+          "tags": ["blog", "soul", "frequency", "framework"],
           "createdAt": "2025-11-14"
         },
         {
@@ -2513,14 +2007,7 @@
           "height": 768,
           "fileSize": 949553,
           "title": "Suno Ai Music Creation Workshop",
-          "tags": [
-            "blog",
-            "suno",
-            "music",
-            "creation",
-            "workshop",
-            "hero"
-          ],
+          "tags": ["blog", "suno", "music", "creation", "workshop", "hero"],
           "createdAt": "2026-01-26"
         },
         {
@@ -2534,13 +2021,7 @@
           "height": 768,
           "fileSize": 619795,
           "title": "Suno Music Workflow",
-          "tags": [
-            "blog",
-            "suno",
-            "music",
-            "workflow",
-            "hero"
-          ],
+          "tags": ["blog", "suno", "music", "workflow", "hero"],
           "createdAt": "2026-01-30"
         },
         {
@@ -2576,12 +2057,7 @@
           "height": null,
           "fileSize": 4692,
           "title": "Suno Workflow Diagram",
-          "tags": [
-            "blog",
-            "suno",
-            "workflow",
-            "diagram"
-          ],
+          "tags": ["blog", "suno", "workflow", "diagram"],
           "createdAt": "2026-01-23"
         },
         {
@@ -2595,13 +2071,7 @@
           "height": 768,
           "fileSize": 725537,
           "title": "Swarm Intelligence Orchestration",
-          "tags": [
-            "blog",
-            "swarm",
-            "intelligence",
-            "orchestration",
-            "hero"
-          ],
+          "tags": ["blog", "swarm", "intelligence", "orchestration", "hero"],
           "createdAt": "2026-01-26"
         },
         {
@@ -2615,12 +2085,7 @@
           "height": 768,
           "fileSize": 668155,
           "title": "The Creative Os",
-          "tags": [
-            "blog",
-            "the",
-            "creative",
-            "hero"
-          ],
+          "tags": ["blog", "the", "creative", "hero"],
           "createdAt": "2026-01-27"
         },
         {
@@ -2678,13 +2143,7 @@
           "height": 768,
           "fileSize": 547713,
           "title": "Vibe Os Creative Soul",
-          "tags": [
-            "blog",
-            "vibe",
-            "creative",
-            "soul",
-            "hero"
-          ],
+          "tags": ["blog", "vibe", "creative", "soul", "hero"],
           "createdAt": "2026-01-30"
         },
         {
@@ -2698,11 +2157,7 @@
           "height": null,
           "fileSize": 4003,
           "title": "Vibe Os Header",
-          "tags": [
-            "blog",
-            "vibe",
-            "header"
-          ],
+          "tags": ["blog", "vibe", "header"],
           "createdAt": "2026-01-23"
         },
         {
@@ -2716,12 +2171,7 @@
           "height": 768,
           "fileSize": 647192,
           "title": "What Is Agentic Ai",
-          "tags": [
-            "blog",
-            "what",
-            "agentic",
-            "hero"
-          ],
+          "tags": ["blog", "what", "agentic", "hero"],
           "createdAt": "2026-01-30"
         },
         {
@@ -2735,11 +2185,7 @@
           "height": null,
           "fileSize": 4092,
           "title": "What Is Agentic Ai",
-          "tags": [
-            "blog",
-            "what",
-            "agentic"
-          ],
+          "tags": ["blog", "what", "agentic"],
           "createdAt": "2026-01-23"
         }
       ]
@@ -2765,11 +2211,7 @@
           "height": 1024,
           "fileSize": 581429,
           "title": "Axi V1 Full",
-          "tags": [
-            "mascot",
-            "axi",
-            "full"
-          ],
+          "tags": ["mascot", "axi", "full"],
           "createdAt": "2026-02-08"
         },
         {
@@ -2783,11 +2225,7 @@
           "height": 1024,
           "fileSize": 700741,
           "title": "Axi V2 Avatar",
-          "tags": [
-            "mascot",
-            "axi",
-            "avatar"
-          ],
+          "tags": ["mascot", "axi", "avatar"],
           "createdAt": "2026-02-08"
         },
         {
@@ -2801,11 +2239,7 @@
           "height": 1024,
           "fileSize": 356289,
           "title": "Axi V3 Icon",
-          "tags": [
-            "mascot",
-            "axi",
-            "icon"
-          ],
+          "tags": ["mascot", "axi", "icon"],
           "createdAt": "2026-02-08"
         },
         {
@@ -2819,11 +2253,7 @@
           "height": 768,
           "fileSize": 739575,
           "title": "Axi V4",
-          "tags": [
-            "mascot",
-            "axi",
-            "hero"
-          ],
+          "tags": ["mascot", "axi", "hero"],
           "createdAt": "2026-02-08"
         },
         {
@@ -2837,13 +2267,7 @@
           "height": 1024,
           "fileSize": 699026,
           "title": "Mascot V05 Techno Beast Standing",
-          "tags": [
-            "mascot",
-            "v05",
-            "techno",
-            "beast",
-            "standing"
-          ],
+          "tags": ["mascot", "v05", "techno", "beast", "standing"],
           "createdAt": "2026-02-09"
         },
         {
@@ -2857,12 +2281,7 @@
           "height": 1024,
           "fileSize": 731417,
           "title": "Mascot V06 Prowling Action",
-          "tags": [
-            "mascot",
-            "v06",
-            "prowling",
-            "action"
-          ],
+          "tags": ["mascot", "v06", "prowling", "action"],
           "createdAt": "2026-02-09"
         },
         {
@@ -2876,12 +2295,7 @@
           "height": 1024,
           "fileSize": 849352,
           "title": "Mascot V07 Kitsune Elegant",
-          "tags": [
-            "mascot",
-            "v07",
-            "kitsune",
-            "elegant"
-          ],
+          "tags": ["mascot", "v07", "kitsune", "elegant"],
           "createdAt": "2026-02-09"
         },
         {
@@ -2895,12 +2309,7 @@
           "height": 1024,
           "fileSize": 681039,
           "title": "Mascot V08 Holographic Entity",
-          "tags": [
-            "mascot",
-            "v08",
-            "holographic",
-            "entity"
-          ],
+          "tags": ["mascot", "v08", "holographic", "entity"],
           "createdAt": "2026-02-09"
         },
         {
@@ -2914,12 +2323,7 @@
           "height": 1024,
           "fileSize": 597619,
           "title": "Mascot V09 Wireframe Beast",
-          "tags": [
-            "mascot",
-            "v09",
-            "wireframe",
-            "beast"
-          ],
+          "tags": ["mascot", "v09", "wireframe", "beast"],
           "createdAt": "2026-02-09"
         },
         {
@@ -2933,12 +2337,7 @@
           "height": 1024,
           "fileSize": 819390,
           "title": "Mascot V10 Data Constellation",
-          "tags": [
-            "mascot",
-            "v10",
-            "data",
-            "constellation"
-          ],
+          "tags": ["mascot", "v10", "data", "constellation"],
           "createdAt": "2026-02-09"
         },
         {
@@ -2952,12 +2351,7 @@
           "height": 1024,
           "fileSize": 741966,
           "title": "Mascot V11 Chrome Guardian",
-          "tags": [
-            "mascot",
-            "v11",
-            "chrome",
-            "guardian"
-          ],
+          "tags": ["mascot", "v11", "chrome", "guardian"],
           "createdAt": "2026-02-09"
         },
         {
@@ -2971,12 +2365,7 @@
           "height": 1024,
           "fileSize": 600544,
           "title": "Mascot V13 Floating Head 3d",
-          "tags": [
-            "mascot",
-            "v13",
-            "floating",
-            "head"
-          ],
+          "tags": ["mascot", "v13", "floating", "head"],
           "createdAt": "2026-02-09"
         },
         {
@@ -2990,12 +2379,7 @@
           "height": 1024,
           "fileSize": 621605,
           "title": "Mascot V14 Holographic Bust",
-          "tags": [
-            "mascot",
-            "v14",
-            "holographic",
-            "bust"
-          ],
+          "tags": ["mascot", "v14", "holographic", "bust"],
           "createdAt": "2026-02-09"
         },
         {
@@ -3009,12 +2393,7 @@
           "height": 1024,
           "fileSize": 591934,
           "title": "Mascot V15 Kitsune Mask",
-          "tags": [
-            "mascot",
-            "v15",
-            "kitsune",
-            "mask"
-          ],
+          "tags": ["mascot", "v15", "kitsune", "mask"],
           "createdAt": "2026-02-09"
         },
         {
@@ -3028,13 +2407,7 @@
           "height": 1024,
           "fileSize": 850870,
           "title": "Mascot V16 Organic Digital Split",
-          "tags": [
-            "mascot",
-            "v16",
-            "organic",
-            "digital",
-            "split"
-          ],
+          "tags": ["mascot", "v16", "organic", "digital", "split"],
           "createdAt": "2026-02-09"
         },
         {
@@ -3048,13 +2421,7 @@
           "height": 1024,
           "fileSize": 405292,
           "title": "Mascot V17 Negative Space Mark",
-          "tags": [
-            "mascot",
-            "v17",
-            "negative",
-            "space",
-            "mark"
-          ],
+          "tags": ["mascot", "v17", "negative", "space", "mark"],
           "createdAt": "2026-02-09"
         },
         {
@@ -3068,12 +2435,7 @@
           "height": 1024,
           "fileSize": 541364,
           "title": "Mascot V18 Hex Emblem",
-          "tags": [
-            "mascot",
-            "v18",
-            "hex",
-            "emblem"
-          ],
+          "tags": ["mascot", "v18", "hex", "emblem"],
           "createdAt": "2026-02-09"
         },
         {
@@ -3087,13 +2449,7 @@
           "height": 768,
           "fileSize": 648237,
           "title": "Mascot V19 Hero Command Center",
-          "tags": [
-            "mascot",
-            "v19",
-            "hero",
-            "command",
-            "center"
-          ],
+          "tags": ["mascot", "v19", "hero", "command", "center"],
           "createdAt": "2026-02-09"
         },
         {
@@ -3107,12 +2463,7 @@
           "height": 768,
           "fileSize": 654443,
           "title": "Mascot V20 Evolution Stages",
-          "tags": [
-            "mascot",
-            "v20",
-            "evolution",
-            "stages"
-          ],
+          "tags": ["mascot", "v20", "evolution", "stages"],
           "createdAt": "2026-02-09"
         },
         {
@@ -3126,12 +2477,7 @@
           "height": 1024,
           "fileSize": 601650,
           "title": "Mascot V21 Stylized Avatar",
-          "tags": [
-            "mascot",
-            "v21",
-            "stylized",
-            "avatar"
-          ],
+          "tags": ["mascot", "v21", "stylized", "avatar"],
           "createdAt": "2026-02-09"
         },
         {
@@ -3145,13 +2491,7 @@
           "height": 1024,
           "fileSize": 586971,
           "title": "Mascot V22 Tech Avatar Head",
-          "tags": [
-            "mascot",
-            "v22",
-            "tech",
-            "avatar",
-            "head"
-          ],
+          "tags": ["mascot", "v22", "tech", "avatar", "head"],
           "createdAt": "2026-02-09"
         },
         {
@@ -3165,12 +2505,7 @@
           "height": 1024,
           "fileSize": 464203,
           "title": "Mascot V23 Premium Droid",
-          "tags": [
-            "mascot",
-            "v23",
-            "premium",
-            "droid"
-          ],
+          "tags": ["mascot", "v23", "premium", "droid"],
           "createdAt": "2026-02-09"
         },
         {
@@ -3184,13 +2519,7 @@
           "height": 1024,
           "fileSize": 666573,
           "title": "Mascot V24 Cyborg Fusion Head",
-          "tags": [
-            "mascot",
-            "v24",
-            "cyborg",
-            "fusion",
-            "head"
-          ],
+          "tags": ["mascot", "v24", "cyborg", "fusion", "head"],
           "createdAt": "2026-02-09"
         },
         {
@@ -3204,12 +2533,7 @@
           "height": 1024,
           "fileSize": 571023,
           "title": "Mascot V25 Crystal Familiar",
-          "tags": [
-            "mascot",
-            "v25",
-            "crystal",
-            "familiar"
-          ],
+          "tags": ["mascot", "v25", "crystal", "familiar"],
           "createdAt": "2026-02-09"
         }
       ]
@@ -3235,11 +2559,7 @@
           "height": 768,
           "fileSize": 783790,
           "title": "01 Frankx Ecosystem Overview",
-          "tags": [
-            "ecosystem",
-            "frankx",
-            "overview"
-          ],
+          "tags": ["ecosystem", "frankx", "overview"],
           "createdAt": "2026-02-03"
         },
         {
@@ -3253,12 +2573,7 @@
           "height": 768,
           "fileSize": 868726,
           "title": "02 Acos 6 Layer Architecture",
-          "tags": [
-            "ecosystem",
-            "acos",
-            "layer",
-            "architecture"
-          ],
+          "tags": ["ecosystem", "acos", "layer", "architecture"],
           "createdAt": "2026-02-03"
         },
         {
@@ -3272,11 +2587,7 @@
           "height": 768,
           "fileSize": 595837,
           "title": "03 Vibe Os Integration",
-          "tags": [
-            "ecosystem",
-            "vibe",
-            "integration"
-          ],
+          "tags": ["ecosystem", "vibe", "integration"],
           "createdAt": "2026-02-03"
         },
         {
@@ -3290,11 +2601,7 @@
           "height": 768,
           "fileSize": 835033,
           "title": "04 Gencreator Os Pipeline",
-          "tags": [
-            "ecosystem",
-            "gencreator",
-            "pipeline"
-          ],
+          "tags": ["ecosystem", "gencreator", "pipeline"],
           "createdAt": "2026-02-03"
         },
         {
@@ -3308,12 +2615,7 @@
           "height": 768,
           "fileSize": 753422,
           "title": "05 Value Ladder Progression",
-          "tags": [
-            "ecosystem",
-            "value",
-            "ladder",
-            "progression"
-          ],
+          "tags": ["ecosystem", "value", "ladder", "progression"],
           "createdAt": "2026-02-03"
         },
         {
@@ -3327,12 +2629,7 @@
           "height": 768,
           "fileSize": 673636,
           "title": "06 User Journey Map",
-          "tags": [
-            "ecosystem",
-            "user",
-            "journey",
-            "map"
-          ],
+          "tags": ["ecosystem", "user", "journey", "map"],
           "createdAt": "2026-02-03"
         },
         {
@@ -3346,11 +2643,7 @@
           "height": 768,
           "fileSize": 887997,
           "title": "07 Arcanea 10 Gates",
-          "tags": [
-            "ecosystem",
-            "arcanea",
-            "gates"
-          ],
+          "tags": ["ecosystem", "arcanea", "gates"],
           "createdAt": "2026-02-03"
         },
         {
@@ -3364,12 +2657,7 @@
           "height": 768,
           "fileSize": 692235,
           "title": "08 Research Authority Map",
-          "tags": [
-            "ecosystem",
-            "research",
-            "authority",
-            "map"
-          ],
+          "tags": ["ecosystem", "research", "authority", "map"],
           "createdAt": "2026-02-03"
         },
         {
@@ -3383,12 +2671,7 @@
           "height": 768,
           "fileSize": 745470,
           "title": "09 Agent Specialist Grid",
-          "tags": [
-            "ecosystem",
-            "agent",
-            "specialist",
-            "grid"
-          ],
+          "tags": ["ecosystem", "agent", "specialist", "grid"],
           "createdAt": "2026-02-03"
         },
         {
@@ -3402,12 +2685,7 @@
           "height": 768,
           "fileSize": 607986,
           "title": "10 Brand Identity System",
-          "tags": [
-            "ecosystem",
-            "brand",
-            "identity",
-            "system"
-          ],
+          "tags": ["ecosystem", "brand", "identity", "system"],
           "createdAt": "2026-02-03"
         },
         {
@@ -3421,11 +2699,7 @@
           "height": 768,
           "fileSize": 850380,
           "title": "11 Soulbook 7 Pillars",
-          "tags": [
-            "ecosystem",
-            "soulbook",
-            "pillars"
-          ],
+          "tags": ["ecosystem", "soulbook", "pillars"],
           "createdAt": "2026-02-06"
         },
         {
@@ -3439,11 +2713,7 @@
           "height": 768,
           "fileSize": 807384,
           "title": "12 Creative Ai Toolkit",
-          "tags": [
-            "ecosystem",
-            "creative",
-            "toolkit"
-          ],
+          "tags": ["ecosystem", "creative", "toolkit"],
           "createdAt": "2026-02-06"
         },
         {
@@ -3457,11 +2727,7 @@
           "height": 768,
           "fileSize": 871712,
           "title": "13 Creation Chronicles",
-          "tags": [
-            "ecosystem",
-            "creation",
-            "chronicles"
-          ],
+          "tags": ["ecosystem", "creation", "chronicles"],
           "createdAt": "2026-02-06"
         },
         {
@@ -3475,12 +2741,7 @@
           "height": 768,
           "fileSize": 735524,
           "title": "14 Creator Lab 30 Day",
-          "tags": [
-            "ecosystem",
-            "creator",
-            "lab",
-            "day"
-          ],
+          "tags": ["ecosystem", "creator", "lab", "day"],
           "createdAt": "2026-02-06"
         },
         {
@@ -3494,12 +2755,7 @@
           "height": 768,
           "fileSize": 811869,
           "title": "15 Acos Claude Code",
-          "tags": [
-            "ecosystem",
-            "acos",
-            "claude",
-            "code"
-          ],
+          "tags": ["ecosystem", "acos", "claude", "code"],
           "createdAt": "2026-02-06"
         },
         {
@@ -3513,12 +2769,7 @@
           "height": 768,
           "fileSize": 850943,
           "title": "16 Suno Production Workflow",
-          "tags": [
-            "ecosystem",
-            "suno",
-            "production",
-            "workflow"
-          ],
+          "tags": ["ecosystem", "suno", "production", "workflow"],
           "createdAt": "2026-02-06"
         },
         {
@@ -3532,12 +2783,7 @@
           "height": 768,
           "fileSize": 680922,
           "title": "17 Model Routing System",
-          "tags": [
-            "ecosystem",
-            "model",
-            "routing",
-            "system"
-          ],
+          "tags": ["ecosystem", "model", "routing", "system"],
           "createdAt": "2026-02-06"
         },
         {
@@ -3551,12 +2797,7 @@
           "height": 768,
           "fileSize": 827859,
           "title": "18 Skill Profile System",
-          "tags": [
-            "ecosystem",
-            "skill",
-            "profile",
-            "system"
-          ],
+          "tags": ["ecosystem", "skill", "profile", "system"],
           "createdAt": "2026-02-06"
         },
         {
@@ -3570,11 +2811,7 @@
           "height": 768,
           "fileSize": 798025,
           "title": "19 Content Pipeline",
-          "tags": [
-            "ecosystem",
-            "content",
-            "pipeline"
-          ],
+          "tags": ["ecosystem", "content", "pipeline"],
           "createdAt": "2026-02-06"
         },
         {
@@ -3588,11 +2825,7 @@
           "height": 768,
           "fileSize": 839554,
           "title": "20 Enterprise Architecture",
-          "tags": [
-            "ecosystem",
-            "enterprise",
-            "architecture"
-          ],
+          "tags": ["ecosystem", "enterprise", "architecture"],
           "createdAt": "2026-02-06"
         }
       ]
@@ -3618,11 +2851,7 @@
           "height": 1024,
           "fileSize": 1581735,
           "title": "Ai Hologram Boardroom",
-          "tags": [
-            "ai-art",
-            "hologram",
-            "boardroom"
-          ],
+          "tags": ["ai-art", "hologram", "boardroom"],
           "createdAt": "2026-01-29"
         },
         {
@@ -3636,12 +2865,7 @@
           "height": 1024,
           "fileSize": 1011819,
           "title": "Balance Trust Ethics",
-          "tags": [
-            "ai-art",
-            "balance",
-            "trust",
-            "ethics"
-          ],
+          "tags": ["ai-art", "balance", "trust", "ethics"],
           "createdAt": "2026-01-29"
         },
         {
@@ -3655,12 +2879,7 @@
           "height": 1024,
           "fileSize": 1698470,
           "title": "Chakra Energy Pillars",
-          "tags": [
-            "ai-art",
-            "chakra",
-            "energy",
-            "pillars"
-          ],
+          "tags": ["ai-art", "chakra", "energy", "pillars"],
           "createdAt": "2026-01-29"
         },
         {
@@ -3674,12 +2893,7 @@
           "height": 1536,
           "fileSize": 7715478,
           "title": "Crystalline Brain Runes",
-          "tags": [
-            "ai-art",
-            "crystalline",
-            "brain",
-            "runes"
-          ],
+          "tags": ["ai-art", "crystalline", "brain", "runes"],
           "createdAt": "2026-01-29"
         },
         {
@@ -3693,12 +2907,7 @@
           "height": 1024,
           "fileSize": 1523802,
           "title": "Data Explosion Abstract",
-          "tags": [
-            "ai-art",
-            "data",
-            "explosion",
-            "abstract"
-          ],
+          "tags": ["ai-art", "data", "explosion", "abstract"],
           "createdAt": "2026-01-29"
         },
         {
@@ -3712,12 +2921,7 @@
           "height": 1024,
           "fileSize": 1276928,
           "title": "Digital Data Stream",
-          "tags": [
-            "ai-art",
-            "digital",
-            "data",
-            "stream"
-          ],
+          "tags": ["ai-art", "digital", "data", "stream"],
           "createdAt": "2026-01-29"
         },
         {
@@ -3731,12 +2935,7 @@
           "height": 1024,
           "fileSize": 1211851,
           "title": "Digital Knowledge Flow",
-          "tags": [
-            "ai-art",
-            "digital",
-            "knowledge",
-            "flow"
-          ],
+          "tags": ["ai-art", "digital", "knowledge", "flow"],
           "createdAt": "2026-01-29"
         },
         {
@@ -3750,12 +2949,7 @@
           "height": 1024,
           "fileSize": 2006175,
           "title": "Future Eco City",
-          "tags": [
-            "ai-art",
-            "future",
-            "eco",
-            "city"
-          ],
+          "tags": ["ai-art", "future", "eco", "city"],
           "createdAt": "2026-01-29"
         },
         {
@@ -3769,12 +2963,7 @@
           "height": 1024,
           "fileSize": 1523778,
           "title": "Golden Path Journey",
-          "tags": [
-            "ai-art",
-            "golden",
-            "path",
-            "journey"
-          ],
+          "tags": ["ai-art", "golden", "path", "journey"],
           "createdAt": "2026-01-29"
         },
         {
@@ -3788,12 +2977,7 @@
           "height": 1024,
           "fileSize": 1857058,
           "title": "Grand Wisdom Temple",
-          "tags": [
-            "ai-art",
-            "grand",
-            "wisdom",
-            "temple"
-          ],
+          "tags": ["ai-art", "grand", "wisdom", "temple"],
           "createdAt": "2026-01-29"
         },
         {
@@ -3807,12 +2991,7 @@
           "height": 1024,
           "fileSize": 1156556,
           "title": "Isometric Growth Chart",
-          "tags": [
-            "ai-art",
-            "isometric",
-            "growth",
-            "chart"
-          ],
+          "tags": ["ai-art", "isometric", "growth", "chart"],
           "createdAt": "2026-01-29"
         },
         {
@@ -3826,12 +3005,7 @@
           "height": 1024,
           "fileSize": 1406909,
           "title": "Isometric Tech Platform",
-          "tags": [
-            "ai-art",
-            "isometric",
-            "tech",
-            "platform"
-          ],
+          "tags": ["ai-art", "isometric", "tech", "platform"],
           "createdAt": "2026-01-29"
         },
         {
@@ -3845,12 +3019,7 @@
           "height": 1024,
           "fileSize": 1720959,
           "title": "Knowledge Domains Wave",
-          "tags": [
-            "ai-art",
-            "knowledge",
-            "domains",
-            "wave"
-          ],
+          "tags": ["ai-art", "knowledge", "domains", "wave"],
           "createdAt": "2026-01-29"
         },
         {
@@ -3864,12 +3033,7 @@
           "height": 1024,
           "fileSize": 1748477,
           "title": "Life Symphony Conductor",
-          "tags": [
-            "ai-art",
-            "life",
-            "symphony",
-            "conductor"
-          ],
+          "tags": ["ai-art", "life", "symphony", "conductor"],
           "createdAt": "2026-01-29"
         },
         {
@@ -3883,12 +3047,7 @@
           "height": 1024,
           "fileSize": 1642235,
           "title": "Managed Vs Custom Code",
-          "tags": [
-            "ai-art",
-            "managed",
-            "custom",
-            "code"
-          ],
+          "tags": ["ai-art", "managed", "custom", "code"],
           "createdAt": "2026-01-29"
         },
         {
@@ -3902,12 +3061,7 @@
           "height": 1024,
           "fileSize": 1903356,
           "title": "Modern Coworking Space",
-          "tags": [
-            "ai-art",
-            "modern",
-            "coworking",
-            "space"
-          ],
+          "tags": ["ai-art", "modern", "coworking", "space"],
           "createdAt": "2026-01-29"
         },
         {
@@ -3921,12 +3075,7 @@
           "height": 1024,
           "fileSize": 1259153,
           "title": "Neural Network Brain",
-          "tags": [
-            "ai-art",
-            "neural",
-            "network",
-            "brain"
-          ],
+          "tags": ["ai-art", "neural", "network", "brain"],
           "createdAt": "2026-01-29"
         },
         {
@@ -3940,12 +3089,7 @@
           "height": 1024,
           "fileSize": 1553515,
           "title": "Pyramid Hierarchy Layers",
-          "tags": [
-            "ai-art",
-            "pyramid",
-            "hierarchy",
-            "layers"
-          ],
+          "tags": ["ai-art", "pyramid", "hierarchy", "layers"],
           "createdAt": "2026-01-29"
         },
         {
@@ -3959,12 +3103,7 @@
           "height": 1024,
           "fileSize": 1365683,
           "title": "Security Dashboard Shield",
-          "tags": [
-            "ai-art",
-            "security",
-            "dashboard",
-            "shield"
-          ],
+          "tags": ["ai-art", "security", "dashboard", "shield"],
           "createdAt": "2026-01-29"
         },
         {
@@ -3978,12 +3117,7 @@
           "height": 1024,
           "fileSize": 1311544,
           "title": "Tree Of Life Decorative",
-          "tags": [
-            "ai-art",
-            "tree",
-            "life",
-            "decorative"
-          ],
+          "tags": ["ai-art", "tree", "life", "decorative"],
           "createdAt": "2026-01-29"
         }
       ]
@@ -3992,7 +3126,7 @@
       "id": "acos",
       "name": "ACOS Visual Assets",
       "description": "Architecture diagrams, workflow visualizations, and screenshots for the Agentic Creator OS documentation.",
-      "count": 17,
+      "count": 21,
       "coverImage": "/images/acos/acos-3-phase-workflow.png",
       "accent": "from-emerald-500/20 to-teal-500/20",
       "borderAccent": "border-emerald-500/30",
@@ -4009,11 +3143,7 @@
           "height": 672,
           "fileSize": 984065,
           "title": "Acos 3 Phase Workflow",
-          "tags": [
-            "acos",
-            "phase",
-            "workflow"
-          ],
+          "tags": ["acos", "phase", "workflow"],
           "createdAt": "2026-01-29"
         },
         {
@@ -4027,11 +3157,7 @@
           "height": 768,
           "fileSize": 844779,
           "title": "Acos Council Agents",
-          "tags": [
-            "acos",
-            "council",
-            "agents"
-          ],
+          "tags": ["acos", "council", "agents"],
           "createdAt": "2026-01-29"
         },
         {
@@ -4045,11 +3171,7 @@
           "height": 768,
           "fileSize": 824723,
           "title": "Acos Synthesis Pipeline",
-          "tags": [
-            "acos",
-            "synthesis",
-            "pipeline"
-          ],
+          "tags": ["acos", "synthesis", "pipeline"],
           "createdAt": "2026-01-29"
         },
         {
@@ -4063,11 +3185,35 @@
           "height": 768,
           "fileSize": 755544,
           "title": "Acos V10 Architecture",
-          "tags": [
-            "acos",
-            "v10",
-            "architecture"
-          ],
+          "tags": ["acos", "v10", "architecture"],
+          "createdAt": "2026-02-14"
+        },
+        {
+          "id": "acos/acos-v10-blog-screenshot",
+          "filename": "acos-v10-blog-screenshot.png",
+          "src": "/images/acos/acos-v10-blog-screenshot.png",
+          "thumbnail": null,
+          "collection": "acos",
+          "format": "png",
+          "width": 1908,
+          "height": 1008,
+          "fileSize": 533804,
+          "title": "Acos V10 Blog Screenshot",
+          "tags": ["acos", "v10", "blog", "screenshot"],
+          "createdAt": "2026-02-14"
+        },
+        {
+          "id": "acos/acos-v10-changelog-screenshot",
+          "filename": "acos-v10-changelog-screenshot.png",
+          "src": "/images/acos/acos-v10-changelog-screenshot.png",
+          "thumbnail": null,
+          "collection": "acos",
+          "format": "png",
+          "width": 1908,
+          "height": 1008,
+          "fileSize": 135791,
+          "title": "Acos V10 Changelog Screenshot",
+          "tags": ["acos", "v10", "changelog", "screenshot"],
           "createdAt": "2026-02-14"
         },
         {
@@ -4081,11 +3227,7 @@
           "height": 768,
           "fileSize": 709980,
           "title": "Acos Workflow Architecture",
-          "tags": [
-            "acos",
-            "workflow",
-            "architecture"
-          ],
+          "tags": ["acos", "workflow", "architecture"],
           "createdAt": "2026-01-29"
         },
         {
@@ -4099,12 +3241,36 @@
           "height": 1024,
           "fileSize": 1585547,
           "title": "Arcanea Ecosystem",
-          "tags": [
-            "acos",
-            "arcanea",
-            "ecosystem"
-          ],
+          "tags": ["acos", "arcanea", "ecosystem"],
           "createdAt": "2026-02-06"
+        },
+        {
+          "id": "acos/changelog-v2-live",
+          "filename": "changelog-v2-live.png",
+          "src": "/images/acos/changelog-v2-live.png",
+          "thumbnail": null,
+          "collection": "acos",
+          "format": "png",
+          "width": 1893,
+          "height": 4915,
+          "fileSize": 802087,
+          "title": "Changelog V2 Live",
+          "tags": ["acos", "changelog", "live"],
+          "createdAt": "2026-02-14"
+        },
+        {
+          "id": "acos/changelog-v2-screenshot",
+          "filename": "changelog-v2-screenshot.png",
+          "src": "/images/acos/changelog-v2-screenshot.png",
+          "thumbnail": null,
+          "collection": "acos",
+          "format": "png",
+          "width": 1908,
+          "height": 1008,
+          "fileSize": 140530,
+          "title": "Changelog V2 Screenshot",
+          "tags": ["acos", "changelog", "screenshot"],
+          "createdAt": "2026-02-14"
         },
         {
           "id": "acos/creation-pipeline",
@@ -4117,11 +3283,7 @@
           "height": 1024,
           "fileSize": 1315298,
           "title": "Creation Pipeline",
-          "tags": [
-            "acos",
-            "creation",
-            "pipeline"
-          ],
+          "tags": ["acos", "creation", "pipeline"],
           "createdAt": "2026-02-06"
         },
         {
@@ -4135,12 +3297,7 @@
           "height": 1024,
           "fileSize": 1664546,
           "title": "Frankx Superintelligent System",
-          "tags": [
-            "acos",
-            "frankx",
-            "superintelligent",
-            "system"
-          ],
+          "tags": ["acos", "frankx", "superintelligent", "system"],
           "createdAt": "2026-02-06"
         },
         {
@@ -4154,12 +3311,7 @@
           "height": 1024,
           "fileSize": 1863080,
           "title": "Golden Age Cocreation",
-          "tags": [
-            "acos",
-            "golden",
-            "age",
-            "cocreation"
-          ],
+          "tags": ["acos", "golden", "age", "cocreation"],
           "createdAt": "2026-02-06"
         },
         {
@@ -4173,11 +3325,7 @@
           "height": 1024,
           "fileSize": 1539253,
           "title": "Guardian Council",
-          "tags": [
-            "acos",
-            "guardian",
-            "council"
-          ],
+          "tags": ["acos", "guardian", "council"],
           "createdAt": "2026-02-06"
         },
         {
@@ -4191,11 +3339,7 @@
           "height": 1024,
           "fileSize": 1845582,
           "title": "Starlight Orchestrator",
-          "tags": [
-            "acos",
-            "starlight",
-            "orchestrator"
-          ],
+          "tags": ["acos", "starlight", "orchestrator"],
           "createdAt": "2026-02-06"
         },
         {
@@ -4209,11 +3353,7 @@
           "height": 1024,
           "fileSize": 1608318,
           "title": "V2 Arcanea Ecosystem",
-          "tags": [
-            "acos",
-            "arcanea",
-            "ecosystem"
-          ],
+          "tags": ["acos", "arcanea", "ecosystem"],
           "createdAt": "2026-02-06"
         },
         {
@@ -4227,11 +3367,7 @@
           "height": 1024,
           "fileSize": 1936232,
           "title": "V2 Frankx System",
-          "tags": [
-            "acos",
-            "frankx",
-            "system"
-          ],
+          "tags": ["acos", "frankx", "system"],
           "createdAt": "2026-02-06"
         },
         {
@@ -4245,11 +3381,7 @@
           "height": 1024,
           "fileSize": 1795110,
           "title": "V2 Golden Age",
-          "tags": [
-            "acos",
-            "golden",
-            "age"
-          ],
+          "tags": ["acos", "golden", "age"],
           "createdAt": "2026-02-06"
         },
         {
@@ -4263,11 +3395,7 @@
           "height": 1024,
           "fileSize": 1580346,
           "title": "V3 Arcanea Ecosystem",
-          "tags": [
-            "acos",
-            "arcanea",
-            "ecosystem"
-          ],
+          "tags": ["acos", "arcanea", "ecosystem"],
           "createdAt": "2026-02-06"
         },
         {
@@ -4281,11 +3409,7 @@
           "height": 1024,
           "fileSize": 1724462,
           "title": "V3 Frankx System",
-          "tags": [
-            "acos",
-            "frankx",
-            "system"
-          ],
+          "tags": ["acos", "frankx", "system"],
           "createdAt": "2026-02-06"
         },
         {
@@ -4299,11 +3423,7 @@
           "height": 1024,
           "fileSize": 1549766,
           "title": "V3 Golden Age",
-          "tags": [
-            "acos",
-            "golden",
-            "age"
-          ],
+          "tags": ["acos", "golden", "age"],
           "createdAt": "2026-02-06"
         }
       ]
@@ -4329,13 +3449,7 @@
           "height": 768,
           "fileSize": 744957,
           "title": "Nature 01 Digital Garden",
-          "tags": [
-            "design-lab",
-            "nature",
-            "digital",
-            "garden",
-            "hero"
-          ],
+          "tags": ["design-lab", "nature", "digital", "garden", "hero"],
           "createdAt": "2026-02-08"
         },
         {
@@ -4349,12 +3463,7 @@
           "height": 768,
           "fileSize": 719860,
           "title": "Nature 02 Neural Roots",
-          "tags": [
-            "design-lab",
-            "nature",
-            "neural",
-            "roots"
-          ],
+          "tags": ["design-lab", "nature", "neural", "roots"],
           "createdAt": "2026-02-08"
         },
         {
@@ -4368,12 +3477,7 @@
           "height": 768,
           "fileSize": 764075,
           "title": "Nature 03 Code Vines",
-          "tags": [
-            "design-lab",
-            "nature",
-            "code",
-            "vines"
-          ],
+          "tags": ["design-lab", "nature", "code", "vines"],
           "createdAt": "2026-02-08"
         },
         {
@@ -4387,12 +3491,7 @@
           "height": 768,
           "fileSize": 864692,
           "title": "Nature 04 Data Streams",
-          "tags": [
-            "design-lab",
-            "nature",
-            "data",
-            "streams"
-          ],
+          "tags": ["design-lab", "nature", "data", "streams"],
           "createdAt": "2026-02-08"
         },
         {
@@ -4406,12 +3505,7 @@
           "height": 768,
           "fileSize": 785084,
           "title": "Nature 05 Forest Architecture",
-          "tags": [
-            "design-lab",
-            "nature",
-            "forest",
-            "architecture"
-          ],
+          "tags": ["design-lab", "nature", "forest", "architecture"],
           "createdAt": "2026-02-08"
         },
         {
@@ -4425,12 +3519,7 @@
           "height": 768,
           "fileSize": 645945,
           "title": "Nature 06 Seeds Of Intelligence",
-          "tags": [
-            "design-lab",
-            "nature",
-            "seeds",
-            "intelligence"
-          ],
+          "tags": ["design-lab", "nature", "seeds", "intelligence"],
           "createdAt": "2026-02-08"
         },
         {
@@ -4444,12 +3533,7 @@
           "height": 768,
           "fileSize": 574157,
           "title": "Nature 07 Intelligence Bloom",
-          "tags": [
-            "design-lab",
-            "nature",
-            "intelligence",
-            "bloom"
-          ],
+          "tags": ["design-lab", "nature", "intelligence", "bloom"],
           "createdAt": "2026-02-08"
         },
         {
@@ -4463,12 +3547,7 @@
           "height": 768,
           "fileSize": 767377,
           "title": "Nature 08 Ecosystem Map",
-          "tags": [
-            "design-lab",
-            "nature",
-            "ecosystem",
-            "map"
-          ],
+          "tags": ["design-lab", "nature", "ecosystem", "map"],
           "createdAt": "2026-02-08"
         },
         {
@@ -4482,12 +3561,7 @@
           "height": 768,
           "fileSize": 809868,
           "title": "Nature 09 Crystal Garden",
-          "tags": [
-            "design-lab",
-            "nature",
-            "crystal",
-            "garden"
-          ],
+          "tags": ["design-lab", "nature", "crystal", "garden"],
           "createdAt": "2026-02-08"
         },
         {
@@ -4501,12 +3575,7 @@
           "height": 768,
           "fileSize": 1021362,
           "title": "Nature 10 Constellation Garden",
-          "tags": [
-            "design-lab",
-            "nature",
-            "constellation",
-            "garden"
-          ],
+          "tags": ["design-lab", "nature", "constellation", "garden"],
           "createdAt": "2026-02-08"
         },
         {
@@ -4520,12 +3589,7 @@
           "height": 768,
           "fileSize": 712810,
           "title": "Variant Acos Nature",
-          "tags": [
-            "design-lab",
-            "variant",
-            "acos",
-            "nature"
-          ],
+          "tags": ["design-lab", "variant", "acos", "nature"],
           "createdAt": "2026-02-08"
         },
         {
@@ -4539,12 +3603,7 @@
           "height": 768,
           "fileSize": 563806,
           "title": "Variant Blog Nature",
-          "tags": [
-            "design-lab",
-            "variant",
-            "blog",
-            "nature"
-          ],
+          "tags": ["design-lab", "variant", "blog", "nature"],
           "createdAt": "2026-02-08"
         },
         {
@@ -4558,12 +3617,7 @@
           "height": 768,
           "fileSize": 612793,
           "title": "Variant Homepage Nature",
-          "tags": [
-            "design-lab",
-            "variant",
-            "homepage",
-            "nature"
-          ],
+          "tags": ["design-lab", "variant", "homepage", "nature"],
           "createdAt": "2026-02-08"
         },
         {
@@ -4577,13 +3631,7 @@
           "height": 768,
           "fileSize": 634363,
           "title": "Variant Inner Circle Nature",
-          "tags": [
-            "design-lab",
-            "variant",
-            "inner",
-            "circle",
-            "nature"
-          ],
+          "tags": ["design-lab", "variant", "inner", "circle", "nature"],
           "createdAt": "2026-02-08"
         },
         {
@@ -4597,12 +3645,7 @@
           "height": 768,
           "fileSize": 673121,
           "title": "Variant Labs Nature",
-          "tags": [
-            "design-lab",
-            "variant",
-            "labs",
-            "nature"
-          ],
+          "tags": ["design-lab", "variant", "labs", "nature"],
           "createdAt": "2026-02-08"
         },
         {
@@ -4616,12 +3659,7 @@
           "height": 768,
           "fileSize": 521710,
           "title": "Variant Products Nature",
-          "tags": [
-            "design-lab",
-            "variant",
-            "products",
-            "nature"
-          ],
+          "tags": ["design-lab", "variant", "products", "nature"],
           "createdAt": "2026-02-08"
         }
       ]
@@ -4647,11 +3685,7 @@
           "height": 768,
           "fileSize": 586859,
           "title": "V7 01 Pillars Premium",
-          "tags": [
-            "infographics",
-            "pillars",
-            "premium"
-          ],
+          "tags": ["infographics", "pillars", "premium"],
           "createdAt": "2026-02-08"
         },
         {
@@ -4665,12 +3699,7 @@
           "height": 768,
           "fileSize": 618249,
           "title": "V7 01 Seven Pillars Architecture",
-          "tags": [
-            "infographics",
-            "seven",
-            "pillars",
-            "architecture"
-          ],
+          "tags": ["infographics", "seven", "pillars", "architecture"],
           "createdAt": "2026-02-08"
         },
         {
@@ -4684,11 +3713,7 @@
           "height": 768,
           "fileSize": 788187,
           "title": "V7 04 Agent Library",
-          "tags": [
-            "infographics",
-            "agent",
-            "library"
-          ],
+          "tags": ["infographics", "agent", "library"],
           "createdAt": "2026-02-08"
         },
         {
@@ -4702,11 +3727,7 @@
           "height": 768,
           "fileSize": 614557,
           "title": "V7 04 Agents Premium",
-          "tags": [
-            "infographics",
-            "agents",
-            "premium"
-          ],
+          "tags": ["infographics", "agents", "premium"],
           "createdAt": "2026-02-08"
         },
         {
@@ -4720,11 +3741,7 @@
           "height": 768,
           "fileSize": 683273,
           "title": "V7 05 Command Routing",
-          "tags": [
-            "infographics",
-            "command",
-            "routing"
-          ],
+          "tags": ["infographics", "command", "routing"],
           "createdAt": "2026-02-08"
         },
         {
@@ -4738,11 +3755,7 @@
           "height": 768,
           "fileSize": 643980,
           "title": "V7 05 Routing Premium",
-          "tags": [
-            "infographics",
-            "routing",
-            "premium"
-          ],
+          "tags": ["infographics", "routing", "premium"],
           "createdAt": "2026-02-08"
         },
         {
@@ -4756,11 +3769,7 @@
           "height": 768,
           "fileSize": 632399,
           "title": "V7 09 Architecture Premium",
-          "tags": [
-            "infographics",
-            "architecture",
-            "premium"
-          ],
+          "tags": ["infographics", "architecture", "premium"],
           "createdAt": "2026-02-08"
         },
         {
@@ -4774,12 +3783,7 @@
           "height": 768,
           "fileSize": 705745,
           "title": "V7 09 Full System Architecture",
-          "tags": [
-            "infographics",
-            "full",
-            "system",
-            "architecture"
-          ],
+          "tags": ["infographics", "full", "system", "architecture"],
           "createdAt": "2026-02-08"
         },
         {
@@ -4793,11 +3797,7 @@
           "height": 768,
           "fileSize": 424063,
           "title": "V7 Agents Dev",
-          "tags": [
-            "infographics",
-            "agents",
-            "dev"
-          ],
+          "tags": ["infographics", "agents", "dev"],
           "createdAt": "2026-02-08"
         },
         {
@@ -4811,11 +3811,7 @@
           "height": 768,
           "fileSize": 448953,
           "title": "V7 Hero Dev",
-          "tags": [
-            "infographics",
-            "hero",
-            "dev"
-          ],
+          "tags": ["infographics", "hero", "dev"],
           "createdAt": "2026-02-08"
         },
         {
@@ -4829,11 +3825,7 @@
           "height": 768,
           "fileSize": 545808,
           "title": "V7 Layers Dev",
-          "tags": [
-            "infographics",
-            "layers",
-            "dev"
-          ],
+          "tags": ["infographics", "layers", "dev"],
           "createdAt": "2026-02-08"
         },
         {
@@ -4847,11 +3839,7 @@
           "height": 672,
           "fileSize": 509420,
           "title": "V7 Stats Banner",
-          "tags": [
-            "infographics",
-            "stats",
-            "banner"
-          ],
+          "tags": ["infographics", "stats", "banner"],
           "createdAt": "2026-02-08"
         }
       ]
@@ -4877,11 +3865,7 @@
           "height": 1024,
           "fileSize": 540672,
           "title": "Golden Path",
-          "tags": [
-            "soulbook",
-            "golden",
-            "path"
-          ],
+          "tags": ["soulbook", "golden", "path"],
           "createdAt": "2026-01-30"
         },
         {
@@ -4895,11 +3879,7 @@
           "height": 768,
           "fileSize": 611910,
           "title": "Hero Assessment",
-          "tags": [
-            "soulbook",
-            "hero",
-            "assessment"
-          ],
+          "tags": ["soulbook", "hero", "assessment"],
           "createdAt": "2026-01-30"
         },
         {
@@ -4913,10 +3893,7 @@
           "height": 672,
           "fileSize": 734340,
           "title": "Hero Soulbook",
-          "tags": [
-            "soulbook",
-            "hero"
-          ],
+          "tags": ["soulbook", "hero"],
           "createdAt": "2026-01-30"
         },
         {
@@ -4930,11 +3907,7 @@
           "height": 768,
           "fileSize": 697850,
           "title": "Hero Vault",
-          "tags": [
-            "soulbook",
-            "hero",
-            "vault"
-          ],
+          "tags": ["soulbook", "hero", "vault"],
           "createdAt": "2026-01-30"
         },
         {
@@ -4948,11 +3921,7 @@
           "height": 1024,
           "fileSize": 773225,
           "title": "Life Symphony",
-          "tags": [
-            "soulbook",
-            "life",
-            "symphony"
-          ],
+          "tags": ["soulbook", "life", "symphony"],
           "createdAt": "2026-01-30"
         },
         {
@@ -4966,11 +3935,7 @@
           "height": 1024,
           "fileSize": 762135,
           "title": "Pillar Consciousness",
-          "tags": [
-            "soulbook",
-            "pillar",
-            "consciousness"
-          ],
+          "tags": ["soulbook", "pillar", "consciousness"],
           "createdAt": "2026-01-30"
         },
         {
@@ -4984,11 +3949,7 @@
           "height": 1024,
           "fileSize": 873578,
           "title": "Pillar Creation",
-          "tags": [
-            "soulbook",
-            "pillar",
-            "creation"
-          ],
+          "tags": ["soulbook", "pillar", "creation"],
           "createdAt": "2026-01-30"
         },
         {
@@ -5002,12 +3963,7 @@
           "height": 1024,
           "fileSize": 691139,
           "title": "Pillar Emotional Mastery",
-          "tags": [
-            "soulbook",
-            "pillar",
-            "emotional",
-            "mastery"
-          ],
+          "tags": ["soulbook", "pillar", "emotional", "mastery"],
           "createdAt": "2026-01-30"
         },
         {
@@ -5021,11 +3977,7 @@
           "height": 1024,
           "fileSize": 741359,
           "title": "Pillar Identity",
-          "tags": [
-            "soulbook",
-            "pillar",
-            "identity"
-          ],
+          "tags": ["soulbook", "pillar", "identity"],
           "createdAt": "2026-01-30"
         },
         {
@@ -5039,11 +3991,7 @@
           "height": 1024,
           "fileSize": 721833,
           "title": "Pillar Purpose",
-          "tags": [
-            "soulbook",
-            "pillar",
-            "purpose"
-          ],
+          "tags": ["soulbook", "pillar", "purpose"],
           "createdAt": "2026-01-30"
         },
         {
@@ -5057,11 +4005,7 @@
           "height": 1024,
           "fileSize": 587596,
           "title": "Pillar Relationships",
-          "tags": [
-            "soulbook",
-            "pillar",
-            "relationships"
-          ],
+          "tags": ["soulbook", "pillar", "relationships"],
           "createdAt": "2026-01-30"
         },
         {
@@ -5075,11 +4019,7 @@
           "height": 1024,
           "fileSize": 634476,
           "title": "Pillar Vitality",
-          "tags": [
-            "soulbook",
-            "pillar",
-            "vitality"
-          ],
+          "tags": ["soulbook", "pillar", "vitality"],
           "createdAt": "2026-01-30"
         },
         {
@@ -5093,11 +4033,7 @@
           "height": 1024,
           "fileSize": 922432,
           "title": "Seven Pillars",
-          "tags": [
-            "soulbook",
-            "seven",
-            "pillars"
-          ],
+          "tags": ["soulbook", "seven", "pillars"],
           "createdAt": "2026-01-30"
         }
       ]
@@ -5123,11 +4059,7 @@
           "height": 768,
           "fileSize": 573728,
           "title": "Amsterdam Water",
-          "tags": [
-            "valentines",
-            "amsterdam",
-            "water"
-          ],
+          "tags": ["valentines", "amsterdam", "water"],
           "createdAt": "2026-02-14"
         },
         {
@@ -5141,11 +4073,7 @@
           "height": 768,
           "fileSize": 991528,
           "title": "Cherry Blossom",
-          "tags": [
-            "valentines",
-            "cherry",
-            "blossom"
-          ],
+          "tags": ["valentines", "cherry", "blossom"],
           "createdAt": "2026-02-14"
         },
         {
@@ -5159,11 +4087,7 @@
           "height": 768,
           "fileSize": 801173,
           "title": "Cultures United",
-          "tags": [
-            "valentines",
-            "cultures",
-            "united"
-          ],
+          "tags": ["valentines", "cultures", "united"],
           "createdAt": "2026-02-14"
         },
         {
@@ -5177,11 +4101,7 @@
           "height": 768,
           "fileSize": 911616,
           "title": "German Poetry",
-          "tags": [
-            "valentines",
-            "german",
-            "poetry"
-          ],
+          "tags": ["valentines", "german", "poetry"],
           "createdAt": "2026-02-14"
         },
         {
@@ -5195,11 +4115,7 @@
           "height": 768,
           "fileSize": 540933,
           "title": "Hero Celestial",
-          "tags": [
-            "valentines",
-            "hero",
-            "celestial"
-          ],
+          "tags": ["valentines", "hero", "celestial"],
           "createdAt": "2026-02-14"
         },
         {
@@ -5213,11 +4129,7 @@
           "height": 768,
           "fileSize": 543796,
           "title": "Lotus Bloom",
-          "tags": [
-            "valentines",
-            "lotus",
-            "bloom"
-          ],
+          "tags": ["valentines", "lotus", "bloom"],
           "createdAt": "2026-02-14"
         },
         {
@@ -5231,11 +4143,7 @@
           "height": 768,
           "fileSize": 762763,
           "title": "Love Art",
-          "tags": [
-            "valentines",
-            "love",
-            "art"
-          ],
+          "tags": ["valentines", "love", "art"],
           "createdAt": "2026-02-14"
         },
         {
@@ -5249,11 +4157,7 @@
           "height": 768,
           "fileSize": 757073,
           "title": "Love Fireworks",
-          "tags": [
-            "valentines",
-            "love",
-            "fireworks"
-          ],
+          "tags": ["valentines", "love", "fireworks"],
           "createdAt": "2026-02-14"
         },
         {
@@ -5267,29 +4171,21 @@
           "height": 768,
           "fileSize": 486186,
           "title": "Og Valentines 2026",
-          "tags": [
-            "valentines",
-            "2026"
-          ],
+          "tags": ["valentines", "2026"],
           "createdAt": "2026-02-14"
         },
         {
           "id": "valentines/rose-petals-hero",
           "filename": "rose-petals-hero.png",
           "src": "/images/valentines/rose-petals-hero.png",
-          "thumbnail": null,
+          "thumbnail": "/images/valentines/rose-petals-hero_thumb.jpeg",
           "collection": "valentines",
           "format": "png",
           "width": 1376,
           "height": 768,
           "fileSize": 629998,
           "title": "Rose Petals",
-          "tags": [
-            "valentines",
-            "rose",
-            "petals",
-            "hero"
-          ],
+          "tags": ["valentines", "rose", "petals", "hero"],
           "createdAt": "2026-02-14"
         },
         {
@@ -5303,11 +4199,7 @@
           "height": 768,
           "fileSize": 555480,
           "title": "Two Souls",
-          "tags": [
-            "valentines",
-            "two",
-            "souls"
-          ],
+          "tags": ["valentines", "two", "souls"],
           "createdAt": "2026-02-14"
         },
         {
@@ -5321,11 +4213,7 @@
           "height": 768,
           "fileSize": 737247,
           "title": "Vietnamese Love",
-          "tags": [
-            "valentines",
-            "vietnamese",
-            "love"
-          ],
+          "tags": ["valentines", "vietnamese", "love"],
           "createdAt": "2026-02-14"
         }
       ]
@@ -5334,48 +4222,12 @@
       "id": "arcanea",
       "name": "Arcanea Academy",
       "description": "Grand academy, hall of luminor, campus map, cognitive bridge — visual world-building for the Arcanea learning universe.",
-      "count": 10,
-      "coverImage": "/images/arcanea/10-gates-progression.png",
+      "count": 7,
+      "coverImage": "/images/arcanea/arcanea-ai-classroom.png",
       "accent": "from-violet-500/20 to-purple-500/20",
       "borderAccent": "border-violet-500/30",
       "sortOrder": 10,
       "assets": [
-        {
-          "id": "arcanea/10-gates-progression",
-          "filename": "10-gates-progression.png",
-          "src": "/images/arcanea/10-gates-progression.png",
-          "thumbnail": "/images/arcanea/10-gates-progression_thumb.jpeg",
-          "collection": "arcanea",
-          "format": "png",
-          "width": 1376,
-          "height": 768,
-          "fileSize": 844296,
-          "title": "10 Gates Progression",
-          "tags": [
-            "arcanea",
-            "gates",
-            "progression"
-          ],
-          "createdAt": "2026-02-16"
-        },
-        {
-          "id": "arcanea/arc-cycle",
-          "filename": "arc-cycle.png",
-          "src": "/images/arcanea/arc-cycle.png",
-          "thumbnail": "/images/arcanea/arc-cycle_thumb.jpeg",
-          "collection": "arcanea",
-          "format": "png",
-          "width": 1376,
-          "height": 768,
-          "fileSize": 718259,
-          "title": "Arc Cycle",
-          "tags": [
-            "arcanea",
-            "arc",
-            "cycle"
-          ],
-          "createdAt": "2026-02-16"
-        },
         {
           "id": "arcanea/arcanea-ai-classroom",
           "filename": "arcanea-ai-classroom.png",
@@ -5387,11 +4239,8 @@
           "height": 768,
           "fileSize": 983894,
           "title": "Arcanea Ai Classroom",
-          "tags": [
-            "arcanea",
-            "classroom"
-          ],
-          "createdAt": "2026-02-16"
+          "tags": ["arcanea", "classroom"],
+          "createdAt": "2026-01-29"
         },
         {
           "id": "arcanea/arcanea-campus-map",
@@ -5404,12 +4253,8 @@
           "height": 768,
           "fileSize": 853293,
           "title": "Arcanea Campus Map",
-          "tags": [
-            "arcanea",
-            "campus",
-            "map"
-          ],
-          "createdAt": "2026-02-16"
+          "tags": ["arcanea", "campus", "map"],
+          "createdAt": "2026-01-29"
         },
         {
           "id": "arcanea/arcanea-cognitive-bridge",
@@ -5422,12 +4267,8 @@
           "height": 768,
           "fileSize": 741163,
           "title": "Arcanea Cognitive Bridge",
-          "tags": [
-            "arcanea",
-            "cognitive",
-            "bridge"
-          ],
-          "createdAt": "2026-02-16"
+          "tags": ["arcanea", "cognitive", "bridge"],
+          "createdAt": "2026-01-29"
         },
         {
           "id": "arcanea/arcanea-grand-academy",
@@ -5440,12 +4281,8 @@
           "height": 768,
           "fileSize": 1277801,
           "title": "Arcanea Grand Academy",
-          "tags": [
-            "arcanea",
-            "grand",
-            "academy"
-          ],
-          "createdAt": "2026-02-16"
+          "tags": ["arcanea", "grand", "academy"],
+          "createdAt": "2026-01-29"
         },
         {
           "id": "arcanea/arcanea-hall-of-luminor",
@@ -5458,12 +4295,8 @@
           "height": 768,
           "fileSize": 938681,
           "title": "Arcanea Hall Of Luminor",
-          "tags": [
-            "arcanea",
-            "hall",
-            "luminor"
-          ],
-          "createdAt": "2026-02-16"
+          "tags": ["arcanea", "hall", "luminor"],
+          "createdAt": "2026-01-29"
         },
         {
           "id": "arcanea/arcanea-latent-space",
@@ -5476,12 +4309,8 @@
           "height": 768,
           "fileSize": 822085,
           "title": "Arcanea Latent Space",
-          "tags": [
-            "arcanea",
-            "latent",
-            "space"
-          ],
-          "createdAt": "2026-02-16"
+          "tags": ["arcanea", "latent", "space"],
+          "createdAt": "2026-01-29"
         },
         {
           "id": "arcanea/arcanea-neuro-synthesis",
@@ -5494,30 +4323,8 @@
           "height": 768,
           "fileSize": 854646,
           "title": "Arcanea Neuro Synthesis",
-          "tags": [
-            "arcanea",
-            "neuro",
-            "synthesis"
-          ],
-          "createdAt": "2026-02-16"
-        },
-        {
-          "id": "arcanea/five-elements",
-          "filename": "five-elements.png",
-          "src": "/images/arcanea/five-elements.png",
-          "thumbnail": "/images/arcanea/five-elements_thumb.jpeg",
-          "collection": "arcanea",
-          "format": "png",
-          "width": 1376,
-          "height": 768,
-          "fileSize": 798032,
-          "title": "Five Elements",
-          "tags": [
-            "arcanea",
-            "five",
-            "elements"
-          ],
-          "createdAt": "2026-02-16"
+          "tags": ["arcanea", "neuro", "synthesis"],
+          "createdAt": "2026-01-29"
         }
       ]
     },
@@ -5525,168 +4332,12 @@
       "id": "books",
       "name": "Book Covers",
       "description": "Cover designs and promotional assets for published and upcoming books.",
-      "count": 13,
-      "coverImage": "/images/books/arcanea-bestiary-cover.png",
+      "count": 5,
+      "coverImage": "/images/books/imagination-cover.png",
       "accent": "from-amber-500/20 to-orange-500/20",
       "borderAccent": "border-amber-500/30",
       "sortOrder": 11,
       "assets": [
-        {
-          "id": "books/arcanea-bestiary-cover",
-          "filename": "arcanea-bestiary-cover.png",
-          "src": "/images/books/arcanea-bestiary-cover.png",
-          "thumbnail": "/images/books/arcanea-bestiary-cover_thumb.jpeg",
-          "collection": "books",
-          "format": "png",
-          "width": 848,
-          "height": 1264,
-          "fileSize": 991563,
-          "title": "Arcanea Bestiary Cover",
-          "tags": [
-            "books",
-            "arcanea",
-            "bestiary",
-            "cover"
-          ],
-          "createdAt": "2026-02-16"
-        },
-        {
-          "id": "books/arcanea-chronicles-cover",
-          "filename": "arcanea-chronicles-cover.png",
-          "src": "/images/books/arcanea-chronicles-cover.png",
-          "thumbnail": "/images/books/arcanea-chronicles-cover_thumb.jpeg",
-          "collection": "books",
-          "format": "png",
-          "width": 848,
-          "height": 1264,
-          "fileSize": 917674,
-          "title": "Arcanea Chronicles Cover",
-          "tags": [
-            "books",
-            "arcanea",
-            "chronicles",
-            "cover"
-          ],
-          "createdAt": "2026-02-16"
-        },
-        {
-          "id": "books/arcanea-creator-principles-cover",
-          "filename": "arcanea-creator-principles-cover.png",
-          "src": "/images/books/arcanea-creator-principles-cover.png",
-          "thumbnail": "/images/books/arcanea-creator-principles-cover_thumb.jpeg",
-          "collection": "books",
-          "format": "png",
-          "width": 848,
-          "height": 1264,
-          "fileSize": 718104,
-          "title": "Arcanea Creator Principles Cover",
-          "tags": [
-            "books",
-            "arcanea",
-            "creator",
-            "principles",
-            "cover"
-          ],
-          "createdAt": "2026-02-16"
-        },
-        {
-          "id": "books/arcanea-legends-cover",
-          "filename": "arcanea-legends-cover.png",
-          "src": "/images/books/arcanea-legends-cover.png",
-          "thumbnail": "/images/books/arcanea-legends-cover_thumb.jpeg",
-          "collection": "books",
-          "format": "png",
-          "width": 848,
-          "height": 1264,
-          "fileSize": 893207,
-          "title": "Arcanea Legends Cover",
-          "tags": [
-            "books",
-            "arcanea",
-            "legends",
-            "cover"
-          ],
-          "createdAt": "2026-02-16"
-        },
-        {
-          "id": "books/arcanea-wisdom-scrolls-cover",
-          "filename": "arcanea-wisdom-scrolls-cover.png",
-          "src": "/images/books/arcanea-wisdom-scrolls-cover.png",
-          "thumbnail": "/images/books/arcanea-wisdom-scrolls-cover_thumb.jpeg",
-          "collection": "books",
-          "format": "png",
-          "width": 848,
-          "height": 1264,
-          "fileSize": 857858,
-          "title": "Arcanea Wisdom Scrolls Cover",
-          "tags": [
-            "books",
-            "arcanea",
-            "wisdom",
-            "scrolls",
-            "cover"
-          ],
-          "createdAt": "2026-02-16"
-        },
-        {
-          "id": "books/golden-age-ch4-tools",
-          "filename": "golden-age-ch4-tools.png",
-          "src": "/images/books/golden-age-ch4-tools.png",
-          "thumbnail": "/images/books/golden-age-ch4-tools_thumb.jpeg",
-          "collection": "books",
-          "format": "png",
-          "width": 1376,
-          "height": 768,
-          "fileSize": 686380,
-          "title": "Golden Age Ch4 Tools",
-          "tags": [
-            "books",
-            "golden",
-            "age",
-            "ch4",
-            "tools"
-          ],
-          "createdAt": "2026-02-16"
-        },
-        {
-          "id": "books/golden-age-ch5-building",
-          "filename": "golden-age-ch5-building.png",
-          "src": "/images/books/golden-age-ch5-building.png",
-          "thumbnail": "/images/books/golden-age-ch5-building_thumb.jpeg",
-          "collection": "books",
-          "format": "png",
-          "width": 1376,
-          "height": 768,
-          "fileSize": 632497,
-          "title": "Golden Age Ch5 Building",
-          "tags": [
-            "books",
-            "golden",
-            "age",
-            "ch5",
-            "building"
-          ],
-          "createdAt": "2026-02-16"
-        },
-        {
-          "id": "books/golden-age-cover",
-          "filename": "golden-age-cover.png",
-          "src": "/images/books/golden-age-cover.png",
-          "thumbnail": "/images/books/golden-age-cover_thumb.jpeg",
-          "collection": "books",
-          "format": "png",
-          "width": 848,
-          "height": 1264,
-          "fileSize": 766223,
-          "title": "Golden Age Cover",
-          "tags": [
-            "books",
-            "golden",
-            "age",
-            "cover"
-          ],
-          "createdAt": "2026-02-16"
-        },
         {
           "id": "books/imagination-cover",
           "filename": "imagination-cover.png",
@@ -5698,11 +4349,7 @@
           "height": 1264,
           "fileSize": 671470,
           "title": "Imagination Cover",
-          "tags": [
-            "books",
-            "imagination",
-            "cover"
-          ],
+          "tags": ["books", "imagination", "cover"],
           "createdAt": "2026-02-14"
         },
         {
@@ -5716,13 +4363,7 @@
           "height": 1264,
           "fileSize": 797793,
           "title": "Love And Poetry Cover",
-          "tags": [
-            "books",
-            "love",
-            "and",
-            "poetry",
-            "cover"
-          ],
+          "tags": ["books", "love", "and", "poetry", "cover"],
           "createdAt": "2026-02-14"
         },
         {
@@ -5736,11 +4377,7 @@
           "height": 1264,
           "fileSize": 628186,
           "title": "Manifestation Cover",
-          "tags": [
-            "books",
-            "manifestation",
-            "cover"
-          ],
+          "tags": ["books", "manifestation", "cover"],
           "createdAt": "2026-02-14"
         },
         {
@@ -5754,12 +4391,7 @@
           "height": 1264,
           "fileSize": 599153,
           "title": "Self Development Cover",
-          "tags": [
-            "books",
-            "self",
-            "development",
-            "cover"
-          ],
+          "tags": ["books", "self", "development", "cover"],
           "createdAt": "2026-02-14"
         },
         {
@@ -5773,12 +4405,7 @@
           "height": 1264,
           "fileSize": 584222,
           "title": "Spartan Mindset Cover",
-          "tags": [
-            "books",
-            "spartan",
-            "mindset",
-            "cover"
-          ],
+          "tags": ["books", "spartan", "mindset", "cover"],
           "createdAt": "2026-02-14"
         }
       ]
@@ -5804,11 +4431,7 @@
           "height": 768,
           "fileSize": 332530,
           "title": "Logo Full V2",
-          "tags": [
-            "brand",
-            "logo",
-            "full"
-          ],
+          "tags": ["brand", "logo", "full"],
           "createdAt": "2026-01-29"
         },
         {
@@ -5822,11 +4445,7 @@
           "height": 768,
           "fileSize": 332530,
           "title": "Logo Full",
-          "tags": [
-            "brand",
-            "logo",
-            "full"
-          ],
+          "tags": ["brand", "logo", "full"],
           "createdAt": "2026-01-29"
         },
         {
@@ -5840,11 +4459,7 @@
           "height": 1024,
           "fileSize": 160888,
           "title": "Logo Mark V2",
-          "tags": [
-            "brand",
-            "logo",
-            "mark"
-          ],
+          "tags": ["brand", "logo", "mark"],
           "createdAt": "2026-01-29"
         },
         {
@@ -5858,11 +4473,7 @@
           "height": 1024,
           "fileSize": 160888,
           "title": "Logo Mark",
-          "tags": [
-            "brand",
-            "logo",
-            "mark"
-          ],
+          "tags": ["brand", "logo", "mark"],
           "createdAt": "2026-01-29"
         },
         {
@@ -5876,10 +4487,7 @@
           "height": 768,
           "fileSize": 414694,
           "title": "Og Template",
-          "tags": [
-            "brand",
-            "template"
-          ],
+          "tags": ["brand", "template"],
           "createdAt": "2026-01-29"
         }
       ]
@@ -5905,10 +4513,7 @@
           "height": null,
           "fileSize": 7553,
           "title": "Anthropic",
-          "tags": [
-            "brands",
-            "anthropic"
-          ],
+          "tags": ["brands", "anthropic"],
           "createdAt": "2026-01-23"
         },
         {
@@ -5922,10 +4527,7 @@
           "height": null,
           "fileSize": 556,
           "title": "Elevenlabs",
-          "tags": [
-            "brands",
-            "elevenlabs"
-          ],
+          "tags": ["brands", "elevenlabs"],
           "createdAt": "2026-01-23"
         },
         {
@@ -5939,10 +4541,7 @@
           "height": null,
           "fileSize": 4527,
           "title": "Google",
-          "tags": [
-            "brands",
-            "google"
-          ],
+          "tags": ["brands", "google"],
           "createdAt": "2026-01-23"
         },
         {
@@ -5956,11 +4555,7 @@
           "height": null,
           "fileSize": 67931,
           "title": "Hugging Face",
-          "tags": [
-            "brands",
-            "hugging",
-            "face"
-          ],
+          "tags": ["brands", "hugging", "face"],
           "createdAt": "2026-01-23"
         },
         {
@@ -5974,10 +4569,7 @@
           "height": null,
           "fileSize": 6043,
           "title": "Meta",
-          "tags": [
-            "brands",
-            "meta"
-          ],
+          "tags": ["brands", "meta"],
           "createdAt": "2026-01-23"
         },
         {
@@ -5991,10 +4583,7 @@
           "height": null,
           "fileSize": 8685,
           "title": "Midjourney",
-          "tags": [
-            "brands",
-            "midjourney"
-          ],
+          "tags": ["brands", "midjourney"],
           "createdAt": "2026-01-23"
         },
         {
@@ -6008,10 +4597,7 @@
           "height": null,
           "fileSize": 7383,
           "title": "Openai",
-          "tags": [
-            "brands",
-            "openai"
-          ],
+          "tags": ["brands", "openai"],
           "createdAt": "2026-01-23"
         },
         {
@@ -6025,10 +4611,7 @@
           "height": null,
           "fileSize": 10711,
           "title": "Perplexity",
-          "tags": [
-            "brands",
-            "perplexity"
-          ],
+          "tags": ["brands", "perplexity"],
           "createdAt": "2026-01-23"
         },
         {
@@ -6042,10 +4625,7 @@
           "height": null,
           "fileSize": 6806,
           "title": "Stability Ai",
-          "tags": [
-            "brands",
-            "stability"
-          ],
+          "tags": ["brands", "stability"],
           "createdAt": "2026-01-23"
         },
         {
@@ -6059,10 +4639,7 @@
           "height": null,
           "fileSize": 3643,
           "title": "Suno",
-          "tags": [
-            "brands",
-            "suno"
-          ],
+          "tags": ["brands", "suno"],
           "createdAt": "2026-01-23"
         }
       ]
@@ -6088,10 +4665,7 @@
           "height": null,
           "fileSize": 333,
           "title": "Anthropic",
-          "tags": [
-            "logos",
-            "anthropic"
-          ],
+          "tags": ["logos", "anthropic"],
           "createdAt": "2026-01-23"
         },
         {
@@ -6105,10 +4679,7 @@
           "height": null,
           "fileSize": 272,
           "title": "Elevenlabs",
-          "tags": [
-            "logos",
-            "elevenlabs"
-          ],
+          "tags": ["logos", "elevenlabs"],
           "createdAt": "2026-01-23"
         },
         {
@@ -6122,10 +4693,7 @@
           "height": null,
           "fileSize": 702,
           "title": "Google",
-          "tags": [
-            "logos",
-            "google"
-          ],
+          "tags": ["logos", "google"],
           "createdAt": "2026-01-23"
         },
         {
@@ -6139,10 +4707,7 @@
           "height": null,
           "fileSize": 576,
           "title": "Huggingface",
-          "tags": [
-            "logos",
-            "huggingface"
-          ],
+          "tags": ["logos", "huggingface"],
           "createdAt": "2026-01-23"
         },
         {
@@ -6156,10 +4721,7 @@
           "height": null,
           "fileSize": 490,
           "title": "Llama",
-          "tags": [
-            "logos",
-            "llama"
-          ],
+          "tags": ["logos", "llama"],
           "createdAt": "2026-01-23"
         },
         {
@@ -6173,10 +4735,7 @@
           "height": null,
           "fileSize": 692,
           "title": "Meta",
-          "tags": [
-            "logos",
-            "meta"
-          ],
+          "tags": ["logos", "meta"],
           "createdAt": "2026-01-23"
         },
         {
@@ -6190,10 +4749,7 @@
           "height": null,
           "fileSize": 127,
           "title": "Midjourney",
-          "tags": [
-            "logos",
-            "midjourney"
-          ],
+          "tags": ["logos", "midjourney"],
           "createdAt": "2026-01-23"
         },
         {
@@ -6207,10 +4763,7 @@
           "height": null,
           "fileSize": 1347,
           "title": "Openai",
-          "tags": [
-            "logos",
-            "openai"
-          ],
+          "tags": ["logos", "openai"],
           "createdAt": "2026-01-23"
         },
         {
@@ -6224,10 +4777,7 @@
           "height": null,
           "fileSize": 514,
           "title": "Perplexity",
-          "tags": [
-            "logos",
-            "perplexity"
-          ],
+          "tags": ["logos", "perplexity"],
           "createdAt": "2026-01-23"
         },
         {
@@ -6241,10 +4791,7 @@
           "height": null,
           "fileSize": 574,
           "title": "Stability",
-          "tags": [
-            "logos",
-            "stability"
-          ],
+          "tags": ["logos", "stability"],
           "createdAt": "2026-01-23"
         },
         {
@@ -6258,10 +4805,7 @@
           "height": null,
           "fileSize": 552,
           "title": "Suno",
-          "tags": [
-            "logos",
-            "suno"
-          ],
+          "tags": ["logos", "suno"],
           "createdAt": "2026-01-23"
         },
         {
@@ -6275,10 +4819,7 @@
           "height": null,
           "fileSize": 306,
           "title": "Xai",
-          "tags": [
-            "logos",
-            "xai"
-          ],
+          "tags": ["logos", "xai"],
           "createdAt": "2026-01-23"
         }
       ]
@@ -6304,10 +4845,7 @@
           "height": 1024,
           "fileSize": 1516191,
           "title": "Codex",
-          "tags": [
-            "team",
-            "codex"
-          ],
+          "tags": ["team", "codex"],
           "createdAt": "2026-01-16"
         },
         {
@@ -6321,10 +4859,7 @@
           "height": 1024,
           "fileSize": 1580727,
           "title": "Codex",
-          "tags": [
-            "team",
-            "codex"
-          ],
+          "tags": ["team", "codex"],
           "createdAt": "2026-01-16"
         },
         {
@@ -6338,10 +4873,7 @@
           "height": 1024,
           "fileSize": 1589334,
           "title": "Echo",
-          "tags": [
-            "team",
-            "echo"
-          ],
+          "tags": ["team", "echo"],
           "createdAt": "2026-01-16"
         },
         {
@@ -6355,10 +4887,7 @@
           "height": 1024,
           "fileSize": 1616051,
           "title": "Echo",
-          "tags": [
-            "team",
-            "echo"
-          ],
+          "tags": ["team", "echo"],
           "createdAt": "2026-01-16"
         },
         {
@@ -6372,10 +4901,7 @@
           "height": 1024,
           "fileSize": 1596901,
           "title": "Lumi",
-          "tags": [
-            "team",
-            "lumi"
-          ],
+          "tags": ["team", "lumi"],
           "createdAt": "2026-01-16"
         },
         {
@@ -6389,10 +4915,7 @@
           "height": 1024,
           "fileSize": 1480373,
           "title": "Lumi",
-          "tags": [
-            "team",
-            "lumi"
-          ],
+          "tags": ["team", "lumi"],
           "createdAt": "2026-01-16"
         },
         {
@@ -6406,11 +4929,7 @@
           "height": 1024,
           "fileSize": 1433642,
           "title": "Luminor Prime",
-          "tags": [
-            "team",
-            "luminor",
-            "prime"
-          ],
+          "tags": ["team", "luminor", "prime"],
           "createdAt": "2026-01-16"
         },
         {
@@ -6424,11 +4943,7 @@
           "height": 1024,
           "fileSize": 1649905,
           "title": "Luminor Prime",
-          "tags": [
-            "team",
-            "luminor",
-            "prime"
-          ],
+          "tags": ["team", "luminor", "prime"],
           "createdAt": "2026-01-16"
         },
         {
@@ -6442,10 +4957,7 @@
           "height": 1024,
           "fileSize": 1547813,
           "title": "Nexus",
-          "tags": [
-            "team",
-            "nexus"
-          ],
+          "tags": ["team", "nexus"],
           "createdAt": "2026-01-16"
         },
         {
@@ -6459,10 +4971,7 @@
           "height": 1024,
           "fileSize": 1511159,
           "title": "Nova",
-          "tags": [
-            "team",
-            "nova"
-          ],
+          "tags": ["team", "nova"],
           "createdAt": "2026-01-16"
         },
         {
@@ -6476,10 +4985,7 @@
           "height": 1024,
           "fileSize": 1685891,
           "title": "Nova",
-          "tags": [
-            "team",
-            "nova"
-          ],
+          "tags": ["team", "nova"],
           "createdAt": "2026-01-16"
         },
         {
@@ -6493,10 +4999,7 @@
           "height": 1024,
           "fileSize": 1473638,
           "title": "Sensei",
-          "tags": [
-            "team",
-            "sensei"
-          ],
+          "tags": ["team", "sensei"],
           "createdAt": "2026-01-16"
         },
         {
@@ -6510,10 +5013,7 @@
           "height": 1024,
           "fileSize": 1544612,
           "title": "Sensei",
-          "tags": [
-            "team",
-            "sensei"
-          ],
+          "tags": ["team", "sensei"],
           "createdAt": "2026-01-16"
         },
         {
@@ -6527,10 +5027,7 @@
           "height": 1024,
           "fileSize": 1349490,
           "title": "Sonnet",
-          "tags": [
-            "team",
-            "sonnet"
-          ],
+          "tags": ["team", "sonnet"],
           "createdAt": "2026-01-16"
         },
         {
@@ -6544,10 +5041,7 @@
           "height": 1024,
           "fileSize": 1608009,
           "title": "Sonnet",
-          "tags": [
-            "team",
-            "sonnet"
-          ],
+          "tags": ["team", "sonnet"],
           "createdAt": "2026-01-16"
         },
         {
@@ -6561,10 +5055,7 @@
           "height": 1024,
           "fileSize": 1501904,
           "title": "Stella",
-          "tags": [
-            "team",
-            "stella"
-          ],
+          "tags": ["team", "stella"],
           "createdAt": "2026-01-16"
         },
         {
@@ -6578,10 +5069,7 @@
           "height": 1024,
           "fileSize": 1574703,
           "title": "Stella",
-          "tags": [
-            "team",
-            "stella"
-          ],
+          "tags": ["team", "stella"],
           "createdAt": "2026-01-16"
         }
       ]
@@ -6607,11 +5095,7 @@
           "height": 1024,
           "fileSize": 1406909,
           "title": "Agent Architecture",
-          "tags": [
-            "courses",
-            "agent",
-            "architecture"
-          ],
+          "tags": ["courses", "agent", "architecture"],
           "createdAt": "2026-01-16"
         },
         {
@@ -6625,11 +5109,7 @@
           "height": 1024,
           "fileSize": 1156556,
           "title": "Business Strategy",
-          "tags": [
-            "courses",
-            "business",
-            "strategy"
-          ],
+          "tags": ["courses", "business", "strategy"],
           "createdAt": "2026-01-16"
         },
         {
@@ -6643,11 +5123,7 @@
           "height": 1024,
           "fileSize": 1011819,
           "title": "Ethics Governance",
-          "tags": [
-            "courses",
-            "ethics",
-            "governance"
-          ],
+          "tags": ["courses", "ethics", "governance"],
           "createdAt": "2026-01-16"
         },
         {
@@ -6661,11 +5137,7 @@
           "height": 1024,
           "fileSize": 1311544,
           "title": "Family Education",
-          "tags": [
-            "courses",
-            "family",
-            "education"
-          ],
+          "tags": ["courses", "family", "education"],
           "createdAt": "2026-01-16"
         },
         {
@@ -6679,10 +5151,7 @@
           "height": 1024,
           "fileSize": 1259153,
           "title": "Foundations",
-          "tags": [
-            "courses",
-            "foundations"
-          ],
+          "tags": ["courses", "foundations"],
           "createdAt": "2026-01-16"
         },
         {
@@ -6696,11 +5165,7 @@
           "height": 1024,
           "fileSize": 1523802,
           "title": "Prompt Engineering",
-          "tags": [
-            "courses",
-            "prompt",
-            "engineering"
-          ],
+          "tags": ["courses", "prompt", "engineering"],
           "createdAt": "2026-01-16"
         }
       ]
@@ -6726,12 +5191,7 @@
           "height": 672,
           "fileSize": 857074,
           "title": "Alpha Wave Multiverse",
-          "tags": [
-            "consciousness",
-            "alpha",
-            "wave",
-            "multiverse"
-          ],
+          "tags": ["consciousness", "alpha", "wave", "multiverse"],
           "createdAt": "2026-01-29"
         },
         {
@@ -6745,12 +5205,7 @@
           "height": 768,
           "fileSize": 975603,
           "title": "Neuro Technical Blueprint",
-          "tags": [
-            "consciousness",
-            "neuro",
-            "technical",
-            "blueprint"
-          ],
+          "tags": ["consciousness", "neuro", "technical", "blueprint"],
           "createdAt": "2026-01-29"
         },
         {
@@ -6764,12 +5219,7 @@
           "height": 672,
           "fileSize": 975752,
           "title": "Quantum Bridge Framework",
-          "tags": [
-            "consciousness",
-            "quantum",
-            "bridge",
-            "framework"
-          ],
+          "tags": ["consciousness", "quantum", "bridge", "framework"],
           "createdAt": "2026-01-29"
         },
         {
@@ -6783,12 +5233,7 @@
           "height": 768,
           "fileSize": 894342,
           "title": "Quantum Jumping Schematic",
-          "tags": [
-            "consciousness",
-            "quantum",
-            "jumping",
-            "schematic"
-          ],
+          "tags": ["consciousness", "quantum", "jumping", "schematic"],
           "createdAt": "2026-01-29"
         },
         {
@@ -6802,12 +5247,7 @@
           "height": 768,
           "fileSize": 863148,
           "title": "Quantum Mechanics Chapter",
-          "tags": [
-            "consciousness",
-            "quantum",
-            "mechanics",
-            "chapter"
-          ],
+          "tags": ["consciousness", "quantum", "mechanics", "chapter"],
           "createdAt": "2026-01-29"
         },
         {
@@ -6821,12 +5261,7 @@
           "height": 768,
           "fileSize": 1148452,
           "title": "Quantum Neuroplasticity Guide",
-          "tags": [
-            "consciousness",
-            "quantum",
-            "neuroplasticity",
-            "guide"
-          ],
+          "tags": ["consciousness", "quantum", "neuroplasticity", "guide"],
           "createdAt": "2026-01-29"
         }
       ]
@@ -6852,10 +5287,7 @@
           "height": 672,
           "fileSize": 984065,
           "title": "Ai Coe",
-          "tags": [
-            "architectures",
-            "coe"
-          ],
+          "tags": ["architectures", "coe"],
           "createdAt": "2026-01-31"
         },
         {
@@ -6869,10 +5301,7 @@
           "height": 768,
           "fileSize": 709980,
           "title": "Ai Gateway",
-          "tags": [
-            "architectures",
-            "gateway"
-          ],
+          "tags": ["architectures", "gateway"],
           "createdAt": "2026-01-31"
         },
         {
@@ -6886,10 +5315,7 @@
           "height": 768,
           "fileSize": 824723,
           "title": "Llmops",
-          "tags": [
-            "architectures",
-            "llmops"
-          ],
+          "tags": ["architectures", "llmops"],
           "createdAt": "2026-01-31"
         },
         {
@@ -6903,11 +5329,7 @@
           "height": 768,
           "fileSize": 844779,
           "title": "Mcp Hub",
-          "tags": [
-            "architectures",
-            "mcp",
-            "hub"
-          ],
+          "tags": ["architectures", "mcp", "hub"],
           "createdAt": "2026-01-31"
         },
         {
@@ -6921,11 +5343,7 @@
           "height": 768,
           "fileSize": 589566,
           "title": "Multi Agent",
-          "tags": [
-            "architectures",
-            "multi",
-            "agent"
-          ],
+          "tags": ["architectures", "multi", "agent"],
           "createdAt": "2026-01-31"
         },
         {
@@ -6939,11 +5357,7 @@
           "height": 768,
           "fileSize": 647597,
           "title": "Rag Platform",
-          "tags": [
-            "architectures",
-            "rag",
-            "platform"
-          ],
+          "tags": ["architectures", "rag", "platform"],
           "createdAt": "2026-01-31"
         }
       ]
@@ -6969,12 +5383,7 @@
           "height": 768,
           "fileSize": 647597,
           "title": "Agentic Rag Architecture",
-          "tags": [
-            "ai-world",
-            "agentic",
-            "rag",
-            "architecture"
-          ],
+          "tags": ["ai-world", "agentic", "rag", "architecture"],
           "createdAt": "2026-01-30"
         },
         {
@@ -6988,11 +5397,7 @@
           "height": 768,
           "fileSize": 589566,
           "title": "Cx Conversation Architecture",
-          "tags": [
-            "ai-world",
-            "conversation",
-            "architecture"
-          ],
+          "tags": ["ai-world", "conversation", "architecture"],
           "createdAt": "2026-01-30"
         },
         {
@@ -7006,12 +5411,7 @@
           "height": 768,
           "fileSize": 1021683,
           "title": "Fire Gate Orchestration",
-          "tags": [
-            "ai-world",
-            "fire",
-            "gate",
-            "orchestration"
-          ],
+          "tags": ["ai-world", "fire", "gate", "orchestration"],
           "createdAt": "2026-02-02"
         },
         {
@@ -7025,12 +5425,7 @@
           "height": 768,
           "fileSize": 829082,
           "title": "Flow Gate Knowledge",
-          "tags": [
-            "ai-world",
-            "flow",
-            "gate",
-            "knowledge"
-          ],
+          "tags": ["ai-world", "flow", "gate", "knowledge"],
           "createdAt": "2026-02-02"
         },
         {
@@ -7044,12 +5439,7 @@
           "height": 768,
           "fileSize": 686182,
           "title": "Insurance Claims Architecture",
-          "tags": [
-            "ai-world",
-            "insurance",
-            "claims",
-            "architecture"
-          ],
+          "tags": ["ai-world", "insurance", "claims", "architecture"],
           "createdAt": "2026-01-30"
         },
         {
@@ -7063,12 +5453,7 @@
           "height": 768,
           "fileSize": 907388,
           "title": "Intelligence Atlas",
-          "tags": [
-            "ai-world",
-            "intelligence",
-            "atlas",
-            "hero"
-          ],
+          "tags": ["ai-world", "intelligence", "atlas", "hero"],
           "createdAt": "2026-02-02"
         },
         {
@@ -7082,12 +5467,7 @@
           "height": 768,
           "fileSize": 1019587,
           "title": "Renewal Gate Production",
-          "tags": [
-            "ai-world",
-            "renewal",
-            "gate",
-            "production"
-          ],
+          "tags": ["ai-world", "renewal", "gate", "production"],
           "createdAt": "2026-02-02"
         },
         {
@@ -7101,12 +5481,7 @@
           "height": 768,
           "fileSize": 904483,
           "title": "Source Gate Meta",
-          "tags": [
-            "ai-world",
-            "source",
-            "gate",
-            "meta"
-          ],
+          "tags": ["ai-world", "source", "gate", "meta"],
           "createdAt": "2026-02-02"
         }
       ]
@@ -7132,13 +5507,7 @@
           "height": 768,
           "fileSize": 989757,
           "title": "Chapter 01 When Creation Calls",
-          "tags": [
-            "golden-age",
-            "chapter",
-            "when",
-            "creation",
-            "calls"
-          ],
+          "tags": ["golden-age", "chapter", "when", "creation", "calls"],
           "createdAt": "2026-01-29"
         },
         {
@@ -7152,13 +5521,7 @@
           "height": 768,
           "fileSize": 1082912,
           "title": "Chapter 02 The Orchestration Age",
-          "tags": [
-            "golden-age",
-            "chapter",
-            "the",
-            "orchestration",
-            "age"
-          ],
+          "tags": ["golden-age", "chapter", "the", "orchestration", "age"],
           "createdAt": "2026-01-29"
         },
         {
@@ -7172,13 +5535,7 @@
           "height": 768,
           "fileSize": 840395,
           "title": "Chapter 03 The First Gesture",
-          "tags": [
-            "golden-age",
-            "chapter",
-            "the",
-            "first",
-            "gesture"
-          ],
+          "tags": ["golden-age", "chapter", "the", "first", "gesture"],
           "createdAt": "2026-01-29"
         },
         {
@@ -7192,12 +5549,7 @@
           "height": 672,
           "fileSize": 734228,
           "title": "Hero Golden Age",
-          "tags": [
-            "golden-age",
-            "hero",
-            "golden",
-            "age"
-          ],
+          "tags": ["golden-age", "hero", "golden", "age"],
           "createdAt": "2026-01-29"
         }
       ]
@@ -7223,12 +5575,7 @@
           "height": 768,
           "fileSize": 742230,
           "title": "Vibe Os Brainwave Interface",
-          "tags": [
-            "vibe-os",
-            "vibe",
-            "brainwave",
-            "interface"
-          ],
+          "tags": ["vibe-os", "vibe", "brainwave", "interface"],
           "createdAt": "2026-01-30"
         },
         {
@@ -7242,12 +5589,7 @@
           "height": 768,
           "fileSize": 663471,
           "title": "Vibe Os Neural Sync",
-          "tags": [
-            "vibe-os",
-            "vibe",
-            "neural",
-            "sync"
-          ],
+          "tags": ["vibe-os", "vibe", "neural", "sync"],
           "createdAt": "2026-01-30"
         },
         {
@@ -7261,12 +5603,7 @@
           "height": 768,
           "fileSize": 721945,
           "title": "Vibe Os Sonic Intelligence",
-          "tags": [
-            "vibe-os",
-            "vibe",
-            "sonic",
-            "intelligence"
-          ],
+          "tags": ["vibe-os", "vibe", "sonic", "intelligence"],
           "createdAt": "2026-01-30"
         }
       ]
@@ -7292,11 +5629,7 @@
           "height": 780,
           "fileSize": 328086,
           "title": "Screenshot 2026 02 12 153128",
-          "tags": [
-            "See-through-the-noise",
-            "screenshot 2026",
-            "12 153128"
-          ],
+          "tags": ["See-through-the-noise", "screenshot 2026", "12 153128"],
           "createdAt": "2026-02-12"
         },
         {
@@ -7310,11 +5643,7 @@
           "height": 801,
           "fileSize": 125052,
           "title": "Screenshot 2026 02 12 154641",
-          "tags": [
-            "See-through-the-noise",
-            "screenshot 2026",
-            "12 154641"
-          ],
+          "tags": ["See-through-the-noise", "screenshot 2026", "12 154641"],
           "createdAt": "2026-02-12"
         },
         {
@@ -7328,11 +5657,7 @@
           "height": 470,
           "fileSize": 362247,
           "title": "Screenshot 2026 02 12 162813",
-          "tags": [
-            "See-through-the-noise",
-            "screenshot 2026",
-            "12 162813"
-          ],
+          "tags": ["See-through-the-noise", "screenshot 2026", "12 162813"],
           "createdAt": "2026-02-12"
         },
         {
@@ -7346,11 +5671,7 @@
           "height": 484,
           "fileSize": 454104,
           "title": "Screenshot 2026 02 12 162821",
-          "tags": [
-            "See-through-the-noise",
-            "screenshot 2026",
-            "12 162821"
-          ],
+          "tags": ["See-through-the-noise", "screenshot 2026", "12 162821"],
           "createdAt": "2026-02-12"
         },
         {
@@ -7364,11 +5685,7 @@
           "height": 923,
           "fileSize": 79044,
           "title": "Screenshot 2026 02 12 163646",
-          "tags": [
-            "See-through-the-noise",
-            "screenshot 2026",
-            "12 163646"
-          ],
+          "tags": ["See-through-the-noise", "screenshot 2026", "12 163646"],
           "createdAt": "2026-02-12"
         },
         {
@@ -7382,11 +5699,7 @@
           "height": 804,
           "fileSize": 239008,
           "title": "Screenshot 2026 02 12 163655",
-          "tags": [
-            "See-through-the-noise",
-            "screenshot 2026",
-            "12 163655"
-          ],
+          "tags": ["See-through-the-noise", "screenshot 2026", "12 163655"],
           "createdAt": "2026-02-12"
         }
       ]
@@ -7412,11 +5725,7 @@
           "height": null,
           "fileSize": 1491,
           "title": "Creation Engine",
-          "tags": [
-            "agents",
-            "creation",
-            "engine"
-          ],
+          "tags": ["agents", "creation", "engine"],
           "createdAt": "2026-01-23"
         },
         {
@@ -7430,11 +5739,7 @@
           "height": null,
           "fileSize": 1491,
           "title": "Frequency Alchemist",
-          "tags": [
-            "agents",
-            "frequency",
-            "alchemist"
-          ],
+          "tags": ["agents", "frequency", "alchemist"],
           "createdAt": "2026-01-23"
         },
         {
@@ -7448,11 +5753,7 @@
           "height": null,
           "fileSize": 1491,
           "title": "Luminor Oracle",
-          "tags": [
-            "agents",
-            "luminor",
-            "oracle"
-          ],
+          "tags": ["agents", "luminor", "oracle"],
           "createdAt": "2026-01-23"
         },
         {
@@ -7466,11 +5767,7 @@
           "height": null,
           "fileSize": 1492,
           "title": "Starlight Architect",
-          "tags": [
-            "agents",
-            "starlight",
-            "architect"
-          ],
+          "tags": ["agents", "starlight", "architect"],
           "createdAt": "2026-01-23"
         }
       ]
@@ -7496,12 +5793,7 @@
           "height": 768,
           "fileSize": 860418,
           "title": "Biotech Future Lab",
-          "tags": [
-            "gallery",
-            "biotech",
-            "future",
-            "lab"
-          ],
+          "tags": ["gallery", "biotech", "future", "lab"],
           "createdAt": "2026-02-13"
         },
         {
@@ -7515,12 +5807,7 @@
           "height": 768,
           "fileSize": 754959,
           "title": "Biotech Grand Piano",
-          "tags": [
-            "gallery",
-            "biotech",
-            "grand",
-            "piano"
-          ],
+          "tags": ["gallery", "biotech", "grand", "piano"],
           "createdAt": "2026-02-13"
         },
         {
@@ -7534,13 +5821,7 @@
           "height": 768,
           "fileSize": 650934,
           "title": "Biotech Hex Drum Pads",
-          "tags": [
-            "gallery",
-            "biotech",
-            "hex",
-            "drum",
-            "pads"
-          ],
+          "tags": ["gallery", "biotech", "hex", "drum", "pads"],
           "createdAt": "2026-02-13"
         },
         {
@@ -7554,12 +5835,7 @@
           "height": 768,
           "fileSize": 832145,
           "title": "Biotech Soundboard Mycelium",
-          "tags": [
-            "gallery",
-            "biotech",
-            "soundboard",
-            "mycelium"
-          ],
+          "tags": ["gallery", "biotech", "soundboard", "mycelium"],
           "createdAt": "2026-02-13"
         },
         {
@@ -7573,12 +5849,7 @@
           "height": 768,
           "fileSize": 769612,
           "title": "Biotech Synthesis Controller",
-          "tags": [
-            "gallery",
-            "biotech",
-            "synthesis",
-            "controller"
-          ],
+          "tags": ["gallery", "biotech", "synthesis", "controller"],
           "createdAt": "2026-02-13"
         },
         {
@@ -7592,12 +5863,7 @@
           "height": 768,
           "fileSize": 803908,
           "title": "Biotech Violin Blueprint",
-          "tags": [
-            "gallery",
-            "biotech",
-            "violin",
-            "blueprint"
-          ],
+          "tags": ["gallery", "biotech", "violin", "blueprint"],
           "createdAt": "2026-02-13"
         }
       ]
@@ -7624,11 +5890,7 @@
           "height": 768,
           "fileSize": 590083,
           "title": "Games Lab",
-          "tags": [
-            "games",
-            "lab",
-            "hero"
-          ],
+          "tags": ["games", "lab", "hero"],
           "createdAt": "2026-02-14"
         }
       ]
@@ -7655,11 +5917,7 @@
           "height": 768,
           "fileSize": 847180,
           "title": "Consciousness Triptych",
-          "tags": [
-            "general",
-            "consciousness",
-            "triptych"
-          ],
+          "tags": ["general", "consciousness", "triptych"],
           "createdAt": "2026-01-29"
         },
         {
@@ -7673,11 +5931,7 @@
           "height": 768,
           "fileSize": 724496,
           "title": "Friendly Ai Robot",
-          "tags": [
-            "general",
-            "friendly",
-            "robot"
-          ],
+          "tags": ["general", "friendly", "robot"],
           "createdAt": "2026-01-29"
         }
       ]
@@ -7704,12 +5958,7 @@
           "height": 768,
           "fileSize": 616248,
           "title": "Claude Opus 4 6",
-          "tags": [
-            "models",
-            "claude",
-            "opus",
-            "hero"
-          ],
+          "tags": ["models", "claude", "opus", "hero"],
           "createdAt": "2026-02-06"
         }
       ]
@@ -7736,12 +5985,7 @@
           "height": null,
           "fileSize": 1920,
           "title": "Frank Aurora Portrait",
-          "tags": [
-            "portraits",
-            "frank",
-            "aurora",
-            "portrait"
-          ],
+          "tags": ["portraits", "frank", "aurora", "portrait"],
           "createdAt": "2026-01-23"
         }
       ]
@@ -7768,12 +6012,7 @@
           "height": null,
           "fileSize": 17887,
           "title": "Acos System Status",
-          "tags": [
-            "diagrams",
-            "acos",
-            "system",
-            "status"
-          ],
+          "tags": ["diagrams", "acos", "system", "status"],
           "createdAt": "2026-02-10"
         },
         {
@@ -7787,12 +6026,7 @@
           "height": null,
           "fileSize": 9773,
           "title": "Hub Spoke Model",
-          "tags": [
-            "diagrams",
-            "hub",
-            "spoke",
-            "model"
-          ],
+          "tags": ["diagrams", "hub", "spoke", "model"],
           "createdAt": "2026-02-10"
         },
         {
@@ -7806,11 +6040,7 @@
           "height": null,
           "fileSize": 1873,
           "title": "Legacy Diagram 01",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -7824,11 +6054,7 @@
           "height": null,
           "fileSize": 3035,
           "title": "Legacy Diagram 01",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -7842,11 +6068,7 @@
           "height": null,
           "fileSize": 2371,
           "title": "Legacy Diagram 01",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -7860,11 +6082,7 @@
           "height": null,
           "fileSize": 2619,
           "title": "Legacy Diagram 01",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -7878,11 +6096,7 @@
           "height": null,
           "fileSize": 1654,
           "title": "Legacy Diagram 01",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -7896,11 +6110,7 @@
           "height": null,
           "fileSize": 3707,
           "title": "Legacy Diagram 01",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -7914,11 +6124,7 @@
           "height": null,
           "fileSize": 2019,
           "title": "Legacy Diagram 01",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -7932,11 +6138,7 @@
           "height": null,
           "fileSize": 2187,
           "title": "Legacy Diagram 01",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -7950,11 +6152,7 @@
           "height": null,
           "fileSize": 4555,
           "title": "Legacy Diagram 01",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -7968,11 +6166,7 @@
           "height": null,
           "fileSize": 2512,
           "title": "Legacy Diagram 01",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -7986,11 +6180,7 @@
           "height": null,
           "fileSize": 1683,
           "title": "Legacy Diagram 01",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -8004,11 +6194,7 @@
           "height": null,
           "fileSize": 1669,
           "title": "Legacy Diagram 01",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -8022,11 +6208,7 @@
           "height": null,
           "fileSize": 4168,
           "title": "Legacy Diagram 01",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -8040,11 +6222,7 @@
           "height": null,
           "fileSize": 5746,
           "title": "Legacy Diagram 01",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -8058,11 +6236,7 @@
           "height": null,
           "fileSize": 6326,
           "title": "Legacy Diagram 01",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -8076,11 +6250,7 @@
           "height": null,
           "fileSize": 5530,
           "title": "Legacy Diagram 01",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -8094,11 +6264,7 @@
           "height": null,
           "fileSize": 2346,
           "title": "Legacy Diagram 01",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -8112,11 +6278,7 @@
           "height": null,
           "fileSize": 3741,
           "title": "Legacy Diagram 01",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -8130,11 +6292,7 @@
           "height": null,
           "fileSize": 2192,
           "title": "Legacy Diagram 02",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -8148,11 +6306,7 @@
           "height": null,
           "fileSize": 2371,
           "title": "Legacy Diagram 02",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -8166,11 +6320,7 @@
           "height": null,
           "fileSize": 1729,
           "title": "Legacy Diagram 02",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -8184,11 +6334,7 @@
           "height": null,
           "fileSize": 1752,
           "title": "Legacy Diagram 02",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -8202,11 +6348,7 @@
           "height": null,
           "fileSize": 2006,
           "title": "Legacy Diagram 02",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -8220,11 +6362,7 @@
           "height": null,
           "fileSize": 1919,
           "title": "Legacy Diagram 02",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -8238,11 +6376,7 @@
           "height": null,
           "fileSize": 1640,
           "title": "Legacy Diagram 02",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -8256,11 +6390,7 @@
           "height": null,
           "fileSize": 3359,
           "title": "Legacy Diagram 02",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -8274,11 +6404,7 @@
           "height": null,
           "fileSize": 7212,
           "title": "Legacy Diagram 02",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -8292,11 +6418,7 @@
           "height": null,
           "fileSize": 4268,
           "title": "Legacy Diagram 02",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -8310,11 +6432,7 @@
           "height": null,
           "fileSize": 6214,
           "title": "Legacy Diagram 02",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -8328,11 +6446,7 @@
           "height": null,
           "fileSize": 2974,
           "title": "Legacy Diagram 02",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -8346,11 +6460,7 @@
           "height": null,
           "fileSize": 2724,
           "title": "Legacy Diagram 03",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -8364,11 +6474,7 @@
           "height": null,
           "fileSize": 2371,
           "title": "Legacy Diagram 03",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -8382,11 +6488,7 @@
           "height": null,
           "fileSize": 1681,
           "title": "Legacy Diagram 03",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -8400,11 +6502,7 @@
           "height": null,
           "fileSize": 3750,
           "title": "Legacy Diagram 03",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -8418,11 +6516,7 @@
           "height": null,
           "fileSize": 4065,
           "title": "Legacy Diagram 03",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -8436,11 +6530,7 @@
           "height": null,
           "fileSize": 6210,
           "title": "Legacy Diagram 03",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -8454,11 +6544,7 @@
           "height": null,
           "fileSize": 5327,
           "title": "Legacy Diagram 03",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -8472,11 +6558,7 @@
           "height": null,
           "fileSize": 4496,
           "title": "Legacy Diagram 03",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -8490,11 +6572,7 @@
           "height": null,
           "fileSize": 3098,
           "title": "Legacy Diagram 04",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -8508,11 +6586,7 @@
           "height": null,
           "fileSize": 2371,
           "title": "Legacy Diagram 04",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -8526,11 +6600,7 @@
           "height": null,
           "fileSize": 2798,
           "title": "Legacy Diagram 04",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -8544,11 +6614,7 @@
           "height": null,
           "fileSize": 2452,
           "title": "Legacy Diagram 04",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -8562,11 +6628,7 @@
           "height": null,
           "fileSize": 6447,
           "title": "Legacy Diagram 04",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -8580,11 +6642,7 @@
           "height": null,
           "fileSize": 5272,
           "title": "Legacy Diagram 04",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -8598,11 +6656,7 @@
           "height": null,
           "fileSize": 5859,
           "title": "Legacy Diagram 04",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -8616,11 +6670,7 @@
           "height": null,
           "fileSize": 2221,
           "title": "Legacy Diagram 04",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -8634,11 +6684,7 @@
           "height": null,
           "fileSize": 2794,
           "title": "Legacy Diagram 05",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -8652,11 +6698,7 @@
           "height": null,
           "fileSize": 2371,
           "title": "Legacy Diagram 05",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -8670,11 +6712,7 @@
           "height": null,
           "fileSize": 5303,
           "title": "Legacy Diagram 05",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -8688,11 +6726,7 @@
           "height": null,
           "fileSize": 2453,
           "title": "Legacy Diagram 05",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -8706,11 +6740,7 @@
           "height": null,
           "fileSize": 5684,
           "title": "Legacy Diagram 05",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -8724,11 +6754,7 @@
           "height": null,
           "fileSize": 7880,
           "title": "Legacy Diagram 05",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -8742,11 +6768,7 @@
           "height": null,
           "fileSize": 5769,
           "title": "Legacy Diagram 05",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -8760,11 +6782,7 @@
           "height": null,
           "fileSize": 2195,
           "title": "Legacy Diagram 05",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -8778,11 +6796,7 @@
           "height": null,
           "fileSize": 2371,
           "title": "Legacy Diagram 06",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -8796,11 +6810,7 @@
           "height": null,
           "fileSize": 8147,
           "title": "Legacy Diagram 06",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -8814,11 +6824,7 @@
           "height": null,
           "fileSize": 6334,
           "title": "Legacy Diagram 06",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -8832,11 +6838,7 @@
           "height": null,
           "fileSize": 6087,
           "title": "Legacy Diagram 06",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -8850,11 +6852,7 @@
           "height": null,
           "fileSize": 2637,
           "title": "Legacy Diagram 06",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -8868,11 +6866,7 @@
           "height": null,
           "fileSize": 9367,
           "title": "Legacy Diagram 07",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -8886,11 +6880,7 @@
           "height": null,
           "fileSize": 4959,
           "title": "Legacy Diagram 07",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -8904,11 +6894,7 @@
           "height": null,
           "fileSize": 8177,
           "title": "Legacy Diagram 07",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -8922,11 +6908,7 @@
           "height": null,
           "fileSize": 2640,
           "title": "Legacy Diagram 07",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -8940,11 +6922,7 @@
           "height": null,
           "fileSize": 9227,
           "title": "Legacy Diagram 08",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -8958,11 +6936,7 @@
           "height": null,
           "fileSize": 5400,
           "title": "Legacy Diagram 08",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -8976,11 +6950,7 @@
           "height": null,
           "fileSize": 8708,
           "title": "Legacy Diagram 08",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -8994,11 +6964,7 @@
           "height": null,
           "fileSize": 4721,
           "title": "Legacy Diagram 09",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -9012,11 +6978,7 @@
           "height": null,
           "fileSize": 6960,
           "title": "Legacy Diagram 09",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -9030,11 +6992,7 @@
           "height": null,
           "fileSize": 8489,
           "title": "Legacy Diagram 09",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -9048,11 +7006,7 @@
           "height": null,
           "fileSize": 6810,
           "title": "Legacy Diagram 10",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -9066,11 +7020,7 @@
           "height": null,
           "fileSize": 8370,
           "title": "Legacy Diagram 10",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -9084,11 +7034,7 @@
           "height": null,
           "fileSize": 10349,
           "title": "Legacy Diagram 11",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -9102,11 +7048,7 @@
           "height": null,
           "fileSize": 9371,
           "title": "Legacy Diagram 11",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -9120,11 +7062,7 @@
           "height": null,
           "fileSize": 5719,
           "title": "Legacy Diagram 12",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -9138,11 +7076,7 @@
           "height": null,
           "fileSize": 8044,
           "title": "Legacy Diagram 12",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -9156,11 +7090,7 @@
           "height": null,
           "fileSize": 5156,
           "title": "Legacy Diagram 13",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -9174,11 +7104,7 @@
           "height": null,
           "fileSize": 13518,
           "title": "Legacy Diagram 13",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -9192,11 +7118,7 @@
           "height": null,
           "fileSize": 4507,
           "title": "Legacy Diagram 14",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -9210,11 +7132,7 @@
           "height": null,
           "fileSize": 6822,
           "title": "Legacy Diagram 14",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -9228,11 +7146,7 @@
           "height": null,
           "fileSize": 9049,
           "title": "Legacy Diagram 15",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -9246,11 +7160,7 @@
           "height": null,
           "fileSize": 5632,
           "title": "Legacy Diagram 16",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -9264,11 +7174,7 @@
           "height": null,
           "fileSize": 10346,
           "title": "Legacy Diagram 17",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -9282,11 +7188,7 @@
           "height": null,
           "fileSize": 6997,
           "title": "Legacy Diagram 18",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -9300,11 +7202,7 @@
           "height": null,
           "fileSize": 8621,
           "title": "Legacy Diagram 19",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -9318,11 +7216,7 @@
           "height": null,
           "fileSize": 7754,
           "title": "Legacy Diagram 20",
-          "tags": [
-            "diagrams",
-            "legacy",
-            "diagram"
-          ],
+          "tags": ["diagrams", "legacy", "diagram"],
           "createdAt": "2026-02-10"
         },
         {
@@ -9336,12 +7230,7 @@
           "height": null,
           "fileSize": 10465,
           "title": "Mcp Communication Pattern",
-          "tags": [
-            "diagrams",
-            "mcp",
-            "communication",
-            "pattern"
-          ],
+          "tags": ["diagrams", "mcp", "communication", "pattern"],
           "createdAt": "2026-02-10"
         },
         {
@@ -9355,11 +7244,7 @@
           "height": null,
           "fileSize": 11410,
           "title": "Observability Layers",
-          "tags": [
-            "diagrams",
-            "observability",
-            "layers"
-          ],
+          "tags": ["diagrams", "observability", "layers"],
           "createdAt": "2026-02-10"
         },
         {
@@ -9373,12 +7258,7 @@
           "height": null,
           "fileSize": 8083,
           "title": "Project Skill Placement",
-          "tags": [
-            "diagrams",
-            "project",
-            "skill",
-            "placement"
-          ],
+          "tags": ["diagrams", "project", "skill", "placement"],
           "createdAt": "2026-02-10"
         },
         {
@@ -9392,12 +7272,7 @@
           "height": null,
           "fileSize": 10582,
           "title": "Skill Directory Structure",
-          "tags": [
-            "diagrams",
-            "skill",
-            "directory",
-            "structure"
-          ],
+          "tags": ["diagrams", "skill", "directory", "structure"],
           "createdAt": "2026-02-10"
         },
         {
@@ -9411,276 +7286,8 @@
           "height": null,
           "fileSize": 11207,
           "title": "Tool Selection Decision Tree",
-          "tags": [
-            "diagrams",
-            "tool",
-            "selection",
-            "decision",
-            "tree"
-          ],
+          "tags": ["diagrams", "tool", "selection", "decision", "tree"],
           "createdAt": "2026-02-10"
-        }
-      ]
-    },
-    {
-      "id": "fire-horse",
-      "name": "Fire Horse",
-      "description": "Visual assets from the Fire Horse collection.",
-      "count": 7,
-      "coverImage": "/images/fire-horse/fire-horse-v01-guardian.png",
-      "accent": "from-gray-500/20 to-slate-500/20",
-      "borderAccent": "border-gray-500/30",
-      "sortOrder": 99,
-      "assets": [
-        {
-          "id": "fire-horse/fire-horse-v01-guardian",
-          "filename": "fire-horse-v01-guardian.png",
-          "src": "/images/fire-horse/fire-horse-v01-guardian.png",
-          "thumbnail": "/images/fire-horse/fire-horse-v01-guardian_thumb.jpeg",
-          "collection": "fire-horse",
-          "format": "png",
-          "width": 1024,
-          "height": 1024,
-          "fileSize": 652085,
-          "title": "Fire Horse V01 Guardian",
-          "tags": [
-            "fire-horse",
-            "fire",
-            "horse",
-            "v01",
-            "guardian"
-          ],
-          "createdAt": "2026-02-16"
-        },
-        {
-          "id": "fire-horse/fire-horse-v02-galloping-hero",
-          "filename": "fire-horse-v02-galloping-hero.png",
-          "src": "/images/fire-horse/fire-horse-v02-galloping-hero.png",
-          "thumbnail": "/images/fire-horse/fire-horse-v02-galloping-hero_thumb.jpeg",
-          "collection": "fire-horse",
-          "format": "png",
-          "width": 1376,
-          "height": 768,
-          "fileSize": 791719,
-          "title": "Fire Horse V02 Galloping",
-          "tags": [
-            "fire-horse",
-            "fire",
-            "horse",
-            "v02",
-            "galloping",
-            "hero"
-          ],
-          "createdAt": "2026-02-16"
-        },
-        {
-          "id": "fire-horse/fire-horse-v03-portrait",
-          "filename": "fire-horse-v03-portrait.png",
-          "src": "/images/fire-horse/fire-horse-v03-portrait.png",
-          "thumbnail": "/images/fire-horse/fire-horse-v03-portrait_thumb.jpeg",
-          "collection": "fire-horse",
-          "format": "png",
-          "width": 896,
-          "height": 1200,
-          "fileSize": 755780,
-          "title": "Fire Horse V03 Portrait",
-          "tags": [
-            "fire-horse",
-            "fire",
-            "horse",
-            "v03",
-            "portrait"
-          ],
-          "createdAt": "2026-02-16"
-        },
-        {
-          "id": "fire-horse/fire-horse-v04-constellation",
-          "filename": "fire-horse-v04-constellation.png",
-          "src": "/images/fire-horse/fire-horse-v04-constellation.png",
-          "thumbnail": "/images/fire-horse/fire-horse-v04-constellation_thumb.jpeg",
-          "collection": "fire-horse",
-          "format": "png",
-          "width": 1024,
-          "height": 1024,
-          "fileSize": 489554,
-          "title": "Fire Horse V04 Constellation",
-          "tags": [
-            "fire-horse",
-            "fire",
-            "horse",
-            "v04",
-            "constellation"
-          ],
-          "createdAt": "2026-02-16"
-        },
-        {
-          "id": "fire-horse/fire-horse-v05-book-cover",
-          "filename": "fire-horse-v05-book-cover.png",
-          "src": "/images/fire-horse/fire-horse-v05-book-cover.png",
-          "thumbnail": "/images/fire-horse/fire-horse-v05-book-cover_thumb.jpeg",
-          "collection": "fire-horse",
-          "format": "png",
-          "width": 896,
-          "height": 1200,
-          "fileSize": 590603,
-          "title": "Fire Horse V05 Book Cover",
-          "tags": [
-            "fire-horse",
-            "fire",
-            "horse",
-            "v05",
-            "book",
-            "cover"
-          ],
-          "createdAt": "2026-02-16"
-        },
-        {
-          "id": "fire-horse/fire-horse-v06-epic-eclipse",
-          "filename": "fire-horse-v06-epic-eclipse.png",
-          "src": "/images/fire-horse/fire-horse-v06-epic-eclipse.png",
-          "thumbnail": "/images/fire-horse/fire-horse-v06-epic-eclipse_thumb.jpeg",
-          "collection": "fire-horse",
-          "format": "png",
-          "width": 1584,
-          "height": 672,
-          "fileSize": 821960,
-          "title": "Fire Horse V06 Epic Eclipse",
-          "tags": [
-            "fire-horse",
-            "fire",
-            "horse",
-            "v06",
-            "epic",
-            "eclipse"
-          ],
-          "createdAt": "2026-02-16"
-        },
-        {
-          "id": "fire-horse/fire-horse-v07-calligraphy",
-          "filename": "fire-horse-v07-calligraphy.png",
-          "src": "/images/fire-horse/fire-horse-v07-calligraphy.png",
-          "thumbnail": "/images/fire-horse/fire-horse-v07-calligraphy_thumb.jpeg",
-          "collection": "fire-horse",
-          "format": "png",
-          "width": 1024,
-          "height": 1024,
-          "fileSize": 588535,
-          "title": "Fire Horse V07 Calligraphy",
-          "tags": [
-            "fire-horse",
-            "fire",
-            "horse",
-            "v07",
-            "calligraphy"
-          ],
-          "createdAt": "2026-02-16"
-        }
-      ]
-    },
-    {
-      "id": "research",
-      "name": "Research",
-      "description": "Visual assets from the Research collection.",
-      "count": 5,
-      "coverImage": "/images/research/constellation-research-domains.png",
-      "accent": "from-gray-500/20 to-slate-500/20",
-      "borderAccent": "border-gray-500/30",
-      "sortOrder": 99,
-      "assets": [
-        {
-          "id": "research/constellation-research-domains",
-          "filename": "constellation-research-domains.png",
-          "src": "/images/research/constellation-research-domains.png",
-          "thumbnail": "/images/research/constellation-research-domains_thumb.jpeg",
-          "collection": "research",
-          "format": "png",
-          "width": 1344,
-          "height": 768,
-          "fileSize": 1435635,
-          "title": "Constellation Research Domains",
-          "tags": [
-            "research",
-            "constellation",
-            "domains"
-          ],
-          "createdAt": "2026-02-17"
-        },
-        {
-          "id": "research/landscape-ai-architecture-2026",
-          "filename": "landscape-ai-architecture-2026.png",
-          "src": "/images/research/landscape-ai-architecture-2026.png",
-          "thumbnail": "/images/research/landscape-ai-architecture-2026_thumb.jpeg",
-          "collection": "research",
-          "format": "png",
-          "width": 1344,
-          "height": 768,
-          "fileSize": 1139206,
-          "title": "Landscape Ai Architecture 2026",
-          "tags": [
-            "research",
-            "landscape",
-            "architecture",
-            "2026"
-          ],
-          "createdAt": "2026-02-17"
-        },
-        {
-          "id": "research/maturity-multi-agent-orchestration",
-          "filename": "maturity-multi-agent-orchestration.png",
-          "src": "/images/research/maturity-multi-agent-orchestration.png",
-          "thumbnail": "/images/research/maturity-multi-agent-orchestration_thumb.jpeg",
-          "collection": "research",
-          "format": "png",
-          "width": 1344,
-          "height": 768,
-          "fileSize": 1205736,
-          "title": "Maturity Multi Agent Orchestration",
-          "tags": [
-            "research",
-            "maturity",
-            "multi",
-            "agent",
-            "orchestration"
-          ],
-          "createdAt": "2026-02-17"
-        },
-        {
-          "id": "research/stack-production-ai-architecture",
-          "filename": "stack-production-ai-architecture.png",
-          "src": "/images/research/stack-production-ai-architecture.png",
-          "thumbnail": "/images/research/stack-production-ai-architecture_thumb.jpeg",
-          "collection": "research",
-          "format": "png",
-          "width": 1344,
-          "height": 768,
-          "fileSize": 1134076,
-          "title": "Stack Production Ai Architecture",
-          "tags": [
-            "research",
-            "stack",
-            "production",
-            "architecture"
-          ],
-          "createdAt": "2026-02-17"
-        },
-        {
-          "id": "research/timeline-enterprise-ai-adoption",
-          "filename": "timeline-enterprise-ai-adoption.png",
-          "src": "/images/research/timeline-enterprise-ai-adoption.png",
-          "thumbnail": "/images/research/timeline-enterprise-ai-adoption_thumb.jpeg",
-          "collection": "research",
-          "format": "png",
-          "width": 1344,
-          "height": 768,
-          "fileSize": 1057787,
-          "title": "Timeline Enterprise Ai Adoption",
-          "tags": [
-            "research",
-            "timeline",
-            "enterprise",
-            "adoption"
-          ],
-          "createdAt": "2026-02-17"
         }
       ]
     }

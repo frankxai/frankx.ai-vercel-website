@@ -81,87 +81,7 @@ export const booksRegistry: BookConfig[] = [
     ],
   },
 
-  // ─── 2. Year of the Fire Horse — Poems ─────────────────────────
-  {
-    slug: 'fire-horse-poems',
-    title: 'Year of the Fire Horse',
-    subtitle: 'Poems for the 丙午 Year',
-    author: 'Frank',
-    publishDate: '2026',
-    description:
-      'Five original poems written for the Year of the Fire Horse 2026 — the most intense energy combination in the sixty-year zodiac cycle. Poems about urgency, building, eclipses, and the table where it all begins.',
-    keywords: ['fire horse', 'chinese new year', 'poetry', '2026', 'lunar new year', 'zodiac poetry'],
-    coverImage: '/images/fire-horse/fire-horse-v05-book-cover.png',
-    theme: {
-      id: 'fire-horse',
-      name: 'Year of the Fire Horse',
-      primary: 'amber',
-      accent: 'red',
-      bgDark: '#0a0a0f',
-      headingFont: 'serif',
-      bodyFont: 'serif',
-    },
-    status: 'published',
-    categories: ['Poetry', 'Culture', 'New Year'],
-    contentDir: 'content/books/fire-horse-poems',
-    chapters: [
-      {
-        slug: 'chapter-01-the-fire-horse',
-        title: 'The Fire Horse',
-        number: 1,
-        readingTime: '3 min',
-        description: 'The arrival. Sixty years between each burning — and this one is ours.',
-        published: true,
-        type: 'poetry',
-        epigraph: {
-          text: '马到成功 — Upon the arrival of the horse, success is secured.',
-          author: 'Chinese Proverb',
-        },
-      },
-      {
-        slug: 'chapter-02-to-the-builders',
-        title: 'To the Builders',
-        number: 2,
-        readingTime: '3 min',
-        description: 'For the ones still awake at 2 AM — not because they have to be.',
-        published: true,
-        type: 'poetry',
-      },
-      {
-        slug: 'chapter-03-sixty-year-flame',
-        title: 'Sixty-Year Flame',
-        number: 3,
-        readingTime: '4 min',
-        description: 'The forty-third combination in a cycle older than borders.',
-        published: true,
-        type: 'poetry',
-        epigraph: {
-          text: '龙马精神 — The spirit of the dragon-horse. Vigorous vitality that does not fade.',
-          author: 'Chinese Proverb',
-        },
-      },
-      {
-        slug: 'chapter-04-ring-of-fire',
-        title: 'Ring of Fire',
-        number: 4,
-        readingTime: '4 min',
-        description: 'An annular eclipse on the first morning. Even when something stands in your way, the light finds the edges.',
-        published: true,
-        type: 'poetry',
-      },
-      {
-        slug: 'chapter-05-the-table-the-horse-the-morning',
-        title: 'The Table, the Horse, the Morning',
-        number: 5,
-        readingTime: '5 min',
-        description: 'Bánh Tết, banana leaves, and the first foot through the door. The longest and most personal poem.',
-        published: true,
-        type: 'poetry',
-      },
-    ],
-  },
-
-  // ─── 3. Spartan Mindset ─────────────────────────────────────────
+  // ─── 2. Spartan Mindset ─────────────────────────────────────────
   {
     slug: 'spartan-mindset',
     title: 'Spartan Mindset',
@@ -406,24 +326,4 @@ export function getPublishedBooks(): BookConfig[] {
 
 export function getAllBookSlugs(): string[] {
   return booksRegistry.map((b) => b.slug);
-}
-
-const ARCANEA_SLUGS = new Set([
-  'arcanea-bestiary',
-  'arcanea-chronicles',
-  'arcanea-creator-principles',
-  'arcanea-legends',
-  'arcanea-wisdom-scrolls',
-]);
-
-export function getCoreBooks(): BookConfig[] {
-  return booksRegistry.filter(
-    (b) => b.status !== 'draft' && !ARCANEA_SLUGS.has(b.slug)
-  );
-}
-
-export function getArcaneanBooks(): BookConfig[] {
-  return booksRegistry.filter(
-    (b) => b.status !== 'draft' && ARCANEA_SLUGS.has(b.slug)
-  );
 }

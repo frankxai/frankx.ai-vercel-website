@@ -83,7 +83,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Get sender email from env or use default
-    const fromEmail = process.env.RESEND_FROM_EMAIL || 'frank@mail.frankx.ai'
+    const fromEmail = process.env.RESEND_FROM_EMAIL || 'frank@frankx.ai'
 
     // Send email
     const { data, error } = await resend.emails.send({

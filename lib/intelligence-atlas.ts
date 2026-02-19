@@ -68,7 +68,7 @@ export const atlasVolumes: AtlasVolume[] = [
     status: 'Planned',
     release: 'May 2025',
     summary:
-      'Blueprints for Fortune 500 alignment: risk controls, regulatory readiness, and cultural adoption at scale.',
+      'Blueprints for enterprise alignment: risk controls, regulatory readiness, and cultural adoption at scale.',
     href: '',
     wordCount: '10,000 words',
   },

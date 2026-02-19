@@ -2,7 +2,7 @@
 
 ---
 
-*The sixth pillar. The people who surround you determine the ceiling of your growth.*
+_The sixth pillar. The people who surround you determine the ceiling of your growth._
 
 ---
 
@@ -83,4 +83,4 @@ Boundaries are not walls. Walls block everything. Boundaries filter. They let th
 
 ---
 
-*Your circle is your culture. Choose it with the same care you would choose the city you live in, the food you eat, the thoughts you think. Because in the end, your circle does not just influence your life. It becomes your life.*
+_Your circle is your culture. Choose it with the same care you would choose the city you live in, the food you eat, the thoughts you think. Because in the end, your circle does not just influence your life. It becomes your life._

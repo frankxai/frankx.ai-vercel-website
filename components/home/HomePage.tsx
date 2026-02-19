@@ -141,7 +141,7 @@ export default function HomePage() {
                 </StaggerItem>
                 <StaggerItem>
                   <div className="flex items-center justify-center gap-8 pt-8 text-sm text-white/60">
-                    <span>Trusted by creators and collaborators</span>
+                    <span>Used by creators and collaborators</span>
                     <div className="flex items-center gap-6">
                       <div className="flex items-center gap-2">
                         <div className="w-2 h-2 rounded-full bg-green-400"></div>

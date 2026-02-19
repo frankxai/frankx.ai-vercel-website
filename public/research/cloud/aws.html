@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWS Partner Network (APN) | FrankX Research</title>
+    <meta name="description" content="AWS APN partner program analysis: tier structure, GenAI MDF funding, Well-Architected framework, and MSP benefits.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --aws-orange: #FF9900;
+            --aws-dark: #232F3E;
+            --bg-dark: #0f172a;
+            --bg-darker: #020617;
+            --text-light: #e2e8f0;
+            --text-muted: #94a3b8;
+            --border-color: #1e293b;
+            --card-bg: #1e293b;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-darker);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        header {
+            background: var(--bg-dark);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--aws-orange), #EC7211);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .logo-text {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            margin-left: 2rem;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        nav a:hover { color: var(--aws-orange); }
+
+        .hero {
+            background: linear-gradient(135deg, #FF9900 0%, #EC7211 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+            border-bottom: 4px solid var(--aws-orange);
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            color: var(--aws-dark);
+        }
+
+        .hero .subtitle {
+            font-size: 1.2rem;
+            color: var(--aws-dark);
+            margin-bottom: 2rem;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--aws-dark);
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--aws-dark);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section {
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+            color: var(--aws-orange);
+        }
+
+        .tier-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .tier-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            border-top: 4px solid var(--aws-orange);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .tier-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(255, 153, 0, 0.2);
+        }
+
+        .tier-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--aws-orange);
+            margin-bottom: 0.5rem;
+        }
+
+        .tier-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .tier-benefits {
+            list-style: none;
+        }
+
+        .tier-benefits li {
+            padding: 0.5rem 0;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .tier-benefits li:last-child {
+            border-bottom: none;
+        }
+
+        .tier-benefits li::before {
+            content: "✓";
+            color: var(--aws-orange);
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .funding-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .funding-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 2rem;
+            border-left: 4px solid var(--aws-orange);
+        }
+
+        .funding-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--aws-orange);
+        }
+
+        .funding-amount {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--aws-orange);
+            margin-bottom: 0.75rem;
+        }
+
+        .funding-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .pillars-section {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 2rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .pillar-item {
+            background: var(--bg-dark);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-top: 3px solid var(--aws-orange);
+        }
+
+        .pillar-item h4 {
+            font-size: 1.1rem;
+            color: var(--aws-orange);
+            margin-bottom: 0.5rem;
+        }
+
+        .pillar-item p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, var(--aws-orange), #EC7211);
+            padding: 3rem;
+            border-radius: 16px;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .cta-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--aws-dark);
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: var(--aws-dark);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: var(--aws-dark);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+        }
+
+        .cta-button.secondary {
+            background: white;
+            color: var(--aws-dark);
+        }
+
+        footer {
+            background: var(--bg-dark);
+            border-top: 1px solid var(--border-color);
+            padding: 2rem;
+            margin-top: 4rem;
+            text-align: center;
+        }
+
+        footer p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        footer a {
+            color: var(--aws-orange);
+            text-decoration: none;
+            margin: 0 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .tier-grid, .funding-grid, .pillars-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon">F</div>
+                <div class="logo-text">FrankX Research</div>
+            </div>
+            <nav>
+                <a href="index.html">← Back to Hub</a>
+                <a href="comparison.html">Comparison</a>
+                <a href="https://frankx.ai/research/">All Research</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="hero">
+        <h1>AWS Partner Network (APN)</h1>
+        <p class="subtitle">Three-tier structure with industry-leading GenAI funding and Well-Architected framework</p>
+        <div class="hero-stats">
+            <div class="stat">
+                <div class="stat-value">3 Tiers</div>
+                <div class="stat-label">Select / Advanced / Premier</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">$75K</div>
+                <div class="stat-label">Max AI MDF (2026)</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">6 Pillars</div>
+                <div class="stat-label">Well-Architected Framework</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="section">
+            <h2 class="section-title">Partner Tier Structure</h2>
+            <p style="color: var(--text-muted); margin-bottom: 2rem;">APN tiers are based on certified individuals, customer experience, and program validations. Partners advance through demonstrated technical expertise and proven customer success.</p>
+            
+            <div class="tier-grid">
+                <div class="tier-card">
+                    <div class="tier-name">Select</div>
+                    <p>Entry tier for partners with trained and certified team members</p>
+                    <ul class="tier-benefits">
+                        <li>Trained/certified individuals</li>
+                        <li>Customer experience required</li>
+                        <li>Basic program access</li>
+                        <li>Partner Central portal</li>
+                        <li>MDF eligibility (if good standing)</li>
+                    </ul>
+                </div>
+
+                <div class="tier-card">
+                    <div class="tier-name">Advanced</div>
+                    <p>Strong team of certified technical experts with proven customer success</p>
+                    <ul class="tier-benefits">
+                        <li>Strong certified technical team</li>
+                        <li>Proven customer experience</li>
+                        <li>Enhanced GTM support</li>
+                        <li>Service validations</li>
+                        <li>Advanced enablement resources</li>
+                    </ul>
+                </div>
+
+                <div class="tier-card">
+                    <div class="tier-name">Premier</div>
+                    <p>Most experienced partners recognized as market leaders</p>
+                    <ul class="tier-benefits">
+                        <li>Deep technical expertise</li>
+                        <li>Multiple program validations</li>
+                        <li>Large-scale customer success</li>
+                        <li>Geo/vertical/horizontal leadership</li>
+                        <li>Priority MDF allocation</li>
+                        <li>Full PGP access</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">2026 Funding Programs</h2>
+            <p style="color: var(--text-muted); margin-bottom: 2rem;">AWS enhanced partner incentives with simplified benefits and new funding programs effective January 1, 2026. Focus on GenAI, migration/modernization, and strategic services.</p>
+
+            <div class="funding-grid">
+                <div class="funding-card">
+                    <h3>Agentic AI MDF</h3>
+                    <div class="funding-amount">$25K</div>
+                    <p>Additional MDF for agentic AI implementations in 2026, on top of existing $50K MDF baseline for eligible partners.</p>
+                </div>
+
+                <div class="funding-card">
+                    <h3>Amazon Connect MDF</h3>
+                    <div class="funding-amount">$50K</div>
+                    <p>Up to $50K for Amazon Connect implementations. Launching January 2026 to accelerate contact center modernization.</p>
+                </div>
+
+                <div class="funding-card">
+                    <h3>Partner Greenfield Program (PGP)</h3>
+                    <div class="funding-amount">Multi-year</div>
+                    <p>Co-investment for Migration/Modernization, GenAI, and Security workloads. Long-term strategic partnership funding.</p>
+                </div>
+
+                <div class="funding-card">
+                    <h3>Well-Architected ISV Credits</h3>
+                    <div class="funding-amount">$5,000</div>
+                    <p>Credits when 45% of High-Risk Issues remediated through Well-Architected framework evaluation and implementation.</p>
+                </div>
+
+                <div class="funding-card">
+                    <h3>MSP Strategic Services</h3>
+                    <div class="funding-amount">Rewards</div>
+                    <p>Incentives for MSPs driving customer innovation via strategic AWS services. Rewards based on adoption and usage.</p>
+                </div>
+
+                <div class="funding-card">
+                    <h3>Government Practice Rewards</h3>
+                    <div class="funding-amount">2026 New</div>
+                    <p>Support for government customer digital transformation. Specialized incentives for public sector workloads.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">AWS Well-Architected Framework</h2>
+            
+            <div class="pillars-section">
+                <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Design principles and best practices across six pillars. Partners earn Well-Architected designation through demonstrated expertise and customer implementations.</p>
+                
+                <div class="pillars-grid">
+                    <div class="pillar-item">
+                        <h4>Operational Excellence</h4>
+                        <p>Run and monitor systems to deliver business value and continually improve processes and procedures.</p>
+                    </div>
+
+                    <div class="pillar-item">
+                        <h4>Security</h4>
+                        <p>Protect data, systems, and assets while delivering business value through risk assessments and mitigation strategies.</p>
+                    </div>
+
+                    <div class="pillar-item">
+                        <h4>Reliability</h4>
+                        <p>Ensure workload performs its intended function correctly and consistently. Recover from failures and meet demand.</p>
+                    </div>
+
+                    <div class="pillar-item">
+                        <h4>Performance Efficiency</h4>
+                        <p>Use computing resources efficiently to meet requirements and maintain efficiency as demand changes.</p>
+                    </div>
+
+                    <div class="pillar-item">
+                        <h4>Cost Optimization</h4>
+                        <p>Run systems to deliver business value at the lowest price point. Avoid unnecessary costs.</p>
+                    </div>
+
+                    <div class="pillar-item">
+                        <h4>Sustainability</h4>
+                        <p>Minimize environmental impacts of cloud workloads. Energy efficiency and carbon reduction strategies.</p>
+                    </div>
+                </div>
+
+                <div style="margin-top: 2rem; padding: 1.5rem; background: var(--bg-dark); border-radius: 8px;">
+                    <h4 style="color: var(--aws-orange); margin-bottom: 0.75rem;">Partner Resources</h4>
+                    <ul style="list-style: none; color: var(--text-muted); font-size: 0.9rem;">
+                        <li style="padding: 0.25rem 0;">✓ Free evaluation tool for workload assessment</li>
+                        <li style="padding: 0.25rem 0;">✓ Hands-on labs and documentation per pillar</li>
+                        <li style="padding: 0.25rem 0;">✓ Well-Architected Partner badge and designation</li>
+                        <li style="padding: 0.25rem 0;">✓ Access to funding and marketing resources</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">MSP Program Benefits (2026)</h2>
+            
+            <div style="background: var(--card-bg); border-radius: 12px; padding: 2rem; border: 1px solid var(--border-color);">
+                <p style="color: var(--text-muted); margin-bottom: 1.5rem;">AWS Managed Service Provider program offers specialized benefits for partners delivering fully managed AWS environments.</p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem;">
+                    <div style="background: var(--bg-dark); padding: 1.25rem; border-radius: 8px; border-left: 4px solid var(--aws-orange);">
+                        <h4 style="color: var(--aws-orange); font-size: 1.1rem; margin-bottom: 0.5rem;">Customer Management</h4>
+                        <p style="color: var(--text-muted); font-size: 0.85rem;">Rewards for customer adoption and usage growth. Incentivizes long-term managed service relationships.</p>
+                    </div>
+                    
+                    <div style="background: var(--bg-dark); padding: 1.25rem; border-radius: 8px; border-left: 4px solid var(--aws-orange);">
+                        <h4 style="color: var(--aws-orange); font-size: 1.1rem; margin-bottom: 0.5rem;">Strategic Services</h4>
+                        <p style="color: var(--text-muted); font-size: 0.85rem;">Rewards for innovation via strategic AWS services. Focus on emerging technologies like GenAI, ML, IoT.</p>
+                    </div>
+                    
+                    <div style="background: var(--bg-dark); padding: 1.25rem; border-radius: 8px; border-left: 4px solid var(--aws-orange);">
+                        <h4 style="color: var(--aws-orange); font-size: 1.1rem; margin-bottom: 0.5rem;">Government Practice</h4>
+                        <p style="color: var(--text-muted); font-size: 0.85rem;">Support for government customer digital transformation. Specialized enablement and funding for public sector.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2>Compare AWS APN with Other Providers</h2>
+            <p>See how AWS funding, tiers, and enablement stack up against Oracle OPN, Microsoft Azure, and Google Cloud.</p>
+            <div class="cta-buttons">
+                <a href="comparison.html" class="cta-button">View Full Comparison</a>
+                <a href="index.html" class="cta-button secondary">Back to Hub</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p><a href="index.html">Cloud Partner Hub</a> | <a href="oracle.html">Oracle OPN</a> | <a href="azure.html">Azure Partners</a> | <a href="gcp.html">Google Cloud</a> | <a href="https://frankx.ai/research/">All Research</a></p>
+        <p style="margin-top: 1rem;">AWS Partner Network Research | February 2026 | FrankX AI Architect</p>
+        <p>AWS and related marks are trademarks of Amazon.com, Inc. This is independent research.</p>
+    </footer>
+</body>
+</html>

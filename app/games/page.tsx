@@ -29,13 +29,6 @@ import {
   Server,
   Palette,
   Bot,
-  Cloud,
-  Network,
-  Wifi,
-  Shield,
-  Type,
-  Grid3x3,
-  Waypoints,
 } from 'lucide-react'
 
 // ============================================================================
@@ -178,24 +171,6 @@ function HeroSection() {
 function PlayNowSection() {
   const games = [
     {
-      title: 'Crystal Match',
-      description: 'Swap and match colorful crystals in this Candy Crush-style puzzle. Combos, cascades, and 30-move challenge.',
-      href: '/games/crystal-match',
-      badge: 'Play Now',
-      color: 'fuchsia',
-      icon: Sparkles,
-      status: 'live' as const,
-    },
-    {
-      title: 'Neon Runner',
-      description: '3D endless runner through a neon world. Swipe to dodge, jump, and slide — Subway Surfers meets cyberpunk.',
-      href: '/games/neon-runner',
-      badge: 'Play Now',
-      color: 'cyan',
-      icon: Zap,
-      status: 'live' as const,
-    },
-    {
       title: 'Memory Match',
       description: 'Test your memory by matching pairs of cards. Three difficulty levels, star ratings, and a timer.',
       href: '/games/memory-match',
@@ -205,40 +180,22 @@ function PlayNowSection() {
       status: 'live' as const,
     },
     {
+      title: 'AI Quiz',
+      description: 'AI-generated trivia questions across topics. Adaptive difficulty that learns your strengths.',
+      href: '/games',
+      badge: 'Coming Soon',
+      color: 'cyan',
+      icon: Brain,
+      status: 'coming' as const,
+    },
+    {
       title: 'Word Forge',
-      description: 'Guess the 5-letter word in 6 tries. Color-coded clues guide your guesses. Daily challenge + unlimited.',
-      href: '/games/word-forge',
-      badge: 'Play Now',
-      color: 'emerald',
-      icon: Type,
-      status: 'live' as const,
-    },
-    {
-      title: '2048 Neon',
-      description: 'Slide numbered tiles to combine them and reach 2048. Neon-lit strategy puzzle with undo support.',
-      href: '/games/neon-2048',
-      badge: 'Play Now',
+      description: 'Wordle-inspired word game with daily challenges and an unlimited practice mode.',
+      href: '/games',
+      badge: 'Coming Soon',
       color: 'amber',
-      icon: Grid3x3,
-      status: 'live' as const,
-    },
-    {
-      title: 'Snake Neon',
-      description: 'Classic snake reimagined with neon trails and progressive speed. Swipe or arrow keys.',
-      href: '/games/snake-neon',
-      badge: 'Play Now',
-      color: 'lime',
-      icon: Waypoints,
-      status: 'live' as const,
-    },
-    {
-      title: 'Neon Depths',
-      description: 'Roguelike dungeon crawler with procedural maps, 3 AI enemy types, fog of war, and strategic combat.',
-      href: '/games/neon-depths',
-      badge: 'New',
-      color: 'rose',
-      icon: Swords,
-      status: 'live' as const,
+      icon: Puzzle,
+      status: 'coming' as const,
     },
   ]
 
@@ -246,10 +203,6 @@ function PlayNowSection() {
     violet: { border: 'border-violet-500/30', bg: 'bg-violet-500/10', text: 'text-violet-400' },
     cyan: { border: 'border-cyan-500/30', bg: 'bg-cyan-500/10', text: 'text-cyan-400' },
     amber: { border: 'border-amber-500/30', bg: 'bg-amber-500/10', text: 'text-amber-400' },
-    fuchsia: { border: 'border-fuchsia-500/30', bg: 'bg-fuchsia-500/10', text: 'text-fuchsia-400' },
-    emerald: { border: 'border-emerald-500/30', bg: 'bg-emerald-500/10', text: 'text-emerald-400' },
-    lime: { border: 'border-lime-500/30', bg: 'bg-lime-500/10', text: 'text-lime-400' },
-    rose: { border: 'border-rose-500/30', bg: 'bg-rose-500/10', text: 'text-rose-400' },
   }
 
   return (
@@ -269,7 +222,7 @@ function PlayNowSection() {
           </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid sm:grid-cols-3 gap-4">
           {games.map((game, i) => {
             const colors = colorMap[game.color]
             const isLive = game.status === 'live'
@@ -362,22 +315,12 @@ const gameCategories = [
     ],
   },
   {
-    tier: 'Build with Supabase',
+    tier: 'Needs Supabase',
     subtitle: 'Add real-time multiplayer via Supabase Realtime channels',
     color: 'amber',
     games: [
       { name: 'Multiplayer Quiz', description: 'Compete in real-time trivia with friends, live leaderboards', mobile: 'great', desktop: 'great', icon: Trophy },
       { name: 'Turn-Based Strategy', description: 'Chess, checkers, word duels — async or real-time turns via DB sync', mobile: 'great', desktop: 'great', icon: Swords },
-    ],
-  },
-  {
-    tier: 'Build with PartyKit',
-    subtitle: 'Cloudflare edge servers — real-time action, MMO worlds, MOBA',
-    color: 'cyan',
-    games: [
-      { name: 'Action RPG / Arcanea', description: 'Persistent 3D world with Babylon.js (WebGPU). Zone-based rooms, 50ms latency globally.', mobile: 'good', desktop: 'great', icon: Swords },
-      { name: 'Racing / MOBA', description: 'Fast-paced multiplayer via PartyKit edge servers. Client-side prediction for smooth gameplay.', mobile: 'good', desktop: 'great', icon: Zap },
-      { name: 'MMO / Persistent World', description: 'Durable Objects for zone persistence. Each zone = a room. Scales to millions of players.', mobile: 'medium', desktop: 'great', icon: Globe },
     ],
   },
 ]
@@ -504,7 +447,7 @@ function TechStackSection() {
     },
     {
       name: 'Backend / Multiplayer',
-      items: ['PartyKit (Cloudflare edge)', 'Supabase Realtime', 'Colyseus (open-source)', 'Vercel Edge Functions'],
+      items: ['Supabase Realtime', 'Supabase Auth & DB', 'Vercel Edge Functions'],
       status: 'add',
       icon: Server,
     },
@@ -585,8 +528,8 @@ function VercelCompatSection() {
     { game: 'Leaderboard arcade games', works: 'yes', infra: 'Vercel + Supabase', note: 'Client gameplay, server score validation' },
     { game: 'Async strategy (civilization-style)', works: 'yes', infra: 'Vercel + Supabase', note: 'DB-driven turns, email notifications' },
     { game: 'Casual real-time (party games)', works: 'partial', infra: 'Vercel + Supabase/Pusher', note: 'Works at low player counts' },
-    { game: 'Fast-paced action (FPS, racing)', works: 'yes', infra: 'Vercel + PartyKit', note: 'PartyKit handles WebSocket at the edge — 50ms latency' },
-    { game: 'MMO / persistent world', works: 'yes', infra: 'Vercel + PartyKit', note: 'Cloudflare Durable Objects — zone-based rooms, auto-scaling' },
+    { game: 'Fast-paced action (FPS, racing)', works: 'no', infra: 'Railway / Fly.io', note: 'Needs dedicated WebSocket server' },
+    { game: 'MMO / persistent world', works: 'no', infra: 'Dedicated servers', note: 'Vercel is serverless — no long-lived connections' },
   ]
 
   return (
@@ -602,8 +545,8 @@ function VercelCompatSection() {
             What works on Vercel
           </h2>
           <p className="text-white/50 max-w-2xl text-lg">
-            Honest breakdown. Vercel handles the frontend — PartyKit (Cloudflare)
-            handles real-time game servers at the edge. Every game type is covered.
+            Honest breakdown. Vercel handles most game types — but not everything.
+            Real-time action games need dedicated game servers.
           </p>
         </motion.div>
 
@@ -631,174 +574,6 @@ function VercelCompatSection() {
             </div>
           ))}
         </div>
-      </div>
-    </section>
-  )
-}
-
-// ============================================================================
-// ADVANCED INFRASTRUCTURE
-// ============================================================================
-
-const infraStack = [
-  {
-    name: 'PartyKit',
-    role: 'Real-time game server at the edge',
-    details: 'Cloudflare Durable Objects — stateful WebSocket rooms with 50ms global latency. Each game zone is a room. Auto-scales to millions of players.',
-    stats: { latency: '50ms', cost: '$5-10/mo', scale: 'Millions', coverage: '300+ regions' },
-    color: 'cyan',
-    icon: Cloud,
-  },
-  {
-    name: 'Babylon.js',
-    role: 'WebGPU-powered 3D rendering',
-    details: 'Full game engine with physics, animation, VR/AR support. Render Bundles deliver 10x speedup over WebGL. Can render 1000+ characters at 60fps.',
-    stats: { perf: '10x faster', support: '95% browsers', size: '500KB', physics: 'Built-in' },
-    color: 'violet',
-    icon: Box,
-  },
-  {
-    name: 'Colyseus',
-    role: 'Open-source multiplayer framework',
-    details: 'Schema-based state sync with 90% bandwidth reduction via delta compression. Node.js server with Redis clustering for 100K+ concurrent users.',
-    stats: { protocol: 'WebSocket', license: 'MIT', ccuLimit: '100K+', hosting: 'Fly.io $14/mo' },
-    color: 'emerald',
-    icon: Network,
-  },
-  {
-    name: 'WebSocket + Edge',
-    role: 'Client-side prediction & sync',
-    details: 'Server-authoritative game logic with client-side prediction for instant feedback. Binary delta compression sends only changed fields — 20 updates/sec.',
-    stats: { protocol: '100% support', prediction: 'Client-side', sync: 'Delta only', trust: 'Server auth' },
-    color: 'amber',
-    icon: Wifi,
-  },
-]
-
-const infraColorMap: Record<string, { border: string; bg: string; text: string }> = {
-  cyan: { border: 'border-cyan-500/20', bg: 'bg-cyan-500/10', text: 'text-cyan-400' },
-  violet: { border: 'border-violet-500/20', bg: 'bg-violet-500/10', text: 'text-violet-400' },
-  emerald: { border: 'border-emerald-500/20', bg: 'bg-emerald-500/10', text: 'text-emerald-400' },
-  amber: { border: 'border-amber-500/20', bg: 'bg-amber-500/10', text: 'text-amber-400' },
-}
-
-function AdvancedInfraSection() {
-  return (
-    <section className="relative py-24 px-6 border-t border-white/[0.04]">
-      <div className="max-w-5xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-16"
-        >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/20 mb-6">
-            <Network className="w-4 h-4 text-cyan-400" />
-            <span className="text-sm font-medium text-cyan-300">Advanced Infrastructure</span>
-          </div>
-
-          <h2 className="text-3xl md:text-4xl font-semibold text-white mb-4">
-            Real-time multiplayer, solved
-          </h2>
-          <p className="text-white/50 max-w-2xl text-lg">
-            PartyKit (Cloudflare Durable Objects) handles what Vercel can&apos;t — persistent
-            WebSocket connections for real-time action games, MOBAs, and MMO worlds.
-            50ms latency to 95% of global users.
-          </p>
-        </motion.div>
-
-        {/* Architecture diagram */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-12 p-6 rounded-2xl bg-white/[0.02] border border-white/[0.06]"
-        >
-          <h3 className="text-sm font-medium text-white/50 uppercase tracking-wider mb-6">Recommended Architecture</h3>
-          <div className="grid sm:grid-cols-3 gap-4">
-            <div className="p-4 rounded-xl bg-violet-500/5 border border-violet-500/20 text-center">
-              <div className="text-xs font-medium text-violet-400 uppercase tracking-wider mb-2">Frontend</div>
-              <div className="text-sm text-white font-medium">Vercel + Next.js</div>
-              <div className="text-xs text-white/30 mt-1">React + Tailwind + Babylon.js</div>
-            </div>
-            <div className="p-4 rounded-xl bg-cyan-500/5 border border-cyan-500/20 text-center">
-              <div className="text-xs font-medium text-cyan-400 uppercase tracking-wider mb-2">Game Server</div>
-              <div className="text-sm text-white font-medium">PartyKit (Cloudflare)</div>
-              <div className="text-xs text-white/30 mt-1">WebSocket rooms at the edge</div>
-            </div>
-            <div className="p-4 rounded-xl bg-amber-500/5 border border-amber-500/20 text-center">
-              <div className="text-xs font-medium text-amber-400 uppercase tracking-wider mb-2">Rendering</div>
-              <div className="text-sm text-white font-medium">Babylon.js (WebGPU)</div>
-              <div className="text-xs text-white/30 mt-1">10x faster, AAA browser visuals</div>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Stack cards */}
-        <div className="grid sm:grid-cols-2 gap-4">
-          {infraStack.map((tech, i) => {
-            const colors = infraColorMap[tech.color]
-            return (
-              <motion.div
-                key={tech.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.08 }}
-                className={`p-6 rounded-2xl bg-white/[0.02] border ${colors.border} hover:bg-white/[0.04] transition-all`}
-              >
-                <div className="flex items-center gap-3 mb-3">
-                  <div className={`p-2 rounded-lg ${colors.bg}`}>
-                    <tech.icon className={`w-4 h-4 ${colors.text}`} />
-                  </div>
-                  <div>
-                    <h3 className="text-sm font-medium text-white">{tech.name}</h3>
-                    <p className="text-xs text-white/40">{tech.role}</p>
-                  </div>
-                </div>
-                <p className="text-xs text-white/40 leading-relaxed mb-4">{tech.details}</p>
-                <div className="grid grid-cols-2 gap-2">
-                  {Object.entries(tech.stats).map(([key, val]) => (
-                    <div key={key} className="flex items-center gap-2">
-                      <span className="text-[10px] text-white/25 uppercase">{key}:</span>
-                      <span className={`text-[10px] font-medium ${colors.text}`}>{val}</span>
-                    </div>
-                  ))}
-                </div>
-              </motion.div>
-            )
-          })}
-        </div>
-
-        {/* Latency table */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mt-8 rounded-2xl border border-white/[0.06] overflow-hidden"
-        >
-          <div className="grid grid-cols-[1fr,auto,1fr] gap-x-4 p-4 bg-white/[0.03] border-b border-white/[0.06]">
-            <span className="text-xs font-medium text-white/50 uppercase tracking-wider">Game Type</span>
-            <span className="text-xs font-medium text-white/50 uppercase tracking-wider">Target Latency</span>
-            <span className="text-xs font-medium text-white/50 uppercase tracking-wider hidden sm:block">Stack</span>
-          </div>
-          {[
-            { type: 'FPS / Fighting', latency: '<20ms', stack: 'Hathora + WebTransport (desktop only)' },
-            { type: 'MOBA / Racing', latency: '20-50ms', stack: 'PartyKit (edge) or Colyseus (Fly.io)' },
-            { type: 'Action RPG / Arcanea', latency: '50-100ms', stack: 'PartyKit + Babylon.js (WebGPU)' },
-            { type: 'Open World / MMO', latency: '50-150ms', stack: 'PartyKit (cheap) or Rivet (scale)' },
-            { type: 'Turn-based', latency: '100-250ms', stack: 'Vercel Serverless — no WebSocket needed' },
-          ].map((row) => (
-            <div
-              key={row.type}
-              className="grid grid-cols-[1fr,auto,1fr] gap-x-4 p-4 border-b border-white/[0.04] last:border-b-0 hover:bg-white/[0.02] transition-colors"
-            >
-              <span className="text-sm text-white/80">{row.type}</span>
-              <span className="text-sm font-mono text-cyan-400">{row.latency}</span>
-              <span className="text-xs text-white/40 hidden sm:block">{row.stack}</span>
-            </div>
-          ))}
-        </motion.div>
       </div>
     </section>
   )
@@ -1099,7 +874,6 @@ export default function GamesPage() {
         <WhatWeCanBuildSection />
         <TechStackSection />
         <VercelCompatSection />
-        <AdvancedInfraSection />
         <AgenticPipelineSection />
         <AIToolsSection />
         <MonetizationSection />

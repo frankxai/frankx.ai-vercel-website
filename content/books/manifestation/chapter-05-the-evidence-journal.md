@@ -2,7 +2,7 @@
 
 ---
 
-*The practice that turns manifestation from theory into lived experience.*
+_The practice that turns manifestation from theory into lived experience._
 
 ---
 
@@ -34,12 +34,14 @@ Each day, record three to five pieces of evidence that support the reality you a
 
 **Examples:**
 
-*Blueprint: "I earn a meaningful income from creative work."*
+_Blueprint: "I earn a meaningful income from creative work."_
+
 - Evidence: A stranger messaged me on LinkedIn saying my blog post helped them solve a problem.
 - Evidence: I wrote 1,200 words today and it flowed easily — this is becoming natural.
 - Evidence: A colleague asked if I could do freelance design work for their client.
 
-*Blueprint: "I am physically strong and energetic."*
+_Blueprint: "I am physically strong and energetic."_
+
 - Evidence: I increased my deadlift by 5kg today — first time in three weeks.
 - Evidence: I woke up at 6am without an alarm and felt alert.
 - Evidence: Walked 12,000 steps today without planning to — my body wanted to move.
@@ -105,4 +107,4 @@ Start today.
 
 ---
 
-*The evidence is already there. It has always been there. You just were not looking. Now you are. And everything — everything — changes when you start to see.*
+_The evidence is already there. It has always been there. You just were not looking. Now you are. And everything — everything — changes when you start to see._

@@ -42,6 +42,7 @@ export interface VisionaryPerson {
   why: string
   qualities: [VisionaryQualityTag, VisionaryQualityTag, VisionaryQualityTag]
   url: string
+  youtubeId?: string
   top10Rank?: number
 }
 
@@ -160,6 +161,7 @@ export const visionaries: VisionaryPerson[] = [
     why: 'He turns deep model mechanics into operational practice you can apply immediately.',
     qualities: ['First-Principles', 'Public Teaching', 'Craft Discipline'],
     url: 'https://karpathy.ai',
+    youtubeId: 'VMj-3S1tku0',
     top10Rank: 1,
   },
   {
@@ -171,6 +173,7 @@ export const visionaries: VisionaryPerson[] = [
     why: 'She models how to lead frontier capability while keeping humans central.',
     qualities: ['Human-Centered Leadership', 'Long-Horizon Vision', 'Operational Excellence'],
     url: 'https://profiles.stanford.edu/fei-fei-li',
+    youtubeId: 'ad79nYk2keg',
     top10Rank: 3,
   },
   {
@@ -365,6 +368,7 @@ export const visionaries: VisionaryPerson[] = [
     why: 'He is the clearest model of shipping plus writing as one integrated system.',
     qualities: ['Open Source', 'Public Teaching', 'Craft Discipline'],
     url: 'https://simonwillison.net',
+    youtubeId: 'pOLR5jE5Vjw',
     top10Rank: 2,
   },
   {

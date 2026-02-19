@@ -2,7 +2,7 @@
 
 ---
 
-*Reality is not fixed. It is constructed. And you are the architect — whether you know it or not.*
+_Reality is not fixed. It is constructed. And you are the architect — whether you know it or not._
 
 ---
 
@@ -34,7 +34,7 @@ You do not attract what you want. You notice what you want. And noticing is the 
 
 ## III. The Expectation Effect
 
-In 2022, David Robson published *The Expectation Effect*, documenting decades of research on how beliefs shape physical reality.
+In 2022, David Robson published _The Expectation Effect_, documenting decades of research on how beliefs shape physical reality.
 
 The findings are startling:
 
@@ -79,4 +79,4 @@ The architecture of reality begins with the architecture of attention.
 
 ---
 
-*You are not a passive resident of reality. You are its architect. The blueprints are your beliefs. The materials are your actions. And the building — for better or worse — looks exactly like the plans.*
+_You are not a passive resident of reality. You are its architect. The blueprints are your beliefs. The materials are your actions. And the building — for better or worse — looks exactly like the plans._

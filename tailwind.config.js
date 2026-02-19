@@ -265,8 +265,6 @@ module.exports = {
         // PLAYFAIR DISPLAY - Editorial italic quotes ONLY
         serif: ['var(--font-serif)', 'Playfair Display', 'Georgia', 'serif'],
         quote: ['var(--font-serif)', 'Playfair Display', 'Georgia', 'serif'],
-        // LORA - Book body text (transitional serif, optimized for screen reading)
-        book: ['var(--font-lora)', 'Lora', 'Georgia', 'serif'],
         // JETBRAINS MONO - Code blocks and inline code
         mono: ['var(--font-mono)', 'JetBrains Mono', 'Menlo', 'Monaco', 'monospace'],
       },
@@ -452,47 +450,7 @@ module.exports = {
       screens: {
         xs: '475px',
       },
-      typography: {
-        DEFAULT: {
-          css: {
-            maxWidth: '720px', // 65-70 chars/line at 19px
-            fontSize: '1.1875rem', // 19px
-            lineHeight: '1.8',
-            color: 'rgba(255, 255, 255, 0.85)',
-            '--tw-prose-body': 'rgba(255, 255, 255, 0.85)',
-            '--tw-prose-headings': '#fff',
-            '--tw-prose-bold': '#fff',
-            '--tw-prose-links': 'rgba(16, 185, 129, 1)',
-            '--tw-prose-code': 'rgba(255, 255, 255, 0.9)',
-            '--tw-prose-quotes': 'rgba(255, 255, 255, 0.8)',
-            '--tw-prose-quote-borders': 'currentColor',
-            p: {
-              marginBottom: '1.75rem', // mb-7
-            },
-            h2: {
-              marginTop: '4rem', // mt-16
-              paddingTop: '2rem',
-              borderTopWidth: '1px',
-              borderTopColor: 'rgba(255, 255, 255, 0.1)',
-            },
-            h3: {
-              marginTop: '2.5rem',
-            },
-            hr: {
-              marginTop: '4rem', // my-16
-              marginBottom: '4rem',
-            },
-            blockquote: {
-              fontFamily: 'var(--font-lora), Georgia, serif',
-              fontSize: '1.25rem',
-            },
-          },
-        },
-      },
     },
   },
-  plugins: [
-    require('tailwindcss-animate'),
-    require('@tailwindcss/typography'),
-  ],
+  plugins: [require('tailwindcss-animate')],
 }

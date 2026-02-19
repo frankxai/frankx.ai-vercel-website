@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import { Playfair_Display, Inter, Lora } from 'next/font/google';
+import { Playfair_Display, Inter } from 'next/font/google';
 
 const playfair = Playfair_Display({
   subsets: ['latin'],
@@ -12,13 +12,6 @@ const inter = Inter({
   subsets: ['latin'],
   weight: ['300', '400', '500', '600', '700'],
   variable: '--font-inter',
-  display: 'swap',
-});
-
-const lora = Lora({
-  subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
-  variable: '--font-lora',
   display: 'swap',
 });
 
@@ -42,7 +35,7 @@ export default function BooksLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className={`${playfair.variable} ${inter.variable} ${lora.variable}`}>
+    <div className={`${playfair.variable} ${inter.variable}`}>
       {children}
     </div>
   );

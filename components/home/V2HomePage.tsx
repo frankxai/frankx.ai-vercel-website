@@ -63,7 +63,7 @@ export default function V2HomePage() {
             <motion.div variants={fadeIn}>
               <span className="inline-flex items-center gap-2 rounded-full bg-cyan-500/10 border border-cyan-500/20 px-4 py-2 text-sm font-medium text-cyan-400">
                 <Star className="h-4 w-4" aria-hidden="true" />
-                Trusted by 12,000+ Creators
+                Built for creators shipping with AI
               </span>
             </motion.div>
 

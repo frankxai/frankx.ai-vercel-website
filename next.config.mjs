@@ -54,6 +54,11 @@ const nextConfig = {
       },
       // Blog post legacy redirects
       {
+        source: '/blog/big-props-to-the-builders-of-this-era',
+        destination: '/blog/props-to-the-builders-of-this-era',
+        permanent: true,
+      },
+      {
         source: '/blog/01-ai-doesnt-have-to-be-soulless',
         destination: '/blog/ai-doesnt-have-to-be-soulless',
         permanent: true,
@@ -103,36 +108,65 @@ const nextConfig = {
         destination: '/blog/agentic-ai-roadmap-2025',
         permanent: true,
       },
-      // Newsletter redirect - consolidate to main signup flow
-      {
-        source: '/newsletter',
-        destination: '/start',
-        permanent: false,
-      },
       // Course redirects
       {
         source: '/courses/ai-ethics-governance',
-        destination: '/courses?highlight=ai-ethics-governance',
+        destination: '/courses/conscious-ai-foundations',
         permanent: false,
       },
       {
         source: '/courses/family-ai-education',
-        destination: '/courses?highlight=family-ai-education',
+        destination: '/courses/conscious-ai-foundations',
         permanent: false,
       },
       {
         source: '/courses/agent-architecture-deep-dive',
-        destination: '/courses?highlight=agent-architecture-deep-dive',
+        destination: '/courses/agent-architecture-systems',
         permanent: false,
       },
       {
         source: '/courses/prompt-engineering-mastery',
-        destination: '/courses?highlight=prompt-engineering-mastery',
+        destination: '/courses/agent-architecture-systems',
         permanent: false,
       },
       {
         source: '/courses/ai-business-strategy',
-        destination: '/courses?highlight=ai-business-strategy',
+        destination: '/courses/creator-business-systems',
+        permanent: false,
+      },
+      {
+        source: '/courses/ai-fundamentals',
+        destination: '/courses/conscious-ai-foundations',
+        permanent: false,
+      },
+      {
+        source: '/courses/advanced-prompt-engineering',
+        destination: '/courses/agent-architecture-systems',
+        permanent: false,
+      },
+      {
+        source: '/courses/creative-energy',
+        destination: '/courses/conscious-ai-foundations',
+        permanent: false,
+      },
+      {
+        source: '/courses/ai-mastery',
+        destination: '/courses/agent-architecture-systems',
+        permanent: false,
+      },
+      {
+        source: '/courses/suno-mastery',
+        destination: '/courses/creator-business-systems',
+        permanent: false,
+      },
+      {
+        source: '/courses/creator-business',
+        destination: '/courses/creator-business-systems',
+        permanent: false,
+      },
+      {
+        source: '/courses/purpose-driven',
+        destination: '/courses/conscious-ai-foundations',
         permanent: false,
       },
       // AI Architecture Hub redirects - consolidate all variants to single hub

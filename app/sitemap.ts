@@ -8,8 +8,8 @@ const BASE_URL = 'https://frankx.ai'
 
 // Extract slug from MDX filename
 function getSlugFromFilename(filename: string): string {
-  // Remove number prefix and .mdx extension
-  return filename.replace(/^\d+-/, '').replace(/\.mdx$/, '')
+  // Preserve exact filename slug used by the /blog/[slug] route.
+  return filename.replace(/\.mdx$/, '')
 }
 
 // Get all blog slugs with dates from content/blog directory
@@ -140,6 +140,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const learningPages = [
     '/courses',
     '/courses/conscious-ai-foundations',
+    '/courses/agent-architecture-systems',
+    '/courses/creator-business-systems',
     '/students/ikigai',
   ]
 
@@ -192,6 +194,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Section pages (important navigation destinations)
   const sectionPages = [
+    { url: '/vision', priority: 0.8, changeFrequency: 'weekly' as const },
     { url: '/soulbook', priority: 0.9, changeFrequency: 'monthly' as const },
     { url: '/ai-world', priority: 0.8, changeFrequency: 'weekly' as const },
     { url: '/see-through-the-noise', priority: 0.8, changeFrequency: 'weekly' as const },
@@ -220,7 +223,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: '/ai-ops/accelerator-packs', priority: 0.7, changeFrequency: 'monthly' as const },
     { url: '/ai-ops/agi-ready', priority: 0.7, changeFrequency: 'monthly' as const },
     // AI Architect sub-routes
-    { url: '/ai-architect/ai-coe-hub', priority: 0.7, changeFrequency: 'monthly' as const },
     { url: '/ai-architect/multi-cloud-comparison', priority: 0.7, changeFrequency: 'monthly' as const },
     // Soulbook sub-routes
     { url: '/soulbook/7-pillars', priority: 0.7, changeFrequency: 'monthly' as const },
@@ -247,7 +249,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/founder-playbook',
     '/insights',
     '/thank-you',
-    '/enterprise',
     '/onboarding',
     '/dashboard',
   ]
@@ -255,17 +256,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // Research hub pages
   const researchPages = [
     { url: '/research', priority: 0.9, changeFrequency: 'weekly' as const },
-    { url: '/research/visionaries', priority: 0.8, changeFrequency: 'monthly' as const },
-    { url: '/research/entrepreneurs', priority: 0.7, changeFrequency: 'monthly' as const },
-    { url: '/research/builders', priority: 0.7, changeFrequency: 'monthly' as const },
-    { url: '/research/content-creators', priority: 0.7, changeFrequency: 'monthly' as const },
-    { url: '/research/inventors', priority: 0.7, changeFrequency: 'monthly' as const },
-    { url: '/research/researcher', priority: 0.7, changeFrequency: 'monthly' as const },
-    { url: '/research/professors', priority: 0.7, changeFrequency: 'monthly' as const },
-    { url: '/research/doctors', priority: 0.7, changeFrequency: 'monthly' as const },
-    { url: '/research/investors', priority: 0.7, changeFrequency: 'monthly' as const },
-    { url: '/research/designers', priority: 0.7, changeFrequency: 'monthly' as const },
-    { url: '/research/producers', priority: 0.7, changeFrequency: 'monthly' as const },
     { url: '/research/sources', priority: 0.7, changeFrequency: 'weekly' as const },
     { url: '/research/methodology', priority: 0.7, changeFrequency: 'monthly' as const },
   ]

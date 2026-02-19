@@ -2,7 +2,7 @@
 
 ---
 
-*The third pillar. The compass that tells you whether you are building the right things.*
+_The third pillar. The compass that tells you whether you are building the right things._
 
 ---
 
@@ -88,11 +88,11 @@ The soul thinks in decades. The ego thinks in days.
 
 When you make decisions from the ego — what looks good, what feels good right now, what earns approval — you build a life that impresses at 30 and collapses at 50. When you make decisions from the soul — what matters, what lasts, what you would be proud of at 80 — you build a life that deepens with time.
 
-Ask the question: *If I continue exactly as I am, where will I be in 10 years?*
+Ask the question: _If I continue exactly as I am, where will I be in 10 years?_
 
 If the answer thrills you, continue.
 If the answer concerns you, change. Today. Not next Monday. Today.
 
 ---
 
-*The soul does not shout. It does not compete for your attention. It simply waits, with infinite patience, for you to stop performing long enough to listen.*
+_The soul does not shout. It does not compete for your attention. It simply waits, with infinite patience, for you to stop performing long enough to listen._

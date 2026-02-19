@@ -4,18 +4,41 @@ description: "A complete technical guide to the FrankX creator intelligence stac
 date: "2026-02-14"
 lastModified: "2026-02-14"
 author: "Frank"
-tags: ["ecosystem", "intelligence systems", "acos", "starlight", "vibe os", "gencreator os", "arcanea", "ai architecture", "creator systems"]
-keywords: ["frankx ecosystem", "creator intelligence system", "acos v10", "starlight intelligence system", "vibe os", "gencreator os", "arcanea gates", "ai operating system for creators", "personal intelligence stack", "creator ai architecture"]
+tags:
+  [
+    "ecosystem",
+    "intelligence systems",
+    "acos",
+    "starlight",
+    "vibe os",
+    "gencreator os",
+    "arcanea",
+    "ai architecture",
+    "creator systems",
+  ]
+keywords:
+  [
+    "frankx ecosystem",
+    "creator intelligence system",
+    "acos v10",
+    "starlight intelligence system",
+    "vibe os",
+    "gencreator os",
+    "arcanea gates",
+    "ai operating system for creators",
+    "personal intelligence stack",
+    "creator ai architecture",
+  ]
 category: "Creator Systems"
 featured: true
-image: '/images/blog/ecosystem-architecture-davinci.png'
+image: "/images/blog/ecosystem-architecture-davinci.png"
 readingGoal: "Understand how five interconnected intelligence systems form a complete creator operating stack — and how to install each one."
-readingTime: '18 min'
+readingTime: "18 min"
 ---
 
 # The FrankX Intelligence Ecosystem: How 5 Systems Work Together
 
-*The architecture behind [12,000+ AI songs](/music), [this website](https://frankx.ai), enterprise consulting, and a creator business that runs while I sleep.*
+_The architecture behind [12,000+ AI songs](/music), [this website](https://frankx.ai), enterprise consulting, and a creator business that runs while I sleep._
 
 ---
 
@@ -82,12 +105,12 @@ The "state engineering" piece is where AI music comes in. Specific frequencies, 
 
 GenCreator OS unifies creative generation across four modalities:
 
-| Modality | Engines | Output |
-|----------|---------|--------|
-| **Text** | Claude, custom prompts | Blog posts, documentation, marketing copy |
-| **Image** | Gemini 3 Pro Image, DALL-E, Midjourney | Brand visuals, infographics, social assets |
-| **Music** | Suno AI, Web Audio API | AI songs, frequency tools, interactive instruments |
-| **Code** | Claude Code, ACOS | Full-stack applications, components, APIs |
+| Modality  | Engines                                | Output                                             |
+| --------- | -------------------------------------- | -------------------------------------------------- |
+| **Text**  | Claude, custom prompts                 | Blog posts, documentation, marketing copy          |
+| **Image** | Gemini 3 Pro Image, DALL-E, Midjourney | Brand visuals, infographics, social assets         |
+| **Music** | Suno AI, Web Audio API                 | AI songs, frequency tools, interactive instruments |
+| **Code**  | Claude Code, ACOS                      | Full-stack applications, components, APIs          |
 
 The key innovation isn't multi-modal generation — lots of tools do that. It's **cross-modal context**. When GenCreator OS generates a blog hero image, it knows the article's theme, tone, and target audience. When it creates background music for a content session, it knows whether you need alpha-state focus music or beta-state coding energy.
 
@@ -138,12 +161,12 @@ Not every agent should have access to everything. The music producer doesn't nee
 
 ACOS v10 implements per-profile tool and directory scoping:
 
-| Profile | Tools | Directories |
-|---------|-------|-------------|
-| content-architect | Read, Write, Edit, Glob, Grep | content/, components/, data/ |
-| music-producer | Read, Write, Bash (restricted) | content/blog/, public/images/ |
-| devops-engineer | All tools | All directories |
-| frontend-designer | Read, Write, Edit, Glob | app/, components/, public/ |
+| Profile           | Tools                          | Directories                   |
+| ----------------- | ------------------------------ | ----------------------------- |
+| content-architect | Read, Write, Edit, Glob, Grep  | content/, components/, data/  |
+| music-producer    | Read, Write, Bash (restricted) | content/blog/, public/images/ |
+| devops-engineer   | All tools                      | All directories               |
+| frontend-designer | Read, Write, Edit, Glob        | app/, components/, public/    |
 
 ### 3. Experience Replay
 
@@ -207,13 +230,13 @@ Every important observation — a debugging pattern, an architectural decision, 
 
 ACOS records trajectories — structured logs of what happened during each session. SIS v4's sync bridge ingests these trajectories and classifies them:
 
-| Success Score | Classification |
-|--------------|---------------|
-| ≥ 0.85 | Pattern (reliable, reusable) |
-| ≤ 0.50 | Error (learn from failure) |
-| Config files modified | Decision (architectural choice) |
-| Skill execution | Preference (workflow preference) |
-| Everything else | Insight (general learning) |
+| Success Score         | Classification                   |
+| --------------------- | -------------------------------- |
+| ≥ 0.85                | Pattern (reliable, reusable)     |
+| ≤ 0.50                | Error (learn from failure)       |
+| Config files modified | Decision (architectural choice)  |
+| Skill execution       | Preference (workflow preference) |
+| Everything else       | Insight (general learning)       |
 
 Deduplication ensures no trajectory gets counted twice. The sync is idempotent — run it 100 times, get the same result.
 
@@ -221,12 +244,12 @@ Deduplication ensures no trajectory gets counted twice. The sync is idempotent �
 
 A unified 100-point score measuring system intelligence across 4 dimensions:
 
-| Component | Max Points | What It Measures |
-|-----------|-----------|-----------------|
-| Memory Depth | 25 | Entry count, category diversity, high-confidence ratio, tag richness |
-| Pattern Quality | 25 | Pattern count, average success rate, elite pattern ratio |
-| Operational History | 25 | Trajectory count, type diversity, average success rate |
-| Learning Velocity | 25 | Recent memory growth, recent trajectory rate, source diversity |
+| Component           | Max Points | What It Measures                                                     |
+| ------------------- | ---------- | -------------------------------------------------------------------- |
+| Memory Depth        | 25         | Entry count, category diversity, high-confidence ratio, tag richness |
+| Pattern Quality     | 25         | Pattern count, average success rate, elite pattern ratio             |
+| Operational History | 25         | Trajectory count, type diversity, average success rate               |
+| Learning Velocity   | 25         | Recent memory growth, recent trajectory rate, source diversity       |
 
 **Current score:** 91/100, Grade S.
 
@@ -258,7 +281,7 @@ npx starlight score --acos-path /path/to/FrankX
 
 **What it is:** A 10-Gate creative progression system. Mythology-infused creative development that transforms raw potential into mastery through structured advancement.
 
-**The problem it solves:** Technology without direction is noise. You can have the most powerful AI systems in the world, but if you don't know *where you're going* as a creator, the systems just help you run faster in circles.
+**The problem it solves:** Technology without direction is noise. You can have the most powerful AI systems in the world, but if you don't know _where you're going_ as a creator, the systems just help you run faster in circles.
 
 Arcanea provides the map.
 
@@ -266,18 +289,18 @@ Arcanea provides the map.
 
 The 10 Gates of Arcanea represent stages of creative development — not arbitrary levels, but genuine phase transitions in how you relate to your creative work:
 
-| Gate | Name | Focus |
-|------|------|-------|
-| 1 | **Awakening** | Recognizing creative potential |
-| 2 | **Foundation** | Building core skills and discipline |
-| 3 | **Expression** | Finding authentic voice |
-| 4 | **Craft** | Technical mastery of chosen medium |
-| 5 | **Integration** | Cross-modal creative synthesis |
-| 6 | **Innovation** | Creating new forms and methods |
-| 7 | **Influence** | Scaling impact through systems |
-| 8 | **Mastery** | Effortless excellence |
-| 9 | **Legacy** | Building what outlasts you |
-| 10 | **Transcendence** | Creating for creation's sake |
+| Gate | Name              | Focus                               |
+| ---- | ----------------- | ----------------------------------- |
+| 1    | **Awakening**     | Recognizing creative potential      |
+| 2    | **Foundation**    | Building core skills and discipline |
+| 3    | **Expression**    | Finding authentic voice             |
+| 4    | **Craft**         | Technical mastery of chosen medium  |
+| 5    | **Integration**   | Cross-modal creative synthesis      |
+| 6    | **Innovation**    | Creating new forms and methods      |
+| 7    | **Influence**     | Scaling impact through systems      |
+| 8    | **Mastery**       | Effortless excellence               |
+| 9    | **Legacy**        | Building what outlasts you          |
+| 10   | **Transcendence** | Creating for creation's sake        |
 
 Each Gate has specific milestones, challenges, and rewards. The system isn't about speed — some creators spend years at a single Gate. It's about knowing where you are and what genuine progress looks like.
 
@@ -349,44 +372,44 @@ The ecosystem follows a deliberate value ladder — you can start for free and g
 
 ### Free Tier — Start Here
 
-| Product | What You Get |
-|---------|-------------|
+| Product                | What You Get                                    |
+| ---------------------- | ----------------------------------------------- |
 | **Creator's Soulbook** | 7-pillar creative intelligence vault (Obsidian) |
-| **Vibe OS** | RPM-based creative state management |
-| **ACOS** | Open-source Claude Code operating system |
-| **SIS v4** | Open-source intelligence layer |
+| **Vibe OS**            | RPM-based creative state management             |
+| **ACOS**               | Open-source Claude Code operating system        |
+| **SIS v4**             | Open-source intelligence layer                  |
 
 Everything you need to build a functioning intelligence system. No credit card, no email wall for the code. The Soulbook requires an email — it's the start of a relationship, not a paywall.
 
 ### Templates & Tools ($27–$47)
 
-| Product | What You Get |
-|---------|-------------|
+| Product                 | What You Get                         |
+| ----------------------- | ------------------------------------ |
 | **Suno Prompt Library** | 500+ genre-specific AI music prompts |
-| **Creative AI Toolkit** | Templates for cross-modal creation |
-| **GenCreator Starter** | Pre-configured multi-modal workflows |
+| **Creative AI Toolkit** | Templates for cross-modal creation   |
+| **GenCreator Starter**  | Pre-configured multi-modal workflows |
 
 ### Agents & Workflows ($97–$297)
 
-| Product | What You Get |
-|---------|-------------|
-| **ACOS Pro Configuration** | Pre-tuned agent profiles for specific industries |
-| **Workflow Blueprints** | Production-tested automation sequences |
-| **Intelligence Accelerator** | Advanced SIS configurations + pattern libraries |
+| Product                      | What You Get                                     |
+| ---------------------------- | ------------------------------------------------ |
+| **ACOS Pro Configuration**   | Pre-tuned agent profiles for specific industries |
+| **Workflow Blueprints**      | Production-tested automation sequences           |
+| **Intelligence Accelerator** | Advanced SIS configurations + pattern libraries  |
 
 ### Architectures & Programs ($297–$997)
 
-| Product | What You Get |
-|---------|-------------|
-| **Creation Chronicles** | Deep-dive documentation of real builds |
-| **Creator Lab** | Community + live build sessions |
-| **Architecture Blueprints** | Enterprise-grade system designs |
+| Product                     | What You Get                           |
+| --------------------------- | -------------------------------------- |
+| **Creation Chronicles**     | Deep-dive documentation of real builds |
+| **Creator Lab**             | Community + live build sessions        |
+| **Architecture Blueprints** | Enterprise-grade system designs        |
 
 ### Studio & Residency ($2,500–$12,000+)
 
-| Product | What You Get |
-|---------|-------------|
-| **Creator Studio** | 1-on-1 system building |
+| Product               | What You Get                           |
+| --------------------- | -------------------------------------- |
+| **Creator Studio**    | 1-on-1 system building                 |
 | **Creator Residency** | Full ecosystem installation + training |
 
 The key insight: **the free tier is genuinely powerful**. ACOS and SIS are fully open-source. You can build everything described in this article without spending a dollar. The paid tiers save time and provide pre-built configurations, not locked features.
@@ -433,15 +456,15 @@ By the end of Week 4, you have a fully operational intelligence ecosystem. Every
 
 The ecosystem isn't faith-based. Everything is measured:
 
-| Metric | How It's Measured | Current |
-|--------|------------------|---------|
-| Intelligence Score | SIS v4 4-component scoring | 91/100 (Grade S) |
-| ACOS Intelligence | v10 self-assessment | 93/100 |
-| Memory Entries | SIS vault count | 109 |
-| Trajectories Synced | ACOS → SIS bridge | 59 |
-| Pattern Success Rate | Avg trajectory success | 67% |
-| Content Velocity | Articles shipped per week | 3-5 |
-| Modalities Active | Cross-modal generation | 4/4 |
+| Metric               | How It's Measured          | Current          |
+| -------------------- | -------------------------- | ---------------- |
+| Intelligence Score   | SIS v4 4-component scoring | 91/100 (Grade S) |
+| ACOS Intelligence    | v10 self-assessment        | 93/100           |
+| Memory Entries       | SIS vault count            | 109              |
+| Trajectories Synced  | ACOS → SIS bridge          | 59               |
+| Pattern Success Rate | Avg trajectory success     | 67%              |
+| Content Velocity     | Articles shipped per week  | 3-5              |
+| Modalities Active    | Cross-modal generation     | 4/4              |
 
 These numbers aren't aspirational. They're from `npx starlight score` run today.
 
@@ -511,7 +534,7 @@ The architecture is set. Now it compounds.
 
 ---
 
-*Build what matters. Let the systems handle the rest.*
+_Build what matters. Let the systems handle the rest._
 
 ---
 

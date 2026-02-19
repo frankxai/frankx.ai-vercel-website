@@ -117,22 +117,23 @@ const colorMap: Record<string, { bg: string; border: string; text: string; check
 }
 
 export default function PillarReflection({ chapterSlug }: { chapterSlug: string }) {
+  const [checked, setChecked] = useState<boolean[]>([])
   const exercise = exercises[chapterSlug]
-  if (!exercise) return null
-
-  const c = colorMap[exercise.color] || colorMap.amber
   const storageKey = `reflection-${chapterSlug}`
 
-  const [checked, setChecked] = useState<boolean[]>([])
-
   useEffect(() => {
+    if (!exercise) return
     const saved = localStorage.getItem(storageKey)
     if (saved) {
       setChecked(JSON.parse(saved))
     } else {
       setChecked(new Array(exercise.questions.length + 1).fill(false))
     }
-  }, [storageKey, exercise.questions.length])
+  }, [storageKey, exercise])
+
+  if (!exercise) return null
+
+  const c = colorMap[exercise.color] || colorMap.amber
 
   const toggle = (index: number) => {
     const next = [...checked]

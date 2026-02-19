@@ -1139,7 +1139,13 @@
     "promise": "A curated collection of the world's most beautiful love poetry, woven with original work.",
     "summary": "Five chapters of poetry from Rumi to Rilke, from German Romanticism to Vietnamese lyricism, concluding with original poems written from lived experience.",
     "transformation": [],
-    "socialProof": { "stats": [{ "number": "5", "label": "Chapters" }, { "number": "42", "label": "Min Read" }], "quotes": [] },
+    "socialProof": {
+      "stats": [
+        { "number": "5", "label": "Chapters" },
+        { "number": "42", "label": "Min Read" }
+      ],
+      "quotes": []
+    },
     "offer": {
       "primaryPrice": 0,
       "primaryPriceDisplay": "Free",
@@ -1150,7 +1156,11 @@
     },
     "modules": [],
     "analyticsId": "book-love-and-poetry",
-    "delivery": { "methods": ["download", "gated"], "requiresEmail": true, "files": [] }
+    "delivery": {
+      "methods": ["download", "gated"],
+      "requiresEmail": true,
+      "files": []
+    }
   },
   {
     "id": "book-spartan-mindset",
@@ -1163,7 +1173,13 @@
     "promise": "Every chapter is a rep you didn't think you had. Gym discipline as life philosophy.",
     "summary": "Five chapters on the Spartan code, iron discipline, the compound effect of one more rep, forging character through voluntary hardship, and mind over matter.",
     "transformation": [],
-    "socialProof": { "stats": [{ "number": "5", "label": "Chapters" }, { "number": "59", "label": "Min Read" }], "quotes": [] },
+    "socialProof": {
+      "stats": [
+        { "number": "5", "label": "Chapters" },
+        { "number": "59", "label": "Min Read" }
+      ],
+      "quotes": []
+    },
     "offer": {
       "primaryPrice": 0,
       "primaryPriceDisplay": "Free",
@@ -1174,7 +1190,11 @@
     },
     "modules": [],
     "analyticsId": "book-spartan-mindset",
-    "delivery": { "methods": ["download", "gated"], "requiresEmail": true, "files": [] }
+    "delivery": {
+      "methods": ["download", "gated"],
+      "requiresEmail": true,
+      "files": []
+    }
   },
   {
     "id": "book-self-development",
@@ -1187,7 +1207,13 @@
     "promise": "Not theory. Routines that work. Seven pillars, each with actionable protocols.",
     "summary": "Seven chapters mapping the complete self-development framework: from morning protocols and mental clarity to financial architecture and legacy thinking.",
     "transformation": [],
-    "socialProof": { "stats": [{ "number": "7", "label": "Chapters" }, { "number": "83", "label": "Min Read" }], "quotes": [] },
+    "socialProof": {
+      "stats": [
+        { "number": "7", "label": "Chapters" },
+        { "number": "83", "label": "Min Read" }
+      ],
+      "quotes": []
+    },
     "offer": {
       "primaryPrice": 0,
       "primaryPriceDisplay": "Free",
@@ -1198,7 +1224,11 @@
     },
     "modules": [],
     "analyticsId": "book-self-development",
-    "delivery": { "methods": ["download", "gated"], "requiresEmail": true, "files": [] }
+    "delivery": {
+      "methods": ["download", "gated"],
+      "requiresEmail": true,
+      "files": []
+    }
   },
   {
     "id": "book-imagination",
@@ -1211,7 +1241,13 @@
     "promise": "Creative visualization, mental models, and the architecture of thought — applied neuroscience for builders.",
     "summary": "Five chapters on the inner theater, creative visualization protocols, essential mental models, the architect's eye, and reaching beyond the visible.",
     "transformation": [],
-    "socialProof": { "stats": [{ "number": "5", "label": "Chapters" }, { "number": "63", "label": "Min Read" }], "quotes": [] },
+    "socialProof": {
+      "stats": [
+        { "number": "5", "label": "Chapters" },
+        { "number": "63", "label": "Min Read" }
+      ],
+      "quotes": []
+    },
     "offer": {
       "primaryPrice": 0,
       "primaryPriceDisplay": "Free",
@@ -1222,7 +1258,11 @@
     },
     "modules": [],
     "analyticsId": "book-imagination",
-    "delivery": { "methods": ["download", "gated"], "requiresEmail": true, "files": [] }
+    "delivery": {
+      "methods": ["download", "gated"],
+      "requiresEmail": true,
+      "files": []
+    }
   },
   {
     "id": "book-manifestation",
@@ -1235,7 +1275,13 @@
     "promise": "Strip away the mysticism. What remains is a framework for building the reality you want.",
     "summary": "Five chapters on the psychology of reality construction: RAS programming, thought blueprints, frequency management, aligned action, and the evidence journal.",
     "transformation": [],
-    "socialProof": { "stats": [{ "number": "5", "label": "Chapters" }, { "number": "60", "label": "Min Read" }], "quotes": [] },
+    "socialProof": {
+      "stats": [
+        { "number": "5", "label": "Chapters" },
+        { "number": "60", "label": "Min Read" }
+      ],
+      "quotes": []
+    },
     "offer": {
       "primaryPrice": 0,
       "primaryPriceDisplay": "Free",
@@ -1246,7 +1292,10 @@
     },
     "modules": [],
     "analyticsId": "book-manifestation",
-    "delivery": { "methods": ["download", "gated"], "requiresEmail": true, "files": [] }
+    "delivery": {
+      "methods": ["download", "gated"],
+      "requiresEmail": true,
+      "files": []
+    }
   }
 ]
-

@@ -8,6 +8,8 @@ import { RosePetals } from '@/components/valentines/RosePetals'
 import { ParticleField } from '@/components/valentines/ParticleField'
 import { ScrollReveal } from '@/components/valentines/ScrollReveal'
 import { QuoteCard } from '@/components/valentines/QuoteCard'
+import { LanguageSwitcher } from '@/components/valentines/LanguageSwitcher'
+import { LanguageBanner } from '@/components/valentines/LanguageBanner'
 
 // ─── Scroll Progress ────────────────────────────────────────────────
 
@@ -278,6 +280,13 @@ export default function ValentinesDayPage() {
     <div className="bg-[#0a0a0f] min-h-screen">
       <ScrollProgress />
       <RosePetals intensity="light" />
+      <LanguageSwitcher currentLang="en" enHref="/valentines-day" deHref="/de/valentines-day" />
+      <LanguageBanner
+        targetHref="/de/valentines-day"
+        targetLang="de"
+        message="Diese Seite ist auch auf Deutsch verfügbar."
+        linkText="Zur deutschen Version"
+      />
 
       {/* ─── Hero ────────────────────────────────────────────── */}
       <section className="relative min-h-screen flex flex-col items-center justify-center px-6 overflow-hidden">

@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server'
 import { verifyWebhookSignature, type LemonSqueezyWebhookEvent } from '@/lib/lemon-squeezy'
 import { generateProductEmailData } from '@/lib/delivery'
 import { purchaseConfirmationEmail } from '@/lib/email-templates'
+import { getClientOrDefault } from '@/lib/clients'
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY
 const RESEND_AUDIENCE_ID = process.env.RESEND_AUDIENCE_ID || '4d2e913e-6903-4dd4-8749-c02cdb844331'
@@ -14,7 +15,7 @@ async function sendEmailViaResend(to: string, subject: string, html: string) {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      from: 'FrankX <frank@mail.frankx.ai>',
+      from: 'FrankX <frank@updates.frankx.ai>',
       to: [to],
       subject,
       html,
@@ -56,6 +57,13 @@ export async function POST(request: Request) {
       const productName = first_order_item.product_name
       const productSlug = productName.toLowerCase().replace(/\s+/g, '-')
 
+      // Extract client context from custom_data (set during checkout)
+      const clientId = event.meta.custom_data?.clientId || 'frankx'
+      const client = getClientOrDefault(clientId)
+
+      // Use client-specific audience if configured
+      const audienceId = client.commerce.resendAudienceId || RESEND_AUDIENCE_ID
+
       const emailData = generateProductEmailData(
         productSlug,
         user_name || 'Customer',
@@ -73,13 +81,15 @@ export async function POST(request: Request) {
         await sendEmailViaResend(user_email, email.subject, email.html)
       }
 
-      // Add customer to Resend audience
+      // Add customer to appropriate Resend audience
       if (RESEND_API_KEY) {
         await addToResendAudience(user_email, user_name || 'Customer', ['product-updates'])
       }
 
       console.log('[Lemon Squeezy] Order fulfilled:', {
         orderId: event.data.id,
+        clientId: client.id,
+        artist: client.artistName,
         product: productName,
         email: user_email,
         total: event.data.attributes.total_formatted,

@@ -3,28 +3,16 @@
     {
       "id": "week-2026-08",
       "label": "Week 8",
-      "dateRange": "Feb 10-15, 2026",
-      "summary": "Intelligence week. ACOS evolved from v8 to v10 with autonomous intelligence, safety guarantees, and Starlight integration. Investor vertical launched. Valentine's Day experiences shipped. Games Lab upgraded to world-class quality.",
+      "dateRange": "Feb 10-14, 2026",
+      "summary": "Intelligence week. ACOS evolved from v8 to v10 with autonomous intelligence, safety guarantees, and Starlight integration. Investor vertical launched. Valentine's Day experiences shipped.",
       "stats": {
-        "commits": 14,
-        "linesAdded": 31000,
-        "filesChanged": 195,
+        "commits": 12,
+        "linesAdded": 28000,
+        "filesChanged": 180,
         "newPages": 8,
         "imagesGenerated": 25
       },
       "entries": [
-        {
-          "id": "cl-2026-0215-games",
-          "date": "2026-02-15",
-          "type": "shipped",
-          "title": "Games Lab — World-Class Quality Upgrade",
-          "description": "Complete game feel overhaul across all 7 games. New shared effects engine (interpolation, hitstop, sequencer, audio stubs, ambient presets). Crystal Match rebuilt with multi-stage swap choreography, cascade combos, and idle shimmer. Snake Neon now slides smoothly between cells at 60fps. All games upgraded with eased transitions, idle animations, and dramatic feedback sequences.",
-          "tags": ["games", "animation", "canvas", "game-feel"],
-          "commit": "6ad1af2",
-          "impact": "major",
-          "url": "/games",
-          "metrics": { "label": "Games Upgraded", "before": "7 basic", "after": "7 polished", "unit": "" }
-        },
         {
           "id": "cl-2026-0214-acos-v10",
           "date": "2026-02-14",
@@ -36,7 +24,12 @@
           "impact": "major",
           "image": "/images/acos/acos-v10-architecture.png",
           "blogUrl": "/blog/acos-v10-autonomous-intelligence",
-          "metrics": { "label": "Intelligence", "before": "72", "after": "93", "unit": "/100" }
+          "metrics": {
+            "label": "Intelligence",
+            "before": "72",
+            "after": "93",
+            "unit": "/100"
+          }
         },
         {
           "id": "cl-2026-0214-investor",
@@ -48,7 +41,12 @@
           "commit": "d5aec51",
           "impact": "major",
           "url": "/investor",
-          "metrics": { "label": "Products", "before": "0", "after": "14", "unit": "" }
+          "metrics": {
+            "label": "Products",
+            "before": "0",
+            "after": "14",
+            "unit": ""
+          }
         },
         {
           "id": "cl-2026-0214-starlight",
@@ -80,7 +78,12 @@
           "description": "Trimmed from 15 hooks to 7. Per-tool-use subprocess spawns reduced from 5-6 to 1-2. Safe for 3-4 concurrent Claude Code instances on 16GB RAM.",
           "tags": ["performance", "hooks", "wsl"],
           "impact": "medium",
-          "metrics": { "label": "Hooks", "before": "15", "after": "7", "unit": "" }
+          "metrics": {
+            "label": "Hooks",
+            "before": "15",
+            "after": "7",
+            "unit": ""
+          }
         }
       ]
     },

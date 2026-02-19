@@ -28,6 +28,13 @@ const dancingScript = Dancing_Script({
 export const metadata: Metadata = {
   title: "In Praise of Love — Poems & Passages for Today | FrankX.ai",
   description: "A curated collection of love poetry, literary passages, and meditations from Rumi, Neruda, Shakespeare, Rilke, and more. For anyone, on any day.",
+  alternates: {
+    canonical: 'https://frankx.ai/valentines-day',
+    languages: {
+      en: '/valentines-day',
+      de: '/de/valentines-day',
+    },
+  },
   openGraph: {
     title: "In Praise of Love — Poems & Passages for Today",
     description: "Poetry, literature, and meditations about love in all its forms. Share it with someone.",

@@ -2,7 +2,7 @@
 
 ---
 
-*The systematic practice of using mental imagery to create real-world outcomes.*
+_The systematic practice of using mental imagery to create real-world outcomes._
 
 ---
 
@@ -80,14 +80,16 @@ Einstein did not discover relativity through equations. He discovered it through
 Here is the practice. It takes 10 minutes.
 
 **Morning (5 minutes):**
+
 - Sit comfortably. Close your eyes.
 - Visualize the day ahead. Not the tasks. The quality. See yourself moving through the day with focus, energy, and calm confidence.
 - Visualize one specific outcome you want. A conversation. A deliverable. A workout. See it complete. Feel the completion.
 
 **Evening (5 minutes):**
+
 - Review the day. Replay the moments that went well, in vivid first-person detail. This cements them as positive reference experiences.
 - For moments that did not go well, re-visualize them as you wish they had gone. This is not denial. This is neural reprogramming — giving the brain an alternative pattern to reference next time.
 
 ---
 
-*The mind that can see it can build it. Not because seeing is believing. Because seeing is rehearsing. And rehearsal is the precursor to every great performance.*
+_The mind that can see it can build it. Not because seeing is believing. Because seeing is rehearsing. And rehearsal is the precursor to every great performance._

@@ -55,32 +55,32 @@ const solutions = [
     icon: Cpu,
     title: 'Intelligent Automation',
     description: 'Streamline operations with AI-powered process automation.',
-    benefits: ['60% reduction in manual tasks', 'Improved accuracy and compliance', '24/7 operational capability']
+    benefits: ['Workflow simplification opportunities', 'Improved process consistency', 'Better operational visibility']
   },
   {
     icon: Globe,
     title: 'Customer Intelligence',
     description: 'Transform customer experiences with AI-driven insights and personalization.',
-    benefits: ['Personalized customer journeys', 'Predictive analytics and forecasting', 'Real-time decision support']
+    benefits: ['Personalized customer journeys', 'Predictive analytics and forecasting', 'Decision support for key workflows']
   },
   {
     icon: Zap,
     title: 'Innovation Acceleration',
     description: 'Accelerate R&D and product development with AI capabilities.',
-    benefits: ['Faster time to market', 'Enhanced creative processes', 'Data-driven innovation']
+    benefits: ['Faster iteration loops', 'Enhanced creative processes', 'Data-informed experimentation']
   }
 ]
 
 const stats = [
-  { value: '200+', label: 'Enterprise Systems Deployed' },
-  { value: '95%', label: 'Client Success Rate' },
-  { value: '3x', label: 'Average ROI Improvement' },
-  { value: '50+', label: 'Fortune 500 Engagements' }
+  { value: 'Strategy', label: 'Engagement Type' },
+  { value: 'Governance', label: 'Core Focus' },
+  { value: 'Implementation', label: 'Delivery Track' },
+  { value: 'Enablement', label: 'Team Outcome' }
 ]
 
 export const metadata = createMetadata({
   title: 'Agentic AI Center of Excellence - FrankX.AI',
-  description: 'Transform your organization with enterprise AI strategy, implementation, and governance. Expert consulting for Fortune 500 companies and high-growth enterprises.',
+  description: 'Transform your organization with enterprise AI strategy, implementation, and governance.',
   keywords: ['enterprise ai consulting', 'ai strategy', 'ai implementation', 'ai governance', 'agentic ai'],
   path: '/agentic-ai-center',
 })
@@ -106,7 +106,7 @@ export default function AgenticAICenterPage() {
               </span>
             </h1>
             <p className="text-xl text-white/70 max-w-3xl mx-auto leading-relaxed">
-              Strategic AI implementation for Fortune 500 companies and high-growth enterprises.
+              Strategic AI implementation for enterprise and growth-stage teams.
               From governance frameworks to production systems, we architect intelligence that scales with your business.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
@@ -199,7 +199,7 @@ export default function AgenticAICenterPage() {
           <section className="text-center space-y-8 py-16 px-8 rounded-4xl border border-white/10 bg-gradient-to-br from-cyan-500/5 via-slate-900 to-slate-950">
             <h2 className="text-4xl font-bold text-white">Ready to Transform Your Enterprise?</h2>
             <p className="text-xl text-white/70 max-w-2xl mx-auto">
-              Join Fortune 500 companies who trust FrankX.AI for their AI transformation journey.
+              Start a scoped strategy conversation for your AI transformation journey.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link

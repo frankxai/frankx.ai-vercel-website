@@ -27,7 +27,7 @@
     ],
     "cta": {
       "label": "Download Free",
-      "href": "https://github.com/frankxai/investor-intelligence"
+      "href": "#"
     },
     "status": "published"
   },
@@ -60,7 +60,7 @@
     ],
     "cta": {
       "label": "Get Template",
-      "href": "/investor/tools"
+      "href": "#"
     },
     "status": "published"
   },
@@ -93,7 +93,7 @@
     ],
     "cta": {
       "label": "Get Workflow",
-      "href": "/investor/workflows"
+      "href": "#"
     },
     "status": "published"
   },
@@ -129,7 +129,7 @@
     ],
     "cta": {
       "label": "Get Agent Pack",
-      "href": "/investor/agents"
+      "href": "#"
     },
     "status": "published"
   },
@@ -163,7 +163,7 @@
     ],
     "cta": {
       "label": "Get System",
-      "href": "/investor/agents"
+      "href": "#"
     },
     "status": "published"
   },
@@ -196,7 +196,7 @@
     ],
     "cta": {
       "label": "Get System",
-      "href": "/investor/workflows"
+      "href": "#"
     },
     "status": "published"
   },
@@ -231,7 +231,7 @@
     ],
     "cta": {
       "label": "Get Architecture",
-      "href": "/investor/architectures"
+      "href": "#"
     },
     "status": "published"
   },
@@ -267,7 +267,7 @@
     ],
     "cta": {
       "label": "Get Engine",
-      "href": "/investor/workflows"
+      "href": "#"
     },
     "status": "published"
   },
@@ -300,7 +300,7 @@
     ],
     "cta": {
       "label": "Get Vault",
-      "href": "/investor/tools"
+      "href": "#"
     },
     "status": "published"
   },
@@ -335,7 +335,7 @@
     ],
     "cta": {
       "label": "Get Prompt Pack",
-      "href": "/investor/agents"
+      "href": "#"
     },
     "status": "published"
   },
@@ -370,7 +370,7 @@
     ],
     "cta": {
       "label": "Get Agent",
-      "href": "/investor/agents"
+      "href": "#"
     },
     "status": "published"
   },
@@ -400,7 +400,7 @@
     ],
     "cta": {
       "label": "Get Analyzer",
-      "href": "/investor/workflows"
+      "href": "#"
     },
     "status": "published"
   },
@@ -434,7 +434,7 @@
     ],
     "cta": {
       "label": "Get Workspace",
-      "href": "/investor/tools"
+      "href": "#"
     },
     "status": "published"
   },
@@ -476,7 +476,7 @@
     ],
     "cta": {
       "label": "Get Full Stack",
-      "href": "/investor/architectures"
+      "href": "#"
     },
     "status": "published"
   }

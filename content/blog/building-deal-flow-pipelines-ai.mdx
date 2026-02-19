@@ -4,10 +4,23 @@ description: "How to build an automated deal sourcing, screening, and scoring pi
 date: "2026-02-14"
 author: "Frank"
 category: "Intelligence Dispatches"
-tags: ["deal-flow", "n8n", "workflow-automation", "investment-research", "ai-agents"]
+tags:
+  [
+    "deal-flow",
+    "n8n",
+    "workflow-automation",
+    "investment-research",
+    "ai-agents",
+  ]
 image: "/images/blog/deal-flow-pipeline.png"
 featured: false
-keywords: ["deal flow automation", "n8n investment workflow", "AI deal sourcing", "automated deal scoring"]
+keywords:
+  [
+    "deal flow automation",
+    "n8n investment workflow",
+    "AI deal sourcing",
+    "automated deal scoring",
+  ]
 readingTime: "12 min"
 tldr: "Build an automated deal flow pipeline that sources opportunities from RSS/APIs, screens against your investment criteria, scores deals quantitatively, and delivers weekly digests to your team — using n8n, Claude agents, and persistent memory."
 faq:
@@ -39,32 +52,35 @@ Data Sources → Ingestion → Screening → Scoring → Pipeline → Digest
 
 Each stage is a separate workflow component that can be tested and tuned independently:
 
-| Stage | Tool | What It Does |
-|-------|------|-------------|
-| **Ingestion** | n8n triggers (RSS, webhook, cron) | Monitors 10-30 data sources for new deals |
-| **Deduplication** | n8n + memory | Checks if we've already seen this company |
-| **Screening** | Claude agent + criteria | Quick pass/fail against investment thesis |
-| **Scoring** | Claude agent + scoring framework | Quantitative 0-100 score across 7 dimensions |
-| **Pipeline** | n8n + Notion/Airtable | Stage tracking from Sourced through Close |
-| **Digest** | Claude agent + template | Weekly summary to team (Slack/email) |
+| Stage             | Tool                              | What It Does                                 |
+| ----------------- | --------------------------------- | -------------------------------------------- |
+| **Ingestion**     | n8n triggers (RSS, webhook, cron) | Monitors 10-30 data sources for new deals    |
+| **Deduplication** | n8n + memory                      | Checks if we've already seen this company    |
+| **Screening**     | Claude agent + criteria           | Quick pass/fail against investment thesis    |
+| **Scoring**       | Claude agent + scoring framework  | Quantitative 0-100 score across 7 dimensions |
+| **Pipeline**      | n8n + Notion/Airtable             | Stage tracking from Sourced through Close    |
+| **Digest**        | Claude agent + template           | Weekly summary to team (Slack/email)         |
 
 ## Stage 1: Data Source Ingestion
 
 The first n8n workflow monitors your deal sources:
 
 **RSS Feeds** (15-second setup each):
+
 - TechCrunch Funding section
 - Crunchbase funding alerts
 - VentureBeat deal announcements
 - Sector-specific blogs (e.g., AI, SaaS, fintech)
 
 **API Connections** (requires credentials):
+
 - Crunchbase API: New funding rounds in target sectors
 - PitchBook: Deal alerts matching your criteria
 - AngelList: New syndicates in your focus areas
 - ProductHunt: Top launches in target categories
 
 **Scheduled Scraping** (Playwright/Puppeteer):
+
 - Y Combinator batch pages
 - SEC EDGAR for S-1 filings
 - Specific accelerator demo day pages
@@ -94,6 +110,7 @@ Before scoring, the pipeline checks memory:
 - **In a tracked sector?** Add sector context from prior research
 
 The enrichment step pulls additional data:
+
 - Funding history (all rounds, total raised)
 - Team LinkedIn profiles (founders, key hires)
 - Product metrics (if publicly available)
@@ -105,6 +122,7 @@ A Claude agent runs a rapid pass/fail against your investment criteria:
 
 ```markdown
 ## My Investment Criteria
+
 - Stage: Seed to Series B
 - Sector: AI/ML, Enterprise SaaS, Developer Tools
 - Geography: US, Europe
@@ -120,15 +138,15 @@ This step filters out 60-70% of inbound deals immediately.
 
 Deals that pass screening get scored across 7 weighted dimensions:
 
-| Criterion | Weight | Scoring Guide |
-|-----------|--------|---------------|
-| Market Size (TAM) | 15% | &gt;$10B = 10, $1-10B = 7, &lt;$1B = 4 |
-| Growth Rate | 15% | &gt;50% YoY = 10, 20-50% = 7, &lt;20% = 4 |
-| Team Strength | 20% | Serial founders = 10, experienced = 7, first-time = 4 |
-| Product-Market Fit | 15% | Revenue + retention = 10, revenue only = 7, pre-revenue = 4 |
-| Competitive Moat | 15% | Strong (network/IP) = 10, moderate = 7, weak = 4 |
-| Deal Terms | 10% | Below market = 10, at market = 7, above = 4 |
-| Strategic Fit | 10% | Core thesis = 10, adjacent = 7, outside = 4 |
+| Criterion          | Weight | Scoring Guide                                               |
+| ------------------ | ------ | ----------------------------------------------------------- |
+| Market Size (TAM)  | 15%    | &gt;$10B = 10, $1-10B = 7, &lt;$1B = 4                      |
+| Growth Rate        | 15%    | &gt;50% YoY = 10, 20-50% = 7, &lt;20% = 4                   |
+| Team Strength      | 20%    | Serial founders = 10, experienced = 7, first-time = 4       |
+| Product-Market Fit | 15%    | Revenue + retention = 10, revenue only = 7, pre-revenue = 4 |
+| Competitive Moat   | 15%    | Strong (network/IP) = 10, moderate = 7, weak = 4            |
+| Deal Terms         | 10%    | Below market = 10, at market = 7, above = 4                 |
+| Strategic Fit      | 10%    | Core thesis = 10, adjacent = 7, outside = 4                 |
 
 The Claude agent researches each dimension and produces a score card:
 
@@ -144,6 +162,7 @@ Fit: 8/10 (10%) = 0.8 — Core thesis alignment
 ```
 
 **Thresholds:**
+
 - Score >= 70: Recommend Deep Dive
 - Score 50-69: Conditional — needs specific data points
 - Score &lt; 50: Pass with documented reason
@@ -157,6 +176,7 @@ Sourced → Screened → First Look → Deep Dive → IC Review → Term Sheet �
 ```
 
 Each stage transition requires:
+
 - **Screened → First Look**: Score >= 50, human confirms
 - **First Look → Deep Dive**: Score >= 65, DD Lead initiates
 - **Deep Dive → IC Review**: DD report complete, score >= 70
@@ -173,22 +193,26 @@ Every Monday morning, a Claude agent compiles the week's pipeline activity:
 # Deal Flow Digest: Week of Feb 10, 2026
 
 ## Pipeline Summary
-| Stage | Count | Change |
-|-------|-------|--------|
-| Sourced | 47 | +23 |
-| Screened | 12 | +8 |
-| First Look | 3 | +2 |
-| Deep Dive | 1 | +0 |
+
+| Stage      | Count | Change |
+| ---------- | ----- | ------ |
+| Sourced    | 47    | +23    |
+| Screened   | 12    | +8     |
+| First Look | 3     | +2     |
+| Deep Dive  | 1     | +0     |
 
 ## Top Scored Deals This Week
+
 1. **Acme AI** — Score: 78/100 — AI customer support, Series A, $12M
 2. **DataForge** — Score: 73/100 — Developer data tools, Seed, $4M
 3. **NeuralOps** — Score: 71/100 — AI operations platform, Series A, $8M
 
 ## Deals Advanced
+
 - Acme AI: Screened → First Look (strong PMF signals)
 
 ## Deals Passed
+
 - FooBar Inc: Passed at Screening (solo non-technical founder)
 - BazCorp: Passed at Scoring (TAM &lt; $500M)
 ```
@@ -206,12 +230,14 @@ The persistent memory layer is what transforms this from a workflow into an inte
 ## Getting Started
 
 **Minimum viable pipeline** (2-3 hours to set up):
+
 1. 5 RSS feeds in n8n (TechCrunch, Crunchbase, 3 sector blogs)
 2. Claude agent for quick screen against your criteria
 3. Notion database for pipeline tracking
 4. Weekly digest to your email
 
 **Full system** (use IACOS):
+
 1. Clone [investor-intelligence repo](https://github.com/frankxai/investor-intelligence)
 2. Configure IACOS with your investment criteria
 3. Connect n8n workflows for automated ingestion
@@ -222,4 +248,4 @@ The infrastructure investment pays for itself after the first month. One missed 
 
 ---
 
-*For the complete system architecture, visit [AI Investment Intelligence](/research/investment-intelligence) in the Research Hub, or explore the [Investor Intelligence tools](/investor/workflows) on frankx.ai.*
+_For the complete system architecture, visit [AI Investment Intelligence](/research/investment-intelligence) in the Research Hub, or explore the [Investor Intelligence tools](/investor/workflows) on frankx.ai._

@@ -2,7 +2,7 @@
 
 ---
 
-*The fifth pillar. The resource that amplifies every other pillar — or constrains them.*
+_The fifth pillar. The resource that amplifies every other pillar — or constrains them._
 
 ---
 
@@ -81,4 +81,4 @@ Give 10% of what you earn. Not when you can afford it. Now. Because generosity p
 
 ---
 
-*Capital is not the goal. Freedom is the goal. Capital is the vehicle. And the person who masters the vehicle arrives at a destination that most people only dream about.*
+_Capital is not the goal. Freedom is the goal. Capital is the vehicle. And the person who masters the vehicle arrives at a destination that most people only dream about._

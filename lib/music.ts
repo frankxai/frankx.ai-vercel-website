@@ -1,7 +1,7 @@
 import musicInventory from '@/data/inventories/frankx/music.json'
 import albumsData from '@/data/albums.json'
 
-// -- Types ------------------------------------------------------------------
+// ── Types ──────────────────────────────────────────────────────────────────
 
 export interface Track {
   id: string
@@ -42,7 +42,7 @@ export interface Album {
   status: string
 }
 
-// -- Data Access ------------------------------------------------------------
+// ── Data Access ────────────────────────────────────────────────────────────
 
 const tracks = musicInventory.tracks as Track[]
 const albums = albumsData.albums as Album[]
@@ -83,7 +83,7 @@ export function getTopTracks(n: number = 10): Track[] {
     .slice(0, n)
 }
 
-// -- Albums -----------------------------------------------------------------
+// ── Albums ─────────────────────────────────────────────────────────────────
 
 export function getAlbums(): Album[] {
   return albums
@@ -105,27 +105,7 @@ export function getPublishedAlbums(): Album[] {
   return albums.filter((a) => a.status !== 'archived')
 }
 
-// -- Stats ------------------------------------------------------------------
-
-export function getMusicStats() {
-  const profileStats = musicInventory._profileStats
-  return {
-    totalTracks: musicInventory._totalOnSuno,
-    indexedTracks: musicInventory._count,
-    followers: profileStats.followers,
-    totalPlays: profileStats.totalPlays,
-    totalLikes: profileStats.totalLikes,
-    playlists: musicInventory._playlists.length,
-    albums: albums.length,
-    profileUrl: musicInventory._sunoProfileUrl,
-  }
-}
-
-export function getPlaylists() {
-  return musicInventory._playlists
-}
-
-// -- Analytics --------------------------------------------------------------
+// ── Analytics ──────────────────────────────────────────────────────────────
 
 export interface TrackAnalytics {
   track: Track
@@ -194,7 +174,27 @@ export function getDistroKidCandidates(): TrackAnalytics[] {
     })
 }
 
-// -- Helpers ----------------------------------------------------------------
+// ── Stats ──────────────────────────────────────────────────────────────────
+
+export function getMusicStats() {
+  const profileStats = musicInventory._profileStats
+  return {
+    totalTracks: musicInventory._count,
+    indexedTracks: musicInventory._count,
+    followers: profileStats.followers,
+    totalPlays: parseInt(String(profileStats.hooks), 10) || 0,
+    totalLikes: parseInt(String(profileStats.likes), 10) || 0,
+    playlists: musicInventory._playlists.length,
+    albums: albums.length,
+    profileUrl: musicInventory._sunoProfileUrl,
+  }
+}
+
+export function getPlaylists() {
+  return musicInventory._playlists
+}
+
+// ── Helpers ────────────────────────────────────────────────────────────────
 
 export function getSunoEmbedUrl(sunoId: string): string {
   return `https://suno.com/embed/${sunoId}`

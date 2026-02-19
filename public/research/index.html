@@ -10,7 +10,7 @@
 
     <!-- Open Graph -->
     <meta property="og:title" content="AI Architecture Research Center | FrankX">
-    <meta property="og:description" content="Enterprise AI architecture research: 6 research areas, 60+ architecture diagrams, 190+ verified sources. Healthcare AI, RAG, Agentic AI, Oracle Database 26ai, Sovereign AI, Cost Engineering.">
+    <meta property="og:description" content="Enterprise AI architecture research: 7 research areas, 60+ architecture diagrams, 550+ verified sources. Healthcare AI, RAG, Agentic AI, Oracle Database 26ai, Sovereign AI, Cost Engineering, Cloud Partner Programs.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://frankx.ai/research/">
     <meta property="og:site_name" content="FrankX AI Architecture Research">
@@ -43,7 +43,8 @@
             {"@type": "Thing", "name": "Multi-Agent Orchestration"},
             {"@type": "Thing", "name": "RAG Architecture"},
             {"@type": "Thing", "name": "Sovereign AI"},
-            {"@type": "Thing", "name": "AI Cost Engineering"}
+            {"@type": "Thing", "name": "AI Cost Engineering"},
+            {"@type": "Thing", "name": "Cloud Partner Programs"}
         ],
         "hasPart": [
             {"@type": "TechArticle", "name": "Healthcare AI Diagnostics", "url": "https://frankx.ai/research/healthcare/"},
@@ -51,7 +52,8 @@
             {"@type": "TechArticle", "name": "Agentic AI & Multi-Agent Orchestration", "url": "https://frankx.ai/research/agentic-ai/"},
             {"@type": "TechArticle", "name": "Oracle AI Database 26ai", "url": "https://frankx.ai/research/oracle-ai-database/"},
             {"@type": "TechArticle", "name": "Sovereign AI & Private Agent Factory", "url": "https://frankx.ai/research/sovereign-ai/"},
-            {"@type": "TechArticle", "name": "AI Cost Engineering & FinOps", "url": "https://frankx.ai/research/cost-engineering/"}
+            {"@type": "TechArticle", "name": "AI Cost Engineering & FinOps", "url": "https://frankx.ai/research/cost-engineering/"},
+            {"@type": "TechArticle", "name": "Cloud Partner Programs & Revenue Models", "url": "https://frankx.ai/research/cloud/"}
         ]
     }
     </script>
@@ -405,6 +407,7 @@
         .research-card.llm::before { background: linear-gradient(90deg, var(--accent-amber), var(--accent-red)); }
         .research-card.federated::before { background: linear-gradient(90deg, var(--accent-cyan), var(--accent-blue)); }
         .research-card.vector::before { background: linear-gradient(90deg, var(--accent-red), var(--accent-amber)); }
+        .research-card.cloud::before { background: linear-gradient(90deg, #FF9900, var(--accent-amber)); }
 
         .card-icon {
             width: 48px;
@@ -424,6 +427,7 @@
         .card-icon.llm { background: rgba(245, 158, 11, 0.1); color: var(--accent-amber); }
         .card-icon.federated { background: rgba(6, 182, 212, 0.1); color: var(--accent-cyan); }
         .card-icon.vector { background: rgba(199, 70, 52, 0.1); color: var(--accent-red); }
+        .card-icon.cloud { background: rgba(255, 153, 0, 0.1); color: #FF9900; }
 
         .card-status {
             display: inline-flex;
@@ -924,6 +928,34 @@
                     <div class="card-metric">
                         <span class="card-metric-value">5</span>
                         <span class="card-metric-label">Patterns</span>
+                    </div>
+                </div>
+                <div class="card-arrow">&nearr;</div>
+            </a>
+
+            <!-- Cloud Partner Programs -->
+            <a href="/research/cloud/" class="research-card cloud">
+                <div class="card-icon cloud">&#9729;</div>
+                <div class="card-status new">&#9670; New &mdash; 6 Pages</div>
+                <div class="card-title">Cloud Partner Programs &amp; Revenue Models</div>
+                <div class="card-description">
+                    How to build and monetize cloud partnerships across Oracle OPN, AWS APN,
+                    Microsoft Azure, and Google Cloud. Partner tier structures, margin models,
+                    AI Accelerator Packs, consumption-based revenue, co-sell programs,
+                    and the 2026 shift to outcome-based partner incentives.
+                </div>
+                <div class="card-metrics">
+                    <div class="card-metric">
+                        <span class="card-metric-value">4</span>
+                        <span class="card-metric-label">Cloud Providers</span>
+                    </div>
+                    <div class="card-metric">
+                        <span class="card-metric-value">398+</span>
+                        <span class="card-metric-label">Verified Sources</span>
+                    </div>
+                    <div class="card-metric">
+                        <span class="card-metric-value">12</span>
+                        <span class="card-metric-label">Revenue Models</span>
                     </div>
                 </div>
                 <div class="card-arrow">&nearr;</div>

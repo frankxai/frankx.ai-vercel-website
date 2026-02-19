@@ -151,7 +151,7 @@ export default function ProductDevelopmentPage() {
     {
       timestamp: new Date(Date.now() - 300000).toISOString(),
       type: 'trajectory',
-      description: 'Learning trajectory completed - code_development category, 89% success rate',
+      description: 'Learning trajectory completed in the code_development category with strong consistency',
       status: 'success'
     },
     {

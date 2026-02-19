@@ -2,7 +2,7 @@
 
 ---
 
-*You do not get what you want. You get what you are.*
+_You do not get what you want. You get what you are._
 
 ---
 
@@ -86,4 +86,4 @@ Daily frequency management:
 
 ---
 
-*Your frequency is your filter. It determines what you see, what you attract, and what you create. Tune it deliberately, and the world responds differently — not because the world changed, but because the signal did.*
+_Your frequency is your filter. It determines what you see, what you attract, and what you create. Tune it deliberately, and the world responds differently — not because the world changed, but because the signal did._

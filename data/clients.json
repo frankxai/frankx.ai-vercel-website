@@ -1,0 +1,54 @@
+{
+  "_description": "FrankX Music Service — Client Registry",
+  "_lastUpdated": "2026-02-14",
+  "_serviceTiers": {
+    "diy": { "name": "DIY Kit", "price": 47, "revenueSplit": [100, 0] },
+    "launch": { "name": "Launch Pack", "price": 297, "revenueSplit": [90, 10] },
+    "managed": {
+      "name": "Monthly Managed",
+      "price": 497,
+      "recurring": "monthly",
+      "revenueSplit": [80, 20]
+    },
+    "full": {
+      "name": "Full Service",
+      "price": 2997,
+      "setupFee": true,
+      "recurring": 997,
+      "revenueSplit": [70, 30]
+    }
+  },
+  "clients": [
+    {
+      "id": "frankx",
+      "artistName": "FrankX",
+      "email": "frank@frankx.ai",
+      "tier": "full",
+      "status": "active",
+      "subdomain": null,
+      "isOwner": true,
+      "branding": {
+        "primaryColor": "#0F172A",
+        "accentColor": "#43BFE3",
+        "tagline": "Build what matters.",
+        "logo": "/images/frankx-logo.svg"
+      },
+      "commerce": {
+        "lemonSqueezyStoreId": null,
+        "resendAudienceId": "4d2e913e-6903-4dd4-8749-c02cdb844331",
+        "revenueSplit": [100, 0]
+      },
+      "social": {
+        "suno": "https://suno.com/@frankx",
+        "twitter": "https://x.com/frankxai",
+        "github": "https://github.com/frankxai"
+      },
+      "inventory": {
+        "musicFile": "data/inventories/frankx/music.json",
+        "albumsFile": "data/albums.json"
+      },
+      "createdAt": "2026-02-14",
+      "onboardedAt": "2026-02-14"
+    }
+  ]
+}

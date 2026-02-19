@@ -8,7 +8,6 @@ import DOMPurify from 'isomorphic-dompurify';
 import BookProgress from './BookProgress';
 import BookTOC from './BookTOC';
 import BookChapterNav from './BookChapterNav';
-import ChapterEndZone from './ChapterEndZone';
 import type { BookChapter, BookTheme, TOCItem } from '../types';
 import { getThemeClasses } from '../lib/theme-classes';
 
@@ -17,7 +16,6 @@ interface BookReaderProps {
   content: string;
   bookSlug: string;
   bookTitle: string;
-  bookCoverImage: string;
   theme: BookTheme;
   previousChapter?: BookChapter;
   nextChapter?: BookChapter;
@@ -28,7 +26,6 @@ export default function BookReader({
   content,
   bookSlug,
   bookTitle,
-  bookCoverImage,
   theme,
   previousChapter,
   nextChapter,
@@ -99,10 +96,10 @@ export default function BookReader({
         </header>
 
         {/* Chapter Hero Image */}
-        {(chapter.image || bookCoverImage) && (
+        {chapter.image && (
           <div className="relative w-full h-[40vh] sm:h-[50vh] overflow-hidden">
             <Image
-              src={chapter.image || bookCoverImage}
+              src={chapter.image}
               alt={`Chapter ${chapter.number}: ${chapter.title}`}
               fill
               className="object-cover"
@@ -130,8 +127,8 @@ export default function BookReader({
         <div className="relative max-w-7xl mx-auto px-6 py-12 lg:py-20">
           <div className="lg:flex lg:gap-12">
             <article className={`flex-1 max-w-3xl ${isPoetry ? 'mx-auto' : ''}`}>
-              {/* Header (if no hero image fallback) */}
-              {!chapter.image && !bookCoverImage && (
+              {/* Header (if no hero image) */}
+              {!chapter.image && (
                 <header className="space-y-6 mb-12 pb-12 border-b border-white/10">
                   {chapter.epigraph && (
                     <blockquote className={`${fontClass} italic text-xl text-white/50 border-l-2 ${tc.borderPrimary} pl-6 py-2`}>
@@ -171,17 +168,6 @@ export default function BookReader({
                   prose-hr:border-white/10 prose-hr:my-12
                 `}
                 dangerouslySetInnerHTML={{ __html: htmlContent }}
-              />
-
-              <ChapterEndZone
-                bookSlug={bookSlug}
-                bookTitle={bookTitle}
-                chapterSlug={chapter.slug}
-                chapterTitle={chapter.title}
-                chapterNumber={chapter.number}
-                chapterDescription={chapter.description}
-                themeId={theme.id}
-                borderClass={tc.borderPrimary}
               />
 
               <BookChapterNav

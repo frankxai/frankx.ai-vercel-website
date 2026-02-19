@@ -177,7 +177,7 @@ export default function DevelopersPage() {
             >
               Code with AI.
               <span className="mt-2 block bg-gradient-to-r from-violet-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent">
-                Ship 10x faster.
+                Ship with confidence.
               </span>
             </motion.h1>
 
@@ -240,7 +240,7 @@ export default function DevelopersPage() {
             <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
               {[
                 { value: '500+', label: 'AI-Generated Songs', sublabel: 'Using Suno patterns' },
-                { value: '10+', label: 'Years at Oracle', sublabel: 'Enterprise AI expertise' },
+                { value: '4+', label: 'Years Enterprise AI', sublabel: 'Production systems' },
                 { value: '50+', label: 'Agent Prompts', sublabel: 'Battle-tested templates' },
                 { value: '€197', label: 'Full System', sublabel: 'Agentic Creator OS' },
               ].map((stat, i) => (

@@ -2,7 +2,7 @@
 
 ---
 
-*Vision without action is a dream. Action without vision is labor. Aligned action is manifestation.*
+_Vision without action is a dream. Action without vision is labor. Aligned action is manifestation._
 
 ---
 
@@ -94,4 +94,4 @@ The person who runs this loop thousands of times — with clear vision, aligned 
 
 ---
 
-*The universe rewards action. Not any action. Aligned action — coherent, focused, patient, and relentless. Be the person who does the work. That is the manifestation.*
+_The universe rewards action. Not any action. Aligned action — coherent, focused, patient, and relentless. Be the person who does the work. That is the manifestation._

@@ -3,7 +3,6 @@
 import { useState, useMemo } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 import Link from 'next/link'
-import Image from 'next/image'
 import {
   Activity,
   ArrowRight,
@@ -33,7 +32,6 @@ import {
 } from 'lucide-react'
 import { researchDomains, researchAgents, domainCategories } from '@/lib/research/domains'
 import type { DomainCategory } from '@/lib/research/domains'
-import { getSourceCountForDomain } from '@/lib/research/sources'
 
 // Icon map for dynamic rendering
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -63,7 +61,7 @@ const featuredDomains = [...researchDomains]
   .sort((a, b) => b.lastUpdated.localeCompare(a.lastUpdated))
   .slice(0, 3)
 
-const totalSources = researchDomains.reduce((sum, d) => sum + (getSourceCountForDomain(d.slug) || d.sourceCount), 0)
+const totalSources = researchDomains.reduce((sum, d) => sum + d.sourceCount, 0)
 const totalFindings = researchDomains.reduce((sum, d) => sum + d.keyFindings.length, 0)
 
 function HeroSection() {
@@ -134,112 +132,6 @@ function HeroSection() {
             </div>
           ))}
         </motion.div>
-      </div>
-    </section>
-  )
-}
-
-function VisualShowcaseSection() {
-  const shouldReduceMotion = useReducedMotion()
-
-  const infographics = [
-    {
-      title: 'AI Architecture Landscape 2026',
-      description: 'Gartner-style Magic Quadrant positioning vendors across enterprise AI, multi-agent, and observability',
-      image: '/images/research/landscape-ai-architecture-2026.png',
-      category: 'Landscape',
-      color: 'emerald',
-    },
-    {
-      title: 'Multi-Agent Orchestration Maturity',
-      description: '5-stage maturity model from single agents to autonomous swarms with current adoption metrics',
-      image: '/images/research/maturity-multi-agent-orchestration.png',
-      category: 'Framework',
-      color: 'cyan',
-    },
-    {
-      title: 'Enterprise AI Adoption Journey',
-      description: 'Timeline from 2024 PoC to 2028 autonomous systems with key decision points',
-      image: '/images/research/timeline-enterprise-ai-adoption.png',
-      category: 'Timeline',
-      color: 'violet',
-    },
-    {
-      title: 'Production AI Stack Architecture',
-      description: '6-layer technology stack showing model layer through memory systems',
-      image: '/images/research/stack-production-ai-architecture.png',
-      category: 'Architecture',
-      color: 'amber',
-    },
-    {
-      title: 'Research Domain Constellation',
-      description: 'Interactive network showing 27 research domains across 4 categories with connections',
-      image: '/images/research/constellation-research-domains.png',
-      category: 'Network',
-      color: 'rose',
-    },
-  ]
-
-  return (
-    <section className="py-12 md:py-16 border-t border-white/[0.06]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.1 }}
-          className="text-center mb-8"
-        >
-          <div className="inline-flex items-center gap-2 mb-4 px-4 py-1.5 rounded-full bg-violet-500/10 border border-violet-500/20">
-            <Sparkles className="w-3 h-3 text-violet-400" />
-            <span className="text-xs font-semibold text-violet-400 tracking-wider uppercase">
-              Visual Intelligence
-            </span>
-          </div>
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
-            Research Landscapes & Frameworks
-          </h2>
-          <p className="text-white/60 max-w-2xl mx-auto">
-            Gartner-style infographics visualizing AI architecture landscapes, maturity models, and technology stacks
-          </p>
-        </motion.div>
-
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {infographics.map((infographic, index) => {
-            const colors = colorConfig[infographic.color as keyof typeof colorConfig]
-            return (
-              <motion.div
-                key={infographic.title}
-                initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.1 + index * 0.05 }}
-                className="group relative bg-white/[0.02] border border-white/[0.06] rounded-2xl overflow-hidden hover:border-white/[0.12] transition-all"
-              >
-                <div className="aspect-video relative overflow-hidden bg-black/40">
-                  <Image
-                    src={infographic.image}
-                    alt={infographic.title}
-                    fill
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className={`absolute top-3 left-3 px-3 py-1 rounded-full ${colors.bg} border ${colors.border} backdrop-blur-sm`}>
-                    <span className={`text-xs font-semibold ${colors.text}`}>
-                      {infographic.category}
-                    </span>
-                  </div>
-                </div>
-                <div className="p-5">
-                  <h3 className="text-base font-bold text-white mb-2 group-hover:text-white/90 transition-colors">
-                    {infographic.title}
-                  </h3>
-                  <p className="text-sm text-white/50 leading-relaxed">
-                    {infographic.description}
-                  </p>
-                </div>
-              </motion.div>
-            )
-          })}
-        </div>
       </div>
     </section>
   )
@@ -333,7 +225,7 @@ function FeaturedSpotlight() {
 
                     {/* Footer */}
                     <div className="flex items-center justify-between pt-3 border-t border-white/[0.04]">
-                      <span className="text-[10px] text-white/25">{getSourceCountForDomain(domain.slug) || domain.sourceCount} sources</span>
+                      <span className="text-[10px] text-white/25">{domain.sourceCount} sources</span>
                       <span className={`inline-flex items-center gap-1 text-xs font-medium ${colors.text} group-hover:gap-2 transition-all`}>
                         Read Brief
                         <ArrowRight className="w-3 h-3" />
@@ -484,7 +376,7 @@ function DomainsGrid() {
                       </div>
                       <div className="flex items-center gap-2">
                         <span className={`text-[10px] font-medium px-2 py-0.5 rounded-full ${colors.bg} ${colors.text}`}>
-                          {getSourceCountForDomain(domain.slug) || domain.sourceCount} sources
+                          {domain.sourceCount} sources
                         </span>
                         <ArrowUpRight className="w-4 h-4 text-white/20 group-hover:text-white/50 transition-colors" />
                       </div>
@@ -650,20 +542,6 @@ function MethodologySection() {
             Browse All {totalSources}+ Sources
             <ArrowRight className="w-3 h-3" />
           </Link>
-          <Link
-            href="/research/visionaries"
-            className="inline-flex items-center gap-2 text-sm text-white/50 hover:text-white bg-white/[0.03] border border-white/[0.06] px-4 py-2 rounded-full transition-all hover:bg-white/[0.06]"
-          >
-            Visionaries Hub (Top 100)
-            <ArrowRight className="w-3 h-3" />
-          </Link>
-          <Link
-            href="/research/entrepreneurs"
-            className="inline-flex items-center gap-2 text-sm text-white/50 hover:text-white bg-white/[0.03] border border-white/[0.06] px-4 py-2 rounded-full transition-all hover:bg-white/[0.06]"
-          >
-            People Archetypes
-            <ArrowRight className="w-3 h-3" />
-          </Link>
         </div>
       </div>
     </section>
@@ -745,7 +623,6 @@ export default function ResearchPage() {
 
       <div className="relative z-10">
         <HeroSection />
-        <VisualShowcaseSection />
         <FeaturedSpotlight />
         <DomainsGrid />
         <ResearchTeamSection />

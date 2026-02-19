@@ -2,7 +2,7 @@
 
 ---
 
-*The frontier of imagination — where the mind reaches past the known and touches what has never been thought before.*
+_The frontier of imagination — where the mind reaches past the known and touches what has never been thought before._
 
 ---
 
@@ -34,7 +34,7 @@ The imagination that removes constraints — even temporarily, even impossibly �
 
 ## III. Thought Experiments
 
-Einstein called them *Gedankenexperimente*. They are the imagination's laboratory.
+Einstein called them _Gedankenexperimente_. They are the imagination's laboratory.
 
 A thought experiment takes an idea and follows it to its logical conclusion — regardless of whether the conclusion is practical, possible, or comfortable. The point is not to produce actionable plans. The point is to stress-test assumptions and discover hidden implications.
 
@@ -85,4 +85,4 @@ Use it.
 
 ---
 
-*Beyond the visible is not empty. It is full — full of everything that has not been thought yet, not built yet, not lived yet. And it is waiting for someone with the courage and the craft to bring it into the light.*
+_Beyond the visible is not empty. It is full — full of everything that has not been thought yet, not built yet, not lived yet. And it is waiting for someone with the courage and the craft to bring it into the light._

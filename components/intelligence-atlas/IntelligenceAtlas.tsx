@@ -12,7 +12,7 @@ export default function IntelligenceAtlas() {
         <div className="prose prose-invert max-w-none">
           <h2 className="text-2xl font-semibold text-white">Prologue: the intelligence atlas mission</h2>
           <p className="mt-4 text-neutral-300">
-            The FrankX Intelligence Atlas exists because the world crossed an irreversible threshold in 2024. OpenAI DevDay 2024 reiterated that 92% of Fortune 500 companies were experimenting with its API portfolio, McKinsey's 2024 Global AI Survey confirmed that roughly two-thirds of organizations had launched at least one generative AI use case, and creative platforms like Suno and Runway turned speculative demos into mainstream studio rituals.
+            The FrankX Intelligence Atlas exists because the world crossed an irreversible threshold in 2024. Enterprise and independent teams alike moved from AI experiments to real deployments, while creative platforms like Suno and Runway turned speculative demos into everyday studio rituals.
           </p>
           <p className="mt-4 text-neutral-300">
             As a collective, FrankX straddles multiple domains: creative AI music systems, family education, enterprise architecture, and the social rituals that keep innovation human. Each field now demands a clear view of how frontier models, open-source acceleration, and agentic automation converge.

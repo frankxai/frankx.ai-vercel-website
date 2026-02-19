@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { ExternalLink, Play, Maximize2, Volume2, VolumeX } from 'lucide-react'
 
@@ -28,6 +29,7 @@ interface UniversalEmbedProps {
   type: EmbedType
   id: string
   title?: string
+  alt?: string
   aspectRatio?: '16:9' | '9:16' | '1:1' | '4:3' | 'auto'
   autoplay?: boolean
   muted?: boolean
@@ -48,6 +50,7 @@ const embedConfigs: Record<
     color: string
     getEmbedUrl: (id: string, options: Partial<UniversalEmbedProps>) => string
     getDirectUrl: (id: string) => string
+    getThumbnailUrl?: (id: string) => string
   }
 > = {
   youtube: {
@@ -62,6 +65,7 @@ const embedConfigs: Record<
       return `https://www.youtube.com/embed/${id}?${params.toString()}`
     },
     getDirectUrl: (id) => `https://www.youtube.com/watch?v=${id}`,
+    getThumbnailUrl: (id) => `https://img.youtube.com/vi/${id}/maxresdefault.jpg`,
   },
   tiktok: {
     name: 'TikTok',
@@ -164,6 +168,7 @@ export function UniversalEmbed({
   type,
   id,
   title,
+  alt,
   aspectRatio = '16:9',
   autoplay = false,
   muted = false,
@@ -183,6 +188,7 @@ export function UniversalEmbed({
 
   const embedUrl = config.getEmbedUrl(id, { autoplay, muted, loop })
   const directUrl = config.getDirectUrl(id)
+  const thumbnailUrl = config.getThumbnailUrl ? config.getThumbnailUrl(id) : null
 
   const aspectClasses = {
     '16:9': 'aspect-video',
@@ -200,7 +206,7 @@ export function UniversalEmbed({
     >
       {/* Header bar */}
       {showControls && (
-        <div className="flex items-center justify-between px-4 py-2 bg-black/30 border-b border-white/5">
+        <div className="flex items-center justify-between px-4 py-2 bg-black/30 border-b border-white/5 relative z-10">
           <div
             className="flex items-center gap-2 text-sm font-medium"
             style={{ color: config.color }}
@@ -238,16 +244,29 @@ export function UniversalEmbed({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             onClick={() => setShowEmbed(true)}
-            className="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-gradient-to-br from-[#18181b] to-[#0a0a0b] group cursor-pointer"
+            className="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-gradient-to-br from-[#18181b] to-[#0a0a0b] group cursor-pointer w-full h-full"
           >
+            {/* Thumbnail Image */}
+            {thumbnailUrl && (
+              <Image
+                src={thumbnailUrl}
+                alt={alt || title || `Preview of ${config.name} content`}
+                fill
+                className="object-cover opacity-60 group-hover:opacity-40 transition-opacity duration-300"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+              />
+            )}
+            
+            <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors" />
+
             <motion.div
               whileHover={{ scale: 1.1 }}
-              className="w-20 h-20 rounded-full flex items-center justify-center"
-              style={{ backgroundColor: `${config.color}20` }}
+              className="relative z-10 w-20 h-20 rounded-full flex items-center justify-center backdrop-blur-sm border border-white/10"
+              style={{ backgroundColor: `${config.color}30` }}
             >
-              <Play className="w-10 h-10 ml-1" style={{ color: config.color }} />
+              <Play className="w-10 h-10 ml-1 fill-current" style={{ color: config.color }} />
             </motion.div>
-            <span className="text-white/70 group-hover:text-white transition-colors">
+            <span className="relative z-10 text-white/90 font-medium group-hover:text-white transition-colors bg-black/50 px-3 py-1 rounded-full text-sm backdrop-blur-md">
               Click to load {config.name}
             </span>
           </motion.button>
@@ -258,7 +277,7 @@ export function UniversalEmbed({
           <>
             {/* Loading skeleton */}
             {!isLoaded && (
-              <div className="absolute inset-0 bg-[#111113] animate-pulse flex items-center justify-center">
+              <div className="absolute inset-0 bg-[#111113] animate-pulse flex items-center justify-center z-20">
                 <div
                   className="w-8 h-8 border-2 border-t-transparent rounded-full animate-spin"
                   style={{ borderColor: `${config.color} transparent transparent transparent` }}

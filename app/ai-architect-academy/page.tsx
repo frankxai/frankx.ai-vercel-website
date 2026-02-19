@@ -233,7 +233,7 @@ export default function AIArchitectAcademyPage() {
               className="mb-8 max-w-2xl text-lg leading-relaxed text-slate-400 sm:text-xl"
             >
               Master enterprise AI patterns, Claude Code skills, and production architectures.
-              80+ skills, 20+ battle-tested patterns, and 13 learning paths from a practicing AI Architect.
+              80+ skills, 20+ battle-tested patterns, and 13 learning paths from an enterprise AI architect.
             </motion.p>
 
             {/* Tech badges */}

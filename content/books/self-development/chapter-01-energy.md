@@ -2,7 +2,7 @@
 
 ---
 
-*The first pillar. Without energy, every other pillar collapses.*
+_The first pillar. Without energy, every other pillar collapses._
 
 ---
 
@@ -89,4 +89,4 @@ The person who manages their energy rhythms outperforms the person who manages t
 
 ---
 
-*Energy is the meta-skill. Master it, and every other area of life becomes easier. Neglect it, and even the simplest things become hard.*
+_Energy is the meta-skill. Master it, and every other area of life becomes easier. Neglect it, and even the simplest things become hard._

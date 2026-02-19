@@ -265,34 +265,6 @@
   scroll-margin-top: 6rem;
 }
 
-/* ============================================================================
-   BOOK READING EXPERIENCE — Premium typography for /books/*
-   ============================================================================ */
-
-.book-content {
-  font-family: var(--font-lora), 'Lora', Georgia, serif;
-}
-
-.book-content .drop-cap::first-letter {
-  float: left;
-  font-family: var(--font-playfair), 'Playfair Display', Georgia, serif;
-  font-size: 4.2em;
-  line-height: 0.8;
-  padding-right: 0.12em;
-  margin-top: 0.08em;
-  font-weight: 700;
-  color: rgba(255, 255, 255, 0.85);
-}
-
-.book-content h2,
-.book-content h3 {
-  scroll-margin-top: 5rem;
-}
-
-.book-content blockquote {
-  font-family: var(--font-lora), 'Lora', Georgia, serif;
-}
-
 /* Accessibility: Respect reduced motion preferences */
 @media (prefers-reduced-motion: reduce) {
   *,

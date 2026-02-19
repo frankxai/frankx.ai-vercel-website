@@ -47,7 +47,7 @@ const features = [
   },
   {
     name: 'Proven Results',
-    description: 'Ship 3x faster without losing your creative soul.',
+    description: 'Ship faster without losing your creative soul.',
     Icon: Trophy,
     href: '/products',
     cta: 'See Products',
@@ -62,7 +62,7 @@ const testimonials = [
   {
     name: 'Sarah Chen',
     role: 'Music Producer',
-    quote: "Vibe OS transformed how I approach creative sessions. I'm producing tracks 3x faster.",
+    quote: "Vibe OS transformed how I approach creative sessions. I'm producing tracks with more consistency.",
     avatar: '🎵',
   },
   {

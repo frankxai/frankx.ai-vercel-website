@@ -197,7 +197,7 @@ const creatorRoles = [
       'Boutique consultancies',
       'Independent consulting',
       'SaaS companies',
-      'Fortune 500',
+      'Large enterprises',
     ],
     wedgeIdeas: [
       'Create a public AI adoption framework for [specific industry]',

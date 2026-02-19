@@ -2,7 +2,7 @@
 
 ---
 
-*The second pillar. The instrument that interprets everything.*
+_The second pillar. The instrument that interprets everything._
 
 ---
 
@@ -80,10 +80,10 @@ Two people experience the same event and construct opposite meanings. One person
 
 You can rewrite the narrative. Not through denial. Through deliberate reinterpretation.
 
-- When something goes wrong, ask: *What can I learn from this?* Not as a platitude. As a genuine investigation.
-- When fear arises, ask: *Is this fear based on evidence or on pattern?* Most fear is the mind projecting past pain onto future possibility.
-- When self-doubt speaks, ask: *Whose voice is this?* Often, the inner critic is just an echo of someone else's judgment, internalized long ago.
+- When something goes wrong, ask: _What can I learn from this?_ Not as a platitude. As a genuine investigation.
+- When fear arises, ask: _Is this fear based on evidence or on pattern?_ Most fear is the mind projecting past pain onto future possibility.
+- When self-doubt speaks, ask: _Whose voice is this?_ Often, the inner critic is just an echo of someone else's judgment, internalized long ago.
 
 ---
 
-*The mind is not the master. The mind is the tool. And the person who learns to use their tools with precision builds a life that others call extraordinary.*
+_The mind is not the master. The mind is the tool. And the person who learns to use their tools with precision builds a life that others call extraordinary._

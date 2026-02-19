@@ -2,7 +2,7 @@
 
 ---
 
-*Every building existed as an image before it existed as a structure. Every invention was imagined before it was assembled. Every life was envisioned before it was lived.*
+_Every building existed as an image before it existed as a structure. Every invention was imagined before it was assembled. Every life was envisioned before it was lived._
 
 ---
 
@@ -74,4 +74,4 @@ To reclaim the child's capacity:
 
 ---
 
-*The inner theater is open every night. The seats are always available. The only question is: are you going to sit in the audience, or are you going to step onto the stage?*
+_The inner theater is open every night. The seats are always available. The only question is: are you going to sit in the audience, or are you going to step onto the stage?_

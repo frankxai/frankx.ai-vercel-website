@@ -48,6 +48,17 @@ const navItems: NavItem[] = [
     ],
   },
   {
+    name: 'Investor Intelligence',
+    href: '/investor',
+    subItems: [
+      { name: 'Intelligence Hub', href: '/investor' },
+      { name: 'AI Agent Packs', href: '/investor/agents' },
+      { name: 'Workflow Templates', href: '/investor/workflows' },
+      { name: 'Architectures', href: '/investor/architectures' },
+      { name: 'Tools & Templates', href: '/investor/tools' },
+    ],
+  },
+  {
     name: 'Resources',
     href: '/resources',
     subItems: [

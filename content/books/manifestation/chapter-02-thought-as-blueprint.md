@@ -2,7 +2,7 @@
 
 ---
 
-*Every thought is a vote for the reality you are building.*
+_Every thought is a vote for the reality you are building._
 
 ---
 
@@ -90,4 +90,4 @@ Make blueprint design a daily practice:
 
 ---
 
-*Your thoughts are not reactions to reality. They are proposals for it. Make them count.*
+_Your thoughts are not reactions to reality. They are proposals for it. Make them count._

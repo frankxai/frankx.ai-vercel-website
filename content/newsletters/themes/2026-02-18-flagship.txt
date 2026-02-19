@@ -1,0 +1,41 @@
+FRANKX NEWSLETTER | Flagship
+2026-02-18
+
+Hi Frank,
+
+Flagship Thinking for Builders at Scale
+
+Flagship work should reduce uncertainty, not add noise. This edition synthesizes the most decision-relevant signals across capability growth, software delivery, and governance so your next quarter is anchored in reality.
+
+INSIGHTS
+1. Pair macro signals with local evidence
+Use global reports to frame direction, then validate against your own delivery metrics and user outcomes before major strategic commitments.
+
+2. System quality determines AI ROI
+AI ROI is a systems question: platform maturity, workflow clarity, and decision cadence. Tool adoption without operating discipline rarely compounds.
+
+3. Flagship artifacts should be executable
+A flagship piece should include decisions, tradeoffs, and a concrete action path. Insight without implementation is just commentary.
+
+BUILD THIS WEEK
+1. Create one 2-page strategic memo with 3 decisions and owners.
+2. Attach one benchmark source and one internal metric per decision.
+3. Define one 30-day experiment for your highest-uncertainty bet.
+
+RESEARCH SIGNALS
+- Stanford 2025 AI Index Report
+  https://hai.stanford.edu/ai-index/2025-ai-index-report?u=
+  Macro capability and investment direction.
+- 2025 DORA report announcement
+  https://cloud.google.com/blog/products/ai-machine-learning/announcing-the-2025-dora-report
+  System-level software delivery implications for AI adoption.
+- OECD updated AI Principles
+  https://www.oecd.org/en/about/news/press-releases/2024/05/oecd-updates-ai-principles-to-stay-abreast-of-rapid-technological-developments.html
+  Interoperable policy baseline for trustworthy deployment.
+
+CTA
+Open Flagship Reading: https://www.frankx.ai/blog/frankx-intelligence-atlas-volume-1
+
+---
+FrankX.ai
+Unsubscribe: {{RESEND_UNSUBSCRIBE_URL}}

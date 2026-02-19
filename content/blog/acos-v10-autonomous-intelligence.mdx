@@ -4,18 +4,35 @@ description: "ACOS v10 ships 5 new safety and intelligence systems. Intelligence
 date: "2026-02-14"
 lastModified: "2026-02-14"
 author: "Frank"
-tags: ["acos", "product update", "autonomous intelligence", "ai operations", "creator systems"]
-keywords: ["acos v10", "autonomous intelligence", "agentic creator os", "ai safety systems", "experience replay", "agent iam", "circuit breaker", "self-improving ai"]
+tags:
+  [
+    "acos",
+    "product update",
+    "autonomous intelligence",
+    "ai operations",
+    "creator systems",
+  ]
+keywords:
+  [
+    "acos v10",
+    "autonomous intelligence",
+    "agentic creator os",
+    "ai safety systems",
+    "experience replay",
+    "agent iam",
+    "circuit breaker",
+    "self-improving ai",
+  ]
 category: "Product Updates"
 featured: true
-image: '/images/acos/acos-v10-architecture.png'
+image: "/images/acos/acos-v10-architecture.png"
 readingGoal: "Understand the 5 new systems in ACOS v10 and how autonomous intelligence works with safety guarantees."
-readingTime: '7 min'
+readingTime: "7 min"
 ---
 
 # ACOS v10: Autonomous Intelligence
 
-*The system that gets smarter every session — with guardrails that prevent it from breaking itself.*
+_The system that gets smarter every session — with guardrails that prevent it from breaking itself._
 
 ---
 
@@ -29,7 +46,7 @@ ACOS v10 ships five new systems that make the Agentic Creator OS self-improving 
 
 The previous versions of ACOS were capable but fragile in one specific way: they could modify their own configuration without understanding the consequences.
 
-A system that learns from its mistakes is useful. A system that can change its own rules based on what it learns is powerful. But a system that changes its own rules *without validating the result* is dangerous.
+A system that learns from its mistakes is useful. A system that can change its own rules based on what it learns is powerful. But a system that changes its own rules _without validating the result_ is dangerous.
 
 ACOS v9.3 scored 72/100 on our intelligence benchmark. It had solid foundations — executable routing, n-gram patterns, domain classification, quality gates. But it lacked three things:
 
@@ -47,7 +64,7 @@ v10 fixes all three.
 
 Every ACOS session generates a trajectory — a record of what tools were used, in what order, and whether the outcome was successful. By v10, we had 60+ trajectories stored with a 67% average success rate.
 
-Experience Replay does something simple but powerful: when you start a new task, it finds the top 2 most similar past trajectories that succeeded and injects them as context. The system doesn't just know *what* patterns exist — it remembers *how it solved similar problems before*.
+Experience Replay does something simple but powerful: when you start a new task, it finds the top 2 most similar past trajectories that succeeded and injects them as context. The system doesn't just know _what_ patterns exist — it remembers _how it solved similar problems before_.
 
 ```
 New task: "Deploy blog post to production"
@@ -64,22 +81,23 @@ Before v10, every agent profile had access to every tool and every directory. Th
 
 Agent IAM introduces per-profile scoping:
 
-| Profile | Can Access | Cannot Access |
-|---------|-----------|---------------|
-| content-architect | `content/`, `components/`, `app/` | `.claude/`, system configs |
-| music-producer | `content/`, `public/images/` | Bash tool, `.claude/` |
-| frontend-designer | `app/`, `components/`, `lib/` | `scripts/`, `.claude-flow/` |
-| technical-architect | Everything | — (full access) |
-| devops-engineer | `scripts/`, `.worktrees/`, configs | `content/` |
-| seo-intelligence | `content/`, `lib/seo.ts`, `data/` | `app/`, `components/` |
+| Profile             | Can Access                         | Cannot Access               |
+| ------------------- | ---------------------------------- | --------------------------- |
+| content-architect   | `content/`, `components/`, `app/`  | `.claude/`, system configs  |
+| music-producer      | `content/`, `public/images/`       | Bash tool, `.claude/`       |
+| frontend-designer   | `app/`, `components/`, `lib/`      | `scripts/`, `.claude-flow/` |
+| technical-architect | Everything                         | — (full access)             |
+| devops-engineer     | `scripts/`, `.worktrees/`, configs | `content/`                  |
+| seo-intelligence    | `content/`, `lib/seo.ts`, `data/`  | `app/`, `components/`       |
 
 This is least-privilege for AI agents. Each profile gets exactly the tools and directories it needs — nothing more.
 
 ### 3. Immutable Audit Trail
 
-Every tool use, every gate decision, every IAM violation, every config change gets logged to an append-only JSONL file. The key word is *immutable* — entries can be added but never deleted or modified.
+Every tool use, every gate decision, every IAM violation, every config change gets logged to an append-only JSONL file. The key word is _immutable_ — entries can be added but never deleted or modified.
 
 This serves two purposes:
+
 - **Debugging**: When something goes wrong, you can trace exactly what happened
 - **Trust**: You can verify that the system did what it claims it did
 
@@ -92,7 +110,7 @@ If an agent fails on a specific file 3 times, it gets a warning. At 5 failures, 
 ```
 File: components/Navigation.tsx
   Attempt 1: Edit failed (syntax error) → tracked
-  Attempt 2: Edit failed (wrong context) → tracked  
+  Attempt 2: Edit failed (wrong context) → tracked
   Attempt 3: Edit failed (conflict) → ⚠️ WARN
   ...
   Attempt 8: → 🔴 CIRCUIT BREAK — stop touching this file
@@ -115,14 +133,14 @@ This means ACOS can evolve its own rules, but it can never make itself significa
 
 ## The Numbers
 
-| Metric | v9.3 | v10 | Change |
-|--------|------|-----|--------|
-| Intelligence Score | 72/100 | 93/100 | +29% |
-| Hook Events | 15 | 7 | -53% (performance) |
-| Skills | 20 rules | 22 curated | Quality over quantity |
-| Agent Profiles | 6 | 6 IAM-scoped | Access control added |
-| Trajectories Stored | ~30 | 60+ | Experience grows |
-| Patterns Extracted | ~25 | 50+ | Learning accelerates |
+| Metric              | v9.3     | v10          | Change                |
+| ------------------- | -------- | ------------ | --------------------- |
+| Intelligence Score  | 72/100   | 93/100       | +29%                  |
+| Hook Events         | 15       | 7            | -53% (performance)    |
+| Skills              | 20 rules | 22 curated   | Quality over quantity |
+| Agent Profiles      | 6        | 6 IAM-scoped | Access control added  |
+| Trajectories Stored | ~30      | 60+          | Experience grows      |
+| Patterns Extracted  | ~25      | 50+          | Learning accelerates  |
 
 The hook reduction from 15 to 7 is a performance story. We removed informational-only hooks, consolidated tracking, and eliminated PostToolUseFailure hooks that added overhead without actionable data. Per-tool-use subprocess spawns dropped from 5-6 to 1-2.
 
@@ -147,7 +165,7 @@ Every metric is live. Intelligence score, learning progress, trajectory count, p
 
 ## Evolution: v7 → v10
 
-The journey from v7 to v10 was a journey from *capable* to *autonomous*:
+The journey from v7 to v10 was a journey from _capable_ to _autonomous_:
 
 - **v7** (Feb 7): Unified orchestration. Claude-flow absorbed. 630+ skills (unvetted). Auto-routing worked but was noisy.
 - **v8** (Feb 13): Curated intelligence. Pruned to 20 real skills. Exposed that "158 agents" were just session timestamps. Honest numbers.

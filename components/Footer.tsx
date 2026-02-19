@@ -20,7 +20,7 @@ export default function Footer() {
               </div>
             </Link>
             <p className="text-xs sm:text-sm text-white/60 leading-relaxed max-w-xs">
-              Oracle AI architect by day. Music creator by night.
+              AI architect by day. Music creator by night.
               Building systems, making music, sharing everything.
             </p>
             <div className="mt-4 sm:mt-6 flex flex-wrap items-center gap-2 sm:gap-3">

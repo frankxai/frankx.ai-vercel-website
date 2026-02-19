@@ -24,7 +24,7 @@ import {
   type VisionaryCategory,
   type VisionaryQualityTag,
 } from '@/lib/research/visionaries'
-import { getPeopleGroupLinks } from '@/lib/research/people-groups'
+import { YouTubeEmbed } from '@/components/embeds/UniversalEmbed'
 
 const colorConfig: Record<
   VisionaryCategory['color'],
@@ -129,8 +129,6 @@ export default function VisionariesHub() {
       day: 'numeric',
     })
   }, [])
-
-  const peopleGroupLinks = useMemo(() => getPeopleGroupLinks(), [])
 
   return (
     <main className="relative min-h-screen bg-[#0a0a0b] text-white overflow-hidden">
@@ -237,27 +235,6 @@ export default function VisionariesHub() {
           </div>
         </section>
 
-        <section className="pb-10">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <h2 className="text-lg md:text-xl font-bold text-white mb-2">Browse by Archetype</h2>
-            <p className="text-white/55 mb-4">
-              If “visionaries” feels too broad, use these role-specific research indexes.
-            </p>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-5 gap-3">
-              {peopleGroupLinks.map((entry) => (
-                <Link
-                  key={entry.key}
-                  href={entry.href}
-                  className="rounded-xl border border-white/[0.08] bg-white/[0.02] p-4 hover:bg-white/[0.05] transition-colors"
-                >
-                  <p className="text-sm font-semibold text-white mb-1">{entry.title}</p>
-                  <p className="text-xs text-white/45">{entry.count} profiles</p>
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
-
         <section className="py-12 md:py-14">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid lg:grid-cols-2 gap-4">
             <div className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-6">
@@ -338,6 +315,12 @@ export default function VisionariesHub() {
                           </span>
                         ))}
                       </div>
+
+                      {person.youtubeId && (
+                        <div className="mb-4">
+                          <YouTubeEmbed id={person.youtubeId} title={`Intro to ${person.name}`} />
+                        </div>
+                      )}
 
                       <a
                         href={person.url}

@@ -148,7 +148,7 @@ cd ~/.claude/skills/api-documentation
 
 ### Step 2: Write the Skill File
 
-````markdown
+`````markdown
 ---
 name: api-documentation
 description: "Best practices for writing clear, complete API documentation"
@@ -211,6 +211,8 @@ Create a new user account.
 }
 ```
 ````
+`````
+
 ````
 
 **Parameters:**
@@ -255,12 +257,13 @@ curl -X POST https://api.example.com/api/users \
 ### Pattern 2: Error Documentation
 
 Always document errors with:
+
 1. HTTP status code
 2. Error code (if applicable)
 3. Human-readable message
 4. How to fix it
 
-```markdown
+````markdown
 ## Errors
 
 ### 400 Bad Request
@@ -272,11 +275,10 @@ Always document errors with:
   "error": {
     "code": "VALIDATION_ERROR",
     "message": "Invalid request body",
-    "details": [
-      {"field": "email", "issue": "Must be valid email format"}
-    ]
+    "details": [{ "field": "email", "issue": "Must be valid email format" }]
   }
 }
+```
 ````
 
 **Fix:** Check that all required fields are present and correctly formatted.

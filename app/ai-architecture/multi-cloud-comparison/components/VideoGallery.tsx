@@ -308,12 +308,12 @@ export function VideoGallery() {
               <span className="font-mono ml-1">"Oracle Cloud [topic]"</span>, or
               <span className="font-mono ml-1">"OCI [use case] demo"</span>. Official Oracle channel:
               <a
-                href="https://www.youtube.com/@OracleCloud"
+                href="https://www.youtube.com/@OracleCloudInfrastructure"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="ml-1 text-blue-600 hover:text-blue-700 font-medium"
               >
-                @OracleCloud
+                @OracleCloudInfrastructure
               </a>
             </p>
           </div>

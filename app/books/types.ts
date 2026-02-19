@@ -42,9 +42,6 @@ export interface BookConfig {
   categories: string[];
   chapters: BookChapter[];
   contentDir: string; // relative path to chapter markdown files
-  series?: string; // e.g., 'arcanea' — groups books in a universe
-  seriesOrder?: number; // position within the series
-  crossLinks?: string[]; // slugs of related books for interlinking
 }
 
 export interface TOCItem {

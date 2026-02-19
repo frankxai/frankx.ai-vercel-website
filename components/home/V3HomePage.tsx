@@ -97,7 +97,7 @@ export default function V3HomePage() {
                     icon={<Sparkles className="h-4 w-4" aria-hidden="true" />}
                     className="mx-auto"
                   >
-                    Built by AI Architect | 500+ Suno Sessions
+                    Built by Oracle AI Architect | 500+ Suno Sessions
                   </Pill>
                 </StaggerItem>
 
@@ -121,7 +121,7 @@ export default function V3HomePage() {
                 <StaggerItem>
                   <p className="text-body text-neutral-300 max-w-4xl mx-auto leading-relaxed">
                     Prompt packs, tool recommendations, and n8n/Zapier automations for AI architects.
-                    Plus Suno music workflows and creation systems. Built by an AI Architect who's created 500+ songs.
+                    Plus Suno music workflows and consciousness-first creation systems. Built by an Oracle AI Architect who's created 500+ songs.
                   </p>
                 </StaggerItem>
 
@@ -336,8 +336,8 @@ export default function V3HomePage() {
             <SectionHeading
               id="social-proof-heading"
               eyebrow="Trusted Results"
-              title="Trusted by Oracle Architects & Conscious Creators"
-              description="Real systems, real results, real transformation."
+              title="Built by Oracle Architect Experience & Creator Practice"
+              description="Real systems, practical workflows, and transparent iteration."
             />
           </div>
 

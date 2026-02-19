@@ -10,19 +10,26 @@
     opacity: 0.7;
   }
   50% {
-    transform: translateY(50vh) translateX(var(--drift, 20px)) rotate(360deg) scale(0.9);
+    transform: translateY(50vh) translateX(var(--drift, 20px)) rotate(360deg)
+      scale(0.9);
   }
   95% {
     opacity: 0.5;
   }
   100% {
-    transform: translateY(105vh) translateX(calc(var(--drift, 20px) * -1)) rotate(720deg) scale(0.7);
+    transform: translateY(105vh) translateX(calc(var(--drift, 20px) * -1))
+      rotate(720deg) scale(0.7);
     opacity: 0;
   }
 }
 
 .cherry-petal {
-  background: radial-gradient(ellipse at 30% 30%, #fda4af 0%, #f472b6 60%, transparent 100%);
+  background: radial-gradient(
+    ellipse at 30% 30%,
+    #fda4af 0%,
+    #f472b6 60%,
+    transparent 100%
+  );
   border-radius: 50% 0 50% 0;
   animation: petal-fall linear infinite;
   will-change: transform;
@@ -30,7 +37,13 @@
 
 /* Rose Petals — deeper, warmer, slightly larger than cherry */
 .rose-petal {
-  background: radial-gradient(ellipse at 30% 30%, #fda4af 0%, #e11d48 50%, #9f1239 80%, transparent 100%);
+  background: radial-gradient(
+    ellipse at 30% 30%,
+    #fda4af 0%,
+    #e11d48 50%,
+    #9f1239 80%,
+    transparent 100%
+  );
   border-radius: 50% 10% 50% 10%;
   animation: petal-fall linear infinite;
   will-change: transform;
@@ -38,7 +51,13 @@
 }
 
 .rose-petal-light {
-  background: radial-gradient(ellipse at 40% 20%, #fecdd3 0%, #fb7185 50%, #e11d48 80%, transparent 100%);
+  background: radial-gradient(
+    ellipse at 40% 20%,
+    #fecdd3 0%,
+    #fb7185 50%,
+    #e11d48 80%,
+    transparent 100%
+  );
   border-radius: 45% 5% 50% 15%;
   animation: petal-fall linear infinite;
   will-change: transform;
@@ -48,14 +67,22 @@
 /* Section divider — thin gradient line */
 .section-divider {
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(244, 114, 182, 0.15), rgba(212, 163, 115, 0.15), rgba(139, 92, 246, 0.1), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(244, 114, 182, 0.15),
+    rgba(212, 163, 115, 0.15),
+    rgba(139, 92, 246, 0.1),
+    transparent
+  );
   margin: 0 auto;
   max-width: 200px;
 }
 
 /* Floating Particles */
 @keyframes float-particle {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0) translateX(0);
   }
   25% {
@@ -76,8 +103,13 @@
 
 /* Breathing Glow */
 @keyframes breathe {
-  0%, 100% { box-shadow: 0 0 20px rgba(244, 114, 182, 0.05); }
-  50% { box-shadow: 0 0 40px rgba(244, 114, 182, 0.15); }
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(244, 114, 182, 0.05);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(244, 114, 182, 0.15);
+  }
 }
 
 .animate-breathe {
@@ -86,8 +118,13 @@
 
 /* Gentle Float */
 @keyframes gentle-float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
 }
 
 .animate-gentle-float {
@@ -96,8 +133,13 @@
 
 /* Heart Pulse */
 @keyframes heart-pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.15); }
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
 }
 
 .animate-heart-pulse {
@@ -114,13 +156,13 @@
 
 /* Font utilities for Valentine's pages */
 .font-display {
-  font-family: var(--font-display), 'Cormorant Garamond', serif;
+  font-family: var(--font-display), "Cormorant Garamond", serif;
 }
 .font-body-serif {
-  font-family: var(--font-body-serif), 'Lora', serif;
+  font-family: var(--font-body-serif), "Lora", serif;
 }
 .font-cursive {
-  font-family: var(--font-cursive), 'Dancing Script', cursive;
+  font-family: var(--font-cursive), "Dancing Script", cursive;
 }
 
 /* Scroll Progress Bar */
@@ -141,7 +183,13 @@
   top: 0;
   bottom: 0;
   width: 1px;
-  background: linear-gradient(to bottom, transparent, rgba(244, 114, 182, 0.2), rgba(139, 92, 246, 0.2), transparent);
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(244, 114, 182, 0.2),
+    rgba(139, 92, 246, 0.2),
+    transparent
+  );
 }
 @media (max-width: 767px) {
   .timeline-line {

@@ -90,7 +90,7 @@ const faqs = [
   },
   {
     q: 'What is ACOS and do I need it?',
-    a: 'ACOS (Agentic Creator OS) supercharges Claude Code with 630+ skills and 40+ agents for creative work. If you use Claude Code for content, music, or building, ACOS makes you 10x faster. It\'s free and open source.',
+    a: 'ACOS (Agentic Creator OS) extends Claude Code with a large library of skills and specialized agents for creative work. If you use Claude Code for content, music, or building, ACOS can improve speed and consistency. It\'s open source.',
   },
   {
     q: 'Are the prompts really free?',

@@ -231,6 +231,22 @@ export default function GalleryPage() {
 
       {/* Embedded full gallery */}
       <FullGallerySection />
+
+      {/* Cross-link to Vault */}
+      <section className="max-w-7xl mx-auto px-6 pb-24">
+        <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-8 text-center">
+          <p className="text-white/50 mb-4">
+            Want to explore the full visual asset library? All 484 assets across 30 collections.
+          </p>
+          <Link
+            href="/vault"
+            className="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 transition-colors font-medium"
+          >
+            Open ArcaneaVault
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
+      </section>
     </div>
   )
 }

@@ -2,7 +2,7 @@
 
 ---
 
-*The ability to see what does not yet exist — and to see it so clearly that building it becomes inevitable.*
+_The ability to see what does not yet exist — and to see it so clearly that building it becomes inevitable._
 
 ---
 
@@ -76,4 +76,4 @@ The architect protects the vision through:
 
 ---
 
-*The architect's eye is the bridge between imagination and reality. Without it, ideas remain ideas. With it, ideas become buildings, products, companies, movements, and worlds.*
+_The architect's eye is the bridge between imagination and reality. Without it, ideas remain ideas. With it, ideas become buildings, products, companies, movements, and worlds._

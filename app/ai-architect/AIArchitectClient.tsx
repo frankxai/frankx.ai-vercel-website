@@ -307,8 +307,8 @@ export default function AIArchitectClient() {
               transition={{ delay: 0.2 }}
               className="mb-8 max-w-2xl text-lg text-slate-400"
             >
-              A battle-tested methodology for designing production AI systems. From real-world experience
-              building enterprise AI solutions across AWS, GCP, Azure, and OCI.
+              A battle-tested methodology for designing production AI systems. From enterprise architecture experience
+              building solutions across AWS, GCP, Azure, and OCI.
             </motion.p>
 
             <motion.div

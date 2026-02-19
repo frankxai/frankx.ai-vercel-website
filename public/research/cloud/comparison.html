@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud Partner Programs Comparison | FrankX Research</title>
+    <meta name="description" content="Side-by-side comparison of Oracle OPN, AWS APN, Microsoft Azure, and Google Cloud partner programs: tiers, revenue models, enablement, and 2026 priorities.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --oracle-red: #C74634;
+            --aws-orange: #FF9900;
+            --azure-blue: #0078D4;
+            --gcp-blue: #4285F4;
+            --bg-dark: #0f172a;
+            --bg-darker: #020617;
+            --text-light: #e2e8f0;
+            --text-muted: #94a3b8;
+            --border-color: #1e293b;
+            --card-bg: #1e293b;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-darker);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        header {
+            background: var(--bg-dark);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1600px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .logo-text {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            margin-left: 2rem;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        nav a:hover { color: #667eea; }
+
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: white;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section {
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+            color: #667eea;
+        }
+
+        .comparison-table-wrapper {
+            overflow-x: auto;
+            background: var(--card-bg);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        thead th {
+            background: var(--bg-dark);
+            color: var(--text-light);
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        thead th:nth-child(2) { color: var(--oracle-red); border-top: 4px solid var(--oracle-red); }
+        thead th:nth-child(3) { color: var(--aws-orange); border-top: 4px solid var(--aws-orange); }
+        thead th:nth-child(4) { color: var(--azure-blue); border-top: 4px solid var(--azure-blue); }
+        thead th:nth-child(5) { color: var(--gcp-blue); border-top: 4px solid var(--gcp-blue); }
+
+        tbody tr {
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        tbody tr:hover {
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        tbody td {
+            padding: 1rem;
+            color: var(--text-muted);
+        }
+
+        tbody td:first-child {
+            font-weight: 600;
+            color: var(--text-light);
+            background: var(--bg-dark);
+        }
+
+        .provider-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .provider-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 2rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .provider-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .provider-card.oracle { border-top: 4px solid var(--oracle-red); }
+        .provider-card.oracle h3 { color: var(--oracle-red); }
+
+        .provider-card.aws { border-top: 4px solid var(--aws-orange); }
+        .provider-card.aws h3 { color: var(--aws-orange); }
+
+        .provider-card.azure { border-top: 4px solid var(--azure-blue); }
+        .provider-card.azure h3 { color: var(--azure-blue); }
+
+        .provider-card.gcp { border-top: 4px solid var(--gcp-blue); }
+        .provider-card.gcp h3 { color: var(--gcp-blue); }
+
+        .provider-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .provider-card ul {
+            list-style: none;
+        }
+
+        .provider-card li {
+            padding: 0.5rem 0;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .provider-card li:last-child {
+            border-bottom: none;
+        }
+
+        .decision-framework {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 2rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .framework-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .framework-item {
+            background: var(--bg-dark);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid;
+        }
+
+        .framework-item:nth-child(1) { border-left-color: var(--oracle-red); }
+        .framework-item:nth-child(2) { border-left-color: var(--aws-orange); }
+        .framework-item:nth-child(3) { border-left-color: var(--azure-blue); }
+        .framework-item:nth-child(4) { border-left-color: var(--gcp-blue); }
+
+        .framework-item h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-light);
+        }
+
+        .framework-item p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .pillars-comparison {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 2rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .pillars-table {
+            width: 100%;
+            margin-top: 1.5rem;
+        }
+
+        .pillars-table th,
+        .pillars-table td {
+            padding: 0.75rem;
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+
+        .pillars-table th {
+            background: var(--bg-dark);
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        .pillars-table td {
+            color: var(--text-muted);
+        }
+
+        .checkmark {
+            color: #22C55E;
+            font-size: 1.2rem;
+        }
+
+        .emerging {
+            color: #F59E0B;
+            font-size: 0.85rem;
+        }
+
+        footer {
+            background: var(--bg-dark);
+            border-top: 1px solid var(--border-color);
+            padding: 2rem;
+            margin-top: 4rem;
+            text-align: center;
+        }
+
+        footer p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        footer a {
+            color: #667eea;
+            text-decoration: none;
+            margin: 0 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .provider-grid, .framework-grid { grid-template-columns: 1fr; }
+            table { font-size: 0.75rem; }
+            thead th, tbody td { padding: 0.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon">F</div>
+                <div class="logo-text">FrankX Research</div>
+            </div>
+            <nav>
+                <a href="index.html">← Back to Hub</a>
+                <a href="https://frankx.ai/research/">All Research</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="hero">
+        <h1>Cloud Partner Programs: Complete Comparison</h1>
+        <p>Side-by-side analysis of Oracle OPN, AWS APN, Microsoft Azure, and Google Cloud partner ecosystems across tiers, revenue models, enablement resources, and 2026 strategic priorities.</p>
+    </div>
+
+    <div class="container">
+        <div class="section">
+            <h2 class="section-title">Comprehensive Comparison Matrix</h2>
+            <p style="color: var(--text-muted); margin-bottom: 2rem;">All four major cloud providers restructured their partner programs in 2025-2026. This table compares key dimensions across Oracle OPN, AWS APN, Microsoft Azure, and Google Cloud programs as of February 2026.</p>
+
+            <div class="comparison-table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Dimension</th>
+                            <th>Oracle OPN</th>
+                            <th>AWS APN</th>
+                            <th>Microsoft Azure</th>
+                            <th>Google Cloud</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Program Structure</td>
+                            <td>Levels 0-3+ with optional Paths/Tracks</td>
+                            <td>Select / Advanced / Premier</td>
+                            <td>Direct-Bill / Indirect + Solutions Partner</td>
+                            <td>Select / Premier / Diamond (Q1 2026)</td>
+                        </tr>
+                        <tr>
+                            <td>Revenue Thresholds</td>
+                            <td>Usage-based tiers</td>
+                            <td>Not publicly disclosed</td>
+                            <td>$1M (Direct) / $30M (Distributor)</td>
+                            <td>$250K / $2M / $20M ACV</td>
+                        </tr>
+                        <tr>
+                            <td>Margin Model</td>
+                            <td>Preferential pricing + volume rebates</td>
+                            <td>MDF + funding programs</td>
+                            <td>Segment-based, ISV private offers</td>
+                            <td>Outcome-based rebates/bonuses</td>
+                        </tr>
+                        <tr>
+                            <td>Co-Sell Incentives</td>
+                            <td>Deal registration protection + priority</td>
+                            <td>PGP multi-year co-investment</td>
+                            <td>Azure Consumed Revenue tracking</td>
+                            <td>Co-sell influence + workload rewards</td>
+                        </tr>
+                        <tr>
+                            <td>Competency Framework</td>
+                            <td>Cloud/Healthcare/License Paths + Build/Service/Sell Tracks</td>
+                            <td>Service validations + specializations</td>
+                            <td>Solutions Partner + 25 PCS points</td>
+                            <td>21 competencies (6 solution, 5 product, 10 industry)</td>
+                        </tr>
+                        <tr>
+                            <td>Architecture Framework</td>
+                            <td>Oracle Architecture Center</td>
+                            <td>Well-Architected (6 pillars)</td>
+                            <td>Azure Well-Architected + Architecture Center</td>
+                            <td>Well-Architected (6 pillars)</td>
+                        </tr>
+                        <tr>
+                            <td>Framework Focus</td>
+                            <td>Blueprints, patterns, Terraform IaC</td>
+                            <td>Ops Excellence, Security, Reliability, Performance, Cost, Sustainability</td>
+                            <td>Reference architectures + Azure Advisor automation</td>
+                            <td>Security, Reliability, Performance, Cost, Operations, Sustainability</td>
+                        </tr>
+                        <tr>
+                            <td>Enablement Resources</td>
+                            <td>Free training, OCI certs, fast-track blueprints</td>
+                            <td>Partner Central, hands-on labs, free eval tools</td>
+                            <td>Architecture Center, GitHub samples, Azure credits</td>
+                            <td>Certifications, new AI-driven portal (Q1 2026)</td>
+                        </tr>
+                        <tr>
+                            <td>Funding Programs</td>
+                            <td>OPN Benefit cloud services, partner credits (125K-750K)</td>
+                            <td>Well-Arch ISV ($5K), PGP, Agentic AI ($25K), Connect ($50K)</td>
+                            <td>Azure credits, ISV sponsorship, GTM resources</td>
+                            <td>Outcome-based bonuses</td>
+                        </tr>
+                        <tr>
+                            <td>2026 Focus</td>
+                            <td>Consumption + recurring revenue, AI Accelerator Packs</td>
+                            <td>GenAI, Agentic AI, Migration/Modernization</td>
+                            <td>CSP consolidation, high thresholds, Copilot</td>
+                            <td>Outcomes, AI competencies, automation</td>
+                        </tr>
+                        <tr>
+                            <td>Best For</td>
+                            <td>Recurring revenue models, OCI consumption growth</td>
+                            <td>GenAI-focused partners, MSPs, migrations</td>
+                            <td>Large partners ($1M+), enterprise distributors</td>
+                            <td>Outcome-driven partners, AI specialization</td>
+                        </tr>
+                        <tr>
+                            <td>Official URL</td>
+                            <td><a href="https://www.oracle.com/partnernetwork/program/" target="_blank" style="color: var(--oracle-red);">oracle.com/partnernetwork</a></td>
+                            <td><a href="https://aws.amazon.com/partners/" target="_blank" style="color: var(--aws-orange);">aws.amazon.com/partners</a></td>
+                            <td><a href="https://learn.microsoft.com/en-us/partner-center/" target="_blank" style="color: var(--azure-blue);">learn.microsoft.com/partner-center</a></td>
+                            <td><a href="https://cloud.google.com/partners" target="_blank" style="color: var(--gcp-blue);">cloud.google.com/partners</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Architecture Framework Pillars Comparison</h2>
+            
+            <div class="pillars-comparison">
+                <p style="color: var(--text-muted); margin-bottom: 1.5rem;">All four providers have converged on similar architecture framework structures with 6 pillars. Sustainability is the newest addition, reflecting enterprise focus on carbon-neutral cloud operations.</p>
+                
+                <table class="pillars-table">
+                    <thead>
+                        <tr>
+                            <th>Pillar</th>
+                            <th style="color: var(--oracle-red);">Oracle</th>
+                            <th style="color: var(--aws-orange);">AWS</th>
+                            <th style="color: var(--azure-blue);">Azure</th>
+                            <th style="color: var(--gcp-blue);">Google Cloud</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Security</strong></td>
+                            <td><span class="checkmark">✓</span></td>
+                            <td><span class="checkmark">✓</span></td>
+                            <td><span class="checkmark">✓</span></td>
+                            <td><span class="checkmark">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Reliability</strong></td>
+                            <td><span class="checkmark">✓</span></td>
+                            <td><span class="checkmark">✓</span></td>
+                            <td><span class="checkmark">✓</span></td>
+                            <td><span class="checkmark">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Performance</strong></td>
+                            <td><span class="checkmark">✓</span></td>
+                            <td><span class="checkmark">✓</span></td>
+                            <td><span class="checkmark">✓</span></td>
+                            <td><span class="checkmark">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Cost Optimization</strong></td>
+                            <td><span class="checkmark">✓</span></td>
+                            <td><span class="checkmark">✓</span></td>
+                            <td><span class="checkmark">✓</span></td>
+                            <td><span class="checkmark">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Operational Excellence</strong></td>
+                            <td><span class="checkmark">✓</span></td>
+                            <td><span class="checkmark">✓</span></td>
+                            <td><span class="checkmark">✓</span></td>
+                            <td><span class="checkmark">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Sustainability</strong></td>
+                            <td><span class="emerging">Emerging</span></td>
+                            <td><span class="checkmark">✓</span></td>
+                            <td><span class="checkmark">✓</span></td>
+                            <td><span class="checkmark">✓</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Partner Selection Decision Framework</h2>
+            <p style="color: var(--text-muted); margin-bottom: 2rem;">Choose your cloud partner program based on business model, revenue scale, and strategic priorities.</p>
+
+            <div class="decision-framework">
+                <h3 style="color: #667eea; margin-bottom: 1.5rem;">By Partner Size & Revenue</h3>
+                
+                <div class="framework-grid">
+                    <div class="framework-item">
+                        <h4>Small-Medium (<$1M)</h4>
+                        <p><strong>Oracle OPN:</strong> Lower barriers, consumption-based growth</p>
+                        <p><strong>AWS Select:</strong> Well-defined path with MDF support</p>
+                        <p><strong>Azure:</strong> Indirect reseller model (direct threshold too high)</p>
+                        <p><strong>Google Select:</strong> $250K ACV achievable, competency-first</p>
+                    </div>
+
+                    <div class="framework-item">
+                        <h4>Large ($5M-$20M)</h4>
+                        <p><strong>Oracle Level 2-3:</strong> Volume rebates, priority co-sell</p>
+                        <p><strong>AWS Advanced/Premier:</strong> PGP funding, specialized programs</p>
+                        <p><strong>Azure Direct-Bill:</strong> $1M threshold, Solutions Partner</p>
+                        <p><strong>Google Premier:</strong> $2M ACV + competency differentiation</p>
+                    </div>
+
+                    <div class="framework-item">
+                        <h4>Enterprise ($20M+)</h4>
+                        <p><strong>Oracle Top Tier:</strong> Maximum rebates, strategic co-sell</p>
+                        <p><strong>AWS Premier:</strong> Full program access, MSP benefits</p>
+                        <p><strong>Azure Distributor:</strong> $30M threshold, channel-building</p>
+                        <p><strong>Google Diamond:</strong> 200 certs + 20 workloads + 30 co-sell opps</p>
+                    </div>
+
+                    <div class="framework-item">
+                        <h4>AI/GenAI Focused</h4>
+                        <p><strong>AWS:</strong> Best funding ($25K-$50K AI MDF)</p>
+                        <p><strong>Google:</strong> AI competencies launching Q1 2026</p>
+                        <p><strong>Azure:</strong> Copilot integration + Azure AI credits</p>
+                        <p><strong>Oracle:</strong> OCI AI Blueprints + GenAI service discounts</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Key Insights and Recommendations</h2>
+            
+            <div class="provider-grid">
+                <div class="provider-card oracle">
+                    <h3>Oracle OPN Strengths</h3>
+                    <p>Best for partners building recurring revenue models with consumption-based engagement. Lower entry barriers than Microsoft.</p>
+                    <ul>
+                        <li>55% discount on Universal Credits (Level 2+)</li>
+                        <li>30-40% margin on AI workloads</li>
+                        <li>BYOL advantage: 30-60% savings for customers</li>
+                        <li>4 AI Accelerator Packs + 10 OCI AI Blueprints</li>
+                        <li>Multi-cloud Universal Credits (Oracle, AWS, Azure, GCP)</li>
+                    </ul>
+                </div>
+
+                <div class="provider-card aws">
+                    <h3>AWS APN Strengths</h3>
+                    <p>Industry-leading GenAI/Agentic AI funding and strongest MSP program support. Ideal for migration and modernization specialists.</p>
+                    <ul>
+                        <li>$75K total AI MDF available ($25K Agentic + $50K Connect)</li>
+                        <li>Partner Greenfield Program (PGP) multi-year co-investment</li>
+                        <li>Well-Architected ISV credits: $5K for remediation</li>
+                        <li>Enhanced MSP benefits (customer management, strategic services, government)</li>
+                        <li>Free evaluation tools and hands-on labs</li>
+                    </ul>
+                </div>
+
+                <div class="provider-card azure">
+                    <h3>Microsoft Azure Strengths</h3>
+                    <p>Consolidating to large enterprise partners ($1M-$30M thresholds). Best for established partners with Copilot expertise.</p>
+                    <ul>
+                        <li>High barriers eliminate small competitor partners</li>
+                        <li>Solutions Partner designation across Data & AI, Infrastructure, App Innovation</li>
+                        <li>Expanded Copilot, security, and Azure credits (Feb 2026)</li>
+                        <li>Azure Advisor automation for recommendations</li>
+                        <li>ISV private offers extend margins</li>
+                    </ul>
+                </div>
+
+                <div class="provider-card gcp">
+                    <h3>Google Cloud Strengths</h3>
+                    <p>Most innovative outcome-based model. Rewards tied to customer retention/ROI metrics rather than pure deal size.</p>
+                    <ul>
+                        <li>21 competencies (independent of tier): 6 solution, 5 product, 10 industry</li>
+                        <li>Outcome-based rebates: retention rates, migration ROI, service quality</li>
+                        <li>New Diamond tier ($20M ACV) launching Q1 2026</li>
+                        <li>AI-driven program management reduces admin burden</li>
+                        <li>Sustainability emphasis in architecture framework</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p><a href="index.html">Cloud Partner Hub</a> | <a href="oracle.html">Oracle OPN</a> | <a href="aws.html">AWS APN</a> | <a href="azure.html">Azure Partners</a> | <a href="gcp.html">Google Cloud</a> | <a href="https://frankx.ai/research/">All Research</a></p>
+        <p style="margin-top: 1rem;">Cloud Partner Programs Comparison | February 2026 | FrankX AI Architect</p>
+        <p>All provider trademarks are property of their respective owners. This is independent research.</p>
+    </footer>
+</body>
+</html>

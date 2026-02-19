@@ -2,7 +2,7 @@
 
 ---
 
-*The seventh pillar. The only one that outlasts you.*
+_The seventh pillar. The only one that outlasts you._
 
 ---
 
@@ -78,7 +78,7 @@ At the end, there is one question.
 
 Not "How much did I earn?" Not "How many people knew my name?" Not "How much did I achieve?"
 
-The question is: *Did I use what I was given?*
+The question is: _Did I use what I was given?_
 
 The energy, the mind, the soul, the craft, the capital, the circle — these are the raw materials of a life. They are given to everyone. Some in greater measure, some in lesser. But everyone receives enough to build something meaningful.
 
@@ -90,4 +90,4 @@ That is the seventh pillar. And it is the one that holds up all the others.
 
 ---
 
-*You are not building a life. You are building a legacy. The only question is whether it will be one of intention or one of accident.*
+_You are not building a life. You are building a legacy. The only question is whether it will be one of intention or one of accident._

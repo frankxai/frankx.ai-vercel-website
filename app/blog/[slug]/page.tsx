@@ -1,13 +1,12 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { ArrowLeft, ArrowRight, Calendar, Clock, Linkedin, Share2, Tag, Twitter } from 'lucide-react'
+import { Calendar, Clock, Linkedin, Tag, Twitter } from 'lucide-react'
 
 import { MDXContent } from '@/components/blog/MDXContent'
-import BlogArticleContent from '@/components/blog/BlogArticleContent'
-import BlogReadingProgress from '@/components/blog/BlogReadingProgress'
-import BlogPostEndZone from '@/components/blog/BlogPostEndZone'
 import RelatedResearch from '@/components/blog/RelatedResearch'
+import BlogFooterCTA from '@/components/blog/BlogFooterCTA'
 import Recommendations from '@/components/recommendations/Recommendations'
+import SparkBorder from '@/components/ui/SparkBorder'
 import { getAllBlogPosts, getBlogPost, extractFAQFromContent } from '@/lib/blog'
 import { createMetadata, siteConfig } from '@/lib/seo'
 import JsonLd from '@/components/seo/JsonLd'
@@ -66,6 +65,10 @@ export default async function BlogPostPage({
     content: postItem.content,
     url: `/blog/${postItem.slug}`,
     tags: postItem.tags,
+    image: postItem.image,
+    category: postItem.category,
+    readingTime: postItem.readingTime,
+    description: postItem.description,
   }))
 
   const currentDocument = {
@@ -73,6 +76,10 @@ export default async function BlogPostPage({
     content: post.content,
     url: `/blog/${post.slug}`,
     tags: post.tags,
+    image: post.image,
+    category: post.category,
+    readingTime: post.readingTime,
+    description: post.description,
   }
 
   const canonicalUrl = `https://frankx.ai/blog/${post.slug}`
@@ -115,24 +122,8 @@ export default async function BlogPostPage({
   // Extract FAQ from content body for FAQPage schema
   const extractedFaqs = extractFAQFromContent(post.content)
 
-  // Get 3 related posts for end zone
-  const relatedPosts = allPosts
-    .filter(p => p.slug !== slug && (
-      p.category === post.category ||
-      p.tags?.some(tag => post.tags?.includes(tag))
-    ))
-    .slice(0, 3)
-    .map(p => ({
-      slug: p.slug,
-      title: p.title,
-      description: p.description,
-      category: p.category,
-      readingTime: p.readingTime,
-    }))
-
   return (
     <div className="min-h-screen bg-[#030712] text-white">
-      <BlogReadingProgress wordCount={wordCount} />
       <JsonLd type="Article" data={articleSchema} />
       {extractedFaqs.length > 0 && (
         <JsonLd
@@ -205,7 +196,7 @@ export default async function BlogPostPage({
                   </div>
                   <div>
                     <div className="text-base font-semibold text-white">{post.author || 'Frank'}</div>
-                    <div className="text-sm text-white/50">AI Architect & Creator</div>
+                    <div className="text-sm text-white/50">AI Systems Architect & Creator</div>
                   </div>
                 </div>
 
@@ -263,67 +254,16 @@ export default async function BlogPostPage({
 
         <div className="px-6 pt-12">
           <div className="mx-auto max-w-[680px]">
-            <BlogArticleContent postTitle={post.title} postSlug={post.slug}>
+            <div className="article-prose">
               <MDXContent source={post.content} />
-            </BlogArticleContent>
+            </div>
           </div>
 
           {/* Wider container for cards and meta sections */}
           <div className="mx-auto max-w-4xl">
-            <div className="mt-16 grid gap-6 md:grid-cols-3">
-              <article className="group rounded-2xl border border-white/10 bg-white/[0.02] p-6 backdrop-blur-sm hover:border-emerald-500/30 hover:bg-white/[0.04] transition-all duration-300">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-4">
-                  <span className="text-xl">🗺️</span>
-                </div>
-                <span className="text-xs font-semibold uppercase tracking-wider text-white/50">Live Roadmap</span>
-                <h3 className="mt-2 text-lg font-semibold text-white group-hover:text-emerald-100 transition-colors">See how this article powers the 2025 plan</h3>
-                <p className="mt-3 text-sm text-white/60 leading-relaxed">
-                  Review the FrankX roadmap hub for the latest milestones, rituals, and metrics connected to every Atlas release.
-                </p>
-                <Link
-                  href="/roadmap"
-                  className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-emerald-400 hover:text-emerald-300 transition-colors group-hover:gap-3"
-                >
-                  Explore the roadmap
-                  <ArrowRight className="h-4 w-4 transition-transform" />
-                </Link>
-              </article>
-
-              <article className="group rounded-2xl border border-white/10 bg-white/[0.02] p-6 backdrop-blur-sm hover:border-cyan-500/30 hover:bg-white/[0.04] transition-all duration-300">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-cyan-500/10 border border-cyan-500/20 mb-4">
-                  <span className="text-xl">📚</span>
-                </div>
-                <span className="text-xs font-semibold uppercase tracking-wider text-white/50">Resource Library</span>
-                <h3 className="mt-2 text-lg font-semibold text-white group-hover:text-cyan-100 transition-colors">Grab the templates that accompany this drop</h3>
-                <p className="mt-3 text-sm text-white/60 leading-relaxed">
-                  Access collections of assessments, canvases, and playbooks that convert these ideas into operating rituals.
-                </p>
-                <Link
-                  href="/resources"
-                  className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-cyan-400 hover:text-cyan-300 transition-colors group-hover:gap-3"
-                >
-                  Browse resources
-                  <ArrowRight className="h-4 w-4 transition-transform" />
-                </Link>
-              </article>
-
-              <article className="group rounded-2xl border border-white/10 bg-white/[0.02] p-6 backdrop-blur-sm hover:border-purple-500/30 hover:bg-white/[0.04] transition-all duration-300">
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-purple-500/10 border border-purple-500/20 mb-4">
-                  <span className="text-xl">⚡</span>
-                </div>
-                <span className="text-xs font-semibold uppercase tracking-wider text-white/50">Automation</span>
-                <h3 className="mt-2 text-lg font-semibold text-white group-hover:text-purple-100 transition-colors">Run the daily specs check</h3>
-                <p className="mt-3 text-sm text-white/60 leading-relaxed">
-                  Execute <code className="rounded bg-white/10 px-2 py-0.5 text-xs font-mono">npm run roadmap:check</code> to print pillars, milestones, and next actions.
-                </p>
-                <Link
-                  href="/roadmap"
-                  className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-purple-400 hover:text-purple-300 transition-colors group-hover:gap-3"
-                >
-                  View Roadmap
-                  <ArrowRight className="h-4 w-4 transition-transform" />
-                </Link>
-              </article>
+            {/* Value-driven CTA cards with SparkBorder */}
+            <div className="mt-16">
+              <BlogFooterCTA />
             </div>
 
             {post.tags && post.tags.length > 0 && (
@@ -343,21 +283,50 @@ export default async function BlogPostPage({
               </div>
             )}
 
-            {/* Blog Post End Zone - replaces old newsletter section */}
-            <BlogPostEndZone
-              postSlug={post.slug}
-              postTitle={post.title}
-              postDescription={post.description}
-              relatedPosts={relatedPosts}
-            />
-
             <RelatedResearch blogSlug={slug} />
           </div>
         </div>
 
-        {/* Recommendations */}
+        {/* Newsletter with SparkBorder */}
         <div className="px-6 pt-20">
-          <div className="mx-auto max-w-7xl">
+          <div className="mx-auto max-w-3xl">
+            <SparkBorder color="gradient" speed="slow" hoverOnly={false} bg="#060d1b">
+              <div className="p-10 text-center">
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-6">
+                  <svg className="h-4 w-4 text-emerald-400" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
+                  </svg>
+                  <span className="text-xs font-medium text-emerald-400">Weekly Intelligence</span>
+                </div>
+                <h3 className="text-3xl font-bold text-white mb-4">Stay in the intelligence loop</h3>
+                <p className="text-base text-white/60 leading-relaxed max-w-2xl mx-auto">
+                  Join 1,000+ creators and architects receiving weekly field notes on AI systems, production patterns, and builder strategy.
+                </p>
+                <form action="/api/subscribe" method="POST" className="mt-8 flex flex-col gap-3 sm:flex-row max-w-lg mx-auto">
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Enter your email"
+                    required
+                    className="flex-1 rounded-xl border border-white/10 bg-white/[0.04] px-5 py-3.5 text-sm text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-emerald-400/50 focus:border-emerald-400/50 transition-all"
+                  />
+                  <input type="hidden" name="listType" value="newsletter" />
+                  <button
+                    type="submit"
+                    className="rounded-xl bg-gradient-to-r from-emerald-500 to-cyan-500 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 hover:-translate-y-0.5 transition-all"
+                  >
+                    Subscribe
+                  </button>
+                </form>
+                <p className="mt-4 text-xs text-white/40">No spam. Unsubscribe anytime.</p>
+              </div>
+            </SparkBorder>
+          </div>
+        </div>
+
+        {/* Related Posts */}
+        <div className="px-6 pt-4">
+          <div className="mx-auto max-w-4xl">
             <Recommendations documents={documents} currentDocument={currentDocument} />
           </div>
         </div>

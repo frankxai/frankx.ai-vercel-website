@@ -6,7 +6,7 @@
  * For other clients, loads from their namespaced inventory files.
  */
 
-import { getClientById, getDefaultClient, getAllClients, type Client } from './clients'
+import { getClientById, getDefaultClient, type Client } from './clients'
 import * as music from './music'
 import type { Track, Album } from './music'
 
@@ -128,8 +128,10 @@ export function getClientMusicStats(clientId: string) {
 // ── Cross-Client Aggregation ───────────────────────────────────────────────
 
 export function getPlatformStats() {
-  const allClients = getAllClients()
-  const activeClients = allClients.filter((c) => c.status === 'active')
+  // Import here to avoid circular dependency at module level
+  const { getAllClients } = require('./clients')
+  const allClients = getAllClients() as Client[]
+  const activeClients = allClients.filter((c: Client) => c.status === 'active')
 
   let totalTracks = 0
   let totalAlbums = 0

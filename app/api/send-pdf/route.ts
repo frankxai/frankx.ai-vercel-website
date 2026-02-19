@@ -78,13 +78,9 @@ export async function POST(request: NextRequest) {
       guideId: guideSlug
     })
 
-    // Make download URL absolute for email context
-    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://frankx.ai'
-    const absolutePdfUrl = pdfUrl.startsWith('http') ? pdfUrl : `${baseUrl}${pdfUrl}`
-
     // Send email with Resend
     const { data, error } = await resend.emails.send({
-      from: 'Frank from FrankX.AI <frank@mail.frankx.ai>',
+      from: 'Frank from FrankX.AI <frank@frankx.ai>',
       to: [leadData.email],
       subject: `Your ${pdfTitle} Guide from FrankX.AI`,
       html: `
@@ -134,7 +130,7 @@ export async function POST(request: NextRequest) {
       </div>
 
       <div style="text-align: center; margin: 36px 0;">
-        <a href="${absolutePdfUrl}"
+        <a href="${pdfUrl}"
            style="display: inline-block; padding: 18px 40px; background: linear-gradient(135deg, #06b6d4 0%, #8B5CF6 50%, #9333ea 100%); color: white; text-decoration: none; border-radius: 16px; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 17px; box-shadow: 0 12px 32px rgba(6, 182, 212, 0.4); transition: all 0.3s;">
           Download Your Guide →
         </a>
@@ -157,7 +153,7 @@ export async function POST(request: NextRequest) {
           Frank Guzman
         </p>
         <p style="font-size: 13px; color: #94a3b8; margin: 0; line-height: 1.6;">
-          AI Architect & Music Creator<br>
+          Musician → AI Systems Architect<br>
           <span style="color: #22d3ee;">500+ AI Songs</span> | <span style="color: #8B5CF6;">Enterprise AI Systems</span>
         </p>
       </div>

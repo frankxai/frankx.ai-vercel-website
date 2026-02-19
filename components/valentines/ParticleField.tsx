@@ -37,7 +37,7 @@ export function ParticleField({
     },
     fire: {
       gradient: 'radial-gradient(circle, #f59e0b, #ef4444)',
-      glow: 'rgba(245, 158, 11, 0.4)',
+      glow: 'rgba(245, 158, 11, 0.3)',
     },
   }
 

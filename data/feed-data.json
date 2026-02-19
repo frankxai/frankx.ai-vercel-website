@@ -1,0 +1,824 @@
+{
+  "generated": "2026-02-16T21:06:33.410Z",
+  "count": 50,
+  "entries": [
+    {
+      "id": "build-1771275967503",
+      "timestamp": "2026-02-16T21:06:07.503Z",
+      "type": "build",
+      "title": "Production build completed",
+      "description": "Next.js build successful. Generated interlinked HTML, RSS feed, search index, and vault manifest.",
+      "metadata": {
+        "files": 4799,
+        "status": "success"
+      },
+      "tags": [
+        "build",
+        "next.js",
+        "prebuild"
+      ]
+    },
+    {
+      "id": "commit-23f7db4",
+      "timestamp": "2026-02-16T15:43:10.000Z",
+      "type": "commit",
+      "title": "fix: Recreate skill-rules.json with ACOS v10 updates",
+      "description": "Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>",
+      "metadata": {
+        "commit": "23f7db4",
+        "branch": "main",
+        "files": 1,
+        "status": "success"
+      },
+      "tags": [
+        "fix",
+        "acos",
+        "skill"
+      ]
+    },
+    {
+      "id": "commit-70f4beb",
+      "timestamp": "2026-02-16T15:42:28.000Z",
+      "type": "commit",
+      "title": "feat: ACOS v10 skill activation + premium newsletter redesign",
+      "description": "**Phase 1: Fix ACOS Skill Activation System**",
+      "metadata": {
+        "commit": "70f4beb",
+        "branch": "main",
+        "files": 5,
+        "status": "success"
+      },
+      "tags": [
+        "feat",
+        "acos",
+        "skill",
+        "newsletter"
+      ]
+    },
+    {
+      "id": "deploy-70f4beb",
+      "timestamp": "2026-02-16T15:42:28.000Z",
+      "type": "deploy",
+      "title": "feat: ACOS v10 skill activation + premium newsletter redesign",
+      "description": "Production deployment to frankx.ai via Vercel",
+      "metadata": {
+        "commit": "70f4beb",
+        "url": "https://frankx.ai",
+        "status": "success"
+      },
+      "tags": [
+        "deploy",
+        "production",
+        "vercel"
+      ]
+    },
+    {
+      "id": "commit-4a4be64",
+      "timestamp": "2026-02-15T01:00:20.000Z",
+      "type": "commit",
+      "title": "feat: Books, Music Lab, Valentine's, Games, Gallery, Admin, Blog enhancements",
+      "description": "Major accumulated work across multiple sessions:",
+      "metadata": {
+        "commit": "4a4be64",
+        "branch": "main",
+        "files": 241,
+        "status": "success"
+      },
+      "tags": [
+        "feat",
+        "blog"
+      ]
+    },
+    {
+      "id": "commit-89b154a",
+      "timestamp": "2026-02-15T00:00:20.000Z",
+      "type": "commit",
+      "title": "feat: Council — AI coach that suggests top 3 priorities from system state",
+      "description": "Reads 7 signal sources (git state, production sync, books progress, social",
+      "metadata": {
+        "commit": "89b154a",
+        "branch": "main",
+        "files": 2,
+        "status": "success"
+      },
+      "tags": [
+        "feat"
+      ]
+    },
+    {
+      "id": "deploy-89b154a",
+      "timestamp": "2026-02-15T00:00:20.000Z",
+      "type": "deploy",
+      "title": "feat: Council — AI coach that suggests top 3 priorities from system state",
+      "description": "Production deployment to frankx.ai via Vercel",
+      "metadata": {
+        "commit": "89b154a",
+        "url": "https://frankx.ai",
+        "status": "success"
+      },
+      "tags": [
+        "deploy",
+        "production",
+        "vercel"
+      ]
+    },
+    {
+      "id": "trajectory-code_development_traj_1771111599410_1gsw",
+      "timestamp": "2026-02-14T23:35:28.886Z",
+      "type": "trajectory",
+      "title": "Learning: general pattern",
+      "description": "Trajectory completed with 0 tool uses. ",
+      "metadata": {
+        "intelligenceScore": 93,
+        "status": "info"
+      },
+      "tags": [
+        "learning",
+        "trajectory",
+        "general"
+      ]
+    },
+    {
+      "id": "commit-6c66cbe",
+      "timestamp": "2026-02-14T22:49:29.000Z",
+      "type": "commit",
+      "title": "refactor: Statusline v2 — meaningful information over vanity metrics",
+      "description": "Replaces raw counts (64 traj, 50 pat, 13 skills) with actionable context:",
+      "metadata": {
+        "commit": "6c66cbe",
+        "branch": "main",
+        "files": 1,
+        "status": "success"
+      },
+      "tags": [
+        "refactor"
+      ]
+    },
+    {
+      "id": "deploy-6c66cbe",
+      "timestamp": "2026-02-14T22:49:29.000Z",
+      "type": "deploy",
+      "title": "refactor: Statusline v2 — meaningful information over vanity metrics",
+      "description": "Production deployment to frankx.ai via Vercel",
+      "metadata": {
+        "commit": "6c66cbe",
+        "url": "https://frankx.ai",
+        "status": "success"
+      },
+      "tags": [
+        "deploy",
+        "production",
+        "vercel"
+      ]
+    },
+    {
+      "id": "commit-5e00328",
+      "timestamp": "2026-02-14T22:19:15.000Z",
+      "type": "commit",
+      "title": "feat: Book covers, ACOS publishing skill, PDF pipeline, statusline books row",
+      "description": "- 5 premium book cover images + thumbnails (Gemini 3 Pro, 2:3 ratio)",
+      "metadata": {
+        "commit": "5e00328",
+        "branch": "main",
+        "files": 6,
+        "status": "success"
+      },
+      "tags": [
+        "feat",
+        "acos",
+        "skill"
+      ]
+    },
+    {
+      "id": "trajectory-code_development_traj_1771107104654_d9em",
+      "timestamp": "2026-02-14T22:15:46.424Z",
+      "type": "trajectory",
+      "title": "Learning: general pattern",
+      "description": "Trajectory completed with 0 tool uses. ",
+      "metadata": {
+        "intelligenceScore": 93,
+        "status": "info"
+      },
+      "tags": [
+        "learning",
+        "trajectory",
+        "general"
+      ]
+    },
+    {
+      "id": "trajectory-code_development_traj_1771101489086_3eal",
+      "timestamp": "2026-02-14T20:45:54.899Z",
+      "type": "trajectory",
+      "title": "Learning: general pattern",
+      "description": "Trajectory completed with 0 tool uses. ",
+      "metadata": {
+        "intelligenceScore": 93,
+        "status": "info"
+      },
+      "tags": [
+        "learning",
+        "trajectory",
+        "general"
+      ]
+    },
+    {
+      "id": "trajectory-code_development_traj_1771081441102_251w",
+      "timestamp": "2026-02-14T15:07:42.558Z",
+      "type": "trajectory",
+      "title": "Learning: general pattern",
+      "description": "Trajectory completed with 0 tool uses. ",
+      "metadata": {
+        "intelligenceScore": 93,
+        "status": "info"
+      },
+      "tags": [
+        "learning",
+        "trajectory",
+        "general"
+      ]
+    },
+    {
+      "id": "commit-93539d0",
+      "timestamp": "2026-02-14T14:15:28.000Z",
+      "type": "commit",
+      "title": "feat: ACOS v10 — Autonomous Intelligence",
+      "description": "5 new defense-in-depth systems:",
+      "metadata": {
+        "commit": "93539d0",
+        "branch": "main",
+        "files": 16,
+        "status": "success"
+      },
+      "tags": [
+        "feat",
+        "acos",
+        "intelligence"
+      ]
+    },
+    {
+      "id": "deploy-93539d0",
+      "timestamp": "2026-02-14T14:15:28.000Z",
+      "type": "deploy",
+      "title": "feat: ACOS v10 — Autonomous Intelligence",
+      "description": "Production deployment to frankx.ai via Vercel",
+      "metadata": {
+        "commit": "93539d0",
+        "url": "https://frankx.ai",
+        "status": "success"
+      },
+      "tags": [
+        "deploy",
+        "production",
+        "vercel"
+      ]
+    },
+    {
+      "id": "trajectory-code_development_traj_1771040368842_9jnw",
+      "timestamp": "2026-02-14T03:40:52.351Z",
+      "type": "trajectory",
+      "title": "Learning: general pattern",
+      "description": "Trajectory completed with 0 tool uses. ",
+      "metadata": {
+        "intelligenceScore": 93,
+        "status": "info"
+      },
+      "tags": [
+        "learning",
+        "trajectory",
+        "general"
+      ]
+    },
+    {
+      "id": "trajectory-code_development_traj_1771034974807_te1v",
+      "timestamp": "2026-02-14T02:22:47.080Z",
+      "type": "trajectory",
+      "title": "Learning: general pattern",
+      "description": "Trajectory completed with 0 tool uses. ",
+      "metadata": {
+        "intelligenceScore": 93,
+        "status": "info"
+      },
+      "tags": [
+        "learning",
+        "trajectory",
+        "general"
+      ]
+    },
+    {
+      "id": "commit-35e08b0",
+      "timestamp": "2026-02-14T01:58:54.000Z",
+      "type": "commit",
+      "title": "feat: Investor admin dashboard + product architecture strategy",
+      "description": "- /frankx-investment-dashboard: Product inventory table with category",
+      "metadata": {
+        "commit": "35e08b0",
+        "branch": "main",
+        "files": 2,
+        "status": "success"
+      },
+      "tags": [
+        "feat"
+      ]
+    },
+    {
+      "id": "commit-d5aec51",
+      "timestamp": "2026-02-14T01:45:58.000Z",
+      "type": "commit",
+      "title": "feat: Investor Intelligence vertical + adaptive mega-menu",
+      "description": "New vertical at /investor with dual-track products (institutional + individual):",
+      "metadata": {
+        "commit": "d5aec51",
+        "branch": "main",
+        "files": 11,
+        "status": "success"
+      },
+      "tags": [
+        "feat",
+        "intelligence"
+      ]
+    },
+    {
+      "id": "commit-90ed351",
+      "timestamp": "2026-02-14T00:53:49.000Z",
+      "type": "commit",
+      "title": "feat: ACOS v9.3 — Verified Intelligence",
+      "description": "Fix broken data layer: skill weights now populated (8 domains, 66 tool",
+      "metadata": {
+        "commit": "90ed351",
+        "branch": "main",
+        "files": 20,
+        "status": "success"
+      },
+      "tags": [
+        "feat",
+        "acos",
+        "intelligence"
+      ]
+    },
+    {
+      "id": "trajectory-code_development_traj_1771029937926_bpy0",
+      "timestamp": "2026-02-14T00:48:13.217Z",
+      "type": "trajectory",
+      "title": "Learning: general pattern",
+      "description": "Trajectory completed with 0 tool uses. ",
+      "metadata": {
+        "intelligenceScore": 93,
+        "status": "info"
+      },
+      "tags": [
+        "learning",
+        "trajectory",
+        "general"
+      ]
+    },
+    {
+      "id": "commit-3e6e764",
+      "timestamp": "2026-02-14T00:28:06.000Z",
+      "type": "commit",
+      "title": "feat: ACOS v9.2 — 3-Guardian Governance Framework",
+      "description": "Quality Gate System with 3 independent Guardians that review all",
+      "metadata": {
+        "commit": "3e6e764",
+        "branch": "main",
+        "files": 5,
+        "status": "success"
+      },
+      "tags": [
+        "feat",
+        "acos"
+      ]
+    },
+    {
+      "id": "commit-33af24b",
+      "timestamp": "2026-02-14T00:17:42.000Z",
+      "type": "commit",
+      "title": "feat: ACOS v9.1 — Executable Intelligence",
+      "description": "Executable Routing: Routes now output full action plans instead of",
+      "metadata": {
+        "commit": "33af24b",
+        "branch": "main",
+        "files": 2,
+        "status": "success"
+      },
+      "tags": [
+        "feat",
+        "acos",
+        "intelligence"
+      ]
+    },
+    {
+      "id": "deploy-33af24b",
+      "timestamp": "2026-02-14T00:17:42.000Z",
+      "type": "deploy",
+      "title": "feat: ACOS v9.1 — Executable Intelligence",
+      "description": "Production deployment to frankx.ai via Vercel",
+      "metadata": {
+        "commit": "33af24b",
+        "url": "https://frankx.ai",
+        "status": "success"
+      },
+      "tags": [
+        "deploy",
+        "production",
+        "vercel"
+      ]
+    },
+    {
+      "id": "commit-47d5bf6",
+      "timestamp": "2026-02-13T22:45:43.000Z",
+      "type": "commit",
+      "title": "fix: statusline grep -c exit code causing integer parse error",
+      "description": "grep -c exits 1 when count is 0, causing",
+      "metadata": {
+        "commit": "47d5bf6",
+        "branch": "main",
+        "files": 1,
+        "status": "success"
+      },
+      "tags": [
+        "fix"
+      ]
+    },
+    {
+      "id": "commit-ac6270a",
+      "timestamp": "2026-02-13T20:59:35.000Z",
+      "type": "commit",
+      "title": "feat: ACOS v9.0 — Adaptive Creator Intelligence",
+      "description": "Learning system: Fixed avgSuccess (was always 0%), added intelligence",
+      "metadata": {
+        "commit": "ac6270a",
+        "branch": "main",
+        "files": 4,
+        "status": "success"
+      },
+      "tags": [
+        "feat",
+        "acos",
+        "intelligence"
+      ]
+    },
+    {
+      "id": "commit-49940e5",
+      "timestamp": "2026-02-13T18:00:16.000Z",
+      "type": "commit",
+      "title": "feat: ACOS v8.0 — Curated Creator Intelligence",
+      "description": "Complete system redesign: 21 vetted skills (from 630+ unvetted), 8 specialist",
+      "metadata": {
+        "commit": "49940e5",
+        "branch": "main",
+        "files": 3,
+        "status": "success"
+      },
+      "tags": [
+        "feat",
+        "acos",
+        "intelligence"
+      ]
+    },
+    {
+      "id": "commit-30148f0",
+      "timestamp": "2026-02-13T17:48:15.000Z",
+      "type": "commit",
+      "title": "feat: add ACOS creator intelligence status bar",
+      "description": "Replace broken npx @claude-flow/cli statusline (npm Invalid Version",
+      "metadata": {
+        "commit": "30148f0",
+        "branch": "main",
+        "files": 2,
+        "status": "success"
+      },
+      "tags": [
+        "feat",
+        "acos",
+        "intelligence"
+      ]
+    },
+    {
+      "id": "deploy-30148f0",
+      "timestamp": "2026-02-13T17:48:15.000Z",
+      "type": "deploy",
+      "title": "feat: add ACOS creator intelligence status bar",
+      "description": "Production deployment to frankx.ai via Vercel",
+      "metadata": {
+        "commit": "30148f0",
+        "url": "https://frankx.ai",
+        "status": "success"
+      },
+      "tags": [
+        "deploy",
+        "production",
+        "vercel"
+      ]
+    },
+    {
+      "id": "commit-2c5658b",
+      "timestamp": "2026-02-13T17:44:12.000Z",
+      "type": "commit",
+      "title": "feat: publish full site update sweep",
+      "description": "feat: publish full site update sweep",
+      "metadata": {
+        "commit": "2c5658b",
+        "branch": "main",
+        "files": 569,
+        "status": "success"
+      },
+      "tags": [
+        "feat"
+      ]
+    },
+    {
+      "id": "commit-6177ce5",
+      "timestamp": "2026-02-13T17:22:22.000Z",
+      "type": "commit",
+      "title": "chore: reduce lint warnings in dashboard and media components",
+      "description": "chore: reduce lint warnings in dashboard and media components",
+      "metadata": {
+        "commit": "6177ce5",
+        "branch": "main",
+        "files": 7,
+        "status": "success"
+      },
+      "tags": [
+        "chore"
+      ]
+    },
+    {
+      "id": "commit-ac7afbf",
+      "timestamp": "2026-02-13T17:09:29.000Z",
+      "type": "commit",
+      "title": "fix: exclude internal agent docs from production sync",
+      "description": "fix: exclude internal agent docs from production sync",
+      "metadata": {
+        "commit": "ac7afbf",
+        "branch": "main",
+        "files": 2,
+        "status": "success"
+      },
+      "tags": [
+        "fix",
+        "agent"
+      ]
+    },
+    {
+      "id": "deploy-ac7afbf",
+      "timestamp": "2026-02-13T17:09:29.000Z",
+      "type": "deploy",
+      "title": "fix: exclude internal agent docs from production sync",
+      "description": "Production deployment to frankx.ai via Vercel",
+      "metadata": {
+        "commit": "ac7afbf",
+        "url": "https://frankx.ai",
+        "status": "success"
+      },
+      "tags": [
+        "deploy",
+        "production",
+        "vercel"
+      ]
+    },
+    {
+      "id": "commit-f35d9d2",
+      "timestamp": "2026-02-13T17:06:25.000Z",
+      "type": "commit",
+      "title": "fix: stabilize CI checks and production sync tooling",
+      "description": "fix: stabilize CI checks and production sync tooling",
+      "metadata": {
+        "commit": "f35d9d2",
+        "branch": "main",
+        "files": 12,
+        "status": "success"
+      },
+      "tags": [
+        "fix"
+      ]
+    },
+    {
+      "id": "deploy-f35d9d2",
+      "timestamp": "2026-02-13T17:06:25.000Z",
+      "type": "deploy",
+      "title": "fix: stabilize CI checks and production sync tooling",
+      "description": "Production deployment to frankx.ai via Vercel",
+      "metadata": {
+        "commit": "f35d9d2",
+        "url": "https://frankx.ai",
+        "status": "success"
+      },
+      "tags": [
+        "deploy",
+        "production",
+        "vercel"
+      ]
+    },
+    {
+      "id": "commit-951f802",
+      "timestamp": "2026-02-10T16:57:52.000Z",
+      "type": "commit",
+      "title": "docs: add GitHub profile landing kit",
+      "description": "docs: add GitHub profile landing kit",
+      "metadata": {
+        "commit": "951f802",
+        "branch": "main",
+        "files": 2,
+        "status": "success"
+      },
+      "tags": [
+        "docs"
+      ]
+    },
+    {
+      "id": "commit-0bb34f6",
+      "timestamp": "2026-02-10T15:36:30.000Z",
+      "type": "commit",
+      "title": "Migrate all legacy blog diagrams to static SVGs",
+      "description": "Migrate all legacy blog diagrams to static SVGs",
+      "metadata": {
+        "commit": "0bb34f6",
+        "branch": "main",
+        "files": 141,
+        "status": "success"
+      },
+      "tags": [
+        "blog"
+      ]
+    },
+    {
+      "id": "trajectory-code_development_traj_1770571049838_cmtn",
+      "timestamp": "2026-02-08T17:19:21.224Z",
+      "type": "trajectory",
+      "title": "Learning: general pattern",
+      "description": "Trajectory completed with 0 tool uses. ",
+      "metadata": {
+        "intelligenceScore": 93,
+        "status": "info"
+      },
+      "tags": [
+        "learning",
+        "trajectory",
+        "general"
+      ]
+    },
+    {
+      "id": "commit-d011f62",
+      "timestamp": "2026-02-08T03:45:00.000Z",
+      "type": "commit",
+      "title": "Add 10 more family tree visualization variants (V6-V15)",
+      "description": "Design lab now has 15 total approaches:",
+      "metadata": {
+        "commit": "d011f62",
+        "branch": "main",
+        "files": 11,
+        "status": "success"
+      },
+      "tags": []
+    },
+    {
+      "id": "trajectory-code_development_traj_1770516412096_5ezf",
+      "timestamp": "2026-02-08T02:10:27.705Z",
+      "type": "trajectory",
+      "title": "Learning: general pattern",
+      "description": "Trajectory completed with 0 tool uses. ",
+      "metadata": {
+        "intelligenceScore": 93,
+        "status": "info"
+      },
+      "tags": [
+        "learning",
+        "trajectory",
+        "general"
+      ]
+    },
+    {
+      "id": "trajectory-code_development_traj_1770515315329_u2vg",
+      "timestamp": "2026-02-08T01:52:44.165Z",
+      "type": "trajectory",
+      "title": "Learning: general pattern",
+      "description": "Trajectory completed with 0 tool uses. ",
+      "metadata": {
+        "intelligenceScore": 93,
+        "status": "info"
+      },
+      "tags": [
+        "learning",
+        "trajectory",
+        "general"
+      ]
+    },
+    {
+      "id": "commit-004315b",
+      "timestamp": "2026-02-08T00:33:27.000Z",
+      "type": "commit",
+      "title": "Add 5 family tree visualization variants in design lab",
+      "description": "New design-lab experiment: /design-lab/family-tree with 5 approaches",
+      "metadata": {
+        "commit": "004315b",
+        "branch": "main",
+        "files": 7,
+        "status": "success"
+      },
+      "tags": []
+    },
+    {
+      "id": "commit-54dd0fa",
+      "timestamp": "2026-02-07T22:55:41.000Z",
+      "type": "commit",
+      "title": "Add Riemer grandparents, rename /opa to /opa-und-oma for all 4 grandparents",
+      "description": "- Add Alexander & Paulina Riemer (paternal grandparents) to family graph",
+      "metadata": {
+        "commit": "54dd0fa",
+        "branch": "main",
+        "files": 8,
+        "status": "success"
+      },
+      "tags": []
+    },
+    {
+      "id": "commit-90ee862",
+      "timestamp": "2026-02-07T20:43:38.000Z",
+      "type": "commit",
+      "title": "Add ACOS v7.0: Unified auto-router, Ultraworld creative swarm, full claude-flow absorption",
+      "description": "- ACOS v7.0: single /acos command auto-routes all requests by intent detection",
+      "metadata": {
+        "commit": "90ee862",
+        "branch": "main",
+        "files": 141,
+        "status": "success"
+      },
+      "tags": [
+        "acos"
+      ]
+    },
+    {
+      "id": "commit-2c2cf4d",
+      "timestamp": "2026-02-07T18:36:29.000Z",
+      "type": "commit",
+      "title": "Add family hub: relationship graph, family tree, and Opa page",
+      "description": "Build a complete family hub system for the Riemer-Gorte family:",
+      "metadata": {
+        "commit": "2c2cf4d",
+        "branch": "main",
+        "files": 10,
+        "status": "success"
+      },
+      "tags": []
+    },
+    {
+      "id": "commit-2b750ad",
+      "timestamp": "2026-02-06T12:47:11.000Z",
+      "type": "commit",
+      "title": "Add Phase 2: FAQ sections with FAQPage schema to all 7 research pages",
+      "description": "- 30 FAQs across 7 pages (5 per portal + 4 on hub index)",
+      "metadata": {
+        "commit": "2b750ad",
+        "branch": "main",
+        "files": 7,
+        "status": "success"
+      },
+      "tags": []
+    },
+    {
+      "id": "commit-91a59a1",
+      "timestamp": "2026-02-06T12:05:53.000Z",
+      "type": "commit",
+      "title": "Add 6 AI Ops sub-route pages: architecture, patterns, models, maturity, accelerator packs, AGI-ready",
+      "description": "Complete the AI Operations Research Hub with deep-dive pages for each topic area,",
+      "metadata": {
+        "commit": "91a59a1",
+        "branch": "main",
+        "files": 6,
+        "status": "success"
+      },
+      "tags": []
+    },
+    {
+      "id": "commit-de9db8d",
+      "timestamp": "2026-02-06T11:44:49.000Z",
+      "type": "commit",
+      "title": "Add Phase 1 trust & discoverability: methodology page, schema.org, sitemap, enriched sources",
+      "description": "- New methodology page documenting 5-stage research process, source hierarchy, maturity model",
+      "metadata": {
+        "commit": "de9db8d",
+        "branch": "main",
+        "files": 10,
+        "status": "success"
+      },
+      "tags": []
+    },
+    {
+      "id": "deploy-b2d3ca5",
+      "timestamp": "2026-02-06T10:17:46.000Z",
+      "type": "deploy",
+      "title": "Add 3 new research portals: Database AI, Sovereign AI, Cost Engineering + 6 architecture visuals",
+      "description": "Production deployment to frankx.ai via Vercel",
+      "metadata": {
+        "commit": "b2d3ca5",
+        "url": "https://frankx.ai",
+        "status": "success"
+      },
+      "tags": [
+        "deploy",
+        "production",
+        "vercel"
+      ]
+    }
+  ]
+}

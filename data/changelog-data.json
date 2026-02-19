@@ -1,0 +1,1418 @@
+{
+  "generated": "2026-02-16T21:08:31.448Z",
+  "weeks": [
+    {
+      "id": "NaN-WNaN",
+      "label": "Week NaN",
+      "dateRange": "Invalid Date-Invalid Date, NaN",
+      "summary": "2 improvements",
+      "stats": {
+        "commits": 2,
+        "linesAdded": 4,
+        "filesChanged": 1,
+        "newPages": 0,
+        "imagesGenerated": 0
+      },
+      "entries": [
+        {
+          "id": "cl-NaN-WNaN-doesn't",
+          "date": "NaN-WNaN",
+          "type": "improved",
+          "title": "'archived'",
+          "description": "'private').",
+          "tags": [],
+          "commit": "doesn't",
+          "impact": "small",
+          "metadata": {
+            "files": 1,
+            "lines": 4
+          }
+        }
+      ]
+    },
+    {
+      "id": "2026-W08",
+      "label": "Week 8",
+      "dateRange": "Feb 16-Feb 22, 2026",
+      "summary": "1 features shipped, 2 improvements, 1 fixes",
+      "stats": {
+        "commits": 4,
+        "linesAdded": 3096,
+        "filesChanged": 10,
+        "newPages": 0,
+        "imagesGenerated": 1
+      },
+      "entries": [
+        {
+          "id": "cl-2026-W08-23f7db4",
+          "date": "2026-W08",
+          "type": "fixed",
+          "title": "fix: Recreate skill-rules.json with ACOS v10 updates",
+          "description": "Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>",
+          "tags": [
+            "acos"
+          ],
+          "commit": "23f7db4",
+          "impact": "small",
+          "metadata": {
+            "files": 1,
+            "lines": 76
+          }
+        },
+        {
+          "id": "cl-2026-W08-70f4beb",
+          "date": "2026-W08",
+          "type": "shipped",
+          "title": "feat: ACOS v10 skill activation + premium newsletter redesign",
+          "description": "**Phase 1: Fix ACOS Skill Activation System**",
+          "tags": [
+            "acos",
+            "newsletter"
+          ],
+          "commit": "70f4beb",
+          "impact": "major",
+          "metadata": {
+            "files": 5,
+            "lines": 1510
+          }
+        },
+        {
+          "id": "cl-2026-W08-5c67e3f",
+          "date": "2026-W08",
+          "type": "improved",
+          "title": "index on main: 4a4be64 feat: Books, Music Lab, Valentine's, Games, Gallery, Admin, Blog enhancements",
+          "description": "index on main: 4a4be64 feat: Books, Music Lab, Valentine's, Games, Gallery, Admin, Blog enhancements",
+          "tags": [],
+          "commit": "5c67e3f",
+          "impact": "major",
+          "metadata": {
+            "files": 4,
+            "lines": 1510
+          }
+        }
+      ]
+    },
+    {
+      "id": "2026-W07",
+      "label": "Week 7",
+      "dateRange": "Feb 9-Feb 15, 2026",
+      "summary": "13 features shipped, 4 improvements, 3 fixes",
+      "stats": {
+        "commits": 20,
+        "linesAdded": 127514,
+        "filesChanged": 1049,
+        "newPages": 0,
+        "imagesGenerated": 0
+      },
+      "entries": [
+        {
+          "id": "cl-2026-W07-4a4be64",
+          "date": "2026-W07",
+          "type": "shipped",
+          "title": "feat: Books, Music Lab, Valentine's, Games, Gallery, Admin, Blog enhancements",
+          "description": "Major accumulated work across multiple sessions:",
+          "tags": [],
+          "commit": "4a4be64",
+          "impact": "major",
+          "metadata": {
+            "files": 241,
+            "lines": 38373
+          }
+        },
+        {
+          "id": "cl-2026-W07-89b154a",
+          "date": "2026-W07",
+          "type": "shipped",
+          "title": "feat: Council — AI coach that suggests top 3 priorities from system state",
+          "description": "Reads 7 signal sources (git state, production sync, books progress, social",
+          "tags": [],
+          "commit": "89b154a",
+          "impact": "medium",
+          "metadata": {
+            "files": 2,
+            "lines": 161
+          }
+        },
+        {
+          "id": "cl-2026-W07-6c66cbe",
+          "date": "2026-W07",
+          "type": "improved",
+          "title": "refactor: Statusline v2 — meaningful information over vanity metrics",
+          "description": "Replaces raw counts (64 traj, 50 pat, 13 skills) with actionable context:",
+          "tags": [],
+          "commit": "6c66cbe",
+          "impact": "medium",
+          "metadata": {
+            "files": 1,
+            "lines": 163
+          }
+        },
+        {
+          "id": "cl-2026-W07-5e00328",
+          "date": "2026-W07",
+          "type": "shipped",
+          "title": "feat: Book covers, ACOS publishing skill, PDF pipeline, statusline books row",
+          "description": "- 5 premium book cover images + thumbnails (Gemini 3 Pro, 2:3 ratio)",
+          "tags": [
+            "acos"
+          ],
+          "commit": "5e00328",
+          "impact": "major",
+          "metadata": {
+            "files": 6,
+            "lines": 1547
+          }
+        },
+        {
+          "id": "cl-2026-W07-93539d0",
+          "date": "2026-W07",
+          "type": "shipped",
+          "title": "feat: ACOS v10 — Autonomous Intelligence",
+          "description": "5 new defense-in-depth systems:",
+          "tags": [
+            "acos",
+            "intelligence"
+          ],
+          "commit": "93539d0",
+          "impact": "major",
+          "metadata": {
+            "files": 16,
+            "lines": 1875
+          }
+        },
+        {
+          "id": "cl-2026-W07-35e08b0",
+          "date": "2026-W07",
+          "type": "shipped",
+          "title": "feat: Investor admin dashboard + product architecture strategy",
+          "description": "- /frankx-investment-dashboard: Product inventory table with category",
+          "tags": [],
+          "commit": "35e08b0",
+          "impact": "major",
+          "metadata": {
+            "files": 2,
+            "lines": 733
+          }
+        },
+        {
+          "id": "cl-2026-W07-d5aec51",
+          "date": "2026-W07",
+          "type": "shipped",
+          "title": "feat: Investor Intelligence vertical + adaptive mega-menu",
+          "description": "New vertical at /investor with dual-track products (institutional + individual):",
+          "tags": [
+            "intelligence"
+          ],
+          "commit": "d5aec51",
+          "impact": "major",
+          "metadata": {
+            "files": 11,
+            "lines": 1838
+          }
+        },
+        {
+          "id": "cl-2026-W07-90ed351",
+          "date": "2026-W07",
+          "type": "shipped",
+          "title": "feat: ACOS v9.3 — Verified Intelligence",
+          "description": "Fix broken data layer: skill weights now populated (8 domains, 66 tool",
+          "tags": [
+            "acos",
+            "intelligence"
+          ],
+          "commit": "90ed351",
+          "impact": "major",
+          "metadata": {
+            "files": 20,
+            "lines": 647
+          }
+        },
+        {
+          "id": "cl-2026-W07-3e6e764",
+          "date": "2026-W07",
+          "type": "shipped",
+          "title": "feat: ACOS v9.2 — 3-Guardian Governance Framework",
+          "description": "Quality Gate System with 3 independent Guardians that review all",
+          "tags": [
+            "acos"
+          ],
+          "commit": "3e6e764",
+          "impact": "major",
+          "metadata": {
+            "files": 5,
+            "lines": 668
+          }
+        },
+        {
+          "id": "cl-2026-W07-33af24b",
+          "date": "2026-W07",
+          "type": "shipped",
+          "title": "feat: ACOS v9.1 — Executable Intelligence",
+          "description": "Executable Routing: Routes now output full action plans instead of",
+          "tags": [
+            "acos",
+            "intelligence"
+          ],
+          "commit": "33af24b",
+          "impact": "major",
+          "metadata": {
+            "files": 2,
+            "lines": 595
+          }
+        }
+      ]
+    },
+    {
+      "id": "2026-W06",
+      "label": "Week 6",
+      "dateRange": "Feb 2-Feb 8, 2026",
+      "summary": "4 features shipped, 12 improvements",
+      "stats": {
+        "commits": 16,
+        "linesAdded": 45586,
+        "filesChanged": 245,
+        "newPages": 5,
+        "imagesGenerated": 3
+      },
+      "entries": [
+        {
+          "id": "cl-2026-W06-d011f62",
+          "date": "2026-W06",
+          "type": "improved",
+          "title": "Add 10 more family tree visualization variants (V6-V15)",
+          "description": "Design lab now has 15 total approaches:",
+          "tags": [],
+          "commit": "d011f62",
+          "impact": "major",
+          "metadata": {
+            "files": 11,
+            "lines": 4217
+          }
+        },
+        {
+          "id": "cl-2026-W06-004315b",
+          "date": "2026-W06",
+          "type": "improved",
+          "title": "Add 5 family tree visualization variants in design lab",
+          "description": "New design-lab experiment: /design-lab/family-tree with 5 approaches",
+          "tags": [],
+          "commit": "004315b",
+          "impact": "major",
+          "metadata": {
+            "files": 7,
+            "lines": 1260
+          }
+        },
+        {
+          "id": "cl-2026-W06-54dd0fa",
+          "date": "2026-W06",
+          "type": "improved",
+          "title": "Add Riemer grandparents, rename /opa to /opa-und-oma for all 4 grandparents",
+          "description": "- Add Alexander & Paulina Riemer (paternal grandparents) to family graph",
+          "tags": [],
+          "commit": "54dd0fa",
+          "impact": "medium",
+          "metadata": {
+            "files": 8,
+            "lines": 351
+          }
+        },
+        {
+          "id": "cl-2026-W06-90ee862",
+          "date": "2026-W06",
+          "type": "shipped",
+          "title": "Add ACOS v7.0: Unified auto-router, Ultraworld creative swarm, full claude-flow absorption",
+          "description": "- ACOS v7.0: single /acos command auto-routes all requests by intent detection",
+          "tags": [
+            "acos"
+          ],
+          "commit": "90ee862",
+          "impact": "major",
+          "metadata": {
+            "files": 141,
+            "lines": 22923
+          }
+        },
+        {
+          "id": "cl-2026-W06-2c2cf4d",
+          "date": "2026-W06",
+          "type": "improved",
+          "title": "Add family hub: relationship graph, family tree, and Opa page",
+          "description": "Build a complete family hub system for the Riemer-Gorte family:",
+          "tags": [],
+          "commit": "2c2cf4d",
+          "impact": "major",
+          "metadata": {
+            "files": 10,
+            "lines": 1023
+          }
+        },
+        {
+          "id": "cl-2026-W06-2b750ad",
+          "date": "2026-W06",
+          "type": "improved",
+          "title": "Add Phase 2: FAQ sections with FAQPage schema to all 7 research pages",
+          "description": "- 30 FAQs across 7 pages (5 per portal + 4 on hub index)",
+          "tags": [],
+          "commit": "2b750ad",
+          "impact": "major",
+          "metadata": {
+            "files": 7,
+            "lines": 583
+          }
+        },
+        {
+          "id": "cl-2026-W06-91a59a1",
+          "date": "2026-W06",
+          "type": "improved",
+          "title": "Add 6 AI Ops sub-route pages: architecture, patterns, models, maturity, accelerator packs, AGI-ready",
+          "description": "Complete the AI Operations Research Hub with deep-dive pages for each topic area,",
+          "tags": [],
+          "commit": "91a59a1",
+          "impact": "major",
+          "metadata": {
+            "files": 6,
+            "lines": 955
+          }
+        },
+        {
+          "id": "cl-2026-W06-de9db8d",
+          "date": "2026-W06",
+          "type": "improved",
+          "title": "Add Phase 1 trust & discoverability: methodology page, schema.org, sitemap, enriched sources",
+          "description": "- New methodology page documenting 5-stage research process, source hierarchy, maturity model",
+          "tags": [],
+          "commit": "de9db8d",
+          "impact": "major",
+          "metadata": {
+            "files": 10,
+            "lines": 914
+          }
+        },
+        {
+          "id": "cl-2026-W06-c9f9684",
+          "date": "2026-W06",
+          "type": "improved",
+          "title": "Enrich research portals with deep research agent findings (164 sources)",
+          "description": "- Oracle AI Database: +10 sources (Select AI Agent, MCP, Hybrid Vector, RAFT, PQC)",
+          "tags": [],
+          "commit": "c9f9684",
+          "impact": "small",
+          "metadata": {
+            "files": 4,
+            "lines": 39
+          }
+        },
+        {
+          "id": "cl-2026-W06-b2d3ca5",
+          "date": "2026-W06",
+          "type": "improved",
+          "title": "Add 3 new research portals: Database AI, Sovereign AI, Cost Engineering + 6 architecture visuals",
+          "description": "New portals:",
+          "tags": [],
+          "commit": "b2d3ca5",
+          "impact": "major",
+          "metadata": {
+            "files": 6,
+            "lines": 1911
+          }
+        }
+      ]
+    },
+    {
+      "id": "2026-W05",
+      "label": "Week 5",
+      "dateRange": "Jan 26-Feb 1, 2026",
+      "summary": "52 features shipped, 22 improvements, 22 fixes",
+      "stats": {
+        "commits": 96,
+        "linesAdded": 190965,
+        "filesChanged": 1504,
+        "newPages": 1,
+        "imagesGenerated": 1
+      },
+      "entries": [
+        {
+          "id": "cl-2026-W05-a9b1d82",
+          "date": "2026-W05",
+          "type": "shipped",
+          "title": "feat: Premium multi-agent infrastructure overhaul",
+          "description": "## New Architecture",
+          "tags": [],
+          "commit": "a9b1d82",
+          "impact": "major",
+          "metadata": {
+            "files": 15,
+            "lines": 2472
+          }
+        },
+        {
+          "id": "cl-2026-W05-d211408",
+          "date": "2026-W05",
+          "type": "fixed",
+          "title": "fix: resolve build errors and update blog SEO metadata",
+          "description": "- Fix template literal syntax errors in lib/prompts.ts (escaped brackets)",
+          "tags": [
+            "build",
+            "ui"
+          ],
+          "commit": "d211408",
+          "impact": "major",
+          "metadata": {
+            "files": 38,
+            "lines": 277
+          }
+        },
+        {
+          "id": "cl-2026-W05-73f1006",
+          "date": "2026-W05",
+          "type": "shipped",
+          "title": "feat: redesign guides with outcome-focused architecture",
+          "description": "- New GuidesPageClient with category sections (Visual, Content, Audio, Founder, Dev)",
+          "tags": [
+            "ui"
+          ],
+          "commit": "73f1006",
+          "impact": "major",
+          "metadata": {
+            "files": 4,
+            "lines": 877
+          }
+        },
+        {
+          "id": "cl-2026-W05-d3edcd6",
+          "date": "2026-W05",
+          "type": "fixed",
+          "title": "fix: restore missing assets and update media references",
+          "description": "fix: restore missing assets and update media references",
+          "tags": [],
+          "commit": "d3edcd6",
+          "impact": "medium",
+          "metadata": {
+            "files": 20,
+            "lines": 115
+          }
+        },
+        {
+          "id": "cl-2026-W05-a7fa86c",
+          "date": "2026-W05",
+          "type": "shipped",
+          "title": "docs: modernize README with Next.js 16, ACOS, and elite creator positioning",
+          "description": "Co-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>",
+          "tags": [
+            "acos"
+          ],
+          "commit": "a7fa86c",
+          "impact": "medium",
+          "metadata": {
+            "files": 1,
+            "lines": 129
+          }
+        },
+        {
+          "id": "cl-2026-W05-d663993",
+          "date": "2026-W05",
+          "type": "fixed",
+          "title": "fix: escape < symbols in MDX tables to prevent JSX parsing errors",
+          "description": "- acos-enterprise-deployment-guide.mdx: <24h, <5/month → Under 24h, Under 5/month",
+          "tags": [],
+          "commit": "d663993",
+          "impact": "small",
+          "metadata": {
+            "files": 2,
+            "lines": 7
+          }
+        },
+        {
+          "id": "cl-2026-W05-3f09434",
+          "date": "2026-W05",
+          "type": "improved",
+          "title": "chore: sync specs, add rituals pages, update dependencies",
+          "description": "- Update MASTER_SPEC_INDEX.md with current status",
+          "tags": [],
+          "commit": "3f09434",
+          "impact": "major",
+          "metadata": {
+            "files": 6,
+            "lines": 2378
+          }
+        },
+        {
+          "id": "cl-2026-W05-3a13fe1",
+          "date": "2026-W05",
+          "type": "shipped",
+          "title": "feat: comprehensive site audit fixes and optimizations",
+          "description": "- Video thumbnails: Use YouTube auto-generated thumbnails instead of missing local files",
+          "tags": [],
+          "commit": "3a13fe1",
+          "impact": "medium",
+          "metadata": {
+            "files": 5,
+            "lines": 357
+          }
+        },
+        {
+          "id": "cl-2026-W05-5405538",
+          "date": "2026-W05",
+          "type": "improved",
+          "title": "docs: add sources to decision framework",
+          "description": "Referenced repositories:",
+          "tags": [],
+          "commit": "5405538",
+          "impact": "small",
+          "metadata": {
+            "files": 1,
+            "lines": 11
+          }
+        },
+        {
+          "id": "cl-2026-W05-9b5e688",
+          "date": "2026-W05",
+          "type": "shipped",
+          "title": "feat: website quality improvements and dev tooling",
+          "description": "- Set up lint-staged for faster commits (lint only staged files)",
+          "tags": [],
+          "commit": "9b5e688",
+          "impact": "major",
+          "metadata": {
+            "files": 8,
+            "lines": 683
+          }
+        }
+      ]
+    },
+    {
+      "id": "2026-W04",
+      "label": "Week 4",
+      "dateRange": "Jan 19-Jan 25, 2026",
+      "summary": "62 features shipped, 55 improvements, 57 fixes",
+      "stats": {
+        "commits": 174,
+        "linesAdded": 113821,
+        "filesChanged": 1295,
+        "newPages": 2,
+        "imagesGenerated": 3
+      },
+      "entries": [
+        {
+          "id": "cl-2026-W04-d068aa3",
+          "date": "2026-W04",
+          "type": "shipped",
+          "title": "feat: Add legal compliance pages, cookie consent, and footer legal links",
+          "description": "- Privacy Policy (/privacy) — GDPR/CCPA-compliant with data collection,",
+          "tags": [],
+          "commit": "d068aa3",
+          "impact": "major",
+          "metadata": {
+            "files": 9,
+            "lines": 716
+          }
+        },
+        {
+          "id": "cl-2026-W04-0a7f90d",
+          "date": "2026-W04",
+          "type": "shipped",
+          "title": "feat: AI Architecture Hub with BYOK prototypes and modernized design",
+          "description": "- Hub landing page, blueprints, prototypes, templates, tools pages",
+          "tags": [],
+          "commit": "0a7f90d",
+          "impact": "major",
+          "metadata": {
+            "files": 17,
+            "lines": 3775
+          }
+        },
+        {
+          "id": "cl-2026-W04-37c50a8",
+          "date": "2026-W04",
+          "type": "shipped",
+          "title": "feat: AI Architecture Hub with BYOK prototypes, blueprints, and templates",
+          "description": "Complete AI Architecture Hub implementation:",
+          "tags": [],
+          "commit": "37c50a8",
+          "impact": "major",
+          "metadata": {
+            "files": 17,
+            "lines": 3737
+          }
+        },
+        {
+          "id": "cl-2026-W04-75758bf",
+          "date": "2026-W04",
+          "type": "improved",
+          "title": "refactor: Continue brand voice cleanup across research, soul, soulbook pages",
+          "description": "Update research metadata, soul-frequency pages, and soulbook preview to",
+          "tags": [],
+          "commit": "75758bf",
+          "impact": "small",
+          "metadata": {
+            "files": 4,
+            "lines": 11
+          }
+        },
+        {
+          "id": "cl-2026-W04-19bc3f1",
+          "date": "2026-W04",
+          "type": "fixed",
+          "title": "fix: Restore @ts-expect-error directives for dynamic icon components",
+          "description": "The ts-expect-error directives suppress valid type narrowing issues with",
+          "tags": [],
+          "commit": "19bc3f1",
+          "impact": "small",
+          "metadata": {
+            "files": 2,
+            "lines": 2
+          }
+        },
+        {
+          "id": "cl-2026-W04-7296cfc",
+          "date": "2026-W04",
+          "type": "improved",
+          "title": "refactor: Deep brand voice cleanup + fix all TypeScript errors",
+          "description": "Remove spiritual/consciousness language from 10+ pages per brand guidelines:",
+          "tags": [],
+          "commit": "7296cfc",
+          "impact": "medium",
+          "metadata": {
+            "files": 14,
+            "lines": 42
+          }
+        },
+        {
+          "id": "cl-2026-W04-2877ca0",
+          "date": "2026-W04",
+          "type": "fixed",
+          "title": "fix: Remove 17 broken blog hero image refs, add onError fallback",
+          "description": "Remove non-existent image references from 17 blog post frontmatters so",
+          "tags": [],
+          "commit": "2877ca0",
+          "impact": "medium",
+          "metadata": {
+            "files": 19,
+            "lines": 14
+          }
+        },
+        {
+          "id": "cl-2026-W04-cf3212e",
+          "date": "2026-W04",
+          "type": "shipped",
+          "title": "feat: Add Oracle trademark disclaimers to OCI series, update image index",
+          "description": "- Add \"not endorsed by or affiliated with Oracle\" disclaimer to all 3",
+          "tags": [],
+          "commit": "cf3212e",
+          "impact": "small",
+          "metadata": {
+            "files": 4,
+            "lines": 33
+          }
+        },
+        {
+          "id": "cl-2026-W04-4950d2d",
+          "date": "2026-W04",
+          "type": "shipped",
+          "title": "feat: Update OCI Part 3 operating model article with new infographics",
+          "description": "Add maturity model, observability pillars, and operating model inversion",
+          "tags": [],
+          "commit": "4950d2d",
+          "impact": "medium",
+          "metadata": {
+            "files": 1,
+            "lines": 385
+          }
+        },
+        {
+          "id": "cl-2026-W04-d111d3b",
+          "date": "2026-W04",
+          "type": "improved",
+          "title": "refactor: Clean up brand voice — remove spiritual/consciousness language",
+          "description": "Replace consciousness-centric language with professional, creator-first copy",
+          "tags": [],
+          "commit": "d111d3b",
+          "impact": "small",
+          "metadata": {
+            "files": 5,
+            "lines": 20
+          }
+        }
+      ]
+    },
+    {
+      "id": "2026-W03",
+      "label": "Week 3",
+      "dateRange": "Jan 12-Jan 18, 2026",
+      "summary": "27 features shipped, 30 improvements, 13 fixes",
+      "stats": {
+        "commits": 70,
+        "linesAdded": 101399,
+        "filesChanged": 508,
+        "newPages": 3,
+        "imagesGenerated": 1
+      },
+      "entries": [
+        {
+          "id": "cl-2026-W03-5023afa",
+          "date": "2026-W03",
+          "type": "shipped",
+          "title": "feat: Add missing pages - workshops, AI architect, prototypes, blog content",
+          "description": "Previously untracked files that agents created but were never committed:",
+          "tags": [],
+          "commit": "5023afa",
+          "impact": "major",
+          "metadata": {
+            "files": 24,
+            "lines": 7831
+          }
+        },
+        {
+          "id": "cl-2026-W03-3666084",
+          "date": "2026-W03",
+          "type": "fixed",
+          "title": "fix: Resolve code review issues",
+          "description": "- Fix blog category to approved 'Intelligence Dispatches'",
+          "tags": [],
+          "commit": "3666084",
+          "impact": "small",
+          "metadata": {
+            "files": 2,
+            "lines": 4
+          }
+        },
+        {
+          "id": "cl-2026-W03-3ab82c7",
+          "date": "2026-W03",
+          "type": "improved",
+          "title": "chore: Sync local changes before merge",
+          "description": "Co-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>",
+          "tags": [],
+          "commit": "3ab82c7",
+          "impact": "major",
+          "metadata": {
+            "files": 13,
+            "lines": 2555
+          }
+        },
+        {
+          "id": "cl-2026-W03-119536f",
+          "date": "2026-W03",
+          "type": "improved",
+          "title": "content: Add Nvidia CES 2026 article - Physical AI revolution",
+          "description": "Comprehensive coverage of Jensen Huang's CES 2026 keynote:",
+          "tags": [],
+          "commit": "119536f",
+          "impact": "medium",
+          "metadata": {
+            "files": 1,
+            "lines": 186
+          }
+        },
+        {
+          "id": "cl-2026-W03-2c5b3c2",
+          "date": "2026-W03",
+          "type": "shipped",
+          "title": "feat: Add Research Intelligence Hub with multi-agent workflow",
+          "description": "- Create /app/research page with elite FrankX design",
+          "tags": [
+            "intelligence"
+          ],
+          "commit": "2c5b3c2",
+          "impact": "major",
+          "metadata": {
+            "files": 22,
+            "lines": 6989
+          }
+        },
+        {
+          "id": "cl-2026-W03-c3a47ee",
+          "date": "2026-W03",
+          "type": "shipped",
+          "title": "feat: Transform blog experience with premium UI/UX",
+          "description": "✨ Major Enhancements:",
+          "tags": [
+            "ui"
+          ],
+          "commit": "c3a47ee",
+          "impact": "major",
+          "metadata": {
+            "files": 6,
+            "lines": 909
+          }
+        },
+        {
+          "id": "cl-2026-W03-dfb2c9e",
+          "date": "2026-W03",
+          "type": "shipped",
+          "title": "feat: Complete rebuild of AI Architecture page with elite design",
+          "description": "Replace placeholder with production-quality multi-cloud comparison:",
+          "tags": [
+            "build",
+            "ui"
+          ],
+          "commit": "dfb2c9e",
+          "impact": "major",
+          "metadata": {
+            "files": 1,
+            "lines": 672
+          }
+        },
+        {
+          "id": "cl-2026-W03-3415a2c",
+          "date": "2026-W03",
+          "type": "fixed",
+          "title": "fix: Replace smart quote with ASCII apostrophe in VoiceSearchOptimizer",
+          "description": "Replace typographic apostrophe (') with proper escaped ASCII apostrophe (\\')",
+          "tags": [],
+          "commit": "3415a2c",
+          "impact": "medium",
+          "metadata": {
+            "files": 1,
+            "lines": 438
+          }
+        },
+        {
+          "id": "cl-2026-W03-fea5114",
+          "date": "2026-W03",
+          "type": "fixed",
+          "title": "fix: Correct syntax error in inner-circle page",
+          "description": "Replace invalid closing parenthesis with proper object literal closing.",
+          "tags": [],
+          "commit": "fea5114",
+          "impact": "small",
+          "metadata": {
+            "files": 1,
+            "lines": 1
+          }
+        },
+        {
+          "id": "cl-2026-W03-b208eee",
+          "date": "2026-W03",
+          "type": "shipped",
+          "title": "feat: comprehensive email template system with Resend + ConvertKit integration",
+          "description": "feat: comprehensive email template system with Resend + ConvertKit integration",
+          "tags": [],
+          "commit": "b208eee",
+          "impact": "major",
+          "metadata": {
+            "files": 4,
+            "lines": 1036
+          }
+        }
+      ]
+    },
+    {
+      "id": "2026-W02",
+      "label": "Week 2",
+      "dateRange": "Jan 5-Jan 11, 2026",
+      "summary": "13 features shipped, 23 improvements, 12 fixes",
+      "stats": {
+        "commits": 48,
+        "linesAdded": 162484,
+        "filesChanged": 766,
+        "newPages": 0,
+        "imagesGenerated": 0
+      },
+      "entries": [
+        {
+          "id": "cl-2026-W02-8ac06da",
+          "date": "2026-W02",
+          "type": "improved",
+          "title": "Pre-merge commit",
+          "description": "Pre-merge commit",
+          "tags": [],
+          "commit": "8ac06da",
+          "impact": "small",
+          "metadata": {
+            "files": 2,
+            "lines": 2
+          }
+        },
+        {
+          "id": "cl-2026-W02-f438a59",
+          "date": "2026-W02",
+          "type": "fixed",
+          "title": "fix: Integrate Soulbook navigation and resolve broken links",
+          "description": "fix: Integrate Soulbook navigation and resolve broken links",
+          "tags": [],
+          "commit": "f438a59",
+          "impact": "medium",
+          "metadata": {
+            "files": 15,
+            "lines": 149
+          }
+        },
+        {
+          "id": "cl-2026-W02-317e006",
+          "date": "2026-W02",
+          "type": "improved",
+          "title": "Fix build configuration and consolidate Soulbook features",
+          "description": "Fix build configuration and consolidate Soulbook features",
+          "tags": [
+            "build",
+            "ui"
+          ],
+          "commit": "317e006",
+          "impact": "major",
+          "metadata": {
+            "files": 26,
+            "lines": 566
+          }
+        },
+        {
+          "id": "cl-2026-W02-7ffdcfe",
+          "date": "2026-W02",
+          "type": "improved",
+          "title": "Adjust Soulbook metadata and Nano Banana configs",
+          "description": "Adjust Soulbook metadata and Nano Banana configs",
+          "tags": [],
+          "commit": "7ffdcfe",
+          "impact": "medium",
+          "metadata": {
+            "files": 8,
+            "lines": 160
+          }
+        },
+        {
+          "id": "cl-2026-W02-6e3307b",
+          "date": "2026-W02",
+          "type": "improved",
+          "title": "chore: upgrade Next.js and add eslint flat config",
+          "description": "chore: upgrade Next.js and add eslint flat config",
+          "tags": [],
+          "commit": "6e3307b",
+          "impact": "major",
+          "metadata": {
+            "files": 4,
+            "lines": 747
+          }
+        },
+        {
+          "id": "cl-2026-W02-8751cf8",
+          "date": "2026-W02",
+          "type": "improved",
+          "title": "Add Agentic Creator OS reference and brand voice documentation",
+          "description": "- Update CLAUDE.md with Agentic Creator OS framework reference",
+          "tags": [],
+          "commit": "8751cf8",
+          "impact": "major",
+          "metadata": {
+            "files": 4,
+            "lines": 603
+          }
+        },
+        {
+          "id": "cl-2026-W02-cc8fdd1",
+          "date": "2026-W02",
+          "type": "improved",
+          "title": "Ignore scratch files and refresh RSS",
+          "description": "Ignore scratch files and refresh RSS",
+          "tags": [],
+          "commit": "cc8fdd1",
+          "impact": "small",
+          "metadata": {
+            "files": 3,
+            "lines": 39
+          }
+        },
+        {
+          "id": "cl-2026-W02-6a5696a",
+          "date": "2026-W02",
+          "type": "improved",
+          "title": "Sync skills, components, and content from main FrankX repository",
+          "description": "- Add complete .claude-skills/ directory (66 skill files)",
+          "tags": [],
+          "commit": "6a5696a",
+          "impact": "major",
+          "metadata": {
+            "files": 77,
+            "lines": 22638
+          }
+        },
+        {
+          "id": "cl-2026-W02-bf71fac",
+          "date": "2026-W02",
+          "type": "improved",
+          "title": "Enhance social proof and MCP config support",
+          "description": "Enhance social proof and MCP config support",
+          "tags": [],
+          "commit": "bf71fac",
+          "impact": "major",
+          "metadata": {
+            "files": 28,
+            "lines": 919
+          }
+        },
+        {
+          "id": "cl-2026-W02-366c8f5",
+          "date": "2026-W02",
+          "type": "improved",
+          "title": "Sync content updates from main FrankX repository",
+          "description": "Content Updates:",
+          "tags": [],
+          "commit": "366c8f5",
+          "impact": "major",
+          "metadata": {
+            "files": 3,
+            "lines": 765
+          }
+        }
+      ]
+    },
+    {
+      "id": "2026-W01",
+      "label": "Week 1",
+      "dateRange": "Dec 29-Jan 4, 2026",
+      "summary": "6 features shipped, 1 fixes",
+      "stats": {
+        "commits": 7,
+        "linesAdded": 10902,
+        "filesChanged": 65,
+        "newPages": 1,
+        "imagesGenerated": 0
+      },
+      "entries": [
+        {
+          "id": "cl-2026-W01-0ee10b3",
+          "date": "2026-W01",
+          "type": "shipped",
+          "title": "feat: Add lead magnet system with free playbooks and Suno embed",
+          "description": "- Create /free-playbook landing page with email-gated resource unlock",
+          "tags": [],
+          "commit": "0ee10b3",
+          "impact": "major",
+          "metadata": {
+            "files": 5,
+            "lines": 1243
+          }
+        },
+        {
+          "id": "cl-2026-W01-9c7572b",
+          "date": "2026-W01",
+          "type": "shipped",
+          "title": "feat: Major hub improvements - newsletter, SEO, link fixes",
+          "description": "Newsletter:",
+          "tags": [
+            "newsletter"
+          ],
+          "commit": "9c7572b",
+          "impact": "major",
+          "metadata": {
+            "files": 24,
+            "lines": 3180
+          }
+        },
+        {
+          "id": "cl-2026-W01-3e87365",
+          "date": "2026-W01",
+          "type": "shipped",
+          "title": "feat: Add dynamic sitemap and 3 new guides",
+          "description": "- Dynamic sitemap.ts for SEO (replaces static XML)",
+          "tags": [
+            "ui"
+          ],
+          "commit": "3e87365",
+          "impact": "major",
+          "metadata": {
+            "files": 4,
+            "lines": 1322
+          }
+        },
+        {
+          "id": "cl-2026-W01-c619193",
+          "date": "2026-W01",
+          "type": "shipped",
+          "title": "feat: Major UX improvements with testimonials and social proof",
+          "description": "- Students page: Added \"Why Learn AI\" section, quick-start tools,",
+          "tags": [],
+          "commit": "c619193",
+          "impact": "major",
+          "metadata": {
+            "files": 6,
+            "lines": 1386
+          }
+        },
+        {
+          "id": "cl-2026-W01-48d1cb6",
+          "date": "2026-W01",
+          "type": "fixed",
+          "title": "fix: Navigation and Times New Roman italic font",
+          "description": "Navigation:",
+          "tags": [],
+          "commit": "48d1cb6",
+          "impact": "medium",
+          "metadata": {
+            "files": 9,
+            "lines": 17
+          }
+        },
+        {
+          "id": "cl-2026-W01-cf3a2c3",
+          "date": "2026-W01",
+          "type": "shipped",
+          "title": "feat: Add creators landing page to fix broken navigation",
+          "description": "- Created /creators page with premium design matching /developers",
+          "tags": [],
+          "commit": "cf3a2c3",
+          "impact": "medium",
+          "metadata": {
+            "files": 1,
+            "lines": 479
+          }
+        },
+        {
+          "id": "cl-2026-W01-9bcbd27",
+          "date": "2026-W01",
+          "type": "shipped",
+          "title": "feat: Comprehensive prompt library expansion and developer hub",
+          "description": "## Prompt Library Enhancements",
+          "tags": [],
+          "commit": "9bcbd27",
+          "impact": "major",
+          "metadata": {
+            "files": 16,
+            "lines": 3275
+          }
+        }
+      ]
+    },
+    {
+      "id": "2025-W52",
+      "label": "Week 52",
+      "dateRange": "Dec 22-Dec 28, 2025",
+      "summary": "8 features shipped, 7 improvements, 3 fixes",
+      "stats": {
+        "commits": 18,
+        "linesAdded": 16171,
+        "filesChanged": 120,
+        "newPages": 4,
+        "imagesGenerated": 5
+      },
+      "entries": [
+        {
+          "id": "cl-2025-W52-1166b87",
+          "date": "2025-W52",
+          "type": "shipped",
+          "title": "feat: Complete premium redesign of key pages",
+          "description": "Redesigned with new FrankX design system:",
+          "tags": [],
+          "commit": "1166b87",
+          "impact": "major",
+          "metadata": {
+            "files": 5,
+            "lines": 1143
+          }
+        },
+        {
+          "id": "cl-2025-W52-82a6efb",
+          "date": "2025-W52",
+          "type": "shipped",
+          "title": "feat: Redesign Blog page with premium design system",
+          "description": "- New editorial hero with \"Creation Chronicles\" branding",
+          "tags": [],
+          "commit": "82a6efb",
+          "impact": "major",
+          "metadata": {
+            "files": 8,
+            "lines": 2633
+          }
+        },
+        {
+          "id": "cl-2025-W52-99f6098",
+          "date": "2025-W52",
+          "type": "shipped",
+          "title": "feat: Upgrade serif font to Playfair Display",
+          "description": "- Replace Crimson Pro with Playfair Display for elegant Times-like italics",
+          "tags": [],
+          "commit": "99f6098",
+          "impact": "major",
+          "metadata": {
+            "files": 3,
+            "lines": 615
+          }
+        },
+        {
+          "id": "cl-2025-W52-c3642e4",
+          "date": "2025-W52",
+          "type": "shipped",
+          "title": "feat: Golden Age messaging and comprehensive documentation",
+          "description": "Hero & Copy:",
+          "tags": [],
+          "commit": "c3642e4",
+          "impact": "major",
+          "metadata": {
+            "files": 6,
+            "lines": 901
+          }
+        },
+        {
+          "id": "cl-2025-W52-e61d331",
+          "date": "2025-W52",
+          "type": "shipped",
+          "title": "feat: Premium redesign of homepage and resources",
+          "description": "- Homepage: Editorial typography with distinctive serif/sans mixing",
+          "tags": [],
+          "commit": "e61d331",
+          "impact": "major",
+          "metadata": {
+            "files": 3,
+            "lines": 712
+          }
+        },
+        {
+          "id": "cl-2025-W52-9ef3035",
+          "date": "2025-W52",
+          "type": "shipped",
+          "title": "feat: World-class polish - new logo, smarter copy, fixed links",
+          "description": "Logo:",
+          "tags": [],
+          "commit": "9ef3035",
+          "impact": "medium",
+          "metadata": {
+            "files": 8,
+            "lines": 376
+          }
+        },
+        {
+          "id": "cl-2025-W52-9a35bca",
+          "date": "2025-W52",
+          "type": "fixed",
+          "title": "fix: Replace hallucinated prompt library with real, practical prompts",
+          "description": "- Remove fabricated stats (fake usage counts, ratings, dates)",
+          "tags": [],
+          "commit": "9a35bca",
+          "impact": "major",
+          "metadata": {
+            "files": 5,
+            "lines": 1404
+          }
+        },
+        {
+          "id": "cl-2025-W52-5605fd5",
+          "date": "2025-W52",
+          "type": "fixed",
+          "title": "fix: Restore original Navigation menu and remove duplicates",
+          "description": "Navigation fixes:",
+          "tags": [],
+          "commit": "5605fd5",
+          "impact": "major",
+          "metadata": {
+            "files": 28,
+            "lines": 142
+          }
+        },
+        {
+          "id": "cl-2025-W52-9df2f94",
+          "date": "2025-W52",
+          "type": "shipped",
+          "title": "feat: Complete premium redesign of key pages",
+          "description": "Major aesthetic overhaul with consistent \"Editorial Luxury + Digital Futurism\" design:",
+          "tags": [],
+          "commit": "9df2f94",
+          "impact": "major",
+          "metadata": {
+            "files": 10,
+            "lines": 3080
+          }
+        },
+        {
+          "id": "cl-2025-W52-dae6399",
+          "date": "2025-W52",
+          "type": "shipped",
+          "title": "feat: Complete 2025 website redesign with new philosophy",
+          "description": "Major overhaul transforming the site from \"marketing platform\" to",
+          "tags": [],
+          "commit": "dae6399",
+          "impact": "major",
+          "metadata": {
+            "files": 8,
+            "lines": 1259
+          }
+        }
+      ]
+    },
+    {
+      "id": "2025-W51",
+      "label": "Week 51",
+      "dateRange": "Dec 15-Dec 21, 2025",
+      "summary": "1 improvements",
+      "stats": {
+        "commits": 1,
+        "linesAdded": 9624,
+        "filesChanged": 2,
+        "newPages": 0,
+        "imagesGenerated": 0
+      },
+      "entries": [
+        {
+          "id": "cl-2025-W51-fecb00d",
+          "date": "2025-W51",
+          "type": "improved",
+          "title": "Fix React Server Components CVE vulnerabilities",
+          "description": "Updated dependencies to fix Next.js and React CVE vulnerabilities.",
+          "tags": [],
+          "commit": "fecb00d",
+          "impact": "major",
+          "metadata": {
+            "files": 2,
+            "lines": 9624
+          }
+        }
+      ]
+    },
+    {
+      "id": "2025-W49",
+      "label": "Week 49",
+      "dateRange": "Dec 1-Dec 7, 2025",
+      "summary": "1 features shipped, 1 improvements, 1 fixes",
+      "stats": {
+        "commits": 3,
+        "linesAdded": 1720,
+        "filesChanged": 13,
+        "newPages": 0,
+        "imagesGenerated": 0
+      },
+      "entries": [
+        {
+          "id": "cl-2025-W49-662312b",
+          "date": "2025-W49",
+          "type": "fixed",
+          "title": "fix: Replace iframe with proper Next.js Ikigai workshop",
+          "description": "🤖 Claude (Sonnet 4.5): Proper styled Ikigai workshop",
+          "tags": [],
+          "commit": "662312b",
+          "impact": "medium",
+          "metadata": {
+            "files": 1,
+            "lines": 214
+          }
+        },
+        {
+          "id": "cl-2025-W49-04153c1",
+          "date": "2025-W49",
+          "type": "shipped",
+          "title": "feat: Add minimal Student Hub with Ikigai workshop",
+          "description": "🤖 Claude (Sonnet 4.5): Clean student hub implementation",
+          "tags": [],
+          "commit": "04153c1",
+          "impact": "major",
+          "metadata": {
+            "files": 10,
+            "lines": 1453
+          }
+        },
+        {
+          "id": "cl-2025-W49-55e4968",
+          "date": "2025-W49",
+          "type": "improved",
+          "title": "Rewrite product descriptions with specific, measurable value propositions",
+          "description": "Replace vague copy with Creator-First voice:",
+          "tags": [],
+          "commit": "55e4968",
+          "impact": "small",
+          "metadata": {
+            "files": 2,
+            "lines": 53
+          }
+        }
+      ]
+    }
+  ]
+}

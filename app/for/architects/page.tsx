@@ -58,10 +58,10 @@ const architectureAreas = [
   },
   {
     icon: Shield,
-    title: 'Enterprise AI at Oracle',
+    title: 'Enterprise AI Architecture',
     description: 'Production OCI GenAI patterns, agent security frameworks, and enterprise deployment guides.',
     href: '/ai-architect',
-    stat: 'Oracle Cloud',
+    stat: 'Multi-Cloud',
     color: 'amber',
   },
 ]
@@ -100,7 +100,7 @@ const faqs = [
   },
   {
     q: 'Is ACOS useful for enterprise AI development?',
-    a: 'ACOS was built during enterprise AI work at Oracle. The skill system, agent architecture, and workflow patterns are production-tested. The Pro System tier ($197) includes enterprise-focused configuration guides.',
+    a: 'ACOS was built from enterprise AI architecture experience. The skill system, agent architecture, and workflow patterns are production-tested. The Pro System tier ($197) includes enterprise-focused configuration guides.',
   },
   {
     q: 'What cloud platforms do you cover?',
@@ -168,7 +168,7 @@ export default function ArchitectsLandingPage() {
 
             <motion.p variants={itemVariants} className="mt-6 max-w-2xl text-lg text-white/60 leading-relaxed">
               Production patterns for multi-agent systems, RAG architectures, and agentic workflows.
-              Built at Oracle, documented for everyone.
+              Built from enterprise experience, documented for everyone.
             </motion.p>
 
             <motion.div variants={itemVariants} className="mt-8 flex flex-wrap gap-4">
@@ -197,7 +197,7 @@ export default function ArchitectsLandingPage() {
         <div className="mx-auto max-w-5xl px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
-              { value: 'Oracle', label: 'AI Architect' },
+              { value: '4+', label: 'Years Enterprise AI' },
               { value: '630+', label: 'AI Skills Built' },
               { value: '40+', label: 'Agent Templates' },
               { value: '70+', label: 'Technical Articles' },

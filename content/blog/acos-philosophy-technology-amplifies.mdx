@@ -5,17 +5,24 @@ date: "2026-01-27"
 lastModified: "2026-01-27"
 author: "Frank"
 tags: ["philosophy", "ai collaboration", "creator tools", "acos", "vision"]
-keywords: ["human ai collaboration", "ai amplification", "creator tools philosophy", "acos principles", "ai creative tools"]
+keywords:
+  [
+    "human ai collaboration",
+    "ai amplification",
+    "creator tools philosophy",
+    "acos principles",
+    "ai creative tools",
+  ]
 category: "Creator Systems"
 featured: false
-image: '/images/blog/acos-philosophy-hero.png'
+image: "/images/blog/acos-philosophy-hero.png"
 readingGoal: "Understand the design principles behind ACOS and how they shape the creator experience."
-readingTime: '8 min'
+readingTime: "8 min"
 ---
 
 # The Philosophy Behind ACOS: Technology That Amplifies, Not Replaces
 
-*Building tools that make you more yourself, not less.*
+_Building tools that make you more yourself, not less._
 
 ---
 
@@ -30,6 +37,7 @@ ACOS is built on four principles: (1) Configuration over code—creators edit ma
 Most AI tools have a problem: the more you use them, the less your work sounds like you.
 
 **The Generic Output Trap:**
+
 ```
 User: "Write a blog post about productivity"
 
@@ -44,6 +52,7 @@ AI: "In today's fast-paced world, productivity is more important than ever.
 This happens because most AI tools treat creativity as a generation problem: input prompt, output content. But creation isn't generation. It's expression.
 
 **The question ACOS asks:**
+
 > How do you use AI without losing your soul?
 
 ---
@@ -75,27 +84,33 @@ This works for developers. But creators aren't developers. They're writers, musi
 
 ```markdown
 # Configuration-first approach
+
 ---
+
 name: content-strategy
 triggers:
-  - blog
-  - article
-  - write
+
+- blog
+- article
+- write
+
 ---
 
 ## When to Use
+
 Activate when creating written content.
 
 ## Patterns
+
 [Your knowledge here in plain English]
 ```
 
 **The Tradeoffs:**
 
-| Approach | Pros | Cons |
-|----------|------|------|
-| Code-first | Maximum flexibility, custom runtime | Requires programming, harder to share |
-| Config-first | Zero-code, creator-friendly, portable | Less fine-grained control |
+| Approach     | Pros                                  | Cons                                  |
+| ------------ | ------------------------------------- | ------------------------------------- |
+| Code-first   | Maximum flexibility, custom runtime   | Requires programming, harder to share |
+| Config-first | Zero-code, creator-friendly, portable | Less fine-grained control             |
 
 We accept less control in exchange for accessibility. If you can edit a text file, you can use ACOS.
 
@@ -108,6 +123,7 @@ Loading everything at once overwhelms the AI and wastes context.
 **The 500-Line Rule:**
 
 No skill file exceeds 500 lines. This forces:
+
 - Concise, focused knowledge
 - Layered information architecture
 - On-demand depth
@@ -129,6 +145,7 @@ Level 3: Resources folder (unlimited)
 **Why This Matters:**
 
 Claude's context window is finite. If we loaded all 80 skills at once:
+
 - 80 skills × 500 lines = 40,000 lines
 - Context would be 90% instructions, 10% conversation
 - Quality would plummet
@@ -142,6 +159,7 @@ Progressive disclosure means Claude always has room to think.
 The goal isn't AI that creates for you. It's AI that helps you create better.
 
 **Replacement Model:**
+
 ```
 Input: Topic
       ↓
@@ -153,6 +171,7 @@ Output: Generic content
 ```
 
 **Amplification Model:**
+
 ```
 Input: Your idea + Your voice + Your perspective
       ↓
@@ -190,14 +209,14 @@ ACOS didn't emerge from nothing. It synthesized patterns from 14 GitHub reposito
 
 **The Sources:**
 
-| Project | What We Learned |
-|---------|----------------|
-| [claude-flow](https://github.com/ruvnet/claude-flow) | Swarm orchestration, hierarchical topologies |
-| [wshobson/agents](https://github.com/wshobson/agents) | Plugin architecture, 108-agent patterns |
-| [obra/superpowers](https://github.com/obra/superpowers) | Progressive disclosure, token efficiency |
-| [diet103/claude-code-infrastructure-showcase](https://github.com/diet103/claude-code-infrastructure-showcase) | skill-rules.json auto-activation |
-| [ChrisWiles/claude-code-showcase](https://github.com/ChrisWiles/claude-code-showcase) | Hook automation patterns |
-| [Pimzino/claude-code-spec-workflow](https://github.com/Pimzino/claude-code-spec-workflow) | Spec-driven development |
+| Project                                                                                                       | What We Learned                              |
+| ------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
+| [claude-flow](https://github.com/ruvnet/claude-flow)                                                          | Swarm orchestration, hierarchical topologies |
+| [wshobson/agents](https://github.com/wshobson/agents)                                                         | Plugin architecture, 108-agent patterns      |
+| [obra/superpowers](https://github.com/obra/superpowers)                                                       | Progressive disclosure, token efficiency     |
+| [diet103/claude-code-infrastructure-showcase](https://github.com/diet103/claude-code-infrastructure-showcase) | skill-rules.json auto-activation             |
+| [ChrisWiles/claude-code-showcase](https://github.com/ChrisWiles/claude-code-showcase)                         | Hook automation patterns                     |
+| [Pimzino/claude-code-spec-workflow](https://github.com/Pimzino/claude-code-spec-workflow)                     | Spec-driven development                      |
 
 **Why Attribution Matters:**
 
@@ -215,12 +234,14 @@ Every pattern in ACOS has a lineage. We document it in [CREDITS.md](https://gith
 I built ACOS because I needed it.
 
 **The Background:**
+
 - 12,000+ AI songs produced with Suno
-- Enterprise AI systems built at Oracle
+- Enterprise AI systems architecture
 - This website, 50+ blog posts
 - Constant struggle with fragmented tools
 
 **The Pain:**
+
 - Lost prompts across sessions
 - AI outputs that didn't sound like me
 - No system, just random chats
@@ -315,9 +336,9 @@ Fork the repo, add your skills, submit a PR. Your contributions will be attribut
 
 ---
 
-*Technology that amplifies, not replaces. That's the principle. That's the practice. That's ACOS.*
+_Technology that amplifies, not replaces. That's the principle. That's the practice. That's ACOS._
 
-*[GitHub](https://github.com/frankxai/agentic-creator-os) | [Credits](https://github.com/frankxai/agentic-creator-os/blob/main/CREDITS.md) | [FrankX](https://frankx.ai)*
+_[GitHub](https://github.com/frankxai/agentic-creator-os) | [Credits](https://github.com/frankxai/agentic-creator-os/blob/main/CREDITS.md) | [FrankX](https://frankx.ai)_
 
 ---
 
