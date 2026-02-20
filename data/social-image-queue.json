@@ -1,0 +1,60 @@
+{
+  "pendingGeneration": [
+    {
+      "id": "claude-code-command-center",
+      "platform": "x",
+      "format": "1:1",
+      "connectedPost": "social-2026-0219-jarvis-claude-code",
+      "connectedPage": "/blog/build-your-own-jarvis-claude-code",
+      "outputPath": "public/images/social/claude-code-command-center.png",
+      "prompt": "Dark terminal aesthetic command center visualization. A sleek dark navy workspace showing a glowing holographic CLAUDE.md file floating in the center, connected by luminous cyan data streams to 5 orbiting MCP server nodes (labeled icons: Slack, Vercel, GitHub, Resend, Nano Banana). Below, a trajectory timeline showing glowing green success dots and orange failure dots forming a learning curve that trends upward. Small code snippets visible in glass panels. Bottom text reads 'CLAUDE CODE' in clean white sans-serif. Premium dark tech aesthetic with glass panels, cyan and purple neon accents, subtle grid pattern background. No cartoon elements, no clay, no pastel colors.",
+      "negativePrompt": "clay, claymorphic, pastel, cartoon, cute, toy, Play-Doh, bright background, white background, childish, emoji",
+      "why": "X post hero for the Build Your Own Jarvis thread. Square format for X feed. Terminal aesthetic signals 'real tool' not 'marketing'. The MCP connections and trajectory learning curve are the two key concepts from the post."
+    },
+    {
+      "id": "12000-songs-galaxy",
+      "platform": "linkedin",
+      "format": "16:9",
+      "connectedPost": "social-2026-0219-suno-prompt-guide",
+      "connectedPage": "/blog/suno-prompt-engineering-complete-guide",
+      "outputPath": "public/images/social/12000-songs-galaxy.png",
+      "prompt": "Cinematic wide visualization of 12,000 AI-generated songs. A vast dark navy space filled with thousands of tiny glowing audio waveform particles arranged in a galaxy spiral formation, each representing a song. Colors transition from deep purple at the edges through cyan in the middle to golden at the bright core. In the foreground, a sleek glass mixing console with holographic equalizer bars. The number '12,000' appears large and elegant in the upper portion, rendered in thin luminous white typography with a subtle glow. Small music note symbols scattered like stars. Bottom corner: 'FRANKX.AI' in clean white. Premium 3D tech aesthetic, dark background, glass and chrome surfaces, neon accent lighting.",
+      "negativePrompt": "clay, claymorphic, pastel, cartoon, cute, toy, Play-Doh, bright background, childish, emoji, realistic human face",
+      "why": "LinkedIn hero for Suno prompt guide post. 16:9 fills LinkedIn feed beautifully. The number 12,000 IS the hook — making it visual reinforces Frank's proof-of-work credential. Galaxy formation = massive scale visualization."
+    },
+    {
+      "id": "great-transition-split",
+      "platform": "linkedin",
+      "format": "16:9",
+      "connectedPost": "social-2026-0219-great-transition",
+      "connectedPage": "/blog/the-great-transition-build-your-own-business",
+      "outputPath": "public/images/social/great-transition-split.png",
+      "prompt": "Split-screen cinematic visualization showing 'The Great Transition' concept. Left half: a corporate office cubicle dissolving into digital particles, grey and muted, fluorescent lighting, papers and monitors disintegrating. Right half: a solo builder's futuristic dark command center, multiple holographic screens showing code, charts, content, music waveforms — all glowing with cyan, purple, and gold neon light. A single figure silhouette standing at the center where the two halves meet, facing the bright future side. The contrast is stark: grey corporate dissolution vs vibrant builder's paradise. Clean glass aesthetic, dark navy tones on the right side. No text overlays. Premium cinematic quality, wide angle perspective.",
+      "negativePrompt": "clay, claymorphic, pastel, cartoon, cute, toy, Play-Doh, bright white background, childish, emoji, happy smiling face",
+      "why": "LinkedIn hero for The Great Transition post. Split visual is scroll-stopping — the contrast between dissolving corporate and vibrant builder worlds tells the story before anyone reads. 16:9 for maximum LinkedIn feed real estate."
+    }
+  ],
+  "existingRepurposed": [
+    {
+      "id": "hero-builder-empire",
+      "sourcePath": "public/images/vision/hero-builder-empire.png",
+      "platform": "linkedin",
+      "connectedPost": "social-2026-0219-great-transition",
+      "connectedPage": "/vision"
+    },
+    {
+      "id": "agent-specialist-grid",
+      "sourcePath": "public/images/ecosystem/09-agent-specialist-grid.png",
+      "platform": "x",
+      "connectedPost": "social-2026-0219-agentic-roadmap-2026",
+      "connectedPage": "/blog/agentic-ai-roadmap-2026"
+    },
+    {
+      "id": "intelligence-bloom",
+      "sourcePath": "public/images/design-lab/nature-07-intelligence-bloom.png",
+      "platform": "linkedin",
+      "connectedPost": "social-2026-0219-suno-prompt-guide",
+      "connectedPage": "/design-lab/nature"
+    }
+  ]
+}
