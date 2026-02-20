@@ -19,14 +19,26 @@ const LIST_CONFIG: Record<string, { topics: string[] }> = {
   'creation-chronicles': {
     topics: [TOPICS.newsletter],
   },
+  'ai-architect': {
+    topics: [TOPICS.newsletter],
+  },
   'inner-circle': {
     topics: [TOPICS.newsletter, TOPICS['product-updates']],
   },
   'music-lab': {
     topics: [TOPICS['music-suno'], TOPICS.newsletter],
   },
+  arcanea: {
+    topics: [TOPICS.newsletter],
+  },
+  investor: {
+    topics: [TOPICS.newsletter],
+  },
   'courses-waitlist': {
     topics: [TOPICS.newsletter],
+  },
+  all: {
+    topics: [TOPICS.newsletter, TOPICS['music-suno'], TOPICS['product-updates']],
   },
 }
 

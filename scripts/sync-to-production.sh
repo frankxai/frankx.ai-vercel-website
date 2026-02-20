@@ -65,6 +65,14 @@ for file in package.json package-lock.json tsconfig.json next.config.mjs postcss
   fi
 done
 
+rsync -av --delete "${RSYNC_COMMON_EXCLUDES[@]}" \
+  --exclude='agents' \
+  --exclude='diagrams' \
+  --exclude='image-ops' \
+  --exclude='pdf-gen' \
+  --exclude='pdf-templates' \
+  "${FRANKX_ROOT}/scripts/" "${PROD_ROOT}/scripts/"
+
 echo "3. Verifying parity..."
 bash "${FRANKX_ROOT}/scripts/pre-deploy-sync-check.sh" --sync >/dev/null || true
 
