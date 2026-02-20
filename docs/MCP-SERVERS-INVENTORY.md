@@ -141,6 +141,22 @@ claude mcp add -s user --transport stdio nano-banana --env GEMINI_API_KEY=your_k
 claude mcp add -s user --transport stdio lyric-genius -- node "/mnt/c/Users/Frank/MCP Server/lyric-genius-mcp/dist/index.js"
 ```
 
+### Multi-Provider Image Ops (API Router)
+For OpenAI/xAI/Replicate image generation, use the project scripts (not MCP):
+
+```bash
+npm run image:status
+npm run image:plan -- --intent hero-brand
+npm run image:generate -- --provider openai --prompt "cinematic hero visual"
+npm run image:matrix -- --prompt "AI architecture infographic" --intent grounded-infographic
+```
+
+Required env vars:
+- `OPENAI_API_KEY`
+- `XAI_API_KEY`
+- `REPLICATE_API_TOKEN`
+- `GEMINI_API_KEY` (Nano Banana MCP)
+
 ---
 
 ## Best Practices

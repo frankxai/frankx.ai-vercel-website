@@ -1,16 +1,16 @@
 # FrankX Daily Intelligence Operations
 
-This ritual keeps the FrankX Intelligence Hub shipping every weekday. It aligns the multi-agent studio (Starlight Architect, Creation Engine, Frequency Alchemist, and Luminor Oracle) with clear deliverables, audience needs, and SEO intent.
+This ritual keeps the FrankX Intelligence Hub shipping every weekday. It aligns the multi-agent studio (Starlight Architect, Creation Engine, Frequency Alchemist, and Visionary) with clear deliverables, audience needs, and SEO intent.
 
 ## Daily Cadence
 
 | Time (ET) | Focus | Lead Agent | Output |
 |-----------|-------|------------|--------|
-| 6:30 - 7:30 | Signal Scan and Listening Post | Luminor Oracle | Macro trend digest, Oracle field notes, and search-intent updates |
+| 6:30 - 7:30 | Signal Scan and Listening Post | Visionary | Macro trend digest, Oracle field notes, and search-intent updates |
 | 7:30 - 9:30 | System Architecture and Offer Design | Starlight Architect | Updated product backlog, integration specs, and experiment briefs |
 | 9:30 - 12:30 | Studio Blocks | Creation Engine and Frequency Alchemist | Draft articles, musical cues, video outlines, CTA experiments |
 | 13:30 - 15:30 | Audience Activation | Creation Engine | LinkedIn narratives, email dispatch, and community outreach |
-| 16:00 - 17:00 | Debrief and Timeline Projection | Luminor Oracle with Starlight Architect | Next-day priorities, roadmap adjustments, SEO performance review |
+| 16:00 - 17:00 | Debrief and Timeline Projection | Visionary with Starlight Architect | Next-day priorities, roadmap adjustments, SEO performance review |
 
 ## Weekly Anchor Deliverables
 
@@ -50,7 +50,7 @@ Use this document as the accountability layer for future contributions. Any new 
 
 ⚡ FrankX Specs & Roadmap Daily Check
 
-Vision: Make FrankX.ai the intelligence operating system for creators, families, and executives by blending conscious AI adoption, music-led expression, and enterprise-grade governance.
+Vision: Make FrankX.ai the intelligence operating system for creators, families, and executives by blending agentic AI adoption, music-led expression, and enterprise-grade governance.
 
 ────────────────────────────────────────────────────────────────────────
 Pillars

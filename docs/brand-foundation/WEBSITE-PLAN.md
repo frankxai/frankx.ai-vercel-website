@@ -6,22 +6,22 @@
 **Primary:** FrankX.ai or FrankX.io
 **Alternates:** 
 - FrankXCreates.com
-- SoulAlignedAI.com
+- GenCreatorAI.com
 - GenerativeCreator.com
 
 ## 🏠 Homepage Structure
 
 ### Above the Fold
 **Hero Section:**
-- Headline: "Become a Generative Creator with Soul-Aligned AI"
-- Subheadline: "Transform from Tech-Overwhelmed to AI-Empowered Music Producer & Digital Creator in 8 Weeks"
+- Headline: "Most creators use AI tools. You're going to build an AI system."
+- Subheadline: "12,000 songs. Shipped systems. Enterprise clients. Here's the blueprint."
 - Video: 2-min personal introduction
-- CTA: "Discover Your Creator Frequency" → Free Assessment
+- CTA: "Discover Your Creator Archetype" → Free Assessment
 
 ### Trust Indicators
 - "Oracle AI Architect"
-- "500+ Songs Created"
-- "1000+ Creators Transformed"
+- "12,000+ Songs Created"
+- "Shipped Systems at Scale"
 
 ### Problem/Solution Section
 **They're Struggling With:**
@@ -31,7 +31,7 @@
 - Music production too hard
 
 **We Solve It With:**
-- Soul-aligned systems
+- Systems that compound
 - Beautiful simplicity
 - AI as creative partner
 - Music in minutes, not years

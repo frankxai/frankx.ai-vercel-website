@@ -165,19 +165,19 @@
 ### Essential Prompt Templates:
 1. **Emotional State Shifters**
    ```
-   [Genre], [BPM], [Key], emotional journey from [current state] to [desired state],
+   [Genre], [BPM], [Key], emotional journey from [current state] to [desired state], 
    [specific instruments], [vocal style], [production quality]
    ```
 
 2. **Vibrational Frequency Patterns**
    ```
-   [Frequency Hz], [binaural beat pattern], [genre fusion],
+   [Frequency Hz], [binaural beat pattern], [genre fusion], 
    meditation/activation/transformation purpose, [duration]
    ```
 
 3. **Story Arc Compositions**
    ```
-   Musical storytelling: [beginning emotion], [conflict/tension],
+   Musical storytelling: [beginning emotion], [conflict/tension], 
    [resolution], [transformation], [instruments tell the story]
    ```
 
@@ -307,7 +307,7 @@
 *Payment plans available*
 
 ### Guarantee:
-30-day money-back guarantee +
+30-day money-back guarantee + 
 "First Song or Full Refund" promise
 
 ### Bonuses:

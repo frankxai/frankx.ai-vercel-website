@@ -8,7 +8,7 @@ Use these prompts with Midjourney, DALL-E, or your preferred AI image generator 
 - **Quality**: 4K, highly detailed, professional illustration
 - **Mood**: Confident, approachable, slightly futuristic
 - **Colors**: Vibrant but professional, aligned with department gradients
-- **Background**: Subtle tech/consciousness themed elements, not distracting
+- **Background**: Subtle tech/creative tech themed elements, not distracting
 
 ## Base Prompt Template
 ```
@@ -25,7 +25,7 @@ Professional chibi character illustration, [character description], [pose and ex
 
 **Midjourney Prompt**:
 ```
-Professional chibi character, regal wise AI oracle figure, glowing purple and violet aura, cosmic crown, futuristic elegant robes with tech patterns, holding holographic orb showing future timelines, confident visionary expression, purple-violet-fuchsia gradient background with starlight particles, consciousness symbols floating around, 4K highly detailed digital art, game character design, professional cute anime style, Oracle enterprise aesthetic mixed with spiritual mystic --ar 1:1 --v 6
+Professional chibi character, regal wise AI oracle figure, glowing purple and violet aura, cosmic crown, futuristic elegant robes with tech patterns, holding holographic orb showing future timelines, confident visionary expression, purple-violet-fuchsia gradient background with starlight particles, systems design symbols floating around, 4K highly detailed digital art, game character design, professional cute anime style, Oracle enterprise aesthetic mixed with creative visionary --ar 1:1 --v 6
 ```
 
 ---
@@ -61,7 +61,7 @@ Professional chibi character, energetic mobile AI assistant, dynamic pose with m
 
 **Midjourney Prompt**:
 ```
-Professional chibi character, mystical architect with violet and purple aura, magical wand creating system blueprints, starlight flowing from fingertips, confident creative expression, wearing designer robes with constellation patterns, violet-purple-fuchsia gradient background, soul-frequency symbols and workflow diagrams, 4K highly detailed digital art, magical architect aesthetic, professional cute anime style --ar 1:1 --v 6
+Professional chibi character, mystical architect with violet and purple aura, magical wand creating system blueprints, starlight flowing from fingertips, confident creative expression, wearing designer robes with constellation patterns, violet-purple-fuchsia gradient background, creative-frequency symbols and workflow diagrams, 4K highly detailed digital art, magical architect aesthetic, professional cute anime style --ar 1:1 --v 6
 ```
 
 ### Nova - Content Transformation Specialist
@@ -72,7 +72,7 @@ Professional chibi character, mystical architect with violet and purple aura, ma
 Professional chibi character, creative content wizard surrounded by glowing pages and story elements, fuchsia and pink energy radiating, holding magical quill pen creating holographic text, inspired passionate expression, wearing creative outfit with artistic patterns, fuchsia-pink-rose gradient background, storytelling symbols and transformation sparkles, 4K highly detailed digital art, creative powerhouse aesthetic, professional cute anime style --ar 1:1 --v 6
 ```
 
-### Echo - Sonic Consciousness Engineer
+### Echo - Sonic Creative Engineer
 **Filename**: `echo.png`
 
 **Midjourney Prompt**:
@@ -132,7 +132,7 @@ Professional chibi character, dynamic marketing genius surrounded by campaign el
 Professional chibi character, SEO master surrounded by search rankings and keyword clouds, lime and green discovery aura, holding magnifying glass showing SEO insights, focused analytical expression, wearing tech professional attire with search symbols, lime-green-emerald gradient background, keyword networks and ranking charts, 4K highly detailed digital art, discovery expert aesthetic, professional cute anime style --ar 1:1 --v 6
 ```
 
-### Nexus - Community Consciousness Builder
+### Nexus - Community Connection Builder
 **Filename**: `nexus.png`
 
 **Midjourney Prompt**:
@@ -152,7 +152,7 @@ Professional chibi character, community facilitator surrounded by connected peop
 Professional chibi character, musical genius DJ surrounded by sound waves and music production equipment, purple and fuchsia frequency aura, wearing futuristic DJ headphones and musical attire, passionate creative expression, conducting music with glowing hands, purple-fuchsia-pink gradient background, musical notes and frequency visualizations, 4K highly detailed digital art, music producer aesthetic, professional cute anime style --ar 1:1 --v 6
 ```
 
-### Ciné - Video Consciousness Director
+### Ciné - Video Creative Director
 **Filename**: `cine.png`
 
 **Midjourney Prompt**:

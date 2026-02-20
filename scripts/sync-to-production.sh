@@ -59,7 +59,7 @@ rsync -av --delete "${RSYNC_COMMON_EXCLUDES[@]}" \
   --exclude='.worktrees' \
   "${FRANKX_ROOT}/data/" "${PROD_ROOT}/data/" 2>/dev/null || true
 
-for file in package.json package-lock.json tsconfig.json next.config.mjs postcss.config.js tailwind.config.js; do
+for file in package.json package-lock.json tsconfig.json next.config.mjs postcss.config.js tailwind.config.js VIDEO_VAULT.md BRAND_IDENTITY.md DESIGN_SYSTEM.md; do
   if [ -f "${FRANKX_ROOT}/${file}" ]; then
     cp "${FRANKX_ROOT}/${file}" "${PROD_ROOT}/${file}"
   fi
@@ -72,6 +72,10 @@ rsync -av --delete "${RSYNC_COMMON_EXCLUDES[@]}" \
   --exclude='pdf-gen' \
   --exclude='pdf-templates' \
   "${FRANKX_ROOT}/scripts/" "${PROD_ROOT}/scripts/"
+
+rsync -av --delete "${RSYNC_COMMON_EXCLUDES[@]}" \
+  --exclude='handoffs' \
+  "${FRANKX_ROOT}/docs/" "${PROD_ROOT}/docs/"
 
 echo "3. Verifying parity..."
 bash "${FRANKX_ROOT}/scripts/pre-deploy-sync-check.sh" --sync >/dev/null || true

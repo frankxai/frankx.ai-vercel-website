@@ -14,7 +14,7 @@ FrankX
 ### Role
 ```
 Creator-First AI Transformation Guide
-Musician-Technologist bridging Oracle enterprise expertise with soul-aligned creative systems
+Musician-Technologist bridging Oracle enterprise expertise with purpose-driven creative systems
 ```
 
 ### Tagline
@@ -25,7 +25,7 @@ Musician-Technologist bridging Oracle enterprise expertise with soul-aligned cre
 ### Transformation Promise
 ```
 From: Tech-overwhelmed creator drowning in AI noise
-To: Confident artist with AI agents that amplify expression without replacing soul
+To: Confident artist with AI agents that amplify expression without replacing creativity
 ```
 
 ---
@@ -91,7 +91,7 @@ Conversational but not sloppy. Professional but never corporate.
 
 ### Words to Use
 ```
-Creator, craft, amplify, resonate, frequency, soul-aligned,
+Creator, craft, amplify, resonate, frequency, purpose-driven,
 expression, studio, session, flow, build, ship, transform,
 empower, possibility, journey, authentic, intentional
 ```
@@ -107,7 +107,7 @@ game-changer, revolutionary (unless earned)
 ### Signature Phrases
 ```
 1. "AI should amplify your voice, not replace it."
-2. "Technology that serves the soul."
+2. "Technology that serves the creator."
 3. "From overwhelmed to empowered."
 4. "The studio lights just snapped on."
 5. "Build it, ship it, improve it."
