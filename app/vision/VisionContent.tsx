@@ -19,6 +19,7 @@ import {
   ArrowUpRight,
 } from 'lucide-react'
 import { EmailSignup } from '@/components/email-signup'
+import EcosystemVisionBoard from '@/components/vision/EcosystemVisionBoard'
 
 /* ─── Animation Presets ─── */
 const fadeUp = {
@@ -54,7 +55,7 @@ const visionPillars = [
     color: 'from-violet-400 to-pink-400',
     borderColor: 'border-violet-500/20',
     bgColor: 'bg-violet-500/5',
-    metrics: ['500+ AI Songs', '7 Books Written', 'Visual Art System'],
+    metrics: ['12,000+ AI Songs', '7 Books Written', 'Visual Art System'],
   },
   {
     icon: Zap,
@@ -105,7 +106,7 @@ const timeline = [
     items: [
       'frankx.ai launched and live',
       'First 80+ blog articles published',
-      'AI music catalog started (500+ tracks)',
+      'AI music catalog started (12,000+ tracks)',
       'ACOS v1 — first autonomous coding system',
       'Arcanea mythology and creative universe born',
     ],
@@ -297,7 +298,7 @@ export default function VisionContent() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
           >
-            One person. Enterprise-grade AI architecture. 500+ songs. 7 books.
+            One person. Enterprise-grade AI architecture. 12,000+ songs. 7 books.
             Production systems. An entire creative ecosystem — built not to be
             impressive, but to prove what&apos;s now possible for anyone willing
             to build.
@@ -746,6 +747,11 @@ export default function VisionContent() {
           </motion.div>
         </div>
       </section>
+
+      {/* ═══════════════════════════════════════════════
+          ECOSYSTEM VISION BOARD — The Ecosystem in Pictures
+          ═══════════════════════════════════════════════ */}
+      <EcosystemVisionBoard />
 
       {/* ═══════════════════════════════════════════════
           TIMELINE — The Path Forward

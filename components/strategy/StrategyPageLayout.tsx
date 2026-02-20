@@ -1,4 +1,4 @@
-import { ExternalLink, Play, Sparkles, Youtube, TrendingUp, Users } from 'lucide-react'
+import { ArrowRight, ExternalLink, Play, Sparkles, Youtube, TrendingUp, Users } from 'lucide-react'
 import Link from 'next/link'
 import { UniversalEmbed } from '@/components/embeds/UniversalEmbed'
 
