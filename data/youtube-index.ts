@@ -54,23 +54,3 @@ export const youtubeIndex: YoutubeIndexEntry[] = [
     "category": "AI Architecture"
   }
 ];
-
-// YouTube channel references for learning paths
-export const youtubeChannels = {
-  anthropic: {
-    name: 'Anthropic',
-    url: 'https://www.youtube.com/@AnthropicAI'
-  },
-  netNinja: {
-    name: 'Net Ninja',
-    url: 'https://www.youtube.com/@NetNinja'
-  },
-  kevinStratvert: {
-    name: 'Kevin Stratvert',
-    url: 'https://www.youtube.com/@KevinStratvert'
-  },
-  lexFridman: {
-    name: 'Lex Fridman',
-    url: 'https://www.youtube.com/@LexFridman'
-  }
-};
