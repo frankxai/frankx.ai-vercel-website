@@ -38,6 +38,7 @@ import {
   Puzzle,
   Brain,
   Trophy,
+  Play,
 } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
@@ -99,6 +100,7 @@ const navigation = {
     items: [
       { name: 'All Guides', href: '/guides', icon: BookOpen, description: 'In-depth tutorials' },
       { name: 'Courses', href: '/courses', icon: GraduationCap, description: 'Structured learning' },
+      { name: 'Video Vault', href: '/watch', icon: Play, description: '130+ curated AI videos' },
       { name: 'Student Hub', href: '/students', icon: Users, description: 'Your learning dashboard' },
       { name: 'AI Assessment', href: '/ai-assessment', icon: Target, description: 'Find your path' },
     ],
@@ -170,6 +172,7 @@ const navigation = {
       { name: 'Intelligence Atlas', href: '/intelligence-atlas', icon: Star, description: 'Flagship research' },
       { name: 'AI Architect', href: '/ai-architect', icon: Network, description: 'Solution design & patterns' },
       { name: 'ArcaneaVault', href: '/vault', icon: Layers, description: 'Visual asset library' },
+      { name: 'Video Vault', href: '/watch', icon: Play, description: '130+ curated AI videos' },
       { name: 'Vibe OS', href: '/products/vibe-os', icon: Music, description: 'AI music system' },
       { name: 'Agentic Creator OS', href: '/products/agentic-creator-os', icon: Bot, description: 'Agent workflows' },
       { name: 'Arcanea', href: '/magic', icon: Wand2, description: 'Worldbuilding academy' },
@@ -188,7 +191,7 @@ const navigation = {
       },
       {
         label: 'Research & Tools',
-        items: ['Downloads', 'Research Hub', 'Intelligence Atlas', 'AI Architect', 'ArcaneaVault', 'Contact'],
+        items: ['Downloads', 'Research Hub', 'Intelligence Atlas', 'AI Architect', 'ArcaneaVault', 'Video Vault', 'Contact'],
       },
     ],
   },
@@ -527,10 +530,10 @@ export default function NavigationMega() {
         {/* Desktop CTAs */}
         <div className="hidden items-center gap-3 lg:flex">
           <Link
-            href="/free-playbook"
+            href="/newsletter"
             className="rounded-2xl bg-gradient-to-r from-emerald-600 to-cyan-600 px-4 py-2 text-sm font-semibold text-white transition-all hover:from-emerald-500 hover:to-cyan-500 hover:shadow-lg hover:shadow-emerald-500/20"
           >
-            Start Building
+            Start Here
           </Link>
         </div>
 
@@ -572,11 +575,11 @@ export default function NavigationMega() {
               {/* Mobile CTA */}
               <div className="pt-3 sm:pt-4 pb-2">
                 <Link
-                  href="/free-playbook"
+                  href="/newsletter"
                   onClick={() => setIsOpen(false)}
                   className="block w-full rounded-2xl bg-gradient-to-r from-emerald-600 to-cyan-600 py-2.5 sm:py-3 text-center text-sm font-semibold text-white"
                 >
-                  Start Building
+                  Start Here
                 </Link>
               </div>
             </div>
