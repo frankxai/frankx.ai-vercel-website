@@ -27,6 +27,34 @@ const iconMap: Record<string, LucideIcon> = {
   Crown,
 }
 
+// Map each stream to its thematic team character
+const streamCharacters: Record<string, { src: string; name: string }> = {
+  'creation-chronicles': {
+    src: '/images/mascot/mascot-v25-crystal-familiar.png',
+    name: 'Axi',
+  },
+  'ai-architect': {
+    src: '/images/team/codex-falcon.png',
+    name: 'Codex',
+  },
+  'music-lab': {
+    src: '/images/team/echo-leopard.png',
+    name: 'Echo',
+  },
+  arcanea: {
+    src: '/images/team/stella-owl.png',
+    name: 'Stella',
+  },
+  investor: {
+    src: '/images/team/draconia-tiger.png',
+    name: 'Draconia',
+  },
+  'inner-circle': {
+    src: '/images/team/nero-umbra.png',
+    name: 'Nero',
+  },
+}
+
 // Map each stream ID to a thematic ecosystem image
 const streamImages: Record<string, { src: string; alt: string }> = {
   'creation-chronicles': {
@@ -261,20 +289,38 @@ function StreamCard({
           <div>
             {/* Header */}
             <div className="mb-4 flex items-center gap-3">
-              <div
-                className="flex h-10 w-10 items-center justify-center rounded-xl"
-                style={{ background: stream.bgHex }}
-              >
-                <Icon
-                  className="h-5 w-5"
-                  style={{ color: stream.accentHex }}
+              {streamCharacters[stream.id] ? (
+                <Image
+                  src={streamCharacters[stream.id].src}
+                  alt={streamCharacters[stream.id].name}
+                  width={48}
+                  height={48}
+                  className="rounded-xl"
+                  style={{
+                    boxShadow: `0 0 20px -6px ${stream.accentHex}50`,
+                  }}
                 />
-              </div>
+              ) : (
+                <div
+                  className="flex h-10 w-10 items-center justify-center rounded-xl"
+                  style={{ background: stream.bgHex }}
+                >
+                  <Icon
+                    className="h-5 w-5"
+                    style={{ color: stream.accentHex }}
+                  />
+                </div>
+              )}
               <div>
                 <h3 className="text-lg font-bold text-white">{stream.name}</h3>
                 <div className="flex items-center gap-2 text-xs text-white/40">
                   <Clock className="h-3 w-3" />
                   {stream.cadence}
+                  {streamCharacters[stream.id] && (
+                    <span className="text-white/25">
+                      {streamCharacters[stream.id].name}
+                    </span>
+                  )}
                 </div>
               </div>
             </div>

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import * as NavigationMenu from '@radix-ui/react-navigation-menu'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -202,9 +203,17 @@ function Logo() {
   return (
     <Link
       href="/"
-      className="rounded-lg px-2 py-1.5 transition-all duration-300 hover:bg-white/5"
+      className="flex items-center gap-2 rounded-lg px-2 py-1.5 transition-all duration-300 hover:bg-white/5"
       aria-label="FrankX.AI - Home"
     >
+      <Image
+        src="/images/mascot/axi-v3-icon.png"
+        alt="Axi"
+        width={28}
+        height={28}
+        className="rounded-md"
+        priority
+      />
       <span className="font-display text-xl font-bold tracking-tight bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent">
         FrankX.AI
       </span>

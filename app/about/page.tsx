@@ -377,12 +377,68 @@ export default function AboutPage() {
                 The bridge between both worlds
               </h3>
               <p className="text-white/50 leading-relaxed max-w-3xl">
-                The Agentic Creator OS. 22 curated skills, 8 specialist agents,
-                130+ commands — enterprise patterns made accessible to every creator.
+                The Agentic Creator OS. 75+ skills, 38 specialist agents,
+                35+ commands — enterprise patterns made accessible to every creator.
                 The same rigor I use to build production AI systems, applied to
                 creative workflows. Open source on GitHub. Free to use.
               </p>
             </motion.div>
+          </div>
+        </section>
+
+        {/* ── The AI Team ── */}
+        <section className="py-16 border-t border-white/5">
+          <div className="mx-auto max-w-5xl px-6">
+            <motion.div {...fadeIn} transition={transition}>
+              <h2 className="text-2xl font-bold text-white sm:text-3xl mb-3">
+                The AI team
+              </h2>
+              <p className="text-white/30 mb-8">
+                Every domain has its specialist. Each character represents a different creative intelligence.
+              </p>
+            </motion.div>
+
+            <div className="grid grid-cols-3 gap-4 sm:gap-6">
+              {[
+                { name: 'Codex', role: 'AI Architect', src: '/images/team/codex-falcon.png', accent: '#10B981' },
+                { name: 'Echo', role: 'Sound Weaver', src: '/images/team/echo-leopard.png', accent: '#EC4899' },
+                { name: 'Nova', role: 'Content Catalyst', src: '/images/team/nova-fox.png', accent: '#F59E0B' },
+                { name: 'Stella', role: 'System Orchestrator', src: '/images/team/stella-owl.png', accent: '#8B5CF6' },
+                { name: 'Draconia', role: 'Product Forge', src: '/images/team/draconia-tiger.png', accent: '#EF4444' },
+                { name: 'Arion', role: 'Vision Keeper', src: '/images/team/arion-mamoru.png', accent: '#43BFE3' },
+                { name: 'Nero', role: 'Inner Circle', src: '/images/team/nero-umbra.png', accent: '#6366F1' },
+                { name: 'Shinkami', role: 'Premium Architect', src: '/images/team/shinkami.png', accent: '#14B8A6' },
+                { name: 'Lumina', role: 'Light Bringer', src: '/images/team/lumina-sol.png', accent: '#FBBF24' },
+              ].map((char, i) => (
+                <motion.div
+                  key={char.name}
+                  {...fadeIn}
+                  transition={{ ...transition, delay: i * 0.05 }}
+                  className="group relative overflow-hidden rounded-2xl border border-white/5 bg-white/[0.02] transition-all hover:border-white/10 hover:bg-white/[0.04]"
+                >
+                  <div className="relative aspect-square overflow-hidden">
+                    <Image
+                      src={char.src}
+                      alt={char.name}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      sizes="(max-width: 640px) 33vw, 200px"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#030712] via-transparent to-transparent" />
+                  </div>
+                  <div className="p-3 text-center">
+                    <p className="text-sm font-semibold text-white">{char.name}</p>
+                    <p className="text-xs text-white/40">{char.role}</p>
+                  </div>
+                  <div
+                    className="absolute bottom-0 left-0 right-0 h-px"
+                    style={{
+                      background: `linear-gradient(90deg, transparent, ${char.accent}60, transparent)`,
+                    }}
+                  />
+                </motion.div>
+              ))}
+            </div>
           </div>
         </section>
 
@@ -463,6 +519,7 @@ export default function AboutPage() {
                   listType="newsletter"
                   placeholder="your@email.com"
                   buttonText="Subscribe"
+                  redirectTo="/newsletter/thank-you"
                   compact
                 />
               </div>

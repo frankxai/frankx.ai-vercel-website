@@ -103,10 +103,26 @@ export default function NewsletterHero({
           </span>
         </motion.div>
 
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="mb-6 flex justify-center"
+        >
+          <Image
+            src="/images/mascot/mascot-v25-crystal-familiar.png"
+            alt="Axi — FrankX.AI mascot"
+            width={80}
+            height={80}
+            className="rounded-2xl"
+            style={{ boxShadow: '0 0 40px -8px rgba(139,92,246,0.4)' }}
+          />
+        </motion.div>
+
         <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
+          transition={{ duration: 0.6, delay: 0.15 }}
           className="mb-6 text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl"
         >
           Subscribe to what

@@ -63,10 +63,12 @@ export function EmailSignup({
 
       setStatus('success')
 
-      // Redirect after success
+      // Redirect after success with stream context
       if (redirectTo) {
+        const separator = redirectTo.includes('?') ? '&' : '?'
+        const url = `${redirectTo}${separator}stream=${listType}`
         setTimeout(() => {
-          router.push(redirectTo)
+          router.push(url)
         }, 1500)
       }
     } catch (error) {
