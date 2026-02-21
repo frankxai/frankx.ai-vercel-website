@@ -15,7 +15,7 @@ const pillars = [
   },
   {
     title: 'Operating Systems',
-    description: 'Three interconnected platforms: Vibe OS (creative state), GenCreator OS (multi-modal production), ACOS (agentic orchestration with 630+ skills).',
+    description: 'Three interconnected platforms: Vibe OS (creative state), GenCreator OS (multi-modal production), ACOS (agentic orchestration with 75+ skills).',
     stat: '3 platforms',
     accent: 'text-cyan-400',
     border: 'border-cyan-500/20',

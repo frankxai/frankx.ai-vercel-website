@@ -194,7 +194,7 @@ export default function CreatorsLandingPage() {
             {[
               { value: '12K+', label: 'Songs Created' },
               { value: '70+', label: 'Tutorials' },
-              { value: '630+', label: 'AI Skills' },
+              { value: '75+', label: 'AI Skills' },
               { value: 'Free', label: 'To Start' },
             ].map((stat, i) => (
               <motion.div

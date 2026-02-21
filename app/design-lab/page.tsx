@@ -381,7 +381,7 @@ function HowItWorks() {
 const hubSections = [
   {
     title: 'ACOS Redesign',
-    subtitle: 'Three design concepts for presenting 630+ skills: Command Center, Skill Galaxy, Flow Architecture',
+    subtitle: 'Three design concepts for presenting 75+ skills: Command Center, Skill Galaxy, Flow Architecture',
     href: '/design-lab/acos',
     icon: Command,
     color: 'violet',

@@ -198,8 +198,8 @@ export default function ArchitectsLandingPage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
               { value: '4+', label: 'Years Enterprise AI' },
-              { value: '630+', label: 'AI Skills Built' },
-              { value: '40+', label: 'Agent Templates' },
+              { value: '75+', label: 'AI Skills Built' },
+              { value: '38', label: 'Agent Templates' },
               { value: '70+', label: 'Technical Articles' },
             ].map((stat, i) => (
               <motion.div

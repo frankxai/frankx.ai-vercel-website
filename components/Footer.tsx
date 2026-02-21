@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { Mail, ExternalLink } from 'lucide-react'
 
-import { LogoMarkMinimal } from '@/components/ui/LogoMark'
+import Image from 'next/image'
 
 export default function Footer() {
   return (
@@ -11,9 +11,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="col-span-2 md:col-span-2 lg:col-span-1">
             <Link href="/" className="inline-flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6 group">
-              <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl bg-gradient-to-br from-emerald-500/20 via-cyan-500/20 to-violet-500/20 flex items-center justify-center border border-white/10 group-hover:border-white/20 transition-colors">
-                <LogoMarkMinimal size={20} />
-              </div>
+              <Image src="/images/mascot/axi-v3-icon.png" alt="Axi" width={36} height={36} className="rounded-lg" />
               <div>
                 <span className="block text-base sm:text-lg font-semibold text-white">FrankX.AI</span>
                 <span className="block text-[10px] sm:text-xs text-white/55">AI Systems & Music</span>

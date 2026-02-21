@@ -148,7 +148,7 @@ const faqs = [
   {
     question: 'What makes this coaching different?',
     answer:
-      'I combine deep technical expertise in AI systems (40+ agents, 630+ skills in ACOS) with practical creator experience (500+ AI songs, 70+ articles). You get hands-on architecture guidance plus strategies that actually work in production.',
+      'I combine deep technical expertise in AI systems (38 agents, 75+ skills in ACOS) with practical creator experience (12,000+ AI songs, 70+ articles). You get hands-on architecture guidance plus strategies that actually work in production.',
   },
   {
     question: 'What tech stack do you work with?',

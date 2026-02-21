@@ -87,7 +87,7 @@ export default function ACOSLandingPage() {
           >
             <Badge className="mb-6 bg-card border border-border text-foreground px-4 py-2">
               <Sparkles className="w-3 h-3 mr-2 inline" />
-              630+ Skills • 40+ Agents • 7 Events • 20+ Hooks
+              75+ Skills • 38 Agents • 7 Events • 20+ Hooks
             </Badge>
             
             <h1 className="text-6xl sm:text-7xl lg:text-8xl font-bold mb-6 text-balance">
@@ -101,7 +101,7 @@ export default function ACOSLandingPage() {
             </p>
             
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed text-pretty">
-              {'Stop juggling scattered tools. ACOS orchestrates 630+ AI skills and 40+ specialized agents with intelligent auto-routing. Built for creators who demand more.'}
+              {'Stop juggling scattered tools. ACOS orchestrates 75+ AI skills and 38 specialized agents with intelligent auto-routing. Built for creators who demand more.'}
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
@@ -270,7 +270,7 @@ export default function ACOSLandingPage() {
               </motion.div>
             </div>
 
-            {/* Feature 2 - 630+ Skills Library */}
+            {/* Feature 2 - 75+ Skills Library */}
             <div className="grid md:grid-cols-2 gap-12 items-center">
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
@@ -282,7 +282,7 @@ export default function ACOSLandingPage() {
                   <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-[#F59E0B] to-[#D97706] flex items-center justify-center">
                     <Brain className="w-6 h-6 text-white" />
                   </div>
-                  <Badge className="bg-[#F59E0B]/20 text-[#F59E0B] border-[#F59E0B]/30">630+ Skills</Badge>
+                  <Badge className="bg-[#F59E0B]/20 text-[#F59E0B] border-[#F59E0B]/30">75+ Skills</Badge>
                 </div>
                 <h3 className="text-3xl font-bold mb-4 text-foreground">Every Domain Covered</h3>
                 <p className="text-muted-foreground leading-relaxed mb-6 text-pretty">
@@ -467,8 +467,8 @@ export default function ACOSLandingPage() {
             {[
               { label: 'Your AI IDE', sublabel: 'Claude Code, Cursor, Windsurf, etc.', color: '#F59E0B' },
               { label: 'Starlight Intelligence Layer', sublabel: 'Context, memory, learning', color: '#43BFE3' },
-              { label: 'Agent Orchestrator', sublabel: '40+ specialized agents with auto-routing', color: '#AB47C7' },
-              { label: 'Skills Library', sublabel: '630+ battle-tested skills', color: '#10B981' },
+              { label: 'Agent Orchestrator', sublabel: '38 specialized agents with auto-routing', color: '#AB47C7' },
+              { label: 'Skills Library', sublabel: '75+ battle-tested skills', color: '#10B981' },
             ].map((layer, idx) => (
               <motion.div
                 key={idx}
@@ -674,7 +674,7 @@ export default function ACOSLandingPage() {
 
                 <div className="max-w-md mx-auto mb-8 space-y-3">
                   {[
-                    '630+ AI Skills',
+                    '75+ AI Skills',
                     '40+ Specialized Agents',
                     'Smart Auto-Routing',
                     'Multi-Agent Swarms',

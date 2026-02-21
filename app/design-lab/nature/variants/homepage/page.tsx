@@ -221,8 +221,8 @@ function RotatingNatureWord() {
 const seedStats = [
   { value: '12K+', label: 'AI Songs', icon: Music2, color: glow.creation },
   { value: '70+', label: 'Articles', icon: BookOpen, color: glow.data },
-  { value: '630+', label: 'Skills', icon: Terminal, color: glow.synapse },
-  { value: '40+', label: 'Agents', icon: Code2, color: glow.growth },
+  { value: '75+', label: 'Skills', icon: Terminal, color: glow.synapse },
+  { value: '38', label: 'Agents', icon: Code2, color: glow.growth },
 ]
 
 function SeedPodStats() {
@@ -380,7 +380,7 @@ const contentPillars = [
   {
     icon: Terminal,
     title: 'ACOS',
-    subtitle: '630+ skills, 40+ agents',
+    subtitle: '75+ skills, 38 agents',
     description: 'The Agentic Creator OS — orchestrate AI agents for content creation, code generation, and creative workflows.',
     href: '/acos',
     color: glow.synapse,
