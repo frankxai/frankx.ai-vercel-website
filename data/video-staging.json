@@ -3,7 +3,7 @@
     "id": "VMj-3S1tku0",
     "title": "Neural Networks: Zero to Hero",
     "channel": "Andrej Karpathy",
-    "category": "AI Architecture",
+    "category": "AI Foundations",
     "status": "published",
     "tags": ["neural networks", "python", "coding", "education"],
     "persona": "architect"
@@ -39,7 +39,7 @@
     "id": "zdkGXDq1jqM",
     "title": "How to Learn Anything (Feynman Technique)",
     "channel": "Freedom in Thought",
-    "category": "Learning",
+    "category": "Mindset & Growth",
     "status": "published",
     "tags": ["learning", "mental models"],
     "persona": "student"
@@ -48,7 +48,7 @@
     "id": "n9iv24yI04nI",
     "title": "Rick Rubin: The Creative Act",
     "channel": "60 Minutes",
-    "category": "Creativity",
+    "category": "Creative AI & Music",
     "status": "published",
     "tags": ["creativity", "music", "philosophy"],
     "persona": "creator"
@@ -57,7 +57,7 @@
     "id": "BSjQk-7j3X0",
     "title": "The Infinite Game",
     "channel": "Simon Sinek",
-    "category": "Strategy",
+    "category": "Strategy & Business",
     "status": "published",
     "tags": ["business", "mindset", "leadership"],
     "persona": "investor"
@@ -66,7 +66,7 @@
     "id": "Cqbleas1mmo",
     "title": "The Psychology of Your Future Self",
     "channel": "TED",
-    "category": "Mindset",
+    "category": "Mindset & Growth",
     "status": "published",
     "tags": ["psychology", "future", "planning"],
     "persona": "student"
@@ -75,7 +75,7 @@
     "id": "5MUvJv_sB64",
     "title": "Sam Altman: The Future of AI",
     "channel": "Lex Fridman",
-    "category": "Strategy",
+    "category": "Strategy & Business",
     "status": "published",
     "tags": ["openai", "agi", "future"],
     "persona": "investor"
@@ -84,7 +84,7 @@
     "id": "jfKfPfyJRdk",
     "title": "Lofi Hip Hop Radio - Beats to Study To",
     "channel": "Lofi Girl",
-    "category": "Rituals",
+    "category": "Mindset & Growth",
     "status": "published",
     "tags": ["lofi", "music", "focus"],
     "persona": "all"
@@ -93,7 +93,7 @@
     "id": "zjkBMFhNj_g",
     "title": "Intro to Large Language Models",
     "channel": "Andrej Karpathy",
-    "category": "AI Architecture",
+    "category": "AI Foundations",
     "status": "published",
     "tags": ["llm", "intro", "education"],
     "persona": "architect"
@@ -102,7 +102,7 @@
     "id": "sal78ACtGTc",
     "title": "What's Next for AI Agentic Workflows",
     "channel": "Andrew Ng",
-    "category": "AI Architecture",
+    "category": "AI Agents",
     "status": "published",
     "tags": ["agents", "workflow", "design patterns"],
     "persona": "architect"
@@ -111,7 +111,7 @@
     "id": "jvqFAi7vkBc",
     "title": "Sam Altman: GPT-5, Sora, Board Saga, AGI",
     "channel": "Lex Fridman",
-    "category": "Strategy",
+    "category": "Strategy & Business",
     "status": "published",
     "tags": ["openai", "gpt5", "agi"],
     "persona": "investor"
@@ -120,7 +120,7 @@
     "id": "CBYhVcO4WgI",
     "title": "How to Start a Startup (Lecture 1)",
     "channel": "Y Combinator",
-    "category": "Strategy",
+    "category": "Strategy & Business",
     "status": "published",
     "tags": ["startup", "yc", "business"],
     "persona": "investor"
@@ -138,7 +138,7 @@
     "id": "yb5zpo5WDG4",
     "title": "Focus Toolkit: Tools to Improve Focus",
     "channel": "Huberman Lab",
-    "category": "Mindset",
+    "category": "Mindset & Growth",
     "status": "staged",
     "tags": ["focus", "neuroscience", "tools"],
     "persona": "student"
@@ -147,7 +147,7 @@
     "id": "iE39q-IKOzA",
     "title": "Harry Potter by Balenciaga",
     "channel": "demonflyingfox",
-    "category": "AI Memes",
+    "category": "AI Culture",
     "status": "published",
     "tags": ["balenciaga", "viral", "ai"],
     "persona": "creator"

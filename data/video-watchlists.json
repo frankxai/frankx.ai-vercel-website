@@ -5,7 +5,14 @@
     "description": "Core videos for building production AI systems. From neural nets to deployment.",
     "icon": "cpu",
     "color": "#43BFE3",
-    "videoIds": ["VMj-3S1tku0", "zjkBMFhNj_g", "pOLR5jE5Vjw", "uRuLgar5XZw", "QUXQNi6jQ30", "ORMx45xqWkA"]
+    "videoIds": [
+      "VMj-3S1tku0",
+      "zjkBMFhNj_g",
+      "pOLR5jE5Vjw",
+      "uRuLgar5XZw",
+      "QUXQNi6jQ30",
+      "ORMx45xqWkA"
+    ]
   },
   {
     "id": "ai-agents",
@@ -37,7 +44,14 @@
     "description": "AI ROI, startup strategies, and business models for the agentic era.",
     "icon": "trending-up",
     "color": "#43BFE3",
-    "videoIds": ["5MUvJv_sB64", "BSjQk-7j3X0", "jvqFAi7vkBc", "CBYhVcO4WgI", "0wIUK0nsyUg", "tqfPCE_gfuc"]
+    "videoIds": [
+      "5MUvJv_sB64",
+      "BSjQk-7j3X0",
+      "jvqFAi7vkBc",
+      "CBYhVcO4WgI",
+      "0wIUK0nsyUg",
+      "tqfPCE_gfuc"
+    ]
   },
   {
     "id": "creator-economy",
@@ -45,7 +59,13 @@
     "description": "Building audience, monetization, and creator-first business models.",
     "icon": "users",
     "color": "#AB47C7",
-    "videoIds": ["BZ2nSULolKI", "cNGpxfcDKms", "H_lZr0BAWhM", "BBAuhqvT_ds", "RKXZ7t_RiOE"]
+    "videoIds": [
+      "BZ2nSULolKI",
+      "cNGpxfcDKms",
+      "H_lZr0BAWhM",
+      "BBAuhqvT_ds",
+      "RKXZ7t_RiOE"
+    ]
   },
   {
     "id": "mindset",
@@ -53,7 +73,13 @@
     "description": "Psychology, motivation, and mental frameworks for high-performance creators.",
     "icon": "activity",
     "color": "#F59E0B",
-    "videoIds": ["Cqbleas1mmo", "arj7oStGLkU", "yb5zpo5WDG4", "mNeXuCYiE0U", "heh5XLwZVOY"]
+    "videoIds": [
+      "Cqbleas1mmo",
+      "arj7oStGLkU",
+      "yb5zpo5WDG4",
+      "mNeXuCYiE0U",
+      "heh5XLwZVOY"
+    ]
   },
   {
     "id": "learning",
@@ -62,5 +88,29 @@
     "icon": "graduation-cap",
     "color": "#10B981",
     "videoIds": ["aircAruvnKk", "zdkGXDq1jqM", "kCc8FmEb1nY", "3E7hkPZ-HTk"]
+  },
+  {
+    "id": "peak-performance",
+    "title": "Peak Performance",
+    "description": "Flow states, discipline, motivation, and the science of human performance.",
+    "icon": "flame",
+    "color": "#EF4444",
+    "videoIds": ["Cpc-t-Uwv1I", "fXIeFJCqsPs", "y1MHyyWsMeE", "IdTMDpizis8", "SwQhKFMxmDY", "UFKCLjhO2bo"]
+  },
+  {
+    "id": "entrepreneurship",
+    "title": "Entrepreneurship",
+    "description": "Building businesses, passive income, startup strategy, and creator monetization.",
+    "icon": "rocket",
+    "color": "#8B5CF6",
+    "videoIds": ["3qHkcs3kG44", "GwIo3gDZCVQ", "UEEsdXn8oG8", "RVKofRN1dyI", "0lJKucu6HJc", "YTmJlKZ3mKQ"]
+  },
+  {
+    "id": "philosophy-stoicism",
+    "title": "Philosophy & Stoicism",
+    "description": "Stoic frameworks, fear-setting, journaling, and the examined life.",
+    "icon": "book-open",
+    "color": "#F59E0B",
+    "videoIds": ["5J6jAC6XxAI", "iPE2_iCCo0w", "ZVeUIclaMTE", "heh5XLwZVOY", "aMcjxSThD54", "f-wWBGo6a2w"]
   }
 ]

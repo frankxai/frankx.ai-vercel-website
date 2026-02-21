@@ -3,71 +3,78 @@
     "id": "VMj-3S1tku0",
     "title": "Neural Networks: Zero to Hero",
     "author": "Andrej Karpathy",
-    "category": "AI Architecture",
+    "category": "AI Foundations",
     "personas": ["developer", "architect"],
     "tags": ["neural networks", "first principles", "coding"],
     "description": "The gold standard for understanding AI. Karpathy builds a neural net from scratch in Python.",
-    "featured": true
+    "featured": true,
+    "level": "intermediate"
   },
   {
     "id": "zjkBMFhNj_g",
     "title": "Intro to Large Language Models",
     "author": "Andrej Karpathy",
-    "category": "AI Architecture",
+    "category": "AI Foundations",
     "personas": ["developer", "architect", "student"],
     "tags": ["llm", "intro", "education"],
     "description": "Karpathy's accessible yet deep explanation of how LLMs work, from tokens to training.",
-    "featured": true
+    "featured": true,
+    "level": "intro"
   },
   {
     "id": "kCc8FmEb1nY",
     "title": "Let's Build GPT from Scratch",
     "author": "Andrej Karpathy",
-    "category": "AI Architecture",
+    "category": "AI Foundations",
     "personas": ["developer", "architect"],
     "tags": ["gpt", "transformer", "coding"],
     "description": "Build a GPT model from scratch in Python. The definitive hands-on transformer tutorial.",
-    "featured": true
+    "featured": true,
+    "level": "advanced"
   },
   {
     "id": "7xTGNNLPyMI",
     "title": "Deep Dive into LLMs like ChatGPT",
     "author": "Andrej Karpathy",
-    "category": "AI Architecture",
+    "category": "AI Foundations",
     "personas": ["developer", "architect", "investor"],
     "tags": ["llm", "chatgpt", "deep dive"],
     "description": "Karpathy's comprehensive 3.5-hour exploration of modern LLM architectures and capabilities.",
-    "featured": false
+    "featured": false,
+    "level": "advanced"
   },
   {
     "id": "aircAruvnKk",
     "title": "But What Is a Neural Network?",
     "author": "3Blue1Brown",
-    "category": "AI Architecture",
+    "category": "AI Foundations",
     "personas": ["student", "developer"],
     "tags": ["math", "visualization", "neural networks"],
     "description": "Beautiful visual explanation of neural networks. The best starting point for visual learners.",
-    "featured": true
+    "featured": true,
+    "level": "intro"
   },
   {
     "id": "IHZwWFHWa-w",
     "title": "Gradient Descent: How Neural Networks Learn",
     "author": "3Blue1Brown",
-    "category": "AI Architecture",
+    "category": "AI Foundations",
     "personas": ["student", "developer"],
     "tags": ["math", "gradient descent", "backpropagation"],
     "description": "Visual intuition for how neural networks learn through gradient descent.",
-    "featured": false
+    "featured": false,
+    "level": "intro"
   },
   {
     "id": "eMlx5fFNoYc",
     "title": "Attention in Transformers, Visually Explained",
     "author": "3Blue1Brown",
-    "category": "AI Architecture",
+    "category": "AI Foundations",
     "personas": ["developer", "architect"],
     "tags": ["attention", "transformers", "visualization"],
     "description": "The attention mechanism that powers GPT, Claude, and every modern LLM — explained visually.",
-    "featured": true
+    "featured": false,
+    "level": "intermediate"
   },
   {
     "id": "pOLR5jE5Vjw",
@@ -77,7 +84,8 @@
     "personas": ["developer", "architect"],
     "tags": ["llm", "engineering", "pragmatic"],
     "description": "A pragmatic breakdown of what it means to be an AI Engineer in the modern era.",
-    "featured": true
+    "featured": true,
+    "level": "intermediate"
   },
   {
     "id": "uRuLgar5XZw",
@@ -87,7 +95,8 @@
     "personas": ["developer"],
     "tags": ["tools", "coding", "productivity"],
     "description": "Cutting through the marketing noise to find tools that actually ship code.",
-    "featured": false
+    "featured": false,
+    "level": "intro"
   },
   {
     "id": "QUXQNi6jQ30",
@@ -97,27 +106,30 @@
     "personas": ["developer", "architect"],
     "tags": ["cli", "llm", "terminal"],
     "description": "Practical techniques for using LLMs directly from the terminal for development workflows.",
-    "featured": false
+    "featured": false,
+    "level": "intermediate"
   },
   {
     "id": "sal78ACtGTc",
     "title": "What's Next for AI Agentic Workflows",
     "author": "Andrew Ng",
-    "category": "AI Architecture",
+    "category": "AI Agents",
     "personas": ["architect", "developer"],
     "tags": ["agents", "workflow", "design patterns"],
     "description": "Andrew Ng's influential talk on the four key agentic design patterns shaping AI development.",
-    "featured": true
+    "featured": true,
+    "level": "intermediate"
   },
   {
     "id": "KrRD7r7y7NY",
     "title": "The Rise of AI Agents",
     "author": "Andrew Ng",
-    "category": "AI Architecture",
+    "category": "AI Agents",
     "personas": ["architect", "investor"],
     "tags": ["agents", "future", "autonomy"],
     "description": "Andrew Ng on why AI agents will be the next major paradigm shift in artificial intelligence.",
-    "featured": true
+    "featured": false,
+    "level": "intro"
   },
   {
     "id": "Ta5g-OxjPO4",
@@ -127,87 +139,96 @@
     "personas": ["developer", "creator"],
     "tags": ["claude", "coding", "tutorial"],
     "description": "A hands-on build log showing the raw power of Claude's agentic coding capabilities.",
-    "featured": false
+    "featured": false,
+    "level": "intro"
   },
   {
     "id": "5MUvJv_sB64",
     "title": "Sam Altman: The Future of AI",
     "author": "Lex Fridman",
-    "category": "Strategy",
+    "category": "Strategy & Business",
     "personas": ["investor", "architect"],
     "tags": ["agi", "future", "openai"],
     "description": "A deep conversation on the trajectory of AGI and the societal shifts coming next.",
-    "featured": true
+    "featured": true,
+    "level": "intro"
   },
   {
     "id": "jvqFAi7vkBc",
     "title": "Sam Altman: GPT-5, Sora, Board Saga, AGI",
     "author": "Lex Fridman",
-    "category": "Strategy",
+    "category": "Strategy & Business",
     "personas": ["investor", "architect"],
     "tags": ["openai", "gpt5", "agi"],
     "description": "Lex Fridman's most popular Sam Altman interview — covering GPT-5, Sora, the board crisis, and AGI.",
-    "featured": true
+    "featured": false,
+    "level": "intermediate"
   },
   {
     "id": "JN3KPFbWCy8",
     "title": "Elon Musk: War, AI, Aliens, Humanity",
     "author": "Lex Fridman",
-    "category": "Strategy",
+    "category": "Strategy & Business",
     "personas": ["investor", "architect"],
     "tags": ["tesla", "spacex", "ai"],
     "description": "A wide-ranging conversation with Elon Musk on technology, AI, and humanity's future.",
-    "featured": false
+    "featured": false,
+    "level": "intermediate"
   },
   {
     "id": "Gfr50f6ZBvo",
     "title": "Demis Hassabis: DeepMind & Superintelligence",
     "author": "Lex Fridman",
-    "category": "Strategy",
+    "category": "Strategy & Business",
     "personas": ["architect", "investor"],
     "tags": ["deepmind", "agi", "science"],
     "description": "DeepMind CEO on the path to superintelligence, AlphaFold, and the future of AI research.",
-    "featured": false
+    "featured": false,
+    "level": "advanced"
   },
   {
     "id": "cdiD-9MMpb0",
     "title": "Andrej Karpathy: Tesla AI, Self-Driving, AGI",
     "author": "Lex Fridman",
-    "category": "Strategy",
+    "category": "Strategy & Business",
     "personas": ["architect", "developer"],
     "tags": ["tesla", "autonomy", "agi"],
     "description": "Karpathy's 3.5-hour conversation with Lex on Tesla's AI stack, Optimus, and the road to AGI.",
-    "featured": false
+    "featured": false,
+    "level": "advanced"
   },
   {
     "id": "BSjQk-7j3X0",
     "title": "The Infinite Game",
     "author": "Simon Sinek",
-    "category": "Strategy",
+    "category": "Strategy & Business",
     "personas": ["investor", "architect"],
     "tags": ["business", "mindset", "long-term"],
     "description": "Why we are playing the wrong game in business and how to shift to an infinite mindset.",
-    "featured": true
+    "featured": true,
+    "level": "intro"
   },
   {
     "id": "CBYhVcO4WgI",
     "title": "How to Start a Startup (Lecture 1)",
     "author": "Y Combinator",
-    "category": "Strategy",
+    "category": "Strategy & Business",
     "personas": ["investor", "creator"],
     "tags": ["startup", "yc", "business"],
     "description": "The legendary first lecture from YC's startup school with Sam Altman and Dustin Moskovitz.",
-    "featured": true
+    "featured": false,
+    "level": "intro"
   },
   {
     "id": "0wIUK0nsyUg",
     "title": "AI Will Save The World",
     "author": "a16z",
-    "category": "Strategy",
+    "category": "Strategy & Business",
     "personas": ["investor", "architect"],
     "tags": ["optimism", "future", "venture"],
     "description": "Marc Andreessen's case for AI optimism and why technology will solve humanity's biggest problems.",
-    "featured": false
+    "featured": false,
+    "level": "intro"
   },
   {
     "id": "BZ2nSULolKI",
@@ -217,7 +238,8 @@
     "personas": ["creator", "investor"],
     "tags": ["solo", "business", "creator"],
     "description": "How to productize yourself and build a one-person business that scales without employees.",
-    "featured": true
+    "featured": true,
+    "level": "intro"
   },
   {
     "id": "H_lZr0BAWhM",
@@ -227,128 +249,141 @@
     "personas": ["creator", "student"],
     "tags": ["productivity", "systems", "thinking"],
     "description": "Ali Abdaal's framework for productive thinking and building creator systems.",
-    "featured": true
+    "featured": false,
+    "level": "intro"
   },
   {
     "id": "RKXZ7t_RiOE",
     "title": "Pricing Design Work & Creativity",
     "author": "Chris Do",
-    "category": "Creativity",
+    "category": "Creative AI & Music",
     "personas": ["creator", "investor"],
     "tags": ["pricing", "design", "business"],
     "description": "Chris Do's masterclass on pricing creative work and communicating design value.",
-    "featured": false
+    "featured": false,
+    "level": "intermediate"
   },
   {
     "id": "n9iv24yI04nI",
     "title": "Rick Rubin: The Creative Act",
     "author": "60 Minutes",
-    "category": "Creativity",
+    "category": "Creative AI & Music",
     "personas": ["creator", "artist"],
     "tags": ["mindset", "art", "philosophy"],
     "description": "Legendary producer Rick Rubin on listening to the universe and removing the ego from creation.",
-    "featured": true
+    "featured": true,
+    "level": "intro"
   },
   {
     "id": "1bZ0OSEViyo",
     "title": "The Real Reason Why Music Is Getting Worse",
     "author": "Rick Beato",
-    "category": "Creativity",
+    "category": "Creative AI & Music",
     "personas": ["creator", "artist"],
     "tags": ["music", "industry", "quality"],
     "description": "Rick Beato's analysis of why modern music production has degraded — and what to do about it.",
-    "featured": false
+    "featured": false,
+    "level": "intermediate"
   },
   {
     "id": "Cqbleas1mmo",
     "title": "The Psychology of Your Future Self",
     "author": "Dr. Hal Hershfield",
-    "category": "Mindset",
+    "category": "Mindset & Growth",
     "personas": ["student", "investor"],
     "tags": ["psychology", "planning", "vision"],
     "description": "Connecting with your future self to make better long-term decisions today.",
-    "featured": false
+    "featured": false,
+    "level": "intro"
   },
   {
     "id": "yb5zpo5WDG4",
     "title": "Focus Toolkit: Tools to Improve Focus",
     "author": "Huberman Lab",
-    "category": "Mindset",
+    "category": "Mindset & Growth",
     "personas": ["developer", "creator", "student"],
     "tags": ["focus", "neuroscience", "tools"],
     "description": "Andrew Huberman's evidence-based toolkit for improving focus and attention.",
-    "featured": true
+    "featured": false,
+    "level": "intermediate"
   },
   {
     "id": "arj7oStGLkU",
     "title": "Inside the Mind of a Master Procrastinator",
     "author": "Tim Urban",
-    "category": "Mindset",
+    "category": "Mindset & Growth",
     "personas": ["student", "creator"],
     "tags": ["procrastination", "humor", "psychology"],
     "description": "The most-watched TED talk on procrastination. Funny, relatable, and surprisingly deep.",
-    "featured": true
+    "featured": false,
+    "level": "intro"
   },
   {
     "id": "mNeXuCYiE0U",
     "title": "1% Better Every Day",
     "author": "James Clear",
-    "category": "Mindset",
+    "category": "Mindset & Growth",
     "personas": ["student", "creator"],
     "tags": ["habits", "growth", "compound"],
     "description": "James Clear's Atomic Habits framework distilled into a single powerful talk.",
-    "featured": false
+    "featured": false,
+    "level": "intro"
   },
   {
     "id": "zdkGXDq1jqM",
     "title": "How to Learn Anything (Feynman Technique)",
     "author": "Freedom in Thought",
-    "category": "Learning",
+    "category": "Mindset & Growth",
     "personas": ["student", "creator"],
     "tags": ["learning", "mental models", "growth"],
     "description": "Master the art of learning with the Feynman technique. Essential for keeping up with AI velocity.",
-    "featured": false
+    "featured": false,
+    "level": "intro"
   },
   {
     "id": "jfKfPfyJRdk",
     "title": "Lofi Hip Hop Radio - Beats to Study To",
     "author": "Lofi Girl",
-    "category": "Rituals",
+    "category": "Mindset & Growth",
     "personas": ["student", "developer"],
     "tags": ["music", "focus", "background"],
     "description": "The internet's favorite focus companion. Perfect for coding blocks.",
     "featured": false,
+    "level": "intro",
     "isRitual": true
   },
   {
     "id": "1_G60OdEzXs",
     "title": "Binaural Beats: Deep Focus",
     "author": "Binaural Beats",
-    "category": "Rituals",
+    "category": "Mindset & Growth",
     "personas": ["creator", "developer", "student"],
     "tags": ["binaural", "focus", "music"],
     "description": "40Hz binaural beats designed for deep focus and flow state during intense work sessions.",
-    "featured": true,
+    "featured": false,
+    "level": "intro",
     "isRitual": true
   },
   {
     "id": "iE39q-IKOzA",
     "title": "Harry Potter by Balenciaga",
     "author": "demonflyingfox",
-    "category": "AI Memes",
+    "category": "AI Culture",
     "personas": ["creator"],
     "tags": ["balenciaga", "fashion", "viral"],
     "description": "The viral AI video that started the Balenciaga meme trend. Peak internet absurdism.",
-    "featured": true
+    "featured": false,
+    "level": "intro"
   },
   {
     "id": "q6ra0KDgVbg",
     "title": "Presidents Play Wii Sports Golf",
     "author": "AI Presidents",
-    "category": "AI Memes",
+    "category": "AI Culture",
     "personas": ["creator"],
     "tags": ["presidents", "gaming", "parody"],
     "description": "AI-generated presidents competing at Wii Sports. Surprisingly wholesome meme content.",
-    "featured": true
+    "featured": false,
+    "level": "intro"
   }
 ]

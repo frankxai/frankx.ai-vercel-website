@@ -27,6 +27,8 @@ export interface LibraryVideo {
   tags: string[]
   description: string
   featured: boolean
+  level?: 'intro' | 'intermediate' | 'advanced'
+  isRitual?: boolean
 }
 
 export interface StagingVideo {
@@ -53,6 +55,7 @@ export interface EnhancedVideo {
   featured: boolean
   embeddable: boolean
   status: StagingVideo['status']
+  level: 'intro' | 'intermediate' | 'advanced'
 }
 
 // --- Watchlist Types ---

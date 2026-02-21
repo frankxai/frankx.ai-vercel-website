@@ -2,7 +2,7 @@ import {
   getAllVideos,
   getWatchlists,
   getCategories,
-  getTrendingVideos,
+  getEditorsPicks,
   getVideoStats,
 } from '@/lib/video'
 import WatchClient from './WatchClient'
@@ -11,10 +11,9 @@ export default function WatchPage() {
   const videos = getAllVideos()
   const watchlists = getWatchlists()
   const categories = getCategories()
-  const trending = getTrendingVideos(8)
+  const editorsPicks = getEditorsPicks()
   const stats = getVideoStats()
 
-  // Build blog cross-link map from cross-refs data (if available)
   let blogCrossLinks: Record<string, string[]> = {}
   try {
     const crossRefs = require('@/data/video-cross-refs.json')
@@ -28,7 +27,7 @@ export default function WatchPage() {
       videos={videos}
       watchlists={watchlists}
       categories={categories}
-      trending={trending}
+      editorsPicks={editorsPicks}
       stats={stats}
       blogCrossLinks={blogCrossLinks}
     />

@@ -41,6 +41,23 @@ libraryData.forEach((v) => libraryMap.set(v.id, v))
 const stagingMap = new Map<string, StagingVideo>()
 stagingData.forEach((v) => stagingMap.set(v.id, v))
 
+// --- Level inference ---
+
+function parseDurationMinutes(duration: string): number {
+  if (duration === 'LIVE') return 0
+  const parts = duration.split(':').map(Number)
+  if (parts.length === 3) return parts[0] * 60 + parts[1]
+  if (parts.length === 2) return parts[0]
+  return 0
+}
+
+function guessLevel(duration: string): EnhancedVideo['level'] {
+  const mins = parseDurationMinutes(duration)
+  if (mins <= 20) return 'intro'
+  if (mins <= 60) return 'intermediate'
+  return 'advanced'
+}
+
 // --- Merge logic ---
 
 function mergeVideo(vault: VaultVideo): EnhancedVideo {
@@ -60,6 +77,7 @@ function mergeVideo(vault: VaultVideo): EnhancedVideo {
     featured: lib?.featured || false,
     embeddable: vault.embeddable !== false,
     status: stg?.status || 'published',
+    level: lib?.level || guessLevel(vault.duration),
   }
 }
 
@@ -117,20 +135,14 @@ export function getCategories(): CategorySummary[] {
   })
 
   const iconMap: Record<string, string> = {
-    'AI Fundamentals': 'cpu',
-    'AI Engineering': 'cpu',
+    'AI Foundations': 'cpu',
+    'AI Engineering': 'wrench',
     'AI Agents': 'bot',
-    'AI Tools': 'wrench',
-    'AI Strategy': 'trending-up',
-    'Creative AI': 'sparkles',
-    'Strategy': 'trending-up',
-    'Creator Economy': 'trending-up',
-    'AI Memes': 'laugh',
-    'Mindset': 'activity',
-    'Learning': 'graduation-cap',
-    'Rituals': 'activity',
-    'Creativity': 'palette',
-    'LLM Fundamentals': 'cpu',
+    'Strategy & Business': 'trending-up',
+    'Creator Economy': 'rocket',
+    'Creative AI & Music': 'sparkles',
+    'Mindset & Growth': 'activity',
+    'AI Culture': 'laugh',
   }
 
   return Array.from(counts.entries())
@@ -180,4 +192,12 @@ export function getVideoStats() {
     featuredCount: videos.filter((v) => v.featured).length,
     uniqueAuthors: new Set(videos.map((v) => v.author)).size,
   }
+}
+
+export function getEditorsPicks(): EnhancedVideo[] {
+  return getAllVideos().filter((v) => v.featured)
+}
+
+export function getVideosByLevel(level: EnhancedVideo['level']): EnhancedVideo[] {
+  return getAllVideos().filter((v) => v.level === level)
 }
