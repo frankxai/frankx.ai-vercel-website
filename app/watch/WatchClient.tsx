@@ -100,16 +100,10 @@ export default function WatchClient({
             Curated favorites
           </span>
         </div>
-        <VideoCarousel>
-          {editorsPicks.map((video) => (
-            <VideoCard
-              key={video.id}
-              video={video}
-              variant="compact"
-              onClick={() => setActiveVideo(video)}
-            />
-          ))}
-        </VideoCarousel>
+        <VideoCarousel
+          videos={editorsPicks}
+          onPlay={(video) => setActiveVideo(video)}
+        />
       </section>
 
       {/* Watchlists */}
@@ -150,16 +144,10 @@ export default function WatchClient({
               </div>
               <span className="ml-auto text-xs text-white/30">{sectionVideos.length} videos</span>
             </div>
-            <VideoCarousel>
-              {display.map((video) => (
-                <VideoCard
-                  key={video.id}
-                  video={video}
-                  variant="compact"
-                  onClick={() => setActiveVideo(video)}
-                />
-              ))}
-            </VideoCarousel>
+            <VideoCarousel
+              videos={display}
+              onPlay={(video) => setActiveVideo(video)}
+            />
           </section>
         )
       })}
@@ -190,8 +178,8 @@ export default function WatchClient({
                 key={video.id}
                 video={video}
                 variant="full"
-                onClick={() => setActiveVideo(video)}
-                blogCrossLinks={blogCrossLinks}
+                onPlay={(v) => setActiveVideo(v)}
+                blogSlugs={blogCrossLinks[video.id]}
               />
             ))}
           </AnimatePresence>
@@ -246,7 +234,7 @@ export default function WatchClient({
             watchlist={activeWatchlist}
             videos={videos}
             onClose={() => setActiveWatchlist(null)}
-            onPlayVideo={(video) => {
+            onPlay={(video) => {
               setActiveWatchlist(null)
               setActiveVideo(video)
             }}
