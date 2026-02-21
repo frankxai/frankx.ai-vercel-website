@@ -1,12 +1,13 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
 import {
   ArrowLeft,
   ArrowRight,
+  Download,
   Sparkles,
   Image as ImageIcon,
   Star,
@@ -60,7 +61,9 @@ const collections = [
 
 // ── Score Badge ──────────────────────────────────────────────────────────────
 
-function ScoreBadge({ score }: { score: number }) {
+function ScoreBadge({ score, showAlways = false }: { score: number; showAlways?: boolean }) {
+  if (!showAlways && score < 8.0) return null
+
   const color =
     score >= 9
       ? 'text-amber-400 bg-amber-500/15 border-amber-500/30'
@@ -72,12 +75,26 @@ function ScoreBadge({ score }: { score: number }) {
 
   return (
     <div
-      className={`absolute top-3 right-3 px-2 py-1 rounded-md text-xs font-bold border backdrop-blur-sm flex items-center gap-1 ${color}`}
+      aria-label={`Quality score ${score.toFixed(1)} out of 10`}
+      className={`absolute top-2.5 right-2.5 px-2 py-0.5 rounded-full text-[11px] font-bold border backdrop-blur-md flex items-center gap-1 tabular-nums ${color}`}
     >
-      <Star className="w-3 h-3" />
+      {score >= 9 ? <Sparkles className="w-2.5 h-2.5" aria-hidden="true" /> : <Star className="w-2.5 h-2.5" aria-hidden="true" />}
       {score.toFixed(1)}
     </div>
   )
+}
+
+function getCardGlow(score: number): string {
+  if (score >= 9) return 'hover:shadow-[0_0_40px_rgba(245,158,11,0.15)] hover:border-amber-500/30'
+  if (score >= 8.5) return 'hover:shadow-[0_0_30px_rgba(171,71,199,0.12)] hover:border-purple-500/30'
+  if (score >= 8) return 'hover:shadow-[0_0_25px_rgba(67,191,227,0.1)] hover:border-cyan-500/30'
+  return 'hover:border-white/20'
+}
+
+function getAspectRatio(score: number): string {
+  if (score >= 9) return 'aspect-[3/4]'
+  if (score >= 8) return 'aspect-[4/5]'
+  return 'aspect-square'
 }
 
 // ── Artwork Card ─────────────────────────────────────────────────────────────
@@ -85,57 +102,54 @@ function ScoreBadge({ score }: { score: number }) {
 function ArtworkCard({
   artwork,
   onClick,
+  variant = 'standard',
 }: {
   artwork: GalleryArtwork
   onClick: () => void
+  variant?: 'standard' | 'editorial'
 }) {
+  const aspect = variant === 'editorial' ? 'aspect-[16/9]' : getAspectRatio(artwork.score)
+
   return (
-    <motion.div
+    <motion.button
+      type="button"
       layout
-      initial={{ opacity: 0, scale: 0.95 }}
+      aria-label={`View ${artwork.title}${artwork.score >= 8 ? `, score ${artwork.score}` : ''}`}
+      initial={{ opacity: 0, scale: 0.97 }}
       animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.95 }}
-      className="group relative cursor-pointer overflow-hidden rounded-xl bg-[#111113] border border-white/10 hover:border-white/20 transition-all duration-300 break-inside-avoid mb-4"
+      exit={{ opacity: 0, scale: 0.97 }}
+      className={`group relative cursor-pointer overflow-hidden rounded-2xl bg-[#111113] border border-white/[0.08] ring-1 ring-inset ring-white/5 hover:ring-white/10 transition-all duration-500 break-inside-avoid mb-3 w-full text-left hover:-translate-y-0.5 ${getCardGlow(artwork.score)}`}
       onClick={onClick}
     >
-      <div className="relative aspect-square overflow-hidden">
+      <div className={`relative ${aspect} overflow-hidden`}>
         <Image
           src={artwork.src}
           alt={artwork.title}
           fill
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
+          className="object-cover transition-all duration-700 group-hover:scale-[1.06] group-hover:brightness-110"
           sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+        {/* Hover overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        {/* Lit edge */}
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-500/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
         <ScoreBadge score={artwork.score} />
 
         {artwork.featured && (
-          <div className="absolute top-3 left-3 px-2 py-1 rounded-md text-xs font-medium bg-amber-500/20 text-amber-400 border border-amber-500/30 backdrop-blur-sm">
+          <div className="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-full text-[10px] font-medium bg-amber-500/20 text-amber-400 border border-amber-500/30 backdrop-blur-md">
             Featured
           </div>
         )}
 
-        <div className="absolute bottom-0 left-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-opacity translate-y-2 group-hover:translate-y-0">
-          <h3 className="text-white font-semibold text-sm mb-1 line-clamp-1">
+        <div className="absolute bottom-0 left-0 right-0 p-4 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-1 group-hover:translate-y-0">
+          <h3 className="text-white font-semibold text-sm line-clamp-1">
             {artwork.title}
           </h3>
-          <p className="text-white/60 text-xs line-clamp-2 font-mono">
-            {artwork.prompt}
-          </p>
-          <div className="flex flex-wrap gap-1 mt-2">
-            {artwork.tags.slice(0, 3).map((tag) => (
-              <span
-                key={tag}
-                className="px-2 py-0.5 text-[10px] rounded-full bg-white/10 text-white/50"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
+          <p className="text-white/50 text-xs mt-0.5">{artwork.category}</p>
         </div>
       </div>
-    </motion.div>
+    </motion.button>
   )
 }
 
@@ -158,6 +172,21 @@ function GalleryLightbox({
   const hasPrev = currentIndex > 0
   const hasNext = currentIndex < artworks.length - 1
 
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') onClose()
+      if (e.key === 'ArrowLeft' && hasPrev) onNavigate(currentIndex - 1)
+      if (e.key === 'ArrowRight' && hasNext) onNavigate(currentIndex + 1)
+    }
+    document.addEventListener('keydown', handleKeyDown)
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown)
+      document.body.style.overflow = ''
+    }
+  }, [onClose, onNavigate, currentIndex, hasPrev, hasNext])
+
   const copyPrompt = async () => {
     await navigator.clipboard.writeText(artwork.prompt)
     setCopied(true)
@@ -171,36 +200,24 @@ function GalleryLightbox({
       exit={{ opacity: 0 }}
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 backdrop-blur-md"
       onClick={onClose}
+      role="dialog"
+      aria-modal="true"
+      aria-label={`Viewing ${artwork.title}`}
     >
-      {hasPrev && (
-        <button
-          onClick={(e) => {
-            e.stopPropagation()
-            onNavigate(currentIndex - 1)
-          }}
-          className="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors z-10"
-        >
-          <ArrowLeft className="w-6 h-6" />
-        </button>
-      )}
-      {hasNext && (
-        <button
-          onClick={(e) => {
-            e.stopPropagation()
-            onNavigate(currentIndex + 1)
-          }}
-          className="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors z-10"
-        >
-          <ArrowRight className="w-6 h-6" />
-        </button>
-      )}
+      {/* Position counter */}
+      <div className="absolute top-4 left-1/2 -translate-x-1/2 px-3 py-1.5 rounded-full bg-white/10 text-white/60 text-sm font-medium tabular-nums backdrop-blur-md z-10">
+        {currentIndex + 1} / {artworks.length}
+      </div>
 
+      {/* Close button */}
       <button
         onClick={onClose}
-        className="absolute top-4 right-4 p-2 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors z-10"
+        className="absolute top-4 right-4 p-2.5 rounded-full bg-white/10 text-white hover:bg-white/20 transition-colors z-10"
+        aria-label="Close lightbox"
       >
-        <span className="sr-only">Close</span>
-        &times;
+        <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+          <path d="M18 6L6 18M6 6l12 12" />
+        </svg>
       </button>
 
       <motion.div
@@ -210,7 +227,8 @@ function GalleryLightbox({
         className="relative max-w-5xl w-full mx-4 flex flex-col lg:flex-row gap-6 max-h-[90vh]"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="relative flex-1 min-h-[400px] lg:min-h-[600px] rounded-xl overflow-hidden bg-[#111113]">
+        {/* Image panel with inline nav arrows */}
+        <div className="relative flex-1 min-h-[300px] sm:min-h-[400px] lg:min-h-[600px] rounded-xl overflow-hidden bg-[#111113] group/img">
           <Image
             src={artwork.src}
             alt={artwork.title}
@@ -219,9 +237,28 @@ function GalleryLightbox({
             sizes="(max-width: 1024px) 100vw, 60vw"
             priority
           />
+          {hasPrev && (
+            <button
+              onClick={() => onNavigate(currentIndex - 1)}
+              className="absolute left-3 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-black/40 text-white/70 hover:bg-black/60 hover:text-white transition-all opacity-0 group-hover/img:opacity-100"
+              aria-label="Previous artwork"
+            >
+              <ArrowLeft className="w-5 h-5" />
+            </button>
+          )}
+          {hasNext && (
+            <button
+              onClick={() => onNavigate(currentIndex + 1)}
+              className="absolute right-3 top-1/2 -translate-y-1/2 p-2.5 rounded-full bg-black/40 text-white/70 hover:bg-black/60 hover:text-white transition-all opacity-0 group-hover/img:opacity-100"
+              aria-label="Next artwork"
+            >
+              <ArrowRight className="w-5 h-5" />
+            </button>
+          )}
         </div>
 
-        <div className="lg:w-80 bg-[#111113] rounded-xl p-6 border border-white/10 overflow-y-auto">
+        {/* Info sidebar */}
+        <div className="lg:w-80 bg-[#111113] rounded-xl p-6 border border-white/10 overflow-y-auto max-h-[40vh] lg:max-h-full">
           <div className="flex items-center gap-3 mb-4">
             <div className="px-2 py-1 rounded-md text-xs font-medium bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
               <Sparkles className="w-3 h-3 inline mr-1" />
@@ -276,11 +313,17 @@ function GalleryLightbox({
           <a
             href={artwork.src}
             download
-            className="flex items-center justify-center gap-2 w-full px-4 py-3 rounded-lg bg-emerald-500 text-white font-medium hover:bg-emerald-600 transition-colors"
+            className="flex items-center justify-center gap-2 w-full px-4 py-3 rounded-lg border border-white/20 text-white/70 font-medium hover:bg-white/10 hover:text-white transition-colors"
             onClick={(e) => e.stopPropagation()}
           >
+            <Download className="w-4 h-4" />
             Download
           </a>
+
+          {/* Keyboard hint */}
+          <p className="text-white/20 text-[10px] text-center mt-3 hidden lg:block">
+            ← → navigate &middot; Esc close
+          </p>
         </div>
       </motion.div>
     </motion.div>
@@ -455,21 +498,25 @@ export default function GalleryPage() {
                   {hero.curatorNote}
                 </p>
 
-                <div className="flex flex-wrap gap-6 text-white/40 text-sm">
-                  <div className="flex items-center gap-2">
-                    <ImageIcon className="w-4 h-4" />
-                    <span>{totalArtworks} Artworks</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <Star className="w-4 h-4" />
-                    <span>{avgScore} Avg Score</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span>{categories.length - 1} Categories</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span>Gemini + Nano Banana</span>
-                  </div>
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                  {[
+                    { value: totalArtworks, label: 'Artworks' },
+                    { value: avgScore, label: 'Avg Score' },
+                    { value: categories.length - 1, label: 'Categories' },
+                    { value: featuredArtworks.length, label: 'Top Rated' },
+                  ].map((stat) => (
+                    <div
+                      key={stat.label}
+                      className="px-4 py-3 rounded-xl bg-white/[0.04] border border-white/[0.06]"
+                    >
+                      <div className="text-xl font-bold text-white tabular-nums">
+                        {stat.value}
+                      </div>
+                      <div className="text-xs text-white/40 mt-0.5">
+                        {stat.label}
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -486,31 +533,42 @@ export default function GalleryPage() {
           </span>
         </div>
         <div className="flex gap-4 overflow-x-auto pb-4 scrollbar-hide">
-          {featuredArtworks.map((artwork) => (
-            <div
-              key={artwork.id}
-              className="flex-none w-48 cursor-pointer group"
-              onClick={() =>
-                setSelectedIndex(
-                  filteredArtworks.findIndex((a) => a.id === artwork.id)
-                )
-              }
-            >
-              <div className="relative aspect-square rounded-xl overflow-hidden border border-white/10 group-hover:border-white/20 transition-all">
-                <Image
-                  src={artwork.src}
-                  alt={artwork.title}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  sizes="192px"
-                />
-                <ScoreBadge score={artwork.score} />
-              </div>
-              <p className="text-white/60 text-xs mt-2 line-clamp-1 group-hover:text-white/80 transition-colors">
-                {artwork.title}
-              </p>
-            </div>
-          ))}
+          {featuredArtworks.map((artwork) => {
+            const idx = filteredArtworks.findIndex((a) => a.id === artwork.id)
+            return (
+              <button
+                key={artwork.id}
+                type="button"
+                className="flex-none w-48 text-left group"
+                aria-label={`View ${artwork.title}, score ${artwork.score}`}
+                onClick={() => {
+                  if (idx >= 0) {
+                    setSelectedIndex(idx)
+                  } else {
+                    // Artwork filtered out — reset filters and select it
+                    setActiveCategory('all')
+                    setActiveTag(null)
+                    const fullIdx = artworks.findIndex((a) => a.id === artwork.id)
+                    if (fullIdx >= 0) setSelectedIndex(fullIdx)
+                  }
+                }}
+              >
+                <div className="relative aspect-square rounded-xl overflow-hidden border border-white/10 group-hover:border-white/20 transition-all">
+                  <Image
+                    src={artwork.src}
+                    alt={artwork.title}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="192px"
+                  />
+                  <ScoreBadge score={artwork.score} showAlways />
+                </div>
+                <p className="text-white/60 text-xs mt-2 line-clamp-1 group-hover:text-white/80 transition-colors">
+                  {artwork.title}
+                </p>
+              </button>
+            )
+          })}
         </div>
       </section>
 
@@ -542,22 +600,60 @@ export default function GalleryPage() {
 
           {/* Filters */}
           <div className="space-y-4 mb-8">
+            {/* Active filter badges */}
+            {(activeCategory !== 'all' || activeTag) && (
+              <div className="flex items-center gap-2 flex-wrap">
+                <span className="text-xs text-white/30 flex-none">Active:</span>
+                {activeCategory !== 'all' && (
+                  <button
+                    onClick={() => setActiveCategory('all')}
+                    className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs rounded-full bg-emerald-500/15 text-emerald-400 border border-emerald-500/25 hover:bg-emerald-500/25 transition-colors"
+                  >
+                    {activeCategory}
+                    <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 6L6 18M6 6l12 12" /></svg>
+                  </button>
+                )}
+                {activeTag && (
+                  <button
+                    onClick={() => setActiveTag(null)}
+                    className="inline-flex items-center gap-1.5 px-2.5 py-1 text-xs rounded-full bg-cyan-500/15 text-cyan-400 border border-cyan-500/25 hover:bg-cyan-500/25 transition-colors"
+                  >
+                    {activeTag}
+                    <svg className="w-3 h-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 6L6 18M6 6l12 12" /></svg>
+                  </button>
+                )}
+                <button
+                  onClick={() => { setActiveCategory('all'); setActiveTag(null) }}
+                  className="text-xs text-white/40 hover:text-white transition-colors"
+                >
+                  Clear all
+                </button>
+              </div>
+            )}
+
             {/* Category pills */}
             <div className="flex items-center gap-2 flex-wrap">
               <Filter className="w-4 h-4 text-white/40 flex-none" />
-              {categories.map((cat) => (
-                <button
-                  key={cat}
-                  onClick={() => setActiveCategory(cat)}
-                  className={`px-3 py-1.5 text-sm rounded-lg transition-colors ${
-                    activeCategory === cat
-                      ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
-                      : 'bg-white/5 text-white/50 hover:text-white border border-transparent hover:border-white/10'
-                  }`}
-                >
-                  {cat === 'all' ? 'All' : cat}
-                </button>
-              ))}
+              {categories.map((cat) => {
+                const count = cat === 'all'
+                  ? artworks.length
+                  : artworks.filter((a) => a.category === cat).length
+                return (
+                  <button
+                    key={cat}
+                    onClick={() => setActiveCategory(cat)}
+                    aria-pressed={activeCategory === cat}
+                    className={`px-3 py-1.5 text-sm rounded-lg transition-colors ${
+                      activeCategory === cat
+                        ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
+                        : 'bg-white/5 text-white/50 hover:text-white border border-transparent hover:border-white/10'
+                    }`}
+                  >
+                    {cat === 'all' ? 'All' : cat}
+                    <span className="ml-1.5 text-[10px] opacity-60">{count}</span>
+                  </button>
+                )
+              })}
             </div>
 
             {/* Tag chips */}
@@ -567,6 +663,7 @@ export default function GalleryPage() {
                 <button
                   key={tag}
                   onClick={() => setActiveTag(activeTag === tag ? null : tag)}
+                  aria-pressed={activeTag === tag}
                   className={`px-2 py-1 text-xs rounded-full transition-colors ${
                     activeTag === tag
                       ? 'bg-cyan-500/20 text-cyan-400 border border-cyan-500/30'
@@ -623,18 +720,20 @@ export default function GalleryPage() {
 
       {/* Cross-link to Vault */}
       <section className="max-w-7xl mx-auto px-6 pb-24">
-        <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-8 text-center">
-          <p className="text-white/50 mb-4">
-            Want to explore the full visual asset library? All 484 assets across
-            30 collections.
-          </p>
-          <Link
-            href="/vault"
-            className="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 transition-colors font-medium"
-          >
-            Open ArcaneaVault
-            <ArrowRight className="w-4 h-4" />
-          </Link>
+        <div className="relative rounded-2xl p-px bg-gradient-to-r from-cyan-500/30 via-purple-500/20 to-amber-500/30">
+          <div className="rounded-2xl bg-[#0a0a0b] p-8 text-center">
+            <p className="text-white/50 mb-4">
+              Explore the full visual asset library — 484 assets across
+              30 collections.
+            </p>
+            <Link
+              href="/vault"
+              className="inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 transition-colors font-medium"
+            >
+              Open ArcaneaVault
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
         </div>
       </section>
 
