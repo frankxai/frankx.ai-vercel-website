@@ -539,7 +539,7 @@ export default function NavigationMega() {
         {/* Desktop CTAs */}
         <div className="hidden items-center gap-3 lg:flex">
           <Link
-            href="/newsletter"
+            href="/start"
             className="rounded-2xl bg-gradient-to-r from-emerald-600 to-cyan-600 px-4 py-2 text-sm font-semibold text-white transition-all hover:from-emerald-500 hover:to-cyan-500 hover:shadow-lg hover:shadow-emerald-500/20"
           >
             Start Here
@@ -584,7 +584,7 @@ export default function NavigationMega() {
               {/* Mobile CTA */}
               <div className="pt-3 sm:pt-4 pb-2">
                 <Link
-                  href="/newsletter"
+                  href="/start"
                   onClick={() => setIsOpen(false)}
                   className="block w-full rounded-2xl bg-gradient-to-r from-emerald-600 to-cyan-600 py-2.5 sm:py-3 text-center text-sm font-semibold text-white"
                 >

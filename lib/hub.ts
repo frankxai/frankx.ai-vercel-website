@@ -393,7 +393,7 @@ export const projectMilestones: ProjectMilestone[] = [
       'End-to-end framework for shipping products with AI-assisted planning and execution.',
     focus: 'From idea to launch with collaborative AI agents.',
     eta: 'Q2 2025',
-    cta: { label: 'Join Waitlist', href: '/waitlist' }
+    cta: { label: 'Learn More', href: '/products' }
   }
 ]
 
@@ -543,7 +543,7 @@ export const heroSubtext = [
 ]
 
 export const heroCta = {
-  primary: { label: 'Explore the System', href: '/start' },
+  primary: { label: 'Explore', href: '/start' },
   secondary: { label: 'Listen to My Music', href: '/music-lab' },
   tertiary: { label: 'See How I Build This', href: '/creation-chronicles' }
 }

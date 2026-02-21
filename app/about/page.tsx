@@ -505,9 +505,9 @@ export default function AboutPage() {
                 quiet and the ideas flow clean.
               </p>
               <p>
-                I&apos;m a husband, a father, someone who believes the universe is
-                too interesting not to explore deeply. This site is my workshop and
-                my notebook — take what&apos;s useful, adapt it to your path.
+                The universe is too interesting not to explore deeply.
+                This site is my workshop and my notebook — take what&apos;s
+                useful, adapt it to your path.
               </p>
             </motion.div>
           </div>

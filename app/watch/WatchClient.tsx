@@ -30,13 +30,13 @@ const sectionRows = [
     id: 'foundations',
     title: 'AI Foundations',
     subtitle: 'Deep technical learning',
-    categories: ['AI Foundations', 'AI Agents', 'AI Engineering'],
+    categories: ['AI Foundations'],
     color: '#10b981',
   },
   {
     id: 'build',
     title: 'Build & Ship',
-    subtitle: 'Engineering, tools, and hands-on building',
+    subtitle: 'Engineering, agents, and hands-on building',
     categories: ['AI Engineering', 'AI Agents'],
     color: '#3b82f6',
   },
@@ -48,10 +48,17 @@ const sectionRows = [
     color: '#f59e0b',
   },
   {
+    id: 'human-edge',
+    title: 'Human Edge',
+    subtitle: 'Peak performance, philosophy, and building things that last',
+    categories: ['Peak Performance', 'Entrepreneurship', 'Philosophy & Stoicism', 'Mindset & Growth'],
+    color: '#ef4444',
+  },
+  {
     id: 'creative',
     title: 'Creative & Culture',
-    subtitle: 'Music, art, memes, mindset',
-    categories: ['Creative AI & Music', 'AI Culture', 'Mindset & Growth'],
+    subtitle: 'Music, art, memes, pure energy',
+    categories: ['Creative AI & Music', 'AI Culture'],
     color: '#ec4899',
   },
 ]
@@ -232,7 +239,7 @@ export default function WatchClient({
         {activeWatchlist && (
           <WatchlistView
             watchlist={activeWatchlist}
-            videos={videos}
+            videos={videos.filter(v => activeWatchlist.videoIds.includes(v.id))}
             onClose={() => setActiveWatchlist(null)}
             onPlay={(video) => {
               setActiveWatchlist(null)

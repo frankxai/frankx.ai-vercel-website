@@ -177,7 +177,7 @@ export default function IntelligenceRevolutionPlaybook() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-                href="/agentic-ai-center"
+                href="/ai-architect"
                 className="inline-flex items-center justify-center rounded-xl px-6 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-semibold transition-all duration-300"
               >
                 Explore Agentic AI Center
@@ -202,7 +202,7 @@ export default function IntelligenceRevolutionPlaybook() {
               Back to Blog
             </Link>
             <Link
-              href="/blog/soul-frequency-framework"
+              href="/blog"
               className="flex items-center gap-2 text-white/60 hover:text-white transition-colors"
             >
               Next Article

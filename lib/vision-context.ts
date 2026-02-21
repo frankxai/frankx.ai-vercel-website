@@ -33,7 +33,7 @@ const ROUTE_CATALOG = [
   '/research/sources',
   '/agent-team',
   '/agents',
-  '/agentic-ai-center',
+  '/ai-architect',
   '/soulbook',
   '/soulbook/7-pillars',
   '/soulbook/assessment',

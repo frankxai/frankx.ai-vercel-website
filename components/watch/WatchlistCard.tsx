@@ -13,7 +13,10 @@ interface WatchlistCardProps {
 }
 
 export function WatchlistCard({ watchlist, videos, index = 0, onClick }: WatchlistCardProps) {
-  const thumbnails = videos.slice(0, 4)
+  const watchlistVideos = watchlist.videoIds
+    .map(id => videos.find(v => v.id === id))
+    .filter((v): v is EnhancedVideo => Boolean(v))
+  const thumbnails = watchlistVideos.slice(0, 4)
 
   return (
     <motion.div
@@ -27,7 +30,7 @@ export function WatchlistCard({ watchlist, videos, index = 0, onClick }: Watchli
         {thumbnails.map((v) => (
           <div key={v.id} className="relative bg-black/40">
             <Image
-              src={`https://img.youtube.com/vi/${v.id}/default.jpg`}
+              src={`https://img.youtube.com/vi/${v.id}/mqdefault.jpg`}
               alt={v.title}
               fill
               className="object-cover opacity-70 group-hover:opacity-90 transition-opacity"
@@ -47,7 +50,7 @@ export function WatchlistCard({ watchlist, videos, index = 0, onClick }: Watchli
       <p className="text-xs text-white/40 line-clamp-2 mb-3">{watchlist.description}</p>
       <div className="flex items-center gap-1 text-xs text-white/30">
         <Play className="w-3 h-3" />
-        <span>{videos.length} videos</span>
+        <span>{watchlistVideos.length} videos</span>
         <ChevronRight className="w-3 h-3 ml-auto group-hover:translate-x-0.5 transition-transform" />
       </div>
     </motion.div>

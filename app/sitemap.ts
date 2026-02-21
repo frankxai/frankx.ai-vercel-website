@@ -115,7 +115,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/assessment/creative',
     '/assessment/advanced',
     '/ai-assessment',
-    '/soul-frequency-assessment',
     '/soul-frequency-quiz',
   ]
 
@@ -161,7 +160,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const aiPages = [
     '/agents',
     '/agent-team',
-    '/agentic-ai-center',
+    '/ai-architect',
     '/developers',
   ]
 

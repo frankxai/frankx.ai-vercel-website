@@ -81,7 +81,7 @@ export function SectionHeading({
     <div className={cn('space-y-4', align === 'center' && 'text-center', className)}>
       {eyebrow ? <span className="eyebrow-text inline-flex items-center gap-2">{eyebrow}</span> : null}
       <div className={cn('space-y-3', align === 'center' && 'mx-auto max-w-3xl')}>
-        <h2 id={id} className="text-3xl font-semibold text-white md:text-4xl">{title}</h2>
+        <h2 id={id} className="text-3xl font-semibold text-white md:text-4xl" style={{ fontDisplay: 'swap' }}>{title}</h2>
         {description ? (
           <p className="text-base text-white/70 md:text-lg">{description}</p>
         ) : null}

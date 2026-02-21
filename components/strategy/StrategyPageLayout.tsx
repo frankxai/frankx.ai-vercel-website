@@ -20,7 +20,7 @@ export function StrategyPageLayout({
   tools,
 }: StrategyPageProps) {
   return (
-    <main className="min-h-screen bg-[#030712] text-white selection:bg-emerald-500/30">
+    <main className="min-h-screen bg-[#0F172A] text-white selection:bg-emerald-500/30">
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 px-6 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">

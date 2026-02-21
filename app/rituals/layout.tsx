@@ -1,8 +1,8 @@
 import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
-  title: 'Rituals | Daily Creative & Productivity Practices | FrankX',
-  description: 'Structured daily practices for creators and builders. Morning routines, creative rituals, and productivity systems powered by AI.',
+  title: 'Rituals | Daily Creative & Production Protocols | FrankX',
+  description: 'Structured daily protocols for creative production. Morning prime, deep work, music sessions, and evening review — the systems behind 12,000+ songs and 80+ articles.',
   path: '/rituals',
 })
 

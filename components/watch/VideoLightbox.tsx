@@ -44,8 +44,17 @@ export function VideoLightbox({ video, allVideos, onClose, onNavigate, blogCross
     return () => document.removeEventListener('keydown', handleKeyDown)
   }, [handleKeyDown])
 
+  useEffect(() => {
+    const prev = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => { document.body.style.overflow = prev }
+  }, [])
+
   return (
     <motion.div
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="lightbox-title"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -54,7 +63,7 @@ export function VideoLightbox({ video, allVideos, onClose, onNavigate, blogCross
       <div className="max-w-7xl mx-auto px-6 py-8">
         <div className="flex justify-between items-start mb-6">
           <div className="flex-grow min-w-0">
-            <h2 className="text-2xl md:text-3xl font-bold mb-2">{video.title}</h2>
+            <h2 id="lightbox-title" className="text-2xl md:text-3xl font-bold mb-2">{video.title}</h2>
             <p className="text-white/50">
               {video.author} &middot; {video.category} &middot; {video.duration}
             </p>
@@ -65,6 +74,7 @@ export function VideoLightbox({ video, allVideos, onClose, onNavigate, blogCross
           <div className="flex items-center gap-2 flex-none ml-4">
             {prevVideo && (
               <button
+                aria-label="Previous video"
                 onClick={() => onNavigate(prevVideo)}
                 className="p-2 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-colors"
               >
@@ -73,6 +83,7 @@ export function VideoLightbox({ video, allVideos, onClose, onNavigate, blogCross
             )}
             {nextVideo && (
               <button
+                aria-label="Next video"
                 onClick={() => onNavigate(nextVideo)}
                 className="p-2 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-colors"
               >
@@ -80,6 +91,7 @@ export function VideoLightbox({ video, allVideos, onClose, onNavigate, blogCross
               </button>
             )}
             <button
+              aria-label="Close video"
               onClick={onClose}
               className="p-2 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-colors"
             >
@@ -127,8 +139,11 @@ export function VideoLightbox({ video, allVideos, onClose, onNavigate, blogCross
               {upNext.slice(0, 5).map((v) => (
                 <div
                   key={v.id}
+                  role="button"
+                  tabIndex={0}
                   className="group flex gap-3 p-2 rounded-xl hover:bg-white/5 cursor-pointer transition-colors"
                   onClick={() => onNavigate(v)}
+                  onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); onNavigate(v) } }}
                 >
                   <div className="w-24 aspect-video rounded-lg bg-black/40 relative overflow-hidden flex-none">
                     <Image

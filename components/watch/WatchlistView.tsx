@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect } from 'react'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { X, Play, Clock } from 'lucide-react'
@@ -13,8 +14,17 @@ interface WatchlistViewProps {
 }
 
 export function WatchlistView({ watchlist, videos, onClose, onPlay }: WatchlistViewProps) {
+  useEffect(() => {
+    const prev = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => { document.body.style.overflow = prev }
+  }, [])
+
   return (
     <motion.div
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="watchlist-title"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
@@ -26,13 +36,14 @@ export function WatchlistView({ watchlist, videos, onClose, onPlay }: WatchlistV
             <div className="text-xs text-emerald-400 uppercase tracking-widest mb-2">
               Watchlist
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-3">{watchlist.title}</h2>
+            <h2 id="watchlist-title" className="text-3xl md:text-4xl font-bold mb-3">{watchlist.title}</h2>
             <p className="text-white/50 max-w-xl">{watchlist.description}</p>
             <div className="flex items-center gap-4 mt-4 text-sm text-white/40">
               <span>{videos.length} videos</span>
             </div>
           </div>
           <button
+            aria-label="Close watchlist"
             onClick={onClose}
             className="p-3 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 transition-colors flex-none"
           >

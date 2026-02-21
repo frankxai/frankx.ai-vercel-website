@@ -85,7 +85,7 @@ export default function OptimizedHomePage() {
                         <Link
                           href={primary.href}
                           onClick={() => trackEvent('home_primary_cta_click', { destination: primary.href })}
-                          className="group relative inline-flex items-center justify-center rounded-full bg-white px-8 py-4 text-lg font-bold text-black transition-all hover:bg-neutral-200 hover:scale-105"
+                          className="group relative inline-flex items-center justify-center rounded-full bg-white px-6 py-3 text-base font-semibold text-black transition-all hover:bg-neutral-200 hover:scale-105"
                         >
                           {primary.label}
                           <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
@@ -97,7 +97,7 @@ export default function OptimizedHomePage() {
                       <Link
                         href={secondary.href}
                         onClick={() => trackEvent('home_secondary_cta_click', { destination: secondary.href })}
-                        className="group inline-flex items-center justify-center rounded-full border border-white/20 bg-white/5 px-8 py-4 text-lg font-semibold text-white backdrop-blur-sm transition-all hover:bg-white/10 hover:border-white/40"
+                        className="group inline-flex items-center justify-center rounded-full border border-white/20 bg-white/5 px-6 py-3 text-base font-medium text-white backdrop-blur-sm transition-all hover:bg-white/10 hover:border-white/40"
                       >
                         {secondary.label}
                         <Sparkles className="ml-2 h-5 w-5 text-yellow-400" />

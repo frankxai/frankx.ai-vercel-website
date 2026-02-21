@@ -63,7 +63,7 @@ const NEWSLETTER = {
       content: `Start with service. Define constraints early. Name your sources.
         Document what works. Keep humans in the loop for high-stakes decisions.
         Not flashy, but it compounds.`,
-      link: "https://www.frankx.ai/agentic-ai-center",
+      link: "https://www.frankx.ai/ai-architect",
       linkText: "Explore Architecture Guides"
     }
   ],
