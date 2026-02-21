@@ -302,10 +302,9 @@ function EarlyAccessModal({
           </ul>
 
           <EmailSignup
-            defaultEmail=""
-            variant="compact"
-            ctaText="Join Early Access"
-            ctaTracking={`early-access-${product.id}`}
+            compact
+            buttonText="Join Early Access"
+            listType="courses-waitlist"
           />
         </div>
       </motion.div>
