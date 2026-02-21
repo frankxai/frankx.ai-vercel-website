@@ -1,0 +1,66 @@
+[
+  {
+    "id": "ai-engineering",
+    "title": "AI Engineering Essentials",
+    "description": "Core videos for building production AI systems. From neural nets to deployment.",
+    "icon": "cpu",
+    "color": "#43BFE3",
+    "videoIds": ["VMj-3S1tku0", "zjkBMFhNj_g", "pOLR5jE5Vjw", "uRuLgar5XZw", "QUXQNi6jQ30", "ORMx45xqWkA"]
+  },
+  {
+    "id": "ai-agents",
+    "title": "AI Agents Deep Dive",
+    "description": "Multi-agent systems, orchestration patterns, and autonomous workflows.",
+    "icon": "bot",
+    "color": "#AB47C7",
+    "videoIds": ["sal78ACtGTc", "KrRD7r7y7NY", "5-2W--zGO0Y", "o0Fc5_zHvzo"]
+  },
+  {
+    "id": "music-production",
+    "title": "AI Music Production",
+    "description": "Suno AI workflows, prompt engineering for music, and distribution strategies.",
+    "icon": "music",
+    "color": "#F59E0B",
+    "videoIds": ["EIi5k9TJUvY", "jDHMPSSgaMw", "u2pYNRNdcNc", "1bZ0OSEViyo"]
+  },
+  {
+    "id": "creative-ai",
+    "title": "Creative AI Toolkit",
+    "description": "AI tools for creators — from image generation to content pipelines.",
+    "icon": "sparkles",
+    "color": "#10B981",
+    "videoIds": ["EIi5k9TJUvY", "jDHMPSSgaMw", "9WVZbitXbck", "n9iv24yI04nI"]
+  },
+  {
+    "id": "strategy",
+    "title": "Strategy & Business",
+    "description": "AI ROI, startup strategies, and business models for the agentic era.",
+    "icon": "trending-up",
+    "color": "#43BFE3",
+    "videoIds": ["5MUvJv_sB64", "BSjQk-7j3X0", "jvqFAi7vkBc", "CBYhVcO4WgI", "0wIUK0nsyUg", "tqfPCE_gfuc"]
+  },
+  {
+    "id": "creator-economy",
+    "title": "Creator Economy",
+    "description": "Building audience, monetization, and creator-first business models.",
+    "icon": "users",
+    "color": "#AB47C7",
+    "videoIds": ["BZ2nSULolKI", "cNGpxfcDKms", "H_lZr0BAWhM", "BBAuhqvT_ds", "RKXZ7t_RiOE"]
+  },
+  {
+    "id": "mindset",
+    "title": "Mindset & Growth",
+    "description": "Psychology, motivation, and mental frameworks for high-performance creators.",
+    "icon": "activity",
+    "color": "#F59E0B",
+    "videoIds": ["Cqbleas1mmo", "arj7oStGLkU", "yb5zpo5WDG4", "mNeXuCYiE0U", "heh5XLwZVOY"]
+  },
+  {
+    "id": "learning",
+    "title": "Learning Accelerators",
+    "description": "Meta-learning techniques, research methods, and knowledge acquisition strategies.",
+    "icon": "graduation-cap",
+    "color": "#10B981",
+    "videoIds": ["aircAruvnKk", "zdkGXDq1jqM", "kCc8FmEb1nY", "3E7hkPZ-HTk"]
+  }
+]
