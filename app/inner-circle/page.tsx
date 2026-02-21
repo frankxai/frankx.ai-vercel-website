@@ -445,9 +445,9 @@ export default function InnerCirclePage() {
         <div className="mx-auto max-w-7xl px-6">
           <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
             {[
-              { number: '40+', label: 'AI Agents', icon: Cpu, color: 'text-[#AB47C7]' },
-              { number: '630+', label: 'Skills', icon: Zap, color: 'text-[#43BFE3]' },
-              { number: '500+', label: 'AI Songs', icon: Music, color: 'text-[#F59E0B]' },
+              { number: '38', label: 'AI Agents', icon: Cpu, color: 'text-[#AB47C7]' },
+              { number: '75+', label: 'Skills', icon: Zap, color: 'text-[#43BFE3]' },
+              { number: '12K+', label: 'AI Songs', icon: Music, color: 'text-[#F59E0B]' },
               { number: '70+', label: 'Articles', icon: FileText, color: 'text-[#10B981]' },
             ].map((stat, index) => (
               <motion.div

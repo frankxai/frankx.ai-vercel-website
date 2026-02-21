@@ -1,19 +1,25 @@
 import Link from 'next/link'
-import { ArrowRight, Home, Search, BookOpen, Sparkles } from 'lucide-react'
+import Image from 'next/image'
+import { ArrowRight, Home, Search, BookOpen } from 'lucide-react'
 
 export default function NotFound() {
   return (
     <div className="min-h-screen bg-slate-950 flex items-center justify-center px-4">
       <div className="max-w-2xl mx-auto text-center">
-        {/* 404 */}
+        {/* 404 with Axi */}
         <div className="mb-8">
           <div className="text-8xl font-bold bg-gradient-to-r from-purple-400 via-blue-400 to-cyan-400 bg-clip-text text-transparent mb-4">
             404
           </div>
-          <div className="w-24 h-24 mx-auto mb-6">
-            <div className="w-full h-full rounded-2xl bg-gradient-to-br from-purple-500 via-blue-500 to-cyan-500 flex items-center justify-center shadow-[0_0_40px_rgba(124,58,237,0.6)]">
-              <Sparkles className="w-12 h-12 text-white" />
-            </div>
+          <div className="mx-auto mb-6">
+            <Image
+              src="/images/mascot/mascot-v06-prowling-action.png"
+              alt="Axi searching for the lost page"
+              width={160}
+              height={160}
+              className="mx-auto rounded-2xl"
+              style={{ boxShadow: '0 0 50px -10px rgba(139,92,246,0.5)' }}
+            />
           </div>
         </div>
 
@@ -105,15 +111,11 @@ export default function NotFound() {
 
         {/* CTA */}
         <div className="space-y-4">
-          <p className="text-slate-400 mb-6">
-            Or start your conscious AI journey with our free assessment
-          </p>
-
           <Link
-            href="/soul-frequency-assessment"
+            href="/start"
             className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold rounded-xl hover:from-purple-700 hover:to-blue-700 transition-all shadow-lg"
           >
-            Start AI Assessment
+            Start Here
             <ArrowRight className="w-5 h-5 ml-2" />
           </Link>
         </div>

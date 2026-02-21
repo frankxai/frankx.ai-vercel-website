@@ -516,8 +516,8 @@ function StatsSection() {
           {[
             { value: '12K+', label: 'AI songs created with Suno' },
             { value: '70+', label: 'Technical articles published' },
-            { value: '630+', label: 'AI skills in ACOS' },
-            { value: '40+', label: 'Specialized AI agents' },
+            { value: '75+', label: 'AI skills in ACOS' },
+            { value: '38', label: 'Specialized AI agents' },
           ].map((stat, i) => (
             <motion.div
               key={stat.label}
@@ -1159,7 +1159,7 @@ const products = [
   {
     icon: Terminal,
     title: 'Agentic Creator OS',
-    description: '630+ skills, 40+ agents, 130+ commands. The operating system for Claude Code.',
+    description: '75+ skills, 38 agents, 35+ commands. The operating system for Claude Code.',
     href: '/acos',
     badge: 'Open Source',
     gradient: 'from-purple-500/20 to-violet-500/5',

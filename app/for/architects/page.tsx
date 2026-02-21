@@ -43,7 +43,7 @@ const architectureAreas = [
   {
     icon: Terminal,
     title: 'ACOS for Developers',
-    description: '630+ skills, 40+ agents in an open-source operating system for Claude Code. Built for shipping.',
+    description: '75+ skills, 38 agents in an open-source operating system for Claude Code. Built for shipping.',
     href: '/acos',
     stat: 'Open source',
     color: 'purple',

@@ -89,7 +89,7 @@ const homepageFAQs = [
   {
     question: 'What is the Agentic Creator OS (ACOS)?',
     answer:
-      'ACOS is an open-source operating system for Claude Code with 630+ skills, 40+ specialized agents, and 130+ commands. It turns Claude Code into a full creative production environment. Free on GitHub, with premium Creator Kit ($47) and Pro System ($197) tiers.',
+      'ACOS is an open-source operating system for Claude Code with 75+ skills, 38 specialized agents, and 35+ commands. It turns Claude Code into a full creative production environment. Free on GitHub, with premium Creator Kit ($47) and Pro System ($197) tiers.',
   },
   {
     question: 'Does FrankX offer courses or coaching?',

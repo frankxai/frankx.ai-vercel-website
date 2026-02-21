@@ -50,7 +50,7 @@ const creatorTools = [
   {
     icon: Terminal,
     title: 'Agentic Creator OS',
-    description: 'Open-source operating system for Claude Code. 630+ skills, 40+ agents, one entry point.',
+    description: 'Open-source operating system for Claude Code. 75+ skills, 38 agents, one entry point.',
     href: '/acos',
     stat: 'Open source',
     color: 'purple',

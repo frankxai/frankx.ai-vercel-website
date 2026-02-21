@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import Script from 'next/script'
 import {
   Terminal,
@@ -33,9 +34,9 @@ const CHECKOUT = {
 }
 
 const stats = [
-  { label: 'Skills', value: '630+', icon: Sparkles, color: 'from-cyan-500 to-blue-500' },
-  { label: 'Agents', value: '40+', icon: Users, color: 'from-purple-500 to-violet-500' },
-  { label: 'Commands', value: '130+', icon: Command, color: 'from-amber-500 to-orange-500' },
+  { label: 'Skills', value: '75+', icon: Sparkles, color: 'from-cyan-500 to-blue-500' },
+  { label: 'Agents', value: '38', icon: Users, color: 'from-purple-500 to-violet-500' },
+  { label: 'Commands', value: '35+', icon: Command, color: 'from-amber-500 to-orange-500' },
   { label: 'Workflows', value: '8', icon: Layers, color: 'from-emerald-500 to-teal-500' },
 ]
 
@@ -47,12 +48,12 @@ const features = [
   },
   {
     icon: Sparkles,
-    title: '630+ Auto-Activating Skills',
+    title: '75+ Auto-Activating Skills',
     description: 'Skills load automatically based on what you\'re doing. Write a blog post? SEO, schema markup, and content strategy skills activate. Build a feature? TypeScript, React, and architecture skills load.',
   },
   {
     icon: Users,
-    title: '40+ Specialized Agents',
+    title: '38 Specialized Agents',
     description: 'Developmental editors, music producers, UI designers, SEO strategists, security auditors — each with deep domain knowledge and distinct capabilities.',
   },
   {
@@ -79,9 +80,9 @@ const tiers = [
     priceNote: 'MIT License',
     description: 'The full ACOS system. Clone it, use it, modify it.',
     features: [
-      '130+ creator commands',
-      '630+ auto-activating skills',
-      '40+ specialized agents',
+      '35+ creator commands',
+      '75+ auto-activating skills',
+      '38 specialized agents',
       '8 orchestrated workflows',
       'MCP server integrations',
       'Self-learning trajectory system',
@@ -133,7 +134,7 @@ const tiers = [
 const faq = [
   {
     q: 'What exactly is ACOS?',
-    a: 'ACOS (Agentic Creator Operating System) is a configuration layer for Claude Code that turns it into a full creative production environment. It adds 130+ commands, 630+ skills, and 40+ agents that auto-activate based on what you\'re working on. Think of it as an operating system that sits on top of Claude Code.',
+    a: 'ACOS (Agentic Creator Operating System) is a configuration layer for Claude Code that turns it into a full creative production environment. It adds 35+ commands, 75+ skills, and 38 agents that auto-activate based on what you\'re working on. Think of it as an operating system that sits on top of Claude Code.',
   },
   {
     q: 'Is the open-source version the full product?',
@@ -163,7 +164,7 @@ const structuredData = {
   name: 'Agentic Creator OS (ACOS)',
   applicationCategory: 'DeveloperApplication',
   operatingSystem: 'Cross-platform (Claude Code)',
-  description: 'The Operating System for Generative Creators. 630+ skills, 40+ agents, 130+ commands for Claude Code.',
+  description: 'The Operating System for Generative Creators. 75+ skills, 38 agents, 35+ commands for Claude Code.',
   offers: [
     { '@type': 'Offer', price: '0', priceCurrency: 'USD', name: 'Open Source' },
     { '@type': 'Offer', price: '47', priceCurrency: 'USD', name: 'Creator Kit' },
@@ -191,9 +192,19 @@ export default function ACOSPage() {
         <div className="absolute inset-0 bg-gradient-to-br from-purple-950/40 via-[#02030b] to-cyan-950/30" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(161,72,221,0.15),transparent_55%)]" />
         <div className="relative mx-auto max-w-5xl px-6 text-center">
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-purple-400/30 bg-purple-500/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.4em] text-purple-200">
-            <Terminal className="h-4 w-4" />
-            Open Source
+          <div className="mb-6 flex flex-col items-center gap-4">
+            <Image
+              src="/images/team/stella-owl.png"
+              alt="Stella — System Orchestrator"
+              width={80}
+              height={80}
+              className="rounded-2xl"
+              style={{ boxShadow: '0 0 40px -8px rgba(139,92,246,0.5)' }}
+            />
+            <div className="inline-flex items-center gap-2 rounded-full border border-purple-400/30 bg-purple-500/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.4em] text-purple-200">
+              <Terminal className="h-4 w-4" />
+              Open Source
+            </div>
           </div>
           <h1 className="text-4xl font-bold leading-tight sm:text-5xl md:text-6xl lg:text-7xl">
             <span className="bg-gradient-to-r from-white via-purple-100 to-cyan-100 bg-clip-text text-transparent">
@@ -203,7 +214,7 @@ export default function ACOSPage() {
           <p className="mt-6 text-lg text-white/60 sm:text-xl md:text-2xl">
             The operating system for generative creators.
             <br className="hidden sm:block" />
-            630+ skills. 40+ agents. 130+ commands. One entry point.
+            75+ skills. 38 agents. 35+ commands. One entry point.
           </p>
 
           {/* Terminal demo */}
@@ -219,7 +230,7 @@ export default function ACOSPage() {
               <p><span className="text-emerald-400">$</span> claude</p>
               <p className="text-purple-400">/acos</p>
               <p className="mt-2 text-cyan-300">
-                ACOS v7.0 loaded. 630 skills active. 40 agents ready.
+                ACOS v10.1 loaded. 75 skills active. 38 agents ready.
               </p>
               <p className="text-white/40">
                 What would you like to create today?

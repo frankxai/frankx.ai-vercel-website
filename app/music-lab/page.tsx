@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import Image from 'next/image'
 import {
   Play,
   ExternalLink,
@@ -68,9 +69,19 @@ function HeroSection() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-pink-500/10 border border-pink-500/20 mb-8">
-              <Music2 className="w-4 h-4 text-pink-400" />
-              <span className="text-sm font-medium text-pink-300">AI Music Creation</span>
+            <div className="flex items-center gap-4 mb-8">
+              <Image
+                src="/images/team/echo-leopard.png"
+                alt="Echo — Sound Weaver"
+                width={64}
+                height={64}
+                className="rounded-2xl"
+                style={{ boxShadow: '0 0 30px -6px rgba(236,72,153,0.4)' }}
+              />
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-pink-500/10 border border-pink-500/20">
+                <Music2 className="w-4 h-4 text-pink-400" />
+                <span className="text-sm font-medium text-pink-300">AI Music Creation</span>
+              </div>
             </div>
 
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight mb-6">

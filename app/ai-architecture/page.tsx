@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import {
   Layers,
@@ -288,17 +289,27 @@ export default function AIArchitectureHubPage() {
         <section className="pt-32 pb-8 sm:pt-36 sm:pb-12">
           <div className="mx-auto max-w-6xl px-6">
             <motion.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5 }}
-              className="mb-6 inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 backdrop-blur-sm"
+              className="mb-6 flex items-center gap-4"
             >
-              <div className="flex h-6 w-6 items-center justify-center rounded-md bg-gradient-to-br from-cyan-500/30 to-violet-500/30">
-                <Layers className="h-3.5 w-3.5 text-white" />
+              <Image
+                src="/images/team/codex-falcon.png"
+                alt="Codex — AI Architecture Specialist"
+                width={64}
+                height={64}
+                className="rounded-2xl"
+                style={{ boxShadow: '0 0 30px -6px rgba(16,185,129,0.4)' }}
+              />
+              <div className="inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 backdrop-blur-sm">
+                <div className="flex h-6 w-6 items-center justify-center rounded-md bg-gradient-to-br from-cyan-500/30 to-violet-500/30">
+                  <Layers className="h-3.5 w-3.5 text-white" />
+                </div>
+                <span className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
+                  AI Architecture Hub
+                </span>
               </div>
-              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-slate-400">
-                AI Architecture Hub
-              </span>
             </motion.div>
 
             <motion.h1
