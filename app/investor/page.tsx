@@ -20,6 +20,7 @@ import {
   Shield,
 } from 'lucide-react'
 
+import Image from 'next/image'
 import { getFeaturedProducts, INVESTOR_CATEGORIES, type InvestorCategory } from '@/lib/investor'
 import InvestorProductCard from '@/components/investor/InvestorProductCard'
 
@@ -252,8 +253,9 @@ export default function InvestorHubPage() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
-              className="mb-6 inline-flex items-center gap-2.5 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 backdrop-blur-sm"
+              className="mb-6 inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 backdrop-blur-sm"
             >
+              <Image src="/images/team/draconia-tiger.png" alt="Draconia — Investment Forge" width={64} height={64} className="rounded-2xl" style={{ boxShadow: '0 0 30px -6px rgba(239,68,68,0.4)' }} />
               <div className="flex h-6 w-6 items-center justify-center rounded-md bg-gradient-to-br from-amber-500/30 to-cyan-500/30">
                 <TrendingUp className="h-3.5 w-3.5 text-white" />
               </div>

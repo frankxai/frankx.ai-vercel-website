@@ -3,6 +3,7 @@
 import { useMemo, useState } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import Image from 'next/image'
 import {
   ArrowRight,
   BookOpen,
@@ -230,7 +231,8 @@ export default function CoursesPage() {
               transition={{ duration: 0.6 }}
               className="max-w-4xl"
             >
-              <div className="mb-8">
+              <div className="mb-8 flex items-center gap-4">
+                <Image src="/images/team/lumina-sol.png" alt="Lumina — Learning Guide" width={64} height={64} className="rounded-2xl" style={{ boxShadow: '0 0 30px -6px rgba(251,191,36,0.4)' }} />
                 <span className="text-xs font-medium uppercase tracking-[0.3em] text-emerald-400/60">
                   AI Architect Academy
                 </span>

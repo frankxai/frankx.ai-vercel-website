@@ -347,8 +347,9 @@ export default function ProductsPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="mb-8 flex items-center gap-3"
+              className="mb-8 flex items-center gap-4"
             >
+              <Image src="/images/team/draconia-tiger.png" alt="Draconia — Product Forge" width={64} height={64} className="rounded-2xl" style={{ boxShadow: '0 0 30px -6px rgba(239,68,68,0.4)' }} />
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-500/20 text-violet-400">
                 <Package className="h-5 w-5" />
               </div>

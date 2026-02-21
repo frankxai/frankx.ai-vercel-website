@@ -67,7 +67,7 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
 
         <div className="max-w-6xl mx-auto relative">
           {/* Nova (Content Catalyst) — blog mascot accent */}
-          <div className="pointer-events-none absolute -right-4 top-0 hidden w-48 opacity-15 lg:block xl:w-56">
+          <div className="pointer-events-none absolute -right-4 top-0 hidden w-48 opacity-20 lg:block xl:w-56">
             <Image
               src="/images/team/nova-fox.png"
               alt=""
@@ -85,9 +85,12 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
             className="flex items-end justify-between mb-10"
           >
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-4">
-                <Sparkles className="w-4 h-4 text-emerald-400" />
-                <span className="text-xs font-medium text-emerald-400">Creation Chronicles</span>
+              <div className="flex items-center gap-3 mb-4">
+                <Image src="/images/team/nova-fox.png" alt="Nova" width={48} height={48} className="rounded-xl" style={{ boxShadow: '0 0 20px -6px rgba(245,158,11,0.4)' }} />
+                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20">
+                  <Sparkles className="w-4 h-4 text-emerald-400" />
+                  <span className="text-xs font-medium text-emerald-400">Creation Chronicles</span>
+                </div>
               </div>
               <h1 className="text-3xl md:text-5xl font-bold text-white tracking-tight leading-tight">
                 Inside the build.

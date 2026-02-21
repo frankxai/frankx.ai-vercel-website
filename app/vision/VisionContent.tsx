@@ -45,7 +45,8 @@ const visionPillars = [
     color: 'from-emerald-400 to-cyan-400',
     borderColor: 'border-emerald-500/20',
     bgColor: 'bg-emerald-500/5',
-    metrics: ['22 ACOS Skills', '8 Specialist Agents', 'Production Systems'],
+    metrics: ['75+ Skills', '38 Agents', 'Production Systems'],
+    character: { src: '/images/team/codex-falcon.png', name: 'Codex' },
   },
   {
     icon: Music,
@@ -56,6 +57,7 @@ const visionPillars = [
     borderColor: 'border-violet-500/20',
     bgColor: 'bg-violet-500/5',
     metrics: ['12,000+ AI Songs', '7 Books Written', 'Visual Art System'],
+    character: { src: '/images/team/echo-leopard.png', name: 'Echo' },
   },
   {
     icon: Zap,
@@ -66,6 +68,7 @@ const visionPillars = [
     borderColor: 'border-amber-500/20',
     bgColor: 'bg-amber-500/5',
     metrics: ['Template Shop Live', 'Deploy Pipelines', 'Investor Intelligence'],
+    character: { src: '/images/team/draconia-tiger.png', name: 'Draconia' },
   },
   {
     icon: BookOpen,
@@ -76,6 +79,7 @@ const visionPillars = [
     borderColor: 'border-cyan-500/20',
     bgColor: 'bg-cyan-500/5',
     metrics: ['80+ Articles', 'The Great Transition', 'Golden Age Book'],
+    character: { src: '/images/team/nova-fox.png', name: 'Nova' },
   },
   {
     icon: Users,
@@ -86,6 +90,7 @@ const visionPillars = [
     borderColor: 'border-pink-500/20',
     bgColor: 'bg-pink-500/5',
     metrics: ['Inner Circle', 'Builder Network', 'Open Source Tools'],
+    character: { src: '/images/team/nero-umbra.png', name: 'Nero' },
   },
   {
     icon: Globe,
@@ -96,6 +101,7 @@ const visionPillars = [
     borderColor: 'border-blue-500/20',
     bgColor: 'bg-blue-500/5',
     metrics: ['frankx.ai Live', 'Open Frameworks', 'Builder-First'],
+    character: { src: '/images/team/arion-mamoru.png', name: 'Arion' },
   },
 ]
 
@@ -393,9 +399,7 @@ export default function VisionContent() {
             </blockquote>
 
             <div className="mt-10 flex items-center gap-4 border-t border-white/[0.06] pt-8">
-              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gradient-to-br from-emerald-500 to-cyan-500">
-                <span className="text-lg font-bold text-white">F</span>
-              </div>
+              <Image src="/images/mascot/mascot-v25-crystal-familiar.png" alt="Axi" width={48} height={48} className="rounded-full" style={{ boxShadow: '0 0 20px -6px rgba(16,185,129,0.4)' }} />
               <div>
                 <p className="font-semibold text-white">Frank Riemer</p>
                 <p className="text-sm text-white/50">
@@ -646,10 +650,21 @@ export default function VisionContent() {
                 {...stagger}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
               >
-                <div
-                  className={`inline-flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br ${pillar.color} text-white`}
-                >
-                  <pillar.icon className="h-5 w-5" />
+                <div className="flex items-center gap-3">
+                  <div
+                    className={`inline-flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br ${pillar.color} text-white`}
+                  >
+                    <pillar.icon className="h-5 w-5" />
+                  </div>
+                  {pillar.character && (
+                    <Image
+                      src={pillar.character.src}
+                      alt={pillar.character.name}
+                      width={32}
+                      height={32}
+                      className="rounded-lg opacity-60 transition-opacity group-hover:opacity-100"
+                    />
+                  )}
                 </div>
                 <h3 className="mt-5 text-lg font-semibold text-white">
                   {pillar.title}

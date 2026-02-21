@@ -192,9 +192,7 @@ export default async function BlogPostPage({
               {/* Author Card */}
               <div className="flex flex-col gap-4 rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-sm p-6 md:flex-row md:items-center md:justify-between">
                 <div className="flex items-center gap-4">
-                  <div className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-emerald-500 to-cyan-500 text-xl font-bold text-white shadow-lg shadow-emerald-500/20">
-                    {post.author?.[0] || 'F'}
-                  </div>
+                  <Image src="/images/mascot/mascot-v25-crystal-familiar.png" alt="Axi" width={48} height={48} className="rounded-full shadow-lg shadow-emerald-500/20" />
                   <div>
                     <div className="text-base font-semibold text-white">{post.author || 'Frank'}</div>
                     <div className="text-sm text-white/50">AI Systems Architect & Creator</div>
