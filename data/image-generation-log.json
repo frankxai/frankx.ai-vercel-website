@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "description": "Auto-populated log of all image generations via the Visual Creation pipeline",
-  "total_cost_usd": 0.10,
+  "total_cost_usd": 0.1,
   "total_images": 1,
   "entries": [
     {
@@ -17,7 +17,7 @@
       "thinking_level": "high",
       "resolution": "high",
       "aspect_ratio": "16:9",
-      "cost_usd": 0.10,
+      "cost_usd": 0.1,
       "output_path": "public/images/golden-age/golden-age-hero-test-01.png",
       "file_size_bytes": 945270,
       "dimensions": "1376x768",
