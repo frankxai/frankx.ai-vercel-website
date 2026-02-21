@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import {
   Code2,
@@ -152,6 +153,10 @@ export default function ArchitectsLandingPage() {
 
       {/* Hero */}
       <section className="relative pt-28 pb-16">
+        {/* Codex — AI Architect character accent */}
+        <div className="pointer-events-none absolute right-6 top-20 hidden w-48 opacity-[0.12] lg:block xl:w-56">
+          <Image src="/images/team/codex-falcon.png" alt="" width={224} height={224} className="object-contain" aria-hidden="true" />
+        </div>
         <div className="mx-auto max-w-5xl px-6">
           <motion.div initial="hidden" animate="visible" variants={containerVariants}>
             <motion.div variants={itemVariants} className="mb-6 inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-500/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-cyan-300">

@@ -134,7 +134,18 @@ export default function AboutPage() {
       <AboutBackground />
       <main id="main" className="relative min-h-screen">
         {/* ── Hero ── */}
-        <section className="pt-32 pb-16">
+        <section className="relative pt-32 pb-16">
+          {/* Arion & Mamoru — Frank's digital avatar accent */}
+          <div className="pointer-events-none absolute right-6 top-24 hidden w-52 opacity-15 lg:block xl:w-64">
+            <Image
+              src="/images/team/arion-mamoru.png"
+              alt=""
+              width={256}
+              height={256}
+              className="object-contain"
+              aria-hidden="true"
+            />
+          </div>
           <div className="mx-auto max-w-5xl px-6">
             <motion.p
               {...fadeIn}
@@ -394,7 +405,7 @@ export default function AboutPage() {
                 The AI team
               </h2>
               <p className="text-white/30 mb-8">
-                Every domain has its specialist. Each character represents a different creative intelligence.
+                These aren&apos;t just mascots. They&apos;re the AI team behind FrankX — each one a specialist in a different creative domain.
               </p>
             </motion.div>
 

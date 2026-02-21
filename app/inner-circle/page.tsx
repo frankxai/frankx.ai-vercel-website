@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion, useInView } from 'framer-motion'
 import { useState, useRef } from 'react'
 import { EmailSignup } from '@/components/email-signup'
@@ -363,6 +364,10 @@ export default function InnerCirclePage() {
     <div className="min-h-screen bg-[#0F172A] text-white">
       {/* Hero Section */}
       <section className="relative flex min-h-[80vh] items-center justify-center overflow-hidden">
+        {/* Nero — Inner Circle character accent */}
+        <div className="pointer-events-none absolute right-6 top-24 z-0 hidden w-56 opacity-10 lg:block xl:w-72">
+          <Image src="/images/team/nero-umbra.png" alt="" width={288} height={288} className="object-contain" aria-hidden="true" />
+        </div>
         <div className="absolute inset-0 overflow-hidden">
           <motion.div
             className="absolute -left-1/4 top-1/4 h-1/2 w-1/2 rounded-full bg-[#AB47C7]/20 blur-[120px]"

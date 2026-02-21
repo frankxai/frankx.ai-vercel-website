@@ -1,7 +1,8 @@
 'use client'
 
+import { useState } from 'react'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import {
   ArrowRight,
   Sparkles,
@@ -15,9 +16,24 @@ import {
   Zap,
   Users,
   Star,
+  X,
+  Send,
 } from 'lucide-react'
 
+import Image from 'next/image'
 import { trackEvent } from '@/lib/analytics'
+import { EmailSignup } from '@/components/email-signup'
+
+// Product → Team character mapping
+const productCharacters: Record<string, { src: string; name: string }> = {
+  'vibe-os': { src: '/images/team/arion-mamoru.png', name: 'Arion' },
+  'creators-soulbook': { src: '/images/team/lumina-sol.png', name: 'Lumina' },
+  'suno-prompts-bundle': { src: '/images/team/echo-leopard.png', name: 'Echo' },
+  'creative-ai-toolkit': { src: '/images/team/nova-fox.png', name: 'Nova' },
+  'creation-chronicles': { src: '/images/team/arion-mamoru.png', name: 'Arion' },
+  'generative-creator-os': { src: '/images/team/nova-fox.png', name: 'Nova' },
+  'agentic-creator-os': { src: '/images/team/stella-owl.png', name: 'Stella' },
+}
 
 // Premium background
 function ProductsBackground() {
@@ -76,29 +92,13 @@ function ProductsBackground() {
 // Product data - structured for premium display
 const products = [
   {
-    id: 'creative-ai-toolkit',
-    icon: Sparkles,
-    name: 'Creative AI Toolkit',
-    tagline: 'Prompt library + workflow rituals',
-    description:
-      'A digital kit with prompts, templates, and rollout rituals for consistent output.',
-    status: 'coming-soon',
-    href: '/products/creative-ai-toolkit',
-    color: 'violet',
-    highlights: [
-      '100+ validated prompts across storytelling, marketing, and operations',
-      '12 ready-to-deploy workflow automations',
-      '30/60/90 day implementation roadmaps',
-    ],
-  },
-  {
     id: 'vibe-os',
     icon: Music,
     name: 'Vibe OS',
     tagline: 'Suno Music Mastery',
     description:
       'Prompt packs, emotion mapping, and production checklists for Suno creators.',
-    status: 'coming-soon',
+    status: 'active',
     href: '/products/vibe-os',
     color: 'emerald',
     highlights: [
@@ -109,14 +109,62 @@ const products = [
     featured: true,
   },
   {
+    id: 'creators-soulbook',
+    icon: BookOpen,
+    name: 'The Creator\'s Soulbook',
+    tagline: 'Life Architecture OS',
+    description:
+      'Life operating system with 7 pillars, frameworks, and AI coaching prompts. Complete Obsidian vault included.',
+    status: 'active',
+    href: '/soulbook',
+    color: 'cyan',
+    highlights: [
+      '7 Life Pillars framework with reflection exercises',
+      '3 transformational perspectives (Life Symphony, Golden Path, 7 Pillars)',
+      '25+ AI coaching prompts + ready-to-use Obsidian vault',
+    ],
+  },
+  {
+    id: 'suno-prompts-bundle',
+    icon: Sparkles,
+    name: '5 Suno Prompt Bundles',
+    tagline: 'Genre-Specific Music Generation',
+    description:
+      'Five curated prompt bundles for specific genres: electronic, hip-hop, ambient, cinematic, and lo-fi.',
+    status: 'active',
+    href: '/products/suno-prompts',
+    color: 'violet',
+    highlights: [
+      '50+ battle-tested prompts across 5 genres',
+      'Emotion and tempo mapping for each genre',
+      'Production tips and remixing guides',
+    ],
+  },
+  {
+    id: 'creative-ai-toolkit',
+    icon: Sparkles,
+    name: 'Creative AI Toolkit',
+    tagline: 'Prompt library + workflow rituals',
+    description:
+      'A digital kit with prompts, templates, and rollout rituals for consistent output.',
+    status: 'early-access',
+    href: '#',
+    color: 'amber',
+    highlights: [
+      '100+ validated prompts across storytelling, marketing, and operations',
+      '12 ready-to-deploy workflow automations',
+      '30/60/90 day implementation roadmaps',
+    ],
+  },
+  {
     id: 'creation-chronicles',
     icon: BookOpen,
     name: 'Creation Chronicles',
     tagline: 'Strategic Storytelling OS',
     description:
       'Story frameworks, editorial calendars, and prompt stacks to build authority.',
-    status: 'coming-soon',
-    href: '/products/creation-chronicles',
+    status: 'early-access',
+    href: '#',
     color: 'cyan',
     highlights: [
       'Strategic story architecture and messaging frameworks',
@@ -131,9 +179,9 @@ const products = [
     tagline: 'Multi-modal AI Studio',
     description:
       'Multi-modal templates, prompts, and guardrails for a reliable studio system.',
-    status: 'coming-soon',
-    href: '/products/generative-creator-os',
-    color: 'amber',
+    status: 'early-access',
+    href: '#',
+    color: 'violet',
     highlights: [
       'Multi-modal asset generation pipelines',
       'Brand intelligence and compliance system',
@@ -147,8 +195,8 @@ const products = [
     tagline: 'Developer AI Mastery',
     description:
       'Agentic playbooks, prompt stacks, and governance checklists for builders.',
-    status: 'coming-soon',
-    href: '/products/agentic-creator-os',
+    status: 'early-access',
+    href: '#',
     color: 'rose',
     highlights: [
       'Claude Code and Cursor mastery systems',
@@ -160,12 +208,12 @@ const products = [
 
 const colorMap = {
   violet: {
-    bg: 'bg-cyan-500/10',
-    border: 'border-cyan-500/20 hover:border-cyan-500/40',
-    icon: 'bg-cyan-500/20 text-cyan-300',
-    accent: 'text-cyan-300',
-    button: 'bg-cyan-600 hover:bg-cyan-500',
-    glow: 'group-hover:shadow-cyan-500/20',
+    bg: 'bg-violet-500/10',
+    border: 'border-violet-500/20 hover:border-violet-500/40',
+    icon: 'bg-violet-500/20 text-violet-300',
+    accent: 'text-violet-300',
+    button: 'bg-violet-600 hover:bg-violet-500',
+    glow: 'group-hover:shadow-violet-500/20',
   },
   emerald: {
     bg: 'bg-emerald-500/10',
@@ -184,30 +232,116 @@ const colorMap = {
     glow: 'group-hover:shadow-cyan-500/20',
   },
   amber: {
-    bg: 'bg-blue-500/10',
-    border: 'border-blue-500/20 hover:border-blue-500/40',
-    icon: 'bg-blue-500/20 text-blue-300',
-    accent: 'text-blue-300',
-    button: 'bg-blue-600 hover:bg-blue-500',
-    glow: 'group-hover:shadow-blue-500/20',
+    bg: 'bg-amber-500/10',
+    border: 'border-amber-500/20 hover:border-amber-500/40',
+    icon: 'bg-amber-500/20 text-amber-300',
+    accent: 'text-amber-300',
+    button: 'bg-amber-600 hover:bg-amber-500',
+    glow: 'group-hover:shadow-amber-500/20',
   },
   rose: {
-    bg: 'bg-teal-500/10',
-    border: 'border-teal-500/20 hover:border-teal-500/40',
-    icon: 'bg-teal-500/20 text-teal-300',
-    accent: 'text-teal-300',
-    button: 'bg-teal-600 hover:bg-teal-500',
-    glow: 'group-hover:shadow-teal-500/20',
+    bg: 'bg-rose-500/10',
+    border: 'border-rose-500/20 hover:border-rose-500/40',
+    icon: 'bg-rose-500/20 text-rose-300',
+    accent: 'text-rose-300',
+    button: 'bg-rose-600 hover:bg-rose-500',
+    glow: 'group-hover:shadow-rose-500/20',
   },
 }
 
+// Early Access Modal Component
+function EarlyAccessModal({
+  product,
+  isOpen,
+  onClose,
+}: {
+  product: (typeof products)[number]
+  isOpen: boolean
+  onClose: () => void
+}) {
+  if (!isOpen) return null
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm"
+      onClick={onClose}
+    >
+      <motion.div
+        initial={{ scale: 0.95, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.95, opacity: 0 }}
+        onClick={(e) => e.stopPropagation()}
+        className="relative w-full max-w-md rounded-2xl border border-white/10 bg-gradient-to-br from-slate-900/90 via-slate-900/80 to-slate-900/70 p-8 backdrop-blur-xl"
+      >
+        {/* Close button */}
+        <button
+          onClick={onClose}
+          className="absolute right-4 top-4 rounded-lg bg-white/5 p-2 hover:bg-white/10 transition-colors"
+        >
+          <X className="h-5 w-5 text-slate-400" />
+        </button>
+
+        {/* Header */}
+        <div className="mb-6">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 text-xs font-medium mb-3">
+            <Sparkles className="w-3.5 h-3.5" />
+            Early Access
+          </span>
+          <h3 className="text-2xl font-bold text-white mb-2">{product.name}</h3>
+          <p className="text-sm text-slate-400">{product.tagline}</p>
+        </div>
+
+        {/* CTA */}
+        <div className="space-y-4">
+          <p className="text-sm text-slate-400">
+            This product is in development. Join the early access list to get:
+          </p>
+          <ul className="space-y-2">
+            {['Priority launch access', 'Exclusive early pricing', 'Behind-the-scenes updates'].map(
+              (item) => (
+                <li key={item} className="flex items-center gap-2 text-sm text-slate-300">
+                  <CheckCircle2 className="h-4 w-4 text-emerald-400 flex-shrink-0" />
+                  {item}
+                </li>
+              )
+            )}
+          </ul>
+
+          <EmailSignup
+            defaultEmail=""
+            variant="compact"
+            ctaText="Join Early Access"
+            ctaTracking={`early-access-${product.id}`}
+          />
+        </div>
+      </motion.div>
+    </motion.div>
+  )
+}
+
 export default function ProductsPage() {
+  const [openModal, setOpenModal] = useState<string | null>(null)
+
   return (
     <>
       <ProductsBackground />
       <main id="main" className="relative min-h-screen">
         {/* Hero Section */}
-        <section className="pt-32 pb-16">
+        <section className="relative pt-32 pb-16">
+          {/* Draconia accent — power/premium energy */}
+          <div className="pointer-events-none absolute right-0 top-16 hidden w-64 opacity-20 lg:block xl:w-80">
+            <Image
+              src="/images/team/draconia-tiger.png"
+              alt=""
+              width={320}
+              height={320}
+              className="object-contain"
+              aria-hidden="true"
+            />
+          </div>
           <div className="mx-auto max-w-6xl px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -254,6 +388,7 @@ export default function ProductsPage() {
               {products.map((product, index) => {
                 const Icon = product.icon
                 const colors = colorMap[product.color as keyof typeof colorMap]
+                const isActive = product.status === 'active'
 
                 return (
                   <motion.div
@@ -263,30 +398,39 @@ export default function ProductsPage() {
                     transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
                     className={product.featured ? 'md:col-span-2 lg:col-span-1' : ''}
                   >
-                    <Link
-                      href={product.href}
-                      onClick={() =>
-                        trackEvent('product_card_click', { productId: product.id })
-                      }
-                      className="group block h-full"
-                    >
+                    <div className="group block h-full">
                       <div
-                        className={`relative flex h-full flex-col overflow-hidden rounded-2xl border ${colors.border} ${colors.bg} p-8 backdrop-blur-sm transition-all duration-500 group-hover:-translate-y-1 group-hover:shadow-xl ${colors.glow}`}
+                        className={`relative flex h-full flex-col overflow-hidden rounded-2xl border ${colors.border} ${colors.bg} p-8 backdrop-blur-sm transition-all duration-500 ${
+                          isActive
+                            ? 'cursor-pointer group-hover:-translate-y-1 group-hover:shadow-xl'
+                            : ''
+                        } ${colors.glow}`}
                       >
                         {/* Featured badge */}
                         {product.featured && (
                           <div className="absolute right-6 top-6">
-                            <span className="rounded-full bg-cyan-500/20 px-3 py-1 text-xs font-medium text-cyan-400">
-                              Most Popular
+                            <span className="rounded-full bg-emerald-500/20 px-3 py-1 text-xs font-medium text-emerald-400">
+                              Available Now
                             </span>
                           </div>
                         )}
 
-                        {/* Icon */}
-                        <div
-                          className={`mb-6 flex h-14 w-14 items-center justify-center rounded-xl ${colors.icon}`}
-                        >
-                          <Icon className="h-7 w-7" />
+                        {/* Icon + Character */}
+                        <div className="mb-6 flex items-center gap-3">
+                          <div
+                            className={`flex h-14 w-14 items-center justify-center rounded-xl ${colors.icon}`}
+                          >
+                            <Icon className="h-7 w-7" />
+                          </div>
+                          {productCharacters[product.id] && (
+                            <Image
+                              src={productCharacters[product.id].src}
+                              alt={productCharacters[product.id].name}
+                              width={40}
+                              height={40}
+                              className="rounded-xl opacity-70 transition-opacity group-hover:opacity-100"
+                            />
+                          )}
                         </div>
 
                         {/* Content */}
@@ -316,18 +460,44 @@ export default function ProductsPage() {
                         {/* Status and CTA */}
                         <div className="flex items-center justify-between border-t border-white/5 pt-6">
                           <div className="flex items-center gap-2">
-                            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 text-sm font-medium">
-                              <Sparkles className="w-3.5 h-3.5" />
-                              Coming Soon
-                            </span>
+                            {isActive ? (
+                              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-sm font-medium">
+                                <CheckCircle2 className="w-3.5 h-3.5" />
+                                Available
+                              </span>
+                            ) : (
+                              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-500/10 text-amber-400 text-sm font-medium">
+                                <Sparkles className="w-3.5 h-3.5" />
+                                Early Access
+                              </span>
+                            )}
                           </div>
-                          <div className="flex items-center gap-2 text-slate-400 transition-colors group-hover:text-white">
-                            <span className="text-sm font-medium">Join Waitlist</span>
-                            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                          </div>
+                          {isActive ? (
+                            <Link
+                              href={product.href}
+                              onClick={() =>
+                                trackEvent('product_card_click', { productId: product.id })
+                              }
+                              className="flex items-center gap-2 text-slate-400 transition-colors hover:text-white"
+                            >
+                              <span className="text-sm font-medium">Explore</span>
+                              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                            </Link>
+                          ) : (
+                            <button
+                              onClick={() => {
+                                setOpenModal(product.id)
+                                trackEvent('early_access_click', { productId: product.id })
+                              }}
+                              className="flex items-center gap-2 text-slate-400 transition-colors hover:text-white"
+                            >
+                              <span className="text-sm font-medium">Join</span>
+                              <Send className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                            </button>
+                          )}
                         </div>
                       </div>
-                    </Link>
+                    </div>
                   </motion.div>
                 )
               })}
@@ -448,15 +618,15 @@ export default function ProductsPage() {
                 },
                 {
                   q: "Do I need technical experience?",
-                  a: "The Creative AI Toolkit and Vibe OS are designed for beginners. Generative Creator OS and Agentic Creator OS are for intermediate users who want to go deeper.",
+                  a: "Vibe OS and The Creator's Soulbook are designed for beginners. Creative AI Toolkit and Generative Creator OS are for intermediate users who want to go deeper.",
                 },
                 {
-                  q: "When will these products launch?",
-                  a: "Products are launching throughout 2026. Join the waitlist to get early access, exclusive launch discounts, and behind-the-scenes updates as each product is finalized.",
+                  q: "Which products are available now?",
+                  a: "Vibe OS, The Creator's Soulbook, and the Suno Prompt Bundles are available now. Other products are in Early Access—join the list to get priority launch access and exclusive pricing.",
                 },
                 {
-                  q: "What do I get by joining the waitlist?",
-                  a: "Waitlist members get priority access when products launch, exclusive early-bird pricing, and behind-the-scenes content showing how each system is built.",
+                  q: "What do I get by joining Early Access?",
+                  a: "Early Access members get priority launch notification, exclusive early-bird pricing, behind-the-scenes development updates, and direct input on product refinement.",
                 },
               ].map((faq, i) => (
                 <motion.div
@@ -475,7 +645,7 @@ export default function ProductsPage() {
           </div>
         </section>
 
-        {/* Bottom CTA - Waitlist */}
+        {/* Bottom CTA - Early Access */}
         <section className="py-16 pb-24">
           <div className="mx-auto max-w-6xl px-6">
             <motion.div
@@ -490,27 +660,37 @@ export default function ProductsPage() {
 
               <div className="relative flex flex-col items-center gap-8 text-center">
                 <div className="max-w-2xl">
-                  <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 text-amber-400 text-sm font-medium mb-6">
-                    <Sparkles className="w-4 h-4" />
-                    Launching Soon
+                  <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-emerald-500/10 text-emerald-400 text-sm font-medium mb-6">
+                    <CheckCircle2 className="w-4 h-4" />
+                    Ready to Create
                   </span>
                   <h2 className="text-2xl font-bold text-white sm:text-3xl mb-4">
-                    Be the first to know when products launch
+                    Start building with our systems today
                   </h2>
                   <p className="text-slate-400">
-                    Join the waitlist for early access, exclusive discounts, and behind-the-scenes updates
-                    on each product as they're developed.
+                    Vibe OS, The Creator's Soulbook, and Suno Prompt Bundles are available now.
+                    Join early access for upcoming launches with exclusive pricing.
                   </p>
                 </div>
                 <div className="flex flex-col sm:flex-row gap-4 w-full max-w-md">
                   <Link
-                    href="/newsletter"
+                    href="/products/vibe-os"
                     onClick={() =>
-                      trackEvent('product_waitlist_cta', { location: 'products-page' })
+                      trackEvent('cta_click', { location: 'products-page', target: 'vibe-os' })
                     }
                     className="group flex-1 flex items-center justify-center gap-2 rounded-xl bg-white px-6 py-3 font-medium text-slate-900 transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-white/10"
                   >
-                    Join the Waitlist
+                    Explore Vibe OS
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </Link>
+                  <Link
+                    href="/newsletter"
+                    onClick={() =>
+                      trackEvent('cta_click', { location: 'products-page', target: 'newsletter' })
+                    }
+                    className="group flex-1 flex items-center justify-center gap-2 rounded-xl border border-white/20 px-6 py-3 font-medium text-white hover:border-white/40 hover:bg-white/5 transition-all"
+                  >
+                    Newsletter
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </Link>
                 </div>
@@ -519,6 +699,20 @@ export default function ProductsPage() {
           </div>
         </section>
       </main>
+
+      {/* Early Access Modals */}
+      <AnimatePresence>
+        {products
+          .filter((p) => p.status === 'early-access' && p.id === openModal)
+          .map((product) => (
+            <EarlyAccessModal
+              key={product.id}
+              product={product}
+              isOpen={openModal === product.id}
+              onClose={() => setOpenModal(null)}
+            />
+          ))}
+      </AnimatePresence>
     </>
   )
 }

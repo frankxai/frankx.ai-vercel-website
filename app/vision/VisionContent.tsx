@@ -255,6 +255,10 @@ export default function VisionContent() {
           HERO — The North Star
           ═══════════════════════════════════════════════ */}
       <section className="relative overflow-hidden pt-32 pb-24 md:pt-44 md:pb-32">
+        {/* Shinkami — meta-consciousness, the vision apex */}
+        <div className="pointer-events-none absolute right-6 top-28 hidden w-52 opacity-12 lg:block xl:w-64">
+          <Image src="/images/team/shinkami.png" alt="" width={256} height={256} className="object-contain" aria-hidden="true" />
+        </div>
         {/* Grid background */}
         <div
           className="absolute inset-0 opacity-[0.04]"

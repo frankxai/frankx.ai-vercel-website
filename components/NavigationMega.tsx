@@ -188,11 +188,11 @@ const navigation = {
       },
       {
         label: 'Learn & Read',
-        items: ['The Golden Age of Creators', "The Creator's Soulbook", 'Free Playbooks', 'Prompt Library', 'About'],
+        items: ['The Golden Age of Creators', "The Creator's Soulbook", 'Free Playbooks', 'Prompt Library', 'About', 'Contact'],
       },
       {
         label: 'Research & Tools',
-        items: ['Downloads', 'Research Hub', 'Intelligence Atlas', 'AI Architect', 'ArcaneaVault', 'Video Vault', 'Contact'],
+        items: ['Downloads', 'Research Hub', 'Intelligence Atlas', 'AI Architect', 'ArcaneaVault', 'Video Vault'],
       },
     ],
   },
@@ -283,10 +283,10 @@ function MegaMenuContent({ section }: { section: keyof typeof navigation }) {
   if (hasGroups) {
     const groups = (data as typeof data & { groups: { label: string; items: string[] }[] }).groups
     return (
-      <div className="w-[820px] p-4">
-        <div className="grid grid-cols-[200px_1fr] gap-4">
+      <div className="w-[760px] p-4">
+        <div className="grid grid-cols-[190px_1fr] gap-4">
           <FeaturedCard data={data} />
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-3 gap-3">
             {groups.map((group) => {
               const groupItems = group.items
                 .map((name) => data.items.find((i) => i.name === name))
@@ -532,7 +532,7 @@ export default function NavigationMega() {
           </NavigationMenu.List>
 
           <div className="perspective-[2000px] absolute left-0 top-full flex w-full justify-center">
-            <NavigationMenu.Viewport className="relative mt-2 h-[var(--radix-navigation-menu-viewport-height)] w-full origin-[top_center] overflow-hidden rounded-xl border border-white/10 bg-[#0a0a12]/95 shadow-2xl shadow-black/50 backdrop-blur-xl transition-[width,height] duration-300 data-[state=closed]:animate-scaleOut data-[state=open]:animate-scaleIn sm:w-[var(--radix-navigation-menu-viewport-width)]" />
+            <NavigationMenu.Viewport className="relative mt-2 h-[var(--radix-navigation-menu-viewport-height)] w-full origin-[top_center] overflow-hidden data-[state=open]:overflow-visible rounded-xl border border-white/10 bg-[#0a0a12]/95 shadow-2xl shadow-black/50 backdrop-blur-xl transition-[width,height] duration-300 data-[state=closed]:animate-scaleOut data-[state=open]:animate-scaleIn sm:w-[var(--radix-navigation-menu-viewport-width)]" />
           </div>
         </NavigationMenu.Root>
 

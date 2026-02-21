@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { Calendar, Clock, Linkedin, Tag, Twitter } from 'lucide-react'
 
@@ -284,6 +285,20 @@ export default async function BlogPostPage({
             )}
 
             <RelatedResearch blogSlug={slug} />
+
+            {/* Axi article footer accent */}
+            <div className="mt-12 flex items-center gap-4 border-t border-white/10 pt-8">
+              <Image
+                src="/images/mascot/axi-v3-icon.png"
+                alt="Axi"
+                width={36}
+                height={36}
+                className="rounded-lg opacity-60"
+              />
+              <p className="text-xs text-white/30">
+                Read on <span className="text-white/50">FrankX.AI</span> — AI Architecture, Music & Creator Intelligence
+              </p>
+            </div>
           </div>
         </div>
 

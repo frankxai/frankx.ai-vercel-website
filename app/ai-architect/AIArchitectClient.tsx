@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import dynamic from 'next/dynamic'
 import {
@@ -274,7 +275,11 @@ export default function AIArchitectClient() {
       <MethodologyBackground />
       <main className="relative min-h-screen">
         {/* Hero Section */}
-        <section className="pt-32 pb-20">
+        <section className="relative pt-32 pb-20">
+          {/* Codex — AI Architect character accent */}
+          <div className="pointer-events-none absolute right-6 top-24 hidden w-52 opacity-15 lg:block xl:w-64">
+            <Image src="/images/team/codex-falcon.png" alt="" width={256} height={256} className="object-contain" aria-hidden="true" />
+          </div>
           <div className="mx-auto max-w-6xl px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}

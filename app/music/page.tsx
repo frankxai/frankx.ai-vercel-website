@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import Image from 'next/image'
 import {
   Play,
   ExternalLink,
@@ -85,6 +86,10 @@ function HeroSection() {
   const heroTrack = topTracks[0]
   return (
     <section className="relative pt-32 pb-16 px-6">
+      {/* Echo — Sound Weaver character accent */}
+      <div className="pointer-events-none absolute right-6 top-20 hidden w-48 opacity-15 lg:block xl:w-56">
+        <Image src="/images/team/echo-leopard.png" alt="" width={224} height={224} className="object-contain" aria-hidden="true" />
+      </div>
       <div className="max-w-6xl mx-auto">
         <div className="grid lg:grid-cols-[1fr,1.2fr] gap-12 items-center">
           <motion.div

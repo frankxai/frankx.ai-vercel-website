@@ -1,0 +1,50 @@
+{
+  "version": "1.0",
+  "description": "Auto-populated log of all image generations via the Visual Creation pipeline",
+  "total_cost_usd": 0.10,
+  "total_images": 1,
+  "entries": [
+    {
+      "id": "gen-001",
+      "timestamp": "2026-02-21T02:30:00Z",
+      "subject": "Golden Age Hero — crystalline forest observatory",
+      "template_type": "blog-hero",
+      "style": "dark-premium-glass:holographic-command",
+      "organizing_metaphor": "Ancient observatory at the edge of a crystalline forest",
+      "prompt_excerpt": "A wide establishing shot of THE GOLDEN AGE OF INTELLIGENCE. A lone creator figure stands on an ancient stone observation deck at the edge of a vast crystalline forest...",
+      "model": "gemini-3-pro-image-preview",
+      "model_tier": "pro",
+      "thinking_level": "high",
+      "resolution": "high",
+      "aspect_ratio": "16:9",
+      "cost_usd": 0.10,
+      "output_path": "public/images/golden-age/golden-age-hero-test-01.png",
+      "file_size_bytes": 945270,
+      "dimensions": "1376x768",
+      "council_review": {
+        "brand_guardian": 9,
+        "art_director": 9,
+        "storyteller": 9,
+        "weighted_score": 9.0,
+        "verdict": "APPROVED",
+        "vetoes": [],
+        "revision_cycle": 0
+      },
+      "gates": {
+        "brand_alignment": true,
+        "color_balance": true,
+        "information_density": true,
+        "depth_layers": true,
+        "text_legibility": true,
+        "icon_quality": true,
+        "scroll_stop": true,
+        "organic_warmth": true
+      },
+      "gates_passed": 8,
+      "gates_total": 8,
+      "status": "test",
+      "step": 4,
+      "notes": "First image generated through Visual Creation Council workflow. Organic-first: crystalline forest, human creator, root network, moss-covered stone observatory."
+    }
+  ]
+}

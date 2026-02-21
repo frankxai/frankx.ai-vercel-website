@@ -191,6 +191,10 @@ export default function ACOSPage() {
       <section className="relative overflow-hidden pt-24 pb-20">
         <div className="absolute inset-0 bg-gradient-to-br from-purple-950/40 via-[#02030b] to-cyan-950/30" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(161,72,221,0.15),transparent_55%)]" />
+        {/* Axi — command center prowl accent */}
+        <div className="pointer-events-none absolute left-4 bottom-8 hidden w-40 opacity-[0.08] lg:block xl:w-52">
+          <Image src="/images/mascot/mascot-v06-prowling-action.png" alt="" width={208} height={208} className="object-contain" aria-hidden="true" />
+        </div>
         <div className="relative mx-auto max-w-5xl px-6 text-center">
           <div className="mb-6 flex flex-col items-center gap-4">
             <Image
@@ -230,7 +234,7 @@ export default function ACOSPage() {
               <p><span className="text-emerald-400">$</span> claude</p>
               <p className="text-purple-400">/acos</p>
               <p className="mt-2 text-cyan-300">
-                ACOS v10.1 loaded. 75 skills active. 38 agents ready.
+                ACOS v10.2 loaded. 75 skills active. 38 agents ready.
               </p>
               <p className="text-white/40">
                 What would you like to create today?

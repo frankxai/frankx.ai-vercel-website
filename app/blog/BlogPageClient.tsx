@@ -66,6 +66,18 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
         </div>
 
         <div className="max-w-6xl mx-auto relative">
+          {/* Nova (Content Catalyst) — blog mascot accent */}
+          <div className="pointer-events-none absolute -right-4 top-0 hidden w-48 opacity-15 lg:block xl:w-56">
+            <Image
+              src="/images/team/nova-fox.png"
+              alt=""
+              width={224}
+              height={224}
+              className="object-contain"
+              aria-hidden="true"
+            />
+          </div>
+
           {/* Blog Identity Bar */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
