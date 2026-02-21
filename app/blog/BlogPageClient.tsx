@@ -66,13 +66,13 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
         </div>
 
         <div className="max-w-6xl mx-auto relative">
-          {/* Nova (Content Catalyst) — blog mascot accent */}
-          <div className="pointer-events-none absolute -right-4 top-0 hidden w-48 opacity-20 lg:block xl:w-56">
+          {/* Axi — blog mascot accent */}
+          <div className="pointer-events-none absolute -right-4 top-0 hidden w-44 opacity-12 lg:block xl:w-52">
             <Image
-              src="/images/team/nova-fox.png"
+              src="/images/mascot/mascot-v06-prowling-action.png"
               alt=""
-              width={224}
-              height={224}
+              width={208}
+              height={208}
               className="object-contain"
               aria-hidden="true"
             />
@@ -86,7 +86,7 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
           >
             <div>
               <div className="flex items-center gap-3 mb-4">
-                <Image src="/images/team/nova-fox.png" alt="Nova" width={48} height={48} className="rounded-xl" style={{ boxShadow: '0 0 20px -6px rgba(245,158,11,0.4)' }} />
+                <Image src="/images/mascot/mascot-v25-crystal-familiar.png" alt="Axi" width={40} height={40} className="rounded-xl" style={{ boxShadow: '0 0 16px -4px rgba(139,92,246,0.3)' }} />
                 <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20">
                   <Sparkles className="w-4 h-4 text-emerald-400" />
                   <span className="text-xs font-medium text-emerald-400">Creation Chronicles</span>

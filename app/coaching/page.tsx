@@ -233,7 +233,7 @@ export default function CoachingPage() {
         >
           <motion.div className="mx-auto max-w-4xl" variants={itemVariants}>
             <div className="mb-6 flex items-center gap-4">
-              <Image src="/images/team/shinkami.png" alt="Shinkami — Coaching Guide" width={64} height={64} className="rounded-2xl" style={{ boxShadow: '0 0 30px -6px rgba(20,184,166,0.4)' }} />
+              <Image src="/images/mascot/mascot-v17-negative-space-mark.png" alt="Axi" width={48} height={48} className="rounded-xl" style={{ boxShadow: '0 0 20px -6px rgba(139,92,246,0.3)' }} />
               <div className="inline-flex items-center gap-2 rounded-full border border-[#AB47C7]/30 bg-[#AB47C7]/10 px-4 py-2 text-sm font-medium text-[#AB47C7]">
                 <Sparkles className="h-4 w-4" />
                 Premium AI Coaching
@@ -517,7 +517,7 @@ export default function CoachingPage() {
                       animate={{ scale: [1, 1.3, 1], opacity: [0.5, 0.8, 0.5] }}
                       transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
                     />
-                    <Image src="/images/team/shinkami.png" alt="Shinkami" width={64} height={64} className="relative z-10 rounded-2xl" />
+                    <Image src="/images/mascot/mascot-v25-crystal-familiar.png" alt="Axi" width={64} height={64} className="relative z-10 rounded-2xl" />
                   </div>
                 </motion.div>
 

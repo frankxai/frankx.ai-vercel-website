@@ -46,7 +46,6 @@ const visionPillars = [
     borderColor: 'border-emerald-500/20',
     bgColor: 'bg-emerald-500/5',
     metrics: ['75+ Skills', '38 Agents', 'Production Systems'],
-    character: { src: '/images/team/codex-falcon.png', name: 'Codex' },
   },
   {
     icon: Music,
@@ -57,7 +56,6 @@ const visionPillars = [
     borderColor: 'border-violet-500/20',
     bgColor: 'bg-violet-500/5',
     metrics: ['12,000+ AI Songs', '7 Books Written', 'Visual Art System'],
-    character: { src: '/images/team/echo-leopard.png', name: 'Echo' },
   },
   {
     icon: Zap,
@@ -68,7 +66,6 @@ const visionPillars = [
     borderColor: 'border-amber-500/20',
     bgColor: 'bg-amber-500/5',
     metrics: ['Template Shop Live', 'Deploy Pipelines', 'Investor Intelligence'],
-    character: { src: '/images/team/draconia-tiger.png', name: 'Draconia' },
   },
   {
     icon: BookOpen,
@@ -79,7 +76,6 @@ const visionPillars = [
     borderColor: 'border-cyan-500/20',
     bgColor: 'bg-cyan-500/5',
     metrics: ['80+ Articles', 'The Great Transition', 'Golden Age Book'],
-    character: { src: '/images/team/nova-fox.png', name: 'Nova' },
   },
   {
     icon: Users,
@@ -90,7 +86,6 @@ const visionPillars = [
     borderColor: 'border-pink-500/20',
     bgColor: 'bg-pink-500/5',
     metrics: ['Inner Circle', 'Builder Network', 'Open Source Tools'],
-    character: { src: '/images/team/nero-umbra.png', name: 'Nero' },
   },
   {
     icon: Globe,
@@ -101,7 +96,6 @@ const visionPillars = [
     borderColor: 'border-blue-500/20',
     bgColor: 'bg-blue-500/5',
     metrics: ['frankx.ai Live', 'Open Frameworks', 'Builder-First'],
-    character: { src: '/images/team/arion-mamoru.png', name: 'Arion' },
   },
 ]
 
@@ -261,9 +255,9 @@ export default function VisionContent() {
           HERO — The North Star
           ═══════════════════════════════════════════════ */}
       <section className="relative overflow-hidden pt-32 pb-24 md:pt-44 md:pb-32">
-        {/* Shinkami — meta-consciousness, the vision apex */}
-        <div className="pointer-events-none absolute right-6 top-28 hidden w-52 opacity-12 lg:block xl:w-64">
-          <Image src="/images/team/shinkami.png" alt="" width={256} height={256} className="object-contain" aria-hidden="true" />
+        {/* Axi — mascot hero accent */}
+        <div className="pointer-events-none absolute right-6 top-28 hidden w-48 opacity-12 lg:block xl:w-56">
+          <Image src="/images/mascot/mascot-v16-organic-digital-split.png" alt="" width={224} height={224} className="object-contain" aria-hidden="true" />
         </div>
         {/* Grid background */}
         <div
@@ -656,15 +650,6 @@ export default function VisionContent() {
                   >
                     <pillar.icon className="h-5 w-5" />
                   </div>
-                  {pillar.character && (
-                    <Image
-                      src={pillar.character.src}
-                      alt={pillar.character.name}
-                      width={32}
-                      height={32}
-                      className="rounded-lg opacity-60 transition-opacity group-hover:opacity-100"
-                    />
-                  )}
                 </div>
                 <h3 className="mt-5 text-lg font-semibold text-white">
                   {pillar.title}

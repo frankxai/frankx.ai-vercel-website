@@ -364,9 +364,9 @@ export default function InnerCirclePage() {
     <div className="min-h-screen bg-[#0F172A] text-white">
       {/* Hero Section */}
       <section className="relative flex min-h-[80vh] items-center justify-center overflow-hidden">
-        {/* Nero — Inner Circle character accent */}
-        <div className="pointer-events-none absolute right-6 top-24 z-0 hidden w-56 opacity-10 lg:block xl:w-72">
-          <Image src="/images/team/nero-umbra.png" alt="" width={288} height={288} className="object-contain" aria-hidden="true" />
+        {/* Axi constellation — premium/mystery */}
+        <div className="pointer-events-none absolute right-6 top-24 z-0 hidden w-52 opacity-12 lg:block xl:w-64">
+          <Image src="/images/mascot/mascot-v10-data-constellation.png" alt="" width={256} height={256} className="object-contain" aria-hidden="true" />
         </div>
         <div className="absolute inset-0 overflow-hidden">
           <motion.div
@@ -388,7 +388,7 @@ export default function InnerCirclePage() {
             transition={{ duration: 0.5 }}
             className="mb-4 flex justify-center"
           >
-            <Image src="/images/team/nero-umbra.png" alt="Nero — Inner Circle Guardian" width={80} height={80} className="rounded-2xl" style={{ boxShadow: '0 0 40px -8px rgba(99,102,241,0.5)' }} />
+            <Image src="/images/mascot/mascot-v16-organic-digital-split.png" alt="Axi" width={72} height={72} className="rounded-2xl" style={{ boxShadow: '0 0 30px -6px rgba(139,92,246,0.4)' }} />
           </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 20 }}

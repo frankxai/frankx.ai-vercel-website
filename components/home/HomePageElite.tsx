@@ -975,8 +975,8 @@ function AboutSection() {
           <div className="space-y-4 sm:space-y-6 text-base sm:text-lg text-white/60 leading-relaxed mb-8 sm:mb-10">
             <p>
               By day, I architect AI systems at Oracle. By night, I make music—hundreds of songs
-              exploring what's possible when humans and AI create together. I'm a husband, a father,
-              someone who believes the universe is too interesting not to explore deeply.
+              exploring what's possible when humans and AI create together. The universe is
+              too interesting not to explore deeply.
             </p>
             <p className="text-white/70">
               This site is my workshop, my notebook, my attempt to share what I'm learning
@@ -1164,7 +1164,6 @@ const products = [
     badge: 'Open Source',
     gradient: 'from-purple-500/20 to-violet-500/5',
     iconColor: 'text-purple-400',
-    character: { src: '/images/team/stella-owl.png', name: 'Stella' },
   },
   {
     icon: Sparkles,
@@ -1174,7 +1173,6 @@ const products = [
     badge: 'Free',
     gradient: 'from-cyan-500/20 to-cyan-500/5',
     iconColor: 'text-cyan-400',
-    character: { src: '/images/team/echo-leopard.png', name: 'Echo' },
   },
   {
     icon: Package,
@@ -1184,7 +1182,6 @@ const products = [
     badge: '$47',
     gradient: 'from-amber-500/20 to-amber-500/5',
     iconColor: 'text-amber-400',
-    character: { src: '/images/team/draconia-tiger.png', name: 'Draconia' },
   },
 ]
 
@@ -1221,19 +1218,8 @@ function ProductsShowcase() {
               <Link href={product.href} className="group block h-full">
                 <div className={`h-full rounded-2xl border border-white/10 bg-gradient-to-br ${product.gradient} p-5 sm:p-6 backdrop-blur-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-white/20`}>
                   <div className="flex items-start justify-between mb-4">
-                    <div className="flex items-center gap-2.5">
-                      <div className="p-2.5 rounded-xl bg-white/5 group-hover:bg-white/10 transition-colors">
-                        <product.icon className={`w-5 h-5 ${product.iconColor}`} />
-                      </div>
-                      {product.character && (
-                        <Image
-                          src={product.character.src}
-                          alt={product.character.name}
-                          width={32}
-                          height={32}
-                          className="rounded-lg opacity-70 group-hover:opacity-100 transition-opacity"
-                        />
-                      )}
+                    <div className="p-2.5 rounded-xl bg-white/5 group-hover:bg-white/10 transition-colors">
+                      <product.icon className={`w-5 h-5 ${product.iconColor}`} />
                     </div>
                     <span className="text-[10px] sm:text-xs font-medium px-2 py-0.5 rounded-full bg-white/10 text-white/70">
                       {product.badge}
@@ -1260,94 +1246,32 @@ function ProductsShowcase() {
 }
 
 // ============================================================================
-// CHARACTER TEASER — Meet the AI Team
+// AXI BRAND MOMENT — Visual divider with mascot
 // ============================================================================
 
-const teamCharacters = [
-  {
-    name: 'Codex',
-    role: 'AI Architect',
-    src: '/images/team/codex-falcon.png',
-    accent: 'from-emerald-500 to-cyan-500',
-  },
-  {
-    name: 'Echo',
-    role: 'Music Producer',
-    src: '/images/team/echo-leopard.png',
-    accent: 'from-cyan-500 to-blue-500',
-  },
-  {
-    name: 'Nova',
-    role: 'Content Catalyst',
-    src: '/images/team/nova-fox.png',
-    accent: 'from-amber-500 to-orange-500',
-  },
-  {
-    name: 'Stella',
-    role: 'ACOS Commander',
-    src: '/images/team/stella-owl.png',
-    accent: 'from-violet-500 to-purple-500',
-  },
-]
-
-function CharacterTeaser() {
+function AxiBrandMoment() {
   return (
-    <section className="py-16 md:py-24 border-t border-white/5">
+    <section className="py-12 md:py-16 border-t border-white/5">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          className="text-center mb-8 md:mb-12"
+          className="flex flex-col items-center gap-6 text-center"
         >
-          <p className="text-xs sm:text-sm font-medium uppercase tracking-[0.2em] sm:tracking-[0.25em] text-emerald-400/70 mb-3 md:mb-4">
-            The AI Team
+          <div className="relative w-24 h-24 sm:w-32 sm:h-32">
+            <Image
+              src="/images/mascot/mascot-v16-organic-digital-split.png"
+              alt="Axi — where organic creativity meets digital engineering"
+              fill
+              className="object-cover rounded-2xl"
+              sizes="128px"
+            />
+            <div className="absolute inset-0 rounded-2xl ring-1 ring-white/10" />
+          </div>
+          <p className="text-sm text-white/30 max-w-md">
+            One person. The right tools. Infinite leverage.
           </p>
-          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight">
-            Meet the agents behind the build
-          </h2>
-        </motion.div>
-
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
-          {teamCharacters.map((char, i) => (
-            <motion.div
-              key={char.name}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="group relative aspect-square rounded-2xl border border-white/5 bg-white/[0.02] overflow-hidden hover:border-white/15 transition-all"
-            >
-              <Image
-                src={char.src}
-                alt={char.name}
-                fill
-                className="object-cover transition-transform duration-500 group-hover:scale-105"
-                sizes="(max-width: 768px) 50vw, 25vw"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4">
-                <h3 className="text-sm sm:text-base font-semibold text-white">{char.name}</h3>
-                <p className="text-[10px] sm:text-xs text-white/60">{char.role}</p>
-              </div>
-              <div className={`absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r ${char.accent}`} />
-            </motion.div>
-          ))}
-        </div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="mt-6 text-center"
-        >
-          <Link
-            href="/about"
-            className="group inline-flex items-center gap-2 text-sm text-white/50 hover:text-white transition-colors"
-          >
-            Meet the full team
-            <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-          </Link>
         </motion.div>
       </div>
     </section>
@@ -1484,7 +1408,7 @@ export default function HomePageElite({ latestPosts = [], faqs = [] }: HomePageE
         <LatestArticles posts={latestPosts} />
         <FeaturedResources />
         <ProductsShowcase />
-        <CharacterTeaser />
+        <AxiBrandMoment />
         <AIArtGalleryPreview />
         <AboutSection />
         <EmailCTA />

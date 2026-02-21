@@ -255,7 +255,7 @@ export default function InvestorHubPage() {
               transition={{ duration: 0.5 }}
               className="mb-6 inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 backdrop-blur-sm"
             >
-              <Image src="/images/team/draconia-tiger.png" alt="Draconia — Investment Forge" width={64} height={64} className="rounded-2xl" style={{ boxShadow: '0 0 30px -6px rgba(239,68,68,0.4)' }} />
+              <Image src="/images/mascot/mascot-v14-dimensional-rift.png" alt="Axi" width={48} height={48} className="rounded-xl" style={{ boxShadow: '0 0 20px -6px rgba(6,182,212,0.3)' }} />
               <div className="flex h-6 w-6 items-center justify-center rounded-md bg-gradient-to-br from-amber-500/30 to-cyan-500/30">
                 <TrendingUp className="h-3.5 w-3.5 text-white" />
               </div>

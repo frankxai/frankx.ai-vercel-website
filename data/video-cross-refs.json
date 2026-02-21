@@ -1,0 +1,89 @@
+{
+  "videoToBlog": {
+    "uRuLgar5XZw": [
+      "ai-engineering-without-hype-willison"
+    ],
+    "pOLR5jE5Vjw": [
+      "claude-code-mastery-top-resources"
+    ],
+    "VMj-3S1tku0": [
+      "karpathys-ai-vision-deep-dive"
+    ]
+  },
+  "blogToVideo": {
+    "ai-engineering-without-hype-willison": [
+      "uRuLgar5XZw"
+    ],
+    "claude-code-mastery-top-resources": [
+      "pOLR5jE5Vjw"
+    ],
+    "karpathys-ai-vision-deep-dive": [
+      "VMj-3S1tku0"
+    ]
+  },
+  "videoToWatchlist": {
+    "VMj-3S1tku0": [
+      "ai-engineering",
+      "learning"
+    ],
+    "dWr1eTeK6p4": [
+      "ai-engineering"
+    ],
+    "pOLR5jE5Vjw": [
+      "ai-engineering"
+    ],
+    "uRuLgar5XZw": [
+      "ai-engineering"
+    ],
+    "2ftykwXA408": [
+      "ai-engineering"
+    ],
+    "vcBD0hn48ig": [
+      "ai-engineering"
+    ],
+    "Ta5g-OxjPO4": [
+      "ai-agents",
+      "creator-economy"
+    ],
+    "EIi5k9TJUvY": [
+      "music-production",
+      "creative-ai"
+    ],
+    "jDHMPSSgaMw": [
+      "music-production",
+      "creative-ai"
+    ],
+    "n9iv24yI04nI": [
+      "creative-ai",
+      "mindset"
+    ],
+    "5MUvJv_sB64": [
+      "strategy"
+    ],
+    "BSjQk-7j3X0": [
+      "strategy",
+      "mindset"
+    ],
+    "9g-wcfo091E": [
+      "strategy"
+    ],
+    "fL_l8mxU148": [
+      "strategy"
+    ],
+    "OI0zRk7Mau4": [
+      "strategy"
+    ],
+    "SifHlXe7B2k": [
+      "strategy"
+    ],
+    "tqfPCE_gfuc": [
+      "strategy"
+    ],
+    "Cqbleas1mmo": [
+      "mindset"
+    ],
+    "aircAruvnKk": [
+      "learning"
+    ]
+  }
+}

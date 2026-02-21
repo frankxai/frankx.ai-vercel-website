@@ -24,16 +24,7 @@ import Image from 'next/image'
 import { trackEvent } from '@/lib/analytics'
 import { EmailSignup } from '@/components/email-signup'
 
-// Product → Team character mapping
-const productCharacters: Record<string, { src: string; name: string }> = {
-  'vibe-os': { src: '/images/team/arion-mamoru.png', name: 'Arion' },
-  'creators-soulbook': { src: '/images/team/lumina-sol.png', name: 'Lumina' },
-  'suno-prompts-bundle': { src: '/images/team/echo-leopard.png', name: 'Echo' },
-  'creative-ai-toolkit': { src: '/images/team/nova-fox.png', name: 'Nova' },
-  'creation-chronicles': { src: '/images/team/arion-mamoru.png', name: 'Arion' },
-  'generative-creator-os': { src: '/images/team/nova-fox.png', name: 'Nova' },
-  'agentic-creator-os': { src: '/images/team/stella-owl.png', name: 'Stella' },
-}
+// Product characters removed — mascot-first strategy (Feb 21)
 
 // Premium background
 function ProductsBackground() {
@@ -331,13 +322,13 @@ export default function ProductsPage() {
       <main id="main" className="relative min-h-screen">
         {/* Hero Section */}
         <section className="relative pt-32 pb-16">
-          {/* Draconia accent — power/premium energy */}
-          <div className="pointer-events-none absolute right-0 top-16 hidden w-64 opacity-20 lg:block xl:w-80">
+          {/* Axi — mascot accent */}
+          <div className="pointer-events-none absolute right-0 top-16 hidden w-56 opacity-15 lg:block xl:w-72">
             <Image
-              src="/images/team/draconia-tiger.png"
+              src="/images/mascot/mascot-v05-techno-beast-standing.png"
               alt=""
-              width={320}
-              height={320}
+              width={288}
+              height={288}
               className="object-contain"
               aria-hidden="true"
             />
@@ -349,7 +340,7 @@ export default function ProductsPage() {
               transition={{ duration: 0.6 }}
               className="mb-8 flex items-center gap-4"
             >
-              <Image src="/images/team/draconia-tiger.png" alt="Draconia — Product Forge" width={64} height={64} className="rounded-2xl" style={{ boxShadow: '0 0 30px -6px rgba(239,68,68,0.4)' }} />
+              <Image src="/images/mascot/mascot-v17-negative-space-mark.png" alt="Axi" width={48} height={48} className="rounded-xl" style={{ boxShadow: '0 0 20px -6px rgba(139,92,246,0.3)' }} />
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-500/20 text-violet-400">
                 <Package className="h-5 w-5" />
               </div>
@@ -416,22 +407,13 @@ export default function ProductsPage() {
                           </div>
                         )}
 
-                        {/* Icon + Character */}
-                        <div className="mb-6 flex items-center gap-3">
+                        {/* Icon */}
+                        <div className="mb-6">
                           <div
                             className={`flex h-14 w-14 items-center justify-center rounded-xl ${colors.icon}`}
                           >
                             <Icon className="h-7 w-7" />
                           </div>
-                          {productCharacters[product.id] && (
-                            <Image
-                              src={productCharacters[product.id].src}
-                              alt={productCharacters[product.id].name}
-                              width={40}
-                              height={40}
-                              className="rounded-xl opacity-70 transition-opacity group-hover:opacity-100"
-                            />
-                          )}
                         </div>
 
                         {/* Content */}

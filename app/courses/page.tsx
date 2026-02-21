@@ -232,7 +232,7 @@ export default function CoursesPage() {
               className="max-w-4xl"
             >
               <div className="mb-8 flex items-center gap-4">
-                <Image src="/images/team/lumina-sol.png" alt="Lumina — Learning Guide" width={64} height={64} className="rounded-2xl" style={{ boxShadow: '0 0 30px -6px rgba(251,191,36,0.4)' }} />
+                <Image src="/images/mascot/mascot-v25-crystal-familiar.png" alt="Axi" width={48} height={48} className="rounded-xl" style={{ boxShadow: '0 0 16px -4px rgba(139,92,246,0.3)' }} />
                 <span className="text-xs font-medium uppercase tracking-[0.3em] text-emerald-400/60">
                   AI Architect Academy
                 </span>
