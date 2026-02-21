@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useCallback } from 'react'
+import { useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { motion } from 'framer-motion'
@@ -30,19 +30,15 @@ export function VideoLightbox({ video, allVideos, onClose, onNavigate, blogCross
     upNext.push(...featured.slice(0, 3 - upNext.length))
   }
 
-  const handleKeyDown = useCallback(
-    (e: KeyboardEvent) => {
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose()
       if (e.key === 'ArrowLeft' && prevVideo) onNavigate(prevVideo)
       if (e.key === 'ArrowRight' && nextVideo) onNavigate(nextVideo)
-    },
-    [onClose, onNavigate, prevVideo, nextVideo]
-  )
-
-  useEffect(() => {
+    }
     document.addEventListener('keydown', handleKeyDown)
     return () => document.removeEventListener('keydown', handleKeyDown)
-  }, [handleKeyDown])
+  }, [onClose, onNavigate, prevVideo, nextVideo])
 
   useEffect(() => {
     const prev = document.body.style.overflow
