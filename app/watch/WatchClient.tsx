@@ -51,7 +51,7 @@ const sectionRows = [
     id: 'human-edge',
     title: 'Human Edge',
     subtitle: 'Peak performance, philosophy, and building things that last',
-    categories: ['Peak Performance', 'Entrepreneurship', 'Philosophy & Stoicism', 'Mindset & Growth'],
+    categories: ['Mindset & Growth'],
     color: '#ef4444',
   },
   {
