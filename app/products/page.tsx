@@ -314,6 +314,7 @@ export default function ProductsPage() {
               width={288}
               height={288}
               className="object-contain"
+              sizes="288px"
               aria-hidden="true"
             />
           </div>
@@ -324,7 +325,7 @@ export default function ProductsPage() {
               transition={{ duration: 0.6 }}
               className="mb-8 flex items-center gap-4"
             >
-              <Image src="/images/mascot/mascot-v17-negative-space-mark.png" alt="Axi" width={48} height={48} className="rounded-xl" style={{ boxShadow: '0 0 20px -6px rgba(139,92,246,0.3)' }} />
+              <Image src="/images/mascot/mascot-v17-negative-space-mark.png" alt="Axi" width={48} height={48} className="rounded-xl" sizes="48px" style={{ boxShadow: '0 0 20px -6px rgba(139,92,246,0.3)' }} />
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-violet-500/20 text-violet-400">
                 <Package className="h-5 w-5" />
               </div>

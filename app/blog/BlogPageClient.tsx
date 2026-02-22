@@ -86,7 +86,7 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
           >
             <div>
               <div className="flex items-center gap-3 mb-4">
-                <Image src="/images/mascot/mascot-v25-crystal-familiar.png" alt="Axi" width={40} height={40} className="rounded-xl" style={{ boxShadow: '0 0 16px -4px rgba(139,92,246,0.3)' }} />
+                <Image src="/images/mascot/mascot-v25-crystal-familiar.png" alt="Axi" width={40} height={40} className="rounded-xl" sizes="40px" style={{ boxShadow: '0 0 16px -4px rgba(139,92,246,0.3)' }} />
                 <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20">
                   <Sparkles className="w-4 h-4 text-emerald-400" />
                   <span className="text-xs font-medium text-emerald-400">Creation Chronicles</span>

@@ -168,6 +168,15 @@
   .border-brand-default { border-color: var(--border-default); }
   .border-brand-strong { border-color: var(--border-strong); }
 
+  /* Premium hover lift — reusable card elevation on hover */
+  .card-hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  .card-hover-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgb(0 0 0 / 0.25);
+  }
+
   /* Premium card — glassmorphic surface for Watch page and similar dark UIs */
   .card-premium {
     background: rgba(255, 255, 255, 0.03);

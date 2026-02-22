@@ -12,6 +12,7 @@ import NavigationMega from '@/components/NavigationMega'
 import Footer from '@/components/Footer'
 import OrganizationJsonLd from '@/components/seo/OrganizationJsonLd'
 import SessionProvider from '@/components/providers/SessionProvider'
+import { ScrollProgress } from '@/components/ui/ScrollProgress'
 
 // Inter as primary sans-serif (geometric, variable weight, screen-optimized)
 const inter = Inter({
@@ -151,6 +152,7 @@ export default function RootLayout({
           >
             Skip to content
           </a>
+          <ScrollProgress />
           <NavigationMega />
           <div id="main" className="min-h-screen overflow-x-hidden">
             {children}

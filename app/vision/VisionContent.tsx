@@ -21,19 +21,7 @@ import {
 import { EmailSignup } from '@/components/email-signup'
 import EcosystemVisionBoard from '@/components/vision/EcosystemVisionBoard'
 
-/* ─── Animation Presets ─── */
-const fadeUp = {
-  initial: { opacity: 0, y: 32 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, amount: 0.2 },
-  transition: { duration: 0.7, ease: [0.25, 0.46, 0.45, 0.94] },
-}
-
-const stagger = {
-  initial: { opacity: 0, y: 24 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, amount: 0.15 },
-}
+import { fadeUpHero as fadeUp, stagger } from '@/lib/motion'
 
 /* ─── Data ─── */
 const visionPillars = [
@@ -257,7 +245,7 @@ export default function VisionContent() {
       <section className="relative overflow-hidden pt-32 pb-24 md:pt-44 md:pb-32">
         {/* Axi — mascot hero accent */}
         <div className="pointer-events-none absolute right-6 top-28 hidden w-48 opacity-12 lg:block xl:w-56">
-          <Image src="/images/mascot/mascot-v16-organic-digital-split.png" alt="" width={224} height={224} className="object-contain" aria-hidden="true" />
+          <Image src="/images/mascot/mascot-v16-organic-digital-split.png" alt="" width={224} height={224} className="object-contain" sizes="224px" aria-hidden="true" />
         </div>
         {/* Grid background */}
         <div

@@ -93,23 +93,19 @@ function AuroraBackground() {
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none">
       <div className="absolute inset-0 bg-[#030712]" />
-      <motion.div
+      <div
         className="absolute -top-[40%] -left-[20%] w-[80%] h-[80%]"
         style={{
           background: 'radial-gradient(ellipse at center, rgba(16, 185, 129, 0.06) 0%, transparent 70%)',
           filter: 'blur(100px)',
         }}
-        animate={{ x: [0, 100, 0], y: [0, 50, 0], scale: [1, 1.1, 1] }}
-        transition={{ duration: 30, repeat: Infinity, ease: 'easeInOut' }}
       />
-      <motion.div
+      <div
         className="absolute -bottom-[30%] -right-[10%] w-[60%] h-[60%]"
         style={{
           background: 'radial-gradient(ellipse at center, rgba(6, 182, 212, 0.05) 0%, transparent 70%)',
           filter: 'blur(100px)',
         }}
-        animate={{ x: [0, -80, 0], y: [0, -30, 0], scale: [1, 1.15, 1] }}
-        transition={{ duration: 25, repeat: Infinity, ease: 'easeInOut' }}
       />
       <div
         className="absolute inset-0 opacity-[0.015]"
@@ -232,7 +228,7 @@ export default function CoursesPage() {
               className="max-w-4xl"
             >
               <div className="mb-8 flex items-center gap-4">
-                <Image src="/images/mascot/mascot-v25-crystal-familiar.png" alt="Axi" width={48} height={48} className="rounded-xl" style={{ boxShadow: '0 0 16px -4px rgba(139,92,246,0.3)' }} />
+                <Image src="/images/mascot/mascot-v25-crystal-familiar.png" alt="Axi" width={48} height={48} className="rounded-xl" sizes="48px" style={{ boxShadow: '0 0 16px -4px rgba(139,92,246,0.3)' }} />
                 <span className="text-xs font-medium uppercase tracking-[0.3em] text-emerald-400/60">
                   AI Architect Academy
                 </span>
