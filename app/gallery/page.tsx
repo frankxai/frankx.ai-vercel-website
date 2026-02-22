@@ -25,10 +25,12 @@ interface GalleryArtwork {
   title: string
   prompt: string
   model: string
+  style: string
   category: string
   tags: string[]
   featured: boolean
   score: number
+  createdAt: string
 }
 
 // ── Collections ──────────────────────────────────────────────────────────────
@@ -259,10 +261,13 @@ function GalleryLightbox({
 
         {/* Info sidebar */}
         <div className="lg:w-80 bg-[#111113] rounded-xl p-6 border border-white/10 overflow-y-auto max-h-[40vh] lg:max-h-full">
-          <div className="flex items-center gap-3 mb-4">
+          <div className="flex items-center gap-2 flex-wrap mb-4">
             <div className="px-2 py-1 rounded-md text-xs font-medium bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
               <Sparkles className="w-3 h-3 inline mr-1" />
               {artwork.model}
+            </div>
+            <div className="px-2 py-1 rounded-md text-xs font-medium bg-purple-500/15 text-purple-400 border border-purple-500/30">
+              {artwork.style}
             </div>
             <div className="px-2 py-1 rounded-md text-xs font-bold bg-amber-500/15 text-amber-400 border border-amber-500/30 flex items-center gap-1">
               <Star className="w-3 h-3" />
@@ -271,7 +276,11 @@ function GalleryLightbox({
           </div>
 
           <h2 className="text-xl font-bold text-white mb-2">{artwork.title}</h2>
-          <p className="text-white/40 text-sm mb-4">{artwork.category}</p>
+          <div className="flex items-center gap-3 text-sm text-white/40 mb-4">
+            <span>{artwork.category}</span>
+            <span className="text-white/20">·</span>
+            <span>{artwork.createdAt}</span>
+          </div>
 
           <div className="mb-6">
             <div className="flex items-center justify-between mb-2">
@@ -393,7 +402,7 @@ export default function GalleryPage() {
 
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null)
   const [activeCategory, setActiveCategory] = useState<string>('all')
-  const [sortBy, setSortBy] = useState<'score' | 'category'>('score')
+  const [sortBy, setSortBy] = useState<'score' | 'latest' | 'category'>('latest')
   const [activeTag, setActiveTag] = useState<string | null>(null)
 
   const categories = useMemo(() => {
@@ -420,6 +429,8 @@ export default function GalleryPage() {
     })
     if (sortBy === 'score') {
       result = [...result].sort((a, b) => b.score - a.score)
+    } else if (sortBy === 'latest') {
+      result = [...result].sort((a, b) => b.createdAt.localeCompare(a.createdAt))
     }
     return result
   }, [artworks, activeCategory, activeTag, sortBy])
@@ -676,14 +687,22 @@ export default function GalleryPage() {
             </div>
 
             {/* Sort */}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-3">
               <SortDesc className="w-4 h-4 text-white/40" />
-              <button
-                onClick={() => setSortBy(sortBy === 'score' ? 'category' : 'score')}
-                className="text-sm text-white/50 hover:text-white transition-colors"
-              >
-                Sort by: {sortBy === 'score' ? 'Quality Score' : 'Category'}
-              </button>
+              {(['latest', 'score', 'category'] as const).map((opt) => (
+                <button
+                  key={opt}
+                  onClick={() => setSortBy(opt)}
+                  aria-pressed={sortBy === opt}
+                  className={`text-sm transition-colors ${
+                    sortBy === opt
+                      ? 'text-white font-medium'
+                      : 'text-white/40 hover:text-white/60'
+                  }`}
+                >
+                  {opt === 'latest' ? 'Latest' : opt === 'score' ? 'Top Rated' : 'Category'}
+                </button>
+              ))}
             </div>
           </div>
         </div>
