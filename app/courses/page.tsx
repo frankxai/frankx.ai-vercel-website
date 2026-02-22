@@ -387,14 +387,14 @@ export default function CoursesPage() {
                   href="/courses/conscious-ai-foundations#waitlist"
                   className="group inline-flex items-center gap-3 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-4 font-semibold shadow-lg shadow-emerald-500/20 transition-all hover:shadow-xl hover:shadow-emerald-500/30 hover:-translate-y-0.5"
                 >
-                  Join Waitlist
+                  Get Early Access
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Link>
                 <Link
                   href="/students"
                   className="inline-flex items-center gap-3 px-8 py-4 rounded-full font-medium text-white/60 hover:text-white border border-white/10 hover:border-white/20 transition-all"
                 >
-                  View Free Resources
+                  Free Resources
                 </Link>
               </div>
             </motion.div>

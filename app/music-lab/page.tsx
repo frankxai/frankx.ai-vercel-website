@@ -102,7 +102,7 @@ function HeroSection() {
                 className="group inline-flex items-center gap-3 bg-white text-black px-7 py-4 rounded-full font-semibold transition-all hover:bg-white/90 hover:shadow-[0_0_40px_rgba(255,255,255,0.15)]"
               >
                 <Sparkles className="w-5 h-5" />
-                Explore Vibe OS
+                Start Creating
                 <ArrowRight className="w-4 h-4" />
               </Link>
               <a

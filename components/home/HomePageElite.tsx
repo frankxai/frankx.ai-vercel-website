@@ -236,7 +236,7 @@ function Hero() {
                 onClick={() => trackEvent('hero_cta_click', { type: 'primary' })}
                 className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-white px-8 h-14 text-base font-medium shadow-lg shadow-emerald-500/20 transition-all hover:shadow-xl hover:shadow-emerald-500/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98]"
               >
-                Explore the Work
+                See What I Build
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
 
@@ -347,32 +347,20 @@ function Hero() {
 // AUTHORITY BAR
 // ============================================================================
 
-const credentials = [
-  'Oracle AI Architect',
-  '12,000+ AI Songs',
-  '75+ Open Source Skills',
-  '38 Autonomous Agents',
-]
-
 function AuthorityBar() {
   return (
-    <section className="py-16 md:py-20 border-t border-white/5">
+    <section className="py-10 md:py-12 border-t border-white/5">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 md:gap-x-0"
+          className="flex items-center justify-center"
         >
-          {credentials.map((item, i) => (
-            <div key={item} className="flex items-center">
-              {i > 0 && <div className="hidden md:block w-px h-4 bg-white/10 mx-6 lg:mx-8" />}
-              <span className="text-sm md:text-base text-white/40 font-medium tracking-wide">
-                {item}
-              </span>
-            </div>
-          ))}
+          <span className="text-sm md:text-base text-white/35 font-medium tracking-wide">
+            AI Architect at Oracle · Building production systems since 2022
+          </span>
         </motion.div>
       </div>
     </section>
@@ -613,7 +601,7 @@ function ProductsShowcase() {
                       {product.description}
                     </p>
                     <div className="mt-4 flex items-center gap-1.5 text-xs text-white/30 group-hover:text-white/50 transition-colors">
-                      <span>Explore</span>
+                      <span>Learn more</span>
                       <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
                     </div>
                   </div>
@@ -648,14 +636,14 @@ function EmailCTA() {
           <div className="relative">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-6">
               <Sparkles className="w-4 h-4 text-emerald-400" />
-              <span className="text-sm text-emerald-400">Weekly Insights</span>
+              <span className="text-sm text-emerald-400">Weekly Dispatch</span>
             </div>
 
             <h2 className="text-2xl md:text-3xl font-semibold text-white mb-3">
-              AI architecture and creative systems.
+              What I&apos;m building, shipping, and learning.
             </h2>
             <p className="text-sm text-white/40 mb-8">
-              Weekly dispatch. No spam, no guru energy — just the work.
+              AI architecture, music production, open-source tools. One email per week.
             </p>
             <div className="max-w-sm mx-auto">
               <EmailSignup
@@ -763,17 +751,28 @@ function FinalCTA() {
           <div className="absolute inset-0 md:-inset-x-10 md:-inset-y-10 bg-gradient-to-r from-emerald-500/5 via-transparent to-cyan-500/5 blur-3xl opacity-30 rounded-3xl pointer-events-none" />
 
           <div className="relative text-center">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-8 md:mb-12 tracking-tight">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 tracking-tight">
               Start building.
             </h2>
+            <p className="text-base text-white/40 mb-8 md:mb-12 max-w-md mx-auto">
+              Pick your path — architecture, music, or products.
+            </p>
 
-            <Link
-              href="/start"
-              className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-4 text-base font-semibold shadow-lg shadow-emerald-500/20 transition-all duration-300 hover:shadow-xl hover:shadow-emerald-500/30 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98]"
-            >
-              Explore the Work
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </Link>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+              <Link
+                href="/start"
+                className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-4 text-base font-semibold shadow-lg shadow-emerald-500/20 transition-all duration-300 hover:shadow-xl hover:shadow-emerald-500/30 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98]"
+              >
+                See What I Build
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </Link>
+              <Link
+                href="/newsletter"
+                className="inline-flex items-center justify-center gap-2 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 text-white px-8 py-4 text-base font-medium transition-all"
+              >
+                Get the Newsletter
+              </Link>
+            </div>
           </div>
         </motion.div>
       </div>

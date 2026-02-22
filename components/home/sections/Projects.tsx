@@ -3,14 +3,9 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { ArrowRight, CalendarDays } from 'lucide-react'
+import { fadeUp } from '@/lib/motion'
 
 import { projectMilestones } from '@/lib/hub'
-
-const fadeUp = {
-  initial: { opacity: 0, y: 24 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, amount: 0.3 }
-}
 
 const statusStyles: Record<'shipping' | 'in-progress' | 'incubating', string> = {
   shipping: 'border-emerald-400/50 bg-emerald-500/10 text-emerald-200',

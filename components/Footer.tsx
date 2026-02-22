@@ -7,7 +7,7 @@ export default function Footer() {
   return (
     <footer className="relative border-t border-white/5 bg-[#0a0a0b] text-white overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-12 md:py-16">
-        <div className="grid gap-8 sm:gap-10 md:gap-12 grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
+        <div className="grid gap-8 sm:gap-10 md:gap-12 grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
           {/* Brand */}
           <div className="col-span-2 md:col-span-2 lg:col-span-1">
             <Link href="/" className="inline-flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6 group">
@@ -102,28 +102,19 @@ export default function Footer() {
               <li><Link href="/ai-architecture" className="hover:text-white transition-colors">Architecture Hub</Link></li>
               <li><Link href="/ai-architecture/blueprints" className="hover:text-white transition-colors">Blueprints</Link></li>
               <li><Link href="/products" className="hover:text-white transition-colors">Products</Link></li>
+              <li><Link href="/acos" className="hover:text-white transition-colors">ACOS</Link></li>
               <li><Link href="/about" className="hover:text-white transition-colors">About</Link></li>
-              <li><Link href="/roadmap" className="hover:text-white transition-colors">Roadmap</Link></li>
             </ul>
           </div>
 
-          {/* Connect */}
+          {/* Invest */}
           <div>
-            <h3 className="text-xs sm:text-sm font-semibold uppercase tracking-wider sm:tracking-widest text-white/60 mb-3 sm:mb-4">Connect</h3>
+            <h3 className="text-xs sm:text-sm font-semibold uppercase tracking-wider sm:tracking-widest text-white/60 mb-3 sm:mb-4">Invest</h3>
             <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-white/40">
+              <li><Link href="/investor" className="hover:text-white transition-colors">Intelligence Hub</Link></li>
+              <li><Link href="/investor/agents" className="hover:text-white transition-colors">Agent Packs</Link></li>
+              <li><Link href="/investor/tools" className="hover:text-white transition-colors">Tools</Link></li>
               <li><Link href="/newsletter" className="hover:text-white transition-colors">Newsletter</Link></li>
-              <li>
-                <a href="/rss.xml" className="hover:text-white transition-colors flex items-center gap-1.5">
-                  <Rss className="w-3 h-3" />
-                  RSS Feed
-                </a>
-              </li>
-              <li>
-                <a href="mailto:hello@frankx.ai" className="hover:text-white transition-colors flex items-center gap-1.5">
-                  <Mail className="w-3 h-3" />
-                  Email
-                </a>
-              </li>
               <li><Link href="/contact" className="hover:text-white transition-colors">Contact</Link></li>
             </ul>
           </div>
@@ -133,8 +124,8 @@ export default function Footer() {
         <div className="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-white/5">
           <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
             <div className="flex-1 min-w-0">
-              <p className="text-sm font-medium text-white">Weekly AI insights</p>
-              <p className="text-xs text-white/40">No spam. Unsubscribe anytime.</p>
+              <p className="text-sm font-medium text-white">Weekly dispatch — AI architecture & creative systems</p>
+              <p className="text-xs text-white/40">One email per week. Unsubscribe anytime.</p>
             </div>
             <div className="w-full sm:w-auto sm:min-w-[300px]">
               <EmailSignup listType="newsletter" placeholder="your@email.com" buttonText="Subscribe" compact />

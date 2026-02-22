@@ -3,14 +3,9 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { Sparkles, CalendarDays } from 'lucide-react'
+import { fadeUp } from '@/lib/motion'
 
 import { atlasActions, atlasMetrics, atlasVolumes } from '@/lib/intelligence-atlas'
-
-const fadeUp = {
-  initial: { opacity: 0, y: 24 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, amount: 0.3 }
-}
 
 export default function IntelligenceAtlasSpotlight() {
   const upcomingAtlasVolumes = atlasVolumes.filter((volume) => volume.number !== 1).slice(0, 3)

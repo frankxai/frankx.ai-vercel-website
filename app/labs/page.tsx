@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
+import { containerVariants, itemVariants } from '@/lib/motion'
 import {
   Beaker,
   ArrowRight,
@@ -68,19 +69,6 @@ const labFlow = [
     bgColor: 'bg-[#F59E0B]',
   },
 ]
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-}
 
 export default function LabsPage() {
   return (

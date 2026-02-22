@@ -3,14 +3,9 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
+import { fadeUp } from '@/lib/motion'
 
 import { updateEntries } from '@/lib/hub'
-
-const fadeUp = {
-  initial: { opacity: 0, y: 24 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, amount: 0.3 }
-}
 
 export default function Updates() {
   return (

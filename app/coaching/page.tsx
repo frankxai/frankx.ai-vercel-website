@@ -398,7 +398,7 @@ export default function CoachingPage() {
                       href="#waitlist"
                       className="flex w-full items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/5 py-3 text-sm font-semibold text-white/80 transition-all hover:bg-white/10"
                     >
-                      Join Waitlist
+                      Apply for Coaching
                       <ArrowRight className="h-4 w-4" />
                     </Link>
                   </div>

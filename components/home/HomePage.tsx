@@ -41,12 +41,7 @@ import { Surface, SectionHeading, Pill, StatBlock } from '@/components/ui/primit
 import { SplitTextReveal } from '@/components/ui/SplitTextReveal'
 import { CursorSpotlight } from '@/components/ui/CursorSpotlight'
 import { TiltCard } from '@/components/ui/TiltCard'
-
-const fadeUp = {
-  initial: { opacity: 0, y: 24 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, amount: 0.3 }
-}
+import { fadeUp } from '@/lib/motion'
 
 const statusStyles: Record<'shipping' | 'in-progress' | 'incubating', string> = {
   shipping: 'border-emerald-400/50 bg-emerald-500/10 text-emerald-200',
