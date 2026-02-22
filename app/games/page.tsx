@@ -85,6 +85,7 @@ function HeroSection() {
         <Image
           src="/images/games/games-lab-hero.png"
           alt=""
+          aria-hidden="true"
           fill
           className="object-cover opacity-15"
           priority

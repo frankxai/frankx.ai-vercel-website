@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { Mail, ExternalLink, Rss, Github } from 'lucide-react'
-
+import { EmailSignup } from '@/components/email-signup'
 import Image from 'next/image'
 
 export default function Footer() {
@@ -50,6 +50,24 @@ export default function Footer() {
               >
                 Suno
                 <ExternalLink className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
+              </a>
+              <span className="text-white/20">·</span>
+              <a
+                href="https://x.com/frankxeth"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs sm:text-sm text-white/55 hover:text-white transition-colors"
+              >
+                X
+              </a>
+              <span className="text-white/20">·</span>
+              <a
+                href="https://youtube.com/@frankxai"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs sm:text-sm text-white/55 hover:text-white transition-colors"
+              >
+                YouTube
               </a>
             </div>
           </div>
@@ -111,8 +129,21 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* Newsletter */}
+        <div className="mt-8 sm:mt-12 pt-6 sm:pt-8 border-t border-white/5">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6">
+            <div className="flex-1 min-w-0">
+              <p className="text-sm font-medium text-white">Weekly AI insights</p>
+              <p className="text-xs text-white/40">No spam. Unsubscribe anytime.</p>
+            </div>
+            <div className="w-full sm:w-auto sm:min-w-[300px]">
+              <EmailSignup listType="newsletter" placeholder="your@email.com" buttonText="Subscribe" compact />
+            </div>
+          </div>
+        </div>
+
         {/* Bottom bar */}
-        <div className="mt-8 sm:mt-12 md:mt-16 pt-6 sm:pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-3 sm:gap-4 text-xs sm:text-sm text-white/50">
+        <div className="mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-3 sm:gap-4 text-xs sm:text-sm text-white/50">
           <p>&copy; {new Date().getFullYear()} Frank. All rights reserved.</p>
           <nav className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1" aria-label="Legal">
             <Link href="/privacy" className="hover:text-white transition-colors">Privacy</Link>

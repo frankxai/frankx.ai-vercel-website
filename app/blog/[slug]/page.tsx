@@ -7,7 +7,7 @@ import { MDXContent } from '@/components/blog/MDXContent'
 import RelatedResearch from '@/components/blog/RelatedResearch'
 import BlogFooterCTA from '@/components/blog/BlogFooterCTA'
 import Recommendations from '@/components/recommendations/Recommendations'
-import SparkBorder from '@/components/ui/SparkBorder'
+import { InlineLeadMagnet } from '@/components/conversion/InlineLeadMagnet'
 import { getAllBlogPosts, getBlogPost, extractFAQFromContent } from '@/lib/blog'
 import { createMetadata, siteConfig } from '@/lib/seo'
 import JsonLd from '@/components/seo/JsonLd'
@@ -300,40 +300,15 @@ export default async function BlogPostPage({
           </div>
         </div>
 
-        {/* Newsletter with SparkBorder */}
+        {/* Newsletter */}
         <div className="px-6 pt-20">
           <div className="mx-auto max-w-3xl">
-            <SparkBorder color="gradient" speed="slow" hoverOnly={false} bg="#060d1b">
-              <div className="p-10 text-center">
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-6">
-                  <svg className="h-4 w-4 text-emerald-400" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
-                  </svg>
-                  <span className="text-xs font-medium text-emerald-400">Weekly Intelligence</span>
-                </div>
-                <h3 className="text-3xl font-bold text-white mb-4">Stay in the intelligence loop</h3>
-                <p className="text-base text-white/60 leading-relaxed max-w-2xl mx-auto">
-                  Join 1,000+ creators and architects receiving weekly field notes on AI systems, production patterns, and builder strategy.
-                </p>
-                <form action="/api/subscribe" method="POST" className="mt-8 flex flex-col gap-3 sm:flex-row max-w-lg mx-auto">
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="Enter your email"
-                    required
-                    className="flex-1 rounded-xl border border-white/10 bg-white/[0.04] px-5 py-3.5 text-sm text-white placeholder:text-white/40 focus:outline-none focus:ring-2 focus:ring-emerald-400/50 focus:border-emerald-400/50 transition-all"
-                  />
-                  <input type="hidden" name="listType" value="newsletter" />
-                  <button
-                    type="submit"
-                    className="rounded-xl bg-gradient-to-r from-emerald-500 to-cyan-500 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-emerald-500/25 hover:shadow-emerald-500/40 hover:-translate-y-0.5 transition-all"
-                  >
-                    Subscribe
-                  </button>
-                </form>
-                <p className="mt-4 text-xs text-white/40">No spam. Unsubscribe anytime.</p>
-              </div>
-            </SparkBorder>
+            <InlineLeadMagnet
+              variant="banner"
+              headline="Stay in the intelligence loop"
+              description="Weekly field notes on AI systems, production patterns, and builder strategy."
+              listType="newsletter"
+            />
           </div>
         </div>
 

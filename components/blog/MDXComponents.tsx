@@ -4,6 +4,7 @@ import type { ComponentPropsWithoutRef, ReactNode } from 'react'
 import type { MDXComponents } from 'mdx/types'
 import AffiliateLink from '@/components/affiliates/AffiliateLink'
 import Diagram from '@/components/blog/Diagram'
+import { InlineLeadMagnet } from '@/components/conversion/InlineLeadMagnet'
 import { buildInlineVideoSchema } from '@/lib/video-schema'
 
 // Embed components for immersive media
@@ -286,4 +287,6 @@ export const mdxComponents: MDXComponents = {
   FigmaEmbed,
   CodePenEmbed,
   LoomEmbed,
+  // Conversion components
+  InlineLeadMagnet,
 }
