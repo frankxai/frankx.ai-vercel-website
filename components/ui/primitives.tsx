@@ -9,9 +9,9 @@ type SurfaceTone = 'base' | 'glass' | 'highlight' | 'transparent'
 type SurfacePadding = 'none' | 'sm' | 'md' | 'lg'
 
 const surfaceToneMap: Record<SurfaceTone, string> = {
-  base: 'surface-base',
-  glass: 'surface-glass',
-  highlight: 'surface-highlight',
+  base: 'bg-white/[0.03] border border-white/8',
+  glass: 'backdrop-blur-xl bg-white/5 border border-white/10',
+  highlight: 'backdrop-blur-xl bg-white/[0.08] border border-white/15',
   transparent: 'bg-transparent border border-white/10',
 }
 

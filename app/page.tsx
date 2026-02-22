@@ -5,9 +5,9 @@ import { FAQPageJsonLd } from '@/components/seo/JsonLd'
 import { getAllBlogPosts } from '@/lib/blog'
 
 export const metadata = createMetadata({
-  title: 'FrankX.AI | AI Architect & Music Creator — Build What Matters',
+  title: 'FrankX — AI Architect & Creator',
   description:
-    'AI Systems Architect. Creator of 12K+ songs with Suno. Building intelligent systems, music, and creator tools. Free tutorials, prompts, and tools.',
+    'AI Systems Architect at Oracle. Creator of 12,000+ songs with Suno. Open-source AI tools, technical tutorials, and music production workflows.',
   keywords: [
     'ai architect',
     'ai music creation',

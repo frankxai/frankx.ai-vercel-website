@@ -32,39 +32,24 @@ function ProductsBackground() {
     <div className="fixed inset-0 -z-10 overflow-hidden">
       <div className="absolute inset-0 bg-[#02030b]" />
 
-      {/* Gradient orbs */}
-      <motion.div
+      {/* Static gradient orbs — no animation, ambient depth only */}
+      <div
         className="absolute -right-60 top-40 h-[600px] w-[600px] rounded-full opacity-25"
         style={{
           background: 'radial-gradient(circle, rgba(56,189,248,0.35) 0%, transparent 70%)',
         }}
-        animate={{
-          scale: [1, 1.1, 1],
-          opacity: [0.25, 0.35, 0.25],
-        }}
-        transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
       />
-      <motion.div
+      <div
         className="absolute -left-40 top-1/2 h-[500px] w-[500px] rounded-full opacity-20"
         style={{
           background: 'radial-gradient(circle, rgba(20,184,166,0.28) 0%, transparent 70%)',
         }}
-        animate={{
-          scale: [1.1, 1, 1.1],
-          opacity: [0.2, 0.3, 0.2],
-        }}
-        transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
       />
-      <motion.div
+      <div
         className="absolute bottom-0 right-1/4 h-[400px] w-[400px] rounded-full opacity-15"
         style={{
           background: 'radial-gradient(circle, rgba(59,130,246,0.3) 0%, transparent 70%)',
         }}
-        animate={{
-          scale: [1, 1.15, 1],
-          opacity: [0.15, 0.25, 0.15],
-        }}
-        transition={{ duration: 14, repeat: Infinity, ease: 'easeInOut' }}
       />
 
       {/* Subtle grid */}

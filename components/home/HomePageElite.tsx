@@ -170,17 +170,8 @@ function ScrollProgress() {
 // ============================================================================
 
 const heroWords = ['Design', 'Create', 'Architect', 'Explore', 'Imagine']
-const heroConcepts = [
-  'intelligent systems',
-  'music empire',
-  'AI vision',
-  'agentic workflows',
-  'Vibe OS',
-  'GenCreator OS',
-  'creative future',
-  'golden age',
-  'next project',
-]
+// RotatingConcept removed — single clear subheadline performs better than rotating text
+// that users can't read fast enough on first load
 
 function RotatingWord() {
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -223,43 +214,6 @@ function RotatingWord() {
   )
 }
 
-function RotatingConcept() {
-  const [currentIndex, setCurrentIndex] = useState(0)
-  const shouldReduceMotion = useReducedMotion()
-
-  useEffect(() => {
-    if (shouldReduceMotion) return
-
-    const interval = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % heroConcepts.length)
-    }, 3500)
-
-    return () => clearInterval(interval)
-  }, [shouldReduceMotion])
-
-  if (shouldReduceMotion) {
-    return (
-      <span className="text-white/90">{heroConcepts[0]}</span>
-    )
-  }
-
-  return (
-    <span className="inline-block relative min-h-[1.3em]">
-      <AnimatePresence mode="wait">
-        <motion.span
-          key={currentIndex}
-          initial={{ y: 20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: -20, opacity: 0 }}
-          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          className="inline-block text-white/90"
-        >
-          {heroConcepts[currentIndex]}
-        </motion.span>
-      </AnimatePresence>
-    </span>
-  )
-}
 
 // ============================================================================
 // HERO SECTION - THE MAIN EVENT
@@ -273,12 +227,9 @@ function Hero() {
     offset: ['start start', 'end start']
   })
 
-  // Premium scroll effect - slower, smoother fade for mobile
-  // Extended range [0, 0.7] gives more time to see content before it fades
-  // Gentler scale change (0.98 vs 0.95) feels more elegant
-  const opacity = useTransform(scrollYProgress, [0, 0.7], [1, 0])
-  const y = useTransform(scrollYProgress, [0, 0.7], [0, 60])
-  const scale = useTransform(scrollYProgress, [0, 0.7], [1, 0.98])
+  // Reduced parallax — subtle fade only, no scale shift
+  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0])
+  const y = useTransform(scrollYProgress, [0, 0.8], [0, 30])
 
   return (
     <section
@@ -287,7 +238,7 @@ function Hero() {
     >
       <motion.div
         className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 py-8 md:py-20"
-        style={shouldReduceMotion ? undefined : { opacity, y, scale }}
+        style={shouldReduceMotion ? undefined : { opacity, y }}
       >
         <div className="grid lg:grid-cols-[1.3fr,1fr] gap-8 md:gap-16 lg:gap-24 items-center">
           {/* Left column - Text content */}
@@ -308,24 +259,18 @@ function Hero() {
               </span>
             </motion.div>
 
-            {/* Main headline - authority + vision */}
+            {/* Main headline — clear benefit, rotating verb for variety */}
             <h1 className="mb-6 md:mb-8">
-              <span className="block text-[clamp(2rem,8vw,5rem)] font-bold leading-[1.15] tracking-tight pb-1">
-                <RotatingWord /> <span className="text-white">your</span>
-              </span>
-              <span className="block text-[clamp(1.5rem,6vw,4rem)] font-bold leading-[1.15] tracking-tight text-white pb-2 md:pb-4">
-                <RotatingConcept />
+              <span className="block text-4xl lg:text-5xl font-bold leading-[1.15] tracking-tight pb-1">
+                <RotatingWord /> <span className="text-white">with AI</span>
               </span>
               <motion.span
-                className="block text-base sm:text-lg md:text-[clamp(1.25rem,3vw,1.75rem)] text-white/60 mt-4 md:mt-6 leading-relaxed max-w-2xl"
+                className="block text-lg md:text-xl text-white/60 mt-4 md:mt-6 leading-relaxed max-w-2xl"
                 initial={shouldReduceMotion ? false : { opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.3 }}
               >
-                Create music, art, and momentum in the{' '}
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-400 to-violet-400">
-                  Golden Age of Intelligence.
-                </span>
+                AI systems, music production, and creator tools — built by an architect who ships.
               </motion.span>
             </h1>
 
@@ -426,10 +371,8 @@ function FeaturedMusicCard() {
       {/* Glow effect behind card - contained to prevent overflow */}
       <div className="absolute inset-0 md:-inset-4 bg-gradient-to-br from-emerald-500/20 via-cyan-500/10 to-violet-500/8 blur-2xl md:blur-3xl opacity-50 md:opacity-60 rounded-3xl" />
 
-      <motion.div
+      <div
         className="relative bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-2xl md:rounded-3xl p-4 sm:p-6 md:p-8 overflow-hidden"
-        whileHover={{ scale: 1.01 }}
-        transition={{ duration: 0.3 }}
       >
         {/* Suno Embed Player - Responsive heights */}
         <div className="relative rounded-xl md:rounded-2xl overflow-hidden mb-4 md:mb-6 bg-gradient-to-br from-emerald-500/10 via-cyan-500/10 to-purple-500/10">
@@ -480,7 +423,7 @@ function FeaturedMusicCard() {
         <div className="absolute top-4 right-4 sm:top-6 sm:right-6">
           <Music2 className="w-5 h-5 sm:w-6 sm:h-6 text-white/20" />
         </div>
-      </motion.div>
+      </div>
     </div>
   )
 }
@@ -497,7 +440,7 @@ function FeaturedMusicCard() {
 
 function StatsSection() {
   return (
-    <section className="py-16 md:py-24 lg:py-32">
+    <section className="py-24 lg:py-32">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         {/* Editorial quote/statement */}
         <motion.div
@@ -571,7 +514,7 @@ const quickStartPaths = [
 
 function QuickStartSection() {
   return (
-    <section className="py-16 md:py-24 border-t border-white/5">
+    <section className="py-24 lg:py-32 border-t border-white/5">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -579,7 +522,7 @@ function QuickStartSection() {
           viewport={{ once: true }}
           className="text-center mb-8 md:mb-12"
         >
-          <p className="text-xs sm:text-sm font-medium uppercase tracking-[0.2em] sm:tracking-[0.25em] text-emerald-400/70 mb-3 md:mb-4">
+          <p className="text-xs sm:text-sm font-medium uppercase tracking-[0.25em] text-emerald-400/70 mb-3 md:mb-4">
             Quick Start
           </p>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight">
@@ -668,7 +611,7 @@ const capabilities = [
 
 function WhatIDo() {
   return (
-    <section className="py-16 md:py-24 lg:py-32 border-t border-white/5">
+    <section className="py-24 lg:py-32 border-t border-white/5">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -676,7 +619,7 @@ function WhatIDo() {
           viewport={{ once: true }}
           className="mb-8 md:mb-16"
         >
-          <p className="text-xs sm:text-sm font-medium uppercase tracking-[0.2em] sm:tracking-[0.25em] text-emerald-400/70 mb-3 md:mb-4">
+          <p className="text-xs sm:text-sm font-medium uppercase tracking-[0.25em] text-emerald-400/70 mb-3 md:mb-4">
             The Work
           </p>
           <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 md:mb-6 tracking-tight">
@@ -764,7 +707,7 @@ const resources = [
 
 function FeaturedResources() {
   return (
-    <section className="py-16 md:py-24 lg:py-32 bg-gradient-to-b from-transparent via-white/[0.01] to-transparent">
+    <section className="py-24 lg:py-32 bg-gradient-to-b from-transparent via-white/[0.01] to-transparent">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -848,7 +791,7 @@ const featuredArtworks = [
 
 function AIArtGalleryPreview() {
   return (
-    <section className="py-16 md:py-24 lg:py-32 border-t border-white/5">
+    <section className="py-24 lg:py-32 border-t border-white/5">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -941,7 +884,7 @@ function AIArtGalleryPreview() {
 
 function AboutSection() {
   return (
-    <section className="py-16 md:py-24 lg:py-32">
+    <section className="py-24 lg:py-32">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -1037,7 +980,7 @@ function AboutSection() {
 
 function FinalCTA() {
   return (
-    <section className="py-16 md:py-24 lg:py-32 border-t border-white/5 overflow-hidden">
+    <section className="py-24 lg:py-32 border-t border-white/5 overflow-hidden">
       <div className="max-w-5xl mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -1088,7 +1031,7 @@ function LatestArticles({ posts }: { posts: LatestPost[] }) {
   if (!posts || posts.length === 0) return null
 
   return (
-    <section className="py-16 md:py-24 border-t border-white/5">
+    <section className="py-24 lg:py-32 border-t border-white/5">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -1097,7 +1040,7 @@ function LatestArticles({ posts }: { posts: LatestPost[] }) {
           className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8 md:mb-12"
         >
           <div>
-            <p className="text-xs sm:text-sm font-medium uppercase tracking-[0.2em] sm:tracking-[0.25em] text-emerald-400/70 mb-3 md:mb-4">
+            <p className="text-xs sm:text-sm font-medium uppercase tracking-[0.25em] text-emerald-400/70 mb-3 md:mb-4">
               Latest Articles
             </p>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight">
@@ -1187,7 +1130,7 @@ const products = [
 
 function ProductsShowcase() {
   return (
-    <section className="py-16 md:py-24 border-t border-white/5">
+    <section className="py-24 lg:py-32 border-t border-white/5">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -1195,7 +1138,7 @@ function ProductsShowcase() {
           viewport={{ once: true }}
           className="text-center mb-8 md:mb-12"
         >
-          <p className="text-xs sm:text-sm font-medium uppercase tracking-[0.2em] sm:tracking-[0.25em] text-emerald-400/70 mb-3 md:mb-4">
+          <p className="text-xs sm:text-sm font-medium uppercase tracking-[0.25em] text-emerald-400/70 mb-3 md:mb-4">
             Products & Tools
           </p>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight">
@@ -1284,7 +1227,7 @@ function AxiBrandMoment() {
 
 function EmailCTA() {
   return (
-    <section className="py-16 md:py-24 border-t border-white/5">
+    <section className="py-24 lg:py-32 border-t border-white/5">
       <div className="max-w-3xl mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -1329,7 +1272,7 @@ function FAQSection({ faqs }: { faqs: FAQItem[] }) {
   if (!faqs || faqs.length === 0) return null
 
   return (
-    <section className="py-16 md:py-24 border-t border-white/5 bg-white/[0.01]">
+    <section className="py-24 lg:py-32 border-t border-white/5 bg-white/[0.01]">
       <div className="max-w-3xl mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
