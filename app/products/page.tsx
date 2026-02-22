@@ -30,25 +30,28 @@ import { EmailSignup } from '@/components/email-signup'
 function ProductsBackground() {
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden">
-      <div className="absolute inset-0 bg-[#02030b]" />
+      <div className="absolute inset-0" style={{ backgroundColor: '#0a0a0b' }} />
 
       {/* Static gradient orbs — no animation, ambient depth only */}
       <div
-        className="absolute -right-60 top-40 h-[600px] w-[600px] rounded-full opacity-25"
+        className="absolute -right-60 top-40 h-[600px] w-[600px] rounded-full"
         style={{
-          background: 'radial-gradient(circle, rgba(56,189,248,0.35) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(56,189,248,0.06) 0%, transparent 70%)',
+          filter: 'blur(128px)',
         }}
       />
       <div
-        className="absolute -left-40 top-1/2 h-[500px] w-[500px] rounded-full opacity-20"
+        className="absolute -left-40 top-1/2 h-[500px] w-[500px] rounded-full"
         style={{
-          background: 'radial-gradient(circle, rgba(20,184,166,0.28) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(20,184,166,0.04) 0%, transparent 70%)',
+          filter: 'blur(128px)',
         }}
       />
       <div
-        className="absolute bottom-0 right-1/4 h-[400px] w-[400px] rounded-full opacity-15"
+        className="absolute bottom-0 right-1/4 h-[400px] w-[400px] rounded-full"
         style={{
-          background: 'radial-gradient(circle, rgba(59,130,246,0.3) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(139,92,246,0.03) 0%, transparent 70%)',
+          filter: 'blur(128px)',
         }}
       />
 
@@ -56,9 +59,9 @@ function ProductsBackground() {
       <div
         className="absolute inset-0 opacity-[0.015]"
         style={{
-          backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
-                           linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
-          backgroundSize: '60px 60px',
+          backgroundImage: `linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                           linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)`,
+          backgroundSize: '80px 80px',
         }}
       />
     </div>
@@ -184,44 +187,44 @@ const products = [
 
 const colorMap = {
   violet: {
-    bg: 'bg-violet-500/10',
-    border: 'border-violet-500/20 hover:border-violet-500/40',
-    icon: 'bg-violet-500/20 text-violet-300',
-    accent: 'text-violet-300',
+    bg: 'bg-white/[0.03]',
+    border: 'border-white/[0.08] hover:border-violet-500/30',
+    icon: 'bg-violet-500/10 text-violet-400',
+    accent: 'text-violet-400',
     button: 'bg-violet-600 hover:bg-violet-500',
-    glow: 'group-hover:shadow-violet-500/20',
+    glow: 'group-hover:shadow-lg group-hover:shadow-violet-500/10',
   },
   emerald: {
-    bg: 'bg-emerald-500/10',
-    border: 'border-emerald-500/20 hover:border-emerald-500/40',
-    icon: 'bg-emerald-500/20 text-emerald-300',
-    accent: 'text-emerald-300',
+    bg: 'bg-white/[0.03]',
+    border: 'border-white/[0.08] hover:border-emerald-500/30',
+    icon: 'bg-emerald-500/10 text-emerald-400',
+    accent: 'text-emerald-400',
     button: 'bg-emerald-600 hover:bg-emerald-500',
-    glow: 'group-hover:shadow-emerald-500/20',
+    glow: 'group-hover:shadow-lg group-hover:shadow-emerald-500/10',
   },
   cyan: {
-    bg: 'bg-cyan-500/10',
-    border: 'border-cyan-500/20 hover:border-cyan-500/40',
-    icon: 'bg-cyan-500/20 text-cyan-300',
-    accent: 'text-cyan-300',
+    bg: 'bg-white/[0.03]',
+    border: 'border-white/[0.08] hover:border-cyan-500/30',
+    icon: 'bg-cyan-500/10 text-cyan-400',
+    accent: 'text-cyan-400',
     button: 'bg-cyan-600 hover:bg-cyan-500',
-    glow: 'group-hover:shadow-cyan-500/20',
+    glow: 'group-hover:shadow-lg group-hover:shadow-cyan-500/10',
   },
   amber: {
-    bg: 'bg-amber-500/10',
-    border: 'border-amber-500/20 hover:border-amber-500/40',
-    icon: 'bg-amber-500/20 text-amber-300',
-    accent: 'text-amber-300',
+    bg: 'bg-white/[0.03]',
+    border: 'border-white/[0.08] hover:border-amber-500/30',
+    icon: 'bg-amber-500/10 text-amber-400',
+    accent: 'text-amber-400',
     button: 'bg-amber-600 hover:bg-amber-500',
-    glow: 'group-hover:shadow-amber-500/20',
+    glow: 'group-hover:shadow-lg group-hover:shadow-amber-500/10',
   },
   rose: {
-    bg: 'bg-rose-500/10',
-    border: 'border-rose-500/20 hover:border-rose-500/40',
-    icon: 'bg-rose-500/20 text-rose-300',
-    accent: 'text-rose-300',
+    bg: 'bg-white/[0.03]',
+    border: 'border-white/[0.08] hover:border-rose-500/30',
+    icon: 'bg-rose-500/10 text-rose-400',
+    accent: 'text-rose-400',
     button: 'bg-rose-600 hover:bg-rose-500',
-    glow: 'group-hover:shadow-rose-500/20',
+    glow: 'group-hover:shadow-lg group-hover:shadow-rose-500/10',
   },
 }
 
@@ -377,9 +380,9 @@ export default function ProductsPage() {
                   >
                     <div className="group block h-full">
                       <div
-                        className={`relative flex h-full flex-col overflow-hidden rounded-2xl border ${colors.border} ${colors.bg} p-8 backdrop-blur-sm transition-all duration-500 ${
+                        className={`relative flex h-full flex-col overflow-hidden rounded-3xl border ${colors.border} ${colors.bg} p-8 backdrop-blur-xl transition-all duration-300 ${
                           isActive
-                            ? 'cursor-pointer group-hover:-translate-y-1 group-hover:shadow-xl'
+                            ? 'cursor-pointer group-hover:-translate-y-1'
                             : ''
                         } ${colors.glow}`}
                       >
@@ -395,7 +398,7 @@ export default function ProductsPage() {
                         {/* Icon */}
                         <div className="mb-6">
                           <div
-                            className={`flex h-14 w-14 items-center justify-center rounded-xl ${colors.icon}`}
+                            className={`flex h-14 w-14 items-center justify-center rounded-2xl ${colors.icon}`}
                           >
                             <Icon className="h-7 w-7" />
                           </div>
@@ -550,7 +553,7 @@ export default function ProductsPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.1 }}
-                    className="p-6 rounded-2xl border border-white/5 bg-white/[0.02]"
+                    className="p-6 rounded-3xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-sm hover:border-white/15 transition-all duration-300"
                   >
                     <div className={`w-12 h-12 rounded-xl ${colorClasses[item.color]} flex items-center justify-center mb-4`}>
                       <item.icon className="w-6 h-6" />
@@ -603,7 +606,7 @@ export default function ProductsPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.05 }}
-                  className="p-6 rounded-xl border border-white/5 bg-white/[0.02]"
+                  className="p-6 rounded-2xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-sm"
                 >
                   <h3 className="text-base font-semibold text-white mb-2">{faq.q}</h3>
                   <p className="text-sm text-white/50 leading-relaxed">{faq.a}</p>
@@ -621,7 +624,7 @@ export default function ProductsPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-slate-900/80 via-slate-900/60 to-slate-800/40 p-10 backdrop-blur-xl"
+              className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-10 backdrop-blur-xl"
             >
               {/* Decorative gradient */}
               <div className="absolute -right-20 -top-20 h-40 w-40 rounded-full bg-gradient-to-br from-violet-500/20 to-cyan-500/20 blur-3xl" />
@@ -646,7 +649,7 @@ export default function ProductsPage() {
                     onClick={() =>
                       trackEvent('cta_click', { location: 'products-page', target: 'vibe-os' })
                     }
-                    className="group flex-1 flex items-center justify-center gap-2 rounded-xl bg-white px-6 py-3 font-medium text-slate-900 transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-white/10"
+                    className="group flex-1 flex items-center justify-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-600 px-6 py-3 font-medium text-white shadow-lg shadow-emerald-500/20 transition-all hover:-translate-y-0.5 hover:shadow-xl hover:shadow-emerald-500/30"
                   >
                     Explore Vibe OS
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />

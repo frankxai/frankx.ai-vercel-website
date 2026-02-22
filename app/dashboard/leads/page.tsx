@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 
 export default function LeadsPage() {
   return (
-    <div className="min-h-screen bg-[#030712] pt-28 pb-20 px-6">
+    <div className="min-h-screen bg-[#0a0a0b] pt-28 pb-20 px-6">
       <div className="max-w-7xl mx-auto">
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-white mb-2">Leads Dashboard</h1>

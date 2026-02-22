@@ -44,7 +44,7 @@ export default async function BlueprintPage({ params }: Props) {
   }
 
   return (
-    <main className="min-h-screen bg-[#030712]">
+    <main className="min-h-screen bg-[#0a0a0b]">
       {/* Header */}
       <section className="pt-32 pb-12 border-b border-white/5">
         <div className="mx-auto max-w-4xl px-6">

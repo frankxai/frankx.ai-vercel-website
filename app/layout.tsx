@@ -133,7 +133,7 @@ export default function RootLayout({
           poppins.variable,
           playfair.variable,
           jetbrains.variable,
-          'font-sans dark bg-[#030712] text-white antialiased min-h-screen overflow-x-hidden'
+          'font-sans dark bg-[#0a0a0b] text-white antialiased min-h-screen overflow-x-hidden'
         )}
         suppressHydrationWarning
       >

@@ -158,7 +158,7 @@ export default function FamilyTreeV3() {
   const getPos = (id: string) => nodePositions.find(n => n.node.id === id)?.position || { x: 0, y: 0 }
 
   return (
-    <main className="min-h-screen bg-[#030712]">
+    <main className="min-h-screen bg-[#0a0a0b]">
       {/* Header */}
       <div className="mx-auto max-w-5xl px-6 pb-4 pt-28">
         <Link

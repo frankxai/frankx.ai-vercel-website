@@ -29,7 +29,7 @@ import { EmailSignup } from '@/components/email-signup'
 function MusicLabBackground() {
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none">
-      <div className="absolute inset-0 bg-[#030712]" />
+      <div className="absolute inset-0 bg-[#0a0a0b]" />
 
       <motion.div
         className="absolute top-0 -right-[20%] w-[60%] h-[60%]"
@@ -586,7 +586,7 @@ function CTASection() {
           </h2>
           <p className="text-xl text-white/50 mb-8 max-w-2xl mx-auto">
             Vibe OS is a complete system for creating transformative music with AI.
-            Prompt templates, workflows, and techniques refined over 500+ songs.
+            Prompt templates, workflows, and techniques refined over 12,000+ songs.
           </p>
 
           <div className="flex flex-wrap justify-center gap-4">
@@ -611,8 +611,8 @@ function CTASection() {
           </div>
 
           <p className="text-sm text-white/30 mt-8">
-            Frank has created 500+ songs using Suno AI, exploring ambient,
-            electronic, cinematic, and healing frequencies.
+            Frank has created 12,000+ songs using Suno AI, exploring ambient,
+            electronic, cinematic, and experimental genres.
           </p>
         </motion.div>
       </div>

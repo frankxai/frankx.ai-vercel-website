@@ -48,7 +48,7 @@ const structuredData = {
 
 export default function CreativeAIToolkitPage() {
   return (
-    <div className="min-h-screen bg-[#02030b] text-slate-100">
+    <div className="min-h-screen bg-[#0a0a0b] text-slate-100">
       <ProductHero
         productId={product.analyticsId ?? product.id}
         badge={product.badge}
@@ -75,7 +75,7 @@ export default function CreativeAIToolkitPage() {
         caseStudies={product.caseStudies ?? []}
       />
 
-      <section className="bg-[#02030b] py-16">
+      <section className="bg-[#0a0a0b] py-16">
         <div className="mx-auto max-w-4xl px-6">
           <h2 className="text-center text-3xl font-semibold text-white">Questions, Answered</h2>
           <div className="mt-10 space-y-6">

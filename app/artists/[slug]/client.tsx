@@ -54,7 +54,7 @@ export function ArtistPageClient({ client, topTracks, albumsWithTracks, stats }:
     <main className="relative min-h-screen text-white">
       {/* Background */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute inset-0 bg-[#030712]" />
+        <div className="absolute inset-0 bg-[#0a0a0b]" />
         <motion.div
           className="absolute top-0 -right-[20%] w-[60%] h-[60%]"
           style={{

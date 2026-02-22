@@ -1,11 +1,11 @@
 import Link from 'next/link'
-import { Mail, ExternalLink } from 'lucide-react'
+import { Mail, ExternalLink, Rss, Github } from 'lucide-react'
 
 import Image from 'next/image'
 
 export default function Footer() {
   return (
-    <footer className="relative border-t border-white/5 bg-[#030712] text-white overflow-hidden">
+    <footer className="relative border-t border-white/5 bg-[#0a0a0b] text-white overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-12 md:py-16">
         <div className="grid gap-8 sm:gap-10 md:gap-12 grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
           {/* Brand */}
@@ -33,6 +33,16 @@ export default function Footer() {
               </a>
               <span className="text-white/20">·</span>
               <a
+                href="https://github.com/frankxai"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs sm:text-sm text-white/55 hover:text-white transition-colors flex items-center gap-1"
+              >
+                <Github className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
+                GitHub
+              </a>
+              <span className="text-white/20">·</span>
+              <a
                 href="https://suno.com/@frankx"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -40,14 +50,6 @@ export default function Footer() {
               >
                 Suno
                 <ExternalLink className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
-              </a>
-              <span className="text-white/20">·</span>
-              <a
-                href="mailto:hello@frankx.ai"
-                className="text-xs sm:text-sm text-white/55 hover:text-white transition-colors flex items-center gap-1"
-              >
-                <Mail className="w-2.5 h-2.5 sm:w-3 sm:h-3" />
-                Email
               </a>
             </div>
           </div>
@@ -67,11 +69,11 @@ export default function Footer() {
           <div>
             <h3 className="text-xs sm:text-sm font-semibold uppercase tracking-wider sm:tracking-widest text-white/60 mb-3 sm:mb-4">Learn</h3>
             <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-white/40">
-              <li><Link href="/resources" className="hover:text-white transition-colors">Resource Hub</Link></li>
-              <li><Link href="/students" className="hover:text-white transition-colors">Student Hub</Link></li>
+              <li><Link href="/blog" className="hover:text-white transition-colors">Blog</Link></li>
               <li><Link href="/courses" className="hover:text-white transition-colors">Courses</Link></li>
               <li><Link href="/guides" className="hover:text-white transition-colors">Guides</Link></li>
-              <li><Link href="/blog" className="hover:text-white transition-colors">Blog</Link></li>
+              <li><Link href="/students" className="hover:text-white transition-colors">Student Hub</Link></li>
+              <li><Link href="/watch" className="hover:text-white transition-colors">Watch</Link></li>
             </ul>
           </div>
 
@@ -81,20 +83,30 @@ export default function Footer() {
             <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-white/40">
               <li><Link href="/ai-architecture" className="hover:text-white transition-colors">Architecture Hub</Link></li>
               <li><Link href="/ai-architecture/blueprints" className="hover:text-white transition-colors">Blueprints</Link></li>
-              <li><Link href="/ai-architecture/prototypes" className="hover:text-white transition-colors">Prototypes</Link></li>
-              <li><Link href="/ai-architecture/templates" className="hover:text-white transition-colors">Templates</Link></li>
-              <li><Link href="/ai-architecture/tools" className="hover:text-white transition-colors">Tools</Link></li>
+              <li><Link href="/products" className="hover:text-white transition-colors">Products</Link></li>
+              <li><Link href="/about" className="hover:text-white transition-colors">About</Link></li>
+              <li><Link href="/roadmap" className="hover:text-white transition-colors">Roadmap</Link></li>
             </ul>
           </div>
 
-          {/* More */}
+          {/* Connect */}
           <div>
-            <h3 className="text-xs sm:text-sm font-semibold uppercase tracking-wider sm:tracking-widest text-white/60 mb-3 sm:mb-4">More</h3>
+            <h3 className="text-xs sm:text-sm font-semibold uppercase tracking-wider sm:tracking-widest text-white/60 mb-3 sm:mb-4">Connect</h3>
             <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-white/40">
-              <li><Link href="/about" className="hover:text-white transition-colors">About</Link></li>
-              <li><Link href="/resources" className="hover:text-white transition-colors">Resources</Link></li>
-              <li><Link href="/roadmap" className="hover:text-white transition-colors">Roadmap</Link></li>
-              <li><Link href="/products" className="hover:text-white transition-colors">All Products</Link></li>
+              <li><Link href="/newsletter" className="hover:text-white transition-colors">Newsletter</Link></li>
+              <li>
+                <a href="/rss.xml" className="hover:text-white transition-colors flex items-center gap-1.5">
+                  <Rss className="w-3 h-3" />
+                  RSS Feed
+                </a>
+              </li>
+              <li>
+                <a href="mailto:hello@frankx.ai" className="hover:text-white transition-colors flex items-center gap-1.5">
+                  <Mail className="w-3 h-3" />
+                  Email
+                </a>
+              </li>
+              <li><Link href="/contact" className="hover:text-white transition-colors">Contact</Link></li>
             </ul>
           </div>
         </div>

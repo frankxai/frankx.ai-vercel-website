@@ -19,12 +19,12 @@ export default function BooksHubPage() {
   const books = getPublishedBooks();
 
   return (
-    <div className="min-h-screen bg-[#030712] text-white">
+    <div className="min-h-screen bg-[#0a0a0b] text-white">
       {/* Hero */}
       <section className="relative overflow-hidden">
         {/* Ambient glow */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-gradient-to-b from-violet-500/[0.06] via-rose-500/[0.04] to-transparent blur-[120px] pointer-events-none" />
-        <div className="absolute top-32 right-1/4 w-[300px] h-[300px] bg-amber-500/[0.03] blur-[100px] pointer-events-none" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-gradient-to-b from-violet-500/[0.06] via-rose-500/[0.04] to-transparent blur-[128px] pointer-events-none" />
+        <div className="absolute top-32 right-1/4 w-[300px] h-[300px] bg-amber-500/[0.03] blur-[128px] pointer-events-none" />
 
         <div className="relative max-w-6xl mx-auto px-6 pt-24 pb-16 sm:pt-32 sm:pb-20">
           <div className="text-center max-w-3xl mx-auto">
@@ -60,7 +60,7 @@ export default function BooksHubPage() {
               <Link
                 key={book.slug}
                 href={`/books/${book.slug}`}
-                className="group relative flex flex-col rounded-2xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] hover:border-white/10 transition-all duration-300 overflow-hidden"
+                className="group relative flex flex-col rounded-2xl border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.04] hover:border-white/10 transition-all duration-300 overflow-hidden"
               >
                 {/* Cover / Visual */}
                 <div className="relative aspect-[3/4] overflow-hidden">
@@ -87,7 +87,7 @@ export default function BooksHubPage() {
                   )}
 
                   {/* Gradient overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#030712] via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-transparent to-transparent" />
 
                   {/* Status badge */}
                   <div className="absolute top-4 right-4">
@@ -128,7 +128,7 @@ export default function BooksHubPage() {
 
       {/* Library CTA */}
       <section className="max-w-4xl mx-auto px-6 pb-24">
-        <div className="relative p-8 sm:p-12 rounded-2xl border border-white/5 bg-white/[0.02] text-center">
+        <div className="relative p-8 sm:p-12 rounded-2xl border border-white/[0.08] bg-white/[0.03] text-center">
           <h2 className="font-serif text-2xl sm:text-3xl font-bold text-white mb-3">
             Curated Reading
           </h2>

@@ -488,13 +488,13 @@ export default function InnerCirclePage() {
   const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.95])
 
   return (
-    <div className="min-h-screen bg-[#0F172A] text-white">
+    <div className="min-h-screen bg-[#0a0a0b] text-white">
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Background gradient effects */}
         <div className="absolute inset-0 overflow-hidden">
           <motion.div
-            className="absolute top-1/4 -left-1/4 w-1/2 h-1/2 bg-[#AB47C7]/30 rounded-full blur-[120px]"
+            className="absolute top-1/4 -left-1/4 w-1/2 h-1/2 bg-[#AB47C7]/30 rounded-full blur-[128px]"
             animate={{
               x: [0, 100, 0],
               y: [0, 50, 0],
@@ -506,7 +506,7 @@ export default function InnerCirclePage() {
             }}
           />
           <motion.div
-            className="absolute top-1/3 -right-1/4 w-1/2 h-1/2 bg-[#43BFE3]/30 rounded-full blur-[120px]"
+            className="absolute top-1/3 -right-1/4 w-1/2 h-1/2 bg-[#43BFE3]/30 rounded-full blur-[128px]"
             animate={{
               x: [0, -100, 0],
               y: [0, -50, 0],

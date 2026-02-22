@@ -415,7 +415,7 @@ export function musicPromptsEmail(data: {
           </h1>
 
           <p style="font-size: 16px; color: #CBD5E1; line-height: 1.6; margin: 0 0 8px 0;">
-            These are the exact prompts behind my top-performing tracks. 500+ combined plays, refined over 500+ songs.
+            These are the exact prompts behind my top-performing tracks. 500+ combined plays, refined over 12,000+ songs.
           </p>
 
           <p style="font-size: 15px; color: #94a3b8; line-height: 1.6; margin: 0 0 24px 0;">

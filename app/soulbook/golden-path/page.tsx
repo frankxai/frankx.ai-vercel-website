@@ -7,7 +7,7 @@ import PremiumButton from '@/components/ui/PremiumButton';
 
 export default function GoldenPathPage() {
   return (
-    <div className="min-h-screen bg-[#030712]">
+    <div className="min-h-screen bg-[#0a0a0b]">
       {/* Hero with image */}
       <section className="relative min-h-[60vh] flex items-end overflow-hidden">
         <div className="absolute inset-0">
@@ -19,7 +19,7 @@ export default function GoldenPathPage() {
             priority
             quality={90}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#030712] via-[#030712]/60 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/60 to-transparent" />
         </div>
 
         <div className="relative z-10 max-w-4xl mx-auto px-6 pb-16 pt-32 w-full">

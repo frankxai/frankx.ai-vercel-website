@@ -141,7 +141,7 @@ export function LiquidGradient() {
       </svg>
       
       {/* Overlay gradient for depth */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#0F172A]/40 via-transparent to-[#0F172A]/60" />
+      <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0b]/40 via-transparent to-[#0a0a0b]/60" />
       
       {/* Noise texture for premium feel */}
       <div

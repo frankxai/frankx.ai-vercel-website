@@ -156,7 +156,7 @@ function PromptCard({
 
 export default function OpaUndOmaPage() {
   return (
-    <main className="min-h-screen bg-[#030712]">
+    <main className="min-h-screen bg-[#0a0a0b]">
       {/* Hero */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0">
@@ -234,7 +234,7 @@ export default function OpaUndOmaPage() {
 
       {/* What Frank Does - Simple Explanation */}
       <section className="mx-auto max-w-4xl px-6 pb-16">
-        <div className="rounded-2xl border border-white/5 bg-white/[0.02] p-8">
+        <div className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-8">
           <div className="mb-4 flex items-center gap-3">
             <Sparkles className="h-6 w-6 text-violet-400" />
             <h2 className="text-xl font-semibold text-white">Was Frank macht</h2>
@@ -328,7 +328,7 @@ export default function OpaUndOmaPage() {
           {storyIdeas.map((idea, i) => (
             <div
               key={i}
-              className="flex items-start gap-3 rounded-lg border border-white/5 bg-white/[0.02] p-4 transition-all hover:border-white/10"
+              className="flex items-start gap-3 rounded-lg border border-white/[0.08] bg-white/[0.03] p-4 transition-all hover:border-white/10"
             >
               <Star className="mt-0.5 h-4 w-4 flex-shrink-0 text-amber-400/50" />
               <p className="text-sm text-white/60">{idea}</p>

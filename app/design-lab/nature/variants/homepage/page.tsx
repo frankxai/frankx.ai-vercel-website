@@ -46,7 +46,7 @@ function ForestCanopy() {
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none">
       {/* Deep soil base */}
-      <div className="absolute inset-0 bg-[#0F172A]" />
+      <div className="absolute inset-0 bg-[#0a0a0b]" />
 
       {/* Canopy light filtering through — emerald dominant */}
       <motion.div
@@ -604,7 +604,7 @@ function DesignLabCTA() {
 
 export default function HomepageNatureVariant() {
   return (
-    <main className="relative min-h-screen bg-[#0F172A] text-white overflow-hidden">
+    <main className="relative min-h-screen bg-[#0a0a0b] text-white overflow-hidden">
       <ForestCanopy />
       <FireflyParticles />
       <VineProgress />

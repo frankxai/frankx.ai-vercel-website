@@ -144,8 +144,8 @@ export function FollowUp7DayEmail({ name, pdfTitle, guideSlug }: FollowUp7DayEma
     <div style="text-align: center; padding-top: 32px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
       <p style="font-size: 12px; color: #64748b; margin: 0 0 16px 0;">
         <strong style="color: #94a3b8;">Frank Riemer</strong><br>
-        AI Architect at Oracle | Creator<br>
-        500+ AI songs | Enterprise AI Systems
+        AI Systems Architect | Creator<br>
+        12,000+ AI songs | Enterprise AI Systems
       </p>
 
       <div style="margin: 16px 0;">

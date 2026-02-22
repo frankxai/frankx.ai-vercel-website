@@ -441,8 +441,8 @@ export default function NavigationMega() {
         isVisible ? 'translate-y-0' : '-translate-y-full',
         // Background and border intensity based on scroll
         isScrolled
-          ? 'border-white/10 bg-[#030712]/95 backdrop-blur-xl shadow-lg shadow-black/10'
-          : 'border-white/5 bg-[#030712]/90 backdrop-blur-xl'
+          ? 'border-white/10 bg-[#0a0a0b]/95 backdrop-blur-xl shadow-lg shadow-black/10'
+          : 'border-white/5 bg-[#0a0a0b]/90 backdrop-blur-xl'
       )}
     >
       <nav className="mx-auto flex h-14 sm:h-16 max-w-6xl items-center justify-between px-4 sm:px-6">
@@ -532,7 +532,7 @@ export default function NavigationMega() {
           </NavigationMenu.List>
 
           <div className="perspective-[2000px] absolute left-0 top-full flex w-full justify-center">
-            <NavigationMenu.Viewport className="relative mt-2 h-[var(--radix-navigation-menu-viewport-height)] w-full origin-[top_center] overflow-hidden data-[state=open]:overflow-visible rounded-xl border border-white/10 bg-[#0a0a12]/95 shadow-2xl shadow-black/50 backdrop-blur-xl transition-[width,height] duration-300 data-[state=closed]:animate-scaleOut data-[state=open]:animate-scaleIn sm:w-[var(--radix-navigation-menu-viewport-width)]" />
+            <NavigationMenu.Viewport className="relative mt-2 h-[var(--radix-navigation-menu-viewport-height)] w-full origin-[top_center] overflow-hidden data-[state=open]:overflow-visible rounded-xl border border-white/10 bg-[#0a0a0b]/95 shadow-2xl shadow-black/50 backdrop-blur-xl transition-[width,height] duration-300 data-[state=closed]:animate-scaleOut data-[state=open]:animate-scaleIn sm:w-[var(--radix-navigation-menu-viewport-width)]" />
           </div>
         </NavigationMenu.Root>
 
@@ -564,7 +564,7 @@ export default function NavigationMega() {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
-            className="border-t border-white/5 bg-[#030712]/98 backdrop-blur-xl lg:hidden overflow-y-auto max-h-[calc(100vh-3.5rem)] sm:max-h-[calc(100vh-4rem)]"
+            className="border-t border-white/5 bg-[#0a0a0b]/98 backdrop-blur-xl lg:hidden overflow-y-auto max-h-[calc(100vh-3.5rem)] sm:max-h-[calc(100vh-4rem)]"
           >
             <div className="mx-auto max-w-6xl space-y-1 px-4 sm:px-6 py-3 sm:py-4">
               {/* Mobile dropdowns */}

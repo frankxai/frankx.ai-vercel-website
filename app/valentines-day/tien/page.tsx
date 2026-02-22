@@ -312,7 +312,7 @@ export default function TienPage() {
             exit={{ opacity: 0 }}
             transition={{ duration: 1.8, ease: 'easeInOut' }}
           >
-            <div className="absolute w-72 h-72 bg-rose-500/[0.06] rounded-full blur-[100px]" />
+            <div className="absolute w-72 h-72 bg-rose-500/[0.06] rounded-full blur-[128px]" />
             <div className="absolute w-56 h-56 bg-violet-500/[0.04] rounded-full blur-[80px] translate-x-24 translate-y-16" />
             <div className="absolute w-40 h-40 bg-amber-500/[0.03] rounded-full blur-[60px] -translate-x-20 -translate-y-12" />
 
@@ -636,7 +636,7 @@ export default function TienPage() {
         {/* ─── Section 6: The Art of Loving ───────────────────── */}
         <section className="relative px-6 py-20 md:py-32">
           <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0f] via-[#0d0a0e] to-[#0a0a0f]" />
-          <div className="absolute left-1/2 top-1/3 -translate-x-1/2 w-80 h-80 bg-amber-500/[0.02] rounded-full blur-[100px]" />
+          <div className="absolute left-1/2 top-1/3 -translate-x-1/2 w-80 h-80 bg-amber-500/[0.02] rounded-full blur-[128px]" />
 
           <div className="relative z-20 max-w-2xl mx-auto">
             <ScrollReveal>
@@ -694,7 +694,7 @@ export default function TienPage() {
         {/* ─── Section 7: A Poem for You ──────────────────────── */}
         <section className="relative px-6 py-20 md:py-32">
           <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0f] via-[#0f0a0e] to-[#0a0a0f]" />
-          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-rose-500/[0.04] rounded-full blur-[120px]" />
+          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-rose-500/[0.04] rounded-full blur-[128px]" />
 
           <div className="relative z-20 max-w-xl mx-auto">
             <ScrollReveal>
@@ -763,7 +763,7 @@ export default function TienPage() {
         {/* ─── Section 8: The Promise ─────────────────────────── */}
         <section className="relative px-6 py-20 md:py-32">
           <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0f] via-[#100a0d] to-[#0a0a0f]" />
-          <div className="absolute left-1/2 top-1/3 -translate-x-1/2 w-80 h-80 bg-amber-500/[0.03] rounded-full blur-[100px]" />
+          <div className="absolute left-1/2 top-1/3 -translate-x-1/2 w-80 h-80 bg-amber-500/[0.03] rounded-full blur-[128px]" />
 
           <div className="relative z-20 max-w-xl mx-auto text-center">
             <ScrollReveal>

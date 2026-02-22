@@ -20,11 +20,11 @@ export function StrategyPageLayout({
   tools,
 }: StrategyPageProps) {
   return (
-    <main className="min-h-screen bg-[#0F172A] text-white selection:bg-emerald-500/30">
+    <main className="min-h-screen bg-[#0a0a0b] text-white selection:bg-emerald-500/30">
       {/* Hero Section */}
       <section className="relative pt-32 pb-20 px-6 overflow-hidden">
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] bg-emerald-500/10 rounded-full blur-[120px]" />
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[600px] rounded-full" style={{ background: 'radial-gradient(circle, rgba(16,185,129,0.06) 0%, transparent 70%)', filter: 'blur(128px)' }} />
         </div>
         
         <div className="max-w-4xl mx-auto text-center relative z-10">
@@ -48,7 +48,7 @@ export function StrategyPageLayout({
       </section>
 
       {/* Stats Grid */}
-      <section className="py-12 border-y border-white/5 bg-white/[0.02]">
+      <section className="py-12 border-y border-white/[0.08] bg-white/[0.03]">
         <div className="max-w-6xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8">
           {stats.map((stat) => (
             <div key={stat.label} className="text-center">

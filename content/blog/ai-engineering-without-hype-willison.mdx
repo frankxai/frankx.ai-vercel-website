@@ -5,7 +5,14 @@ date: "2026-02-19"
 lastModified: "2026-02-19"
 author: "Frank"
 tags: ["AI Engineering", "LLMs", "Simon Willison", "Pragmatism"]
-keywords: ["Simon Willison", "AI engineering", "LLM operations", "coding with ai", "practical ai"]
+keywords:
+  [
+    "Simon Willison",
+    "AI engineering",
+    "LLM operations",
+    "coding with ai",
+    "practical ai",
+  ]
 category: "AI Architecture"
 featured: false
 readingGoal: "Master the pragmatic mental models required to deploy AI systems that actually work in production."
@@ -14,7 +21,10 @@ readingTime: "10 min"
 
 # AI Engineering Without the Hype
 
-<YouTubeEmbed id="uRuLgar5XZw" title="Simon Willison: AI for Software Engineers" />
+<YouTubeEmbed
+  id="uRuLgar5XZw"
+  title="Simon Willison: AI for Software Engineers"
+/>
 
 ---
 
@@ -27,17 +37,21 @@ In this session, Simon breaks down the "all-in" workflow for coding with LLMs, m
 ## Core Pillars of the Willison Protocol
 
 ### 1. The LLM as an "Observed" System
+
 Simon treats the LLM not as a black box, but as a system that must be interrogated. He emphasizes the importance of **Type Hints** and **Schema Definitions** when prompting. Why? Because the clearer the constraints, the less the model hallucinates.
 
 ### 2. The "Exploratory Coding" Loop
+
 Instead of asking an AI to "build a whole app," Simon advocates for a high-frequency loop:
-*   **Step 1:** Small, testable chunks of logic.
-*   **Step 2:** Immediate execution and verification.
-*   **Step 3:** Feedback into the LLM context.
+
+- **Step 1:** Small, testable chunks of logic.
+- **Step 2:** Immediate execution and verification.
+- **Step 3:** Feedback into the LLM context.
 
 This matches our [Agentic Creator OS](/blog/agentic-creator-os) philosophy: Keep the Human in the Director's chair.
 
 ### 3. Prompt Injection Awareness
+
 As the person who coined the term "prompt injection," Simon is uniquely qualified to discuss AI security. His strategy is simple: Assume the model is untrusted. Never let a model execute shell commands or database queries directly without a hard boundary.
 
 ---
@@ -46,10 +60,10 @@ As the person who coined the term "prompt injection," Simon is uniquely qualifie
 
 This 45-minute deep dive is a goldmine for content atomization. Using our [Short-Form Nexus](/opus-pro) strategy, we can extract the following "Intellectual Atoms":
 
-| Segment | Topic | Target Platform |
-| :--- | :--- | :--- |
-| **0:12:30** | Why RAG is overhyped | LinkedIn (Controversial Insight) |
-| **0:25:00** | The "Type Hint" Trick | Twitter/X (Technical Tip) |
+| Segment     | Topic                   | Target Platform                    |
+| :---------- | :---------------------- | :--------------------------------- |
+| **0:12:30** | Why RAG is overhyped    | LinkedIn (Controversial Insight)   |
+| **0:25:00** | The "Type Hint" Trick   | Twitter/X (Technical Tip)          |
 | **0:38:15** | Prompt Injection in 60s | TikTok/Shorts (Security Awareness) |
 
 By atomizing this video, we create **10+ points of discovery** that all funnel back to this primary research node.
@@ -63,6 +77,7 @@ Simon Willison reminds us that the best AI architects aren't the ones with the m
 ---
 
 ### Execution Log (Agent Swarm)
+
 - [x] Index: Added Simon Willison's "No Hype" video to the site index.
 - [x] Strategy: Integrated the "Short-Form Nexus" mapping for repurposing.
 - [x] Synthesis: Extracted the 3 core pillars of the Willison Protocol.

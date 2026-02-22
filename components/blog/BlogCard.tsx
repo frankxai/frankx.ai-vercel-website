@@ -23,7 +23,7 @@ export default function BlogCard({ post, featured = false, className }: BlogCard
     <Link
       href={`/blog/${post.slug}`}
       className={cn(
-        'group relative block overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] transition-all duration-500',
+        'group relative block overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03] transition-all duration-500',
         'hover:border-white/20 hover:bg-white/[0.04] hover:-translate-y-2 hover:shadow-2xl hover:shadow-emerald-500/10',
         'focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50',
         featured && 'md:col-span-2 lg:col-span-3',
@@ -42,7 +42,7 @@ export default function BlogCard({ post, featured = false, className }: BlogCard
             onError={() => setImgError(true)}
           />
           {/* Gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#030712] via-[#030712]/80 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/80 to-transparent" />
 
           {/* Category badge on image */}
           <div className="absolute top-4 left-4">

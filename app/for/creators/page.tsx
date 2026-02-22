@@ -137,7 +137,7 @@ export default function CreatorsLandingPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null)
 
   return (
-    <div className="min-h-screen bg-[#0F172A] text-white">
+    <div className="min-h-screen bg-[#0a0a0b] text-white">
       {/* Background orbs */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -left-40 top-20 h-[500px] w-[500px] rounded-full opacity-20" style={{ background: 'radial-gradient(circle, rgba(16,185,129,0.4) 0%, transparent 70%)' }} />
@@ -188,7 +188,7 @@ export default function CreatorsLandingPage() {
       </section>
 
       {/* Stats bar */}
-      <section className="relative border-y border-white/5 bg-white/[0.02] py-10">
+      <section className="relative border-y border-white/[0.08] bg-white/[0.03] py-10">
         <div className="mx-auto max-w-5xl px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
@@ -288,7 +288,7 @@ export default function CreatorsLandingPage() {
               >
                 <Link
                   href={post.href}
-                  className="group flex items-center justify-between rounded-xl border border-white/5 bg-white/[0.02] p-5 transition-all hover:border-white/10 hover:bg-white/[0.04]"
+                  className="group flex items-center justify-between rounded-xl border border-white/[0.08] bg-white/[0.03] p-5 transition-all hover:border-white/10 hover:bg-white/[0.04]"
                 >
                   <div className="flex items-center gap-4">
                     <span className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 uppercase tracking-wider">

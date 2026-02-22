@@ -232,7 +232,7 @@ export default function LearnPage() {
               href={creator.channel}
               target="_blank"
               rel="noopener noreferrer"
-              className="p-4 rounded-xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] hover:border-white/20 transition-all text-center"
+              className="p-4 rounded-xl border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.04] hover:border-white/20 transition-all text-center"
             >
               <h3 className="font-semibold text-white mb-1">{creator.name}</h3>
               <p className="text-xs text-white/50 mb-2">{creator.specialty}</p>

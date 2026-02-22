@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function LegalPage() {
   return (
-    <div className="min-h-screen bg-[#030712] text-white">
+    <div className="min-h-screen bg-[#0a0a0b] text-white">
       <div className="max-w-3xl mx-auto px-6 py-24">
         <Link
           href="/"
@@ -24,14 +24,14 @@ export default function LegalPage() {
           <section className="grid gap-4 sm:grid-cols-2">
             <Link
               href="/privacy"
-              className="p-6 rounded-xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] hover:border-white/20 transition-all"
+              className="p-6 rounded-xl border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.04] hover:border-white/20 transition-all"
             >
               <h3 className="text-lg font-semibold mb-2">Privacy Policy</h3>
               <p className="text-white/60 text-sm">How we collect, use, and protect your data.</p>
             </Link>
             <Link
               href="/terms"
-              className="p-6 rounded-xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] hover:border-white/20 transition-all"
+              className="p-6 rounded-xl border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.04] hover:border-white/20 transition-all"
             >
               <h3 className="text-lg font-semibold mb-2">Terms of Service</h3>
               <p className="text-white/60 text-sm">Rules and guidelines for using our services.</p>
@@ -39,7 +39,7 @@ export default function LegalPage() {
           </section>
 
           {/* Business Information */}
-          <section className="p-6 rounded-xl border border-white/10 bg-white/[0.02]">
+          <section className="p-6 rounded-xl border border-white/[0.08] bg-white/[0.03]">
             <h2 className="text-2xl font-semibold mb-4">Business Information</h2>
             <div className="space-y-3 text-white/70">
               <p><strong className="text-white">Business Name:</strong> FrankX.AI</p>
@@ -57,7 +57,7 @@ export default function LegalPage() {
           </section>
 
           {/* Disclaimers */}
-          <section className="p-6 rounded-xl border border-white/10 bg-white/[0.02]">
+          <section className="p-6 rounded-xl border border-white/[0.08] bg-white/[0.03]">
             <h2 className="text-2xl font-semibold mb-4">Disclaimers</h2>
             <div className="space-y-4 text-white/70">
               <div>
@@ -85,7 +85,7 @@ export default function LegalPage() {
           </section>
 
           {/* Copyright */}
-          <section className="p-6 rounded-xl border border-white/10 bg-white/[0.02]">
+          <section className="p-6 rounded-xl border border-white/[0.08] bg-white/[0.03]">
             <h2 className="text-2xl font-semibold mb-4">Copyright</h2>
             <p className="text-white/70 text-sm leading-relaxed">
               &copy; {new Date().getFullYear()} FrankX.AI. All rights reserved.

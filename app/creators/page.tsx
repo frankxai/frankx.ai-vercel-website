@@ -22,7 +22,7 @@ import {
 function CreatorBackground() {
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden">
-      <div className="absolute inset-0 bg-[#030712]" />
+      <div className="absolute inset-0 bg-[#0a0a0b]" />
 
       {/* Creative grid pattern */}
       <div
@@ -187,7 +187,7 @@ export default function CreatorsPage() {
               className="mb-8 max-w-2xl text-lg leading-relaxed text-slate-400 sm:text-xl"
             >
               Master AI tools that amplify your creative voice—never replace it.
-              From 500+ AI songs to visual storytelling, discover the creator's path to AI mastery.
+              From 12,000+ AI songs to visual storytelling, discover the creator's path to AI mastery.
             </motion.p>
 
             {/* Tool badges */}
@@ -546,7 +546,7 @@ export default function CreatorsPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
-                  className="p-6 rounded-xl border border-white/5 bg-white/[0.02] text-center"
+                  className="p-6 rounded-xl border border-white/[0.08] bg-white/[0.03] text-center"
                 >
                   <div className={`text-xs font-medium uppercase tracking-widest ${colorMap[phase.color as keyof typeof colorMap].text} mb-2`}>
                     {phase.stage}

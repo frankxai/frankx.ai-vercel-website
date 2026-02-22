@@ -237,7 +237,7 @@ export default function FamilyTreeV10() {
     <div className="relative w-full h-screen bg-[#0a0a0f]">
       {/* Info panel */}
       <div className="absolute top-8 left-8 z-10 max-w-md">
-        <div className="rounded-xl border border-white/10 bg-[#0F172A]/80 backdrop-blur-xl p-6">
+        <div className="rounded-xl border border-white/10 bg-[#0a0a0b]/80 backdrop-blur-xl p-6">
           <div className="mb-3">
             <h1 className="text-3xl font-bold text-white mb-1">
               V10 — GPU-Enhanced 3D

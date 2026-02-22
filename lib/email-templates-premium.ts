@@ -475,7 +475,7 @@ export function samplePremiumNewsletter(): { subject: string; html: string } {
     },
     featuredLink: {
       title: 'The Complete Guide to AI Music Production',
-      description: 'Everything I\'ve learned from creating 500+ AI songs, distilled into a comprehensive guide for creators ready to level up.',
+      description: 'Everything I\'ve learned from creating 12,000+ AI songs, distilled into a comprehensive guide for creators ready to level up.',
       url: 'https://frankx.ai/guides/ai-music'
     },
     closingNote: 'Hit reply anytime. I read every message and respond personally. No spam, no fluff — just real insights from someone building in public.',

@@ -44,7 +44,7 @@ export default async function CourseDetailPage({ params }: CourseDetailPageProps
   }
 
   return (
-    <main className="min-h-screen bg-[#030712] text-white">
+    <main className="min-h-screen bg-[#0a0a0b] text-white">
       <div className="mx-auto max-w-5xl px-6 py-16 pt-28 space-y-14">
         <div>
           <Link
@@ -99,7 +99,7 @@ export default async function CourseDetailPage({ params }: CourseDetailPageProps
           <h2 className="text-2xl font-semibold">Who this is for</h2>
           <ul className="space-y-3">
             {course.audience.map((item) => (
-              <li key={item} className="flex items-start gap-3 rounded-xl border border-white/10 bg-white/[0.02] p-4">
+              <li key={item} className="flex items-start gap-3 rounded-xl border border-white/[0.08] bg-white/[0.03] p-4">
                 <Users2 className="w-4 h-4 text-cyan-300 mt-0.5" />
                 <span className="text-white/75">{item}</span>
               </li>
@@ -111,7 +111,7 @@ export default async function CourseDetailPage({ params }: CourseDetailPageProps
           <h2 className="text-2xl font-semibold">What you should be able to do</h2>
           <ul className="space-y-3">
             {course.outcomes.map((outcome) => (
-              <li key={outcome} className="flex items-start gap-3 rounded-xl border border-white/10 bg-white/[0.02] p-4">
+              <li key={outcome} className="flex items-start gap-3 rounded-xl border border-white/[0.08] bg-white/[0.03] p-4">
                 <CheckCircle2 className="w-4 h-4 text-emerald-400 mt-0.5" />
                 <span className="text-white/75">{outcome}</span>
               </li>
@@ -123,7 +123,7 @@ export default async function CourseDetailPage({ params }: CourseDetailPageProps
           <h2 className="text-2xl font-semibold">Draft Module Outline</h2>
           <div className="grid gap-4">
             {course.outline.map((module, index) => (
-              <article key={module.title} className="rounded-xl border border-white/10 bg-white/[0.02] p-5">
+              <article key={module.title} className="rounded-xl border border-white/[0.08] bg-white/[0.03] p-5">
                 <p className="text-xs uppercase tracking-[0.16em] text-white/40 mb-2">Module {index + 1}</p>
                 <h3 className="text-lg font-semibold text-white mb-2">{module.title}</h3>
                 <p className="text-white/65 leading-relaxed">{module.description}</p>

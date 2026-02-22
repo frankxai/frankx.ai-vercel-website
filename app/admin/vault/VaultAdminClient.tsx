@@ -139,7 +139,7 @@ export function VaultAdminClient({
         </div>
 
         {/* Format Breakdown */}
-        <div className="rounded-xl border border-white/10 bg-white/[0.02] p-6 mb-8">
+        <div className="rounded-xl border border-white/[0.08] bg-white/[0.03] p-6 mb-8">
           <h2 className="text-lg font-semibold mb-4 flex items-center gap-2">
             <FileType className="w-5 h-5 text-cyan-400" />
             Format Breakdown
@@ -239,7 +239,7 @@ export function VaultAdminClient({
         )}
 
         {/* Collections Table */}
-        <div className="rounded-xl border border-white/10 bg-white/[0.02] p-6">
+        <div className="rounded-xl border border-white/[0.08] bg-white/[0.03] p-6">
           <h2 className="text-lg font-semibold mb-4 flex items-center gap-2">
             <Layers className="w-5 h-5 text-purple-400" />
             All Collections ({filteredCollections.length})

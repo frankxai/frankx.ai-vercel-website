@@ -182,6 +182,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/resources/templates',
     '/updates',
     '/free-playbook',
+    '/gallery',
+    '/watch',
   ]
 
   // Legal pages

@@ -36,7 +36,7 @@ export default async function GuidePage({ params }: { params: Promise<{ slug: st
   const guide = getGuide(slug)
   if (!guide) return notFound()
   return (
-    <div className="min-h-screen bg-[#030712]">
+    <div className="min-h-screen bg-[#0a0a0b]">
       <main className="pt-28 pb-20 px-6">
         <div className="max-w-4xl mx-auto">
           <Breadcrumbs

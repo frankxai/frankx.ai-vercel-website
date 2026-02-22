@@ -69,7 +69,7 @@ export default function NewsletterHero({
           className="object-cover opacity-[0.03]"
           priority={false}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#030712] via-transparent to-[#030712]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0b] via-transparent to-[#0a0a0b]" />
       </div>
 
       {/* Ambient glows */}

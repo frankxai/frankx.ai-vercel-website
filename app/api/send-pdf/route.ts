@@ -111,7 +111,7 @@ export async function POST(request: NextRequest) {
       </h1>
 
       <p style="font-size: 17px; color: #CBD5E1; line-height: 1.7; margin: 0 0 16px 0;">
-        Picture this: same frameworks I used to create 500+ AI songs and build enterprise AI systems - now in your hands.
+        Picture this: same frameworks I used to create 12,000+ AI songs and build enterprise AI systems - now in your hands.
       </p>
 
       <p style="font-size: 16px; color: #94a3b8; line-height: 1.7; margin: 0 0 28px 0;">
@@ -141,7 +141,7 @@ export async function POST(request: NextRequest) {
           Quick note: Hit reply with questions. I read every message. Really.
         </p>
         <p style="font-size: 14px; color: #64748b; margin: 0; line-height: 1.6;">
-          Want more? Check out our <a href="https://frankx.ai/blog" style="color: #22d3ee; text-decoration: none;">creator insights</a> or explore <a href="https://frankx.ai/music" style="color: #22d3ee; text-decoration: none;">500+ AI songs</a>.
+          Want more? Check out our <a href="https://frankx.ai/blog" style="color: #22d3ee; text-decoration: none;">creator insights</a> or explore <a href="https://frankx.ai/music" style="color: #22d3ee; text-decoration: none;">12,000+ AI songs</a>.
         </p>
       </div>
     </div>

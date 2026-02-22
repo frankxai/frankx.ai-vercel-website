@@ -291,13 +291,13 @@ export default function CommunityPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0F172A] text-foreground overflow-hidden">
+    <div className="min-h-screen bg-[#0a0a0b] text-foreground overflow-hidden">
       {/* Hero Section with Network Visualization */}
       <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden">
         {/* Background gradient effects */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#AB47C7]/10 via-transparent to-transparent" />
-        <div className="absolute top-20 left-20 w-96 h-96 bg-[#AB47C7]/20 rounded-full blur-[120px]" />
-        <div className="absolute bottom-20 right-20 w-96 h-96 bg-[#43BFE3]/20 rounded-full blur-[120px]" />
+        <div className="absolute top-20 left-20 w-96 h-96 bg-[#AB47C7]/20 rounded-full blur-[128px]" />
+        <div className="absolute bottom-20 right-20 w-96 h-96 bg-[#43BFE3]/20 rounded-full blur-[128px]" />
 
         {/* Network visualization */}
         <div className="absolute inset-0">
@@ -600,8 +600,8 @@ export default function CommunityPage() {
           >
             <Card className="relative overflow-hidden border-border/50 bg-card backdrop-blur-xl">
               {/* Background effects */}
-              <div className="absolute top-0 right-0 w-96 h-96 bg-[#AB47C7]/20 rounded-full blur-[120px]" />
-              <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#43BFE3]/20 rounded-full blur-[120px]" />
+              <div className="absolute top-0 right-0 w-96 h-96 bg-[#AB47C7]/20 rounded-full blur-[128px]" />
+              <div className="absolute bottom-0 left-0 w-96 h-96 bg-[#43BFE3]/20 rounded-full blur-[128px]" />
 
               <div className="relative p-8 md:p-12 text-center">
                 <div className="w-16 h-16 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-[#F59E0B] to-[#EF4444] flex items-center justify-center">

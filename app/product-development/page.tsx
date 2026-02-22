@@ -242,7 +242,7 @@ export default function ProductDevelopmentPage() {
   ]
 
   return (
-    <div className="min-h-screen bg-[#030712]">
+    <div className="min-h-screen bg-[#0a0a0b]">
       {/* Hero */}
       <section className="relative pt-32 pb-20 overflow-hidden">
         {/* Animated background */}
@@ -251,13 +251,13 @@ export default function ProductDevelopmentPage() {
           {!shouldReduceMotion && (
             <>
               <motion.div
-                className="absolute top-1/4 right-1/4 w-[500px] h-[500px] rounded-full blur-[120px]"
+                className="absolute top-1/4 right-1/4 w-[500px] h-[500px] rounded-full blur-[128px]"
                 style={{ background: 'radial-gradient(circle, rgba(139,92,246,0.08) 0%, transparent 70%)' }}
                 animate={{ x: [0, 50, 0], y: [0, -30, 0], scale: [1, 1.05, 1] }}
                 transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
               />
               <motion.div
-                className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] rounded-full blur-[100px]"
+                className="absolute bottom-1/4 left-1/4 w-[400px] h-[400px] rounded-full blur-[128px]"
                 style={{ background: 'radial-gradient(circle, rgba(14,165,233,0.08) 0%, transparent 70%)' }}
                 animate={{ x: [0, -40, 0], y: [0, 40, 0], scale: [1, 1.08, 1] }}
                 transition={{ duration: 25, repeat: Infinity, ease: 'easeInOut' }}

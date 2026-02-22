@@ -19,20 +19,20 @@
        ========================================================================= */
 
     /* Brand Accents */
-    --brand-purple: #AB47C7;     /* Intelligence, ACOS, primary brand */
-    --brand-blue: #43BFE3;       /* Technology, Vibe OS, architecture */
-    --brand-magenta: #E040FB;    /* GenCreator OS, multi-modal creation */
-    --brand-emerald: #10B981;    /* Success, Labs, CTAs */
-    --brand-obsidian: #1E0A3C;   /* Arcanea, cosmos, deep mystery */
-    --brand-arcanea-glow: #7C3AED; /* Arcanea accent glow */
-    --brand-gold: #F59E0B;       /* Premium, exclusive tier */
-    --brand-rose: #F43F5E;       /* Errors, destructive actions */
-    --brand-starlight: #38BDF8;  /* Starlight meta-intelligence */
-    --brand-navy: #0F172A;       /* Brand primary dark */
+    --brand-purple: #ab47c7; /* Intelligence, ACOS, primary brand */
+    --brand-blue: #43bfe3; /* Technology, Vibe OS, architecture */
+    --brand-magenta: #e040fb; /* GenCreator OS, multi-modal creation */
+    --brand-emerald: #10b981; /* Success, Labs, CTAs */
+    --brand-obsidian: #1e0a3c; /* Arcanea, cosmos, deep mystery */
+    --brand-arcanea-glow: #7c3aed; /* Arcanea accent glow */
+    --brand-gold: #f59e0b; /* Premium, exclusive tier */
+    --brand-rose: #f43f5e; /* Errors, destructive actions */
+    --brand-starlight: #38bdf8; /* Starlight meta-intelligence */
+    --brand-navy: #0f172a; /* Brand primary dark */
 
     /* Legacy aliases */
-    --brand-cyan: #43BFE3;
-    --brand-amber: #F59E0B;
+    --brand-cyan: #43bfe3;
+    --brand-amber: #f59e0b;
 
     /* =========================================================================
        SEMANTIC DESIGN TOKENS
@@ -123,24 +123,24 @@
 
   /* Playfair Display italic for quotes & editorial emphasis */
   .font-serif-italic {
-    font-family: var(--font-serif), 'Playfair Display', Georgia, serif;
+    font-family: var(--font-serif), "Playfair Display", Georgia, serif;
     font-style: italic;
     font-weight: 400;
   }
 
   /* Poppins display font for headings ≥18px */
   .font-display {
-    font-family: var(--font-poppins), 'Poppins', system-ui, sans-serif;
+    font-family: var(--font-poppins), "Poppins", system-ui, sans-serif;
   }
 
   .gradient-text {
-    background-image: linear-gradient(135deg, #AB47C7, #43BFE3);
+    background-image: linear-gradient(135deg, #ab47c7, #43bfe3);
     -webkit-background-clip: text;
     color: transparent;
   }
 
   .gradient-bg {
-    background-image: linear-gradient(135deg, #0a0a0b, #111113, #0F172A);
+    background-image: linear-gradient(135deg, #0a0a0b, #111113, #0f172a);
   }
 
   /* Glassmorphism — Use Tailwind classes from lib/design/tokens.ts surface system
@@ -151,26 +151,52 @@
      ACCESSIBLE TEXT UTILITIES - Use instead of raw opacity values
      These map to CSS variables with WCAG-compliant contrast ratios
      ========================================================================== */
-  .text-brand-primary { color: var(--text-primary); }
-  .text-brand-secondary { color: var(--text-secondary); }
-  .text-brand-tertiary { color: var(--text-tertiary); }
-  .text-brand-muted { color: var(--text-muted); }
-  .text-blog-body { color: var(--text-blog-body); }
+  .text-brand-primary {
+    color: var(--text-primary);
+  }
+  .text-brand-secondary {
+    color: var(--text-secondary);
+  }
+  .text-brand-tertiary {
+    color: var(--text-tertiary);
+  }
+  .text-brand-muted {
+    color: var(--text-muted);
+  }
+  .text-blog-body {
+    color: var(--text-blog-body);
+  }
 
   /* Background utilities using design tokens */
-  .bg-void { background-color: var(--bg-void); }
-  .bg-space { background-color: var(--bg-space); }
-  .bg-elevated { background-color: var(--bg-elevated); }
-  .bg-subtle { background-color: var(--bg-subtle); }
+  .bg-void {
+    background-color: var(--bg-void);
+  }
+  .bg-space {
+    background-color: var(--bg-space);
+  }
+  .bg-elevated {
+    background-color: var(--bg-elevated);
+  }
+  .bg-subtle {
+    background-color: var(--bg-subtle);
+  }
 
   /* Border utilities using design tokens */
-  .border-brand-subtle { border-color: var(--border-subtle); }
-  .border-brand-default { border-color: var(--border-default); }
-  .border-brand-strong { border-color: var(--border-strong); }
+  .border-brand-subtle {
+    border-color: var(--border-subtle);
+  }
+  .border-brand-default {
+    border-color: var(--border-default);
+  }
+  .border-brand-strong {
+    border-color: var(--border-strong);
+  }
 
   /* Premium hover lift — reusable card elevation on hover */
   .card-hover-lift {
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition:
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
   }
   .card-hover-lift:hover {
     transform: translateY(-2px);
@@ -189,7 +215,7 @@
 
 /* Film-grain overlay — subtle noise texture for depth */
 .grain-overlay::after {
-  content: '';
+  content: "";
   position: fixed;
   inset: 0;
   pointer-events: none;
@@ -200,8 +226,13 @@
 
 /* Scrollbar-hidden utility for carousels */
 @layer utilities {
-  .no-scrollbar::-webkit-scrollbar { display: none; }
-  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 }
 
 .sr-only {
@@ -231,7 +262,7 @@
   width: auto;
   height: auto;
   padding: 0.75rem 1.5rem;
-  background: linear-gradient(135deg, #AB47C7, #43BFE3);
+  background: linear-gradient(135deg, #ab47c7, #43bfe3);
   color: #ffffff;
   border-radius: 0.5rem;
   box-shadow: 0 12px 40px rgba(14, 165, 233, 0.45);
@@ -246,7 +277,7 @@
 
 /* Unordered list: emerald dot markers */
 .article-list li::before {
-  content: '';
+  content: "";
   position: absolute;
   left: 0;
   top: 0.7em;
@@ -266,7 +297,7 @@
 }
 
 .article-ol li::before {
-  content: counter(article-counter) '.';
+  content: counter(article-counter) ".";
   position: absolute;
   left: 0;
   top: 0;
@@ -278,7 +309,7 @@
 
 /* Blockquote serif treatment */
 .article-blockquote {
-  font-family: var(--font-serif), 'Playfair Display', Georgia, serif;
+  font-family: var(--font-serif), "Playfair Display", Georgia, serif;
   font-style: italic;
 }
 

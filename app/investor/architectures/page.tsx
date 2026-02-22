@@ -11,7 +11,7 @@ export default function InvestorArchitecturesPage() {
   const products = getByCategory('architectures')
 
   return (
-    <main className="min-h-screen bg-[#030712]">
+    <main className="min-h-screen bg-[#0a0a0b]">
       {/* Header */}
       <section className="pb-12 pt-32">
         <div className="mx-auto max-w-6xl px-6">

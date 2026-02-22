@@ -39,9 +39,9 @@ export function VaultHubClient({
       {/* Hero */}
       <section className="relative overflow-hidden pt-24 pb-16">
         <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-purple-500/5" />
-        <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-cyan-500/8 rounded-full blur-[120px]" />
-        <div className="absolute bottom-1/4 right-1/3 w-[400px] h-[400px] bg-purple-500/8 rounded-full blur-[120px]" />
-        <div className="absolute top-1/2 right-1/4 w-[300px] h-[300px] bg-amber-500/5 rounded-full blur-[100px]" />
+        <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-cyan-500/8 rounded-full blur-[128px]" />
+        <div className="absolute bottom-1/4 right-1/3 w-[400px] h-[400px] bg-purple-500/8 rounded-full blur-[128px]" />
+        <div className="absolute top-1/2 right-1/4 w-[300px] h-[300px] bg-amber-500/5 rounded-full blur-[128px]" />
 
         <div className="relative max-w-7xl mx-auto px-6">
           <Link
@@ -126,7 +126,7 @@ export function VaultHubClient({
 
       {/* Cross-link to Gallery */}
       <section className="max-w-7xl mx-auto px-6 pb-24">
-        <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-8 text-center">
+        <div className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-8 text-center">
           <p className="text-white/50 mb-4">
             Looking for the curated art exhibition?
           </p>

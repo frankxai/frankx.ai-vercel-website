@@ -272,7 +272,7 @@ export function Hero3D({ className, height = 'h-[600px]' }: Hero3DProps) {
   return (
     <div className={`relative ${height} ${className}`}>
       {/* Gradient overlay for text readability */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#030712] pointer-events-none z-10" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#0a0a0b] pointer-events-none z-10" />
 
       <Suspense fallback={<LoadingFallback />}>
         <Canvas

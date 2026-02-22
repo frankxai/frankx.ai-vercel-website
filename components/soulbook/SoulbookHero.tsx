@@ -79,7 +79,7 @@ export default function SoulbookHero() {
       {/* Golden glow orbs */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <motion.div
-          className="absolute w-[500px] h-[500px] rounded-full bg-amber-500/10 blur-[120px]"
+          className="absolute w-[500px] h-[500px] rounded-full bg-amber-500/10 blur-[128px]"
           style={{ left: '10%', top: '20%' }}
           animate={{
             scale: [1, 1.2, 1],
@@ -88,7 +88,7 @@ export default function SoulbookHero() {
           transition={{ duration: 8, repeat: Infinity }}
         />
         <motion.div
-          className="absolute w-[400px] h-[400px] rounded-full bg-yellow-500/8 blur-[100px]"
+          className="absolute w-[400px] h-[400px] rounded-full bg-yellow-500/8 blur-[128px]"
           style={{ right: '10%', bottom: '20%' }}
           animate={{
             scale: [1, 1.3, 1],

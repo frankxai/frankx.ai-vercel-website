@@ -80,7 +80,7 @@ export default function SkillBuilderPage() {
   }
 
   return (
-    <main className="min-h-screen bg-[#030712] text-white">
+    <main className="min-h-screen bg-[#0a0a0b] text-white">
       <section className="border-b border-white/10">
         <div className="max-w-6xl mx-auto px-6 py-16">
           <div className="flex flex-wrap items-center justify-between gap-4">

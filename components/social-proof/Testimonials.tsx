@@ -85,7 +85,7 @@ function TestimonialCard({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: index * 0.1 }}
-      className="p-6 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-white/10 transition-all h-full flex flex-col"
+      className="p-6 rounded-2xl border border-white/[0.08] bg-white/[0.03] hover:border-white/10 transition-all h-full flex flex-col"
     >
       <Quote className={`w-8 h-8 ${colors.text} opacity-50 mb-4`} />
 

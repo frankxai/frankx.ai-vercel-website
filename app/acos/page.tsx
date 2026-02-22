@@ -186,7 +186,7 @@ const faqSchema = {
 
 export default function ACOSPage() {
   return (
-    <div className="min-h-screen bg-[#02030b] text-slate-100">
+    <div className="min-h-screen bg-[#0a0a0b] text-slate-100">
       {/* ─── Hero ─── */}
       <section className="relative overflow-hidden pt-24 pb-20">
         <div className="absolute inset-0 bg-gradient-to-br from-purple-950/40 via-[#02030b] to-cyan-950/30" />
@@ -257,7 +257,7 @@ export default function ACOSPage() {
       </section>
 
       {/* ─── Stats ─── */}
-      <section className="border-y border-white/5 bg-white/[0.02] py-12">
+      <section className="border-y border-white/[0.08] bg-white/[0.03] py-12">
         <div className="mx-auto grid max-w-5xl grid-cols-2 gap-6 px-6 lg:grid-cols-4">
           {stats.map((stat) => (
             <div key={stat.label} className="text-center">
@@ -293,7 +293,7 @@ export default function ACOSPage() {
       </section>
 
       {/* ─── Commands Preview ─── */}
-      <section className="border-y border-white/5 bg-white/[0.02] py-20">
+      <section className="border-y border-white/[0.08] bg-white/[0.03] py-20">
         <div className="mx-auto max-w-5xl px-6">
           <h2 className="text-center text-3xl font-bold text-white sm:text-4xl">
             130+ Commands at Your Fingertips
@@ -401,7 +401,7 @@ export default function ACOSPage() {
       </section>
 
       {/* ─── FAQ ─── */}
-      <section className="border-t border-white/5 bg-white/[0.02] py-20">
+      <section className="border-t border-white/[0.08] bg-white/[0.03] py-20">
         <div className="mx-auto max-w-3xl px-6">
           <h2 className="text-center text-3xl font-bold text-white">Frequently Asked Questions</h2>
           <div className="mt-10 space-y-4">

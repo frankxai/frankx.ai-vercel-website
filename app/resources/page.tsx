@@ -23,7 +23,7 @@ function ResourcesBackground() {
 
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden">
-      <div className="absolute inset-0 bg-[#030712]" />
+      <div className="absolute inset-0 bg-[#0a0a0b]" />
 
       <motion.div
         className="absolute -right-52 top-32 h-[640px] w-[640px] rounded-full opacity-25"
@@ -282,7 +282,7 @@ function ResourceGrid({
               <LinkComponent
                 key={item.name}
                 {...linkProps}
-                className="group rounded-2xl border border-white/10 bg-white/[0.02] p-5 transition-all hover:-translate-y-1 hover:border-white/20 hover:bg-white/[0.04]"
+                className="group rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5 transition-all hover:-translate-y-1 hover:border-white/20 hover:bg-white/[0.04]"
               >
                 <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-emerald-300">
                   <Icon className="h-5 w-5" />

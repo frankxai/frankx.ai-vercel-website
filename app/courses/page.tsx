@@ -92,19 +92,19 @@ const categories = [
 function AuroraBackground() {
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none">
-      <div className="absolute inset-0 bg-[#030712]" />
+      <div className="absolute inset-0" style={{ backgroundColor: '#0a0a0b' }} />
       <div
-        className="absolute -top-[40%] -left-[20%] w-[80%] h-[80%]"
+        className="absolute -top-[40%] -left-[20%] w-[80%] h-[80%] rounded-full"
         style={{
           background: 'radial-gradient(ellipse at center, rgba(16, 185, 129, 0.06) 0%, transparent 70%)',
-          filter: 'blur(100px)',
+          filter: 'blur(128px)',
         }}
       />
       <div
-        className="absolute -bottom-[30%] -right-[10%] w-[60%] h-[60%]"
+        className="absolute -bottom-[30%] -right-[10%] w-[60%] h-[60%] rounded-full"
         style={{
-          background: 'radial-gradient(ellipse at center, rgba(6, 182, 212, 0.05) 0%, transparent 70%)',
-          filter: 'blur(100px)',
+          background: 'radial-gradient(ellipse at center, rgba(6, 182, 212, 0.04) 0%, transparent 70%)',
+          filter: 'blur(128px)',
         }}
       />
       <div
@@ -129,7 +129,7 @@ function CourseCard({ course, index }: { course: CourseCardData; index: number }
     >
       <Link
         href={course.href}
-        className="group block relative p-6 rounded-2xl border border-white/5 overflow-hidden hover:border-white/10 transition-all duration-300 hover:-translate-y-1 h-full"
+        className="group block relative p-6 rounded-3xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-sm overflow-hidden hover:border-white/15 transition-all duration-300 hover:-translate-y-1 h-full"
       >
         <div className={`absolute inset-0 bg-gradient-to-br ${course.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
 
@@ -352,7 +352,7 @@ export default function CoursesPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.05 }}
-                  className="group flex items-center justify-between p-5 rounded-xl bg-white/[0.02] border border-white/5 hover:bg-white/[0.04] hover:border-white/10 transition-all"
+                  className="group flex items-center justify-between p-5 rounded-2xl bg-white/[0.03] border border-white/[0.08] backdrop-blur-sm hover:bg-white/[0.05] hover:border-white/15 transition-all duration-300"
                 >
                   <div>
                     <div className="text-xs uppercase tracking-[0.15em] text-white/30 mb-1">
@@ -385,7 +385,7 @@ export default function CoursesPage() {
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Link
                   href="/courses/conscious-ai-foundations#waitlist"
-                  className="group inline-flex items-center gap-3 bg-white text-black px-8 py-4 rounded-full font-semibold transition-all hover:bg-white/90 hover:shadow-[0_0_40px_rgba(255,255,255,0.15)]"
+                  className="group inline-flex items-center gap-3 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-4 font-semibold shadow-lg shadow-emerald-500/20 transition-all hover:shadow-xl hover:shadow-emerald-500/30 hover:-translate-y-0.5"
                 >
                   Join Waitlist
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

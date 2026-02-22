@@ -48,7 +48,7 @@ export default function NewsletterCTA() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1 }}
-                className="rounded-xl border border-white/5 bg-white/[0.02] p-6"
+                className="rounded-xl border border-white/[0.08] bg-white/[0.03] p-6"
               >
                 <div className="mb-3 text-2xl font-bold text-white/10">
                   {item.step}

@@ -96,7 +96,7 @@ function EmailPreview({ stream }: { stream: NewsletterStream }) {
       </div>
 
       {/* Email header bar */}
-      <div className="border-b border-white/5 bg-white/[0.02] px-4 py-2.5">
+      <div className="border-b border-white/[0.08] bg-white/[0.03] px-4 py-2.5">
         <div className="flex items-center gap-2">
           <div
             className="flex h-6 w-6 items-center justify-center rounded-full text-[10px] font-bold text-white"
@@ -175,7 +175,7 @@ function EmailPreview({ stream }: { stream: NewsletterStream }) {
         </div>
 
         {/* Second card */}
-        <div className="mt-2 rounded-lg border border-white/5 bg-white/[0.02] p-3">
+        <div className="mt-2 rounded-lg border border-white/[0.08] bg-white/[0.03] p-3">
           <div className="mb-1.5 h-1.5 w-12 rounded-full bg-cyan-500/40" />
           <div className="space-y-1">
             <div className="h-1 w-full rounded-full bg-white/8" />
@@ -264,7 +264,7 @@ function StreamCard({
             className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
             sizes="(max-width: 768px) 100vw, 1024px"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#030712] via-[#030712]/60 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/60 to-transparent" />
           {/* Bioluminescent glow accent */}
           <div
             className="absolute bottom-0 left-0 right-0 h-px"

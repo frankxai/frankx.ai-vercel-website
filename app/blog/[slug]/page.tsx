@@ -124,7 +124,7 @@ export default async function BlogPostPage({
   const extractedFaqs = extractFAQFromContent(post.content)
 
   return (
-    <div className="min-h-screen bg-[#030712] text-white">
+    <div className="min-h-screen bg-[#0a0a0b] text-white">
       <JsonLd type="Article" data={articleSchema} />
       {extractedFaqs.length > 0 && (
         <JsonLd
@@ -190,7 +190,7 @@ export default async function BlogPostPage({
               </p>
 
               {/* Author Card */}
-              <div className="flex flex-col gap-4 rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-sm p-6 md:flex-row md:items-center md:justify-between">
+              <div className="flex flex-col gap-4 rounded-2xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-sm p-6 md:flex-row md:items-center md:justify-between">
                 <div className="flex items-center gap-4">
                   <Image src="/images/mascot/mascot-v25-crystal-familiar.png" alt="Axi" width={48} height={48} className="rounded-full shadow-lg shadow-emerald-500/20" />
                   <div>

@@ -29,7 +29,7 @@ import { AILabsMarquee } from '@/components/ui/AILabsMarquee'
 function AuroraBackground() {
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none">
-      <div className="absolute inset-0 bg-[#030712]" />
+      <div className="absolute inset-0 bg-[#0a0a0b]" />
 
       {/* Gradient orbs */}
       <motion.div
@@ -363,7 +363,7 @@ export default function StudentsPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
-                  className="p-6 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-white/10 transition-all"
+                  className="p-6 rounded-2xl border border-white/[0.08] bg-white/[0.03] hover:border-white/10 transition-all"
                 >
                   <div className={`p-3 rounded-xl ${colorMap[item.color].icon} w-fit mb-4`}>
                     <item.icon className="w-5 h-5" />
@@ -452,7 +452,7 @@ export default function StudentsPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.05 }}
-                  className="group p-5 rounded-xl border border-white/5 bg-white/[0.02] hover:border-white/15 hover:bg-white/[0.04] transition-all"
+                  className="group p-5 rounded-xl border border-white/[0.08] bg-white/[0.03] hover:border-white/15 hover:bg-white/[0.04] transition-all"
                 >
                   <div className={`p-2.5 rounded-lg ${colorMap[resource.color].icon} w-fit mb-3`}>
                     <resource.icon className="w-4 h-4" />
@@ -597,7 +597,7 @@ export default function StudentsPage() {
                     transition={{ delay: i * 0.1 }}
                     className="relative"
                   >
-                    <div className="p-5 rounded-xl border border-white/5 bg-white/[0.02] hover:border-white/10 transition-all">
+                    <div className="p-5 rounded-xl border border-white/[0.08] bg-white/[0.03] hover:border-white/10 transition-all">
                       <div className="text-xs font-medium text-cyan-400 mb-2">Week {milestone.week}</div>
                       <h3 className="text-base font-semibold text-white mb-1">{milestone.title}</h3>
                       <p className="text-xs text-white/50">{milestone.description}</p>
@@ -635,7 +635,7 @@ export default function StudentsPage() {
                 >
                   <Link
                     href={reading.href}
-                    className="group block p-6 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-white/15 hover:bg-white/[0.04] transition-all h-full"
+                    className="group block p-6 rounded-2xl border border-white/[0.08] bg-white/[0.03] hover:border-white/15 hover:bg-white/[0.04] transition-all h-full"
                   >
                     <BookOpen className={`w-8 h-8 ${colorMap[reading.color].text} opacity-70 mb-4`} />
                     <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-emerald-400 transition-colors">

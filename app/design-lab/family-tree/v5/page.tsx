@@ -185,9 +185,9 @@ function Scene() {
 
 export default function FamilyTreeV5() {
   return (
-    <main className="flex h-screen flex-col bg-[#030712]">
+    <main className="flex h-screen flex-col bg-[#0a0a0b]">
       {/* Header overlay */}
-      <div className="absolute left-0 right-0 top-0 z-10 bg-gradient-to-b from-[#030712] via-[#030712]/80 to-transparent px-6 pb-12 pt-6">
+      <div className="absolute left-0 right-0 top-0 z-10 bg-gradient-to-b from-[#0a0a0b] via-[#0a0a0b]/80 to-transparent px-6 pb-12 pt-6">
         <div className="mx-auto flex max-w-5xl items-center gap-4">
           <Link
             href="/design-lab/family-tree"
@@ -220,7 +220,7 @@ export default function FamilyTreeV5() {
       </div>
 
       {/* Legend overlay */}
-      <div className="absolute bottom-6 left-6 z-10 rounded-xl border border-white/5 bg-[#030712]/80 p-4 backdrop-blur-md">
+      <div className="absolute bottom-6 left-6 z-10 rounded-xl border border-white/5 bg-[#0a0a0b]/80 p-4 backdrop-blur-md">
         <div className="grid grid-cols-2 gap-x-6 gap-y-2">
           {Object.entries(sideColors).map(([side, colors]) => (
             <div key={side} className="flex items-center gap-2">

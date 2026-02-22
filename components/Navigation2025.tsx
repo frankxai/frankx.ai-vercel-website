@@ -45,7 +45,7 @@ export default function Navigation2025() {
         className={cn(
           'fixed top-0 w-full z-50 transition-all duration-500',
           scrolled
-            ? 'bg-[#030712]/80 backdrop-blur-xl border-b border-white/5'
+            ? 'bg-[#0a0a0b]/80 backdrop-blur-xl border-b border-white/5'
             : 'bg-transparent'
         )}
       >

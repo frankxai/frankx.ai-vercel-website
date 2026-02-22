@@ -90,7 +90,7 @@ export default async function ReviewPage({
     .slice(0, 3);
 
   return (
-    <div className="min-h-screen bg-[#030712]">
+    <div className="min-h-screen bg-[#0a0a0b]">
       {/* Back Link */}
       <div className="max-w-3xl mx-auto px-6 pt-28 pb-4">
         <Link

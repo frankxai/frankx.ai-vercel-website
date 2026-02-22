@@ -146,7 +146,7 @@ function TeamCard({ member, index }: { member: typeof team[number]; index: numbe
             className="object-cover transition-transform duration-500 group-hover:scale-105"
             sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#030712] via-[#030712]/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/40 to-transparent" />
 
           {/* Domain badge */}
           <div className="absolute top-3 left-3">
@@ -215,7 +215,7 @@ function TeamCard({ member, index }: { member: typeof team[number]; index: numbe
 
 export default function TeamPage() {
   return (
-    <div className="min-h-screen bg-[#030712] text-white">
+    <div className="min-h-screen bg-[#0a0a0b] text-white">
       <main className="px-6 pt-28 pb-20">
         <div className="mx-auto max-w-6xl">
           {/* Hero */}
@@ -303,7 +303,7 @@ export default function TeamPage() {
           <section className="mb-20">
             <h2 className="text-2xl font-bold text-white text-center mb-8">How the team works</h2>
             <div className="grid md:grid-cols-3 gap-6">
-              <div className="rounded-2xl border border-white/5 bg-white/[0.02] p-6">
+              <div className="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-6 backdrop-blur-sm">
                 <div className="w-10 h-10 rounded-xl bg-emerald-500/10 flex items-center justify-center mb-4">
                   <Code2 className="w-5 h-5 text-emerald-400" />
                 </div>
@@ -313,7 +313,7 @@ export default function TeamPage() {
                   Nova handles content. No overlap, no confusion.
                 </p>
               </div>
-              <div className="rounded-2xl border border-white/5 bg-white/[0.02] p-6">
+              <div className="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-6 backdrop-blur-sm">
                 <div className="w-10 h-10 rounded-xl bg-purple-500/10 flex items-center justify-center mb-4">
                   <Cpu className="w-5 h-5 text-purple-400" />
                 </div>
@@ -323,7 +323,7 @@ export default function TeamPage() {
                   Stella orchestrates, the team executes.
                 </p>
               </div>
-              <div className="rounded-2xl border border-white/5 bg-white/[0.02] p-6">
+              <div className="rounded-3xl border border-white/[0.08] bg-white/[0.03] p-6 backdrop-blur-sm">
                 <div className="w-10 h-10 rounded-xl bg-cyan-500/10 flex items-center justify-center mb-4">
                   <Eye className="w-5 h-5 text-cyan-400" />
                 </div>

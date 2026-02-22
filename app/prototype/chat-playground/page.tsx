@@ -285,9 +285,9 @@ export default function ChatPlaygroundPage() {
   const hasApiKey = availableProviders.length > 0
 
   return (
-    <main className="flex min-h-screen flex-col bg-[#030712]">
+    <main className="flex min-h-screen flex-col bg-[#0a0a0b]">
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 z-40 border-b border-white/[0.06] bg-[#030712]/90 backdrop-blur-xl">
+      <header className="fixed top-0 left-0 right-0 z-40 border-b border-white/[0.06] bg-[#0a0a0b]/90 backdrop-blur-xl">
         <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-3">
           <div className="flex items-center gap-4">
             <Link
@@ -406,7 +406,7 @@ export default function ChatPlaygroundPage() {
           </div>
 
           {/* Input */}
-          <div className="border-t border-white/[0.06] bg-[#030712]/80 backdrop-blur-sm p-4">
+          <div className="border-t border-white/[0.06] bg-[#0a0a0b]/80 backdrop-blur-sm p-4">
             <form onSubmit={handleSubmit} className="mx-auto max-w-3xl">
               <div className="flex gap-3">
                 <input

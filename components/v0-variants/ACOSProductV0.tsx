@@ -53,7 +53,7 @@ export default function ACOSLandingPage() {
         {/* Animated Background */}
         <div className="absolute inset-0 overflow-hidden">
           <motion.div
-            className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full bg-[#AB47C7]/20 blur-[120px]"
+            className="absolute top-1/4 left-1/4 w-[500px] h-[500px] rounded-full bg-[#AB47C7]/20 blur-[128px]"
             animate={{
               scale: [1, 1.2, 1],
               opacity: [0.3, 0.5, 0.3],
@@ -65,7 +65,7 @@ export default function ACOSLandingPage() {
             }}
           />
           <motion.div
-            className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full bg-[#43BFE3]/20 blur-[100px]"
+            className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] rounded-full bg-[#43BFE3]/20 blur-[128px]"
             animate={{
               scale: [1.2, 1, 1.2],
               opacity: [0.5, 0.3, 0.5],
@@ -634,7 +634,7 @@ export default function ACOSLandingPage() {
       <section id="pricing" className="py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
         <div className="absolute inset-0">
           <motion.div
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[#AB47C7]/10 blur-[120px]"
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[#AB47C7]/10 blur-[128px]"
             animate={{
               scale: [1, 1.1, 1],
               opacity: [0.3, 0.4, 0.3],

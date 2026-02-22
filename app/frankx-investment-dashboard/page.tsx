@@ -100,7 +100,7 @@ export default function InvestorDashboardPage() {
   }))
 
   return (
-    <main className="min-h-screen bg-[#030712]">
+    <main className="min-h-screen bg-[#0a0a0b]">
       {/* Header */}
       <section className="border-b border-white/[0.06] pb-6 pt-28">
         <div className="mx-auto max-w-7xl px-6">

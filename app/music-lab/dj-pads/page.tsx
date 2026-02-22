@@ -613,7 +613,7 @@ export default function DJPadsPage() {
       <div className="fixed inset-0 pointer-events-none" aria-hidden="true">
         <div className="absolute w-[600px] h-[600px] bg-cyan-500/[0.02] rounded-full blur-[200px] top-0 right-0" />
         <div className="absolute w-[400px] h-[400px] bg-purple-500/[0.02] rounded-full blur-[150px] bottom-0 left-0" />
-        <div className="absolute w-[300px] h-[300px] bg-rose-500/[0.015] rounded-full blur-[120px] top-1/2 left-1/2" />
+        <div className="absolute w-[300px] h-[300px] bg-rose-500/[0.015] rounded-full blur-[128px] top-1/2 left-1/2" />
       </div>
 
       {/* Header */}

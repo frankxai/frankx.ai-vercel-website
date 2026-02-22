@@ -104,7 +104,7 @@ export default function FamilyTreeV2() {
   )
 
   return (
-    <main className="flex h-screen flex-col bg-[#030712]">
+    <main className="flex h-screen flex-col bg-[#0a0a0b]">
       {/* Header */}
       <div className="flex-shrink-0 border-b border-white/5 px-6 py-4">
         <div className="flex items-center gap-4">

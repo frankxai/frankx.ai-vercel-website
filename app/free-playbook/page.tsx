@@ -10,14 +10,13 @@ import {
   CheckCircle2,
   Sparkles,
   Zap,
-  Star,
   Gift,
 } from 'lucide-react'
 
 function PlaybookBackground() {
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden">
-      <div className="absolute inset-0 bg-[#030712]" />
+      <div className="absolute inset-0 bg-[#0a0a0b]" />
       <div
         className="absolute inset-0 opacity-[0.02]"
         style={{
@@ -134,12 +133,14 @@ export default function FreePlaybookPage() {
 
     setStatus('loading')
     try {
-      const formData = new FormData()
-      formData.append('email', email)
-
-      const res = await fetch('/api/newsletter', {
+      const res = await fetch('/api/subscribe', {
         method: 'POST',
-        body: formData,
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email,
+          listType: 'newsletter',
+          source: 'free-playbook',
+        }),
       })
 
       if (res.ok) {
@@ -177,7 +178,7 @@ export default function FreePlaybookPage() {
             </h1>
 
             <p className="mx-auto max-w-2xl text-lg text-slate-400 mb-8">
-              Three battle-tested playbooks from 500+ AI songs and years of Claude Code mastery.
+              Three battle-tested playbooks from 12,000+ AI songs and years of Claude Code mastery.
               Normally <span className="text-white font-semibold line-through">$111</span> total value.
               <span className="text-emerald-400 font-semibold"> Free today.</span>
             </p>
@@ -297,7 +298,7 @@ export default function FreePlaybookPage() {
           >
             <div className="flex flex-wrap items-center justify-center gap-8 text-slate-400">
               {[
-                { value: '500+', label: 'AI Songs Created' },
+                { value: '12,000+', label: 'AI Songs Created' },
                 { value: '74', label: 'Prompts Included' },
                 { value: '5+', label: 'Years Experience' },
               ].map((stat) => (
@@ -309,25 +310,27 @@ export default function FreePlaybookPage() {
             </div>
           </motion.div>
 
-          {/* Trust Elements */}
+          {/* Ecosystem Links */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="rounded-2xl border border-white/10 bg-white/[0.02] p-8 text-center"
+            className="grid gap-4 sm:grid-cols-3"
           >
-            <div className="flex items-center justify-center gap-1 mb-4">
-              {[1, 2, 3, 4, 5].map((star) => (
-                <Star key={star} className="h-5 w-5 fill-amber-400 text-amber-400" />
-              ))}
-            </div>
-            <p className="text-lg text-white mb-2">
-              &quot;The Suno playbook alone transformed my music production workflow.
-              I went from struggling to consistent releases.&quot;
-            </p>
-            <p className="text-sm text-slate-400">
-              Alex Rivera, Music Producer
-            </p>
+            {[
+              { href: '/blog', label: 'Read the Blog', desc: 'Deep dives into AI creation' },
+              { href: '/newsletter', label: 'Newsletter', desc: '6 streams for builders' },
+              { href: '/shop', label: 'Shop Templates', desc: 'Premium AI blueprints' },
+            ].map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="group rounded-xl border border-white/[0.08] bg-white/[0.03] p-5 transition-all hover:border-emerald-500/30 hover:bg-emerald-500/5"
+              >
+                <p className="font-semibold text-white group-hover:text-emerald-400 transition-colors">{link.label}</p>
+                <p className="text-sm text-slate-400 mt-1">{link.desc}</p>
+              </Link>
+            ))}
           </motion.div>
 
           {/* Bottom CTA */}

@@ -64,7 +64,7 @@ export default function SoulbookPreviewPage() {
           </p>
 
           <p className="text-base text-gray-400 max-w-2xl mx-auto mb-8">
-            The same principles I use to balance 500+ AI songs, enterprise AI architecture, and conscious creation. Think of this as your studio manual for authentic, transformative work.
+            The same principles I use to balance 12,000+ AI songs, enterprise AI architecture, and creative production. Think of this as your studio manual for authentic, high-output work.
           </p>
 
           {/* Stats */}

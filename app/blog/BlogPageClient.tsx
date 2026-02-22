@@ -57,12 +57,12 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
   const regularPosts = filteredPosts.filter((post) => !post.featured)
 
   return (
-    <main className="min-h-screen bg-[#030712] text-white">
+    <main className="min-h-screen bg-[#0a0a0b] text-white">
       {/* Editorial Hero */}
       <section className="relative pt-28 pb-10 px-6 overflow-hidden">
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-0 left-1/4 w-96 h-96 bg-emerald-500/8 rounded-full blur-3xl" />
-          <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-cyan-500/8 rounded-full blur-3xl" />
+          <div className="absolute top-0 left-1/4 w-[500px] h-[500px] rounded-full blur-[128px]" style={{ background: 'radial-gradient(circle, rgba(16,185,129,0.06) 0%, transparent 70%)' }} />
+          <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] rounded-full blur-[128px]" style={{ background: 'radial-gradient(circle, rgba(6,182,212,0.04) 0%, transparent 70%)' }} />
         </div>
 
         <div className="max-w-6xl mx-auto relative">
@@ -113,7 +113,7 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
               transition={{ delay: 0.12, duration: 0.6 }}
             >
               <Link href={`/blog/${latestPost.slug}`} className="group block">
-                <div className="relative rounded-2xl border border-white/10 bg-white/[0.03] overflow-hidden transition-all duration-300 hover:border-white/20 hover:bg-white/[0.05]">
+                <div className="relative rounded-3xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-sm overflow-hidden transition-all duration-300 hover:border-emerald-500/30 hover:bg-white/[0.05]">
                   {latestPost.image ? (
                     <div className="grid md:grid-cols-2 gap-0">
                       <div className="relative aspect-[4/3] md:aspect-auto md:min-h-[280px] overflow-hidden">
@@ -167,7 +167,7 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
       </section>
 
       {/* Category Dropdown & Filter Section */}
-      <section className="pb-8 px-6 sticky top-20 z-40 bg-[#030712]/80 backdrop-blur-xl border-b border-white/5">
+      <section className="pb-8 px-6 sticky top-20 z-40 bg-[#0a0a0b]/80 backdrop-blur-xl border-b border-white/5">
         <div className="max-w-6xl mx-auto">
           <div className="flex items-center justify-between py-4">
             <CategoryDropdown
@@ -314,11 +314,11 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
             Get weekly insights on AI, creativity, and building in public.
           </p>
           <Link
-            href="/free-playbook"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black rounded-full font-semibold hover:bg-white/90 transition-all"
+            href="/newsletter"
+            className="group inline-flex items-center gap-2 px-6 py-3 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-white font-semibold shadow-lg shadow-emerald-500/20 transition-all hover:shadow-xl hover:shadow-emerald-500/30"
           >
-            Start Building
-            <ArrowRight className="w-4 h-4" />
+            Start Here
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
       </section>

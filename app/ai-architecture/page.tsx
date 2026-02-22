@@ -131,7 +131,7 @@ const staggerContainer = {
 function HubBackground() {
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden" aria-hidden>
-      <div className="absolute inset-0 bg-[#030712]" />
+      <div className="absolute inset-0 bg-[#0a0a0b]" />
       {/* Grid pattern */}
       <div
         className="absolute inset-0 opacity-[0.02]"

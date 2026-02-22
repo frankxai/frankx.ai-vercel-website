@@ -84,7 +84,7 @@ export function PatternCard({
       <Link
         href={`/ai-architect-academy/patterns#${pattern.id}`}
         className={cn(
-          'group flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.02] p-4 transition-all hover:border-white/20 hover:bg-white/[0.04]',
+          'group flex items-center gap-3 rounded-xl border border-white/[0.08] bg-white/[0.03] p-4 transition-all hover:border-white/20 hover:bg-white/[0.04]',
           className
         )}
       >

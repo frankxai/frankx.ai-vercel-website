@@ -77,7 +77,7 @@ export default function RitualsPage() {
   const activeData = rituals.find((r) => r.id === activeRitual)
 
   return (
-    <main className="min-h-screen bg-[#0F172A] text-white">
+    <main className="min-h-screen bg-[#0a0a0b] text-white">
       {/* Hero */}
       <section className="pt-32 pb-16 px-6 text-center">
         <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 text-sm text-white/60 mb-8">
@@ -106,7 +106,7 @@ export default function RitualsPage() {
               }`}
               onClick={() => setActiveRitual(activeRitual === ritual.id ? null : ritual.id)}
             >
-              <div className="absolute inset-0 bg-[#0F172A]/80 group-hover:bg-[#0F172A]/60 transition-colors" />
+              <div className="absolute inset-0 bg-[#0a0a0b]/80 group-hover:bg-[#0a0a0b]/60 transition-colors" />
               <div className="relative z-10">
                 <div
                   className="w-10 h-10 rounded-xl flex items-center justify-center mb-4"
@@ -132,7 +132,7 @@ export default function RitualsPage() {
             exit={{ opacity: 0, height: 0 }}
             className="max-w-4xl mx-auto px-6 pb-12 overflow-hidden"
           >
-            <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-8">
+            <div className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-8">
               <p className="text-white/70 text-lg leading-relaxed mb-6">
                 {activeData.description}
               </p>
@@ -168,7 +168,7 @@ export default function RitualsPage() {
       </section>
 
       {/* CTA */}
-      <section className="border-t border-white/10 bg-white/[0.02]">
+      <section className="border-t border-white/[0.08] bg-white/[0.03]">
         <div className="max-w-4xl mx-auto px-6 py-16 text-center">
           <h2 className="text-2xl font-bold mb-4">See what these systems produce</h2>
           <p className="text-white/60 mb-8 max-w-lg mx-auto">

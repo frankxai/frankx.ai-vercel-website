@@ -64,7 +64,7 @@ export default function LibraryPage() {
   const categories = getAllReviewCategories();
 
   return (
-    <div className="min-h-screen bg-[#030712]">
+    <div className="min-h-screen bg-[#0a0a0b]">
       {/* Hero */}
       <section className="relative pt-32 pb-20 px-6">
         <div className="absolute inset-0 pointer-events-none">

@@ -66,7 +66,7 @@ const stats = [
 
 export default function AchievementsPage() {
   return (
-    <main className="min-h-screen bg-[#0F172A] text-white">
+    <main className="min-h-screen bg-[#0a0a0b] text-white">
       {/* Hero */}
       <section className="pt-32 pb-16 px-6">
         <div className="max-w-4xl mx-auto text-center">
@@ -84,7 +84,7 @@ export default function AchievementsPage() {
       </section>
 
       {/* Stats Bar */}
-      <section className="border-y border-white/10 bg-white/[0.02]">
+      <section className="border-y border-white/[0.08] bg-white/[0.03]">
         <div className="max-w-5xl mx-auto px-6 py-8 grid grid-cols-2 md:grid-cols-4 gap-8">
           {stats.map((stat) => (
             <div key={stat.label} className="text-center">
@@ -110,7 +110,7 @@ export default function AchievementsPage() {
                 return (
                   <div
                     key={item.title}
-                    className="group relative rounded-2xl border border-white/10 bg-white/[0.02] p-6 hover:border-white/20 transition-colors"
+                    className="group relative rounded-2xl border border-white/[0.08] bg-white/[0.03] p-6 hover:border-white/20 transition-colors"
                   >
                     <div className="flex items-start gap-4">
                       <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-[#AB47C7]/10 flex items-center justify-center">
@@ -137,7 +137,7 @@ export default function AchievementsPage() {
       </section>
 
       {/* CTA */}
-      <section className="border-t border-white/10 bg-white/[0.02]">
+      <section className="border-t border-white/[0.08] bg-white/[0.03]">
         <div className="max-w-4xl mx-auto px-6 py-16 text-center">
           <h2 className="text-2xl font-bold mb-4">See how it&apos;s built</h2>
           <p className="text-white/60 mb-8 max-w-lg mx-auto">

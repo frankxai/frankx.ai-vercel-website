@@ -197,17 +197,17 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
 
 export default function CoachingPage() {
   return (
-    <div className="min-h-screen overflow-hidden bg-[#0F172A] text-white">
+    <div className="min-h-screen overflow-hidden bg-[#0a0a0b] text-white">
       {/* Background Orbs */}
       <div className="pointer-events-none fixed inset-0">
         <motion.div
-          className="absolute -right-40 top-20 h-[600px] w-[600px] rounded-full bg-[#AB47C7]/15 blur-[120px]"
-          animate={{ scale: [1, 1.15, 1], opacity: [0.15, 0.3, 0.15] }}
+          className="absolute -right-40 top-20 h-[600px] w-[600px] rounded-full bg-[#AB47C7]/[0.06] blur-[128px]"
+          animate={{ scale: [1, 1.15, 1], opacity: [1, 0.7, 1] }}
           transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
         />
         <motion.div
-          className="absolute -left-40 bottom-40 h-[500px] w-[500px] rounded-full bg-[#43BFE3]/15 blur-[100px]"
-          animate={{ scale: [1.1, 1, 1.1], opacity: [0.1, 0.25, 0.1] }}
+          className="absolute -left-40 bottom-40 h-[500px] w-[500px] rounded-full bg-[#43BFE3]/[0.04] blur-[128px]"
+          animate={{ scale: [1.1, 1, 1.1], opacity: [1, 0.7, 1] }}
           transition={{ duration: 15, repeat: Infinity, ease: 'easeInOut' }}
         />
       </div>
@@ -238,7 +238,7 @@ export default function CoachingPage() {
 
             <p className="mb-8 max-w-2xl text-xl leading-relaxed text-slate-400 text-balance">
               Skip the generic AI advice. Work directly with someone who&apos;s built 40+ AI agents,
-              shipped production systems, and created 500+ AI songs.
+              shipped production systems, and created 12,000+ AI songs.
             </p>
 
             <motion.div

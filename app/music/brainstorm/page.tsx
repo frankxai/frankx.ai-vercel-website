@@ -864,7 +864,7 @@ export default function BrainstormPage() {
   const [showTags, setShowTags] = useState(false)
 
   return (
-    <main className="relative min-h-screen bg-[#030712] text-white">
+    <main className="relative min-h-screen bg-[#0a0a0b] text-white">
       {/* Background */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 right-0 w-[50%] h-[50%]" style={{ background: 'radial-gradient(ellipse at center, rgba(168, 85, 247, 0.06) 0%, transparent 70%)', filter: 'blur(100px)' }} />

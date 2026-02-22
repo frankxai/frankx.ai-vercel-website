@@ -66,7 +66,7 @@ export default function ShopPage() {
       <section className="relative overflow-hidden pt-24 pb-16">
         <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-amber-500/5" />
         <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-cyan-500/8 rounded-full blur-[150px]" />
-        <div className="absolute bottom-1/4 right-1/3 w-[400px] h-[400px] bg-amber-500/8 rounded-full blur-[120px]" />
+        <div className="absolute bottom-1/4 right-1/3 w-[400px] h-[400px] bg-amber-500/8 rounded-full blur-[128px]" />
 
         <div className="relative max-w-7xl mx-auto px-6">
           <Link

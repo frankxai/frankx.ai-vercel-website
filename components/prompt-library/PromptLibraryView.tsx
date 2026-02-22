@@ -154,7 +154,7 @@ export default function PromptLibraryView({
     <main className="relative min-h-screen pb-24 pt-28 text-white">
       {/* Background */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute inset-0 bg-[#030712]" />
+        <div className="absolute inset-0 bg-[#0a0a0b]" />
         <motion.div
           className="absolute top-0 -right-[20%] w-[60%] h-[60%]"
           style={{
@@ -460,7 +460,7 @@ export default function PromptLibraryView({
 
               {/* Results Grid */}
               {filteredPrompts.length === 0 ? (
-                <div className="text-center py-16 rounded-2xl border border-white/10 bg-white/[0.02]">
+                <div className="text-center py-16 rounded-2xl border border-white/[0.08] bg-white/[0.03]">
                   <p className="text-white/60 mb-4">No prompts matched your filters.</p>
                   <button
                     onClick={clearFilters}

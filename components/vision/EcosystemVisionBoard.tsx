@@ -150,7 +150,7 @@ export default function EcosystemVisionBoard() {
                     loading={i < INITIAL_SHOW ? 'eager' : 'lazy'}
                   />
                   {/* Hover overlay */}
-                  <div className="absolute inset-0 flex items-end bg-gradient-to-t from-[#030712]/90 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                  <div className="absolute inset-0 flex items-end bg-gradient-to-t from-[#0a0a0b]/90 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                     <div className="flex w-full items-center justify-between p-4">
                       <span className="text-sm font-medium text-white">
                         {img.title}

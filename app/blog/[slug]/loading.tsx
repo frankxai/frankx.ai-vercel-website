@@ -1,6 +1,6 @@
 export default function ArticleLoading() {
   return (
-    <div className="min-h-screen bg-[#030712] text-white">
+    <div className="min-h-screen bg-[#0a0a0b] text-white">
       {/* Aurora Background Effect */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl animate-pulse" />
@@ -37,7 +37,7 @@ export default function ArticleLoading() {
             </div>
 
             {/* Author Card skeleton */}
-            <div className="rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-sm p-6">
+            <div className="rounded-2xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-sm p-6">
               <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
                 <div className="flex items-center gap-4">
                   <div className="h-14 w-14 rounded-full bg-gradient-to-br from-emerald-500/20 to-cyan-500/20 animate-pulse" />

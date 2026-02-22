@@ -126,22 +126,22 @@ const itemVariants = {
 
 export default function CommunityPage() {
   return (
-    <div className="min-h-screen overflow-hidden bg-[#0F172A] text-white">
+    <div className="min-h-screen overflow-hidden bg-[#0a0a0b] text-white">
       {/* Background Orbs */}
       <div className="pointer-events-none fixed inset-0">
         <motion.div
-          className="absolute -right-40 top-20 h-[600px] w-[600px] rounded-full bg-[#AB47C7]/15 blur-[120px]"
-          animate={{ scale: [1, 1.15, 1], opacity: [0.15, 0.3, 0.15] }}
+          className="absolute -right-40 top-20 h-[600px] w-[600px] rounded-full bg-[#AB47C7]/[0.06] blur-[128px]"
+          animate={{ scale: [1, 1.15, 1], opacity: [1, 0.7, 1] }}
           transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
         />
         <motion.div
-          className="absolute -left-40 bottom-40 h-[500px] w-[500px] rounded-full bg-[#43BFE3]/15 blur-[100px]"
-          animate={{ scale: [1.1, 1, 1.1], opacity: [0.1, 0.25, 0.1] }}
+          className="absolute -left-40 bottom-40 h-[500px] w-[500px] rounded-full bg-[#43BFE3]/[0.04] blur-[128px]"
+          animate={{ scale: [1.1, 1, 1.1], opacity: [1, 0.7, 1] }}
           transition={{ duration: 15, repeat: Infinity, ease: 'easeInOut' }}
         />
         <motion.div
-          className="absolute left-1/2 top-1/3 h-[400px] w-[400px] -translate-x-1/2 rounded-full bg-[#F59E0B]/10 blur-[100px]"
-          animate={{ scale: [1, 1.2, 1], opacity: [0.1, 0.2, 0.1] }}
+          className="absolute left-1/2 top-1/3 h-[400px] w-[400px] -translate-x-1/2 rounded-full bg-[#F59E0B]/[0.03] blur-[128px]"
+          animate={{ scale: [1, 1.2, 1], opacity: [1, 0.7, 1] }}
           transition={{ duration: 18, repeat: Infinity, ease: 'easeInOut' }}
         />
       </div>
@@ -331,7 +331,7 @@ export default function CommunityPage() {
                           href={connection.href}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="group flex items-start gap-4 rounded-2xl border border-white/10 bg-[#0F172A]/80 p-5 backdrop-blur-sm transition-all hover:border-white/20"
+                          className="group flex items-start gap-4 rounded-2xl border border-white/10 bg-[#0a0a0b]/80 p-5 backdrop-blur-sm transition-all hover:border-white/20"
                         >
                           <Check className="mt-0.5 h-5 w-5 shrink-0 text-[#10B981]" />
                           <div>
@@ -344,7 +344,7 @@ export default function CommunityPage() {
                       ) : (
                         <Link
                           href={connection.href}
-                          className="group flex items-start gap-4 rounded-2xl border border-white/10 bg-[#0F172A]/80 p-5 backdrop-blur-sm transition-all hover:border-white/20"
+                          className="group flex items-start gap-4 rounded-2xl border border-white/10 bg-[#0a0a0b]/80 p-5 backdrop-blur-sm transition-all hover:border-white/20"
                         >
                           <Check className="mt-0.5 h-5 w-5 shrink-0 text-[#10B981]" />
                           <div>

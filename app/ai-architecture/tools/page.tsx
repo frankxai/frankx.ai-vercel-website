@@ -326,7 +326,7 @@ function CategorySection({
 
 export default function ToolsPage() {
   return (
-    <main className="min-h-screen bg-[#030712]">
+    <main className="min-h-screen bg-[#0a0a0b]">
       {/* Header */}
       <section className="pt-32 pb-12">
         <div className="mx-auto max-w-6xl px-6">

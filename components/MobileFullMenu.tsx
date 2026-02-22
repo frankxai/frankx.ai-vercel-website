@@ -147,7 +147,7 @@ export default function MobileFullMenu({ isOpen, onClose }: MobileFullMenuProps)
         aria-label="Full navigation menu"
       >
         {/* Menu Container */}
-        <div className="relative max-h-[85vh] flex flex-col bg-[#030712]/98 backdrop-blur-2xl border-t border-white/10 rounded-t-3xl shadow-2xl shadow-black/50">
+        <div className="relative max-h-[85vh] flex flex-col bg-[#0a0a0b]/98 backdrop-blur-2xl border-t border-white/10 rounded-t-3xl shadow-2xl shadow-black/50">
           {/* Top glow accent */}
           <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-emerald-500/40 to-transparent" />
 

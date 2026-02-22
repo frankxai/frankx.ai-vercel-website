@@ -46,70 +46,29 @@ const aboutFaqs = [
   },
 ]
 
-// Premium background
+// Premium background — static gradients for ambient depth
 function AboutBackground() {
-  const shouldReduceMotion = useReducedMotion()
-
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden">
-      <div className="absolute inset-0 bg-[#030712]" />
-      <motion.div
-        className="absolute -left-60 top-20 h-[600px] w-[600px] rounded-full opacity-25"
-        style={{
-          background:
-            'radial-gradient(circle, rgba(16,185,129,0.35) 0%, transparent 70%)',
-        }}
-        animate={
-          shouldReduceMotion
-            ? undefined
-            : { scale: [1, 1.1, 1], opacity: [0.25, 0.35, 0.25] }
-        }
-        transition={
-          shouldReduceMotion
-            ? undefined
-            : { duration: 10, repeat: Infinity, ease: 'easeInOut' }
-        }
+      <div className="absolute inset-0" style={{ backgroundColor: '#0a0a0b' }} />
+      <div
+        className="absolute -left-60 top-20 h-[600px] w-[600px] rounded-full"
+        style={{ background: 'radial-gradient(circle, rgba(16,185,129,0.06) 0%, transparent 70%)', filter: 'blur(128px)' }}
       />
-      <motion.div
-        className="absolute -right-40 top-1/3 h-[500px] w-[500px] rounded-full opacity-20"
-        style={{
-          background:
-            'radial-gradient(circle, rgba(6,182,212,0.3) 0%, transparent 70%)',
-        }}
-        animate={
-          shouldReduceMotion
-            ? undefined
-            : { scale: [1.1, 1, 1.1], opacity: [0.2, 0.3, 0.2] }
-        }
-        transition={
-          shouldReduceMotion
-            ? undefined
-            : { duration: 12, repeat: Infinity, ease: 'easeInOut' }
-        }
+      <div
+        className="absolute -right-40 top-1/3 h-[500px] w-[500px] rounded-full"
+        style={{ background: 'radial-gradient(circle, rgba(6,182,212,0.04) 0%, transparent 70%)', filter: 'blur(128px)' }}
       />
-      <motion.div
-        className="absolute bottom-40 left-1/4 h-[400px] w-[400px] rounded-full opacity-15"
-        style={{
-          background:
-            'radial-gradient(circle, rgba(139,92,246,0.3) 0%, transparent 70%)',
-        }}
-        animate={
-          shouldReduceMotion
-            ? undefined
-            : { scale: [1, 1.15, 1], opacity: [0.15, 0.25, 0.15] }
-        }
-        transition={
-          shouldReduceMotion
-            ? undefined
-            : { duration: 14, repeat: Infinity, ease: 'easeInOut' }
-        }
+      <div
+        className="absolute bottom-40 left-1/4 h-[400px] w-[400px] rounded-full"
+        style={{ background: 'radial-gradient(circle, rgba(139,92,246,0.03) 0%, transparent 70%)', filter: 'blur(128px)' }}
       />
       <div
         className="absolute inset-0 opacity-[0.015]"
         style={{
-          backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
-                           linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
-          backgroundSize: '60px 60px',
+          backgroundImage: `linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                           linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)`,
+          backgroundSize: '80px 80px',
         }}
       />
     </div>
@@ -147,13 +106,16 @@ export default function AboutPage() {
             />
           </div>
           <div className="mx-auto max-w-5xl px-6">
-            <motion.p
+            <motion.div
               {...fadeIn}
               transition={transition}
-              className="mb-6 text-xs font-medium uppercase tracking-[0.25em] text-emerald-400/60"
+              className="mb-6"
             >
-              About
-            </motion.p>
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 backdrop-blur-xl border border-white/10">
+                <Compass className="w-4 h-4 text-emerald-400" />
+                <span className="text-sm text-white/60">About</span>
+              </div>
+            </motion.div>
 
             <motion.h1
               {...fadeIn}
@@ -263,7 +225,7 @@ export default function AboutPage() {
               <motion.div
                 {...fadeIn}
                 transition={{ ...transition, delay: 0.2 }}
-                className="rounded-2xl border border-white/5 bg-white/[0.02] p-8"
+                className="rounded-3xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-sm p-8"
               >
                 <p className="text-lg text-white/70 leading-relaxed italic font-serif">
                   &ldquo;My family has been building in foreign lands for
@@ -318,7 +280,7 @@ export default function AboutPage() {
                   key={item.place}
                   {...fadeIn}
                   transition={{ ...transition, delay: i * 0.08 }}
-                  className="rounded-2xl border border-white/5 bg-white/[0.02] p-6 hover:border-white/10 hover:bg-white/[0.04] transition-all"
+                  className="rounded-3xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-sm p-6 hover:border-cyan-500/30 hover:bg-white/[0.05] transition-all duration-300"
                 >
                   <item.icon className="w-5 h-5 text-cyan-400/60 mb-3" />
                   <h3 className="text-base font-semibold text-white mb-1">
@@ -347,9 +309,11 @@ export default function AboutPage() {
               <motion.div
                 {...fadeIn}
                 transition={{ ...transition, delay: 0.1 }}
-                className="rounded-2xl border border-emerald-500/20 bg-emerald-500/5 p-8"
+                className="rounded-3xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-sm p-8 hover:border-emerald-500/30 transition-all duration-300"
               >
-                <Code className="w-6 h-6 text-emerald-400 mb-4" />
+                <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 flex items-center justify-center mb-5">
+                  <Code className="w-6 h-6 text-emerald-400" />
+                </div>
                 <h3 className="text-xl font-bold text-white mb-3">
                   By day — Enterprise AI
                 </h3>
@@ -364,9 +328,11 @@ export default function AboutPage() {
               <motion.div
                 {...fadeIn}
                 transition={{ ...transition, delay: 0.2 }}
-                className="rounded-2xl border border-cyan-500/20 bg-cyan-500/5 p-8"
+                className="rounded-3xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-sm p-8 hover:border-cyan-500/30 transition-all duration-300"
               >
-                <Music className="w-6 h-6 text-cyan-400 mb-4" />
+                <div className="w-12 h-12 rounded-2xl bg-cyan-500/10 flex items-center justify-center mb-5">
+                  <Music className="w-6 h-6 text-cyan-400" />
+                </div>
                 <h3 className="text-xl font-bold text-white mb-3">
                   By night — Music & creation
                 </h3>
@@ -382,7 +348,7 @@ export default function AboutPage() {
             <motion.div
               {...fadeIn}
               transition={{ ...transition, delay: 0.3 }}
-              className="mt-6 rounded-2xl border border-violet-500/20 bg-violet-500/5 p-8"
+              className="mt-6 rounded-3xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-sm p-8 hover:border-violet-500/30 transition-all duration-300"
             >
               <h3 className="text-xl font-bold text-white mb-3">
                 The bridge between both worlds
@@ -425,7 +391,7 @@ export default function AboutPage() {
                   key={char.name}
                   {...fadeIn}
                   transition={{ ...transition, delay: i * 0.05 }}
-                  className="group relative overflow-hidden rounded-2xl border border-white/5 bg-white/[0.02] transition-all hover:border-white/10 hover:bg-white/[0.04]"
+                  className="group relative overflow-hidden rounded-3xl border border-white/[0.08] bg-white/[0.03] transition-all hover:border-white/15 hover:bg-white/[0.05]"
                 >
                   <div className="relative aspect-square overflow-hidden">
                     <Image
@@ -435,7 +401,7 @@ export default function AboutPage() {
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                       sizes="(max-width: 640px) 33vw, 200px"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#030712] via-transparent to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-transparent to-transparent" />
                   </div>
                   <div className="p-3 text-center">
                     <p className="text-sm font-semibold text-white">{char.name}</p>
@@ -473,7 +439,7 @@ export default function AboutPage() {
                   key={i}
                   {...fadeIn}
                   transition={{ ...transition, delay: i * 0.08 }}
-                  className="flex gap-4 rounded-2xl border border-white/5 bg-white/[0.02] p-6"
+                  className="flex gap-4 rounded-2xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-sm p-6 hover:border-white/15 transition-all duration-300"
                 >
                   <span className="shrink-0 mt-0.5 text-sm font-bold text-emerald-400/60">
                     {String(i + 1).padStart(2, '0')}
@@ -538,7 +504,7 @@ export default function AboutPage() {
               <div className="flex flex-wrap justify-center gap-4">
                 <Link
                   href="/start"
-                  className="group inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3 font-semibold text-black transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-white/10"
+                  className="group inline-flex items-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-600 px-6 py-3 font-semibold text-white shadow-lg shadow-emerald-500/20 transition-all hover:shadow-xl hover:shadow-emerald-500/30 hover:-translate-y-0.5"
                 >
                   Start Here
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />

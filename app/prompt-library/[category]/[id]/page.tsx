@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation'
 import dynamic from 'next/dynamic'
 
 const PromptDetailView = dynamic(() => import('@/components/prompt-library/PromptDetailView'), {
-  loading: () => <div className="min-h-screen bg-[#030712]" />,
+  loading: () => <div className="min-h-screen bg-[#0a0a0b]" />,
 })
 import { CATEGORIES, PROMPTS, getPromptById, getPromptsByCategory } from '@/lib/prompts'
 import { createMetadata } from '@/lib/seo'

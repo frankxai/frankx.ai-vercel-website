@@ -304,7 +304,7 @@ export default function ValentinesDayPage() {
         <ParticleField variant="rose-gold" />
 
         <div className="absolute w-[500px] h-[500px] bg-rose-500/[0.04] rounded-full blur-[150px] top-1/4" />
-        <div className="absolute w-[300px] h-[300px] bg-violet-500/[0.03] rounded-full blur-[100px] bottom-1/4 left-1/4" />
+        <div className="absolute w-[300px] h-[300px] bg-violet-500/[0.03] rounded-full blur-[128px] bottom-1/4 left-1/4" />
         <div className="absolute w-[200px] h-[200px] bg-amber-500/[0.02] rounded-full blur-[80px] top-1/3 right-1/4" />
 
         <div className="relative z-20 text-center max-w-3xl mx-auto">
@@ -546,7 +546,7 @@ export default function ValentinesDayPage() {
       {/* ─── A Meditation on Love ──────────────────────────── */}
       <section className="relative px-6 py-20 md:py-32">
         <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0f] via-[#0d0a0e] to-[#0a0a0f]" />
-        <div className="absolute left-1/2 top-1/3 -translate-x-1/2 w-80 h-80 bg-rose-500/[0.03] rounded-full blur-[120px]" />
+        <div className="absolute left-1/2 top-1/3 -translate-x-1/2 w-80 h-80 bg-rose-500/[0.03] rounded-full blur-[128px]" />
 
         <div className="relative z-20 max-w-2xl mx-auto">
           <ScrollReveal>
@@ -627,7 +627,7 @@ export default function ValentinesDayPage() {
       {/* ─── Closing ──────────────────────────────────────────── */}
       <section className="relative px-6 py-20 md:py-28">
         <div className="absolute inset-0 bg-[#0a0a0f]" />
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-amber-500/[0.02] rounded-full blur-[120px]" />
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-amber-500/[0.02] rounded-full blur-[128px]" />
 
         <div className="relative z-20 max-w-lg mx-auto text-center">
           <ScrollReveal>

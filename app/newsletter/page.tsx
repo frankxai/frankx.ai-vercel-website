@@ -8,7 +8,7 @@ export default function NewsletterPage() {
   const streams = getStreams()
 
   return (
-    <main className="relative min-h-screen bg-[#030712]">
+    <main className="relative min-h-screen bg-[#0a0a0b]">
       <NewsletterHero streams={streams} />
       <StreamShowcase streams={streams} />
       <StreamCompare streams={streams} />

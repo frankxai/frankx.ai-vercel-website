@@ -347,7 +347,7 @@ export default function ShopTemplatesPage() {
         {/* Background effects */}
         <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/[0.03] via-transparent to-purple-500/[0.03]" />
         <div className="pointer-events-none absolute top-20 left-1/4 h-[500px] w-[500px] rounded-full bg-cyan-500/[0.04] blur-[150px]" />
-        <div className="pointer-events-none absolute bottom-0 right-1/4 h-[400px] w-[400px] rounded-full bg-purple-500/[0.04] blur-[120px]" />
+        <div className="pointer-events-none absolute bottom-0 right-1/4 h-[400px] w-[400px] rounded-full bg-purple-500/[0.04] blur-[128px]" />
 
         <div className="relative mx-auto max-w-7xl px-6">
           {/* Breadcrumb */}

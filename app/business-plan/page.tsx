@@ -53,7 +53,7 @@ const principles = [
 
 export default function BusinessPlanPage() {
   return (
-    <div className="min-h-screen bg-[#030712]">
+    <div className="min-h-screen bg-[#0a0a0b]">
       {/* Header */}
       <section className="border-b border-white/5">
         <div className="max-w-4xl mx-auto px-6 pt-24 pb-12">
@@ -112,7 +112,7 @@ export default function BusinessPlanPage() {
           {revenue.map((tier) => (
             <div
               key={tier.tier}
-              className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 rounded-lg border border-white/5 bg-white/[0.02] px-5 py-4"
+              className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6 rounded-lg border border-white/[0.08] bg-white/[0.03] px-5 py-4"
             >
               <span className="text-emerald-400 font-mono text-sm font-semibold w-24 shrink-0">
                 {tier.tier}
@@ -131,7 +131,7 @@ export default function BusinessPlanPage() {
           {principles.map((principle) => (
             <div
               key={principle.title}
-              className="rounded-lg border border-white/5 bg-white/[0.02] p-5"
+              className="rounded-lg border border-white/[0.08] bg-white/[0.03] p-5"
             >
               <h3 className="text-sm font-semibold mb-2">{principle.title}</h3>
               <p className="text-white/40 text-xs leading-relaxed">{principle.body}</p>

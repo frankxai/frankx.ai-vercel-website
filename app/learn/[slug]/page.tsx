@@ -237,7 +237,7 @@ export default function LearningPathPage() {
               <Link
                 key={guide}
                 href={guide}
-                className="p-4 rounded-xl border border-white/10 bg-white/[0.02] hover:bg-white/[0.04] hover:border-white/20 transition-all flex items-center justify-between group"
+                className="p-4 rounded-xl border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.04] hover:border-white/20 transition-all flex items-center justify-between group"
               >
                 <div className="flex items-center gap-3">
                   <BookOpen className={`w-5 h-5 ${colors.text}`} />

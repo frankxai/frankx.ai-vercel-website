@@ -56,7 +56,7 @@ export default function GoalsPage() {
   const progressPercent = Math.round((completedGoals / totalGoals) * 100)
 
   return (
-    <main className="min-h-screen bg-[#0F172A] text-white">
+    <main className="min-h-screen bg-[#0a0a0b] text-white">
       {/* Hero */}
       <section className="pt-32 pb-16 px-6">
         <div className="max-w-4xl mx-auto text-center">
@@ -75,7 +75,7 @@ export default function GoalsPage() {
 
       {/* Progress Bar */}
       <section className="max-w-4xl mx-auto px-6 pb-12">
-        <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-6">
+        <div className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-6">
           <div className="flex items-center justify-between mb-3">
             <span className="text-sm text-white/50">
               Overall progress
@@ -99,7 +99,7 @@ export default function GoalsPage() {
           {goalSections.map((section) => (
             <div
               key={section.title}
-              className="rounded-2xl border border-white/10 bg-white/[0.02] p-6"
+              className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-6"
             >
               <h2 className="text-lg font-semibold mb-4">{section.title}</h2>
               <ul className="space-y-3">
@@ -122,7 +122,7 @@ export default function GoalsPage() {
       </section>
 
       {/* CTA */}
-      <section className="border-t border-white/10 bg-white/[0.02]">
+      <section className="border-t border-white/[0.08] bg-white/[0.03]">
         <div className="max-w-4xl mx-auto px-6 py-16 text-center">
           <h2 className="text-2xl font-bold mb-4">Follow the progress</h2>
           <p className="text-white/60 mb-8 max-w-lg mx-auto">

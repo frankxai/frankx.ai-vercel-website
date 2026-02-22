@@ -118,7 +118,7 @@ const staggerContainer = {
 function HubBackground() {
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden" aria-hidden>
-      <div className="absolute inset-0 bg-[#030712]" />
+      <div className="absolute inset-0" style={{ backgroundColor: '#0a0a0b' }} />
       <div
         className="absolute inset-0 opacity-[0.02]"
         style={{
@@ -132,17 +132,19 @@ function HubBackground() {
       <motion.div
         className="absolute -right-60 top-20 h-[600px] w-[600px] rounded-full"
         style={{
-          background: 'radial-gradient(circle, rgba(245,158,11,0.12) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(245,158,11,0.06) 0%, transparent 70%)',
+          filter: 'blur(128px)',
         }}
-        animate={{ scale: [1, 1.08, 1], opacity: [0.5, 0.35, 0.5] }}
+        animate={{ scale: [1, 1.08, 1], opacity: [1, 0.7, 1] }}
         transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
       />
       <motion.div
         className="absolute -left-40 bottom-40 h-[500px] w-[500px] rounded-full"
         style={{
-          background: 'radial-gradient(circle, rgba(6,182,212,0.10) 0%, transparent 70%)',
+          background: 'radial-gradient(circle, rgba(6,182,212,0.04) 0%, transparent 70%)',
+          filter: 'blur(128px)',
         }}
-        animate={{ scale: [1.08, 1, 1.08], opacity: [0.35, 0.5, 0.35] }}
+        animate={{ scale: [1.08, 1, 1.08], opacity: [1, 0.7, 1] }}
         transition={{ duration: 25, repeat: Infinity, ease: 'easeInOut' }}
       />
     </div>

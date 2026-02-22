@@ -174,7 +174,7 @@ const colorMap: Record<string, { bg: string; border: string; badge: string; glow
 function ArchitecturesBackground() {
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden">
-      <div className="absolute inset-0 bg-[#030712]" />
+      <div className="absolute inset-0 bg-[#0a0a0b]" />
       {/* Hexagonal pattern */}
       <div
         className="absolute inset-0 opacity-[0.015]"
@@ -229,7 +229,7 @@ function ArchitectureCard({
             <Boxes className="h-16 w-16 text-white/10" />
           </div>
           {/* Overlay gradient */}
-          <div className="absolute inset-0 bg-gradient-to-t from-[#030712] to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] to-transparent" />
           {/* Category badge */}
           <div className="absolute left-4 top-4">
             <span className={`rounded-full px-3 py-1 text-xs font-medium ${colors.badge}`}>

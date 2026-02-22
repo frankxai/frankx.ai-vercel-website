@@ -304,7 +304,7 @@ export default function ArcaneaComposePage() {
         {/* Blob 2: Gold (bottom-right, 25s) */}
         {!shouldReduceMotion && (
           <motion.div
-            className="absolute bottom-1/3 right-1/4 w-[500px] h-[500px] rounded-full blur-[120px]"
+            className="absolute bottom-1/3 right-1/4 w-[500px] h-[500px] rounded-full blur-[128px]"
             style={{ background: 'radial-gradient(circle, rgba(245,158,11,0.08) 0%, transparent 70%)' }}
             animate={{ x: [0, -80, 0], y: [0, 60, 0], scale: [1, 1.15, 1] }}
             transition={{ duration: 25, repeat: Infinity, ease: 'easeInOut', delay: 5 }}
@@ -314,7 +314,7 @@ export default function ArcaneaComposePage() {
         {/* Blob 3: Cyan (top-right, 30s) */}
         {!shouldReduceMotion && (
           <motion.div
-            className="absolute top-1/2 right-1/3 w-[400px] h-[400px] rounded-full blur-[100px]"
+            className="absolute top-1/2 right-1/3 w-[400px] h-[400px] rounded-full blur-[128px]"
             style={{ background: 'radial-gradient(circle, rgba(34,211,238,0.06) 0%, transparent 70%)' }}
             animate={{ x: [0, 120, 0], y: [0, -70, 0], scale: [1, 1.2, 1] }}
             transition={{ duration: 30, repeat: Infinity, ease: 'easeInOut', delay: 10 }}

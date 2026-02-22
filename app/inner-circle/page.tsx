@@ -361,7 +361,7 @@ function FAQItem({ faq, index }: { faq: (typeof FAQS)[0]; index: number }) {
 
 export default function InnerCirclePage() {
   return (
-    <div className="min-h-screen bg-[#0F172A] text-white">
+    <div className="min-h-screen bg-[#0a0a0b] text-white">
       {/* Hero Section */}
       <section className="relative flex min-h-[80vh] items-center justify-center overflow-hidden">
         {/* Axi constellation — premium/mystery */}
@@ -370,12 +370,12 @@ export default function InnerCirclePage() {
         </div>
         <div className="absolute inset-0 overflow-hidden">
           <motion.div
-            className="absolute -left-1/4 top-1/4 h-1/2 w-1/2 rounded-full bg-[#AB47C7]/20 blur-[120px]"
+            className="absolute -left-1/4 top-1/4 h-1/2 w-1/2 rounded-full bg-[#AB47C7]/[0.06] blur-[128px]"
             animate={{ x: [0, 100, 0], y: [0, 50, 0] }}
             transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
           />
           <motion.div
-            className="absolute -right-1/4 top-1/3 h-1/2 w-1/2 rounded-full bg-[#43BFE3]/20 blur-[120px]"
+            className="absolute -right-1/4 top-1/3 h-1/2 w-1/2 rounded-full bg-[#43BFE3]/[0.04] blur-[128px]"
             animate={{ x: [0, -100, 0], y: [0, -50, 0] }}
             transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
           />

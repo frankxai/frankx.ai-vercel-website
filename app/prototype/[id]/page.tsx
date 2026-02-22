@@ -56,7 +56,7 @@ const cloudColors: Record<CloudProvider, string> = {
 function PrototypeBackground() {
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden">
-      <div className="absolute inset-0 bg-[#030712]" />
+      <div className="absolute inset-0 bg-[#0a0a0b]" />
       <motion.div
         className="absolute -right-40 top-40 h-[500px] w-[500px] rounded-full opacity-15"
         style={{
@@ -175,7 +175,7 @@ export default function PrototypePage({
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.3 }}
-                  className="rounded-2xl border border-white/10 bg-white/[0.02] p-6"
+                  className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-6"
                 >
                   <h2 className="mb-4 text-xl font-semibold text-white">Overview</h2>
                   <p className="text-slate-400 leading-relaxed">{prototype.overview}</p>
@@ -224,7 +224,7 @@ export default function PrototypePage({
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.4 }}
-                    className="rounded-2xl border border-white/10 bg-white/[0.02] p-6"
+                    className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-6"
                   >
                     <h2 className="mb-6 text-xl font-semibold text-white">Implementation Phases</h2>
                     <div className="space-y-6">
@@ -262,7 +262,7 @@ export default function PrototypePage({
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.45 }}
-                    className="rounded-2xl border border-white/10 bg-white/[0.02] p-6"
+                    className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-6"
                   >
                     <h2 className="mb-6 text-xl font-semibold text-white">Code Examples</h2>
                     {prototype.codeExamples.map((example) => (
@@ -293,7 +293,7 @@ export default function PrototypePage({
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.5 }}
-                    className="rounded-2xl border border-white/10 bg-white/[0.02] p-5"
+                    className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5"
                   >
                     <h3 className="mb-4 font-semibold text-white">Cost Estimate</h3>
                     <div className="mb-4">
@@ -321,7 +321,7 @@ export default function PrototypePage({
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.55 }}
-                  className="rounded-2xl border border-white/10 bg-white/[0.02] p-5"
+                  className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5"
                 >
                   <h3 className="mb-4 font-semibold text-white">Technologies</h3>
                   <div className="flex flex-wrap gap-2">
@@ -342,7 +342,7 @@ export default function PrototypePage({
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.6 }}
-                    className="rounded-2xl border border-white/10 bg-white/[0.02] p-5"
+                    className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5"
                   >
                     <h3 className="mb-4 font-semibold text-white">Use Cases</h3>
                     <ul className="space-y-2">
@@ -362,7 +362,7 @@ export default function PrototypePage({
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.65 }}
-                    className="rounded-2xl border border-white/10 bg-white/[0.02] p-5"
+                    className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5"
                   >
                     <h3 className="mb-4 font-semibold text-white">Related Patterns</h3>
                     <div className="space-y-2">

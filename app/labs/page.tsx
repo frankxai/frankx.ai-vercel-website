@@ -84,17 +84,17 @@ const itemVariants = {
 
 export default function LabsPage() {
   return (
-    <div className="min-h-screen overflow-hidden bg-[#0F172A] text-white">
+    <div className="min-h-screen overflow-hidden bg-[#0a0a0b] text-white">
       {/* Animated Background Orbs */}
       <div className="pointer-events-none fixed inset-0">
         <motion.div
-          className="absolute left-1/4 top-1/4 h-96 w-96 rounded-full bg-[#AB47C7]/15 blur-[100px]"
-          animate={{ scale: [1, 1.2, 1], opacity: [0.2, 0.4, 0.2] }}
+          className="absolute left-1/4 top-1/4 h-96 w-96 rounded-full bg-[#AB47C7]/[0.06] blur-[128px]"
+          animate={{ scale: [1, 1.2, 1], opacity: [1, 0.7, 1] }}
           transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
         />
         <motion.div
-          className="absolute right-1/4 top-1/3 h-96 w-96 rounded-full bg-[#43BFE3]/15 blur-[100px]"
-          animate={{ scale: [1, 1.3, 1], opacity: [0.15, 0.3, 0.15] }}
+          className="absolute right-1/4 top-1/3 h-96 w-96 rounded-full bg-[#43BFE3]/[0.04] blur-[128px]"
+          animate={{ scale: [1, 1.3, 1], opacity: [1, 0.7, 1] }}
           transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
         />
       </div>
@@ -272,7 +272,7 @@ export default function LabsPage() {
                   {labFlow.map((step) => (
                     <div
                       key={step.title}
-                      className="rounded-2xl border border-white/10 bg-[#0F172A]/80 p-5 backdrop-blur-sm"
+                      className="rounded-2xl border border-white/10 bg-[#0a0a0b]/80 p-5 backdrop-blur-sm"
                     >
                       <p className={`mb-1 text-xs font-semibold uppercase tracking-[0.2em] ${step.color}/70`}>
                         {step.phase}
