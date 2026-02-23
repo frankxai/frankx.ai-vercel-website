@@ -1,0 +1,197 @@
+{
+  "current": {
+    "id": "week-10",
+    "label": "Week 10",
+    "theme": "Revenue Activation",
+    "tagline": "Infrastructure is built. Time to turn systems into income.",
+    "dateRange": "Feb 23 - Mar 1, 2026",
+    "status": "active",
+    "goals": [
+      {
+        "id": "revenue-activate",
+        "title": "Activate Revenue Channels",
+        "description": "Lemon Squeezy products live, affiliate signups complete, first template sale",
+        "priority": "critical",
+        "status": "planned",
+        "track": "product",
+        "tasks": [
+          {
+            "text": "Create Lemon Squeezy products for top 5 templates",
+            "done": false
+          },
+          {
+            "text": "Sign up for Railway, n8n, Vercel affiliate programs",
+            "done": false
+          },
+          {
+            "text": "Create GitHub template repos for deploy buttons",
+            "done": false
+          },
+          { "text": "Wire checkout buttons on /shop/templates", "done": false }
+        ]
+      },
+      {
+        "id": "newsletter-first-send",
+        "title": "Ship First Newsletter Edition",
+        "description": "Send Creation Chronicles #1 to subscriber list via Resend",
+        "priority": "critical",
+        "status": "planned",
+        "track": "content",
+        "tasks": [
+          { "text": "Write Creation Chronicles #1 content", "done": false },
+          { "text": "Test email rendering across clients", "done": false },
+          { "text": "Send to subscriber list via Resend MCP", "done": false },
+          { "text": "Set up weekly cadence automation", "done": false }
+        ]
+      },
+      {
+        "id": "social-launch",
+        "title": "Launch Social Content Pipeline",
+        "description": "Push 8 drafted posts live, set up X/LinkedIn via Zapier",
+        "priority": "high",
+        "status": "planned",
+        "track": "distribution",
+        "tasks": [
+          {
+            "text": "Set up Zapier MCP actions for X and LinkedIn",
+            "done": false
+          },
+          {
+            "text": "Review and approve 8 drafted social posts",
+            "done": false
+          },
+          { "text": "Publish first batch across platforms", "done": false },
+          { "text": "Track engagement and iterate on voice", "done": false }
+        ]
+      },
+      {
+        "id": "homepage-sync",
+        "title": "Reconcile Homepage & Ship Polish",
+        "description": "Sync HomePageElite between repos, fix remaining design inconsistencies",
+        "priority": "high",
+        "status": "planned",
+        "track": "technical",
+        "tasks": [
+          {
+            "text": "Reconcile HomePageElite between private and production repos",
+            "done": false
+          },
+          {
+            "text": "Regenerate 7 images from image-regeneration-queue",
+            "done": false
+          },
+          {
+            "text": "Deploy v0-pro variants (Soulbook, Coaching, Community)",
+            "done": false
+          },
+          {
+            "text": "Visual QA pass on top 10 pages post-design-system",
+            "done": false
+          }
+        ]
+      },
+      {
+        "id": "product-sprint-test",
+        "title": "First Product Team Sprint",
+        "description": "Test /product-team-launch end-to-end on a real product",
+        "priority": "high",
+        "status": "planned",
+        "track": "product",
+        "tasks": [
+          {
+            "text": "Choose sprint target (Vibe OS or template product)",
+            "done": false
+          },
+          { "text": "Run /product-team-launch command", "done": false },
+          {
+            "text": "Complete full sprint cycle through deploy",
+            "done": false
+          },
+          {
+            "text": "Document learnings and iterate on orchestration",
+            "done": false
+          }
+        ]
+      },
+      {
+        "id": "blog-cadence",
+        "title": "Publish 2 Blog Articles",
+        "description": "Keep content velocity — AI music story + Claude Code mastery",
+        "priority": "medium",
+        "status": "planned",
+        "track": "content",
+        "tasks": [
+          {
+            "text": "Write '12,000 AI Songs: What I Learned' article",
+            "done": false
+          },
+          { "text": "Write Claude Code power user article", "done": false },
+          {
+            "text": "Generate hero images via Visual Creation Council",
+            "done": false
+          },
+          {
+            "text": "Publish and distribute via social pipeline",
+            "done": false
+          }
+        ]
+      }
+    ]
+  },
+  "lastWeek": {
+    "id": "week-09",
+    "label": "Week 9",
+    "theme": "The Polish",
+    "tagline": "Making everything feel like one cohesive brand.",
+    "dateRange": "Feb 16-22, 2026",
+    "stats": {
+      "commits": 39,
+      "linesAdded": 126584,
+      "filesChanged": 1038,
+      "shipped": 12,
+      "grade": "S"
+    },
+    "highlights": [
+      {
+        "title": "Design System Standardization",
+        "description": "240+ files unified to consistent tokens",
+        "impact": "major"
+      },
+      {
+        "title": "ACOS v10.2",
+        "description": "Magic words, todo continuation, Starlight wired",
+        "impact": "major"
+      },
+      {
+        "title": "Brand Identity Overhaul",
+        "description": "Axi in nav, new favicon, mascot-first policy",
+        "impact": "major"
+      },
+      {
+        "title": "Video Vault",
+        "description": "132 curated videos with lightbox and watchlists",
+        "impact": "major"
+      },
+      {
+        "title": "6-Stream Newsletter",
+        "description": "Content intelligence with per-stream subscribe",
+        "impact": "major"
+      },
+      {
+        "title": "Visual Creation Council",
+        "description": "Quality-gated image pipeline with structural enforcement",
+        "impact": "medium"
+      },
+      {
+        "title": "Content Voice DNA",
+        "description": "Authentic voice codified into automation rules",
+        "impact": "medium"
+      },
+      {
+        "title": "Product Team System",
+        "description": "6-team orchestration ready for first sprint",
+        "impact": "medium"
+      }
+    ]
+  }
+}
