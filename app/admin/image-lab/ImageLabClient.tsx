@@ -26,28 +26,28 @@ interface CouncilReview {
 
 interface LogEntry {
   id: string
-  timestamp: string
-  subject: string
-  template_type: string
-  style: string
-  organizing_metaphor: string
-  prompt_excerpt: string
-  model: string
-  model_tier: string
+  timestamp?: string
+  subject?: string
+  template_type?: string
+  style?: string
+  organizing_metaphor?: string
+  prompt_excerpt?: string
+  model?: string
+  model_tier?: string
   thinking_level?: string
   resolution?: string
-  aspect_ratio: string
-  cost_usd: number
-  output_path: string
-  file_size_bytes: number
-  dimensions: string
-  council_review: CouncilReview
-  gates: GateResults
-  gates_passed: number
-  gates_total: number
-  status: string
-  step: number
-  notes: string
+  aspect_ratio?: string
+  cost_usd?: number
+  output_path?: string
+  file_size_bytes?: number
+  dimensions?: string
+  council_review?: CouncilReview
+  gates?: GateResults
+  gates_passed?: number
+  gates_total?: number
+  status?: string
+  step?: number
+  notes?: string
 }
 
 interface ImageLog {
@@ -79,6 +79,10 @@ const VERDICT_COLORS: Record<string, string> = {
   PENDING_REVIEW: 'text-zinc-400 bg-zinc-400/10 border-zinc-400/30',
 }
 
+function entryLabel(entry: LogEntry) {
+  return (entry.subject ?? entry.id).replace('[auto-logged] ', '')
+}
+
 function formatDate(iso: string) {
   return new Date(iso).toLocaleDateString('en-US', {
     month: 'short',
@@ -94,7 +98,8 @@ function formatBytes(bytes: number) {
   return mb >= 1 ? `${mb.toFixed(1)} MB` : `${(bytes / 1024).toFixed(0)} KB`
 }
 
-function GateBadges({ gates }: { gates: GateResults }) {
+function GateBadges({ gates }: { gates?: GateResults }) {
+  if (!gates) return null
   return (
     <div className="flex flex-wrap gap-1">
       {(Object.entries(gates) as [keyof GateResults, boolean][]).map(([key, passed]) => (
@@ -151,7 +156,7 @@ function ImageCard({
   selected: boolean
   onSelect: () => void
 }) {
-  const verdictClass = VERDICT_COLORS[entry.council_review.verdict] || VERDICT_COLORS.PENDING_REVIEW
+  const verdictClass = VERDICT_COLORS[entry.council_review?.verdict ?? ''] || VERDICT_COLORS.PENDING_REVIEW
 
   return (
     <div
@@ -167,7 +172,7 @@ function ImageCard({
         {entry.output_path ? (
           <Image
             src={`/${entry.output_path}`}
-            alt={entry.subject}
+            alt={entryLabel(entry)}
             fill
             className="object-cover"
             sizes="(max-width: 768px) 100vw, 33vw"
@@ -180,13 +185,13 @@ function ImageCard({
         {/* Status badge */}
         <div className="absolute top-2 left-2">
           <span className={`text-[10px] px-2 py-0.5 rounded-full border font-medium ${verdictClass}`}>
-            {entry.council_review.verdict}
+            {entry.council_review?.verdict ?? 'PENDING'}
           </span>
         </div>
         {/* Gates count */}
         <div className="absolute top-2 right-2">
           <span className="text-[10px] px-2 py-0.5 rounded-full bg-black/60 text-white font-mono border border-zinc-700">
-            {entry.gates_passed}/{entry.gates_total}
+            {entry.gates_passed ?? 0}/{entry.gates_total ?? 0}
           </span>
         </div>
       </div>
@@ -195,16 +200,16 @@ function ImageCard({
       <div className="p-3 space-y-2">
         <div className="flex items-start justify-between gap-2">
           <h3 className="text-sm font-medium text-zinc-200 line-clamp-2 leading-tight">
-            {entry.subject.replace('[auto-logged] ', '')}
+            {entryLabel(entry)}
           </h3>
         </div>
 
         <div className="flex items-center gap-2 text-[10px] text-zinc-500">
           <span>{entry.id}</span>
           <span className="text-zinc-700">|</span>
-          <span>{formatDate(entry.timestamp)}</span>
+          <span>{entry.timestamp ? formatDate(entry.timestamp) : '—'}</span>
           <span className="text-zinc-700">|</span>
-          <span>${entry.cost_usd.toFixed(2)}</span>
+          <span>${(entry.cost_usd ?? 0).toFixed(2)}</span>
         </div>
 
         <div className="flex items-center gap-2 text-[10px]">
@@ -214,7 +219,7 @@ function ImageCard({
           <span className="px-1.5 py-0.5 rounded bg-zinc-800 text-zinc-400 border border-zinc-700">
             {entry.aspect_ratio}
           </span>
-          {entry.style !== 'unknown' && (
+          {entry.style && entry.style !== 'unknown' && (
             <span className="px-1.5 py-0.5 rounded bg-purple-400/10 text-purple-400 border border-purple-400/20">
               {entry.style.split(':')[0]}
             </span>
@@ -235,7 +240,7 @@ function DetailPanel({ entry }: { entry: LogEntry }) {
         {entry.output_path ? (
           <Image
             src={`/${entry.output_path}`}
-            alt={entry.subject}
+            alt={entryLabel(entry)}
             fill
             className="object-contain"
             sizes="50vw"
@@ -249,7 +254,7 @@ function DetailPanel({ entry }: { entry: LogEntry }) {
       <div className="grid grid-cols-2 gap-3 text-xs">
         <div className="p-2 rounded-lg bg-zinc-900 border border-zinc-800">
           <span className="text-zinc-500 block">File Size</span>
-          <span className="text-zinc-200">{formatBytes(entry.file_size_bytes)}</span>
+          <span className="text-zinc-200">{formatBytes(entry.file_size_bytes ?? 0)}</span>
         </div>
         <div className="p-2 rounded-lg bg-zinc-900 border border-zinc-800">
           <span className="text-zinc-500 block">Dimensions</span>
@@ -257,32 +262,36 @@ function DetailPanel({ entry }: { entry: LogEntry }) {
         </div>
         <div className="p-2 rounded-lg bg-zinc-900 border border-zinc-800">
           <span className="text-zinc-500 block">Model</span>
-          <span className="text-zinc-200">{entry.model_tier} / {entry.thinking_level || '—'}</span>
+          <span className="text-zinc-200">{entry.model_tier ?? '—'} / {entry.thinking_level ?? '—'}</span>
         </div>
         <div className="p-2 rounded-lg bg-zinc-900 border border-zinc-800">
           <span className="text-zinc-500 block">Cost</span>
-          <span className="text-zinc-200">${entry.cost_usd.toFixed(2)}</span>
+          <span className="text-zinc-200">${(entry.cost_usd ?? 0).toFixed(2)}</span>
         </div>
       </div>
 
       {/* Council Review */}
-      <div className="p-3 rounded-xl bg-zinc-900 border border-zinc-800">
-        <h4 className="text-xs font-medium text-zinc-400 mb-2">Council Review</h4>
-        <CouncilScores review={entry.council_review} />
-        {entry.council_review.vetoes.length > 0 && (
-          <div className="mt-2 text-xs text-red-400">
-            Vetoes: {entry.council_review.vetoes.join(', ')}
-          </div>
-        )}
-      </div>
+      {entry.council_review && (
+        <div className="p-3 rounded-xl bg-zinc-900 border border-zinc-800">
+          <h4 className="text-xs font-medium text-zinc-400 mb-2">Council Review</h4>
+          <CouncilScores review={entry.council_review} />
+          {entry.council_review.vetoes.length > 0 && (
+            <div className="mt-2 text-xs text-red-400">
+              Vetoes: {entry.council_review.vetoes.join(', ')}
+            </div>
+          )}
+        </div>
+      )}
 
       {/* Gates */}
-      <div className="p-3 rounded-xl bg-zinc-900 border border-zinc-800">
-        <h4 className="text-xs font-medium text-zinc-400 mb-2">
-          Quality Gates ({entry.gates_passed}/{entry.gates_total})
-        </h4>
-        <GateBadges gates={entry.gates} />
-      </div>
+      {entry.gates && (
+        <div className="p-3 rounded-xl bg-zinc-900 border border-zinc-800">
+          <h4 className="text-xs font-medium text-zinc-400 mb-2">
+            Quality Gates ({entry.gates_passed ?? 0}/{entry.gates_total ?? 0})
+          </h4>
+          <GateBadges gates={entry.gates} />
+        </div>
+      )}
 
       {/* Prompt */}
       <div className="p-3 rounded-xl bg-zinc-900 border border-zinc-800">
@@ -316,25 +325,24 @@ export function ImageLabClient({ log }: { log: ImageLog }) {
 
   const filtered = useMemo(() => {
     return log.entries
-      .filter((e) => verdictFilter === 'all' || e.council_review.verdict === verdictFilter)
+      .filter((e) => verdictFilter === 'all' || e.council_review?.verdict === verdictFilter)
       .filter((e) => statusFilter === 'all' || e.status === statusFilter)
-      .sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())
+      .sort((a, b) => new Date(b.timestamp ?? '').getTime() - new Date(a.timestamp ?? '').getTime())
   }, [log.entries, verdictFilter, statusFilter])
 
   const selected = filtered.find((e) => e.id === selectedId) || null
 
-  // Stats
-  const totalCost = log.entries.reduce((s, e) => s + e.cost_usd, 0)
+  // Stats — use optional chaining for entries with mixed schemas
+  const totalCost = log.entries.reduce((s, e) => s + (e.cost_usd ?? 0), 0)
   const avgGates = log.entries.length > 0
-    ? (log.entries.reduce((s, e) => s + e.gates_passed, 0) / log.entries.length).toFixed(1)
+    ? (log.entries.reduce((s, e) => s + (e.gates_passed ?? 0), 0) / log.entries.length).toFixed(1)
     : '—'
-  const approvedCount = log.entries.filter((e) => e.council_review.verdict === 'APPROVED').length
-  const avgScore = log.entries.filter((e) => e.council_review.weighted_score > 0).length > 0
+  const approvedCount = log.entries.filter((e) => e.council_review?.verdict === 'APPROVED').length
+  const scoredEntries = log.entries.filter((e) => (e.council_review?.weighted_score ?? 0) > 0)
+  const avgScore = scoredEntries.length > 0
     ? (
-        log.entries
-          .filter((e) => e.council_review.weighted_score > 0)
-          .reduce((s, e) => s + e.council_review.weighted_score, 0) /
-        log.entries.filter((e) => e.council_review.weighted_score > 0).length
+        scoredEntries.reduce((s, e) => s + (e.council_review?.weighted_score ?? 0), 0) /
+        scoredEntries.length
       ).toFixed(1)
     : '—'
 
@@ -461,7 +469,7 @@ export function ImageLabClient({ log }: { log: ImageLog }) {
               <div className="w-1/2 sticky top-6 self-start">
                 <div className="flex items-center justify-between mb-3">
                   <h2 className="text-sm font-medium text-zinc-300">
-                    {selected.subject.replace('[auto-logged] ', '')}
+                    {entryLabel(selected)}
                   </h2>
                   <button
                     onClick={() => setSelectedId(null)}
@@ -505,14 +513,14 @@ export function ImageLabClient({ log }: { log: ImageLog }) {
                       {entry.output_path && (
                         <Image
                           src={`/${entry.output_path}`}
-                          alt={entry.subject}
+                          alt={entryLabel(entry)}
                           fill
                           className="object-cover"
                           sizes="25vw"
                         />
                       )}
                     </div>
-                    <p className="text-[10px] text-zinc-400 mt-1 truncate">{entry.id}: {entry.subject.replace('[auto-logged] ', '').slice(0, 40)}</p>
+                    <p className="text-[10px] text-zinc-400 mt-1 truncate">{entry.id}: {entryLabel(entry).slice(0, 40)}</p>
                   </div>
                 )
               })}
@@ -527,7 +535,7 @@ export function ImageLabClient({ log }: { log: ImageLog }) {
                   return (
                     <div key={id}>
                       <h3 className="text-sm font-medium text-zinc-300 mb-2">
-                        {entry.id}: {entry.subject.replace('[auto-logged] ', '')}
+                        {entry.id}: {entryLabel(entry)}
                       </h3>
                       <DetailPanel entry={entry} />
                     </div>

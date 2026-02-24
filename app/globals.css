@@ -83,6 +83,41 @@
     /* Secondary accent mapped to brand cyan */
     --secondary: var(--brand-cyan);
     --secondary-foreground: var(--bg-void);
+
+    /* =========================================================================
+       MOTION TOKENS — CSS custom properties for non-Framer animation contexts
+       Mirror values from lib/design/motion.ts for pure CSS transitions
+       ========================================================================= */
+    --motion-instant: 100ms;
+    --motion-fast: 200ms;
+    --motion-normal: 350ms;
+    --motion-slow: 500ms;
+    --motion-slowest: 700ms;
+
+    /* M3 easing curves */
+    --ease-emphasized: cubic-bezier(0.2, 0, 0, 1);
+    --ease-emphasized-decelerate: cubic-bezier(0.05, 0.7, 0.1, 1);
+    --ease-emphasized-accelerate: cubic-bezier(0.3, 0, 0.8, 0.15);
+    --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+    --ease-standard-decelerate: cubic-bezier(0, 0, 0, 1);
+
+    /* =========================================================================
+       SURFACE STEPS — Radix UI-inspired tonal elevation system
+       Step = how much white the surface contains above the void background.
+       Use .surface-1 through .surface-5 classes instead of raw bg-white/N values.
+       ========================================================================= */
+    --surface-1: rgba(255, 255, 255, 0.02); /* Near-invisible — section bg */
+    --surface-2: rgba(255, 255, 255, 0.04); /* Subtle card background */
+    --surface-3: rgba(255, 255, 255, 0.06); /* Glass card */
+    --surface-4: rgba(255, 255, 255, 0.09); /* Elevated card / hover */
+    --surface-5: rgba(255, 255, 255, 0.13); /* Modal / floating surface */
+
+    /* Brand-tinted surfaces — domain-colored cards */
+    --surface-emerald: rgba(16, 185, 129, 0.06);
+    --surface-purple: rgba(171, 71, 199, 0.06);
+    --surface-cyan: rgba(67, 191, 227, 0.06);
+    --surface-gold: rgba(245, 158, 11, 0.06);
+    --surface-rose: rgba(244, 63, 94, 0.06);
   }
 
   /* Critical mobile fix: prevent horizontal overflow at the root level */
@@ -210,6 +245,184 @@
     -webkit-backdrop-filter: blur(18px);
     border: 1px solid rgba(255, 255, 255, 0.08);
     box-shadow: 0 20px 60px rgb(8 15 33 / 0.45);
+  }
+}
+
+/* ============================================================================
+   FLUID TYPOGRAPHY — Viewport-responsive type using CSS clamp()
+   Eliminates jump-at-breakpoint layout shifts; text scales smoothly.
+   Usage: replace "text-4xl lg:text-5xl" with "text-fluid-4xl"
+   ============================================================================ */
+@layer utilities {
+  .text-fluid-xs {
+    font-size: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+  }
+  .text-fluid-sm {
+    font-size: clamp(0.875rem, 0.8rem + 0.5vw, 1rem);
+  }
+  .text-fluid-base {
+    font-size: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
+  }
+  .text-fluid-lg {
+    font-size: clamp(1.125rem, 1rem + 0.75vw, 1.25rem);
+  }
+  .text-fluid-xl {
+    font-size: clamp(1.25rem, 1.1rem + 1vw, 1.5rem);
+  }
+  .text-fluid-2xl {
+    font-size: clamp(1.5rem, 1.2rem + 1.5vw, 2rem);
+  }
+  .text-fluid-3xl {
+    font-size: clamp(1.875rem, 1.4rem + 2.5vw, 2.5rem);
+  }
+  .text-fluid-4xl {
+    font-size: clamp(2.25rem, 1.5rem + 3.5vw, 3.5rem);
+  }
+  .text-fluid-5xl {
+    font-size: clamp(3rem, 2rem + 5vw, 4.5rem);
+  }
+  .text-fluid-6xl {
+    font-size: clamp(3.75rem, 2.5rem + 7vw, 6rem);
+  }
+  .text-fluid-7xl {
+    font-size: clamp(4.5rem, 3rem + 9vw, 8rem);
+  }
+}
+
+/* ============================================================================
+   FONT FEATURE SETTINGS — Precision typographic rendering
+   ============================================================================ */
+@layer utilities {
+  /* Tabular numerics — for stats, prices, counters, data tables */
+  .font-nums {
+    font-feature-settings: "tnum", "lnum";
+    font-variant-numeric: tabular-nums lining-nums;
+  }
+  /* Ligatures + contextual alternates — for headlines, editorial text */
+  .font-liga {
+    font-feature-settings:
+      "liga" 1,
+      "calt" 1;
+  }
+  /* Display rendering — ligatures + anti-aliasing for large text */
+  .font-display-render {
+    font-feature-settings:
+      "liga" 1,
+      "calt" 1,
+      "ss01" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  /* Antialiased — all body text on dark backgrounds */
+  .antialiased-dark {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* ============================================================================
+   SURFACE STEPS — Semantic elevation using CSS custom properties
+   Replaces hardcoded bg-white/N values for consistent surface depth.
+   ============================================================================ */
+@layer utilities {
+  .surface-1 {
+    background: var(--surface-1);
+  }
+  .surface-2 {
+    background: var(--surface-2);
+  }
+  .surface-3 {
+    background: var(--surface-3);
+  }
+  .surface-4 {
+    background: var(--surface-4);
+  }
+  .surface-5 {
+    background: var(--surface-5);
+  }
+}
+
+/* ============================================================================
+   TINTED GLASS — Brand-colored glassmorphic surfaces
+   Each includes saturate() for Apple-style vibrancy effect.
+   ============================================================================ */
+@layer utilities {
+  .glass-emerald {
+    background: var(--surface-emerald);
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    border: 1px solid rgba(16, 185, 129, 0.15);
+  }
+  .glass-purple {
+    background: var(--surface-purple);
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    border: 1px solid rgba(171, 71, 199, 0.15);
+  }
+  .glass-cyan {
+    background: var(--surface-cyan);
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    border: 1px solid rgba(67, 191, 227, 0.15);
+  }
+  .glass-gold {
+    background: var(--surface-gold);
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    border: 1px solid rgba(245, 158, 11, 0.15);
+  }
+  /* Vibrancy glass — Apple-style maximum translucency with saturation boost */
+  .glass-vibrancy {
+    background: rgba(255, 255, 255, 0.04);
+    backdrop-filter: blur(40px) saturate(200%) brightness(108%);
+    -webkit-backdrop-filter: blur(40px) saturate(200%) brightness(108%);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+}
+
+/* ============================================================================
+   MOTION UTILITIES — CSS transition shortcuts using design token vars
+   ============================================================================ */
+@layer utilities {
+  .transition-instant {
+    transition-duration: var(--motion-instant);
+    transition-timing-function: var(--ease-standard);
+  }
+  .transition-fast {
+    transition-duration: var(--motion-fast);
+    transition-timing-function: var(--ease-standard);
+  }
+  .transition-normal {
+    transition-duration: var(--motion-normal);
+    transition-timing-function: var(--ease-emphasized);
+  }
+  .transition-slow {
+    transition-duration: var(--motion-slow);
+    transition-timing-function: var(--ease-emphasized-decelerate);
+  }
+}
+
+/* ============================================================================
+   SCROLLBAR STYLING — Thin, dark-mode aware custom scrollbars
+   ============================================================================ */
+@layer utilities {
+  .scrollbar-thin {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 2px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.28);
   }
 }
 

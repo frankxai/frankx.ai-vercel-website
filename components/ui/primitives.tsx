@@ -173,10 +173,111 @@ export function StatBlock({ value, label, description, icon, align = 'left', cla
             {icon}
           </span>
         ) : null}
-        <span className="text-3xl font-semibold">{value}</span>
+        {/* font-nums: tabular-nums ensures digit widths are equal — prevents layout shift in live counters */}
+        <span className="text-3xl font-semibold font-nums">{value}</span>
       </div>
       <p className={cn('mt-2 text-xs uppercase tracking-[0.32em] text-white/60', align === 'center' && 'mx-auto')}>{label}</p>
       {description ? <p className="mt-3 text-sm text-white/70 leading-relaxed">{description}</p> : null}
     </div>
+  )
+}
+
+// =============================================================================
+// BADGE — Status and category indicators
+// =============================================================================
+
+type BadgeVariant = 'default' | 'success' | 'warning' | 'error' | 'info' | 'brand' | 'gold'
+type BadgeSize = 'sm' | 'md'
+
+type BadgeProps = {
+  variant?: BadgeVariant
+  size?: BadgeSize
+  dot?: boolean
+  children: ReactNode
+  className?: string
+}
+
+const badgeVariantMap: Record<BadgeVariant, string> = {
+  default: 'bg-white/10 text-white/80 border border-white/15',
+  success: 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20',
+  warning: 'bg-amber-500/10 text-amber-400 border border-amber-500/20',
+  error:   'bg-rose-500/10 text-rose-400 border border-rose-500/20',
+  info:    'bg-cyan-500/10 text-cyan-400 border border-cyan-500/20',
+  brand:   'bg-violet-500/10 text-violet-400 border border-violet-500/20',
+  gold:    'bg-amber-500/10 text-amber-300 border border-amber-400/20',
+}
+
+const badgeDotMap: Record<BadgeVariant, string> = {
+  default: 'bg-white/50',
+  success: 'bg-emerald-400',
+  warning: 'bg-amber-400',
+  error:   'bg-rose-400',
+  info:    'bg-cyan-400',
+  brand:   'bg-violet-400',
+  gold:    'bg-amber-300',
+}
+
+const badgeSizeMap: Record<BadgeSize, string> = {
+  sm: 'px-2 py-0.5 text-[10px]',
+  md: 'px-3 py-1 text-xs',
+}
+
+export function Badge({ variant = 'default', size = 'md', dot, children, className }: BadgeProps) {
+  return (
+    <span className={cn(
+      'inline-flex items-center gap-1.5 rounded-full font-medium backdrop-blur-sm',
+      badgeSizeMap[size],
+      badgeVariantMap[variant],
+      className,
+    )}>
+      {dot ? <span className={cn('h-1.5 w-1.5 rounded-full', badgeDotMap[variant])} aria-hidden /> : null}
+      {children}
+    </span>
+  )
+}
+
+// =============================================================================
+// DIVIDER — Semantic horizontal/vertical rule
+// =============================================================================
+
+type DividerProps = {
+  orientation?: 'horizontal' | 'vertical'
+  label?: string
+  tone?: 'subtle' | 'default' | 'strong'
+  className?: string
+}
+
+const dividerToneMap = {
+  subtle:  'border-white/5',
+  default: 'border-white/10',
+  strong:  'border-white/20',
+}
+
+export function Divider({ orientation = 'horizontal', label, tone = 'default', className }: DividerProps) {
+  if (orientation === 'vertical') {
+    return (
+      <div
+        role="separator"
+        aria-orientation="vertical"
+        className={cn('w-px self-stretch border-l', dividerToneMap[tone], className)}
+      />
+    )
+  }
+
+  if (label) {
+    return (
+      <div role="separator" className={cn('flex items-center gap-4', className)}>
+        <div className={cn('flex-1 border-t', dividerToneMap[tone])} />
+        <span className="text-xs uppercase tracking-[0.2em] text-white/32 font-medium">{label}</span>
+        <div className={cn('flex-1 border-t', dividerToneMap[tone])} />
+      </div>
+    )
+  }
+
+  return (
+    <hr
+      role="separator"
+      className={cn('border-t', dividerToneMap[tone], className)}
+    />
   )
 }
