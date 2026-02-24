@@ -1,0 +1,279 @@
+{
+  "repos": {
+    "arcanea": {
+      "cluster": "arcanea",
+      "milestone": "v2.0 Platform",
+      "priority": "critical",
+      "deployed": "https://arcanea.ai",
+      "status": "building",
+      "actionItem": "Finalize Guardian agent framework + launch arcanea.ai v2",
+      "tags": ["platform", "flagship", "open-source"]
+    },
+    "arcanea-ai-app": {
+      "cluster": "arcanea",
+      "milestone": "v2.0 Platform",
+      "priority": "critical",
+      "deployed": "https://arcanea.ai",
+      "status": "building",
+      "actionItem": "Deploy v2 app with Ten Gates + Guardian agents",
+      "tags": ["web-app", "nextjs"]
+    },
+    "arcanea-platform": {
+      "cluster": "arcanea",
+      "milestone": "Social Platform Beta",
+      "priority": "high",
+      "status": "building",
+      "actionItem": "Supabase auth + creator social feeds",
+      "tags": ["platform", "social", "supabase"]
+    },
+    "arcanea-vault": {
+      "cluster": "arcanea",
+      "milestone": "v2.0 Chrome Extension",
+      "priority": "high",
+      "status": "shipping",
+      "deployed": "https://chromewebstore.google.com",
+      "actionItem": "Export pipeline for images, video, conversations",
+      "tags": ["chrome-extension", "tool"]
+    },
+    "claude-arcanea": {
+      "cluster": "arcanea",
+      "milestone": "v1.0 Release",
+      "priority": "critical",
+      "status": "shipping",
+      "actionItem": "Bridge Claude Code + Arcanea Guardian system",
+      "tags": ["claude-code", "agents", "skills"]
+    },
+    "arcanea-infogenius": {
+      "cluster": "arcanea",
+      "milestone": "v1.5 Premium Styles",
+      "priority": "medium",
+      "status": "stable",
+      "actionItem": "10 infographic styles via Gemini 3 Pro",
+      "tags": ["mcp-server", "images", "research"]
+    },
+    "oh-my-arcanea": {
+      "cluster": "arcanea",
+      "milestone": "v2.0 Agent Harness",
+      "priority": "high",
+      "status": "building",
+      "actionItem": "Best-in-class agent harness for Arcanea ecosystem",
+      "tags": ["agent-harness", "orchestration"]
+    },
+    "arcanea-onchain": {
+      "cluster": "arcanea",
+      "milestone": "NFT + Token Launch",
+      "priority": "medium",
+      "status": "exploring",
+      "actionItem": "Solana compressed NFTs + Base L2 for creator economy",
+      "tags": ["blockchain", "solana", "nft", "elizaos"]
+    },
+    "arcanea-core": {
+      "cluster": "arcanea",
+      "milestone": "Stable Foundation",
+      "priority": "medium",
+      "status": "stable",
+      "actionItem": "Open-source AI character toolkit for ecosystem",
+      "tags": ["open-source", "sdk", "characters"]
+    },
+    "acos-intelligence-system": {
+      "cluster": "acos",
+      "milestone": "v11 Plugin System",
+      "priority": "critical",
+      "status": "shipping",
+      "deployed": "https://github.com/frankxai/acos-intelligence-system",
+      "actionItem": "Publish v11 with knowledge-work-plugins integration",
+      "tags": ["acos", "intelligence", "open-source"],
+      "notes": "Standalone repo — full ACOS v11 architecture"
+    },
+    "agentic-creator-os": {
+      "cluster": "acos",
+      "milestone": "v10 Install UX",
+      "priority": "critical",
+      "status": "shipping",
+      "deployed": "https://github.com/frankxai/agentic-creator-os",
+      "actionItem": "Improve one-click install, update skill catalog, publish to npm",
+      "tags": ["acos", "skills", "agents", "flagship"]
+    },
+    "Starlight-Intelligence-System": {
+      "cluster": "acos",
+      "milestone": "v4.1 Context Push",
+      "priority": "high",
+      "status": "building",
+      "actionItem": "Deepen ACOS sync + add Cursor/Windsurf bridge",
+      "tags": ["intelligence", "memory", "universal"]
+    },
+    "knowledge-work-plugins": {
+      "cluster": "acos",
+      "milestone": "Creator Plugin v1",
+      "priority": "high",
+      "status": "shipping",
+      "actionItem": "12-plugin ecosystem — Creator plugin just added",
+      "tags": ["plugins", "claude-code", "open-source"]
+    },
+    "frankx.ai-vercel-website": {
+      "cluster": "websites",
+      "milestone": "Week 10 Sprint",
+      "priority": "critical",
+      "status": "shipping",
+      "deployed": "https://frankx.ai",
+      "actionItem": "Ongoing sprint delivery + production deploy",
+      "tags": ["production", "nextjs", "website"]
+    },
+    "FrankX": {
+      "cluster": "websites",
+      "milestone": "Private Dev Repo",
+      "priority": "critical",
+      "status": "building",
+      "actionItem": "Main development workspace — all sprints originate here",
+      "tags": ["private", "development"],
+      "notes": "Private dev repo. Production syncs to frankx.ai-vercel-website"
+    },
+    "ai-architect-academy": {
+      "cluster": "websites",
+      "milestone": "Launch Content",
+      "priority": "high",
+      "status": "building",
+      "actionItem": "Best resource for AI Centers of Excellence — needs more content",
+      "tags": ["education", "ai-architecture"]
+    },
+    "frankx-logs": {
+      "cluster": "websites",
+      "milestone": "Automated Logging",
+      "priority": "low",
+      "status": "stable",
+      "actionItem": "Auto-push session logs via hook",
+      "tags": ["logs", "public"]
+    },
+    "agentic-creator-skills": {
+      "cluster": "creator-tools",
+      "milestone": "v2.0 Expansion",
+      "priority": "high",
+      "status": "shipping",
+      "actionItem": "Expand ACOS skills library — keep in sync with agentic-creator-os",
+      "tags": ["skills", "claude-code", "open-source"]
+    },
+    "awesome-claude-code": {
+      "cluster": "creator-tools",
+      "milestone": "Community Curation",
+      "priority": "medium",
+      "status": "stable",
+      "actionItem": "Keep updated as the go-to Claude Code resource list",
+      "tags": ["awesome-list", "community", "curation"]
+    },
+    "awesome-claude-code-subagents": {
+      "cluster": "creator-tools",
+      "milestone": "100+ Subagents",
+      "priority": "medium",
+      "status": "stable",
+      "actionItem": "Curate and expand specialist subagent library",
+      "tags": ["subagents", "claude-code"]
+    },
+    "agents": {
+      "cluster": "creator-tools",
+      "milestone": "Orchestration Patterns",
+      "priority": "medium",
+      "status": "stable",
+      "actionItem": "Multi-agent orchestration patterns for Claude Code",
+      "tags": ["agents", "orchestration"]
+    },
+    "openclaw-acos-skills-railway-template": {
+      "cluster": "creator-tools",
+      "milestone": "Railway Deploy",
+      "priority": "medium",
+      "status": "stable",
+      "deployed": "https://railway.app",
+      "actionItem": "One-click deploy for OpenClaw + ACOS",
+      "tags": ["template", "railway", "deploy"]
+    },
+    "claude-code-music-production": {
+      "cluster": "creator-tools",
+      "milestone": "Music Production Guide",
+      "priority": "medium",
+      "status": "stable",
+      "actionItem": "Claude Code workflows for music production",
+      "tags": ["music", "guide", "open-source"]
+    },
+    "investor-intelligence": {
+      "cluster": "products",
+      "milestone": "Product Launch",
+      "priority": "critical",
+      "status": "building",
+      "actionItem": "Launch 14-product suite — agents, workflows, architectures",
+      "tags": ["private", "products", "finance"],
+      "notes": "Private repo. Products live at frankx.ai/investor"
+    },
+    "oracle-work": {
+      "cluster": "products",
+      "milestone": "OCI Projects",
+      "priority": "medium",
+      "status": "stable",
+      "actionItem": "Oracle Cloud enterprise AI work",
+      "tags": ["private", "oracle", "enterprise"],
+      "notes": "Private — Oracle consulting work"
+    },
+    "production-agent-patterns": {
+      "cluster": "products",
+      "milestone": "6 Frameworks",
+      "priority": "medium",
+      "status": "stable",
+      "actionItem": "Same agent across 6 frameworks — expand to 8",
+      "tags": ["patterns", "reference", "multi-framework"]
+    },
+    "life-sciences": {
+      "cluster": "products",
+      "milestone": "Claude Marketplace",
+      "priority": "low",
+      "status": "stable",
+      "actionItem": "Maintain marketplace.json for life sciences MCP servers",
+      "tags": ["marketplace", "life-sciences", "claude"]
+    },
+    "vibe-os": {
+      "cluster": "products",
+      "milestone": "v2.0 Launch",
+      "priority": "high",
+      "status": "building",
+      "actionItem": "Frequency healing + state management OS launch",
+      "tags": ["product", "audio", "ai"]
+    },
+    "mcp-doctor": {
+      "cluster": "research",
+      "milestone": "v1.5 Diagnostics",
+      "priority": "medium",
+      "status": "stable",
+      "actionItem": "MCP server diagnosis + optimization tool",
+      "tags": ["mcp", "developer-tool", "open-source"]
+    },
+    "ai-ops": {
+      "cluster": "research",
+      "milestone": "Personal AI Platform",
+      "priority": "medium",
+      "status": "exploring",
+      "actionItem": "Unified infrastructure for managing AI providers + workflows",
+      "tags": ["infrastructure", "ai-ops"]
+    },
+    "ai-workshop-for-students": {
+      "cluster": "research",
+      "milestone": "Student Curriculum",
+      "priority": "low",
+      "status": "stable",
+      "actionItem": "AI education for students — workshop curriculum",
+      "tags": ["education", "students"]
+    },
+    "grok-imagine-favorites-manager": {
+      "cluster": "research",
+      "milestone": "v1.0 Chrome Extension",
+      "priority": "low",
+      "status": "stable",
+      "actionItem": "Download/manage Grok Imagine favorites",
+      "tags": ["chrome-extension", "grok", "images"]
+    },
+    "claude-code-mcp": {
+      "cluster": "research",
+      "milestone": "MCP Pattern",
+      "priority": "low",
+      "status": "stable",
+      "actionItem": "Claude Code as one-shot MCP server pattern",
+      "tags": ["mcp", "claude-code", "pattern"]
+    }
+  }
+}
