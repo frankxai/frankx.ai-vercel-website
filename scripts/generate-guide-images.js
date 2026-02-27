@@ -2,7 +2,8 @@ const { GoogleGenAI } = require("@google/genai");
 const fs = require("fs");
 const path = require("path");
 
-const API_KEY = "AIzaSyClPlfKNsasEZ56dTSr-7zwJimthqus-UI";
+const API_KEY = process.env.GEMINI_API_KEY;
+if (!API_KEY) { console.error("Missing GEMINI_API_KEY env var"); process.exit(1); }
 const OUTPUT_DIR = "C:\\Users\\Frank\\FrankX\\.worktrees\\vercel-ui-ux\\public\\images\\guides";
 
 const ai = new GoogleGenAI({ apiKey: API_KEY });
