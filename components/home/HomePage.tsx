@@ -100,7 +100,7 @@ export default function HomePage() {
                 </StaggerItem>
                 <StaggerItem>
                   <p className="text-xl text-slate-200 max-w-4xl mx-auto leading-relaxed">
-                    Architect the intelligence era with a unified roadmap, field-tested frameworks, and operating rituals that keep every agent and teammate aligned.
+                    AI Architect at Oracle by day, creator by night. I build agentic systems, produce AI music, and document everything — so you can take what works and run with it.
                   </p>
                 </StaggerItem>
                 <StaggerItem>
@@ -135,17 +135,18 @@ export default function HomePage() {
                   </div>
                 </StaggerItem>
                 <StaggerItem>
-                  <div className="flex items-center justify-center gap-8 pt-8 text-sm text-white/60">
-                    <span>Used by creators and collaborators</span>
-                    <div className="flex items-center gap-6">
-                      <div className="flex items-center gap-2">
-                        <div className="w-2 h-2 rounded-full bg-green-400"></div>
-                        <span>500+ Vibe OS users</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <div className="w-2 h-2 rounded-full bg-cyan-400"></div>
-                        <span>300+ Creator systems</span>
-                      </div>
+                  <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-2 pt-8 text-sm text-white/50">
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 rounded-full bg-emerald-400 shrink-0"></div>
+                      <span>AI Architect · Oracle Cloud</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 rounded-full bg-cyan-400 shrink-0"></div>
+                      <span>12,000+ AI tracks produced</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 rounded-full bg-purple-400 shrink-0"></div>
+                      <span>ACOS · 1,000+ builders</span>
                     </div>
                   </div>
                 </StaggerItem>

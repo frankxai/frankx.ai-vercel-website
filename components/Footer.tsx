@@ -78,7 +78,7 @@ export default function Footer() {
             <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-white/40">
               <li><Link href="/music-lab" className="hover:text-white transition-colors">Music Lab</Link></li>
               <li><Link href="/prompt-library" className="hover:text-white transition-colors">Prompt Library</Link></li>
-              <li><Link href="/products/vibe-os" className="hover:text-white transition-colors">Vibe OS</Link></li>
+              <li><Link href="/acos" className="hover:text-white transition-colors">ACOS</Link></li>
               <li><Link href="/templates" className="hover:text-white transition-colors">Templates</Link></li>
             </ul>
           </div>

@@ -526,7 +526,7 @@ export const heroSubtext = [
 ]
 
 export const heroCta = {
-  primary: { label: 'Explore', href: '/start' },
+  primary: { label: 'Start Here', href: '/start' },
   secondary: { label: 'Listen to My Music', href: '/music-lab' },
   tertiary: { label: 'See How I Build This', href: '/creation-chronicles' }
 }
