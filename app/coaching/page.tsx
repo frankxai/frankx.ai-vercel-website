@@ -477,7 +477,7 @@ export default function CoachingPage() {
           </motion.div>
         </motion.section>
 
-        {/* Waitlist CTA */}
+        {/* Apply for Coaching CTA */}
         <motion.section
           id="waitlist"
           className="mx-auto max-w-4xl px-6 py-20"
@@ -510,24 +510,35 @@ export default function CoachingPage() {
                   </div>
                 </motion.div>
 
-                <h2 className="mb-4 text-3xl font-bold md:text-4xl">Get Priority Access</h2>
-                <p className="mb-8 text-lg leading-relaxed text-slate-400">
-                  Join the waitlist to be notified when coaching opens. Newsletter subscribers get
-                  early access and priority booking.
+                {/* Social proof credentials */}
+                <div className="mb-6 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-sm text-slate-500">
+                  <span>AI Architect · Oracle Cloud</span>
+                  <span className="text-white/20">·</span>
+                  <span>12,000+ AI tracks produced</span>
+                  <span className="text-white/20">·</span>
+                  <span>ACOS · 1,000+ builders</span>
+                </div>
+
+                <h2 className="mb-4 text-3xl font-bold md:text-4xl">Apply for Coaching</h2>
+                <p className="mb-2 text-lg leading-relaxed text-slate-400">
+                  Serious about building AI systems that compound? Submit your application and Frank reviews it personally.
+                </p>
+                <p className="mb-8 text-sm text-slate-500">
+                  Limited slots — rolling intake for builders who are ready to ship.
                 </p>
 
                 <div className="mx-auto max-w-md">
                   <EmailSignup
                     listType="inner-circle"
                     placeholder="Enter your email"
-                    buttonText="Join the Waitlist"
+                    buttonText="Submit Application"
                     redirectTo="/thank-you"
                     showName={false}
                   />
                 </div>
 
                 <p className="mt-6 text-xs text-slate-500">
-                  No spam. Unsubscribe anytime. Priority access for serious builders.
+                  Frank reviews applications weekly. Serious builders only.
                 </p>
               </div>
             </div>

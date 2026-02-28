@@ -7,14 +7,22 @@ category: "Intelligence Dispatches"
 tags: ["ai-strategy", "automation", "creator-os", "agentic-systems"]
 image: "/images/golden-age/starlight-intelligence-v2.png"
 featured: true
-keywords: ["ai agent memory", "behavioral intelligence", "claude code learning", "agent memory system", "ai agent patterns", "federated intelligence"]
+keywords:
+  [
+    "ai agent memory",
+    "behavioral intelligence",
+    "claude code learning",
+    "agent memory system",
+    "ai agent patterns",
+    "federated intelligence",
+  ]
 readingGoal: "You'll understand exactly how an AI agent behavioral learning system works — from raw session data to actionable instructions — and the honest engineering tradeoffs involved."
 readingTime: "14 min"
 ---
 
 # How I Built a Learning System for AI Agents
 
-*And what I learned about the gap between recording patterns and actually improving behavior.*
+_And what I learned about the gap between recording patterns and actually improving behavior._
 
 ---
 
@@ -43,7 +51,7 @@ SIS — the Starlight Intelligence System — is a standalone TypeScript package
 3. **Distills** patterns into concrete behavioral instructions
 4. **Injects** those instructions into the next session's context
 
-The key word is *distills*. Early versions of the system produced statistical dashboards — "Edit > Read > Bash: 89% success rate." That's a number. It's not an instruction. The current version produces this instead:
+The key word is _distills_. Early versions of the system produced statistical dashboards — "Edit > Read > Bash: 89% success rate." That's a number. It's not an instruction. The current version produces this instead:
 
 ```
 After multi-file changes, run a verification command
@@ -79,7 +87,7 @@ Memory entries live in `.starlight/memory.json` — a plain JSON array. The sear
 
 ```typescript
 // word → Set<entryId>
-index: Map<string, Set<string>>
+index: Map<string, Set<string>>;
 ```
 
 For 200 entries this rebuilds in 2-3ms. For personal AI intelligence where you'll have hundreds to low thousands of entries, this is the right call. It's portable, git-trackable, human-readable, and requires zero infrastructure.
@@ -132,13 +140,13 @@ The critical insight is that the guidance engine reads raw trajectory files ever
 
 Every trajectory gets classified by a deterministic decision tree. No ML, no embeddings — just rules with explicit thresholds:
 
-| Condition | Category | Meaning |
-|-----------|----------|---------|
-| `successScore ≤ 0.50` | **error** | Learn from failures |
-| `successScore ≥ 0.85` | **pattern** | Repeatable success |
-| Files in `.claude/` or `config` | **decision** | Architectural change |
-| Type is `skill_execution` | **preference** | Workflow style |
-| Everything else | **insight** | Worth remembering |
+| Condition                       | Category       | Meaning              |
+| ------------------------------- | -------------- | -------------------- |
+| `successScore ≤ 0.50`           | **error**      | Learn from failures  |
+| `successScore ≥ 0.85`           | **pattern**    | Repeatable success   |
+| Files in `.claude/` or `config` | **decision**   | Architectural change |
+| Type is `skill_execution`       | **preference** | Workflow style       |
+| Everything else                 | **insight**    | Worth remembering    |
 
 Errors get classified first — failures are the most valuable signal. If you failed, it doesn't matter that you touched config files. What matters is learning why you failed.
 
@@ -155,7 +163,7 @@ Top patterns: Edit > Read > Bash (89%), Read > Edit (85%)
 Weak domains: testing (54%), general tasks (55%)
 ```
 
-That's a dashboard. Useful for humans reviewing their workflow, useless for an LLM that needs to know what to *do*.
+That's a dashboard. Useful for humans reviewing their workflow, useless for an LLM that needs to know what to _do_.
 
 The v5.0 guidance engine has four distillation passes:
 
@@ -235,12 +243,12 @@ This means if I discover a deployment pattern while building FrankX that works 9
 
 SIS computes a 0-100 score across four dimensions (25 points each):
 
-| Dimension | What It Measures | How It Scores |
-|-----------|-----------------|---------------|
-| **Memory Depth** | Entry count, category diversity, confidence distribution, tag richness | 50+ entries = 5pts, all 5 categories = 7pts, 80%+ confidence ratio |
-| **Pattern Quality** | Pattern count, average success, elite patterns (≥0.85 success + 3+ occurrences) | Elite patterns carry the most weight |
-| **Operational History** | Trajectory volume, task type diversity, average success | 4+ different task types = max diversity points |
-| **Learning Velocity** | Recent memories (7 days), recent trajectories, source diversity | Rewards active usage, decays with inactivity |
+| Dimension               | What It Measures                                                                | How It Scores                                                      |
+| ----------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| **Memory Depth**        | Entry count, category diversity, confidence distribution, tag richness          | 50+ entries = 5pts, all 5 categories = 7pts, 80%+ confidence ratio |
+| **Pattern Quality**     | Pattern count, average success, elite patterns (≥0.85 success + 3+ occurrences) | Elite patterns carry the most weight                               |
+| **Operational History** | Trajectory volume, task type diversity, average success                         | 4+ different task types = max diversity points                     |
+| **Learning Velocity**   | Recent memories (7 days), recent trajectories, source diversity                 | Rewards active usage, decays with inactivity                       |
 
 The velocity component is intentional — the score decays if you haven't been active. It rewards sustained usage, not just having a big backlog. Current score: 91/100, Grade S.
 

@@ -34,11 +34,11 @@ const communitySpaces = [
   {
     icon: MessageCircle,
     title: 'Discussion Spaces',
-    description: 'Connect with creators using AI tools. Share prompts, workflows, and discoveries.',
+    description: 'Prompts, workflows, and AI discoveries shared between builders. Newsletter subscribers get early access when the space opens.',
     color: '#43BFE3',
     gradient: 'from-[#43BFE3] to-[#3B82F6]',
-    badge: 'Coming Soon',
-    href: null,
+    badge: 'Building',
+    href: '/newsletter',
   },
   {
     icon: Radio,
