@@ -1,12 +1,14 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
 import { fadeUp } from '@/lib/motion'
 
 import { homeSpotlights } from '@/lib/hub'
-import { Surface, SectionHeading } from '@/components/ui/primitives'
+import { SectionHeading } from '@/components/ui/primitives'
+import { GlowCard } from '@/components/ui/glow-card'
+
+const spotlightColors = ['violet', 'cyan', 'emerald'] as const
 
 export default function StrategicSpotlights() {
   return (
@@ -22,20 +24,23 @@ export default function StrategicSpotlights() {
         </motion.div>
 
         <div className="grid gap-6 md:grid-cols-3">
-          {homeSpotlights.map((spotlight) => (
+          {homeSpotlights.map((spotlight, i) => (
             <motion.div key={spotlight.title} {...fadeUp}>
-              <Surface as="article" tone="glass" padding="md" className="h-full backdrop-blur-sm">
-                <span className="eyebrow-text text-white/70">{spotlight.eyebrow}</span>
+              <GlowCard
+                href={spotlight.href}
+                color={spotlightColors[i % spotlightColors.length]}
+                className="p-6 h-full"
+              >
+                <span className="text-xs font-semibold uppercase tracking-widest text-white/50">
+                  {spotlight.eyebrow}
+                </span>
                 <h3 className="mt-3 text-heading-5 font-semibold text-white">{spotlight.title}</h3>
-                <p className="mt-2 text-body-sm text-neutral-300 leading-relaxed">{spotlight.description}</p>
-                <Link
-                  href={spotlight.href}
-                  className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-primary-400 underline-offset-4 hover:text-primary-300 hover:underline"
-                >
+                <p className="mt-2 text-body-sm text-white/60 leading-relaxed">{spotlight.description}</p>
+                <div className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-white/50 group-hover:text-white/90 transition-colors">
                   {spotlight.cta}
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
-                </Link>
-              </Surface>
+                </div>
+              </GlowCard>
             </motion.div>
           ))}
         </div>
