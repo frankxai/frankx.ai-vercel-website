@@ -6,7 +6,7 @@ export const siteConfig = {
   name: 'FrankX Intelligence Hub',
   shortName: 'FrankX',
   description:
-    'AI Architect and Music Creator. Building intelligent systems, tools, and workflows for creators who ship.',
+    'AI Architect and Music Creator. Intelligent Systems that empower Creators — SIS, ACOS, Arcanea, and the tools to build with AI.',
   url: siteUrl,
   twitter: '@frankxai',
   ogImage: '/api/og?title=FrankX%20Intelligence%20Hub',
