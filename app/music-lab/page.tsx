@@ -21,6 +21,7 @@ import {
   Download,
 } from 'lucide-react'
 import { EmailSignup } from '@/components/email-signup'
+import { GlowCard } from '@/components/ui/glow-card'
 
 // ============================================================================
 // BACKGROUND
@@ -308,13 +309,14 @@ function WhatIsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="p-6 rounded-2xl bg-white/[0.02] border border-white/10"
             >
-              <div className="w-12 h-12 rounded-xl bg-pink-500/10 flex items-center justify-center mb-4">
-                <item.icon className="w-6 h-6 text-pink-400" />
-              </div>
-              <h3 className="text-lg font-semibold text-white mb-2">{item.title}</h3>
-              <p className="text-white/50">{item.description}</p>
+              <GlowCard color="rose" className="p-6 h-full">
+                <div className="w-12 h-12 rounded-xl bg-pink-500/10 flex items-center justify-center mb-4">
+                  <item.icon className="w-6 h-6 text-pink-400" />
+                </div>
+                <h3 className="text-lg font-semibold text-white mb-2">{item.title}</h3>
+                <p className="text-white/50">{item.description}</p>
+              </GlowCard>
             </motion.div>
           ))}
         </div>
@@ -378,36 +380,39 @@ function GetStartedSection() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="flex gap-6 p-6 rounded-2xl bg-white/[0.02] border border-white/10"
             >
-              <div className="flex-shrink-0">
-                <span className="text-3xl font-bold text-pink-400/30">{step.number}</span>
-              </div>
-              <div className="flex-grow">
-                <h3 className="text-xl font-semibold text-white mb-2">{step.title}</h3>
-                <p className="text-white/50 mb-4">{step.description}</p>
-                {step.action && (
-                  step.action.external ? (
-                    <a
-                      href={step.action.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-2 text-pink-400 hover:text-pink-300 transition-colors"
-                    >
-                      {step.action.label}
-                      <ExternalLink className="w-4 h-4" />
-                    </a>
-                  ) : (
-                    <Link
-                      href={step.action.href}
-                      className="inline-flex items-center gap-2 text-pink-400 hover:text-pink-300 transition-colors"
-                    >
-                      {step.action.label}
-                      <ArrowRight className="w-4 h-4" />
-                    </Link>
-                  )
-                )}
-              </div>
+              <GlowCard color="violet" className="p-6 h-full">
+                <div className="flex gap-6">
+                  <div className="flex-shrink-0">
+                    <span className="text-3xl font-bold text-pink-400/30">{step.number}</span>
+                  </div>
+                  <div className="flex-grow">
+                    <h3 className="text-xl font-semibold text-white mb-2">{step.title}</h3>
+                    <p className="text-white/50 mb-4">{step.description}</p>
+                    {step.action && (
+                      step.action.external ? (
+                        <a
+                          href={step.action.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 text-pink-400 hover:text-pink-300 transition-colors"
+                        >
+                          {step.action.label}
+                          <ExternalLink className="w-4 h-4" />
+                        </a>
+                      ) : (
+                        <Link
+                          href={step.action.href}
+                          className="inline-flex items-center gap-2 text-pink-400 hover:text-pink-300 transition-colors"
+                        >
+                          {step.action.label}
+                          <ArrowRight className="w-4 h-4" />
+                        </Link>
+                      )
+                    )}
+                  </div>
+                </div>
+              </GlowCard>
             </motion.div>
           ))}
         </div>
@@ -464,21 +469,22 @@ function PromptExamplesSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="p-6 rounded-2xl bg-white/[0.02] border border-white/10"
             >
-              <div className="flex items-center justify-between mb-4">
-                <span className="text-lg font-semibold text-white">{example.genre}</span>
-                <span className="text-xs text-white/40">{example.useCase}</span>
-              </div>
-              <p className="text-sm text-white/60 font-mono bg-white/5 rounded-lg p-3 mb-4">
-                {example.prompt}
-              </p>
-              <button
-                onClick={() => navigator.clipboard.writeText(example.prompt)}
-                className="w-full py-2 rounded-lg border border-white/10 text-sm text-white/60 hover:bg-white/5 hover:text-white transition-all"
-              >
-                Copy Prompt
-              </button>
+              <GlowCard color="rose" className="p-6 h-full flex flex-col">
+                <div className="flex items-center justify-between mb-4">
+                  <span className="text-lg font-semibold text-white">{example.genre}</span>
+                  <span className="text-xs text-white/40">{example.useCase}</span>
+                </div>
+                <p className="text-sm text-white/60 font-mono bg-white/5 rounded-lg p-3 mb-4 flex-1">
+                  {example.prompt}
+                </p>
+                <button
+                  onClick={() => navigator.clipboard.writeText(example.prompt)}
+                  className="w-full py-2 rounded-full border border-white/10 text-sm text-white/60 hover:bg-white/5 hover:text-white transition-all"
+                >
+                  Copy Prompt
+                </button>
+              </GlowCard>
             </motion.div>
           ))}
         </div>

@@ -20,6 +20,7 @@ import {
 
 import GlassmorphicCard from '@/components/ui/GlassmorphicCard'
 import PremiumButton from '@/components/ui/PremiumButton'
+import { GlowCard } from '@/components/ui/glow-card'
 
 /* ──────────────────────────────────────────────
    CHECKOUT URLS — update when LemonSqueezy store is live
@@ -280,11 +281,11 @@ export default function ACOSPage() {
           </p>
           <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {features.map((feature) => (
-              <GlassmorphicCard key={feature.title} variant="premium" className="p-6">
+              <GlowCard key={feature.title} color="violet" className="p-6">
                 <feature.icon className="mb-4 h-8 w-8 text-purple-400" />
                 <h3 className="text-lg font-semibold text-white">{feature.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-white/60">{feature.description}</p>
-              </GlassmorphicCard>
+              </GlowCard>
             ))}
           </div>
         </div>
@@ -366,7 +367,7 @@ export default function ACOSPage() {
                       href={tier.ctaHref}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`flex w-full items-center justify-center gap-2 rounded-xl px-6 py-4 text-sm font-semibold uppercase tracking-[0.2em] text-white transition hover:-translate-y-0.5 ${
+                      className={`flex w-full items-center justify-center gap-2 rounded-full px-6 py-4 text-sm font-semibold uppercase tracking-[0.2em] text-white transition hover:-translate-y-0.5 ${
                         tier.featured
                           ? 'bg-gradient-to-r from-purple-500 to-cyan-500 shadow-[0_16px_50px_rgba(161,72,221,0.35)]'
                           : tier.variant === 'luxury'
@@ -380,7 +381,7 @@ export default function ACOSPage() {
                   ) : (
                     <Link
                       href={tier.ctaHref}
-                      className="flex w-full items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/[0.05] px-6 py-4 text-sm font-semibold uppercase tracking-[0.2em] text-white transition hover:-translate-y-0.5 hover:bg-white/[0.08]"
+                      className="flex w-full items-center justify-center gap-2 rounded-full border border-white/20 bg-white/[0.05] px-6 py-4 text-sm font-semibold uppercase tracking-[0.2em] text-white transition hover:-translate-y-0.5 hover:bg-white/[0.08]"
                     >
                       {tier.cta}
                     </Link>

@@ -17,6 +17,7 @@ import {
 } from 'lucide-react'
 import JsonLd from '@/components/seo/JsonLd'
 import { plannedCourses } from '@/lib/courses/roadmap'
+import { GlowCard, type GlowColor } from '@/components/ui/glow-card'
 
 type CourseCategory = 'foundations' | 'technical' | 'business'
 
@@ -127,53 +128,46 @@ function CourseCard({ course, index }: { course: CourseCardData; index: number }
       viewport={{ once: true }}
       transition={{ delay: index * 0.08 }}
     >
-      <Link
-        href={course.href}
-        className="group block relative p-6 rounded-3xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-sm overflow-hidden hover:border-white/15 transition-all duration-300 hover:-translate-y-1 h-full"
-      >
-        <div className={`absolute inset-0 bg-gradient-to-br ${course.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
-
-        <div className="relative">
-          <div className="flex items-start justify-between mb-4">
-            <div className="p-3 rounded-xl bg-white/5 group-hover:bg-white/10 transition-colors">
-              <Icon className={`w-5 h-5 ${course.color}`} />
-            </div>
-            <span className="px-2 py-1 bg-amber-500/20 text-amber-400 text-xs font-medium rounded-full">
-              Planned
-            </span>
+      <GlowCard href={course.href} color={({ 'text-cyan-400': 'cyan', 'text-violet-400': 'violet', 'text-emerald-400': 'emerald' } as Record<string, GlowColor>)[course.color] ?? 'cyan'} className="p-6 h-full">
+        <div className="flex items-start justify-between mb-4">
+          <div className="p-3 rounded-xl bg-white/5 group-hover:bg-white/10 transition-colors">
+            <Icon className={`w-5 h-5 ${course.color}`} />
           </div>
+          <span className="px-2 py-1 bg-amber-500/20 text-amber-400 text-xs font-medium rounded-full">
+            Planned
+          </span>
+        </div>
 
-          <h3 className="text-xl font-semibold text-white mb-2 group-hover:text-white transition-colors">
-            {course.title}
-          </h3>
-          <p className="text-sm text-white/60 leading-relaxed mb-5 group-hover:text-white/70 transition-colors">
-            {course.description}
-          </p>
+        <h3 className="text-xl font-semibold text-white mb-2">
+          {course.title}
+        </h3>
+        <p className="text-sm text-white/60 leading-relaxed mb-5">
+          {course.description}
+        </p>
 
-          <div className="space-y-2 text-xs text-white/45 mb-6">
-            <div className="flex items-center gap-2">
-              <CalendarClock className="w-3.5 h-3.5" />
-              {course.launchWindow}
-            </div>
-            <div className="flex items-center gap-2">
-              <Clock className="w-3.5 h-3.5" />
-              {course.commitment}
-            </div>
-            <div className="flex items-center gap-2">
-              <BookOpen className="w-3.5 h-3.5" />
-              {course.modules} draft modules
-            </div>
+        <div className="space-y-2 text-xs text-white/45 mb-6">
+          <div className="flex items-center gap-2">
+            <CalendarClock className="w-3.5 h-3.5" />
+            {course.launchWindow}
           </div>
-
-          <div className="flex items-center justify-between pt-4 border-t border-white/5">
-            <span className="text-sm font-semibold text-amber-300">Waitlist Open</span>
-            <span className="flex items-center gap-1 text-sm font-medium text-white/60 group-hover:text-white transition-colors">
-              View roadmap
-              <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-            </span>
+          <div className="flex items-center gap-2">
+            <Clock className="w-3.5 h-3.5" />
+            {course.commitment}
+          </div>
+          <div className="flex items-center gap-2">
+            <BookOpen className="w-3.5 h-3.5" />
+            {course.modules} draft modules
           </div>
         </div>
-      </Link>
+
+        <div className="flex items-center justify-between pt-4 border-t border-white/5">
+          <span className="text-sm font-semibold text-amber-300">Waitlist Open</span>
+          <span className="flex items-center gap-1 text-sm font-medium text-white/60 group-hover:text-white transition-colors">
+            View roadmap
+            <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+          </span>
+        </div>
+      </GlowCard>
     </motion.div>
   )
 }
@@ -385,7 +379,7 @@ export default function CoursesPage() {
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Link
                   href="/courses/conscious-ai-foundations#waitlist"
-                  className="group inline-flex items-center gap-3 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-4 font-semibold shadow-lg shadow-emerald-500/20 transition-all hover:shadow-xl hover:shadow-emerald-500/30 hover:-translate-y-0.5"
+                  className="group inline-flex items-center gap-3 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-4 font-semibold shadow-lg shadow-emerald-500/20 transition-all hover:shadow-xl hover:shadow-emerald-500/30 hover:-translate-y-0.5"
                 >
                   Get Early Access
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />

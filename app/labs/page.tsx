@@ -15,6 +15,10 @@ import {
   CirclePlay,
 } from 'lucide-react'
 import { EmailSignup } from '@/components/email-signup'
+import { GlowCard, type GlowColor } from '@/components/ui/glow-card'
+
+const formatGlowColors: GlowColor[] = ['violet', 'cyan', 'amber']
+const flowGlowColors: GlowColor[] = ['cyan', 'violet', 'amber']
 
 const labFormats = [
   {
@@ -125,14 +129,14 @@ export default function LabsPage() {
             <motion.div className="flex flex-wrap justify-center gap-4" variants={itemVariants}>
               <Link
                 href="/inner-circle"
-                className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#AB47C7] to-[#43BFE3] px-8 py-4 font-semibold text-white shadow-lg shadow-[#AB47C7]/30 transition-all hover:-translate-y-0.5"
+                className="flex items-center gap-2 rounded-full bg-gradient-to-r from-[#AB47C7] to-[#43BFE3] px-8 py-4 font-semibold text-white shadow-lg shadow-[#AB47C7]/30 transition-all hover:-translate-y-0.5"
               >
                 Join Inner Circle
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
                 href="/vault"
-                className="flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-8 py-4 font-semibold text-white/80 transition-all hover:bg-white/10"
+                className="flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-8 py-4 font-semibold text-white/80 transition-all hover:bg-white/10"
               >
                 Visit the Vault
               </Link>
@@ -158,9 +162,7 @@ export default function LabsPage() {
           <div className="grid gap-6 md:grid-cols-3">
             {labFormats.map((format, index) => (
               <motion.div key={index} variants={itemVariants}>
-                <div
-                  className={`group h-full rounded-2xl border bg-white/[0.03] p-8 backdrop-blur-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-[#AB47C7]/10 ${format.borderColor}`}
-                >
+                <GlowCard color={formatGlowColors[index]} className="p-8 h-full">
                   <div
                     className={`mb-6 flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br ${format.color} transition-transform duration-500 group-hover:scale-110`}
                   >
@@ -168,7 +170,7 @@ export default function LabsPage() {
                   </div>
                   <h3 className="mb-3 text-2xl font-bold">{format.title}</h3>
                   <p className="leading-relaxed text-slate-400">{format.description}</p>
-                </div>
+                </GlowCard>
               </motion.div>
             ))}
           </div>
@@ -196,7 +198,7 @@ export default function LabsPage() {
             <div className="relative z-10 grid gap-8 md:grid-cols-3">
               {labFlow.map((step, index) => (
                 <motion.div key={index} variants={itemVariants}>
-                  <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-8 text-center backdrop-blur-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-[#AB47C7]/10">
+                  <GlowCard color={flowGlowColors[index]} className="p-8 text-center h-full">
                     <span
                       className={`mb-4 inline-block rounded-full border border-current px-3 py-0.5 text-xs font-semibold uppercase tracking-widest ${step.color}`}
                     >
@@ -209,7 +211,7 @@ export default function LabsPage() {
 
                     <h3 className="mb-3 text-xl font-bold">{step.title}</h3>
                     <p className="text-sm leading-relaxed text-slate-400">{step.description}</p>
-                  </div>
+                  </GlowCard>
                 </motion.div>
               ))}
             </div>
@@ -242,14 +244,14 @@ export default function LabsPage() {
                   <div className="flex flex-wrap gap-4">
                     <Link
                       href="/inner-circle"
-                      className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#AB47C7] to-[#43BFE3] px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-[#AB47C7]/30"
+                      className="flex items-center gap-2 rounded-full bg-gradient-to-r from-[#AB47C7] to-[#43BFE3] px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-[#AB47C7]/30"
                     >
                       Join Inner Circle
                       <ArrowRight className="h-4 w-4" />
                     </Link>
                     <Link
                       href="/drops"
-                      className="flex items-center gap-2 rounded-xl border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white/80 hover:bg-white/10"
+                      className="flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white/80 hover:bg-white/10"
                     >
                       Browse Weekly Drops
                     </Link>

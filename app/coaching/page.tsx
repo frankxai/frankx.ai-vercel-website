@@ -166,6 +166,7 @@ const faqs = [
 // ── Components ──
 
 import { containerVariants, itemVariants } from '@/lib/motion'
+import { GlowCard } from '@/components/ui/glow-card'
 
 function FAQItem({ question, answer }: { question: string; answer: string }) {
   const [isOpen, setIsOpen] = useState(false)
@@ -271,7 +272,7 @@ export default function CoachingPage() {
               const Icon = area.icon
               return (
                 <motion.div key={area.title} variants={itemVariants}>
-                  <div className="group h-full rounded-2xl border border-white/10 bg-white/[0.03] p-8 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-[#AB47C7]/10">
+                  <GlowCard className="p-8 h-full">
                     <div
                       className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl"
                       style={{ backgroundColor: `${area.color}20` }}
@@ -280,7 +281,7 @@ export default function CoachingPage() {
                     </div>
                     <h3 className="mb-3 text-xl font-bold">{area.title}</h3>
                     <p className="leading-relaxed text-slate-400">{area.description}</p>
-                  </div>
+                  </GlowCard>
                 </motion.div>
               )
             })}
@@ -311,7 +312,7 @@ export default function CoachingPage() {
                 const Icon = step.icon
                 return (
                   <motion.div key={step.number} variants={itemVariants}>
-                    <div className="group h-full rounded-2xl border border-white/10 bg-white/[0.03] p-6 backdrop-blur-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-[#AB47C7]/10">
+                    <GlowCard className="p-6 h-full">
                       <div className="mb-4 flex items-center justify-between">
                         <span className="text-5xl font-bold text-white/10">{step.number}</span>
                         <div
@@ -323,7 +324,7 @@ export default function CoachingPage() {
                       </div>
                       <h3 className="mb-2 text-xl font-bold">{step.title}</h3>
                       <p className="text-sm leading-relaxed text-slate-400">{step.description}</p>
-                    </div>
+                    </GlowCard>
                   </motion.div>
                 )
               })}
@@ -396,7 +397,7 @@ export default function CoachingPage() {
                   <div className="mt-auto">
                     <Link
                       href="#waitlist"
-                      className="flex w-full items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/5 py-3 text-sm font-semibold text-white/80 transition-all hover:bg-white/10"
+                      className="flex w-full items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 py-3 text-sm font-semibold text-white/80 transition-all hover:bg-white/10"
                     >
                       Apply for Coaching
                       <ArrowRight className="h-4 w-4" />
