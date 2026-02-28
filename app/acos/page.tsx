@@ -22,13 +22,13 @@ import GlassmorphicCard from '@/components/ui/GlassmorphicCard'
 import PremiumButton from '@/components/ui/PremiumButton'
 
 /* ──────────────────────────────────────────────
-   LEMON SQUEEZY CHECKOUT URLS
-   Replace these with your actual product URLs from
+   CHECKOUT URLS — update when LemonSqueezy store is live
    https://app.lemonsqueezy.com/products
+   Until then: waitlist redirect to newsletter
    ────────────────────────────────────────────── */
 const CHECKOUT = {
-  starter: 'https://frankxai.lemonsqueezy.com/buy/acos-starter',
-  pro: 'https://frankxai.lemonsqueezy.com/buy/acos-pro',
+  starter: '/newsletter?ref=acos-creator-kit',
+  pro: '/newsletter?ref=acos-pro-system',
 }
 
 const stats = [
@@ -104,7 +104,7 @@ const tiers = [
       'Priority email support',
       'Private Discord community',
     ],
-    cta: 'Get Creator Kit',
+    cta: 'Join Waitlist',
     ctaHref: CHECKOUT.starter,
     variant: 'primary' as const,
     featured: true,
@@ -122,7 +122,7 @@ const tiers = [
       'Priority GitHub issue resolution',
       '1:1 async support (30 days)',
     ],
-    cta: 'Get Pro System',
+    cta: 'Join Waitlist',
     ctaHref: CHECKOUT.pro,
     variant: 'luxury' as const,
     featured: false,
