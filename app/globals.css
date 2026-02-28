@@ -426,6 +426,84 @@
   }
 }
 
+/* ============================================================================
+   CSS HOUDINI: Animatable shimmer angle property
+   @property enables smooth conic-gradient rotation without the 200%×200% div hack.
+   Browser support: Chrome 85+, Edge 85+, Safari 16.4+ (~94% global coverage)
+   ============================================================================ */
+@property --shimmer-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes shimmer-spin {
+  to { --shimmer-angle: 360deg; }
+}
+
+/* ── Shimmer border utility classes ── */
+@layer utilities {
+  /* Always-on shimmer border */
+  .shimmer-border {
+    --shimmer-color-1: #AB47C7;
+    --shimmer-color-2: #43BFE3;
+    background: conic-gradient(
+      from var(--shimmer-angle),
+      transparent 60%,
+      var(--shimmer-color-1) 70%,
+      var(--shimmer-color-2) 80%,
+      transparent 90%
+    );
+    animation: shimmer-spin 3s linear infinite;
+  }
+  .shimmer-border-fast { animation: shimmer-spin 1.5s linear infinite; }
+  .shimmer-border-slow { animation: shimmer-spin 5s linear infinite; }
+
+  /* Hover-only shimmer — add .shimmer-hover-parent to the wrapper */
+  .shimmer-border-hover {
+    background: conic-gradient(
+      from var(--shimmer-angle),
+      transparent 60%,
+      #AB47C7 70%,
+      #43BFE3 80%,
+      transparent 90%
+    );
+    animation: none;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  .shimmer-hover-parent:hover .shimmer-border-hover {
+    animation: shimmer-spin 2.5s linear infinite;
+    opacity: 1;
+  }
+
+  /* Color variant overrides */
+  .shimmer-gold {
+    --shimmer-color-1: #F59E0B;
+    --shimmer-color-2: #FB923C;
+  }
+  .shimmer-emerald {
+    --shimmer-color-1: #10B981;
+    --shimmer-color-2: #06B6D4;
+  }
+  .shimmer-ice {
+    --shimmer-color-1: rgba(255, 255, 255, 0.7);
+    --shimmer-color-2: #43BFE3;
+  }
+  .shimmer-rainbow {
+    /* Override background for multi-stop rainbow */
+    background: conic-gradient(
+      from var(--shimmer-angle),
+      transparent 50%,
+      #10B981 60%,
+      #43BFE3 70%,
+      #AB47C7 80%,
+      #F59E0B 90%,
+      transparent 95%
+    ) !important;
+  }
+}
+
 /* Film-grain overlay — subtle noise texture for depth */
 .grain-overlay::after {
   content: "";
