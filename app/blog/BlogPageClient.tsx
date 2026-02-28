@@ -45,13 +45,15 @@ export default function BlogPageClient({ posts, categories }: BlogPageClientProp
     return posts.filter((post) => post.category?.toLowerCase() === category.toLowerCase()).length
   }
 
-  // Latest post shown as hero when no filter is active
-  const latestPost = !selectedCategory ? posts[0] : null
-  const remainingPosts = latestPost ? posts.slice(1) : posts
+  // Latest ORIGINAL post shown as hero (curated/recap content excluded)
+  const latestPost = !selectedCategory
+    ? posts.find(p => p.category?.toLowerCase() !== 'curated') ?? null
+    : null
+  const remainingPosts = posts.filter(p => p !== latestPost)
 
   const filteredPosts = selectedCategory
     ? remainingPosts.filter((post) => post.category?.toLowerCase() === selectedCategory.toLowerCase())
-    : remainingPosts
+    : remainingPosts.filter((post) => post.category?.toLowerCase() !== 'curated')
 
   const featuredPosts = filteredPosts.filter((post) => post.featured).slice(0, 2)
   const regularPosts = filteredPosts.filter((post) => !post.featured)

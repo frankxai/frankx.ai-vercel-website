@@ -1,0 +1,322 @@
+---
+title: "How I Built a Learning System for AI Agents"
+description: "Inside the Starlight Intelligence System — a federated behavioral engine that turns raw session data into concrete instructions AI agents actually follow."
+date: "2026-02-27"
+author: "FrankX"
+category: "Intelligence Dispatches"
+tags: ["ai-strategy", "automation", "creator-os", "agentic-systems"]
+image: "/images/golden-age/starlight-intelligence-v2.png"
+featured: true
+keywords: ["ai agent memory", "behavioral intelligence", "claude code learning", "agent memory system", "ai agent patterns", "federated intelligence"]
+readingGoal: "You'll understand exactly how an AI agent behavioral learning system works — from raw session data to actionable instructions — and the honest engineering tradeoffs involved."
+readingTime: "14 min"
+---
+
+# How I Built a Learning System for AI Agents
+
+*And what I learned about the gap between recording patterns and actually improving behavior.*
+
+---
+
+## TL;DR
+
+The Starlight Intelligence System (SIS) is a standalone behavioral intelligence engine that reads raw AI agent session data, classifies it into five memory categories, computes an intelligence score, and generates concrete instructions that get injected into future sessions. It federates across multiple projects so patterns from one codebase inform work in another. Built in TypeScript with zero runtime dependencies at 6,000 lines. This is what it does, how it works under the hood, and where the honest limits are.
+
+---
+
+## The Problem: AI Agents Forget Everything
+
+Every time you start a new Claude Code session, your agent starts from zero. It doesn't remember that the last three times it tried to edit a file without reading it first, it broke things. It doesn't know that your deployment workflow requires running the build before committing. It doesn't recall that `Read > Edit > Bash` works 89% of the time for your codebase while `Bash > Edit > Bash` fails half the time.
+
+This is the amnesia problem. And it's not just inconvenient — it's expensive. I tracked 154 sessions across three projects. The same mistakes recurred across 30% of them. The agent kept making errors it should have learned to avoid.
+
+So I built a system to fix it.
+
+---
+
+## What SIS Actually Is
+
+SIS — the Starlight Intelligence System — is a standalone TypeScript package that does four things:
+
+1. **Reads** raw session data (trajectories) produced by ACOS hooks
+2. **Classifies** each trajectory into one of five memory categories
+3. **Distills** patterns into concrete behavioral instructions
+4. **Injects** those instructions into the next session's context
+
+The key word is *distills*. Early versions of the system produced statistical dashboards — "Edit > Read > Bash: 89% success rate." That's a number. It's not an instruction. The current version produces this instead:
+
+```
+After multi-file changes, run a verification command
+(build, test, or lint) before marking complete.
+— 18 verified sessions, avg 96% success
+```
+
+That's an instruction an LLM can follow. The difference matters.
+
+---
+
+## Architecture: Five Modules, Zero Dependencies
+
+SIS is built as a pure Node.js ESM package. No SQLite. No vector database. No runtime dependencies. The entire system runs on `fs`, `path`, and `util.parseArgs`.
+
+```
+@frankx/starlight-intelligence-system v5.0.0
+├── memory.ts    — Persistent file-based memory vault with word index
+├── sync.ts      — ACOS trajectory → SIS memory ETL pipeline
+├── guidance.ts  — Behavioral rule distillation engine
+├── score.ts     — 0-100 intelligence scoring (S/A/B/C/D/F grades)
+├── multi-sync.ts — Federated cross-project intelligence
+├── cli.ts       — Zero-dependency CLI (starlight command)
+├── context.ts   — Multi-platform context generation
+├── agents.ts    — Agent registry and routing
+├── orchestrator.ts — 7-layer execution pipeline
+└── types.ts     — The contract (all types in one place)
+```
+
+### Why File-Based Storage?
+
+Memory entries live in `.starlight/memory.json` — a plain JSON array. The search engine is a `WordIndex` class that builds an inverted index in memory at startup:
+
+```typescript
+// word → Set<entryId>
+index: Map<string, Set<string>>
+```
+
+For 200 entries this rebuilds in 2-3ms. For personal AI intelligence where you'll have hundreds to low thousands of entries, this is the right call. It's portable, git-trackable, human-readable, and requires zero infrastructure.
+
+A vector database would be more accurate for semantic search. But it would also add a dependency, require infrastructure, and make the system less inspectable. For behavioral intelligence where you're searching for patterns like "deployment" or "music production," keyword matching works.
+
+---
+
+## The Learning Loop
+
+Here's the complete data flow:
+
+```
+Session 1: Claude Code runs with ACOS hooks active
+  ↓
+ACOS hooks record a trajectory at session end:
+  - 45 operations in 12.3 minutes
+  - Tools used: Edit(12), Read(8), Bash(3)
+  - Files modified: [page.tsx, hooks.ts, api.ts]
+  - Success score: 0.87
+  ↓
+starlight sync reads the trajectory file
+  ↓
+Classifier runs:
+  score 0.87 ≥ 0.85 → category: "pattern"
+  ↓
+Memory vault stores:
+  "[code_development] 45 ops in 12.3min, score 0.87.
+   Tools: Edit(12), Read(8), Bash(3). Files: page.tsx..."
+  ↓
+starlight guidance reads ALL trajectories + memories
+  ↓
+Distillation engine runs:
+  - 18 sessions with verification had avg 96% success
+  - 12 sessions without verification had avg 71% success
+  - Δ = 25 percentage points → Rule: "verify builds"
+  ↓
+Session 2: Guidance markdown injected as system context
+  → "Always verify builds after multi-file edits"
+  → Agent follows the instruction
+  → Better trajectory produced
+  → Loop repeats
+```
+
+The critical insight is that the guidance engine reads raw trajectory files every time it runs — not just synced memories. This means guidance is always based on the freshest data, not whatever was last synced.
+
+---
+
+## The Classifier: Five Categories
+
+Every trajectory gets classified by a deterministic decision tree. No ML, no embeddings — just rules with explicit thresholds:
+
+| Condition | Category | Meaning |
+|-----------|----------|---------|
+| `successScore ≤ 0.50` | **error** | Learn from failures |
+| `successScore ≥ 0.85` | **pattern** | Repeatable success |
+| Files in `.claude/` or `config` | **decision** | Architectural change |
+| Type is `skill_execution` | **preference** | Workflow style |
+| Everything else | **insight** | Worth remembering |
+
+Errors get classified first — failures are the most valuable signal. If you failed, it doesn't matter that you touched config files. What matters is learning why you failed.
+
+The thresholds (0.50, 0.85) are intentionally conservative. The 0.50 floor means only genuine failures get flagged — a 0.60 session might have hit a snag but recovered. The 0.85 ceiling means only sessions that went genuinely well become "patterns" — you need to earn that label.
+
+---
+
+## The Guidance Engine: Statistics to Instructions
+
+This is the module I'm most proud of. Early SIS versions produced statistical summaries:
+
+```
+Top patterns: Edit > Read > Bash (89%), Read > Edit (85%)
+Weak domains: testing (54%), general tasks (55%)
+```
+
+That's a dashboard. Useful for humans reviewing their workflow, useless for an LLM that needs to know what to *do*.
+
+The v5.0 guidance engine has four distillation passes:
+
+### Pass 1: Behavioral Rules
+
+Six rule sources, each examining trajectories for actionable patterns:
+
+1. **Verification rule** — Do sessions with build/test verification (2+ Bash calls after edits) outperform sessions without? If yes: "Run verification commands after multi-file changes."
+
+2. **Read-before-edit rule** — Do `Read > Edit` sequences have higher success than blind edits? If yes: "Always Read a file before editing it."
+
+3. **Task delegation rule** — Do sessions using the Task tool on complex work (20+ operations) outperform sessions that don't delegate? If the delta exceeds 5%: "Delegate to subagents for complex tasks."
+
+4. **Domain tool preferences** — For each work domain (frontend, content, deployment), which tool has the highest success rate with at least 5 uses? "For deployment tasks, lean on Bash."
+
+5. **Session length correlation** — Do short, focused sessions (≤15 operations) outperform marathon sessions (50+ operations)? "Break large tasks into smaller focused sessions."
+
+6. **File scope rule** — Do targeted changes (1-5 files) beat scattered changes (10+ files)? "Prefer focused changes over broad sweeps."
+
+Each rule includes evidence: the number of supporting sessions and the average success rate. The LLM reads the instruction and the evidence together.
+
+### Pass 2: Failure Lessons
+
+Groups all low-success trajectories (≤0.50) by domain and analyzes what they have in common:
+
+- Sessions that were too long (avg operations > 40) → "Break into smaller steps"
+- Sessions that touched too many files (avg > 8) → "Focus changes, verify incrementally"
+- Sessions with excessive Bash usage → "Use dedicated tools (Read, Edit, Grep) instead"
+
+Then it compares against successful sessions in the same domain. If successful deployment sessions average 12 operations and failed ones average 45, that's a concrete lesson.
+
+### Pass 3: Domain Checklists
+
+For domains with an average success rate below 70%, the engine generates a per-domain completion checklist based on what successful sessions do differently:
+
+```
+**Testing** (54% avg, 3 sessions):
+  - Break work into smaller verifiable steps
+  - Verify each change before moving to the next
+```
+
+### Pass 4: Cross-Project Intelligence
+
+When multiple projects are registered, memories tagged with `project:frankx:` or `project:acos:` enable cross-project pattern detection. A deployment pattern that works in one project gets surfaced as a validated insight in another.
+
+---
+
+## Federation: Cross-Project Intelligence
+
+SIS isn't tied to one codebase. The multi-sync module maintains a project registry in `.starlight/projects.json`:
+
+```json
+{
+  "projects": [
+    {
+      "name": "frankx",
+      "acosPath": "/path/to/.claude/trajectories",
+      "trajectoriesTotal": 117,
+      "lastSyncAt": "2026-02-27T..."
+    },
+    {
+      "name": "acos",
+      "acosPath": "/path/to/acos/.claude/trajectories",
+      "patternCount": 50
+    }
+  ]
+}
+```
+
+When you run `starlight project sync-all`, every registered project's trajectories get synced into the central memory vault. Each entry gets a source prefix — `project:frankx:acos:trajectory:abc123` — so the guidance engine knows which project a pattern originated from.
+
+This means if I discover a deployment pattern while building FrankX that works 95% of the time, that pattern shows up as cross-project intelligence when I'm working on ACOS or Arcanea. The learning compounds across the entire ecosystem.
+
+---
+
+## The Intelligence Score
+
+SIS computes a 0-100 score across four dimensions (25 points each):
+
+| Dimension | What It Measures | How It Scores |
+|-----------|-----------------|---------------|
+| **Memory Depth** | Entry count, category diversity, confidence distribution, tag richness | 50+ entries = 5pts, all 5 categories = 7pts, 80%+ confidence ratio |
+| **Pattern Quality** | Pattern count, average success, elite patterns (≥0.85 success + 3+ occurrences) | Elite patterns carry the most weight |
+| **Operational History** | Trajectory volume, task type diversity, average success | 4+ different task types = max diversity points |
+| **Learning Velocity** | Recent memories (7 days), recent trajectories, source diversity | Rewards active usage, decays with inactivity |
+
+The velocity component is intentional — the score decays if you haven't been active. It rewards sustained usage, not just having a big backlog. Current score: 91/100, Grade S.
+
+---
+
+## The Honest Limits
+
+I spent time studying other systems that claim to solve the agent learning problem. Here's what I found, and what it means for SIS.
+
+### The Fundamental Validation Gap
+
+No behavioral learning system for LLM coding agents — not SIS, not claude-flow, not anything I've found in the research literature — has proven in a controlled experiment that injected patterns measurably change the LLM's output quality.
+
+The learning part (recording patterns, updating scores, generating rules) is straightforward to build. The hard part is proving that injecting "Always Read before editing" into the session context actually causes the agent to read before editing, vs. it would have done that anyway because it's a good general practice.
+
+This requires ablation testing: run the same 20 tasks twice, once with SIS guidance injected, once without, and measure the delta. I haven't done this yet. Nobody has. The entire field of agent behavioral learning operates on the assumption that better context → better behavior, which is plausible but unproven at the instruction level.
+
+### What I Know Works
+
+The trajectory data itself is unambiguously valuable. Having a record of 154 sessions across three projects — what tools were used, which files were touched, how long it took, what succeeded and what failed — is useful independent of whether the AI reads the generated rules.
+
+The score system gives me a real-time pulse on whether the system is being fed enough data. The federation model means learnings compound. These are concrete engineering wins even if the behavioral guidance influence is uncertain.
+
+### What's Next
+
+Three things would move SIS from "plausible" to "proven":
+
+1. **Ablation benchmark** — 20 standardized tasks, with vs. without SIS guidance. Measure completion rate, error count, tool efficiency. This is the one test that would put SIS ahead of every other learning system in the ecosystem.
+
+2. **Confidence decay** — Patterns that haven't been reinforced in 30 days should lose confidence. Currently memories are permanent.
+
+3. **Rule promotion** — Rules that appear in 3+ consecutive sessions should be promoted to permanent CLAUDE.md additions with an architecture decision record.
+
+---
+
+## The Stack
+
+The complete SIS is built with:
+
+- **TypeScript** (strict mode, ESM, ES2022 target)
+- **Zero runtime dependencies** (only `typescript` and `@types/node` in devDeps)
+- **Node.js built-ins** (`fs`, `path`, `util.parseArgs`)
+- **JSON file storage** (portable, git-trackable, human-readable)
+
+Total size: ~6,000 lines of TypeScript compiling to a globally installable `starlight` CLI command. Installs in milliseconds because there's nothing to install.
+
+The full source is at [github.com/frankxai/starlight-intelligence-system](https://github.com/frankxai/starlight-intelligence-system).
+
+---
+
+## Why This Matters for Creators
+
+If you're building with AI agents — whether through Claude Code, Cursor, Windsurf, or whatever comes next — the agents don't learn from session to session. Every new session starts from zero.
+
+SIS is one approach to fixing that. Record what happens. Classify it. Distill it into rules. Inject those rules into the next session. Repeat.
+
+The architecture is simple enough that you could build something similar for your own workflow in a weekend. The hard problem isn't the engineering — it's proving that the learning loop actually closes. That's the frontier, and it's where the interesting work is.
+
+---
+
+## FAQ
+
+**Is SIS an AI model?**
+No. SIS is a data pipeline and analysis engine. It reads trajectory data, classifies it, and generates text that gets injected into an LLM's context. It doesn't contain or train any AI model.
+
+**Does SIS require an API key?**
+No. Zero external API calls. Everything runs locally on your filesystem. The only network activity would be the LLM calls in the orchestrator — and even those use a pluggable `AgentExecutor` callback that you wire up yourself.
+
+**How does SIS relate to ACOS?**
+ACOS (Agentic Creator Operating System) produces the raw data — trajectory files, tool-sequence patterns, session metadata. SIS consumes that data and turns it into persistent intelligence. ACOS is the runtime. SIS is the memory layer.
+
+**Can I use SIS with Cursor or other editors?**
+Yes. The context engine has platform adapters for `claude-code`, `cursor`, `windsurf`, and `generic`. The guidance output is plain markdown that works anywhere.
+
+**How is this different from claude-flow's learning system?**
+Both systems record patterns and inject them as context. The key differences: SIS uses human-readable JSON files (claude-flow uses SQLite), SIS generates concrete behavioral instructions (claude-flow does confidence-ranked pattern retrieval), and SIS has zero runtime dependencies (claude-flow depends on ONNX, PostgreSQL, etc.). Neither has published controlled validation of their learning effectiveness.
+
+**What's the intelligence score right now?**
+91/100, Grade S. 202 memories, 50 patterns, 154 trajectories across 3 projects.
