@@ -80,20 +80,17 @@
     ],
     "analyticsId": "creators-soulbook",
     "delivery": {
-      "methods": ["download", "gated"],
+      "methods": [
+        "download",
+        "gated"
+      ],
       "requiresEmail": true,
       "files": [
         {
-          "name": "Soulbook Complete Guide",
+          "name": "Soulbook 7 Pillars Framework",
           "format": "pdf",
-          "blobKey": "soulbook-guide.pdf",
-          "description": "The complete Creator's Soulbook framework with all 7 pillars"
-        },
-        {
-          "name": "Obsidian Vault",
-          "format": "zip",
-          "blobKey": "soulbook-vault.zip",
-          "description": "Ready-to-use Obsidian vault with templates and dashboards"
+          "blobKey": "products/soulbook/soulbook-7-pillars-framework.pdf",
+          "description": "The 7 Pillars framework for building every dimension of your life"
         }
       ]
     }
@@ -291,26 +288,16 @@
     ],
     "analyticsId": "vibe-os",
     "delivery": {
-      "methods": ["download", "gated"],
+      "methods": [
+        "download"
+      ],
       "requiresEmail": false,
       "files": [
         {
-          "name": "Vibe OS Getting Started Guide",
+          "name": "Vibe OS Guide",
           "format": "pdf",
-          "blobKey": "vibe-os-getting-started.pdf",
-          "description": "Complete guide to creative state management and energy tracking"
-        },
-        {
-          "name": "Notion Dashboard Template",
-          "format": "notion",
-          "blobKey": "vibe-os-notion-template.zip",
-          "description": "Ready-to-use Notion workspace for state tracking"
-        },
-        {
-          "name": "Energy Optimization Playbook",
-          "format": "pdf",
-          "blobKey": "vibe-os-energy-playbook.pdf",
-          "description": "Science-backed strategies for sustainable creative work"
+          "blobKey": "products/vibe-os/Vibe-OS-Guide.pdf",
+          "description": "Complete guide to creative state management"
         }
       ]
     }
@@ -348,8 +335,8 @@
       "primaryPrice": 497,
       "originalPrice": 997,
       "currency": "USD",
-      "ctaPrimary": "Choose Your Package",
-      "ctaPrimaryHref": "#pricing",
+      "ctaPrimary": "Explore the Framework",
+      "ctaPrimaryHref": "/creation-chronicles",
       "ctaPrimaryTracking": "creation-chronicles-primary",
       "ctaSecondary": "Preview Free Resources",
       "ctaSecondaryHref": "/resources",
@@ -485,7 +472,7 @@
       "primaryPriceDisplay": "Creator Studio Diagnostic",
       "currency": "USD",
       "ctaPrimary": "Book Studio Diagnostic",
-      "ctaPrimaryHref": "mailto:hello@frankx.ai?subject=Creator%20Studio%20Diagnostic",
+      "ctaPrimaryHref": "/products/generative-creator-os",
       "ctaPrimaryTracking": "generative-creator-os-primary",
       "ctaSecondary": "Explore Resources",
       "ctaSecondaryHref": "/resources",
@@ -569,7 +556,21 @@
         "answer": "Yes. Every build includes recorded walkthroughs, prompt decks, and live handoffs so you stay in control."
       }
     ],
-    "analyticsId": "generative-creator-os"
+    "analyticsId": "generative-creator-os",
+    "delivery": {
+      "methods": [
+        "download"
+      ],
+      "requiresEmail": false,
+      "files": [
+        {
+          "name": "GenCreator OS Guide",
+          "format": "pdf",
+          "blobKey": "products/generative-creator-os/GenCreator-OS-Guide.pdf",
+          "description": "Multi-modal AI creation platform guide"
+        }
+      ]
+    }
   },
   {
     "id": "agentic-creator-os",
@@ -579,7 +580,7 @@
     "badge": "GUIDED COHORT",
     "headline": "30-Day Lab to Ship Your Repeatable Launch Machine",
     "subheadline": "Co-designed coaching + build sessions that architect your complete creator operating system. Idea to monetized release every single week, guaranteed.",
-    "promise": "Build the system that turns creative chaos into predictable weekly shipping. Momentum, clarity, revenue—measured from day 1.",
+    "promise": "Build the system that turns creative chaos into predictable weekly shipping. Momentum, clarity, revenue\u2014measured from day 1.",
     "summary": "Live cohort lab where you co-architect rituals, automations, and accountability that keep your practice consistently shipping.",
     "transformation": [
       "Clarify exactly who you're creating for and what offer maps to your unique strengths (1-week sprint)",
@@ -605,7 +606,7 @@
       "primaryPriceDisplay": "Apply for the Lab",
       "currency": "USD",
       "ctaPrimary": "Apply for the Lab",
-      "ctaPrimaryHref": "/creator-lab",
+      "ctaPrimaryHref": "/products/agentic-creator-os",
       "ctaPrimaryTracking": "creator-lab-apply",
       "ctaSecondary": "Download Creator Lab Overview",
       "ctaSecondaryHref": "/creation-chronicles",
@@ -688,7 +689,40 @@
         "answer": "No. We design the system for solo creators first. If you have collaborators, we fold them into the rituals."
       }
     ],
-    "analyticsId": "agentic-creator-os"
+    "analyticsId": "agentic-creator-os",
+    "delivery": {
+      "methods": [
+        "download",
+        "gated"
+      ],
+      "requiresEmail": true,
+      "files": [
+        {
+          "name": "ACOS Product Guide v2",
+          "format": "pdf",
+          "blobKey": "products/agentic-creator-os/ACOS-Product-Guide-v2.pdf",
+          "description": "The complete ACOS product guide \u2014 23 pages"
+        },
+        {
+          "name": "ACOS Quickstart Guide",
+          "format": "pdf",
+          "blobKey": "products/agentic-creator-os/ACOS-Quickstart-Guide.pdf",
+          "description": "Get started in 15 minutes"
+        },
+        {
+          "name": "ACOS Complete Reference",
+          "format": "pdf",
+          "blobKey": "products/agentic-creator-os/ACOS-Complete-Reference.pdf",
+          "description": "Every command, agent, skill, and workflow"
+        },
+        {
+          "name": "ACOS Custom Agent Guide",
+          "format": "pdf",
+          "blobKey": "products/agentic-creator-os/ACOS-Custom-Agent-Guide.pdf",
+          "description": "Build your own specialized AI agents"
+        }
+      ]
+    }
   },
   {
     "id": "suno-prompt-library",
@@ -701,7 +735,7 @@
     "promise": "Stop wasting generations on prompts that don't work. Get proven prompts organized by genre, mood, and energy level.",
     "summary": "A comprehensive prompt library extracted from 500+ Suno sessions, organized for instant use in any creative project.",
     "transformation": [
-      "Access 100+ prompts that actually work—tested across 500+ generations with detailed success notes",
+      "Access 100+ prompts that actually work\u2014tested across 500+ generations with detailed success notes",
       "Find the perfect prompt in seconds with genre, mood, and energy filters (no more scrolling through chaos)",
       "Learn prompt patterns that unlock specific sounds (the 'why' behind each prompt so you can create your own)",
       "Get bonus prompt modifiers for tempo, instrumentation, and vocal styles that stack with any base prompt"
@@ -768,7 +802,7 @@
       {
         "title": "Genre Quick-Start Cards",
         "value": "$12",
-        "description": "Printable cards for the top 5 prompts in each genre—perfect for studio sessions."
+        "description": "Printable cards for the top 5 prompts in each genre\u2014perfect for studio sessions."
       },
       {
         "title": "Monthly Prompt Updates",
@@ -791,12 +825,14 @@
       },
       {
         "question": "How is this different from Vibe OS?",
-        "answer": "The Prompt Library is just the prompts. Vibe OS includes the full production system—workflows, emotion mapping, and release playbooks. This is the quick-start option."
+        "answer": "The Prompt Library is just the prompts. Vibe OS includes the full production system\u2014workflows, emotion mapping, and release playbooks. This is the quick-start option."
       }
     ],
     "analyticsId": "suno-prompt-library",
     "delivery": {
-      "methods": ["download"],
+      "methods": [
+        "download"
+      ],
       "requiresEmail": false,
       "files": [
         {
@@ -831,10 +867,10 @@
     "promise": "Stop building UI from scratch. Get 30 polished components plus an AI system that creates new ones matching your design system.",
     "summary": "A premium component library combining hand-crafted Next.js + Tailwind components with an agentic AI layer that generates custom variants on demand.",
     "transformation": [
-      "Drop 30 production-ready components into any Next.js project — PremiumCard, AuroraGradient, ShimmerButton, and more",
+      "Drop 30 production-ready components into any Next.js project \u2014 PremiumCard, AuroraGradient, ShimmerButton, and more",
       "Use the included Claude Code skill to generate new components that match the Aurora design language",
       "Ship polished UIs in hours instead of weeks with pre-built dark/light mode, responsive layouts, and micro-interactions",
-      "Customize everything with documented design tokens — colors, spacing, animations, glass levels"
+      "Customize everything with documented design tokens \u2014 colors, spacing, animations, glass levels"
     ],
     "socialProof": {
       "stats": [
@@ -874,7 +910,7 @@
       },
       {
         "title": "Animation Systems",
-        "description": "MorphingBackground, SplitTextReveal, Marquee, ParallaxContainer, StaggerContainer — all with prefers-reduced-motion support."
+        "description": "MorphingBackground, SplitTextReveal, Marquee, ParallaxContainer, StaggerContainer \u2014 all with prefers-reduced-motion support."
       },
       {
         "title": "AI Generation Skill",
@@ -889,7 +925,7 @@
       {
         "title": "6 Page Templates",
         "value": "$29",
-        "description": "Landing page, dashboard, pricing, blog, portfolio, and 404 — all built with Aurora components."
+        "description": "Landing page, dashboard, pricing, blog, portfolio, and 404 \u2014 all built with Aurora components."
       },
       {
         "title": "Figma Design Tokens",
@@ -900,11 +936,11 @@
     "faq": [
       {
         "question": "What tech stack does this require?",
-        "answer": "Next.js 14+, React 18+, Tailwind CSS 3+, and TypeScript. Components use zero external animation libraries — pure CSS + React."
+        "answer": "Next.js 14+, React 18+, Tailwind CSS 3+, and TypeScript. Components use zero external animation libraries \u2014 pure CSS + React."
       },
       {
         "question": "What makes this different from shadcn/ui?",
-        "answer": "Aurora UI Kit is a design-forward layer that sits on top of shadcn. While shadcn gives you unstyled primitives, Aurora gives you the visual polish — glassmorphism, gradients, micro-interactions, and the AI skill to generate more."
+        "answer": "Aurora UI Kit is a design-forward layer that sits on top of shadcn. While shadcn gives you unstyled primitives, Aurora gives you the visual polish \u2014 glassmorphism, gradients, micro-interactions, and the AI skill to generate more."
       },
       {
         "question": "How does the AI generation skill work?",
@@ -917,7 +953,9 @@
     ],
     "analyticsId": "aurora-ui-kit",
     "delivery": {
-      "methods": ["download"],
+      "methods": [
+        "download"
+      ],
       "requiresEmail": false,
       "files": [
         {
@@ -942,13 +980,13 @@
     "category": "Design + AI",
     "badge": "AGENTIC",
     "headline": "Your AI-Powered Content Production System",
-    "subheadline": "A complete Next.js content platform with built-in AI writing assistance, SEO optimization, social distribution automation, and analytics. Not a template — a system.",
+    "subheadline": "A complete Next.js content platform with built-in AI writing assistance, SEO optimization, social distribution automation, and analytics. Not a template \u2014 a system.",
     "promise": "Go from idea to published, SEO-optimized, socially distributed content in under 30 minutes. Every single time.",
     "summary": "Production-ready content management system combining a premium blog platform with agentic AI capabilities for writing, SEO, and distribution.",
     "transformation": [
       "Publish SEO-optimized articles with AI-assisted writing that maintains your voice and style",
       "Auto-generate social media posts for every article across Twitter/X, LinkedIn, and newsletter formats",
-      "Track content performance with built-in analytics dashboard — pageviews, time on page, conversion events",
+      "Track content performance with built-in analytics dashboard \u2014 pageviews, time on page, conversion events",
       "Use Claude Code skills to run your entire content pipeline from the terminal: research, write, optimize, publish"
     ],
     "socialProof": {
@@ -1024,7 +1062,7 @@
     "faq": [
       {
         "question": "Is this a WordPress alternative?",
-        "answer": "Yes, but faster. Built on Next.js with static generation, so pages load instantly. No database required — content lives in MDX files in your repo."
+        "answer": "Yes, but faster. Built on Next.js with static generation, so pages load instantly. No database required \u2014 content lives in MDX files in your repo."
       },
       {
         "question": "Do I need Claude Code to use this?",
@@ -1041,7 +1079,9 @@
     ],
     "analyticsId": "agentic-content-engine",
     "delivery": {
-      "methods": ["download"],
+      "methods": [
+        "download"
+      ],
       "requiresEmail": false,
       "files": [
         {
@@ -1083,9 +1123,18 @@
     ],
     "socialProof": {
       "stats": [
-        { "number": "500+", "label": "Tracks Created" },
-        { "number": "142", "label": "Top Plays" },
-        { "number": "5", "label": "Proven Prompts" }
+        {
+          "number": "500+",
+          "label": "Tracks Created"
+        },
+        {
+          "number": "142",
+          "label": "Top Plays"
+        },
+        {
+          "number": "5",
+          "label": "Proven Prompts"
+        }
       ],
       "quotes": []
     },
@@ -1116,14 +1165,17 @@
     ],
     "analyticsId": "5-suno-prompts",
     "delivery": {
-      "methods": ["download", "gated"],
+      "methods": [
+        "download",
+        "gated"
+      ],
       "requiresEmail": true,
       "files": [
         {
           "name": "5 Suno Prompts Guide",
           "format": "pdf",
-          "blobKey": "5-suno-prompts.pdf",
-          "description": "5 battle-tested Suno prompts with breakdowns and cheat sheet"
+          "blobKey": "products/5-suno-prompts/5-suno-prompts.pdf",
+          "description": "5 battle-tested Suno prompts with breakdowns"
         }
       ]
     }
@@ -1133,16 +1185,22 @@
     "slug": "love-and-poetry",
     "name": "Love & Poetry",
     "category": "Books",
-    "badge": "FREE TO READ",
+    "badge": "FREE PDF",
     "headline": "Verses That Move the Soul",
-    "subheadline": "Rumi, Rilke, Goethe, Vietnamese love poetry, and original verse — spanning centuries, cultures, and languages.",
+    "subheadline": "Rumi, Rilke, Goethe, Vietnamese love poetry, and original verse \u2014 spanning centuries, cultures, and languages.",
     "promise": "A curated collection of the world's most beautiful love poetry, woven with original work.",
     "summary": "Five chapters of poetry from Rumi to Rilke, from German Romanticism to Vietnamese lyricism, concluding with original poems written from lived experience.",
     "transformation": [],
     "socialProof": {
       "stats": [
-        { "number": "5", "label": "Chapters" },
-        { "number": "42", "label": "Min Read" }
+        {
+          "number": "5",
+          "label": "Chapters"
+        },
+        {
+          "number": "42",
+          "label": "Min Read"
+        }
       ],
       "quotes": []
     },
@@ -1157,9 +1215,23 @@
     "modules": [],
     "analyticsId": "book-love-and-poetry",
     "delivery": {
-      "methods": ["download", "gated"],
+      "methods": [
+        "download",
+        "gated"
+      ],
       "requiresEmail": true,
-      "files": []
+      "files": [
+        {
+          "name": "Love & Poetry (PDF)",
+          "blobKey": "books/love-and-poetry/love-and-poetry.pdf",
+          "format": "pdf",
+          "size": "0.6 MB"
+        }
+      ]
+    },
+    "cta": {
+      "label": "Download Free PDF",
+      "href": "/books/love-and-poetry"
     }
   },
   {
@@ -1167,7 +1239,7 @@
     "slug": "spartan-mindset",
     "name": "Spartan Mindset",
     "category": "Books",
-    "badge": "FREE TO READ",
+    "badge": "FREE PDF",
     "headline": "The Discipline of One More",
     "subheadline": "A manual for the relentless. Discipline, training, and the philosophy of pushing past limits.",
     "promise": "Every chapter is a rep you didn't think you had. Gym discipline as life philosophy.",
@@ -1175,8 +1247,14 @@
     "transformation": [],
     "socialProof": {
       "stats": [
-        { "number": "5", "label": "Chapters" },
-        { "number": "59", "label": "Min Read" }
+        {
+          "number": "5",
+          "label": "Chapters"
+        },
+        {
+          "number": "59",
+          "label": "Min Read"
+        }
       ],
       "quotes": []
     },
@@ -1191,9 +1269,23 @@
     "modules": [],
     "analyticsId": "book-spartan-mindset",
     "delivery": {
-      "methods": ["download", "gated"],
+      "methods": [
+        "download",
+        "gated"
+      ],
       "requiresEmail": true,
-      "files": []
+      "files": [
+        {
+          "name": "Spartan Mindset (PDF)",
+          "blobKey": "books/spartan-mindset/spartan-mindset.pdf",
+          "format": "pdf",
+          "size": "0.8 MB"
+        }
+      ]
+    },
+    "cta": {
+      "label": "Download Free PDF",
+      "href": "/books/spartan-mindset"
     }
   },
   {
@@ -1201,16 +1293,22 @@
     "slug": "self-development",
     "name": "The Art of Self-Development",
     "category": "Books",
-    "badge": "FREE TO READ",
+    "badge": "FREE PDF",
     "headline": "Seven Pillars of a Complete Life",
-    "subheadline": "Energy, Mind, Soul, Craft, Capital, Circle, and Legacy — a systematic approach to building every dimension of your life.",
+    "subheadline": "Energy, Mind, Soul, Craft, Capital, Circle, and Legacy \u2014 a systematic approach to building every dimension of your life.",
     "promise": "Not theory. Routines that work. Seven pillars, each with actionable protocols.",
     "summary": "Seven chapters mapping the complete self-development framework: from morning protocols and mental clarity to financial architecture and legacy thinking.",
     "transformation": [],
     "socialProof": {
       "stats": [
-        { "number": "7", "label": "Chapters" },
-        { "number": "83", "label": "Min Read" }
+        {
+          "number": "7",
+          "label": "Chapters"
+        },
+        {
+          "number": "83",
+          "label": "Min Read"
+        }
       ],
       "quotes": []
     },
@@ -1225,9 +1323,23 @@
     "modules": [],
     "analyticsId": "book-self-development",
     "delivery": {
-      "methods": ["download", "gated"],
+      "methods": [
+        "download",
+        "gated"
+      ],
       "requiresEmail": true,
-      "files": []
+      "files": [
+        {
+          "name": "The Art of Self-Development (PDF)",
+          "blobKey": "books/self-development/self-development.pdf",
+          "format": "pdf",
+          "size": "0.9 MB"
+        }
+      ]
+    },
+    "cta": {
+      "label": "Download Free PDF",
+      "href": "/books/self-development"
     }
   },
   {
@@ -1235,16 +1347,22 @@
     "slug": "imagination",
     "name": "Imagination",
     "category": "Books",
-    "badge": "FREE TO READ",
+    "badge": "FREE PDF",
     "headline": "Unlocking the Power of the Mind",
     "subheadline": "Your imagination is the most powerful technology you possess. This book teaches you how to wield it.",
-    "promise": "Creative visualization, mental models, and the architecture of thought — applied neuroscience for builders.",
+    "promise": "Creative visualization, mental models, and the architecture of thought \u2014 applied neuroscience for builders.",
     "summary": "Five chapters on the inner theater, creative visualization protocols, essential mental models, the architect's eye, and reaching beyond the visible.",
     "transformation": [],
     "socialProof": {
       "stats": [
-        { "number": "5", "label": "Chapters" },
-        { "number": "63", "label": "Min Read" }
+        {
+          "number": "5",
+          "label": "Chapters"
+        },
+        {
+          "number": "63",
+          "label": "Min Read"
+        }
       ],
       "quotes": []
     },
@@ -1259,9 +1377,23 @@
     "modules": [],
     "analyticsId": "book-imagination",
     "delivery": {
-      "methods": ["download", "gated"],
+      "methods": [
+        "download",
+        "gated"
+      ],
       "requiresEmail": true,
-      "files": []
+      "files": [
+        {
+          "name": "Imagination (PDF)",
+          "blobKey": "books/imagination/imagination.pdf",
+          "format": "pdf",
+          "size": "0.7 MB"
+        }
+      ]
+    },
+    "cta": {
+      "label": "Download Free PDF",
+      "href": "/books/imagination"
     }
   },
   {
@@ -1269,7 +1401,7 @@
     "slug": "manifestation",
     "name": "Manifestation",
     "category": "Books",
-    "badge": "FREE TO READ",
+    "badge": "FREE PDF",
     "headline": "The Architecture of Reality",
     "subheadline": "Not wishful thinking. The grounded, psychological approach to turning thought into reality.",
     "promise": "Strip away the mysticism. What remains is a framework for building the reality you want.",
@@ -1277,8 +1409,14 @@
     "transformation": [],
     "socialProof": {
       "stats": [
-        { "number": "5", "label": "Chapters" },
-        { "number": "60", "label": "Min Read" }
+        {
+          "number": "5",
+          "label": "Chapters"
+        },
+        {
+          "number": "60",
+          "label": "Min Read"
+        }
       ],
       "quotes": []
     },
@@ -1293,9 +1431,61 @@
     "modules": [],
     "analyticsId": "book-manifestation",
     "delivery": {
-      "methods": ["download", "gated"],
+      "methods": [
+        "download",
+        "gated"
+      ],
       "requiresEmail": true,
-      "files": []
+      "files": [
+        {
+          "name": "Manifestation (PDF)",
+          "blobKey": "books/manifestation/manifestation.pdf",
+          "format": "pdf",
+          "size": "0.7 MB"
+        }
+      ]
+    },
+    "cta": {
+      "label": "Download Free PDF",
+      "href": "/books/manifestation"
     }
+  },
+  {
+    "id": "golden-age-book",
+    "slug": "golden-age",
+    "title": "The Golden Age of Creators",
+    "description": "How the creator economy crossed $250 billion and the barriers to creative expression evaporated. The definitive guide to building in the golden age.",
+    "category": "book",
+    "badge": "FREE PDF",
+    "image": "/images/golden-age/golden-age-hero-council-v2.png",
+    "price": 0,
+    "status": "published",
+    "featured": true,
+    "cta": {
+      "label": "Download Free PDF",
+      "href": "/books/golden-age"
+    },
+    "delivery": {
+      "methods": [
+        "download",
+        "gated"
+      ],
+      "requiresEmail": true,
+      "files": [
+        {
+          "name": "The Golden Age of Creators (PDF)",
+          "blobKey": "books/golden-age/golden-age.pdf",
+          "format": "pdf",
+          "size": "1.0 MB"
+        }
+      ]
+    },
+    "tags": [
+      "book",
+      "creator-economy",
+      "ai",
+      "golden-age"
+    ],
+    "pillar": "creator"
   }
 ]

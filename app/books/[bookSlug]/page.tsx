@@ -5,6 +5,7 @@ import { booksRegistry, getBookBySlug } from '../lib/books-registry';
 import { getThemeClasses } from '../lib/theme-classes';
 import { createMetadata } from '@/lib/seo';
 import JsonLd from '@/components/seo/JsonLd';
+import BookDownloadGate from '../components/BookDownloadGate';
 
 interface PageProps {
   params: Promise<{ bookSlug: string }>;
@@ -200,6 +201,15 @@ export default async function BookLandingPage({ params }: PageProps) {
               </div>
             ))}
           </div>
+        </section>
+
+        {/* PDF Download Gate */}
+        <section className="max-w-xl mx-auto px-6 pb-16">
+          <BookDownloadGate
+            bookSlug={book.slug}
+            bookTitle={book.title}
+            themeColor={book.theme.primary}
+          />
         </section>
 
         {/* Categories / Tags */}

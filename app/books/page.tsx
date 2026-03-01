@@ -113,7 +113,10 @@ export default function BooksHubPage() {
 
                   {/* Meta */}
                   <div className="flex items-center justify-between mt-4 pt-4 border-t border-white/5 text-xs text-white/30">
-                    <span>{publishedCount} chapters</span>
+                    <div className="flex items-center gap-3">
+                      <span>{publishedCount} chapters</span>
+                      <span className="px-1.5 py-0.5 rounded bg-white/5 text-white/40">PDF</span>
+                    </div>
                     <span className="flex items-center gap-1.5 group-hover:text-white/50 transition-colors">
                       Read
                       <svg className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
