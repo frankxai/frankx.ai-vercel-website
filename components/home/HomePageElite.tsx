@@ -236,7 +236,7 @@ function Hero() {
                 onClick={() => trackEvent('hero_cta_click', { type: 'primary' })}
                 className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-white px-8 h-14 text-base font-medium shadow-lg shadow-emerald-500/20 transition-all hover:shadow-xl hover:shadow-emerald-500/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98]"
               >
-                Start Here
+                Explore the Work
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
 
@@ -347,20 +347,32 @@ function Hero() {
 // AUTHORITY BAR
 // ============================================================================
 
+const credentials = [
+  'Oracle AI Architect',
+  '12,000+ AI Songs',
+  '75+ Open Source Skills',
+  '38 Autonomous Agents',
+]
+
 function AuthorityBar() {
   return (
-    <section className="py-10 md:py-12 border-t border-white/5">
+    <section className="py-16 md:py-20 border-t border-white/5">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="flex items-center justify-center"
+          className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 md:gap-x-0"
         >
-          <span className="text-sm md:text-base text-white/35 font-medium tracking-wide">
-            AI Architect at Oracle · Building production systems since 2022
-          </span>
+          {credentials.map((item, i) => (
+            <div key={item} className="flex items-center">
+              {i > 0 && <div className="hidden md:block w-px h-4 bg-white/10 mx-6 lg:mx-8" />}
+              <span className="text-sm md:text-base text-white/40 font-medium tracking-wide">
+                {item}
+              </span>
+            </div>
+          ))}
         </motion.div>
       </div>
     </section>
@@ -636,14 +648,14 @@ function EmailCTA() {
           <div className="relative">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-6">
               <Sparkles className="w-4 h-4 text-emerald-400" />
-              <span className="text-sm text-emerald-400">Weekly Dispatch</span>
+              <span className="text-sm text-emerald-400">Weekly Insights</span>
             </div>
 
             <h2 className="text-2xl md:text-3xl font-semibold text-white mb-3">
-              What I&apos;m building, shipping, and learning.
+              AI architecture and creative systems.
             </h2>
             <p className="text-sm text-white/40 mb-8">
-              AI architecture, music production, open-source tools. One email per week.
+              Weekly dispatch. No spam, no guru energy — just the work.
             </p>
             <div className="max-w-sm mx-auto">
               <EmailSignup
