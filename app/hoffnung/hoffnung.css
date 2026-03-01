@@ -1,0 +1,283 @@
+/* Hoffnung Lichtseite — Dawn Theme Animations & Styles */
+
+/* Floating Particles — dawn palette (sky + amber) */
+@keyframes float-particle-dawn {
+  0%,
+  100% {
+    transform: translateY(0) translateX(0);
+  }
+  25% {
+    transform: translateY(-25px) translateX(12px);
+  }
+  50% {
+    transform: translateY(-12px) translateX(-8px);
+  }
+  75% {
+    transform: translateY(-35px) translateX(-12px);
+  }
+}
+
+.animate-float-particle-dawn {
+  animation: float-particle-dawn ease-in-out infinite;
+  will-change: transform;
+}
+
+/* Falling golden leaves */
+@keyframes leaf-fall {
+  0% {
+    transform: translateY(-5vh) translateX(0) rotate(0deg) scale(1);
+    opacity: 0;
+  }
+  5% {
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(50vh) translateX(var(--drift, 15px)) rotate(180deg)
+      scale(0.85);
+  }
+  95% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateY(105vh) translateX(calc(var(--drift, 15px) * -1))
+      rotate(360deg) scale(0.7);
+    opacity: 0;
+  }
+}
+
+.golden-leaf {
+  background: radial-gradient(
+    ellipse at 30% 30%,
+    #fcd34d 0%,
+    #f59e0b 50%,
+    #b45309 80%,
+    transparent 100%
+  );
+  border-radius: 50% 5% 50% 5%;
+  animation: leaf-fall linear infinite;
+  will-change: transform;
+  filter: blur(0.2px);
+}
+
+.golden-leaf-light {
+  background: radial-gradient(
+    ellipse at 40% 20%,
+    #fef3c7 0%,
+    #fcd34d 50%,
+    #f59e0b 80%,
+    transparent 100%
+  );
+  border-radius: 45% 10% 50% 10%;
+  animation: leaf-fall linear infinite;
+  will-change: transform;
+}
+
+/* Dawn glow — sunrise pulse */
+@keyframes dawn-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.05),
+      0 0 40px rgba(245, 158, 11, 0.03);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(56, 189, 248, 0.12),
+      0 0 80px rgba(245, 158, 11, 0.08);
+  }
+}
+
+.animate-dawn-glow {
+  animation: dawn-glow 5s ease-in-out infinite;
+}
+
+/* Tree breathing glow */
+@keyframes breathe-dawn {
+  0%,
+  100% {
+    opacity: 0.6;
+    filter: brightness(1);
+  }
+  50% {
+    opacity: 1;
+    filter: brightness(1.15);
+  }
+}
+
+.animate-breathe-dawn {
+  animation: breathe-dawn 4s ease-in-out infinite;
+}
+
+/* Root pulse — grounding rhythm */
+@keyframes root-pulse {
+  0%,
+  100% {
+    transform: scaleX(1);
+    opacity: 0.4;
+  }
+  50% {
+    transform: scaleX(1.02);
+    opacity: 0.7;
+  }
+}
+
+.animate-root-pulse {
+  animation: root-pulse 6s ease-in-out infinite;
+  transform-origin: center bottom;
+}
+
+/* Gentle float — for cards and elements */
+@keyframes gentle-float-dawn {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.animate-gentle-float-dawn {
+  animation: gentle-float-dawn 7s ease-in-out infinite;
+}
+
+/* Frequency pulse — for audio cards */
+@keyframes freq-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 0.6;
+  }
+}
+
+.animate-freq-pulse {
+  animation: freq-pulse 3s ease-in-out infinite;
+}
+
+/* Section divider — dawn palette */
+.section-divider-dawn {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(56, 189, 248, 0.15),
+    rgba(245, 158, 11, 0.15),
+    rgba(56, 189, 248, 0.1),
+    transparent
+  );
+  margin: 0 auto;
+  max-width: 200px;
+}
+
+/* Gradient text — dawn */
+.hoffnung-gradient-text {
+  background: linear-gradient(135deg, #38bdf8, #fcd34d, #7dd3fc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Font utilities */
+.font-garamond {
+  font-family: var(--font-garamond), 'EB Garamond', serif;
+}
+
+.font-lora {
+  font-family: var(--font-lora), 'Lora', serif;
+}
+
+/* Glass card — dawn theme */
+.glass-card-dawn {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.03),
+    rgba(255, 255, 255, 0.01)
+  );
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 1rem;
+}
+
+/* Scroll snap carousel */
+.quote-carousel {
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+
+.quote-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.quote-carousel-item {
+  scroll-snap-align: center;
+  flex-shrink: 0;
+}
+
+/* Canvas overlay styles */
+.tree-canvas-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  cursor: none;
+}
+
+.tree-canvas-container canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Custom cursor for tree */
+.tree-cursor {
+  position: fixed;
+  pointer-events: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(252, 211, 77, 0.6),
+    rgba(56, 189, 248, 0.2),
+    transparent
+  );
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  mix-blend-mode: screen;
+  transition: width 0.2s, height 0.2s;
+}
+
+/* Scroll progress — dawn */
+.scroll-progress-dawn {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, #38bdf8, #fcd34d, #7dd3fc);
+  z-index: 100;
+  transition: width 50ms linear;
+}
+
+/* Reduce motion — respect user preferences */
+@media (prefers-reduced-motion: reduce) {
+  .golden-leaf,
+  .golden-leaf-light,
+  .animate-float-particle-dawn,
+  .animate-dawn-glow,
+  .animate-breathe-dawn,
+  .animate-root-pulse,
+  .animate-gentle-float-dawn,
+  .animate-freq-pulse {
+    animation: none !important;
+  }
+
+  .tree-canvas-container {
+    cursor: default;
+  }
+
+  .tree-cursor {
+    display: none;
+  }
+}

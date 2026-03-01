@@ -15,7 +15,7 @@ const particles = Array.from({ length: PARTICLE_COUNT }, (_, i) => ({
 
 interface ParticleFieldProps {
   className?: string
-  variant?: 'rose-gold' | 'warm' | 'cool' | 'fire'
+  variant?: 'rose-gold' | 'warm' | 'cool' | 'fire' | 'dawn'
 }
 
 export function ParticleField({
@@ -38,6 +38,10 @@ export function ParticleField({
     fire: {
       gradient: 'radial-gradient(circle, #f59e0b, #ef4444)',
       glow: 'rgba(245, 158, 11, 0.3)',
+    },
+    dawn: {
+      gradient: 'radial-gradient(circle, #38BDF8, #FCD34D)',
+      glow: 'rgba(56, 189, 248, 0.25)',
     },
   }
 
