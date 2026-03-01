@@ -165,6 +165,27 @@ const themeMap: Record<string, ThemeClasses> = {
     hoverRing: 'focus:ring-amber-400/50',
     gradientText: 'bg-gradient-to-r from-amber-200 via-yellow-100 to-purple-300 bg-clip-text text-transparent',
   },
+  hoffnung: {
+    progressGradient: 'bg-gradient-to-r from-sky-400 via-amber-300 to-sky-400',
+    textPrimary: 'text-sky-300',
+    textAccent: 'text-amber-300',
+    borderPrimary: 'border-sky-400',
+    borderAccent: 'border-amber-400',
+    bgPrimary: 'bg-sky-400/10',
+    bgAccent: 'bg-amber-400/10',
+    bgPage: 'bg-[#070B14]',
+    blockquoteBorder: 'border-sky-400',
+    blockquoteBg: 'bg-sky-900/10',
+    blockquoteText: 'text-sky-100',
+    linkColor: 'text-sky-300',
+    badgeBg: 'bg-sky-400/20',
+    badgeText: 'text-sky-200',
+    badgeBorder: 'border-sky-300/30',
+    tocActive: 'bg-sky-400/20 text-sky-200',
+    hoverBorder: 'hover:border-sky-400',
+    hoverRing: 'focus:ring-sky-400/50',
+    gradientText: 'bg-gradient-to-r from-sky-200 via-amber-200 to-sky-300 bg-clip-text text-transparent',
+  },
 };
 
 export function getThemeClasses(themeId: string): ThemeClasses {

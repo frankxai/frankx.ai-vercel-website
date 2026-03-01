@@ -1,6 +1,6 @@
 {
-  "total_books": 6,
-  "total_chapters": 49,
+  "total_books": 7,
+  "total_chapters": 57,
   "total_reviews": 8,
   "books": [
     {
@@ -74,6 +74,18 @@
       "icon": "gold",
       "next_action": "PDF generated and uploaded to Vercel Blob",
       "strategy": "Psychology + AI-age approach. Broader self-help audience."
+    },
+    {
+      "slug": "hoffnung",
+      "title": "Hoffnung",
+      "status": "published",
+      "chapters": 8,
+      "chapters_written": 8,
+      "has_pdf": true,
+      "has_epub": false,
+      "icon": "sky",
+      "next_action": "PDF generated and uploaded to Vercel Blob",
+      "strategy": "Universal comfort book. Grief, loss, healing audience. Bilingual German/English. Lead magnet for compassion-driven audience."
     }
   ],
   "last_updated": "2026-03-01"

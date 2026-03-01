@@ -28,6 +28,7 @@ export default function BookDownloadGate({
     violet:  { border: 'border-violet-500/20', bg: 'from-violet-500/5', text: 'text-violet-400', button: 'from-violet-600 to-violet-500', glow: 'bg-violet-500/10' },
     amber:   { border: 'border-amber-500/20', bg: 'from-amber-500/5', text: 'text-amber-400', button: 'from-amber-600 to-amber-500', glow: 'bg-amber-500/10' },
     gold:    { border: 'border-yellow-500/20', bg: 'from-yellow-500/5', text: 'text-yellow-400', button: 'from-yellow-600 to-yellow-500', glow: 'bg-yellow-500/10' },
+    sky:     { border: 'border-sky-500/20', bg: 'from-sky-500/5', text: 'text-sky-400', button: 'from-sky-600 to-sky-500', glow: 'bg-sky-500/10' },
   }
 
   const colors = colorMap[themeColor] || colorMap.emerald

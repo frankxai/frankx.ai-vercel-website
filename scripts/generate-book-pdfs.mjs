@@ -1,536 +1,507 @@
-import { launch } from 'puppeteer'
-import { put } from '@vercel/blob'
-import { readFileSync, existsSync, mkdirSync } from 'fs'
-import { fileURLToPath } from 'url'
-import { dirname, join } from 'path'
+#!/usr/bin/env node
+/**
+ * FrankX Book PDF Generator
+ *
+ * Converts MDX book chapters into beautifully designed PDFs using Puppeteer.
+ * Each book gets a branded cover page, table of contents, and styled chapters.
+ *
+ * Usage:
+ *   node scripts/generate-book-pdfs.mjs                    # All books
+ *   node scripts/generate-book-pdfs.mjs spartan-mindset    # Single book
+ */
+
+import puppeteer from 'puppeteer'
 import { marked } from 'marked'
-import dotenv from 'dotenv'
+import { readFileSync, readdirSync, mkdirSync, existsSync } from 'fs'
+import { join, resolve } from 'path'
 
-dotenv.config({ path: '.env.local' })
+// ─── Book Registry ──────────────────────────────────────────────
 
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = dirname(__filename)
-const projectRoot = join(__dirname, '..')
-
-// Book configurations matching books-registry.ts
 const BOOKS = [
   {
     slug: 'love-and-poetry',
     title: 'Love & Poetry',
     subtitle: 'Verses That Move the Soul',
     author: 'Frank',
+    color: '#F43F5E',
+    accent: '#EAB308',
     contentDir: 'content/books/love-and-poetry',
-    theme: {
-      primary: '#f43f5e',
-      accent: '#f59e0b',
-      bgDark: '#0a0a0f',
-      bgPage: '#faf7f5',
-      textColor: '#1a1a2e',
-      headingFont: "'Playfair Display', Georgia, serif",
-      bodyFont: "'Playfair Display', Georgia, serif",
-    },
-    chapters: [
-      'chapter-01-rumi-speaks',
-      'chapter-02-dichter-der-liebe',
-      'chapter-03-nha-tho-tinh-yeu',
-      'chapter-04-wisdom-of-the-ages',
-      'chapter-05-a-poem-for-you',
-    ],
+    description: 'A curated collection of love poetry — Rumi, Rilke, Goethe, Gibran — woven with original verse.',
+    year: '2026',
   },
   {
     slug: 'spartan-mindset',
     title: 'Spartan Mindset',
     subtitle: 'The Discipline of One More',
     author: 'Frank',
+    color: '#EF4444',
+    accent: '#78716C',
     contentDir: 'content/books/spartan-mindset',
-    theme: {
-      primary: '#dc2626',
-      accent: '#a8a29e',
-      bgDark: '#030712',
-      bgPage: '#f5f5f4',
-      textColor: '#1c1917',
-      headingFont: "'Inter', 'Helvetica Neue', sans-serif",
-      bodyFont: "'Inter', 'Helvetica Neue', sans-serif",
-    },
-    chapters: [
-      'chapter-01-the-spartan-code',
-      'chapter-02-iron-discipline',
-      'chapter-03-one-more-rep',
-      'chapter-04-the-forge',
-      'chapter-05-mind-over-matter',
-    ],
-  },
-  {
-    slug: 'golden-age',
-    title: 'The Golden Age of Creators',
-    subtitle: 'The Democratization of Creative Capability and Distribution',
-    author: 'Frank',
-    contentDir: 'content/golden-age-book',
-    theme: {
-      primary: '#f59e0b',
-      accent: '#6366f1',
-      bgDark: '#0F172A',
-      bgPage: '#fefce8',
-      textColor: '#1e1b4b',
-      headingFont: "'Playfair Display', Georgia, serif",
-      bodyFont: "'Inter', 'Helvetica Neue', sans-serif",
-    },
-    chapters: [
-      'chapter-01-when-creation-calls',
-      'chapter-02-the-orchestration-age',
-      'chapter-03-the-first-gesture',
-    ],
+    description: 'Discipline, training, and the philosophy of pushing past limits.',
+    year: '2026',
   },
   {
     slug: 'self-development',
     title: 'The Art of Self-Development',
     subtitle: 'Seven Pillars of a Complete Life',
     author: 'Frank',
+    color: '#10B981',
+    accent: '#06B6D4',
     contentDir: 'content/books/self-development',
-    theme: {
-      primary: '#10b981',
-      accent: '#06b6d4',
-      bgDark: '#030f0a',
-      bgPage: '#f0fdf4',
-      textColor: '#022c22',
-      headingFont: "'Inter', 'Helvetica Neue', sans-serif",
-      bodyFont: "'Inter', 'Helvetica Neue', sans-serif",
-    },
-    chapters: [
-      'chapter-01-energy',
-      'chapter-02-mind',
-      'chapter-03-soul',
-      'chapter-04-craft',
-      'chapter-05-capital',
-      'chapter-06-circle',
-      'chapter-07-legacy',
-    ],
+    description: 'A systematic approach to building every dimension of your life.',
+    year: '2026',
   },
   {
     slug: 'imagination',
     title: 'Imagination',
     subtitle: 'Unlocking the Power of the Mind',
     author: 'Frank',
+    color: '#8B5CF6',
+    accent: '#06B6D4',
     contentDir: 'content/books/imagination',
-    theme: {
-      primary: '#8b5cf6',
-      accent: '#06b6d4',
-      bgDark: '#0a0a12',
-      bgPage: '#faf5ff',
-      textColor: '#2e1065',
-      headingFont: "'Playfair Display', Georgia, serif",
-      bodyFont: "'Inter', 'Helvetica Neue', sans-serif",
-    },
-    chapters: [
-      'chapter-01-the-inner-theater',
-      'chapter-02-creative-visualization',
-      'chapter-03-mental-models',
-      'chapter-04-the-architects-eye',
-      'chapter-05-beyond-the-visible',
-    ],
+    description: 'Your imagination is the most powerful technology you possess.',
+    year: '2026',
   },
   {
     slug: 'manifestation',
     title: 'Manifestation',
     subtitle: 'The Architecture of Reality',
     author: 'Frank',
+    color: '#EAB308',
+    accent: '#A855F7',
     contentDir: 'content/books/manifestation',
-    theme: {
-      primary: '#f59e0b',
-      accent: '#a855f7',
-      bgDark: '#0f0a05',
-      bgPage: '#fffbeb',
-      textColor: '#451a03',
-      headingFont: "'Playfair Display', Georgia, serif",
-      bodyFont: "'Inter', 'Helvetica Neue', sans-serif",
-    },
-    chapters: [
-      'chapter-01-the-architecture-of-reality',
-      'chapter-02-thought-as-blueprint',
-      'chapter-03-the-frequency-principle',
-      'chapter-04-aligned-action',
-      'chapter-05-the-evidence-journal',
-    ],
+    description: 'The grounded, psychological approach to turning thought into reality.',
+    year: '2026',
+  },
+  {
+    slug: 'golden-age',
+    title: 'The Golden Age of Creators',
+    subtitle: 'The Democratization of Creative Capability',
+    author: 'Frank',
+    color: '#F59E0B',
+    accent: '#6366F1',
+    contentDir: 'content/golden-age-book',
+    description: 'How the creator economy crossed $250 billion and the barriers to creative expression evaporated.',
+    year: '2026',
+  },
+  {
+    slug: 'hoffnung',
+    title: 'Hoffnung',
+    subtitle: 'The Poetry of Hope — A Companion for the Journey',
+    author: 'Frank',
+    color: '#38BDF8',
+    accent: '#F59E0B',
+    contentDir: 'content/books/hoffnung',
+    description: 'Poetry, music, meditation, and guided exercises for anyone walking through grief, loss, or uncertainty.',
+    year: '2026',
   },
 ]
 
-function buildBookHTML(book) {
-  const { title, subtitle, author, contentDir, theme, chapters } = book
+// ─── CSS Template ───────────────────────────────────────────────
 
-  // Read and convert all chapters
-  const chapterContents = chapters.map((chapterSlug) => {
-    const mdPath = join(projectRoot, contentDir, `${chapterSlug}.md`)
-    if (!existsSync(mdPath)) {
-      console.warn(`  Warning: ${mdPath} not found, skipping`)
-      return ''
+function getCSS(book) {
+  return `
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&display=swap');
+
+    :root {
+      --color-primary: ${book.color};
+      --color-accent: ${book.accent};
+      --color-bg: #0A0A0F;
+      --color-surface: #111118;
+      --color-text: #E4E4E7;
+      --color-text-muted: #A1A1AA;
+      --color-border: #27272A;
     }
-    const md = readFileSync(mdPath, 'utf-8')
-    return marked.parse(md)
-  }).filter(Boolean)
 
-  if (chapterContents.length === 0) {
-    throw new Error(`No chapters found for ${title}`)
-  }
+    @page {
+      size: A4;
+      margin: 2.5cm 2cm 3cm 2cm;
+    }
+
+    @page :first { margin: 0; }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      font-size: 11pt;
+      line-height: 1.75;
+      color: var(--color-text);
+      background: var(--color-bg);
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    /* ─── Cover Page ─────────────────────────────── */
+
+    .cover {
+      width: 210mm;
+      height: 297mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background: linear-gradient(180deg, ${book.color}08 0%, var(--color-bg) 40%, var(--color-bg) 60%, ${book.accent}06 100%);
+      position: relative;
+      page-break-after: always;
+      padding: 4cm 3cm;
+    }
+
+    .cover::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, ${book.color}, ${book.accent});
+    }
+
+    .cover-ornament {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, ${book.color}, transparent);
+      margin: 0 auto 2em;
+    }
+
+    .cover h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 36pt;
+      font-weight: 700;
+      color: #FAFAFA;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      margin-bottom: 0.3em;
+    }
+
+    .cover .subtitle {
+      font-family: 'Inter', sans-serif;
+      font-size: 13pt;
+      font-weight: 300;
+      color: ${book.color};
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 2em;
+    }
+
+    .cover .author {
+      font-family: 'Inter', sans-serif;
+      font-size: 11pt;
+      font-weight: 400;
+      color: var(--color-text-muted);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    .cover .year {
+      font-family: 'Inter', sans-serif;
+      font-size: 9pt;
+      color: #52525B;
+      margin-top: 3em;
+    }
+
+    .cover .brand {
+      position: absolute;
+      bottom: 3cm;
+      font-family: 'Inter', sans-serif;
+      font-size: 9pt;
+      font-weight: 500;
+      color: #52525B;
+      letter-spacing: 0.2em;
+    }
+
+    /* ─── Table of Contents ──────────────────────── */
+
+    .toc {
+      page-break-after: always;
+      padding-top: 2em;
+    }
+
+    .toc h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 20pt;
+      font-weight: 600;
+      color: #FAFAFA;
+      margin-bottom: 1.5em;
+      padding-bottom: 0.5em;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .toc-item {
+      display: flex;
+      align-items: baseline;
+      padding: 0.6em 0;
+      border-bottom: 1px dotted #27272A40;
+    }
+
+    .toc-item .chapter-num {
+      font-family: 'Inter', sans-serif;
+      font-size: 9pt;
+      font-weight: 600;
+      color: ${book.color};
+      min-width: 2em;
+    }
+
+    .toc-item .chapter-title {
+      font-family: 'Inter', sans-serif;
+      font-size: 11pt;
+      font-weight: 500;
+      color: var(--color-text);
+      flex: 1;
+      margin-left: 0.5em;
+    }
+
+    /* ─── Chapter Content ────────────────────────── */
+
+    .chapter { page-break-before: always; }
+
+    .chapter-header {
+      margin-bottom: 2em;
+      padding-bottom: 1.5em;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .chapter-header .chapter-label {
+      font-family: 'Inter', sans-serif;
+      font-size: 9pt;
+      font-weight: 600;
+      color: ${book.color};
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 0.5em;
+    }
+
+    .chapter-header h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 24pt;
+      font-weight: 700;
+      color: #FAFAFA;
+      line-height: 1.2;
+    }
+
+    h1 { font-family: 'Playfair Display', serif; font-size: 22pt; font-weight: 700; color: #FAFAFA; margin: 1.5em 0 0.5em; }
+    h2 { font-family: 'Playfair Display', serif; font-size: 16pt; font-weight: 600; color: #FAFAFA; margin: 1.3em 0 0.4em; }
+    h3 { font-family: 'Inter', sans-serif; font-size: 12pt; font-weight: 600; color: #D4D4D8; margin: 1.2em 0 0.3em; }
+
+    p { margin-bottom: 0.8em; text-align: justify; hyphens: auto; }
+    strong { color: #FAFAFA; font-weight: 600; }
+    em { font-style: italic; color: #D4D4D8; }
+
+    blockquote {
+      margin: 1.5em 0;
+      padding: 1em 1.5em;
+      border-left: 3px solid ${book.color};
+      background: ${book.color}08;
+      border-radius: 0 4px 4px 0;
+      font-style: italic;
+      color: #D4D4D8;
+    }
+
+    blockquote p { margin-bottom: 0.3em; }
+
+    ul, ol { margin: 0.8em 0 0.8em 1.5em; }
+    li { margin-bottom: 0.3em; }
+
+    hr {
+      border: none;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--color-border), transparent);
+      margin: 2em 0;
+    }
+
+    code {
+      font-family: 'JetBrains Mono', 'Fira Code', monospace;
+      font-size: 0.9em;
+      background: #18181B;
+      padding: 0.15em 0.4em;
+      border-radius: 3px;
+      color: ${book.color};
+    }
+
+    /* ─── Back Page ──────────────────────────────── */
+
+    .back-page {
+      page-break-before: always;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      min-height: 60vh;
+      padding: 4em 2em;
+    }
+
+    .back-page .description {
+      font-size: 12pt;
+      font-style: italic;
+      color: var(--color-text-muted);
+      max-width: 400px;
+      line-height: 1.8;
+      margin-bottom: 2em;
+    }
+
+    .back-page .cta {
+      font-size: 10pt;
+      font-weight: 500;
+      color: ${book.color};
+      letter-spacing: 0.1em;
+    }
+
+    .back-page .url {
+      font-size: 9pt;
+      color: #52525B;
+      margin-top: 0.5em;
+    }
+  `
+}
+
+// ─── HTML Builder ───────────────────────────────────────────────
+
+function buildBookHTML(book, chapters) {
+  const css = getCSS(book)
+
+  const cover = `
+    <div class="cover">
+      <div class="cover-ornament"></div>
+      <h1>${book.title}</h1>
+      <div class="subtitle">${book.subtitle}</div>
+      <div class="author">By ${book.author}</div>
+      <div class="year">${book.year}</div>
+      <div class="brand">frankx.ai</div>
+    </div>`
+
+  const tocItems = chapters
+    .map((ch, i) => `
+    <div class="toc-item">
+      <span class="chapter-num">${String(i + 1).padStart(2, '0')}</span>
+      <span class="chapter-title">${ch.title}</span>
+    </div>`)
+    .join('')
+
+  const toc = `
+    <div class="toc">
+      <h2>Contents</h2>
+      ${tocItems}
+    </div>`
+
+  const chapterHTML = chapters
+    .map((ch, i) => {
+      const html = marked.parse(ch.content)
+      return `
+      <div class="chapter">
+        <div class="chapter-header">
+          <div class="chapter-label">Chapter ${String(i + 1).padStart(2, '0')}</div>
+          <h2>${ch.title}</h2>
+        </div>
+        ${html}
+      </div>`
+    })
+    .join('')
+
+  const backPage = `
+    <div class="back-page">
+      <div class="cover-ornament" style="margin-bottom: 2em;"></div>
+      <div class="description">${book.description}</div>
+      <div class="cta">Read more at frankx.ai/books</div>
+      <div class="url">frankx.ai</div>
+    </div>`
 
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>${title} - ${author}</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    @page {
-      size: 6in 9in;
-      margin: 0.75in 0.625in;
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: ${theme.bodyFont};
-      font-size: 11pt;
-      line-height: 1.7;
-      color: ${theme.textColor};
-      background: ${theme.bgPage};
-      -webkit-print-color-adjust: exact;
-      print-color-adjust: exact;
-    }
-
-    /* Title page */
-    .title-page {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      text-align: center;
-      padding: 2in 0.5in;
-      background: ${theme.bgDark};
-      color: white;
-      page-break-after: always;
-    }
-
-    .title-page h1 {
-      font-family: ${theme.headingFont};
-      font-size: 36pt;
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      margin-bottom: 0.3em;
-      color: white;
-    }
-
-    .title-page .subtitle {
-      font-family: ${theme.bodyFont};
-      font-size: 14pt;
-      font-weight: 400;
-      opacity: 0.8;
-      margin-bottom: 2em;
-      font-style: italic;
-    }
-
-    .title-page .accent-line {
-      width: 60px;
-      height: 3px;
-      background: ${theme.primary};
-      margin: 0 auto 2em;
-    }
-
-    .title-page .author-name {
-      font-family: ${theme.headingFont};
-      font-size: 16pt;
-      font-weight: 600;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: ${theme.primary};
-    }
-
-    /* Copyright page */
-    .copyright-page {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      min-height: 100vh;
-      padding: 1in 0;
-      font-size: 9pt;
-      line-height: 1.8;
-      opacity: 0.6;
-      page-break-after: always;
-    }
-
-    /* Table of Contents */
-    .toc-page {
-      page-break-after: always;
-      padding-top: 1.5in;
-    }
-
-    .toc-page h2 {
-      font-family: ${theme.headingFont};
-      font-size: 18pt;
-      font-weight: 700;
-      margin-bottom: 1.5em;
-      color: ${theme.primary};
-      text-align: center;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-    }
-
-    .toc-entry {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      padding: 0.5em 0;
-      border-bottom: 1px solid rgba(0,0,0,0.08);
-      font-size: 11pt;
-    }
-
-    .toc-entry .chapter-num {
-      font-weight: 600;
-      color: ${theme.primary};
-      min-width: 2em;
-    }
-
-    .toc-entry .chapter-title {
-      flex: 1;
-      font-family: ${theme.headingFont};
-    }
-
-    /* Chapter content */
-    .chapter {
-      page-break-before: always;
-      padding-top: 1.5in;
-    }
-
-    .chapter:first-of-type {
-      page-break-before: auto;
-    }
-
-    .chapter h1 {
-      font-family: ${theme.headingFont};
-      font-size: 24pt;
-      font-weight: 700;
-      margin-bottom: 0.5em;
-      color: ${theme.textColor};
-      letter-spacing: -0.01em;
-    }
-
-    .chapter-number {
-      font-family: ${theme.headingFont};
-      font-size: 11pt;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      color: ${theme.primary};
-      margin-bottom: 0.5em;
-      display: block;
-    }
-
-    .chapter h2 {
-      font-family: ${theme.headingFont};
-      font-size: 16pt;
-      font-weight: 600;
-      margin: 1.5em 0 0.8em;
-      color: ${theme.textColor};
-    }
-
-    .chapter h3 {
-      font-family: ${theme.headingFont};
-      font-size: 13pt;
-      font-weight: 600;
-      margin: 1.2em 0 0.6em;
-      color: ${theme.textColor};
-    }
-
-    .chapter p {
-      margin-bottom: 0.8em;
-      text-align: justify;
-      hyphens: auto;
-    }
-
-    .chapter blockquote {
-      margin: 1.5em 0;
-      padding: 0.8em 1.2em;
-      border-left: 3px solid ${theme.primary};
-      background: rgba(0,0,0,0.03);
-      font-style: italic;
-      font-family: ${theme.headingFont};
-    }
-
-    .chapter blockquote p {
-      text-align: left;
-    }
-
-    .chapter ul, .chapter ol {
-      margin: 0.8em 0;
-      padding-left: 1.5em;
-    }
-
-    .chapter li {
-      margin-bottom: 0.4em;
-    }
-
-    .chapter strong {
-      font-weight: 600;
-    }
-
-    .chapter em {
-      font-style: italic;
-    }
-
-    .chapter hr {
-      border: none;
-      border-top: 1px solid rgba(0,0,0,0.1);
-      margin: 2em 0;
-    }
-
-    .chapter code {
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 0.9em;
-      background: rgba(0,0,0,0.06);
-      padding: 0.15em 0.3em;
-      border-radius: 3px;
-    }
-
-    /* Footer */
-    @page {
-      @bottom-center {
-        content: counter(page);
-        font-family: ${theme.bodyFont};
-        font-size: 9pt;
-        color: rgba(0,0,0,0.4);
-      }
-    }
-  </style>
+  <title>${book.title} — ${book.author}</title>
+  <style>${css}</style>
 </head>
 <body>
-
-  <!-- Title Page -->
-  <div class="title-page">
-    <h1>${title}</h1>
-    <div class="subtitle">${subtitle}</div>
-    <div class="accent-line"></div>
-    <div class="author-name">${author}</div>
-  </div>
-
-  <!-- Copyright Page -->
-  <div class="copyright-page">
-    <p>${title}: ${subtitle}</p>
-    <p>Copyright &copy; 2026 ${author}</p>
-    <p>All rights reserved.</p>
-    <br>
-    <p>Published by FrankX Publishing</p>
-    <p>frankx.ai/books/${book.slug}</p>
-    <br>
-    <p>No part of this publication may be reproduced, stored in a retrieval system, or transmitted in any form without the prior written permission of the author.</p>
-    <br>
-    <p>First Edition, 2026</p>
-  </div>
-
-  <!-- Table of Contents -->
-  <div class="toc-page">
-    <h2>Contents</h2>
-    ${chapters.map((slug, i) => {
-      const title = slug.replace(/chapter-\d+-/, '').replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase())
-      return `<div class="toc-entry">
-        <span class="chapter-num">${i + 1}</span>
-        <span class="chapter-title">${title}</span>
-      </div>`
-    }).join('\n    ')}
-  </div>
-
-  <!-- Chapters -->
-  ${chapterContents.map((html, i) => `
-  <div class="chapter">
-    <span class="chapter-number">Chapter ${i + 1}</span>
-    ${html}
-  </div>
-  `).join('\n')}
-
+  ${cover}
+  ${toc}
+  ${chapterHTML}
+  ${backPage}
 </body>
 </html>`
 }
 
-async function generateBookPDF(book) {
-  console.log(`\nGenerating PDF for: ${book.title}`)
-  console.log('-'.repeat(50))
+// ─── Chapter Parser ─────────────────────────────────────────────
 
-  const html = buildBookHTML(book)
-  const outputDir = join(projectRoot, 'public/pdfs/books')
+function parseChapters(contentDir) {
+  const dir = resolve(contentDir)
+  if (!existsSync(dir)) {
+    console.error(`  Directory not found: ${dir}`)
+    return []
+  }
+
+  const files = readdirSync(dir)
+    .filter((f) => f.startsWith('chapter-') && f.endsWith('.md'))
+    .sort()
+
+  return files.map((file) => {
+    const raw = readFileSync(join(dir, file), 'utf-8')
+    const titleMatch = raw.match(/^#\s+(.+)$/m)
+    const title = titleMatch
+      ? titleMatch[1]
+      : file.replace(/chapter-\d+-/, '').replace('.md', '').replace(/-/g, ' ')
+          .replace(/\b\w/g, (c) => c.toUpperCase())
+
+    const content = raw.replace(/^#\s+.+$/m, '').trim()
+    return { file, title, content }
+  })
+}
+
+// ─── PDF Generator ──────────────────────────────────────────────
+
+async function generatePDF(book) {
+  console.log(`\n  Generating: ${book.title}`)
+
+  const chapters = parseChapters(book.contentDir)
+  if (chapters.length === 0) {
+    console.log(`  SKIP: No chapters found in ${book.contentDir}`)
+    return null
+  }
+
+  console.log(`  Chapters: ${chapters.length}`)
+  const totalWords = chapters.reduce((sum, ch) => sum + ch.content.split(/\s+/).length, 0)
+  console.log(`  Words: ${totalWords.toLocaleString()}`)
+
+  const html = buildBookHTML(book, chapters)
+
+  const browser = await puppeteer.launch({
+    headless: true,
+    args: ['--no-sandbox', '--disable-setuid-sandbox'],
+  })
+
+  const page = await browser.newPage()
+  await page.setContent(html, { waitUntil: 'networkidle0', timeout: 30000 })
+  await page.evaluateHandle('document.fonts.ready')
+
+  const outputDir = resolve('public/books')
   if (!existsSync(outputDir)) mkdirSync(outputDir, { recursive: true })
 
   const outputPath = join(outputDir, `${book.slug}.pdf`)
 
-  let browser
-  try {
-    browser = await launch({
-      headless: true,
-      args: [
-        '--no-sandbox',
-        '--disable-setuid-sandbox',
-        '--disable-dev-shm-usage',
-        '--disable-accelerated-2d-canvas',
-        '--no-first-run',
-        '--no-zygote',
-        '--disable-gpu',
-      ],
-    })
-
-    const page = await browser.newPage()
-    await page.setContent(html, {
-      waitUntil: 'networkidle0',
-      timeout: 60000,
-    })
-
-    // Wait for web fonts
-    await page.evaluateHandle('document.fonts.ready')
-    await new Promise((resolve) => setTimeout(resolve, 3000))
-
-    const pdfBuffer = await page.pdf({
-      path: outputPath,
-      width: '6in',
-      height: '9in',
-      printBackground: true,
-      preferCSSPageSize: true,
-      margin: { top: '0', right: '0', bottom: '0', left: '0' },
-    })
-
-    console.log(`  PDF generated: ${outputPath} (${(pdfBuffer.length / 1024).toFixed(0)} KB)`)
-    return { path: outputPath, buffer: pdfBuffer }
-  } finally {
-    if (browser) await browser.close()
-  }
-}
-
-async function uploadToVercelBlob(pdfBuffer, blobKey) {
-  if (!process.env.BLOB_READ_WRITE_TOKEN) {
-    console.log('  Skipping Blob upload (no BLOB_READ_WRITE_TOKEN)')
-    return null
-  }
-
-  console.log(`  Uploading to Vercel Blob: books/${blobKey}...`)
-  const blob = await put(`books/${blobKey}`, pdfBuffer, {
-    access: 'public',
-    contentType: 'application/pdf',
-    token: process.env.BLOB_READ_WRITE_TOKEN,
+  await page.pdf({
+    path: outputPath,
+    format: 'A4',
+    printBackground: true,
+    displayHeaderFooter: false,
+    margin: { top: '2.5cm', bottom: '3cm', left: '2cm', right: '2cm' },
+    preferCSSPageSize: true,
   })
-  console.log(`  Uploaded: ${blob.url}`)
-  return blob
+
+  await browser.close()
+
+  const size = (readFileSync(outputPath).length / 1024 / 1024).toFixed(1)
+  console.log(`  Output: ${outputPath} (${size} MB)`)
+
+  return { path: outputPath, size, chapters: chapters.length, words: totalWords }
 }
+
+// ─── Main ───────────────────────────────────────────────────────
 
 async function main() {
-  console.log('FrankX Book PDF Generator')
-  console.log('='.repeat(50))
+  const targetSlug = process.argv[2]
 
-  // Parse CLI args
-  const bookArg = process.argv.find((a) => a.startsWith('--book='))
-  const targetSlug = bookArg ? bookArg.split('=')[1] : null
-  const skipUpload = process.argv.includes('--no-upload')
+  console.log('=== FrankX Book PDF Generator ===')
+  console.log('Design: Dark premium, Playfair Display + Inter, A4')
 
   const booksToGenerate = targetSlug
     ? BOOKS.filter((b) => b.slug === targetSlug)
@@ -542,51 +513,23 @@ async function main() {
     process.exit(1)
   }
 
-  console.log(`Generating ${booksToGenerate.length} book(s)...\n`)
-
   const results = []
 
   for (const book of booksToGenerate) {
     try {
-      const { path, buffer } = await generateBookPDF(book)
-      let blobUrl = null
-
-      if (!skipUpload) {
-        const blob = await uploadToVercelBlob(buffer, `${book.slug}.pdf`)
-        blobUrl = blob?.url
-      }
-
-      results.push({ title: book.title, path, blobUrl, success: true })
-    } catch (error) {
-      console.error(`  Failed: ${error.message}`)
-      results.push({ title: book.title, success: false, error: error.message })
+      const result = await generatePDF(book)
+      if (result) results.push({ ...book, ...result })
+    } catch (err) {
+      console.error(`  FAILED: ${book.slug} — ${err.message}`)
     }
   }
 
-  // Summary
-  console.log('\n' + '='.repeat(50))
-  console.log('SUMMARY')
-  console.log('='.repeat(50))
-
-  const ok = results.filter((r) => r.success)
-  const fail = results.filter((r) => !r.success)
-
-  console.log(`\nGenerated: ${ok.length}/${results.length}`)
-  ok.forEach((r) => {
-    console.log(`  ${r.title}`)
-    console.log(`    Local: ${r.path}`)
-    if (r.blobUrl) console.log(`    Blob:  ${r.blobUrl}`)
-  })
-
-  if (fail.length > 0) {
-    console.log(`\nFailed: ${fail.length}/${results.length}`)
-    fail.forEach((r) => console.log(`  ${r.title}: ${r.error}`))
+  console.log('\n=== Results ===')
+  for (const r of results) {
+    console.log(`  ${r.title.padEnd(35)} | ${r.chapters} ch | ${r.words.toLocaleString().padStart(6)} words | ${r.size} MB`)
   }
-
-  console.log('\nDone.')
+  console.log(`\nGenerated: ${results.length}/${booksToGenerate.length} books`)
+  console.log('Output: public/books/*.pdf')
 }
 
-main().catch((error) => {
-  console.error('Fatal:', error)
-  process.exit(1)
-})
+main().catch(console.error)
