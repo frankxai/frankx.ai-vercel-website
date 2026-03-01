@@ -1,0 +1,339 @@
+---
+title: "Terminal-First AI Development: Drop VS Code Tabs, Keep Your Laptop Alive"
+description: "How to run Claude Code without 5 VS Code tabs killing your machine. glow + tmux + GitHub browser replaces the whole GUI stack."
+date: "2026-03-01"
+author: "Frank"
+category: "AI Architecture"
+tags: ["claude-code", "terminal", "workflow", "tmux", "developer-tools", "ai-development"]
+keywords:
+  [
+    "claude code workflow",
+    "terminal first development",
+    "glow markdown terminal",
+    "tmux claude code",
+    "vs code alternative ai development",
+    "terminal ai workflow",
+    "claude code tips",
+  ]
+image: "/images/blog/terminal-first-ai-workflow-hero.png"
+featured: true
+readingGoal: "Give AI developers a concrete, working setup to run Claude Code without GUI overhead — with specific install commands and a mental model that actually scales."
+---
+
+# Terminal-First AI Development: Drop VS Code Tabs, Keep Your Laptop Alive
+
+_You don't need VS Code to work with Claude Code. Here's the setup that replaced five tabs with one terminal._
+
+**TL;DR:** Running 5 Claude Code sessions in VS Code tabs is killing your laptop. Replace the whole stack with `glow` (terminal markdown reader) + `tmux` (multi-session manager) + GitHub browser (review/approve). The key mental model shift: you don't edit files — Claude edits files. You describe changes in plain English.
+
+---
+
+## Why VS Code + Claude Code Is the Wrong Combination
+
+If you're doing serious AI-assisted development — multiple agents running, lore files to review, deployments to track — you've probably done this:
+
+- Terminal 1: Claude Code on the main feature
+- Terminal 2: Claude Code watching the deploy
+- Terminal 3: Claude Code on docs
+- VS Code tab: The file you're reviewing
+- VS Code tab: Another file
+- Laptop fan: Full speed ahead
+
+The problem isn't Claude Code. Claude Code is a terminal-native tool. The problem is wrapping it in a GUI that wasn't designed for this.
+
+Each VS Code window on a WSL/Windows setup carries:
+- Electron renderer process
+- Language server
+- Git integration polling
+- Extension host
+
+Multiply by 5. Add Node.js for each Claude Code process. Add NTFS I/O overhead (everything on `/mnt/c/` goes through Windows filesystem translation). Your laptop is doing the work of a server with the cooling of a MacBook.
+
+There's a simpler architecture.
+
+---
+
+## The Mental Model Shift That Changes Everything
+
+Before the tool recommendations, the important one:
+
+**You don't edit files. Claude edits files. You describe what you want.**
+
+This sounds obvious. It isn't obvious in practice.
+
+When you open VS Code to "review a file and make changes," you've defaulted to the old workflow. You're the editor. Claude is the assistant.
+
+Flip it:
+
+```
+Old: You read file → you edit → you save
+New: Claude reads file → Claude edits → Claude commits → you review
+```
+
+In the new model, you need:
+1. A way to **read** files comfortably (not edit)
+2. A way to **describe** what you want changed (plain English)
+3. A way to **review** output before approving (browser or terminal)
+
+You never need to touch the file. VS Code isn't the interface — the terminal conversation is the interface.
+
+---
+
+## The Stack: Three Tools, Zero GUI Overhead
+
+### 1. `glow` — Read Markdown Beautifully in Terminal
+
+[Glow](https://github.com/charmbracelet/glow) is a terminal markdown renderer from Charmbracelet. It renders `.md` and `.mdx` files with proper formatting — headers, tables, code blocks, colored output — directly in your terminal.
+
+**Install:**
+```bash
+# Ubuntu/WSL
+sudo apt install glow
+
+# Or via snap
+sudo snap install glow
+
+# macOS
+brew install glow
+```
+
+**Use:**
+```bash
+# Read a single file
+glow /path/to/CANON_LOCKED.md
+
+# Browse a directory interactively
+glow /path/to/lore/
+
+# Pipe from anywhere
+cat README.md | glow -
+```
+
+That's it. No browser, no VS Code, no GUI. Rendered markdown in the same terminal where Claude Code is running.
+
+**When to use it:** Reading proposed changes before telling me to approve them. Reviewing lore files. Checking blog post drafts. Any `.md` file you need to read carefully.
+
+### 2. `tmux` — Replace 5 VS Code Tabs With 1 Terminal Process
+
+[tmux](https://github.com/tmux/tmux) is a terminal multiplexer. One terminal process, unlimited panes and windows. Claude Code sessions run inside tmux — when you close the terminal, the session persists. When your laptop gets slow, detach (don't close) and reattach later.
+
+**Install:**
+```bash
+sudo apt install tmux
+```
+
+**The workflow:**
+```bash
+# Start a named session
+tmux new-session -s frankx
+
+# From inside tmux:
+# Ctrl+B then C    → new window
+# Ctrl+B then W    → see all windows, switch between them
+# Ctrl+B then %    → split pane vertically
+# Ctrl+B then "    → split pane horizontally
+# Ctrl+B then D    → detach (session keeps running)
+
+# Re-attach later
+tmux attach -t frankx
+```
+
+**Real layout I use:**
+```
+Window 1: main Claude Code session (primary feature work)
+Window 2: watch/monitor (deployments, build logs)
+Window 3: git operations (commit, push, status)
+```
+
+Three windows, one tmux process, fraction of the memory of five VS Code tabs.
+
+### 3. GitHub Browser — Review Before Approving
+
+For reviewing proposed changes before locking them as canon (or merging, or approving), the GitHub web UI is already a rendered markdown viewer.
+
+When Claude writes lore files, docs, or staged proposals and pushes to GitHub:
+
+```
+github.com/frankxai/arcanea/blob/main/.arcanea/lore/ELDRIANS_STAGING.md
+```
+
+Fully rendered. Tables work. Code blocks work. Mobile-readable. No install.
+
+**The approval loop:**
+```
+Claude writes file → commits → pushes to GitHub
+You: open GitHub URL in browser
+You: "Approved, lock it" (in terminal)
+Claude: updates CANON_LOCKED.md, moves STAGING → LOCKED
+```
+
+Zero GUI dev tools involved. The browser is for reading, not editing.
+
+### 4. Obsidian (Bonus) — For Knowledge Vaults
+
+If you're maintaining a lore system, second brain, or linked knowledge base — [Obsidian](https://obsidian.md) is worth having as a Windows-native app (not in WSL).
+
+Open your project folder as a vault. Every `.md` file becomes a node. Links between files are navigable. The graph view shows how your lore connects — how Eldrians connect to Godbeasts connect to Gates.
+
+It's not for editing during active sessions. It's for understanding the shape of a knowledge system before you give Claude instructions.
+
+---
+
+## Full Setup: From Zero to Terminal-First in 15 Minutes
+
+```bash
+# 1. Install the tools
+sudo apt update
+sudo apt install tmux glow
+
+# 2. Start your working session
+tmux new-session -s work
+
+# 3. Launch Claude Code in the first window
+claude
+
+# 4. Open a second window for file review
+# Ctrl+B then C (new window)
+# Now you can use glow without interrupting Claude
+
+# 5. Read files without leaving terminal
+glow ~/.claude/CLAUDE.md
+glow /path/to/project/lore/CANON_LOCKED.md
+
+# 6. Detach when stepping away (session stays alive)
+# Ctrl+B then D
+
+# 7. Reattach when you're back
+tmux attach -t work
+```
+
+**Optional: Add to `~/.bashrc` for convenience:**
+```bash
+# Quick alias to reattach or create session
+alias ws='tmux attach -t work 2>/dev/null || tmux new-session -s work'
+
+# Quick glow with pager for long files
+alias glp='glow -p'
+```
+
+---
+
+## The Approval Flow for AI-Generated Content
+
+This is the workflow that replaced all my VS Code reviewing. I use it for lore files, blog drafts, config changes — anything where I need to read carefully before approving.
+
+```
+Step 1: Claude proposes changes
+        "I've written ELDRIANS_STAGING.md and updated CANON_LOCKED.md"
+
+Step 2: Read in terminal
+        glow /path/to/ELDRIANS_STAGING.md
+
+Step 3: OR review on GitHub
+        github.com/yourrepo/blob/main/path/to/file.md
+
+Step 4: Tell Claude in plain English
+        "Approved — lock the Eldrian tier"
+        "Change Korghast's voice, too formal"
+        "Add a connection to the Source Gate in Zyranthis's profile"
+
+Step 5: Claude edits, commits, pushes
+        Changes are live on GitHub
+
+Step 6: Verify if needed
+        glow /path/to/updated-file.md
+```
+
+No files opened in an editor. No manual saves. No merge conflicts from editing the same file Claude is also writing.
+
+---
+
+## What This Actually Saves
+
+Running this setup on WSL/Windows with multiple Claude Code sessions:
+
+**Before (VS Code tabs):**
+- 5 Electron processes + 5 Claude Code Node processes
+- Full language server for each window
+- Extensions running in each
+- NTFS I/O on every file operation
+- Laptop at 80°C+
+
+**After (tmux + terminal):**
+- 1 tmux server process
+- N lightweight terminal panes sharing that process
+- Claude Code Node processes only (no Electron overhead)
+- Same NTFS I/O (unavoidable on WSL), but no added cost from GUI
+- Laptop temperature: manageable
+
+The actual bottleneck you can't fix is NTFS I/O if your files are on `/mnt/c/`. For build verification, use Vercel's build logs instead of running `npm run build` locally — that's the other major performance drain.
+
+---
+
+## When You Still Want VS Code
+
+This setup doesn't eliminate VS Code — it makes it optional. Use VS Code when:
+
+- You want to make complex edits yourself (not via Claude)
+- You need syntax highlighting while writing code you'll paste to Claude
+- You want the file tree for navigation in a codebase you don't know well
+
+Don't use VS Code when:
+- Claude is already reading and editing the files
+- You just need to review proposed changes
+- You're running multiple parallel Claude Code sessions
+
+The question isn't "VS Code or terminal" — it's "does a GUI add anything for this specific task?" Most of the time, for AI-collaborative work, the answer is no.
+
+---
+
+## FAQ
+
+### Does `glow` work with MDX files?
+
+Yes. glow treats `.mdx` as markdown and renders everything except JSX components (which display as code blocks). For reviewing frontmatter and prose content it works perfectly.
+
+### Can I run Claude Code inside tmux?
+
+Yes — and it's the recommended approach. Claude Code is fully terminal-native. `Ctrl+C` works as expected. The only thing tmux adds is session persistence (Claude Code keeps running when you close the terminal window).
+
+### What about Cursor or Zed as lighter VS Code alternatives?
+
+Cursor is lighter but still Electron-based. Zed is significantly lighter (native, not Electron) and worth considering if you want a GUI editor with much lower overhead. But for Claude Code specifically, neither adds anything over pure terminal.
+
+### I need to edit files sometimes. What's the terminal option?
+
+`nano` for quick edits. `nvim` if you're comfortable with vim. For simple changes (one line, one word), I just describe the change to Claude and it makes the edit with proper context.
+
+### Does this work on macOS?
+
+Yes, and it's actually cleaner on macOS. No WSL/NTFS overhead. Install `glow` via `brew install glow`, `tmux` via `brew install tmux`. Same workflow.
+
+### What if I want to see the file tree?
+
+`tree` in terminal: `sudo apt install tree`, then `tree /path/to/project -L 2`. Or `ls -la` for flat listings. For project-level navigation, I keep a mental map or use `find` + `grep`.
+
+---
+
+## The Shift Worth Making
+
+The biggest thing this workflow changes isn't the tools — it's the relationship to files.
+
+When you stop trying to manually track and edit files, and start treating plain English as the interface, the cognitive overhead drops significantly. You're not managing files. You're managing outcomes.
+
+Tell Claude what you want the file to contain. Review the result. Approve or redirect. That loop — description → execution → review — is faster than open file → find section → edit → save → repeat.
+
+The terminal is already the right environment for this. The tools just make it comfortable.
+
+If you're building the AI architecture layer that sits on top of this workflow, the [Agentic Creator OS](/acos) is the system I use to coordinate multiple agents across projects — the same one running while I write this from a tmux session.
+
+For a broader look at how terminal-first thinking connects to AI system design, see [The 30-Minute Creator OS](/blog/30-minute-creator-os-quick-start).
+
+---
+
+## Resources
+
+- [glow on GitHub](https://github.com/charmbracelet/glow) — Terminal markdown renderer
+- [tmux Getting Started](https://github.com/tmux/tmux/wiki/Getting-Started) — Official tmux docs
+- [Obsidian](https://obsidian.md) — Markdown knowledge base (Windows/macOS native)
+- [Claude Code Documentation](https://docs.anthropic.com/claude-code) — Claude Code official docs
