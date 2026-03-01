@@ -1,8 +1,8 @@
 'use client'
 
-import { useRef, useCallback } from 'react'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
+import { useMouseGlow } from '@/lib/hooks/useMouseGlow'
 
 // ── Color map: RGB triplets for cursor-following glow ──
 
@@ -49,26 +49,12 @@ interface GlowCardProps {
  *   <GlowCard color="violet">…</GlowCard>
  */
 export function GlowCard({ children, color = 'teal', href, className, onClick }: GlowCardProps) {
-  const glowRef = useRef<HTMLDivElement>(null)
-
   const rgb = glowColors[color]
-
-  const handleMouseMove = useCallback(
-    (e: React.MouseEvent) => {
-      if (!glowRef.current) return
-      const rect = e.currentTarget.getBoundingClientRect()
-      const x = e.clientX - rect.left
-      const y = e.clientY - rect.top
-      glowRef.current.style.background = `radial-gradient(600px circle at ${x}px ${y}px, rgba(${rgb}, 0.18), transparent 40%)`
-      glowRef.current.style.opacity = '1'
-    },
-    [rgb],
-  )
-
-  const handleMouseLeave = useCallback(() => {
-    if (!glowRef.current) return
-    glowRef.current.style.opacity = '0'
-  }, [])
+  const { cardRef, glowRef, handlers } = useMouseGlow<HTMLAnchorElement>({
+    rgb,
+    radius: 600,
+    opacity: 0.18,
+  })
 
   const baseClass = cn(
     // Shape + glass
@@ -113,9 +99,10 @@ export function GlowCard({ children, color = 'teal', href, className, onClick }:
     return (
       <Link
         href={href}
+        ref={cardRef}
         className={cn(baseClass, 'block h-full')}
-        onMouseMove={handleMouseMove}
-        onMouseLeave={handleMouseLeave}
+        onMouseMove={handlers.onMouseMove}
+        onMouseLeave={handlers.onMouseLeave}
       >
         {glowLayers}
         <div className="relative z-10">{children}</div>
@@ -125,9 +112,11 @@ export function GlowCard({ children, color = 'teal', href, className, onClick }:
 
   return (
     <div
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      ref={cardRef as any}
       className={cn(baseClass, onClick && 'cursor-pointer')}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
+      onMouseMove={handlers.onMouseMove as React.MouseEventHandler<HTMLDivElement>}
+      onMouseLeave={handlers.onMouseLeave}
       onClick={onClick}
     >
       {glowLayers}

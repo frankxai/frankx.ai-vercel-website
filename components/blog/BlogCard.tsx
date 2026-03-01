@@ -1,12 +1,13 @@
 'use client'
 
-import { useState, useRef, useCallback } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Calendar, Clock, ArrowUpRight, Sparkles } from 'lucide-react'
 
 import { BlogPost } from '@/lib/blog'
 import { cn } from '@/lib/utils'
+import { useMouseGlow } from '@/lib/hooks/useMouseGlow'
 
 // Emerald glow RGB for blog cards
 const GLOW_RGB = '16, 185, 129'
@@ -21,27 +22,18 @@ export default function BlogCard({ post, featured = false, className }: BlogCard
   const [imgError, setImgError] = useState(false)
   const showImage = post.image && !imgError
 
-  const glowRef = useRef<HTMLDivElement>(null)
-
-  const handleMouseMove = useCallback((e: React.MouseEvent) => {
-    if (!glowRef.current) return
-    const rect = e.currentTarget.getBoundingClientRect()
-    const x = e.clientX - rect.left
-    const y = e.clientY - rect.top
-    glowRef.current.style.background = `radial-gradient(600px circle at ${x}px ${y}px, rgba(${GLOW_RGB}, 0.15), transparent 40%)`
-    glowRef.current.style.opacity = '1'
-  }, [])
-
-  const handleMouseLeave = useCallback(() => {
-    if (!glowRef.current) return
-    glowRef.current.style.opacity = '0'
-  }, [])
+  const { cardRef, glowRef, handlers } = useMouseGlow<HTMLAnchorElement>({
+    rgb: GLOW_RGB,
+    radius: 600,
+    opacity: 0.15,
+  })
 
   return (
     <Link
       href={`/blog/${post.slug}`}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
+      ref={cardRef}
+      onMouseMove={handlers.onMouseMove}
+      onMouseLeave={handlers.onMouseLeave}
       className={cn(
         // Liquid glass base
         'group relative block overflow-hidden rounded-3xl',

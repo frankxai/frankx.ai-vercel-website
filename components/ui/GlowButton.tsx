@@ -1,7 +1,7 @@
 'use client'
 
-import { useRef, useCallback } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
+import { useMouseGlow } from '@/lib/hooks/useMouseGlow'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
 
@@ -52,29 +52,18 @@ export function GlowButton({
   target,
   rel,
 }: GlowButtonProps) {
-  const containerRef = useRef<HTMLDivElement & HTMLButtonElement>(null)
-  const glowRef = useRef<HTMLDivElement>(null)
   const shouldReduceMotion = useReducedMotion()
-
   const rgb = glowColors[color] || glowColors.emerald
 
-  const handleMouseMove = useCallback(
-    (e: React.MouseEvent) => {
-      if (shouldReduceMotion || !containerRef.current || !glowRef.current) return
-      const rect = containerRef.current.getBoundingClientRect()
-      const x = e.clientX - rect.left
-      const y = e.clientY - rect.top
-      glowRef.current.style.background = `radial-gradient(180px circle at ${x}px ${y}px, rgba(${rgb}, ${variant === 'primary' ? '0.12' : '0.2'}), transparent 50%)`
-      glowRef.current.style.opacity = '1'
-    },
-    [rgb, shouldReduceMotion, variant]
-  )
-
-  const handleMouseLeave = useCallback(() => {
-    if (glowRef.current) {
-      glowRef.current.style.opacity = '0'
-    }
-  }, [])
+  const { cardRef: containerRef, glowRef, handlers } = useMouseGlow<HTMLDivElement>({
+    rgb,
+    radius: 180,
+    opacity: variant === 'primary' ? 0.12 : 0.2,
+  })
+  // Respect prefers-reduced-motion — omit handlers entirely when active
+  const mouseHandlers = shouldReduceMotion
+    ? {}
+    : { onMouseMove: handlers.onMouseMove, onMouseLeave: handlers.onMouseLeave }
 
   const motionProps = shouldReduceMotion
     ? {}
@@ -106,7 +95,7 @@ export function GlowButton({
     const isExternal = href.startsWith('http')
 
     return (
-      <motion.div ref={containerRef} {...motionProps} onMouseMove={handleMouseMove} onMouseLeave={handleMouseLeave} className="inline-block">
+      <motion.div ref={containerRef} {...motionProps} {...mouseHandlers} className="inline-block">
         {isExternal ? (
           <a href={href} target={target || '_blank'} rel={rel || 'noopener noreferrer'} className={sharedClasses} onClick={onClick}>
             {glowOverlay}
@@ -124,13 +113,14 @@ export function GlowButton({
 
   return (
     <motion.button
-      ref={containerRef as React.RefObject<HTMLButtonElement>}
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      ref={containerRef as any}
       type={type}
       onClick={onClick}
       disabled={disabled}
       className={sharedClasses}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={handleMouseLeave}
+      onMouseMove={shouldReduceMotion ? undefined : (handlers.onMouseMove as unknown as React.MouseEventHandler<HTMLButtonElement>)}
+      onMouseLeave={shouldReduceMotion ? undefined : handlers.onMouseLeave}
       {...motionProps}
     >
       {glowOverlay}
