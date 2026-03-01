@@ -61,9 +61,14 @@ export function GlowButton({
     opacity: variant === 'primary' ? 0.12 : 0.2,
   })
   // Respect prefers-reduced-motion — omit handlers entirely when active
-  const mouseHandlers = shouldReduceMotion
+  const pointerHandlers = shouldReduceMotion
     ? {}
-    : { onMouseMove: handlers.onMouseMove, onMouseLeave: handlers.onMouseLeave }
+    : {
+        onPointerMove: handlers.onPointerMove,
+        onPointerLeave: handlers.onPointerLeave,
+        onTouchMove: handlers.onTouchMove,
+        onTouchEnd: handlers.onTouchEnd,
+      }
 
   const motionProps = shouldReduceMotion
     ? {}
@@ -95,7 +100,7 @@ export function GlowButton({
     const isExternal = href.startsWith('http')
 
     return (
-      <motion.div ref={containerRef} {...motionProps} {...mouseHandlers} className="inline-block">
+      <motion.div ref={containerRef} {...motionProps} {...(pointerHandlers as any)} className="inline-block">
         {isExternal ? (
           <a href={href} target={target || '_blank'} rel={rel || 'noopener noreferrer'} className={sharedClasses} onClick={onClick}>
             {glowOverlay}
@@ -113,14 +118,16 @@ export function GlowButton({
 
   return (
     <motion.button
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+       
       ref={containerRef as any}
       type={type}
       onClick={onClick}
       disabled={disabled}
       className={sharedClasses}
-      onMouseMove={shouldReduceMotion ? undefined : (handlers.onMouseMove as unknown as React.MouseEventHandler<HTMLButtonElement>)}
-      onMouseLeave={shouldReduceMotion ? undefined : handlers.onMouseLeave}
+      onPointerMove={shouldReduceMotion ? undefined : (handlers.onPointerMove as any)}
+      onPointerLeave={shouldReduceMotion ? undefined : (handlers.onPointerLeave as any)}
+      onTouchMove={shouldReduceMotion ? undefined : (handlers.onTouchMove as any)}
+      onTouchEnd={shouldReduceMotion ? undefined : handlers.onTouchEnd}
       {...motionProps}
     >
       {glowOverlay}

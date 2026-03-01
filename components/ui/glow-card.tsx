@@ -101,8 +101,10 @@ export function GlowCard({ children, color = 'teal', href, className, onClick }:
         href={href}
         ref={cardRef}
         className={cn(baseClass, 'block h-full')}
-        onMouseMove={handlers.onMouseMove}
-        onMouseLeave={handlers.onMouseLeave}
+        onPointerMove={handlers.onPointerMove}
+        onPointerLeave={handlers.onPointerLeave}
+        onTouchMove={handlers.onTouchMove as any}
+        onTouchEnd={handlers.onTouchEnd}
       >
         {glowLayers}
         <div className="relative z-10">{children}</div>
@@ -112,11 +114,12 @@ export function GlowCard({ children, color = 'teal', href, className, onClick }:
 
   return (
     <div
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       ref={cardRef as any}
       className={cn(baseClass, onClick && 'cursor-pointer')}
-      onMouseMove={handlers.onMouseMove as React.MouseEventHandler<HTMLDivElement>}
-      onMouseLeave={handlers.onMouseLeave}
+      onPointerMove={handlers.onPointerMove as React.PointerEventHandler<HTMLDivElement>}
+      onPointerLeave={handlers.onPointerLeave as React.PointerEventHandler<HTMLDivElement>}
+      onTouchMove={handlers.onTouchMove as any}
+      onTouchEnd={handlers.onTouchEnd}
       onClick={onClick}
     >
       {glowLayers}

@@ -32,8 +32,10 @@ export default function BlogCard({ post, featured = false, className }: BlogCard
     <Link
       href={`/blog/${post.slug}`}
       ref={cardRef}
-      onMouseMove={handlers.onMouseMove}
-      onMouseLeave={handlers.onMouseLeave}
+      onPointerMove={handlers.onPointerMove}
+      onPointerLeave={handlers.onPointerLeave}
+      onTouchMove={handlers.onTouchMove as any}
+      onTouchEnd={handlers.onTouchEnd}
       className={cn(
         // Liquid glass base
         'group relative block overflow-hidden rounded-3xl',
