@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
 import { LebensTree } from '@/components/hoffnung/LebensTree'
 
@@ -14,6 +15,16 @@ export default function LebensbaumPage() {
 
   return (
     <div className="relative w-screen h-screen bg-[#070B14] overflow-hidden">
+      {/* Cinematic background — faded tree image under interactive canvas */}
+      <Image
+        src="/images/hoffnung/lebensbaum-hero.png"
+        alt=""
+        fill
+        className="object-cover object-center opacity-20"
+        priority
+        quality={75}
+        sizes="100vw"
+      />
       <LebensTree fullscreen />
 
       {/* Floating title — fades after 4s */}

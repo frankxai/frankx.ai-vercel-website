@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { HeroSection } from '@/components/hoffnung/HeroSection'
 import { QuoteCarousel } from '@/components/hoffnung/QuoteCarousel'
 import { WorldTreeSection } from '@/components/hoffnung/WorldTreeSection'
@@ -25,6 +26,19 @@ export default function HoffnungPage() {
       <FrequencyPlayer />
 
       <div className="section-divider-dawn" />
+
+      {/* Cinematic section image — leaf dewdrop macro */}
+      <div className="relative h-[40vh] md:h-[50vh] overflow-hidden">
+        <Image
+          src="/images/hoffnung/hoffnung-leaf-dewdrop.png"
+          alt="A golden leaf on emerald moss with a dewdrop reflecting the dawn sky"
+          fill
+          className="object-cover object-center"
+          quality={85}
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#070B14] via-transparent to-[#070B14]" />
+      </div>
 
       <MeditationGrid />
 

@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import { ScrollReveal } from '@/components/valentines/ScrollReveal'
 
 const frequencies = [
@@ -70,7 +71,19 @@ const frequencies = [
 
 export function FrequencyPlayer() {
   return (
-    <section className="py-24 md:py-32 px-6">
+    <section className="relative py-24 md:py-32 px-6 overflow-hidden">
+      {/* Cinematic roots/moss background */}
+      <div className="absolute inset-0">
+        <Image
+          src="/images/hoffnung/hoffnung-roots-moss.png"
+          alt=""
+          fill
+          className="object-cover object-center"
+          quality={80}
+          sizes="100vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#070B14]/90 via-[#070B14]/75 to-[#070B14]/90" />
+      </div>
       <ScrollReveal>
         <h2 className="font-garamond text-3xl md:text-4xl text-center text-white/90 mb-4">
           Heilfrequenzen
