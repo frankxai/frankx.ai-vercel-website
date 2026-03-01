@@ -36,6 +36,7 @@ const navItems: NavItem[] = [
     href: '/products/vibe-os',
     subItems: [
       { name: 'Vibe OS (AI Music)', href: '/products/vibe-os' },
+      { name: 'Arcanea', href: '/arcanea' },
       { name: 'Prompt Library', href: '/prompt-library' },
       { name: 'Music Lab', href: '/music-lab' },
       { name: 'Templates', href: '/templates' },
