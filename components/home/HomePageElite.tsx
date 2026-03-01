@@ -4,10 +4,11 @@ import { motion, useScroll, useTransform, useSpring, useReducedMotion, AnimatePr
 import Link from 'next/link'
 import { useRef, useState, useEffect } from 'react'
 import { ArrowRight, ChevronDown, Sparkles, Zap, Brain, Music } from 'lucide-react'
+import { Suno } from '@lobehub/icons'
 
 import { trackEvent } from '@/lib/analytics'
 import { EmailSignup } from '@/components/email-signup'
-import SparkBorder from '@/components/ui/SparkBorder'
+import { GlowCard } from '@/components/ui/glow-card'
 
 // ============================================================================
 // TYPES
@@ -222,6 +223,11 @@ function Hero() {
                 AI Architect at Oracle. 12,000+ songs with Suno.
                 75+ open-source skills shipped. Everything documented.
               </p>
+
+              {/* Serif accent — warm personal touch */}
+              <p className="font-serif-italic text-base md:text-lg text-white/30 max-w-lg italic">
+                "I create to understand. I share to teach."
+              </p>
             </motion.div>
 
             {/* CTAs — emerald primary + ghost secondary */}
@@ -250,7 +256,7 @@ function Hero() {
             </motion.div>
           </div>
 
-          {/* Right Column — Glass Stat Cards */}
+          {/* Right Column — Glass Stat Cards with cursor glow */}
           <div className="relative hidden md:block">
             <motion.div
               initial={shouldReduceMotion ? false : { opacity: 0, scale: 0.95 }}
@@ -263,25 +269,29 @@ function Hero() {
                 initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.6, delay: 0.3 }}
-                className="group relative col-span-2 p-6 rounded-3xl bg-white/5 backdrop-blur-xl border border-white/10 hover:bg-white/[0.07] transition-all duration-300"
+                className="col-span-2"
               >
-                <div className="flex items-start justify-between">
-                  <div className="space-y-2">
-                    <p className="text-sm text-white/40 font-medium">AI Songs Created</p>
-                    <p className="text-4xl font-bold text-white">12,000+</p>
+                <GlowCard color="emerald">
+                  <div className="p-6">
+                    <div className="flex items-start justify-between">
+                      <div className="space-y-2">
+                        <p className="text-sm text-white/40 font-medium">AI Songs Created</p>
+                        <p className="text-4xl font-bold text-white">12,000+</p>
+                      </div>
+                      <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 flex items-center justify-center group-hover:bg-emerald-500/20 transition-colors">
+                        <Music className="w-6 h-6 text-emerald-400" />
+                      </div>
+                    </div>
+                    <div className="mt-4 h-1.5 bg-white/5 rounded-full overflow-hidden">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        animate={{ width: '85%' }}
+                        transition={{ duration: 1, delay: 0.5 }}
+                        className="h-full bg-gradient-to-r from-emerald-500 to-emerald-400 rounded-full"
+                      />
+                    </div>
                   </div>
-                  <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 flex items-center justify-center group-hover:bg-emerald-500/20 transition-colors">
-                    <Music className="w-6 h-6 text-emerald-400" />
-                  </div>
-                </div>
-                <div className="mt-4 h-1.5 bg-white/5 rounded-full overflow-hidden">
-                  <motion.div
-                    initial={{ width: 0 }}
-                    animate={{ width: '85%' }}
-                    transition={{ duration: 1, delay: 0.5 }}
-                    className="h-full bg-gradient-to-r from-emerald-500 to-emerald-400 rounded-full"
-                  />
-                </div>
+                </GlowCard>
               </motion.div>
 
               {/* Skills stat */}
@@ -289,17 +299,18 @@ function Hero() {
                 initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.6, delay: 0.4 }}
-                className="group p-6 rounded-3xl bg-white/5 backdrop-blur-xl border border-white/10 hover:bg-white/[0.07] transition-all duration-300"
               >
-                <div className="space-y-4">
-                  <div className="w-12 h-12 rounded-2xl bg-violet-500/10 flex items-center justify-center group-hover:bg-violet-500/20 transition-colors">
-                    <Zap className="w-6 h-6 text-violet-400" />
+                <GlowCard color="violet">
+                  <div className="p-6 space-y-4">
+                    <div className="w-12 h-12 rounded-2xl bg-violet-500/10 flex items-center justify-center group-hover:bg-violet-500/20 transition-colors">
+                      <Zap className="w-6 h-6 text-violet-400" />
+                    </div>
+                    <div className="space-y-1">
+                      <p className="text-3xl font-bold text-white">75+</p>
+                      <p className="text-sm text-white/40 font-medium">Open Source Skills</p>
+                    </div>
                   </div>
-                  <div className="space-y-1">
-                    <p className="text-3xl font-bold text-white">75+</p>
-                    <p className="text-sm text-white/40 font-medium">Open Source Skills</p>
-                  </div>
-                </div>
+                </GlowCard>
               </motion.div>
 
               {/* Agents stat */}
@@ -307,17 +318,18 @@ function Hero() {
                 initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.6, delay: 0.5 }}
-                className="group p-6 rounded-3xl bg-white/5 backdrop-blur-xl border border-white/10 hover:bg-white/[0.07] transition-all duration-300"
               >
-                <div className="space-y-4">
-                  <div className="w-12 h-12 rounded-2xl bg-cyan-500/10 flex items-center justify-center group-hover:bg-cyan-500/20 transition-colors">
-                    <Brain className="w-6 h-6 text-cyan-400" />
+                <GlowCard color="cyan">
+                  <div className="p-6 space-y-4">
+                    <div className="w-12 h-12 rounded-2xl bg-cyan-500/10 flex items-center justify-center group-hover:bg-cyan-500/20 transition-colors">
+                      <Brain className="w-6 h-6 text-cyan-400" />
+                    </div>
+                    <div className="space-y-1">
+                      <p className="text-3xl font-bold text-white">38</p>
+                      <p className="text-sm text-white/40 font-medium">AI Agents</p>
+                    </div>
                   </div>
-                  <div className="space-y-1">
-                    <p className="text-3xl font-bold text-white">38</p>
-                    <p className="text-sm text-white/40 font-medium">AI Agents</p>
-                  </div>
-                </div>
+                </GlowCard>
               </motion.div>
             </motion.div>
           </div>
@@ -347,11 +359,11 @@ function Hero() {
 // AUTHORITY BAR
 // ============================================================================
 
-const credentials = [
-  'Oracle AI Architect',
-  '12,000+ AI Songs',
-  '75+ Open Source Skills',
-  '38 Autonomous Agents',
+const credentials: { text: string; icon?: React.ComponentType<{ size?: number | string; className?: string }> }[] = [
+  { text: 'Oracle AI Architect' },
+  { text: '12,000+ AI Songs', icon: Suno },
+  { text: '75+ Open Source Skills' },
+  { text: '38 Autonomous Agents' },
 ]
 
 function AuthorityBar() {
@@ -366,10 +378,11 @@ function AuthorityBar() {
           className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 md:gap-x-0"
         >
           {credentials.map((item, i) => (
-            <div key={item} className="flex items-center">
+            <div key={item.text} className="flex items-center">
               {i > 0 && <div className="hidden md:block w-px h-4 bg-white/10 mx-6 lg:mx-8" />}
-              <span className="text-sm md:text-base text-white/40 font-medium tracking-wide">
-                {item}
+              <span className="inline-flex items-center gap-1.5 text-sm md:text-base text-white/40 font-medium tracking-wide">
+                {item.icon && <item.icon size={14} className="opacity-60" />}
+                {item.text}
               </span>
             </div>
           ))}
@@ -456,32 +469,31 @@ function Capabilities() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
               >
-                <Link
-                  href={pillar.href}
-                  className={`group relative block p-6 md:p-8 rounded-3xl bg-white/[0.03] backdrop-blur-sm border border-white/[0.08] transition-all duration-300 hover:-translate-y-1 ${colors.border} h-full`}
-                >
-                  <div className={`w-12 h-12 rounded-2xl ${colors.bg} ${colors.hover} flex items-center justify-center mb-5 transition-colors`}>
-                    <Icon className={`w-6 h-6 ${colors.text}`} />
-                  </div>
-
-                  <h3 className={`text-xl md:text-2xl font-semibold text-white mb-3 ${colors.titleHover} transition-colors`}>
-                    {pillar.title}
-                  </h3>
-                  <p className="text-sm md:text-base text-white/50 leading-relaxed mb-6">
-                    {pillar.description}
-                  </p>
-
-                  <div className="flex items-center justify-between pt-4 border-t border-white/5">
-                    <div>
-                      <span className={`text-2xl font-bold ${colors.text}`}>{pillar.stat}</span>
-                      <span className="text-xs text-white/30 ml-2">{pillar.statLabel}</span>
+                <GlowCard color={pillar.color} href={pillar.href} className="hover:-translate-y-1">
+                  <div className="p-6 md:p-8 h-full flex flex-col">
+                    <div className={`w-12 h-12 rounded-2xl ${colors.bg} ${colors.hover} flex items-center justify-center mb-5 transition-colors`}>
+                      <Icon className={`w-6 h-6 ${colors.text}`} />
                     </div>
-                    <span className="inline-flex items-center gap-1.5 text-sm text-white/40 group-hover:text-white/70 transition-colors">
-                      {pillar.cta}
-                      <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                    </span>
+
+                    <h3 className={`text-xl md:text-2xl font-semibold text-white mb-3 ${colors.titleHover} transition-colors`}>
+                      {pillar.title}
+                    </h3>
+                    <p className="text-sm md:text-base text-white/50 leading-relaxed mb-6 flex-1">
+                      {pillar.description}
+                    </p>
+
+                    <div className="flex items-center justify-between pt-4 border-t border-white/5">
+                      <div>
+                        <span className={`text-2xl font-bold ${colors.text}`}>{pillar.stat}</span>
+                        <span className="text-xs text-white/30 ml-2">{pillar.statLabel}</span>
+                      </div>
+                      <span className="inline-flex items-center gap-1.5 text-sm text-white/40 group-hover:text-white/70 transition-colors">
+                        {pillar.cta}
+                        <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                      </span>
+                    </div>
                   </div>
-                </Link>
+                </GlowCard>
               </motion.div>
             )
           })}
@@ -528,8 +540,8 @@ function LatestArticles({ posts }: { posts: LatestPost[] }) {
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
             >
-              <Link href={`/blog/${post.slug}`} className="group block h-full">
-                <div className="h-full rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5 sm:p-6 transition-all duration-300 hover:-translate-y-0.5 hover:border-emerald-500/30">
+              <GlowCard color="emerald" href={`/blog/${post.slug}`} className="hover:-translate-y-0.5">
+                <div className="p-5 sm:p-6">
                   <div className="flex items-center gap-3 mb-3">
                     <span className="text-[10px] sm:text-xs font-medium px-2 py-0.5 rounded-full bg-white/5 text-white/50 uppercase tracking-wider">
                       {post.category}
@@ -543,7 +555,7 @@ function LatestArticles({ posts }: { posts: LatestPost[] }) {
                     {post.description}
                   </p>
                 </div>
-              </Link>
+              </GlowCard>
             </motion.div>
           ))}
         </div>
@@ -601,24 +613,22 @@ function ProductsShowcase() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
             >
-              <Link href={product.href} className="group block h-full">
-                <SparkBorder color="emerald" hoverOnly>
-                  <div className="h-full rounded-2xl p-5 sm:p-6">
-                    {/* Gradient accent line */}
-                    <div className="h-0.5 w-full bg-gradient-to-r from-emerald-500/50 to-cyan-500/50 rounded-full mb-5" />
-                    <h3 className="text-base sm:text-lg font-semibold text-white mb-2 group-hover:text-emerald-400 transition-colors">
-                      {product.title}
-                    </h3>
-                    <p className="text-sm text-white/50 leading-relaxed">
-                      {product.description}
-                    </p>
-                    <div className="mt-4 flex items-center gap-1.5 text-xs text-white/30 group-hover:text-white/50 transition-colors">
-                      <span>Learn more</span>
-                      <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
-                    </div>
+              <GlowCard color="emerald" href={product.href} className="hover:-translate-y-0.5">
+                <div className="p-5 sm:p-6">
+                  {/* Gradient accent line */}
+                  <div className="h-0.5 w-full bg-gradient-to-r from-emerald-500/50 to-cyan-500/50 rounded-full mb-5" />
+                  <h3 className="text-base sm:text-lg font-semibold text-white mb-2 group-hover:text-emerald-400 transition-colors">
+                    {product.title}
+                  </h3>
+                  <p className="text-sm text-white/50 leading-relaxed">
+                    {product.description}
+                  </p>
+                  <div className="mt-4 flex items-center gap-1.5 text-xs text-white/30 group-hover:text-white/50 transition-colors">
+                    <span>Learn more</span>
+                    <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
                   </div>
-                </SparkBorder>
-              </Link>
+                </div>
+              </GlowCard>
             </motion.div>
           ))}
         </div>
@@ -651,10 +661,10 @@ function EmailCTA() {
               <span className="text-sm text-emerald-400">Weekly Insights</span>
             </div>
 
-            <h2 className="text-2xl md:text-3xl font-semibold text-white mb-3">
+            <h2 className="text-2xl md:text-3xl font-semibold text-white mb-2">
               AI architecture and creative systems.
             </h2>
-            <p className="text-sm text-white/40 mb-8">
+            <p className="font-serif-italic text-base text-white/40 mb-8 italic">
               Weekly dispatch. No spam, no guru energy — just the work.
             </p>
             <div className="max-w-sm mx-auto">
@@ -709,7 +719,7 @@ function FAQSection({ faqs }: { faqs: FAQItem[] }) {
             >
               <button
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
-                className="w-full text-left rounded-xl border border-white/10 bg-white/[0.03] p-5 transition-all duration-200 hover:border-white/20 hover:bg-white/[0.05]"
+                className="w-full text-left rounded-2xl border border-white/[0.08] bg-white/[0.04] [backdrop-filter:blur(32px)_saturate(160%)] p-5 transition-all duration-200 hover:border-white/20 hover:bg-white/[0.06]"
               >
                 <div className="flex items-center justify-between gap-4">
                   <h3 className="text-sm sm:text-base font-semibold text-white pr-4">
@@ -763,11 +773,11 @@ function FinalCTA() {
           <div className="absolute inset-0 md:-inset-x-10 md:-inset-y-10 bg-gradient-to-r from-emerald-500/5 via-transparent to-cyan-500/5 blur-3xl opacity-30 rounded-3xl pointer-events-none" />
 
           <div className="relative text-center">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 tracking-tight">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-2 tracking-tight">
               Start building.
             </h2>
-            <p className="text-base text-white/40 mb-8 md:mb-12 max-w-md mx-auto">
-              Pick your path — architecture, music, or products.
+            <p className="font-serif-italic text-lg md:text-xl text-white/40 mb-8 md:mb-12 max-w-lg mx-auto italic">
+              The best way to learn is to create. The best way to understand is to ship.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
