@@ -4,7 +4,6 @@ import { motion, useScroll, useTransform, useSpring, useReducedMotion, AnimatePr
 import Link from 'next/link'
 import { useRef, useState, useEffect } from 'react'
 import { ArrowRight, ChevronDown, Sparkles, Zap, Brain, Music } from 'lucide-react'
-import { Suno } from '@lobehub/icons'
 
 import { trackEvent } from '@/lib/analytics'
 import { EmailSignup } from '@/components/email-signup'
@@ -361,7 +360,7 @@ function Hero() {
 
 const credentials: { text: string; icon?: React.ComponentType<{ size?: number | string; className?: string }> }[] = [
   { text: 'Oracle AI Architect' },
-  { text: '12,000+ AI Songs', icon: Suno },
+  { text: '12,000+ AI Songs', icon: Music },
   { text: '75+ Open Source Skills' },
   { text: '38 Autonomous Agents' },
 ]
