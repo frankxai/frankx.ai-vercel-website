@@ -14,8 +14,9 @@
  *   --index-only   Scrape metadata only, no MP3 downloads
  *   --download     Download MP3s to ./tmp/suno-mp3/
  *   --upload       Upload downloaded MP3s to Vercel Blob (requires BLOB_READ_WRITE_TOKEN)
+ *   --notify       Post results to n8n webhook (Slack notification)
  *   --limit N      Limit to N tracks (for testing)
- *   --profile URL  Override profile URL (default: https://suno.com/@frankxmusic)
+ *   --profile URL  Override profile URL (default: https://suno.com/@frankx)
  */
 
 import fs from 'fs'
@@ -38,6 +39,7 @@ function parseArgs() {
     indexOnly: args.includes('--index-only'),
     download: args.includes('--download'),
     upload: args.includes('--upload'),
+    notify: args.includes('--notify'),
     limit: 0,
     profile: DEFAULT_PROFILE,
   }
@@ -65,6 +67,7 @@ FLAGS:
   --index-only   Scrape metadata only
   --download     Download MP3s to ./tmp/suno-mp3/
   --upload       Upload to Vercel Blob (requires BLOB_READ_WRITE_TOKEN)
+  --notify       Post results to n8n webhook (Slack notification)
   --limit N      Limit to N tracks
   --profile URL  Custom profile URL
 `)
@@ -349,10 +352,14 @@ function saveToInventory(newTracks) {
 
   fs.writeFileSync(MUSIC_FILE, JSON.stringify(inventory, null, 2))
 
+  const total = inventory.tracks.length
+
   console.log(`\n  Added ${added} new tracks`)
   console.log(`  Updated ${updated} existing tracks`)
-  console.log(`  Total tracks in inventory: ${inventory.tracks.length}`)
+  console.log(`  Total tracks in inventory: ${total}`)
   console.log(`  Saved to: ${MUSIC_FILE}\n`)
+
+  return { added, updated, total }
 }
 
 // ── Download MP3s ───────────────────────────────────────────────────────────
@@ -465,6 +472,27 @@ async function uploadToBlob(tracks) {
   console.log(`  Updated audioUrl fields in music.json\n`)
 }
 
+// ── Notify n8n Webhook ───────────────────────────────────────────────────────
+
+const N8N_WEBHOOK_URL = 'https://primary-production-ff336.up.railway.app/webhook/music-sync'
+
+async function notifyWebhook(results) {
+  try {
+    const response = await fetch(N8N_WEBHOOK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ ...results, source: 'scraper', timestamp: new Date().toISOString() }),
+    })
+    if (response.ok) {
+      console.log('  Notified n8n webhook (Slack)')
+    } else {
+      console.log(`  Webhook notification failed (${response.status})`)
+    }
+  } catch (err) {
+    console.log(`  Webhook notification error: ${err.message}`)
+  }
+}
+
 // ── Main ────────────────────────────────────────────────────────────────────
 
 async function main() {
@@ -486,7 +514,7 @@ async function main() {
 
   // Step 3: Save to inventory (dedup handled inside)
   console.log('Step 3: Saving to inventory...')
-  saveToInventory(trackEntries)
+  const results = saveToInventory(trackEntries)
 
   // Step 4: Download MP3s (if requested)
   if (flags.download) {
@@ -498,6 +526,12 @@ async function main() {
   if (flags.upload) {
     console.log('Step 5: Uploading to Vercel Blob...')
     await uploadToBlob(trackEntries)
+  }
+
+  // Step 6: Notify n8n webhook (if requested)
+  if (flags.notify) {
+    console.log('Step 6: Notifying n8n webhook...')
+    await notifyWebhook(results)
   }
 
   console.log('=== Done ===\n')
