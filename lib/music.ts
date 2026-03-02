@@ -179,14 +179,30 @@ export function getDistroKidCandidates(): TrackAnalytics[] {
 
 // ── Stats ──────────────────────────────────────────────────────────────────
 
+/** Parse Suno's abbreviated numbers: "17K" → 17000, "1.4K" → 1400, "2.3M" → 2300000 */
+function parseAbbreviatedNumber(value: string | number | undefined): number {
+  if (typeof value === 'number') return value
+  if (!value) return 0
+  const str = String(value).trim()
+  const match = str.match(/^([\d.]+)\s*([KkMm]?)$/)
+  if (!match) return parseInt(str, 10) || 0
+  const num = parseFloat(match[1])
+  const suffix = match[2].toUpperCase()
+  if (suffix === 'K') return Math.round(num * 1000)
+  if (suffix === 'M') return Math.round(num * 1000000)
+  return Math.round(num)
+}
+
 export function getMusicStats() {
   const profileStats = musicInventory._profileStats
+  const totalPlays = tracks.reduce((sum, t) => sum + (t.plays || 0), 0)
   return {
     totalTracks: musicInventory._count,
     indexedTracks: musicInventory._count,
     followers: profileStats.followers,
-    totalPlays: parseInt(String(profileStats.hooks), 10) || 0,
-    totalLikes: parseInt(String(profileStats.likes), 10) || 0,
+    totalPlays,
+    totalHooks: parseAbbreviatedNumber(profileStats.hooks),
+    totalLikes: parseAbbreviatedNumber(profileStats.likes),
     playlists: musicInventory._playlists.length,
     albums: albums.length,
     profileUrl: musicInventory._sunoProfileUrl,

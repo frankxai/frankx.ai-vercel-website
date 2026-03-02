@@ -771,7 +771,8 @@
         "Orchestral",
         "Cinematic",
         "Epic"
-      ]
+      ],
+      "sunoId": "877a0eaf-59f5-4a69-ae22-c130794d0762"
     },
     {
       "id": "children-of-the-sea",
@@ -789,7 +790,8 @@
       "genre": [
         "EDM",
         "Dance"
-      ]
+      ],
+      "sunoId": "3398b525-7f99-40aa-a78d-988965451054"
     },
     {
       "id": "echoes-of-eternity",
@@ -807,7 +809,8 @@
       "genre": [
         "Ambient",
         "Cinematic"
-      ]
+      ],
+      "sunoId": "3bd939ef-86f2-4568-ad8e-c3d81631b816"
     },
     {
       "id": "arcanea-awaken",
@@ -826,7 +829,8 @@
       "genre": [
         "Electronic",
         "Dance"
-      ]
+      ],
+      "sunoId": "279c5cdc-7eaf-4d8e-8d0d-19f990672194"
     },
     {
       "id": "still-right-here",
