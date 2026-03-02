@@ -7,26 +7,75 @@
     "hooks": "17K",
     "likes": "1.4K",
     "bio": "Music to unleash your creative genius 🎼🎶🧠 Connecting visionaries",
-    "styles": ["warm", "vocal", "tech house", "bassline", "hypnotic"]
+    "styles": [
+      "warm",
+      "vocal",
+      "tech house",
+      "bassline",
+      "hypnotic"
+    ]
   },
   "_lastUpdated": "2026-03-02",
-  "_count": 35,
+  "_count": 52,
   "_estimatedTotal": 500,
   "_note": "Only publicly visible songs scraped. Full library requires Suno authentication.",
   "_playlists": [
-    { "name": "Golden Frequencies", "songs": 9, "url": "https://suno.com/playlist/77e7f75f-24b4-4c8f-b02c-10eff76a7052" },
-    { "name": "Meditation", "songs": 1, "url": "https://suno.com/playlist/0bc7abe1-b2c7-41c9-98a2-c0fbf59dca1f" },
-    { "name": "German Poets", "songs": 1, "url": "https://suno.com/playlist/2d655032-9006-45ce-9267-9d59def06ce7" },
-    { "name": "Way of Water", "songs": 2, "url": "https://suno.com/playlist/2044d23d-3253-4a46-940b-7c10d9dc81ed" },
-    { "name": "vibe", "songs": 1, "url": "https://suno.com/playlist/1532430a-1550-45ac-b298-dbde8f0e9e17" },
-    { "name": "Peace For Your Soul", "songs": 1, "url": "https://suno.com/playlist/26136df0-7e47-460d-a0fe-be24ab69475d" },
-    { "name": "Instrumental Magic", "songs": 3, "url": "https://suno.com/playlist/3b265675-b95e-48ec-a2ed-140f6962c54d" },
-    { "name": "Arcanean Choir", "songs": 2, "url": "https://suno.com/playlist/898c6c67-1b25-495f-82ce-53d9139d9a25" },
-    { "name": "Orchestral Beauty", "songs": 1, "url": "https://suno.com/playlist/0625352a-74c5-478a-933e-1204549efd36" }
+    {
+      "name": "Golden Frequencies",
+      "songs": 9,
+      "url": "https://suno.com/playlist/77e7f75f-24b4-4c8f-b02c-10eff76a7052"
+    },
+    {
+      "name": "Meditation",
+      "songs": 1,
+      "url": "https://suno.com/playlist/0bc7abe1-b2c7-41c9-98a2-c0fbf59dca1f"
+    },
+    {
+      "name": "German Poets",
+      "songs": 1,
+      "url": "https://suno.com/playlist/2d655032-9006-45ce-9267-9d59def06ce7"
+    },
+    {
+      "name": "Way of Water",
+      "songs": 2,
+      "url": "https://suno.com/playlist/2044d23d-3253-4a46-940b-7c10d9dc81ed"
+    },
+    {
+      "name": "vibe",
+      "songs": 1,
+      "url": "https://suno.com/playlist/1532430a-1550-45ac-b298-dbde8f0e9e17"
+    },
+    {
+      "name": "Peace For Your Soul",
+      "songs": 1,
+      "url": "https://suno.com/playlist/26136df0-7e47-460d-a0fe-be24ab69475d"
+    },
+    {
+      "name": "Instrumental Magic",
+      "songs": 3,
+      "url": "https://suno.com/playlist/3b265675-b95e-48ec-a2ed-140f6962c54d"
+    },
+    {
+      "name": "Arcanean Choir",
+      "songs": 2,
+      "url": "https://suno.com/playlist/898c6c67-1b25-495f-82ce-53d9139d9a25"
+    },
+    {
+      "name": "Orchestral Beauty",
+      "songs": 1,
+      "url": "https://suno.com/playlist/0625352a-74c5-478a-933e-1204549efd36"
+    }
   ],
   "_personas": [
-    "Dadada Weihnachtszeit", "All In", "Suno Swims", "Growth",
-    "Oh Arcanea D&B", "Green light", "Russian Punk", "Trust Trap Duo", "Fight Hop"
+    "Dadada Weihnachtszeit",
+    "All In",
+    "Suno Swims",
+    "Growth",
+    "Oh Arcanea D&B",
+    "Green light",
+    "Russian Punk",
+    "Trust Trap Duo",
+    "Fight Hop"
   ],
   "tracks": [
     {
@@ -35,12 +84,21 @@
       "title": "Art Of Soulful Living",
       "brand": "frankx",
       "status": "published",
-      "tags": ["featured", "rock", "edm", "drum-and-bass"],
+      "tags": [
+        "featured",
+        "rock",
+        "edm",
+        "drum-and-bass"
+      ],
       "platform": "suno",
       "sunoId": "3faa6621-9edb-441f-9ba9-279be2716bba",
       "sunoUrl": "https://suno.com/song/3faa6621-9edb-441f-9ba9-279be2716bba",
       "duration": "3:44",
-      "genre": ["rock", "edm", "drum and bass"],
+      "genre": [
+        "rock",
+        "edm",
+        "drum and bass"
+      ],
       "plays": 18,
       "likes": 4,
       "section": "featured"
@@ -51,12 +109,20 @@
       "title": "Magical Times",
       "brand": "frankx",
       "status": "published",
-      "tags": ["featured", "magical", "symphonic", "female-vocals"],
+      "tags": [
+        "featured",
+        "magical",
+        "symphonic",
+        "female-vocals"
+      ],
       "platform": "suno",
       "sunoId": "74856905-1e50-419c-ad15-92081a743511",
       "sunoUrl": "https://suno.com/song/74856905-1e50-419c-ad15-92081a743511",
       "duration": "3:20",
-      "genre": ["magical", "symphonic"],
+      "genre": [
+        "magical",
+        "symphonic"
+      ],
       "plays": 29,
       "likes": 3,
       "section": "featured"
@@ -67,12 +133,22 @@
       "title": "Trust in Yourself",
       "brand": "frankx",
       "status": "published",
-      "tags": ["featured", "pop-punk", "pop", "symphonic", "top-performer"],
+      "tags": [
+        "featured",
+        "pop-punk",
+        "pop",
+        "symphonic",
+        "top-performer"
+      ],
       "platform": "suno",
       "sunoId": "66572f21-2682-41f3-9051-86446e9b9bd7",
       "sunoUrl": "https://suno.com/song/66572f21-2682-41f3-9051-86446e9b9bd7",
       "duration": "2:18",
-      "genre": ["pop punk", "pop", "symphonic"],
+      "genre": [
+        "pop punk",
+        "pop",
+        "symphonic"
+      ],
       "plays": 70,
       "likes": 34,
       "section": "featured"
@@ -83,12 +159,22 @@
       "title": "Starlight Delight (Remastered)",
       "brand": "frankx",
       "status": "published",
-      "tags": ["featured", "pop", "bassline", "drum-and-bass", "top-performer"],
+      "tags": [
+        "featured",
+        "pop",
+        "bassline",
+        "drum-and-bass",
+        "top-performer"
+      ],
       "platform": "suno",
       "sunoId": "2d33b5c5-94b1-418b-8bc8-26d77e12dc92",
       "sunoUrl": "https://suno.com/song/2d33b5c5-94b1-418b-8bc8-26d77e12dc92",
       "duration": "2:59",
-      "genre": ["pop", "bassline", "drum and bass"],
+      "genre": [
+        "pop",
+        "bassline",
+        "drum and bass"
+      ],
       "plays": 86,
       "likes": 20,
       "section": "featured"
@@ -99,12 +185,21 @@
       "title": "The Awakening",
       "brand": "frankx",
       "status": "published",
-      "tags": ["featured", "african", "world", "vocals", "top-performer"],
+      "tags": [
+        "featured",
+        "african",
+        "world",
+        "vocals",
+        "top-performer"
+      ],
       "platform": "suno",
       "sunoId": "8374d2ad-9142-4900-9028-a1e805688407",
       "sunoUrl": "https://suno.com/song/8374d2ad-9142-4900-9028-a1e805688407",
       "duration": "1:57",
-      "genre": ["african", "world"],
+      "genre": [
+        "african",
+        "world"
+      ],
       "plays": 134,
       "likes": 20,
       "section": "featured"
@@ -115,12 +210,23 @@
       "title": "Vibe O S",
       "brand": "frankx",
       "status": "published",
-      "tags": ["featured", "hip-hop", "female-vocals", "signature", "top-performer"],
+      "tags": [
+        "featured",
+        "hip-hop",
+        "female-vocals",
+        "signature",
+        "top-performer"
+      ],
       "platform": "suno",
       "sunoId": "9cbad174-9276-427f-9aed-1ba00c7db3db",
       "sunoUrl": "https://suno.com/song/9cbad174-9276-427f-9aed-1ba00c7db3db",
       "duration": "4:00",
-      "genre": ["female hip hop", "bass-heavy", "lyrical", "sophisticated"],
+      "genre": [
+        "female hip hop",
+        "bass-heavy",
+        "lyrical",
+        "sophisticated"
+      ],
       "plays": 128,
       "likes": 24,
       "section": "featured",
@@ -132,12 +238,19 @@
       "title": "I Feel the Vibe",
       "brand": "frankx",
       "status": "published",
-      "tags": ["featured", "hip-hop", "female-vocals"],
+      "tags": [
+        "featured",
+        "hip-hop",
+        "female-vocals"
+      ],
       "platform": "suno",
       "sunoId": "f4a7a0e3-5689-4f47-8100-792a73034b54",
       "sunoUrl": "https://suno.com/song/f4a7a0e3-5689-4f47-8100-792a73034b54",
       "duration": "2:34",
-      "genre": ["female hip hop", "sophisticated"],
+      "genre": [
+        "female hip hop",
+        "sophisticated"
+      ],
       "plays": 56,
       "likes": 19,
       "section": "featured"
@@ -148,12 +261,22 @@
       "title": "Lumina",
       "brand": "frankx",
       "status": "published",
-      "tags": ["featured", "rock", "soul", "orchestral", "top-performer"],
+      "tags": [
+        "featured",
+        "rock",
+        "soul",
+        "orchestral",
+        "top-performer"
+      ],
       "platform": "suno",
       "sunoId": "1fc13c04-a7b3-427d-bff0-cac92ee524ae",
       "sunoUrl": "https://suno.com/song/1fc13c04-a7b3-427d-bff0-cac92ee524ae",
       "duration": "4:12",
-      "genre": ["rock", "soul", "orchestral"],
+      "genre": [
+        "rock",
+        "soul",
+        "orchestral"
+      ],
       "plays": 108,
       "likes": 16,
       "section": "featured"
@@ -164,12 +287,20 @@
       "title": "Arcanea (light me up) (Remastered)",
       "brand": "frankx",
       "status": "published",
-      "tags": ["featured", "arcanea", "pop-rock", "soul"],
+      "tags": [
+        "featured",
+        "arcanea",
+        "pop-rock",
+        "soul"
+      ],
       "platform": "suno",
       "sunoId": "9ff8a563-4ebf-4481-85c1-9f445cfce9e1",
       "sunoUrl": "https://suno.com/song/9ff8a563-4ebf-4481-85c1-9f445cfce9e1",
       "duration": "3:07",
-      "genre": ["pop rock", "soul"],
+      "genre": [
+        "pop rock",
+        "soul"
+      ],
       "plays": 71,
       "likes": 10,
       "section": "featured",
@@ -181,16 +312,28 @@
       "title": "Golden Age of Intelligence",
       "brand": "frankx",
       "status": "published",
-      "tags": ["featured", "edm", "metalcore", "signature", "top-performer"],
+      "tags": [
+        "featured",
+        "edm",
+        "metalcore",
+        "signature",
+        "top-performer"
+      ],
       "platform": "suno",
       "sunoId": "d1ad41a9-9239-454d-bc2c-a187f42ac30b",
       "sunoUrl": "https://suno.com/song/d1ad41a9-9239-454d-bc2c-a187f42ac30b",
       "duration": "2:34",
-      "genre": ["edm hit", "metalcore", "sophisticated hip hop"],
+      "genre": [
+        "edm hit",
+        "metalcore",
+        "sophisticated hip hop"
+      ],
       "plays": 119,
       "likes": 20,
       "section": "featured",
-      "relatedContent": ["golden-age-of-intelligence-book"]
+      "relatedContent": [
+        "golden-age-of-intelligence-book"
+      ]
     },
     {
       "id": "golden-frequency-floor",
@@ -198,11 +341,20 @@
       "title": "Golden Frequency Floor",
       "brand": "frankx",
       "status": "published",
-      "tags": ["recent", "pop", "drum-and-bass", "techno"],
+      "tags": [
+        "recent",
+        "pop",
+        "drum-and-bass",
+        "techno"
+      ],
       "platform": "suno",
       "sunoId": "58fc5583-b33f-4c62-bbdc-d10dfc19de69",
       "sunoUrl": "https://suno.com/song/58fc5583-b33f-4c62-bbdc-d10dfc19de69",
-      "genre": ["pop", "drum and bass", "techno"],
+      "genre": [
+        "pop",
+        "drum and bass",
+        "techno"
+      ],
       "plays": 5,
       "likes": 1,
       "section": "songs"
@@ -213,11 +365,18 @@
       "title": "Beast Mode Switch",
       "brand": "frankx",
       "status": "published",
-      "tags": ["recent", "rap", "trap"],
+      "tags": [
+        "recent",
+        "rap",
+        "trap"
+      ],
       "platform": "suno",
       "sunoId": "e7f3ebea-55ae-428b-9add-cb9abdd08345",
       "sunoUrl": "https://suno.com/song/e7f3ebea-55ae-428b-9add-cb9abdd08345",
-      "genre": ["rap", "trap"],
+      "genre": [
+        "rap",
+        "trap"
+      ],
       "plays": 5,
       "likes": 2,
       "section": "songs"
@@ -228,11 +387,18 @@
       "title": "Magical World v3",
       "brand": "frankx",
       "status": "published",
-      "tags": ["recent", "tech-house", "dance"],
+      "tags": [
+        "recent",
+        "tech-house",
+        "dance"
+      ],
       "platform": "suno",
       "sunoId": "0f29d2c8-e0a7-4a67-bda6-d4baa200451e",
       "sunoUrl": "https://suno.com/song/0f29d2c8-e0a7-4a67-bda6-d4baa200451e",
-      "genre": ["tech house", "dance"],
+      "genre": [
+        "tech house",
+        "dance"
+      ],
       "plays": 10,
       "likes": 2,
       "section": "songs"
@@ -243,11 +409,16 @@
       "title": "I Want To Build A Free World",
       "brand": "frankx",
       "status": "published",
-      "tags": ["recent", "tech-house"],
+      "tags": [
+        "recent",
+        "tech-house"
+      ],
       "platform": "suno",
       "sunoId": "d4fcd916-bfb2-4770-87c9-bd6257a00f2f",
       "sunoUrl": "https://suno.com/song/d4fcd916-bfb2-4770-87c9-bd6257a00f2f",
-      "genre": ["tech house"],
+      "genre": [
+        "tech house"
+      ],
       "plays": 26,
       "likes": 2,
       "section": "songs"
@@ -258,11 +429,16 @@
       "title": "I Want To Be Free",
       "brand": "frankx",
       "status": "published",
-      "tags": ["recent", "tech-house"],
+      "tags": [
+        "recent",
+        "tech-house"
+      ],
       "platform": "suno",
       "sunoId": "353f6f50-f69d-4a72-8dbe-da58e59dcd73",
       "sunoUrl": "https://suno.com/song/353f6f50-f69d-4a72-8dbe-da58e59dcd73",
-      "genre": ["tech house"],
+      "genre": [
+        "tech house"
+      ],
       "plays": 12,
       "likes": 1,
       "section": "songs"
@@ -273,11 +449,16 @@
       "title": "Feel Your Magic",
       "brand": "frankx",
       "status": "published",
-      "tags": ["recent", "tech-house"],
+      "tags": [
+        "recent",
+        "tech-house"
+      ],
       "platform": "suno",
       "sunoId": "f2c6fa51-1ac7-409d-8642-49d553dd8844",
       "sunoUrl": "https://suno.com/song/f2c6fa51-1ac7-409d-8642-49d553dd8844",
-      "genre": ["tech house"],
+      "genre": [
+        "tech house"
+      ],
       "plays": 18,
       "likes": 1,
       "section": "songs"
@@ -288,11 +469,16 @@
       "title": "Need To Feel Your Magic v2",
       "brand": "frankx",
       "status": "published",
-      "tags": ["recent", "tech-house"],
+      "tags": [
+        "recent",
+        "tech-house"
+      ],
       "platform": "suno",
       "sunoId": "8380e34f-d61c-47e9-ac17-3538a8c17d99",
       "sunoUrl": "https://suno.com/song/8380e34f-d61c-47e9-ac17-3538a8c17d99",
-      "genre": ["tech house"],
+      "genre": [
+        "tech house"
+      ],
       "plays": 12,
       "likes": 1,
       "section": "songs"
@@ -303,11 +489,20 @@
       "title": "Create Millions of Starlights",
       "brand": "frankx",
       "status": "published",
-      "tags": ["recent", "rock", "drum-and-bass", "punk"],
+      "tags": [
+        "recent",
+        "rock",
+        "drum-and-bass",
+        "punk"
+      ],
       "platform": "suno",
       "sunoId": "b4db2632-d9ee-4924-9c21-e788b0339a15",
       "sunoUrl": "https://suno.com/song/b4db2632-d9ee-4924-9c21-e788b0339a15",
-      "genre": ["rock", "drum and bass", "punk"],
+      "genre": [
+        "rock",
+        "drum and bass",
+        "punk"
+      ],
       "plays": 12,
       "likes": 1,
       "section": "songs"
@@ -318,11 +513,16 @@
       "title": "We Are Millions of Starlights",
       "brand": "frankx",
       "status": "published",
-      "tags": ["recent", "dance"],
+      "tags": [
+        "recent",
+        "dance"
+      ],
       "platform": "suno",
       "sunoId": "e5fd662d-52d6-45d3-bc12-03ec02e85b43",
       "sunoUrl": "https://suno.com/song/e5fd662d-52d6-45d3-bc12-03ec02e85b43",
-      "genre": ["dance"],
+      "genre": [
+        "dance"
+      ],
       "plays": 8,
       "likes": 1,
       "section": "songs"
@@ -333,13 +533,24 @@
       "title": "Golden Frequencies v4",
       "brand": "frankx",
       "status": "published",
-      "tags": ["playlist", "neoclassical", "healing", "528hz"],
+      "tags": [
+        "playlist",
+        "neoclassical",
+        "healing",
+        "528hz"
+      ],
       "platform": "suno",
       "sunoId": "3841ae2a-1147-4adb-8b4e-c0491d554fee",
       "sunoUrl": "https://suno.com/song/3841ae2a-1147-4adb-8b4e-c0491d554fee",
       "duration": "2:39",
-      "genre": ["neoclassical", "ambient"],
-      "mood": ["meditative", "calming"],
+      "genre": [
+        "neoclassical",
+        "ambient"
+      ],
+      "mood": [
+        "meditative",
+        "calming"
+      ],
       "bpm": 128,
       "playlist": "Golden Frequencies"
     },
@@ -349,12 +560,21 @@
       "title": "Golden Frequency Choir",
       "brand": "frankx",
       "status": "published",
-      "tags": ["playlist", "choir", "world-music", "healing"],
+      "tags": [
+        "playlist",
+        "choir",
+        "world-music",
+        "healing"
+      ],
       "platform": "suno",
       "sunoId": "69fa45d3-8d45-4f6d-9424-9361cc95fe0a",
       "sunoUrl": "https://suno.com/song/69fa45d3-8d45-4f6d-9424-9361cc95fe0a",
       "duration": "3:26",
-      "genre": ["neoclassical", "choral", "world"],
+      "genre": [
+        "neoclassical",
+        "choral",
+        "world"
+      ],
       "playlist": "Golden Frequencies"
     },
     {
@@ -363,12 +583,20 @@
       "title": "Golden Frequencies",
       "brand": "frankx",
       "status": "published",
-      "tags": ["playlist", "neoclassical", "528hz", "963hz"],
+      "tags": [
+        "playlist",
+        "neoclassical",
+        "528hz",
+        "963hz"
+      ],
       "platform": "suno",
       "sunoId": "5281ac63-ed5a-4933-b8ae-10d2312f3c1a",
       "sunoUrl": "https://suno.com/song/5281ac63-ed5a-4933-b8ae-10d2312f3c1a",
       "duration": "3:07",
-      "genre": ["neoclassical", "ambient"],
+      "genre": [
+        "neoclassical",
+        "ambient"
+      ],
       "playlist": "Golden Frequencies"
     },
     {
@@ -377,12 +605,20 @@
       "title": "Golden Frequency v3",
       "brand": "frankx",
       "status": "published",
-      "tags": ["playlist", "choir", "528hz", "sound-bowls"],
+      "tags": [
+        "playlist",
+        "choir",
+        "528hz",
+        "sound-bowls"
+      ],
       "platform": "suno",
       "sunoId": "721ba24a-ce51-4bba-82f2-83179a8d1ae4",
       "sunoUrl": "https://suno.com/song/721ba24a-ce51-4bba-82f2-83179a8d1ae4",
       "duration": "3:24",
-      "genre": ["neoclassical", "choral"],
+      "genre": [
+        "neoclassical",
+        "choral"
+      ],
       "playlist": "Golden Frequencies"
     },
     {
@@ -391,12 +627,21 @@
       "title": "Golden Frequency Choir (Native American)",
       "brand": "frankx",
       "status": "published",
-      "tags": ["playlist", "choir", "throat-singing", "world"],
+      "tags": [
+        "playlist",
+        "choir",
+        "throat-singing",
+        "world"
+      ],
       "platform": "suno",
       "sunoId": "3a3f32dc-f5fc-4092-bd57-9dc6b2c574f9",
       "sunoUrl": "https://suno.com/song/3a3f32dc-f5fc-4092-bd57-9dc6b2c574f9",
       "duration": "3:31",
-      "genre": ["neoclassical", "world", "choral"],
+      "genre": [
+        "neoclassical",
+        "world",
+        "choral"
+      ],
       "playlist": "Golden Frequencies"
     },
     {
@@ -405,12 +650,20 @@
       "title": "Golden Frequency Choir (Male Native)",
       "brand": "frankx",
       "status": "published",
-      "tags": ["playlist", "choir", "throat-singing"],
+      "tags": [
+        "playlist",
+        "choir",
+        "throat-singing"
+      ],
       "platform": "suno",
       "sunoId": "266413cf-32a2-4d56-b143-25424244a025",
       "sunoUrl": "https://suno.com/song/266413cf-32a2-4d56-b143-25424244a025",
       "duration": "3:05",
-      "genre": ["neoclassical", "world", "choral"],
+      "genre": [
+        "neoclassical",
+        "world",
+        "choral"
+      ],
       "playlist": "Golden Frequencies"
     },
     {
@@ -419,12 +672,20 @@
       "title": "Golden Frequency Choir (Extended)",
       "brand": "frankx",
       "status": "published",
-      "tags": ["playlist", "choir", "extended"],
+      "tags": [
+        "playlist",
+        "choir",
+        "extended"
+      ],
       "platform": "suno",
       "sunoId": "b1c58d80-f4d6-45aa-8ffc-c531be288a5a",
       "sunoUrl": "https://suno.com/song/b1c58d80-f4d6-45aa-8ffc-c531be288a5a",
       "duration": "4:46",
-      "genre": ["neoclassical", "world", "choral"],
+      "genre": [
+        "neoclassical",
+        "world",
+        "choral"
+      ],
       "playlist": "Golden Frequencies"
     },
     {
@@ -433,12 +694,21 @@
       "title": "Golden Frequency Choir (Mongolian Lead)",
       "brand": "frankx",
       "status": "published",
-      "tags": ["playlist", "choir", "mongolian", "throat-singing"],
+      "tags": [
+        "playlist",
+        "choir",
+        "mongolian",
+        "throat-singing"
+      ],
       "platform": "suno",
       "sunoId": "8c35ffd4-193a-4955-832c-7a5be69b8604",
       "sunoUrl": "https://suno.com/song/8c35ffd4-193a-4955-832c-7a5be69b8604",
       "duration": "3:38",
-      "genre": ["neoclassical", "electronic", "choral"],
+      "genre": [
+        "neoclassical",
+        "electronic",
+        "choral"
+      ],
       "playlist": "Golden Frequencies"
     },
     {
@@ -447,12 +717,20 @@
       "title": "Golden Frequency Choir (Mongolian Harmonies)",
       "brand": "frankx",
       "status": "published",
-      "tags": ["playlist", "choir", "mongolian"],
+      "tags": [
+        "playlist",
+        "choir",
+        "mongolian"
+      ],
       "platform": "suno",
       "sunoId": "1a6f3b3f-a207-4b8f-b2c4-03356c7b7e2b",
       "sunoUrl": "https://suno.com/song/1a6f3b3f-a207-4b8f-b2c4-03356c7b7e2b",
       "duration": "3:33",
-      "genre": ["neoclassical", "electronic", "choral"],
+      "genre": [
+        "neoclassical",
+        "electronic",
+        "choral"
+      ],
       "playlist": "Golden Frequencies"
     },
     {
@@ -461,12 +739,21 @@
       "title": "Arcanean Legends",
       "brand": "frankx",
       "status": "published",
-      "tags": ["playlist", "arcanea", "orchestral", "elvish"],
+      "tags": [
+        "playlist",
+        "arcanea",
+        "orchestral",
+        "elvish"
+      ],
       "platform": "suno",
       "sunoId": "eb702834-22c6-44b3-8d5b-bba83c1e9801",
       "sunoUrl": "https://suno.com/song/eb702834-22c6-44b3-8d5b-bba83c1e9801",
       "duration": "3:24",
-      "genre": ["pop-rock", "orchestral", "fantasy"],
+      "genre": [
+        "pop-rock",
+        "orchestral",
+        "fantasy"
+      ],
       "playlist": "Arcanean Choir",
       "crossReference": "arcanea/music.json"
     },
@@ -476,12 +763,21 @@
       "title": "Arcanean Starlight",
       "brand": "frankx",
       "status": "published",
-      "tags": ["playlist", "arcanea", "orchestral", "elvish"],
+      "tags": [
+        "playlist",
+        "arcanea",
+        "orchestral",
+        "elvish"
+      ],
       "platform": "suno",
       "sunoId": "5d17255b-f997-4f4c-82ea-9fa1d5aa982a",
       "sunoUrl": "https://suno.com/song/5d17255b-f997-4f4c-82ea-9fa1d5aa982a",
       "duration": "2:23",
-      "genre": ["arena-rock", "orchestral", "fantasy"],
+      "genre": [
+        "arena-rock",
+        "orchestral",
+        "fantasy"
+      ],
       "playlist": "Arcanean Choir",
       "crossReference": "arcanea/music.json"
     },
@@ -491,7 +787,9 @@
       "title": "Open the Arc",
       "brand": "frankx",
       "status": "published",
-      "tags": ["hook"],
+      "tags": [
+        "hook"
+      ],
       "platform": "suno",
       "sunoUrl": "https://suno.com/@frankx/hook/877a0eaf-59f5-4a69-ae22-c130794d0762",
       "section": "hooks"
@@ -502,7 +800,11 @@
       "title": "CHILDREN OF THE SEA - FESTIVAL ANTHEM v3",
       "brand": "frankx",
       "status": "published",
-      "tags": ["hook", "festival", "anthem"],
+      "tags": [
+        "hook",
+        "festival",
+        "anthem"
+      ],
       "platform": "suno",
       "sunoUrl": "https://suno.com/@frankx/hook/3398b525-7f99-40aa-a78d-988965451054",
       "section": "hooks"
@@ -513,7 +815,10 @@
       "title": "Echoes of Eternity (Remastered x2)",
       "brand": "frankx",
       "status": "published",
-      "tags": ["hook", "remastered"],
+      "tags": [
+        "hook",
+        "remastered"
+      ],
       "platform": "suno",
       "sunoUrl": "https://suno.com/@frankx/hook/3bd939ef-86f2-4568-ad8e-c3d81631b816",
       "section": "hooks"
@@ -524,7 +829,10 @@
       "title": "Arcanea Awaken",
       "brand": "frankx",
       "status": "published",
-      "tags": ["hook", "arcanea"],
+      "tags": [
+        "hook",
+        "arcanea"
+      ],
       "platform": "suno",
       "sunoUrl": "https://suno.com/@frankx/hook/279c5cdc-7eaf-4d8e-8d0d-19f990672194",
       "section": "hooks",
@@ -536,13 +844,547 @@
       "title": "遠くても / Still Right Here",
       "brand": "frankx",
       "status": "published",
-      "tags": ["recent", "japanese", "pop"],
+      "tags": [
+        "recent",
+        "japanese",
+        "pop"
+      ],
       "platform": "suno",
       "sunoId": "a0a74bce-7059-4422-bbb3-db7c5041f797",
       "sunoUrl": "https://suno.com/song/a0a74bce-7059-4422-bbb3-db7c5041f797",
-      "genre": ["japanese pop", "vocal"],
+      "genre": [
+        "japanese pop",
+        "vocal"
+      ],
       "plays": 76,
       "likes": 5,
+      "section": "songs",
+      "coverUrl": "https://cdn2.suno.ai/video_upload_0a143cda-a115-4fd2-a4be-536b43a17afb_video_upload_0a143cda-a115-4fd2-a4be-536b43a17afb_cover_snapshot_0s_1770472325_image.jpeg"
+    },
+    {
+      "id": "jump-like-this",
+      "type": "music",
+      "title": "Jump Like This",
+      "brand": "frankx",
+      "status": "published",
+      "tags": [
+        "rap",
+        "High-octane K-pop girl crush banger at 139 BPM with female vocals. Verse 1 driven by tight trap hats",
+        "distorted gliding bass",
+        "and clipped rap delivery; pre-chorus thins to filtered piano chords and airy harmonies. Chorus erupts with sidechained kick",
+        "club-shaking low end",
+        "layered gang shouts and stacked “jump” chants. Festival-style post-chorus drop slams in with crunchy electric guitars",
+        "stomp claps",
+        "and chopped vocal shots swirling in the stereo field.",
+        "uplifting",
+        "pop",
+        "electric",
+        "breathy",
+        "k-pop",
+        "punk"
+      ],
+      "platform": "suno",
+      "sunoId": "a89aeb94-e4a6-4486-9325-ddbbb43d481f",
+      "sunoUrl": "https://suno.com/song/a89aeb94-e4a6-4486-9325-ddbbb43d481f",
+      "genre": [
+        "rap",
+        "High-octane K-pop girl crush banger at 139 BPM with female vocals. Verse 1 driven by tight trap hats",
+        "distorted gliding bass",
+        "and clipped rap delivery; pre-chorus thins to filtered piano chords and airy harmonies. Chorus erupts with sidechained kick",
+        "club-shaking low end",
+        "layered gang shouts and stacked “jump” chants. Festival-style post-chorus drop slams in with crunchy electric guitars",
+        "stomp claps",
+        "and chopped vocal shots swirling in the stereo field.",
+        "uplifting",
+        "pop",
+        "electric",
+        "breathy",
+        "k-pop",
+        "punk"
+      ],
+      "plays": 9,
+      "section": "songs",
+      "coverUrl": "https://cdn2.suno.ai/image_a89aeb94-e4a6-4486-9325-ddbbb43d481f.jpeg",
+      "likes": 2
+    },
+    {
+      "id": "growth",
+      "type": "music",
+      "title": "Growth",
+      "brand": "frankx",
+      "status": "published",
+      "tags": [
+        "aggressive rap workout pop rock metal-rock fusion hip-hop orchestral rock with cinematic strings gospel choir heavy distorted guitars double-kick drums raw commanding rap-punk female vocals female chorus punk orchestral soaring gospel raw uplifting high energy fast paced driving drums soulful electric rock hip-hop",
+        "pop",
+        "raw",
+        "female vocals",
+        "soaring",
+        "electric",
+        "rock",
+        "workout",
+        "gospel",
+        "punk",
+        "soulful",
+        "rap",
+        "orchestral",
+        "metal",
+        "hip-hop",
+        "uplifting",
+        "pop rock"
+      ],
+      "platform": "suno",
+      "sunoId": "5b91499d-9d35-47fb-a832-5dd37a503875",
+      "sunoUrl": "https://suno.com/song/5b91499d-9d35-47fb-a832-5dd37a503875",
+      "genre": [
+        "aggressive rap workout pop rock metal-rock fusion hip-hop orchestral rock with cinematic strings gospel choir heavy distorted guitars double-kick drums raw commanding rap-punk female vocals female chorus punk orchestral soaring gospel raw uplifting high energy fast paced driving drums soulful electric rock hip-hop",
+        "pop",
+        "raw",
+        "female vocals",
+        "soaring",
+        "electric",
+        "rock",
+        "workout",
+        "gospel",
+        "punk",
+        "soulful",
+        "rap",
+        "orchestral",
+        "metal",
+        "hip-hop",
+        "uplifting",
+        "pop rock"
+      ],
+      "plays": 29,
+      "section": "songs",
+      "coverUrl": "https://cdn2.suno.ai/video_gen_f854429a-4bd1-40b8-a1c0-6f6b6abb0961_video_upload_f854429a-4bd1-40b8-a1c0-6f6b6abb0961_cover_snapshot_0s_1765297502_image.jpeg",
+      "likes": 2
+    },
+    {
+      "id": "you-told-me-why",
+      "type": "music",
+      "title": "You Told Me Why",
+      "brand": "frankx",
+      "status": "published",
+      "tags": [
+        "culminating in a raw",
+        "emotional",
+        "country",
+        "and light acoustic guitar. the arrangement builds slowly",
+        "classic",
+        "deep",
+        "allowing the powerful and emotive vocals to shine",
+        "hip-hop",
+        "rap",
+        "with smooth basslines",
+        "soul",
+        "r&b",
+        "soulful blend of r&b and gospel",
+        "soaring organ chords",
+        "heartfelt crescendo.",
+        "heartfelt",
+        "raw",
+        "rich",
+        "pop",
+        "strong",
+        "contemporary",
+        "gospel"
+      ],
+      "platform": "suno",
+      "sunoId": "654ece10-731f-4ede-9f09-3518a3a385fd",
+      "sunoUrl": "https://suno.com/song/654ece10-731f-4ede-9f09-3518a3a385fd",
+      "genre": [
+        "culminating in a raw",
+        "emotional",
+        "country",
+        "and light acoustic guitar. the arrangement builds slowly",
+        "classic",
+        "deep",
+        "allowing the powerful and emotive vocals to shine",
+        "hip-hop",
+        "rap",
+        "with smooth basslines",
+        "soul",
+        "r&b",
+        "soulful blend of r&b and gospel",
+        "soaring organ chords",
+        "heartfelt crescendo.",
+        "heartfelt",
+        "raw",
+        "rich",
+        "pop",
+        "strong",
+        "contemporary",
+        "gospel"
+      ],
+      "plays": 10,
+      "section": "songs",
+      "coverUrl": "https://cdn2.suno.ai/image_654ece10-731f-4ede-9f09-3518a3a385fd.jpeg",
+      "likes": 1
+    },
+    {
+      "id": "arcanean-vibe-gods",
+      "type": "music",
+      "title": "Мы — Arcanean Vibe Gods",
+      "brand": "frankx",
+      "status": "published",
+      "tags": [
+        "rap",
+        "High-octane deep house / drum & bass hybrid with male vocals; metallic percussion and subby bass pumping under glassy chords",
+        "sidechained strings that swell into explosive drops. Electric guitar stabs answer the rap",
+        "then open into wide",
+        "belted topline hooks with stacked gospel-tinged harmonies and ad-lib runs. Verses ride a tight",
+        "syncopated groove; chorus lifts into soaring",
+        "soulful chants while the drums loop hypnotically",
+        "with dynamic breakdowns and filter sweeps to reset the energy between sections.",
+        "soul",
+        "dynamics",
+        "dynamic",
+        "sophisticated",
+        "deep house",
+        "hip hop",
+        "drum and bass",
+        "electric",
+        "vocal",
+        "rich",
+        "electronic"
+      ],
+      "platform": "suno",
+      "sunoId": "e5bc4eb1-15e8-4ad9-8677-7b8b5b0abfa7",
+      "sunoUrl": "https://suno.com/song/e5bc4eb1-15e8-4ad9-8677-7b8b5b0abfa7",
+      "genre": [
+        "rap",
+        "High-octane deep house / drum & bass hybrid with male vocals; metallic percussion and subby bass pumping under glassy chords",
+        "sidechained strings that swell into explosive drops. Electric guitar stabs answer the rap",
+        "then open into wide",
+        "belted topline hooks with stacked gospel-tinged harmonies and ad-lib runs. Verses ride a tight",
+        "syncopated groove; chorus lifts into soaring",
+        "soulful chants while the drums loop hypnotically",
+        "with dynamic breakdowns and filter sweeps to reset the energy between sections.",
+        "soul",
+        "dynamics",
+        "dynamic",
+        "sophisticated",
+        "deep house",
+        "hip hop",
+        "drum and bass",
+        "electric",
+        "vocal",
+        "rich",
+        "electronic"
+      ],
+      "plays": 29,
+      "section": "songs",
+      "coverUrl": "https://cdn2.suno.ai/e5bc4eb1-15e8-4ad9-8677-7b8b5b0abfa7_e286a770.jpeg",
+      "likes": 3
+    },
+    {
+      "id": "vibe-gods-of-arcanea",
+      "type": "music",
+      "title": "Vibe Gods of Arcanea",
+      "brand": "frankx",
+      "status": "published",
+      "tags": [
+        "rap",
+        "High-energy deep house meets drum and bass groove",
+        "male vocals. Skittering percussion and subby bass under a shimmering chord bed; electric guitar virtuoso lines trade phrases with sharp synth stabs. Verses ride a sophisticated hip hop pocket; chorus explodes with belted topline and stacked harmonies. Strings swell in the pre-chorus for drama",
+        "drums hit explosively on the drop. Arrangement loops hypnotically while dynamics swell and pull back",
+        "inviting ad-lib runs and vocal acrobatics.",
+        "soul",
+        "electric",
+        "sophisticated",
+        "vocal",
+        "deep house",
+        "drum and bass",
+        "dynamic",
+        "electronic",
+        "rich",
+        "hip hop"
+      ],
+      "platform": "suno",
+      "sunoId": "83163f8a-bc3f-4f67-83e1-05c077472bd1",
+      "sunoUrl": "https://suno.com/song/83163f8a-bc3f-4f67-83e1-05c077472bd1",
+      "genre": [
+        "rap",
+        "High-energy deep house meets drum and bass groove",
+        "male vocals. Skittering percussion and subby bass under a shimmering chord bed; electric guitar virtuoso lines trade phrases with sharp synth stabs. Verses ride a sophisticated hip hop pocket; chorus explodes with belted topline and stacked harmonies. Strings swell in the pre-chorus for drama",
+        "drums hit explosively on the drop. Arrangement loops hypnotically while dynamics swell and pull back",
+        "inviting ad-lib runs and vocal acrobatics.",
+        "soul",
+        "electric",
+        "sophisticated",
+        "vocal",
+        "deep house",
+        "drum and bass",
+        "dynamic",
+        "electronic",
+        "rich",
+        "hip hop"
+      ],
+      "plays": 45,
+      "section": "songs",
+      "coverUrl": "https://cdn2.suno.ai/83163f8a-bc3f-4f67-83e1-05c077472bd1_5a36cd3a.jpeg",
+      "likes": 2
+    },
+    {
+      "id": "ven-aqu",
+      "type": "music",
+      "title": "Ven Aquí",
+      "brand": "frankx",
+      "status": "published",
+      "tags": [
+        "Latin tech house",
+        "hypnotic female vocal loop",
+        "sultry Spanish vocals",
+        "dembow rhythm",
+        "deep sub bass",
+        "syncopated percussion",
+        "126 BPM",
+        "D minor",
+        "club-ready groove",
+        "warm tropical atmosphere",
+        "repetitive mantra hook",
+        "sidechained compression",
+        "analog warmth",
+        "colombian latina accent"
+      ],
+      "platform": "suno",
+      "sunoId": "7c8bd184-d2b0-4b53-8b90-3cfbfc7b7d8e",
+      "sunoUrl": "https://suno.com/song/7c8bd184-d2b0-4b53-8b90-3cfbfc7b7d8e",
+      "genre": [
+        "Latin tech house",
+        "hypnotic female vocal loop",
+        "sultry Spanish vocals",
+        "dembow rhythm",
+        "deep sub bass",
+        "syncopated percussion",
+        "126 BPM",
+        "D minor",
+        "club-ready groove",
+        "warm tropical atmosphere",
+        "repetitive mantra hook",
+        "sidechained compression",
+        "analog warmth",
+        "colombian latina accent"
+      ],
+      "plays": 36,
+      "section": "songs",
+      "coverUrl": "https://cdn2.suno.ai/video_gen_df9af488-11e6-4d5a-a91f-0653e29626e4_video_upload_df9af488-11e6-4d5a-a91f-0653e29626e4_cover_snapshot_0s_1770420058_image.jpeg",
+      "likes": 1
+    },
+    {
+      "id": "wei-e-wunderzeit",
+      "type": "music",
+      "title": "Weiße Wunderzeit",
+      "brand": "frankx",
+      "status": "published",
+      "tags": [
+        "pop",
+        "Bright German pop with a big",
+        "warm piano at the center",
+        "light bells and glockenspiel on top. Mid‑tempo groove that starts intimate with sparse chords",
+        "then builds into an arms‑in‑the‑air chorus with gang vocals and tambourine. Strings swell in the second half; final chorus adds a key lift and stacked harmonies for a true holiday finale.",
+        "uplifting"
+      ],
+      "platform": "suno",
+      "sunoId": "2c5c730b-43b7-499c-a8cc-bade029bb9e4",
+      "sunoUrl": "https://suno.com/song/2c5c730b-43b7-499c-a8cc-bade029bb9e4",
+      "genre": [
+        "pop",
+        "Bright German pop with a big",
+        "warm piano at the center",
+        "light bells and glockenspiel on top. Mid‑tempo groove that starts intimate with sparse chords",
+        "then builds into an arms‑in‑the‑air chorus with gang vocals and tambourine. Strings swell in the second half; final chorus adds a key lift and stacked harmonies for a true holiday finale.",
+        "uplifting"
+      ],
+      "plays": 3,
+      "section": "songs",
+      "coverUrl": "https://cdn2.suno.ai/image_2c5c730b-43b7-499c-a8cc-bade029bb9e4.jpeg",
+      "likes": 1
+    },
+    {
+      "id": "all-in",
+      "type": "music",
+      "title": "All In",
+      "brand": "frankx",
+      "status": "published",
+      "tags": [
+        "rap",
+        "fast-paced driving drums",
+        "heavy distorted guitars",
+        "cinematic strings",
+        "soaring aggressive rap-punk power vocals",
+        "raw",
+        "intense",
+        "high-adrenaline orchestral metal-rock with background gospel",
+        "vocal",
+        "soaring",
+        "pop rock",
+        "workout",
+        "rock",
+        "soulful",
+        "punk",
+        "electric",
+        "metal",
+        "gospel",
+        "orchestral",
+        "uplifting",
+        "hip-hop"
+      ],
+      "platform": "suno",
+      "sunoId": "57d126dd-0367-4535-8888-10937be86819",
+      "sunoUrl": "https://suno.com/song/57d126dd-0367-4535-8888-10937be86819",
+      "genre": [
+        "rap",
+        "fast-paced driving drums",
+        "heavy distorted guitars",
+        "cinematic strings",
+        "soaring aggressive rap-punk power vocals",
+        "raw",
+        "intense",
+        "high-adrenaline orchestral metal-rock with background gospel",
+        "vocal",
+        "soaring",
+        "pop rock",
+        "workout",
+        "rock",
+        "soulful",
+        "punk",
+        "electric",
+        "metal",
+        "gospel",
+        "orchestral",
+        "uplifting",
+        "hip-hop"
+      ],
+      "plays": 20,
+      "section": "songs",
+      "coverUrl": "https://cdn2.suno.ai/image_57d126dd-0367-4535-8888-10937be86819.jpeg",
+      "likes": 1
+    },
+    {
+      "id": "suno-90062ca7",
+      "type": "music",
+      "title": "Track 90062ca7",
+      "brand": "frankx",
+      "status": "published",
+      "tags": [],
+      "platform": "suno",
+      "sunoId": "90062ca7-cc19-4cdc-af8d-840180f26fc9",
+      "sunoUrl": "https://suno.com/song/90062ca7-cc19-4cdc-af8d-840180f26fc9",
+      "genre": [],
+      "plays": 0,
+      "section": "songs"
+    },
+    {
+      "id": "suno-63503780",
+      "type": "music",
+      "title": "Track 63503780",
+      "brand": "frankx",
+      "status": "published",
+      "tags": [],
+      "platform": "suno",
+      "sunoId": "63503780-8ba6-4320-a94b-bc6586e31d13",
+      "sunoUrl": "https://suno.com/song/63503780-8ba6-4320-a94b-bc6586e31d13",
+      "genre": [],
+      "plays": 0,
+      "section": "songs"
+    },
+    {
+      "id": "suno-9aa01775",
+      "type": "music",
+      "title": "Track 9aa01775",
+      "brand": "frankx",
+      "status": "published",
+      "tags": [],
+      "platform": "suno",
+      "sunoId": "9aa01775-4430-41a0-8523-2e540aa48a4c",
+      "sunoUrl": "https://suno.com/song/9aa01775-4430-41a0-8523-2e540aa48a4c",
+      "genre": [],
+      "plays": 0,
+      "section": "songs"
+    },
+    {
+      "id": "suno-c119ae26",
+      "type": "music",
+      "title": "Track c119ae26",
+      "brand": "frankx",
+      "status": "published",
+      "tags": [],
+      "platform": "suno",
+      "sunoId": "c119ae26-a57d-42a2-882a-b871fd1409d7",
+      "sunoUrl": "https://suno.com/song/c119ae26-a57d-42a2-882a-b871fd1409d7",
+      "genre": [],
+      "plays": 0,
+      "section": "songs"
+    },
+    {
+      "id": "suno-8863d758",
+      "type": "music",
+      "title": "Track 8863d758",
+      "brand": "frankx",
+      "status": "published",
+      "tags": [],
+      "platform": "suno",
+      "sunoId": "8863d758-d882-4745-a371-78ee515c6c2d",
+      "sunoUrl": "https://suno.com/song/8863d758-d882-4745-a371-78ee515c6c2d",
+      "genre": [],
+      "plays": 0,
+      "section": "songs"
+    },
+    {
+      "id": "suno-69e30121",
+      "type": "music",
+      "title": "Track 69e30121",
+      "brand": "frankx",
+      "status": "published",
+      "tags": [],
+      "platform": "suno",
+      "sunoId": "69e30121-c4b9-4b09-a76b-c2e88df0a074",
+      "sunoUrl": "https://suno.com/song/69e30121-c4b9-4b09-a76b-c2e88df0a074",
+      "genre": [],
+      "plays": 0,
+      "section": "songs"
+    },
+    {
+      "id": "suno-ba5559f9",
+      "type": "music",
+      "title": "Track ba5559f9",
+      "brand": "frankx",
+      "status": "published",
+      "tags": [],
+      "platform": "suno",
+      "sunoId": "ba5559f9-f6ce-465d-9b5b-ecc916e2cb45",
+      "sunoUrl": "https://suno.com/song/ba5559f9-f6ce-465d-9b5b-ecc916e2cb45",
+      "genre": [],
+      "plays": 0,
+      "section": "songs"
+    },
+    {
+      "id": "suno-a0ab75fe",
+      "type": "music",
+      "title": "Track a0ab75fe",
+      "brand": "frankx",
+      "status": "published",
+      "tags": [],
+      "platform": "suno",
+      "sunoId": "a0ab75fe-f6f2-446e-ae15-fa088a1853e3",
+      "sunoUrl": "https://suno.com/song/a0ab75fe-f6f2-446e-ae15-fa088a1853e3",
+      "genre": [],
+      "plays": 0,
+      "section": "songs"
+    },
+    {
+      "id": "suno-7b890756",
+      "type": "music",
+      "title": "Track 7b890756",
+      "brand": "frankx",
+      "status": "published",
+      "tags": [],
+      "platform": "suno",
+      "sunoId": "7b890756-b129-44ee-bdd4-5b33eaf8f34f",
+      "sunoUrl": "https://suno.com/song/7b890756-b129-44ee-bdd4-5b33eaf8f34f",
+      "genre": [],
+      "plays": 0,
       "section": "songs"
     }
   ]
