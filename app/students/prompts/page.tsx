@@ -16,7 +16,7 @@ import {
   Search,
 } from 'lucide-react'
 
-import GlassmorphicCard from '@/components/ui/GlassmorphicCard'
+import { GlowCard } from '@/components/ui/glow-card'
 
 // Comprehensive prompt library organized by CoE domain
 const promptLibrary = [
@@ -355,7 +355,7 @@ export default function PromptsPage() {
                       viewport={{ once: true }}
                       transition={{ delay: index * 0.05 }}
                     >
-                      <GlassmorphicCard variant="luxury" border="subtle" className="h-full p-6">
+                      <GlowCard color="violet" className="h-full p-6">
                         <div className="mb-4 flex items-start justify-between">
                           <h3 className="text-xl font-bold text-slate-100">{promptItem.title}</h3>
                           <button
@@ -378,7 +378,7 @@ export default function PromptsPage() {
                             {promptItem.prompt}
                           </pre>
                         </div>
-                      </GlassmorphicCard>
+                      </GlowCard>
                     </motion.div>
                   )
                 })}

@@ -13,7 +13,7 @@ import {
   ExternalLink,
 } from 'lucide-react'
 
-import GlassmorphicCard from '@/components/ui/GlassmorphicCard'
+import { GlowCard } from '@/components/ui/glow-card'
 
 // Update entries - Add new entries at the top
 const updates = [
@@ -149,7 +149,7 @@ export default function UpdatesPage() {
                   {/* Timeline dot */}
                   <div className="absolute left-6 top-6 hidden h-4 w-4 rounded-full border-2 border-emerald-500 bg-slate-950 md:block" />
 
-                  <GlassmorphicCard variant="luxury" border="glow" className="p-6">
+                  <GlowCard color="cyan" className="p-6">
                     <div className="mb-4 flex flex-wrap items-center gap-3">
                       <span className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium ${colorClass}`}>
                         <Icon className="h-3.5 w-3.5" />
@@ -175,7 +175,7 @@ export default function UpdatesPage() {
                         </li>
                       ))}
                     </ul>
-                  </GlassmorphicCard>
+                  </GlowCard>
                 </motion.div>
               )
             })}
@@ -189,7 +189,7 @@ export default function UpdatesPage() {
           transition={{ delay: 0.5 }}
           className="mt-16 text-center"
         >
-          <GlassmorphicCard variant="luxury" border="glow" className="p-8">
+          <GlowCard color="cyan" className="p-8">
             <h3 className="mb-2 text-xl font-bold text-slate-100">Stay Updated</h3>
             <p className="mb-4 text-slate-300">
               Join the Creation Chronicles for weekly updates on new features and content.
@@ -201,7 +201,7 @@ export default function UpdatesPage() {
               Join Inner Circle
               <ExternalLink className="h-4 w-4" />
             </Link>
-          </GlassmorphicCard>
+          </GlowCard>
         </motion.div>
       </main>
     </div>

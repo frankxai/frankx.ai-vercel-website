@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 import { useState } from 'react'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
-import GlassmorphicCard from '@/components/ui/GlassmorphicCard'
+import { GlowCard } from '@/components/ui/glow-card'
 import PremiumButton from '@/components/ui/PremiumButton'
 import { lifeBooks, LifeBook } from '@/lib/soulbook/soulbook-data'
 
@@ -42,11 +42,8 @@ function LifeBookCard({
       variants={cardVariants}
       className="relative"
     >
-      <GlassmorphicCard
-        variant={isSelected ? 'luxury' : 'premium'}
-        gradient={book.color === 'amber' ? 'aurora' : book.color === 'purple' ? 'purple' : 'aurora'}
-        border={isSelected ? 'glow' : 'subtle'}
-        hover
+      <GlowCard
+        color="violet"
         className={cn(
           'h-full transition-all duration-500 cursor-pointer',
           isSelected ? 'scale-105' : 'hover:scale-[1.02]'
@@ -174,7 +171,7 @@ function LifeBookCard({
             View Details
           </PremiumButton>
         </div>
-      </GlassmorphicCard>
+      </GlowCard>
     </motion.div>
   )
 }

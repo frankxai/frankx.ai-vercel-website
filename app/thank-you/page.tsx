@@ -1,7 +1,7 @@
 import { Suspense } from 'react'
 import Link from 'next/link'
 import { createMetadata } from '@/lib/seo'
-import { GlassmorphicCard } from '@/components/glassmorphic-card'
+import { GlowCard } from '@/components/ui/glow-card'
 import { PremiumButton } from '@/components/premium-button'
 
 export const metadata = createMetadata({
@@ -44,7 +44,7 @@ function ThankYouContent() {
         </div>
 
         {/* Next Steps */}
-        <GlassmorphicCard className="text-left space-y-4">
+        <GlowCard color="emerald" className="text-left space-y-4">
           <h2 className="text-2xl font-bold text-white">What Happens Next?</h2>
 
           <div className="space-y-4">
@@ -84,7 +84,7 @@ function ThankYouContent() {
               </div>
             </div>
           </div>
-        </GlassmorphicCard>
+        </GlowCard>
 
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row gap-4 justify-center">

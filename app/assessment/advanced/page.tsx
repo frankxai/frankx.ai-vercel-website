@@ -6,7 +6,7 @@ import { ArrowRight, ArrowLeft, CheckCircle, Brain, Users, Lightbulb, Target, Tr
 import Link from 'next/link'
 
 import { cn } from '@/lib/utils'
-import GlassmorphicCard from '@/components/ui/GlassmorphicCard'
+import { GlowCard } from '@/components/ui/glow-card'
 import PremiumButton from '@/components/ui/PremiumButton'
 import { StaggerContainer, StaggerItem, TypewriterText, GlowPulse, RevealAnimation } from '@/components/ui/AdvancedAnimations'
 
@@ -418,7 +418,7 @@ function WelcomeStep({ onNext }: { onNext: () => void }) {
         </StaggerItem>
 
         <StaggerItem>
-          <GlassmorphicCard variant="luxury" className="p-8 mb-8">
+          <GlowCard color="violet" className="p-8 mb-8">
             <div className="grid md:grid-cols-3 gap-6">
               <div className="text-center">
                 <Target className="w-8 h-8 text-purple-400 mx-auto mb-3" />
@@ -436,7 +436,7 @@ function WelcomeStep({ onNext }: { onNext: () => void }) {
                 <p className="text-sm text-slate-400">Connect with like-minded individuals and experts</p>
               </div>
             </div>
-          </GlassmorphicCard>
+          </GlowCard>
         </StaggerItem>
 
         <StaggerItem>
@@ -493,7 +493,7 @@ function QuestionStep({
         </div>
       </RevealAnimation>
 
-      <GlassmorphicCard variant="premium" className="p-8 mb-8">
+      <GlowCard color="violet" className="p-8 mb-8">
         <h3 className="text-2xl font-semibold mb-8 text-center text-slate-100">
           {question.text}
         </h3>
@@ -535,7 +535,7 @@ function QuestionStep({
             </motion.button>
           ))}
         </div>
-      </GlassmorphicCard>
+      </GlowCard>
 
       <div className="flex justify-between items-center">
         <PremiumButton
@@ -597,7 +597,7 @@ function MatrixStep({
         </div>
       </RevealAnimation>
 
-      <GlassmorphicCard variant="premium" className="p-8 mb-8">
+      <GlowCard color="violet" className="p-8 mb-8">
         <h3 className="text-xl font-semibold mb-6 text-center text-slate-100">
           {matrix.title}
         </h3>
@@ -639,7 +639,7 @@ function MatrixStep({
             </tbody>
           </table>
         </div>
-      </GlassmorphicCard>
+      </GlowCard>
 
       <div className="flex justify-between items-center">
         <PremiumButton variant="ghost" onClick={onPrev}>
@@ -753,7 +753,7 @@ function ResultsStep({ profile }: { profile: UserProfile }) {
 
         <StaggerItem>
           <div className="grid md:grid-cols-2 gap-8 mb-12">
-            <GlassmorphicCard variant="luxury" className="p-8">
+            <GlowCard color="violet" className="p-8">
               <h3 className="text-xl font-semibold mb-6 text-slate-100 flex items-center">
                 <BookOpen className="w-6 h-6 mr-3 text-purple-400" />
                 Your Learning Path
@@ -768,9 +768,9 @@ function ResultsStep({ profile }: { profile: UserProfile }) {
                   </div>
                 ))}
               </div>
-            </GlassmorphicCard>
+            </GlowCard>
 
-            <GlassmorphicCard variant="luxury" className="p-8">
+            <GlowCard color="violet" className="p-8">
               <h3 className="text-xl font-semibold mb-6 text-slate-100 flex items-center">
                 <TrendingUp className="w-6 h-6 mr-3 text-cyan-400" />
                 Your Experience Level
@@ -796,7 +796,7 @@ function ResultsStep({ profile }: { profile: UserProfile }) {
               <p className="text-slate-400 text-sm">
                 Based on your responses, we've calibrated your starting point to ensure optimal learning progression.
               </p>
-            </GlassmorphicCard>
+            </GlowCard>
           </div>
         </StaggerItem>
 

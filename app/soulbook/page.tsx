@@ -6,7 +6,7 @@ import SoulbookHero from '@/components/soulbook/SoulbookHero'
 import LifeBookSelector from '@/components/soulbook/LifeBookSelector'
 import PillarVisualizer from '@/components/soulbook/PillarVisualizer'
 import PremiumButton from '@/components/ui/PremiumButton'
-import GlassmorphicCard from '@/components/ui/GlassmorphicCard'
+import { GlowCard } from '@/components/ui/glow-card'
 import JsonLd from '@/components/seo/JsonLd'
 import { philosophyStatements, pricingTiers } from '@/lib/soulbook/soulbook-data'
 
@@ -54,16 +54,14 @@ function PhilosophySection() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
             >
-              <GlassmorphicCard
-                variant="premium"
-                gradient="aurora"
-                hover
+              <GlowCard
+                color="violet"
                 className="h-full p-6 text-center"
               >
                 <span className="text-4xl mb-4 block">{statement.icon}</span>
                 <h3 className="text-lg font-bold text-white mb-2">{statement.title}</h3>
                 <p className="text-white/60 text-sm">{statement.description}</p>
-              </GlassmorphicCard>
+              </GlowCard>
             </motion.div>
           ))}
         </div>
@@ -99,11 +97,8 @@ function PricingSection() {
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
             >
-              <GlassmorphicCard
-                variant={tier.popular ? 'luxury' : 'premium'}
-                gradient={tier.popular ? 'aurora' : 'custom'}
-                border={tier.popular ? 'glow' : 'subtle'}
-                hover
+              <GlowCard
+                color={tier.popular ? 'cyan' : 'violet'}
                 className="h-full p-6 flex flex-col"
               >
                 {tier.popular && (
@@ -138,7 +133,7 @@ function PricingSection() {
                 >
                   {tier.cta}
                 </PremiumButton>
-              </GlassmorphicCard>
+              </GlowCard>
             </motion.div>
           ))}
         </div>

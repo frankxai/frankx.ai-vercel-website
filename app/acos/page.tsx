@@ -18,7 +18,6 @@ import {
   MessageSquare
 } from 'lucide-react'
 
-import GlassmorphicCard from '@/components/ui/GlassmorphicCard'
 import PremiumButton from '@/components/ui/PremiumButton'
 import { GlowCard } from '@/components/ui/glow-card'
 
