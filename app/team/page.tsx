@@ -14,6 +14,7 @@ import {
   Bot,
   Search,
 } from 'lucide-react'
+import { GlowCard, type GlowColor } from '@/components/ui/glow-card'
 
 export const metadata = createMetadata({
   title: 'The AI Team — ACOS-Powered Agent System | FrankX',
@@ -127,82 +128,73 @@ const orchestration = [
 
 /* ── Components ── */
 
+const accentToGlow: Record<string, GlowColor> = {
+  '#10B981': 'emerald',
+  '#EC4899': 'magenta',
+  '#F59E0B': 'amber',
+  '#EF4444': 'rose',
+  '#8B5CF6': 'violet',
+  '#43BFE3': 'cyan',
+}
+
 function AgentCard({ agent, index }: { agent: (typeof agents)[number]; index: number }) {
   const Icon = agent.icon
   return (
-    <Link href={agent.href} className="group block">
-      <div className="relative h-full overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6 transition-all duration-300 hover:border-white/15 hover:bg-white/[0.04] hover:-translate-y-1">
-        {/* Accent glow on hover */}
+    <GlowCard href={agent.href} color={accentToGlow[agent.accent] ?? 'emerald'} className="p-6 h-full">
+      {/* Icon + Agent number */}
+      <div className="flex items-start justify-between mb-4">
         <div
-          className="absolute -right-12 -top-12 h-32 w-32 rounded-full opacity-0 blur-3xl transition-opacity duration-500 group-hover:opacity-100"
+          className="flex h-12 w-12 items-center justify-center rounded-xl"
           style={{ background: `${agent.accent}15` }}
-        />
-
-        <div className="relative">
-          {/* Icon + Agent number */}
-          <div className="flex items-start justify-between mb-4">
-            <div
-              className="flex h-12 w-12 items-center justify-center rounded-xl"
-              style={{ background: `${agent.accent}15` }}
-            >
-              <Icon className="h-6 w-6" style={{ color: agent.accent }} />
-            </div>
-            <span
-              className="text-[10px] font-bold uppercase tracking-[0.15em] px-2.5 py-1 rounded-full"
-              style={{
-                background: `${agent.accent}10`,
-                color: agent.accent,
-                border: `1px solid ${agent.accent}20`,
-              }}
-            >
-              Agent {String(index + 1).padStart(2, '0')}
-            </span>
-          </div>
-
-          {/* Domain name */}
-          <h3 className="text-xl font-bold text-white mb-1">{agent.domain}</h3>
-          <p className="text-xs font-medium mb-3" style={{ color: agent.accent }}>
-            {agent.role}
-          </p>
-
-          {/* Description */}
-          <p className="text-sm text-white/40 leading-relaxed mb-4 line-clamp-3">
-            {agent.description}
-          </p>
-
-          {/* Highlight stat */}
-          <div className="mb-4">
-            <span className="text-sm font-semibold text-white/80">{agent.highlight}</span>
-          </div>
-
-          {/* Stats */}
-          <div className="flex flex-wrap gap-1.5 mb-4">
-            {agent.stats.map((stat) => (
-              <span
-                key={stat}
-                className="text-[10px] px-2 py-0.5 rounded-full bg-white/[0.04] text-white/50 border border-white/[0.06]"
-              >
-                {stat}
-              </span>
-            ))}
-          </div>
-
-          {/* Explore link */}
-          <div className="flex items-center gap-1 text-xs text-white/30 group-hover:text-white/60 transition-colors">
-            <span>Explore {agent.domain.toLowerCase()}</span>
-            <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />
-          </div>
+        >
+          <Icon className="h-6 w-6" style={{ color: agent.accent }} />
         </div>
-
-        {/* Bottom accent line */}
-        <div
-          className="absolute bottom-0 left-0 right-0 h-px opacity-0 group-hover:opacity-100 transition-opacity"
+        <span
+          className="text-[10px] font-bold uppercase tracking-[0.15em] px-2.5 py-1 rounded-full"
           style={{
-            background: `linear-gradient(90deg, transparent, ${agent.accent}60, transparent)`,
+            background: `${agent.accent}10`,
+            color: agent.accent,
+            border: `1px solid ${agent.accent}20`,
           }}
-        />
+        >
+          Agent {String(index + 1).padStart(2, '0')}
+        </span>
       </div>
-    </Link>
+
+      {/* Domain name */}
+      <h3 className="text-xl font-bold text-white mb-1">{agent.domain}</h3>
+      <p className="text-xs font-medium mb-3" style={{ color: agent.accent }}>
+        {agent.role}
+      </p>
+
+      {/* Description */}
+      <p className="text-sm text-white/40 leading-relaxed mb-4 line-clamp-3">
+        {agent.description}
+      </p>
+
+      {/* Highlight stat */}
+      <div className="mb-4">
+        <span className="text-sm font-semibold text-white/80">{agent.highlight}</span>
+      </div>
+
+      {/* Stats */}
+      <div className="flex flex-wrap gap-1.5 mb-4">
+        {agent.stats.map((stat) => (
+          <span
+            key={stat}
+            className="text-[10px] px-2 py-0.5 rounded-full bg-white/[0.04] text-white/50 border border-white/[0.06]"
+          >
+            {stat}
+          </span>
+        ))}
+      </div>
+
+      {/* Explore link */}
+      <div className="flex items-center gap-1 text-xs text-white/30 group-hover:text-white/60 transition-colors">
+        <span>Explore {agent.domain.toLowerCase()}</span>
+        <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-1" />
+      </div>
+    </GlowCard>
   )
 }
 
@@ -276,7 +268,7 @@ export default function TeamPage() {
 
           {/* ── The Numbers ── */}
           <section className="mb-24">
-            <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-8 md:p-12">
+            <GlowCard color="violet" className="p-8 md:p-12">
               <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
                 {[
                   { value: '38', label: 'Active Agents', accent: '#10B981' },
@@ -295,7 +287,7 @@ export default function TeamPage() {
                   </div>
                 ))}
               </div>
-            </div>
+            </GlowCard>
           </section>
 
           {/* ── How It Works ── */}
@@ -308,9 +300,10 @@ export default function TeamPage() {
               {orchestration.map((item) => {
                 const Icon = item.icon
                 return (
-                  <div
+                  <GlowCard
                     key={item.title}
-                    className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6 transition-all duration-300 hover:border-white/10 hover:bg-white/[0.04]"
+                    color={accentToGlow[item.accent] ?? 'emerald'}
+                    className="p-6 h-full"
                   >
                     <div
                       className="w-10 h-10 rounded-xl flex items-center justify-center mb-4"
@@ -320,7 +313,7 @@ export default function TeamPage() {
                     </div>
                     <h3 className="text-base font-semibold text-white mb-2">{item.title}</h3>
                     <p className="text-sm text-white/40 leading-relaxed">{item.description}</p>
-                  </div>
+                  </GlowCard>
                 )
               })}
             </div>
@@ -328,9 +321,8 @@ export default function TeamPage() {
 
           {/* ── Arcanea Universe Teaser ── */}
           <section className="mb-20">
-            <div className="relative overflow-hidden rounded-2xl border border-purple-500/10 bg-purple-500/[0.03] p-8 md:p-10">
-              <div className="absolute -right-16 -top-16 w-48 h-48 rounded-full bg-purple-500/5 blur-3xl" />
-              <div className="relative flex flex-col md:flex-row items-center gap-8">
+            <GlowCard color="violet" className="p-8 md:p-10">
+              <div className="flex flex-col md:flex-row items-center gap-8">
                 <div className="flex -space-x-3">
                   {[
                     '/images/team/codex-falcon.png',
@@ -377,7 +369,7 @@ export default function TeamPage() {
                   </div>
                 </div>
               </div>
-            </div>
+            </GlowCard>
           </section>
 
           {/* ── CTA ── */}

@@ -27,14 +27,12 @@ import {
 import Link from 'next/link'
 
 import { cn } from '@/lib/utils'
-import GlassmorphicCard from '@/components/ui/GlassmorphicCard'
 import PremiumButton from '@/components/ui/PremiumButton'
+import { GlowCard, type GlowColor } from '@/components/ui/glow-card'
 import {
   StaggerContainer,
   StaggerItem,
-  MagneticHover,
   GlowPulse,
-  InteractiveCard
 } from '@/components/ui/AdvancedAnimations'
 
 type Tool = {
@@ -278,7 +276,7 @@ export default function ToolsPage() {
 
           {/* Filters */}
           <StaggerItem>
-            <GlassmorphicCard variant="premium" className="p-8 mb-12">
+            <GlowCard color="violet" className="p-8 mb-12">
               <div className="flex flex-col lg:flex-row gap-6">
                 {/* Search */}
                 <div className="flex-1">
@@ -331,23 +329,32 @@ export default function ToolsPage() {
                   ))}
                 </div>
               </div>
-            </GlassmorphicCard>
+            </GlowCard>
           </StaggerItem>
 
           {/* Tools Grid */}
           <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-8">
-            {filteredTools.map((tool, index) => (
+            {filteredTools.map((tool, index) => {
+              const toolGlowMap: Record<string, GlowColor> = {
+                'from-green-500 to-emerald-500': 'emerald',
+                'from-purple-500 to-violet-500': 'violet',
+                'from-blue-500 to-indigo-500': 'blue',
+                'from-red-500 to-orange-500': 'rose',
+                'from-cyan-500 to-teal-500': 'cyan',
+                'from-yellow-500 to-orange-500': 'amber',
+                'from-pink-500 to-rose-500': 'magenta',
+                'from-indigo-500 to-purple-500': 'indigo',
+              }
+              return (
               <StaggerItem key={tool.id}>
                 <motion.div
                   initial={{ opacity: 0, y: 40 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
                 >
-                  <InteractiveCard>
-                    <GlassmorphicCard
-                      variant="luxury"
-                      hover
-                      className="h-full p-8 flex flex-col relative overflow-hidden"
+                    <GlowCard
+                      color={toolGlowMap[tool.color] ?? 'violet'}
+                      className="h-full p-8 flex flex-col"
                     >
                       {/* Header */}
                       <div className="flex items-start justify-between mb-6">
@@ -435,15 +442,10 @@ export default function ToolsPage() {
                         </PremiumButton>
                       </div>
 
-                      {/* Glow Effect for Premium Tools */}
-                      {tool.isPremium && (
-                        <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/5 via-transparent to-orange-500/5 rounded-2xl pointer-events-none" />
-                      )}
-                    </GlassmorphicCard>
-                  </InteractiveCard>
+                    </GlowCard>
                 </motion.div>
               </StaggerItem>
-            ))}
+            )})}
           </div>
 
           {/* No Results */}
@@ -472,7 +474,7 @@ export default function ToolsPage() {
           {/* CTA Section */}
           <StaggerItem>
             <div className="mt-20">
-              <GlassmorphicCard variant="luxury" className="p-12 text-center">
+              <GlowCard color="violet" className="p-12 text-center">
                 <h2 className="text-3xl font-bold mb-6 bg-gradient-to-r from-slate-100 to-purple-200 bg-clip-text text-transparent">
                   Need a Custom Tool?
                 </h2>
@@ -491,7 +493,7 @@ export default function ToolsPage() {
                     Tool Builder (Coming Soon)
                   </PremiumButton>
                 </div>
-              </GlassmorphicCard>
+              </GlowCard>
             </div>
           </StaggerItem>
         </StaggerContainer>

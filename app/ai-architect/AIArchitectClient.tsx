@@ -26,6 +26,7 @@ import {
   Gamepad2,
   Palette,
 } from 'lucide-react'
+import { GlowCard } from '@/components/ui/glow-card'
 
 // Dynamic import for ArchitectureDiagram to avoid SSR issues with ReactFlow
 const ArchitectureDiagram = dynamic(
@@ -218,13 +219,14 @@ function PrincipleCard({
       whileInView="animate"
       viewport={{ once: true }}
       transition={{ delay: index * 0.1 }}
-      className="group relative rounded-2xl border border-violet-500/20 bg-violet-500/5 p-6 backdrop-blur-sm transition-all duration-300 hover:border-violet-500/40 hover:bg-violet-500/10"
     >
-      <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-violet-500/20 text-violet-400 transition-all group-hover:scale-110">
-        <Icon className="h-6 w-6" />
-      </div>
-      <h3 className="mb-2 text-lg font-bold text-white">{principle.title}</h3>
-      <p className="text-sm text-slate-400">{principle.description}</p>
+      <GlowCard color="violet" className="p-6 h-full">
+        <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-violet-500/20 text-violet-400 transition-all group-hover:scale-110">
+          <Icon className="h-6 w-6" />
+        </div>
+        <h3 className="mb-2 text-lg font-bold text-white">{principle.title}</h3>
+        <p className="text-sm text-slate-400">{principle.description}</p>
+      </GlowCard>
     </motion.div>
   )
 }
@@ -444,13 +446,14 @@ export default function AIArchitectClient() {
                     key={pattern.name}
                     variants={fadeInUp}
                     transition={{ delay: index * 0.1 }}
-                    className="group rounded-xl border border-white/[0.08] bg-white/[0.03] p-5 transition-all hover:border-white/20 hover:bg-white/[0.04]"
                   >
-                    <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-white/5 text-slate-400 transition-all group-hover:bg-violet-500/20 group-hover:text-violet-400">
-                      <Icon className="h-5 w-5" />
-                    </div>
-                    <h3 className="mb-1 font-semibold text-white">{pattern.name}</h3>
-                    <p className="text-sm text-slate-500">{pattern.description}</p>
+                    <GlowCard color="violet" className="p-5 h-full">
+                      <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-white/5 text-slate-400 transition-all group-hover:bg-violet-500/20 group-hover:text-violet-400">
+                        <Icon className="h-5 w-5" />
+                      </div>
+                      <h3 className="mb-1 font-semibold text-white">{pattern.name}</h3>
+                      <p className="text-sm text-slate-500">{pattern.description}</p>
+                    </GlowCard>
                   </motion.div>
                 )
               })}
@@ -523,7 +526,7 @@ export default function AIArchitectClient() {
                   />
                 </div>
                 <div className="space-y-4">
-                  <div className="rounded-xl border border-white/[0.08] bg-white/[0.03] p-5">
+                  <GlowCard color="violet" className="p-5">
                     <h4 className="mb-3 font-semibold text-white">Key Components</h4>
                     <ul className="space-y-2 text-sm text-slate-400">
                       <li className="flex items-start gap-2">
@@ -543,8 +546,8 @@ export default function AIArchitectClient() {
                         <span><strong className="text-white">Vercel Edge</strong> - Next.js 16 deployment</span>
                       </li>
                     </ul>
-                  </div>
-                  <div className="rounded-xl border border-emerald-500/20 bg-emerald-500/5 p-5">
+                  </GlowCard>
+                  <GlowCard color="emerald" className="p-5">
                     <h4 className="mb-2 font-semibold text-emerald-400">Tech Stack</h4>
                     <div className="flex flex-wrap gap-2">
                       {['Next.js 16', 'Claude AI', 'MCP', 'Neon Postgres', 'Vercel', 'ElevenLabs'].map((tech) => (
@@ -553,7 +556,7 @@ export default function AIArchitectClient() {
                         </span>
                       ))}
                     </div>
-                  </div>
+                  </GlowCard>
                 </div>
               </div>
             </motion.div>
@@ -593,7 +596,7 @@ export default function AIArchitectClient() {
                   />
                 </div>
                 <div className="space-y-4">
-                  <div className="rounded-xl border border-white/[0.08] bg-white/[0.03] p-5">
+                  <GlowCard color="rose" className="p-5">
                     <h4 className="mb-3 font-semibold text-white">Key Components</h4>
                     <ul className="space-y-2 text-sm text-slate-400">
                       <li className="flex items-start gap-2">
@@ -613,8 +616,8 @@ export default function AIArchitectClient() {
                         <span><strong className="text-white">Music Generator</strong> - Suno AI integration</span>
                       </li>
                     </ul>
-                  </div>
-                  <div className="rounded-xl border border-rose-500/20 bg-rose-500/5 p-5">
+                  </GlowCard>
+                  <GlowCard color="rose" className="p-5">
                     <h4 className="mb-2 font-semibold text-rose-400">Tech Stack</h4>
                     <div className="flex flex-wrap gap-2">
                       {['Phaser/Unity', 'Claude Opus', 'Vector DB', 'Redis', 'Suno AI', 'Web3'].map((tech) => (
@@ -623,7 +626,7 @@ export default function AIArchitectClient() {
                         </span>
                       ))}
                     </div>
-                  </div>
+                  </GlowCard>
                 </div>
               </div>
             </motion.div>
@@ -654,8 +657,8 @@ export default function AIArchitectClient() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="rounded-3xl border border-white/10 bg-gradient-to-br from-slate-900/80 to-slate-800/50 p-8 md:p-12"
             >
+              <GlowCard color="cyan" className="p-8 md:p-12">
               <div className="flex flex-col items-center gap-8 md:flex-row">
                 <div className="flex-1">
                   <div className="mb-4 flex items-center gap-2">
@@ -701,6 +704,7 @@ export default function AIArchitectClient() {
                   </a>
                 </div>
               </div>
+              </GlowCard>
             </motion.div>
           </div>
         </section>

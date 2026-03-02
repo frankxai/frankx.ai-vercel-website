@@ -17,6 +17,7 @@ import {
   Star,
   Wand2,
 } from 'lucide-react'
+import { GlowCard } from '@/components/ui/glow-card'
 
 function ResourcesBackground() {
   const shouldReduceMotion = useReducedMotion()
@@ -273,30 +274,45 @@ function ResourceGrid({
           {items.map((item) => {
             const Icon = item.icon
             const isExternal = item.external
-            const LinkComponent = isExternal ? 'a' : Link
-            const linkProps = isExternal
-              ? { href: item.href, target: '_blank', rel: 'noopener noreferrer' }
-              : { href: item.href }
 
             return (
-              <LinkComponent
+              <GlowCard
                 key={item.name}
-                {...linkProps}
-                className="group rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5 transition-all hover:-translate-y-1 hover:border-white/20 hover:bg-white/[0.04]"
+                href={isExternal ? undefined : item.href}
+                color="emerald"
+                className="p-5 h-full"
               >
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-emerald-300">
-                  <Icon className="h-5 w-5" />
-                </div>
-                <div className="mt-4 flex items-center gap-2 text-base font-semibold text-white">
-                  {item.name}
-                  {isExternal && <ExternalLink className="h-4 w-4 text-white/40" />}
-                </div>
-                <p className="mt-2 text-sm text-slate-400">{item.description}</p>
-                <div className="mt-4 flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-emerald-300">
-                  Explore
-                  <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
-                </div>
-              </LinkComponent>
+                {isExternal ? (
+                  <a href={item.href} target="_blank" rel="noopener noreferrer" className="block">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-emerald-300">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <div className="mt-4 flex items-center gap-2 text-base font-semibold text-white">
+                      {item.name}
+                      <ExternalLink className="h-4 w-4 text-white/40" />
+                    </div>
+                    <p className="mt-2 text-sm text-slate-400">{item.description}</p>
+                    <div className="mt-4 flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-emerald-300">
+                      Explore
+                      <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+                    </div>
+                  </a>
+                ) : (
+                  <>
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-emerald-300">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <div className="mt-4 flex items-center gap-2 text-base font-semibold text-white">
+                      {item.name}
+                    </div>
+                    <p className="mt-2 text-sm text-slate-400">{item.description}</p>
+                    <div className="mt-4 flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-emerald-300">
+                      Explore
+                      <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+                    </div>
+                  </>
+                )}
+              </GlowCard>
             )
           })}
         </div>

@@ -14,6 +14,7 @@ import {
   Zap,
   ChevronRight,
 } from 'lucide-react'
+import { GlowCard, type GlowColor } from '@/components/ui/glow-card'
 
 // Premium background matching the site aesthetic
 function StartBackground() {
@@ -169,37 +170,18 @@ export default function StartPage() {
             >
               {journeyPaths.map((path, index) => {
                 const Icon = path.icon
-                const colorMap = {
-                  emerald: {
-                    bg: 'bg-white/[0.03]',
-                    border: 'border-white/[0.08] hover:border-emerald-500/30',
-                    icon: 'bg-emerald-500/10 text-emerald-400',
-                    text: 'text-emerald-400',
-                    glow: 'group-hover:shadow-lg group-hover:shadow-emerald-500/10',
-                  },
-                  cyan: {
-                    bg: 'bg-white/[0.03]',
-                    border: 'border-white/[0.08] hover:border-cyan-500/30',
-                    icon: 'bg-cyan-500/10 text-cyan-400',
-                    text: 'text-cyan-400',
-                    glow: 'group-hover:shadow-lg group-hover:shadow-cyan-500/10',
-                  },
-                  violet: {
-                    bg: 'bg-white/[0.03]',
-                    border: 'border-white/[0.08] hover:border-violet-500/30',
-                    icon: 'bg-violet-500/10 text-violet-400',
-                    text: 'text-violet-400',
-                    glow: 'group-hover:shadow-lg group-hover:shadow-violet-500/10',
-                  },
-                  amber: {
-                    bg: 'bg-white/[0.03]',
-                    border: 'border-white/[0.08] hover:border-amber-500/30',
-                    icon: 'bg-amber-500/10 text-amber-400',
-                    text: 'text-amber-400',
-                    glow: 'group-hover:shadow-lg group-hover:shadow-amber-500/10',
-                  },
+                const iconColorMap: Record<string, string> = {
+                  emerald: 'bg-emerald-500/10 text-emerald-400',
+                  cyan: 'bg-cyan-500/10 text-cyan-400',
+                  violet: 'bg-violet-500/10 text-violet-400',
+                  amber: 'bg-amber-500/10 text-amber-400',
                 }
-                const colors = colorMap[path.color as keyof typeof colorMap]
+                const textColorMap: Record<string, string> = {
+                  emerald: 'text-emerald-400',
+                  cyan: 'text-cyan-400',
+                  violet: 'text-violet-400',
+                  amber: 'text-amber-400',
+                }
 
                 return (
                   <motion.div
@@ -208,40 +190,36 @@ export default function StartPage() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
                   >
-                    <Link href={path.href} className="group block h-full">
-                      <div
-                        className={`relative h-full overflow-hidden rounded-3xl border ${colors.border} ${colors.bg} p-8 backdrop-blur-sm transition-all duration-300 group-hover:-translate-y-1 ${colors.glow}`}
-                      >
-                        {/* Icon and Stats Row */}
-                        <div className="mb-6 flex items-start justify-between">
-                          <div className={`flex h-14 w-14 items-center justify-center rounded-xl ${colors.icon}`}>
-                            <Icon className="h-7 w-7" />
-                          </div>
-                          <span className={`text-sm font-medium ${colors.text}`}>
-                            {path.stats}
-                          </span>
+                    <GlowCard href={path.href} color={path.color as GlowColor} className="p-8 h-full">
+                      {/* Icon and Stats Row */}
+                      <div className="mb-6 flex items-start justify-between">
+                        <div className={`flex h-14 w-14 items-center justify-center rounded-xl ${iconColorMap[path.color] ?? ''}`}>
+                          <Icon className="h-7 w-7" />
                         </div>
-
-                        {/* Content */}
-                        <div className="space-y-2">
-                          <p className="text-xs font-medium uppercase tracking-[0.15em] text-white/40">
-                            {path.subtitle}
-                          </p>
-                          <h3 className="text-2xl font-bold text-white group-hover:text-white/90">
-                            {path.title}
-                          </h3>
-                          <p className="leading-relaxed text-white/40">
-                            {path.description}
-                          </p>
-                        </div>
-
-                        {/* Arrow */}
-                        <div className="mt-6 flex items-center gap-2 text-white/40 transition-colors group-hover:text-white">
-                          <span className="text-sm font-medium">Explore</span>
-                          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                        </div>
+                        <span className={`text-sm font-medium ${textColorMap[path.color] ?? ''}`}>
+                          {path.stats}
+                        </span>
                       </div>
-                    </Link>
+
+                      {/* Content */}
+                      <div className="space-y-2">
+                        <p className="text-xs font-medium uppercase tracking-[0.15em] text-white/40">
+                          {path.subtitle}
+                        </p>
+                        <h3 className="text-2xl font-bold text-white group-hover:text-white/90">
+                          {path.title}
+                        </h3>
+                        <p className="leading-relaxed text-white/40">
+                          {path.description}
+                        </p>
+                      </div>
+
+                      {/* Arrow */}
+                      <div className="mt-6 flex items-center gap-2 text-white/40 transition-colors group-hover:text-white">
+                        <span className="text-sm font-medium">Explore</span>
+                        <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                      </div>
+                    </GlowCard>
                   </motion.div>
                 )
               })}
@@ -280,21 +258,20 @@ export default function StartPage() {
                     viewport={{ once: true }}
                     transition={{ duration: 0.4, delay: 0.1 + index * 0.05 }}
                   >
-                    <Link
-                      href={item.href}
-                      className="group flex items-center justify-between rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5 backdrop-blur-sm transition-all duration-300 hover:border-white/15 hover:bg-white/[0.05]"
-                    >
-                      <div className="flex items-center gap-4">
-                        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/5 text-white/40 transition-colors group-hover:text-white">
-                          <Icon className="h-5 w-5" />
+                    <GlowCard href={item.href} color="emerald" className="p-5">
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-4">
+                          <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/5 text-white/40 transition-colors group-hover:text-white">
+                            <Icon className="h-5 w-5" />
+                          </div>
+                          <div>
+                            <h3 className="font-medium text-white">{item.title}</h3>
+                            <p className="text-sm text-white/40">{item.description}</p>
+                          </div>
                         </div>
-                        <div>
-                          <h3 className="font-medium text-white">{item.title}</h3>
-                          <p className="text-sm text-white/40">{item.description}</p>
-                        </div>
+                        <ChevronRight className="h-5 w-5 text-white/30 transition-all group-hover:translate-x-1 group-hover:text-white/40" />
                       </div>
-                      <ChevronRight className="h-5 w-5 text-white/30 transition-all group-hover:translate-x-1 group-hover:text-white/40" />
-                    </Link>
+                    </GlowCard>
                   </motion.div>
                 )
               })}
@@ -310,12 +287,9 @@ export default function StartPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="relative overflow-hidden rounded-3xl border border-white/[0.08] bg-white/[0.03] p-10 backdrop-blur-xl"
             >
-              {/* Decorative gradient */}
-              <div className="absolute -right-20 -top-20 h-40 w-40 rounded-full bg-gradient-to-br from-emerald-500/20 to-cyan-500/20 blur-3xl" />
-
-              <div className="relative flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between">
+              <GlowCard color="emerald" className="p-10">
+              <div className="flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between">
                 <div className="max-w-xl">
                   <h2 className="text-2xl font-bold text-white sm:text-3xl">
                     Want the full story?
@@ -333,6 +307,7 @@ export default function StartPage() {
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </Link>
               </div>
+              </GlowCard>
             </motion.div>
           </div>
         </section>
