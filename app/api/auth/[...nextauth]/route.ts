@@ -1,17 +1,5 @@
-import NextAuth from 'next-auth'
-import { authOptions } from '@/lib/auth'
+// Use the single NextAuth instance from lib/auth — do NOT call NextAuth() again here
+// Calling NextAuth(authOptions) twice causes JWT signing conflicts and 500 errors on /api/auth/session
+import { handlers } from '@/lib/auth'
 
-/**
- * NextAuth API Route Handler
- *
- * Handles all authentication endpoints:
- * - /api/auth/signin - Login page
- * - /api/auth/signout - Logout
- * - /api/auth/session - Session check
- * - /api/auth/csrf - CSRF token
- */
-
-const { handlers } = NextAuth(authOptions)
-
-export const GET = handlers.GET
-export const POST = handlers.POST
+export const { GET, POST } = handlers
