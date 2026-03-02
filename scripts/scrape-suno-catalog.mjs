@@ -27,7 +27,7 @@ const ROOT = path.resolve(__dirname, '..')
 const MUSIC_FILE = path.join(ROOT, 'data', 'inventories', 'frankx', 'music.json')
 const DOWNLOAD_DIR = path.join(ROOT, 'tmp', 'suno-mp3')
 
-const DEFAULT_PROFILE = 'https://suno.com/@frankxmusic'
+const DEFAULT_PROFILE = 'https://suno.com/@frankx'
 const SUNO_CDN = 'https://cdn1.suno.ai'
 
 // ── CLI Arg Parsing ─────────────────────────────────────────────────────────
@@ -84,7 +84,7 @@ function generateSlug(title) {
     .slice(0, 50)
 }
 
-// ── Suno Profile Scraper ────────────────────────────────────────────────────
+// ── Suno Profile Scraper (API Interception) ──────────────────────────────────
 
 async function scrapeSunoProfile(profileUrl, limit = 0) {
   let puppeteer
@@ -104,117 +104,171 @@ async function scrapeSunoProfile(profileUrl, limit = 0) {
 
   const page = await browser.newPage()
   await page.setViewport({ width: 1280, height: 800 })
-
-  // Set a realistic user agent
   await page.setUserAgent(
     'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36'
   )
 
+  // Intercept API responses to capture track data
+  const apiTracks = new Map()
+
+  page.on('response', async (response) => {
+    const url = response.url()
+    if (!url.includes('studio-api.prod.suno.com')) return
+    if (response.status() !== 200) return
+
+    try {
+      const json = await response.json()
+
+      // Handle single clip responses (/api/clip/{id})
+      if (json.id && json.title) {
+        extractTrackFromApi(json, apiTracks)
+      }
+
+      // Handle array responses (profile listing endpoints)
+      if (Array.isArray(json)) {
+        for (const item of json) {
+          if (item.id && item.title) extractTrackFromApi(item, apiTracks)
+        }
+      }
+
+      // Handle paginated responses with clips/songs array
+      for (const key of ['clips', 'songs', 'playlist_clips', 'data', 'results']) {
+        if (Array.isArray(json[key])) {
+          for (const item of json[key]) {
+            if (item.id && item.title) extractTrackFromApi(item, apiTracks)
+            // Some endpoints nest clip data one level deeper
+            if (item.clip && item.clip.id) extractTrackFromApi(item.clip, apiTracks)
+          }
+        }
+      }
+    } catch {
+      // Not JSON or parsing failed — skip
+    }
+  })
+
+  // Load the profile page
   await page.goto(profileUrl, { waitUntil: 'networkidle2', timeout: 60000 })
+  console.log(`  Initial load: ${apiTracks.size} tracks captured from API`)
 
   // Wait for song cards to render
   await page.waitForSelector('a[href*="/song/"]', { timeout: 15000 }).catch(() => {
-    console.log('Warning: No song links found on initial load, trying to scroll...')
+    console.log('  Warning: No song links found on initial load')
   })
 
-  // Scroll to load all songs (Suno uses infinite scroll)
-  let previousHeight = 0
-  let scrollAttempts = 0
-  const maxScrollAttempts = 50
+  // Also extract sunoIds from DOM links as fallback
+  const domIds = await page.evaluate(() => {
+    const links = Array.from(document.querySelectorAll('a[href*="/song/"]'))
+    return [...new Set(links.map(l => {
+      const m = l.href.match(/\/song\/([a-f0-9-]{36})/)
+      return m ? m[1] : null
+    }).filter(Boolean))]
+  })
+  console.log(`  DOM links: ${domIds.length} unique song IDs`)
 
-  while (scrollAttempts < maxScrollAttempts) {
-    const currentHeight = await page.evaluate(() => document.body.scrollHeight)
-    if (currentHeight === previousHeight) break
+  // Try clicking "See More" on the Songs section to load full song list
+  const seeMoreClicked = await page.evaluate(() => {
+    const buttons = Array.from(document.querySelectorAll('a, button'))
+    for (const btn of buttons) {
+      const text = btn.textContent?.trim().toLowerCase() || ''
+      const href = btn.getAttribute('href') || ''
+      if ((text.includes('see more') || text.includes('see all')) &&
+          (href.includes('songs') || href.includes('tracks') ||
+           btn.closest('[class*="song"], [class*="Song"], [class*="track"]'))) {
+        btn.click()
+        return true
+      }
+    }
+    // Fallback: click any "See More" that's near songs section
+    for (const btn of buttons) {
+      if (btn.textContent?.trim().toLowerCase() === 'see more') {
+        btn.click()
+        return true
+      }
+    }
+    return false
+  })
 
-    previousHeight = currentHeight
-    await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight))
-    await new Promise((r) => setTimeout(r, 1500))
-    scrollAttempts++
-
-    const songCount = await page.evaluate(() =>
-      document.querySelectorAll('a[href*="/song/"]').length
-    )
-    console.log(`  Scroll ${scrollAttempts}: ${songCount} songs found...`)
-
-    if (limit > 0 && songCount >= limit) break
+  if (seeMoreClicked) {
+    console.log('  Clicked "See More" — waiting for more songs...')
+    await new Promise(r => setTimeout(r, 3000))
+    await page.waitForNetworkIdle({ timeout: 10000 }).catch(() => {})
+    console.log(`  After See More: ${apiTracks.size} tracks from API`)
   }
 
-  // Extract track data from the page
-  const tracks = await page.evaluate(() => {
-    const songLinks = Array.from(document.querySelectorAll('a[href*="/song/"]'))
-    const seen = new Set()
+  // Scroll to load more songs (infinite scroll)
+  let previousCount = apiTracks.size
+  let staleScrolls = 0
+  const maxStaleScrolls = 5
 
-    return songLinks
-      .map((link) => {
-        const href = link.getAttribute('href') || ''
-        const sunoIdMatch = href.match(/\/song\/([a-f0-9-]+)/)
-        if (!sunoIdMatch) return null
+  for (let attempt = 0; attempt < 100; attempt++) {
+    await page.evaluate(() => window.scrollTo(0, document.body.scrollHeight))
+    await new Promise(r => setTimeout(r, 2000))
 
-        const sunoId = sunoIdMatch[1]
-        if (seen.has(sunoId)) return null
-        seen.add(sunoId)
+    const currentCount = apiTracks.size
+    if (currentCount === previousCount) {
+      staleScrolls++
+      if (staleScrolls >= maxStaleScrolls) {
+        console.log(`  No new tracks after ${maxStaleScrolls} scrolls — done`)
+        break
+      }
+    } else {
+      staleScrolls = 0
+      previousCount = currentCount
+    }
 
-        // Try to extract metadata from card structure
-        const card = link.closest('[class*="card"], [class*="Card"], article, div') || link
-        const titleEl =
-          card.querySelector('h3, [class*="title"], [class*="Title"]') ||
-          card.querySelector('p:first-child')
-        const title = titleEl?.textContent?.trim() || ''
+    if (attempt % 5 === 0) {
+      console.log(`  Scroll ${attempt}: ${currentCount} tracks captured`)
+    }
 
-        // Try to get cover image
-        const img = card.querySelector('img')
-        const coverUrl = img?.src || img?.getAttribute('data-src') || null
+    if (limit > 0 && currentCount >= limit) break
+  }
 
-        // Try to get genre/tags from text
-        const allText = card.textContent || ''
-        const genrePatterns = [
-          'electronic',
-          'ambient',
-          'hip hop',
-          'pop',
-          'rock',
-          'jazz',
-          'classical',
-          'r&b',
-          'soul',
-          'house',
-          'techno',
-          'folk',
-          'country',
-          'metal',
-          'indie',
-          'orchestral',
-          'cinematic',
-          'lofi',
-          'trap',
-          'drill',
-          'afrobeat',
-        ]
-        const detectedGenres = genrePatterns.filter((g) =>
-          allText.toLowerCase().includes(g)
-        )
-
-        // Try to get play count
-        const playMatch = allText.match(/(\d+(?:,\d+)*(?:\.\d+)?[KkMm]?)\s*plays?/i)
-        let plays = 0
-        if (playMatch) {
-          let playStr = playMatch[1].replace(/,/g, '')
-          if (playStr.match(/[Kk]$/)) plays = parseFloat(playStr) * 1000
-          else if (playStr.match(/[Mm]$/)) plays = parseFloat(playStr) * 1000000
-          else plays = parseInt(playStr, 10)
-        }
-
-        return { sunoId, title, coverUrl, genre: detectedGenres, plays }
-      })
-      .filter(Boolean)
-  })
+  // Merge DOM-discovered IDs that API didn't capture
+  for (const id of domIds) {
+    if (!apiTracks.has(id)) {
+      apiTracks.set(id, { sunoId: id, title: '', coverUrl: null, genre: [], plays: 0 })
+    }
+  }
 
   await browser.close()
 
-  if (limit > 0) {
-    return tracks.slice(0, limit)
-  }
+  const tracks = [...apiTracks.values()]
+  console.log(`\n  Total unique tracks: ${tracks.length}`)
+
+  if (limit > 0) return tracks.slice(0, limit)
   return tracks
+}
+
+function extractTrackFromApi(data, map) {
+  if (!data.id || map.has(data.id)) return
+
+  // Parse genre from tags or metadata
+  const genre = []
+  if (data.tags) {
+    genre.push(...(typeof data.tags === 'string' ? data.tags.split(',').map(t => t.trim()) : data.tags))
+  }
+  if (data.metadata?.tags) {
+    genre.push(...data.metadata.tags.split(',').map(t => t.trim()))
+  }
+
+  // Parse duration from audio_duration or duration fields
+  let duration = null
+  const dur = data.audio_duration || data.duration
+  if (dur) {
+    const mins = Math.floor(dur / 60)
+    const secs = Math.floor(dur % 60)
+    duration = `${mins}:${secs.toString().padStart(2, '0')}`
+  }
+
+  map.set(data.id, {
+    sunoId: data.id,
+    title: data.title || '',
+    coverUrl: data.image_url || data.image_large_url || null,
+    genre: [...new Set(genre.filter(Boolean))],
+    plays: data.play_count || 0,
+    likes: data.upvote_count || 0,
+    duration,
+  })
 }
 
 // ── Build Track Entry (from import-suno-tracks.mjs pattern) ─────────────────
@@ -224,7 +278,7 @@ function createTrackEntry(scraped) {
     ? generateSlug(scraped.title)
     : `suno-${scraped.sunoId.slice(0, 8)}`
 
-  return {
+  const entry = {
     id,
     type: 'music',
     title: scraped.title || `Track ${scraped.sunoId.slice(0, 8)}`,
@@ -236,8 +290,14 @@ function createTrackEntry(scraped) {
     sunoUrl: `https://suno.com/song/${scraped.sunoId}`,
     genre: scraped.genre || [],
     plays: scraped.plays || 0,
-    coverUrl: scraped.coverUrl || null,
+    section: 'songs',
   }
+
+  if (scraped.coverUrl) entry.coverUrl = scraped.coverUrl
+  if (scraped.likes) entry.likes = scraped.likes
+  if (scraped.duration) entry.duration = scraped.duration
+
+  return entry
 }
 
 // ── Save to Inventory (from import-suno-tracks.mjs) ─────────────────────────
