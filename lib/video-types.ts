@@ -130,6 +130,8 @@ export interface VideoSlot {
   title: string
   pillar: 'ai-architecture' | 'music-production' | 'creator-tools' | 'opinion' | 'shorts'
   status: 'idea' | 'scripted' | 'recorded' | 'edited' | 'published'
+  format?: 'tutorial' | 'analysis' | 'short' | 'vlog' | 'review'
+  duration?: string
   notes: string
 }
 

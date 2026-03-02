@@ -69,6 +69,14 @@ export const SOCIAL_PROFILES: Record<string, SocialLink> = {
     primary: false,
     description: 'All links in one place'
   },
+  youtube: {
+    name: 'YouTube',
+    username: 'frankxai',
+    url: 'https://www.youtube.com/@frankxai',
+    icon: 'Youtube',
+    primary: true,
+    description: 'AI architecture, music production, creator tools'
+  },
   github: {
     name: 'GitHub',
     username: 'frankxai',
