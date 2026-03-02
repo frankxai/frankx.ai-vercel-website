@@ -14,6 +14,8 @@ import OrganizationJsonLd from '@/components/seo/OrganizationJsonLd'
 import SessionProvider from '@/components/providers/SessionProvider'
 import { ScrollProgress } from '@/components/ui/ScrollProgress'
 import { CursorSpotlight } from '@/components/ui/CursorSpotlight'
+import { MusicPlayerProvider } from '@/lib/player-context'
+import GlobalAudioPlayer from '@/components/music/GlobalAudioPlayer'
 
 // Inter as primary sans-serif (geometric, variable weight, screen-optimized)
 const inter = Inter({
@@ -139,32 +141,35 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         <SessionProvider>
-          <OrganizationJsonLd />
-          {plausibleDomain && (
-            <Script
-              strategy="afterInteractive"
-              data-domain={plausibleDomain}
-              src="https://plausible.io/js/script.js"
-            />
-          )}
-          <a
-            href="#main"
-            className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:bg-white focus:text-black focus:px-3 focus:py-2 focus:rounded z-[100]"
-          >
-            Skip to content
-          </a>
-          <ScrollProgress />
-          <CursorSpotlight />
-          <NavigationMega />
-          <div id="main" className="min-h-screen overflow-x-hidden">
-            {children}
-          </div>
-          <Footer />
-          <Analytics />
-          <SpeedInsights />
-          {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (
-            <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />
-          )}
+          <MusicPlayerProvider>
+            <OrganizationJsonLd />
+            {plausibleDomain && (
+              <Script
+                strategy="afterInteractive"
+                data-domain={plausibleDomain}
+                src="https://plausible.io/js/script.js"
+              />
+            )}
+            <a
+              href="#main"
+              className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:bg-white focus:text-black focus:px-3 focus:py-2 focus:rounded z-[100]"
+            >
+              Skip to content
+            </a>
+            <ScrollProgress />
+            <CursorSpotlight />
+            <NavigationMega />
+            <div id="main" className="min-h-screen overflow-x-hidden">
+              {children}
+            </div>
+            <Footer />
+            <GlobalAudioPlayer />
+            <Analytics />
+            <SpeedInsights />
+            {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (
+              <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />
+            )}
+          </MusicPlayerProvider>
         </SessionProvider>
       </body>
     </html >
