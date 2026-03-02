@@ -4,7 +4,7 @@ import { useMemo } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
-import SparkBorder from '@/components/ui/SparkBorder'
+import { GlowCard } from '@/components/ui/glow-card'
 
 interface RecommendationDocument {
   title: string
@@ -53,19 +53,19 @@ export default function Recommendations({ documents, currentDocument }: Recommen
 
       <div className="grid gap-5 md:grid-cols-3">
         {recommendedDocuments.map((doc) => (
-          <SparkBorder key={doc.url} color="emerald" bg="#0b1120" speed="slow">
-            <Link href={doc.url} className="block group/rec">
+          <GlowCard key={doc.url} color="emerald" href={doc.url}>
+            <div>
               {/* Image */}
               {doc.image && (
-                <div className="relative aspect-[16/9] overflow-hidden rounded-t-2xl">
+                <div className="relative aspect-[16/9] overflow-hidden rounded-t-3xl">
                   <Image
                     src={doc.image}
                     alt={doc.title}
                     fill
                     sizes="(max-width: 768px) 100vw, 33vw"
-                    className="object-cover transition-transform duration-500 group-hover/rec:scale-105"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0b1120] via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-transparent to-transparent" />
                 </div>
               )}
 
@@ -85,7 +85,7 @@ export default function Recommendations({ documents, currentDocument }: Recommen
                   </div>
                 )}
 
-                <h3 className="text-base font-semibold text-white/90 leading-snug line-clamp-2 group-hover/rec:text-white transition-colors">
+                <h3 className="text-base font-semibold text-white/90 leading-snug line-clamp-2 group-hover:text-white transition-colors">
                   {doc.title}
                 </h3>
 
@@ -95,13 +95,13 @@ export default function Recommendations({ documents, currentDocument }: Recommen
                   </p>
                 )}
 
-                <span className="mt-3 inline-flex items-center gap-1.5 text-xs font-medium text-emerald-400/70 group-hover/rec:text-emerald-400 transition-colors">
+                <span className="mt-3 inline-flex items-center gap-1.5 text-xs font-medium text-emerald-400/70 group-hover:text-emerald-400 transition-colors">
                   Read article
-                  <ArrowRight className="h-3 w-3 transition-transform group-hover/rec:translate-x-0.5" />
+                  <ArrowRight className="h-3 w-3 transition-transform group-hover:translate-x-0.5" />
                 </span>
               </div>
-            </Link>
-          </SparkBorder>
+            </div>
+          </GlowCard>
         ))}
       </div>
     </div>

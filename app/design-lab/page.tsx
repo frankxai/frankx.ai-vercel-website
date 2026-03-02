@@ -29,9 +29,7 @@ import {
   Trophy,
   Zap,
 } from 'lucide-react'
-import { useMouseGlow } from '@/lib/hooks/useMouseGlow'
-import ShimmerCard from '@/components/ui/ShimmerCard'
-import SparkBorder from '@/components/ui/SparkBorder'
+import { GlowCard, glowColors, type GlowColor } from '@/components/ui/glow-card'
 import {
   designExperiments,
   experimentCategoryConfig,
@@ -57,129 +55,6 @@ const colorConfig: Record<string, { border: string; text: string; bg: string; gr
   blue: { border: 'border-blue-500/30', text: 'text-blue-400', bg: 'bg-blue-500/10', gradient: 'from-blue-500/20 to-blue-500/5', glow: 'shadow-blue-500/20' },
   orange: { border: 'border-orange-500/30', text: 'text-orange-400', bg: 'bg-orange-500/10', gradient: 'from-orange-500/20 to-orange-500/5', glow: 'shadow-orange-500/20' },
   teal: { border: 'border-teal-500/30', text: 'text-teal-400', bg: 'bg-teal-500/10', gradient: 'from-teal-500/20 to-teal-500/5', glow: 'shadow-teal-500/20' },
-}
-
-// ── Glow RGB values per color (for cursor-following border glow) ──
-
-const glowRgb: Record<string, string> = {
-  emerald: '16, 185, 129',
-  cyan: '6, 182, 212',
-  violet: '139, 92, 246',
-  amber: '245, 158, 11',
-  rose: '244, 63, 94',
-  blue: '59, 130, 246',
-  orange: '249, 115, 22',
-  teal: '20, 184, 166',
-}
-
-// ── GlowCard: cursor-following border glow ──
-
-function GlowCard({
-  children,
-  className = '',
-  color = 'teal',
-  href,
-}: {
-  children: React.ReactNode
-  className?: string
-  color?: string
-  href: string
-}) {
-  const { cardRef, glowRef, handlers } = useMouseGlow<HTMLAnchorElement>({
-    rgb: glowRgb[color] || glowRgb.teal,
-    radius: 500,
-    opacity: 0.15,
-  })
-
-  return (
-    <Link
-      ref={cardRef}
-      href={href}
-      onMouseMove={handlers.onMouseMove}
-      onMouseLeave={handlers.onMouseLeave}
-      className={`group relative block rounded-2xl border border-white/[0.06] bg-white/[0.02] p-6 h-full transition-all duration-300 hover:border-white/[0.15] ${className}`}
-    >
-      {/* Cursor-following glow overlay */}
-      <div
-        ref={glowRef}
-        className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-300"
-      />
-      {/* Subtle outer glow on hover */}
-      <div
-        className="pointer-events-none absolute -inset-px rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-        style={{
-          background: `radial-gradient(ellipse at 50% 0%, rgba(${glowRgb[color] || glowRgb.teal}, 0.08), transparent 70%)`,
-        }}
-      />
-      {children}
-    </Link>
-  )
-}
-
-// ── StatGlowCard: cursor-following glow for non-link cards ──
-
-function StatGlowCard({
-  children,
-  className = '',
-  color = 'teal',
-}: {
-  children: React.ReactNode
-  className?: string
-  color?: string
-}) {
-  const { cardRef, glowRef, handlers } = useMouseGlow<HTMLDivElement>({
-    rgb: glowRgb[color] || glowRgb.teal,
-    radius: 400,
-    opacity: 0.12,
-  })
-
-  return (
-    <div
-      ref={cardRef}
-      onMouseMove={handlers.onMouseMove}
-      onMouseLeave={handlers.onMouseLeave}
-      className={`group relative rounded-xl border border-white/[0.06] bg-white/[0.02] p-4 text-center transition-all duration-300 hover:border-white/[0.12] ${className}`}
-    >
-      <div
-        ref={glowRef}
-        className="pointer-events-none absolute inset-0 rounded-xl opacity-0 transition-opacity duration-300"
-      />
-      <div className="relative z-10">{children}</div>
-    </div>
-  )
-}
-
-// ── StepGlowCard: cursor-following glow for How It Works steps ──
-
-function StepGlowCard({
-  children,
-  className = '',
-  color = 'teal',
-}: {
-  children: React.ReactNode
-  className?: string
-  color?: string
-}) {
-  const { cardRef, glowRef, handlers } = useMouseGlow<HTMLDivElement>({
-    rgb: glowRgb[color] || glowRgb.teal,
-    radius: 400,
-    opacity: 0.10,
-  })
-
-  return (
-    <div
-      ref={cardRef}
-      onMouseMove={handlers.onMouseMove}
-      onMouseLeave={handlers.onMouseLeave}
-      className={`group relative rounded-xl border border-white/[0.06] bg-white/[0.02] p-5 transition-all duration-300 hover:border-white/[0.12] ${className}`}
-    >
-      <div
-        ref={glowRef}
-        className="pointer-events-none absolute inset-0 rounded-xl opacity-0 transition-opacity duration-300"
-      />
-      <div className="relative z-10">{children}</div>
-    </div>
-  )
 }
 
 // ── Computed Stats ──
@@ -271,17 +146,19 @@ function HeroSection() {
           className="mt-14 grid grid-cols-2 md:grid-cols-5 gap-4"
         >
           {[
-            { label: 'Experiments', value: String(totalExperiments), icon: FlaskConical, glow: 'teal' },
-            { label: 'Complete', value: String(completedExperiments), icon: Award, glow: 'emerald' },
-            { label: 'Agent Entries', value: String(totalEntries), icon: Zap, glow: 'cyan' },
-            { label: 'Winners', value: String(winnerCount), icon: Trophy, glow: 'amber' },
-            { label: 'Productized', value: String(productizedCount), icon: ShoppingBag, glow: 'violet' },
+            { label: 'Experiments', value: String(totalExperiments), icon: FlaskConical, glow: 'teal' as GlowColor },
+            { label: 'Complete', value: String(completedExperiments), icon: Award, glow: 'emerald' as GlowColor },
+            { label: 'Agent Entries', value: String(totalEntries), icon: Zap, glow: 'cyan' as GlowColor },
+            { label: 'Winners', value: String(winnerCount), icon: Trophy, glow: 'amber' as GlowColor },
+            { label: 'Productized', value: String(productizedCount), icon: ShoppingBag, glow: 'violet' as GlowColor },
           ].map((stat, i) => (
-            <StatGlowCard key={i} color={stat.glow}>
-              <stat.icon className="w-4 h-4 text-white/30 mb-2" />
-              <p className="text-2xl font-bold text-white mb-0.5">{stat.value}</p>
-              <p className="text-xs text-white/40">{stat.label}</p>
-            </StatGlowCard>
+            <GlowCard key={i} color={stat.glow}>
+              <div className="p-4 text-center">
+                <stat.icon className="w-4 h-4 text-white/30 mb-2 mx-auto" />
+                <p className="text-2xl font-bold text-white mb-0.5">{stat.value}</p>
+                <p className="text-xs text-white/40">{stat.label}</p>
+              </div>
+            </GlowCard>
           ))}
         </motion.div>
       </div>
@@ -323,13 +200,15 @@ function HowItWorks() {
               animate={{ opacity: 1, y: 0 }}
               transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.15 + index * 0.08 }}
             >
-              <StepGlowCard color={step.color}>
-                <div className="w-8 h-8 rounded-lg bg-teal-500/10 border border-teal-500/20 flex items-center justify-center mb-3">
-                  <span className="text-sm font-bold text-teal-400">{step.icon}</span>
+              <GlowCard color={step.color as GlowColor}>
+                <div className="p-5">
+                  <div className="w-8 h-8 rounded-lg bg-teal-500/10 border border-teal-500/20 flex items-center justify-center mb-3">
+                    <span className="text-sm font-bold text-teal-400">{step.icon}</span>
+                  </div>
+                  <h3 className="text-sm font-bold text-white mb-1">{step.title}</h3>
+                  <p className="text-xs text-white/40 leading-relaxed">{step.description}</p>
                 </div>
-                <h3 className="text-sm font-bold text-white mb-1">{step.title}</h3>
-                <p className="text-xs text-white/40 leading-relaxed">{step.description}</p>
-              </StepGlowCard>
+              </GlowCard>
             </motion.div>
           ))}
         </div>
@@ -440,8 +319,8 @@ function DesignHub() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.12 + index * 0.06 }}
               >
-                <GlowCard href={section.href} color={section.color}>
-                  <div className="relative z-10">
+                <GlowCard href={section.href} color={section.color as GlowColor}>
+                  <div className="p-6">
                     <div className="flex items-start justify-between mb-4">
                       <div className={`p-2.5 ${colors.bg} rounded-xl`}>
                         <section.icon className={`w-5 h-5 ${colors.text}`} />
@@ -492,9 +371,9 @@ function DesignHub() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.35 + index * 0.1 }}
               >
-                <GlowCard href={study.href} color={study.color} className="!p-0 overflow-hidden">
-                  <div className="relative z-10">
-                    <div className="relative h-48 md:h-56 overflow-hidden">
+                <GlowCard href={study.href} color={study.color as GlowColor}>
+                  <div>
+                    <div className="relative h-48 md:h-56 overflow-hidden rounded-t-3xl">
                       <Image
                         src={study.image}
                         alt={study.title}
@@ -541,9 +420,7 @@ function DesignHub() {
 
 // ── Component Playground ──
 
-type PlaygroundTab = 'ShimmerCard' | 'GlowCard' | 'SparkBorder'
-type ShimmerColor = 'brand' | 'rainbow' | 'gold' | 'emerald' | 'ice'
-type ShimmerSpeed = 'fast' | 'normal' | 'slow'
+const glowColorKeys = Object.keys(glowColors) as GlowColor[]
 
 function CopyButton({ code }: { code: string }) {
   const [copied, setCopied] = useState(false)
@@ -570,66 +447,24 @@ function CopyButton({ code }: { code: string }) {
 
 function ComponentPlayground() {
   const shouldReduceMotion = useReducedMotion()
-  const [activeTab, setActiveTab] = useState<PlaygroundTab>('ShimmerCard')
-  const [shimmerColor, setShimmerColor] = useState<ShimmerColor>('brand')
-  const [shimmerSpeed, setShimmerSpeed] = useState<ShimmerSpeed>('normal')
-  const [shimmerHoverOnly, setShimmerHoverOnly] = useState(false)
-  const [sparkColor, setSparkColor] = useState<'emerald' | 'cyan' | 'purple' | 'amber' | 'gradient'>('purple')
+  const [activeColor, setActiveColor] = useState<GlowColor>('emerald')
 
-  const tabs: PlaygroundTab[] = ['ShimmerCard', 'GlowCard', 'SparkBorder']
+  const codeSnippet = `import { GlowCard } from '@/components/ui/glow-card'
 
-  const codeSnippets: Record<PlaygroundTab, string> = {
-    ShimmerCard: `import ShimmerCard from '@/components/ui/ShimmerCard'
+{/* As a link */}
+<GlowCard color="${activeColor}" href="/page">
+  <div className="p-6">
+    <h3>Card Title</h3>
+    <p>Card content here</p>
+  </div>
+</GlowCard>
 
-<ShimmerCard
-  color="${shimmerColor}"
-  speed="${shimmerSpeed}"
-  hoverOnly={${shimmerHoverOnly}}
-  className="p-6"
->
-  <h3 className="text-white font-bold">Premium Card</h3>
-  <p className="text-white/50 text-sm mt-1">
-    CSS Houdini @property shimmer border
-  </p>
-</ShimmerCard>`,
-    GlowCard: `import { useMouseGlow } from '@/lib/hooks/useMouseGlow'
-
-function MyCard() {
-  const { cardRef, glowRef, handlers } = useMouseGlow({
-    rgb: '171, 71, 199',
-    radius: 400,
-    opacity: 0.15,
-  })
-
-  return (
-    <div
-      ref={cardRef}
-      {...handlers}
-      className="relative rounded-2xl border border-white/10 p-6"
-    >
-      <div
-        ref={glowRef}
-        className="pointer-events-none absolute inset-0
-          rounded-2xl opacity-0 transition-opacity duration-300"
-      />
-      {children}
-    </div>
-  )
-}`,
-    SparkBorder: `import SparkBorder from '@/components/ui/SparkBorder'
-
-<SparkBorder
-  color="${sparkColor}"
-  speed="normal"
-  hoverOnly={false}
-  className="p-6"
->
-  <h3 className="text-white font-bold">Spark Border</h3>
-  <p className="text-white/50 text-sm mt-1">
-    Rotating conic gradient border effect
-  </p>
-</SparkBorder>`,
-  }
+{/* As a div */}
+<GlowCard color="${activeColor}">
+  <div className="p-6">
+    <h3>Static Card</h3>
+  </div>
+</GlowCard>`
 
   return (
     <section className="py-12 md:py-16">
@@ -644,13 +479,10 @@ function MyCard() {
             <div className="p-2 bg-violet-500/10 rounded-xl">
               <Palette className="w-5 h-5 text-violet-400" />
             </div>
-            <div>
-              <h2 className="text-2xl md:text-3xl font-bold text-white">Component Playground</h2>
-              <span className="ml-3 text-[10px] font-semibold uppercase tracking-wider text-violet-400 bg-violet-500/10 px-2 py-0.5 rounded-full">New</span>
-            </div>
+            <h2 className="text-2xl md:text-3xl font-bold text-white">Component Playground</h2>
           </div>
           <p className="text-white/50 max-w-2xl">
-            Live interactive demos of FrankX design system primitives. Toggle variants and copy the code.
+            GlowCard — the core premium component. Liquid-glass with cursor-following radial glow, specular top-edge highlight, and layered depth shadows.
           </p>
         </motion.div>
 
@@ -660,198 +492,104 @@ function MyCard() {
           transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.15 }}
           className="rounded-3xl border border-white/[0.08] bg-white/[0.02] overflow-hidden"
         >
-          {/* Tab Bar */}
-          <div className="flex items-center gap-1 p-3 border-b border-white/[0.06] bg-white/[0.01]">
-            {tabs.map((tab) => (
-              <button
-                key={tab}
-                onClick={() => setActiveTab(tab)}
-                className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 ${
-                  activeTab === tab
-                    ? 'bg-white/[0.08] text-white border border-white/[0.12]'
-                    : 'text-white/40 hover:text-white/60 hover:bg-white/[0.04]'
-                }`}
-              >
-                {tab}
-              </button>
-            ))}
-          </div>
-
           <div className="grid md:grid-cols-5 gap-0">
-            {/* Demo Area */}
-            <div className="md:col-span-3 p-8 flex items-center justify-center min-h-[240px] border-b md:border-b-0 md:border-r border-white/[0.06]">
-              {activeTab === 'ShimmerCard' && (
-                <ShimmerCard
-                  color={shimmerColor}
-                  speed={shimmerSpeed}
-                  hoverOnly={shimmerHoverOnly}
-                  variant="both"
-                  className="w-full max-w-xs p-6 border border-white/[0.06] bg-white/[0.03]"
-                >
-                  <div className="flex items-center gap-3 mb-3">
-                    <div className="w-8 h-8 rounded-lg bg-violet-500/20 border border-violet-500/30 flex items-center justify-center">
-                      <Sparkles className="w-4 h-4 text-violet-400" />
-                    </div>
-                    <span className="text-xs font-semibold text-violet-400 uppercase tracking-wider">Premium</span>
-                  </div>
-                  <h3 className="text-base font-bold text-white mb-1.5">ShimmerCard</h3>
-                  <p className="text-xs text-white/40 leading-relaxed">
-                    CSS Houdini @property shimmer border + cursor-following glow
-                  </p>
-                  <div className="mt-4 pt-3 border-t border-white/[0.06] flex items-center justify-between">
-                    <span className="text-[10px] text-white/30">{shimmerColor} · {shimmerSpeed}</span>
-                    <ArrowRight className="w-3.5 h-3.5 text-white/20" />
-                  </div>
-                </ShimmerCard>
-              )}
-              {activeTab === 'GlowCard' && (
-                <div className="w-full max-w-xs">
-                  {/* Inline GlowCard demo — uses useMouseGlow internally via StatGlowCard */}
-                  <StatGlowCard color="violet" className="p-6">
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="w-8 h-8 rounded-lg bg-violet-500/20 border border-violet-500/30 flex items-center justify-center">
-                        <MousePointerClick className="w-4 h-4 text-violet-400" />
-                      </div>
-                      <span className="text-xs font-semibold text-violet-400 uppercase tracking-wider">GlowCard</span>
-                    </div>
-                    <h3 className="text-base font-bold text-white mb-1.5">Cursor-Following Glow</h3>
-                    <p className="text-xs text-white/40 leading-relaxed">
-                      Move your mouse over this card to see the radial glow follow
-                    </p>
-                  </StatGlowCard>
-                </div>
-              )}
-              {activeTab === 'SparkBorder' && (
-                <SparkBorder
-                  color={sparkColor}
-                  speed="normal"
-                  hoverOnly={false}
-                  bg="#0a0a0b"
-                  className="w-full max-w-xs"
-                >
+            {/* Demo Area — live GlowCard with selected color */}
+            <div className="md:col-span-3 p-8 flex items-center justify-center min-h-[280px] border-b md:border-b-0 md:border-r border-white/[0.06]">
+              <div className="w-full max-w-sm">
+                <GlowCard color={activeColor}>
                   <div className="p-6">
-                    <div className="flex items-center gap-3 mb-3">
-                      <div className="w-8 h-8 rounded-lg bg-emerald-500/20 border border-emerald-500/30 flex items-center justify-center">
-                        <Zap className="w-4 h-4 text-emerald-400" />
+                    <div className="flex items-center gap-3 mb-4">
+                      <div className="w-9 h-9 rounded-xl bg-white/[0.06] border border-white/[0.08] flex items-center justify-center">
+                        <MousePointerClick className="w-4.5 h-4.5 text-white/60" />
                       </div>
-                      <span className="text-xs font-semibold text-emerald-400 uppercase tracking-wider">SparkBorder</span>
+                      <div>
+                        <span className="text-[10px] font-semibold text-white/30 uppercase tracking-wider block">GlowCard</span>
+                        <span className="text-xs text-white/50">{activeColor}</span>
+                      </div>
                     </div>
-                    <h3 className="text-base font-bold text-white mb-1.5">Rotating Spark Border</h3>
-                    <p className="text-xs text-white/40 leading-relaxed">
-                      Conic gradient rotation for border-only glow effects
+                    <h3 className="text-lg font-bold text-white mb-2">Cursor-Following Glow</h3>
+                    <p className="text-sm text-white/40 leading-relaxed mb-4">
+                      Move your mouse over this card. The radial glow follows your cursor via direct DOM mutations — zero React re-renders.
                     </p>
+                    <div className="flex items-center gap-4 pt-4 border-t border-white/[0.06]">
+                      <span className="text-[10px] text-white/25">Specular highlight</span>
+                      <span className="text-[10px] text-white/25">Frosted glass</span>
+                      <span className="text-[10px] text-white/25">Depth shadows</span>
+                    </div>
                   </div>
-                </SparkBorder>
-              )}
+                </GlowCard>
+              </div>
             </div>
 
-            {/* Controls Panel */}
+            {/* Controls + Code */}
             <div className="md:col-span-2 p-6 flex flex-col gap-5">
+              {/* Color Picker */}
               <div>
-                <p className="text-[10px] font-semibold text-white/30 uppercase tracking-wider mb-3">Variant Controls</p>
+                <p className="text-[10px] font-semibold text-white/30 uppercase tracking-wider mb-3">Accent Color</p>
+                <div className="grid grid-cols-4 gap-1.5">
+                  {glowColorKeys.map(c => (
+                    <button
+                      key={c}
+                      onClick={() => setActiveColor(c)}
+                      className={`px-2 py-1.5 rounded-lg text-[10px] font-medium transition-all ${
+                        activeColor === c
+                          ? 'bg-white/10 text-white border border-white/20'
+                          : 'text-white/40 border border-white/[0.06] hover:border-white/[0.15]'
+                      }`}
+                    >
+                      {c}
+                    </button>
+                  ))}
+                </div>
+              </div>
 
-                {activeTab === 'ShimmerCard' && (
-                  <div className="space-y-4">
-                    {/* Color */}
-                    <div>
-                      <label className="text-xs text-white/50 mb-2 block">Color</label>
-                      <div className="flex flex-wrap gap-1.5">
-                        {(['brand', 'rainbow', 'gold', 'emerald', 'ice'] as ShimmerColor[]).map(c => (
-                          <button
-                            key={c}
-                            onClick={() => setShimmerColor(c)}
-                            className={`px-2.5 py-1 rounded-lg text-[11px] font-medium transition-all ${
-                              shimmerColor === c
-                                ? 'bg-white/10 text-white border border-white/20'
-                                : 'text-white/40 border border-white/[0.08] hover:border-white/[0.15]'
-                            }`}
-                          >
-                            {c}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                    {/* Speed */}
-                    <div>
-                      <label className="text-xs text-white/50 mb-2 block">Speed</label>
-                      <div className="flex gap-1.5">
-                        {(['slow', 'normal', 'fast'] as ShimmerSpeed[]).map(s => (
-                          <button
-                            key={s}
-                            onClick={() => setShimmerSpeed(s)}
-                            className={`px-2.5 py-1 rounded-lg text-[11px] font-medium transition-all ${
-                              shimmerSpeed === s
-                                ? 'bg-white/10 text-white border border-white/20'
-                                : 'text-white/40 border border-white/[0.08] hover:border-white/[0.15]'
-                            }`}
-                          >
-                            {s}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                    {/* Hover Only */}
-                    <div>
-                      <label className="text-xs text-white/50 mb-2 block">Mode</label>
-                      <div className="flex gap-1.5">
-                        {[false, true].map((val) => (
-                          <button
-                            key={String(val)}
-                            onClick={() => setShimmerHoverOnly(val)}
-                            className={`px-2.5 py-1 rounded-lg text-[11px] font-medium transition-all ${
-                              shimmerHoverOnly === val
-                                ? 'bg-white/10 text-white border border-white/20'
-                                : 'text-white/40 border border-white/[0.08] hover:border-white/[0.15]'
-                            }`}
-                          >
-                            {val ? 'hover only' : 'always on'}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {activeTab === 'GlowCard' && (
-                  <div className="text-xs text-white/40 leading-relaxed">
-                    <p className="mb-3">The <code className="text-violet-300 bg-violet-500/10 px-1 rounded">useMouseGlow</code> hook tracks cursor position via direct DOM mutations — no React state, no re-renders.</p>
-                    <p>Works on any element type: <code className="text-cyan-300 bg-cyan-500/10 px-1 rounded">HTMLAnchorElement</code>, <code className="text-cyan-300 bg-cyan-500/10 px-1 rounded">HTMLDivElement</code>, etc.</p>
-                  </div>
-                )}
-
-                {activeTab === 'SparkBorder' && (
-                  <div>
-                    <label className="text-xs text-white/50 mb-2 block">Color</label>
-                    <div className="flex flex-wrap gap-1.5">
-                      {(['emerald', 'cyan', 'purple', 'amber', 'gradient'] as const).map(c => (
-                        <button
-                          key={c}
-                          onClick={() => setSparkColor(c)}
-                          className={`px-2.5 py-1 rounded-lg text-[11px] font-medium transition-all ${
-                            sparkColor === c
-                              ? 'bg-white/10 text-white border border-white/20'
-                              : 'text-white/40 border border-white/[0.08] hover:border-white/[0.15]'
-                          }`}
-                        >
-                          {c}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                )}
+              {/* Features */}
+              <div>
+                <p className="text-[10px] font-semibold text-white/30 uppercase tracking-wider mb-2">Features</p>
+                <div className="space-y-1.5 text-xs text-white/40">
+                  <p>Specular top-edge highlight (liquid glass signature)</p>
+                  <p>Cursor-following radial glow (600px, 0.18 opacity)</p>
+                  <p><code className="text-cyan-300 bg-cyan-500/10 px-1 rounded">backdrop-blur(32px) saturate(160%)</code></p>
+                  <p>Layered depth shadows that deepen on hover</p>
+                  <p>Link (<code className="text-violet-300 bg-violet-500/10 px-1 rounded">href</code>) or div variant</p>
+                </div>
               </div>
 
               {/* Code Snippet */}
               <div className="flex-1">
                 <div className="flex items-center justify-between mb-2">
                   <p className="text-[10px] font-semibold text-white/30 uppercase tracking-wider">Code</p>
-                  <CopyButton code={codeSnippets[activeTab]} />
+                  <CopyButton code={codeSnippet} />
                 </div>
                 <pre className="text-[10px] text-white/50 bg-white/[0.03] rounded-xl p-4 overflow-x-auto scrollbar-thin leading-relaxed font-mono border border-white/[0.06] whitespace-pre-wrap">
-                  {codeSnippets[activeTab]}
+                  {codeSnippet}
                 </pre>
               </div>
             </div>
+          </div>
+        </motion.div>
+
+        {/* Color Gallery — all 12 GlowCard colors */}
+        <motion.div
+          initial={shouldReduceMotion ? false : { opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={shouldReduceMotion ? { duration: 0 } : { delay: 0.25 }}
+          className="mt-8"
+        >
+          <p className="text-[10px] font-semibold text-white/30 uppercase tracking-wider mb-4">All 12 Color Presets</p>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
+            {glowColorKeys.map(c => (
+              <GlowCard key={c} color={c}>
+                <div className="p-4 text-center">
+                  <div
+                    className="w-3 h-3 rounded-full mx-auto mb-2"
+                    style={{ backgroundColor: `rgb(${glowColors[c]})` }}
+                  />
+                  <p className="text-xs font-medium text-white/70">{c}</p>
+                  <p className="text-[9px] text-white/25 font-mono mt-0.5">{glowColors[c]}</p>
+                </div>
+              </GlowCard>
+            ))}
           </div>
         </motion.div>
       </div>

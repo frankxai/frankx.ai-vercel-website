@@ -23,7 +23,7 @@ import {
   ExternalLink,
 } from 'lucide-react'
 import CheckoutButton from '@/components/commerce/CheckoutButton'
-import SparkBorder from '@/components/ui/SparkBorder'
+import { GlowCard, type GlowColor } from '@/components/ui/glow-card'
 import { GlowButton } from '@/components/ui/GlowButton'
 import templates from '@/data/templates.json'
 
@@ -125,8 +125,8 @@ function FeaturedCard({
   template: (typeof templates)[0]
 }) {
   return (
-    <SparkBorder color="gradient" hoverOnly={false} speed="slow">
-      <div className="rounded-2xl bg-[#0a0f1a] p-1">
+    <GlowCard color="violet">
+      <div className="p-1">
         <div className="flex flex-col gap-6 rounded-xl bg-gradient-to-br from-white/[0.04] to-transparent p-6 md:flex-row md:items-center md:p-8">
           {/* Left: Info */}
           <div className="flex-1">
@@ -213,7 +213,7 @@ function FeaturedCard({
           </div>
         </div>
       </div>
-    </SparkBorder>
+    </GlowCard>
   )
 }
 
@@ -309,9 +309,9 @@ function TemplateCard({
 
   if (isPremium) {
     return (
-      <SparkBorder color={color as 'emerald' | 'cyan' | 'purple' | 'amber'} hoverOnly>
-        <div className="h-full rounded-2xl bg-[#0a0f1a]">{card}</div>
-      </SparkBorder>
+      <GlowCard color={(color || 'emerald') as GlowColor}>
+        <div className="h-full">{card}</div>
+      </GlowCard>
     )
   }
 
