@@ -14,6 +14,8 @@ import OrganizationJsonLd from '@/components/seo/OrganizationJsonLd'
 import SessionProvider from '@/components/providers/SessionProvider'
 import { ScrollProgress } from '@/components/ui/ScrollProgress'
 import { CursorSpotlight } from '@/components/ui/CursorSpotlight'
+import { MusicPlayerProvider } from '@/lib/player-context'
+import GlobalAudioPlayer from '@/components/music/GlobalAudioPlayer'
 
 // Inter as primary sans-serif (geometric, variable weight, screen-optimized)
 const inter = Inter({
@@ -156,9 +158,12 @@ export default function RootLayout({
           <ScrollProgress />
           <CursorSpotlight />
           <NavigationMega />
-          <div id="main" className="min-h-screen overflow-x-hidden">
-            {children}
-          </div>
+          <MusicPlayerProvider>
+            <div id="main" className="min-h-screen overflow-x-hidden">
+              {children}
+            </div>
+            <GlobalAudioPlayer />
+          </MusicPlayerProvider>
           <Footer />
           <Analytics />
           <SpeedInsights />
