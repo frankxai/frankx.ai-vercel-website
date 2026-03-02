@@ -2,15 +2,15 @@
   "_description": "FrankX Suno Music Inventory",
   "_sunoProfileUrl": "https://suno.com/@frankx",
   "_profileStats": {
-    "followers": 456,
-    "following": 180,
-    "hooks": "13K",
-    "likes": "1.1K",
+    "followers": 483,
+    "following": 183,
+    "hooks": "17K",
+    "likes": "1.4K",
     "bio": "Music to unleash your creative genius 🎼🎶🧠 Connecting visionaries",
     "styles": ["warm", "vocal", "tech house", "bassline", "hypnotic"]
   },
-  "_lastUpdated": "2026-01-23",
-  "_count": 34,
+  "_lastUpdated": "2026-03-02",
+  "_count": 35,
   "_estimatedTotal": 500,
   "_note": "Only publicly visible songs scraped. Full library requires Suno authentication.",
   "_playlists": [
@@ -529,6 +529,21 @@
       "sunoUrl": "https://suno.com/@frankx/hook/279c5cdc-7eaf-4d8e-8d0d-19f990672194",
       "section": "hooks",
       "crossReference": "arcanea/music.json"
+    },
+    {
+      "id": "still-right-here",
+      "type": "music",
+      "title": "遠くても / Still Right Here",
+      "brand": "frankx",
+      "status": "published",
+      "tags": ["recent", "japanese", "pop"],
+      "platform": "suno",
+      "sunoId": "a0a74bce-7059-4422-bbb3-db7c5041f797",
+      "sunoUrl": "https://suno.com/song/a0a74bce-7059-4422-bbb3-db7c5041f797",
+      "genre": ["japanese pop", "vocal"],
+      "plays": 76,
+      "likes": 5,
+      "section": "songs"
     }
   ]
 }

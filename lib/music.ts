@@ -24,6 +24,9 @@ export interface Track {
   relatedProduct?: string
   relatedContent?: string[]
   crossReference?: string
+  audioUrl?: string
+  coverUrl?: string
+  waveformData?: number[]
 }
 
 export interface Album {
@@ -202,6 +205,14 @@ export function getSunoEmbedUrl(sunoId: string): string {
 
 export function getSunoSongUrl(sunoId: string): string {
   return `https://suno.com/song/${sunoId}`
+}
+
+export function getSunoCdnUrl(sunoId: string): string {
+  return `https://cdn1.suno.ai/${sunoId}.mp3`
+}
+
+export function getPlayableTracks(): Track[] {
+  return tracks.filter((t) => t.audioUrl || t.sunoId)
 }
 
 export function getAllGenres(): string[] {

@@ -9,18 +9,14 @@ import {
   Music2,
   Sparkles,
   ArrowRight,
-  Headphones,
-  Heart,
   Disc3,
-  Radio,
-  Volume2,
+  Waves,
   Globe,
   Zap,
-  Waves,
   Music,
   Flame,
   BookOpen,
-  ShoppingBag,
+  ListMusic,
 } from 'lucide-react'
 import {
   getTopTracks,
@@ -28,8 +24,9 @@ import {
   getAlbumTracks,
   getMusicStats,
   type Track,
-  type Album,
 } from '@/lib/music'
+import { usePlayer } from '@/lib/player-context'
+import TrackCard from '@/components/music/TrackCard'
 
 // ============================================================================
 // DATA FROM LIB
@@ -84,6 +81,8 @@ function MusicBackground() {
 
 function HeroSection() {
   const heroTrack = topTracks[0]
+  const { playTrack } = usePlayer()
+
   return (
     <section className="relative pt-32 pb-16 px-6">
       {/* Echo — Sound Weaver character accent */}
@@ -116,23 +115,22 @@ function HeroSection() {
             </p>
 
             <div className="flex flex-wrap gap-4">
+              <button
+                onClick={() => heroTrack && playTrack(heroTrack, topTracks)}
+                className="group inline-flex items-center gap-3 bg-white text-black px-7 py-4 rounded-full font-semibold transition-all hover:bg-white/90 hover:shadow-[0_0_40px_rgba(255,255,255,0.15)] active:scale-95"
+              >
+                <Play className="w-5 h-5" />
+                Play Top Tracks
+              </button>
               <a
                 href={musicStats.profileUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center gap-3 bg-white text-black px-7 py-4 rounded-full font-semibold transition-all hover:bg-white/90 hover:shadow-[0_0_40px_rgba(255,255,255,0.15)]"
+                className="inline-flex items-center gap-3 border border-white/20 text-white px-7 py-4 rounded-full font-semibold transition-all hover:bg-white/5"
               >
-                <Play className="w-5 h-5" />
                 Full Catalog on Suno
                 <ExternalLink className="w-4 h-4" />
               </a>
-              <Link
-                href="/music/brainstorm"
-                className="inline-flex items-center gap-3 border border-white/20 text-white px-7 py-4 rounded-full font-semibold transition-all hover:bg-white/5"
-              >
-                <Sparkles className="w-4 h-4" />
-                Brainstorm Ideas
-              </Link>
             </div>
           </motion.div>
 
@@ -141,22 +139,9 @@ function HeroSection() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
           >
-            <div className="relative">
-              <div className="absolute -inset-4 bg-gradient-to-br from-emerald-500/20 via-cyan-500/10 to-violet-500/10 blur-3xl opacity-50" />
-              <div className="relative bg-white/[0.02] backdrop-blur-xl border border-white/10 rounded-3xl p-4 overflow-hidden">
-                <p className="text-xs uppercase tracking-[0.2em] text-emerald-400/80 mb-3 px-2">Now Playing</p>
-                {heroTrack?.sunoId && (
-                  <iframe
-                    src={`https://suno.com/embed/${heroTrack.sunoId}`}
-                    className="w-full aspect-square rounded-2xl"
-                    frameBorder="0"
-                    allow="autoplay; clipboard-write"
-                    loading="lazy"
-                    title={heroTrack.title}
-                  />
-                )}
-              </div>
-            </div>
+            {heroTrack && (
+              <TrackCard track={heroTrack} variant="featured" queue={topTracks} />
+            )}
           </motion.div>
         </div>
       </div>
@@ -182,7 +167,7 @@ function StatsSection() {
               transition={{ delay: i * 0.1 }}
               className="text-center"
             >
-              <p className="text-3xl md:text-4xl font-bold text-white">{stat.value}</p>
+              <p className="text-3xl md:text-4xl font-bold text-white tabular-nums">{stat.value}</p>
               <p className="text-sm text-white/40 mt-1">{stat.label}</p>
             </motion.div>
           ))}
@@ -197,6 +182,8 @@ function StatsSection() {
 // ============================================================================
 
 function FeaturedTracksSection() {
+  const { playQueue } = usePlayer()
+
   return (
     <section className="py-20">
       <div className="max-w-6xl mx-auto px-6">
@@ -204,53 +191,31 @@ function FeaturedTracksSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-12"
+          className="mb-8 flex items-end justify-between"
         >
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Top Tracks</h2>
-          <p className="text-lg text-white/50">Most played tracks from the catalog</p>
+          <div>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-2">Top Tracks</h2>
+            <p className="text-lg text-white/50">Most played tracks from the catalog</p>
+          </div>
+          <button
+            onClick={() => playQueue(topTracks)}
+            className="hidden items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-2 text-sm font-medium text-emerald-300 transition-all hover:bg-emerald-500/20 sm:inline-flex"
+          >
+            <ListMusic className="h-4 w-4" />
+            Play All
+          </button>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="space-y-2">
           {topTracks.map((track, i) => (
             <motion.div
               key={track.id}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 10 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-              className="group"
+              transition={{ delay: i * 0.05 }}
             >
-              <div className="bg-white/[0.02] border border-white/10 rounded-2xl p-4 hover:border-white/20 transition-all">
-                <div className="flex items-center justify-between mb-3 px-2">
-                  <div>
-                    <h3 className="font-semibold text-white">{track.title}</h3>
-                    <p className="text-sm text-white/40">
-                      {track.genre?.join(' / ') || 'Mixed'}
-                      {track.plays ? ` · ${track.plays} plays` : ''}
-                    </p>
-                  </div>
-                  {track.sunoId && (
-                    <a
-                      href={`https://suno.com/song/${track.sunoId}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="p-2 rounded-full bg-white/5 hover:bg-white/10 transition-colors"
-                    >
-                      <ExternalLink className="w-4 h-4 text-white/60" />
-                    </a>
-                  )}
-                </div>
-                {track.sunoId && (
-                  <iframe
-                    src={`https://suno.com/embed/${track.sunoId}`}
-                    className="w-full aspect-[2/1] rounded-xl"
-                    frameBorder="0"
-                    allow="autoplay; clipboard-write"
-                    loading="lazy"
-                    title={track.title}
-                  />
-                )}
-              </div>
+              <TrackCard track={track} queue={topTracks} />
             </motion.div>
           ))}
         </div>
@@ -280,6 +245,8 @@ const albumIconMap: Record<string, typeof Disc3> = {
 }
 
 function AlbumsSection() {
+  const { playQueue } = usePlayer()
+
   return (
     <section className="py-20 border-t border-white/5">
       <div className="max-w-6xl mx-auto px-6">
@@ -298,7 +265,7 @@ function AlbumsSection() {
             const colors = colorMap[album.color] || colorMap.emerald
             const Icon = albumIconMap[album.color] || Disc3
             const albumTracks = getAlbumTracks(album.id)
-            const previewTracks = albumTracks.slice(0, 3)
+            const previewTracks = albumTracks.slice(0, 4)
 
             return (
               <motion.div
@@ -309,7 +276,7 @@ function AlbumsSection() {
                 transition={{ delay: i * 0.1 }}
               >
                 {/* Album Header */}
-                <div className="flex items-start justify-between mb-6">
+                <div className="flex items-start justify-between mb-4">
                   <div className="flex items-center gap-4">
                     <div className={`p-3 rounded-xl ${colors.bg} ${colors.icon}`}>
                       <Icon className="w-6 h-6" />
@@ -325,6 +292,15 @@ function AlbumsSection() {
                     </div>
                   </div>
                   <div className="flex items-center gap-3 shrink-0">
+                    {albumTracks.length > 0 && (
+                      <button
+                        onClick={() => playQueue(albumTracks)}
+                        className="hidden items-center gap-2 text-sm text-white/50 hover:text-white transition-colors sm:flex"
+                      >
+                        <Play className="w-4 h-4" />
+                        Play all
+                      </button>
+                    )}
                     {album.playlistUrl && (
                       <a
                         href={album.playlistUrl}
@@ -332,48 +308,18 @@ function AlbumsSection() {
                         rel="noopener noreferrer"
                         className="flex items-center gap-2 text-sm text-white/50 hover:text-white transition-colors"
                       >
-                        Full playlist
+                        Suno playlist
                         <ExternalLink className="w-4 h-4" />
                       </a>
                     )}
                   </div>
                 </div>
 
-                {/* Track Grid */}
+                {/* Track List */}
                 {previewTracks.length > 0 ? (
-                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  <div className="space-y-1.5">
                     {previewTracks.map((track) => (
-                      <div
-                        key={track.id}
-                        className={`rounded-xl border ${colors.border} ${colors.bg} p-3 transition-all`}
-                      >
-                        <div className="flex items-center justify-between mb-2 px-1">
-                          <div>
-                            <p className="text-sm font-medium text-white">{track.title}</p>
-                            <p className="text-xs text-white/40">{track.genre?.join(', ') || album.genre}</p>
-                          </div>
-                          {track.sunoId && (
-                            <a
-                              href={`https://suno.com/song/${track.sunoId}`}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="p-1.5 rounded-full bg-white/5 hover:bg-white/10 transition-colors"
-                            >
-                              <ExternalLink className="w-3 h-3 text-white/40" />
-                            </a>
-                          )}
-                        </div>
-                        {track.sunoId && (
-                          <iframe
-                            src={`https://suno.com/embed/${track.sunoId}`}
-                            className="w-full aspect-[16/9] rounded-lg"
-                            frameBorder="0"
-                            allow="autoplay; clipboard-write"
-                            loading="lazy"
-                            title={track.title}
-                          />
-                        )}
-                      </div>
+                      <TrackCard key={track.id} track={track} queue={albumTracks} />
                     ))}
                   </div>
                 ) : (
@@ -383,9 +329,9 @@ function AlbumsSection() {
                 )}
 
                 {/* Show remaining track count */}
-                {albumTracks.length > 3 && (
+                {albumTracks.length > 4 && (
                   <p className="mt-3 text-sm text-white/30 text-center">
-                    + {albumTracks.length - 3} more tracks in this album
+                    + {albumTracks.length - 4} more tracks in this album
                   </p>
                 )}
               </motion.div>
