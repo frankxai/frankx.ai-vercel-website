@@ -48,7 +48,7 @@ const agents = [
     icon: Bot,
     badge: 'Coming Soon',
     badgeBg: 'rgba(67,191,227,0.10)',
-    features: ['8 specialist agents', '5 LLM providers', 'BYOK or hosted', '$19/mo Vibe Club'],
+    features: ['8 specialist agents', '5 LLM providers', 'BYOK or hosted', 'Vibe Club membership'],
     cta: 'Join waitlist',
     live: false,
   },
@@ -107,7 +107,7 @@ const stats = [
   { value: '4+', label: 'Specialist agents', color: '#AB47C7' },
   { value: '9', label: 'LLM models', color: '#43BFE3' },
   { value: '12K+', label: 'Suno sessions', color: '#10B981' },
-  { value: '$19', label: 'Vibe Club / mo', color: '#F59E0B' },
+  { value: 'Club', label: 'Vibe membership', color: '#F59E0B' },
 ]
 
 export default function VibeOSContent() {
@@ -626,7 +626,7 @@ export default function VibeOSContent() {
               Your first Suno prompt is waiting.
             </h2>
             <p className="relative mb-10 text-sm leading-relaxed text-white/45">
-              10 music prompts free daily. Upgrade to Vibe Club at $19/mo for unlimited access,
+              10 music prompts free daily. Upgrade to Vibe Club for unlimited access,
               <br className="hidden sm:inline" /> multi-LLM routing, and 20 curated monthly prompts.
             </p>
 

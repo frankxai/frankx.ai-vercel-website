@@ -133,9 +133,9 @@ export default function InvestorProductCard({
         {/* Footer */}
         <div className="mt-auto flex items-center justify-between border-t border-white/5 pt-4">
           <span
-            className={`text-sm font-bold ${product.price === 0 ? 'text-emerald-400' : 'text-white'}`}
+            className={`text-xs font-medium uppercase tracking-wider ${product.price === 0 ? 'text-emerald-400' : 'text-white/40'}`}
           >
-            {product.priceLabel}
+            {product.price === 0 ? 'Free' : complexity.name}
           </span>
           <Link
             href={product.cta.href}

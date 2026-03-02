@@ -33,7 +33,7 @@ const hubSections = [
     icon: Bot,
     href: '/investor/agents',
     color: 'cyan',
-    badge: '$47+',
+    badge: 'Premium',
     stat: '5+ agents',
   },
   {
@@ -44,7 +44,7 @@ const hubSections = [
     icon: Workflow,
     href: '/investor/workflows',
     color: 'violet',
-    badge: '$37+',
+    badge: 'Plug & Play',
     stat: 'Plug & play',
   },
   {
@@ -55,7 +55,7 @@ const hubSections = [
     icon: Network,
     href: '/investor/architectures',
     color: 'emerald',
-    badge: '$297+',
+    badge: 'Enterprise',
     stat: 'Production-ready',
   },
   {
@@ -66,7 +66,7 @@ const hubSections = [
     icon: Wrench,
     href: '/investor/tools',
     color: 'amber',
-    badge: '$0+',
+    badge: 'Free Start',
     stat: 'Instant setup',
   },
 ]
@@ -235,10 +235,10 @@ const aiResearchTools = [
 ]
 
 const valueTiers = [
-  { label: 'Free', price: '$0', description: 'Starter Kit', icon: Gift, color: 'text-emerald-400' },
-  { label: 'Templates', price: '$27-47', description: 'Individual tools', icon: Wrench, color: 'text-amber-400' },
-  { label: 'Agent Packs', price: '$97-297', description: 'Multi-component', icon: Bot, color: 'text-cyan-400' },
-  { label: 'Full Systems', price: '$297-697', description: 'Complete stacks', icon: Layers, color: 'text-violet-400' },
+  { label: 'Free', price: 'Open', description: 'Starter Kit', icon: Gift, color: 'text-emerald-400' },
+  { label: 'Templates', price: 'Standard', description: 'Individual tools', icon: Wrench, color: 'text-amber-400' },
+  { label: 'Agent Packs', price: 'Premium', description: 'Multi-component', icon: Bot, color: 'text-cyan-400' },
+  { label: 'Full Systems', price: 'Enterprise', description: 'Complete stacks', icon: Layers, color: 'text-violet-400' },
 ]
 
 export default function InvestorHubPage() {

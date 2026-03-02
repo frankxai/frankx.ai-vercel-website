@@ -101,7 +101,7 @@ const faqs = [
   },
   {
     q: 'Is ACOS useful for enterprise AI development?',
-    a: 'ACOS was built from enterprise AI architecture experience. The skill system, agent architecture, and workflow patterns are production-tested. The Pro System tier ($197) includes enterprise-focused configuration guides.',
+    a: 'ACOS was built from enterprise AI architecture experience. The skill system, agent architecture, and workflow patterns are production-tested. The Pro System includes enterprise-focused configuration guides.',
   },
   {
     q: 'What cloud platforms do you cover?',

@@ -478,7 +478,7 @@ export default function V3HomePage() {
                 <Music className="h-6 w-6" aria-hidden="true" />
               </div>
               <h3 className="text-2xl font-bold text-white mb-2">Vibe OS</h3>
-              <div className="text-3xl font-bold text-purple-400 mb-4">$97</div>
+              <div className="text-sm font-semibold text-purple-400/80 uppercase tracking-wider mb-4">Premium System</div>
               <p className="text-slate-300 mb-6 leading-relaxed flex-grow">
                 Complete Suno music creation system with 500+ field-tested workflows, release planning templates, and vibrational frequency frameworks.
               </p>
@@ -524,7 +524,7 @@ export default function V3HomePage() {
                 <Sparkles className="h-6 w-6" aria-hidden="true" />
               </div>
               <h3 className="text-2xl font-bold text-white mb-2">Creative AI Toolkit</h3>
-              <div className="text-3xl font-bold text-amber-400 mb-4">$47</div>
+              <div className="text-sm font-semibold text-amber-400/80 uppercase tracking-wider mb-4">Creator Kit</div>
               <p className="text-slate-300 mb-6 leading-relaxed flex-grow">
                 AI-powered content systems for generative creators. Launch courses, newsletters, and digital products with proven templates and workflows.
               </p>

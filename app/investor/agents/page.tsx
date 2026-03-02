@@ -35,7 +35,7 @@ export default function InvestorAgentsPage() {
               <h1 className="text-3xl font-bold text-white">AI Agent Packs</h1>
               <p className="text-slate-400">
                 Autonomous research agents for investors &bull;{' '}
-                <span className="text-cyan-400">$47+</span>
+                <span className="text-cyan-400">Premium</span>
               </p>
             </div>
           </motion.div>

@@ -22,7 +22,6 @@ import {
   Workflow,
   ExternalLink,
 } from 'lucide-react'
-import CheckoutButton from '@/components/commerce/CheckoutButton'
 import { GlowCard, type GlowColor } from '@/components/ui/glow-card'
 import { GlowButton } from '@/components/ui/GlowButton'
 import templates from '@/data/templates.json'
@@ -51,21 +50,21 @@ const categoryColors: Record<string, string> = {
 const tiers = [
   {
     name: 'Starter',
-    range: '$19 – $47',
+    range: 'Single Tools',
     description: 'Individual skills and configs. Perfect for adding one capability.',
     color: 'cyan',
     filter: (t: { price: number }) => t.price <= 47,
   },
   {
     name: 'Professional',
-    range: '$47 – $97',
+    range: 'Multi-Component',
     description: 'Multi-component workflows and chat apps. Ship features in hours.',
     color: 'emerald',
     filter: (t: { price: number }) => t.price > 47 && t.price <= 97,
   },
   {
     name: 'Enterprise',
-    range: '$197 – $297',
+    range: 'Full Systems',
     description: 'Full production systems. RAG platforms, SaaS boilerplates, agent frameworks.',
     color: 'purple',
     filter: (t: { price: number }) => t.price > 97,
@@ -77,8 +76,8 @@ const tiers = [
 const stats = [
   { value: '15', label: 'Templates' },
   { value: '5', label: 'Categories' },
-  { value: '$27', label: 'Starting at' },
   { value: '100%', label: 'Source code' },
+  { value: 'Full', label: 'Commercial license' },
 ]
 
 // ── Deploy Platform Badges ──────────────────────────────────────────────────
@@ -156,15 +155,14 @@ function FeaturedCard({
             </ul>
 
             <div className="flex flex-wrap items-center gap-3">
-              <CheckoutButton
-                variantId={template.lemonSqueezy.variantId || undefined}
-                price={template.price}
-                originalPrice={template.originalPrice}
-                label="Get Template"
-                size="lg"
-              />
+              <Link
+                href="/start"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-emerald-500 text-white font-semibold hover:bg-emerald-400 transition-colors"
+              >
+                Get Template
+              </Link>
               <span className="text-xs text-white/30">
-                Includes commercial license
+                Includes commercial license · Full source code
               </span>
             </div>
           </div>
@@ -172,16 +170,11 @@ function FeaturedCard({
           {/* Right: Tech & Stats */}
           <div className="w-full rounded-xl border border-white/[0.08] bg-white/[0.03] p-5 md:w-72">
             <div className="mb-4 text-center">
-              <div className="mb-1 flex items-baseline justify-center gap-2">
-                <span className="text-4xl font-bold text-white">${template.price}</span>
-                {template.originalPrice && (
-                  <span className="text-lg text-white/30 line-through">
-                    ${template.originalPrice}
-                  </span>
-                )}
+              <div className="mb-1 text-sm font-semibold text-emerald-400 uppercase tracking-wider">
+                Premium Template
               </div>
-              <span className="text-xs text-emerald-400">
-                Save ${(template.originalPrice || template.price) - template.price}
+              <span className="text-xs text-white/40">
+                Pricing at checkout
               </span>
             </div>
 
@@ -290,19 +283,15 @@ function TemplateCard({
 
       {/* Footer */}
       <div className="mt-auto flex items-center justify-between border-t border-white/[0.06] px-5 py-4">
-        <div className="flex items-baseline gap-2">
-          <span className="text-2xl font-bold text-white">${template.price}</span>
-          {template.originalPrice && (
-            <span className="text-sm text-white/30 line-through">${template.originalPrice}</span>
-          )}
-        </div>
-        <CheckoutButton
-          variantId={template.lemonSqueezy.variantId || undefined}
-          price={template.price}
-          originalPrice={template.originalPrice}
-          label="Get"
-          size="sm"
-        />
+        <span className="text-xs text-white/30 font-medium uppercase tracking-wider">
+          {categoryLabels[template.category] || template.category}
+        </span>
+        <Link
+          href="/start"
+          className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg bg-white/[0.06] border border-white/[0.08] text-white/70 hover:text-white hover:border-cyan-500/30 transition-all text-sm font-medium"
+        >
+          Explore
+        </Link>
       </div>
     </motion.div>
   )

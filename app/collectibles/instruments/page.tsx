@@ -4,7 +4,6 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Music, Shield, Eye } from 'lucide-react'
-import CheckoutButton from '@/components/commerce/CheckoutButton'
 
 const prints = [
   {
@@ -70,8 +69,6 @@ const prints = [
 ]
 
 export default function InstrumentPrintsPage() {
-  const totalPrice = prints.reduce((sum, p) => sum + p.price, 0)
-
   return (
     <div className="min-h-screen bg-[#0a0a0b]">
       {/* Hero */}
@@ -126,17 +123,18 @@ export default function InstrumentPrintsPage() {
               </div>
             </div>
 
-            {/* Bundle CTA */}
+            {/* Collection CTA */}
             <div className="inline-flex items-center gap-4 p-4 rounded-2xl bg-white/[0.03] border border-white/[0.08]">
               <div className="text-left">
                 <div className="text-sm text-white/40">Complete Collection (6 prints)</div>
-                <div className="flex items-baseline gap-2">
-                  <span className="text-2xl font-bold text-white">${Math.round(totalPrice * 0.7)}</span>
-                  <span className="text-sm text-white/30 line-through">${totalPrice}</span>
-                  <span className="text-xs text-emerald-400 font-medium">Save 30%</span>
-                </div>
+                <div className="text-lg font-semibold text-white">Bundle available at checkout</div>
               </div>
-              <CheckoutButton price={Math.round(totalPrice * 0.7)} label="Get Bundle" size="md" />
+              <Link
+                href="/start"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-cyan-500 text-white font-semibold hover:bg-cyan-400 transition-colors text-sm"
+              >
+                Reserve Prints
+              </Link>
             </div>
           </motion.div>
         </div>
@@ -191,15 +189,15 @@ export default function InstrumentPrintsPage() {
                   {print.details}
                 </p>
 
-                {/* Purchase row */}
+                {/* Action row */}
                 <div className="flex items-center justify-between">
-                  <div className="flex items-baseline gap-2">
-                    <span className="text-2xl font-bold text-white">${print.price}</span>
-                    {print.originalPrice && (
-                      <span className="text-sm text-white/30 line-through">${print.originalPrice}</span>
-                    )}
-                  </div>
-                  <CheckoutButton price={print.price} label="Get Print" size="sm" />
+                  <span className="text-sm text-white/40 font-medium">{print.edition}</span>
+                  <Link
+                    href="/start"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-white/[0.06] border border-white/[0.08] text-white/70 hover:text-white hover:border-cyan-500/30 transition-all text-sm font-medium"
+                  >
+                    Reserve Print
+                  </Link>
                 </div>
               </div>
             </motion.div>

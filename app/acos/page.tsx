@@ -93,8 +93,8 @@ const tiers = [
   },
   {
     name: 'Creator Kit',
-    price: '$47',
-    priceNote: 'One-time',
+    price: 'Premium',
+    priceNote: 'Lifetime access',
     description: 'Everything open-source + premium templates, video walkthroughs, and direct support.',
     features: [
       'Everything in Open Source',
@@ -111,8 +111,8 @@ const tiers = [
   },
   {
     name: 'Pro System',
-    price: '$197',
-    priceNote: 'One-time',
+    price: 'Elite',
+    priceNote: 'Lifetime access',
     description: 'Full ACOS mastery. Deep-dive setup, custom configurations, quarterly updates, and 1:1 support.',
     features: [
       'Everything in Creator Kit',
@@ -433,7 +433,7 @@ export default function ACOSPage() {
               View on GitHub
             </PremiumButton>
             <PremiumButton variant="primary" size="lg" href={CHECKOUT.starter} target="_blank" rel="noopener noreferrer">
-              Get Creator Kit — $47
+              Get Creator Kit
             </PremiumButton>
           </div>
         </div>

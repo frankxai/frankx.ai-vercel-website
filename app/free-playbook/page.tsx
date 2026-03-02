@@ -55,7 +55,7 @@ const playbooks = [
     icon: Music,
     color: 'emerald',
     pages: '15+',
-    value: '$47',
+    value: 'Premium',
     includes: [
       'Genre-specific prompt templates',
       'Structure tags reference guide',
@@ -71,7 +71,7 @@ const playbooks = [
     icon: FileText,
     color: 'cyan',
     pages: '20+',
-    value: '$37',
+    value: 'Premium',
     includes: [
       'Writing & content prompts',
       'Coding & development prompts',
@@ -87,7 +87,7 @@ const playbooks = [
     icon: Zap,
     color: 'violet',
     pages: '12+',
-    value: '$27',
+    value: 'Premium',
     includes: [
       'CLAUDE.md configuration guide',
       'Multi-file editing patterns',
@@ -179,8 +179,8 @@ export default function FreePlaybookPage() {
 
             <p className="mx-auto max-w-2xl text-lg text-slate-400 mb-8">
               Three battle-tested playbooks from 12,000+ AI songs and years of Claude Code mastery.
-              Normally <span className="text-white font-semibold line-through">$111</span> total value.
-              <span className="text-emerald-400 font-semibold"> Free today.</span>
+              Three premium playbooks.
+              <span className="text-emerald-400 font-semibold"> Yours free.</span>
             </p>
 
             {/* Email Capture */}

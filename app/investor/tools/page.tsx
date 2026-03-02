@@ -35,7 +35,7 @@ export default function InvestorToolsPage() {
               <h1 className="text-3xl font-bold text-white">Tools & Templates</h1>
               <p className="text-slate-400">
                 Notion, Obsidian, Claude Code & workspace configs &bull;{' '}
-                <span className="text-amber-400">$0+</span>
+                <span className="text-amber-400">Free + Premium</span>
               </p>
             </div>
           </motion.div>

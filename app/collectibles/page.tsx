@@ -13,7 +13,7 @@ const collections = [
     href: '/collectibles/trading-cards',
     icon: Hexagon,
     count: 40,
-    priceRange: '$5 – $47',
+    priceRange: '40 Cards',
     accent: 'from-purple-500/15 to-amber-500/15',
     border: 'border-purple-500/30',
     stats: [
@@ -32,7 +32,7 @@ const collections = [
     href: '/collectibles/instruments',
     icon: Music,
     count: 6,
-    priceRange: '$27 – $97',
+    priceRange: 'Limited Edition',
     accent: 'from-cyan-500/15 to-emerald-500/15',
     border: 'border-cyan-500/30',
     stats: [
@@ -49,7 +49,7 @@ const collections = [
     href: '/shop',
     icon: Layers,
     count: 100,
-    priceRange: '$47/pack',
+    priceRange: 'Weekly Drops',
     accent: 'from-amber-500/15 to-orange-500/15',
     border: 'border-amber-500/30',
     stats: [

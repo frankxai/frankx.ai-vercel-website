@@ -577,7 +577,7 @@ const products = [
   },
   {
     title: 'Creator Kit',
-    description: 'Premium templates, video guides, and direct support for ACOS. From $47.',
+    description: 'Premium templates, video guides, and direct support for serious ACOS builders.',
     href: '/products',
   },
 ]

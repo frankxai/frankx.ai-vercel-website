@@ -35,7 +35,7 @@ export default function InvestorArchitecturesPage() {
               <h1 className="text-3xl font-bold text-white">System Architectures</h1>
               <p className="text-slate-400">
                 Full-stack intelligence blueprints &bull;{' '}
-                <span className="text-emerald-400">$297+</span>
+                <span className="text-emerald-400">Enterprise</span>
               </p>
             </div>
           </motion.div>

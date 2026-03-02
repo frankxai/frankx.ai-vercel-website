@@ -17,7 +17,7 @@ const sections = [
     border: 'border-cyan-500/30',
     icon: Layers,
     badge: 'New',
-    priceRange: '$19 – $297',
+    priceRange: 'Starter → Enterprise',
   },
   {
     id: 'auctions',
@@ -30,7 +30,7 @@ const sections = [
     border: 'border-amber-500/30',
     icon: Gavel,
     badge: 'Live',
-    priceRange: '$47 – $1,997',
+    priceRange: 'Limited editions',
   },
   {
     id: 'collectibles',
@@ -43,7 +43,7 @@ const sections = [
     border: 'border-purple-500/30',
     icon: Sparkles,
     badge: 'Genesis Set',
-    priceRange: '$5 – $497',
+    priceRange: 'Digital + Physical',
   },
   {
     id: 'products',
@@ -55,7 +55,7 @@ const sections = [
     accent: 'from-emerald-500/20 to-teal-500/20',
     border: 'border-emerald-500/30',
     icon: ShoppingBag,
-    priceRange: 'Free – $997',
+    priceRange: 'Free → Premium',
   },
 ]
 

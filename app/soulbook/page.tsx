@@ -8,7 +8,7 @@ import PillarVisualizer from '@/components/soulbook/PillarVisualizer'
 import PremiumButton from '@/components/ui/PremiumButton'
 import { GlowCard } from '@/components/ui/glow-card'
 import JsonLd from '@/components/seo/JsonLd'
-import { philosophyStatements, pricingTiers } from '@/lib/soulbook/soulbook-data'
+import { philosophyStatements } from '@/lib/soulbook/soulbook-data'
 
 const websiteSchema = {
   name: 'Soulbook',
@@ -70,86 +70,53 @@ function PhilosophySection() {
   )
 }
 
-function PricingSection() {
+function ExclusiveAccessSection() {
   return (
     <section className="py-24 px-6 relative">
       <div className="absolute inset-0 bg-gradient-to-b from-black via-midnight-950 to-black" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-amber-900/10 via-transparent to-transparent" />
 
-      <div className="relative z-10 max-w-7xl mx-auto">
-        <div className="text-center mb-16">
+      <div className="relative z-10 max-w-4xl mx-auto text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+        >
           <h2 className="font-serif text-4xl md:text-5xl font-bold mb-4">
             <span className="bg-gradient-to-r from-amber-200 via-yellow-400 to-amber-500 bg-clip-text text-transparent">
-              Investment Options
+              Begin Your Journey
             </span>
           </h2>
-          <p className="text-xl text-white/70 max-w-2xl mx-auto">
-            Choose the level of transformation that resonates with your journey.
+          <p className="text-xl text-white/70 max-w-2xl mx-auto mb-8">
+            Soulbook is a premium, guided experience. Explore the pillars above for free —
+            when you&apos;re ready for the full transformation, request access below.
           </p>
-        </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {pricingTiers.map((tier, i) => (
-            <motion.div
-              key={tier.name}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
-            >
-              <GlowCard
-                color={tier.popular ? 'cyan' : 'violet'}
-                className="h-full p-6 flex flex-col"
-              >
-                {tier.popular && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-gradient-to-r from-amber-500 to-orange-500 text-xs font-semibold text-white">
-                    Most Popular
-                  </div>
-                )}
-
-                <h3 className="text-xl font-bold text-white mb-2">{tier.name}</h3>
-                <p className="text-white/60 text-sm mb-4">{tier.description}</p>
-
-                <div className="mt-auto mb-6">
-                  <span className="text-4xl font-bold text-white">${tier.price}</span>
-                </div>
-
-                <ul className="space-y-3 mb-6 flex-grow">
-                  {tier.features.map((feature, j) => (
-                    <li key={j} className="flex items-start gap-2 text-sm text-white/60">
-                      <svg className="w-4 h-4 text-green-400 mt-0.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-
-                <PremiumButton
-                  variant={tier.popular ? 'luxury' : 'primary'}
-                  size="lg"
-                  className="w-full"
-                  glow={tier.popular}
-                >
-                  {tier.cta}
-                </PremiumButton>
+          <div className="grid sm:grid-cols-3 gap-6 mb-12">
+            {[
+              { label: 'Free Preview', desc: 'Explore all 7 pillars and core philosophy' },
+              { label: 'Guided Journey', desc: 'Structured programs with exercises and reflection' },
+              { label: 'Full Transformation', desc: 'Complete system with coaching integration' },
+            ].map((tier) => (
+              <GlowCard key={tier.label} color="violet" className="p-6 text-center">
+                <h3 className="text-lg font-bold text-white mb-2">{tier.label}</h3>
+                <p className="text-white/50 text-sm">{tier.desc}</p>
               </GlowCard>
-            </motion.div>
-          ))}
-        </div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="mt-12 text-center"
-        >
-          <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-green-500/10 border border-green-500/20">
-            <svg className="w-5 h-5 text-green-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-            </svg>
-            <span className="text-green-300 text-sm font-medium">30-Day Money-Back Guarantee</span>
+            ))}
           </div>
+
+          <PremiumButton
+            variant="luxury"
+            size="xl"
+            glow
+            href="/start"
+          >
+            Request Access
+          </PremiumButton>
+
+          <p className="mt-6 text-white/30 text-sm">
+            Limited availability. Application reviewed within 48 hours.
+          </p>
         </motion.div>
       </div>
     </section>
@@ -239,7 +206,7 @@ export default function SoulbookPage() {
       <LifeBookSelector />
       <PillarVisualizer />
       <PhilosophySection />
-      <PricingSection />
+      <ExclusiveAccessSection />
       <AssessmentCTA />
       <FooterSection />
     </main>

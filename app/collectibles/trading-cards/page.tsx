@@ -5,7 +5,6 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { Sparkles, Filter } from 'lucide-react'
 import TradingCard from '@/components/collectibles/TradingCard'
-import CheckoutButton from '@/components/commerce/CheckoutButton'
 import cardData from '@/data/trading-cards.json'
 
 const rarityFilters = ['All', 'common', 'uncommon', 'rare', 'legendary'] as const
@@ -37,8 +36,6 @@ export default function TradingCardsPage() {
       return matchRarity && matchCollection
     })
   }, [rarity, collection])
-
-  const pricing = cardData.collection.pricing
 
   return (
     <div className="min-h-screen bg-[#0a0a0b]">
@@ -79,10 +76,15 @@ export default function TradingCardsPage() {
               ecosystem with stats, lore, and rarity tiers. Click any card to flip and reveal its story.
             </p>
 
-            {/* Bundle pricing */}
+            {/* Collection CTAs */}
             <div className="flex flex-wrap items-center gap-4">
-              <CheckoutButton price={pricing.completeSetDigital} label="Complete Set (Digital)" size="md" />
-              <CheckoutButton price={pricing.boosterPackDigital} label={`Booster Pack (${pricing.boosterPackCards} cards)`} size="md" />
+              <Link
+                href="#cards"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-purple-500 text-white font-semibold hover:bg-purple-400 transition-colors"
+              >
+                Browse Collection
+              </Link>
+              <span className="text-sm text-white/30">40 cards across 4 rarity tiers</span>
             </div>
           </motion.div>
         </div>
@@ -146,8 +148,7 @@ export default function TradingCardsPage() {
             >
               <TradingCard
                 card={card as any}
-                showPrice
-                price={pricing.digital[card.rarity as keyof typeof pricing.digital]}
+                showPrice={false}
               />
             </motion.div>
           ))}
@@ -166,48 +167,25 @@ export default function TradingCardsPage() {
         )}
       </section>
 
-      {/* Set info */}
+      {/* Collection Info */}
       <section className="max-w-4xl mx-auto px-6 pb-24">
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-8"
+          className="rounded-2xl border border-white/[0.06] bg-white/[0.02] p-8 text-center"
         >
-          <h2 className="text-2xl font-bold text-white mb-6 text-center">Set Pricing</h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            <div>
-              <h3 className="text-sm font-semibold text-white/60 uppercase tracking-wider mb-4">Individual Cards</h3>
-              <div className="space-y-2">
-                {(['common', 'uncommon', 'rare', 'legendary'] as const).map(r => (
-                  <div key={r} className="flex items-center justify-between">
-                    <span className="text-sm text-white/50 capitalize">{r}</span>
-                    <div className="flex items-center gap-4 text-sm">
-                      <span className="text-white/70">${pricing.digital[r]} digital</span>
-                      <span className="text-white/40">${pricing.physical[r]} physical</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-            <div>
-              <h3 className="text-sm font-semibold text-white/60 uppercase tracking-wider mb-4">Bundles</h3>
-              <div className="space-y-3">
-                <div className="flex items-center justify-between p-3 rounded-lg bg-white/[0.03] border border-white/[0.06]">
-                  <span className="text-sm text-white/70">Complete Set (Digital)</span>
-                  <span className="text-lg font-bold text-white">${pricing.completeSetDigital}</span>
-                </div>
-                <div className="flex items-center justify-between p-3 rounded-lg bg-white/[0.03] border border-white/[0.06]">
-                  <span className="text-sm text-white/70">Complete Set (Physical)</span>
-                  <span className="text-lg font-bold text-white">${pricing.completeSetPhysical}</span>
-                </div>
-                <div className="flex items-center justify-between p-3 rounded-lg bg-white/[0.03] border border-white/[0.06]">
-                  <span className="text-sm text-white/70">Booster Pack ({pricing.boosterPackCards} cards)</span>
-                  <span className="text-lg font-bold text-white">${pricing.boosterPackDigital}</span>
-                </div>
-              </div>
-            </div>
-          </div>
+          <h2 className="text-2xl font-bold text-white mb-4">Collect the Full Set</h2>
+          <p className="text-white/50 mb-6 max-w-lg mx-auto">
+            Individual cards, booster packs, and complete set bundles available in digital and physical formats.
+            Pricing revealed at checkout.
+          </p>
+          <Link
+            href="/start"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-purple-500 text-white font-semibold hover:bg-purple-400 transition-colors"
+          >
+            Get Early Access
+          </Link>
         </motion.div>
       </section>
     </div>

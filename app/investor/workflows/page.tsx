@@ -35,7 +35,7 @@ export default function InvestorWorkflowsPage() {
               <h1 className="text-3xl font-bold text-white">Workflow Templates</h1>
               <p className="text-slate-400">
                 n8n automation pipelines for investors &bull;{' '}
-                <span className="text-violet-400">$37+</span>
+                <span className="text-violet-400">Premium</span>
               </p>
             </div>
           </motion.div>

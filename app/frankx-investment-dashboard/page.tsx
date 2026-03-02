@@ -400,19 +400,19 @@ export default function InvestorDashboardPage() {
                 batch: 'Batch 1 — Launch',
                 status: 'In Progress',
                 statusColor: 'text-amber-400',
-                products: ['Investor Starter Kit (Free)', 'IACOS v1.0 ($297+)', 'Market Research Prompts ($47)', 'Deal Flow CRM ($27)'],
+                products: ['Investor Starter Kit (Free)', 'IACOS v1.0 (Premium)', 'Market Research Prompts', 'Deal Flow CRM'],
               },
               {
                 batch: 'Batch 2 — Agents',
                 status: 'Next Sprint',
                 statusColor: 'text-slate-400',
-                products: ['DD Agent Pack ($197)', 'n8n Deal Sourcing ($37)', 'Stock Research Agent ($97)'],
+                products: ['DD Agent Pack (Premium)', 'n8n Deal Sourcing', 'Stock Research Agent'],
               },
               {
                 batch: 'Batch 3 — Systems',
                 status: 'Planned',
                 statusColor: 'text-slate-500',
-                products: ['LP Reporting ($297)', 'Competitive Intel ($97)', 'Intelligence Platform ($497)'],
+                products: ['LP Reporting (Enterprise)', 'Competitive Intel', 'Intelligence Platform'],
               },
               {
                 batch: 'Batch 4 — Scale',
