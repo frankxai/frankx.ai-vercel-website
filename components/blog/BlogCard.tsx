@@ -34,7 +34,7 @@ export default function BlogCard({ post, featured = false, className }: BlogCard
       ref={cardRef}
       onPointerMove={handlers.onPointerMove}
       onPointerLeave={handlers.onPointerLeave}
-      onTouchMove={handlers.onTouchMove as any}
+      onTouchMove={handlers.onTouchMove}
       onTouchEnd={handlers.onTouchEnd}
       className={cn(
         // Liquid glass base

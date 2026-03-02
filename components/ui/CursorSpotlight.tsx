@@ -1,36 +1,42 @@
 'use client'
 
-import { motion, useReducedMotion } from 'framer-motion'
-import { useState, useEffect } from 'react'
+import { useRef, useEffect, useCallback } from 'react'
 
 /**
- * Cursor-following spotlight effect
- * Creates a subtle glow that follows the mouse
+ * Global cursor-following spotlight overlay.
+ *
+ * Uses direct DOM mutations (no React state) to avoid 60fps re-renders.
+ * Desktop only (hidden on mobile via CSS). Respects prefers-reduced-motion.
  */
 export function CursorSpotlight() {
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
-  const shouldReduceMotion = useReducedMotion()
+  const spotRef = useRef<HTMLDivElement>(null)
+  const rafId = useRef<number>(0)
+
+  const handlePointerMove = useCallback((e: PointerEvent) => {
+    cancelAnimationFrame(rafId.current)
+    rafId.current = requestAnimationFrame(() => {
+      if (!spotRef.current) return
+      spotRef.current.style.background = `radial-gradient(600px circle at ${e.clientX}px ${e.clientY}px, rgba(6, 182, 212, 0.06), transparent 80%)`
+    })
+  }, [])
 
   useEffect(() => {
-    if (shouldReduceMotion) return
+    // Respect prefers-reduced-motion
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
+    if (mq.matches) return
 
-    const handleMouseMove = (e: MouseEvent) => {
-      setMousePos({ x: e.clientX, y: e.clientY })
+    window.addEventListener('pointermove', handlePointerMove, { passive: true })
+    return () => {
+      cancelAnimationFrame(rafId.current)
+      window.removeEventListener('pointermove', handlePointerMove)
     }
-
-    window.addEventListener('mousemove', handleMouseMove, { passive: true })
-    return () => window.removeEventListener('mousemove', handleMouseMove)
-  }, [shouldReduceMotion])
-
-  if (shouldReduceMotion) return null
+  }, [handlePointerMove])
 
   return (
-    <motion.div
+    <div
+      ref={spotRef}
       className="pointer-events-none fixed inset-0 z-30 hidden lg:block"
-      animate={{
-        background: `radial-gradient(600px circle at ${mousePos.x}px ${mousePos.y}px, rgba(6, 182, 212, 0.08), transparent 80%)`
-      }}
-      transition={{ type: 'tween', ease: 'linear', duration: 0.15 }}
+      aria-hidden="true"
     />
   )
 }

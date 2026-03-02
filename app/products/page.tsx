@@ -23,6 +23,7 @@ import {
 import Image from 'next/image'
 import { trackEvent } from '@/lib/analytics'
 import { EmailSignup } from '@/components/email-signup'
+import { GlowCard, type GlowColor } from '@/components/ui/glow-card'
 
 // Product characters removed — mascot-first strategy (Feb 21)
 
@@ -378,14 +379,7 @@ export default function ProductsPage() {
                     transition={{ duration: 0.5, delay: 0.2 + index * 0.1 }}
                     className={product.featured ? 'md:col-span-2 lg:col-span-1' : ''}
                   >
-                    <div className="group block h-full">
-                      <div
-                        className={`relative flex h-full flex-col overflow-hidden rounded-3xl border ${colors.border} ${colors.bg} p-8 backdrop-blur-xl transition-all duration-300 ${
-                          isActive
-                            ? 'cursor-pointer group-hover:-translate-y-1'
-                            : ''
-                        } ${colors.glow}`}
-                      >
+                    <GlowCard color={product.color as GlowColor} className={`p-8 h-full flex flex-col ${isActive ? 'cursor-pointer hover:-translate-y-1' : ''}`}>
                         {/* Featured badge */}
                         {product.featured && (
                           <div className="absolute right-6 top-6">
@@ -467,8 +461,7 @@ export default function ProductsPage() {
                             </button>
                           )}
                         </div>
-                      </div>
-                    </div>
+                    </GlowCard>
                   </motion.div>
                 )
               })}
@@ -553,7 +546,7 @@ export default function ProductsPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.1 }}
-                    className="p-6 rounded-3xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-sm hover:border-white/15 transition-all duration-300"
+                    className="p-6 rounded-3xl"
                   >
                     <div className={`w-12 h-12 rounded-xl ${colorClasses[item.color]} flex items-center justify-center mb-4`}>
                       <item.icon className="w-6 h-6" />

@@ -82,9 +82,9 @@ export default function ShimmerCard({
   return (
     <div
       ref={cardRef}
-      onPointerMove={showGlow ? (handlers.onPointerMove as any) : undefined}
-      onPointerLeave={showGlow ? (handlers.onPointerLeave as any) : undefined}
-      onTouchMove={showGlow ? (handlers.onTouchMove as any) : undefined}
+      onPointerMove={showGlow ? handlers.onPointerMove : undefined}
+      onPointerLeave={showGlow ? handlers.onPointerLeave : undefined}
+      onTouchMove={showGlow ? handlers.onTouchMove : undefined}
       onTouchEnd={showGlow ? handlers.onTouchEnd : undefined}
       className={cn(
         'relative',

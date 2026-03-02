@@ -100,7 +100,7 @@ export function GlowButton({
     const isExternal = href.startsWith('http')
 
     return (
-      <motion.div ref={containerRef} {...motionProps} {...(pointerHandlers as any)} className="inline-block">
+      <motion.div ref={containerRef} {...motionProps} {...pointerHandlers} className="inline-block">
         {isExternal ? (
           <a href={href} target={target || '_blank'} rel={rel || 'noopener noreferrer'} className={sharedClasses} onClick={onClick}>
             {glowOverlay}
@@ -124,10 +124,8 @@ export function GlowButton({
       onClick={onClick}
       disabled={disabled}
       className={sharedClasses}
-      onPointerMove={shouldReduceMotion ? undefined : (handlers.onPointerMove as any)}
-      onPointerLeave={shouldReduceMotion ? undefined : (handlers.onPointerLeave as any)}
-      onTouchMove={shouldReduceMotion ? undefined : (handlers.onTouchMove as any)}
-      onTouchEnd={shouldReduceMotion ? undefined : handlers.onTouchEnd}
+      onPointerMove={shouldReduceMotion ? undefined : (handlers.onPointerMove as unknown as React.PointerEventHandler<HTMLButtonElement>)}
+      onPointerLeave={shouldReduceMotion ? undefined : handlers.onPointerLeave}
       {...motionProps}
     >
       {glowOverlay}

@@ -18,6 +18,7 @@ import {
   Check,
 } from 'lucide-react'
 import { EmailSignup } from '@/components/email-signup'
+import { GlowCard } from '@/components/ui/glow-card'
 
 // ── Data ──
 
@@ -213,7 +214,10 @@ export default function CommunityPage() {
 
               return (
                 <motion.div key={space.title} variants={itemVariants}>
-                  <div className="group h-full rounded-2xl border border-white/10 bg-white/[0.03] p-8 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-[#AB47C7]/10">
+                  <GlowCard
+                    color={space.color === '#AB47C7' ? 'violet' : space.color === '#43BFE3' ? 'cyan' : space.color === '#F59E0B' ? 'amber' : 'emerald'}
+                    className="p-8 h-full"
+                  >
                     <div className="mb-4 flex items-start justify-between">
                       <div
                         className={`flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${space.gradient} transition-transform duration-500 group-hover:scale-110`}
@@ -244,7 +248,7 @@ export default function CommunityPage() {
                         <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                       </Link>
                     )}
-                  </div>
+                  </GlowCard>
                 </motion.div>
               )
             })}
@@ -271,7 +275,10 @@ export default function CommunityPage() {
               const Icon = feature.icon
               return (
                 <motion.div key={feature.title} variants={itemVariants}>
-                  <div className="group h-full rounded-2xl border border-white/10 bg-white/[0.03] p-8 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-[#AB47C7]/10">
+                  <GlowCard
+                    color={feature.color === '#43BFE3' ? 'cyan' : feature.color === '#AB47C7' ? 'violet' : feature.color === '#F59E0B' ? 'amber' : 'emerald'}
+                    className="p-8 h-full"
+                  >
                     <div
                       className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl"
                       style={{ backgroundColor: `${feature.color}20` }}
@@ -280,7 +287,7 @@ export default function CommunityPage() {
                     </div>
                     <h3 className="mb-3 text-xl font-bold">{feature.title}</h3>
                     <p className="leading-relaxed text-slate-400">{feature.description}</p>
-                  </div>
+                  </GlowCard>
                 </motion.div>
               )
             })}
@@ -358,7 +365,7 @@ export default function CommunityPage() {
           variants={containerVariants}
         >
           <motion.div variants={itemVariants}>
-            <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] p-12 text-center backdrop-blur-md">
+            <GlowCard color="violet" className="relative overflow-hidden p-12 text-center">
               <motion.div
                 className="absolute inset-0 bg-gradient-to-r from-[#AB47C7]/10 via-[#43BFE3]/10 to-[#F59E0B]/10"
                 animate={{ opacity: [0.3, 0.6, 0.3] }}
@@ -387,7 +394,7 @@ export default function CommunityPage() {
                   No spam. Unsubscribe anytime. Weekly insights for serious builders.
                 </p>
               </div>
-            </div>
+            </GlowCard>
           </motion.div>
         </motion.section>
       </div>

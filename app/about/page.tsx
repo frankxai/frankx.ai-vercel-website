@@ -17,6 +17,7 @@ import {
 } from 'lucide-react'
 import { FAQPageJsonLd } from '@/components/seo/JsonLd'
 import { EmailSignup } from '@/components/email-signup'
+import { GlowCard } from '@/components/ui/glow-card'
 
 const aboutFaqs = [
   {
@@ -225,17 +226,18 @@ export default function AboutPage() {
               <motion.div
                 {...fadeIn}
                 transition={{ ...transition, delay: 0.2 }}
-                className="rounded-3xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-sm p-8"
               >
-                <p className="text-lg text-white/70 leading-relaxed italic font-serif">
-                  &ldquo;My family has been building in foreign lands for
-                  generations. We&apos;ve never stopped. We&apos;ve just upgraded
-                  the medium.&rdquo;
-                </p>
-                <p className="mt-4 text-sm text-white/30">
-                  — From Germany to Russia to Kazakhstan to Amsterdam. Explorer
-                  blood, not tourist behavior.
-                </p>
+                <GlowCard color="violet" className="p-8">
+                  <p className="text-lg text-white/70 leading-relaxed italic font-serif">
+                    &ldquo;My family has been building in foreign lands for
+                    generations. We&apos;ve never stopped. We&apos;ve just upgraded
+                    the medium.&rdquo;
+                  </p>
+                  <p className="mt-4 text-sm text-white/30">
+                    — From Germany to Russia to Kazakhstan to Amsterdam. Explorer
+                    blood, not tourist behavior.
+                  </p>
+                </GlowCard>
               </motion.div>
             </div>
           </div>
@@ -280,15 +282,16 @@ export default function AboutPage() {
                   key={item.place}
                   {...fadeIn}
                   transition={{ ...transition, delay: i * 0.08 }}
-                  className="rounded-3xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-sm p-6 hover:border-cyan-500/30 hover:bg-white/[0.05] transition-all duration-300"
                 >
-                  <item.icon className="w-5 h-5 text-cyan-400/60 mb-3" />
-                  <h3 className="text-base font-semibold text-white mb-1">
-                    {item.place}
-                  </h3>
-                  <p className="text-sm text-white/40 leading-relaxed">
-                    {item.detail}
-                  </p>
+                  <GlowCard color="cyan" className="p-6 h-full">
+                    <item.icon className="w-5 h-5 text-cyan-400/60 mb-3" />
+                    <h3 className="text-base font-semibold text-white mb-1">
+                      {item.place}
+                    </h3>
+                    <p className="text-sm text-white/40 leading-relaxed">
+                      {item.detail}
+                    </p>
+                  </GlowCard>
                 </motion.div>
               ))}
             </div>
@@ -309,56 +312,60 @@ export default function AboutPage() {
               <motion.div
                 {...fadeIn}
                 transition={{ ...transition, delay: 0.1 }}
-                className="rounded-3xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-sm p-8 hover:border-emerald-500/30 transition-all duration-300"
               >
-                <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 flex items-center justify-center mb-5">
-                  <Code className="w-6 h-6 text-emerald-400" />
-                </div>
-                <h3 className="text-xl font-bold text-white mb-3">
-                  By day — Enterprise AI
-                </h3>
-                <p className="text-white/50 leading-relaxed">
-                  4+ years architecting production AI systems for global
-                  organizations. 500+ customer implementations. Multi-cloud
-                  infrastructure, RAG architectures, agentic workflows, multi-agent
-                  orchestration. The systems I build handle real scale.
-                </p>
+                <GlowCard color="emerald" className="p-8 h-full">
+                  <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 flex items-center justify-center mb-5">
+                    <Code className="w-6 h-6 text-emerald-400" />
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-3">
+                    By day — Enterprise AI
+                  </h3>
+                  <p className="text-white/50 leading-relaxed">
+                    4+ years architecting production AI systems for global
+                    organizations. 500+ customer implementations. Multi-cloud
+                    infrastructure, RAG architectures, agentic workflows, multi-agent
+                    orchestration. The systems I build handle real scale.
+                  </p>
+                </GlowCard>
               </motion.div>
 
               <motion.div
                 {...fadeIn}
                 transition={{ ...transition, delay: 0.2 }}
-                className="rounded-3xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-sm p-8 hover:border-cyan-500/30 transition-all duration-300"
               >
-                <div className="w-12 h-12 rounded-2xl bg-cyan-500/10 flex items-center justify-center mb-5">
-                  <Music className="w-6 h-6 text-cyan-400" />
-                </div>
-                <h3 className="text-xl font-bold text-white mb-3">
-                  By night — Music & creation
-                </h3>
-                <p className="text-white/50 leading-relaxed">
-                  12,000+ AI-generated songs with Suno. Not casual experiments — a
-                  deliberate practice of exploring what happens when humans and AI
-                  create together. Ambient, electronic, cinematic, healing. Creation
-                  Season starts at midnight.
-                </p>
+                <GlowCard color="cyan" className="p-8 h-full">
+                  <div className="w-12 h-12 rounded-2xl bg-cyan-500/10 flex items-center justify-center mb-5">
+                    <Music className="w-6 h-6 text-cyan-400" />
+                  </div>
+                  <h3 className="text-xl font-bold text-white mb-3">
+                    By night — Music & creation
+                  </h3>
+                  <p className="text-white/50 leading-relaxed">
+                    12,000+ AI-generated songs with Suno. Not casual experiments — a
+                    deliberate practice of exploring what happens when humans and AI
+                    create together. Ambient, electronic, cinematic, healing. Creation
+                    Season starts at midnight.
+                  </p>
+                </GlowCard>
               </motion.div>
             </div>
 
             <motion.div
               {...fadeIn}
               transition={{ ...transition, delay: 0.3 }}
-              className="mt-6 rounded-3xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-sm p-8 hover:border-violet-500/30 transition-all duration-300"
+              className="mt-6"
             >
-              <h3 className="text-xl font-bold text-white mb-3">
-                The bridge between both worlds
-              </h3>
-              <p className="text-white/50 leading-relaxed max-w-3xl">
-                The Agentic Creator OS. 75+ skills, 38 specialist agents,
-                35+ commands — enterprise patterns made accessible to every creator.
-                The same rigor I use to build production AI systems, applied to
-                creative workflows. Open source on GitHub. Free to use.
-              </p>
+              <GlowCard color="violet" className="p-8">
+                <h3 className="text-xl font-bold text-white mb-3">
+                  The bridge between both worlds
+                </h3>
+                <p className="text-white/50 leading-relaxed max-w-3xl">
+                  The Agentic Creator OS. 75+ skills, 38 specialist agents,
+                  35+ commands — enterprise patterns made accessible to every creator.
+                  The same rigor I use to build production AI systems, applied to
+                  creative workflows. Open source on GitHub. Free to use.
+                </p>
+              </GlowCard>
             </motion.div>
           </div>
         </section>
@@ -391,28 +398,32 @@ export default function AboutPage() {
                   key={char.name}
                   {...fadeIn}
                   transition={{ ...transition, delay: i * 0.05 }}
-                  className="group relative overflow-hidden rounded-3xl border border-white/[0.08] bg-white/[0.03] transition-all hover:border-white/15 hover:bg-white/[0.05]"
                 >
-                  <div className="relative aspect-square overflow-hidden">
-                    <Image
-                      src={char.src}
-                      alt={char.name}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                      sizes="(max-width: 640px) 33vw, 200px"
+                  <GlowCard
+                    color={char.accent === '#10B981' ? 'emerald' : char.accent === '#EC4899' ? 'rose' : char.accent === '#F59E0B' ? 'amber' : char.accent === '#8B5CF6' ? 'violet' : char.accent === '#EF4444' ? 'rose' : char.accent === '#43BFE3' ? 'cyan' : char.accent === '#6366F1' ? 'indigo' : char.accent === '#14B8A6' ? 'teal' : char.accent === '#FBBF24' ? 'amber' : 'violet'}
+                    className="relative overflow-hidden"
+                  >
+                    <div className="relative aspect-square overflow-hidden">
+                      <Image
+                        src={char.src}
+                        alt={char.name}
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                        sizes="(max-width: 640px) 33vw, 200px"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-transparent to-transparent" />
+                    </div>
+                    <div className="p-3 text-center">
+                      <p className="text-sm font-semibold text-white">{char.name}</p>
+                      <p className="text-xs text-white/40">{char.role}</p>
+                    </div>
+                    <div
+                      className="absolute bottom-0 left-0 right-0 h-px"
+                      style={{
+                        background: `linear-gradient(90deg, transparent, ${char.accent}60, transparent)`,
+                      }}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-transparent to-transparent" />
-                  </div>
-                  <div className="p-3 text-center">
-                    <p className="text-sm font-semibold text-white">{char.name}</p>
-                    <p className="text-xs text-white/40">{char.role}</p>
-                  </div>
-                  <div
-                    className="absolute bottom-0 left-0 right-0 h-px"
-                    style={{
-                      background: `linear-gradient(90deg, transparent, ${char.accent}60, transparent)`,
-                    }}
-                  />
+                  </GlowCard>
                 </motion.div>
               ))}
             </div>
@@ -439,14 +450,15 @@ export default function AboutPage() {
                   key={i}
                   {...fadeIn}
                   transition={{ ...transition, delay: i * 0.08 }}
-                  className="flex gap-4 rounded-2xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-sm p-6 hover:border-white/15 transition-all duration-300"
                 >
-                  <span className="shrink-0 mt-0.5 text-sm font-bold text-emerald-400/60">
-                    {String(i + 1).padStart(2, '0')}
-                  </span>
-                  <p className="text-base text-white/50 leading-relaxed">
-                    {belief}
-                  </p>
+                  <GlowCard color="emerald" className="flex gap-4 p-6 h-full">
+                    <span className="shrink-0 mt-0.5 text-sm font-bold text-emerald-400/60">
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                    <p className="text-base text-white/50 leading-relaxed">
+                      {belief}
+                    </p>
+                  </GlowCard>
                 </motion.div>
               ))}
             </div>

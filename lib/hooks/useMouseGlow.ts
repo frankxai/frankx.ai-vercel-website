@@ -18,28 +18,18 @@ export interface MouseGlowResult<TContainer extends HTMLElement, TGlow extends H
     onMouseMove: (e: React.MouseEvent<TContainer>) => void
     onMouseLeave: () => void
     onPointerMove: (e: React.PointerEvent<TContainer>) => void
-    onPointerLeave: (e: React.PointerEvent<TContainer>) => void
+    onPointerLeave: () => void
     onTouchMove: (e: React.TouchEvent<TContainer>) => void
     onTouchEnd: () => void
   }
 }
 
 /**
- * Cursor/touch/pen-following glow effect using direct DOM mutations (60fps).
+ * Cursor-following glow hook with Pointer Events + RAF batching.
  *
- * Supports three input modes via Pointer Events + touch fallback:
- * - **Mouse** (desktop): glow follows cursor on hover
- * - **Touch** (mobile/tablet): glow follows finger while touching
- * - **Apple Pencil hover** (M2+ iPad Pro): glow follows pencil ~12mm above screen
- *
- * @example
- * const { cardRef, glowRef, handlers } = useMouseGlow({ rgb: '16, 185, 129' })
- * return (
- *   <div ref={cardRef} {...handlers}>
- *     <div ref={glowRef} className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-300" />
- *     {children}
- *   </div>
- * )
+ * Uses direct DOM mutations (not React state) to avoid 60fps re-renders.
+ * Pointer Events unify mouse, touch, and pen/stylus (incl. Apple Pencil hover).
+ * RAF batching coalesces rapid events into one getBoundingClientRect per frame.
  */
 export function useMouseGlow<
   TContainer extends HTMLElement = HTMLDivElement,
@@ -51,42 +41,42 @@ export function useMouseGlow<
 }: MouseGlowOptions = {}): MouseGlowResult<TContainer, TGlow> {
   const cardRef = useRef<TContainer>(null!)
   const glowRef = useRef<TGlow>(null!)
+  const rafId = useRef<number>(0)
 
   const applyGlow = useCallback(
     (clientX: number, clientY: number) => {
-      if (!cardRef.current || !glowRef.current) return
-      const rect = cardRef.current.getBoundingClientRect()
-      const x = clientX - rect.left
-      const y = clientY - rect.top
-      glowRef.current.style.background = `radial-gradient(${radius}px circle at ${x}px ${y}px, rgba(${rgb}, ${opacity}), transparent 40%)`
-      glowRef.current.style.opacity = '1'
+      cancelAnimationFrame(rafId.current)
+      rafId.current = requestAnimationFrame(() => {
+        if (!cardRef.current || !glowRef.current) return
+        const rect = cardRef.current.getBoundingClientRect()
+        const x = clientX - rect.left
+        const y = clientY - rect.top
+        glowRef.current.style.background = `radial-gradient(${radius}px circle at ${x}px ${y}px, rgba(${rgb}, ${opacity}), transparent 40%)`
+        glowRef.current.style.opacity = '1'
+      })
     },
     [rgb, radius, opacity],
   )
 
   const clearGlow = useCallback(() => {
+    cancelAnimationFrame(rafId.current)
     if (!glowRef.current) return
     glowRef.current.style.opacity = '0'
   }, [])
 
-  // Mouse events (desktop — kept for backward compat with existing onMouseMove/onMouseLeave usage)
+  // Mouse handlers (legacy compat)
   const onMouseMove = useCallback(
     (e: React.MouseEvent<TContainer>) => applyGlow(e.clientX, e.clientY),
     [applyGlow],
   )
 
-  // Pointer events (unified: mouse + touch + pen/stylus)
+  // Pointer Events — unified mouse + touch + pen/stylus
   const onPointerMove = useCallback(
     (e: React.PointerEvent<TContainer>) => applyGlow(e.clientX, e.clientY),
     [applyGlow],
   )
 
-  const onPointerLeave = useCallback(
-    (_e: React.PointerEvent<TContainer>) => clearGlow(),
-    [clearGlow],
-  )
-
-  // Touch events (explicit fallback for older browsers without Pointer Events)
+  // Touch fallback for older browsers without Pointer Events
   const onTouchMove = useCallback(
     (e: React.TouchEvent<TContainer>) => {
       const touch = e.touches[0]
@@ -102,7 +92,7 @@ export function useMouseGlow<
       onMouseMove,
       onMouseLeave: clearGlow,
       onPointerMove,
-      onPointerLeave,
+      onPointerLeave: clearGlow,
       onTouchMove,
       onTouchEnd: clearGlow,
     },

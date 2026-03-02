@@ -103,7 +103,7 @@ export function GlowCard({ children, color = 'teal', href, className, onClick }:
         className={cn(baseClass, 'block h-full')}
         onPointerMove={handlers.onPointerMove}
         onPointerLeave={handlers.onPointerLeave}
-        onTouchMove={handlers.onTouchMove as any}
+        onTouchMove={handlers.onTouchMove}
         onTouchEnd={handlers.onTouchEnd}
       >
         {glowLayers}
@@ -114,11 +114,12 @@ export function GlowCard({ children, color = 'teal', href, className, onClick }:
 
   return (
     <div
+       
       ref={cardRef as any}
       className={cn(baseClass, onClick && 'cursor-pointer')}
       onPointerMove={handlers.onPointerMove as React.PointerEventHandler<HTMLDivElement>}
-      onPointerLeave={handlers.onPointerLeave as React.PointerEventHandler<HTMLDivElement>}
-      onTouchMove={handlers.onTouchMove as any}
+      onPointerLeave={handlers.onPointerLeave}
+      onTouchMove={handlers.onTouchMove as React.TouchEventHandler<HTMLDivElement>}
       onTouchEnd={handlers.onTouchEnd}
       onClick={onClick}
     >

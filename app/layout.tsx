@@ -13,8 +13,7 @@ import Footer from '@/components/Footer'
 import OrganizationJsonLd from '@/components/seo/OrganizationJsonLd'
 import SessionProvider from '@/components/providers/SessionProvider'
 import { ScrollProgress } from '@/components/ui/ScrollProgress'
-import { MusicPlayerProvider } from '@/lib/player-context'
-import GlobalAudioPlayer from '@/components/music/GlobalAudioPlayer'
+import { CursorSpotlight } from '@/components/ui/CursorSpotlight'
 
 // Inter as primary sans-serif (geometric, variable weight, screen-optimized)
 const inter = Inter({
@@ -140,7 +139,6 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         <SessionProvider>
-          <MusicPlayerProvider>
           <OrganizationJsonLd />
           {plausibleDomain && (
             <Script
@@ -156,18 +154,17 @@ export default function RootLayout({
             Skip to content
           </a>
           <ScrollProgress />
+          <CursorSpotlight />
           <NavigationMega />
           <div id="main" className="min-h-screen overflow-x-hidden">
             {children}
           </div>
           <Footer />
-          <GlobalAudioPlayer />
           <Analytics />
           <SpeedInsights />
           {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (
             <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />
           )}
-          </MusicPlayerProvider>
         </SessionProvider>
       </body>
     </html >
