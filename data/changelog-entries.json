@@ -1,6 +1,182 @@
 {
   "weeks": [
     {
+      "id": "week-2026-11",
+      "label": "Week 11",
+      "dateRange": "Mar 1-2, 2026",
+      "summary": "The visual identity sprint. Three competing design systems built and staged at /design-lab/strategy. Book PDF pipeline shipped with email-gated delivery. Auth system fixed. Design Lab Strategy Arena live with WebGL, glassmorphism, and canvas physics demos.",
+      "stats": {
+        "commits": 5,
+        "linesAdded": 8200,
+        "filesChanged": 42,
+        "newPages": 2,
+        "imagesGenerated": 3
+      },
+      "entries": [
+        {
+          "id": "cl-2026-0302-design-lab-strategy",
+          "date": "2026-03-02",
+          "type": "shipped",
+          "title": "Design Lab Strategy Arena — 3 Competing Approaches",
+          "description": "Three design god teams competing for the frankx.ai visual identity. Team Alpha: Cosmic Forge (WebGL GLSL mesh gradient hero). Team Beta: Glass Cathedral (4-tier glassmorphism hierarchy). Team Gamma: Neon Grid (canvas dot grid with cursor-repulsion physics). Full arena page at /design-lab/strategy with live hero previews, card system demos, typography specimens, and comparison matrix.",
+          "tags": ["design-lab", "visual-identity", "webgl", "glassmorphism"],
+          "impact": "major",
+          "url": "/design-lab/strategy",
+          "metrics": {
+            "label": "Design approaches",
+            "before": "0",
+            "after": "3",
+            "unit": ""
+          }
+        },
+        {
+          "id": "cl-2026-0302-auth-fix",
+          "date": "2026-03-02",
+          "type": "fixed",
+          "title": "Auth Session 500 Error Resolved",
+          "description": "Fixed /api/auth/session returning 500 errors. Root cause: double NextAuth initialization and invalid bcrypt placeholder hash. Consolidated to single auth config.",
+          "tags": ["auth", "bugfix", "nextauth"],
+          "commit": "d3a29598",
+          "impact": "medium"
+        },
+        {
+          "id": "cl-2026-0301-book-pdf",
+          "date": "2026-03-01",
+          "type": "shipped",
+          "title": "Book PDF Pipeline — Generate, Upload, Email-Gate",
+          "description": "Complete book-to-PDF pipeline: MDX content compiled to styled PDFs, uploaded to Vercel Blob, delivered through email-gated download component. BookDownloadGate captures email via Resend before releasing download link.",
+          "tags": ["books", "pdf", "email", "vercel-blob"],
+          "commit": "36baafb6",
+          "impact": "major"
+        },
+        {
+          "id": "cl-2026-0301-glowcard-migration",
+          "date": "2026-03-01",
+          "type": "improved",
+          "title": "GlowCard + useMouseGlow Hook Migration",
+          "description": "Migrated GlowCard, GlowButton, and BlogCard to shared useMouseGlow hook. Eliminated duplicate mouse-tracking logic. Restored authority bar and completed GlowCard section migration on homepage.",
+          "tags": ["refactor", "hooks", "performance"],
+          "commit": "f421e018",
+          "impact": "medium"
+        },
+        {
+          "id": "cl-2026-0301-brand-icons",
+          "date": "2026-03-01",
+          "type": "shipped",
+          "title": "Brand Icon System — 50+ Service Icons",
+          "description": "Integrated @lobehub/icons and @icons-pack/react-simple-icons across 13 files. Real brand logos for OpenAI, Anthropic, Google, Meta, Suno, Vercel, and 40+ more services replace generic Lucide placeholders. Respects Oracle logo restriction.",
+          "tags": ["brand", "icons", "ui"],
+          "impact": "medium"
+        }
+      ]
+    },
+    {
+      "id": "week-2026-10",
+      "label": "Week 10",
+      "dateRange": "Feb 23-28, 2026",
+      "summary": "The elevation week. World-class design token system with fluid typography, elevation shadows, and motion orchestration. CSS Houdini shimmer system shipped. Liquid glass GlowCard redesign. Site-wide GlowCard adoption. Universe Map launched. ACOS v11 Design Agent Swarm. 86 planning files archived into single MASTER_PLAN.",
+      "stats": {
+        "commits": 15,
+        "linesAdded": 27000,
+        "filesChanged": 184,
+        "newPages": 4,
+        "imagesGenerated": 5
+      },
+      "entries": [
+        {
+          "id": "cl-2026-0228-shimmer",
+          "date": "2026-02-28",
+          "type": "shipped",
+          "title": "CSS Houdini Shimmer System + Component Playground",
+          "description": "ShimmerCard component using CSS @property for hardware-accelerated rotating conic-gradient borders. 5 color presets, 3 speed modes. Interactive Component Playground page for testing all premium effects.",
+          "tags": ["design", "css-houdini", "shimmer", "playground"],
+          "commit": "5162a520",
+          "impact": "major"
+        },
+        {
+          "id": "cl-2026-0228-liquid-glass",
+          "date": "2026-02-28",
+          "type": "shipped",
+          "title": "Liquid Glass GlowCard System",
+          "description": "Complete GlowCard redesign with cursor-following radial glow (600px radius, 0.18 opacity), specular top-edge highlight, 11 color presets, and integrated useMouseGlow hook. Design-excellence overhaul across key pages.",
+          "tags": ["design", "glassmorphism", "glowcard"],
+          "commit": "f2856cb8",
+          "impact": "major"
+        },
+        {
+          "id": "cl-2026-0228-glowcard-adoption",
+          "date": "2026-02-28",
+          "type": "shipped",
+          "title": "Site-Wide GlowCard Adoption",
+          "description": "GlowCard deployed across all hub pages. Synced from production deployment. Consistent interactive card experience with cursor glow effect on every major section.",
+          "tags": ["ui", "consistency", "glowcard"],
+          "commit": "7ef029c6",
+          "impact": "major"
+        },
+        {
+          "id": "cl-2026-0228-conversion",
+          "date": "2026-02-28",
+          "type": "fixed",
+          "title": "SPEC-010 Conversion Fixes",
+          "description": "Coaching CTA elevated from newsletter to application framing. Community dead link fixed. Homepage voice and credentials refined. LemonSqueezy untested URLs redirected to newsletter waitlist.",
+          "tags": ["conversion", "coaching", "ux"],
+          "commit": "22ae49a6",
+          "impact": "medium"
+        },
+        {
+          "id": "cl-2026-0228-master-plan",
+          "date": "2026-02-28",
+          "type": "improved",
+          "title": "Planning Consolidation — MASTER_PLAN",
+          "description": "Archived 86 root planning files into docs/archive/root-planning-2026/. Created single MASTER_PLAN.md as source of truth. Domain-specific plans in docs/plans/.",
+          "tags": ["planning", "organization", "docs"],
+          "commit": "ece12550",
+          "impact": "medium"
+        },
+        {
+          "id": "cl-2026-0224-design-tokens",
+          "date": "2026-02-24",
+          "type": "shipped",
+          "title": "World-Class Design Token Elevation",
+          "description": "5-step elevation shadow system, 8 gradient presets, 12-step fluid type scale (text-fluid-xs to 7xl), motion orchestration tokens (instant/fast/normal/slow). Professional design foundations matching Linear and Vercel quality.",
+          "tags": ["design-system", "tokens", "elevation", "typography"],
+          "commit": "5798f1a3",
+          "impact": "major"
+        },
+        {
+          "id": "cl-2026-0224-design-swarm",
+          "date": "2026-02-24",
+          "type": "shipped",
+          "title": "ACOS v11 Design Agent Swarm",
+          "description": "Multi-agent design system with specialized agents competing and collaborating on visual challenges. Brand overhaul complete with swarm-generated design decisions.",
+          "tags": ["acos", "agents", "design", "swarm"],
+          "commit": "abfd2a50",
+          "impact": "major"
+        },
+        {
+          "id": "cl-2026-0224-universe-map",
+          "date": "2026-02-24",
+          "type": "shipped",
+          "title": "FrankX Universe Map — Repo Intelligence",
+          "description": "Interactive map at /map showing all 49+ repos organized into 6 clusters: Arcanea (purple), ACOS (emerald), Websites (cyan), Creator Tools (amber), Products (rose), Research (sky). Admin dashboard at /admin/map with priorities. Weekly GitHub Action auto-sync.",
+          "tags": ["map", "repos", "intelligence", "github"],
+          "commit": "0fda204c",
+          "impact": "major",
+          "url": "/map"
+        },
+        {
+          "id": "cl-2026-0223-sprint",
+          "date": "2026-02-23",
+          "type": "shipped",
+          "title": "Week 10 Sprint Page — Revenue Activation",
+          "description": "Sprint planning page with revenue activation focus. Structured objectives, deliverables, and agent assignments for the week.",
+          "tags": ["sprint", "planning", "revenue"],
+          "commit": "1bfd1fea",
+          "impact": "small"
+        }
+      ]
+    },
+    {
       "id": "week-2026-09",
       "label": "Week 9",
       "dateRange": "Feb 16-22, 2026",
