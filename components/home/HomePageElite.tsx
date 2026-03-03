@@ -2,8 +2,9 @@
 
 import { motion, useScroll, useTransform, useSpring, useReducedMotion, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
-import { useRef, useState, useEffect } from 'react'
-import { ArrowRight, ChevronDown, Sparkles, Zap, Brain, Music } from 'lucide-react'
+import Image from 'next/image'
+import { useRef, useState, useEffect, useCallback } from 'react'
+import { ArrowRight, ChevronDown, Sparkles, Play, Pause } from 'lucide-react'
 
 import { trackEvent } from '@/lib/analytics'
 import { EmailSignup } from '@/components/email-signup'
@@ -20,6 +21,7 @@ interface LatestPost {
   category: string
   readingTime: string
   date: string
+  image?: string
 }
 
 interface FAQItem {
@@ -27,9 +29,28 @@ interface FAQItem {
   answer: string
 }
 
+interface FeaturedTrackData {
+  id: string
+  title: string
+  sunoId: string
+  audioUrl: string
+  genre: string[]
+  plays: number
+  duration: string
+}
+
+interface BookData {
+  slug: string
+  title: string
+  subtitle: string
+  coverImage: string
+}
+
 interface HomePageEliteProps {
   latestPosts?: LatestPost[]
   faqs?: FAQItem[]
+  featuredTrack?: FeaturedTrackData
+  books?: BookData[]
 }
 
 // ============================================================================
@@ -43,7 +64,7 @@ function AuroraBackground() {
     <div className="fixed inset-0 overflow-hidden pointer-events-none">
       <div className="absolute inset-0" style={{ backgroundColor: '#0a0a0b' }} />
 
-      {/* Primary emerald blob — top left */}
+      {/* Primary emerald blob */}
       <motion.div
         className="absolute top-0 left-1/4 w-[600px] h-[600px] rounded-full"
         style={{
@@ -58,7 +79,7 @@ function AuroraBackground() {
         transition={shouldReduceMotion ? undefined : { duration: 30, repeat: Infinity, ease: 'easeInOut' }}
       />
 
-      {/* Secondary cyan blob — right */}
+      {/* Secondary cyan blob */}
       <motion.div
         className="absolute top-1/4 right-1/4 w-[500px] h-[500px] rounded-full"
         style={{
@@ -73,7 +94,7 @@ function AuroraBackground() {
         transition={shouldReduceMotion ? undefined : { duration: 25, repeat: Infinity, ease: 'easeInOut' }}
       />
 
-      {/* Tertiary violet blob — bottom center */}
+      {/* Tertiary violet blob */}
       <div
         className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[400px] h-[400px] rounded-full"
         style={{
@@ -170,12 +191,100 @@ function RotatingWord() {
 }
 
 // ============================================================================
+// FEATURED TRACK (inline player for hero)
+// ============================================================================
+
+function FeaturedTrack({ track }: { track: FeaturedTrackData }) {
+  const [isPlaying, setIsPlaying] = useState(false)
+  const audioRef = useRef<HTMLAudioElement>(null)
+
+  const togglePlay = useCallback(() => {
+    if (!audioRef.current) return
+    if (isPlaying) {
+      audioRef.current.pause()
+    } else {
+      audioRef.current.play()
+      trackEvent('homepage_track_play', { title: track.title })
+    }
+    setIsPlaying(!isPlaying)
+  }, [isPlaying, track.title])
+
+  useEffect(() => {
+    const audio = audioRef.current
+    if (!audio) return
+    const handleEnded = () => setIsPlaying(false)
+    audio.addEventListener('ended', handleEnded)
+    return () => audio.removeEventListener('ended', handleEnded)
+  }, [])
+
+  return (
+    <GlowCard color="emerald" className="p-6">
+      <audio ref={audioRef} src={track.audioUrl} preload="none" />
+
+      <div className="flex items-center gap-5">
+        {/* Play button */}
+        <button
+          onClick={togglePlay}
+          className="flex-shrink-0 w-16 h-16 rounded-2xl bg-emerald-500/20 hover:bg-emerald-500/30 flex items-center justify-center transition-colors"
+          aria-label={isPlaying ? 'Pause' : 'Play'}
+        >
+          {isPlaying ? (
+            <Pause className="w-7 h-7 text-emerald-400" />
+          ) : (
+            <Play className="w-7 h-7 text-emerald-400 ml-0.5" />
+          )}
+        </button>
+
+        {/* Track info */}
+        <div className="min-w-0 flex-1">
+          <p className="text-xs text-emerald-400/70 font-medium tracking-wide uppercase mb-1">
+            Now Playing
+          </p>
+          <h3 className="text-lg font-semibold text-white truncate">{track.title}</h3>
+          <div className="flex items-center gap-3 mt-1">
+            <span className="text-xs text-white/40">{track.genre.join(', ')}</span>
+            <span className="text-xs text-white/30">{track.duration}</span>
+            <span className="text-xs text-white/30">{track.plays} plays</span>
+          </div>
+        </div>
+      </div>
+
+      {/* Waveform bar animation when playing */}
+      {isPlaying && (
+        <div className="mt-4 flex items-end gap-0.5 h-4">
+          {Array.from({ length: 24 }).map((_, i) => (
+            <motion.div
+              key={i}
+              className="flex-1 bg-emerald-500/40 rounded-full"
+              animate={{ height: ['30%', '100%', '50%', '80%', '30%'] }}
+              transition={{
+                duration: 0.8 + Math.random() * 0.4,
+                repeat: Infinity,
+                delay: i * 0.05,
+              }}
+            />
+          ))}
+        </div>
+      )}
+
+      <Link
+        href="/music"
+        className="mt-4 inline-flex items-center gap-1.5 text-xs text-white/40 hover:text-emerald-400 transition-colors"
+      >
+        Explore all tracks
+        <ArrowRight className="w-3 h-3" />
+      </Link>
+    </GlowCard>
+  )
+}
+
+// ============================================================================
 // HERO
 // ============================================================================
 
 const staggerEase = [0.22, 1, 0.36, 1] as const
 
-function Hero() {
+function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
   const shouldReduceMotion = useReducedMotion()
   const ref = useRef<HTMLDivElement>(null)
   const { scrollYProgress } = useScroll({
@@ -198,7 +307,6 @@ function Hero() {
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left Column — Text Content */}
           <div className="space-y-8">
-            {/* Eyebrow */}
             <motion.div
               initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -210,26 +318,23 @@ function Hero() {
                 <span className="text-sm text-white/60">AI Architect & Creator</span>
               </div>
 
-              {/* H1 — rotating verb + static phrase */}
               <h1 className="font-display text-5xl lg:text-7xl font-bold tracking-tight leading-[1.08] text-white">
                 <RotatingWord /> intelligence
                 <br />
                 that compounds.
               </h1>
 
-              {/* Subtitle */}
               <p className="text-lg md:text-xl text-white/50 max-w-xl leading-relaxed">
                 AI Architect at Oracle. 12,000+ songs with Suno.
                 75+ open-source skills shipped. Everything documented.
               </p>
 
-              {/* Serif italic pull-quote */}
               <p className="font-serif italic text-lg text-white/30 max-w-lg">
                 &ldquo;I create to understand. I share to teach.&rdquo;
               </p>
             </motion.div>
 
-            {/* CTAs — emerald primary + ghost secondary */}
+            {/* CTAs */}
             <motion.div
               className="flex flex-col sm:flex-row gap-4"
               initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
@@ -255,79 +360,20 @@ function Hero() {
             </motion.div>
           </div>
 
-          {/* Right Column — Glass Stat Cards */}
+          {/* Right Column — Featured Track */}
           <div className="relative hidden md:block">
             <motion.div
               initial={shouldReduceMotion ? false : { opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.7, delay: 0.2 }}
-              className="grid grid-cols-2 gap-4"
             >
-              {/* Full-width stat — AI Songs */}
-              <motion.div
-                initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.6, delay: 0.3 }}
-                className="col-span-2"
-              >
-                <GlowCard color="emerald" className="p-6">
-                  <div className="flex items-start justify-between">
-                    <div className="space-y-2">
-                      <p className="text-sm text-white/40 font-medium">AI Songs Created</p>
-                      <p className="text-4xl font-bold text-white">12,000+</p>
-                    </div>
-                    <div className="w-12 h-12 rounded-2xl bg-emerald-500/10 flex items-center justify-center group-hover:bg-emerald-500/20 transition-colors">
-                      <Music className="w-6 h-6 text-emerald-400" />
-                    </div>
-                  </div>
-                  <div className="mt-4 h-1.5 bg-white/5 rounded-full overflow-hidden">
-                    <motion.div
-                      initial={{ width: 0 }}
-                      animate={{ width: '85%' }}
-                      transition={{ duration: 1, delay: 0.5 }}
-                      className="h-full bg-gradient-to-r from-emerald-500 to-emerald-400 rounded-full"
-                    />
-                  </div>
+              {featuredTrack ? (
+                <FeaturedTrack track={featuredTrack} />
+              ) : (
+                <GlowCard color="emerald" className="p-8">
+                  <p className="text-white/50 text-center">Music player loading...</p>
                 </GlowCard>
-              </motion.div>
-
-              {/* Skills stat */}
-              <motion.div
-                initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.6, delay: 0.4 }}
-              >
-                <GlowCard color="violet" className="p-6 h-full">
-                  <div className="space-y-4">
-                    <div className="w-12 h-12 rounded-2xl bg-violet-500/10 flex items-center justify-center group-hover:bg-violet-500/20 transition-colors">
-                      <Zap className="w-6 h-6 text-violet-400" />
-                    </div>
-                    <div className="space-y-1">
-                      <p className="text-3xl font-bold text-white">75+</p>
-                      <p className="text-sm text-white/40 font-medium">Open Source Skills</p>
-                    </div>
-                  </div>
-                </GlowCard>
-              </motion.div>
-
-              {/* Agents stat */}
-              <motion.div
-                initial={shouldReduceMotion ? false : { opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.6, delay: 0.5 }}
-              >
-                <GlowCard color="cyan" className="p-6 h-full">
-                  <div className="space-y-4">
-                    <div className="w-12 h-12 rounded-2xl bg-cyan-500/10 flex items-center justify-center group-hover:bg-cyan-500/20 transition-colors">
-                      <Brain className="w-6 h-6 text-cyan-400" />
-                    </div>
-                    <div className="space-y-1">
-                      <p className="text-3xl font-bold text-white">38</p>
-                      <p className="text-sm text-white/40 font-medium">AI Agents</p>
-                    </div>
-                  </div>
-                </GlowCard>
-              </motion.div>
+              )}
             </motion.div>
           </div>
         </div>
@@ -357,10 +403,10 @@ function Hero() {
 // ============================================================================
 
 const credentials = [
-  'Oracle AI Architect',
-  '12,000+ AI Songs',
+  'AI Architect at Oracle',
+  '12,000+ AI Songs Created',
   '75+ Open Source Skills',
-  '38 Autonomous Agents',
+  'Everything Documented',
 ]
 
 function AuthorityBar() {
@@ -389,52 +435,49 @@ function AuthorityBar() {
 }
 
 // ============================================================================
-// CAPABILITIES — 3 PILLARS
+// PRODUCTS & TOOLS — Expanded 6-card grid
 // ============================================================================
 
-const pillars = [
+const products = [
   {
-    title: 'AI Architecture',
-    description:
-      'Enterprise AI systems, agentic orchestration, and multi-agent workflows. Built at Oracle, documented here.',
-    href: '/ai-architecture',
-    cta: 'Explore',
-    icon: Brain,
+    title: 'Agentic Creator OS',
+    description: '75+ skills, 38 agents, 35+ commands. The open-source operating system for Claude Code.',
+    href: '/acos',
     color: 'emerald' as const,
-    stat: '4+ years',
-    statLabel: 'Enterprise AI',
   },
   {
-    title: 'Creative Systems',
-    description:
-      '12,000+ AI songs. Generative art. Music production workflows — the full creative process, documented.',
-    href: '/music-lab',
-    cta: 'Listen',
-    icon: Music,
-    color: 'cyan' as const,
-    stat: '12,000+',
-    statLabel: 'AI Songs',
-  },
-  {
-    title: 'Open Tools',
-    description:
-      'ACOS with 75+ skills and 38 agents. Prompt libraries. Templates. All open source, all yours.',
-    href: '/products',
-    cta: 'Browse',
-    icon: Zap,
+    title: 'Prompt Library',
+    description: 'Battle-tested prompts for writing, music, coding, and image generation. Free to use.',
+    href: '/prompt-library',
     color: 'violet' as const,
-    stat: '75+',
-    statLabel: 'Skills Shipped',
+  },
+  {
+    title: 'Creator Kit',
+    description: 'Premium templates, video guides, and direct support for ACOS. From $47.',
+    href: '/products',
+    color: 'cyan' as const,
+  },
+  {
+    title: 'AI Architecture Hub',
+    description: 'Enterprise AI patterns, agent orchestration, system design. Built at Oracle.',
+    href: '/ai-architecture',
+    color: 'blue' as const,
+  },
+  {
+    title: 'Music Lab',
+    description: '12,000+ AI songs. Production workflows. Genre mastery guides.',
+    href: '/music-lab',
+    color: 'orange' as const,
+  },
+  {
+    title: 'Design Lab',
+    description: 'Generative art, visual experiments, nature-tech aesthetics.',
+    href: '/design-lab',
+    color: 'magenta' as const,
   },
 ]
 
-const pillarColors = {
-  emerald: { bg: 'bg-emerald-500/10', hover: 'group-hover:bg-emerald-500/20', text: 'text-emerald-400', titleHover: 'group-hover:text-emerald-400', border: 'hover:border-emerald-500/30' },
-  cyan: { bg: 'bg-cyan-500/10', hover: 'group-hover:bg-cyan-500/20', text: 'text-cyan-400', titleHover: 'group-hover:text-cyan-400', border: 'hover:border-cyan-500/30' },
-  violet: { bg: 'bg-violet-500/10', hover: 'group-hover:bg-violet-500/20', text: 'text-violet-400', titleHover: 'group-hover:text-violet-400', border: 'hover:border-violet-500/30' },
-}
-
-function Capabilities() {
+function ProductsTools() {
   return (
     <section className="py-24 lg:py-32 border-t border-white/5">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -442,59 +485,43 @@ function Capabilities() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-12 md:mb-16"
+          className="text-center mb-12 md:mb-16"
         >
-          <p className="text-xs font-medium tracking-[0.25em] uppercase text-emerald-400/50 mb-4">
-            Capabilities
+          <p className="text-[11px] tracking-[0.25em] uppercase text-emerald-400/50 font-medium mb-4">
+            Products & Tools
           </p>
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight">
-            Three domains. One practice.
+          <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
+            Built for builders
           </h2>
+          <p className="text-base text-white/40 max-w-2xl mx-auto">
+            Open-source tools, premium resources, and creative systems — built for builders who ship.
+          </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-4">
-          {pillars.map((pillar, i) => {
-            const colors = pillarColors[pillar.color]
-            const Icon = pillar.icon
-
-            return (
-              <motion.div
-                key={pillar.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.1 }}
-              >
-                <GlowCard
-                  href={pillar.href}
-                  color={pillar.color}
-                  className="p-6 md:p-8 h-full hover:-translate-y-1"
-                >
-                  <div className={`w-12 h-12 rounded-2xl ${colors.bg} ${colors.hover} flex items-center justify-center mb-5 transition-colors`}>
-                    <Icon className={`w-6 h-6 ${colors.text}`} />
-                  </div>
-
-                  <h3 className={`text-xl md:text-2xl font-semibold text-white mb-3 ${colors.titleHover} transition-colors`}>
-                    {pillar.title}
-                  </h3>
-                  <p className="text-sm md:text-base text-white/50 leading-relaxed mb-6">
-                    {pillar.description}
-                  </p>
-
-                  <div className="flex items-center justify-between pt-4 border-t border-white/5">
-                    <div>
-                      <span className={`text-2xl font-bold ${colors.text}`}>{pillar.stat}</span>
-                      <span className="text-xs text-white/30 ml-2">{pillar.statLabel}</span>
-                    </div>
-                    <span className="inline-flex items-center gap-1.5 text-sm text-white/40 group-hover:text-white/70 transition-colors">
-                      {pillar.cta}
-                      <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                    </span>
-                  </div>
-                </GlowCard>
-              </motion.div>
-            )
-          })}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
+          {products.map((product, i) => (
+            <motion.div
+              key={product.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.08 }}
+            >
+              <GlowCard href={product.href} color={product.color} className="p-5 sm:p-6 h-full hover:-translate-y-0.5">
+                <div className="h-0.5 w-full bg-gradient-to-r from-emerald-500/50 to-cyan-500/50 rounded-full mb-5" />
+                <h3 className="text-base sm:text-lg font-semibold text-white mb-2 group-hover:text-emerald-400 transition-colors">
+                  {product.title}
+                </h3>
+                <p className="text-sm text-white/50 leading-relaxed">
+                  {product.description}
+                </p>
+                <div className="mt-4 flex items-center gap-1.5 text-xs text-white/30 group-hover:text-white/50 transition-colors">
+                  <span>Learn more</span>
+                  <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
+                </div>
+              </GlowCard>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
@@ -502,7 +529,311 @@ function Capabilities() {
 }
 
 // ============================================================================
-// LATEST ARTICLES
+// HUB SHOWCASE — Reusable alternating layout
+// ============================================================================
+
+interface HubShowcaseProps {
+  eyebrow: string
+  title: string
+  description: string
+  imageSrc: string
+  imageAlt: string
+  links: { label: string; href: string }[]
+  ctaLabel: string
+  ctaHref: string
+  color: 'emerald' | 'cyan' | 'violet' | 'amber' | 'orange' | 'blue'
+  imageFirst?: boolean
+}
+
+function HubShowcase({
+  eyebrow,
+  title,
+  description,
+  imageSrc,
+  imageAlt,
+  links,
+  ctaLabel,
+  ctaHref,
+  color,
+  imageFirst = false,
+}: HubShowcaseProps) {
+  const imageBlock = (
+    <motion.div
+      initial={{ opacity: 0, x: imageFirst ? -20 : 20 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+      className="relative aspect-[16/10] rounded-2xl overflow-hidden"
+    >
+      <Image
+        src={imageSrc}
+        alt={imageAlt}
+        fill
+        className="object-cover"
+        sizes="(max-width: 768px) 100vw, 60vw"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b]/60 to-transparent" />
+    </motion.div>
+  )
+
+  const textBlock = (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: 0.1 }}
+      className="flex flex-col justify-center"
+    >
+      <p className="text-[11px] tracking-[0.25em] uppercase text-emerald-400/50 font-medium mb-3">
+        {eyebrow}
+      </p>
+      <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
+        {title}
+      </h2>
+      <p className="text-base text-white/50 leading-relaxed mb-6">
+        {description}
+      </p>
+
+      <div className="space-y-2 mb-6">
+        {links.map((link) => (
+          <Link
+            key={link.href}
+            href={link.href}
+            className="flex items-center gap-2 text-sm text-white/60 hover:text-white transition-colors group/link"
+          >
+            <ArrowRight className="w-3.5 h-3.5 text-emerald-500/60 group-hover/link:translate-x-0.5 transition-transform" />
+            {link.label}
+          </Link>
+        ))}
+      </div>
+
+      <Link
+        href={ctaHref}
+        className="inline-flex items-center gap-2 text-sm font-medium text-emerald-400 hover:text-emerald-300 transition-colors"
+      >
+        {ctaLabel}
+        <ArrowRight className="w-4 h-4" />
+      </Link>
+    </motion.div>
+  )
+
+  return (
+    <section className="py-24 lg:py-32 border-t border-white/5">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <div className="grid lg:grid-cols-5 gap-10 lg:gap-16 items-center">
+          {imageFirst ? (
+            <>
+              <div className="lg:col-span-3">{imageBlock}</div>
+              <div className="lg:col-span-2">{textBlock}</div>
+            </>
+          ) : (
+            <>
+              <div className="lg:col-span-2">{textBlock}</div>
+              <div className="lg:col-span-3">{imageBlock}</div>
+            </>
+          )}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// ============================================================================
+// CREATIVE WORLDS — Full-width cinematic banner
+// ============================================================================
+
+function CreativeWorlds() {
+  return (
+    <section className="py-24 lg:py-32 border-t border-white/5">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="relative rounded-3xl overflow-hidden"
+        >
+          {/* Banner image */}
+          <div className="relative aspect-[21/9] sm:aspect-[21/7]">
+            <Image
+              src="/images/arcanea/eldrian-conclave-20260301.png"
+              alt="The Eldrian Conclave — five guardians of Arcanea"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, 1200px"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/40 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#0a0a0b]/60 to-transparent" />
+          </div>
+
+          {/* Overlay text */}
+          <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-10">
+            <p className="text-[11px] tracking-[0.25em] uppercase text-amber-400/70 font-medium mb-2">
+              Creative Worlds
+            </p>
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white tracking-tight mb-3">
+              Arcanea
+            </h2>
+            <p className="text-sm sm:text-base text-white/50 max-w-lg mb-6">
+              An AI-native fantasy civilization. Five Eldrian guardians, ten gates of mastery, a living world-state.
+              Where AI meets mythology.
+            </p>
+            <div className="flex flex-wrap gap-3">
+              <Link
+                href="/arcanea"
+                className="inline-flex items-center gap-2 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 border border-amber-500/30 text-amber-200 px-5 py-2.5 text-sm font-medium transition-colors"
+              >
+                Enter Arcanea
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  )
+}
+
+// ============================================================================
+// DESIGN LAB — Image grid showcase
+// ============================================================================
+
+const designLabImages = [
+  { src: '/images/design-lab/nature-01-digital-garden-hero.png', alt: 'Digital Garden' },
+  { src: '/images/design-lab/nature-02-neural-roots.png', alt: 'Neural Roots' },
+  { src: '/images/design-lab/nature-03-code-vines.png', alt: 'Code Vines' },
+  { src: '/images/design-lab/nature-04-data-streams.png', alt: 'Data Streams' },
+  { src: '/images/design-lab/nature-05-forest-architecture.png', alt: 'Forest Architecture' },
+  { src: '/images/design-lab/nature-07-intelligence-bloom.png', alt: 'Intelligence Bloom' },
+]
+
+function DesignLab() {
+  return (
+    <section className="py-24 lg:py-32 border-t border-white/5">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-10"
+        >
+          <p className="text-[11px] tracking-[0.25em] uppercase text-magenta-400/50 font-medium mb-3 text-fuchsia-400/50">
+            Visual Experiments
+          </p>
+          <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
+            Design Lab
+          </h2>
+          <p className="text-base text-white/50 max-w-xl">
+            Generative art experiments. Nature-tech fusion aesthetics.
+            Digital gardens where code meets organic form.
+          </p>
+        </motion.div>
+
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 sm:gap-4 mb-6">
+          {designLabImages.map((img, i) => (
+            <motion.div
+              key={img.src}
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.08 }}
+              className="relative aspect-square rounded-2xl overflow-hidden group/img"
+            >
+              <Image
+                src={img.src}
+                alt={img.alt}
+                fill
+                className="object-cover transition-transform duration-500 group-hover/img:scale-105"
+                sizes="(max-width: 768px) 50vw, 33vw"
+              />
+              <div className="absolute inset-0 bg-black/20 group-hover/img:bg-black/10 transition-colors" />
+            </motion.div>
+          ))}
+        </div>
+
+        <Link
+          href="/design-lab"
+          className="inline-flex items-center gap-2 text-sm font-medium text-fuchsia-400 hover:text-fuchsia-300 transition-colors"
+        >
+          Visit Design Lab
+          <ArrowRight className="w-4 h-4" />
+        </Link>
+      </div>
+    </section>
+  )
+}
+
+// ============================================================================
+// BOOKS SHOWCASE — Horizontal scroll
+// ============================================================================
+
+function BooksShowcase({ books }: { books: BookData[] }) {
+  if (!books || books.length === 0) return null
+
+  return (
+    <section className="py-24 lg:py-32 border-t border-white/5">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10"
+        >
+          <div>
+            <p className="text-[11px] tracking-[0.25em] uppercase text-amber-400/50 font-medium mb-3">
+              Library
+            </p>
+            <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-3">
+              Books & Writing
+            </h2>
+            <p className="text-base text-white/50 max-w-lg">
+              Spanning poetry, discipline, creativity, and hope. Read free online or download as PDF.
+            </p>
+          </div>
+          <Link
+            href="/books"
+            className="inline-flex items-center gap-2 text-sm text-white/50 hover:text-white transition-colors flex-shrink-0"
+          >
+            Browse Library
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+        </motion.div>
+
+        {/* Horizontal scroll on mobile, grid on desktop */}
+        <div className="flex gap-4 overflow-x-auto pb-4 -mx-4 px-4 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 sm:overflow-visible snap-x snap-mandatory sm:snap-none">
+          {books.map((book, i) => (
+            <motion.div
+              key={book.slug}
+              initial={{ opacity: 0, y: 15 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.06 }}
+              className="flex-shrink-0 w-[140px] sm:w-auto snap-start"
+            >
+              <Link href={`/books/${book.slug}`} className="group block">
+                <div className="relative aspect-[2/3] rounded-xl overflow-hidden mb-3 shadow-lg shadow-black/30 group-hover:shadow-xl group-hover:shadow-black/40 transition-shadow">
+                  <Image
+                    src={book.coverImage}
+                    alt={book.title}
+                    fill
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    sizes="(max-width: 640px) 140px, (max-width: 768px) 33vw, 16vw"
+                  />
+                </div>
+                <h3 className="text-sm font-medium text-white group-hover:text-emerald-400 transition-colors line-clamp-1">
+                  {book.title}
+                </h3>
+                <p className="text-xs text-white/40 line-clamp-1">{book.subtitle}</p>
+              </Link>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// ============================================================================
+// LATEST ARTICLES — Expanded to 6 posts
 // ============================================================================
 
 function LatestArticles({ posts }: { posts: LatestPost[] }) {
@@ -536,21 +867,35 @@ function LatestArticles({ posts }: { posts: LatestPost[] }) {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
+              transition={{ delay: i * 0.08 }}
             >
-              <GlowCard href={`/blog/${post.slug}`} color="emerald" className="p-5 sm:p-6 h-full hover:-translate-y-0.5">
-                <div className="flex items-center gap-3 mb-3">
-                  <span className="text-[10px] sm:text-xs font-medium px-2 py-0.5 rounded-full bg-white/5 text-white/50 uppercase tracking-wider">
-                    {post.category}
-                  </span>
-                  <span className="text-xs text-white/30">{post.readingTime}</span>
+              <GlowCard href={`/blog/${post.slug}`} color="emerald" className="p-0 h-full hover:-translate-y-0.5 overflow-hidden">
+                {post.image && (
+                  <div className="relative h-36 w-full overflow-hidden">
+                    <Image
+                      src={post.image}
+                      alt={post.title}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b]/80 to-transparent" />
+                  </div>
+                )}
+                <div className="p-5 sm:p-6">
+                  <div className="flex items-center gap-3 mb-3">
+                    <span className="text-[10px] sm:text-xs font-medium px-2 py-0.5 rounded-full bg-white/5 text-white/50 uppercase tracking-wider">
+                      {post.category}
+                    </span>
+                    <span className="text-xs text-white/30">{post.readingTime}</span>
+                  </div>
+                  <h3 className="text-base sm:text-lg font-semibold text-white mb-2 group-hover:text-emerald-400 transition-colors line-clamp-2">
+                    {post.title}
+                  </h3>
+                  <p className="text-sm text-white/50 line-clamp-2 leading-relaxed">
+                    {post.description}
+                  </p>
                 </div>
-                <h3 className="text-base sm:text-lg font-semibold text-white mb-2 group-hover:text-emerald-400 transition-colors line-clamp-2">
-                  {post.title}
-                </h3>
-                <p className="text-sm text-white/50 line-clamp-2 leading-relaxed">
-                  {post.description}
-                </p>
               </GlowCard>
             </motion.div>
           ))}
@@ -561,28 +906,41 @@ function LatestArticles({ posts }: { posts: LatestPost[] }) {
 }
 
 // ============================================================================
-// PRODUCTS SHOWCASE
+// LEARNING HUB — 4-card grid
 // ============================================================================
 
-const products = [
+const learningCards = [
   {
-    title: 'Agentic Creator OS',
-    description: '75+ skills, 38 agents, 35+ commands. The open-source operating system for Claude Code.',
-    href: '/acos',
+    title: 'Students & Creators',
+    description: 'AI guides for students, families, and aspiring creators.',
+    href: '/students',
+    image: '/images/blog/agi-2026-opportunities-students-creators-hero.png',
+    color: 'cyan' as const,
   },
   {
-    title: 'Prompt Library',
-    description: 'Battle-tested prompts for writing, music, coding, and image generation. Free to use.',
-    href: '/prompt-library',
+    title: 'Guides & Tutorials',
+    description: 'Step-by-step guides from beginner to advanced.',
+    href: '/guides',
+    image: '/images/blog/ultimate-guide-ai-coding-agents-2026-hero-v2.png',
+    color: 'emerald' as const,
   },
   {
-    title: 'Creator Kit',
-    description: 'Premium templates, video guides, and direct support for serious ACOS builders.',
-    href: '/products',
+    title: 'Watch',
+    description: 'Video tutorials and workshop recordings.',
+    href: '/watch',
+    image: '/images/blog/creators-ai-toolkit-workshop-hero.png',
+    color: 'violet' as const,
+  },
+  {
+    title: 'Tools & Resources',
+    description: 'Curated tools, templates, and resource libraries.',
+    href: '/tools',
+    image: '/images/blog/golden-age-field-guide-hero.png',
+    color: 'amber' as const,
   },
 ]
 
-function ProductsShowcase() {
+function LearningHub() {
   return (
     <section className="py-24 lg:py-32 border-t border-white/5">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
@@ -590,37 +948,48 @@ function ProductsShowcase() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-12 md:mb-16"
+          className="mb-10"
         >
-          <p className="text-[11px] tracking-[0.25em] uppercase text-emerald-400/50 font-medium mb-4">
-            Products & Tools
+          <p className="text-[11px] tracking-[0.25em] uppercase text-cyan-400/50 font-medium mb-3">
+            Resources
           </p>
-          <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
-            Built for builders
+          <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
+            Learn & Explore
           </h2>
+          <p className="text-base text-white/50 max-w-lg">
+            Guides, courses, video tutorials, and tools — everything you need to level up.
+          </p>
         </motion.div>
 
-        <div className="grid sm:grid-cols-3 gap-4 sm:gap-6">
-          {products.map((product, i) => (
+        <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
+          {learningCards.map((card, i) => (
             <motion.div
-              key={product.title}
+              key={card.href}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
             >
-              <GlowCard href={product.href} color="emerald" className="p-5 sm:p-6 h-full hover:-translate-y-0.5">
-                {/* Gradient accent line */}
-                <div className="h-0.5 w-full bg-gradient-to-r from-emerald-500/50 to-cyan-500/50 rounded-full mb-5" />
-                <h3 className="text-base sm:text-lg font-semibold text-white mb-2 group-hover:text-emerald-400 transition-colors">
-                  {product.title}
-                </h3>
-                <p className="text-sm text-white/50 leading-relaxed">
-                  {product.description}
-                </p>
-                <div className="mt-4 flex items-center gap-1.5 text-xs text-white/30 group-hover:text-white/50 transition-colors">
-                  <span>Learn more</span>
-                  <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
+              <GlowCard href={card.href} color={card.color} className="p-0 h-full hover:-translate-y-0.5 overflow-hidden">
+                <div className="relative h-40 w-full overflow-hidden">
+                  <Image
+                    src={card.image}
+                    alt={card.title}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b]/80 to-transparent" />
+                </div>
+                <div className="p-5 sm:p-6">
+                  <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-emerald-400 transition-colors">
+                    {card.title}
+                  </h3>
+                  <p className="text-sm text-white/50 leading-relaxed">{card.description}</p>
+                  <div className="mt-3 flex items-center gap-1.5 text-xs text-white/30 group-hover:text-white/50 transition-colors">
+                    <span>Explore</span>
+                    <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
+                  </div>
                 </div>
               </GlowCard>
             </motion.div>
@@ -645,7 +1014,6 @@ function EmailCTA() {
           viewport={{ once: true }}
           className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/5 p-8 sm:p-12 text-center backdrop-blur-xl"
         >
-          {/* Decorative gradient blob */}
           <div className="absolute -top-20 -right-20 w-40 h-40 rounded-full bg-emerald-500/10 blur-3xl pointer-events-none" />
           <div className="absolute -bottom-20 -left-20 w-40 h-40 rounded-full bg-cyan-500/10 blur-3xl pointer-events-none" />
 
@@ -766,7 +1134,6 @@ function FinalCTA() {
           viewport={{ once: true }}
           className="relative"
         >
-          {/* Reduced glow */}
           <div className="absolute inset-0 md:-inset-x-10 md:-inset-y-10 bg-gradient-to-r from-emerald-500/5 via-transparent to-cyan-500/5 blur-3xl opacity-30 rounded-3xl pointer-events-none" />
 
           <div className="relative text-center">
@@ -803,23 +1170,87 @@ function FinalCTA() {
 }
 
 // ============================================================================
-// MAIN COMPONENT
+// MAIN COMPONENT — 15 sections
 // ============================================================================
 
-export default function HomePageElite({ latestPosts = [], faqs = [] }: HomePageEliteProps) {
+export default function HomePageElite({
+  latestPosts = [],
+  faqs = [],
+  featuredTrack,
+  books = [],
+}: HomePageEliteProps) {
   return (
     <main className="relative min-h-screen text-white overflow-x-hidden">
       <AuroraBackground />
       <ScrollProgress />
 
       <div className="relative z-10 overflow-x-hidden">
-        <Hero />
+        {/* 1-3. Hero with featured track */}
+        <Hero featuredTrack={featuredTrack} />
+
+        {/* 4. Authority bar */}
         <AuthorityBar />
-        <Capabilities />
+
+        {/* 5. Products & Tools — moved up, expanded to 6 cards */}
+        <ProductsTools />
+
+        {/* 6. AI Architecture hub showcase */}
+        <HubShowcase
+          eyebrow="Enterprise AI"
+          title="AI Architecture"
+          description="Enterprise AI systems built at Oracle. Multi-agent orchestration, agentic workflows, and production patterns — documented in technical depth."
+          imageSrc="/images/blog/production-agentic-ai-systems-hero.png"
+          imageAlt="Production Agentic AI Systems"
+          links={[
+            { label: 'Production Agentic AI Systems', href: '/blog/production-agentic-ai-systems' },
+            { label: 'MCP Server Architecture', href: '/blog/mcp-server-architecture-workshop' },
+            { label: 'Agent Patterns & Pillars', href: '/blog/production-agent-patterns-7-pillars' },
+          ]}
+          ctaLabel="Explore AI Architecture"
+          ctaHref="/ai-architecture"
+          color="blue"
+          imageFirst
+        />
+
+        {/* 7. Music Lab hub showcase */}
+        <HubShowcase
+          eyebrow="Music Production"
+          title="Music Lab"
+          description="12,000+ AI songs produced with Suno. Genre mastery from orchestral to hip hop. Prompt engineering that creates radio-ready tracks."
+          imageSrc="/images/blog/suno-prompt-engineering-complete-guide-hero.png"
+          imageAlt="Suno Prompt Engineering Guide"
+          links={[
+            { label: 'Suno Prompt Engineering Guide', href: '/blog/suno-prompt-engineering-complete-guide' },
+            { label: 'Science of State Change', href: '/blog/science-of-state-change-music' },
+            { label: 'Browse All Tracks', href: '/music' },
+          ]}
+          ctaLabel="Enter Music Lab"
+          ctaHref="/music-lab"
+          color="orange"
+        />
+
+        {/* 8. Creative Worlds — Arcanea banner */}
+        <CreativeWorlds />
+
+        {/* 9. Design Lab — image grid */}
+        <DesignLab />
+
+        {/* 10. Books showcase — cover grid */}
+        <BooksShowcase books={books} />
+
+        {/* 11. Latest Articles — expanded to 6 */}
         <LatestArticles posts={latestPosts} />
-        <ProductsShowcase />
+
+        {/* 12. Learning Hub — 4-card grid */}
+        <LearningHub />
+
+        {/* 13. Email CTA */}
         <EmailCTA />
+
+        {/* 14. FAQ */}
         <FAQSection faqs={faqs} />
+
+        {/* 15. Final CTA */}
         <FinalCTA />
       </div>
     </main>

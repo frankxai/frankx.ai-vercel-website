@@ -3,6 +3,7 @@ import { createMetadata } from '@/lib/seo'
 import JsonLd from '@/components/seo/JsonLd'
 import { FAQPageJsonLd } from '@/components/seo/JsonLd'
 import { getAllBlogPosts } from '@/lib/blog'
+import { getPublishedBooks } from '@/app/books/lib/books-registry'
 
 export const metadata = createMetadata({
   title: 'FrankX — AI Architect & Creator',
@@ -89,7 +90,7 @@ const homepageFAQs = [
   {
     question: 'What is the Agentic Creator OS (ACOS)?',
     answer:
-      'ACOS is an open-source operating system for Claude Code with 75+ skills, 38 specialized agents, and 35+ commands. It turns Claude Code into a full creative production environment. Free and open-source on GitHub, with a premium Creator Kit and Pro System for serious builders.',
+      'ACOS is an open-source operating system for Claude Code with 75+ skills, 38 specialized agents, and 35+ commands. It turns Claude Code into a full creative production environment. Free on GitHub, with premium Creator Kit ($47) and Pro System ($197) tiers.',
   },
   {
     question: 'Does FrankX offer courses or coaching?',
@@ -98,9 +99,20 @@ const homepageFAQs = [
   },
 ]
 
+const vibeOsTrack = {
+  id: 'vibe-os-homepage',
+  title: 'Vibe O S',
+  sunoId: '9cbad174-9276-427f-9aed-1ba00c7db3db',
+  audioUrl:
+    'https://vbmwpibfe0yzx3fd.public.blob.vercel-storage.com/music/9cbad174-9276-427f-9aed-1ba00c7db3db/9cbad174-9276-427f-9aed-1ba00c7db3db.mp3',
+  genre: ['Female Hip Hop'],
+  plays: 128,
+  duration: '4:00',
+}
+
 export default function Page() {
   const latestPosts = getAllBlogPosts()
-    .slice(0, 3)
+    .slice(0, 6)
     .map((p) => ({
       slug: p.slug,
       title: p.title,
@@ -108,11 +120,24 @@ export default function Page() {
       category: p.category,
       readingTime: p.readingTime,
       date: p.date,
+      image: p.image,
     }))
+
+  const books = getPublishedBooks().map((b) => ({
+    slug: b.slug,
+    title: b.title,
+    subtitle: b.subtitle,
+    coverImage: b.coverImage,
+  }))
 
   return (
     <>
-      <HomePageElite latestPosts={latestPosts} faqs={homepageFAQs} />
+      <HomePageElite
+        latestPosts={latestPosts}
+        faqs={homepageFAQs}
+        featuredTrack={vibeOsTrack}
+        books={books}
+      />
       <JsonLd type="WebSite" data={websiteSchema} />
       <JsonLd type="Person" data={personSchema} />
       <JsonLd type="Organization" data={organizationSchema} />
