@@ -157,9 +157,9 @@ const faqs = [
       'I specialize in modern AI stacks: Claude Code, Next.js, TypeScript, Vercel, MCP servers, and agentic frameworks. I help you choose the right tools for your specific goals and constraints.',
   },
   {
-    question: 'When will coaching be available?',
+    question: 'How do I get started?',
     answer:
-      'Coaching launches soon. Join the waitlist to get priority access and be first to book when slots open. Newsletter subscribers get early access.',
+      'Submit your application below. Frank reviews applications weekly and responds personally. Slots are limited to ensure quality. Newsletter subscribers get priority consideration.',
   },
 ]
 
@@ -231,23 +231,27 @@ export default function CoachingPage() {
             </div>
 
             <h1 className="mb-6 text-5xl font-bold leading-tight text-balance md:text-7xl">
-              AI Coaching{' '}
+              Direct access to{' '}
               <span className="bg-gradient-to-r from-[#AB47C7] via-[#43BFE3] to-[#F59E0B] bg-clip-text text-transparent">
-                That Fits Your Reality
+                proven AI expertise.
               </span>
             </h1>
 
             <p className="mb-8 max-w-2xl text-xl leading-relaxed text-slate-400 text-balance">
-              Skip the generic AI advice. Work directly with someone who&apos;s built 40+ AI agents,
-              shipped production systems, and created 12,000+ AI songs.
+              Work 1-on-1 with an AI architect who&apos;s built 40+ production agents,
+              shipped enterprise systems at Oracle, and created 12,000+ AI tracks.
+              Application required.
             </p>
 
             <motion.div
-              className="mb-4 inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/10 px-4 py-2 text-sm text-amber-400"
+              className="mb-4 flex flex-wrap items-center gap-4"
               variants={itemVariants}
             >
-              <Clock className="h-4 w-4" />
-              Coming Soon — Join the Waitlist
+              <div className="inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/10 px-4 py-2 text-sm text-amber-400">
+                <Clock className="h-4 w-4" />
+                Limited Availability
+              </div>
+              <span className="text-sm text-white/25">By application only</span>
             </motion.div>
           </motion.div>
         </motion.section>
@@ -341,9 +345,9 @@ export default function CoachingPage() {
           variants={containerVariants}
         >
           <motion.div className="mb-12 text-center" variants={itemVariants}>
-            <h2 className="mb-4 text-3xl font-bold md:text-4xl">Choose Your Path</h2>
+            <h2 className="mb-4 text-3xl font-bold md:text-4xl">Choose Your Engagement</h2>
             <p className="mx-auto max-w-2xl text-lg text-slate-400">
-              Three engagement formats designed for different needs and goals.
+              Three tiers. Each requires an application. Pricing shared after review.
             </p>
           </motion.div>
 
@@ -381,7 +385,7 @@ export default function CoachingPage() {
                       className="rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-wider"
                       style={{ borderColor: `${tier.color}40`, color: tier.color }}
                     >
-                      Coming Soon
+                      Apply
                     </span>
                   </div>
 
@@ -426,11 +430,11 @@ export default function CoachingPage() {
                     <span className="text-sm font-semibold text-[#AB47C7]">Who This Is For</span>
                   </div>
                   <h2 className="mb-4 text-3xl font-bold md:text-4xl">
-                    Built for Builders
+                    Not for everyone.
                   </h2>
                   <p className="text-lg leading-relaxed text-slate-400">
-                    Whether you&apos;re a creator, founder, or developer — this coaching is designed for
-                    people who want practical, hands-on guidance that leads to real results.
+                    This is for creators, founders, and developers who are ready to invest in serious
+                    AI expertise. You should have skin in the game and be ready to implement.
                   </p>
                 </div>
 

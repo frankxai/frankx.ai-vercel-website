@@ -147,7 +147,7 @@ function ScrollProgress() {
 // ROTATING WORD
 // ============================================================================
 
-const heroWords = ['Building', 'Designing', 'Architecting', 'Creating', 'Shipping']
+const heroWords = ['Architecting', 'Engineering', 'Shipping', 'Scaling', 'Building']
 
 function RotatingWord() {
   const [currentIndex, setCurrentIndex] = useState(0)
@@ -313,25 +313,33 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
               transition={shouldReduceMotion ? { duration: 0 } : { duration: 0.6, ease: staggerEase }}
               className="space-y-6"
             >
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 backdrop-blur-xl border border-white/10">
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 backdrop-blur-xl border border-emerald-500/20">
                 <Sparkles className="w-4 h-4 text-emerald-400" />
-                <span className="text-sm text-white/60">AI Architect & Creator</span>
+                <span className="text-sm text-emerald-400/80 font-medium">By Invitation & Free Access</span>
               </div>
 
               <h1 className="font-display text-5xl lg:text-7xl font-bold tracking-tight leading-[1.08] text-white">
-                <RotatingWord /> intelligence
+                <RotatingWord /> systems
                 <br />
-                that compounds.
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-cyan-400 to-emerald-400">that compound.</span>
               </h1>
 
               <p className="text-lg md:text-xl text-white/50 max-w-xl leading-relaxed">
-                AI Architect at Oracle. 12,000+ songs with Suno.
-                75+ open-source skills shipped. Everything documented.
+                AI Systems Architect at Oracle. Creator of 12,000+ AI-generated tracks.
+                Building the tools, systems, and frameworks serious builders use.
               </p>
 
-              <p className="font-serif italic text-lg text-white/30 max-w-lg">
-                &ldquo;I create to understand. I share to teach.&rdquo;
-              </p>
+              <div className="flex items-center gap-4 text-sm text-white/30">
+                <span className="flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400/60" />
+                  1,000+ builders using ACOS
+                </span>
+                <span className="hidden sm:block w-px h-3 bg-white/10" />
+                <span className="hidden sm:flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-400/60" />
+                  Free to start
+                </span>
+              </div>
             </motion.div>
 
             {/* CTAs */}
@@ -344,18 +352,18 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
               <Link
                 href="/start"
                 onClick={() => trackEvent('hero_cta_click', { type: 'primary' })}
-                className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-white px-8 h-14 text-base font-medium shadow-lg shadow-emerald-500/20 transition-all hover:shadow-xl hover:shadow-emerald-500/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98]"
+                className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-white px-8 h-14 text-base font-semibold shadow-lg shadow-emerald-500/20 transition-all hover:shadow-xl hover:shadow-emerald-500/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98]"
               >
-                Explore the Work
+                Get Free Access
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
 
               <Link
-                href="/blog"
+                href="/acos"
                 onClick={() => trackEvent('hero_cta_click', { type: 'secondary' })}
                 className="inline-flex items-center justify-center gap-2 rounded-2xl bg-white/5 hover:bg-white/10 backdrop-blur-xl border border-white/10 text-white px-8 h-14 text-base font-medium transition-all"
               >
-                Read the Blog
+                View the OS
               </Link>
             </motion.div>
           </div>
@@ -403,29 +411,34 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
 // ============================================================================
 
 const credentials = [
-  'AI Architect at Oracle',
-  '12,000+ AI Songs Created',
-  '75+ Open Source Skills',
-  'Everything Documented',
+  { label: 'Oracle AI Architect', detail: 'Enterprise Systems' },
+  { label: '12,000+ Tracks', detail: 'AI Music Production' },
+  { label: '75+ Skills', detail: 'Open Source' },
+  { label: '1,000+ Builders', detail: 'Using ACOS' },
 ]
 
 function AuthorityBar() {
   return (
-    <section className="py-16 md:py-20 border-t border-white/5">
+    <section className="py-12 md:py-16 border-t border-white/5">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2 md:gap-x-0"
+          className="flex flex-wrap items-center justify-center gap-6 md:gap-0"
         >
           {credentials.map((item, i) => (
-            <div key={item} className="flex items-center">
-              {i > 0 && <div className="hidden md:block w-px h-4 bg-white/10 mx-6 lg:mx-8" />}
-              <span className="text-sm md:text-base text-white/40 font-medium tracking-wide">
-                {item}
-              </span>
+            <div key={item.label} className="flex items-center">
+              {i > 0 && <div className="hidden md:block w-px h-8 bg-white/[0.06] mx-8 lg:mx-10" />}
+              <div className="text-center">
+                <span className="block text-sm md:text-base font-semibold text-white/60 tracking-wide">
+                  {item.label}
+                </span>
+                <span className="block text-[10px] md:text-xs text-white/25 uppercase tracking-[0.15em] mt-0.5">
+                  {item.detail}
+                </span>
+              </div>
             </div>
           ))}
         </motion.div>
@@ -444,36 +457,42 @@ const products = [
     description: '75+ skills, 38 agents, 35+ commands. The open-source operating system for Claude Code.',
     href: '/acos',
     color: 'emerald' as const,
+    tier: 'Free & Open Source',
   },
   {
     title: 'Prompt Library',
-    description: 'Battle-tested prompts for writing, music, coding, and image generation. Free to use.',
+    description: 'Battle-tested prompts for writing, music, coding, and image generation.',
     href: '/prompt-library',
     color: 'violet' as const,
-  },
-  {
-    title: 'Creator Kit',
-    description: 'Premium templates, video guides, and direct support for ACOS. From $47.',
-    href: '/products',
-    color: 'cyan' as const,
+    tier: 'Free Access',
   },
   {
     title: 'AI Architecture Hub',
-    description: 'Enterprise AI patterns, agent orchestration, system design. Built at Oracle.',
+    description: 'Enterprise AI patterns, agent orchestration, and system design from production experience.',
     href: '/ai-architecture',
     color: 'blue' as const,
+    tier: 'Free Guides',
   },
   {
     title: 'Music Lab',
-    description: '12,000+ AI songs. Production workflows. Genre mastery guides.',
+    description: '12,000+ AI songs. Production workflows. Genre mastery guides for Suno creators.',
     href: '/music-lab',
     color: 'orange' as const,
+    tier: 'Free to Explore',
+  },
+  {
+    title: 'Creator Kit',
+    description: 'Premium templates, video walkthroughs, and direct support for serious builders.',
+    href: '/products',
+    color: 'cyan' as const,
+    tier: 'Premium',
   },
   {
     title: 'Design Lab',
-    description: 'Generative art, visual experiments, nature-tech aesthetics.',
+    description: 'Generative art experiments. Nature-tech fusion aesthetics and visual systems.',
     href: '/design-lab',
     color: 'magenta' as const,
+    tier: 'Gallery',
   },
 ]
 
@@ -488,13 +507,13 @@ function ProductsTools() {
           className="text-center mb-12 md:mb-16"
         >
           <p className="text-[11px] tracking-[0.25em] uppercase text-emerald-400/50 font-medium mb-4">
-            Products & Tools
+            Systems & Tools
           </p>
           <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
-            Built for builders
+            Start free. Go deep.
           </h2>
           <p className="text-base text-white/40 max-w-2xl mx-auto">
-            Open-source tools, premium resources, and creative systems — built for builders who ship.
+            Everything starts with free access. Premium tiers unlock when you&apos;re ready to go deeper.
           </p>
         </motion.div>
 
@@ -508,7 +527,16 @@ function ProductsTools() {
               transition={{ delay: i * 0.08 }}
             >
               <GlowCard href={product.href} color={product.color} className="p-5 sm:p-6 h-full hover:-translate-y-0.5">
-                <div className="h-0.5 w-full bg-gradient-to-r from-emerald-500/50 to-cyan-500/50 rounded-full mb-5" />
+                <div className="flex items-center justify-between mb-5">
+                  <div className="h-0.5 flex-1 bg-gradient-to-r from-emerald-500/50 to-cyan-500/50 rounded-full" />
+                  <span className={`ml-3 text-[10px] font-medium uppercase tracking-wider px-2 py-0.5 rounded-full ${
+                    product.tier === 'Premium'
+                      ? 'bg-emerald-500/15 text-emerald-400/80 border border-emerald-500/20'
+                      : 'bg-white/5 text-white/35'
+                  }`}>
+                    {product.tier}
+                  </span>
+                </div>
                 <h3 className="text-base sm:text-lg font-semibold text-white mb-2 group-hover:text-emerald-400 transition-colors">
                   {product.title}
                 </h3>
@@ -516,7 +544,7 @@ function ProductsTools() {
                   {product.description}
                 </p>
                 <div className="mt-4 flex items-center gap-1.5 text-xs text-white/30 group-hover:text-white/50 transition-colors">
-                  <span>Learn more</span>
+                  <span>{product.tier === 'Premium' ? 'View details' : 'Get started'}</span>
                   <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
                 </div>
               </GlowCard>
@@ -786,7 +814,7 @@ function BooksShowcase({ books }: { books: BookData[] }) {
               Books & Writing
             </h2>
             <p className="text-base text-white/50 max-w-lg">
-              Spanning poetry, discipline, creativity, and hope. Read free online or download as PDF.
+              Spanning poetry, discipline, creativity, and hope. Free to read online.
             </p>
           </div>
           <Link
@@ -912,28 +940,28 @@ function LatestArticles({ posts }: { posts: LatestPost[] }) {
 const learningCards = [
   {
     title: 'Students & Creators',
-    description: 'AI guides for students, families, and aspiring creators.',
+    description: 'Free AI guides for students, families, and aspiring creators.',
     href: '/students',
     image: '/images/blog/agi-2026-opportunities-students-creators-hero.png',
     color: 'cyan' as const,
   },
   {
     title: 'Guides & Tutorials',
-    description: 'Step-by-step guides from beginner to advanced.',
+    description: 'Production-tested guides from fundamentals to advanced systems.',
     href: '/guides',
     image: '/images/blog/ultimate-guide-ai-coding-agents-2026-hero-v2.png',
     color: 'emerald' as const,
   },
   {
     title: 'Watch',
-    description: 'Video tutorials and workshop recordings.',
+    description: 'Video tutorials and workshop recordings — learn at your pace.',
     href: '/watch',
     image: '/images/blog/creators-ai-toolkit-workshop-hero.png',
     color: 'violet' as const,
   },
   {
     title: 'Tools & Resources',
-    description: 'Curated tools, templates, and resource libraries.',
+    description: 'Curated tools, templates, and resource libraries for builders.',
     href: '/tools',
     image: '/images/blog/golden-age-field-guide-hero.png',
     color: 'amber' as const,
@@ -951,13 +979,13 @@ function LearningHub() {
           className="mb-10"
         >
           <p className="text-[11px] tracking-[0.25em] uppercase text-cyan-400/50 font-medium mb-3">
-            Resources
+            Free Resources
           </p>
           <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
-            Learn & Explore
+            Learn at your own pace
           </h2>
           <p className="text-base text-white/50 max-w-lg">
-            Guides, courses, video tutorials, and tools — everything you need to level up.
+            Deep technical guides, video workshops, and curated tools — all free to access.
           </p>
         </motion.div>
 
@@ -1020,28 +1048,28 @@ function EmailCTA() {
           <div className="relative">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-6">
               <Sparkles className="w-4 h-4 text-emerald-400" />
-              <span className="text-sm text-emerald-400">Weekly Insights</span>
+              <span className="text-sm text-emerald-400">Inner Circle</span>
             </div>
 
             <h2 className="text-2xl md:text-3xl font-semibold text-white mb-2">
-              AI architecture and creative systems.
+              The weekly dispatch.
             </h2>
-            <p className="font-serif italic text-base text-white/30 mb-1">
-              Dispatches from the intersection of code &amp; creation.
+            <p className="text-base text-white/40 mb-1">
+              AI architecture insights, creative systems breakdowns, and early access to new tools.
             </p>
-            <p className="text-sm text-white/40 mb-8">
-              Weekly dispatch. No spam, no guru energy — just the work.
+            <p className="text-sm text-white/30 mb-8">
+              Trusted by 1,000+ builders. Unsubscribe anytime.
             </p>
             <div className="max-w-sm mx-auto">
               <EmailSignup
                 listType="newsletter"
                 placeholder="your@email.com"
-                buttonText="Subscribe"
+                buttonText="Join Free"
                 compact
               />
             </div>
-            <p className="mt-4 text-xs text-white/30">
-              Unsubscribe anytime. No spam.
+            <p className="mt-4 text-xs text-white/25">
+              No spam. No guru energy. Just the work, weekly.
             </p>
           </div>
         </motion.div>
@@ -1137,14 +1165,14 @@ function FinalCTA() {
           <div className="absolute inset-0 md:-inset-x-10 md:-inset-y-10 bg-gradient-to-r from-emerald-500/5 via-transparent to-cyan-500/5 blur-3xl opacity-30 rounded-3xl pointer-events-none" />
 
           <div className="relative text-center">
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 tracking-tight">
-              Start building.
-            </h2>
-            <p className="font-serif italic text-lg text-white/30 mb-2">
-              The best way to predict the future is to create it.
+            <p className="text-[11px] tracking-[0.25em] uppercase text-emerald-400/40 font-medium mb-6">
+              Your Next Move
             </p>
-            <p className="text-base text-white/40 mb-8 md:mb-12 max-w-md mx-auto">
-              Pick your path — architecture, music, or products.
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight">
+              Ready to go deeper?
+            </h2>
+            <p className="text-base md:text-lg text-white/40 mb-8 md:mb-12 max-w-lg mx-auto">
+              Start with free tools and guides. When you&apos;re ready, premium access unlocks everything.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -1152,16 +1180,20 @@ function FinalCTA() {
                 href="/start"
                 className="group inline-flex items-center justify-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-4 text-base font-semibold shadow-lg shadow-emerald-500/20 transition-all duration-300 hover:shadow-xl hover:shadow-emerald-500/30 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] active:scale-[0.98]"
               >
-                Start Here
+                Get Free Access
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link
-                href="/newsletter"
+                href="/coaching"
                 className="inline-flex items-center justify-center gap-2 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 text-white px-8 py-4 text-base font-medium transition-all"
               >
-                Get the Newsletter
+                Apply for Coaching
               </Link>
             </div>
+
+            <p className="mt-6 text-xs text-white/20">
+              Free tools available instantly. Premium coaching by application only.
+            </p>
           </div>
         </motion.div>
       </div>

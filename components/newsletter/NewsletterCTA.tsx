@@ -72,11 +72,11 @@ export default function NewsletterCTA() {
           >
             <Sparkles className="mx-auto mb-6 h-10 w-10 text-violet-400" />
             <h2 className="mb-3 text-2xl font-bold text-white sm:text-3xl">
-              Not sure which stream?
+              Not sure where to start?
             </h2>
             <p className="mx-auto mb-8 max-w-md text-slate-400">
-              Start with Creation Chronicles — it covers everything and
-              you&apos;ll see what resonates.
+              Join the main stream — Creation Chronicles covers everything.
+              You&apos;ll see what resonates, then go deeper.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <a
@@ -84,7 +84,7 @@ export default function NewsletterCTA() {
                 className="group flex items-center gap-2 rounded-full bg-white px-6 py-3 font-semibold text-slate-900 transition-all hover:-translate-y-0.5"
               >
                 <Mail className="h-4 w-4" />
-                Start with the main stream
+                Join free
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </a>
               <Link

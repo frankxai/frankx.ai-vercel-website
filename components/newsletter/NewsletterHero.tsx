@@ -99,7 +99,7 @@ export default function NewsletterHero({
         >
           <Mail className="h-4 w-4 text-violet-400" />
           <span className="text-sm font-medium text-violet-400">
-            6 Streams. Pick Your Signal.
+            The Inner Circle
           </span>
         </motion.div>
 
@@ -125,9 +125,9 @@ export default function NewsletterHero({
           transition={{ duration: 0.6, delay: 0.15 }}
           className="mb-6 text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-6xl"
         >
-          Subscribe to what
+          Curated signals for
           <span className="mt-2 block bg-gradient-to-r from-violet-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent">
-            you actually care about
+            serious builders.
           </span>
         </motion.h1>
 
@@ -137,8 +137,8 @@ export default function NewsletterHero({
           transition={{ duration: 0.6, delay: 0.2 }}
           className="mx-auto mb-10 max-w-2xl text-lg leading-relaxed text-slate-400"
         >
-          AI architecture, music production, investing, worldbuilding — each
-          stream has its own voice, cadence, and depth. Subscribe to one or all.
+          AI architecture, music production, creative systems, and worldbuilding — each
+          stream delivers focused insights you won&apos;t find on the blog. Free to join.
         </motion.p>
 
         {/* Subscribe to all */}
@@ -180,14 +180,14 @@ export default function NewsletterHero({
                   disabled={allStatus === 'loading'}
                   className="group flex items-center gap-2 rounded-xl bg-gradient-to-r from-violet-600 to-cyan-600 px-6 py-4 font-semibold text-white transition-all hover:from-violet-500 hover:to-cyan-500 disabled:opacity-50"
                 >
-                  {allStatus === 'loading' ? '...' : 'Get All'}
+                  {allStatus === 'loading' ? '...' : 'Join Free'}
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </button>
               </motion.form>
             )}
           </AnimatePresence>
           <p className="mt-3 text-xs text-slate-500">
-            One click, all 6 streams. Unsubscribe from any individually.
+            All streams included. Manage each independently. Unsubscribe anytime.
           </p>
         </motion.div>
       </div>

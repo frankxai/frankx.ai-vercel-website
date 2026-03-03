@@ -147,8 +147,8 @@ const faq = [
     a: 'Clone the repo, run install.sh, and open Claude Code in that directory. That\'s it. The /acos command becomes your entry point. Skills auto-activate, agents load on demand, and hooks run automatically.',
   },
   {
-    q: 'What\'s different about the paid tiers?',
-    a: 'The paid tiers provide guided setup (video walkthroughs), premium templates (20+ pre-built content patterns), curated presets, and direct support from the creator. The Pro tier adds quarterly skill pack updates, custom agent configuration, and 1:1 async support for 30 days.',
+    q: 'What do the premium tiers include?',
+    a: 'Premium tiers provide guided setup with video walkthroughs, 20+ pre-built content templates, curated skill presets, and direct support from the creator. The Pro tier adds quarterly updates, custom agent configuration, and 1:1 async support.',
   },
   {
     q: 'Can I customize the agents and skills?',
@@ -164,9 +164,9 @@ const structuredData = {
   operatingSystem: 'Cross-platform (Claude Code)',
   description: 'The Operating System for Generative Creators. 75+ skills, 38 agents, 35+ commands for Claude Code.',
   offers: [
-    { '@type': 'Offer', price: '0', priceCurrency: 'USD', name: 'Open Source' },
-    { '@type': 'Offer', price: '47', priceCurrency: 'USD', name: 'Creator Kit' },
-    { '@type': 'Offer', price: '197', priceCurrency: 'USD', name: 'Pro System' },
+    { '@type': 'Offer', price: '0', priceCurrency: 'USD', name: 'Open Source', description: 'Full system, MIT licensed' },
+    { '@type': 'Offer', name: 'Creator Kit', description: 'Premium templates and video guides' },
+    { '@type': 'Offer', name: 'Pro System', description: 'Full mastery with 1:1 support' },
   ],
   author: { '@type': 'Person', name: 'Frank Guzman', url: 'https://frankx.ai' },
   url: 'https://github.com/frankxai/agentic-creator-os',
@@ -246,9 +246,9 @@ export default function ACOSPage() {
               Star on GitHub
               <ArrowRight className="h-5 w-5" />
             </PremiumButton>
-            <PremiumButton variant="ghost" size="lg" href="#pricing">
+            <PremiumButton variant="ghost" size="lg" href="#tiers">
               <Download className="h-5 w-5" />
-              See Pricing
+              View Access Tiers
             </PremiumButton>
           </div>
         </div>
@@ -320,14 +320,14 @@ export default function ACOSPage() {
         </div>
       </section>
 
-      {/* ─── Pricing ─── */}
-      <section id="pricing" className="py-20">
+      {/* ─── Access Tiers ─── */}
+      <section id="tiers" className="py-20">
         <div className="mx-auto max-w-6xl px-6">
           <h2 className="text-center text-3xl font-bold text-white sm:text-4xl">
-            Choose Your Path
+            Choose Your Access Level
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-center text-white/50">
-            The code is free. Premium adds guides, templates, support, and direct access.
+            Start free with the full open-source system. Unlock premium support and resources when you&apos;re ready.
           </p>
           <div className="mt-12 grid gap-6 md:grid-cols-3">
             {tiers.map((tier) => (
@@ -390,9 +390,9 @@ export default function ACOSPage() {
             ))}
           </div>
           <p className="mt-8 text-center text-sm text-white/30">
-            Need enterprise-level customization?{' '}
+            Need enterprise-level customization or team licensing?{' '}
             <a href="mailto:hello@frankx.ai?subject=ACOS%20Enterprise" className="text-purple-300 underline-offset-4 hover:underline">
-              Contact for custom pricing
+              Get in touch
             </a>
           </p>
         </div>
