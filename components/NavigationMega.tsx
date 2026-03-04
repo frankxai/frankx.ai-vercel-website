@@ -72,8 +72,8 @@ const navigation = {
     items: [
       { name: 'Vibe Hub', href: '/vibe', icon: Sparkles, description: 'AI agent ecosystem hub' },
       { name: 'Music Producer', href: '/vibe/producer', icon: Music, description: 'Suno AI prompt engineering' },
-      { name: 'Agent Marketplace', href: '/vibe/agents', icon: Bot, description: 'Coming soon' },
-      { name: 'Arcanea Cloud', href: '/vibe/arcanea', icon: Wand2, description: 'Coming soon' },
+      { name: 'Full Presence', href: '/presence', icon: Brain, description: 'Arrive before you create' },
+      { name: 'Arcanea World', href: '/arcanea', icon: Wand2, description: 'Creative civilization system' },
     ],
   },
   creators: {
@@ -174,6 +174,7 @@ const navigation = {
       { name: 'AI Architect', href: '/ai-architect', icon: Network, description: 'Solution design & patterns' },
       { name: 'ArcaneaVault', href: '/vault', icon: Layers, description: 'Visual asset library' },
       { name: 'Video Vault', href: '/watch', icon: Play, description: '130+ curated AI videos' },
+      { name: 'Full Presence', href: '/presence', icon: Brain, description: '8-gate mindfulness practice' },
       { name: 'Vibe OS', href: '/products/vibe-os', icon: Music, description: 'AI music system' },
       { name: 'Agentic Creator OS', href: '/products/agentic-creator-os', icon: Bot, description: 'Agent workflows' },
       { name: 'Arcanea', href: '/magic', icon: Wand2, description: 'Worldbuilding academy' },
@@ -184,7 +185,7 @@ const navigation = {
     groups: [
       {
         label: 'Products & Systems',
-        items: ['Resource Hub', 'Vibe OS', 'Agentic Creator OS', 'Arcanea', 'The Luminors'],
+        items: ['Resource Hub', 'Full Presence', 'Vibe OS', 'Agentic Creator OS', 'Arcanea', 'The Luminors'],
       },
       {
         label: 'Learn & Read',

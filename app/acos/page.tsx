@@ -18,6 +18,7 @@ import {
   MessageSquare
 } from 'lucide-react'
 
+import GlassmorphicCard from '@/components/ui/GlassmorphicCard'
 import PremiumButton from '@/components/ui/PremiumButton'
 import { GlowCard } from '@/components/ui/glow-card'
 
@@ -93,8 +94,8 @@ const tiers = [
   },
   {
     name: 'Creator Kit',
-    price: 'Premium',
-    priceNote: 'Lifetime access',
+    price: '$47',
+    priceNote: 'One-time',
     description: 'Everything open-source + premium templates, video walkthroughs, and direct support.',
     features: [
       'Everything in Open Source',
@@ -111,8 +112,8 @@ const tiers = [
   },
   {
     name: 'Pro System',
-    price: 'Elite',
-    priceNote: 'Lifetime access',
+    price: '$197',
+    priceNote: 'One-time',
     description: 'Full ACOS mastery. Deep-dive setup, custom configurations, quarterly updates, and 1:1 support.',
     features: [
       'Everything in Creator Kit',
@@ -147,8 +148,8 @@ const faq = [
     a: 'Clone the repo, run install.sh, and open Claude Code in that directory. That\'s it. The /acos command becomes your entry point. Skills auto-activate, agents load on demand, and hooks run automatically.',
   },
   {
-    q: 'What do the premium tiers include?',
-    a: 'Premium tiers provide guided setup with video walkthroughs, 20+ pre-built content templates, curated skill presets, and direct support from the creator. The Pro tier adds quarterly updates, custom agent configuration, and 1:1 async support.',
+    q: 'What\'s different about the paid tiers?',
+    a: 'The paid tiers provide guided setup (video walkthroughs), premium templates (20+ pre-built content patterns), curated presets, and direct support from the creator. The Pro tier adds quarterly skill pack updates, custom agent configuration, and 1:1 async support for 30 days.',
   },
   {
     q: 'Can I customize the agents and skills?',
@@ -164,9 +165,9 @@ const structuredData = {
   operatingSystem: 'Cross-platform (Claude Code)',
   description: 'The Operating System for Generative Creators. 75+ skills, 38 agents, 35+ commands for Claude Code.',
   offers: [
-    { '@type': 'Offer', price: '0', priceCurrency: 'USD', name: 'Open Source', description: 'Full system, MIT licensed' },
-    { '@type': 'Offer', name: 'Creator Kit', description: 'Premium templates and video guides' },
-    { '@type': 'Offer', name: 'Pro System', description: 'Full mastery with 1:1 support' },
+    { '@type': 'Offer', price: '0', priceCurrency: 'USD', name: 'Open Source' },
+    { '@type': 'Offer', price: '47', priceCurrency: 'USD', name: 'Creator Kit' },
+    { '@type': 'Offer', price: '197', priceCurrency: 'USD', name: 'Pro System' },
   ],
   author: { '@type': 'Person', name: 'Frank Guzman', url: 'https://frankx.ai' },
   url: 'https://github.com/frankxai/agentic-creator-os',
@@ -246,9 +247,9 @@ export default function ACOSPage() {
               Star on GitHub
               <ArrowRight className="h-5 w-5" />
             </PremiumButton>
-            <PremiumButton variant="ghost" size="lg" href="#tiers">
+            <PremiumButton variant="ghost" size="lg" href="#pricing">
               <Download className="h-5 w-5" />
-              View Access Tiers
+              See Pricing
             </PremiumButton>
           </div>
         </div>
@@ -290,6 +291,57 @@ export default function ACOSPage() {
         </div>
       </section>
 
+      {/* ─── FPA Module Spotlight ─── */}
+      <section className="py-12">
+        <div className="mx-auto max-w-5xl px-6">
+          <div className="relative rounded-2xl border border-violet-500/20 bg-violet-500/[0.04] p-8 md:p-10 overflow-hidden">
+            <div className="absolute top-0 right-0 w-72 h-40 pointer-events-none"
+              style={{ background: 'radial-gradient(ellipse at top right, rgba(124,58,237,0.12) 0%, transparent 65%)' }} />
+            <div className="relative z-10 flex flex-col md:flex-row items-start gap-8">
+              <div className="flex-1">
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="text-xs font-mono px-2.5 py-1 rounded border border-violet-400/20 text-violet-300/60">Module · FPA v1.0</span>
+                  <span className="text-xs font-mono text-white/20">/presence</span>
+                </div>
+                <h3 className="text-xl font-semibold text-white/80 mb-2">Full Presence Activation</h3>
+                <p className="text-white/40 leading-relaxed max-w-xl mb-4">
+                  The entry ritual before every ACOS session. Eight sensory gates based on Buddhist mindfulness,
+                  Taoist flow, and Eckhart Tolle. 30 seconds minimum. The only ACOS protocol that cannot be automated.
+                </p>
+                <div className="flex flex-wrap gap-3">
+                  <Link
+                    href="/acos/presence"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-violet-500/30 text-violet-300 text-sm font-semibold hover:bg-violet-500/10 transition-colors"
+                  >
+                    Module Documentation
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                  <Link
+                    href="/presence"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-white/10 text-white/50 text-sm hover:bg-white/5 transition-colors"
+                  >
+                    Open Practice
+                  </Link>
+                </div>
+              </div>
+              <div className="rounded-xl border border-white/[0.06] bg-[#0d1117] p-4 font-mono text-xs min-w-0 md:min-w-[260px] flex-shrink-0">
+                <div className="flex gap-1.5 mb-3">
+                  <span className="w-2.5 h-2.5 rounded-full bg-red-500/50" /><span className="w-2.5 h-2.5 rounded-full bg-amber-500/50" /><span className="w-2.5 h-2.5 rounded-full bg-emerald-500/50" />
+                </div>
+                <div className="space-y-1 text-white/40">
+                  <p><span className="text-emerald-400">$</span> <span className="text-white/60">claude</span></p>
+                  <p className="text-purple-400">/acos</p>
+                  <p className="text-violet-400 mt-2">⬟ Presence Gate (Level 0)</p>
+                  <p className="pl-2">I &nbsp; What do you see? &nbsp;&nbsp;&nbsp;[5s]</p>
+                  <p className="pl-2">V &nbsp; What do you feel? &nbsp;[8s]</p>
+                  <p className="text-cyan-300/70 mt-2">&gt; 38 agents ready.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ─── Commands Preview ─── */}
       <section className="border-y border-white/[0.08] bg-white/[0.03] py-20">
         <div className="mx-auto max-w-5xl px-6">
@@ -301,7 +353,7 @@ export default function ACOSPage() {
               { category: 'Creation', commands: ['/article-creator', '/create-music', '/infogenius', '/generate-images', '/generate-social', '/factory', '/products-creation', '/author-team'], color: 'text-cyan-400' },
               { category: 'Strategy', commands: ['/starlight-architect', '/starlight-intelligence', '/council', '/research', '/plan-week', '/harvest'], color: 'text-purple-400' },
               { category: 'Development', commands: ['/spec', '/nextjs-deploy', '/ux-design', '/automation-dev'], color: 'text-amber-400' },
-              { category: 'System', commands: ['/acos', '/inventory-status', '/mcp-status', '/publish', '/review-content'], color: 'text-emerald-400' },
+              { category: 'System', commands: ['/acos', '/presence', '/inventory-status', '/mcp-status', '/publish', '/review-content'], color: 'text-emerald-400' },
             ].map((group) => (
               <div key={group.category}>
                 <h3 className={`mb-3 text-sm font-semibold uppercase tracking-[0.3em] ${group.color}`}>
@@ -320,14 +372,14 @@ export default function ACOSPage() {
         </div>
       </section>
 
-      {/* ─── Access Tiers ─── */}
-      <section id="tiers" className="py-20">
+      {/* ─── Pricing ─── */}
+      <section id="pricing" className="py-20">
         <div className="mx-auto max-w-6xl px-6">
           <h2 className="text-center text-3xl font-bold text-white sm:text-4xl">
-            Choose Your Access Level
+            Choose Your Path
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-center text-white/50">
-            Start free with the full open-source system. Unlock premium support and resources when you&apos;re ready.
+            The code is free. Premium adds guides, templates, support, and direct access.
           </p>
           <div className="mt-12 grid gap-6 md:grid-cols-3">
             {tiers.map((tier) => (
@@ -390,9 +442,9 @@ export default function ACOSPage() {
             ))}
           </div>
           <p className="mt-8 text-center text-sm text-white/30">
-            Need enterprise-level customization or team licensing?{' '}
+            Need enterprise-level customization?{' '}
             <a href="mailto:hello@frankx.ai?subject=ACOS%20Enterprise" className="text-purple-300 underline-offset-4 hover:underline">
-              Get in touch
+              Contact for custom pricing
             </a>
           </p>
         </div>
@@ -433,7 +485,7 @@ export default function ACOSPage() {
               View on GitHub
             </PremiumButton>
             <PremiumButton variant="primary" size="lg" href={CHECKOUT.starter} target="_blank" rel="noopener noreferrer">
-              Get Creator Kit
+              Get Creator Kit — $47
             </PremiumButton>
           </div>
         </div>

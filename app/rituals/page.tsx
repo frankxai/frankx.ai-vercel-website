@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Coffee, Zap, Music, Moon, Clock, ArrowRight, Check } from 'lucide-react'
+import { Coffee, Zap, Music, Moon, Clock, ArrowRight, Check, Eye } from 'lucide-react'
 import Link from 'next/link'
 import { motion, AnimatePresence } from 'framer-motion'
 
@@ -160,6 +160,57 @@ export default function RitualsPage() {
         )}
       </AnimatePresence>
 
+      {/* Full Presence Activation — The zeroth ritual */}
+      <section className="max-w-4xl mx-auto px-6 pb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="relative rounded-2xl border border-violet-500/20 bg-violet-500/[0.04] p-8 md:p-10 overflow-hidden"
+        >
+          {/* Ambient glow */}
+          <div className="absolute top-0 left-0 w-64 h-32 rounded-full pointer-events-none"
+            style={{ background: 'radial-gradient(ellipse, rgba(124,58,237,0.1) 0%, transparent 70%)' }} />
+
+          <div className="relative z-10 flex flex-col md:flex-row items-start gap-8">
+            <div className="w-12 h-12 rounded-xl bg-violet-500/10 flex items-center justify-center flex-shrink-0">
+              <Eye className="w-6 h-6 text-violet-400" />
+            </div>
+            <div className="flex-1">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-violet-500/20 text-xs text-violet-400 font-mono tracking-widest mb-3">
+                RITUAL ZERO
+              </div>
+              <h3 className="text-xl font-semibold text-white/80 mb-2">
+                Full Presence Activation
+              </h3>
+              <p className="text-white/40 leading-relaxed mb-4 max-w-xl">
+                Before Morning Prime. Before any ritual begins. 30 seconds to 5 minutes.
+                Eight sensory gates that close the gap between where you were and where you need to be.
+                Inspired by Buddhist mindfulness, Taoist flow, Tantric somatic awakening, and Eckhart Tolle.
+              </p>
+              <div className="flex flex-wrap gap-2 mb-6">
+                {['What do you see?', 'What do you hear?', 'What do you feel?'].map((q) => (
+                  <span key={q} className="text-xs px-3 py-1 rounded-full border border-white/10 text-white/30 italic">
+                    {q}
+                  </span>
+                ))}
+                <span className="text-xs px-3 py-1 rounded-full border border-white/10 text-white/20 italic">
+                  +5 more gates
+                </span>
+              </div>
+              <Link
+                href="/presence"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-violet-500/30 text-violet-300 text-sm font-semibold hover:bg-violet-500/10 transition-colors"
+              >
+                Open the Practice
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+          </div>
+        </motion.div>
+      </section>
+
       {/* Philosophy */}
       <section className="max-w-3xl mx-auto px-6 py-16 text-center">
         <blockquote className="text-2xl md:text-3xl font-semibold text-white/80 leading-relaxed">
@@ -181,6 +232,13 @@ export default function RitualsPage() {
             >
               View Achievements
               <ArrowRight className="w-4 h-4" />
+            </Link>
+            <Link
+              href="/presence"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-violet-500/30 text-violet-300 font-semibold hover:bg-violet-500/10 transition-colors"
+            >
+              <Eye className="w-4 h-4" />
+              Full Presence Activation
             </Link>
             <Link
               href="/music"
