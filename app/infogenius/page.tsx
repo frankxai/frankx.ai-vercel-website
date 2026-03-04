@@ -115,7 +115,7 @@ export default function InfoGeniusPage() {
 
               <div className="flex flex-wrap gap-4">
                 <Link
-                  href="/tools"
+                  href="/lab"
                   className="inline-flex items-center gap-2 rounded-full bg-violet-600 hover:bg-violet-500 px-7 py-3.5 text-sm font-semibold text-white transition-all duration-200 hover:shadow-[0_0_30px_rgba(139,92,246,0.5)]"
                 >
                   Try InfoGenius
@@ -398,7 +398,7 @@ export default function InfoGeniusPage() {
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
               <Link
-                href="/tools"
+                href="/lab"
                 className="inline-flex items-center gap-2 rounded-full bg-violet-600 hover:bg-violet-500 px-8 py-4 text-sm font-semibold text-white transition-all duration-200 hover:shadow-[0_0_40px_rgba(139,92,246,0.5)]"
               >
                 Start generating
