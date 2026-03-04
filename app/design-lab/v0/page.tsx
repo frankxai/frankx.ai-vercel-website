@@ -1,214 +1,106 @@
 'use client'
 
-import { useState, useRef, useCallback } from 'react'
-import { motion, useReducedMotion } from 'framer-motion'
+import { useMemo, useState } from 'react'
+import { motion } from 'framer-motion'
 import Link from 'next/link'
 import {
+  AlertCircle,
   ArrowLeft,
   ArrowUpRight,
+  CheckCircle2,
+  CircleDashed,
   ExternalLink,
   Eye,
   Layers,
+  Link2,
   Maximize2,
   Minimize2,
+  Rocket,
   Sparkles,
 } from 'lucide-react'
+import v0Dataset from '@/data/v0-generations.json'
 
-// ── v0 Generation Data ──
-
-interface V0Generation {
-  id: number
-  title: string
-  subtitle: string
-  chatId: string
-  demoUrl: string
+type V0Wave = {
+  wave: number
   model: string
-  fileCount: number
-  color: string
-  category: string
 }
 
-const generations: V0Generation[] = [
-  {
-    id: 1,
-    title: 'Homepage Hero',
-    subtitle: 'Liquid gradient hero with floating stat cards and scroll indicators',
-    chatId: 'kp1UCsrMJI8',
-    demoUrl: 'https://demo-kzmp73pqpq4yhafic577.vusercontent.net',
-    model: 'v0-1.5-lg',
-    fileCount: 7,
-    color: 'emerald',
-    category: 'Landing Page',
-  },
-  {
-    id: 2,
-    title: 'Products Page',
-    subtitle: 'Filter system with featured ACOS card and animated gradient orbs',
-    chatId: 'oyx6iwcSNW0',
-    demoUrl: 'https://demo-kzmnco49r01u38scvpt5.vusercontent.net',
-    model: 'v0-1.5-lg',
-    fileCount: 3,
-    color: 'violet',
-    category: 'Product Page',
-  },
-  {
-    id: 3,
-    title: 'Research Hub',
-    subtitle: 'Two-column grid with sidebar, category filters, credibility signals',
-    chatId: 'hz3M0ZGsSF5',
-    demoUrl: 'https://demo-kzmfrqnxel1daa64b510.vusercontent.net',
-    model: 'v0-1.5-lg',
-    fileCount: 3,
-    color: 'cyan',
-    category: 'Dashboard',
-  },
-  {
-    id: 4,
-    title: 'Blog Landing',
-    subtitle: 'Premium blog index with featured posts and reading time estimates',
-    chatId: 'vDtmFp45TVR',
-    demoUrl: 'https://demo-kzmp0oaq7ysi02dfvmnl.vusercontent.net',
-    model: 'v0-1.5-lg',
-    fileCount: 4,
-    color: 'amber',
-    category: 'Landing Page',
-  },
-  {
-    id: 5,
-    title: 'Inner Circle',
-    subtitle: 'Membership page with tier comparison and exclusive content preview',
-    chatId: 'uaPnlaw4BIK',
-    demoUrl: 'https://demo-kzmqkdpccsp0s5d342f9.vusercontent.net',
-    model: 'v0-1.5-lg',
-    fileCount: 3,
-    color: 'rose',
-    category: 'Product Page',
-  },
-  {
-    id: 6,
-    title: 'ACOS Product',
-    subtitle: 'Agent orchestration showcase with metrics, features, and pricing',
-    chatId: 'f6ToNz0ER5c',
-    demoUrl: 'https://demo-kzmpc9qb5oxmrzbm1yz0.vusercontent.net',
-    model: 'v0-1.5-lg',
-    fileCount: 4,
-    color: 'emerald',
-    category: 'Product Page',
-  },
-  {
-    id: 7,
-    title: 'AI Academy',
-    subtitle: 'Learning platform with course cards, progress tracking, and certifications',
-    chatId: 'kmqMZu6QQHA',
-    demoUrl: 'https://demo-kzmqdniz3r3vtbckv0w2.vusercontent.net',
-    model: 'v0-1.5-lg',
-    fileCount: 4,
-    color: 'blue',
-    category: 'Landing Page',
-  },
-  {
-    id: 8,
-    title: 'About Page',
-    subtitle: 'Personal brand page with timeline, skills visualization, and values',
-    chatId: 'vf8toBMjzWP',
-    demoUrl: 'https://demo-kzmjven0djm9woxa21xi.vusercontent.net',
-    model: 'v0-1.5-lg',
-    fileCount: 4,
-    color: 'teal',
-    category: 'Landing Page',
-  },
-  {
-    id: 9,
-    title: 'Design System',
-    subtitle: 'Component showcase with color palette, typography, and spacing tokens',
-    chatId: 'nmegM49Dti2',
-    demoUrl: 'https://demo-kzmljrx9qevuoynjg4t1.vusercontent.net',
-    model: 'v0-1.5-lg',
-    fileCount: 3,
-    color: 'violet',
-    category: 'Component',
-  },
-  {
-    id: 10,
-    title: 'Music Lab',
-    subtitle: 'Audio production hub with waveform visualizations and track management',
-    chatId: 'r9XYZI8P0Mv',
-    demoUrl: 'https://demo-kzmnibzj21qauou5xlcm.vusercontent.net',
-    model: 'v0-1.5-lg',
-    fileCount: 4,
-    color: 'orange',
-    category: 'Dashboard',
-  },
-  // ── Wave 2: v0-pro (GPT-5) Ultra-Premium ──
-  {
-    id: 11,
-    title: 'Soulbook (v0-pro)',
-    subtitle: 'Premium self-discovery platform with pillar visualizations and golden path',
-    chatId: 'qlakULoe76B',
-    demoUrl: 'https://demo-kzmq92zhek8h1nsceani.vusercontent.net',
-    model: 'v0-pro',
-    fileCount: 4,
-    color: 'amber',
-    category: 'Product Page',
-  },
-  {
-    id: 12,
-    title: 'AI Team (v0-pro)',
-    subtitle: 'AI collaboration ecosystem with constellation graph and department cards',
-    chatId: 'oPNEc2DTmO8',
-    demoUrl: 'https://demo-kzmqowwh4n4vh5jyh6jo.vusercontent.net',
-    model: 'v0-pro',
-    fileCount: 0,
-    color: 'cyan',
-    category: 'Landing Page',
-  },
-  {
-    id: 13,
-    title: 'Labs Premium (v0-pro)',
-    subtitle: 'Build sessions hub with animated beaker, lab flow, and replay archive',
-    chatId: 'bTEnogK4Jrn',
-    demoUrl: 'https://demo-kzmo42sze9qnoaml93ym.vusercontent.net',
-    model: 'v0-pro',
-    fileCount: 4,
-    color: 'violet',
-    category: 'Landing Page',
-  },
-  {
-    id: 14,
-    title: 'Inner Circle v2 (v0-pro)',
-    subtitle: 'Premium membership with animated shield, tiered pricing, and FAQ accordion',
-    chatId: 'tZ41YuKQJoo',
-    demoUrl: 'https://demo-kzmisu11l2vafqrmp560.vusercontent.net',
-    model: 'v0-pro',
-    fileCount: 4,
-    color: 'rose',
-    category: 'Product Page',
-  },
-  {
-    id: 15,
-    title: 'Coaching (v0-pro)',
-    subtitle: 'AI coaching platform with program tiers, methodology, and booking flow',
-    chatId: 'ixe64JX8hmQ',
-    demoUrl: 'https://demo-kzmid0zlxhgrfar9tmd2.vusercontent.net',
-    model: 'v0-pro',
-    fileCount: 4,
-    color: 'emerald',
-    category: 'Product Page',
-  },
-  {
-    id: 16,
-    title: 'Community (v0-pro)',
-    subtitle: 'Builder community hub with activity feed, member cards, and events',
-    chatId: 'eCYweJC6UTl',
-    demoUrl: 'https://demo-kzmn6q9sjk9cmrje1k4y.vusercontent.net',
-    model: 'v0-pro',
-    fileCount: 4,
-    color: 'blue',
-    category: 'Community',
-  },
-]
+type V0Generation = {
+  id: number
+  wave: number
+  title: string
+  chatId: string
+  chatUrl?: string
+  demoUrl: string
+  fileCount: number
+  category: string
+  color: string
+  status: 'completed' | 'pending' | 'failed' | string
+  deployed?: boolean
+}
 
-// ── Color Config ──
+type V0DataSet = {
+  waves: V0Wave[]
+  generations: V0Generation[]
+}
+
+type EnrichedGeneration = V0Generation & {
+  subtitle: string
+  model: string
+  categoryLabel: string
+  productionPath: string | null
+  isTemplateReady: boolean
+  isInterlinked: boolean
+  isGoodToShip: boolean
+}
+
+const data = v0Dataset as V0DataSet
+
+const subtitleById: Record<number, string> = {
+  1: 'Liquid gradient hero with floating stat cards and scroll indicators',
+  2: 'Filter system with featured ACOS card and animated gradient orbs',
+  3: 'Two-column grid with sidebar, category filters, credibility signals',
+  4: 'Premium blog index with featured posts and reading time estimates',
+  5: 'Membership page with tier comparison and exclusive content preview',
+  6: 'Agent orchestration showcase with metrics, features, and pricing',
+  7: 'Learning platform with course cards, progress tracking, and certifications',
+  8: 'Personal brand page with timeline, skills visualization, and values',
+  9: 'Component showcase with color palette, typography, and spacing tokens',
+  10: 'Audio production hub with waveform visualizations and track management',
+  11: 'Premium self-discovery platform with pillar visualizations and golden path',
+  12: 'AI collaboration ecosystem with constellation graph and department cards',
+  13: 'Build sessions hub with animated beaker, lab flow, and replay archive',
+  14: 'Premium membership with animated shield, tiered pricing, and FAQ accordion',
+  15: 'AI coaching platform with program tiers, methodology, and booking flow',
+  16: 'Builder community hub with activity feed, member cards, and events',
+}
+
+const productionRouteById: Record<number, string> = {
+  1: '/',
+  2: '/products',
+  3: '/research',
+  4: '/blog',
+  5: '/inner-circle',
+  6: '/products/agentic-creator-os',
+  7: '/courses',
+  8: '/about',
+  9: '/design-system',
+  10: '/music',
+  11: '/soulbook',
+  12: '/community',
+  13: '/labs',
+  14: '/inner-circle',
+  15: '/coaching',
+  16: '/community',
+}
+
+const categoryLabels: Record<string, string> = {
+  'landing-page': 'Landing Page',
+  'product-page': 'Product Page',
+  dashboard: 'Dashboard',
+  component: 'Component',
+  community: 'Community',
+}
 
 const colorConfig: Record<string, { border: string; text: string; bg: string; glow: string }> = {
   emerald: { border: 'border-emerald-500/30', text: 'text-emerald-400', bg: 'bg-emerald-500/10', glow: 'hover:shadow-emerald-500/10' },
@@ -221,9 +113,20 @@ const colorConfig: Record<string, { border: string; text: string; bg: string; gl
   teal: { border: 'border-teal-500/30', text: 'text-teal-400', bg: 'bg-teal-500/10', glow: 'hover:shadow-teal-500/10' },
 }
 
-// ── Preview Card ──
+const statusBadgeClass: Record<string, string> = {
+  completed: 'bg-emerald-500/10 text-emerald-300 border border-emerald-500/20',
+  pending: 'bg-amber-500/10 text-amber-300 border border-amber-500/20',
+  failed: 'bg-rose-500/10 text-rose-300 border border-rose-500/20',
+}
 
-function PreviewCard({ gen }: { gen: V0Generation }) {
+function toTitleCase(input: string) {
+  return input
+    .split('-')
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ')
+}
+
+function PreviewCard({ gen }: { gen: EnrichedGeneration }) {
   const [expanded, setExpanded] = useState(false)
   const colors = colorConfig[gen.color] || colorConfig.emerald
 
@@ -235,9 +138,8 @@ function PreviewCard({ gen }: { gen: V0Generation }) {
       }`}
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, delay: gen.id * 0.05 }}
+      transition={{ duration: 0.35, delay: gen.id * 0.03 }}
     >
-      {/* Header */}
       <div className="flex items-center justify-between px-5 py-4 border-b border-white/[0.06]">
         <div className="flex items-center gap-3">
           <span className={`flex items-center justify-center w-8 h-8 rounded-lg ${colors.bg} ${colors.text} text-sm font-bold`}>
@@ -250,7 +152,7 @@ function PreviewCard({ gen }: { gen: V0Generation }) {
         </div>
         <div className="flex items-center gap-2">
           <span className={`px-2 py-0.5 rounded-full text-[10px] font-medium ${colors.bg} ${colors.text}`}>
-            {gen.category}
+            {gen.categoryLabel}
           </span>
           <button
             onClick={() => setExpanded(!expanded)}
@@ -262,32 +164,51 @@ function PreviewCard({ gen }: { gen: V0Generation }) {
         </div>
       </div>
 
-      {/* iframe Preview */}
+      <div className="flex flex-wrap gap-2 px-5 py-3 border-b border-white/[0.06] text-[10px]">
+        <span className={`px-2 py-1 rounded-full ${statusBadgeClass[gen.status] || 'bg-white/10 text-white/60 border border-white/15'}`}>
+          {toTitleCase(gen.status)}
+        </span>
+        <span className={`px-2 py-1 rounded-full border ${gen.deployed ? 'bg-cyan-500/10 text-cyan-300 border-cyan-500/20' : 'bg-white/5 text-white/50 border-white/10'}`}>
+          {gen.deployed ? 'Deployed' : 'Not Deployed'}
+        </span>
+        <span className={`px-2 py-1 rounded-full border ${gen.isTemplateReady ? 'bg-emerald-500/10 text-emerald-300 border-emerald-500/20' : 'bg-amber-500/10 text-amber-300 border-amber-500/20'}`}>
+          {gen.isTemplateReady ? 'Template Ready' : 'Template Needs Work'}
+        </span>
+        <span className={`px-2 py-1 rounded-full border ${gen.isInterlinked ? 'bg-blue-500/10 text-blue-300 border-blue-500/20' : 'bg-white/5 text-white/50 border-white/10'}`}>
+          {gen.isInterlinked ? 'Interlinked' : 'Not Interlinked'}
+        </span>
+      </div>
+
       <div className={`relative bg-[#0a0a0b] ${expanded ? 'h-[700px]' : 'h-[400px]'} transition-all duration-500`}>
         <iframe
           src={gen.demoUrl}
           className="w-full h-full border-0"
           title={`${gen.title} Preview`}
           loading="lazy"
-          sandbox="allow-scripts allow-same-origin"
+          sandbox="allow-scripts allow-same-origin allow-forms allow-popups allow-popups-to-escape-sandbox"
+          referrerPolicy="strict-origin-when-cross-origin"
         />
-        {/* Gradient overlay at bottom */}
         <div className="absolute bottom-0 left-0 right-0 h-12 bg-gradient-to-t from-[#0a0a0b] to-transparent pointer-events-none" />
       </div>
 
-      {/* Footer */}
-      <div className="flex items-center justify-between px-5 py-3 border-t border-white/[0.06]">
-        <div className="flex items-center gap-4 text-xs text-white/40">
-          <span className="flex items-center gap-1">
-            <Layers className="w-3.5 h-3.5" />
-            {gen.fileCount} files
-          </span>
-          <span className="flex items-center gap-1">
-            <Sparkles className="w-3.5 h-3.5" />
-            {gen.model}
+      <div className="flex flex-col gap-3 px-5 py-3 border-t border-white/[0.06]">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-4 text-xs text-white/40">
+            <span className="flex items-center gap-1">
+              <Layers className="w-3.5 h-3.5" />
+              {gen.fileCount} files
+            </span>
+            <span className="flex items-center gap-1">
+              <Sparkles className="w-3.5 h-3.5" />
+              {gen.model}
+            </span>
+          </div>
+          <span className={`text-xs ${gen.isGoodToShip ? 'text-emerald-300' : 'text-amber-300'}`}>
+            {gen.isGoodToShip ? 'Good to Ship' : 'Needs Follow-up'}
           </span>
         </div>
-        <div className="flex items-center gap-2">
+
+        <div className="flex flex-wrap items-center gap-2">
           <a
             href={gen.demoUrl}
             target="_blank"
@@ -298,7 +219,7 @@ function PreviewCard({ gen }: { gen: V0Generation }) {
             Full Preview
           </a>
           <a
-            href={`https://v0.dev/chat/${gen.chatId}`}
+            href={gen.chatUrl || `https://v0.dev/chat/${gen.chatId}`}
             target="_blank"
             rel="noopener noreferrer"
             className={`flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-medium ${colors.text} ${colors.bg} hover:brightness-125 transition-all`}
@@ -306,31 +227,82 @@ function PreviewCard({ gen }: { gen: V0Generation }) {
             <ArrowUpRight className="w-3.5 h-3.5" />
             Iterate in v0
           </a>
+          {gen.productionPath ? (
+            <Link
+              href={gen.productionPath}
+              className="flex items-center gap-1 px-3 py-1.5 rounded-lg text-xs font-medium bg-blue-500/10 text-blue-300 hover:bg-blue-500/15 transition-colors"
+            >
+              <Link2 className="w-3.5 h-3.5" />
+              Open Live Route
+            </Link>
+          ) : null}
         </div>
       </div>
     </motion.div>
   )
 }
 
-// ── Main Page ──
-
 export default function V0ShowcasePage() {
-  const shouldReduceMotion = useReducedMotion()
-  const [filter, setFilter] = useState<string>('all')
+  const [categoryFilter, setCategoryFilter] = useState<string>('all')
+  const [readinessFilter, setReadinessFilter] = useState<'all' | 'ready' | 'follow-up'>('all')
 
-  const categories = ['all', ...Array.from(new Set(generations.map(g => g.category)))]
-  const filtered = filter === 'all' ? generations : generations.filter(g => g.category === filter)
+  const modelByWave = useMemo(() => {
+    return Object.fromEntries(data.waves.map((wave) => [wave.wave, wave.model]))
+  }, [])
+
+  const generations: EnrichedGeneration[] = useMemo(() => {
+    return data.generations.map((gen) => {
+      const productionPath = productionRouteById[gen.id] || null
+      const isTemplateReady = gen.status === 'completed' && gen.fileCount > 0
+      const isInterlinked = Boolean(productionPath)
+      return {
+        ...gen,
+        subtitle: subtitleById[gen.id] || 'Premium design iteration generated in v0.',
+        model: modelByWave[gen.wave] || 'v0',
+        categoryLabel: categoryLabels[gen.category] || toTitleCase(gen.category),
+        productionPath,
+        isTemplateReady,
+        isInterlinked,
+        isGoodToShip: isTemplateReady && isInterlinked,
+      }
+    })
+  }, [modelByWave])
+
+  const categories = useMemo(
+    () => ['all', ...Array.from(new Set(generations.map((g) => g.category)))],
+    [generations],
+  )
+
+  const filtered = useMemo(() => {
+    let result = generations
+    if (categoryFilter !== 'all') {
+      result = result.filter((g) => g.category === categoryFilter)
+    }
+    if (readinessFilter === 'ready') {
+      result = result.filter((g) => g.isGoodToShip)
+    }
+    if (readinessFilter === 'follow-up') {
+      result = result.filter((g) => !g.isGoodToShip)
+    }
+    return result
+  }, [generations, categoryFilter, readinessFilter])
+
+  const stats = useMemo(() => {
+    const templateReady = generations.filter((g) => g.isTemplateReady).length
+    const interlinked = generations.filter((g) => g.isInterlinked).length
+    const goodToShip = generations.filter((g) => g.isGoodToShip).length
+    const deployed = generations.filter((g) => g.deployed).length
+    return { templateReady, interlinked, goodToShip, deployed, total: generations.length }
+  }, [generations])
 
   return (
     <div className="min-h-screen bg-[#0a0a0b]">
-      {/* Background */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-violet-500/[0.03] rounded-full blur-[128px]" />
         <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-emerald-500/[0.03] rounded-full blur-[128px]" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-20">
-        {/* Breadcrumb */}
         <nav className="mb-8">
           <Link
             href="/design-lab"
@@ -341,102 +313,146 @@ export default function V0ShowcasePage() {
           </Link>
         </nav>
 
-        {/* Hero */}
         <motion.div
           className="mb-16"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.45 }}
         >
-          <div className="flex items-center gap-3 mb-4">
+          <div className="flex flex-wrap items-center gap-3 mb-4">
             <span className="px-3 py-1 rounded-full bg-violet-500/10 border border-violet-500/20 text-violet-400 text-xs font-medium">
               v0 Generations
             </span>
             <span className="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-medium">
-              16 Premium Designs
+              {stats.total} Total Templates
             </span>
-            <span className="px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-medium">
-              Wave 2: v0-pro (GPT-5)
+            <span className="px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-medium">
+              {stats.goodToShip} Good to Ship
             </span>
           </div>
 
           <h1 className="text-4xl sm:text-5xl font-bold text-white tracking-tight mb-4">
-            v0 Design{' '}
+            v0 Template{' '}
             <span className="bg-gradient-to-r from-violet-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent">
-              Showcase
+              Readiness Hub
             </span>
           </h1>
 
-          <p className="text-lg text-white/50 max-w-2xl leading-relaxed">
-            16 premium page designs across 2 waves. Wave 1 uses v0-1.5-lg with extended thinking.
-            Wave 2 uses v0-pro (GPT-5) for ultra-premium quality.
-            Each design follows the FrankX brand system — dark glassmorphism, liquid gradients,
-            and ultra-premium aesthetics.
+          <p className="text-lg text-white/50 max-w-3xl leading-relaxed">
+            Embeds, readiness, and internal interlinks for every v0 generation in one place.
+            Use this page to verify what is production-ready and where each concept is currently wired.
           </p>
 
-          {/* Stats */}
           <div className="flex flex-wrap gap-6 mt-8">
-            {[
-              { value: '16', label: 'Designs' },
-              { value: '63', label: 'Total Files' },
-              { value: '2', label: 'Waves' },
-              { value: 'Thinking', label: 'Mode' },
-            ].map((stat) => (
-              <div key={stat.label} className="flex items-baseline gap-2">
-                <span className="text-2xl font-bold text-white">{stat.value}</span>
-                <span className="text-sm text-white/40">{stat.label}</span>
-              </div>
-            ))}
+            <div className="flex items-center gap-2 text-sm text-white/60">
+              <CheckCircle2 className="w-4 h-4 text-emerald-300" />
+              <span>{stats.templateReady}/{stats.total} templates ready</span>
+            </div>
+            <div className="flex items-center gap-2 text-sm text-white/60">
+              <Link2 className="w-4 h-4 text-blue-300" />
+              <span>{stats.interlinked}/{stats.total} interlinked</span>
+            </div>
+            <div className="flex items-center gap-2 text-sm text-white/60">
+              <Rocket className="w-4 h-4 text-cyan-300" />
+              <span>{stats.deployed}/{stats.total} deployed</span>
+            </div>
+            <div className="flex items-center gap-2 text-sm text-white/60">
+              <CircleDashed className="w-4 h-4 text-amber-300" />
+              <span>{stats.total - stats.goodToShip} need follow-up</span>
+            </div>
           </div>
         </motion.div>
 
-        {/* Category Filter */}
-        <div className="flex flex-wrap gap-2 mb-10">
+        <div className="mb-5 flex flex-wrap gap-2">
           {categories.map((cat) => (
             <button
               key={cat}
-              onClick={() => setFilter(cat)}
+              onClick={() => setCategoryFilter(cat)}
               className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
-                filter === cat
+                categoryFilter === cat
                   ? 'bg-white/10 text-white border border-white/20'
                   : 'text-white/40 hover:text-white/70 border border-transparent hover:border-white/10'
               }`}
             >
-              {cat === 'all' ? 'All Designs' : cat}
+              {cat === 'all' ? 'All Categories' : categoryLabels[cat] || toTitleCase(cat)}
               {cat !== 'all' && (
-                <span className="ml-1.5 text-white/30">
-                  ({generations.filter(g => g.category === cat).length})
-                </span>
+                <span className="ml-1.5 text-white/30">({generations.filter((g) => g.category === cat).length})</span>
               )}
             </button>
           ))}
         </div>
 
-        {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filtered.map((gen) => (
-            <PreviewCard key={gen.id} gen={gen} />
-          ))}
+        <div className="mb-10 flex flex-wrap gap-2">
+          <button
+            onClick={() => setReadinessFilter('all')}
+            className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+              readinessFilter === 'all'
+                ? 'bg-white/10 text-white border border-white/20'
+                : 'text-white/40 hover:text-white/70 border border-transparent hover:border-white/10'
+            }`}
+          >
+            All Statuses
+          </button>
+          <button
+            onClick={() => setReadinessFilter('ready')}
+            className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+              readinessFilter === 'ready'
+                ? 'bg-emerald-500/15 text-emerald-300 border border-emerald-500/25'
+                : 'text-white/40 hover:text-white/70 border border-transparent hover:border-white/10'
+            }`}
+          >
+            Ready + Interlinked
+          </button>
+          <button
+            onClick={() => setReadinessFilter('follow-up')}
+            className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+              readinessFilter === 'follow-up'
+                ? 'bg-amber-500/15 text-amber-300 border border-amber-500/25'
+                : 'text-white/40 hover:text-white/70 border border-transparent hover:border-white/10'
+            }`}
+          >
+            Needs Follow-up
+          </button>
         </div>
 
-        {/* CTA Section */}
+        {filtered.length === 0 ? (
+          <div className="rounded-2xl border border-white/10 bg-white/[0.02] px-6 py-10 text-center text-white/60">
+            <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-amber-500/10 text-amber-300">
+              <AlertCircle className="h-5 w-5" />
+            </div>
+            No templates found for this filter combination.
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filtered.map((gen) => (
+              <PreviewCard key={gen.id} gen={gen} />
+            ))}
+          </div>
+        )}
+
         <motion.div
           className="mt-20 text-center"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.6 }}
+          transition={{ duration: 0.45, delay: 0.4 }}
         >
           <div className="inline-flex flex-col items-center gap-4 p-8 rounded-2xl border border-white/[0.06] bg-white/[0.02] backdrop-blur-sm">
-            <p className="text-white/60 text-sm max-w-md">
-              These designs are generated prototypes. The best elements will be pulled into 
-              the production FrankX codebase as part of the continuous design evolution process.
+            <p className="text-white/60 text-sm max-w-2xl">
+              Embeds are now sourced from the canonical v0 dataset and each card exposes live-route linkage.
+              Remaining follow-up items are visible via the readiness filter.
             </p>
-            <div className="flex gap-3">
+            <div className="flex flex-wrap justify-center gap-3">
               <Link
                 href="/design-lab"
                 className="px-5 py-2.5 rounded-xl text-sm font-medium text-white/70 hover:text-white border border-white/10 hover:border-white/20 transition-all"
               >
                 View All Experiments
+              </Link>
+              <Link
+                href="/shop/templates"
+                className="px-5 py-2.5 rounded-xl text-sm font-medium text-cyan-300 border border-cyan-500/20 bg-cyan-500/10 hover:bg-cyan-500/15 transition-all"
+              >
+                Open Template Store
               </Link>
               <a
                 href="https://v0.dev"
