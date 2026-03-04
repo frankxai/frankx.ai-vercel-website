@@ -23,7 +23,7 @@ const tools = [
     tagline: 'Research → 4K infographic in 60 seconds',
     description:
       'Drop a topic. FRANK-Ω researches it with Google Search grounding, builds a precision prompt, and renders a cinematic 4K visual. 8 styles, 4 audience levels, video + narration included.',
-    href: 'https://aistudio.google.com/app/prompts/new_chat',
+    href: 'https://aistudio.google.com/apps/bundled/info_genius',
     hrefLabel: 'Open in AI Studio',
     externalHref: true,
     status: 'Live' as const,
@@ -380,7 +380,7 @@ export default function LabPage() {
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
               <a
-                href="https://aistudio.google.com/app/prompts/new_chat"
+                href="https://aistudio.google.com/apps/bundled/info_genius"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-full bg-violet-600 hover:bg-violet-500 px-8 py-4 text-sm font-semibold text-white transition-all duration-200 hover:shadow-[0_0_40px_rgba(139,92,246,0.5)]"
