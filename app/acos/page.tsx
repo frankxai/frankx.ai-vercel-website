@@ -12,14 +12,8 @@ import {
   Github,
   Check,
   Zap,
-  Download,
-  BookOpen,
-  Headphones,
-  Code2,
-  MessageSquare
+  Download
 } from 'lucide-react'
-
-import GlassmorphicCard from '@/components/ui/GlassmorphicCard'
 import PremiumButton from '@/components/ui/PremiumButton'
 import { GlowCard } from '@/components/ui/glow-card'
 
@@ -40,38 +34,6 @@ const stats = [
   { label: 'Workflows', value: '8', icon: Layers, color: 'from-emerald-500 to-teal-500' },
 ]
 
-const features = [
-  {
-    icon: Terminal,
-    title: 'One Command to Rule Them All',
-    description: 'Type /acos and the smart router figures out what you need. Article? Music? Deployment? It auto-routes to the right agent with the right skills loaded.',
-  },
-  {
-    icon: Sparkles,
-    title: '75+ Auto-Activating Skills',
-    description: 'Skills load automatically based on what you\'re doing. Write a blog post? SEO, schema markup, and content strategy skills activate. Build a feature? TypeScript, React, and architecture skills load.',
-  },
-  {
-    icon: Users,
-    title: '38 Specialized Agents',
-    description: 'Developmental editors, music producers, UI designers, SEO strategists, security auditors — each with deep domain knowledge and distinct capabilities.',
-  },
-  {
-    icon: Layers,
-    title: 'Orchestrated Workflows',
-    description: 'Multi-step pipelines for complex operations: research → write → edit → publish. Factory mode produces complete artifacts from a single prompt.',
-  },
-  {
-    icon: Code2,
-    title: 'MCP Server Integrations',
-    description: 'Playwright for browser automation, Nano Banana for image generation, Memory for persistent context, Resend for email — all wired in and ready.',
-  },
-  {
-    icon: Zap,
-    title: 'Self-Learning System',
-    description: 'Trajectory tracking and pattern extraction improve every session. The system learns what works and optimizes routing, skill selection, and agent coordination.',
-  },
-]
 
 const tiers = [
   {
@@ -276,244 +238,166 @@ export default function ACOSPage() {
         </div>
       </section>
 
-      {/* ─── Visual Architecture ─── */}
-      <section className="py-20">
-        <div className="mx-auto max-w-5xl px-6">
-          <h2 className="text-center text-3xl font-bold text-white sm:text-4xl">
-            How the Agentic Creator OS Works
-          </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-center text-white/50">
-            Not another prompt library. A complete intelligence layer that transforms Claude Code into a creative production environment.
-          </p>
-
-          {/* Infographic grid — 2x2 */}
-          <div className="mt-12 grid gap-6 md:grid-cols-2">
-            {[
-              {
-                src: '/images/acos/acos-architecture.png',
-                title: 'Layered Architecture',
-                desc: 'Skills, commands, agents, and safety hooks — four layers that auto-activate based on what you\'re building.',
-              },
-              {
-                src: '/images/acos/acos-smart-router.png',
-                title: 'Smart Router',
-                desc: 'Type /acos and the router parses your intent, selects the best agent, loads relevant skills, and chains commands.',
-              },
-              {
-                src: '/images/acos/acos-self-learning.png',
-                title: 'Self-Learning System',
-                desc: 'Tracks tool sequences and outcomes across sessions. Successful patterns become context for future tasks.',
-              },
-              {
-                src: '/images/acos/acos-hero-omega.png',
-                title: 'FRANK-Ω Command Center',
-                desc: 'Your AI co-pilot orchestrating 75+ skills, 38 agents, and 35+ commands from a single entry point.',
-              },
-            ].map((card) => (
-              <div
-                key={card.title}
-                className="group overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03] transition-all hover:border-purple-500/20 hover:bg-white/[0.05]"
-              >
-                <div className="relative aspect-[4/3] overflow-hidden">
-                  <Image
-                    src={card.src}
-                    alt={card.title}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                  />
-                </div>
-                <div className="p-6">
-                  <h3 className="text-lg font-semibold text-white">{card.title}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-white/50">{card.desc}</p>
-                </div>
+      {/* ─── Architecture — Split Visual ─── */}
+      <section className="py-24">
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="grid items-center gap-12 lg:grid-cols-2">
+            {/* Left: Architecture infographic */}
+            <div className="relative overflow-hidden rounded-3xl border border-white/[0.08] bg-white/[0.02]">
+              <div className="relative aspect-[4/3]">
+                <Image
+                  src="/images/acos/acos-architecture.png"
+                  alt="Agentic Creator OS — Layered Architecture"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
               </div>
-            ))}
+            </div>
+            {/* Right: Text explanation */}
+            <div>
+              <span className="text-xs font-mono uppercase tracking-[0.3em] text-purple-400/70">Architecture</span>
+              <h2 className="mt-3 text-3xl font-bold text-white sm:text-4xl">
+                Four layers.<br />All auto-activating.
+              </h2>
+              <p className="mt-4 text-white/50 leading-relaxed">
+                The Agentic Creator OS is structured in four layers. Each activates automatically based on what you&apos;re building — no manual loading.
+              </p>
+              <div className="mt-8 space-y-4">
+                {[
+                  { icon: Sparkles, label: 'Skills (75+)', desc: 'Domain knowledge modules — SEO, TypeScript, music production, architecture — loaded by context detection.', color: 'text-cyan-400', border: 'border-cyan-500/20' },
+                  { icon: Command, label: 'Commands (35+)', desc: 'Slash workflows that chain multi-step operations. One trigger, full pipeline.', color: 'text-purple-400', border: 'border-purple-500/20' },
+                  { icon: Users, label: 'Agents (38)', desc: 'Specialized AI personas — editors, producers, architects — each with distinct expertise.', color: 'text-emerald-400', border: 'border-emerald-500/20' },
+                  { icon: Layers, label: 'Safety Hooks (5)', desc: 'Circuit breaker, audit trail, IAM, self-modify gate, quality gate — autonomous protection.', color: 'text-amber-400', border: 'border-amber-500/20' },
+                ].map((layer) => (
+                  <div key={layer.label} className={`flex items-start gap-4 rounded-xl border ${layer.border} bg-white/[0.02] p-4`}>
+                    <layer.icon className={`mt-0.5 h-5 w-5 shrink-0 ${layer.color}`} />
+                    <div>
+                      <div className="text-sm font-semibold text-white">{layer.label}</div>
+                      <div className="mt-1 text-xs text-white/45 leading-relaxed">{layer.desc}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ─── Core Concepts Grid ─── */}
-      <section className="border-y border-white/[0.08] bg-white/[0.03] py-20">
-        <div className="mx-auto max-w-5xl px-6">
-          <h2 className="text-center text-3xl font-bold text-white sm:text-4xl">
-            Core Concepts
-          </h2>
-          <p className="mx-auto mt-4 max-w-2xl text-center text-white/50">
-            Six foundational concepts that power the Agentic Creator OS.
-          </p>
-          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {[
-              {
-                icon: Sparkles,
-                title: 'Skills — Auto-Activating Knowledge',
-                description: 'Markdown files with deep domain expertise. They load automatically when context matches — write a blog post and SEO skills appear.',
-                color: 'text-cyan-400',
-              },
-              {
-                icon: Command,
-                title: 'Commands — Slash Workflows',
-                description: 'Multi-step pipelines triggered with one command. /article-creator chains research → outline → draft → SEO → images → social.',
-                color: 'text-purple-400',
-              },
-              {
-                icon: Users,
-                title: 'Agents — AI Personas',
-                description: '38 specialists: editors, producers, architects, designers. Each has distinct expertise. The router picks the best one for your task.',
-                color: 'text-emerald-400',
-              },
-              {
-                icon: Terminal,
-                title: 'Smart Router — Intent Parsing',
-                description: 'Type /acos and describe what you need. The router detects intent, selects the agent, loads skills, and chains commands automatically.',
-                color: 'text-amber-400',
-              },
-              {
-                icon: Layers,
-                title: 'Safety Hooks — Autonomous Protection',
-                description: 'Circuit breaker stops brute-forcing. Audit trail logs everything. Agent IAM scopes permissions. Self-modify gate auto-reverts bad changes.',
-                color: 'text-red-400',
-              },
-              {
-                icon: Zap,
-                title: 'Self-Learning — Session Intelligence',
-                description: 'Tracks successful tool sequences across sessions. Extracts patterns and injects them as context for similar future tasks.',
-                color: 'text-blue-400',
-              },
-            ].map((concept) => (
-              <GlowCard key={concept.title} color="violet" className="p-6">
-                <concept.icon className={`mb-4 h-8 w-8 ${concept.color}`} />
-                <h3 className="text-lg font-semibold text-white">{concept.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-white/60">{concept.description}</p>
-              </GlowCard>
-            ))}
+      {/* ─── Smart Router — Split Visual (reversed) ─── */}
+      <section className="border-y border-white/[0.08] bg-white/[0.02] py-24">
+        <div className="mx-auto max-w-6xl px-6">
+          <div className="grid items-center gap-12 lg:grid-cols-2">
+            {/* Left: Text */}
+            <div className="order-2 lg:order-1">
+              <span className="text-xs font-mono uppercase tracking-[0.3em] text-cyan-400/70">Smart Router</span>
+              <h2 className="mt-3 text-3xl font-bold text-white sm:text-4xl">
+                One command.<br />Infinite routes.
+              </h2>
+              <p className="mt-4 text-white/50 leading-relaxed">
+                Type <code className="rounded bg-white/10 px-2 py-0.5 font-mono text-purple-300">/acos</code> and describe what you need. The router parses intent, selects the best agent, loads skills, and chains commands.
+              </p>
+              {/* Inline terminal example */}
+              <div className="mt-8 rounded-xl border border-white/[0.06] bg-[#0d1117] p-5 font-mono text-xs">
+                <div className="space-y-1.5 text-white/50">
+                  <p><span className="text-purple-400">/acos</span> <span className="text-white/70">&quot;write a blog post about AI agents&quot;</span></p>
+                  <p className="text-white/30 pl-2">Intent: creation + blog</p>
+                  <p className="text-white/30 pl-2">Agent: Content Engine</p>
+                  <p className="text-white/30 pl-2">Skills: content-strategy, seo-content-writer, schema-markup</p>
+                  <p className="text-cyan-400 pl-2 mt-2">→ /research → /article-creator → /infogenius → /generate-social</p>
+                  <p className="text-emerald-400 mt-2">Result: Article + hero image + social posts — all from one prompt.</p>
+                </div>
+              </div>
+            </div>
+            {/* Right: Router infographic */}
+            <div className="order-1 lg:order-2 relative overflow-hidden rounded-3xl border border-white/[0.08] bg-white/[0.02]">
+              <div className="relative aspect-[4/3]">
+                <Image
+                  src="/images/acos/acos-smart-router.png"
+                  alt="Agentic Creator OS — Smart Router"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ─── Feature Details ─── */}
-      <section className="py-20">
+      {/* ─── Self-Learning — Centered ─── */}
+      <section className="py-24">
         <div className="mx-auto max-w-5xl px-6">
-          <h2 className="text-center text-3xl font-bold text-white sm:text-4xl">
-            What Makes It Different
-          </h2>
-          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {features.map((feature) => (
-              <GlowCard key={feature.title} color="violet" className="p-6">
-                <feature.icon className="mb-4 h-8 w-8 text-purple-400" />
-                <h3 className="text-lg font-semibold text-white">{feature.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-white/60">{feature.description}</p>
-              </GlowCard>
-            ))}
+          <div className="text-center">
+            <span className="text-xs font-mono uppercase tracking-[0.3em] text-emerald-400/70">Intelligence</span>
+            <h2 className="mt-3 text-3xl font-bold text-white sm:text-4xl">
+              Gets smarter every session.
+            </h2>
+            <p className="mx-auto mt-4 max-w-2xl text-white/50">
+              The Agentic Creator OS tracks what works and applies it next time. No external API — pure local intelligence built from your own usage patterns.
+            </p>
           </div>
-        </div>
-      </section>
 
-      {/* ─── FPA Module Spotlight ─── */}
-      <section className="py-12">
-        <div className="mx-auto max-w-5xl px-6">
-          <div className="relative rounded-2xl border border-violet-500/20 bg-violet-500/[0.04] p-8 md:p-10 overflow-hidden">
-            <div className="absolute top-0 right-0 w-72 h-40 pointer-events-none"
-              style={{ background: 'radial-gradient(ellipse at top right, rgba(124,58,237,0.12) 0%, transparent 65%)' }} />
-            <div className="relative z-10 flex flex-col md:flex-row items-start gap-8">
-              <div className="flex-1">
-                <div className="flex items-center gap-3 mb-3">
-                  <span className="text-xs font-mono px-2.5 py-1 rounded border border-violet-400/20 text-violet-300/60">Module · FPA v1.0</span>
-                  <span className="text-xs font-mono text-white/20">/presence</span>
+          <div className="mt-12 grid items-center gap-10 md:grid-cols-[1fr_280px]">
+            {/* Steps */}
+            <div className="grid grid-cols-2 gap-4">
+              {[
+                { step: '01', title: 'Session Start', desc: 'Creates a trajectory record when you begin working.', color: 'text-blue-400', bg: 'bg-blue-500/10' },
+                { step: '02', title: 'Track Operations', desc: 'Monitors tool sequences, file changes, and success/failure outcomes.', color: 'text-cyan-400', bg: 'bg-cyan-500/10' },
+                { step: '03', title: 'Extract Patterns', desc: 'Identifies winning tool combinations and multi-step workflows.', color: 'text-purple-400', bg: 'bg-purple-500/10' },
+                { step: '04', title: 'Apply Intelligence', desc: 'Injects learned patterns as context for similar future tasks.', color: 'text-emerald-400', bg: 'bg-emerald-500/10' },
+              ].map((s) => (
+                <div key={s.step} className={`rounded-2xl border border-white/[0.06] ${s.bg} p-5`}>
+                  <div className={`text-2xl font-black ${s.color} opacity-40`}>{s.step}</div>
+                  <div className="mt-2 text-sm font-semibold text-white">{s.title}</div>
+                  <div className="mt-1 text-xs text-white/40 leading-relaxed">{s.desc}</div>
                 </div>
-                <h3 className="text-xl font-semibold text-white/80 mb-2">Full Presence Activation</h3>
-                <p className="text-white/40 leading-relaxed max-w-xl mb-4">
-                  The entry ritual before every ACOS session. Eight sensory gates based on Buddhist mindfulness,
-                  Taoist flow, and Eckhart Tolle. 30 seconds minimum. The only ACOS protocol that cannot be automated.
-                </p>
-                <div className="flex flex-wrap gap-3">
-                  <Link
-                    href="/acos/presence"
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-violet-500/30 text-violet-300 text-sm font-semibold hover:bg-violet-500/10 transition-colors"
-                  >
-                    Module Documentation
-                    <ArrowRight className="w-4 h-4" />
-                  </Link>
-                  <Link
-                    href="/presence"
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-white/10 text-white/50 text-sm hover:bg-white/5 transition-colors"
-                  >
-                    Open Practice
-                  </Link>
-                </div>
-              </div>
-              <div className="rounded-xl border border-white/[0.06] bg-[#0d1117] p-4 font-mono text-xs min-w-0 md:min-w-[260px] flex-shrink-0">
-                <div className="flex gap-1.5 mb-3">
-                  <span className="w-2.5 h-2.5 rounded-full bg-red-500/50" /><span className="w-2.5 h-2.5 rounded-full bg-amber-500/50" /><span className="w-2.5 h-2.5 rounded-full bg-emerald-500/50" />
-                </div>
-                <div className="space-y-1 text-white/40">
-                  <p><span className="text-emerald-400">$</span> <span className="text-white/60">claude</span></p>
-                  <p className="text-purple-400">/acos</p>
-                  <p className="text-violet-400 mt-2">⬟ Presence Gate (Level 0)</p>
-                  <p className="pl-2">I &nbsp; What do you see? &nbsp;&nbsp;&nbsp;[5s]</p>
-                  <p className="pl-2">V &nbsp; What do you feel? &nbsp;[8s]</p>
-                  <p className="text-cyan-300/70 mt-2">&gt; 38 agents ready.</p>
-                </div>
-              </div>
+              ))}
+            </div>
+            {/* Self-learning visual */}
+            <div className="relative mx-auto w-[280px] overflow-hidden rounded-3xl border border-white/[0.08]">
+              <Image
+                src="/images/acos/acos-self-learning.png"
+                alt="Agentic Creator OS — Self-Learning Cycle"
+                width={280}
+                height={280}
+                className="object-cover"
+              />
             </div>
           </div>
         </div>
       </section>
 
       {/* ─── Commands Preview ─── */}
-      <section className="border-y border-white/[0.08] bg-white/[0.03] py-20">
+      <section className="border-y border-white/[0.08] bg-white/[0.02] py-20">
         <div className="mx-auto max-w-5xl px-6">
           <h2 className="text-center text-3xl font-bold text-white sm:text-4xl">
-            130+ Commands at Your Fingertips
+            35+ Commands Across Every Domain
           </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-center text-white/50">
+            Each command is a reusable workflow. One trigger, full pipeline.
+          </p>
           <div className="mt-12 grid gap-8 md:grid-cols-2">
             {[
-              { category: 'Creation', commands: ['/article-creator', '/create-music', '/infogenius', '/generate-images', '/generate-social', '/factory', '/products-creation', '/author-team'], color: 'text-cyan-400' },
-              { category: 'Strategy', commands: ['/starlight-architect', '/starlight-intelligence', '/council', '/research', '/plan-week', '/harvest'], color: 'text-purple-400' },
+              { category: 'Creation', commands: ['/article-creator', '/create-music', '/infogenius', '/generate-images', '/generate-social', '/factory'], color: 'text-cyan-400' },
+              { category: 'Strategy', commands: ['/starlight-architect', '/council', '/research', '/plan-week', '/superintelligence'], color: 'text-purple-400' },
               { category: 'Development', commands: ['/spec', '/nextjs-deploy', '/ux-design', '/automation-dev'], color: 'text-amber-400' },
-              { category: 'System', commands: ['/acos', '/presence', '/inventory-status', '/mcp-status', '/publish', '/review-content'], color: 'text-emerald-400' },
+              { category: 'System', commands: ['/acos', '/inventory-status', '/mcp-status', '/publish', '/review-content'], color: 'text-emerald-400' },
             ].map((group) => (
               <div key={group.category}>
                 <h3 className={`mb-3 text-sm font-semibold uppercase tracking-[0.3em] ${group.color}`}>
                   {group.category}
                 </h3>
-                <div className="space-y-1 font-mono text-sm">
+                <div className="space-y-1.5 font-mono text-sm">
                   {group.commands.map((cmd) => (
-                    <div key={cmd} className="rounded-lg bg-white/[0.03] px-4 py-2 text-white/70">
-                      <span className="text-white/40">&gt;</span> {cmd}
+                    <div key={cmd} className="rounded-lg border border-white/[0.04] bg-white/[0.03] px-4 py-2.5 text-white/70 transition-colors hover:border-purple-500/15 hover:text-white/90">
+                      <span className="text-white/30 mr-2">&gt;</span>{cmd}
                     </div>
                   ))}
                 </div>
               </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* ─── GenCreator Cross-link ─── */}
-      <section className="py-12">
-        <div className="mx-auto max-w-5xl px-6">
-          <Link
-            href="/gencreator"
-            className="group relative block overflow-hidden rounded-2xl border border-emerald-500/20 bg-emerald-500/[0.04] p-8 transition-all hover:border-emerald-500/30 hover:bg-emerald-500/[0.06]"
-          >
-            <div className="absolute top-0 right-0 w-72 h-40 pointer-events-none"
-              style={{ background: 'radial-gradient(ellipse at top right, rgba(16,185,129,0.10) 0%, transparent 65%)' }} />
-            <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
-              <div className="flex-1">
-                <span className="text-xs font-mono px-2.5 py-1 rounded border border-emerald-400/20 text-emerald-300/60">
-                  The GenCreator Framework
-                </span>
-                <h3 className="mt-3 text-xl font-semibold text-white/80">
-                  ACOS is the system. GenCreator is the philosophy.
-                </h3>
-                <p className="mt-2 text-white/40 text-sm max-w-xl">
-                  12 principles, 8 handbook chapters, 12 blueprints, and a manifesto — the complete framework for building as a generative creator.
-                </p>
-              </div>
-              <ArrowRight className="h-5 w-5 text-emerald-400/60 transition-transform group-hover:translate-x-1" />
-            </div>
-          </Link>
         </div>
       </section>
 
