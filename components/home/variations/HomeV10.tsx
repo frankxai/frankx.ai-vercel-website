@@ -140,11 +140,11 @@ export default function HomeV10({
   )
 
   const techPosts = latestPosts
-    .filter((p) => ['ai', 'engineering', 'architecture', 'tools'].some((kw) => p.category.toLowerCase().includes(kw)))
+    .filter((p) => ['ai', 'engineering', 'architecture', 'tools'].some((kw) => (p.category ?? '').toLowerCase().includes(kw)))
     .slice(0, 3)
 
   const creativePosts = latestPosts
-    .filter((p) => !['ai', 'engineering', 'architecture', 'tools'].some((kw) => p.category.toLowerCase().includes(kw)))
+    .filter((p) => !['ai', 'engineering', 'architecture', 'tools'].some((kw) => (p.category ?? '').toLowerCase().includes(kw)))
     .slice(0, 3)
 
   const allPosts = latestPosts.slice(0, 6)
