@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import AuroraGradient from '@/components/ui/AuroraGradient'
 import { GlowCard } from '@/components/ui/glow-card'
+import FrankOmega, { FrankOmegaGhost, FrankOmegaAvatar } from '@/components/FrankOmega'
 
 export const metadata: Metadata = {
   title: 'FRANK-Ω — The Digital Intelligence | FrankX.AI',
@@ -220,14 +221,7 @@ export default function FrankXPage() {
 
               {/* Main character */}
               <div className="relative z-10 w-[380px]">
-                <Image
-                  src="/images/mascot/frank-omega-chill-v1.png"
-                  alt="FRANK-Ω chill city pose"
-                  width={380}
-                  height={380}
-                  priority
-                  className="w-full object-contain drop-shadow-[0_0_80px_rgba(59,130,246,0.25)]"
-                />
+                <FrankOmega variant="chill" size="hero" className="w-full drop-shadow-[0_0_80px_rgba(59,130,246,0.25)]" />
               </div>
 
               {/* Floating design tag — top left */}
@@ -257,14 +251,8 @@ export default function FrankXPage() {
       <section className="py-20 px-6 border-y border-white/5">
         <div className="max-w-5xl mx-auto">
           <div className="flex items-start gap-8">
-            <div className="w-14 h-14 rounded-full overflow-hidden border border-blue-500/30 flex-shrink-0 hidden sm:block">
-              <Image
-                src="/images/mascot/frank-omega-chibi-avatar-v1_thumb.jpeg"
-                alt="FRANK-Ω"
-                width={56}
-                height={56}
-                className="w-full h-full object-cover"
-              />
+            <div className="flex-shrink-0 hidden sm:block">
+              <FrankOmegaAvatar variant="chibi-avatar" size="sm" />
             </div>
             <div>
               <blockquote className="text-3xl md:text-4xl font-light text-white/75 italic leading-relaxed">
@@ -506,25 +494,11 @@ export default function FrankXPage() {
             className="rounded-3xl border border-blue-500/15 p-14 text-center relative overflow-hidden"
           >
             {/* Ghost character background */}
-            <div className="absolute right-0 bottom-0 w-52 opacity-10 pointer-events-none">
-              <Image
-                src="/images/mascot/frank-omega-pixar-blue-v1.png"
-                alt=""
-                width={200}
-                height={200}
-                className="object-contain"
-              />
-            </div>
+            <FrankOmegaGhost variant="pixar-blue" className="opacity-10" />
 
             <div className="relative z-10">
-              <div className="w-20 h-20 rounded-full overflow-hidden border-2 border-blue-500/30 mx-auto mb-8 shadow-[0_0_30px_rgba(59,130,246,0.2)]">
-                <Image
-                  src="/images/mascot/frank-omega-chibi-avatar-v1_thumb.jpeg"
-                  alt="FRANK-Ω"
-                  width={80}
-                  height={80}
-                  className="w-full h-full object-cover"
-                />
+              <div className="mx-auto mb-8">
+                <FrankOmega variant="chibi-avatar" size="md" thumb rounded glow />
               </div>
 
               <h2 className="text-5xl font-black text-white mb-4 leading-tight">

@@ -9,6 +9,7 @@ import { ArrowRight, ChevronDown, Sparkles } from 'lucide-react'
 import { trackEvent } from '@/lib/analytics'
 import { EmailSignup } from '@/components/email-signup'
 import { GlowCard } from '@/components/ui/glow-card'
+import { FrankOmegaAvatar } from '@/components/FrankOmega'
 
 // ============================================================================
 // TYPES
@@ -278,9 +279,12 @@ function Hero({ featuredTrack }: { featuredTrack?: FeaturedTrackData }) {
                 75+ open-source skills shipped. Everything documented.
               </p>
 
-              <p className="font-serif italic text-lg text-white/30 max-w-lg">
-                &ldquo;I create to understand. I share to teach.&rdquo;
-              </p>
+              <div className="flex items-center gap-3">
+                <FrankOmegaAvatar size="xs" />
+                <p className="font-serif italic text-lg text-white/30 max-w-lg">
+                  &ldquo;I create to understand. I share to teach.&rdquo;
+                </p>
+              </div>
             </motion.div>
 
             {/* CTAs */}
