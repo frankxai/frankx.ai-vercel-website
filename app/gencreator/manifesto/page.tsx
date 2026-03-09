@@ -1,4 +1,16 @@
+import type { Metadata } from 'next'
 import Script from 'next/script'
+
+export const metadata: Metadata = {
+  title: 'The GenCreator Manifesto — Human Taste. Machine Scale. Permanent Artifacts.',
+  description:
+    'A declaration of what it means to be a generative creator. We create with AI, not despite it. We ship daily. We compound relentlessly. This is the GenCreator way.',
+  openGraph: {
+    title: 'The GenCreator Manifesto',
+    description: 'Human taste. Machine scale. Permanent artifacts. This is the GenCreator way.',
+    url: 'https://frankx.ai/gencreator/manifesto',
+  },
+}
 import { ArrowRight, Compass } from 'lucide-react'
 
 import PremiumButton from '@/components/ui/PremiumButton'

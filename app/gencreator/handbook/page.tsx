@@ -1,4 +1,16 @@
+import type { Metadata } from 'next'
 import Script from 'next/script'
+
+export const metadata: Metadata = {
+  title: "The GenCreator's Handbook — 8 Chapters for Creative Mastery",
+  description:
+    'The complete operating manual for generative creators. 8 chapters from identity to legacy — tools, content, revenue, systems, daily practice, community, and long-term thinking.',
+  openGraph: {
+    title: "The GenCreator's Handbook",
+    description: '8 chapters covering the complete GenCreator operating system.',
+    url: 'https://frankx.ai/gencreator/handbook',
+  },
+}
 import { ArrowRight, Map } from 'lucide-react'
 
 import { GlowCard } from '@/components/ui/glow-card'

@@ -1,6 +1,18 @@
+import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
 import Script from 'next/script'
+
+export const metadata: Metadata = {
+  title: 'The GenCreator Framework — Principles, Handbook, Blueprints & Soul',
+  description:
+    'The complete operating system for generative creators. 12 principles, 8 handbook chapters, 12 actionable blueprints, 7 soul dimensions, and a manifesto.',
+  openGraph: {
+    title: 'The GenCreator Framework',
+    description: 'Principles. Handbook. Blueprints. Soul. The complete creator operating system.',
+    url: 'https://frankx.ai/gencreator',
+  },
+}
 import {
   ArrowRight,
   BookOpen,

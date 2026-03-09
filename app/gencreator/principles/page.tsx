@@ -1,4 +1,16 @@
+import type { Metadata } from 'next'
 import Script from 'next/script'
+
+export const metadata: Metadata = {
+  title: 'The 12 GenCreator Principles — Foundation of Generative Creation',
+  description:
+    '12 operating principles that define how GenCreators think, create, and build. From "Create Daily" to "Leave Artifacts" — the philosophical foundation.',
+  openGraph: {
+    title: 'The 12 GenCreator Principles',
+    description: 'The philosophical foundation of every generative creator.',
+    url: 'https://frankx.ai/gencreator/principles',
+  },
+}
 import { ArrowRight, BookOpen } from 'lucide-react'
 
 import { GlowCard } from '@/components/ui/glow-card'

@@ -378,6 +378,33 @@ export default function ACOSPage() {
         </div>
       </section>
 
+      {/* ─── GenCreator Cross-link ─── */}
+      <section className="py-12">
+        <div className="mx-auto max-w-5xl px-6">
+          <Link
+            href="/gencreator"
+            className="group relative block overflow-hidden rounded-2xl border border-emerald-500/20 bg-emerald-500/[0.04] p-8 transition-all hover:border-emerald-500/30 hover:bg-emerald-500/[0.06]"
+          >
+            <div className="absolute top-0 right-0 w-72 h-40 pointer-events-none"
+              style={{ background: 'radial-gradient(ellipse at top right, rgba(16,185,129,0.10) 0%, transparent 65%)' }} />
+            <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-8">
+              <div className="flex-1">
+                <span className="text-xs font-mono px-2.5 py-1 rounded border border-emerald-400/20 text-emerald-300/60">
+                  The GenCreator Framework
+                </span>
+                <h3 className="mt-3 text-xl font-semibold text-white/80">
+                  ACOS is the system. GenCreator is the philosophy.
+                </h3>
+                <p className="mt-2 text-white/40 text-sm max-w-xl">
+                  12 principles, 8 handbook chapters, 12 blueprints, and a manifesto — the complete framework for building as a generative creator.
+                </p>
+              </div>
+              <ArrowRight className="h-5 w-5 text-emerald-400/60 transition-transform group-hover:translate-x-1" />
+            </div>
+          </Link>
+        </div>
+      </section>
+
       {/* ─── Pricing ─── */}
       <section id="pricing" className="py-20">
         <div className="mx-auto max-w-6xl px-6">
