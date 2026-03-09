@@ -21,6 +21,10 @@ import {
   Heart,
   Map,
   Scroll,
+  Users,
+  GraduationCap,
+  Wrench,
+  CreditCard,
 } from 'lucide-react'
 
 import { GlowCard } from '@/components/ui/glow-card'
@@ -62,12 +66,44 @@ const sections = [
     count: '7 dimensions',
   },
   {
+    title: 'Learning Paths',
+    description: '12-week progressive curriculum. Foundation, Builder, Master. Ship something real every week.',
+    href: '/gencreator/learn',
+    icon: GraduationCap,
+    color: 'teal' as const,
+    count: '3 tracks',
+  },
+  {
+    title: 'Creator Toolkit',
+    description: 'Curated tools that power the GenCreator workflow. AI, automation, publishing, design.',
+    href: '/gencreator/toolkit',
+    icon: Wrench,
+    color: 'orange' as const,
+    count: '13 tools',
+  },
+  {
+    title: 'Community',
+    description: 'Build together, ship together. Discord channels, weekly challenges, peer review circles.',
+    href: '/gencreator/community',
+    icon: Users,
+    color: 'indigo' as const,
+    count: 'Growing',
+  },
+  {
     title: 'The Manifesto',
     description: 'A short, powerful declaration of what it means to be a GenCreator. Read it. Share it. Live it.',
     href: '/gencreator/manifesto',
     icon: Scroll,
     color: 'rose' as const,
     count: 'One page',
+  },
+  {
+    title: 'Join GenCreator',
+    description: 'Free Starter Kit, Pro membership, or Mastery coaching. Choose the path that fits your ambition.',
+    href: '/gencreator/join',
+    icon: CreditCard,
+    color: 'cyan' as const,
+    count: '3 tiers',
   },
 ]
 
@@ -77,7 +113,7 @@ const structuredData = {
   name: 'The GenCreator Framework',
   description: 'The complete framework for generative creators. 12 principles, 8 handbook chapters, 12 blueprints, 7 soul dimensions, and a manifesto.',
   url: 'https://frankx.ai/gencreator',
-  author: { '@type': 'Person', name: 'Frank Guzman', url: 'https://frankx.ai' },
+  author: { '@type': 'Person', name: 'Frank Riemer', url: 'https://frankx.ai' },
   mainEntity: {
     '@type': 'ItemList',
     itemListElement: sections.map((s, i) => ({
@@ -140,7 +176,7 @@ export default function GenCreatorHubPage() {
             </div>
             <div className="space-y-2 text-white/70">
               <p><span className="text-emerald-400">$</span> cat ~/soul.md</p>
-              <p className="mt-2 text-teal-300"># GenCreator: Frank Guzman</p>
+              <p className="mt-2 text-teal-300"># GenCreator: Frank Riemer</p>
               <p className="text-white/40">## Craft: AI Architecture + Music + Content</p>
               <p className="text-white/40">## Stack: Claude, Suno, n8n, Next.js, Vercel</p>
               <p className="text-white/40">## Principle: Ship daily. Compound relentlessly.</p>

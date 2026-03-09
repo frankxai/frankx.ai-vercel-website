@@ -18,7 +18,7 @@ const structuredData = {
   name: 'GenCreator Soul — Build Your soul.md',
   description: 'The 7 dimensions of a complete GenCreator. Build your personal soul.md — the operating file that defines who you are as a creator.',
   url: 'https://frankx.ai/gencreator/soul',
-  author: { '@type': 'Person', name: 'Frank Guzman', url: 'https://frankx.ai' },
+  author: { '@type': 'Person', name: 'Frank Riemer', url: 'https://frankx.ai' },
 }
 
 const soulMdTemplate = `# soul.md — Your GenCreator Operating File

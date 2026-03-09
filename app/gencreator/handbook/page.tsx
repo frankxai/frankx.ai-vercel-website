@@ -23,7 +23,7 @@ const structuredData = {
   '@type': 'Book',
   name: "The GenCreator's Handbook",
   description: '8 chapters covering the complete operating system for generative creators — from identity to legacy.',
-  author: { '@type': 'Person', name: 'Frank Guzman', url: 'https://frankx.ai' },
+  author: { '@type': 'Person', name: 'Frank Riemer', url: 'https://frankx.ai' },
   url: 'https://frankx.ai/gencreator/handbook',
   numberOfPages: 8,
 }

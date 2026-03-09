@@ -361,7 +361,7 @@ export function premiumNewsletterEmail(data: NewsletterData): { subject: string;
                         </td>
                         <td style="vertical-align: middle;">
                           <p style="margin: 0 0 2px 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 15px; font-weight: 600; color: #E2E8F0;">
-                            Frank Guzman
+                            Frank Riemer
                           </p>
                           <p style="margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 13px; color: #64748b;">
                             Musician &rarr; AI Systems Architect

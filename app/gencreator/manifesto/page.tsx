@@ -22,7 +22,7 @@ const structuredData = {
   '@type': 'Article',
   headline: 'The GenCreator Manifesto',
   description: 'A declaration of what it means to be a generative creator. Human taste. Machine scale. Permanent artifacts.',
-  author: { '@type': 'Person', name: 'Frank Guzman', url: 'https://frankx.ai' },
+  author: { '@type': 'Person', name: 'Frank Riemer', url: 'https://frankx.ai' },
   url: 'https://frankx.ai/gencreator/manifesto',
 }
 
@@ -69,7 +69,7 @@ export default function ManifestoPage() {
           {/* Signature */}
           <div className="mt-16 border-t border-white/[0.08] pt-8">
             <p className="text-sm text-white/30">
-              Written by Frank Guzman &middot; frankx.ai &middot; 2026
+              Written by Frank Riemer &middot; frankx.ai &middot; 2026
             </p>
           </div>
 

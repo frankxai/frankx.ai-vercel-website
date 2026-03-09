@@ -23,7 +23,7 @@ const structuredData = {
   '@type': 'Article',
   headline: 'The 12 GenCreator Principles',
   description: '12 principles that define how generative creators think, create, and build.',
-  author: { '@type': 'Person', name: 'Frank Guzman', url: 'https://frankx.ai' },
+  author: { '@type': 'Person', name: 'Frank Riemer', url: 'https://frankx.ai' },
   url: 'https://frankx.ai/gencreator/principles',
 }
 

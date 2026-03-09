@@ -10,6 +10,10 @@ const links = [
   { href: '/gencreator/handbook', label: 'Handbook' },
   { href: '/gencreator/blueprints', label: 'Blueprints' },
   { href: '/gencreator/soul', label: 'Soul' },
+  { href: '/gencreator/learn', label: 'Learn' },
+  { href: '/gencreator/toolkit', label: 'Toolkit' },
+  { href: '/gencreator/community', label: 'Community' },
+  { href: '/gencreator/join', label: 'Join' },
   { href: '/gencreator/manifesto', label: 'Manifesto' },
 ]
 

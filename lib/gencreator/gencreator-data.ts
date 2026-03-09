@@ -38,6 +38,12 @@ import type {
   Blueprint,
   SoulDimension,
   ManifestoLine,
+  ProductTier,
+  CommunitySpace,
+  CommunityEvent,
+  LearningTrack,
+  LearningModule,
+  ToolkitItem,
 } from './gencreator-types'
 
 // ── 12 GenCreator Principles ─────────────────────────────
@@ -568,7 +574,7 @@ export const hubStats = [
   { label: 'Principles', value: '12', icon: Zap, color: 'from-emerald-500 to-teal-500' },
   { label: 'Chapters', value: '8', icon: PenTool, color: 'from-cyan-500 to-blue-500' },
   { label: 'Blueprints', value: '12', icon: GitBranch, color: 'from-purple-500 to-violet-500' },
-  { label: 'Soul Dimensions', value: '7', icon: Sparkles, color: 'from-amber-500 to-orange-500' },
+  { label: 'Tools', value: '13', icon: Sparkles, color: 'from-amber-500 to-orange-500' },
 ]
 
 // ── Blueprint Categories (for filtering) ─────────────────
@@ -589,3 +595,350 @@ export const difficultyColors: Record<string, string> = {
   Intermediate: 'text-amber-400 border-amber-400/30 bg-amber-400/10',
   Advanced: 'text-rose-400 border-rose-400/30 bg-rose-400/10',
 }
+
+// ── Product Tiers ───────────────────────────────────────
+
+export const productTiers: ProductTier[] = [
+  {
+    name: 'Starter Kit',
+    slug: 'starter',
+    price: 'Free',
+    priceDetail: 'forever',
+    description: 'Everything you need to begin your GenCreator journey. No credit card required.',
+    features: [
+      'soul.md personal template',
+      '3 beginner blueprints (PDF)',
+      '12 principles quick-reference card',
+      'Weekly GenCreator newsletter',
+      'Community read-only access',
+    ],
+    cta: 'Get the Starter Kit',
+  },
+  {
+    name: 'GenCreator Pro',
+    slug: 'pro',
+    price: '$19',
+    priceDetail: '/month',
+    description: 'The full operating system. All blueprints, the complete handbook, and community access.',
+    features: [
+      'Everything in Starter Kit',
+      'All 12 blueprint worksheets (PDF + Notion)',
+      'Complete 8-chapter handbook (PDF)',
+      'Full community access + Discord',
+      'Weekly live workshops',
+      'Blueprint template library',
+      'Monthly creator challenges',
+      'Peer review circles (4-person pods)',
+    ],
+    highlighted: true,
+    cta: 'Join GenCreator Pro',
+    badge: 'Most Popular',
+  },
+  {
+    name: 'GenCreator Mastery',
+    slug: 'mastery',
+    price: '$97',
+    priceDetail: '/month',
+    description: 'For serious creators building a sustainable practice. Includes coaching and AI agents.',
+    features: [
+      'Everything in Pro',
+      'Monthly 1:1 coaching call with Frank',
+      'Custom AI agent setup (Claude Code + ACOS)',
+      'Blueprint Customizer — personalized action plans',
+      'Priority community support',
+      'Early access to new frameworks',
+      'GenCreator Mastery certificate',
+      'Private Mastery-only channel',
+    ],
+    cta: 'Apply for Mastery',
+    badge: 'Limited Seats',
+  },
+]
+
+// ── Community ───────────────────────────────────────────
+
+import {
+  MessageSquare,
+  Rocket as RocketIcon,
+  Trophy,
+  Mic,
+  BookMarked,
+  Lightbulb,
+  Clock,
+  Award,
+  Radio,
+  UserCheck,
+  Megaphone,
+  Heart as HeartIcon,
+} from 'lucide-react'
+
+export const communitySpaces: CommunitySpace[] = [
+  {
+    name: '#introductions',
+    description: 'Share your soul.md, your stack, and what you are building. First impressions matter — make yours count.',
+    icon: UserCheck,
+  },
+  {
+    name: '#daily-ships',
+    description: 'Post what you shipped today. A blog post, a track, a component, a product update. The streak is the strategy.',
+    icon: RocketIcon,
+  },
+  {
+    name: '#blueprint-share',
+    description: 'Share your customized blueprints, workflows, and automation setups. Learn from how others execute.',
+    icon: Lightbulb,
+  },
+  {
+    name: '#music-lab',
+    description: 'AI music production, Suno prompts, track feedback, genre experiments, and collaborative playlists.',
+    icon: Mic,
+  },
+  {
+    name: '#code-review',
+    description: 'Get feedback on your projects, components, and systems. Build in public with expert eyes on your work.',
+    icon: Code2,
+  },
+  {
+    name: '#content-workshop',
+    description: 'Draft reviews, headline testing, SEO feedback, and content strategy discussions.',
+    icon: BookMarked,
+  },
+]
+
+export const communityEvents: CommunityEvent[] = [
+  {
+    name: 'Weekly Creator Challenge',
+    frequency: 'Every Monday',
+    description: 'A new challenge each week tied to a specific blueprint. Ship something real by Friday. Winners get featured.',
+    icon: Trophy,
+  },
+  {
+    name: 'Live Workshop',
+    frequency: 'Every Wednesday',
+    description: 'Deep-dive into a handbook chapter, blueprint walkthrough, or tool demo. Pro and Mastery members only.',
+    icon: Radio,
+  },
+  {
+    name: 'Monthly Showcase',
+    frequency: 'First Friday',
+    description: 'Top community creations highlighted. Creator spotlights, milestone celebrations, and community awards.',
+    icon: Award,
+  },
+  {
+    name: 'Office Hours with Frank',
+    frequency: 'Every other Thursday',
+    description: 'Open Q&A session. Bring your toughest creative or technical challenge. Mastery members get priority.',
+    icon: MessageSquare,
+  },
+]
+
+// ── Learning Tracks ─────────────────────────────────────
+
+export const learningTracks: LearningTrack[] = [
+  {
+    number: 1,
+    name: 'Foundation',
+    tagline: 'Build the base',
+    weeks: 'Weeks 1–4',
+    description: 'Establish your GenCreator identity, build your soul.md, learn the principles, and ship your first blueprint. By week 4, you have a daily creation habit and a functioning creative stack.',
+    modules: [
+      {
+        title: 'Week 1: The GenCreator Identity',
+        description: 'Define who you are as a creator. Read Principles 1-6. Start your soul.md draft across all 7 dimensions.',
+        deliverable: 'Published soul.md v1 + first daily ship',
+      },
+      {
+        title: 'Week 2: Your Creative Stack',
+        description: 'Set up your tools: Claude, Suno (optional), n8n, Vercel or equivalent. Configure your first automation.',
+        deliverable: 'Working creative stack + one automated workflow',
+      },
+      {
+        title: 'Week 3: First Blueprint Execution',
+        description: 'Choose your first blueprint (recommend: Blog-to-Social Atomizer). Execute it end to end.',
+        deliverable: 'Completed blueprint with published output',
+      },
+      {
+        title: 'Week 4: The Daily Practice',
+        description: 'Establish your morning creation routine. Read Handbook Ch 6. Build a 7-day shipping streak.',
+        deliverable: '7 consecutive daily ships + energy audit',
+      },
+    ],
+    color: 'from-emerald-500 to-teal-500',
+    icon: Compass,
+  },
+  {
+    number: 2,
+    name: 'Builder',
+    tagline: 'Scale your output',
+    weeks: 'Weeks 5–8',
+    description: 'Go from creating to building systems. Complete the handbook, set up your automation layer, and launch your first digital product. By week 8, you have revenue potential.',
+    modules: [
+      {
+        title: 'Week 5: Content as Currency',
+        description: 'Master the content atomization framework. Build your blog-to-newsletter-to-social pipeline.',
+        deliverable: 'Functioning content pipeline producing 5+ assets per week',
+      },
+      {
+        title: 'Week 6: The Revenue Engine',
+        description: 'Design your first digital product. Pricing, packaging, landing page, and email sequence.',
+        deliverable: 'Product landing page live + email capture active',
+      },
+      {
+        title: 'Week 7: System Architecture',
+        description: 'Build the infrastructure that scales. Git workflows, automated deployment, monitoring.',
+        deliverable: 'Automated publish-to-deploy pipeline',
+      },
+      {
+        title: 'Week 8: First Launch',
+        description: 'Execute the Digital Product Launch blueprint. Full sequence: pre-launch, launch, post-launch.',
+        deliverable: 'Product launched + first revenue or validated interest',
+      },
+    ],
+    color: 'from-cyan-500 to-blue-500',
+    icon: Wrench,
+  },
+  {
+    number: 3,
+    name: 'Master',
+    tagline: 'Build your empire',
+    weeks: 'Weeks 9–12',
+    description: 'Graduate from creator to operator. Build custom AI agents, lead community initiatives, and design systems that scale without you. By week 12, your GenCreator practice is self-sustaining.',
+    modules: [
+      {
+        title: 'Week 9: Custom AI Agents',
+        description: 'Design and deploy your own Claude Code agents using ACOS patterns. Automate your unique workflow.',
+        deliverable: 'One custom agent solving a real workflow bottleneck',
+      },
+      {
+        title: 'Week 10: Community & Network',
+        description: 'Build your circle. Launch or join a peer review pod. Start building in public with accountability.',
+        deliverable: 'Active in community + peer pod established',
+      },
+      {
+        title: 'Week 11: The Flywheel',
+        description: 'Connect all systems: content → products → community → content. Build the self-reinforcing loop.',
+        deliverable: 'Documented flywheel with all connections active',
+      },
+      {
+        title: 'Week 12: Legacy Architecture',
+        description: 'Design for the long game. Template your best work. Document your systems. Build assets that compound.',
+        deliverable: 'Published template/framework + 12-week retrospective',
+      },
+    ],
+    color: 'from-purple-500 to-violet-500',
+    icon: Telescope,
+  },
+]
+
+// ── Toolkit ─────────────────────────────────────────────
+
+import {
+  BrainCircuit,
+  Workflow,
+  Globe as GlobeIcon,
+  Paintbrush,
+  AudioWaveform,
+  LineChart,
+  Terminal,
+  Cpu,
+  Wand2,
+  Rss,
+  PenLine,
+  ImageIcon,
+} from 'lucide-react'
+
+export const toolkitItems: ToolkitItem[] = [
+  {
+    name: 'Claude Code',
+    description: 'AI pair programmer. Writes code, manages repos, deploys to production. The core of the ACOS stack.',
+    category: 'AI',
+    icon: Terminal,
+    tag: 'Essential',
+  },
+  {
+    name: 'Claude (Anthropic)',
+    description: 'Long-form writing, research, analysis, and creative ideation. The thinking partner in your stack.',
+    category: 'AI',
+    icon: BrainCircuit,
+    tag: 'Essential',
+  },
+  {
+    name: 'Gemini (Google)',
+    description: 'Image generation, multimodal analysis, and visual content creation. Flash for speed, Pro for quality.',
+    category: 'AI',
+    icon: Wand2,
+    tag: 'Essential',
+  },
+  {
+    name: 'Suno',
+    description: 'AI music generation. Full tracks from text prompts — vocals, instruments, mastering. Commercial license included.',
+    category: 'Audio',
+    icon: AudioWaveform,
+    tag: 'Music Creators',
+  },
+  {
+    name: 'n8n',
+    description: 'Visual workflow automation. Self-hosted on Railway. Connects everything: APIs, webhooks, email, AI, databases.',
+    category: 'Automation',
+    icon: Workflow,
+    tag: 'Essential',
+  },
+  {
+    name: 'Next.js + Vercel',
+    description: 'React framework + deployment platform. Build and ship production websites with zero-config deployment.',
+    category: 'Publishing',
+    icon: GlobeIcon,
+    tag: 'Essential',
+  },
+  {
+    name: 'Resend',
+    description: 'Developer-first email API. Newsletters, transactional email, and drip sequences with beautiful templates.',
+    category: 'Publishing',
+    icon: Rss,
+    tag: 'Growth',
+  },
+  {
+    name: 'Figma',
+    description: 'Design tool for UI/UX, social graphics, and brand assets. Integrates with Claude Code via MCP.',
+    category: 'Design',
+    icon: Paintbrush,
+    tag: 'Visual Creators',
+  },
+  {
+    name: 'Canva',
+    description: 'Quick graphic design for social posts, thumbnails, and marketing materials. AI-assisted templates.',
+    category: 'Design',
+    icon: ImageIcon,
+    tag: 'Beginners',
+  },
+  {
+    name: 'GitHub',
+    description: 'Version control and collaboration. Git-based content management, CI/CD pipelines, and project boards.',
+    category: 'Publishing',
+    icon: GitBranch,
+    tag: 'Essential',
+  },
+  {
+    name: 'Notion',
+    description: 'Knowledge base, project management, and content planning. The organizational layer of your stack.',
+    category: 'Analytics',
+    icon: PenLine,
+    tag: 'Organization',
+  },
+  {
+    name: 'OpenRouter',
+    description: 'Multi-model AI gateway. Access GPT-4, Claude, Gemini, Llama, and more through a single API endpoint.',
+    category: 'AI',
+    icon: Cpu,
+    tag: 'Advanced',
+  },
+  {
+    name: 'Search Console',
+    description: 'Google Search performance data. Track rankings, impressions, clicks, and discover content opportunities.',
+    category: 'Analytics',
+    icon: LineChart,
+    tag: 'SEO',
+  },
+]
+
+export const toolkitCategories = ['All', 'AI', 'Automation', 'Publishing', 'Design', 'Audio', 'Analytics'] as const
