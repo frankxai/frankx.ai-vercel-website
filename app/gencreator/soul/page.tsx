@@ -1,10 +1,10 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Script from 'next/script'
 import Image from 'next/image'
-import { ArrowRight, Download, FileText, Scroll } from 'lucide-react'
+import { ArrowRight, Download, FileText, Scroll, Copy, Check } from 'lucide-react'
 
 import { GlowCard } from '@/components/ui/glow-card'
 import PremiumButton from '@/components/ui/PremiumButton'
@@ -72,8 +72,183 @@ const soulMdTemplate = `# soul.md — Your GenCreator Operating File
 - Legacy clarity (1-10):
 `
 
+interface SoulForm {
+  name: string
+  craft: string
+  stack: string
+  mission: string
+  peakHours: string
+  movement: string
+  recovery: string
+  energyScore: string
+  learning: string
+  books: string
+  mentalModel: string
+  learningScore: string
+  primarySkill: string
+  secondarySkills: string
+  currentProject: string
+  craftScore: string
+  perspective: string
+  uncensored: string
+  writingStyle: string
+  voiceScore: string
+  revenue: string
+  monthlyTarget: string
+  leverage: string
+  financialScore: string
+  mentors: string
+  peers: string
+  communityServed: string
+  networkScore: string
+  legacy: string
+  systemWithout: string
+  tenYearVision: string
+  legacyScore: string
+}
+
+const emptySoul: SoulForm = {
+  name: '', craft: '', stack: '', mission: '',
+  peakHours: '', movement: '', recovery: '', energyScore: '',
+  learning: '', books: '', mentalModel: '', learningScore: '',
+  primarySkill: '', secondarySkills: '', currentProject: '', craftScore: '',
+  perspective: '', uncensored: '', writingStyle: '', voiceScore: '',
+  revenue: '', monthlyTarget: '', leverage: '', financialScore: '',
+  mentors: '', peers: '', communityServed: '', networkScore: '',
+  legacy: '', systemWithout: '', tenYearVision: '', legacyScore: '',
+}
+
+function generateSoulMd(s: SoulForm): string {
+  return `# soul.md — Your GenCreator Operating File
+
+## Identity
+- Name: ${s.name || '___'}
+- Craft: ${s.craft || '___'}
+- Stack: ${s.stack || '___'}
+- Mission: ${s.mission || '___'}
+
+## Energy
+- Peak hours: ${s.peakHours || '___'}
+- Movement practice: ${s.movement || '___'}
+- Recovery ritual: ${s.recovery || '___'}
+- Energy score (1-10): ${s.energyScore || '___'}
+
+## Mind
+- Currently learning: ${s.learning || '___'}
+- Books this month: ${s.books || '___'}
+- Mental model I use most: ${s.mentalModel || '___'}
+- Learning velocity (1-10): ${s.learningScore || '___'}
+
+## Craft
+- Primary skill: ${s.primarySkill || '___'}
+- Secondary skills: ${s.secondarySkills || '___'}
+- Current project: ${s.currentProject || '___'}
+- Craft score (1-10): ${s.craftScore || '___'}
+
+## Voice
+- My perspective on: ${s.perspective || '___'}
+- What I would say if no one judged: ${s.uncensored || '___'}
+- Writing style in 3 words: ${s.writingStyle || '___'}
+- Voice clarity (1-10): ${s.voiceScore || '___'}
+
+## Capital
+- Revenue streams: ${s.revenue || '___'}
+- Monthly target: ${s.monthlyTarget || '___'}
+- Highest-leverage activity: ${s.leverage || '___'}
+- Financial health (1-10): ${s.financialScore || '___'}
+
+## Circle
+- Mentors: ${s.mentors || '___'}
+- Peers: ${s.peers || '___'}
+- Community I serve: ${s.communityServed || '___'}
+- Network strength (1-10): ${s.networkScore || '___'}
+
+## Legacy
+- What I want to leave behind: ${s.legacy || '___'}
+- System that works without me: ${s.systemWithout || '___'}
+- 10-year vision: ${s.tenYearVision || '___'}
+- Legacy clarity (1-10): ${s.legacyScore || '___'}
+`
+}
+
+const builderSections = [
+  { title: 'Identity', fields: [
+    { key: 'name', label: 'Name', placeholder: 'Your creator name' },
+    { key: 'craft', label: 'Craft', placeholder: 'AI + Music + Writing' },
+    { key: 'stack', label: 'Stack', placeholder: 'Claude, Suno, Next.js, Vercel' },
+    { key: 'mission', label: 'Mission', placeholder: 'Build systems that compound' },
+  ]},
+  { title: 'Energy', fields: [
+    { key: 'peakHours', label: 'Peak hours', placeholder: '5am-9am' },
+    { key: 'movement', label: 'Movement practice', placeholder: 'Daily walks, gym 3x/week' },
+    { key: 'recovery', label: 'Recovery ritual', placeholder: 'Evening reading, no screens after 10' },
+    { key: 'energyScore', label: 'Score (1-10)', placeholder: '7' },
+  ]},
+  { title: 'Mind', fields: [
+    { key: 'learning', label: 'Currently learning', placeholder: 'Agent orchestration patterns' },
+    { key: 'books', label: 'Books this month', placeholder: 'The Almanack of Naval Ravikant' },
+    { key: 'mentalModel', label: 'Mental model I use most', placeholder: 'Compounding / leverage' },
+    { key: 'learningScore', label: 'Score (1-10)', placeholder: '8' },
+  ]},
+  { title: 'Craft', fields: [
+    { key: 'primarySkill', label: 'Primary skill', placeholder: 'AI architecture' },
+    { key: 'secondarySkills', label: 'Secondary skills', placeholder: 'Music production, content writing' },
+    { key: 'currentProject', label: 'Current project', placeholder: 'GenCreator Framework' },
+    { key: 'craftScore', label: 'Score (1-10)', placeholder: '9' },
+  ]},
+  { title: 'Voice', fields: [
+    { key: 'perspective', label: 'My perspective on', placeholder: 'AI-human collaboration' },
+    { key: 'uncensored', label: 'What I\'d say if no one judged', placeholder: 'Most people are building wrong' },
+    { key: 'writingStyle', label: 'Writing style in 3 words', placeholder: 'Direct, technical, warm' },
+    { key: 'voiceScore', label: 'Score (1-10)', placeholder: '6' },
+  ]},
+  { title: 'Capital', fields: [
+    { key: 'revenue', label: 'Revenue streams', placeholder: 'Products, consulting, content' },
+    { key: 'monthlyTarget', label: 'Monthly target', placeholder: '$5,000' },
+    { key: 'leverage', label: 'Highest-leverage activity', placeholder: 'Building digital products' },
+    { key: 'financialScore', label: 'Score (1-10)', placeholder: '5' },
+  ]},
+  { title: 'Circle', fields: [
+    { key: 'mentors', label: 'Mentors', placeholder: 'Naval, Pieter Levels, Paul Graham' },
+    { key: 'peers', label: 'Peers', placeholder: 'GenCreator community, indie hackers' },
+    { key: 'communityServed', label: 'Community I serve', placeholder: 'AI-native creators' },
+    { key: 'networkScore', label: 'Score (1-10)', placeholder: '7' },
+  ]},
+  { title: 'Legacy', fields: [
+    { key: 'legacy', label: 'What I want to leave behind', placeholder: 'A framework others build on' },
+    { key: 'systemWithout', label: 'System that works without me', placeholder: 'Automated content engine' },
+    { key: 'tenYearVision', label: '10-year vision', placeholder: '10,000 GenCreators shipping daily' },
+    { key: 'legacyScore', label: 'Score (1-10)', placeholder: '8' },
+  ]},
+] as const
+
 export default function SoulPage() {
   const [activeDimension, setActiveDimension] = useState<number | null>(null)
+  const [soulForm, setSoulForm] = useState<SoulForm>(emptySoul)
+  const [copied, setCopied] = useState(false)
+  const [showBuilder, setShowBuilder] = useState(false)
+
+  const updateField = useCallback((key: string, value: string) => {
+    setSoulForm(prev => ({ ...prev, [key]: value }))
+  }, [])
+
+  const generatedMd = generateSoulMd(soulForm)
+
+  const handleCopy = useCallback(async () => {
+    await navigator.clipboard.writeText(generatedMd)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }, [generatedMd])
+
+  const handleDownload = useCallback(() => {
+    const blob = new Blob([generatedMd], { type: 'text/markdown' })
+    const url = URL.createObjectURL(blob)
+    const a = document.createElement('a')
+    a.href = url
+    a.download = 'soul.md'
+    a.click()
+    URL.revokeObjectURL(url)
+  }, [generatedMd])
 
   return (
     <div className="min-h-screen bg-[#0a0a0b] text-slate-100">
@@ -234,31 +409,113 @@ export default function SoulPage() {
         </div>
       </section>
 
-      {/* ─── soul.md Template ─── */}
+      {/* ─── Interactive Soul Builder ─── */}
       <section className="border-y border-white/[0.08] bg-white/[0.03] py-20">
-        <div className="mx-auto max-w-4xl px-6">
+        <div className="mx-auto max-w-5xl px-6">
           <div className="text-center mb-10">
             <h2 className="text-3xl font-bold text-white sm:text-4xl">
-              Create Your soul.md
+              Build Your soul.md
             </h2>
             <p className="mt-4 text-white/50">
-              Copy this template. Fill it honestly. Review weekly. This is your creative compass.
+              Fill in each dimension. Your soul.md generates in real-time. Download when ready.
             </p>
+            <button
+              onClick={() => setShowBuilder(!showBuilder)}
+              className="mt-6 inline-flex items-center gap-2 rounded-full border border-amber-400/30 bg-amber-500/10 px-6 py-3 text-sm font-medium text-amber-200 transition-all hover:bg-amber-500/20"
+            >
+              <FileText className="h-4 w-4" />
+              {showBuilder ? 'Hide Builder' : 'Open Interactive Builder'}
+            </button>
           </div>
 
-          <div className="rounded-2xl border border-white/[0.08] bg-[#0d1117] p-6 font-mono text-sm">
-            <div className="mb-4 flex items-center justify-between">
-              <div className="flex gap-2">
-                <span className="h-3 w-3 rounded-full bg-red-500/80" />
-                <span className="h-3 w-3 rounded-full bg-amber-500/80" />
-                <span className="h-3 w-3 rounded-full bg-emerald-500/80" />
+          <AnimatePresence>
+            {showBuilder && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 'auto' }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.3 }}
+                className="overflow-hidden"
+              >
+                <div className="grid gap-8 lg:grid-cols-[1fr_400px]">
+                  {/* Form */}
+                  <div className="space-y-6">
+                    {builderSections.map((section) => (
+                      <div key={section.title} className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-5">
+                        <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-amber-300/70">
+                          {section.title}
+                        </h3>
+                        <div className="grid gap-3 sm:grid-cols-2">
+                          {section.fields.map((field) => (
+                            <div key={field.key}>
+                              <label className="mb-1 block text-xs text-white/40">{field.label}</label>
+                              <input
+                                type="text"
+                                value={soulForm[field.key as keyof SoulForm]}
+                                onChange={(e) => updateField(field.key, e.target.value)}
+                                placeholder={field.placeholder}
+                                className="w-full rounded-lg border border-white/[0.08] bg-white/[0.03] px-3 py-2 text-sm text-white/80 placeholder:text-white/20 focus:border-amber-400/40 focus:outline-none focus:ring-1 focus:ring-amber-400/20"
+                              />
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Live Preview */}
+                  <div className="lg:sticky lg:top-4 lg:self-start">
+                    <div className="rounded-2xl border border-white/[0.08] bg-[#0d1117] p-5">
+                      <div className="mb-4 flex items-center justify-between">
+                        <div className="flex gap-2">
+                          <span className="h-3 w-3 rounded-full bg-red-500/80" />
+                          <span className="h-3 w-3 rounded-full bg-amber-500/80" />
+                          <span className="h-3 w-3 rounded-full bg-emerald-500/80" />
+                        </div>
+                        <span className="text-xs text-white/20">~/soul.md</span>
+                      </div>
+                      <pre className="max-h-[60vh] overflow-y-auto whitespace-pre-wrap font-mono text-xs text-white/50 leading-relaxed scrollbar-hide">
+                        {generatedMd}
+                      </pre>
+                      <div className="mt-4 flex gap-2">
+                        <button
+                          onClick={handleCopy}
+                          className="flex flex-1 items-center justify-center gap-2 rounded-lg border border-white/[0.08] bg-white/[0.03] px-3 py-2 text-xs font-medium text-white/60 transition-colors hover:bg-white/[0.06] hover:text-white/80"
+                        >
+                          {copied ? <Check className="h-3.5 w-3.5 text-emerald-400" /> : <Copy className="h-3.5 w-3.5" />}
+                          {copied ? 'Copied!' : 'Copy'}
+                        </button>
+                        <button
+                          onClick={handleDownload}
+                          className="flex flex-1 items-center justify-center gap-2 rounded-lg border border-amber-400/30 bg-amber-500/10 px-3 py-2 text-xs font-medium text-amber-200 transition-colors hover:bg-amber-500/20"
+                        >
+                          <Download className="h-3.5 w-3.5" />
+                          Download .md
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* Static template fallback */}
+          {!showBuilder && (
+            <div className="rounded-2xl border border-white/[0.08] bg-[#0d1117] p-6 font-mono text-sm">
+              <div className="mb-4 flex items-center justify-between">
+                <div className="flex gap-2">
+                  <span className="h-3 w-3 rounded-full bg-red-500/80" />
+                  <span className="h-3 w-3 rounded-full bg-amber-500/80" />
+                  <span className="h-3 w-3 rounded-full bg-emerald-500/80" />
+                </div>
+                <span className="text-xs text-white/20">~/soul.md</span>
               </div>
-              <span className="text-xs text-white/20">~/soul.md</span>
+              <pre className="max-h-96 overflow-y-auto whitespace-pre-wrap text-white/50 leading-relaxed scrollbar-hide">
+                {soulMdTemplate}
+              </pre>
             </div>
-            <pre className="max-h-96 overflow-y-auto whitespace-pre-wrap text-white/50 leading-relaxed scrollbar-hide">
-              {soulMdTemplate}
-            </pre>
-          </div>
+          )}
 
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <PremiumButton variant="luxury" size="lg" href="/gencreator/manifesto">

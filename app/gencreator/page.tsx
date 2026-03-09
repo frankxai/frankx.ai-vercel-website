@@ -25,6 +25,8 @@ import {
   GraduationCap,
   Wrench,
   CreditCard,
+  Target,
+  Trophy,
 } from 'lucide-react'
 
 import { GlowCard } from '@/components/ui/glow-card'
@@ -66,6 +68,14 @@ const sections = [
     count: '7 dimensions',
   },
   {
+    title: 'Self-Assessment',
+    description: 'Score yourself across 7 dimensions. See your radar chart and get personalized growth recommendations.',
+    href: '/gencreator/assess',
+    icon: Target,
+    color: 'violet' as const,
+    count: '2 min quiz',
+  },
+  {
     title: 'Learning Paths',
     description: '12-week progressive curriculum. Foundation, Builder, Master. Ship something real every week.',
     href: '/gencreator/learn',
@@ -88,6 +98,14 @@ const sections = [
     icon: Users,
     color: 'indigo' as const,
     count: 'Growing',
+  },
+  {
+    title: 'Showcase',
+    description: 'Real projects built with the GenCreator approach. Music, code, products, automations — proof the framework works.',
+    href: '/gencreator/showcase',
+    icon: Trophy,
+    color: 'cyan' as const,
+    count: '8 projects',
   },
   {
     title: 'The Manifesto',

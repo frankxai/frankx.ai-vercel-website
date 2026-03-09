@@ -7,7 +7,7 @@ export default function Footer() {
   return (
     <footer className="relative border-t border-white/5 bg-[#0a0a0b] text-white overflow-hidden">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-10 sm:py-12 md:py-16">
-        <div className="grid gap-8 sm:gap-10 md:gap-12 grid-cols-2 md:grid-cols-3 lg:grid-cols-6">
+        <div className="grid gap-8 sm:gap-10 md:gap-12 grid-cols-2 md:grid-cols-3 lg:grid-cols-7">
           {/* Brand */}
           <div className="col-span-2 md:col-span-2 lg:col-span-1">
             <Link href="/" className="inline-flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6 group">
@@ -102,20 +102,30 @@ export default function Footer() {
               <li><Link href="/ai-architecture" className="hover:text-white transition-colors">Architecture Hub</Link></li>
               <li><Link href="/ai-architecture/blueprints" className="hover:text-white transition-colors">Blueprints</Link></li>
               <li><Link href="/products" className="hover:text-white transition-colors">Products</Link></li>
-              <li><Link href="/acos" className="hover:text-white transition-colors">ACOS</Link></li>
-              <li><Link href="/about" className="hover:text-white transition-colors">About</Link></li>
+              <li><Link href="/investor" className="hover:text-white transition-colors">Investor Hub</Link></li>
             </ul>
           </div>
 
-          {/* Invest */}
+          {/* GenCreator */}
           <div>
-            <h3 className="text-xs sm:text-sm font-semibold uppercase tracking-wider sm:tracking-widest text-white/60 mb-3 sm:mb-4">Invest</h3>
+            <h3 className="text-xs sm:text-sm font-semibold uppercase tracking-wider sm:tracking-widest text-white/60 mb-3 sm:mb-4">GenCreator</h3>
             <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-white/40">
-              <li><Link href="/investor" className="hover:text-white transition-colors">Intelligence Hub</Link></li>
-              <li><Link href="/investor/agents" className="hover:text-white transition-colors">Agent Packs</Link></li>
-              <li><Link href="/investor/tools" className="hover:text-white transition-colors">Tools</Link></li>
+              <li><Link href="/gencreator" className="hover:text-white transition-colors">Framework Hub</Link></li>
+              <li><Link href="/gencreator/principles" className="hover:text-white transition-colors">12 Principles</Link></li>
+              <li><Link href="/gencreator/handbook" className="hover:text-white transition-colors">Handbook</Link></li>
+              <li><Link href="/gencreator/blueprints" className="hover:text-white transition-colors">Blueprints</Link></li>
+              <li><Link href="/gencreator/join" className="hover:text-white transition-colors">Join</Link></li>
+            </ul>
+          </div>
+
+          {/* Connect */}
+          <div>
+            <h3 className="text-xs sm:text-sm font-semibold uppercase tracking-wider sm:tracking-widest text-white/60 mb-3 sm:mb-4">Connect</h3>
+            <ul className="space-y-2 sm:space-y-3 text-xs sm:text-sm text-white/40">
               <li><Link href="/newsletter" className="hover:text-white transition-colors">Newsletter</Link></li>
+              <li><Link href="/gencreator/community" className="hover:text-white transition-colors">Community</Link></li>
               <li><Link href="/contact" className="hover:text-white transition-colors">Contact</Link></li>
+              <li><Link href="/about" className="hover:text-white transition-colors">About</Link></li>
             </ul>
           </div>
         </div>
