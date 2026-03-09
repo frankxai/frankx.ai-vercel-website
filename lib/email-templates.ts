@@ -585,3 +585,63 @@ export function albumReleaseEmail(data: {
     html: emailWrapper(content, `${data.albumTitle} — ${data.albumDescription}`)
   }
 }
+
+// ─── Template 8: GenCreator Welcome ──────────────────────────────
+
+export function gencreatorWelcomeEmail(data: {
+  recipientName: string
+}): EmailTemplate {
+  const content = `
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color: #1E293B; border-top: 3px solid #10B981; border-radius: 12px;">
+      <tr>
+        <td class="content-pad" style="padding: 24px 20px;">
+
+          <p style="font-size: 12px; color: #10B981; margin: 0 0 8px 0; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;">GenCreator Framework</p>
+
+          <h1 class="h1" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; font-size: 24px; font-weight: 700; color: white; margin: 0 0 16px 0; line-height: 1.3;">
+            Welcome to GenCreator, ${data.recipientName}.
+          </h1>
+
+          <p style="font-size: 16px; color: #CBD5E1; line-height: 1.6; margin: 0 0 12px 0;">
+            You just joined the GenCreator Framework — the operating system for AI-native creators who ship daily.
+          </p>
+
+          <p style="font-size: 15px; color: #94a3b8; line-height: 1.6; margin: 0 0 24px 0;">
+            Here is your Starter Kit. Bookmark it. Use it. Build on it.
+          </p>
+
+          <!-- Starter Kit items -->
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="margin: 0 0 24px 0;">
+            <tr>
+              <td style="padding: 16px 0 16px 16px; border-left: 3px solid #10B981;">
+                <p style="font-size: 12px; color: #10B981; margin: 0 0 12px 0; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;">Your Starter Kit</p>
+                <p style="font-size: 15px; color: #CBD5E1; margin: 0 0 6px 0; line-height: 1.5;"><span style="color: #10B981;">1.</span> <strong style="color: white;">soul.md Template</strong> — <a href="https://frankx.ai/gencreator/soul" style="color: #10B981; text-decoration: none;">Build yours now</a></p>
+                <p style="font-size: 15px; color: #CBD5E1; margin: 0 0 6px 0; line-height: 1.5;"><span style="color: #10B981;">2.</span> <strong style="color: white;">12 Principles</strong> — <a href="https://frankx.ai/gencreator/principles" style="color: #10B981; text-decoration: none;">Read the philosophy</a></p>
+                <p style="font-size: 15px; color: #CBD5E1; margin: 0 0 6px 0; line-height: 1.5;"><span style="color: #10B981;">3.</span> <strong style="color: white;">Self-Assessment</strong> — <a href="https://frankx.ai/gencreator/assess" style="color: #10B981; text-decoration: none;">Score your 7 dimensions</a></p>
+                <p style="font-size: 15px; color: #CBD5E1; margin: 0; line-height: 1.5;"><span style="color: #10B981;">4.</span> <strong style="color: white;">The Manifesto</strong> — <a href="https://frankx.ai/gencreator/manifesto" style="color: #10B981; text-decoration: none;">Read it. Share it. Live it.</a></p>
+              </td>
+            </tr>
+          </table>
+
+          ${ctaButton('Open the Framework', 'https://frankx.ai/gencreator', '#10B981')}
+          ${outlineButton('Take the Assessment', 'https://frankx.ai/gencreator/assess')}
+
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-top: 1px solid #334155;">
+            <tr>
+              <td style="padding: 20px 0 0 0;">
+                <p style="font-size: 14px; color: #94a3b8; margin: 0 0 4px 0; line-height: 1.5;">You will also get the weekly GenCreator dispatch — tools, techniques, and frameworks for AI-native creators.</p>
+                <p style="font-size: 13px; color: #64748b; margin: 0;">Reply anytime. I read every email. — Frank</p>
+              </td>
+            </tr>
+          </table>
+
+        </td>
+      </tr>
+    </table>
+  `
+
+  return {
+    subject: 'Your GenCreator Starter Kit',
+    html: emailWrapper(content, 'Welcome to GenCreator. Your starter kit is inside — soul.md template, 12 principles, self-assessment, and the manifesto.')
+  }
+}

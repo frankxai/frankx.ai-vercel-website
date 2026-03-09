@@ -5,6 +5,7 @@ import { ArrowRight, Check, Zap, Crown, Sparkles } from 'lucide-react'
 import { GlowCard } from '@/components/ui/glow-card'
 import PremiumButton from '@/components/ui/PremiumButton'
 import GenCreatorNav from '@/components/gencreator/GenCreatorNav'
+import { EmailSignup } from '@/components/email-signup'
 import { productTiers } from '@/lib/gencreator/gencreator-data'
 
 export const metadata: Metadata = {
@@ -181,24 +182,25 @@ export default function JoinPage() {
         </div>
       </section>
 
-      {/* ─── Final CTA ─── */}
+      {/* ─── Email Signup CTA ─── */}
       <section className="border-t border-white/[0.08] bg-white/[0.03] py-16">
-        <div className="mx-auto max-w-3xl px-6 text-center">
+        <div className="mx-auto max-w-xl px-6 text-center">
           <h2 className="text-2xl font-bold text-white sm:text-3xl">
-            Start creating like a GenCreator.
+            Get the Free Starter Kit
           </h2>
           <p className="mt-4 text-white/50">
-            The Starter Kit is free. The community is waiting. Your soul.md is unwritten.
+            soul.md template, 3 beginner blueprints, and the principles quick-reference card. Delivered instantly.
           </p>
-          <div className="mt-8 flex flex-wrap justify-center gap-4">
-            <PremiumButton variant="luxury" size="lg" href="/newsletter">
-              Get the Free Starter Kit
-              <ArrowRight className="h-5 w-5" />
-            </PremiumButton>
-            <PremiumButton variant="ghost" size="lg" href="/gencreator">
-              Explore the Framework
-            </PremiumButton>
+          <div className="mt-8">
+            <EmailSignup
+              listType="gencreator"
+              placeholder="your@email.com"
+              buttonText="Send My Starter Kit"
+            />
           </div>
+          <p className="mt-3 text-xs text-white/30">
+            No spam. Unsubscribe anytime. You also get the weekly GenCreator dispatch.
+          </p>
         </div>
       </section>
 
