@@ -1,6 +1,7 @@
 'use client'
 
-import { useRef, useState, useEffect, useCallback } from 'react'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import { ScrollReveal } from '@/components/valentines/ScrollReveal'
 
 const quotes = [
@@ -43,49 +44,14 @@ const quotes = [
 ]
 
 export function QuoteCarousel() {
-  const scrollRef = useRef<HTMLDivElement>(null)
   const [activeIndex, setActiveIndex] = useState(0)
-  const [isPaused, setIsPaused] = useState(false)
 
-  const scrollToIndex = useCallback((index: number) => {
-    const container = scrollRef.current
-    if (!container) return
-    const items = container.querySelectorAll('.quote-carousel-item')
-    if (items[index]) {
-      items[index].scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' })
-    }
-    setActiveIndex(index)
-  }, [])
-
-  // Auto-scroll
-  useEffect(() => {
-    if (isPaused) return
-    const interval = setInterval(() => {
-      setActiveIndex((prev) => {
-        const next = (prev + 1) % quotes.length
-        scrollToIndex(next)
-        return next
-      })
-    }, 6000)
-    return () => clearInterval(interval)
-  }, [isPaused, scrollToIndex])
-
-  // Track scroll position for dot indicators
-  useEffect(() => {
-    const container = scrollRef.current
-    if (!container) return
-    const handleScroll = () => {
-      const scrollLeft = container.scrollLeft
-      const itemWidth = container.scrollWidth / quotes.length
-      const index = Math.round(scrollLeft / itemWidth)
-      setActiveIndex(Math.min(index, quotes.length - 1))
-    }
-    container.addEventListener('scroll', handleScroll, { passive: true })
-    return () => container.removeEventListener('scroll', handleScroll)
-  }, [])
+  const goTo = (index: number) => {
+    setActiveIndex((index + quotes.length) % quotes.length)
+  }
 
   return (
-    <section className="py-24 md:py-32">
+    <section className="py-24 md:py-32 px-6">
       <ScrollReveal>
         <h2 className="font-garamond text-3xl md:text-4xl text-center text-white/90 mb-4">
           Stimmen der Hoffnung
@@ -95,51 +61,73 @@ export function QuoteCarousel() {
         </p>
       </ScrollReveal>
 
-      <div
-        ref={scrollRef}
-        className="quote-carousel flex gap-6 overflow-x-auto px-6 md:px-12 py-4"
-        onMouseEnter={() => setIsPaused(true)}
-        onMouseLeave={() => setIsPaused(false)}
-        onTouchStart={() => setIsPaused(true)}
-        onTouchEnd={() => setIsPaused(false)}
-      >
-        {quotes.map((q, i) => (
-          <div
-            key={i}
-            className="quote-carousel-item w-[85vw] md:w-[500px] lg:w-[550px]"
-          >
-            <div className="glass-card-dawn p-8 md:p-10 h-full animate-dawn-glow">
-              <blockquote className="font-garamond text-lg md:text-xl lg:text-2xl italic leading-relaxed text-white/90 mb-6">
-                &ldquo;{q.text}&rdquo;
-              </blockquote>
-              <footer className="flex items-center gap-3">
-                <div className="h-px flex-1 bg-gradient-to-r from-amber-500/30 to-transparent" />
-                <cite className="text-sm not-italic tracking-wide text-amber-300/70 whitespace-nowrap">
-                  {q.author}
-                  {q.source && (
-                    <span className="text-white/30 ml-1">— {q.source}</span>
-                  )}
-                </cite>
-              </footer>
-            </div>
-          </div>
-        ))}
-      </div>
+      {/* Stationary card — no horizontal scroll */}
+      <div className="max-w-xl mx-auto">
+        <div className="relative min-h-[220px] md:min-h-[200px]">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeIndex}
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
+            >
+              <div className="glass-card-dawn p-8 md:p-10 animate-dawn-glow">
+                <blockquote className="font-garamond text-lg md:text-xl lg:text-2xl italic leading-relaxed text-white/90 mb-6">
+                  &ldquo;{quotes[activeIndex].text}&rdquo;
+                </blockquote>
+                <footer className="flex items-center gap-3">
+                  <div className="h-px flex-1 bg-gradient-to-r from-amber-500/30 to-transparent" />
+                  <cite className="text-sm not-italic tracking-wide text-amber-300/70 whitespace-nowrap">
+                    {quotes[activeIndex].author}
+                    {quotes[activeIndex].source && (
+                      <span className="text-white/30 ml-1">— {quotes[activeIndex].source}</span>
+                    )}
+                  </cite>
+                </footer>
+              </div>
+            </motion.div>
+          </AnimatePresence>
+        </div>
 
-      {/* Dot navigation */}
-      <div className="flex justify-center gap-2 mt-8">
-        {quotes.map((_, i) => (
+        {/* Navigation buttons */}
+        <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
           <button
-            key={i}
-            onClick={() => scrollToIndex(i)}
-            className={`w-2 h-2 rounded-full transition-all duration-300 ${
-              i === activeIndex
-                ? 'bg-amber-400 w-6'
-                : 'bg-white/20 hover:bg-white/40'
-            }`}
-            aria-label={`Go to quote ${i + 1}`}
-          />
-        ))}
+            onClick={() => goTo(activeIndex - 1)}
+            className="rounded-full border border-white/15 bg-white/[0.03] px-4 py-2 text-xs tracking-wide text-white/70 hover:text-white hover:border-white/25 transition-all"
+            aria-label="Vorherige Stimme"
+          >
+            &larr; Vorherige
+          </button>
+
+          <span className="text-xs text-white/30 tabular-nums mx-2">
+            {activeIndex + 1} / {quotes.length}
+          </span>
+
+          <button
+            onClick={() => goTo(activeIndex + 1)}
+            className="rounded-full border border-amber-300/30 bg-amber-200/5 px-4 py-2 text-xs tracking-wide text-amber-200/80 hover:text-amber-100 transition-all"
+            aria-label="Nächste Stimme"
+          >
+            Nächste &rarr;
+          </button>
+        </div>
+
+        {/* Dot navigation */}
+        <div className="flex justify-center gap-2 mt-5">
+          {quotes.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => goTo(i)}
+              className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                i === activeIndex
+                  ? 'bg-amber-400 w-6'
+                  : 'bg-white/20 hover:bg-white/40'
+              }`}
+              aria-label={`Zitat ${i + 1}`}
+            />
+          ))}
+        </div>
       </div>
     </section>
   )

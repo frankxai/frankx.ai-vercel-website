@@ -1,5 +1,157 @@
 import type { BookConfig } from '../types';
 
+export type BookLocale = 'de' | 'en';
+
+const hopeChapters: BookConfig['chapters'] = [
+  {
+    slug: 'chapter-01-the-first-light',
+    title: 'The First Light',
+    number: 1,
+    readingTime: '12 min',
+    description: 'Permission to feel, breathe, and stay present in heavy moments.',
+    published: true,
+    type: 'prose',
+  },
+  {
+    slug: 'chapter-02-dichter-der-hoffnung',
+    title: 'Poets of Hope',
+    number: 2,
+    readingTime: '14 min',
+    description: 'Rilke, Goethe, and Hesse on grief, patience, and inner shelter.',
+    published: true,
+    type: 'poetry',
+  },
+  {
+    slug: 'chapter-03-sacred-texts',
+    title: 'Sacred Texts',
+    number: 3,
+    readingTime: '11 min',
+    description: 'Ancient voices that restore trust when life feels uncertain.',
+    published: true,
+    type: 'quotes',
+  },
+  {
+    slug: 'chapter-04-the-music-of-healing',
+    title: 'The Music of Healing',
+    number: 4,
+    readingTime: '10 min',
+    description: 'How sound, rhythm, and stillness can regulate the nervous system.',
+    published: true,
+    type: 'prose',
+  },
+  {
+    slug: 'chapter-05-letters-to-the-living',
+    title: 'Letters to the Living',
+    number: 5,
+    readingTime: '13 min',
+    description: 'Letters for those carrying love, memory, and unfinished goodbyes.',
+    published: true,
+    type: 'prose',
+  },
+  {
+    slug: 'chapter-06-for-the-one-who-is-leaving',
+    title: 'For the One Who Is Leaving',
+    number: 6,
+    readingTime: '9 min',
+    description: 'A gentle companion chapter for transitions, endings, and dignity.',
+    published: true,
+    type: 'poetry',
+  },
+  {
+    slug: 'chapter-07-kleine-lichter',
+    title: 'Little Lights',
+    number: 7,
+    readingTime: '8 min',
+    description: 'Small rituals and daily gestures that keep hope alive.',
+    published: true,
+    type: 'prose',
+  },
+  {
+    slug: 'chapter-08-dawn',
+    title: 'Dawn',
+    number: 8,
+    readingTime: '7 min',
+    description: 'Closing reflections on renewal, tenderness, and the return of light.',
+    published: true,
+    type: 'poetry',
+  },
+];
+
+const hoffnungChapters: BookConfig['chapters'] = [
+  {
+    slug: 'chapter-01-the-first-light',
+    title: 'Das erste Licht',
+    number: 1,
+    readingTime: '12 min',
+    description: 'Erlaubnis zu fühlen, zu atmen und in schweren Momenten präsent zu bleiben.',
+    published: true,
+    type: 'prose',
+  },
+  {
+    slug: 'chapter-02-dichter-der-hoffnung',
+    title: 'Dichter der Hoffnung',
+    number: 2,
+    readingTime: '14 min',
+    description: 'Rilke, Goethe und Hesse über Trauer, Geduld und Geborgenheit.',
+    published: true,
+    type: 'poetry',
+  },
+  {
+    slug: 'chapter-03-sacred-texts',
+    title: 'Heilige Texte',
+    number: 3,
+    readingTime: '11 min',
+    description: 'Alte Stimmen, die Vertrauen zurückbringen, wenn das Leben unsicher wird.',
+    published: true,
+    type: 'quotes',
+  },
+  {
+    slug: 'chapter-04-the-music-of-healing',
+    title: 'Die Musik der Heilung',
+    number: 4,
+    readingTime: '10 min',
+    description: 'Wie Klang, Rhythmus und Stille das Nervensystem beruhigen können.',
+    published: true,
+    type: 'prose',
+  },
+  {
+    slug: 'chapter-05-letters-to-the-living',
+    title: 'Briefe an die Lebenden',
+    number: 5,
+    readingTime: '13 min',
+    description: 'Briefe für Menschen, die Liebe, Erinnerung und Abschied tragen.',
+    published: true,
+    type: 'prose',
+  },
+  {
+    slug: 'chapter-06-for-the-one-who-is-leaving',
+    title: 'Für den, der geht',
+    number: 6,
+    readingTime: '9 min',
+    description: 'Ein sanfter Begleiter für Übergänge, Abschiede und Würde.',
+    published: true,
+    type: 'poetry',
+  },
+  {
+    slug: 'chapter-07-kleine-lichter',
+    title: 'Kleine Lichter',
+    number: 7,
+    readingTime: '8 min',
+    description: 'Kleine Rituale und tägliche Gesten, die Hoffnung tragen.',
+    published: true,
+    type: 'prose',
+  },
+  {
+    slug: 'chapter-08-dawn',
+    title: 'Morgenrot',
+    number: 8,
+    readingTime: '7 min',
+    description: 'Abschlussgedanken über Erneuerung, Zärtlichkeit und das Wiederkommen des Lichts.',
+    published: true,
+    type: 'poetry',
+  },
+];
+
 export const booksRegistry: BookConfig[] = [
   // ─── 1. Love & Poetry ───────────────────────────────────────────
   {
@@ -312,40 +464,59 @@ export const booksRegistry: BookConfig[] = [
       { slug: 'chapter-05-the-evidence-journal', title: 'The Evidence Journal', number: 5, readingTime: '10 min', description: 'Tracking proof that the universe is responding.', published: true, type: 'exercises' },
     ],
   },
-
-  // ─── 7. Hoffnung ──────────────────────────────────────────────
   {
     slug: 'hoffnung',
+    language: 'de',
+    variantGroup: 'hope-book',
+    alternateSlug: 'hope',
     title: 'Hoffnung',
-    subtitle: 'The Poetry of Hope — A Companion for the Journey',
+    subtitle: 'Ein Licht in der Dunkelheit',
     author: 'Frank',
     publishDate: '2026',
     description:
-      'Poetry, music, meditation, and guided exercises for anyone walking through grief, loss, or the valley of uncertainty. Eight chapters of curated beauty from Rumi, Rilke, Mary Oliver, sacred texts, and original verse — paired with healing frequencies and daily hope rituals.',
-    keywords: ['hope', 'grief', 'healing', 'poetry', 'meditation', 'Rumi', 'Rilke', 'Mary Oliver', 'healing frequencies', '432 Hz', 'loss', 'comfort'],
+      'Poesie, Meditation und heilsame Texte für Zeiten von Trauer, Übergang und Neubeginn. Für Familien, die Halt, Sprache und leise Stärke suchen.',
+    keywords: ['hoffnung buch', 'trauerbegleitung', 'poesie', 'heilung', 'meditation'],
     coverImage: '/images/books/hoffnung-cover.png',
     theme: {
       id: 'hoffnung',
       name: 'Hoffnung',
-      primary: 'sky',
-      accent: 'amber',
+      primary: 'amber',
+      accent: 'sky',
       bgDark: '#070B14',
       headingFont: 'serif',
       bodyFont: 'serif',
     },
     status: 'published',
-    categories: ['Poetry', 'Healing', 'Meditation', 'Hope'],
+    categories: ['Poesie', 'Heilung', 'Meditation'],
+    contentDir: 'content/books/hoffnung-de',
+    chapters: hoffnungChapters,
+  },
+  {
+    slug: 'hope',
+    language: 'en',
+    variantGroup: 'hope-book',
+    alternateSlug: 'hoffnung',
+    title: 'Hope',
+    subtitle: 'A Light in the Dark',
+    author: 'Frank',
+    publishDate: '2026',
+    description:
+      'Poetry, meditations, and healing reflections for seasons of grief, transition, and renewal. A companion book for families who need language, calm, and strength.',
+    keywords: ['hope poetry book', 'grief support', 'healing writing', 'meditation', 'compassion'],
+    coverImage: '/images/books/hoffnung-cover.png',
+    theme: {
+      id: 'hoffnung',
+      name: 'Hope',
+      primary: 'amber',
+      accent: 'sky',
+      bgDark: '#070B14',
+      headingFont: 'serif',
+      bodyFont: 'serif',
+    },
+    status: 'published',
+    categories: ['Poetry', 'Healing', 'Meditation'],
     contentDir: 'content/books/hoffnung',
-    chapters: [
-      { slug: 'chapter-01-the-first-light', title: 'The First Light', number: 1, readingTime: '12 min', description: 'Permission to feel. Rumi, Mary Oliver, and a guided breathing meditation.', published: true, type: 'poetry', epigraph: { text: 'The wound is the place where the Light enters you.', author: 'Rumi' } },
-      { slug: 'chapter-02-dichter-der-hoffnung', title: 'Dichter der Hoffnung', number: 2, readingTime: '10 min', description: 'German poets of hope — Rilke, Goethe, Hesse — and the concept of Geborgenheit.', published: true, type: 'poetry', epigraph: { text: 'Wer nie sein Brot mit Tränen aß, wer nie die kummervollen Nächte auf seinem Bette weinend saß, der kennt euch nicht, ihr himmlischen Mächte.', author: 'Goethe' } },
-      { slug: 'chapter-03-sacred-texts', title: 'Sacred Texts', number: 3, readingTime: '14 min', description: 'Psalm 23, Thich Nhat Hanh, Gibran, the Heart Sutra, Marcus Aurelius — what wisdom traditions say about hope and the eternal.', published: true, type: 'quotes' },
-      { slug: 'chapter-04-the-music-of-healing', title: 'The Music of Healing', number: 4, readingTime: '11 min', description: 'Healing frequencies, curated playlists, and a guided sound bath meditation.', published: true, type: 'prose' },
-      { slug: 'chapter-05-letters-to-the-living', title: 'Letters to the Living', number: 5, readingTime: '13 min', description: 'For those who will remain — carrying grief with grace. Journaling exercises and the Japanese concept of Mono no aware.', published: true, type: 'exercises' },
-      { slug: 'chapter-06-for-the-one-who-is-leaving', title: 'For the One Who Is Leaving', number: 6, readingTime: '10 min', description: 'A gift of peace for the person facing death — poetry, meditation, and permission to rest.', published: true, type: 'poetry' },
-      { slug: 'chapter-07-kleine-lichter', title: 'Kleine Lichter', number: 7, readingTime: '12 min', description: 'Seven daily micro-rituals for hope. Practical, gentle, and grounding.', published: true, type: 'exercises' },
-      { slug: 'chapter-08-dawn', title: 'Dawn', number: 8, readingTime: '14 min', description: 'The return of light — poetry, a full guided meditation, and the title poem.', published: true, type: 'poetry', epigraph: { text: 'And still, after all this time, the sun never says to the earth, "You owe me." Look what happens with a love like that. It lights the whole sky.', author: 'Hafiz' } },
-    ],
+    chapters: hopeChapters,
   },
 ];
 
@@ -355,8 +526,36 @@ export function getBookBySlug(slug: string): BookConfig | undefined {
   return booksRegistry.find((b) => b.slug === slug);
 }
 
-export function getPublishedBooks(): BookConfig[] {
-  return booksRegistry.filter((b) => b.status !== 'draft');
+function getVariantGroupKey(book: BookConfig): string {
+  return book.variantGroup || book.slug;
+}
+
+export function getPublishedBooks(locale: BookLocale = 'en'): BookConfig[] {
+  const groups = new Map<string, BookConfig[]>();
+  const order: string[] = [];
+
+  for (const book of booksRegistry) {
+    if (book.status === 'draft') continue;
+    const key = getVariantGroupKey(book);
+    if (!groups.has(key)) {
+      groups.set(key, []);
+      order.push(key);
+    }
+    groups.get(key)!.push(book);
+  }
+
+  return order.map((key) => {
+    const variants = groups.get(key) || [];
+    return (
+      variants.find((book) => book.language === locale) ||
+      variants.find((book) => book.language === 'en') ||
+      variants[0]
+    );
+  }).filter((book): book is BookConfig => Boolean(book));
+}
+
+export function getPublishedBooksByLocale(locale: BookLocale): BookConfig[] {
+  return getPublishedBooks(locale);
 }
 
 export function getAllBookSlugs(): string[] {

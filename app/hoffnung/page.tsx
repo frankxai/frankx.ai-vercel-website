@@ -3,6 +3,7 @@ import { HeroSection } from '@/components/hoffnung/HeroSection'
 import { QuoteCarousel } from '@/components/hoffnung/QuoteCarousel'
 import { WorldTreeSection } from '@/components/hoffnung/WorldTreeSection'
 import { FrequencyPlayer } from '@/components/hoffnung/FrequencyPlayer'
+import { GoldenFrequenciesPlayer } from '@/components/hoffnung/GoldenFrequenciesPlayer'
 import { MeditationGrid } from '@/components/hoffnung/MeditationGrid'
 import { PersonalLetter } from '@/components/hoffnung/PersonalLetter'
 import Link from 'next/link'
@@ -27,6 +28,10 @@ export default function HoffnungPage() {
 
       <div className="section-divider-dawn" />
 
+      <GoldenFrequenciesPlayer />
+
+      <div className="section-divider-dawn" />
+
       {/* Cinematic section image — leaf dewdrop macro */}
       <div className="relative h-[40vh] md:h-[50vh] overflow-hidden">
         <Image
@@ -46,17 +51,25 @@ export default function HoffnungPage() {
 
       <PersonalLetter />
 
-      {/* Footer — link to book */}
+      {/* Footer — link to book + language toggle */}
       <footer className="py-16 text-center border-t border-white/5">
         <p className="font-lora text-sm text-white/30 mb-4">
           Entdecke das vollständige Buch
         </p>
-        <Link
-          href="/books/hoffnung"
-          className="font-garamond text-lg text-sky-300/60 hover:text-sky-300/90 transition-colors duration-300"
-        >
-          Hoffnung — The Poetry of Hope
-        </Link>
+        <div className="flex flex-col items-center gap-3">
+          <Link
+            href="/books/hoffnung"
+            className="font-garamond text-lg text-sky-300/60 hover:text-sky-300/90 transition-colors duration-300"
+          >
+            Hoffnung — Deutsch
+          </Link>
+          <Link
+            href="/books/hope"
+            className="font-garamond text-base text-amber-300/40 hover:text-amber-300/70 transition-colors duration-300"
+          >
+            Hope — English Edition
+          </Link>
+        </div>
         <p className="font-lora text-xs text-white/20 mt-8">
           8 Kapitel. Poesie. Meditation. Heilung.
         </p>

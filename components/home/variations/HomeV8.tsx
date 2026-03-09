@@ -326,10 +326,10 @@ export default function HomeV8({
   // Post split
   const techKeywords = ['ai', 'engineering', 'architecture', 'tools', 'code', 'agent']
   const architectPosts = latestPosts
-    .filter((p) => techKeywords.some((kw) => p.category.toLowerCase().includes(kw)))
+    .filter((p) => techKeywords.some((kw) => (p.category ?? '').toLowerCase().includes(kw)))
     .slice(0, 3)
   const creatorPosts = latestPosts
-    .filter((p) => !techKeywords.some((kw) => p.category.toLowerCase().includes(kw)))
+    .filter((p) => !techKeywords.some((kw) => (p.category ?? '').toLowerCase().includes(kw)))
     .slice(0, 3)
 
   const fallbackArch = architectPosts.length > 0 ? architectPosts : latestPosts.slice(0, 3)

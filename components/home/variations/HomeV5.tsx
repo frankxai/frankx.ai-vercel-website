@@ -309,7 +309,7 @@ export default function HomeV5({
 
   const postImages = latestPosts
     .filter((p) => p.image)
-    .map((p) => ({ src: p.image!, alt: p.title, caption: p.category.toLowerCase() }))
+    .map((p) => ({ src: p.image!, alt: p.title, caption: (p.category ?? '').toLowerCase() }))
 
   const openDesignLightbox = (index: number) => {
     setLightbox({ images: designImages, index })
