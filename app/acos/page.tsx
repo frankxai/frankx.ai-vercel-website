@@ -170,7 +170,7 @@ const structuredData = {
     { '@type': 'Offer', price: '47', priceCurrency: 'USD', name: 'Creator Kit' },
     { '@type': 'Offer', price: '197', priceCurrency: 'USD', name: 'Pro System' },
   ],
-  author: { '@type': 'Person', name: 'Frank Guzman', url: 'https://frankx.ai' },
+  author: { '@type': 'Person', name: 'Frank Riemer', url: 'https://frankx.ai' },
   url: 'https://github.com/frankxai/agentic-creator-os',
 }
 
@@ -230,7 +230,7 @@ export default function ACOSPage() {
                 ACOS v10.2 loaded. 75 skills active. 38 agents ready.
               </p>
               <p className="text-white/40">
-                What would you like to create today?
+                Agentic Creator OS loaded. What would you like to create today?
               </p>
             </div>
           </div>
@@ -276,15 +276,127 @@ export default function ACOSPage() {
         </div>
       </section>
 
-      {/* ─── How It Works ─── */}
+      {/* ─── Visual Architecture ─── */}
       <section className="py-20">
         <div className="mx-auto max-w-5xl px-6">
           <h2 className="text-center text-3xl font-bold text-white sm:text-4xl">
-            What Makes ACOS Different
+            How the Agentic Creator OS Works
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-center text-white/50">
             Not another prompt library. A complete intelligence layer that transforms Claude Code into a creative production environment.
           </p>
+
+          {/* Infographic grid — 2x2 */}
+          <div className="mt-12 grid gap-6 md:grid-cols-2">
+            {[
+              {
+                src: '/images/acos/acos-architecture.png',
+                title: 'Layered Architecture',
+                desc: 'Skills, commands, agents, and safety hooks — four layers that auto-activate based on what you\'re building.',
+              },
+              {
+                src: '/images/acos/acos-smart-router.png',
+                title: 'Smart Router',
+                desc: 'Type /acos and the router parses your intent, selects the best agent, loads relevant skills, and chains commands.',
+              },
+              {
+                src: '/images/acos/acos-self-learning.png',
+                title: 'Self-Learning System',
+                desc: 'Tracks tool sequences and outcomes across sessions. Successful patterns become context for future tasks.',
+              },
+              {
+                src: '/images/acos/acos-hero-omega.png',
+                title: 'FRANK-Ω Command Center',
+                desc: 'Your AI co-pilot orchestrating 75+ skills, 38 agents, and 35+ commands from a single entry point.',
+              },
+            ].map((card) => (
+              <div
+                key={card.title}
+                className="group overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.03] transition-all hover:border-purple-500/20 hover:bg-white/[0.05]"
+              >
+                <div className="relative aspect-[4/3] overflow-hidden">
+                  <Image
+                    src={card.src}
+                    alt={card.title}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                </div>
+                <div className="p-6">
+                  <h3 className="text-lg font-semibold text-white">{card.title}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-white/50">{card.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── Core Concepts Grid ─── */}
+      <section className="border-y border-white/[0.08] bg-white/[0.03] py-20">
+        <div className="mx-auto max-w-5xl px-6">
+          <h2 className="text-center text-3xl font-bold text-white sm:text-4xl">
+            Core Concepts
+          </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-center text-white/50">
+            Six foundational concepts that power the Agentic Creator OS.
+          </p>
+          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {[
+              {
+                icon: Sparkles,
+                title: 'Skills — Auto-Activating Knowledge',
+                description: 'Markdown files with deep domain expertise. They load automatically when context matches — write a blog post and SEO skills appear.',
+                color: 'text-cyan-400',
+              },
+              {
+                icon: Command,
+                title: 'Commands — Slash Workflows',
+                description: 'Multi-step pipelines triggered with one command. /article-creator chains research → outline → draft → SEO → images → social.',
+                color: 'text-purple-400',
+              },
+              {
+                icon: Users,
+                title: 'Agents — AI Personas',
+                description: '38 specialists: editors, producers, architects, designers. Each has distinct expertise. The router picks the best one for your task.',
+                color: 'text-emerald-400',
+              },
+              {
+                icon: Terminal,
+                title: 'Smart Router — Intent Parsing',
+                description: 'Type /acos and describe what you need. The router detects intent, selects the agent, loads skills, and chains commands automatically.',
+                color: 'text-amber-400',
+              },
+              {
+                icon: Layers,
+                title: 'Safety Hooks — Autonomous Protection',
+                description: 'Circuit breaker stops brute-forcing. Audit trail logs everything. Agent IAM scopes permissions. Self-modify gate auto-reverts bad changes.',
+                color: 'text-red-400',
+              },
+              {
+                icon: Zap,
+                title: 'Self-Learning — Session Intelligence',
+                description: 'Tracks successful tool sequences across sessions. Extracts patterns and injects them as context for similar future tasks.',
+                color: 'text-blue-400',
+              },
+            ].map((concept) => (
+              <GlowCard key={concept.title} color="violet" className="p-6">
+                <concept.icon className={`mb-4 h-8 w-8 ${concept.color}`} />
+                <h3 className="text-lg font-semibold text-white">{concept.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-white/60">{concept.description}</p>
+              </GlowCard>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── Feature Details ─── */}
+      <section className="py-20">
+        <div className="mx-auto max-w-5xl px-6">
+          <h2 className="text-center text-3xl font-bold text-white sm:text-4xl">
+            What Makes It Different
+          </h2>
           <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {features.map((feature) => (
               <GlowCard key={feature.title} color="violet" className="p-6">
@@ -507,7 +619,7 @@ export default function ACOSPage() {
       <section className="py-20">
         <div className="mx-auto max-w-3xl px-6 text-center">
           <h2 className="text-3xl font-bold text-white sm:text-4xl">
-            Start Building with ACOS
+            Start Building with the Agentic Creator OS
           </h2>
           <p className="mt-4 text-lg text-white/50">
             Clone the repo. Type /acos. Create something.
