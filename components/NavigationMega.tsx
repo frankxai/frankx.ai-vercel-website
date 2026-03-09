@@ -76,6 +76,23 @@ const navigation = {
       { name: 'Arcanea World', href: '/arcanea', icon: Wand2, description: 'Creative civilization system' },
     ],
   },
+  gencreator: {
+    label: 'GenCreator',
+    featured: {
+      title: 'The GenCreator Framework',
+      description: 'Principles, handbook, blueprints, and soul — the complete creator OS.',
+      href: '/gencreator',
+      badge: 'New',
+    },
+    items: [
+      { name: 'GenCreator Hub', href: '/gencreator', icon: Sparkles, description: 'The complete framework' },
+      { name: '12 Principles', href: '/gencreator/principles', icon: Compass, description: 'Foundation philosophy' },
+      { name: "Creator's Handbook", href: '/gencreator/handbook', icon: BookOpen, description: '8 chapters, full playbook' },
+      { name: "Creator's Blueprints", href: '/gencreator/blueprints', icon: Layers, description: '12 actionable frameworks' },
+      { name: 'GenCreator Soul', href: '/gencreator/soul', icon: Heart, description: 'Build your soul.md' },
+      { name: 'The Manifesto', href: '/gencreator/manifesto', icon: FileText, description: 'Read the declaration' },
+    ],
+  },
   creators: {
     label: 'Creators',
     featured: {
@@ -166,6 +183,7 @@ const navigation = {
       { name: 'Resource Hub', href: '/resources', icon: Sparkles, description: 'All systems, guides, and tools' },
       { name: 'The Golden Age of Creators', href: '/golden-age', icon: BookOpen, description: 'Book on creative transformation' },
       { name: "The Creator's Soulbook", href: '/soulbook', icon: BookOpen, description: 'Your life transformation system' },
+      { name: 'GenCreator Framework', href: '/gencreator', icon: Sparkles, description: 'Principles, handbook, blueprints' },
       { name: 'Free Playbooks', href: '/free-playbook', icon: FileText, description: 'Start with quick wins' },
       { name: 'Prompt Library', href: '/prompt-library', icon: BookOpen, description: 'Curated prompt stacks' },
       { name: 'Downloads', href: '/downloads', icon: Download, description: 'PDFs & free resources' },
@@ -189,7 +207,7 @@ const navigation = {
       },
       {
         label: 'Learn & Read',
-        items: ['The Golden Age of Creators', "The Creator's Soulbook", 'Free Playbooks', 'Prompt Library', 'About', 'Contact'],
+        items: ['The Golden Age of Creators', "The Creator's Soulbook", 'GenCreator Framework', 'Free Playbooks', 'Prompt Library', 'About', 'Contact'],
       },
       {
         label: 'Research & Tools',
@@ -460,6 +478,14 @@ export default function NavigationMega() {
               <NavTrigger>Music</NavTrigger>
               <NavigationMenu.Content className="absolute left-0 top-0 data-[motion=from-end]:animate-enterFromRight data-[motion=from-start]:animate-enterFromLeft data-[motion=to-end]:animate-exitToRight data-[motion=to-start]:animate-exitToLeft">
                 <MegaMenuContent section="music" />
+              </NavigationMenu.Content>
+            </NavigationMenu.Item>
+
+            {/* GenCreator */}
+            <NavigationMenu.Item>
+              <NavTrigger>GenCreator</NavTrigger>
+              <NavigationMenu.Content className="absolute left-0 top-0 data-[motion=from-end]:animate-enterFromRight data-[motion=from-start]:animate-enterFromLeft data-[motion=to-end]:animate-exitToRight data-[motion=to-start]:animate-exitToLeft">
+                <MegaMenuContent section="gencreator" />
               </NavigationMenu.Content>
             </NavigationMenu.Item>
 
