@@ -1,9 +1,9 @@
 'use client'
 
 import Link from 'next/link'
-import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { ArrowRight, Mail, Sparkles } from 'lucide-react'
+import FrankOmega from '@/components/FrankOmega'
 
 export default function NewsletterCTA() {
   return (
@@ -71,14 +71,8 @@ export default function NewsletterCTA() {
             viewport={{ once: true }}
             className="rounded-2xl border border-white/10 bg-gradient-to-b from-violet-900/20 to-cyan-900/20 p-10 text-center"
           >
-            <div className="mx-auto mb-6 w-16 h-16 rounded-full overflow-hidden border-2 border-blue-500/30">
-              <Image
-                src="/images/mascot/frank-omega-pixar-blue-v1.png"
-                alt="FRANK-Ω"
-                width={64}
-                height={64}
-                className="w-full h-full object-cover"
-              />
+            <div className="mx-auto mb-6">
+              <FrankOmega variant="pixar-blue" size="sm" glow rounded />
             </div>
             <h2 className="mb-3 text-2xl font-bold text-white sm:text-3xl">
               Not sure which stream?

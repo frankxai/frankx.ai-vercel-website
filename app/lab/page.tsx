@@ -3,6 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import AuroraGradient from '@/components/ui/AuroraGradient'
 import { GlowCard } from '@/components/ui/glow-card'
+import FrankOmega, { FrankOmegaGhost } from '@/components/FrankOmega'
 
 export const metadata: Metadata = {
   title: 'FrankX Lab — AI Tools & Experiments',
@@ -123,20 +124,9 @@ export default function LabPage() {
 
       {/* ── Hero ── */}
       <section className="relative py-28 px-6 overflow-hidden">
-        {/* Background: FRANK-Ω thinking, ghost */}
-        <div className="absolute inset-0 pointer-events-none select-none">
-          <div className="absolute right-0 top-0 w-[480px] h-full opacity-[0.06]">
-            <Image
-              src="/images/mascot/frank-omega-thinking-v1.png"
-              alt=""
-              fill
-              className="object-contain object-right-top"
-              priority
-            />
-          </div>
-          {/* Ambient glow */}
-          <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[600px] h-[600px] bg-violet-600/10 rounded-full blur-[120px]" />
-        </div>
+        {/* Background: FRANK-Ω thinking ghost + ambient glow */}
+        <FrankOmegaGhost variant="thinking" className="hidden lg:block" />
+        <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[600px] h-[600px] bg-violet-600/10 rounded-full blur-[120px] pointer-events-none" />
 
         <div className="relative max-w-4xl mx-auto">
           {/* Badge */}
@@ -293,14 +283,8 @@ export default function LabPage() {
           <div className="mt-16 p-6 rounded-2xl border border-blue-500/20 bg-blue-500/5">
             <div className="flex items-start gap-4">
               {/* FRANK-Ω avatar */}
-              <div className="w-10 h-10 rounded-full overflow-hidden border border-blue-500/30 shrink-0">
-                <Image
-                  src="/images/mascot/frank-omega-chibi-avatar-v1_thumb.jpeg"
-                  alt="FRANK-Ω"
-                  width={40}
-                  height={40}
-                  className="w-full h-full object-cover object-top"
-                />
+              <div className="shrink-0">
+                <FrankOmega variant="chibi-avatar" size="sm" thumb rounded glow className="border border-blue-500/30" />
               </div>
               <div>
                 <div className="text-[10px] text-blue-400 font-mono uppercase tracking-widest mb-1">
@@ -321,16 +305,7 @@ export default function LabPage() {
       <section className="py-24 px-6">
         <div className="max-w-3xl mx-auto">
           <div className="p-10 rounded-3xl border border-violet-500/20 bg-violet-500/5 text-center relative overflow-hidden">
-            <div className="absolute inset-0 pointer-events-none">
-              <div className="absolute bottom-0 right-0 w-64 h-64 opacity-10">
-                <Image
-                  src="/images/mascot/frank-omega-pointing-v1.png"
-                  alt=""
-                  fill
-                  className="object-contain object-bottom-right"
-                />
-              </div>
-            </div>
+            <FrankOmegaGhost variant="pointing" />
             <span className="relative inline-flex items-center gap-2 rounded-full border border-violet-500/30 bg-violet-500/10 px-4 py-1.5 mb-6">
               <span className="w-1.5 h-1.5 rounded-full bg-violet-400 animate-pulse" />
               <span className="text-xs font-semibold uppercase tracking-[0.25em] text-violet-300">
@@ -362,14 +337,8 @@ export default function LabPage() {
       <section className="py-24 px-6">
         <div className="max-w-3xl mx-auto text-center">
           <AuroraGradient className="rounded-3xl p-12">
-            <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-violet-500/40 mx-auto mb-6">
-              <Image
-                src="/images/mascot/frank-omega-pixar-blue-v1.png"
-                alt="FRANK-Ω"
-                width={64}
-                height={64}
-                className="w-full h-full object-cover"
-              />
+            <div className="mx-auto mb-6">
+              <FrankOmega variant="pixar-blue" size="sm" glow rounded />
             </div>
             <h2 className="text-4xl font-black text-white mb-4">
               Start with InfoGenius.
