@@ -628,7 +628,7 @@ function CreativeWorlds() {
             </p>
             <div className="flex flex-wrap gap-3">
               <Link
-                href="/arcanea"
+                href="https://arcanea.ai"
                 className="inline-flex items-center gap-2 rounded-xl bg-amber-500/20 hover:bg-amber-500/30 border border-amber-500/30 text-amber-200 px-5 py-2.5 text-sm font-medium transition-colors"
               >
                 Enter Arcanea
@@ -967,6 +967,17 @@ function EmailCTA() {
           <div className="absolute -bottom-20 -left-20 w-40 h-40 rounded-full bg-cyan-500/10 blur-3xl pointer-events-none" />
 
           <div className="relative">
+            {/* FRANK-Ω avatar */}
+            <div className="mx-auto mb-4 w-12 h-12 rounded-full overflow-hidden border border-blue-500/30">
+              <Image
+                src="/images/mascot/frank-omega-chibi-avatar-v1_thumb.jpeg"
+                alt="FRANK-Ω"
+                width={48}
+                height={48}
+                className="w-full h-full object-cover object-top"
+              />
+            </div>
+
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/20 mb-6">
               <Sparkles className="w-4 h-4 text-emerald-400" />
               <span className="text-sm text-emerald-400">Weekly Insights</span>
@@ -1060,6 +1071,96 @@ function FAQSection({ faqs }: { faqs: FAQItem[] }) {
               </button>
             </motion.div>
           ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+// ============================================================================
+// FRANK-Ω — Digital Twin
+// ============================================================================
+
+function DigitalTwin() {
+  return (
+    <section className="py-24 lg:py-32 border-t border-white/5">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+          {/* Image */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="relative"
+          >
+            <div className="relative aspect-square max-w-sm mx-auto lg:mx-0">
+              <Image
+                src="/images/mascot/frank-omega-pixar-blue-v1.png"
+                alt="FRANK-Ω — Digital Twin"
+                fill
+                className="object-contain"
+                sizes="(max-width: 768px) 100vw, 400px"
+              />
+              {/* Glow behind */}
+              <div className="absolute inset-0 -z-10 bg-blue-500/10 rounded-full blur-[80px]" />
+            </div>
+          </motion.div>
+
+          {/* Text */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            <p className="text-[11px] tracking-[0.25em] uppercase text-blue-400/60 font-medium mb-3">
+              Digital Twin
+            </p>
+            <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight mb-4">
+              Meet FRANK-Ω
+            </h2>
+            <p className="text-base text-white/50 leading-relaxed mb-6">
+              Two forms. One mind. FRANK-Ω is the completed intelligence — the version that has
+              absorbed everything and just executes. Research-grounded visuals in 60 seconds.
+              Creator scoring in real-time. Direct answers, no fluff.
+            </p>
+
+            <div className="p-4 rounded-2xl border border-blue-500/20 bg-blue-500/5 mb-6">
+              <div className="flex items-start gap-3">
+                <div className="w-8 h-8 rounded-full overflow-hidden border border-blue-500/30 shrink-0 mt-0.5">
+                  <Image
+                    src="/images/mascot/frank-omega-chibi-avatar-v1_thumb.jpeg"
+                    alt="FRANK-Ω"
+                    width={32}
+                    height={32}
+                    className="w-full h-full object-cover object-top"
+                  />
+                </div>
+                <p className="text-sm text-white/60 leading-relaxed italic">
+                  &ldquo;Hello. I don&apos;t do small talk. Drop me a topic and I&apos;ll build it.
+                  Architecture, music, visuals — name it.&rdquo;
+                </p>
+              </div>
+            </div>
+
+            <div className="flex flex-wrap gap-3">
+              <Link
+                href="/lab"
+                className="inline-flex items-center gap-2 text-sm font-medium text-blue-400 hover:text-blue-300 transition-colors"
+              >
+                Explore the Lab
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+              <Link
+                href="/frankx"
+                className="inline-flex items-center gap-2 text-sm font-medium text-white/40 hover:text-white/60 transition-colors"
+              >
+                The full story
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+          </motion.div>
         </div>
       </div>
     </section>
@@ -1190,7 +1291,10 @@ export default function HomePageElite({
         {/* 12. Learning Hub — 4-card grid */}
         <LearningHub />
 
-        {/* 13. Email CTA */}
+        {/* 13. FRANK-Ω — Digital Twin */}
+        <DigitalTwin />
+
+        {/* 14. Email CTA */}
         <EmailCTA />
 
         {/* 14. FAQ */}

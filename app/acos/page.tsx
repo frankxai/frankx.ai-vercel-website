@@ -190,19 +190,19 @@ export default function ACOSPage() {
       <section className="relative overflow-hidden pt-24 pb-20">
         <div className="absolute inset-0 bg-gradient-to-br from-purple-950/40 via-[#02030b] to-cyan-950/30" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(161,72,221,0.15),transparent_55%)]" />
-        {/* Axi — command center prowl accent */}
-        <div className="pointer-events-none absolute left-4 bottom-8 hidden w-40 opacity-[0.08] lg:block xl:w-52">
-          <Image src="/images/mascot/mascot-v06-prowling-action.png" alt="" width={208} height={208} className="object-contain" aria-hidden="true" />
+        {/* FRANK-Ω — command center accent */}
+        <div className="pointer-events-none absolute left-4 bottom-8 hidden w-44 opacity-[0.08] lg:block xl:w-56">
+          <Image src="/images/mascot/frank-omega-thinking-v1.png" alt="" width={224} height={224} className="object-contain" aria-hidden="true" />
         </div>
         <div className="relative mx-auto max-w-5xl px-6 text-center">
           <div className="mb-6 flex flex-col items-center gap-4">
             <Image
-              src="/images/team/stella-owl.png"
-              alt="Stella — System Orchestrator"
+              src="/images/mascot/frank-omega-pixar-blue-v1.png"
+              alt="FRANK-Ω — Intelligence Engine"
               width={80}
               height={80}
               className="rounded-2xl"
-              style={{ boxShadow: '0 0 40px -8px rgba(139,92,246,0.5)' }}
+              style={{ boxShadow: '0 0 40px -8px rgba(0,191,255,0.4)' }}
             />
             <div className="inline-flex items-center gap-2 rounded-full border border-purple-400/30 bg-purple-500/10 px-4 py-2 text-xs font-semibold uppercase tracking-[0.4em] text-purple-200">
               <Terminal className="h-4 w-4" />
@@ -237,6 +237,18 @@ export default function ACOSPage() {
               </p>
               <p className="text-white/40">
                 What would you like to create today?
+              </p>
+            </div>
+          </div>
+
+          {/* FRANK-Ω quote */}
+          <div className="mx-auto mt-8 max-w-md">
+            <div className="flex items-center gap-3 rounded-2xl border border-blue-500/15 bg-blue-500/5 px-5 py-3">
+              <div className="w-8 h-8 rounded-full overflow-hidden border border-blue-500/30 shrink-0">
+                <Image src="/images/mascot/frank-omega-chibi-avatar-v1_thumb.jpeg" alt="FRANK-Ω" width={32} height={32} className="w-full h-full object-cover object-top" />
+              </div>
+              <p className="text-xs text-white/50 italic leading-relaxed">
+                &ldquo;75 skills. 38 agents. One command. I built this so you don&apos;t have to.&rdquo;
               </p>
             </div>
           </div>

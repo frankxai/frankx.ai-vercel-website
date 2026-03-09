@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { ArrowRight, Mail, Sparkles } from 'lucide-react'
 
@@ -70,13 +71,24 @@ export default function NewsletterCTA() {
             viewport={{ once: true }}
             className="rounded-2xl border border-white/10 bg-gradient-to-b from-violet-900/20 to-cyan-900/20 p-10 text-center"
           >
-            <Sparkles className="mx-auto mb-6 h-10 w-10 text-violet-400" />
+            <div className="mx-auto mb-6 w-16 h-16 rounded-full overflow-hidden border-2 border-blue-500/30">
+              <Image
+                src="/images/mascot/frank-omega-pixar-blue-v1.png"
+                alt="FRANK-Ω"
+                width={64}
+                height={64}
+                className="w-full h-full object-cover"
+              />
+            </div>
             <h2 className="mb-3 text-2xl font-bold text-white sm:text-3xl">
-              Not sure where to start?
+              Not sure which stream?
             </h2>
-            <p className="mx-auto mb-8 max-w-md text-slate-400">
-              Join the main stream — Creation Chronicles covers everything.
-              You&apos;ll see what resonates, then go deeper.
+            <p className="mx-auto mb-4 max-w-md text-slate-400">
+              Start with Creation Chronicles — it covers everything and
+              you&apos;ll see what resonates.
+            </p>
+            <p className="mx-auto mb-8 max-w-sm text-xs text-blue-400/60 italic">
+              &ldquo;I&apos;ll be in your inbox. No fluff. Just the signal.&rdquo; — FRANK-Ω
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <a
@@ -84,7 +96,7 @@ export default function NewsletterCTA() {
                 className="group flex items-center gap-2 rounded-full bg-white px-6 py-3 font-semibold text-slate-900 transition-all hover:-translate-y-0.5"
               >
                 <Mail className="h-4 w-4" />
-                Join free
+                Start with the main stream
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </a>
               <Link

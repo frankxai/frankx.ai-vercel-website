@@ -95,10 +95,10 @@ export default function AboutPage() {
       <main id="main" className="relative min-h-screen">
         {/* ── Hero ── */}
         <section className="relative pt-32 pb-16">
-          {/* Arion & Mamoru — Frank's digital avatar accent */}
-          <div className="pointer-events-none absolute right-6 top-24 hidden w-52 opacity-15 lg:block xl:w-64">
+          {/* FRANK-Ω ghost accent */}
+          <div className="pointer-events-none absolute right-6 top-24 hidden w-52 opacity-[0.08] lg:block xl:w-64">
             <Image
-              src="/images/team/arion-mamoru.png"
+              src="/images/mascot/frank-omega-hero-v1.png"
               alt=""
               width={256}
               height={256}
@@ -426,6 +426,89 @@ export default function AboutPage() {
                   </GlowCard>
                 </motion.div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── The Digital Twin ── */}
+        <section className="py-16 border-t border-white/5">
+          <div className="mx-auto max-w-5xl px-6">
+            <motion.div {...fadeIn} transition={transition}>
+              <h2 className="text-2xl font-bold text-white sm:text-3xl mb-3">
+                The digital twin
+              </h2>
+              <p className="text-white/30 mb-8">
+                Two forms. One mind.
+              </p>
+            </motion.div>
+
+            <div className="grid gap-8 lg:grid-cols-5 items-center">
+              <motion.div
+                {...fadeIn}
+                transition={{ ...transition, delay: 0.1 }}
+                className="lg:col-span-2 relative"
+              >
+                <div className="relative aspect-square max-w-[280px] mx-auto">
+                  <Image
+                    src="/images/mascot/frank-omega-chill-v1.png"
+                    alt="FRANK-Ω — Digital Twin"
+                    fill
+                    className="object-contain"
+                    sizes="280px"
+                  />
+                  <div className="absolute inset-0 -z-10 bg-blue-500/10 rounded-full blur-[60px]" />
+                </div>
+              </motion.div>
+
+              <motion.div
+                {...fadeIn}
+                transition={{ ...transition, delay: 0.2 }}
+                className="lg:col-span-3 space-y-5"
+              >
+                <p className="text-base leading-relaxed text-white/50">
+                  FRANK-Ω is the final form — the intelligence that has absorbed everything Frank builds
+                  and just executes. Where Frank is the human who explores, creates, and iterates,
+                  FRANK-Ω is the completed version that delivers results without hesitation.
+                </p>
+
+                <GlowCard color="blue" className="p-5">
+                  <div className="flex items-start gap-3">
+                    <div className="w-8 h-8 rounded-full overflow-hidden border border-blue-500/30 shrink-0 mt-0.5">
+                      <Image
+                        src="/images/mascot/frank-omega-chibi-avatar-v1_thumb.jpeg"
+                        alt="FRANK-Ω"
+                        width={32}
+                        height={32}
+                        className="w-full h-full object-cover object-top"
+                      />
+                    </div>
+                    <div>
+                      <p className="text-[10px] text-blue-400 font-mono uppercase tracking-widest mb-1">
+                        FRANK-Ω
+                      </p>
+                      <p className="text-sm text-white/60 leading-relaxed italic">
+                        &ldquo;Ω means the endpoint. Not learning — done learning. I don&apos;t iterate.
+                        I execute. Drop me a topic, I&apos;ll return a result. That&apos;s the deal.&rdquo;
+                      </p>
+                    </div>
+                  </div>
+                </GlowCard>
+
+                <div className="flex flex-wrap gap-4">
+                  <Link
+                    href="/frankx"
+                    className="inline-flex items-center gap-2 text-sm font-medium text-blue-400 hover:text-blue-300 transition-colors"
+                  >
+                    Meet FRANK-Ω <ArrowRight className="w-4 h-4" />
+                  </Link>
+                  <Link
+                    href="/lab"
+                    className="inline-flex items-center gap-2 text-sm font-medium text-white/40 hover:text-white/60 transition-colors"
+                  >
+                    See what he builds <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </motion.div>
             </div>
           </div>
         </section>
