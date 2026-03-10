@@ -27,6 +27,7 @@ import {
   CreditCard,
   Target,
   Trophy,
+  HelpCircle,
 } from 'lucide-react'
 
 import { GlowCard } from '@/components/ui/glow-card'
@@ -114,6 +115,22 @@ const sections = [
     icon: Trophy,
     color: 'cyan' as const,
     count: '8 projects',
+  },
+  {
+    title: 'Glossary',
+    description: 'Every concept, principle, and term defined with precision. The language shapes the thinking.',
+    href: '/gencreator/glossary',
+    icon: BookOpen,
+    color: 'teal' as const,
+    count: '18 terms',
+  },
+  {
+    title: 'FAQ',
+    description: 'Everything about the framework answered — from first steps to mastery-level questions.',
+    href: '/gencreator/faq',
+    icon: HelpCircle,
+    color: 'blue' as const,
+    count: '20+ questions',
   },
   {
     title: 'The Manifesto',

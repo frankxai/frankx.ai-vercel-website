@@ -17,6 +17,7 @@ const links = [
   { href: '/gencreator/showcase', label: 'Showcase' },
   { href: '/gencreator/glossary', label: 'Glossary' },
   { href: '/gencreator/community', label: 'Community' },
+  { href: '/gencreator/faq', label: 'FAQ' },
   { href: '/gencreator/join', label: 'Join' },
   { href: '/gencreator/manifesto', label: 'Manifesto' },
 ]
