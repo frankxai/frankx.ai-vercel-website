@@ -123,6 +123,78 @@ const glossary: GlossaryEntry[] = [
     category: 'Principle',
     related: ['Compounding', 'Stack'],
   },
+  {
+    term: 'Radar Chart',
+    definition: 'The visual output of a 7-dimension self-assessment. A heptagonal visualization revealing the shape of your creative profile — your superpower and your growth edge at a glance.',
+    category: 'Tool',
+    related: ['Self-Assessment', '7 Dimensions'],
+  },
+  {
+    term: 'Growth Edge',
+    definition: 'Your lowest-scoring dimension. The single most impactful area for improvement. Lifting your growth edge has an outsized effect on total creative capacity — more than doubling down on strengths.',
+    category: 'Core',
+    related: ['7 Dimensions', 'Self-Assessment'],
+  },
+  {
+    term: 'Superpower',
+    definition: 'Your highest-scoring dimension — the one that comes naturally. GenCreators lean into their superpower as a differentiator while systematically addressing their growth edge.',
+    category: 'Core',
+    related: ['7 Dimensions', 'Growth Edge'],
+  },
+  {
+    term: 'Shipping Tracker',
+    definition: 'A daily habit tool for logging creative output. Records the tier, category, and streak of your shipping practice. The visual evidence that consistency compounds.',
+    category: 'Tool',
+    related: ['Shipping', '3-Tier System'],
+  },
+  {
+    term: 'Creative Flywheel',
+    definition: 'A self-reinforcing system where each action feeds the next: ship content → build audience → gather feedback → refine craft → ship better content. Once spinning, momentum becomes self-sustaining.',
+    category: 'Strategy',
+    related: ['Compounding', 'Systems Thinking'],
+  },
+  {
+    term: 'Energy Management',
+    definition: 'The first dimension and the foundation of everything. The practice of reading your physical and mental state before choosing your creative tier. High energy → Full Ship. Low energy → Micro Ship. The system respects the body.',
+    category: 'Practice',
+    related: ['Energy', '3-Tier System'],
+  },
+  {
+    term: 'Peer Review Circle',
+    definition: 'A small group of 4 creators matched by skill level and creative focus. They meet weekly for accountability, honest feedback, and shared blueprint execution. Rotates every 3 months for fresh perspectives.',
+    category: 'Community',
+    related: ['Circle', 'Community'],
+  },
+  {
+    term: 'Own Your Infrastructure',
+    definition: 'The fourth principle — your platform, your data, your stack. GenCreators prefer self-hosted, open-source, and API-first tools. Renting a platform is fine for distribution. Depending on it for existence is fragile.',
+    category: 'Principle',
+    related: ['Stack', 'Systems Thinking'],
+  },
+  {
+    term: 'Force Multiplier',
+    definition: 'What AI becomes in the hands of a GenCreator — an amplifier of human taste. One person with a well-configured AI workflow produces what once required a studio, a team, or an agency.',
+    category: 'Core',
+    related: ['AI as Amplifier', 'GenCreator'],
+  },
+  {
+    term: 'Taste',
+    definition: 'The irreplaceable human ingredient. The ability to judge quality, choose direction, curate output, and make editorial decisions that AI cannot make on its own. Taste is what makes a GenCreator irreplaceable.',
+    category: 'Core',
+    related: ['AI as Amplifier', 'Craft'],
+  },
+  {
+    term: 'Weekly Dispatch',
+    definition: 'The GenCreator newsletter — a weekly collection of framework insights, shipping challenges, community highlights, and curated tools. The connective tissue between community members.',
+    category: 'Community',
+    related: ['Community', 'Build in Public'],
+  },
+  {
+    term: 'Domain Stacking',
+    definition: 'Operating across multiple creative domains simultaneously — code + music + content, or design + video + automation. Each domain enriches the others, creating a unique creative fingerprint impossible to replicate.',
+    category: 'Strategy',
+    related: ['Skill Stack', 'GenCreator'],
+  },
 ]
 
 const categories = ['All', ...Array.from(new Set(glossary.map((g) => g.category))).sort()]

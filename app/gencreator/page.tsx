@@ -122,7 +122,7 @@ const sections = [
     href: '/gencreator/glossary',
     icon: BookOpen,
     color: 'teal' as const,
-    count: '18 terms',
+    count: '30 terms',
   },
   {
     title: 'FAQ',
