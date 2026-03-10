@@ -199,7 +199,7 @@ export default function JoinPage() {
             />
           </div>
           <p className="mt-3 text-xs text-white/30">
-            No spam. Unsubscribe anytime. You also get the weekly GenCreator dispatch.
+            Pure signal. Unsubscribe anytime. You also receive the weekly GenCreator dispatch.
           </p>
         </div>
       </section>

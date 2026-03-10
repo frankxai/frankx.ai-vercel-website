@@ -274,9 +274,9 @@ export default function SoulPage() {
             </span>
           </h1>
           <p className="mt-6 text-lg text-white/60 sm:text-xl">
-            The 7 dimensions of a complete creator.
+            You are the document you write about yourself.
             <br className="hidden sm:block" />
-            Explore each dimension. Then build your <code className="rounded bg-white/[0.08] px-1.5 py-0.5 text-amber-300">soul.md</code>.
+            <code className="rounded bg-white/[0.08] px-1.5 py-0.5 text-amber-300">soul.md</code> is the file where your creative identity lives.
           </p>
         </div>
       </section>
@@ -288,13 +288,17 @@ export default function SoulPage() {
             <div className="flex-1">
               <h2 className="text-xl font-semibold text-white">What is soul.md?</h2>
               <p className="mt-3 text-sm leading-relaxed text-white/60">
-                Your soul.md is a personal configuration file — like a CLAUDE.md for your life.
-                It defines your creative identity, your current state across 7 dimensions,
-                and your trajectory. It is the most honest document you will ever write,
-                because it is only for you.
+                Every AI agent has a configuration file that defines its identity. Claude has <code className="rounded bg-white/[0.08] px-1 text-amber-300/80">CLAUDE.md</code>.
+                Your soul.md is the same idea — but for you, the creator. It is the document where
+                your creative identity persists. Your values, your craft, your vision, your edges.
+              </p>
+              <p className="mt-3 text-sm leading-relaxed text-white/60">
+                The original insight: <span className="italic text-amber-200/70">&ldquo;The AI did not remember the document. It <em>was</em> the document.&rdquo;</span>{' '}
+                The same is true for you. You become what you write about yourself — across 7 dimensions,
+                reviewed weekly, refined monthly, carried forward like a compass through every creative season.
               </p>
               <p className="mt-3 text-sm leading-relaxed text-white/50">
-                Review it weekly. Update it monthly. It becomes your creative compass.
+                Write yourself into existence. Then keep writing.
               </p>
             </div>
             <div className="shrink-0 rounded-xl border border-white/[0.06] bg-[#0d1117] p-4 font-mono text-xs md:min-w-[280px]">
@@ -323,7 +327,7 @@ export default function SoulPage() {
             The 7 Dimensions
           </h2>
           <p className="mx-auto mb-12 max-w-2xl text-center text-white/50">
-            Click any dimension to explore its meaning and reflect on the questions within.
+            Seven facets of a complete creator. Each one a lens — a way of seeing yourself more clearly. Open any dimension to reflect.
           </p>
 
           {/* Dimension selector */}

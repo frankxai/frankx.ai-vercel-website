@@ -280,14 +280,14 @@ export default function GenCreatorHubPage() {
           </h2>
           <div className="mx-auto mt-8 max-w-3xl space-y-6 text-lg leading-relaxed text-white/60">
             <p>
-              A GenCreator is the new breed of creator — someone who wields AI as a creative force multiplier,
-              not a replacement. They build systems that compound, ship daily, own their infrastructure,
+              A GenCreator is the new breed of creator — someone who wields AI as a creative force multiplier.
+              They build systems that compound, ship daily, own their infrastructure,
               and leave artifacts that outlive trends.
             </p>
             <p>
-              Not a content creator. Not a developer. Not an influencer.
-              A GenCreator sits at the intersection of <span className="text-emerald-300">human taste</span> and{' '}
-              <span className="text-teal-300">machine scale</span>.
+              Part architect. Part artist. Part engineer of the invisible.
+              A GenCreator lives at the intersection of <span className="text-emerald-300">human taste</span> and{' '}
+              <span className="text-teal-300">machine scale</span> — where one person builds what entire studios once required.
             </p>
           </div>
           <div className="mt-10">

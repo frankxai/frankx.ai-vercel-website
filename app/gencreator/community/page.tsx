@@ -47,7 +47,7 @@ export default function CommunityPage() {
             </span>
           </h1>
           <p className="mt-6 text-lg text-white/60 sm:text-xl">
-            No GenCreator builds alone. Join a community of builders, creators,
+            Every GenCreator amplifies every other. A community of builders, creators,
             <br className="hidden sm:block" />
             and operators who ship daily and compound relentlessly.
           </p>

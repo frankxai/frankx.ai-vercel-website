@@ -81,3 +81,4 @@ C:\\Users\\Frank\\.claude\\plugins\\marketplaces\\claude-plugins-official/
 .claude-flow/daemon-state.json
 .claude-flow/learning/
 nul
+tmp/

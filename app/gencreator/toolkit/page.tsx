@@ -80,11 +80,11 @@ export default function ToolkitPage() {
         <div className="mx-auto max-w-3xl px-6 text-center">
           <h2 className="text-xl font-semibold text-white">Stack Philosophy</h2>
           <p className="mt-3 text-sm leading-relaxed text-white/50">
-            The best stack is the one you actually use. We prioritize tools that are{' '}
+            The best stack is the one you actually use. We choose tools that are{' '}
             <span className="text-amber-300">developer-friendly</span>,{' '}
             <span className="text-amber-300">self-hostable where possible</span>, and{' '}
             <span className="text-amber-300">composable via APIs</span>.
-            No lock-in. No bloat. Every tool earns its spot.
+            Lightweight. Interoperable. Every tool earns its place.
           </p>
         </div>
       </section>

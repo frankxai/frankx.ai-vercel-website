@@ -13,7 +13,7 @@ const dimensions = [
     name: 'Energy',
     symbol: '\u26A1',
     question: 'How consistently do you maintain high creative energy?',
-    low: 'Burnout cycles, no recovery ritual, inconsistent energy.',
+    low: 'Energy is waiting to be harnessed — discovering your rhythm.',
     high: 'Peak hours optimized, movement practice, sustainable output.',
   },
   {
@@ -21,7 +21,7 @@ const dimensions = [
     name: 'Mind',
     symbol: '\uD83E\uDDE0',
     question: 'How actively are you learning and applying new mental models?',
-    low: 'Consuming without applying, no learning system.',
+    low: 'Absorbing widely — ready for a focused learning system.',
     high: 'Active learning pipeline, books → implementation loop.',
   },
   {
@@ -29,7 +29,7 @@ const dimensions = [
     name: 'Craft',
     symbol: '\uD83D\uDD25',
     question: 'How deep is your primary skill? How much do you ship?',
-    low: 'Dabbling, no focus area, rarely shipping.',
+    low: 'Exploring many interests — ready to choose a focus.',
     high: 'Deep expertise, daily shipping cadence, public portfolio.',
   },
   {
@@ -37,7 +37,7 @@ const dimensions = [
     name: 'Voice',
     symbol: '\uD83C\uDFA4',
     question: 'How clearly do you articulate your unique perspective?',
-    low: 'Echoing others, afraid to publish, no consistent voice.',
+    low: 'Your voice is forming — ideas are gathering into shape.',
     high: 'Distinct point of view, regular publishing, recognized voice.',
   },
   {
@@ -45,7 +45,7 @@ const dimensions = [
     name: 'Capital',
     symbol: '\uD83D\uDCB0',
     question: 'How well are you monetizing your creative output?',
-    low: 'No revenue, trading time for money, no products.',
+    low: 'Value is being created — monetization pathways are opening.',
     high: 'Multiple streams, digital products, leveraged income.',
   },
   {
@@ -53,7 +53,7 @@ const dimensions = [
     name: 'Circle',
     symbol: '\uD83E\uDD1D',
     question: 'How strong is your creative network and community?',
-    low: 'Isolated, no mentors, no peer group.',
+    low: 'Building solo for now — ready to find your people.',
     high: 'Active community, mentors, peer accountability.',
   },
   {
@@ -61,7 +61,7 @@ const dimensions = [
     name: 'Legacy',
     symbol: '\u2B50',
     question: 'How clear is your long-term vision and system for impact?',
-    low: 'Day-to-day only, no vision, nothing outlives you.',
+    low: 'Living in the present — the long vision is taking shape.',
     high: 'Clear 10-year vision, systems that compound without you.',
   },
 ]
