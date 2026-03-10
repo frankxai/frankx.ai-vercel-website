@@ -100,6 +100,14 @@ const sections = [
     count: 'Growing',
   },
   {
+    title: 'Shipping Tracker',
+    description: 'Log your daily creative output. Build streaks. Track your 3-tier shipping habit with a visual calendar.',
+    href: '/gencreator/tracker',
+    icon: Flame,
+    color: 'orange' as const,
+    count: 'Free tool',
+  },
+  {
     title: 'Showcase',
     description: 'Real projects built with the GenCreator approach. Music, code, products, automations — proof the framework works.',
     href: '/gencreator/showcase',

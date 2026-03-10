@@ -13,6 +13,7 @@ const links = [
   { href: '/gencreator/assess', label: 'Assess' },
   { href: '/gencreator/learn', label: 'Learn' },
   { href: '/gencreator/toolkit', label: 'Toolkit' },
+  { href: '/gencreator/tracker', label: 'Tracker' },
   { href: '/gencreator/showcase', label: 'Showcase' },
   { href: '/gencreator/glossary', label: 'Glossary' },
   { href: '/gencreator/community', label: 'Community' },

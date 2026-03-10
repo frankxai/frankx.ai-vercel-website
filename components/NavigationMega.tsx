@@ -94,6 +94,7 @@ const navigation = {
       { name: 'Self-Assessment', href: '/gencreator/assess', icon: Target, description: '7-dimension radar quiz' },
       { name: 'Learning Paths', href: '/gencreator/learn', icon: GraduationCap, description: '12-week curriculum' },
       { name: 'Creator Toolkit', href: '/gencreator/toolkit', icon: Wrench, description: '13 curated tools' },
+      { name: 'Shipping Tracker', href: '/gencreator/tracker', icon: Target, description: 'Daily habit tracker' },
       { name: 'Community', href: '/gencreator/community', icon: Users, description: 'Build together, ship together' },
       { name: 'Prompt Library', href: '/prompt-library', icon: Sparkles, description: '200+ curated prompts' },
       { name: 'Templates', href: '/templates', icon: FileText, description: 'Ready-to-use workflows' },
