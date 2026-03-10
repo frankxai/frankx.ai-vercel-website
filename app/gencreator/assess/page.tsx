@@ -1,8 +1,8 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useCallback } from 'react'
 import Script from 'next/script'
-import { ArrowRight, RotateCcw, Share2 } from 'lucide-react'
+import { ArrowRight, RotateCcw, Share2, Copy, Check } from 'lucide-react'
 
 import PremiumButton from '@/components/ui/PremiumButton'
 import GenCreatorNav from '@/components/gencreator/GenCreatorNav'
@@ -331,6 +331,22 @@ export default function AssessPage() {
                     <p className="mt-1 text-xs text-white/40">Score: {scores[weakest.key]}/10 — Focus here for the biggest growth unlock.</p>
                   </div>
                 )}
+              </div>
+
+              {/* Related Reading */}
+              <div className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-5">
+                <p className="text-xs font-semibold uppercase tracking-wider text-white/30">Go Deeper</p>
+                <div className="mt-3 flex flex-col gap-2 sm:flex-row sm:gap-4">
+                  <a href="/blog/gencreator-7-dimensions-complete-guide" className="text-sm text-amber-400 hover:text-amber-300">
+                    The 7 Dimensions Guide →
+                  </a>
+                  <a href="/gencreator/tracker" className="text-sm text-amber-400 hover:text-amber-300">
+                    Start Tracking Your Ships →
+                  </a>
+                  <a href="/blog/how-to-build-your-soul-md" className="text-sm text-amber-400 hover:text-amber-300">
+                    Build Your soul.md →
+                  </a>
+                </div>
               </div>
 
               {/* Actions */}
