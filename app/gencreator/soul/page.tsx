@@ -521,6 +521,22 @@ export default function SoulPage() {
             </div>
           )}
 
+          {/* Related reading */}
+          <div className="mt-10 rounded-xl border border-white/[0.06] bg-white/[0.02] p-5">
+            <p className="text-xs font-semibold uppercase tracking-wider text-white/30">Go Deeper</p>
+            <div className="mt-3 flex flex-col gap-2 sm:flex-row sm:gap-4">
+              <a href="/blog/how-to-build-your-soul-md" className="text-sm text-emerald-400 hover:text-emerald-300">
+                How to Build Your soul.md (blog) →
+              </a>
+              <a href="/blog/gencreator-7-dimensions-complete-guide" className="text-sm text-emerald-400 hover:text-emerald-300">
+                The 7 Dimensions Guide (blog) →
+              </a>
+              <a href="/gencreator/assess" className="text-sm text-emerald-400 hover:text-emerald-300">
+                Take the Self-Assessment →
+              </a>
+            </div>
+          </div>
+
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <PremiumButton variant="luxury" size="lg" href="/gencreator/manifesto">
               <Scroll className="h-5 w-5" />

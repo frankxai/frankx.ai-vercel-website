@@ -188,6 +188,29 @@ export default function CommunityPage() {
         </div>
       </section>
 
+      {/* ─── Start Shipping ─── */}
+      <section className="py-16">
+        <div className="mx-auto max-w-3xl px-6">
+          <div className="flex flex-col items-center gap-6 rounded-2xl border border-amber-400/10 bg-amber-500/5 p-8 sm:flex-row sm:items-start">
+            <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-amber-500 to-orange-500">
+              <Zap className="h-7 w-7 text-white" />
+            </div>
+            <div className="text-center sm:text-left">
+              <h3 className="text-lg font-bold text-white">Track Your Daily Ships</h3>
+              <p className="mt-2 text-sm text-white/50">
+                Use the Shipping Tracker to log your daily creative output, build streaks, and see your compound growth over time.
+              </p>
+              <a
+                href="/gencreator/tracker"
+                className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-amber-400 hover:text-amber-300"
+              >
+                Open Shipping Tracker <ArrowRight className="h-4 w-4" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ─── CTA ─── */}
       <section className="py-16">
         <div className="mx-auto max-w-3xl px-6 text-center">

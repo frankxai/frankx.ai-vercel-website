@@ -163,6 +163,34 @@ export default function LearnPage() {
         </div>
       </section>
 
+      {/* ─── Related Reading ─── */}
+      <section className="py-16">
+        <div className="mx-auto max-w-4xl px-6">
+          <h2 className="mb-8 text-center text-2xl font-bold text-white">
+            Deeper Reading
+          </h2>
+          <div className="grid gap-4 sm:grid-cols-3">
+            {[
+              { title: 'What Is a GenCreator?', href: '/blog/what-is-a-gencreator', desc: 'The complete framework overview' },
+              { title: 'The 7 Dimensions Guide', href: '/blog/gencreator-7-dimensions-complete-guide', desc: 'Deep dive on self-assessment' },
+              { title: 'The 3-Tier Shipping System', href: '/blog/gencreator-3-tier-shipping-system', desc: 'Build creative momentum' },
+            ].map((article) => (
+              <a
+                key={article.href}
+                href={article.href}
+                className="group rounded-xl border border-white/[0.06] bg-white/[0.02] p-5 transition-colors hover:border-white/[0.12]"
+              >
+                <h3 className="text-sm font-semibold text-white group-hover:text-emerald-300">{article.title}</h3>
+                <p className="mt-2 text-xs text-white/40">{article.desc}</p>
+                <span className="mt-3 inline-flex items-center gap-1 text-xs font-medium text-emerald-400">
+                  Read <ArrowRight className="h-3 w-3" />
+                </span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ─── CTA ─── */}
       <section className="py-16">
         <div className="mx-auto max-w-3xl px-6 text-center">
