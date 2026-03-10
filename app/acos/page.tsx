@@ -499,6 +499,25 @@ export default function ACOSPage() {
         </div>
       </section>
 
+      {/* ─── GenCreator Bridge ─── */}
+      <section className="border-t border-white/[0.08] bg-white/[0.03] py-16">
+        <div className="mx-auto max-w-3xl px-6">
+          <div className="flex flex-col items-center gap-6 sm:flex-row sm:items-start">
+            <div className="flex-1 text-center sm:text-left">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-400/60">The Bigger Picture</p>
+              <h3 className="mt-2 text-xl font-bold text-white">ACOS powers the engine. GenCreator is the framework.</h3>
+              <p className="mt-2 text-sm text-white/50">
+                The GenCreator Framework teaches you <em>what</em> to build and <em>why</em>. ACOS gives you the AI agents to build it. Together — a complete creator operating system.
+              </p>
+            </div>
+            <PremiumButton variant="ghost" size="lg" href="/gencreator">
+              Explore GenCreator
+              <ArrowRight className="h-4 w-4" />
+            </PremiumButton>
+          </div>
+        </div>
+      </section>
+
       {/* ─── Final CTA ─── */}
       <section className="py-20">
         <div className="mx-auto max-w-3xl px-6 text-center">

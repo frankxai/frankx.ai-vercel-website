@@ -1280,7 +1280,25 @@ export default function HomePageElite({
           color="orange"
         />
 
-        {/* 8. Creative Worlds — Arcanea banner */}
+        {/* 8. GenCreator Framework hub showcase */}
+        <HubShowcase
+          eyebrow="Creator Framework"
+          title="GenCreator"
+          description="The complete operating system for AI-native creators. 12 principles, a handbook, actionable blueprints, soul dimensions, a self-assessment — and a community shipping daily."
+          imageSrc="/images/blog/blog-hero-aurora.svg"
+          imageAlt="GenCreator Framework"
+          links={[
+            { label: '12 Principles', href: '/gencreator/principles' },
+            { label: 'Self-Assessment', href: '/gencreator/assess' },
+            { label: 'Build Your soul.md', href: '/gencreator/soul' },
+          ]}
+          ctaLabel="Explore the Framework"
+          ctaHref="/gencreator"
+          color="emerald"
+          imageFirst
+        />
+
+        {/* 9. Creative Worlds — Arcanea banner */}
         <CreativeWorlds />
 
         {/* 9. Design Lab — image grid */}

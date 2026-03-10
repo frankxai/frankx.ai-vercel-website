@@ -14,6 +14,7 @@ const links = [
   { href: '/gencreator/learn', label: 'Learn' },
   { href: '/gencreator/toolkit', label: 'Toolkit' },
   { href: '/gencreator/showcase', label: 'Showcase' },
+  { href: '/gencreator/glossary', label: 'Glossary' },
   { href: '/gencreator/community', label: 'Community' },
   { href: '/gencreator/join', label: 'Join' },
   { href: '/gencreator/manifesto', label: 'Manifesto' },
