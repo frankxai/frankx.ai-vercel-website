@@ -5,7 +5,14 @@ import { getToken } from 'next-auth/jwt'
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
 
-  const protectedPaths = ['/dashboard', '/api/dashboard', '/api/leads']
+  // /links → /linktree redirect (301 permanent)
+  if (pathname === '/links') {
+    const url = request.nextUrl.clone()
+    url.pathname = '/linktree'
+    return NextResponse.redirect(url, 301)
+  }
+
+  const protectedPaths = ['/dashboard', '/admin', '/api/dashboard', '/api/leads']
   const isProtectedRoute = protectedPaths.some(path => pathname.startsWith(path))
 
   if (isProtectedRoute) {
@@ -26,7 +33,9 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
+    '/links',
     '/dashboard/:path*',
+    '/admin/:path*',
     '/api/dashboard/:path*',
     '/api/leads/:path*'
   ]

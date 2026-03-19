@@ -62,9 +62,9 @@ export const SOCIAL_PROFILES: Record<string, SocialLink> = {
     description: 'AI music creation, Vibe OS sessions, sonic rituals'
   },
   linktree: {
-    name: 'Linktree',
+    name: 'Links',
     username: 'frankx.ai',
-    url: 'https://linktr.ee/frankx.ai',
+    url: 'https://frankx.ai/linktree',
     icon: 'Link',
     primary: false,
     description: 'All links in one place'

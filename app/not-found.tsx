@@ -41,7 +41,7 @@ export default function NotFound() {
           className="-mt-24 mb-8 relative z-10"
         >
           <FrankOmega
-            variant="chibi"
+            variant="chibi-avatar"
             size="lg"
             animate
             float
