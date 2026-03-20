@@ -320,38 +320,137 @@ export default function AIBriefingPage() {
           </div>
         </motion.section>
 
-        {/* ─── Section 6: FrankX Ecosystem ─── */}
+        {/* ─── Section 6: FrankX Ecosystem — Full Platform ─── */}
         <motion.section variants={fadeUp} className="mb-16">
           <SectionHeader
-            label="Built for This"
-            title="The FrankX Ecosystem"
-            subtitle="Tools that map directly to the AI landscape above. Built by Frank, free to use."
+            label="Your Platform"
+            title="How FrankX Helps at Every Stage"
+            subtitle="Each part of the AI landscape above maps to tools, content, and systems you can use right now. All free."
             color="text-violet-400"
           />
 
-          <div className="grid gap-3 sm:grid-cols-2">
+          {/* Journey stages */}
+          <div className="space-y-4">
+            {/* Stage 1: Learn */}
+            <div className="rounded-3xl border border-white/[0.08] bg-white/[0.02] p-6">
+              <div className="mb-4 flex items-center gap-3">
+                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-500/15">
+                  <GraduationCap className="h-4 w-4 text-emerald-400" />
+                </div>
+                <div>
+                  <h3 className="text-sm font-semibold text-white">Stage 1: Learn</h3>
+                  <p className="text-[11px] text-white/30">Understand AI — models, agents, skills, career paths</p>
+                </div>
+              </div>
+              <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
+                {[
+                  { name: 'Student Hub', desc: '9 free courses from Oracle, Google, MIT, Stanford', href: '/students', color: 'emerald' as GlowColor },
+                  { name: 'Research Hub', desc: '17+ research domains with validated sources', href: '/research', color: 'emerald' as GlowColor },
+                  { name: 'Blog', desc: '90+ articles on AI architecture, agents, workflows', href: '/blog', color: 'emerald' as GlowColor },
+                  { name: 'Watch', desc: 'Video vault with curated AI content', href: '/watch', color: 'emerald' as GlowColor },
+                ].map((item) => (
+                  <Link key={item.name} href={item.href} className="group rounded-xl border border-white/[0.06] bg-white/[0.02] p-3 transition-all hover:border-emerald-500/20 hover:bg-emerald-500/5">
+                    <div className="text-xs font-semibold text-white/80 group-hover:text-white">{item.name}</div>
+                    <div className="mt-0.5 text-[10px] text-white/30">{item.desc}</div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            {/* Stage 2: Build */}
+            <div className="rounded-3xl border border-white/[0.08] bg-white/[0.02] p-6">
+              <div className="mb-4 flex items-center gap-3">
+                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-violet-500/15">
+                  <Terminal className="h-4 w-4 text-violet-400" />
+                </div>
+                <div>
+                  <h3 className="text-sm font-semibold text-white">Stage 2: Build</h3>
+                  <p className="text-[11px] text-white/30">Start creating with AI tools — code, music, content, visuals</p>
+                </div>
+              </div>
+              <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
+                {[
+                  { name: 'ACOS', desc: '75+ skills, 38 agents for Claude Code. Open source.', href: '/acos', color: 'violet' as GlowColor },
+                  { name: 'Music Lab', desc: '12K+ AI songs. Suno prompts + production workflows.', href: '/music-lab', color: 'violet' as GlowColor },
+                  { name: 'Prompt Library', desc: 'Battle-tested prompts for music, writing, coding', href: '/prompt-library', color: 'violet' as GlowColor },
+                  { name: 'Products', desc: 'Vibe OS, Soulbook, Creative AI Toolkit', href: '/products', color: 'violet' as GlowColor },
+                ].map((item) => (
+                  <Link key={item.name} href={item.href} className="group rounded-xl border border-white/[0.06] bg-white/[0.02] p-3 transition-all hover:border-violet-500/20 hover:bg-violet-500/5">
+                    <div className="text-xs font-semibold text-white/80 group-hover:text-white">{item.name}</div>
+                    <div className="mt-0.5 text-[10px] text-white/30">{item.desc}</div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            {/* Stage 3: Create */}
+            <div className="rounded-3xl border border-white/[0.08] bg-white/[0.02] p-6">
+              <div className="mb-4 flex items-center gap-3">
+                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-cyan-500/15">
+                  <Palette className="h-4 w-4 text-cyan-400" />
+                </div>
+                <div>
+                  <h3 className="text-sm font-semibold text-white">Stage 3: Create</h3>
+                  <p className="text-[11px] text-white/30">Ship creative work — content, products, and systems</p>
+                </div>
+              </div>
+              <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
+                {[
+                  { name: 'GenCreator', desc: 'Creator business framework — strategy to execution', href: '/gencreator', color: 'cyan' as GlowColor },
+                  { name: 'Books', desc: '6 books on AI, creativity, and consciousness', href: '/books', color: 'cyan' as GlowColor },
+                  { name: 'Games', desc: 'AI-powered browser games built with ACOS', href: '/games', color: 'cyan' as GlowColor },
+                  { name: 'Courses', desc: 'Structured learning with guided projects', href: '/courses', color: 'cyan' as GlowColor },
+                ].map((item) => (
+                  <Link key={item.name} href={item.href} className="group rounded-xl border border-white/[0.06] bg-white/[0.02] p-3 transition-all hover:border-cyan-500/20 hover:bg-cyan-500/5">
+                    <div className="text-xs font-semibold text-white/80 group-hover:text-white">{item.name}</div>
+                    <div className="mt-0.5 text-[10px] text-white/30">{item.desc}</div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            {/* Stage 4: Grow */}
+            <div className="rounded-3xl border border-white/[0.08] bg-white/[0.02] p-6">
+              <div className="mb-4 flex items-center gap-3">
+                <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-amber-500/15">
+                  <TrendingUp className="h-4 w-4 text-amber-400" />
+                </div>
+                <div>
+                  <h3 className="text-sm font-semibold text-white">Stage 4: Grow</h3>
+                  <p className="text-[11px] text-white/30">Level up — coaching, community, and advanced systems</p>
+                </div>
+              </div>
+              <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
+                {[
+                  { name: 'Coaching', desc: '1-on-1 with an AI architect who ships', href: '/coaching', color: 'amber' as GlowColor },
+                  { name: 'Newsletter', desc: 'Weekly AI insights + early access to tools', href: '/newsletter', color: 'amber' as GlowColor },
+                  { name: 'AI Architecture', desc: 'Enterprise patterns, multi-agent blueprints', href: '/ai-architecture', color: 'amber' as GlowColor },
+                  { name: 'Community', desc: 'Join builders shipping AI-powered projects', href: '/community', color: 'amber' as GlowColor },
+                ].map((item) => (
+                  <Link key={item.name} href={item.href} className="group rounded-xl border border-white/[0.06] bg-white/[0.02] p-3 transition-all hover:border-amber-500/20 hover:bg-amber-500/5">
+                    <div className="text-xs font-semibold text-white/80 group-hover:text-white">{item.name}</div>
+                    <div className="mt-0.5 text-[10px] text-white/30">{item.desc}</div>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Platform stats */}
+          <div className="mt-6 flex flex-wrap justify-center gap-3">
             {[
-              { name: 'ACOS', desc: 'The Creator OS for Claude Code. 75+ skills, 38 agents. The coding agent layer — built on top of Claude Opus 4.6.', href: '/acos', maps: 'Coding Agents + MCP', color: 'violet' as GlowColor, icon: Terminal },
-              { name: 'Music Lab', desc: '12,000+ AI songs. Suno prompt library, production workflows, genre mastery.', href: '/music-lab', maps: 'Creative AI Tools', color: 'cyan' as GlowColor, icon: Music },
-              { name: 'Research Hub', desc: '17+ research domains with validated claims, sources, and quarterly updates.', href: '/research', maps: 'AI Intelligence', color: 'emerald' as GlowColor, icon: Brain },
-              { name: 'GenCreator', desc: 'The creator business framework. Strategy, execution, community, and tools.', href: '/gencreator', maps: 'Creator Economy', color: 'amber' as GlowColor, icon: Rocket },
-            ].map((tool) => {
-              const Icon = tool.icon
-              return (
-                <GlowCard key={tool.name} color={tool.color} href={tool.href} className="!rounded-2xl">
-                  <div className="p-5">
-                    <div className="mb-3 flex items-center justify-between">
-                      <div className="flex items-center gap-2">
-                        <Icon className="h-4 w-4 text-white/50" />
-                        <h3 className="text-base font-semibold text-white">{tool.name}</h3>
-                      </div>
-                      <span className="rounded-full bg-white/[0.06] px-2 py-0.5 text-[10px] text-white/30">{tool.maps}</span>
-                    </div>
-                    <p className="text-xs text-white/35 leading-relaxed">{tool.desc}</p>
-                  </div>
-                </GlowCard>
-              )
-            })}
+              { val: '90+', label: 'Articles' },
+              { val: '75+', label: 'AI Skills' },
+              { val: '12K+', label: 'AI Songs' },
+              { val: '17+', label: 'Research Domains' },
+              { val: '6', label: 'Books' },
+              { val: 'Free', label: 'Open Source' },
+            ].map((s) => (
+              <div key={s.label} className="rounded-full border border-white/[0.06] bg-white/[0.03] px-3 py-1.5">
+                <span className="text-xs font-semibold text-white/60">{s.val}</span>
+                <span className="ml-1 text-[10px] text-white/25">{s.label}</span>
+              </div>
+            ))}
           </div>
         </motion.section>
 
