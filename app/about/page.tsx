@@ -23,7 +23,7 @@ const aboutFaqs = [
   {
     question: 'Who is Frank and what is FrankX.AI?',
     answer:
-      'Frank is an enterprise AI architect by day and a prolific AI music creator by night. FrankX.AI is his personal hub sharing everything learned from building production AI systems and creating 12,000+ songs with Suno AI, providing tools and frameworks for creators to build their own AI-powered creative practice.',
+      'Frank is an enterprise AI architect by day and a prolific AI music creator by night. FrankX.AI is his personal hub sharing everything learned from building production AI systems and creating 12,000+ AI songs with Suno AI, providing tools and frameworks for creators to build their own AI-powered creative practice.',
   },
   {
     question: 'What makes FrankX.AI different from other AI resources?',
@@ -322,7 +322,7 @@ export default function AboutPage() {
                   </h3>
                   <p className="text-white/50 leading-relaxed">
                     4+ years architecting production AI systems for global
-                    organizations. 500+ customer implementations. Multi-cloud
+                    organizations. Multi-cloud
                     infrastructure, RAG architectures, agentic workflows, multi-agent
                     orchestration. The systems I build handle real scale.
                   </p>
@@ -341,7 +341,7 @@ export default function AboutPage() {
                     By night — Music & creation
                   </h3>
                   <p className="text-white/50 leading-relaxed">
-                    12,000+ AI-generated songs with Suno. Not casual experiments — a
+                    12,000+ AI songs with Suno. Not casual experiments — a
                     deliberate practice of exploring what happens when humans and AI
                     create together. Ambient, electronic, cinematic, healing. Creation
                     Season starts at midnight.

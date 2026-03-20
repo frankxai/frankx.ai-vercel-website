@@ -74,7 +74,7 @@ const pillarIcons: Record<string, typeof Cpu> = {
 
 const pillarDescriptions: Record<string, string> = {
   'ai-architecture': 'Enterprise AI systems, multi-agent orchestration, MCP servers, RAG patterns. Deep technical tutorials from production experience.',
-  'music-production': 'Suno AI prompt engineering, genre mastery, production workflows. From 12,000+ songs to commercial-ready tracks.',
+  'music-production': 'Suno AI prompt engineering, genre mastery, production workflows. From 12,000+ AI songs to commercial-ready tracks.',
   'creator-tools': 'Claude Code advanced workflows, ACOS commands, content automation pipelines. Tools that 10x your output.',
   opinion: 'Industry analysis, hot takes on AI content, the solo builder thesis. Data-driven perspectives that challenge the mainstream.',
   shorts: 'Rapid-fire clips, production montages, compressed workflows. Algorithm-optimized content for maximum reach.',

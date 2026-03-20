@@ -34,13 +34,13 @@ interface ShowcaseItem {
 
 const showcaseItems: ShowcaseItem[] = [
   {
-    title: '12,000+ AI Songs',
+    title: '12K+ AI Songs',
     description:
       'Full-length tracks across 30+ genres using Suno AI. From orchestral cinema to tech house, every song prompt-engineered for commercial quality.',
     category: 'Music',
     icon: Music,
     color: 'cyan',
-    stats: '12,000+ tracks · 30+ genres · 65 self-hosted',
+    stats: '12,000+ songs · 30+ genres · 65 self-hosted',
     link: '/music-lab',
     linkLabel: 'Visit Music Lab',
   },

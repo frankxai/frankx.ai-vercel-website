@@ -105,7 +105,7 @@ const tiers = [
     name: 'Builder Sprint',
     duration: '4 weeks',
     color: '#AB47C7',
-    popular: true,
+    popular: false,
     features: [
       'Weekly 1-on-1 coaching sessions',
       'Custom AI agent setup & deployment',
@@ -223,7 +223,7 @@ export default function CoachingPage() {
         >
           <motion.div className="mx-auto max-w-4xl" variants={itemVariants}>
             <div className="mb-6 flex items-center gap-4">
-              <Image src="/images/mascot/mascot-v17-negative-space-mark.png" alt="Axi" width={48} height={48} className="rounded-xl" sizes="48px" style={{ boxShadow: '0 0 20px -6px rgba(139,92,246,0.3)' }} />
+              <Image src="/images/mascot/frank-omega-chibi-avatar-v1_thumb.jpeg" alt="FRANK-Ω" width={48} height={48} className="rounded-xl" sizes="48px" style={{ boxShadow: '0 0 20px -6px rgba(139,92,246,0.3)' }} />
               <div className="inline-flex items-center gap-2 rounded-full border border-[#AB47C7]/30 bg-[#AB47C7]/10 px-4 py-2 text-sm font-medium text-[#AB47C7]">
                 <Sparkles className="h-4 w-4" />
                 Premium AI Coaching
@@ -238,8 +238,8 @@ export default function CoachingPage() {
             </h1>
 
             <p className="mb-8 max-w-2xl text-xl leading-relaxed text-slate-400 text-balance">
-              Work 1-on-1 with an AI architect who&apos;s built 40+ production agents,
-              shipped enterprise systems at Oracle, and created 12,000+ AI tracks.
+              Work 1-on-1 with an AI architect who&apos;s built 38 production agents,
+              shipped enterprise systems at Oracle, and created 12,000+ AI songs.
               Application required.
             </p>
 
@@ -430,7 +430,7 @@ export default function CoachingPage() {
                     <span className="text-sm font-semibold text-[#AB47C7]">Who This Is For</span>
                   </div>
                   <h2 className="mb-4 text-3xl font-bold md:text-4xl">
-                    Not for everyone.
+                    Built for builders.
                   </h2>
                   <p className="text-lg leading-relaxed text-slate-400">
                     This is for creators, founders, and developers who are ready to invest in serious
@@ -511,7 +511,7 @@ export default function CoachingPage() {
                       animate={{ scale: [1, 1.3, 1], opacity: [0.5, 0.8, 0.5] }}
                       transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
                     />
-                    <Image src="/images/mascot/mascot-v25-crystal-familiar.png" alt="Axi" width={64} height={64} className="relative z-10 rounded-2xl" sizes="64px" />
+                    <Image src="/images/mascot/frank-omega-portrait-v1_thumb.jpeg" alt="FRANK-Ω" width={64} height={64} className="relative z-10 rounded-2xl" sizes="64px" />
                   </div>
                 </motion.div>
 
@@ -519,9 +519,9 @@ export default function CoachingPage() {
                 <div className="mb-6 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-sm text-slate-500">
                   <span>AI Architect · Oracle Cloud</span>
                   <span className="text-white/20">·</span>
-                  <span>12,000+ AI tracks produced</span>
+                  <span>AI Music Producer</span>
                   <span className="text-white/20">·</span>
-                  <span>ACOS · 1,000+ builders</span>
+                  <span>ACOS Creator</span>
                 </div>
 
                 <h2 className="mb-4 text-3xl font-bold md:text-4xl">Apply for Coaching</h2>
@@ -532,18 +532,27 @@ export default function CoachingPage() {
                   Limited slots — rolling intake for builders who are ready to ship.
                 </p>
 
-                <div className="mx-auto max-w-md">
-                  <EmailSignup
-                    listType="inner-circle"
-                    placeholder="Enter your email"
-                    buttonText="Submit Application"
-                    redirectTo="/thank-you"
-                    showName={false}
-                  />
+                <div className="mx-auto flex max-w-lg flex-col gap-4 sm:flex-row sm:items-center sm:justify-center">
+                  <a
+                    href="https://cal.com/frankx/strategy"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#AB47C7] via-violet-600 to-indigo-600 px-8 py-4 text-sm font-semibold uppercase tracking-wider text-white shadow-xl shadow-[#AB47C7]/30 transition-all hover:-translate-y-0.5 hover:shadow-2xl hover:shadow-[#AB47C7]/40"
+                  >
+                    Book Strategy Call
+                    <ArrowRight className="h-4 w-4" />
+                  </a>
+                  <span className="text-xs text-white/20 sm:hidden">or</span>
+                  <a
+                    href="mailto:hello@frankx.ai?subject=Coaching%20Inquiry"
+                    className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-8 py-4 text-sm font-semibold text-white/70 transition-all hover:bg-white/10"
+                  >
+                    Email Frank
+                  </a>
                 </div>
 
                 <p className="mt-6 text-xs text-slate-500">
-                  Frank reviews applications weekly. Serious builders only.
+                  Limited availability. Serious builders only.
                 </p>
               </div>
             </div>

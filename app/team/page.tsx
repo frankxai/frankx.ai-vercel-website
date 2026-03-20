@@ -53,8 +53,8 @@ const agents = [
     accent: '#EC4899',
     icon: Music,
     href: '/music',
-    stats: ['12,000+ Songs', '50+ Genres', 'Commercial Ready'],
-    highlight: '12,000+ songs created',
+    stats: ['12K+ Songs', '50+ Genres', 'Commercial Ready'],
+    highlight: '12,000+ AI songs created',
   },
   {
     domain: 'Content',

@@ -105,7 +105,7 @@ const variants = [
 const appearances = [
   { href: '/infogenius', icon: '🎨', label: 'InfoGenius', role: 'Turns any topic into a 4K visual — research-grounded, in seconds.' },
   { href: '/agents', icon: '🤖', label: 'Agent Collective', role: 'Orchestrates the full FrankX AI team across creative domains.' },
-  { href: '/acos', icon: '🧠', label: 'ACOS', role: 'Powers the Agentic Creator OS used by 1,000+ builders.' },
+  { href: '/acos', icon: '🧠', label: 'ACOS', role: 'Powers the Agentic Creator OS the open-source Agentic Creator OS.' },
   { href: '/tools', icon: '⚡', label: 'Tools', role: 'Instant AI utilities — no setup, no wait.' },
 ]
 
@@ -171,7 +171,7 @@ export default function FrankXPage() {
                 <p className="text-xl text-white/60 leading-relaxed">
                   <span className="text-white font-semibold">Frank</span> is an enterprise AI architect,
                   prolific music creator, and systems builder based in Amsterdam.
-                  By day, production AI at Oracle scale. By night, 12,000+ songs and counting.
+                  By day, production AI at Oracle scale. By night, 12,000+ AI songs and counting.
                 </p>
                 <p className="text-xl text-white/60 leading-relaxed">
                   <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-violet-400 font-bold">
@@ -293,7 +293,7 @@ export default function FrankXPage() {
                 omega: { icon: '⚡', label: 'Instant Synthesis', sub: 'Connects any topic in milliseconds. No latency.' },
               },
               {
-                human: { icon: '🎵', label: '12,000+ Songs', sub: 'Prolific AI creator. Every genre. Never stops.' },
+                human: { icon: '🎵', label: '12K+ Songs', sub: 'Prolific AI creator. Every genre. Never stops.' },
                 omega: { icon: '🎯', label: 'Zero Filler', sub: 'No um\'s. No "basically". Exact answer. Done.' },
               },
               {

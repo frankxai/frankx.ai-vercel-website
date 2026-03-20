@@ -215,7 +215,7 @@ export default function CreatorsPage() {
               className="flex flex-wrap gap-4"
             >
               <Link
-                href="/products/generative-creator-os"
+                href="/gencreator"
                 className="group flex items-center gap-2 rounded-full bg-white px-6 py-3 font-semibold text-slate-900 transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-white/20"
               >
                 <Sparkles className="h-5 w-5" />
@@ -238,7 +238,7 @@ export default function CreatorsPage() {
           <div className="mx-auto max-w-6xl px-6">
             <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
               {[
-                { value: '500+', label: 'AI Songs Created', sublabel: 'Using Suno AI' },
+                { value: '+12K', label: 'AI Tracks Published', sublabel: 'Using Suno AI' },
                 { value: '50+', label: 'Creator Prompts', sublabel: 'Battle-tested templates' },
                 { value: '3', label: 'Creative Domains', sublabel: 'Music, Writing, Visual' },
                 { value: '€97', label: 'Full System', sublabel: 'GenCreator OS' },
@@ -371,7 +371,7 @@ export default function CreatorsPage() {
 
                 <div className="mt-6 flex flex-wrap gap-4">
                   <Link
-                    href="/products/generative-creator-os"
+                    href="/gencreator"
                     className="group flex items-center gap-2 rounded-full bg-amber-600 px-6 py-3 font-semibold text-white transition-all hover:bg-amber-500"
                   >
                     Get GenCreator OS
@@ -395,7 +395,7 @@ export default function CreatorsPage() {
                         <Music className="h-6 w-6 text-pink-400" />
                       </div>
                       <div>
-                        <p className="font-semibold text-white">500+ AI Songs</p>
+                        <p className="font-semibold text-white">12K+ AI Songs</p>
                         <p className="text-sm text-slate-400">Created with Suno AI</p>
                       </div>
                     </div>
@@ -452,19 +452,19 @@ export default function CreatorsPage() {
                 {
                   title: 'AI Doesn\'t Have to Be Soulless',
                   description: 'How to preserve your authentic creative voice while using AI tools. The balance between efficiency and expression.',
-                  href: '/blog/ai-doesnt-have-to-be-soulless',
+                  href: '/blog/01-ai-doesnt-have-to-be-soulless',
                   color: 'pink',
                 },
                 {
                   title: 'The Suno Prompt Playbook',
                   description: 'Master the art of AI music generation. Structure, style tags, and techniques for production-quality results.',
-                  href: '/guides/suno-prompt-playbook',
+                  href: '/blog/suno-prompt-engineering-complete-guide',
                   color: 'violet',
                 },
                 {
                   title: 'Building a Creative System',
                   description: 'From one-off creations to consistent output. How to develop workflows that scale your creative capacity.',
-                  href: '/blog/creative-systems-ai',
+                  href: '/blog/creator-intelligence-systems-2026',
                   color: 'cyan',
                 },
               ].map((resource, i) => {

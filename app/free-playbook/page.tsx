@@ -298,7 +298,7 @@ export default function FreePlaybookPage() {
           >
             <div className="flex flex-wrap items-center justify-center gap-8 text-slate-400">
               {[
-                { value: '12,000+', label: 'AI Songs Created' },
+                { value: '60+', label: 'AI Tracks Published' },
                 { value: '74', label: 'Prompts Included' },
                 { value: '5+', label: 'Years Experience' },
               ].map((stat) => (

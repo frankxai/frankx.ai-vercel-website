@@ -36,8 +36,8 @@ const milestones = [
     year: '2025',
     items: [
       {
-        title: '12,000+ AI-Generated Songs',
-        description: 'Created over 12,000 tracks on Suno covering tech house, orchestral, ambient, hip-hop, and experimental genres. 456 followers, 13K hooks.',
+        title: '12K+ AI Songs',
+        description: 'Created 12,000+ AI songs on Suno covering tech house, orchestral, ambient, hip-hop, and experimental genres. 456 followers, 13K hooks.',
         category: 'Music',
         icon: Music,
       },
@@ -58,7 +58,7 @@ const milestones = [
 ]
 
 const stats = [
-  { label: 'AI Songs Created', value: '12,000+' },
+  { label: 'AI Tracks Published', value: '+12K' },
   { label: 'Blog Articles', value: '80+' },
   { label: 'ACOS Skills', value: '75+' },
   { label: 'Site Pages', value: '240+' },

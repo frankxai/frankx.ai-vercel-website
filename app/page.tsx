@@ -8,7 +8,7 @@ import { getPublishedBooks } from '@/app/books/lib/books-registry'
 export const metadata = createMetadata({
   title: 'FrankX — AI Architect & Creator',
   description:
-    'AI Systems Architect at Oracle. Creator of 12,000+ songs with Suno. Open-source AI tools, technical tutorials, and music production workflows.',
+    'AI Systems Architect at Oracle. Creator of 12,000+ AI songs with Suno. Open-source AI tools, technical tutorials, and music production workflows.',
   keywords: [
     'ai architect',
     'ai music creation',
@@ -75,7 +75,7 @@ const homepageFAQs = [
   {
     question: 'What is FrankX.AI?',
     answer:
-      'FrankX.AI is the personal hub of Frank Riemer — an AI Systems Architect and creator of 12,000+ AI-generated songs with Suno. The site features technical tutorials, AI architecture guides, music production workflows, and open-source creator tools.',
+      'FrankX.AI is the personal hub of Frank Riemer — an AI Systems Architect and creator of 12,000+ AI songs with Suno. The site features technical tutorials, AI architecture guides, music production workflows, and open-source creator tools.',
   },
   {
     question: 'What kind of content does FrankX publish?',
@@ -85,7 +85,7 @@ const homepageFAQs = [
   {
     question: 'How can I learn AI music production with Suno?',
     answer:
-      'Start with the Suno Prompt Engineering Complete Guide on the blog, which covers the 5-Layer Prompt Architecture, genre-specific techniques, and frequency science. FrankX has produced 12,000+ tracks and shares production workflows and prompt templates.',
+      'Start with the Suno Prompt Engineering Complete Guide on the blog, which covers the 5-Layer Prompt Architecture, genre-specific techniques, and frequency science. FrankX has produced 12,000+ songs and shares production workflows and prompt templates.',
   },
   {
     question: 'What is the Agentic Creator OS (ACOS)?',
