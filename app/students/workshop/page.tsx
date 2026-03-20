@@ -159,7 +159,7 @@ export default function WorkshopPage() {
               className="flex flex-col items-center justify-center gap-4 sm:flex-row"
             >
               <PremiumButton
-                href="/workshops"
+                href="/students/ikigai"
                 size="lg"
                 className="text-lg px-8 py-4"
               >
@@ -281,7 +281,7 @@ export default function WorkshopPage() {
             Launch the workshop and complete it at your own pace. Most students finish in 90-120 minutes.
           </p>
           <PremiumButton
-            href="/workshops"
+            href="/students/ikigai"
             size="lg"
             className="text-lg px-8 py-4"
           >
