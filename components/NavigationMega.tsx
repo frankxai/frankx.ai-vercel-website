@@ -40,7 +40,6 @@ import {
   Brain,
   Trophy,
   Play,
-  CreditCard,
 } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
@@ -81,7 +80,7 @@ const navigation = {
     label: 'GenCreator',
     featured: {
       title: 'The GenCreator Framework',
-      description: '10 modules: principles, handbook, blueprints, soul, toolkit, community & more.',
+      description: 'Principles, handbook, blueprints, and soul — the complete creator OS.',
       href: '/gencreator',
       badge: 'New',
     },
@@ -91,16 +90,21 @@ const navigation = {
       { name: "Creator's Handbook", href: '/gencreator/handbook', icon: BookOpen, description: '8 chapters, full playbook' },
       { name: "Creator's Blueprints", href: '/gencreator/blueprints', icon: Layers, description: '12 actionable frameworks' },
       { name: 'GenCreator Soul', href: '/gencreator/soul', icon: Heart, description: 'Build your soul.md' },
-      { name: 'Self-Assessment', href: '/gencreator/assess', icon: Target, description: '7-dimension radar quiz' },
-      { name: 'Learning Paths', href: '/gencreator/learn', icon: GraduationCap, description: '12-week curriculum' },
-      { name: 'Creator Toolkit', href: '/gencreator/toolkit', icon: Wrench, description: '13 curated tools' },
-      { name: 'Shipping Tracker', href: '/gencreator/tracker', icon: Target, description: 'Daily habit tracker' },
-      { name: 'Community', href: '/gencreator/community', icon: Users, description: 'Build together, ship together' },
+      { name: 'The Manifesto', href: '/gencreator/manifesto', icon: FileText, description: 'Read the declaration' },
+    ],
+  },
+  creators: {
+    label: 'Creators',
+    featured: {
+      title: 'Creator Toolkit',
+      description: 'AI-powered tools for content creators and artists.',
+      href: '/products/creative-ai-toolkit',
+      badge: 'Popular',
+    },
+    items: [
       { name: 'Prompt Library', href: '/prompt-library', icon: Sparkles, description: '200+ curated prompts' },
       { name: 'Templates', href: '/templates', icon: FileText, description: 'Ready-to-use workflows' },
       { name: 'Creation Chronicles', href: '/creation-chronicles', icon: BookOpen, description: 'Behind the scenes' },
-      { name: 'Join GenCreator', href: '/gencreator/join', icon: CreditCard, description: 'Free, Pro, or Mastery' },
-      { name: 'The Manifesto', href: '/gencreator/manifesto', icon: FileText, description: 'Read the declaration' },
     ],
   },
   students: {
@@ -325,14 +329,13 @@ function MegaMenuContent({ section }: { section: keyof typeof navigation }) {
     )
   }
 
-  // Medium 2-column layout (6+ items)
+  // Medium 2-column layout (Developers: 6-8 items)
   if (itemCount > 5) {
     const midpoint = Math.ceil(itemCount / 2)
     const col1 = data.items.slice(0, midpoint)
     const col2 = data.items.slice(midpoint)
-    const panelWidth = itemCount > 8 ? 'w-[760px]' : 'w-[700px]'
     return (
-      <div className={`${panelWidth} p-4`}>
+      <div className="w-[700px] p-4">
         <div className="grid grid-cols-[200px_1fr] gap-4">
           <FeaturedCard data={data} />
           <div className="grid grid-cols-2 gap-3">
@@ -352,7 +355,7 @@ function MegaMenuContent({ section }: { section: keyof typeof navigation }) {
     )
   }
 
-  // Compact single-column layout (Music, Students, Investor, Games: ≤5 items)
+  // Compact single-column layout (Music, Creators, Students, Investor: ≤5 items)
   return (
     <div className="w-[560px] p-4">
       <div className="grid grid-cols-[200px_1fr] gap-4">
@@ -483,6 +486,14 @@ export default function NavigationMega() {
               <NavTrigger>GenCreator</NavTrigger>
               <NavigationMenu.Content className="absolute left-0 top-0 data-[motion=from-end]:animate-enterFromRight data-[motion=from-start]:animate-enterFromLeft data-[motion=to-end]:animate-exitToRight data-[motion=to-start]:animate-exitToLeft">
                 <MegaMenuContent section="gencreator" />
+              </NavigationMenu.Content>
+            </NavigationMenu.Item>
+
+            {/* Creators */}
+            <NavigationMenu.Item>
+              <NavTrigger>Creators</NavTrigger>
+              <NavigationMenu.Content className="absolute left-0 top-0 data-[motion=from-end]:animate-enterFromRight data-[motion=from-start]:animate-enterFromLeft data-[motion=to-end]:animate-exitToRight data-[motion=to-start]:animate-exitToLeft">
+                <MegaMenuContent section="creators" />
               </NavigationMenu.Content>
             </NavigationMenu.Item>
 

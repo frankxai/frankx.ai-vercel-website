@@ -53,8 +53,8 @@ export async function GET() {
     <language>en-us</language>
     <lastBuildDate>${lastBuildDate}</lastBuildDate>
     <atom:link href="${BASE_URL}/research/feed" rel="self" type="application/rss+xml"/>
-    <managingEditor>frank@frankx.ai (Frank van den Bergh)</managingEditor>
-    <webMaster>frank@frankx.ai (Frank van den Bergh)</webMaster>
+    <managingEditor>frank@frankx.ai (Frank Riemer)</managingEditor>
+    <webMaster>frank@frankx.ai (Frank Riemer)</webMaster>
     <ttl>1440</ttl>
 ${items}
   </channel>

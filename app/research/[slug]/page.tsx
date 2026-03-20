@@ -86,7 +86,7 @@ export default async function Page({ params }: PageProps) {
     description: domain.tldr,
     author: {
       '@type': 'Person',
-      name: 'Frank van den Bergh',
+      name: 'Frank Riemer',
       url: 'https://frankx.ai',
       jobTitle: 'AI Architect',
     },

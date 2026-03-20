@@ -104,3 +104,26 @@ export interface ToolkitItem {
 }
 
 export type ToolkitCategory = 'AI' | 'Automation' | 'Publishing' | 'Design' | 'Audio' | 'Analytics'
+
+// ── Product Suite Types ─────────────────────────────────
+
+export type ProductSuiteTier = 'free' | 'starter' | 'builder' | 'scale'
+
+export interface GenCreatorProduct {
+  id: string
+  name: string
+  slug: string
+  tagline: string
+  description: string
+  price: string
+  priceNote: string
+  tier: ProductSuiteTier
+  category: 'tools' | 'systems' | 'community' | 'services'
+  icon: LucideIcon
+  color: string
+  features: string[]
+  cta: string
+  ctaHref: string
+  badge?: string
+  comingSoon?: boolean
+}

@@ -216,7 +216,7 @@ export default function DevelopersPage() {
               className="flex flex-wrap gap-4"
             >
               <Link
-                href="/products/agentic-creator-os"
+                href="/acos"
                 className="group flex items-center gap-2 rounded-full bg-white px-6 py-3 font-semibold text-slate-900 transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-white/20"
               >
                 <Bot className="h-5 w-5" />
@@ -239,7 +239,7 @@ export default function DevelopersPage() {
           <div className="mx-auto max-w-6xl px-6">
             <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
               {[
-                { value: '500+', label: 'AI-Generated Songs', sublabel: 'Using Suno patterns' },
+                { value: '60+', label: 'AI-Generated Tracks', sublabel: 'Using Suno patterns' },
                 { value: '4+', label: 'Years Enterprise AI', sublabel: 'Production systems' },
                 { value: '50+', label: 'Agent Prompts', sublabel: 'Battle-tested templates' },
                 { value: '€197', label: 'Full System', sublabel: 'Agentic Creator OS' },
@@ -372,7 +372,7 @@ export default function DevelopersPage() {
 
                 <div className="mt-6 flex flex-wrap gap-4">
                   <Link
-                    href="/products/agentic-creator-os"
+                    href="/acos"
                     className="group flex items-center gap-2 rounded-full bg-rose-600 px-6 py-3 font-semibold text-white transition-all hover:bg-rose-500"
                   >
                     Get Agentic Creator OS

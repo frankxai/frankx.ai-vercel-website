@@ -52,7 +52,7 @@ const pageLd = JSON.stringify({
   mainEntityOfPage: pageUrl,
   author: {
     '@type': 'Person',
-    name: 'Frank van den Bergh',
+    name: 'Frank Riemer',
     url: 'https://frankx.ai',
     jobTitle: 'AI Architect',
   },

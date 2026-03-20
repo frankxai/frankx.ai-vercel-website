@@ -71,7 +71,7 @@ const tiers = [
     cta: 'Join Waitlist',
     ctaHref: CHECKOUT.starter,
     variant: 'primary' as const,
-    featured: true,
+    featured: false,
   },
   {
     name: 'Pro System',
@@ -532,8 +532,8 @@ export default function ACOSPage() {
               <Github className="h-5 w-5" />
               View on GitHub
             </PremiumButton>
-            <PremiumButton variant="primary" size="lg" href={CHECKOUT.starter} target="_blank" rel="noopener noreferrer">
-              Get Creator Kit — $47
+            <PremiumButton variant="primary" size="lg" href="/newsletter?ref=acos">
+              Join the Waitlist
             </PremiumButton>
           </div>
         </div>

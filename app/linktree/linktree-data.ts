@@ -165,6 +165,16 @@ export const sections: LinktreeSection[] = [
     color: 'cyan',
     links: [
       {
+        title: 'State of AI 2026',
+        subtitle: 'Visual briefing: models, agents, MCP, skills demand',
+        href: '/students/ai-briefing',
+        icon: Zap,
+        image: '/images/acos/acos-smart-router.png',
+        gradient: 'from-emerald-500/20 to-cyan-500/20',
+        badge: 'New',
+        audiences: ['students', 'devs'],
+      },
+      {
         title: 'Blog',
         subtitle: 'Technical deep-dives, AI architecture, creator workflows',
         href: '/blog',

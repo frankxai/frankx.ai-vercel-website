@@ -96,13 +96,13 @@ const BENEFITS = [
   {
     icon: Calendar,
     title: 'Live Build Labs',
-    description: 'Co-working sessions where we build systems, ship assets, and solve real blockers together.',
+    description: 'Co-working sessions to build systems, ship assets, and solve real blockers together.',
     color: 'text-[#AB47C7]',
   },
   {
     icon: Book,
     title: 'Creation Chronicles Vault',
-    description: 'Private library of prompt packs, templates, sonic drops, and behind-the-scenes tutorials updated weekly.',
+    description: 'Private library of prompt packs, templates, sonic drops, and behind-the-scenes tutorials.',
     color: 'text-[#43BFE3]',
   },
   {

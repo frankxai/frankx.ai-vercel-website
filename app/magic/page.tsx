@@ -440,7 +440,7 @@ export default function MagicPage() {
               <div className="prose prose-lg prose-invert mx-auto text-slate-300">
                 <p>
                   As a musician who discovered the transformative power of AI creation—producing
-                  over 12,000 songs with Suno—I realized that the future of creativity isn't about
+                  hundreds of songs with Suno—I realized that the future of creativity isn't about
                   tools. It's about <em>partnership</em>.
                 </p>
                 <p>
