@@ -221,6 +221,16 @@ const nextConfig = {
     ]
   },
   outputFileTracingRoot: __dirname,
+  outputFileTracingExcludes: {
+    '*': [
+      './public/images/blog/**',
+      './public/images/mascot/**',
+      './public/images/acos/**',
+      './public/images/golden-age/**',
+      './public/images/arcanea/**',
+      './public/reading/**',
+    ],
+  },
   async headers() {
     return [
       {
