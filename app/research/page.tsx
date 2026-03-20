@@ -566,17 +566,17 @@ function CTASection() {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-                href="/inner-circle"
+                href="/students/ai-briefing"
                 className="inline-flex items-center justify-center gap-2 bg-white text-black px-8 py-3.5 rounded-full font-semibold hover:bg-white/90 transition-all"
               >
-                Join Inner Circle
+                State of AI 2026 Briefing
                 <ArrowRight className="w-4 h-4" />
               </Link>
               <Link
-                href="/blog"
+                href="/students"
                 className="inline-flex items-center justify-center gap-2 bg-white/5 text-white px-8 py-3.5 rounded-full font-semibold border border-white/10 hover:bg-white/10 transition-all"
               >
-                Read Latest Articles
+                Free Learning Paths
               </Link>
             </div>
           </div>

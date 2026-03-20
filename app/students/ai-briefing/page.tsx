@@ -107,6 +107,17 @@ export default function AIBriefingPage() {
         initial="hidden"
         animate="visible"
       >
+        {/* ─── Breadcrumb ─── */}
+        <motion.div variants={fadeUp} className="mb-8">
+          <Link
+            href="/students"
+            className="inline-flex items-center gap-1.5 text-xs text-white/25 hover:text-white/50 transition-colors"
+          >
+            <GraduationCap className="h-3 w-3" />
+            Learning Paths
+          </Link>
+        </motion.div>
+
         {/* ─── Hero ─── */}
         <motion.section variants={fadeUp} className="mb-16 text-center">
           <div className="mb-6 flex justify-center">

@@ -14,6 +14,7 @@ import {
   Zap,
   ChevronRight,
   Terminal,
+  TrendingUp,
 } from 'lucide-react'
 import FrankOmega from '@/components/FrankOmega'
 import { GlowCard } from '@/components/ui/glow-card'
@@ -67,6 +68,7 @@ const journeyPaths = [
 ]
 
 const quickWins = [
+  { title: 'State of AI 2026', description: 'Visual briefing — models, agents, MCP, skills demand', href: '/students/ai-briefing', icon: TrendingUp },
   { title: 'Read the blog', description: 'Deep technical guides on AI workflows and creative systems', href: '/blog', icon: Lightbulb },
   { title: 'Browse the prompt library', description: 'Battle-tested prompts for music, writing, coding, and images', href: '/prompt-library', icon: Target },
   { title: 'Join the newsletter', description: 'Weekly dispatch — AI architecture insights and early access to tools', href: '/newsletter', icon: Zap },

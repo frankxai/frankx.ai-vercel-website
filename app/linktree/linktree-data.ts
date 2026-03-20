@@ -200,6 +200,14 @@ export const sections: LinktreeSection[] = [
         audiences: ['devs'],
       },
       {
+        title: 'Research Hub',
+        subtitle: '17+ research domains with validated sources and key findings',
+        href: '/research',
+        icon: Brain,
+        gradient: 'from-teal-500/20 to-emerald-500/20',
+        audiences: ['devs', 'students'],
+      },
+      {
         title: 'Creator Story',
         subtitle: 'How one person built an AI-powered creative empire',
         href: '/frankx',
