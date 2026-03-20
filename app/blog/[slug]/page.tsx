@@ -195,7 +195,7 @@ export default async function BlogPostPage({
                   <Image src="/images/mascot/mascot-v25-crystal-familiar.png" alt="Axi" width={48} height={48} className="rounded-full shadow-lg shadow-emerald-500/20" />
                   <div>
                     <div className="text-base font-semibold text-white">{post.author || 'Frank'}</div>
-                    <div className="text-sm text-white/50">AI Systems Architect & Creator</div>
+                    <div className="text-sm text-white/50">AI Architect & Creator</div>
                   </div>
                 </div>
 

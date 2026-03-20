@@ -153,7 +153,7 @@ export async function POST(request: NextRequest) {
           Frank Riemer
         </p>
         <p style="font-size: 13px; color: #94a3b8; margin: 0; line-height: 1.6;">
-          Musician → AI Systems Architect<br>
+          Musician → AI Architect<br>
           <span style="color: #22d3ee;">500+ AI Songs</span> | <span style="color: #8B5CF6;">Enterprise AI Systems</span>
         </p>
       </div>
