@@ -40,6 +40,7 @@ import {
   Brain,
   Trophy,
   Play,
+  Zap,
 } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
@@ -116,11 +117,12 @@ const navigation = {
       badge: 'Free Resources',
     },
     items: [
-      { name: 'All Guides', href: '/guides', icon: BookOpen, description: 'In-depth tutorials' },
-      { name: 'Courses', href: '/courses', icon: GraduationCap, description: 'Structured learning' },
-      { name: 'Video Vault', href: '/watch', icon: Play, description: '130+ curated AI videos' },
       { name: 'Student Hub', href: '/students', icon: Users, description: 'Your learning dashboard' },
-      { name: 'AI Assessment', href: '/ai-assessment', icon: Target, description: 'Find your path' },
+      { name: 'AI Workshops', href: '/workshops', icon: GraduationCap, description: 'Pre-built workshop templates' },
+      { name: 'AI Assessment', href: '/assess', icon: Target, description: 'Test your AI readiness' },
+      { name: 'AI Briefing', href: '/students/ai-briefing', icon: Zap, description: 'AI in 2026 session' },
+      { name: 'Courses', href: '/courses', icon: BookOpen, description: 'Structured learning' },
+      { name: 'Video Vault', href: '/watch', icon: Play, description: '130+ curated AI videos' },
     ],
   },
   games: {
@@ -184,6 +186,8 @@ const navigation = {
       { name: 'The Golden Age of Creators', href: '/golden-age', icon: BookOpen, description: 'Book on creative transformation' },
       { name: "The Creator's Soulbook", href: '/soulbook', icon: BookOpen, description: 'Your life transformation system' },
       { name: 'GenCreator Framework', href: '/gencreator', icon: Sparkles, description: 'Principles, handbook, blueprints' },
+      { name: 'AI Workshops', href: '/workshops', icon: GraduationCap, description: 'Workshop templates for educators' },
+      { name: 'AI Readiness Assessment', href: '/assess', icon: Target, description: 'Test your AI readiness' },
       { name: 'Free Playbooks', href: '/free-playbook', icon: FileText, description: 'Start with quick wins' },
       { name: 'Prompt Library', href: '/prompt-library', icon: BookOpen, description: 'Curated prompt stacks' },
       { name: 'Downloads', href: '/downloads', icon: Download, description: 'PDFs & free resources' },
@@ -207,7 +211,7 @@ const navigation = {
       },
       {
         label: 'Learn & Read',
-        items: ['The Golden Age of Creators', "The Creator's Soulbook", 'GenCreator Framework', 'Free Playbooks', 'Prompt Library', 'About', 'Contact'],
+        items: ['The Golden Age of Creators', "The Creator's Soulbook", 'GenCreator Framework', 'AI Workshops', 'AI Readiness Assessment', 'Free Playbooks', 'Prompt Library', 'About', 'Contact'],
       },
       {
         label: 'Research & Tools',

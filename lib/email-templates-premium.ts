@@ -364,7 +364,7 @@ export function premiumNewsletterEmail(data: NewsletterData): { subject: string;
                             Frank Riemer
                           </p>
                           <p style="margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 13px; color: #64748b;">
-                            Musician &rarr; AI Systems Architect
+                            Musician &rarr; AI Architect
                           </p>
                         </td>
                       </tr>

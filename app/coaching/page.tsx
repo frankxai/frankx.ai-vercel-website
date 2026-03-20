@@ -8,20 +8,20 @@ import {
   ArrowRight,
   Brain,
   Check,
+  CheckCircle,
   ChevronDown,
-  Clock,
   Heart,
+  Loader2,
   Music,
   FileText,
   Rocket,
+  Send,
   Shield,
   Sparkles,
   Target,
-  Users,
   Zap,
   Network,
 } from 'lucide-react'
-import { EmailSignup } from '@/components/email-signup'
 
 // ── Data ──
 
@@ -105,7 +105,7 @@ const tiers = [
     name: 'Builder Sprint',
     duration: '4 weeks',
     color: '#AB47C7',
-    popular: false,
+    popular: true,
     features: [
       'Weekly 1-on-1 coaching sessions',
       'Custom AI agent setup & deployment',
@@ -159,7 +159,7 @@ const faqs = [
   {
     question: 'How do I get started?',
     answer:
-      'Submit your application below. Frank reviews applications weekly and responds personally. Slots are limited to ensure quality. Newsletter subscribers get priority consideration.',
+      'Submit an application using the form below. Frank reviews every application personally and responds within a few business days. If it looks like a good fit, you will receive a scheduling link to book your first session.',
   },
 ]
 
@@ -194,6 +194,174 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
   )
 }
 
+const FOCUS_AREAS = [
+  'AI Architecture',
+  'Creator Business',
+  'Music Production',
+  'Content Systems',
+] as const
+
+function ApplicationForm() {
+  const [formState, setFormState] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle')
+  const [errorMessage, setErrorMessage] = useState('')
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    company: '',
+    focus: '',
+    situation: '',
+  })
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault()
+    setFormState('submitting')
+    setErrorMessage('')
+
+    try {
+      const res = await fetch('/api/coaching-apply', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      })
+
+      const data = await res.json()
+
+      if (!res.ok) {
+        setErrorMessage(data.error || 'Something went wrong. Please try again.')
+        setFormState('error')
+        return
+      }
+
+      setFormState('success')
+    } catch {
+      setErrorMessage('Network error. Please check your connection and try again.')
+      setFormState('error')
+    }
+  }
+
+  if (formState === 'success') {
+    return (
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        className="py-12 text-center"
+      >
+        <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-emerald-500/20">
+          <CheckCircle className="h-8 w-8 text-emerald-400" />
+        </div>
+        <h3 className="mb-3 text-2xl font-bold">Application Received</h3>
+        <p className="mx-auto max-w-md text-slate-400">
+          Frank reviews every application personally. Expect a response within a few business days.
+        </p>
+      </motion.div>
+    )
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="mx-auto max-w-lg space-y-5 text-left">
+      <div className="grid gap-5 sm:grid-cols-2">
+        <div>
+          <label htmlFor="coaching-name" className="mb-1.5 block text-sm font-medium text-slate-300">
+            Name
+          </label>
+          <input
+            id="coaching-name"
+            type="text"
+            required
+            value={formData.name}
+            onChange={(e) => setFormData((prev) => ({ ...prev, name: e.target.value }))}
+            className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-slate-500 outline-none transition-colors focus:border-[#AB47C7]/50 focus:ring-1 focus:ring-[#AB47C7]/25"
+            placeholder="Your full name"
+          />
+        </div>
+        <div>
+          <label htmlFor="coaching-email" className="mb-1.5 block text-sm font-medium text-slate-300">
+            Email
+          </label>
+          <input
+            id="coaching-email"
+            type="email"
+            required
+            value={formData.email}
+            onChange={(e) => setFormData((prev) => ({ ...prev, email: e.target.value }))}
+            className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-slate-500 outline-none transition-colors focus:border-[#AB47C7]/50 focus:ring-1 focus:ring-[#AB47C7]/25"
+            placeholder="you@example.com"
+          />
+        </div>
+      </div>
+
+      <div>
+        <label htmlFor="coaching-company" className="mb-1.5 block text-sm font-medium text-slate-300">
+          Company / Role
+        </label>
+        <input
+          id="coaching-company"
+          type="text"
+          value={formData.company}
+          onChange={(e) => setFormData((prev) => ({ ...prev, company: e.target.value }))}
+          className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-slate-500 outline-none transition-colors focus:border-[#AB47C7]/50 focus:ring-1 focus:ring-[#AB47C7]/25"
+          placeholder="e.g. CTO at Acme, Freelance Developer"
+        />
+      </div>
+
+      <div>
+        <label htmlFor="coaching-focus" className="mb-1.5 block text-sm font-medium text-slate-300">
+          What do you need help with?
+        </label>
+        <select
+          id="coaching-focus"
+          required
+          value={formData.focus}
+          onChange={(e) => setFormData((prev) => ({ ...prev, focus: e.target.value }))}
+          className="w-full appearance-none rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none transition-colors focus:border-[#AB47C7]/50 focus:ring-1 focus:ring-[#AB47C7]/25 [&>option]:bg-[#1a1a1b] [&>option]:text-white"
+        >
+          <option value="" disabled>Select a focus area</option>
+          {FOCUS_AREAS.map((area) => (
+            <option key={area} value={area}>{area}</option>
+          ))}
+        </select>
+      </div>
+
+      <div>
+        <label htmlFor="coaching-situation" className="mb-1.5 block text-sm font-medium text-slate-300">
+          Tell me about your current situation
+        </label>
+        <textarea
+          id="coaching-situation"
+          required
+          rows={4}
+          value={formData.situation}
+          onChange={(e) => setFormData((prev) => ({ ...prev, situation: e.target.value }))}
+          className="w-full resize-none rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-slate-500 outline-none transition-colors focus:border-[#AB47C7]/50 focus:ring-1 focus:ring-[#AB47C7]/25"
+          placeholder="What are you building? Where are you stuck? What does success look like for you?"
+        />
+      </div>
+
+      {formState === 'error' && (
+        <p className="text-sm text-red-400">{errorMessage}</p>
+      )}
+
+      <button
+        type="submit"
+        disabled={formState === 'submitting'}
+        className="flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#AB47C7] to-[#43BFE3] py-3.5 text-sm font-semibold text-white transition-all hover:opacity-90 disabled:opacity-60"
+      >
+        {formState === 'submitting' ? (
+          <>
+            <Loader2 className="h-4 w-4 animate-spin" />
+            Submitting...
+          </>
+        ) : (
+          <>
+            <Send className="h-4 w-4" />
+            Submit Application
+          </>
+        )}
+      </button>
+    </form>
+  )
+}
+
 // ── Page ──
 
 export default function CoachingPage() {
@@ -223,7 +391,7 @@ export default function CoachingPage() {
         >
           <motion.div className="mx-auto max-w-4xl" variants={itemVariants}>
             <div className="mb-6 flex items-center gap-4">
-              <Image src="/images/mascot/frank-omega-chibi-avatar-v1_thumb.jpeg" alt="FRANK-Ω" width={48} height={48} className="rounded-xl" sizes="48px" style={{ boxShadow: '0 0 20px -6px rgba(139,92,246,0.3)' }} />
+              <Image src="/images/mascot/mascot-v17-negative-space-mark.png" alt="Axi" width={48} height={48} className="rounded-xl" sizes="48px" style={{ boxShadow: '0 0 20px -6px rgba(139,92,246,0.3)' }} />
               <div className="inline-flex items-center gap-2 rounded-full border border-[#AB47C7]/30 bg-[#AB47C7]/10 px-4 py-2 text-sm font-medium text-[#AB47C7]">
                 <Sparkles className="h-4 w-4" />
                 Premium AI Coaching
@@ -231,27 +399,37 @@ export default function CoachingPage() {
             </div>
 
             <h1 className="mb-6 text-5xl font-bold leading-tight text-balance md:text-7xl">
-              Direct access to{' '}
+              AI Coaching{' '}
               <span className="bg-gradient-to-r from-[#AB47C7] via-[#43BFE3] to-[#F59E0B] bg-clip-text text-transparent">
-                proven AI expertise.
+                That Fits Your Reality
               </span>
             </h1>
 
             <p className="mb-8 max-w-2xl text-xl leading-relaxed text-slate-400 text-balance">
-              Work 1-on-1 with an AI architect who&apos;s built 38 production agents,
-              shipped enterprise systems at Oracle, and created 12,000+ AI songs.
-              Application required.
+              Skip the generic AI advice. Work directly with someone who&apos;s built 40+ AI agents,
+              shipped production systems, and created 12,000+ AI songs.
             </p>
 
             <motion.div
-              className="mb-4 flex flex-wrap items-center gap-4"
+              className="mb-4 inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-2 text-sm text-emerald-400"
               variants={itemVariants}
             >
-              <div className="inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/10 px-4 py-2 text-sm text-amber-400">
-                <Clock className="h-4 w-4" />
-                Limited Availability
-              </div>
-              <span className="text-sm text-white/25">By application only</span>
+              <CheckCircle className="h-4 w-4" />
+              Now Accepting Applications
+            </motion.div>
+
+            {/* Social Proof Strip */}
+            <motion.div
+              className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-slate-500"
+              variants={itemVariants}
+            >
+              <span>Oracle AI Architect</span>
+              <span className="text-white/20">|</span>
+              <span>40+ AI Agents Built</span>
+              <span className="text-white/20">|</span>
+              <span>12,000+ AI Songs</span>
+              <span className="text-white/20">|</span>
+              <span>ACOS 1,000+ Builders</span>
             </motion.div>
           </motion.div>
         </motion.section>
@@ -345,9 +523,9 @@ export default function CoachingPage() {
           variants={containerVariants}
         >
           <motion.div className="mb-12 text-center" variants={itemVariants}>
-            <h2 className="mb-4 text-3xl font-bold md:text-4xl">Choose Your Engagement</h2>
+            <h2 className="mb-4 text-3xl font-bold md:text-4xl">Choose Your Path</h2>
             <p className="mx-auto max-w-2xl text-lg text-slate-400">
-              Three tiers. Each requires an application. Pricing shared after review.
+              Three engagement formats designed for different needs and goals.
             </p>
           </motion.div>
 
@@ -385,7 +563,7 @@ export default function CoachingPage() {
                       className="rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-wider"
                       style={{ borderColor: `${tier.color}40`, color: tier.color }}
                     >
-                      Apply
+                      Apply Now
                     </span>
                   </div>
 
@@ -400,7 +578,7 @@ export default function CoachingPage() {
 
                   <div className="mt-auto">
                     <Link
-                      href="#waitlist"
+                      href="#apply"
                       className="flex w-full items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 py-3 text-sm font-semibold text-white/80 transition-all hover:bg-white/10"
                     >
                       Apply for Coaching
@@ -430,11 +608,11 @@ export default function CoachingPage() {
                     <span className="text-sm font-semibold text-[#AB47C7]">Who This Is For</span>
                   </div>
                   <h2 className="mb-4 text-3xl font-bold md:text-4xl">
-                    Built for builders.
+                    Built for Builders
                   </h2>
                   <p className="text-lg leading-relaxed text-slate-400">
-                    This is for creators, founders, and developers who are ready to invest in serious
-                    AI expertise. You should have skin in the game and be ready to implement.
+                    Whether you&apos;re a creator, founder, or developer — this coaching is designed for
+                    people who want practical, hands-on guidance that leads to real results.
                   </p>
                 </div>
 
@@ -482,9 +660,9 @@ export default function CoachingPage() {
           </motion.div>
         </motion.section>
 
-        {/* Apply for Coaching CTA */}
+        {/* Apply for Coaching */}
         <motion.section
-          id="waitlist"
+          id="apply"
           className="mx-auto max-w-4xl px-6 py-20"
           initial="hidden"
           whileInView="visible"
@@ -492,7 +670,7 @@ export default function CoachingPage() {
           variants={containerVariants}
         >
           <motion.div variants={itemVariants}>
-            <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] p-12 text-center backdrop-blur-md">
+            <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] p-8 backdrop-blur-md sm:p-12">
               <motion.div
                 className="absolute inset-0 bg-gradient-to-r from-[#AB47C7]/10 via-[#43BFE3]/10 to-[#F59E0B]/10"
                 animate={{ opacity: [0.3, 0.6, 0.3] }}
@@ -500,59 +678,35 @@ export default function CoachingPage() {
               />
 
               <div className="relative z-10">
-                <motion.div
-                  className="mb-6 inline-flex items-center justify-center"
-                  animate={{ y: [0, -8, 0] }}
-                  transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-                >
-                  <div className="relative">
-                    <motion.div
-                      className="absolute inset-0 rounded-full bg-[#14B8A6]/30 blur-xl"
-                      animate={{ scale: [1, 1.3, 1], opacity: [0.5, 0.8, 0.5] }}
-                      transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-                    />
-                    <Image src="/images/mascot/frank-omega-portrait-v1_thumb.jpeg" alt="FRANK-Ω" width={64} height={64} className="relative z-10 rounded-2xl" sizes="64px" />
-                  </div>
-                </motion.div>
+                <div className="mb-8 text-center">
+                  <motion.div
+                    className="mb-6 inline-flex items-center justify-center"
+                    animate={{ y: [0, -8, 0] }}
+                    transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+                  >
+                    <div className="relative">
+                      <motion.div
+                        className="absolute inset-0 rounded-full bg-[#14B8A6]/30 blur-xl"
+                        animate={{ scale: [1, 1.3, 1], opacity: [0.5, 0.8, 0.5] }}
+                        transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+                      />
+                      <Image src="/images/mascot/mascot-v25-crystal-familiar.png" alt="Axi" width={64} height={64} className="relative z-10 rounded-2xl" sizes="64px" />
+                    </div>
+                  </motion.div>
 
-                {/* Social proof credentials */}
-                <div className="mb-6 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-sm text-slate-500">
-                  <span>AI Architect · Oracle Cloud</span>
-                  <span className="text-white/20">·</span>
-                  <span>AI Music Producer</span>
-                  <span className="text-white/20">·</span>
-                  <span>ACOS Creator</span>
+                  <h2 className="mb-4 text-3xl font-bold md:text-4xl">Apply for Coaching</h2>
+                  <p className="mb-2 text-lg leading-relaxed text-slate-400">
+                    Serious about building AI systems that compound? Submit your application and Frank reviews it personally.
+                  </p>
+                  <p className="text-sm text-slate-500">
+                    Limited slots — rolling intake for builders who are ready to ship.
+                  </p>
                 </div>
 
-                <h2 className="mb-4 text-3xl font-bold md:text-4xl">Apply for Coaching</h2>
-                <p className="mb-2 text-lg leading-relaxed text-slate-400">
-                  Serious about building AI systems that compound? Submit your application and Frank reviews it personally.
-                </p>
-                <p className="mb-8 text-sm text-slate-500">
-                  Limited slots — rolling intake for builders who are ready to ship.
-                </p>
+                <ApplicationForm />
 
-                <div className="mx-auto flex max-w-lg flex-col gap-4 sm:flex-row sm:items-center sm:justify-center">
-                  <a
-                    href="https://cal.com/frankx/strategy"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#AB47C7] via-violet-600 to-indigo-600 px-8 py-4 text-sm font-semibold uppercase tracking-wider text-white shadow-xl shadow-[#AB47C7]/30 transition-all hover:-translate-y-0.5 hover:shadow-2xl hover:shadow-[#AB47C7]/40"
-                  >
-                    Book Strategy Call
-                    <ArrowRight className="h-4 w-4" />
-                  </a>
-                  <span className="text-xs text-white/20 sm:hidden">or</span>
-                  <a
-                    href="mailto:hello@frankx.ai?subject=Coaching%20Inquiry"
-                    className="inline-flex items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 px-8 py-4 text-sm font-semibold text-white/70 transition-all hover:bg-white/10"
-                  >
-                    Email Frank
-                  </a>
-                </div>
-
-                <p className="mt-6 text-xs text-slate-500">
-                  Limited availability. Serious builders only.
+                <p className="mt-6 text-center text-xs text-slate-500">
+                  Frank reviews every application personally. Expect a response within a few business days.
                 </p>
               </div>
             </div>

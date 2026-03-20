@@ -1,0 +1,47 @@
+[
+  {
+    "id": "oracle-workshop",
+    "quote": "Frank's AI briefing gave our students a clear picture of where the industry is heading. The hands-on prompt exercises were the highlight.",
+    "name": "University Instructor",
+    "role": "Computer Science Department",
+    "context": "AI Workshop Session",
+    "avatar": null,
+    "rating": 5
+  },
+  {
+    "id": "acos-builder",
+    "quote": "ACOS changed how I think about AI workflows. The agent orchestration patterns saved me weeks of trial and error.",
+    "name": "Software Engineer",
+    "role": "AI Startup Founder",
+    "context": "ACOS Framework",
+    "avatar": null,
+    "rating": 5
+  },
+  {
+    "id": "music-creator",
+    "quote": "The Suno prompt engineering techniques from Frank's library are on another level. My track quality improved overnight.",
+    "name": "Music Producer",
+    "role": "Independent Artist",
+    "context": "Music Production",
+    "avatar": null,
+    "rating": 5
+  },
+  {
+    "id": "gencreator-user",
+    "quote": "The GenCreator framework helped me structure my entire creator business. The 12 Principles are now my daily checklist.",
+    "name": "Content Creator",
+    "role": "Full-time Creator",
+    "context": "GenCreator Framework",
+    "avatar": null,
+    "rating": 5
+  },
+  {
+    "id": "enterprise-architect",
+    "quote": "Frank bridges the gap between enterprise AI architecture and practical implementation better than anyone I know.",
+    "name": "Solutions Architect",
+    "role": "Enterprise Technology",
+    "context": "AI Architecture",
+    "avatar": null,
+    "rating": 5
+  }
+]

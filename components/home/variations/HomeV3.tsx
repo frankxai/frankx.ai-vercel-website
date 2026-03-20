@@ -375,7 +375,7 @@ export default function HomeV3({
                     >
                       <p className="text-emerald-500/80">{'{'}</p>
                       <p className="pl-4">name:<span className="text-cyan-400"> &quot;Frank Riemer&quot;</span>,</p>
-                      <p className="pl-4">role:<span className="text-cyan-400"> &quot;AI Systems Architect @ Oracle&quot;</span>,</p>
+                      <p className="pl-4">role:<span className="text-cyan-400"> &quot;AI Architect @ Oracle&quot;</span>,</p>
                       <p className="pl-4">tracks:<span className="text-yellow-400"> 12_000</span>,</p>
                       <p className="pl-4">skills:<span className="text-yellow-400"> 75</span>,</p>
                       <p className="pl-4">agents:<span className="text-yellow-400"> 38</span>,</p>

@@ -72,7 +72,7 @@ const homepageFAQs: FAQItem[] = [
   {
     question: 'What is FrankX.AI?',
     answer:
-      'FrankX.AI is the personal hub of Frank Riemer — an AI Systems Architect and creator of 12,000+ AI-generated songs with Suno. The site features technical tutorials, AI architecture guides, music production workflows, and open-source creator tools.',
+      'FrankX.AI is the personal hub of Frank Riemer — an AI Architect at Oracle EMEA AI Center of Excellence and creator of 12,000+ AI-generated songs with Suno. The site features technical tutorials, AI architecture guides, music production workflows, and open-source creator tools.',
   },
   {
     question: 'What kind of content does FrankX publish?',

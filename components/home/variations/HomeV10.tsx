@@ -262,7 +262,7 @@ export default function HomeV10({
           <p
             className="text-sm text-white/45 max-w-2xl leading-relaxed mb-10"
           >
-            Frank Riemer — AI Systems Architect at Oracle. Author of the Agentic Creator OS with 75+ open-source
+            Frank Riemer — AI Architect at Oracle. Author of the Agentic Creator OS with 75+ open-source
             skills and 38 specialized agents. Composer of 12,000+ AI-generated songs across every genre. Six published
             books. The entire workflow is documented, versioned, and shipped.
           </p>

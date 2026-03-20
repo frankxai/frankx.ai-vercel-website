@@ -456,7 +456,7 @@ export default function HomeV8({
                 className="text-[13px] leading-relaxed mb-8 max-w-sm"
                 style={{ color: ARCHITECT.textDim, fontFamily: 'monospace, system-ui' }}
               >
-                // AI Systems Architect at Oracle
+                // AI Architect at Oracle
                 <br />
                 // 75+ open-source skills, 38 agents
                 <br />
