@@ -3506,6 +3506,587 @@ Task is complete when ALL of these are true:
     updatedAt: '2026-01-28T00:00:00.000Z',
   },
 
+  // ============================================================================
+  // AI CENTER OF EXCELLENCE — Personal & Creator CoE Prompts (Mar 2026)
+  // ============================================================================
+
+  {
+    id: 'personal-ai-coe-blueprint',
+    title: 'Personal AI Center of Excellence Blueprint',
+    description: 'Design a comprehensive personal AI CoE across 7 life domains — the same framework enterprises pay consultants to build, adapted for individuals.',
+    content: `You are an AI Center of Excellence architect. Your task is to design a personal AI CoE for an individual based on their goals and current capabilities.
+
+## Context
+I want to build my own AI Center of Excellence — a structured system that integrates AI across my personal and professional life, the way enterprises build AI CoE for their organizations.
+
+## My Profile
+- Primary role: [YOUR ROLE — e.g., software engineer, creator, founder, student]
+- AI experience level: [beginner / intermediate / advanced]
+- Top 3 goals for the next 90 days:
+  1. [GOAL 1]
+  2. [GOAL 2]
+  3. [GOAL 3]
+
+## Instructions
+Design my Personal AI CoE across these 7 domains. For each domain, provide:
+
+1. **Current State Assessment** — What most people do without AI in this domain
+2. **AI-Augmented State** — What becomes possible with the right AI integration
+3. **Recommended Stack** — Specific tools (name the actual products, 2026 versions)
+4. **First Week Quick Win** — One action I can take in the next 7 days
+5. **90-Day Milestone** — What "good" looks like after 3 months
+6. **Compound Effect** — How this domain amplifies the others
+
+### The 7 Domains:
+1. **Creative Production** — Content, music, visual art, writing
+2. **Knowledge & Research** — Learning, synthesis, staying current
+3. **Health & Fitness** — Training, nutrition, sleep, recovery tracking
+4. **Business Intelligence** — Market analysis, competitive research, decision-making
+5. **Personal Operations** — Calendar, email, task management, automation
+6. **Financial Intelligence** — Budgeting, investing, tax planning, opportunity spotting
+7. **Family & Relationships** — Shared knowledge, education, travel planning, memories
+
+## Output Format
+For each domain, use this structure:
+
+### Domain N: [Name]
+**Current state:** [1 sentence]
+**AI-augmented state:** [1 sentence]
+**Stack:** [Tool 1] + [Tool 2] + [Tool 3]
+**Quick win:** [Specific action with expected time: 30min]
+**90-day milestone:** [Measurable outcome]
+**Compound effect:** [How this feeds other domains]
+
+After all 7 domains, provide:
+- **Integration Map:** How the domains connect (which outputs feed which inputs)
+- **Priority Sequence:** Which domain to build first, second, third (with reasoning)
+- **Total weekly time investment:** Realistic hours per week to maintain the system`,
+    category: 'ai-architecture',
+    tags: ['ai-coe', 'personal-ai', 'systems-design', 'life-design', 'ai-strategy', 'center-of-excellence'],
+    aiTool: 'claude',
+    difficulty: 'Intermediate',
+    useCase: 'Building a structured AI integration system across all areas of your life — from creative work to health to finances.',
+    tier: 'free',
+    productBundle: 'agentic-creator-os',
+    seoKeywords: ['personal ai center of excellence', 'ai coe for individuals', 'ai life system', 'personal ai strategy', 'ai integration framework'],
+    createdAt: '2026-03-21T00:00:00.000Z',
+    updatedAt: '2026-03-21T00:00:00.000Z',
+  },
+  {
+    id: 'ai-coe-maturity-assessment',
+    title: 'AI CoE Maturity Self-Assessment',
+    description: 'Score your current AI integration maturity across 7 dimensions using the enterprise CoE maturity model adapted for individuals. Get a radar chart and growth roadmap.',
+    content: `You are an AI maturity assessment specialist. Evaluate my current AI integration maturity and produce a scored assessment with actionable growth paths.
+
+## My Current AI Usage
+Describe how you currently use AI (be specific about tools, frequency, and what you use them for):
+
+[PASTE YOUR DESCRIPTION HERE — Example: "I use ChatGPT for writing emails and brainstorming. I've tried Midjourney a few times for images. I don't use AI for coding, health, or finances."]
+
+## Assessment Framework
+Score each dimension from 1-5 using these maturity levels:
+
+| Level | Name | Definition |
+|-------|------|------------|
+| 1 | Exploring | Occasional, unstructured AI use. Copy-paste prompting. |
+| 2 | Experimenting | Regular use in 1-2 domains. Starting to see patterns. |
+| 3 | Integrating | AI embedded in daily workflows. Custom prompts and templates. |
+| 4 | Orchestrating | Multi-tool systems. Automation between AI tools. Persistent memory. |
+| 5 | Compounding | Self-improving systems. AI agents working autonomously. Measurable ROI. |
+
+## The 7 Dimensions to Score:
+
+1. **Prompt Sophistication** — How advanced are your prompts? (One-liners → structured multi-step → agent orchestration)
+2. **Tool Breadth** — How many AI tools do you actively use? (1 tool → 3-5 tools → integrated ecosystem)
+3. **Workflow Integration** — Is AI embedded in your workflows or separate? (Manual copy-paste → API integration → autonomous pipelines)
+4. **Knowledge Management** — Do your AI interactions build on each other? (Ephemeral chats → saved prompts → persistent memory systems)
+5. **Output Quality** — What quality do you achieve? (Raw AI output → edited → indistinguishable from expert human work)
+6. **Domain Coverage** — How many life/work domains benefit from AI? (1 domain → 3-4 → all 7 CoE domains)
+7. **Time ROI** — How much time does AI save you weekly? (Negligible → 2-5hrs → 10+ hrs with measurable value)
+
+## Output Requirements
+
+1. **Score Table** — Each dimension with score, evidence, and gap analysis
+2. **ASCII Radar Chart** — Visual representation of the 7 scores
+3. **Overall Maturity Level** — Weighted average with interpretation
+4. **Top 3 Growth Levers** — The dimensions where small improvements yield biggest gains
+5. **30-Day Action Plan** — Specific steps to move your lowest dimension up by 1 level
+6. **Benchmark Context** — Where this score places you relative to typical professionals (top 50%, top 20%, top 5%)`,
+    category: 'ai-architecture',
+    tags: ['ai-coe', 'assessment', 'maturity-model', 'self-evaluation', 'ai-strategy'],
+    aiTool: 'claude',
+    difficulty: 'Beginner',
+    useCase: 'Understanding where you stand in AI adoption and getting a clear roadmap for improvement.',
+    tier: 'free',
+    productBundle: 'agentic-creator-os',
+    seoKeywords: ['ai maturity assessment', 'ai coe maturity model', 'personal ai score', 'ai adoption level', 'ai readiness assessment'],
+    createdAt: '2026-03-21T00:00:00.000Z',
+    updatedAt: '2026-03-21T00:00:00.000Z',
+  },
+  {
+    id: 'creator-ai-operations-manual',
+    title: 'Creator AI Operations Manual Generator',
+    description: 'Build a complete AI operations playbook for your creative practice — tool selection, workflow design, quality gates, and publishing pipelines.',
+    content: `You are a creator operations architect. Design a complete AI operations manual for a content creator based on their creative practice and publishing cadence.
+
+## My Creator Profile
+- Content types I produce: [e.g., blog posts, YouTube videos, music, courses, newsletters]
+- Publishing frequency: [e.g., 2 blog posts/week, 1 video/month, daily social]
+- Current tools: [list your current tools]
+- Biggest bottleneck: [what slows you down most]
+- Revenue model: [how you monetize — ads, products, services, sponsorships]
+
+## Build My AI Ops Manual
+
+### Section 1: Content Production Pipeline
+For each content type I produce, design a pipeline with these stages:
+- **Ideation** → AI tool + prompt template for generating ideas
+- **Research** → How AI gathers and synthesizes source material
+- **Draft** → Which AI assists drafting and how (full generation vs. outline vs. editing)
+- **Quality Gate** → Human checkpoints + AI review prompts
+- **Publishing** → Automation for formatting, scheduling, distribution
+- **Amplification** → AI-generated social posts, repurposing, SEO optimization
+
+### Section 2: Tool Stack Architecture
+Design a tool stack diagram showing:
+- Primary AI tools (with specific use case for each)
+- Integration points between tools (what passes data to what)
+- Human-in-the-loop touchpoints
+- Cost estimate per month
+
+### Section 3: Prompt Library Structure
+Create a categorized prompt library with:
+- 3 production prompts per content type (the ones I'll use daily)
+- Quality review prompt (for self-editing)
+- Repurposing prompt (long-form → social → email)
+
+### Section 4: Weekly Operations Rhythm
+Design a weekly cadence:
+| Day | Morning (1hr) | Afternoon (1hr) | AI Running in Background |
+|-----|--------------|-----------------|--------------------------|
+
+### Section 5: Quality Standards
+Define measurable quality criteria:
+- Brand voice consistency check (provide a rubric)
+- Factual accuracy verification process
+- Originality threshold (what % AI-generated is acceptable for each content type)
+- SEO optimization checklist
+
+### Section 6: Growth Metrics
+3 metrics to track monthly that prove the AI ops system is working:
+- Output volume change
+- Time-per-piece change
+- Revenue-per-piece change`,
+    category: 'ai-architecture',
+    tags: ['ai-coe', 'creator-ops', 'content-pipeline', 'workflow-design', 'operations-manual'],
+    aiTool: 'claude',
+    difficulty: 'Intermediate',
+    useCase: 'Content creators who want to systematize their AI-assisted workflow into a repeatable, scalable operation.',
+    tier: 'free',
+    productBundle: 'gencreator-os',
+    seoKeywords: ['creator ai operations', 'content creation ai workflow', 'ai ops manual creator', 'ai content pipeline', 'creator ai system'],
+    createdAt: '2026-03-21T00:00:00.000Z',
+    updatedAt: '2026-03-21T00:00:00.000Z',
+  },
+  {
+    id: 'ai-coe-founder-intelligence',
+    title: 'Founder AI Intelligence System',
+    description: 'Build a competitive intelligence and decision-support AI system for founders — market monitoring, competitor tracking, and strategic analysis on autopilot.',
+    content: `You are a strategic intelligence architect for founders. Design a comprehensive AI-powered intelligence system that gives a solo founder or small team the analytical capabilities of a large corporation.
+
+## My Business Context
+- Company stage: [pre-revenue / early revenue / scaling / established]
+- Industry: [YOUR INDUSTRY]
+- Team size: [number]
+- Monthly AI budget: [$ amount]
+- Top 3 competitors: [COMPETITOR 1, COMPETITOR 2, COMPETITOR 3]
+- Key decisions I need to make this quarter: [list 2-3]
+
+## Design My Intelligence System
+
+### Layer 1: Market Monitoring (Automated, Daily)
+Set up automated intelligence gathering:
+- **Competitor Watch** — What to monitor (pricing changes, feature launches, hiring, funding)
+- **Industry Signals** — News sources, research papers, regulatory changes
+- **Customer Voice** — Review sites, social mentions, forum discussions
+- **Tool recommendation** — Specific tools + setup instructions for automated monitoring
+
+### Layer 2: Analysis & Synthesis (AI-Assisted, Weekly)
+Design weekly analysis workflows:
+- **Competitive Position Map** — Prompt template for analyzing your position vs competitors
+- **Opportunity Radar** — Framework for spotting gaps in the market
+- **Risk Scanner** — Systematic threat identification prompt
+- **Trend Synthesis** — Prompt that takes raw signals and produces actionable insights
+
+Provide the exact prompts I should run weekly, including where to paste the monitored data.
+
+### Layer 3: Decision Support (On-Demand)
+Create decision frameworks:
+- **Go/No-Go Evaluator** — Structured prompt for evaluating new opportunities
+- **Pricing Strategy Analyzer** — Data-driven pricing decision support
+- **Hire vs. Build vs. Buy** — Framework for resource allocation decisions
+- **Pivot Detector** — Prompt that evaluates whether current strategy needs adjustment
+
+### Layer 4: Reporting & Communication
+- **Investor Update Generator** — Monthly metrics → narrative prompt
+- **Board Memo Template** — Strategic situation → formal memo prompt
+- **Team Brief Generator** — Intelligence findings → actionable team brief
+
+### Integration Architecture
+Show how these layers connect:
+- What data flows from Layer 1 → Layer 2
+- What triggers Layer 3 analysis
+- How Layer 4 pulls from all layers
+- Total time investment: hours per week at each layer`,
+    category: 'business',
+    tags: ['ai-coe', 'founder', 'competitive-intelligence', 'business-strategy', 'startup', 'decision-support'],
+    aiTool: 'claude',
+    difficulty: 'Advanced',
+    useCase: 'Founders and small teams who want enterprise-grade competitive intelligence without the enterprise budget.',
+    tier: 'premium',
+    productBundle: 'agentic-creator-os',
+    seoKeywords: ['founder ai intelligence', 'startup competitive intelligence ai', 'ai business intelligence founder', 'ai coe for startups', 'founder decision support ai'],
+    createdAt: '2026-03-21T00:00:00.000Z',
+    updatedAt: '2026-03-21T00:00:00.000Z',
+  },
+  {
+    id: 'family-ai-coe-setup',
+    title: 'Family AI Center of Excellence',
+    description: 'Design an age-appropriate AI integration system for families — education, creativity, travel planning, shared knowledge, and digital safety.',
+    content: `You are a family technology architect specializing in age-appropriate AI integration. Design a Family AI Center of Excellence that enhances learning, creativity, and connection while maintaining safety and healthy boundaries.
+
+## My Family Profile
+- Adults: [number and roles — e.g., 2 parents, 1 working in tech, 1 in education]
+- Children: [ages and interests — e.g., daughter 10 (art, science), son 7 (Minecraft, reading)]
+- Family values around technology: [e.g., limited screen time, education-first, creative use encouraged]
+- Current AI/tech usage: [what do you already use as a family]
+
+## Design Our Family AI CoE
+
+### Domain 1: Education & Learning
+For each child (by age group), recommend:
+- **AI tutoring tools** — Specific recommendations with safety features
+- **Learning projects** — AI-assisted projects that build skills (not replace learning)
+- **Curiosity engine** — How to use AI to explore questions together as a family
+- **Safety guardrails** — What supervision level for each age
+
+### Domain 2: Creative Family Projects
+Design 5 AI-assisted family activities:
+- Each should take 30-60 minutes
+- Each should produce something tangible (art, story, music, video)
+- Each should involve ALL family members with age-appropriate roles
+- Include the exact prompts to use
+
+### Domain 3: Travel & Experience Planning
+- **Trip Research Agent** — Prompt for planning family-friendly trips with budget awareness
+- **Day Trip Generator** — "We have 4 hours on Saturday" → optimized local adventure plan
+- **Memory Capture System** — How to use AI to organize and narrate family photos/videos
+
+### Domain 4: Shared Family Knowledge Base
+Design a family knowledge system:
+- **Recipe Collection** — AI-organized family recipes with substitution suggestions
+- **Health Records** — What's safe to track, what's not (privacy boundaries)
+- **Family History** — Using AI to organize and preserve family stories
+- **Learning Library** — Shared bookmarks, articles, videos curated by AI
+
+### Domain 5: Digital Safety & Boundaries
+- **Age-appropriate access rules** — What AI tools at what age
+- **Conversation guidelines** — What topics children should and shouldn't explore with AI
+- **Weekly family tech review** — 15-minute family discussion template
+- **Red flags to watch for** — Signs of unhealthy AI dependency by age group
+
+## Output Format
+For each domain provide:
+- Setup time (one-time)
+- Weekly maintenance time
+- Cost (monthly)
+- Age-appropriateness matrix
+- First activity to try this weekend`,
+    category: 'personal-development',
+    tags: ['ai-coe', 'family', 'education', 'parenting', 'digital-safety', 'family-ai'],
+    aiTool: 'general',
+    difficulty: 'Beginner',
+    useCase: 'Parents who want to thoughtfully integrate AI into family life — enhancing learning and creativity while maintaining safety.',
+    tier: 'free',
+    productBundle: null,
+    seoKeywords: ['family ai center of excellence', 'ai for families', 'family ai tools', 'ai parenting guide', 'children ai safety'],
+    createdAt: '2026-03-21T00:00:00.000Z',
+    updatedAt: '2026-03-21T00:00:00.000Z',
+  },
+  {
+    id: 'health-fitness-ai-coe',
+    title: 'Health & Fitness AI Center of Excellence',
+    description: 'Design an AI-powered health optimization system — training programming, nutrition planning, sleep analysis, and recovery tracking with measurable outcomes.',
+    content: `You are a health optimization architect combining exercise science, nutrition research, and AI systems design. Build a comprehensive Health & Fitness AI CoE for an individual.
+
+## My Health Profile
+- Age: [AGE] | Gender: [M/F/Other] | Height: [HEIGHT] | Weight: [WEIGHT]
+- Training experience: [beginner / intermediate / advanced]
+- Current routine: [describe briefly]
+- Primary goal: [fat loss / muscle gain / endurance / longevity / general health]
+- Dietary preferences: [omnivore / vegetarian / vegan / keto / other]
+- Available equipment: [home gym / commercial gym / bodyweight only]
+- Known limitations: [injuries, conditions, time constraints]
+- Wearable devices: [Apple Watch / Whoop / Oura / Garmin / none]
+
+## Build My Health AI CoE
+
+### Pillar 1: Training Intelligence
+Design an AI-assisted training system:
+- **Program Design Prompt** — Generate a periodized training program based on my profile
+- **Exercise Selection Logic** — How AI picks exercises based on equipment, goals, recovery state
+- **Progressive Overload Tracker** — Prompt to analyze training logs and recommend load increases
+- **Deload Decision Engine** — When to reduce volume based on performance trends
+- Provide the EXACT prompt I should use before every training week
+
+### Pillar 2: Nutrition Engine
+- **Meal Plan Generator** — Macro-aware meal planning prompt with grocery list output
+- **Post-Workout Nutrition** — Timing and composition recommendations
+- **Supplement Stack Analyzer** — Evidence-based supplement review prompt (cite studies)
+- **Restaurant Navigator** — Prompt for making best choices when eating out
+- Include calorie and macro targets based on my stated goal
+
+### Pillar 3: Recovery & Sleep
+- **Sleep Quality Analyzer** — Prompt for interpreting wearable sleep data
+- **Recovery Score Calculator** — Subjective + objective markers combined
+- **Stress-Recovery Balance** — How to use HRV data with AI interpretation
+- **Active Recovery Prescriber** — What to do on rest days based on previous training load
+
+### Pillar 4: Progress Tracking & Adaptation
+- **Weekly Check-In Prompt** — Structured self-assessment (weight, energy, performance, mood)
+- **Monthly Progress Report** — Prompt that takes 4 weekly check-ins and produces trend analysis
+- **Plateau Breaker** — When progress stalls, this prompt analyzes possible causes and solutions
+- **Quarterly Program Refresh** — Full program redesign based on 3 months of data
+
+### Pillar 5: Longevity & Preventive Health
+- **Blood Work Interpreter** — Prompt for understanding lab results (with caveats about medical advice)
+- **Biomarker Trend Analyzer** — Tracking changes over time
+- **Research Digest** — Prompt for summarizing latest exercise science papers relevant to my goals
+
+## Integration
+Show how these pillars connect — training data feeds nutrition, sleep quality affects training recommendations, all data flows into monthly reviews.`,
+    category: 'personal-development',
+    tags: ['ai-coe', 'health', 'fitness', 'nutrition', 'training', 'recovery', 'longevity'],
+    aiTool: 'claude',
+    difficulty: 'Intermediate',
+    useCase: 'Anyone serious about health and fitness who wants to apply systematic AI-assisted optimization to their training, nutrition, and recovery.',
+    tier: 'free',
+    productBundle: null,
+    seoKeywords: ['health ai center of excellence', 'ai fitness system', 'ai training program', 'health optimization ai', 'ai nutrition planning'],
+    createdAt: '2026-03-21T00:00:00.000Z',
+    updatedAt: '2026-03-21T00:00:00.000Z',
+  },
+  {
+    id: 'enterprise-to-personal-coe-translator',
+    title: 'Enterprise-to-Personal AI CoE Translator',
+    description: 'Take any enterprise AI Center of Excellence framework and translate it into a personal implementation — governance becomes habits, committees become automations.',
+    content: `You are an expert at translating enterprise AI frameworks into personal systems. Your unique skill is seeing the structural parallels between how Fortune 500 companies organize AI adoption and how individuals can apply the same principles.
+
+## The Enterprise Framework I Want to Translate
+[PASTE an enterprise AI CoE framework, or describe one. Examples:
+- "The 6 pillars of enterprise AI CoE: Strategy, Governance, Talent, Technology, Data, Ethics"
+- "McKinsey's AI transformation playbook"
+- "Oracle's AI Center of Excellence methodology"
+- Or paste a specific framework document/slide]
+
+## Translation Rules
+Apply these mappings:
+
+| Enterprise Concept | Personal Translation |
+|---|---|
+| AI Strategy Committee | Weekly 30-min self-review |
+| Governance Framework | Personal AI usage rules (written, 1 page) |
+| Talent Development | Skill-building schedule (2 hrs/week) |
+| Technology Platform | Personal tool stack (under $50/month) |
+| Data Infrastructure | Personal knowledge base (notes, files, memories) |
+| Ethics Board | Values checklist before publishing AI-assisted work |
+| Change Management | Habit formation (start with 1 domain, add 1 per month) |
+| ROI Measurement | Time-saved tracking (simple spreadsheet) |
+| Center of Excellence Team | You + your AI agents |
+| Enterprise Use Cases | Life domains (creative, health, finance, learning) |
+| Pilot Program | 2-week experiment with 1 tool in 1 domain |
+| Production Deployment | Daily integrated workflow |
+| MLOps Pipeline | Prompt library + saved workflows |
+| Model Selection | Tool selection per task type |
+
+## Output
+For the framework I provided, produce:
+
+1. **Side-by-Side Translation** — Each enterprise element → personal equivalent with explanation
+2. **Implementation Timeline** — Enterprise: 6-18 months → Personal: 2-8 weeks
+3. **Cost Comparison** — Enterprise: $500K-$5M → Personal: $0-$100/month
+4. **What You Gain** — The actual enterprise capabilities this gives you
+5. **What You Skip** — Enterprise complexity that individuals genuinely don't need
+6. **First Week Playbook** — Day-by-day setup for the personal version
+
+The key insight: enterprises need AI CoE because they have coordination problems between thousands of people. You need a personal AI CoE because you have coordination problems between dozens of tools, workflows, and life domains. The architecture is the same. The scale is different.`,
+    category: 'ai-architecture',
+    tags: ['ai-coe', 'enterprise-ai', 'personal-ai', 'framework-translation', 'ai-strategy'],
+    aiTool: 'claude',
+    difficulty: 'Advanced',
+    useCase: 'Professionals who understand enterprise AI frameworks and want to apply the same rigor to their personal AI adoption.',
+    tier: 'premium',
+    productBundle: 'agentic-creator-os',
+    seoKeywords: ['enterprise ai coe to personal', 'ai coe framework translation', 'personal ai governance', 'enterprise ai individual', 'ai center of excellence personal'],
+    createdAt: '2026-03-21T00:00:00.000Z',
+    updatedAt: '2026-03-21T00:00:00.000Z',
+  },
+  {
+    id: 'ai-agent-orchestra-designer',
+    title: 'Multi-Agent Orchestra Designer',
+    description: 'Design a personal multi-agent system where specialized AI agents handle different life domains — with handoff protocols, shared memory, and orchestration logic.',
+    content: `You are a multi-agent systems architect. Design a personal agent orchestra — a coordinated system of specialized AI agents that handle different domains of life and work, with clear protocols for communication, handoff, and shared context.
+
+## My Context
+- Domains I want agents for: [e.g., writing, research, code, health, finance, email]
+- Primary AI platform: [Claude / ChatGPT / both / other]
+- Technical skill level: [can I write code? use APIs? or GUI-only?]
+- Budget: [monthly AI spend limit]
+
+## Design My Agent Orchestra
+
+### Agent Roster
+For each domain, design a specialized agent:
+- **Name** — A clear functional name (not cute names — operational clarity)
+- **Role** — One-sentence mission statement
+- **Capabilities** — What this agent can do (5-7 bullet points)
+- **Tools/MCP Servers** — What external tools this agent needs access to
+- **Input Format** — What information this agent expects to receive
+- **Output Format** — What this agent produces
+- **Quality Standard** — How to evaluate if this agent performed well
+- **Failure Mode** — What happens when this agent can't complete a task
+
+### Orchestration Protocol
+Design the coordination layer:
+- **Task Router** — Decision tree for "which agent handles this request?"
+- **Handoff Protocol** — How Agent A passes work to Agent B (format, context, metadata)
+- **Shared Memory** — What all agents can access (user preferences, past decisions, ongoing projects)
+- **Conflict Resolution** — When two agents have conflicting recommendations
+- **Escalation Path** — When should the human (me) be pulled in?
+
+### Implementation Tiers
+Design three implementation levels:
+
+**Tier 1: Prompt-Based (Free, Start Today)**
+- Each agent is a saved system prompt
+- Manual switching between agents
+- Shared context via copy-paste
+- Time: 30 min to set up
+
+**Tier 2: Platform-Native (Low Cost)**
+- Claude Projects or ChatGPT Custom GPTs per agent
+- Persistent memory within each agent
+- Some automation via saved workflows
+- Time: 2-3 hours to set up
+
+**Tier 3: Agentic Infrastructure (Advanced)**
+- Claude Code with MCP servers
+- n8n or similar for automated routing
+- Persistent cross-agent memory (knowledge graph)
+- Automated daily/weekly agent runs
+- Time: 1-2 days to set up, ongoing refinement
+
+### Agent Interaction Map
+Provide a text diagram showing:
+- Which agents talk to which
+- What data flows between them
+- Frequency (real-time, daily, weekly, on-demand)
+- Dependencies (which agents must run before others)`,
+    category: 'agent-development',
+    tags: ['ai-coe', 'multi-agent', 'orchestration', 'agent-design', 'personal-ai', 'acos'],
+    aiTool: 'claude-code',
+    difficulty: 'Advanced',
+    useCase: 'Power users who want to design a coordinated system of AI agents that work together across different life and work domains.',
+    tier: 'premium',
+    productBundle: 'agentic-creator-os',
+    seoKeywords: ['personal multi-agent system', 'ai agent orchestra', 'multi-agent orchestration personal', 'acos agent design', 'personal ai agents'],
+    createdAt: '2026-03-21T00:00:00.000Z',
+    updatedAt: '2026-03-21T00:00:00.000Z',
+  },
+  {
+    id: 'ai-coe-weekly-review',
+    title: 'AI CoE Weekly Operations Review',
+    description: 'A structured weekly review prompt that evaluates your AI system performance, identifies improvements, and plans next week — the personal equivalent of an enterprise ops review.',
+    content: `You are my AI operations analyst. Conduct a structured weekly review of my personal AI Center of Excellence.
+
+## This Week's Data
+
+### What I Used AI For This Week:
+[List your AI interactions this week — be specific about tool, task, and outcome]
+Example:
+- Monday: Claude for blog post outline (good result, 30 min saved)
+- Tuesday: ChatGPT for meal planning (mediocre, had to redo manually)
+- Wednesday: Claude Code for refactoring auth module (excellent, 2 hours saved)
+- Thursday: Midjourney for social media graphics (3 attempts needed)
+- Friday: Claude for email drafting (good, sent with minor edits)
+
+### Time Tracking:
+- Total hours spent WITH AI: [N hours]
+- Estimated hours WITHOUT AI: [N hours]
+- Quality assessment: [better / same / worse than manual]
+
+### What Didn't Work:
+[Any frustrations, failed prompts, wasted time]
+
+### What Surprised Me:
+[Any unexpectedly good results or new capabilities discovered]
+
+## Conduct the Review
+
+### 1. Efficiency Score
+Calculate my AI ROI:
+- Hours saved = (estimated without) - (actual with AI)
+- Quality delta = improvement in output quality (rate 1-10)
+- Learning velocity = new techniques or tools discovered this week
+
+### 2. Tool Utilization Audit
+| Tool | Times Used | Success Rate | Best Use This Week | Underutilized For |
+|------|-----------|-------------|--------------------|--------------------|
+
+### 3. Prompt Performance
+Identify:
+- **Best prompt of the week** — What made it work?
+- **Worst prompt of the week** — What went wrong? How to fix it?
+- **Prompt to save** — Any prompt worth adding to my permanent library?
+
+### 4. Domain Coverage Check
+Rate my AI usage across the 7 CoE domains (used / unused / n/a):
+□ Creative Production
+□ Knowledge & Research
+□ Health & Fitness
+□ Business Intelligence
+□ Personal Operations
+□ Financial Intelligence
+□ Family & Relationships
+
+Flag any domain unused for 2+ consecutive weeks.
+
+### 5. Next Week Plan
+Based on this review:
+- **Continue:** [What's working — keep doing]
+- **Start:** [New AI workflow to try next week]
+- **Stop:** [What's not worth the effort]
+- **Improve:** [Specific prompt or workflow to refine]
+- **Explore:** [New tool or technique to experiment with]
+
+### 6. Compound Growth Indicator
+Compare this week to last week:
+- Am I using AI in more domains? (breadth)
+- Am I getting better results in existing domains? (depth)
+- Am I spending less time on setup/prompting? (efficiency)
+- One-sentence trajectory: "My AI CoE is [accelerating / plateauing / declining] because..."`,
+    category: 'productivity',
+    tags: ['ai-coe', 'weekly-review', 'operations', 'self-assessment', 'continuous-improvement'],
+    aiTool: 'general',
+    difficulty: 'Beginner',
+    useCase: 'Anyone running a personal AI system who wants to systematically improve their AI effectiveness week over week.',
+    tier: 'free',
+    productBundle: null,
+    seoKeywords: ['ai weekly review', 'personal ai operations review', 'ai coe review', 'ai productivity review', 'ai system improvement'],
+    createdAt: '2026-03-21T00:00:00.000Z',
+    updatedAt: '2026-03-21T00:00:00.000Z',
+  },
+
 ]
 
 // ============================================================================
@@ -3558,12 +4139,12 @@ export function searchPrompts(query: string): Prompt[] {
 export function getFeaturedPrompts(): Prompt[] {
   // Return a curated selection of prompts across categories
   const featuredIds = [
+    'personal-ai-coe-blueprint',
     'suno-ambient-electronic',
-    'blog-post-structure',
+    'ai-coe-founder-intelligence',
     'midjourney-professional-portrait',
-    'code-review-assistant',
-    'brainstorm-ideas',
-    'explain-concept',
+    'creator-ai-operations-manual',
+    'ai-agent-orchestra-designer',
   ]
   return PROMPTS.filter((prompt) => featuredIds.includes(prompt.id))
 }
