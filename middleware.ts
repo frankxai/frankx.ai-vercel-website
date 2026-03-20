@@ -5,10 +5,14 @@ import { getToken } from 'next-auth/jwt'
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl
 
-  // /links → /linktree redirect (301 permanent)
-  if (pathname === '/links') {
+  // Permanent redirects
+  const redirects: Record<string, string> = {
+    '/links': '/linktree',
+    '/students/professors': '/professors',
+  }
+  if (redirects[pathname]) {
     const url = request.nextUrl.clone()
-    url.pathname = '/linktree'
+    url.pathname = redirects[pathname]
     return NextResponse.redirect(url, 301)
   }
 
@@ -34,6 +38,7 @@ export async function middleware(request: NextRequest) {
 export const config = {
   matcher: [
     '/links',
+    '/students/professors',
     '/dashboard/:path*',
     '/admin/:path*',
     '/api/dashboard/:path*',
