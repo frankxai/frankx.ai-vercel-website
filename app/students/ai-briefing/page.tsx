@@ -309,6 +309,41 @@ export default function AIBriefingPage() {
           </div>
         </motion.section>
 
+        {/* ─── Section 6: FrankX Ecosystem ─── */}
+        <motion.section variants={fadeUp} className="mb-16">
+          <SectionHeader
+            label="Built for This"
+            title="The FrankX Ecosystem"
+            subtitle="Tools that map directly to the AI landscape above. Built by Frank, free to use."
+            color="text-violet-400"
+          />
+
+          <div className="grid gap-3 sm:grid-cols-2">
+            {[
+              { name: 'ACOS', desc: 'The Creator OS for Claude Code. 75+ skills, 38 agents. The coding agent layer — built on top of Claude Opus 4.6.', href: '/acos', maps: 'Coding Agents + MCP', color: 'violet' as GlowColor, icon: Terminal },
+              { name: 'Music Lab', desc: '12,000+ AI songs. Suno prompt library, production workflows, genre mastery.', href: '/music-lab', maps: 'Creative AI Tools', color: 'cyan' as GlowColor, icon: Music },
+              { name: 'Research Hub', desc: '17+ research domains with validated claims, sources, and quarterly updates.', href: '/research', maps: 'AI Intelligence', color: 'emerald' as GlowColor, icon: Brain },
+              { name: 'GenCreator', desc: 'The creator business framework. Strategy, execution, community, and tools.', href: '/gencreator', maps: 'Creator Economy', color: 'amber' as GlowColor, icon: Rocket },
+            ].map((tool) => {
+              const Icon = tool.icon
+              return (
+                <GlowCard key={tool.name} color={tool.color} href={tool.href} className="!rounded-2xl">
+                  <div className="p-5">
+                    <div className="mb-3 flex items-center justify-between">
+                      <div className="flex items-center gap-2">
+                        <Icon className="h-4 w-4 text-white/50" />
+                        <h3 className="text-base font-semibold text-white">{tool.name}</h3>
+                      </div>
+                      <span className="rounded-full bg-white/[0.06] px-2 py-0.5 text-[10px] text-white/30">{tool.maps}</span>
+                    </div>
+                    <p className="text-xs text-white/35 leading-relaxed">{tool.desc}</p>
+                  </div>
+                </GlowCard>
+              )
+            })}
+          </div>
+        </motion.section>
+
         {/* ─── Deep Dive CTA ─── */}
         <motion.section variants={fadeUp} className="mb-10">
           <div className="relative overflow-hidden rounded-3xl border border-white/[0.08] bg-gradient-to-br from-white/[0.04] to-white/[0.01] p-8 sm:p-10">

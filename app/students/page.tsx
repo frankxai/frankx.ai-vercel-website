@@ -345,6 +345,31 @@ export default function StudentsPage() {
                   </motion.div>
                 ))}
               </div>
+
+              {/* AI Briefing Banner */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.7 }}
+                className="mt-10"
+              >
+                <Link
+                  href="/students/ai-briefing"
+                  className="group flex items-center gap-4 rounded-2xl border border-emerald-500/20 bg-emerald-500/5 p-4 transition-all hover:border-emerald-500/30 hover:bg-emerald-500/10"
+                >
+                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-emerald-500/15">
+                    <TrendingUp className="h-5 w-5 text-emerald-400" />
+                  </div>
+                  <div className="flex-1">
+                    <div className="flex items-center gap-2">
+                      <span className="text-sm font-semibold text-white">State of AI 2026 — Visual Briefing</span>
+                      <span className="rounded-full bg-emerald-500/15 px-2 py-0.5 text-[10px] font-semibold text-emerald-400 uppercase">New</span>
+                    </div>
+                    <span className="text-xs text-white/35">Models, agents, MCP, skills demand — the full landscape explained visually.</span>
+                  </div>
+                  <ArrowRight className="h-4 w-4 text-white/20 group-hover:translate-x-0.5 group-hover:text-emerald-400 transition-all" />
+                </Link>
+              </motion.div>
             </motion.div>
           </div>
         </section>
