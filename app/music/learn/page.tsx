@@ -96,7 +96,7 @@ export default function LearnMusicPage() {
               <motion.div
                 key={inst.name}
                 variants={fadeUp}
-                className={`group rounded-3xl border ${inst.border} bg-gradient-to-br ${inst.gradient} p-6 shadow-sm transition-all duration-300 hover:shadow-lg ${inst.slug ? 'cursor-pointer hover:scale-[1.02]' : ''}`}
+                className={`group rounded-3xl border ${inst.border} bg-gradient-to-br ${inst.gradient} p-6 shadow-sm transition-all duration-300 ${inst.slug ? 'cursor-pointer hover:shadow-lg hover:scale-[1.02]' : 'opacity-60 grayscale-[30%]'}`}
               >
                 <div className="text-center">
                   <span className="text-5xl">{inst.emoji}</span>
@@ -120,7 +120,7 @@ export default function LearnMusicPage() {
                     Kurs starten →
                   </div>
                 ) : (
-                  <div className="mt-4 text-center text-xs text-slate-500">
+                  <div className="mt-4 text-center text-xs text-slate-400">
                     Bald verfügbar
                   </div>
                 )}

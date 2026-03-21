@@ -597,6 +597,26 @@ export default function AleaPage() {
             <p className="mt-4 text-lg text-slate-500">Jahre voller Wunder</p>
           </motion.header>
 
+          {/* ── Quick Navigation (child-friendly jump links) ─────── */}
+          <div className="flex flex-wrap justify-center gap-2">
+            {[
+              { href: '#game', emoji: '🧩', label: 'Spiele' },
+              { href: '#draw', emoji: '🎨', label: 'Malen' },
+              { href: '/alea/katze', emoji: '🐱', label: 'Mia' },
+              { href: '#music', emoji: '🎵', label: 'Musik' },
+              { href: '#stories', emoji: '📖', label: 'Geschichten' },
+              { href: '#languages', emoji: '🗣️', label: 'Sprachen' },
+            ].map((nav) => (
+              <Link
+                key={nav.label}
+                href={nav.href}
+                className="flex items-center gap-1.5 rounded-full bg-white/70 px-4 py-2.5 text-base font-medium text-slate-700 shadow-sm transition hover:bg-white hover:shadow-md active:scale-95"
+              >
+                <span>{nav.emoji}</span> {nav.label}
+              </Link>
+            ))}
+          </div>
+
           {/* ── Multilingual Wishes ────────────────────────────────── */}
           <Section id="wishes" emoji="🌍" title="Geburtstagswünsche" bg="bg-white/60">
             <div className="grid gap-4 sm:grid-cols-2">
@@ -822,21 +842,24 @@ export default function AleaPage() {
 
           {/* ── Language Corner ─────────────────────────────────────── */}
           <Section id="languages" emoji="🗣️" title="Sprachen Ecke" bg="bg-gradient-to-br from-emerald-50/80 to-cyan-50/80">
-            <p className="mb-6 text-center text-slate-500">
-              Alea spricht viele Sprachen! Hier sind einige Wörter zum Üben.
+            <p className="mb-6 text-center text-base text-slate-600">
+              Alea spricht viele Sprachen! Tippe auf ein Wort und lerne es in vier Sprachen.
             </p>
-            <div className="grid gap-3 sm:grid-cols-2">
+
+            {/* Animals */}
+            <h3 className="mb-3 text-lg font-bold text-emerald-700">🐾 Tiere</h3>
+            <div className="mb-6 grid gap-3 sm:grid-cols-2">
               {[
                 { de: 'Schmetterling', en: 'Butterfly', hr: 'Leptir', ru: 'Бабочка', emoji: '🦋' },
-                { de: 'Stern', en: 'Star', hr: 'Zvijezda', ru: 'Звезда', emoji: '⭐' },
-                { de: 'Regenbogen', en: 'Rainbow', hr: 'Duga', ru: 'Радуга', emoji: '🌈' },
-                { de: 'Mond', en: 'Moon', hr: 'Mjesec', ru: 'Луна', emoji: '🌙' },
-                { de: 'Blume', en: 'Flower', hr: 'Cvijet', ru: 'Цветок', emoji: '🌸' },
-                { de: 'Herz', en: 'Heart', hr: 'Srce', ru: 'Сердце', emoji: '💖' },
+                { de: 'Katze', en: 'Cat', hr: 'Mačka', ru: 'Кошка', emoji: '🐱' },
+                { de: 'Hund', en: 'Dog', hr: 'Pas', ru: 'Собака', emoji: '🐶' },
+                { de: 'Vogel', en: 'Bird', hr: 'Ptica', ru: 'Птица', emoji: '🐦' },
+                { de: 'Fisch', en: 'Fish', hr: 'Riba', ru: 'Рыба', emoji: '🐟' },
+                { de: 'Frosch', en: 'Frog', hr: 'Žaba', ru: 'Лягушка', emoji: '🐸' },
               ].map((word) => (
                 <div key={word.de} className="flex items-center gap-3 rounded-2xl bg-white/70 p-4 shadow-sm">
                   <span className="text-3xl">{word.emoji}</span>
-                  <div className="text-sm leading-relaxed">
+                  <div className="text-base leading-relaxed">
                     <p><span className="font-bold text-slate-800">🇩🇪</span> {word.de}</p>
                     <p><span className="font-bold text-slate-800">🇬🇧</span> {word.en}</p>
                     <p><span className="font-bold text-slate-800">🇭🇷</span> {word.hr}</p>
@@ -845,6 +868,54 @@ export default function AleaPage() {
                 </div>
               ))}
             </div>
+
+            {/* Nature */}
+            <h3 className="mb-3 text-lg font-bold text-emerald-700">🌍 Natur</h3>
+            <div className="mb-6 grid gap-3 sm:grid-cols-2">
+              {[
+                { de: 'Stern', en: 'Star', hr: 'Zvijezda', ru: 'Звезда', emoji: '⭐' },
+                { de: 'Regenbogen', en: 'Rainbow', hr: 'Duga', ru: 'Радуга', emoji: '🌈' },
+                { de: 'Mond', en: 'Moon', hr: 'Mjesec', ru: 'Луна', emoji: '🌙' },
+                { de: 'Blume', en: 'Flower', hr: 'Cvijet', ru: 'Цветок', emoji: '🌸' },
+                { de: 'Sonne', en: 'Sun', hr: 'Sunce', ru: 'Солнце', emoji: '☀️' },
+                { de: 'Wasser', en: 'Water', hr: 'Voda', ru: 'Вода', emoji: '💧' },
+              ].map((word) => (
+                <div key={word.de} className="flex items-center gap-3 rounded-2xl bg-white/70 p-4 shadow-sm">
+                  <span className="text-3xl">{word.emoji}</span>
+                  <div className="text-base leading-relaxed">
+                    <p><span className="font-bold text-slate-800">🇩🇪</span> {word.de}</p>
+                    <p><span className="font-bold text-slate-800">🇬🇧</span> {word.en}</p>
+                    <p><span className="font-bold text-slate-800">🇭🇷</span> {word.hr}</p>
+                    <p><span className="font-bold text-slate-800">🇷🇺</span> {word.ru}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Feelings */}
+            <h3 className="mb-3 text-lg font-bold text-emerald-700">💖 Gefühle</h3>
+            <div className="grid gap-3 sm:grid-cols-2">
+              {[
+                { de: 'Liebe', en: 'Love', hr: 'Ljubav', ru: 'Любовь', emoji: '❤️' },
+                { de: 'Freude', en: 'Joy', hr: 'Radost', ru: 'Радость', emoji: '😊' },
+                { de: 'Freundschaft', en: 'Friendship', hr: 'Prijateljstvo', ru: 'Дружба', emoji: '🤝' },
+                { de: 'Mut', en: 'Courage', hr: 'Hrabrost', ru: 'Храбрость', emoji: '💪' },
+              ].map((word) => (
+                <div key={word.de} className="flex items-center gap-3 rounded-2xl bg-white/70 p-4 shadow-sm">
+                  <span className="text-3xl">{word.emoji}</span>
+                  <div className="text-base leading-relaxed">
+                    <p><span className="font-bold text-slate-800">🇩🇪</span> {word.de}</p>
+                    <p><span className="font-bold text-slate-800">🇬🇧</span> {word.en}</p>
+                    <p><span className="font-bold text-slate-800">🇭🇷</span> {word.hr}</p>
+                    <p><span className="font-bold text-slate-800">🇷🇺</span> {word.ru}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <p className="mt-6 text-center text-base text-slate-600">
+              16 Wörter in 4 Sprachen — das sind 64 neue Wörter!
+            </p>
           </Section>
 
           {/* ── From Uncle Frank ────────────────────────────────────── */}
@@ -852,7 +923,7 @@ export default function AleaPage() {
             <div className="rounded-2xl bg-white/80 p-6 sm:p-8 shadow-sm">
               <div className="prose prose-slate mx-auto max-w-none text-center">
                 <p className="text-lg leading-relaxed">
-                  Liebe Alea,
+                  Liebe Alea Sophia Riemer,
                 </p>
                 <p className="mt-4 text-base leading-relaxed">
                   heute wirst du sechs Jahre alt. Sechs! Das sind sechs Sommer,
