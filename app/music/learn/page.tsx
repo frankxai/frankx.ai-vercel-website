@@ -120,7 +120,7 @@ export default function LearnMusicPage() {
                     Kurs starten →
                   </div>
                 ) : (
-                  <div className="mt-4 text-center text-xs text-slate-400">
+                  <div className="mt-4 text-center text-xs text-slate-500">
                     Bald verfügbar
                   </div>
                 )}

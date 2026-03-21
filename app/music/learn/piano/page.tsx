@@ -146,7 +146,7 @@ export default function PianoLearnPage() {
                   className={`group rounded-2xl ${c.bg} border border-transparent p-5 shadow-sm transition hover:shadow-md hover:border-white active:scale-[0.98]`}
                 >
                   <h3 className={`text-lg font-bold ${c.text}`}>{teacher.name}</h3>
-                  <p className="mt-1 text-xs text-slate-400">{teacher.channel}</p>
+                  <p className="mt-1 text-xs text-slate-500">{teacher.channel}</p>
                   <p className="mt-2 text-sm leading-relaxed text-slate-600">{teacher.description}</p>
                   <div className="mt-3 flex flex-wrap gap-2">
                     {teacher.tags.map((tag) => (
@@ -178,7 +178,7 @@ export default function PianoLearnPage() {
                 <span className="text-2xl">{song.emoji}</span>
                 <div className="flex-1">
                   <p className="font-bold text-slate-800">{song.name}</p>
-                  <p className="text-xs text-slate-400">{song.keys}</p>
+                  <p className="text-xs text-slate-500">{song.keys}</p>
                 </div>
                 <span className="text-sm">{song.difficulty}</span>
               </div>
