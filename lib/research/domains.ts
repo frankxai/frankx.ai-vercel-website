@@ -1827,6 +1827,88 @@ export const researchDomains: ResearchDomain[] = [
     sourceCount: 18,
     status: 'active',
   },
+  {
+    slug: 'reality-architecture',
+    title: 'Reality Architecture',
+    subtitle: 'Neuroscience, deliberate creation, and generative AI as tools for making ideas real',
+    description: 'Reality Architecture is the emerging discipline at the intersection of neuroscience of imagination, deliberate creation practices, and generative AI. It maps how mental models become tangible outcomes — from visualization and planning through AI-assisted rendering to agentic implementation. Grounded in research, not speculation.',
+    tldr: 'Neuroscience confirms that mental rehearsal activates the same neural circuits as physical practice (Pascual-Leone, 1995). Writing goals increases achievement probability by 42% (Matthews, Dominican University). Generative AI collapses the gap between imagination and tangible output — text→image in 30 seconds, text→music in 2 minutes, text→website in 1 hour. Reality Architecture is the framework for combining these three forces: neuroscience-backed visualization, structured planning, and AI-accelerated creation. The 5-phase model (Imagine → Map → Render → Build → Iterate) gives practitioners a repeatable system.',
+    icon: 'Sparkles',
+    color: 'violet',
+    category: 'creative-productivity',
+    highlights: [
+      { stat: '42%', label: 'Goal achievement increase from writing plans', source: 'Matthews, Dominican University' },
+      { stat: '5', label: 'Phases: Imagine → Map → Render → Build → Iterate' },
+      { stat: '30s', label: 'Idea to visual with generative AI' },
+      { stat: '12K+', label: 'Songs created using this framework' },
+    ],
+    sections: [
+      {
+        title: 'The Neuroscience Foundation',
+        content: 'Reality Architecture rests on three validated neuroscience findings. First, mental rehearsal creates neural pathways functionally identical to physical practice — pianist subjects who only imagined playing showed the same cortical motor map changes as those who physically practiced (Pascual-Leone et al., 1995). Second, writing goals down increases achievement probability by 42% compared to unwritten goals (Dr. Gail Matthews, Dominican University). Third, vivid visualization combined with emotional engagement activates the reticular activating system, the brain\'s attention filter that determines what information reaches conscious awareness. These are not motivational platitudes — they are measurable, replicable neuroscience findings.',
+        items: [
+          { title: 'Mental Rehearsal', description: 'Imagined practice creates the same cortical changes as physical practice. The brain does not fully distinguish between vividly imagined and physically experienced events at the neural circuit level.', badge: 'Validated' },
+          { title: 'Written Intention', description: 'Writing transforms abstract goals into concrete commitments. The encoding process engages different brain regions than passive thinking, improving both recall and follow-through.', badge: 'Validated' },
+          { title: 'Embodied Cognition', description: 'Drawing, mapping, and physically organizing ideas engages sensorimotor circuits that pure digital note-taking misses. Mind-mapping outperforms linear note-taking for creative problem solving.', badge: 'Research-Backed' },
+          { title: 'Selective Attention', description: 'Clear mental models activate the reticular activating system — the brain starts filtering the environment for relevant opportunities, resources, and patterns that match the imagined outcome.', badge: 'Neuroscience' },
+        ],
+      },
+      {
+        title: 'The AI Acceleration Layer',
+        content: 'Before generative AI, the path from idea to tangible output was: imagine → sketch → months of prototyping → maybe reality. AI compresses this to: imagine → prompt → rendered output in seconds. This is not a productivity hack — it is a fundamental change in the feedback loop between imagination and reality. When you can see your idea rendered as an image in 30 seconds, hear it as music in 2 minutes, and interact with it as a website in 1 hour, the iteration speed changes what is possible. You test 50 versions in the time it took to build 1. The quality of your prompts becomes a direct reflection of the clarity of your thinking.',
+        items: [
+          { title: 'Image Generation', description: 'Text-to-image tools (Midjourney, Gemini, Flux) render mental models as visual assets. Vision boards that took days of magazine-cutting now take minutes of prompting.', badge: '30 seconds' },
+          { title: 'Music Creation', description: 'AI music tools (Suno, Udio) transform emotional states and creative direction into finished compositions. 12,000+ tracks created using this principle.', badge: '2 minutes' },
+          { title: 'Code & Products', description: 'Agentic coding tools (Claude Code + ACOS) turn architectural visions into working software. Full production sites ship in days, not months.', badge: '1 hour → 1 day' },
+          { title: 'Video & Narrative', description: 'AI video generation (Runway, Kling, Veo) and scriptwriting tools create visual narratives from text descriptions, bringing story-level ideas to life.', badge: 'Minutes' },
+        ],
+      },
+      {
+        title: 'The 5-Phase Reality Architecture Framework',
+        content: 'Reality Architecture follows a repeatable 5-phase model that maps the journey from pure imagination to tangible output. Each phase has specific practices, tools, and quality gates. The framework works because it matches the neuroscience: imagination creates the neural pattern, mapping gives it structure, rendering makes it visible, building makes it functional, and iteration makes it excellent.',
+        items: [
+          { title: 'Phase 1: IMAGINE', description: 'Neuroscience-backed visualization, journaling, meditation. Activate the neural circuits. Clarify the mental model. Use Claude for structured journaling prompts that surface subconscious patterns.', badge: 'Foundation' },
+          { title: 'Phase 2: MAP', description: 'Mind maps, system diagrams, architecture blueprints. Transform the mental model into a structured plan. AI-assisted diagramming (Mermaid, Figma, Excalidraw) accelerates the mapping.', badge: 'Structure' },
+          { title: 'Phase 3: RENDER', description: 'Generate visual, audio, and video representations using AI. Make the invisible visible. Test 10 versions of the vision before committing to any single direction.', badge: 'Visualization' },
+          { title: 'Phase 4: BUILD', description: 'Use agentic AI to construct the actual product, system, or experience. Claude Code + ACOS for software. n8n for automation. Vercel for deployment. Ship the real thing.', badge: 'Execution' },
+          { title: 'Phase 5: ITERATE', description: 'Rapid feedback loops, AI-assisted analysis, compound improvement. Analytics inform the next imagination cycle. Each iteration refines both the output and the practitioner.', badge: 'Compound' },
+        ],
+      },
+      {
+        title: 'From Personal Practice to Agentic Systems',
+        content: 'The convergence of reality architecture practices with agentic AI systems creates something new: automated pipelines that connect imagination to implementation. An individual with a clear vision, the right AI tools, and a systematic framework can now produce output that previously required teams of specialists. This is not about replacing human creativity — it is about removing the bottleneck between having an idea and making it real. The limiting factor shifts from capability to clarity of vision. The quality of your prompts reflects the quality of your thinking.',
+        items: [
+          { title: 'Personal AI CoE', description: 'Your personal AI Center of Excellence is the infrastructure layer of reality architecture — the tools, workflows, and systems that turn imagination into output across all life domains.', badge: 'Infrastructure' },
+          { title: 'ACOS', description: 'The Agentic Creator OS is a working implementation — 75+ skills, 38 agents, and automated workflows that handle the BUILD phase at production scale.', badge: 'Implementation' },
+          { title: 'GenCreator Framework', description: 'The GenCreator principles map directly to reality architecture — ship daily, compound relentlessly, own your infrastructure, leave artifacts that outlive trends.', badge: 'Philosophy' },
+          { title: 'Robotic & Physical AI', description: 'The next frontier: AI-designed objects manufactured by robotic systems. NVIDIA\'s physical AI revolution connects digital reality architecture to tangible physical outputs.', badge: 'Emerging' },
+        ],
+      },
+    ],
+    keyFindings: [
+      'Mental rehearsal creates neural pathways identical to physical practice — imagination is not passive, it is preparatory',
+      'Writing plans increases goal achievement by 42% — the encoding process engages different brain regions than thinking alone',
+      'Generative AI collapses the imagination-to-reality gap from months to minutes across image, music, code, and video',
+      'The 5-phase model (Imagine → Map → Render → Build → Iterate) provides a repeatable system for deliberate creation',
+      'Prompt quality directly reflects thinking quality — unclear prompts produce unclear outputs, which reveal unclear vision',
+      'One individual with AI tools now produces output that previously required specialized teams',
+      'The limiting factor has shifted from capability to clarity of vision',
+      'Reality Architecture accelerates with each iteration — the practitioner improves alongside the outputs',
+    ],
+    faq: [
+      { question: 'What is Reality Architecture?', answer: 'Reality Architecture is the discipline of deliberately designing outcomes using neuroscience-backed imagination practices, structured planning, and generative AI tools. It combines research on mental rehearsal, goal-setting psychology, and embodied cognition with AI capabilities that compress the gap between having an idea and making it tangible.' },
+      { question: 'Is this just manifestation with AI?', answer: 'No. Manifestation in popular culture often implies passive wishing. Reality Architecture is grounded in neuroscience — mental rehearsal creates measurable neural changes, writing plans increases achievement probability by 42%, and AI tools provide the execution layer that turns plans into tangible outputs. Every claim references published research. The AI component is the accelerator, not a replacement for deliberate effort.' },
+      { question: 'What neuroscience supports Reality Architecture?', answer: 'Three key findings: (1) Pascual-Leone\'s 1995 study showing mental rehearsal creates the same cortical motor map changes as physical practice, (2) Dr. Gail Matthews\' Dominican University study showing writing goals increases achievement by 42%, and (3) reticular activating system research showing that clear mental models filter attention toward relevant opportunities.' },
+      { question: 'How does generative AI fit into this framework?', answer: 'AI serves as an "imagination renderer" — it takes mental models and makes them visible, audible, and interactive. Image generators render visual concepts in seconds. Music AI creates sonic environments from emotional descriptions. Coding agents build functional products from architectural visions. The key insight: AI compresses the feedback loop between imagination and reality from months to minutes.' },
+      { question: 'Can anyone practice Reality Architecture?', answer: 'Yes. The 5-phase model (Imagine → Map → Render → Build → Iterate) scales from personal goal-setting to product development. Phase 1-3 require no technical skill — journaling, mind-mapping, and prompting AI image generators. Phase 4-5 benefit from technical capability but are increasingly accessible through no-code tools and agentic AI.' },
+      { question: 'How does this relate to ACOS and the Personal AI CoE?', answer: 'ACOS (Agentic Creator OS) is the BUILD phase implementation — the 75+ skills, 38 agents, and workflows that execute the plan. The Personal AI CoE is the infrastructure framework. Reality Architecture is the overarching discipline that connects vision (neuroscience) to execution (AI systems). They are complementary layers of the same system.' },
+    ],
+    relatedDomains: ['personal-ai-coe', 'ai-creative-tools', 'ai-personal-productivity', 'ai-neuroscience', 'creator-economy-ai'],
+    relatedBlogPosts: ['/blog/reality-architecture-generative-ai-neuroscience', '/blog/why-everyone-needs-personal-ai-coe'],
+    lastUpdated: '2026-03-21',
+    sourceCount: 22,
+    status: 'active',
+  },
 ]
 
 // Helper functions
