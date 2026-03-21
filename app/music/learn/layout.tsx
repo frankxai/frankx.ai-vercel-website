@@ -1,9 +1,9 @@
 import { createMetadata } from '@/lib/seo'
 
 export const metadata = createMetadata({
-  title: 'Learn Music | Piano, Violin, Guitar & Voice | FrankX',
+  title: 'Learn Music | Best Teachers, Free Sheet Music & AI Tools | FrankX',
   description:
-    'Curated music learning resources for beginners and young musicians. Piano, violin, guitar, and singing — the best teachers, tools, and practice guides.',
+    'Learn piano, violin, guitar, and more with curated YouTube teachers, free sheet music, AI practice tools, and structured guides. From an AI Architect who creates music.',
   path: '/music/learn',
 })
 
