@@ -17,7 +17,6 @@ import {
   Star,
   Wand2,
 } from 'lucide-react'
-import { GlowCard } from '@/components/ui/glow-card'
 
 function ResourcesBackground() {
   const shouldReduceMotion = useReducedMotion()
@@ -169,26 +168,28 @@ const arcaneaItems = [
   {
     name: 'Arcanea',
     description: 'The 100-year future mythology and worldbuilding academy.',
-    href: '/magic',
+    href: 'https://arcanea.ai',
     icon: Wand2,
+    external: true,
   },
   {
     name: 'Arcanea Academy',
     description: 'Guided learning paths for AI worldbuilders.',
-    href: '/magic',
+    href: 'https://arcanea.ai',
     icon: GraduationCap,
+    external: true,
   },
   {
     name: 'The Luminors',
     description: 'AI companions for creation and evolution.',
-    href: 'https://arcanea.app',
+    href: 'https://arcanea.ai',
     icon: Star,
     external: true,
   },
   {
     name: 'Arcanea Platform',
     description: 'The full Arcanea experience.',
-    href: 'https://arcanea.app',
+    href: 'https://arcanea.ai',
     icon: Heart,
     external: true,
   },
@@ -274,45 +275,30 @@ function ResourceGrid({
           {items.map((item) => {
             const Icon = item.icon
             const isExternal = item.external
+            const LinkComponent = isExternal ? 'a' : Link
+            const linkProps = isExternal
+              ? { href: item.href, target: '_blank', rel: 'noopener noreferrer' }
+              : { href: item.href }
 
             return (
-              <GlowCard
+              <LinkComponent
                 key={item.name}
-                href={isExternal ? undefined : item.href}
-                color="emerald"
-                className="p-5 h-full"
+                {...linkProps}
+                className="group rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5 transition-all hover:-translate-y-1 hover:border-white/20 hover:bg-white/[0.04]"
               >
-                {isExternal ? (
-                  <a href={item.href} target="_blank" rel="noopener noreferrer" className="block">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-emerald-300">
-                      <Icon className="h-5 w-5" />
-                    </div>
-                    <div className="mt-4 flex items-center gap-2 text-base font-semibold text-white">
-                      {item.name}
-                      <ExternalLink className="h-4 w-4 text-white/40" />
-                    </div>
-                    <p className="mt-2 text-sm text-slate-400">{item.description}</p>
-                    <div className="mt-4 flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-emerald-300">
-                      Explore
-                      <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
-                    </div>
-                  </a>
-                ) : (
-                  <>
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-emerald-300">
-                      <Icon className="h-5 w-5" />
-                    </div>
-                    <div className="mt-4 flex items-center gap-2 text-base font-semibold text-white">
-                      {item.name}
-                    </div>
-                    <p className="mt-2 text-sm text-slate-400">{item.description}</p>
-                    <div className="mt-4 flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-emerald-300">
-                      Explore
-                      <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
-                    </div>
-                  </>
-                )}
-              </GlowCard>
+                <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10 text-emerald-300">
+                  <Icon className="h-5 w-5" />
+                </div>
+                <div className="mt-4 flex items-center gap-2 text-base font-semibold text-white">
+                  {item.name}
+                  {isExternal && <ExternalLink className="h-4 w-4 text-white/40" />}
+                </div>
+                <p className="mt-2 text-sm text-slate-400">{item.description}</p>
+                <div className="mt-4 flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-emerald-300">
+                  Explore
+                  <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+                </div>
+              </LinkComponent>
             )
           })}
         </div>
@@ -347,7 +333,7 @@ export default function ResourcesPage() {
               </p>
                 <div className="mt-8 flex flex-wrap gap-3">
                   <Link
-                    href="/magic"
+                    href="https://arcanea.ai"
                     className="rounded-full bg-gradient-to-r from-violet-600 to-pink-600 px-6 py-3 text-sm font-semibold text-white transition-all hover:shadow-lg hover:shadow-violet-500/25"
                   >
                     Enter Arcanea
@@ -365,8 +351,8 @@ export default function ResourcesPage() {
                 <div className="absolute -inset-8 rounded-full bg-gradient-to-br from-emerald-500/20 via-cyan-500/10 to-violet-500/20 blur-3xl opacity-70" />
                 <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] p-6">
                   <Image
-                    src="/images/blog/blog-hero-aurora.svg"
-                    alt="Aurora illustration representing the FrankX resource universe"
+                    src="/images/design-lab/nature-01-digital-garden-hero.png"
+                    alt="Digital garden — a glowing tech-nature tree representing the FrankX resource ecosystem"
                     width={640}
                     height={640}
                     className="h-auto w-full"
