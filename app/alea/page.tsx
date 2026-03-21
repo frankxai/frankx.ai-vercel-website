@@ -247,11 +247,10 @@ function MemoryGame() {
           <motion.button
             key={card.id}
             onClick={() => handleFlip(card.id)}
-            aria-label={card.flipped || card.matched ? card.emoji : `Karte ${card.id + 1}`}
-            className={`alea-focus aspect-square rounded-2xl text-3xl sm:text-4xl font-bold shadow-md transition-colors duration-300 ${
+            className={`aspect-square rounded-2xl text-3xl sm:text-4xl font-bold shadow-md transition-all duration-300 ${
               card.flipped || card.matched
-                ? 'bg-white border-2 border-violet-200'
-                : 'bg-gradient-to-br from-violet-400 to-pink-400 text-white hover:brightness-110 active:scale-95'
+                ? 'bg-white border-2 border-violet-200 scale-100'
+                : 'bg-gradient-to-br from-violet-400 to-pink-400 text-white hover:scale-105 active:scale-95'
             } ${card.matched ? 'opacity-70 ring-2 ring-emerald-300' : ''}`}
             whileTap={{ scale: 0.9 }}
           >
@@ -348,7 +347,7 @@ function DrawingCanvas() {
           <button
             key={c}
             onClick={() => setColor(c)}
-            className={`h-10 w-10 rounded-full border-4 transition-transform active:scale-90 ${
+            className={`h-12 w-12 rounded-full border-4 transition-transform active:scale-90 ${
               color === c ? 'border-slate-800 scale-110' : 'border-white shadow-md'
             }`}
             style={{ backgroundColor: c }}
@@ -357,7 +356,7 @@ function DrawingCanvas() {
         ))}
         <button
           onClick={() => setColor('#ffffff')}
-          className={`flex h-10 w-10 items-center justify-center rounded-full border-4 text-lg shadow-md transition-transform active:scale-90 ${
+          className={`flex h-12 w-12 items-center justify-center rounded-full border-4 text-lg shadow-md transition-transform active:scale-90 ${
             color === '#ffffff' ? 'border-slate-800 scale-110' : 'border-slate-200'
           }`}
           style={{ backgroundColor: '#ffffff' }}
@@ -397,8 +396,6 @@ function DrawingCanvas() {
         onTouchStart={startDraw}
         onTouchMove={draw}
         onTouchEnd={stopDraw}
-        role="img"
-        aria-label="Malstudio — zeichne mit dem Finger oder der Maus"
         className="w-full cursor-crosshair rounded-2xl border-4 border-dashed border-violet-200 bg-white shadow-inner touch-none"
         style={{ aspectRatio: '4/3' }}
       />
@@ -436,7 +433,7 @@ function StarCatcher() {
     setTimeout(() => {
       if (intervalRef.current) clearInterval(intervalRef.current)
       setPlaying(false)
-    }, 15000)
+    }, 25000)
   }
 
   const catchStar = (id: number) => {
@@ -488,8 +485,7 @@ function StarCatcher() {
               exit={{ opacity: 0, scale: 2 }}
               transition={{ duration: 0.3 }}
               onClick={() => catchStar(star.id)}
-              aria-label={`Stern fangen: ${star.emoji}`}
-              className="absolute min-h-[44px] min-w-[44px] flex items-center justify-center text-3xl transition-transform active:scale-150"
+              className="absolute text-3xl transition-transform active:scale-150"
               style={{ left: `${star.x}%`, top: `${star.y}%` }}
             >
               {star.emoji}
@@ -572,18 +568,6 @@ export default function AleaPage() {
         .animate-float {
           animation: float-up linear infinite;
         }
-        @media (prefers-reduced-motion: reduce) {
-          .animate-float {
-            animation: none;
-            display: none;
-          }
-        }
-        /* Focus rings for keyboard navigation */
-        .alea-focus:focus-visible {
-          outline: 3px solid #8b5cf6;
-          outline-offset: 2px;
-          border-radius: 16px;
-        }
       `}</style>
 
       <div className="relative min-h-screen bg-gradient-to-b from-rose-50 via-amber-50 via-60% to-sky-50">
@@ -598,7 +582,7 @@ export default function AleaPage() {
             className="text-center"
           >
             <div className="mb-6 text-6xl sm:text-8xl">🎂</div>
-            <h1 className="bg-gradient-to-r from-rose-500 via-violet-500 to-sky-500 bg-clip-text text-4xl sm:text-6xl font-extrabold leading-tight text-transparent">
+            <h1 className="bg-gradient-to-r from-rose-600 via-violet-600 to-sky-600 bg-clip-text text-4xl sm:text-6xl font-extrabold leading-tight text-transparent">
               Alles Gute zum Geburtstag, Alea!
             </h1>
             <motion.div
@@ -624,7 +608,7 @@ export default function AleaPage() {
                   <p className="text-3xl">{wish.flag}</p>
                   <p className="mt-2 text-lg font-bold text-slate-800">{wish.text}</p>
                   <p className="mt-1 text-sm text-slate-500">{wish.sub}</p>
-                  <p className="mt-1 text-xs font-medium text-slate-500">{wish.lang}</p>
+                  <p className="mt-1 text-xs font-medium text-slate-400">{wish.lang}</p>
                 </motion.div>
               ))}
             </div>
@@ -633,10 +617,8 @@ export default function AleaPage() {
           {/* ── Poetry Garden ──────────────────────────────────────── */}
           <Section id="poems" emoji="🌷" title="Gedichte für Alea" bg="bg-gradient-to-br from-rose-50/80 to-violet-50/80">
             <div className="space-y-8">
-              {POEMS.map((poem) => {
-                const langCode = poem.lang === '🇩🇪' ? 'de' : poem.lang === '🇬🇧' ? 'en' : poem.lang === '🇭🇷' ? 'hr' : 'ru'
-                return (
-                <div key={poem.title} lang={langCode} className="rounded-2xl bg-white/70 p-6 shadow-sm">
+              {POEMS.map((poem) => (
+                <div key={poem.title} className="rounded-2xl bg-white/70 p-6 shadow-sm">
                   <h3 className="mb-3 text-center text-lg font-bold text-rose-600">
                     {poem.lang} {poem.title}
                   </h3>
@@ -652,43 +634,13 @@ export default function AleaPage() {
                     )}
                   </div>
                 </div>
-                )
-              })}
-            </div>
-          </Section>
-
-          {/* ── Wise Words ─────────────────────────────────────────── */}
-          <Section id="wisdom" emoji="📜" title="Weise Worte" bg="bg-gradient-to-br from-amber-50/80 to-white/80">
-            <p className="mb-6 text-center text-sm text-slate-500">
-              Worte von klugen Menschen — für dich, wenn du sie eines Tages liest.
-            </p>
-            <div className="space-y-4">
-              {WISE_WORDS.map((w) => (
-                <div
-                  key={w.author}
-                  className={`rounded-2xl border-l-4 bg-white/70 p-5 shadow-sm ${
-                    w.accent === 'rose'
-                      ? 'border-rose-300'
-                      : w.accent === 'gold'
-                        ? 'border-amber-300'
-                        : 'border-violet-300'
-                  }`}
-                >
-                  <p className="font-serif text-lg italic leading-relaxed text-slate-700">
-                    &ldquo;{w.quote}&rdquo;
-                  </p>
-                  {'translation' in w && w.translation && (
-                    <p className="mt-2 text-sm text-slate-500">{w.translation}</p>
-                  )}
-                  <p className="mt-2 text-sm font-medium text-slate-500">— {w.author}</p>
-                </div>
               ))}
             </div>
           </Section>
 
-          {/* ── Memory Game ────────────────────────────────────────── */}
+          {/* ── Memory Game (FIRST — engagement hook for a child) ── */}
           <Section id="game" emoji="🧩" title="Memory Spiel" bg="bg-gradient-to-br from-violet-50/80 to-pink-50/80">
-            <p className="mb-6 text-center text-slate-500">
+            <p className="mb-6 text-center text-base text-slate-600">
               Finde die passenden Paare! Tippe auf die Karten.
             </p>
             <MemoryGame />
@@ -696,7 +648,7 @@ export default function AleaPage() {
 
           {/* ── Star Catcher ───────────────────────────────────────── */}
           <Section id="stars" emoji="🌟" title="Sterne Fangen" bg="bg-gradient-to-br from-amber-50/80 to-orange-50/80">
-            <p className="mb-6 text-center text-slate-500">
+            <p className="mb-6 text-center text-base text-slate-600">
               Tippe so schnell du kannst auf die Sterne!
             </p>
             <StarCatcher />
@@ -704,7 +656,7 @@ export default function AleaPage() {
 
           {/* ── Drawing Studio ─────────────────────────────────────── */}
           <Section id="draw" emoji="🎨" title="Malstudio" bg="bg-gradient-to-br from-sky-50/80 to-emerald-50/80">
-            <p className="mb-6 text-center text-slate-500">
+            <p className="mb-6 text-center text-base text-slate-600">
               Mal ein Bild! Wähle eine Farbe und zeichne mit dem Finger.
             </p>
             <DrawingCanvas />
@@ -750,7 +702,7 @@ export default function AleaPage() {
                   <span className="text-2xl">{t.emoji}</span>
                   <div>
                     <p className="font-bold text-slate-800 group-hover:text-amber-600">{t.title}</p>
-                    <p className="text-xs text-slate-500">{t.desc}</p>
+                    <p className="text-xs text-slate-400">{t.desc}</p>
                   </div>
                 </a>
               ))}
@@ -775,7 +727,7 @@ export default function AleaPage() {
                   <span className="text-2xl">{t.emoji}</span>
                   <div>
                     <p className="font-bold text-slate-800 group-hover:text-violet-600">{t.title}</p>
-                    <p className="text-xs text-slate-500">{t.desc}</p>
+                    <p className="text-xs text-slate-400">{t.desc}</p>
                   </div>
                 </a>
               ))}
@@ -900,6 +852,35 @@ export default function AleaPage() {
             </div>
           </Section>
 
+          {/* ── Wise Words (for when she's older) ─────────────────── */}
+          <Section id="wisdom" emoji="📜" title="Weise Worte" bg="bg-gradient-to-br from-amber-50/80 to-white/80">
+            <p className="mb-6 text-center text-sm text-slate-600">
+              Worte von klugen Menschen — für dich, wenn du sie eines Tages liest.
+            </p>
+            <div className="space-y-4">
+              {WISE_WORDS.map((w) => (
+                <div
+                  key={w.author}
+                  className={`rounded-2xl border-l-4 bg-white/70 p-5 shadow-sm ${
+                    w.accent === 'rose'
+                      ? 'border-rose-300'
+                      : w.accent === 'gold'
+                        ? 'border-amber-300'
+                        : 'border-violet-300'
+                  }`}
+                >
+                  <p className="font-serif text-lg italic leading-relaxed text-slate-700">
+                    &ldquo;{w.quote}&rdquo;
+                  </p>
+                  {'translation' in w && w.translation && (
+                    <p className="mt-2 text-base text-slate-600">{w.translation}</p>
+                  )}
+                  <p className="mt-2 text-sm font-medium text-slate-600">— {w.author}</p>
+                </div>
+              ))}
+            </div>
+          </Section>
+
           {/* ── Growing With You ────────────────────────────────────── */}
           <motion.section
             initial={{ opacity: 0 }}
@@ -924,7 +905,7 @@ export default function AleaPage() {
                   className={`rounded-full px-4 py-2 text-sm font-medium ${
                     year.active
                       ? 'bg-violet-500 text-white shadow-md'
-                      : 'bg-white/60 text-slate-500'
+                      : 'bg-white/60 text-slate-400'
                   }`}
                 >
                   {year.age} — {year.label}
@@ -935,7 +916,7 @@ export default function AleaPage() {
 
           {/* ── Footer ─────────────────────────────────────────────── */}
           <footer className="pb-8 text-center">
-            <p className="text-sm text-slate-500">
+            <p className="text-sm text-slate-400">
               Made with 💖 by{' '}
               <Link href="/" className="text-violet-400 hover:text-violet-600">
                 Uncle Frank

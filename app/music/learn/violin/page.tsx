@@ -142,7 +142,7 @@ export default function ViolinLearnPage() {
           className="mb-10 rounded-3xl bg-white/70 p-8 shadow-sm backdrop-blur-sm"
         >
           <h2 className="mb-6 text-2xl font-bold text-slate-800">🎵 Die vier Saiten</h2>
-          <div className="grid grid-cols-4 gap-3 text-center">
+          <div className="grid grid-cols-2 gap-3 text-center sm:grid-cols-4">
             {[
               { note: 'G', name: 'Die tiefste', color: 'bg-amber-100 text-amber-700', desc: 'Warm und dunkel' },
               { note: 'D', name: 'Die warme', color: 'bg-rose-100 text-rose-700', desc: 'Voll und rund' },
@@ -178,7 +178,7 @@ export default function ViolinLearnPage() {
                   className={`group rounded-2xl ${c.bg} border border-transparent p-5 shadow-sm transition hover:shadow-md hover:border-white active:scale-[0.98]`}
                 >
                   <h3 className={`text-lg font-bold ${c.text}`}>{teacher.name}</h3>
-                  <p className="mt-1 text-xs text-slate-500">{teacher.channel}</p>
+                  <p className="mt-1 text-xs text-slate-400">{teacher.channel}</p>
                   <p className="mt-2 text-sm leading-relaxed text-slate-600">{teacher.description}</p>
                   <div className="mt-3 flex flex-wrap gap-2">
                     {teacher.tags.map((tag) => (
@@ -228,7 +228,7 @@ export default function ViolinLearnPage() {
                 <span className="text-2xl">{piece.emoji}</span>
                 <div className="flex-1">
                   <p className="font-bold text-slate-800">{piece.name}</p>
-                  <p className="text-xs text-slate-500">{piece.style}</p>
+                  <p className="text-xs text-slate-400">{piece.style}</p>
                 </div>
                 <span className="text-sm">{piece.difficulty}</span>
               </div>
