@@ -46,6 +46,7 @@ const tiers = [
       '75+ auto-activating skills',
       '38 specialized agents',
       '8 orchestrated workflows',
+      'Visual Intelligence System (VIS)',
       'MCP server integrations',
       'Self-learning trajectory system',
       'Community GitHub issues',
@@ -171,9 +172,9 @@ export default function ACOSPage() {
             </span>
           </h1>
           <p className="mt-6 text-lg text-white/60 sm:text-xl md:text-2xl">
-            The AI operating system for creators who ship.
+            The operating system for generative creators.
             <br className="hidden sm:block" />
-            75 auto-activating skills. 38 specialist agents. One prompt.
+            75+ skills. 38 agents. 35+ commands. One entry point.
           </p>
 
           {/* Terminal demo */}
