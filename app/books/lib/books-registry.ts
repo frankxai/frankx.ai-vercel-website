@@ -157,7 +157,7 @@ export const booksRegistry: BookConfig[] = [
   {
     slug: 'love-and-poetry',
     title: 'Love & Poetry',
-    subtitle: 'Verses That Move the Soul',
+    subtitle: 'Verses Across Time and Tongue',
     author: 'Frank Riemer',
     publishDate: '2026',
     description:
@@ -317,7 +317,7 @@ export const booksRegistry: BookConfig[] = [
   {
     slug: 'golden-age',
     title: 'The Golden Age of Creators',
-    subtitle: 'The Democratization of Creative Capability and Distribution',
+    subtitle: 'How Humans and Machines Create Together',
     author: 'Frank Riemer',
     publishDate: '2026',
     description:
@@ -371,7 +371,7 @@ export const booksRegistry: BookConfig[] = [
   {
     slug: 'self-development',
     title: 'The Art of Self-Development',
-    subtitle: 'Seven Pillars of a Complete Life',
+    subtitle: 'Seven Pillars of a Life Worth Building',
     author: 'Frank Riemer',
     publishDate: '2026',
     description:
@@ -405,7 +405,7 @@ export const booksRegistry: BookConfig[] = [
   {
     slug: 'imagination',
     title: 'Imagination',
-    subtitle: 'Unlocking the Power of the Mind',
+    subtitle: 'The Architecture of Everything You Will Ever Create',
     author: 'Frank Riemer',
     publishDate: '2026',
     description:
@@ -437,7 +437,7 @@ export const booksRegistry: BookConfig[] = [
   {
     slug: 'manifestation',
     title: 'Manifestation',
-    subtitle: 'The Architecture of Reality',
+    subtitle: 'An Architect\'s Guide to Building Reality',
     author: 'Frank Riemer',
     publishDate: '2026',
     description:

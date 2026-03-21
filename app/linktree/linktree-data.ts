@@ -266,7 +266,7 @@ export const sections: LinktreeSection[] = [
     links: [
       {
         title: 'Love & Poetry',
-        subtitle: 'Verses that move the soul — Rumi, Goethe, multilingual',
+        subtitle: 'Verses across time and tongue — Rumi, Goethe, multilingual',
         href: '/books/love-and-poetry',
         icon: BookOpen,
         gradient: 'from-rose-500/20 to-pink-500/20',
@@ -282,7 +282,7 @@ export const sections: LinktreeSection[] = [
       },
       {
         title: 'The Golden Age of Creators',
-        subtitle: 'AI-human collaboration and the democratization of creation',
+        subtitle: 'How humans and machines create together',
         href: '/books/golden-age',
         icon: BookOpen,
         gradient: 'from-emerald-500/20 to-teal-500/20',
