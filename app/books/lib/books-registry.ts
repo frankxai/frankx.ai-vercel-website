@@ -158,12 +158,12 @@ export const booksRegistry: BookConfig[] = [
     slug: 'love-and-poetry',
     title: 'Love & Poetry',
     subtitle: 'Verses That Move the Soul',
-    author: 'Frank',
+    author: 'Frank Riemer',
     publishDate: '2026',
     description:
       'A curated collection of the world\'s most beautiful love poetry — Rumi, Rilke, Goethe, Gibran — woven with original verse. Spanning centuries, cultures, and languages.',
     keywords: ['love poetry', 'Rumi', 'Rilke', 'Goethe', 'poetry collection', 'romantic poetry'],
-    coverImage: '/images/books/love-and-poetry-cover.png',
+    coverImage: '/images/books/love-and-poetry-cover-v2.png',
     theme: {
       id: 'love-and-poetry',
       name: 'Love & Poetry',
@@ -238,12 +238,12 @@ export const booksRegistry: BookConfig[] = [
     slug: 'spartan-mindset',
     title: 'Spartan Mindset',
     subtitle: 'The Discipline of One More',
-    author: 'Frank',
+    author: 'Frank Riemer',
     publishDate: '2026',
     description:
       'A manual for the relentless. Discipline, training, and the philosophy of pushing past limits. Every chapter is a rep you didn\'t think you had.',
     keywords: ['discipline', 'gym training', 'mental toughness', 'spartan', 'mindset', 'fitness philosophy'],
-    coverImage: '/images/books/spartan-mindset-cover.png',
+    coverImage: '/images/books/spartan-mindset-cover-v2.png',
     theme: {
       id: 'spartan-mindset',
       name: 'Spartan Mindset',
@@ -318,7 +318,7 @@ export const booksRegistry: BookConfig[] = [
     slug: 'golden-age',
     title: 'The Golden Age of Creators',
     subtitle: 'The Democratization of Creative Capability and Distribution',
-    author: 'Frank',
+    author: 'Frank Riemer',
     publishDate: '2026',
     description:
       'A transformative exploration of how the creator economy crossed $250 billion, how 45 million people now create professionally, and how the barriers to creative expression have evaporated.',
@@ -372,7 +372,7 @@ export const booksRegistry: BookConfig[] = [
     slug: 'self-development',
     title: 'The Art of Self-Development',
     subtitle: 'Seven Pillars of a Complete Life',
-    author: 'Frank',
+    author: 'Frank Riemer',
     publishDate: '2026',
     description:
       'A systematic approach to building every dimension of your life — energy, mind, soul, craft, capital, circle, and legacy. Not theory. Routines that work.',
@@ -406,7 +406,7 @@ export const booksRegistry: BookConfig[] = [
     slug: 'imagination',
     title: 'Imagination',
     subtitle: 'Unlocking the Power of the Mind',
-    author: 'Frank',
+    author: 'Frank Riemer',
     publishDate: '2026',
     description:
       'Your imagination is the most powerful technology you possess. This book teaches you how to wield it — creative visualization, mental models, and the architecture of thought.',
@@ -438,7 +438,7 @@ export const booksRegistry: BookConfig[] = [
     slug: 'manifestation',
     title: 'Manifestation',
     subtitle: 'The Architecture of Reality',
-    author: 'Frank',
+    author: 'Frank Riemer',
     publishDate: '2026',
     description:
       'Not wishful thinking. Not magic. The grounded, psychological, and strategic approach to turning thought into reality — updated for the AI age.',
@@ -471,12 +471,12 @@ export const booksRegistry: BookConfig[] = [
     alternateSlug: 'hope',
     title: 'Hoffnung',
     subtitle: 'Ein Licht in der Dunkelheit',
-    author: 'Frank',
+    author: 'Frank Riemer',
     publishDate: '2026',
     description:
       'Poesie, Meditation und heilsame Texte für Zeiten von Trauer, Übergang und Neubeginn. Für Familien, die Halt, Sprache und leise Stärke suchen.',
     keywords: ['hoffnung buch', 'trauerbegleitung', 'poesie', 'heilung', 'meditation'],
-    coverImage: '/images/books/hoffnung-cover.png',
+    coverImage: '/images/books/hoffnung-cover-v2.png',
     theme: {
       id: 'hoffnung',
       name: 'Hoffnung',
@@ -498,12 +498,12 @@ export const booksRegistry: BookConfig[] = [
     alternateSlug: 'hoffnung',
     title: 'Hope',
     subtitle: 'A Light in the Dark',
-    author: 'Frank',
+    author: 'Frank Riemer',
     publishDate: '2026',
     description:
       'Poetry, meditations, and healing reflections for seasons of grief, transition, and renewal. A companion book for families who need language, calm, and strength.',
     keywords: ['hope poetry book', 'grief support', 'healing writing', 'meditation', 'compassion'],
-    coverImage: '/images/books/hoffnung-cover.png',
+    coverImage: '/images/books/hope-cover-v2.png',
     theme: {
       id: 'hoffnung',
       name: 'Hope',
