@@ -524,10 +524,10 @@ export default function AboutPage() {
 
             <div className="grid gap-6 sm:grid-cols-2">
               {[
-                'Everyone deserves their own AI Center of Excellence. Not just enterprises — every creator, every builder.',
-                'AI should amplify humanity, not replace it. The best tools disappear into your workflow.',
-                "We're living in the Golden Age of creation. The gap between idea and execution has never been smaller.",
-                'Share everything. The work speaks louder than the marketing. Build in public. Let people decide.',
+                { text: 'Everyone deserves their own AI Center of Excellence. Not just enterprises — every creator, every builder.', href: '/research/personal-ai-coe' },
+                { text: 'AI should amplify humanity, not replace it. The best tools disappear into your workflow.' },
+                { text: "We're living in the Golden Age of creation. The gap between idea and execution has never been smaller." },
+                { text: 'Share everything. The work speaks louder than the marketing. Build in public. Let people decide.' },
               ].map((belief, i) => (
                 <motion.div
                   key={i}
@@ -539,7 +539,12 @@ export default function AboutPage() {
                       {String(i + 1).padStart(2, '0')}
                     </span>
                     <p className="text-base text-white/50 leading-relaxed">
-                      {belief}
+                      {belief.text}
+                      {belief.href && (
+                        <a href={belief.href} className="ml-2 text-emerald-400/80 hover:text-emerald-400 transition-colors text-sm">
+                          Read the research →
+                        </a>
+                      )}
                     </p>
                   </GlowCard>
                 </motion.div>

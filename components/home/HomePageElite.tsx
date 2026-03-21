@@ -1268,8 +1268,8 @@ export default function HomePageElite({
           eyebrow="Music Production"
           title="Music Lab"
           description="12,000+ AI songs produced with Suno. Genre mastery from orchestral to hip hop. Prompt engineering that creates radio-ready tracks."
-          imageSrc="/images/blog/suno-prompt-engineering-complete-guide-hero.png"
-          imageAlt="Suno Prompt Engineering Guide"
+          imageSrc="/images/music/infogenius/music-revenue-flywheel-v1.png"
+          imageAlt="Suno AI Music Workflow — from idea to published track in five steps"
           links={[
             { label: 'Suno Prompt Engineering Guide', href: '/blog/suno-prompt-engineering-complete-guide' },
             { label: 'Science of State Change', href: '/blog/science-of-state-change-music' },
@@ -1285,8 +1285,8 @@ export default function HomePageElite({
           eyebrow="Creator Framework"
           title="GenCreator"
           description="The complete operating system for AI-native creators. 12 principles, a handbook, actionable blueprints, soul dimensions, a self-assessment — and a community shipping daily."
-          imageSrc="/images/blog/blog-hero-aurora.svg"
-          imageAlt="GenCreator Framework"
+          imageSrc="/images/gencreator/gencreator-framework-hero.png"
+          imageAlt="GenCreator Framework — holographic creator command center with emerald nexus"
           links={[
             { label: '12 Principles', href: '/gencreator/principles' },
             { label: 'Self-Assessment', href: '/gencreator/assess' },

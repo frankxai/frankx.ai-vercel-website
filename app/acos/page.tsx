@@ -518,6 +518,25 @@ export default function ACOSPage() {
         </div>
       </section>
 
+      {/* ─── Personal AI CoE Bridge ─── */}
+      <section className="border-t border-white/[0.08] bg-white/[0.03] py-16">
+        <div className="mx-auto max-w-3xl px-6">
+          <div className="flex flex-col items-center gap-6 sm:flex-row sm:items-start">
+            <div className="flex-1 text-center sm:text-left">
+              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-amber-400/60">The Architecture</p>
+              <h3 className="mt-2 text-xl font-bold text-white">ACOS is the implementation. The Personal AI CoE is the blueprint.</h3>
+              <p className="mt-2 text-sm text-white/50">
+                Enterprise AI Centers of Excellence cost millions. The same framework — adapted for individuals — powers ACOS. Seven life domains. Five maturity levels. One system.
+              </p>
+            </div>
+            <PremiumButton variant="ghost" size="lg" href="/research/personal-ai-coe">
+              Read the Research
+              <ArrowRight className="h-4 w-4" />
+            </PremiumButton>
+          </div>
+        </div>
+      </section>
+
       {/* ─── Final CTA ─── */}
       <section className="py-20">
         <div className="mx-auto max-w-3xl px-6 text-center">
