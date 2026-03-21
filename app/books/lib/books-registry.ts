@@ -377,7 +377,7 @@ export const booksRegistry: BookConfig[] = [
     description:
       'A systematic approach to building every dimension of your life — energy, mind, soul, craft, capital, circle, and legacy. Not theory. Routines that work.',
     keywords: ['self-development', 'personal growth', 'routines', 'habits', 'life design'],
-    coverImage: '/images/books/self-development-cover.png',
+    coverImage: '/images/books/self-development-cover-v2.png',
     theme: {
       id: 'self-development',
       name: 'The Art of Self-Development',
@@ -411,7 +411,7 @@ export const booksRegistry: BookConfig[] = [
     description:
       'Your imagination is the most powerful technology you possess. This book teaches you how to wield it — creative visualization, mental models, and the architecture of thought.',
     keywords: ['imagination', 'creative visualization', 'mental models', 'cognitive expansion', 'mind power'],
-    coverImage: '/images/books/imagination-cover.png',
+    coverImage: '/images/books/imagination-cover-v2.png',
     theme: {
       id: 'imagination',
       name: 'Imagination',
@@ -443,7 +443,7 @@ export const booksRegistry: BookConfig[] = [
     description:
       'Not wishful thinking. Not magic. The grounded, psychological, and strategic approach to turning thought into reality — updated for the AI age.',
     keywords: ['manifestation', 'law of attraction', 'psychology of intention', 'goal achievement', 'mental architecture'],
-    coverImage: '/images/books/manifestation-cover.png',
+    coverImage: '/images/books/manifestation-cover-v2.png',
     theme: {
       id: 'manifestation',
       name: 'Manifestation',
