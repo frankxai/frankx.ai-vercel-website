@@ -2,6 +2,7 @@
 
 import { useState, useRef, useCallback, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import Image from 'next/image'
 import Link from 'next/link'
 
 // ── Data ────────────────────────────────────────────────────────────────────
@@ -661,6 +662,26 @@ export default function AleaPage() {
             </p>
             <DrawingCanvas />
           </Section>
+
+          {/* ── Mias Katzenwelt ──────────────────────────────────── */}
+          <Link href="/alea/katze">
+            <motion.div
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="group overflow-hidden rounded-3xl bg-gradient-to-br from-rose-100 to-amber-50 border border-rose-200 p-6 shadow-lg transition hover:shadow-xl"
+            >
+              <div className="flex items-center gap-5">
+                <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-2xl shadow-md">
+                  <Image src="/images/alea/katze-mia-mascot_thumb.jpeg" alt="Mia" width={96} height={96} className="object-cover" />
+                </div>
+                <div>
+                  <h2 className="text-2xl font-extrabold text-rose-700 group-hover:text-rose-800">🐱 Mias Katzenwelt</h2>
+                  <p className="mt-1 text-base text-slate-600">Dein eigenes virtuelles Kätzchen! Füttere Mia, lerne Katzenwissen, erfinde Namen und lies Geschichten.</p>
+                  <p className="mt-2 text-sm font-medium text-rose-500">Tippe hier um Mia zu besuchen →</p>
+                </div>
+              </div>
+            </motion.div>
+          </Link>
 
           {/* ── Stories ────────────────────────────────────────────── */}
           <Section id="stories" emoji="📖" title="Geschichten" bg="bg-gradient-to-br from-amber-50/80 to-rose-50/80">
