@@ -136,8 +136,8 @@ export default function AboutPage() {
               className="max-w-3xl space-y-5 text-lg leading-relaxed text-white/50"
             >
               <p className="text-white/70 text-xl">
-                Enterprise AI architect. Creator of 12,000+ AI songs. Builder of
-                the Agentic Creator OS. Based in Amsterdam, on the water.
+                Oracle AI Architect. 12,000+ AI songs. Builder of ACOS — an
+                open-source OS used by 1,000+ creators. Amsterdam, IJburg.
               </p>
               <p>
                 Everything I build goes here — not as a portfolio, but as a living
@@ -584,11 +584,10 @@ export default function AboutPage() {
           <div className="mx-auto max-w-5xl px-6">
             <motion.div {...fadeIn} transition={transition} className="text-center">
               <h2 className="text-2xl font-bold text-white sm:text-3xl mb-3">
-                Stay in the loop
+                Weekly signal from the build.
               </h2>
               <p className="text-white/40 mb-8 max-w-lg mx-auto">
-                Weekly insights on AI systems, music creation, and building in
-                public. No spam, no guru energy — just the work.
+                AI architecture, music systems, and the real work — weekly. Pure signal.
               </p>
 
               <div className="max-w-sm mx-auto mb-10">

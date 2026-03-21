@@ -394,20 +394,20 @@ export default function CoachingPage() {
               <Image src="/images/mascot/mascot-v17-negative-space-mark.png" alt="Axi" width={48} height={48} className="rounded-xl" sizes="48px" style={{ boxShadow: '0 0 20px -6px rgba(139,92,246,0.3)' }} />
               <div className="inline-flex items-center gap-2 rounded-full border border-[#AB47C7]/30 bg-[#AB47C7]/10 px-4 py-2 text-sm font-medium text-[#AB47C7]">
                 <Sparkles className="h-4 w-4" />
-                Premium AI Coaching
+                1-on-1 AI Architecture Coaching
               </div>
             </div>
 
             <h1 className="mb-6 text-5xl font-bold leading-tight text-balance md:text-7xl">
-              AI Coaching{' '}
+              Build production AI systems.{' '}
               <span className="bg-gradient-to-r from-[#AB47C7] via-[#43BFE3] to-[#F59E0B] bg-clip-text text-transparent">
-                That Fits Your Reality
+                Ship faster.
               </span>
             </h1>
 
             <p className="mb-8 max-w-2xl text-xl leading-relaxed text-slate-400 text-balance">
-              Skip the generic AI advice. Work directly with someone who&apos;s built 40+ AI agents,
-              shipped production systems, and created 12,000+ AI songs.
+              Direct access to an AI Architect at Oracle EMEA who has shipped 40+ agents,
+              12,000+ songs, and built ACOS — used by 1,000+ builders.
             </p>
 
             <motion.div
