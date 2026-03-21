@@ -592,6 +592,101 @@ function HubShowcase({
 }
 
 // ============================================================================
+// AI CoE LEVEL CHECK — Curiosity-driven awareness strip
+// ============================================================================
+
+function AICoELevelCheck() {
+  const levels = [
+    { level: 1, name: 'Exploring', pct: '40%', active: false },
+    { level: 2, name: 'Experimenting', pct: '30%', active: false },
+    { level: 3, name: 'Integrating', pct: '20%', active: false },
+    { level: 4, name: 'Orchestrating', pct: '8%', active: true },
+    { level: 5, name: 'Compounding', pct: '2%', active: false },
+  ]
+
+  return (
+    <section className="py-20 lg:py-28 border-t border-white/5">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-50px' }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-12"
+        >
+          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-amber-400/70 mb-3">
+            Personal AI Center of Excellence
+          </p>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4">
+            Most professionals are at Level 2.
+            <br />
+            <span className="text-white/40">Where are you?</span>
+          </h2>
+          <p className="text-sm text-white/50 max-w-2xl mx-auto">
+            The same AI CoE framework enterprises pay $500K to build — adapted for individuals. Free.
+          </p>
+        </motion.div>
+
+        {/* Level progression bar */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-30px' }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="flex items-stretch gap-1 sm:gap-2 mb-8"
+        >
+          {levels.map((l, i) => (
+            <div
+              key={l.level}
+              className={`flex-1 rounded-lg p-3 sm:p-4 text-center transition-all ${
+                l.active
+                  ? 'bg-amber-500/20 border border-amber-500/40 shadow-lg shadow-amber-500/10'
+                  : 'bg-white/[0.03] border border-white/[0.06]'
+              }`}
+            >
+              <div className={`text-lg sm:text-xl font-bold ${l.active ? 'text-amber-400' : 'text-white/30'}`}>
+                {l.level}
+              </div>
+              <div className={`text-[10px] sm:text-xs mt-1 ${l.active ? 'text-amber-400/80' : 'text-white/25'}`}>
+                {l.name}
+              </div>
+              <div className={`text-[9px] sm:text-[10px] mt-0.5 ${l.active ? 'text-amber-400/60' : 'text-white/15'}`}>
+                {l.pct} of users
+              </div>
+            </div>
+          ))}
+        </motion.div>
+
+        {/* CTA row */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.4, delay: 0.4 }}
+          className="flex flex-col sm:flex-row items-center justify-center gap-4"
+        >
+          <Link
+            href="/prompt-library"
+            className="group inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-amber-500/15 border border-amber-500/30 text-amber-300 text-sm font-medium hover:bg-amber-500/25 hover:border-amber-500/50 transition-all"
+          >
+            <Sparkles className="h-4 w-4" />
+            Score yourself — free assessment
+            <ArrowRight className="h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
+          </Link>
+          <Link
+            href="/research/personal-ai-coe"
+            className="inline-flex items-center gap-2 text-sm text-white/40 hover:text-white/70 transition-colors"
+          >
+            Read the research
+            <ArrowRight className="h-3 w-3" />
+          </Link>
+        </motion.div>
+      </div>
+    </section>
+  )
+}
+
+// ============================================================================
 // CREATIVE WORLDS — Full-width cinematic banner
 // ============================================================================
 
@@ -1297,6 +1392,9 @@ export default function HomePageElite({
           color="emerald"
           imageFirst
         />
+
+        {/* 8.5. AI CoE Level Check — Curiosity Strip */}
+        <AICoELevelCheck />
 
         {/* 9. Creative Worlds — Arcanea banner */}
         <CreativeWorlds />

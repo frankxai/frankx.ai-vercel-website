@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
-import { Calendar, Clock, Linkedin, Tag, Twitter } from 'lucide-react'
+import { ArrowRight, Calendar, Clock, Linkedin, Tag, Twitter } from 'lucide-react'
 
 import { MDXContent } from '@/components/blog/MDXContent'
 import RelatedResearch from '@/components/blog/RelatedResearch'
@@ -309,6 +309,26 @@ export default async function BlogPostPage({
               description="Weekly field notes on AI systems, production patterns, and builder strategy."
               listType="newsletter"
             />
+          </div>
+        </div>
+
+        {/* AI CoE Level Check */}
+        <div className="px-6 pt-8">
+          <div className="mx-auto max-w-3xl">
+            <Link
+              href="/research/personal-ai-coe"
+              className="group block rounded-2xl border border-amber-500/20 bg-gradient-to-r from-amber-500/[0.08] via-amber-500/[0.04] to-transparent p-6 hover:border-amber-500/30 transition-all"
+            >
+              <div className="flex items-center justify-between gap-4">
+                <div>
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-amber-400/60 mb-1">Personal AI Center of Excellence</p>
+                  <p className="text-sm text-white/70">
+                    Most professionals use AI at Level 2. The enterprise framework — adapted for individuals, free.
+                  </p>
+                </div>
+                <ArrowRight className="h-5 w-5 text-amber-400/40 group-hover:text-amber-400/70 group-hover:translate-x-0.5 transition-all shrink-0" />
+              </div>
+            </Link>
           </div>
         </div>
 
