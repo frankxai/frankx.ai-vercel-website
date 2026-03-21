@@ -56,10 +56,10 @@ const navigation = {
       badge: '500+ Public',
     },
     items: [
-      { name: 'Music Showcase', href: '/music', icon: Music, description: '10K+ AI-generated tracks' },
-      { name: 'Vibe OS System', href: '/products/vibe-os', icon: Sparkles, description: 'AI music creation method' },
-      { name: 'Music Lab', href: '/music-lab', icon: Palette, description: 'Learn to create AI music' },
-      { name: 'Suno Profile', href: 'https://suno.com/@frankx', icon: Layers, description: 'Full catalog on Suno', external: true },
+      { name: 'Music Showcase', href: '/music', icon: Music, description: '500+ AI-generated tracks' },
+      { name: 'Create with AI', href: '/music/create', icon: Sparkles, description: 'Suno mastery & prompts' },
+      { name: 'Learn Instruments', href: '/music/learn', icon: Palette, description: 'Piano, violin & more' },
+      { name: 'Music Tools', href: '/music/tools', icon: Layers, description: '30+ apps for musicians' },
     ],
   },
   vibe: {
