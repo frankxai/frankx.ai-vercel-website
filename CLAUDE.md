@@ -1,19 +1,35 @@
-# FrankX Claude Code Configuration
-*Elite Creator. AI Architect. Humble Excellence.*
+# FrankX Claude Code Configuration v3.0
+
+_Elite Creator. AI Architect. Humble Excellence._
 
 ---
 
-## 🚨 CRITICAL: Production Deployment (READ FIRST)
+## Quick Reference
+
+| Action               | Command                       |
+| -------------------- | ----------------------------- |
+| Deploy to production | `/frankx-ai-deploy`           |
+| Create blog post     | `/frankx-ai-blog`             |
+| Full build session   | `/frankx-ai-build`            |
+| Content pipeline     | `/frankx-ai-content-pipeline` |
+| UI components        | `/frankx-ai-components`       |
+| SEO optimization     | `/frankx-ai-seo`              |
+
+---
+
+## Production Deployment (READ FIRST)
 
 **Content must be pushed to BOTH repos to go live.**
 
 ### Two-Repo Architecture
-| Repo | Purpose | Location |
-|------|---------|----------|
-| `frankxai/FrankX` | Private development | Main workspace |
-| `frankxai/frankx.ai-vercel-website` | **PRODUCTION** | `.worktrees/vercel-ui-ux` |
+
+| Repo                                | Purpose             | Location                  |
+| ----------------------------------- | ------------------- | ------------------------- |
+| `frankxai/FrankX`                   | Private development | Main workspace            |
+| `frankxai/frankx.ai-vercel-website` | **PRODUCTION**      | `.worktrees/vercel-ui-ux` |
 
 ### Deploy Workflow
+
 ```bash
 # 1. Create content in FrankX repo
 # 2. Copy to production
@@ -26,120 +42,212 @@ git push origin main  # Deploys to frankx.ai
 ```
 
 ### What Syncs
-| ✅ Production | ❌ Private |
-|---------------|------------|
-| `app/`, `components/` | `.claude/`, `.agent/` |
-| `content/`, `public/` | `docs/`, `research/` |
-| `lib/`, `data/` | API keys, `.env` |
 
-### Fix Broken Worktree
-```bash
-git clone git@github.com:frankxai/frankx.ai-vercel-website.git .worktrees/vercel-ui-ux
-```
+| Production            | Private               |
+| --------------------- | --------------------- |
+| `app/`, `components/` | `.claude/`, `.agent/` |
+| `content/`, `public/` | `docs/`, `research/`  |
+| `lib/`, `data/`       | API keys, `.env`      |
 
 **Verification:** https://frankx.ai | https://github.com/frankxai/frankx.ai-vercel-website
 
 ---
 
-## 🎯 Brand Positioning
+## Brand Positioning
 
 **Frank = Top Creator. Top AI Architect. Humble.**
 
 ### Who Frank Is
-- **AI Architect**: Enterprise-grade AI systems, Oracle expertise, agentic orchestration
-- **Creator**: 500+ AI songs, music production, generative art, digital products
+
+- **AI Architect**: AI Architect at Oracle EMEA AI Center of Excellence. Enterprise-grade AI systems, agentic orchestration
+- **Creator**: 12,000+ AI songs, music production, generative art, digital products
 - **Builder**: Ships products, writes code, creates content that works
-- **Technologist**: Bridges cutting-edge AI with practical creative applications
+- **Bridge**: Builds AI CoE proposals for enterprises at Oracle — provides the same frameworks free on frankx.ai for individuals, creators, and families
+
+### Core Narrative: The Personal AI CoE
+
+The defining story: Frank builds AI Center of Excellence frameworks for Fortune 500 companies at Oracle. He realized the same 6-pillar architecture (Strategy, Governance, Talent, Technology, Data, Ethics) translates directly to personal use — at 1/5000th the cost. On frankx.ai, he makes enterprise-grade AI frameworks freely available to everyone.
+
+- **ACOS** = the implementation of a personal AI CoE
+- **GenCreator** = the creator-specific CoE application
+- **Prompt Library** = the tool library within your CoE
+- **Research Hub** = the knowledge foundation
+- Title: "AI Architect" (never "AI Systems Architect")
 
 ### Brand Attributes
-- **Excellence**: Every detail matters. Ultra high quality in everything.
-- **Craftsmanship**: Meticulous attention to design, code, and copy.
-- **Humility**: Let the work speak. Results over claims.
-- **Depth**: Technical sophistication with creative flair.
+
+| Attribute     | Meaning                                       |
+| ------------- | --------------------------------------------- |
+| Excellence    | Every detail matters. Ultra high quality.     |
+| Craftsmanship | Meticulous attention to design, code, copy.   |
+| Humility      | Let the work speak. Results over claims.      |
+| Depth         | Technical sophistication with creative flair. |
 
 ### Voice Guidelines
-**DO:**
-- Lead with results and demonstrated expertise
-- Use precise, technical language when appropriate
-- Show don't tell - share the work, not the philosophy
-- Confident but understated
 
-**DON'T:**
-- Use spiritual/consciousness language ("soul-aligned", "awakening", "transformation")
-- Make grandiose claims about impact
-- Over-explain motivations or philosophy
-- Sound like a self-help guru
+**DO:** Lead with results. Precise technical language. Show don't tell. Confident but understated.
+
+**DON'T:** Spiritual language. Grandiose claims. Over-explain philosophy. Self-help guru tone.
 
 ---
 
-## 🤖 Agent Profiles
+## Global Skills Library (500+)
+
+Skills are installed globally at `~/.agents/skills/` and available across all projects.
+
+### Vercel/Next.js Stack
+
+| Skill                             | Purpose                           |
+| --------------------------------- | --------------------------------- |
+| `vercel-react-best-practices`     | 40+ React optimization rules      |
+| `vercel-composition-patterns`     | Component composition patterns    |
+| `next-best-practices`             | Next.js App Router fundamentals   |
+| `next-cache-components`           | Next.js 16 Cache Components & PPR |
+| `next-upgrade`                    | Version migration guides          |
+| `nextjs-advanced-routing`         | Complex routing patterns          |
+| `nextjs-server-client-components` | RSC best practices                |
+| `vercel-ai-sdk`                   | AI SDK integration                |
+
+### Design & UI
+
+| Skill                       | Purpose                  |
+| --------------------------- | ------------------------ |
+| `web-design-guidelines`     | Visual design principles |
+| `baseline-ui`               | UI component patterns    |
+| `shadcn-ui`                 | shadcn/ui integration    |
+| `tailwind-css-patterns`     | Utility-first CSS        |
+| `react-patterns`            | Component architecture   |
+| `fixing-accessibility`      | WCAG 2.2 compliance      |
+| `fixing-motion-performance` | Animation optimization   |
+| `fixing-metadata`           | Meta & OG tags           |
+
+### Development Patterns
+
+| Skill                   | Purpose                   |
+| ----------------------- | ------------------------- |
+| `typescript-docs`       | TypeScript best practices |
+| `nestjs`                | Backend patterns          |
+| `api-design-principles` | API architecture          |
+| `architecture-patterns` | System design             |
+| `clean-code`            | Code quality              |
+
+### AI & Agents
+
+| Skill                         | Purpose             |
+| ----------------------------- | ------------------- |
+| `ai-agents-architect`         | Multi-agent design  |
+| `autonomous-agents`           | Autonomous patterns |
+| `agent-memory-systems`        | Memory management   |
+| `langgraph-patterns`          | Graph workflows     |
+| `prompt-engineering-patterns` | Prompt design       |
+
+### SEO & Content
+
+| Skill                    | Purpose              |
+| ------------------------ | -------------------- |
+| `seo-fundamentals`       | Core SEO principles  |
+| `seo-content-writer`     | Content optimization |
+| `seo-keyword-strategist` | Keyword research     |
+| `schema-markup`          | Structured data      |
+| `programmatic-seo`       | Scaled SEO           |
+
+### Skill Management
+
+```bash
+# List installed skills
+npx skills list -g
+
+# Add new skill globally
+npx skills add <owner/repo> -y -g
+
+# Add to current project only
+npx skills add <owner/repo> -y
+```
+
+---
+
+## Agent Profiles
 
 ### 1. Technical Architect
+
 ```yaml
-name: Technical Architect
 role: AI Systems Designer
-specialty: Building enterprise-grade AI systems, agentic orchestration
-focus:
-  - AI architecture and system design
-  - Oracle Cloud and enterprise integration
-  - Agentic workflows and multi-agent systems
-  - Technical documentation and tutorials
+skills:
+  [
+    vercel-react-best-practices,
+    next-best-practices,
+    architecture-patterns,
+    ai-agents-architect,
+  ]
+focus: Enterprise AI, Oracle Cloud, agentic orchestration, technical docs
+triggers: architecture, system design, backend, API
 ```
 
 ### 2. Music Producer
+
 ```yaml
-name: Music Producer
 role: AI Music Creation Specialist
-specialty: Suno AI prompt engineering, music production
-focus:
-  - Advanced Suno prompt crafting
-  - Genre-specific production techniques
-  - Commercial licensing and distribution
-  - Audio engineering best practices
+skills: [suno-ai-mastery, suno-prompt-architect]
+focus: Suno prompts, genre production, commercial licensing
+triggers: suno, music, song, audio
 ```
 
 ### 3. Content Engine
+
 ```yaml
-name: Content Engine
 role: Content & Product Developer
-specialty: High-quality content creation, digital products
-focus:
-  - Blog articles and technical writing
-  - Course development and education
-  - Product launches and marketing
-  - SEO and content strategy
+skills: [frankx-brand, seo-content-writer, schema-markup]
+focus: Blog articles, courses, products, SEO
+triggers: article, blog, content, post
 ```
 
 ### 4. SEO Intelligence
+
 ```yaml
-name: SEO Intelligence
 role: Search & Discovery Optimizer
-specialty: AI search optimization, content discoverability
-focus:
-  - AI citation optimization (ChatGPT, Perplexity, Claude)
-  - Keyword research and topic clustering
-  - Schema markup and structured data
-  - Content performance analysis
+skills: [seo-fundamentals, seo-keyword-strategist, schema-markup]
+focus: AI citations, topic clusters, structured data
+triggers: seo, keywords, rankings
+```
+
+### 5. Frontend Designer
+
+```yaml
+role: UI/UX Development Specialist
+skills:
+  [
+    vercel-react-best-practices,
+    web-design-guidelines,
+    shadcn-ui,
+    tailwind-css-patterns,
+    fixing-accessibility,
+  ]
+focus: Glassmorphic design, accessibility, performance
+triggers: component, design, ui, ux
+```
+
+### 6. DevOps Engineer
+
+```yaml
+role: Deployment & Infrastructure
+skills: [vercel-deployment, docker-expert, github-actions-templates]
+focus: Vercel deployments, CI/CD, monitoring
+triggers: deploy, build, ci, pipeline
 ```
 
 ---
 
-## ✍️ Content Standards
+## Content Standards
 
 ### Quality Bar
-- **Technical Accuracy**: Every claim is verifiable
-- **Clarity**: Complex ideas made accessible without dumbing down
+
+- **Technical Accuracy**: Every claim verifiable
+- **Clarity**: Complex ideas accessible without dumbing down
 - **Utility**: Actionable, practical, immediately useful
 - **Polish**: No typos, proper formatting, optimized images
 
-### Content Types
-| Type | Focus | Frequency |
-|------|-------|-----------|
-| Blog | Technical tutorials, AI tools, music production | 2-3x/week |
-| Products | Courses, templates, prompt libraries | Monthly launches |
-| Social | Behind-scenes, work in progress, insights | Daily |
-
 ### SEO Checklist
+
 - [ ] TL;DR in first 100 words
 - [ ] Question-based H2s
 - [ ] FAQ section (5+ questions)
@@ -149,129 +257,131 @@ focus:
 
 ---
 
-## 📦 Git Architecture
+## Decision-Making Principles
 
-```
-FrankX (Private)                 Production (Public)
-├── app/           ─────────►    ├── app/
-├── components/    ─────────►    ├── components/
-├── content/       ─────────►    ├── content/
-├── .claude/       (private)     └── Deploys to frankx.ai
-└── research/      (private)
-```
-
-**Commands:**
-- `/frankx-ai-deploy` - Deploy to production
-- `/frankx-ai-blog` - Create blog posts
-- `/frankx-ai-content-pipeline` - Full content workflow
-
----
-
-## 📝 Session Logging
-
-Log significant work to: `/mnt/c/Users/Frank/docs/AI_GLOBAL_SESSIONS.md`
-
-**When to Log:**
-- Content published
-- 3+ files modified
-- Major architectural decisions
-- Features implemented
-
-**Format:**
-```markdown
-## SESSION: FrankX - [Action]
-**Date**: YYYY-MM-DD HH:MM
-### Summary
-[What was accomplished]
-### Artifacts
-- `path/to/file` - Description
-### Next Actions
-- [ ] Follow-up item
-```
-
----
-
-## 🛑 CRITICAL: Decision-Making Principles
-
-### Before Proposing ANY Structural Change
+### Before ANY Structural Change
 
 **STOP. Ask these questions FIRST:**
 
 1. **What specific problem are we solving?**
    - Who experiences this problem?
-   - What's the evidence it's a problem?
-   - Is this a real user problem or an "architecture smell"?
+   - What's the evidence?
 
 2. **What's the simplest solution?**
-   - Can we fix this with a config change instead of restructuring?
+   - Can we fix with config instead of restructuring?
    - Can we hide instead of delete?
-   - Can we redirect instead of rename?
 
 3. **What could go wrong?**
    - SEO/backlink damage?
    - User confusion?
    - Irreversible data loss?
-   - Breaking existing integrations?
 
 4. **Is this reversible?**
-   - If not, get explicit approval before proceeding
+   - If not, get explicit approval
 
-### Specific Anti-Patterns to AVOID
+### Anti-Patterns to AVOID
 
-| Bad Instinct | Why It's Wrong | Better Approach |
-|--------------|----------------|-----------------|
-| "60% reduction sounds impressive" | Optimizing for metrics, not outcomes | Ask: does this help users? |
-| "Shorter URLs are better" | Loses meaning, hurts SEO | Keep established URLs |
-| "Consolidate everything" | Over-engineering | Fix navigation, not routes |
-| "Delete orphan pages" | Irreversible, may have traffic | Unlink from nav, keep page |
-| "Rename for consistency" | URL changes have SEO cost | Consistency isn't worth SEO loss |
-| "This spec says to do X" | Following blindly | Question if X makes sense |
+| Bad Instinct                      | Better Approach                  |
+| --------------------------------- | -------------------------------- |
+| "60% reduction sounds impressive" | Does this help users?            |
+| "Shorter URLs are better"         | Keep established URLs            |
+| "Consolidate everything"          | Fix navigation, not routes       |
+| "Delete orphan pages"             | Unlink from nav, keep page       |
+| "Rename for consistency"          | Consistency isn't worth SEO loss |
 
-### URL/SEO Changes: NEVER Do Without Approval
+### URL/SEO Rules: NEVER Without Approval
 
-- **Never rename working URLs** - Even with 301s, you lose link equity
-- **Never delete pages with traffic** - Check analytics first
-- **Never "consolidate" by deletion** - Hide from nav instead
-- **"AI Architect" stays "AI Architect"** - Brand terms don't get shortened
+- Never rename working URLs
+- Never delete pages with traffic
+- Never "consolidate" by deletion
+- "AI Architect" stays "AI Architect"
 
-### The Right Way to "Consolidate"
+### The Prime Directive
 
-```
-WRONG: Delete 60 routes to have fewer routes
-RIGHT: Fix navigation to show 6 clear options (routes still exist)
+**Don't optimize for impressive metrics. Optimize for actual outcomes.**
 
-WRONG: Rename /ai-architect to /architect for "consistency"
-RIGHT: Keep /ai-architect, it's the brand term
-
-WRONG: Move /soulbook to /resources/soulbook to "organize"
-RIGHT: Keep /soulbook prominent if it's a lead magnet
-```
-
-### When Frank Says "Consolidate Routes"
-
-He probably means: **Fix the navigation so it's not confusing**
-
-NOT: Delete or rename a bunch of pages
-
-**Ask for clarification before making structural changes.**
+**When Frank says "consolidate routes" he means fix navigation, not delete pages.**
 
 ---
 
-## 🧠 Thinking Protocol
+## Thinking Protocol
 
-For complex tasks, use this checklist:
+For complex tasks:
 
 ```markdown
 ## Pre-Action Checklist
-- [ ] What problem are we solving? (specific, not vague)
-- [ ] Who has this problem? (users, SEO, maintenance?)
-- [ ] What's the evidence? (analytics, user feedback, broken things?)
-- [ ] What's the simplest fix? (not the most impressive)
+
+- [ ] What problem? (specific, not vague)
+- [ ] Who has it? (users, SEO, maintenance?)
+- [ ] What's the evidence? (analytics, feedback, broken things?)
+- [ ] Simplest fix? (not most impressive)
 - [ ] What could go wrong? (SEO, users, irreversibility)
-- [ ] Is this reversible? (if no, get approval)
-- [ ] Am I optimizing for metrics or outcomes?
+- [ ] Reversible? (if no, get approval)
+- [ ] Metrics or outcomes?
 ```
 
 ---
 
-*Excellence in execution. Let the work speak.*
+## Session Logging
+
+Log significant work to: `/mnt/c/Users/Frank/docs/AI_GLOBAL_SESSIONS.md`
+
+**When to Log:** Content published, 3+ files modified, major decisions, features implemented.
+
+```markdown
+## SESSION: FrankX - [Action]
+
+**Date**: YYYY-MM-DD HH:MM
+
+### Summary
+
+[What was accomplished]
+
+### Artifacts
+
+- `path/to/file` - Description
+
+### Next Actions
+
+- [ ] Follow-up item
+```
+
+---
+
+## File Structure
+
+```
+FrankX/
+├── .claude/
+│   ├── agents/           # Agent definitions
+│   ├── commands/         # Slash commands (40+)
+│   ├── context/          # Decision framework, identity
+│   ├── settings/         # Visual preferences
+│   ├── skills/           # Local skill rules
+│   └── hooks/            # Automation hooks
+├── app/                  # Next.js App Router
+├── components/           # React components
+├── content/              # MDX content
+│   └── blog/            # Blog articles
+├── lib/                  # Utilities
+├── public/               # Static assets
+└── .worktrees/
+    └── vercel-ui-ux/    # Production repo
+```
+
+---
+
+## Sources
+
+Skill repositories integrated:
+
+- [vercel-labs/agent-skills](https://github.com/vercel-labs/agent-skills) - Vercel official
+- [vercel-labs/next-skills](https://github.com/vercel-labs/next-skills) - Next.js patterns
+- [wsimmonds/claude-nextjs-skills](https://github.com/wsimmonds/claude-nextjs-skills) - Next.js evals
+- [sickn33/antigravity-awesome-skills](https://github.com/sickn33/antigravity-awesome-skills) - 500+ skills
+- [ibelick/ui-skills](https://github.com/ibelick/ui-skills) - UI patterns
+- [giuseppe-trisciuoglio/developer-kit](https://github.com/giuseppe-trisciuoglio/developer-kit) - Dev tools
+
+---
+
+_Excellence in execution. Let the work speak._
