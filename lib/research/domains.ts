@@ -1909,6 +1909,88 @@ export const researchDomains: ResearchDomain[] = [
     sourceCount: 22,
     status: 'active',
   },
+  {
+    slug: 'ai-health-fitness',
+    title: 'AI for Health & Fitness',
+    subtitle: 'AI-powered training, nutrition, recovery, and longevity for athletes and fitness creators',
+    description: 'How AI transforms personal health optimization — from training plan generation and nutrition programming to wearable data analysis, recovery tracking, and longevity protocols. Covers the tools, the science, and the creator opportunity for fitness influencers who want to scale their impact with AI.',
+    tldr: 'AI fitness tools crossed a threshold in 2026: wearable data (HRV, sleep, strain) now feeds directly into AI coaching algorithms that adapt training, nutrition, and recovery in real-time. Athletica.ai, Fitbod, and Dr. Muscle lead AI training plan generation. Apple Watch + WHOOP + Oura provide the biometric streams. The opportunity for fitness creators: AI lets one coach serve thousands with personalized plans. The Personal AI CoE Health domain maps directly — training intelligence, nutrition engine, recovery systems, progress tracking, and longevity protocols.',
+    icon: 'Heart',
+    color: 'rose',
+    category: 'health-science',
+    highlights: [
+      { stat: '73%', label: 'Athletes using AI training tools in 2026', source: 'Fitbod Research' },
+      { stat: '5', label: 'Pillars: Training, Nutrition, Recovery, Progress, Longevity' },
+      { stat: '20%', label: 'Volume auto-reduction when HRV signals fatigue' },
+      { stat: '1:1000', label: 'Coach-to-athlete ratio possible with AI personalization' },
+    ],
+    sections: [
+      {
+        title: 'The AI Fitness Stack in 2026',
+        content: 'The AI fitness ecosystem matured from novelty to production-grade in 2026. Three layers now work together: wearable sensors (Apple Watch, WHOOP, Oura Ring, Garmin) generate continuous biometric streams. AI coaching platforms (Athletica.ai, Fitbod, Dr. Muscle) ingest those streams and generate adaptive training plans. And AI nutrition engines pair workout data with meal planning, adjusting macros based on recovery state and training load.',
+        items: [
+          { title: 'Wearable Data Layer', description: 'Heart rate, HRV, blood oxygen, skin temperature, sleep stages, and strain scores. These biometrics feed AI coaching algorithms as continuous inputs, not occasional check-ins.', badge: 'Foundation' },
+          { title: 'AI Training Intelligence', description: 'Platforms like Athletica.ai understand training history, fitness, and fatigue — adapting for missed workouts, travel, and poor sleep without disrupting periodization.', badge: 'Production-Ready' },
+          { title: 'AI Nutrition Engine', description: 'AI meal planners analyze sleep, strain, and recovery data to personalize nutrition. Low recovery triggers macro adjustments. High recovery fuels performance sessions.', badge: 'Growing' },
+          { title: 'Recovery & Longevity', description: 'AI interprets HRV trends, sleep quality, and training load to prescribe deload weeks, active recovery, and supplement protocols. The preventive health layer.', badge: 'Emerging' },
+        ],
+      },
+      {
+        title: 'The 5-Pillar Health AI CoE',
+        content: 'The Personal AI Center of Excellence framework maps directly to health optimization. Five pillars cover the full spectrum from daily training to long-term longevity. Each pillar has specific AI tools, data inputs, and measurable outcomes.',
+        items: [
+          { title: 'Training Intelligence', description: 'AI-generated periodized programs. Progressive overload tracking. Exercise selection based on equipment, goals, and recovery state. Deload decision engine based on performance trends.', badge: 'Pillar 1' },
+          { title: 'Nutrition Engine', description: 'Macro-aware meal planning. Post-workout nutrition timing. Supplement stack analysis with evidence grading. Restaurant navigation for eating out.', badge: 'Pillar 2' },
+          { title: 'Recovery Systems', description: 'Sleep quality analysis from wearable data. HRV-based recovery scoring. Active recovery prescription. Stress-recovery balance monitoring.', badge: 'Pillar 3' },
+          { title: 'Progress Tracking', description: 'Weekly check-in analysis (weight, energy, performance, mood). Monthly trend reports. Plateau detection with root cause analysis. Quarterly program refresh.', badge: 'Pillar 4' },
+          { title: 'Longevity Protocols', description: 'Blood work interpretation (with medical disclaimer). Biomarker trend tracking. Latest exercise science paper summaries. Preventive health recommendations.', badge: 'Pillar 5' },
+        ],
+      },
+      {
+        title: 'The Fitness Creator Opportunity',
+        content: 'Fitness influencers and coaches face a scaling problem: personalized coaching does not scale. One coach can serve 20-50 clients with truly personalized plans. AI changes the ratio to 1:1000. A fitness creator who builds an AI-assisted coaching system can deliver personalized training and nutrition to thousands while maintaining the quality that built their reputation. The tools are here. The audience is ready. The creators who move first will define the category.',
+        items: [
+          { title: 'AI-Powered Program Design', description: 'Create base programs, then let AI personalize for each client based on their equipment, schedule, experience level, and wearable data. One template, infinite variations.', badge: 'Scale' },
+          { title: 'Content Generation', description: 'AI helps fitness creators produce more educational content — form breakdowns, nutrition guides, recovery protocols, Q&A responses — at the quality level their audience expects.', badge: 'Content' },
+          { title: 'Client Tracking Dashboards', description: 'AI aggregates client progress data, flags plateaus and compliance drops, and generates coaching interventions automatically. The coach focuses on high-judgment decisions.', badge: 'Operations' },
+          { title: 'Research Translation', description: 'New exercise science papers publish weekly. AI summarizes findings relevant to the creator\'s methodology and audience, keeping content evidence-based without the research overhead.', badge: 'Authority' },
+        ],
+      },
+      {
+        title: 'Building a Health & Fitness AI CoE',
+        content: 'The implementation path for individuals follows the same 4-week model as the Personal AI CoE, adapted for health contexts. Week 1: choose your wearable and primary AI training app. Week 2: build AI-assisted nutrition workflows. Week 3: add recovery tracking and progress analysis. Week 4: integrate everything with weekly AI-powered review sessions.',
+        items: [
+          { title: 'Week 1: Foundation', description: 'Connect wearable to AI training platform (Athletica.ai, Fitbod, or Dr. Muscle). Run first AI-generated training week. Track time investment vs results.', badge: '2-3 hours' },
+          { title: 'Week 2: Nutrition', description: 'Set up AI meal planning. Configure macros based on goals. Generate first week of meals. Test restaurant navigation feature.', badge: '2-3 hours' },
+          { title: 'Week 3: Recovery', description: 'Analyze 2 weeks of wearable sleep and HRV data with AI. Set recovery thresholds. Build a deload decision protocol.', badge: '1-2 hours' },
+          { title: 'Week 4: Integration', description: 'Run first AI-powered weekly review. Analyze training, nutrition, sleep, and recovery together. Adjust next month\'s program based on data patterns.', badge: '1 hour' },
+        ],
+      },
+    ],
+    keyFindings: [
+      'AI fitness coaching crossed from novelty to production-grade in 2026 — wearable data feeds real-time adaptive algorithms',
+      'The 5-pillar Health AI CoE covers training, nutrition, recovery, progress tracking, and longevity',
+      'AI changes the coach-to-athlete ratio from 1:50 to 1:1000 — the scaling problem fitness creators face is solved',
+      'Wearable HRV data triggers automatic training volume adjustments (20% reduction when fatigue detected)',
+      'AI nutrition engines now adjust macros based on recovery state and training load, not just static targets',
+      'Fitness creators who build AI-assisted coaching systems will define the next era of online fitness',
+      'The Personal AI CoE Health domain maps directly to the 5-pillar model',
+      'Implementation takes 4 weeks for individuals — same timeline as the broader Personal AI CoE',
+    ],
+    faq: [
+      { question: 'What AI tools do athletes use for training in 2026?', answer: 'The leading platforms are Athletica.ai (endurance sports, periodization), Fitbod (strength training, exercise science-backed), Dr. Muscle (hypertrophy optimization), and Strava (running/cycling with AI coaching). Most connect to wearable devices for real-time biometric data.' },
+      { question: 'Can AI replace a personal trainer?', answer: 'AI augments rather than replaces human coaching. It handles program design, volume management, and data analysis — tasks that follow rules and patterns. Human coaches add judgment, motivation, technique correction, and the relationship that drives compliance. The best model: AI handles the programming, human handles the coaching.' },
+      { question: 'How does wearable data feed into AI training plans?', answer: 'Wearables (Apple Watch, WHOOP, Oura, Garmin) continuously measure heart rate, HRV, blood oxygen, skin temperature, and sleep quality. AI coaching platforms ingest these data streams and adjust training prescriptions — reducing volume when HRV shows fatigue, increasing intensity when recovery is high, and flagging overtraining risk before symptoms appear.' },
+      { question: 'What is the opportunity for fitness creators?', answer: 'Fitness influencers face a scaling problem: personalized coaching does not scale beyond 20-50 clients. AI solves this by generating personalized program variations from base templates, tracking client progress automatically, and flagging issues for coach intervention. One creator with AI systems can serve 1,000+ clients at a quality level that previously required a team.' },
+      { question: 'How does this relate to the Personal AI CoE?', answer: 'Health & Fitness is Domain 3 in the 7-domain Personal AI CoE model. The 5-pillar Health AI CoE (Training, Nutrition, Recovery, Progress, Longevity) is a domain-specific implementation of the broader framework. The same maturity levels apply: Level 1 (tracking workouts manually) through Level 5 (autonomous AI systems adjusting your program daily based on wearable data).' },
+      { question: 'Is AI fitness advice safe to follow?', answer: 'AI-generated training plans should be evaluated against your own experience and any medical conditions. AI tools are excellent at periodization, progressive overload, and volume management — tasks that follow established exercise science principles. For injury rehabilitation, medical conditions, or advanced competition preparation, combine AI programming with human coaching oversight. Always consult healthcare professionals for medical decisions.' },
+    ],
+    relatedDomains: ['personal-ai-coe', 'ai-healthcare', 'ai-personal-productivity', 'ai-neuroscience', 'creator-economy-ai'],
+    relatedBlogPosts: ['/blog/why-everyone-needs-personal-ai-coe'],
+    lastUpdated: '2026-03-21',
+    sourceCount: 15,
+    status: 'active',
+  },
 ]
 
 // Helper functions
