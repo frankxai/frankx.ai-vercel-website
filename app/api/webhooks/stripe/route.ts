@@ -3,9 +3,14 @@ import Stripe from 'stripe'
 import { generateProductEmailData } from '@/lib/delivery'
 import { purchaseConfirmationEmail } from '@/lib/email-templates'
 
-const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!)
+function getStripe() {
+  return new Stripe(process.env.STRIPE_SECRET_KEY!)
+}
 
-const WEBHOOK_SECRET = process.env.STRIPE_WEBHOOK_SECRET!
+function getWebhookSecret() {
+  return process.env.STRIPE_WEBHOOK_SECRET!
+}
+
 const RESEND_API_KEY = process.env.RESEND_API_KEY
 const RESEND_AUDIENCE_ID = process.env.RESEND_AUDIENCE_ID || '4d2e913e-6903-4dd4-8749-c02cdb844331'
 
@@ -53,7 +58,7 @@ export async function POST(request: Request) {
   let event: Stripe.Event
 
   try {
-    event = stripe.webhooks.constructEvent(body, signature, WEBHOOK_SECRET)
+    event = getStripe().webhooks.constructEvent(body, signature, getWebhookSecret())
   } catch (err) {
     const message = err instanceof Error ? err.message : 'Unknown error'
     console.error('[Stripe] Webhook signature verification failed:', message)
