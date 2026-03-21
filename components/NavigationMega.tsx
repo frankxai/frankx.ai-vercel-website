@@ -58,7 +58,7 @@ const navigation = {
     items: [
       { name: 'Music Showcase', href: '/music', icon: Music, description: '500+ AI-generated tracks' },
       { name: 'Create with AI', href: '/music/create', icon: Sparkles, description: 'Suno mastery & prompts' },
-      { name: 'Learn Instruments', href: '/music/learn', icon: Palette, description: 'Piano, violin & more' },
+      { name: 'Music Academy', href: '/music/learn', icon: Palette, description: 'Piano, violin, theory & more' },
       { name: 'Music Tools', href: '/music/tools', icon: Layers, description: '30+ apps for musicians' },
     ],
   },

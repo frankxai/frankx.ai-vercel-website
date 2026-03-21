@@ -899,8 +899,8 @@ function CTASection() {
 function ExploreSection() {
   const explore = [
     {
-      title: 'Learn an Instrument',
-      desc: 'Curated YouTube teachers, free sheet music, practice guides, and AI-powered tools for piano, violin, and more.',
+      title: 'Music Academy',
+      desc: 'Learn instruments, music theory, and production. Curated teachers, free sheet music, and AI-powered practice tools.',
       href: '/music/learn',
       icon: BookOpen,
       accent: 'from-blue-500/20 to-violet-500/10',
