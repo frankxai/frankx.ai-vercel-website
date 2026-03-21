@@ -794,7 +794,7 @@ export default function AleaPage() {
             </p>
             <div className="grid gap-4 sm:grid-cols-2">
               <Link
-                href="/music/learn/piano"
+                href="/alea/musik/klavier"
                 className="group rounded-2xl bg-gradient-to-br from-rose-100 to-pink-50 border border-rose-200 p-6 shadow-sm transition hover:shadow-lg hover:scale-[1.02] active:scale-95"
               >
                 <div className="text-center">
@@ -805,7 +805,7 @@ export default function AleaPage() {
                 </div>
               </Link>
               <Link
-                href="/music/learn/violin"
+                href="/alea/musik/geige"
                 className="group rounded-2xl bg-gradient-to-br from-violet-100 to-purple-50 border border-violet-200 p-6 shadow-sm transition hover:shadow-lg hover:scale-[1.02] active:scale-95"
               >
                 <div className="text-center">
@@ -816,7 +816,7 @@ export default function AleaPage() {
                 </div>
               </Link>
               <Link
-                href="/music/learn"
+                href="/alea/musik"
                 className="group rounded-2xl bg-gradient-to-br from-amber-100 to-orange-50 border border-amber-200 p-6 shadow-sm transition hover:shadow-lg hover:scale-[1.02] active:scale-95"
               >
                 <div className="text-center">
@@ -827,7 +827,7 @@ export default function AleaPage() {
                 </div>
               </Link>
               <Link
-                href="/music/learn"
+                href="/alea/musik"
                 className="group rounded-2xl bg-gradient-to-br from-emerald-100 to-teal-50 border border-emerald-200 p-6 shadow-sm transition hover:shadow-lg hover:scale-[1.02] active:scale-95"
               >
                 <div className="text-center">
