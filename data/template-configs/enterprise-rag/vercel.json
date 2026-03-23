@@ -1,0 +1,12 @@
+{
+  "framework": "nextjs",
+  "buildCommand": "next build",
+  "installCommand": "npm install",
+  "outputDirectory": ".next",
+  "env": {
+    "ANTHROPIC_API_KEY": { "description": "Your Anthropic API key for Claude", "required": true },
+    "OPENAI_API_KEY": { "description": "Your OpenAI API key (optional, for embeddings)", "required": false },
+    "DATABASE_URL": { "description": "PostgreSQL connection string with pgvector", "required": true },
+    "REDIS_URL": { "description": "Redis connection string for caching", "required": false }
+  }
+}

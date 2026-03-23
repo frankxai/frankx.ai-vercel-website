@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap');
+
+:root {
+  --frankx-purple: #6B46C1;
+  --frankx-blue: #00D4FF;
+  --frankx-gold: #FFD700;
+  --frankx-charcoal: #1A1A2E;
+  --frankx-cloud: #F7F7F7;
+}
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: var(--frankx-charcoal);
+  background: var(--frankx-cloud);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.accent-text {
+  font-family: 'Playfair Display', serif;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-frankx-purple via-frankx-blue to-frankx-purple;
+  }
+
+  .gradient-bg-primary {
+    @apply bg-gradient-to-r from-frankx-purple to-frankx-blue;
+  }
+
+  .gradient-bg-secondary {
+    @apply bg-gradient-to-br from-arcanea-deep via-frankx-purple to-arcanea-twilight;
+  }
+
+  .constellation-bg {
+    background-image: radial-gradient(circle at 20% 30%, rgba(107, 70, 193, 0.1) 0%, transparent 50%),
+                      radial-gradient(circle at 80% 70%, rgba(0, 212, 255, 0.1) 0%, transparent 50%);
+  }
+}

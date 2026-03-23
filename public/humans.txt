@@ -1,0 +1,7 @@
+/* TEAM */
+Author: Frank
+Site: https://frankx.ai
+
+/* THANKS */
+Tools: Next.js, Tailwind CSS, Vercel
+

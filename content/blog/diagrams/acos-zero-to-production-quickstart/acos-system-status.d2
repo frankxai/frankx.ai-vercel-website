@@ -1,0 +1,79 @@
+direction: down
+
+classes: {
+  hero: {
+    style: {
+      fill: "#0B3B2E"
+      stroke: "#10B981"
+      stroke-width: 3
+      font-color: "#ECFEFF"
+      font-size: 22
+      border-radius: 18
+      shadow: true
+    }
+  }
+  stat: {
+    style: {
+      fill: "#0B1220"
+      stroke: "#22D3EE"
+      stroke-width: 2
+      font-color: "#E2E8F0"
+      font-size: 18
+      border-radius: 14
+      shadow: true
+    }
+  }
+  cmd: {
+    style: {
+      fill: "#0A1F38"
+      stroke: "#38BDF8"
+      stroke-width: 2
+      font-color: "#E0F2FE"
+      font-size: 15
+      border-radius: 12
+      shadow: true
+    }
+  }
+}
+
+acos: "Agentic Creator OS v6.0\nOperating System for Golden Age Creators" { class: hero }
+
+stats: {
+  label: "System Snapshot"
+  style: {
+    fill: "#050A14"
+    stroke: "#1F2937"
+    border-radius: 18
+  }
+  commands: "Commands\n25" { class: stat }
+  skills: "Skills\n80+" { class: stat }
+  agents: "Agents\n40+" { class: stat }
+  workflows: "Workflows\n8" { class: stat }
+}
+
+examples: {
+  label: "Command Examples"
+  style: {
+    fill: "#050A14"
+    stroke: "#1F2937"
+    border-radius: 18
+  }
+  c1: "/article-creator" { class: cmd }
+  c2: "/create-music" { class: cmd }
+  c3: "/spec" { class: cmd }
+  c4: "/infogenius" { class: cmd }
+  c5: "/starlight-architect" { class: cmd }
+}
+
+acos -> stats: {
+  style: {
+    stroke: "#34D399"
+    stroke-width: 3
+  }
+}
+stats -> examples: {
+  style: {
+    stroke: "#22D3EE"
+    stroke-width: 2
+  }
+}

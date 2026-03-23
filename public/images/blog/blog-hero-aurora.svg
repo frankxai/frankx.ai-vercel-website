@@ -1,0 +1,60 @@
+﻿<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="aurora" x1="0" y1="0" x2="1600" y2="900" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#0B1120" />
+      <stop offset="0.45" stop-color="#12203A" />
+      <stop offset="1" stop-color="#05070F" />
+    </linearGradient>
+    <radialGradient id="orbOne" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(480 220) rotate(45) scale(420 380)">
+      <stop offset="0" stop-color="#5EEAD4" stop-opacity="0.85" />
+      <stop offset="1" stop-color="#5EEAD4" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="orbTwo" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1180 320) rotate(15) scale(480 420)">
+      <stop offset="0" stop-color="#60A5FA" stop-opacity="0.75" />
+      <stop offset="1" stop-color="#60A5FA" stop-opacity="0" />
+    </radialGradient>
+    <radialGradient id="orbThree" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(780 620) rotate(90) scale(540 420)">
+      <stop offset="0" stop-color="#A855F7" stop-opacity="0.55" />
+      <stop offset="1" stop-color="#A855F7" stop-opacity="0" />
+    </radialGradient>
+    <filter id="glow" x="-200" y="-200" width="2000" height="1300" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feGaussianBlur stdDeviation="120" result="blur" />
+    </filter>
+    <linearGradient id="grid" x1="0" y1="0" x2="1600" y2="0" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#94A3B8" stop-opacity="0.08" />
+      <stop offset="1" stop-color="#94A3B8" stop-opacity="0.0" />
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#aurora)" />
+  <g filter="url(#glow)">
+    <ellipse cx="480" cy="220" rx="420" ry="380" fill="url(#orbOne)" />
+    <ellipse cx="1180" cy="320" rx="480" ry="420" fill="url(#orbTwo)" />
+    <ellipse cx="780" cy="620" rx="540" ry="420" fill="url(#orbThree)" />
+  </g>
+  <g opacity="0.45">
+    <path d="M200 260C420 220 700 260 920 340C1140 420 1380 540 1500 720" stroke="#1E293B" stroke-width="1.5" stroke-linecap="round" />
+    <path d="M140 420C360 360 640 360 890 420C1140 480 1380 600 1500 760" stroke="#1E293B" stroke-width="1.5" stroke-linecap="round" />
+    <path d="M120 560C340 500 620 500 900 560C1180 620 1400 780 1500 860" stroke="#1E293B" stroke-width="1.5" stroke-linecap="round" />
+  </g>
+  <g opacity="0.6">
+    <line x1="0" y1="140" x2="1600" y2="140" stroke="url(#grid)" stroke-width="1" />
+    <line x1="0" y1="280" x2="1600" y2="280" stroke="url(#grid)" stroke-width="1" />
+    <line x1="0" y1="420" x2="1600" y2="420" stroke="url(#grid)" stroke-width="1" />
+    <line x1="0" y1="560" x2="1600" y2="560" stroke="url(#grid)" stroke-width="1" />
+    <line x1="0" y1="700" x2="1600" y2="700" stroke="url(#grid)" stroke-width="1" />
+    <line x1="240" y1="0" x2="240" y2="900" stroke="url(#grid)" stroke-width="1" />
+    <line x1="520" y1="0" x2="520" y2="900" stroke="url(#grid)" stroke-width="1" />
+    <line x1="820" y1="0" x2="820" y2="900" stroke="url(#grid)" stroke-width="1" />
+    <line x1="1120" y1="0" x2="1120" y2="900" stroke="url(#grid)" stroke-width="1" />
+    <line x1="1400" y1="0" x2="1400" y2="900" stroke="url(#grid)" stroke-width="1" />
+  </g>
+  <rect x="280" y="180" width="1040" height="540" rx="48" fill="#0F172A" fill-opacity="0.58" stroke="#1E293B" stroke-opacity="0.35" />
+  <rect x="360" y="260" width="880" height="380" rx="36" fill="#0F172A" fill-opacity="0.58" stroke="#334155" stroke-opacity="0.45" />
+  <circle cx="420" cy="320" r="18" fill="#38BDF8" fill-opacity="0.8" />
+  <circle cx="470" cy="320" r="14" fill="#A855F7" fill-opacity="0.8" />
+  <circle cx="510" cy="320" r="11" fill="#F97316" fill-opacity="0.8" />
+  <rect x="420" y="360" width="540" height="10" rx="5" fill="#CBD5F5" fill-opacity="0.22" />
+  <rect x="420" y="400" width="480" height="10" rx="5" fill="#CBD5F5" fill-opacity="0.16" />
+  <rect x="420" y="440" width="520" height="10" rx="5" fill="#CBD5F5" fill-opacity="0.12" />
+  <rect x="420" y="480" width="420" height="10" rx="5" fill="#CBD5F5" fill-opacity="0.08" />
+</svg>

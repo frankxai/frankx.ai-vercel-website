@@ -1,0 +1,10 @@
+flowchart LR
+    PROJECT["my-project/"] --> CLAUDE_DIR[".claude/"]
+    CLAUDE_DIR --> SKILLS_DIR["skills/"]
+    SKILLS_DIR --> SKILL_NAME["my-skill/"]
+    SKILL_NAME --> SKILL_FILE["SKILL.md"]
+
+    classDef path fill:#0f172a,stroke:#06b6d4,color:#e2e8f0,stroke-width:1.5px
+    classDef terminal fill:#064e3b,stroke:#10b981,color:#ecfeff,stroke-width:2px
+    class PROJECT,CLAUDE_DIR,SKILLS_DIR,SKILL_NAME path
+    class SKILL_FILE terminal

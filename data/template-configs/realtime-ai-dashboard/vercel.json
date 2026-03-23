@@ -1,0 +1,11 @@
+{
+  "framework": "nextjs",
+  "buildCommand": "next build",
+  "installCommand": "npm install",
+  "outputDirectory": ".next",
+  "env": {
+    "ANTHROPIC_API_KEY": { "description": "Claude API key for real-time analysis", "required": true },
+    "DATABASE_URL": { "description": "PostgreSQL connection string", "required": true },
+    "NEXT_PUBLIC_WS_URL": { "description": "WebSocket server URL for real-time updates", "required": false }
+  }
+}

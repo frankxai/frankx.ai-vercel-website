@@ -1,0 +1,14 @@
+flowchart TD
+    START{"Primary constraint?"}
+    START -->|Budget-conscious,<br/>open-source| LANGFUSE["Langfuse<br/>(self-hosted)"]
+    START -->|Using LangGraph,<br/>want seamless integration| LANGSMITH["LangSmith"]
+    START -->|Complex multi-agent,<br/>ML team| WEAVE["W&B Weave"]
+    START -->|Existing APM,<br/>want integration| OTEL["OpenTelemetry +<br/>existing stack"]
+    START -->|Enterprise,<br/>need full stack| ENTERPRISE["LangSmith +<br/>DataDog/Grafana"]
+
+    classDef decision fill:#082f49,stroke:#06b6d4,color:#e0f2fe,stroke-width:2px
+    classDef option fill:#0f172a,stroke:#22d3ee,color:#e2e8f0,stroke-width:1.5px
+    classDef enterprise fill:#064e3b,stroke:#10b981,color:#ecfeff,stroke-width:2px
+    class START decision
+    class LANGFUSE,LANGSMITH,WEAVE,OTEL option
+    class ENTERPRISE enterprise

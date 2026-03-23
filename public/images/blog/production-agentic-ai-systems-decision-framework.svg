@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f172a"/>
+      <stop offset="1" stop-color="#1e293b"/>
+    </linearGradient>
+    <linearGradient id="q1" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#06b6d4"/>
+      <stop offset="1" stop-color="#22d3ee"/>
+    </linearGradient>
+    <linearGradient id="q2" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#0ea5e9"/>
+      <stop offset="1" stop-color="#6366f1"/>
+    </linearGradient>
+    <linearGradient id="q3" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#8b5cf6"/>
+      <stop offset="1" stop-color="#a78bfa"/>
+    </linearGradient>
+    <linearGradient id="q4" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#ec4899"/>
+      <stop offset="1" stop-color="#f472b6"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="4"/>
+    </filter>
+  </defs>
+
+  <rect width="800" height="600" fill="url(#bg)"/>
+
+  <!-- Title -->
+  <text x="400" y="40" fill="#f1f5f9" font-size="24" font-family="system-ui" font-weight="bold" text-anchor="middle">Decision Framework</text>
+
+  <!-- Q1: Reasoning -->
+  <g transform="translate(50, 80)">
+    <rect width="320" height="200" rx="12" fill="#1e293b" stroke="url(#q1)" stroke-width="2"/>
+    <rect width="6" height="200" fill="url(#q1)" rx="3"/>
+    <text x="25" y="30" fill="#06b6d4" font-size="14" font-family="system-ui" font-weight="bold">01 REASONING</text>
+    <text x="25" y="55" fill="#e2e8f0" font-size="13" font-family="system-ui">Does your workflow require</text>
+    <text x="25" y="75" fill="#e2e8f0" font-size="13" font-family="system-ui">reasoning about novel situations?</text>
+    <line x1="25" y1="95" x2="295" y2="95" stroke="#334155" stroke-width="1"/>
+    <g transform="translate(25, 115)">
+      <circle cx="10" cy="10" r="6" fill="#22d3ee"/>
+      <text x="25" y="15" fill="#e2e8f0" font-size="12" font-family="system-ui">YES → Continue to question 2</text>
+    </g>
+    <g transform="translate(25, 145)">
+      <circle cx="10" cy="10" r="6" fill="#475569"/>
+      <text x="25" y="15" fill="#64748b" font-size="12" font-family="system-ui">NO → Traditional automation</text>
+    </g>
+  </g>
+
+  <!-- Q2: Approval -->
+  <g transform="translate(430, 80)">
+    <rect width="320" height="200" rx="12" fill="#1e293b" stroke="url(#q2)" stroke-width="2"/>
+    <rect width="6" height="200" fill="url(#q2)" rx="3"/>
+    <text x="25" y="30" fill="#0ea5e9" font-size="14" font-family="system-ui" font-weight="bold">02 APPROVAL</text>
+    <text x="25" y="55" fill="#e2e8f0" font-size="13" font-family="system-ui">Do decisions require human</text>
+    <text x="25" y="75" fill="#e2e8f0" font-size="13" font-family="system-ui">judgment before execution?</text>
+    <line x1="25" y1="95" x2="295" y2="95" stroke="#334155" stroke-width="1"/>
+    <text x="25" y="120" fill="#e2e8f0" font-size="11" font-family="system-ui">ALWAYS → Human-in-the-loop</text>
+    <text x="25" y="140" fill="#e2e8f0" font-size="11" font-family="system-ui">SOMETIMES → Checkpoint</text>
+    <text x="25" y="160" fill="#e2e8f0" font-size="11" font-family="system-ui">NEVER → Autonomous</text>
+  </g>
+
+  <!-- Q3: Failure -->
+  <g transform="translate(50, 310)">
+    <rect width="320" height="200" rx="12" fill="#1e293b" stroke="url(#q3)" stroke-width="2"/>
+    <rect width="6" height="200" fill="url(#q3)" rx="3"/>
+    <text x="25" y="30" fill="#8b5cf6" font-size="14" font-family="system-ui" font-weight="bold">03 FAILURE TOLERANCE</text>
+    <text x="25" y="55" fill="#e2e8f0" font-size="13" font-family="system-ui">What happens when the agent</text>
+    <text x="25" y="75" fill="#e2e8f0" font-size="13" font-family="system-ui">makes a mistake?</text>
+    <line x1="25" y1="95" x2="295" y2="95" stroke="#334155" stroke-width="1"/>
+    <g transform="translate(25, 115)">
+      <rect width="50" height="20" rx="4" fill="#ef4444" opacity="0.3"/>
+      <text x="60" y="15" fill="#ef4444" font-size="10" font-family="system-ui">HIGH</text>
+      <text x="120" y="15" fill="#94a3b8" font-size="10" font-family="system-ui">→ Multi-agent verification</text>
+    </g>
+    <g transform="translate(25, 145)">
+      <rect width="50" height="20" rx="4" fill="#f59e0b" opacity="0.3"/>
+      <text x="60" y="15" fill="#f59e0b" font-size="10" font-family="system-ui">MEDIUM</text>
+      <text x="120" y="15" fill="#94a3b8" font-size="10" font-family="system-ui">→ Single-agent + gates</text>
+    </g>
+    <g transform="translate(25, 175)">
+      <rect width="50" height="20" rx="4" fill="#22c55e" opacity="0.3"/>
+      <text x="60" y="15" fill="#22c55e" font-size="10" font-family="system-ui">LOW</text>
+      <text x="120" y="15" fill="#94a3b8" font-size="10" font-family="system-ui">→ Fast iteration</text>
+    </g>
+  </g>
+
+  <!-- Q4: Scale -->
+  <g transform="translate(430, 310)">
+    <rect width="320" height="200" rx="12" fill="#1e293b" stroke="url(#q4)" stroke-width="2"/>
+    <rect width="6" height="200" fill="url(#q4)" rx="3"/>
+    <text x="25" y="30" fill="#ec4899" font-size="14" font-family="system-ui" font-weight="bold">04 SCALE</text>
+    <text x="25" y="55" fill="#e2e8f0" font-size="13" font-family="system-ui">How many concurrent</text>
+    <text x="25" y="75" fill="#e2e8f0" font-size="13" font-family="system-ui">workflows?</text>
+    <line x1="25" y1="95" x2="295" y2="95" stroke="#334155" stroke-width="1"/>
+    <g transform="translate(25, 115)">
+      <circle cx="8" cy="8" r="5" fill="#ec4899"/>
+      <text x="20" y="13" fill="#e2e8f0" font-size="11" font-family="system-ui">&lt;100/day → Single-tenant</text>
+    </g>
+    <g transform="translate(25, 140)">
+      <circle cx="8" cy="8" r="5" fill="#ec4899"/>
+      <text x="20" y="13" fill="#e2e8f0" font-size="11" font-family="system-ui">100-10K/day → Queue-based</text>
+    </g>
+    <g transform="translate(25, 165)">
+      <circle cx="8" cy="8" r="5" fill="#ec4899"/>
+      <text x="20" y="13" fill="#e2e8f0" font-size="11" font-family="system-ui">&gt;10K/day → Distributed</text>
+    </g>
+  </g>
+
+  <text x="400" y="580" fill="#64748b" font-size="12" font-family="system-ui" text-anchor="middle">Your answers determine your architecture tier—not the other way around</text>
+</svg>

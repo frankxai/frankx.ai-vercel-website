@@ -1,0 +1,142 @@
+graph TB
+    %% Brand Identity System
+    %% FrankX visual and voice architecture
+
+    subgraph CORE["🎯 Core Brand Essence"]
+        direction TB
+        MISSION[Mission<br/>Translate AI Mastery into<br/>Creator Confidence]:::core
+        VISION[Vision<br/>Golden Age of<br/>AI-Human Collaboration]:::core
+        VALUES[Values<br/>Courage • Creativity<br/>Consciousness • Community]:::core
+
+        MISSION --> VISION
+        VISION --> VALUES
+    end
+
+    subgraph PILLARS["🏛️ Brand Pillars"]
+        direction TB
+        P1[AI & Tech Mastery<br/>Enterprise to Creator Translation]:::pillar
+        P2[Conscious Creation<br/>Spirituality meets Systems]:::pillar
+        P3[Music & Frequency<br/>Sonic Transformation]:::pillar
+        P4[Creator Empowerment<br/>Tools + Community + Courage]:::pillar
+
+        P1 -.->|bridges| P2
+        P2 -.->|flows into| P3
+        P3 -.->|catalyzes| P4
+        P4 -.->|grounds| P1
+    end
+
+    subgraph VOICE["🗣️ Voice & Tone"]
+        direction TB
+        V1[Cinematic<br/>Studio Moments & Imagery]:::voice
+        V2[Intimate<br/>Late-Night Creative Truth]:::voice
+        V3[Technical<br/>Clear, No-Jargon Mastery]:::voice
+        V4[Transformational<br/>Before/After Journey]:::voice
+
+        V1 --> V2
+        V2 --> V3
+        V3 --> V4
+    end
+
+    subgraph VISUAL["🎨 Visual Identity"]
+        direction TB
+
+        subgraph COLORS["Color Palette"]
+            C1[Primary: Deep Purple<br/>#9B4AE2 - AI & Magic]:::color1
+            C2[Secondary: Electric Blue<br/>#4A90E2 - Tech & Trust]:::color2
+            C3[Accent: Vibrant Pink<br/>#E24A90 - Energy & Passion]:::color3
+            C4[Neutral: Dark Slate<br/>#2E3440 - Sophistication]:::color4
+            C5[Highlight: Gold<br/>#FFB84D - Premium & Warmth]:::color5
+        end
+
+        subgraph TYPOGRAPHY["Typography"]
+            T1[Headlines:<br/>Inter Bold/Black<br/>Modern, Strong]:::typo
+            T2[Body:<br/>Inter Regular<br/>Readable, Clean]:::typo
+            T3[Code:<br/>JetBrains Mono<br/>Technical, Precise]:::typo
+            T4[Display:<br/>Space Grotesk<br/>Distinctive, Creative]:::typo
+        end
+
+        subgraph IMAGERY["Imagery Style"]
+            I1[Studio Aesthetics<br/>Dark, Moody, Intimate]:::image
+            I2[AI-Generated Art<br/>Cosmic, Ethereal, Future]:::image
+            I3[Behind-the-Scenes<br/>Authentic, Process-Focused]:::image
+            I4[Creator Close-Ups<br/>Emotional, Determined]:::image
+        end
+
+        COLORS --> TYPOGRAPHY
+        TYPOGRAPHY --> IMAGERY
+    end
+
+    subgraph PERSONAS["👤 Target Personas"]
+        direction TB
+
+        subgraph ALEX["Alex the Ambitious Producer"]
+            AL1[Age: 28-35<br/>Overwhelmed by AI tools]:::persona
+            AL2[Goal: Master Suno<br/>Release quality music fast]:::persona
+            AL3[Pain: Too many tutorials<br/>Not enough results]:::persona
+        end
+
+        subgraph MAYA["Maya the Mindful Creator"]
+            MA1[Age: 32-42<br/>Spiritual + Strategic]:::persona
+            MA2[Goal: Align art with purpose<br/>Build sustainable practice]:::persona
+            MA3[Pain: Feels scattered<br/>Needs system + soul]:::persona
+        end
+
+        subgraph JORDAN["Jordan the Journeyman Artist"]
+            JO1[Age: 25-38<br/>Side hustle to full-time]:::persona
+            JO2[Goal: Quit day job<br/>Live from creative work]:::persona
+            JO3[Pain: Imposter syndrome<br/>Monetization mystery]:::persona
+        end
+
+        ALEX -.->|all served by| MAYA
+        MAYA -.->|all served by| JORDAN
+    end
+
+    subgraph TOUCHPOINTS["📱 Brand Touchpoints"]
+        direction TB
+        TP1[frankxhq.com<br/>Premium Hub]:::touch
+        TP2[Social Media<br/>Thought Leadership]:::touch
+        TP3[Newsletter<br/>Weekly Wisdom]:::touch
+        TP4[Vibe OS<br/>Sonic Experience]:::touch
+        TP5[The Realm<br/>Inner Sanctuary]:::touch
+        TP6[Products<br/>Templates & Courses]:::touch
+
+        TP1 --> TP2
+        TP2 --> TP3
+        TP3 --> TP4
+        TP4 --> TP5
+        TP5 --> TP6
+    end
+
+    subgraph COMPETITORS["🎯 Competitive Positioning"]
+        direction TB
+        DIFF1[vs Generic AI Courses:<br/>We're rooted in studio life]:::comp
+        DIFF2[vs Music Production Schools:<br/>We embrace AI, not fear it]:::comp
+        DIFF3[vs Business Coaches:<br/>We integrate consciousness]:::comp
+        DIFF4[vs Solo Tools:<br/>We build community + systems]:::comp
+
+        DIFF1 --> DIFF2
+        DIFF2 --> DIFF3
+        DIFF3 --> DIFF4
+    end
+
+    %% Connections
+    CORE --> PILLARS
+    PILLARS --> VOICE
+    VOICE --> VISUAL
+    CORE -.->|defines| PERSONAS
+    PERSONAS -.->|experience at| TOUCHPOINTS
+    PILLARS -.->|differentiate via| COMPETITORS
+
+    classDef core fill:#9B4AE2,stroke:#5C2E8A,stroke-width:3px,color:#fff,font-weight:bold
+    classDef pillar fill:#4A90E2,stroke:#2E5C8A,stroke-width:2px,color:#fff
+    classDef voice fill:#E24A90,stroke:#8A2E5C,stroke-width:2px,color:#fff
+    classDef color1 fill:#9B4AE2,stroke:#5C2E8A,stroke-width:2px,color:#fff
+    classDef color2 fill:#4A90E2,stroke:#2E5C8A,stroke-width:2px,color:#fff
+    classDef color3 fill:#E24A90,stroke:#8A2E5C,stroke-width:2px,color:#fff
+    classDef color4 fill:#2E3440,stroke:#1E2430,stroke-width:2px,color:#fff
+    classDef color5 fill:#FFB84D,stroke:#CC8A3D,stroke-width:2px,color:#333
+    classDef typo fill:#90E24A,stroke:#5C8A2E,stroke-width:2px,color:#333
+    classDef image fill:#4AE2E2,stroke:#2E8A8A,stroke-width:2px,color:#333
+    classDef persona fill:#E2904A,stroke:#8A5C2E,stroke-width:2px,color:#fff
+    classDef touch fill:#FFB84D,stroke:#CC8A3D,stroke-width:2px,color:#333
+    classDef comp fill:#B366FF,stroke:#8C4DCC,stroke-width:2px,color:#fff

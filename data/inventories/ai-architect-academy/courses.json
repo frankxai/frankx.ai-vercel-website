@@ -1,0 +1,34 @@
+{
+  "_description": "AI Architect Academy Course Inventory",
+  "_brand": "ai-architect-academy",
+  "_instructions": "Track all AAA courses, workshops, and educational content",
+  "_lastUpdated": "2026-01-23",
+  "_count": 0,
+  "_template": {
+    "id": "course-slug",
+    "type": "product",
+    "title": "Course Title",
+    "description": "Course description",
+    "brand": "ai-architect-academy",
+    "status": "published",
+    "tags": ["topic", "level"],
+    "createdAt": "2025-01-01",
+    "category": "course",
+    "pricing": {
+      "amount": 297,
+      "currency": "USD",
+      "type": "one-time"
+    },
+    "salesPlatform": "website",
+    "salesUrl": "https://frankx.ai/courses/...",
+    "modules": [
+      { "title": "Module 1", "description": "Description" }
+    ],
+    "duration": "8 hours",
+    "level": "intermediate",
+    "prerequisites": [],
+    "outcomes": ["Skill 1", "Skill 2"],
+    "totalSales": 0
+  },
+  "courses": []
+}

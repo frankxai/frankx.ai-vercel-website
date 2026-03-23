@@ -1,0 +1,31 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="governanceGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#14B8A6"/>
+      <stop offset="50%" stop-color="#6366F1"/>
+      <stop offset="100%" stop-color="#9333EA"/>
+    </linearGradient>
+    <radialGradient id="governanceGlow" cx="40%" cy="20%" r="55%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#020617"/>
+  <rect width="1200" height="630" fill="url(#governanceGradient)" opacity="0.25"/>
+  <rect width="1200" height="630" fill="url(#governanceGlow)"/>
+  <g transform="translate(120 150)">
+    <text x="0" y="0" font-family="'Inter', 'Segoe UI', sans-serif" font-size="56" font-weight="700" fill="#F8FAFC">
+      Governance Maturity & Trust Stack
+    </text>
+    <text x="0" y="68" font-family="'Inter', 'Segoe UI', sans-serif" font-size="28" font-weight="500" fill="#E0E7FF" opacity="0.9">
+      Policy Codex · Evaluation Harness · Transparency Rituals
+    </text>
+  </g>
+  <g transform="translate(120 320)" font-family="'Inter', 'Segoe UI', sans-serif">
+    <rect x="0" y="0" width="960" height="230" rx="32" fill="rgba(79,70,229,0.22)" stroke="rgba(180,198,255,0.5)"/>
+    <text x="40" y="70" font-size="24" fill="#C7D2FE">Level 4 — Leadership</text>
+    <text x="40" y="110" font-size="18" fill="#E2E8F0">Publish transparency reports · contribute to standards · invite community oversight.</text>
+    <text x="40" y="150" font-size="18" fill="#E2E8F0">Integrate C2PA, bias audits, and changelog rituals into every release.</text>
+    <text x="40" y="190" font-size="18" fill="#BAE6FD">Atlas Action: Pair each launch with governance notes and Roadmap hub updates.</text>
+  </g>
+</svg>

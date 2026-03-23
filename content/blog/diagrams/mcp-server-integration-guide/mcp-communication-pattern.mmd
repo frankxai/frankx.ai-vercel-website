@@ -1,0 +1,18 @@
+flowchart TD
+    USER["User Request<br/>Take a screenshot of frankx.ai"]
+    CLAUDE_IN["Claude Code"]
+    SELECTOR["Tool Selection Layer<br/>Detects Browser MCP requirement"]
+    MCP["Playwright MCP Server<br/>1. browser_navigate()<br/>2. Launch browser<br/>3. browser_take_screenshot()<br/>4. Return image payload"]
+    CLAUDE_OUT["Claude Code Response<br/>Displays screenshot to user"]
+
+    USER --> CLAUDE_IN
+    CLAUDE_IN --> SELECTOR
+    SELECTOR --> MCP
+    MCP --> CLAUDE_OUT
+
+    classDef actor fill:#082f49,stroke:#06b6d4,color:#e0f2fe,stroke-width:1.5px
+    classDef process fill:#0f172a,stroke:#10b981,color:#e2e8f0,stroke-width:1.5px
+    classDef server fill:#064e3b,stroke:#34d399,color:#ecfeff,stroke-width:2px
+    class USER,CLAUDE_IN,CLAUDE_OUT actor
+    class SELECTOR process
+    class MCP server

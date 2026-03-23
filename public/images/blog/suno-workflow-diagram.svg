@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-label="Suno AI Music Production Workflow">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f172a"/>
+      <stop offset="1" stop-color="#1e1b4b"/>
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1e293b"/>
+      <stop offset="1" stop-color="#0f172a"/>
+    </linearGradient>
+    <linearGradient id="arrowGrad" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#0ea5e9"/>
+      <stop offset="1" stop-color="#8b5cf6"/>
+    </linearGradient>
+    <filter id="cardShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="4" stdDeviation="10" flood-color="#0ea5e9" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  <!-- Background -->
+  <rect width="1600" height="900" fill="url(#bg)"/>
+
+  <!-- Workflow Step 1: Prompt -->
+  <g filter="url(#cardShadow)">
+    <rect x="100" y="350" width="280" height="200" rx="20" fill="url(#cardGrad)" stroke="#0ea5e9" stroke-width="2"/>
+    <text x="240" y="410" fill="#0ea5e9" font-size="16" font-family="system-ui" font-weight="bold" text-anchor="middle">STEP 1</text>
+    <text x="240" y="450" fill="#e2e8f0" font-size="24" font-family="system-ui" font-weight="bold" text-anchor="middle">Prompt</text>
+    <text x="240" y="490" fill="#94a3b8" font-size="14" font-family="system-ui" text-anchor="middle">Write creative</text>
+    <text x="240" y="510" fill="#94a3b8" font-size="14" font-family="system-ui" text-anchor="middle">music prompt</text>
+  </g>
+
+  <!-- Arrow 1 -->
+  <path d="M400 450 L520 450" stroke="url(#arrowGrad)" stroke-width="4" fill="none" marker-end="url(#arrowhead)"/>
+  <polygon points="520,445 540,450 520,455" fill="#38bdf8"/>
+
+  <!-- Workflow Step 2: Generate -->
+  <g filter="url(#cardShadow)">
+    <rect x="560" y="350" width="280" height="200" rx="20" fill="url(#cardGrad)" stroke="#38bdf8" stroke-width="2"/>
+    <text x="700" y="410" fill="#38bdf8" font-size="16" font-family="system-ui" font-weight="bold" text-anchor="middle">STEP 2</text>
+    <text x="700" y="450" fill="#e2e8f0" font-size="24" font-family="system-ui" font-weight="bold" text-anchor="middle">Generate</text>
+    <text x="700" y="490" fill="#94a3b8" font-size="14" font-family="system-ui" text-anchor="middle">Suno AI creates</text>
+    <text x="700" y="510" fill="#94a3b8" font-size="14" font-family="system-ui" text-anchor="middle">your song</text>
+  </g>
+
+  <!-- Arrow 2 -->
+  <path d="M860 450 L980 450" stroke="url(#arrowGrad)" stroke-width="4" fill="none"/>
+  <polygon points="980,445 1000,450 980,455" fill="#a855f7"/>
+
+  <!-- Workflow Step 3: Refine -->
+  <g filter="url(#cardShadow)">
+    <rect x="1020" y="350" width="280" height="200" rx="20" fill="url(#cardGrad)" stroke="#8b5cf6" stroke-width="2"/>
+    <text x="1160" y="410" fill="#8b5cf6" font-size="16" font-family="system-ui" font-weight="bold" text-anchor="middle">STEP 3</text>
+    <text x="1160" y="450" fill="#e2e8f0" font-size="24" font-family="system-ui" font-weight="bold" text-anchor="middle">Refine</text>
+    <text x="1160" y="490" fill="#94a3b8" font-size="14" font-family="system-ui" text-anchor="middle">Iterate and</text>
+    <text x="1160" y="510" fill="#94a3b8" font-size="14" font-family="system-ui" text-anchor="middle">perfect</text>
+  </g>
+
+  <!-- Arrow 3 -->
+  <path d="M1320 450 L1440 450" stroke="url(#arrowGrad)" stroke-width="4" fill="none"/>
+  <polygon points="1440,445 1460,450 1440,455" fill="#ec4899"/>
+
+  <!-- Final: Release -->
+  <g>
+    <circle cx="1500" cy="450" r="60" fill="none" stroke="#ec4899" stroke-width="3"/>
+    <circle cx="1500" cy="450" r="45" fill="#ec4899" opacity="0.2"/>
+    <text x="1500" y="445" fill="#ec4899" font-size="14" font-family="system-ui" font-weight="bold" text-anchor="middle">RELEASE</text>
+    <text x="1500" y="465" fill="#e2e8f0" font-size="12" font-family="system-ui" text-anchor="middle">&#9835;</text>
+  </g>
+
+  <!-- Sound wave decoration top -->
+  <path d="M100 150 Q400 100, 800 150 Q1200 200, 1500 150" fill="none" stroke="#0ea5e9" stroke-width="2" opacity="0.3"/>
+  <path d="M100 180 Q400 130, 800 180 Q1200 230, 1500 180" fill="none" stroke="#8b5cf6" stroke-width="2" opacity="0.3"/>
+
+  <!-- Sound wave decoration bottom -->
+  <path d="M100 720 Q400 770, 800 720 Q1200 670, 1500 720" fill="none" stroke="#0ea5e9" stroke-width="2" opacity="0.3"/>
+  <path d="M100 750 Q400 800, 800 750 Q1200 700, 1500 750" fill="none" stroke="#8b5cf6" stroke-width="2" opacity="0.3"/>
+</svg>

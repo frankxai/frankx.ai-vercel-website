@@ -1,0 +1,122 @@
+graph TB
+    %% Creator Journey & Funnel
+    %% From discovery to transformation
+
+    subgraph AWARENESS["🌟 Awareness Stage"]
+        direction TB
+        DISCOVER[Social Discovery<br/>X, LinkedIn, YouTube]:::awareness
+        CONTENT[Free Content<br/>Blog, Newsletter]:::awareness
+        VIRAL[Viral Moments<br/>Thought Leadership]:::awareness
+
+        DISCOVER --> CONTENT
+        VIRAL --> CONTENT
+    end
+
+    subgraph INTEREST["💡 Interest Stage"]
+        direction TB
+        SUBSCRIBE[Newsletter Subscribe<br/>Weekly Insights]:::interest
+        DOWNLOAD[Free Toolkit<br/>Lead Magnet]:::interest
+        ENGAGE[Content Binge<br/>Deep Dive]:::interest
+
+        SUBSCRIBE --> ENGAGE
+        DOWNLOAD --> ENGAGE
+    end
+
+    subgraph CONSIDERATION["🤔 Consideration Stage"]
+        direction TB
+        CASE[Case Studies<br/>Creator Testimonials]:::consideration
+        DEMO[Free Session Sample<br/>Vibe OS Preview]:::consideration
+        EMAIL[Nurture Sequence<br/>Transformation Story]:::consideration
+
+        CASE --> EMAIL
+        DEMO --> EMAIL
+    end
+
+    subgraph CONVERSION["💰 Conversion Stage"]
+        direction TB
+        ENTRY[Entry Offer<br/>$27-47 Session]:::conversion
+        CORE[Core Product<br/>$97-297 Course]:::conversion
+        MEMBER[The Realm<br/>Monthly Membership]:::conversion
+
+        ENTRY --> CORE
+        CORE --> MEMBER
+    end
+
+    subgraph RETENTION["🔄 Retention & Ascension"]
+        direction TB
+        COMMUNITY[Active Community<br/>Peer Support]:::retention
+        WINS[Quick Wins<br/>Success Stories]:::retention
+        UPGRADE[Ascension Path<br/>Inner Circle]:::retention
+
+        COMMUNITY --> WINS
+        WINS --> UPGRADE
+    end
+
+    subgraph ADVOCACY["🚀 Advocacy Stage"]
+        direction TB
+        REFERRAL[Creator Referrals<br/>Word of Mouth]:::advocacy
+        COLLAB[Collaboration<br/>Co-Creation]:::advocacy
+        SHOWCASE[Portfolio Showcase<br/>Arcanea Platform]:::advocacy
+
+        REFERRAL --> COLLAB
+        COLLAB --> SHOWCASE
+    end
+
+    %% Touchpoints
+    subgraph TOUCH["📱 Key Touchpoints"]
+        direction LR
+        T1[frankxhq.com<br/>Main Hub]:::touch
+        T2[AI Music Academy<br/>Learning Platform]:::touch
+        T3[Vibe OS<br/>Sonic Experience]:::touch
+        T4[Arcanea<br/>Creation Space]:::touch
+        T5[The Realm<br/>Inner Sanctuary]:::touch
+    end
+
+    %% Product Ladder
+    subgraph LADDER["🪜 Product Ladder"]
+        direction TB
+        L1[Free: Toolkit & Newsletter<br/>$0]:::free
+        L2[Vibe OS Session<br/>$27-47]:::lowticket
+        L3[Course/Workshop<br/>$97-297]:::midticket
+        L4[The Realm Membership<br/>$47-97/month]:::highticket
+        L5[Inner Circle Coaching<br/>$997-2997/month]:::premium
+
+        L1 --> L2
+        L2 --> L3
+        L3 --> L4
+        L4 --> L5
+    end
+
+    %% Stage flow
+    AWARENESS --> INTEREST
+    INTEREST --> CONSIDERATION
+    CONSIDERATION --> CONVERSION
+    CONVERSION --> RETENTION
+    RETENTION --> ADVOCACY
+    ADVOCACY -.->|viral loop| AWARENESS
+
+    %% Touchpoint connections
+    INTEREST --> TOUCH
+    CONSIDERATION --> TOUCH
+    CONVERSION --> TOUCH
+    RETENTION --> TOUCH
+
+    %% Product ladder alignment
+    INTEREST -.-> L1
+    CONVERSION -.-> L2
+    CONVERSION -.-> L3
+    RETENTION -.-> L4
+    RETENTION -.-> L5
+
+    classDef awareness fill:#FFE066,stroke:#CCB34D,stroke-width:2px,color:#333
+    classDef interest fill:#66E0FF,stroke:#4DB3CC,stroke-width:2px,color:#333
+    classDef consideration fill:#B366FF,stroke:#8C4DCC,stroke-width:2px,color:#fff
+    classDef conversion fill:#66FF8C,stroke:#4DCC70,stroke-width:2px,color:#333
+    classDef retention fill:#FF8C66,stroke:#CC704D,stroke-width:2px,color:#fff
+    classDef advocacy fill:#FF66E0,stroke:#CC4DB3,stroke-width:2px,color:#fff
+    classDef touch fill:#4A90E2,stroke:#2E5C8A,stroke-width:2px,color:#fff
+    classDef free fill:#90E24A,stroke:#5C8A2E,stroke-width:2px,color:#333
+    classDef lowticket fill:#E2904A,stroke:#8A5C2E,stroke-width:2px,color:#fff
+    classDef midticket fill:#E24A90,stroke:#8A2E5C,stroke-width:2px,color:#fff
+    classDef highticket fill:#9B4AE2,stroke:#5C2E8A,stroke-width:2px,color:#fff
+    classDef premium fill:#E24AE2,stroke:#8A2E8A,stroke-width:2px,color:#fff

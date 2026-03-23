@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-label="Agentic SEO Publishing Masterplan">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f172a"/>
+      <stop offset="0.5" stop-color="#1e1b4b"/>
+      <stop offset="1" stop-color="#0f172a"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#0ea5e9" stop-opacity="0.3"/>
+      <stop offset="1" stop-color="#0f172a" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="blur" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="20"/>
+    </filter>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect width="1600" height="900" fill="url(#glow)"/>
+
+  <!-- Search engine visualization -->
+  <g filter="url(#blur)" opacity="0.4">
+    <circle cx="800" cy="300" r="150" fill="#0ea5e9"/>
+    <circle cx="500" cy="500" r="100" fill="#8b5cf6"/>
+    <circle cx="1100" cy="500" r="100" fill="#8b5cf6"/>
+    <circle cx="650" cy="700" r="80" fill="#38bdf8"/>
+    <circle cx="950" cy="700" r="80" fill="#38bdf8"/>
+  </g>
+
+  <!-- Network connections -->
+  <g stroke="#38bdf8" stroke-width="2" opacity="0.5">
+    <line x1="800" y1="300" x2="500" y2="500"/>
+    <line x1="800" y1="300" x2="1100" y2="500"/>
+    <line x1="500" y1="500" x2="650" y2="700"/>
+    <line x1="1100" y1="500" x2="950" y2="700"/>
+    <line x1="500" y1="500" x2="1100" y2="500"/>
+    <line x1="650" y1="700" x2="950" y2="700"/>
+  </g>
+
+  <!-- Central search icon -->
+  <circle cx="800" cy="300" r="80" fill="#0f172a" stroke="#0ea5e9" stroke-width="3"/>
+  <circle cx="780" cy="285" r="35" fill="none" stroke="#0ea5e9" stroke-width="4"/>
+  <line x1="805" y1="310" x2="835" y2="340" stroke="#0ea5e9" stroke-width="4" stroke-linecap="round"/>
+
+  <!-- Content nodes -->
+  <g>
+    <circle cx="500" cy="500" r="50" fill="#0f172a" stroke="#8b5cf6" stroke-width="2"/>
+    <text x="500" y="505" fill="#e2e8f0" font-size="14" font-family="system-ui" font-weight="bold" text-anchor="middle">CONTENT</text>
+
+    <circle cx="1100" cy="500" r="50" fill="#0f172a" stroke="#8b5cf6" stroke-width="2"/>
+    <text x="1100" y="505" fill="#e2e8f0" font-size="14" font-family="system-ui" font-weight="bold" text-anchor="middle">AGENTS</text>
+
+    <circle cx="650" cy="700" r="45" fill="#0f172a" stroke="#38bdf8" stroke-width="2"/>
+    <text x="650" y="705" fill="#e2e8f0" font-size="12" font-family="system-ui" font-weight="bold" text-anchor="middle">PUBLISH</text>
+
+    <circle cx="950" cy="700" r="45" fill="#0f172a" stroke="#38bdf8" stroke-width="2"/>
+    <text x="950" y="705" fill="#e2e8f0" font-size="12" font-family="system-ui" font-weight="bold" text-anchor="middle">OPTIMIZE</text>
+  </g>
+
+  <!-- Floating keywords -->
+  <g fill="#94a3b8" font-size="12" font-family="system-ui" opacity="0.6">
+    <text x="200" y="200">keywords</text>
+    <text x="1300" y="200">rankings</text>
+    <text x="150" y="700">backlinks</text>
+    <text x="1350" y="700">traffic</text>
+    <text x="300" y="400">schema</text>
+    <text x="1200" y="350">sitemap</text>
+  </g>
+
+  <!-- Title area -->
+  <text x="800" y="150" fill="#0ea5e9" font-size="14" font-family="system-ui" font-weight="bold" text-anchor="middle" letter-spacing="4">AGENTIC</text>
+  <text x="800" y="850" fill="#e2e8f0" font-size="24" font-family="system-ui" font-weight="bold" text-anchor="middle">SEO PUBLISHING MASTERPLAN</text>
+</svg>

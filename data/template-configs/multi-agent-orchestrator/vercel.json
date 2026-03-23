@@ -1,0 +1,11 @@
+{
+  "framework": "nextjs",
+  "buildCommand": "next build",
+  "installCommand": "npm install",
+  "outputDirectory": ".next",
+  "env": {
+    "ANTHROPIC_API_KEY": { "description": "Claude API key for agent orchestration", "required": true },
+    "OPENAI_API_KEY": { "description": "OpenAI key for GPT-4 agents (optional)", "required": false },
+    "REDIS_URL": { "description": "Redis for agent state management", "required": true }
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "version": "1.0",
+  "generatedAt": "2026-02-19T11:30:00Z",
+  "weeks": [
+    {
+      "week": "2026-W08",
+      "label": "Feb 17-23 — Launch Week",
+      "theme": "Content Pipeline Activation",
+      "days": [
+        { "date": "2026-02-19", "platform": "x", "pillar": "ai-architecture", "source": "ai-engineering-without-hype-willison", "type": "thread", "status": "queued", "note": "Already generated, in social-queue.json" },
+        { "date": "2026-02-19", "platform": "linkedin", "pillar": "ai-architecture", "source": "ai-engineering-without-hype-willison", "type": "post", "status": "queued" },
+        { "date": "2026-02-20", "platform": "x", "pillar": "creator-tools", "source": "build-your-own-jarvis-claude-code", "type": "thread", "status": "draft" },
+        { "date": "2026-02-20", "platform": "linkedin", "pillar": "creator-tools", "source": "build-your-own-jarvis-claude-code", "type": "post", "status": "draft" },
+        { "date": "2026-02-21", "platform": "x", "pillar": "ai-business", "source": "the-great-transition-build-your-own-business", "type": "thread", "status": "draft" },
+        { "date": "2026-02-21", "platform": "linkedin", "pillar": "ai-business", "source": "the-great-transition-build-your-own-business", "type": "post", "status": "draft" },
+        { "date": "2026-02-22", "platform": "newsletter", "pillar": "all", "source": "weekly-digest", "type": "email", "status": "planned", "note": "Week's top 3 articles + 1 music drop" },
+        { "date": "2026-02-23", "platform": "youtube", "pillar": "ai-architecture", "source": "VMj-3S1tku0", "type": "short", "status": "planned", "note": "Opus Pro clip: 'What is a neural network in 60s'" }
+      ]
+    },
+    {
+      "week": "2026-W09",
+      "label": "Feb 24 - Mar 2 — Authority Week",
+      "theme": "Technical Depth + Credibility",
+      "days": [
+        { "date": "2026-02-24", "platform": "linkedin", "pillar": "ai-architecture", "source": "production-agent-patterns-7-pillars", "type": "post", "status": "planned" },
+        { "date": "2026-02-25", "platform": "x", "pillar": "creator-tools", "source": "claude-code-mastery-top-resources", "type": "thread", "status": "draft" },
+        { "date": "2026-02-25", "platform": "linkedin", "pillar": "creator-tools", "source": "claude-code-mastery-top-resources", "type": "post", "status": "draft" },
+        { "date": "2026-02-26", "platform": "linkedin", "pillar": "ai-business", "source": "intelligence-revolution-2025", "type": "post", "status": "planned" },
+        { "date": "2026-02-27", "platform": "x", "pillar": "meta-content", "source": "agentic-ai-roadmap-2026", "type": "thread", "status": "planned" },
+        { "date": "2026-02-28", "platform": "all", "pillar": "creative-systems", "source": "suno-prompt-engineering-complete-guide", "type": "thread+post", "status": "draft" },
+        { "date": "2026-03-01", "platform": "newsletter", "pillar": "all", "source": "weekly-digest", "type": "email", "status": "planned" },
+        { "date": "2026-03-02", "platform": "youtube", "pillar": "creative-systems", "source": "n9iv24yI04nI", "type": "short", "status": "planned", "note": "Opus Pro clip: Rick Rubin 'Remove ego from creation'" }
+      ]
+    },
+    {
+      "week": "2026-W10",
+      "label": "Mar 3-9 — Growth Week",
+      "theme": "Viral Potential + Community",
+      "days": [
+        { "date": "2026-03-03", "platform": "linkedin", "pillar": "ai-architecture", "source": "multi-agent-orchestration-patterns-2026", "type": "post", "status": "planned" },
+        { "date": "2026-03-04", "platform": "x", "pillar": "creator-tools", "source": "mcp-doctor-claude-code-server-optimization", "type": "thread", "status": "queued", "note": "Already in social-queue.json" },
+        { "date": "2026-03-05", "platform": "linkedin", "pillar": "ai-business", "source": "agi-2026-opportunities-students-creators", "type": "post", "status": "planned" },
+        { "date": "2026-03-06", "platform": "x", "pillar": "meta-content", "source": "misinformation-guardian-hackathon-build-log-2026", "type": "thread", "status": "planned" },
+        { "date": "2026-03-07", "platform": "all", "pillar": "creative-systems", "source": "vibe-os-platform-introduction", "type": "thread+post", "status": "planned" },
+        { "date": "2026-03-08", "platform": "newsletter", "pillar": "all", "source": "weekly-digest", "type": "email", "status": "planned" },
+        { "date": "2026-03-09", "platform": "youtube", "pillar": "ai-architecture", "source": "pOLR5jE5Vjw", "type": "short", "status": "planned", "note": "Opus Pro clip: 'The exploratory coding loop'" }
+      ]
+    },
+    {
+      "week": "2026-W11",
+      "label": "Mar 10-16 — Conversion Week",
+      "theme": "Products + Value Ladder",
+      "days": [
+        { "date": "2026-03-10", "platform": "linkedin", "pillar": "ai-architecture", "source": "oracle-genai-agents-vs-langgraph-crewai-2026", "type": "post", "status": "planned" },
+        { "date": "2026-03-11", "platform": "x", "pillar": "creator-tools", "source": "acos-v10-autonomous-intelligence", "type": "thread", "status": "queued", "note": "Already in social-queue.json" },
+        { "date": "2026-03-12", "platform": "linkedin", "pillar": "ai-business", "source": "eu-inc-28th-regime-european-startups", "type": "post", "status": "planned" },
+        { "date": "2026-03-13", "platform": "x", "pillar": "meta-content", "source": "frankx-intelligence-ecosystem-complete-guide", "type": "thread", "status": "planned" },
+        { "date": "2026-03-14", "platform": "all", "pillar": "creative-systems", "source": "music-as-consciousness-technology", "type": "thread+post", "status": "planned" },
+        { "date": "2026-03-15", "platform": "newsletter", "pillar": "all", "source": "monthly-digest", "type": "email", "status": "planned", "note": "Monthly recap: Feb stats + March preview" },
+        { "date": "2026-03-16", "platform": "youtube", "pillar": "creative-systems", "source": "screen-recording", "type": "short", "status": "planned", "note": "Build ACOS skill in 60s screen recording" }
+      ]
+    }
+  ],
+  "toolWorkflows": {
+    "infogenius": "/infogenius → style per pillar settings in content-strategy.json → save to public/images/social/",
+    "opusPro": "opus.pro → upload YouTube URL from video-library.json → select top clips → download → add watermark in Canva → upload to Shorts",
+    "canva": "Canva Pro templates → brand kit (navy bg, Inter font, brand colors) → export 1:1 for X, 16:9 for LinkedIn, 9:16 for Shorts",
+    "generateSocial": "/generate-social {slug} → auto-saves to social-queue.json → sends full review to Slack #content"
+  }
+}

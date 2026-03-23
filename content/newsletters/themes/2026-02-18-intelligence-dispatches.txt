@@ -1,0 +1,41 @@
+FRANKX NEWSLETTER | Intelligence Dispatches
+2026-02-18
+
+Hi Frank,
+
+Signal Over Hype, Every Week
+
+Intelligence work is about selecting the few signals that change decisions. This week: capability velocity, governance maturity, and the gap between local productivity and system-level performance.
+
+INSIGHTS
+1. Capability growth continues to accelerate
+The AI Index trajectory reinforces what builders already feel: model capabilities and investment are moving fast, but adoption quality is uneven across organizations and sectors.
+
+2. Policy is converging toward responsible deployment
+OECD guidance continues to push trustworthy AI principles into real implementation contexts, especially for public sector and critical use domains.
+
+3. Execution quality remains the bottleneck
+Teams with clear value-stream thinking and operational rigor convert AI potential into outcomes. Others stay stuck in pilot mode.
+
+BUILD THIS WEEK
+1. Pick one strategic signal and map it to one concrete roadmap decision.
+2. Add a risk note to every AI initiative: model, data, workflow, owner.
+3. Review one pilot and decide: scale, redesign, or stop.
+
+RESEARCH SIGNALS
+- Stanford 2025 AI Index Report
+  https://hai.stanford.edu/ai-index/2025-ai-index-report?u=
+  Broad benchmark for capabilities, investment, and policy context.
+- OECD Generative AI topic
+  https://www.oecd.org/en/topics/generative-ai.html
+  Adoption patterns and policy framing across OECD countries.
+- OECD: Governing with AI in public administration
+  https://www.oecd.org/en/about/news/press-releases/2025/09/oecd-encourages-responsible-use-of-ai-by-governments-to-strengthen-efficiency-effectiveness-and-trust.html
+  Scaling challenges and responsible deployment lessons.
+
+CTA
+Read Intelligence Dispatches: https://www.frankx.ai/blog
+
+---
+FrankX.ai
+Unsubscribe: {{RESEND_UNSUBSCRIBE_URL}}

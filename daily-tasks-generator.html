@@ -1,0 +1,1118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Agent Tasks Generator - FrankX.ai</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 36px;
+            color: #1a202c;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #718096;
+            font-size: 18px;
+        }
+
+        .current-focus {
+            background: #f7fafc;
+            border-left: 4px solid #667eea;
+            padding: 15px 20px;
+            margin-top: 20px;
+            border-radius: 8px;
+        }
+
+        .current-focus h3 {
+            color: #667eea;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .current-focus p {
+            color: #1a202c;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .tabs {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .tab {
+            background: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .tab:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+
+        .tab.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .content {
+            display: none;
+        }
+
+        .content.active {
+            display: block;
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+
+        .card h2 {
+            color: #1a202c;
+            font-size: 24px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .card h3 {
+            color: #4a5568;
+            font-size: 18px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .badge.claude {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .badge.codex {
+            background: #dbeafe;
+            color: #1e40af;
+        }
+
+        .badge.high {
+            background: #fee2e2;
+            color: #991b1b;
+        }
+
+        .badge.medium {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        .prompt-box {
+            background: #f7fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .prompt-box pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-family: 'Monaco', 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            color: #2d3748;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background: #5a67d8;
+            transform: translateY(-2px);
+        }
+
+        .copy-btn.copied {
+            background: #48bb78;
+        }
+
+        .repo-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #f7fafc;
+            padding: 8px 16px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: #667eea;
+            font-weight: 600;
+            font-size: 14px;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .repo-link:hover {
+            background: #edf2f7;
+            transform: translateX(5px);
+        }
+
+        .task-list {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        .task-list li {
+            padding: 12px;
+            margin-bottom: 10px;
+            background: #f7fafc;
+            border-left: 4px solid #667eea;
+            border-radius: 8px;
+            display: flex;
+            align-items: start;
+            gap: 12px;
+        }
+
+        .task-list input[type="checkbox"] {
+            margin-top: 4px;
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+
+        .metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .metric {
+            background: #f7fafc;
+            padding: 20px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 32px;
+            font-weight: 700;
+            color: #667eea;
+            display: block;
+        }
+
+        .metric-label {
+            font-size: 14px;
+            color: #718096;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 8px;
+        }
+
+        .project-status {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .status-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .status-dot.active {
+            background: #48bb78;
+            animation: pulse 2s infinite;
+        }
+
+        .status-dot.planning {
+            background: #f6ad55;
+        }
+
+        .status-dot.paused {
+            background: #cbd5e0;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .week-nav {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .week-btn {
+            padding: 10px 20px;
+            border: 2px solid #e2e8f0;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .week-btn.active {
+            border-color: #667eea;
+            background: #667eea;
+            color: white;
+        }
+
+        .week-btn:hover {
+            border-color: #667eea;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <h1>🚀 Daily Agent Tasks Generator</h1>
+            <p>Your command center for Claude and Codex daily tasks</p>
+
+            <div class="current-focus">
+                <h3>Current Sprint Focus</h3>
+                <p id="current-sprint">Week 1-2: FrankX.ai Foundation - Lead Magnets & First Products</p>
+            </div>
+        </div>
+
+        <!-- Week Navigation -->
+        <div class="week-nav">
+            <button class="week-btn active" onclick="setWeek(1, 'FrankX.ai Foundation')">Week 1-2</button>
+            <button class="week-btn" onclick="setWeek(3, 'AI Music Academy Beta')">Week 3-4</button>
+            <button class="week-btn" onclick="setWeek(5, 'Arcanea MVP Launch')">Week 5-6</button>
+            <button class="week-btn" onclick="setWeek(7, 'Vibe OS Complete')">Week 7-8</button>
+            <button class="week-btn" onclick="setWeek(9, 'Scale & Optimize')">Week 9-12</button>
+        </div>
+
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="tab active" onclick="showTab('claude')">
+                Claude (Strategic)
+            </button>
+            <button class="tab" onclick="showTab('codex')">
+                Codex (Development)
+            </button>
+            <button class="tab" onclick="showTab('github')">
+                GitHub Priorities
+            </button>
+            <button class="tab" onclick="showTab('metrics')">
+                Metrics Dashboard
+            </button>
+        </div>
+
+        <!-- Claude Tab -->
+        <div id="claude" class="content active">
+            <!-- Morning Strategic Prompt -->
+            <div class="card">
+                <h2>
+                    <span>☀️</span> Morning Strategic Prompt
+                    <span class="badge claude">Claude</span>
+                    <span class="badge high">High Priority</span>
+                </h2>
+                <p style="margin-top: 10px; color: #718096;">Start your day with strategic planning</p>
+
+                <div class="prompt-box">
+                    <button class="copy-btn" onclick="copyPrompt(this, 'morning-claude')">Copy</button>
+                    <pre id="morning-claude">Good morning, Claude! Let's plan today's work for FrankX.
+
+**Current Sprint**: Week 1-2 - FrankX.ai Foundation
+**Primary Focus**: Lead magnets + first digital product
+**Yesterday's Progress**: [Fill in what you shipped yesterday]
+
+**Today's Strategic Goals**:
+1. Complete "AI Agent Starter Kit" content outline
+2. Write 3 LinkedIn posts about agentic systems
+3. Plan email nurture sequence (5 emails)
+
+**Questions/Blockers**:
+- [Any strategic decisions you need help with]
+- [Any content that needs feedback]
+- [Any analysis required]
+
+Please help me:
+1. Prioritize these goals for maximum impact
+2. Create detailed task breakdowns
+3. Identify what I can delegate to Codex
+4. Flag any strategic issues I should address</pre>
+                </div>
+            </div>
+
+            <!-- Content Creation Prompt -->
+            <div class="card">
+                <h2>
+                    <span>✍️</span> Content Creation Prompt
+                    <span class="badge claude">Claude</span>
+                </h2>
+
+                <h3>Blog Post</h3>
+                <div class="prompt-box">
+                    <button class="copy-btn" onclick="copyPrompt(this, 'blog-post')">Copy</button>
+                    <pre id="blog-post">Claude, write a blog post for FrankX.ai.
+
+**Title**: [Your working title]
+**Target Audience**: Creators & Solopreneurs
+**Key Message**: [Main takeaway you want readers to have]
+**CTA**: [What action readers should take - e.g., download lead magnet]
+**SEO Keywords**: AI agents, creator productivity, agentic systems
+**Word Count**: 1200-1500 words
+
+Please create:
+1. 3 SEO-optimized title options
+2. Meta description (155 chars)
+3. Full blog post with headers (H2, H3)
+4. Internal links to FrankX products
+5. Strong CTA with urgency
+6. Engaging introduction that hooks the reader</pre>
+                </div>
+
+                <h3>Social Media Posts</h3>
+                <div class="prompt-box">
+                    <button class="copy-btn" onclick="copyPrompt(this, 'social-media')">Copy</button>
+                    <pre id="social-media">Claude, create this week's LinkedIn content.
+
+**Platform**: LinkedIn
+**Theme**: Building AI Agent Systems for Creators
+**Posts Needed**: 5 (Monday-Friday)
+
+For each post, create:
+- Hook in first line (scroll-stopper)
+- Personal story or insight
+- Practical takeaway
+- Clear CTA
+- 3-5 relevant hashtags
+
+Make it:
+- Conversational and authentic
+- Value-driven (teach something useful)
+- Drive traffic to FrankX.ai
+- Encourage comments and engagement</pre>
+                </div>
+            </div>
+
+            <!-- Product Strategy Prompt -->
+            <div class="card">
+                <h2>
+                    <span>💎</span> Product Strategy Prompt
+                    <span class="badge claude">Claude</span>
+                </h2>
+
+                <div class="prompt-box">
+                    <button class="copy-btn" onclick="copyPrompt(this, 'product-strategy')">Copy</button>
+                    <pre id="product-strategy">Claude, let's work on product strategy for "Conscious AI Toolkit".
+
+**Product**: Conscious AI Toolkit ($47)
+**Current Status**: Content 70% complete, need sales page
+**Target Launch**: [Date]
+
+Help me:
+1. Finalize product positioning and unique value proposition
+2. Draft compelling sales page copy with:
+   - Headline that grabs attention
+   - Benefits-focused bullet points
+   - Social proof section (structure for testimonials)
+   - FAQ section (common objections)
+   - Strong CTA with urgency
+3. Plan 7-day email launch sequence
+4. Create product launch checklist
+5. Suggest pricing strategy (should we do early bird discount?)
+
+Make it conversion-optimized and focused on the outcome customers want.</pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- Codex Tab -->
+        <div id="codex" class="content">
+            <!-- FrankX.ai Development -->
+            <div class="card">
+                <h2>
+                    <span>🎯</span> FrankX.ai Development
+                    <span class="badge codex">Codex</span>
+                    <span class="badge high">High Priority</span>
+                </h2>
+
+                <div class="project-status">
+                    <div class="status-dot active"></div>
+                    <span><strong>Active Development</strong></span>
+                </div>
+
+                <a href="https://github.com/frankxai" target="_blank" class="repo-link">
+                    📁 View on GitHub →
+                </a>
+
+                <h3>Lead Magnet Landing Page</h3>
+                <div class="prompt-box">
+                    <button class="copy-btn" onclick="copyPrompt(this, 'frankx-landing')">Copy</button>
+                    <pre id="frankx-landing">Project: frankxai (Next.js)
+Branch: feature/lead-magnet-landing-page
+
+**Feature**: AI Agent Starter Kit Landing Page
+**User Story**: As a visitor, I want to download the free starter kit so I can learn about AI agents
+
+**Technical Requirements**:
+- Create `/app/starter-kit/page.tsx`
+- Hero section with benefit-focused headline
+- 3-column benefits grid (icons + text)
+- Email capture form (Resend integration)
+- Download button (instant PDF delivery)
+- Mobile-responsive design
+- Loading and success states
+
+**Design**:
+- Use existing Tailwind theme colors
+- Hero gradient background (#667eea to #764ba2)
+- Clean, modern spacing
+- Clear visual hierarchy
+
+**Acceptance Criteria**:
+- [x] Form validates email
+- [x] Submits to /api/subscribe
+- [x] Shows success message
+- [x] Delivers PDF via Resend
+- [x] Mobile responsive
+- [x] Fast page load (<2s)
+
+Please implement following our component structure in `/components/`.</pre>
+                </div>
+
+                <h3>Email + PDF Delivery System (Resend + Vercel Blob)</h3>
+                <div class="prompt-box">
+                    <button class="copy-btn" onclick="copyPrompt(this, 'frankx-email')">Copy</button>
+                    <pre id="frankx-email">Project: frankxai
+Branch: feature/email-pdf-delivery
+
+**Feature**: Resend Email + Vercel Blob PDF Delivery
+**Purpose**: Automate email capture with instant PDF delivery
+
+**Step 1: Upload PDF to Vercel Blob (One-time)**
+```bash
+# Install Vercel CLI
+npm i @vercel/blob
+
+# Upload PDF to Vercel Blob Storage
+# Go to Vercel Dashboard → Your Project → Storage → Create Blob Store
+# Upload: /pdfs/ai-agent-starter-kit.pdf
+# Get URL: https://[random].public.blob.vercel-storage.com/starter-kit.pdf
+```
+
+**Step 2: Install Dependencies**
+```bash
+npm install resend @vercel/postgres
+```
+
+**Step 3: Environment Variables**
+```
+RESEND_API_KEY=re_xxxx
+BLOB_READ_WRITE_TOKEN=vercel_blob_xxx
+POSTGRES_URL=postgres://xxx
+PDF_BLOB_URL=https://[your-blob-url]/starter-kit.pdf
+```
+
+**Step 4: Database Schema (Vercel Postgres)**
+```sql
+CREATE TABLE subscribers (
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  email TEXT NOT NULL UNIQUE,
+  lead_magnet TEXT,
+  subscribed_at TIMESTAMP DEFAULT NOW()
+);
+```
+
+**Step 5: API Route** `/app/api/subscribe/route.ts`
+```typescript
+import { sql } from '@vercel/postgres';
+import { Resend } from 'resend';
+import { NextResponse } from 'next/server';
+
+const resend = new Resend(process.env.RESEND_API_KEY);
+
+export async function POST(request: Request) {
+  try {
+    const { email } = await request.json();
+
+    // Validate email
+    if (!email || !email.includes('@')) {
+      return NextResponse.json({ error: 'Invalid email' }, { status: 400 });
+    }
+
+    // Save to database
+    await sql`
+      INSERT INTO subscribers (email, lead_magnet)
+      VALUES (${email}, 'ai-agent-starter-kit')
+      ON CONFLICT (email) DO NOTHING
+    `;
+
+    // Send email with PDF attachment
+    await resend.emails.send({
+      from: 'frank@frankx.ai',
+      to: email,
+      subject: 'Your AI Agent Starter Kit 🚀',
+      html: `
+        <h2>Thanks for subscribing!</h2>
+        <p>Your AI Agent Starter Kit is attached to this email.</p>
+        <p>Get ready to build your agent system!</p>
+        <p>- Frank</p>
+      `,
+      attachments: [{
+        filename: 'ai-agent-starter-kit.pdf',
+        path: process.env.PDF_BLOB_URL
+      }]
+    });
+
+    return NextResponse.json({ success: true });
+  } catch (error) {
+    console.error('Subscribe error:', error);
+    return NextResponse.json({ error: 'Failed to subscribe' }, { status: 500 });
+  }
+}
+```
+
+**Acceptance Criteria**:
+- [x] PDF uploaded to Vercel Blob (not in GitHub repo)
+- [x] Email saves to Vercel Postgres
+- [x] Resend delivers email with PDF attachment
+- [x] Error handling for failed sends
+- [x] Email validation works
+- [x] Mobile-friendly forms
+
+**Cost**: $0 (all free tiers)
+- Resend: 3,000 emails/month free
+- Vercel Blob: 500MB free
+- Vercel Postgres: 60 hours compute/month free
+
+Please implement with full error handling and TypeScript types.</pre>
+                </div>
+            </div>
+
+            <!-- AI Music Academy Development -->
+            <div class="card">
+                <h2>
+                    <span>🎵</span> AI Music Academy Development
+                    <span class="badge codex">Codex</span>
+                </h2>
+
+                <div class="project-status">
+                    <div class="status-dot active"></div>
+                    <span><strong>Active Development</strong></span>
+                </div>
+
+                <h3>Lesson Delivery System</h3>
+                <div class="prompt-box">
+                    <button class="copy-btn" onclick="copyPrompt(this, 'music-lessons')">Copy</button>
+                    <pre id="music-lessons">Project: ai-music-academy
+Branch: feature/lesson-system
+
+**Feature**: MDX-based Lesson Platform
+**Purpose**: Deliver interactive lessons to students
+
+**Technical Requirements**:
+- Lesson format: MDX with React components
+- Create `/app/lessons/[slug]/page.tsx`
+- Student progress tracking (save to database)
+- Video embeds (YouTube)
+- Interactive quizzes (React components)
+- Next/Previous lesson navigation
+- Completion checkboxes
+
+**Database Schema**:
+```typescript
+table lesson_progress {
+  id: uuid
+  user_id: uuid (foreign key)
+  lesson_slug: string
+  completed: boolean
+  completion_date: timestamp
+}
+```
+
+**Acceptance Criteria**:
+- [x] Lessons load from MDX files
+- [x] Progress persists in database
+- [x] Videos embed properly
+- [x] Mobile responsive
+- [x] Fast navigation between lessons
+- [x] Can mark lesson complete
+
+Please implement with proper TypeScript types and error handling.</pre>
+                </div>
+            </div>
+
+            <!-- Arcanea Development -->
+            <div class="card">
+                <h2>
+                    <span>✨</span> Arcanea Development
+                    <span class="badge codex">Codex</span>
+                </h2>
+
+                <div class="project-status">
+                    <div class="status-dot planning"></div>
+                    <span><strong>Planning Phase</strong></span>
+                </div>
+
+                <a href="https://github.com/Arcanea-Labs/Arcanea" target="_blank" class="repo-link">
+                    📁 View Monorepo on GitHub →
+                </a>
+
+                <h3>Music Creation Interface</h3>
+                <div class="prompt-box">
+                    <button class="copy-btn" onclick="copyPrompt(this, 'arcanea-music')">Copy</button>
+                    <pre id="arcanea-music">Project: Arcanea-Labs/Arcanea (monorepo)
+Package: apps/studio
+Branch: feature/music-creation
+
+**Feature**: Suno AI Music Creation Interface
+**User Flow**:
+1. User enters prompt (lyrics + style)
+2. System calls Suno API
+3. Shows generation progress
+4. Displays result with player
+5. Saves to user's realm
+
+**Technical Requirements**:
+- Create `/apps/studio/components/MusicCreator.tsx`
+- Suno API integration (`/packages/suno-api/`)
+- Audio player component
+- Generation queue system
+- Error handling (API failures, rate limits)
+- Save to PostgreSQL (user_creations table)
+
+**UI Components**:
+- Prompt textarea with character count
+- Style selector dropdown
+- "Create Magic" button with loading state
+- Progress indicator
+- Audio player with waveform
+- Save to realm button
+
+**Database**:
+```typescript
+table user_creations {
+  id: uuid
+  user_id: uuid
+  type: 'music' | 'visual' | 'story'
+  prompt: text
+  suno_audio_url: string
+  created_at: timestamp
+}
+```
+
+Please implement following monorepo structure and use shared components.</pre>
+                </div>
+            </div>
+
+            <!-- Bug Fixes & Technical Debt -->
+            <div class="card">
+                <h2>
+                    <span>🐛</span> Bug Fixes & Optimization
+                    <span class="badge codex">Codex</span>
+                    <span class="badge medium">Medium Priority</span>
+                </h2>
+
+                <h3>Performance Optimization</h3>
+                <div class="prompt-box">
+                    <button class="copy-btn" onclick="copyPrompt(this, 'optimization')">Copy</button>
+                    <pre id="optimization">Project: All repos
+Task: Performance optimization sweep
+
+**Checklist**:
+1. Run Lighthouse audit on all pages
+2. Optimize images (convert to WebP, add lazy loading)
+3. Minimize bundle size (check unused dependencies)
+4. Add loading skeletons for async content
+5. Implement code splitting where appropriate
+6. Check for console errors/warnings
+7. Verify mobile performance
+
+**Target Metrics**:
+- Lighthouse Performance: 90+
+- First Contentful Paint: <1.5s
+- Largest Contentful Paint: <2.5s
+- Time to Interactive: <3.5s
+
+Please run optimizations and report improvements.</pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- GitHub Tab -->
+        <div id="github" class="content">
+            <div class="card">
+                <h2>📁 GitHub Repository Priorities</h2>
+                <p style="margin-top: 10px; color: #718096;">Active development repositories and tasks</p>
+
+                <!-- FrankX Main -->
+                <h3>
+                    <a href="https://github.com/frankxai" target="_blank" style="text-decoration: none; color: inherit;">
+                        frankxai (Main Website) →
+                    </a>
+                </h3>
+                <ul class="task-list">
+                    <li>
+                        <input type="checkbox">
+                        <span><strong>Week 1-2:</strong> Lead magnet landing pages + email integration</span>
+                    </li>
+                    <li>
+                        <input type="checkbox">
+                        <span><strong>Week 1-2:</strong> Product page for Conscious AI Toolkit ($47)</span>
+                    </li>
+                    <li>
+                        <input type="checkbox">
+                        <span><strong>Week 5-6:</strong> Agent Architecture Blueprint sales page</span>
+                    </li>
+                    <li>
+                        <input type="checkbox">
+                        <span><strong>Week 7-8:</strong> Complete Vibe OS implementation</span>
+                    </li>
+                    <li>
+                        <input type="checkbox">
+                        <span><strong>Week 9+:</strong> Community platform integration</span>
+                    </li>
+                </ul>
+
+                <!-- AI Music Academy -->
+                <h3>
+                    <a href="https://github.com/frankxai/ai-music-academy" target="_blank" style="text-decoration: none; color: inherit;">
+                        ai-music-academy →
+                    </a>
+                </h3>
+                <ul class="task-list">
+                    <li>
+                        <input type="checkbox">
+                        <span><strong>Week 3-4:</strong> Lesson delivery system (MDX + Next.js)</span>
+                    </li>
+                    <li>
+                        <input type="checkbox">
+                        <span><strong>Week 3-4:</strong> Student dashboard with progress tracking</span>
+                    </li>
+                    <li>
+                        <input type="checkbox">
+                        <span><strong>Week 3-4:</strong> Discord community integration</span>
+                    </li>
+                    <li>
+                        <input type="checkbox">
+                        <span><strong>Week 7-8:</strong> Payment system (Stripe) for all tiers</span>
+                    </li>
+                    <li>
+                        <input type="checkbox">
+                        <span><strong>Week 9+:</strong> Student showcase platform</span>
+                    </li>
+                </ul>
+
+                <!-- Arcanea -->
+                <h3>
+                    <a href="https://github.com/Arcanea-Labs/Arcanea" target="_blank" style="text-decoration: none; color: inherit;">
+                        Arcanea-Labs/Arcanea (Monorepo) →
+                    </a>
+                </h3>
+                <ul class="task-list">
+                    <li>
+                        <input type="checkbox">
+                        <span><strong>Week 5-6:</strong> User authentication (NextAuth)</span>
+                    </li>
+                    <li>
+                        <input type="checkbox">
+                        <span><strong>Week 5-6:</strong> Music creation interface (Suno API)</span>
+                    </li>
+                    <li>
+                        <input type="checkbox">
+                        <span><strong>Week 5-6:</strong> Creator profiles and gallery</span>
+                    </li>
+                    <li>
+                        <input type="checkbox">
+                        <span><strong>Week 9+:</strong> Atlantean Academy (story creation)</span>
+                    </li>
+                    <li>
+                        <input type="checkbox">
+                        <span><strong>Week 9+:</strong> Draconic Academy (visual creation)</span>
+                    </li>
+                </ul>
+
+                <!-- Supporting Repos -->
+                <h3>Supporting Repositories (Weekly Updates)</h3>
+                <ul class="task-list">
+                    <li>
+                        <input type="checkbox">
+                        <span><strong>creator-intelligence-systems:</strong> Component library updates</span>
+                    </li>
+                    <li>
+                        <input type="checkbox">
+                        <span><strong>ai-architect-academy:</strong> Content updates and case studies</span>
+                    </li>
+                    <li>
+                        <input type="checkbox">
+                        <span><strong>ai-and-web3:</strong> Experimental features and research docs</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Quick Commands -->
+            <div class="card">
+                <h2>⚡ Quick Git Commands</h2>
+
+                <h3>Daily Workflow</h3>
+                <div class="prompt-box">
+                    <button class="copy-btn" onclick="copyPrompt(this, 'git-daily')">Copy</button>
+                    <pre id="git-daily"># Pull latest changes
+git pull origin main
+
+# Create feature branch
+git checkout -b feature/your-feature-name
+
+# Stage and commit changes
+git add .
+git commit -m "feat: descriptive commit message"
+
+# Push to remote
+git push -u origin feature/your-feature-name</pre>
+                </div>
+
+                <h3>Deploy to Production</h3>
+                <div class="prompt-box">
+                    <button class="copy-btn" onclick="copyPrompt(this, 'git-deploy')">Copy</button>
+                    <pre id="git-deploy"># Merge to main and deploy (Vercel auto-deploys)
+git checkout main
+git merge feature/your-feature-name
+git push origin main
+
+# Or create PR for review
+gh pr create --title "Your feature title" --body "Description"</pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- Metrics Tab -->
+        <div id="metrics" class="content">
+            <div class="card">
+                <h2>📊 Weekly Metrics Dashboard</h2>
+                <p style="margin-top: 10px; color: #718096;">Track your progress across all projects</p>
+
+                <h3>FrankX.ai Metrics</h3>
+                <div class="metrics">
+                    <div class="metric">
+                        <span class="metric-value" id="email-subs">-</span>
+                        <span class="metric-label">Email Subscribers</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-value" id="revenue">$-</span>
+                        <span class="metric-label">Revenue This Week</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-value" id="traffic">-</span>
+                        <span class="metric-label">Website Visitors</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-value" id="conversion">-%</span>
+                        <span class="metric-label">Conversion Rate</span>
+                    </div>
+                </div>
+
+                <h3>AI Music Academy Metrics</h3>
+                <div class="metrics">
+                    <div class="metric">
+                        <span class="metric-value" id="students">-</span>
+                        <span class="metric-label">Students Enrolled</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-value" id="completion">-%</span>
+                        <span class="metric-label">Course Completion</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-value" id="rating">-</span>
+                        <span class="metric-label">Avg Rating</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-value" id="music-revenue">$-</span>
+                        <span class="metric-label">Revenue This Week</span>
+                    </div>
+                </div>
+
+                <h3>Arcanea Metrics</h3>
+                <div class="metrics">
+                    <div class="metric">
+                        <span class="metric-value" id="creators">-</span>
+                        <span class="metric-label">Creators</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-value" id="creations">-</span>
+                        <span class="metric-label">Creations Shared</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-value" id="dau">-%</span>
+                        <span class="metric-label">Daily Active Users</span>
+                    </div>
+                    <div class="metric">
+                        <span class="metric-value" id="retention">-%</span>
+                        <span class="metric-label">30-Day Retention</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Metrics Update Prompt -->
+            <div class="card">
+                <h2>📝 Weekly Metrics Review (Claude)</h2>
+
+                <div class="prompt-box">
+                    <button class="copy-btn" onclick="copyPrompt(this, 'metrics-review')">Copy</button>
+                    <pre id="metrics-review">Claude, let's review this week's metrics and make decisions.
+
+**FrankX.ai**:
+- Email subscribers: [Number] (growth: +/-%)
+- Revenue: $[Amount] (vs goal: $[Amount])
+- Traffic: [Number] visits (vs last week: +/-%)
+- Conversion rate: [%] (benchmark: 8-12%)
+
+**AI Music Academy**:
+- Students: [Number] (growth: +/-%)
+- Course completion: [%] (goal: 70%+)
+- Revenue: $[Amount]
+- Student satisfaction: [Rating] (goal: 4.5+)
+
+**Arcanea**:
+- Creators: [Number] (growth: +/-%)
+- Creations: [Number] (avg per creator: [Number])
+- DAU: [%] of MAU (goal: 15%+)
+- Retention: [%] (goal: 40%+)
+
+Based on these metrics:
+1. What's working well that we should double down on?
+2. What's underperforming that needs attention?
+3. What should we prioritize next week?
+4. Any strategic pivots we should consider?
+
+Help me create next week's action plan based on data.</pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Tab switching
+        function showTab(tabName) {
+            // Hide all content
+            document.querySelectorAll('.content').forEach(content => {
+                content.classList.remove('active');
+            });
+
+            // Remove active class from all tabs
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+
+            // Show selected content
+            document.getElementById(tabName).classList.add('active');
+
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+
+        // Copy prompt function
+        function copyPrompt(button, promptId) {
+            const promptText = document.getElementById(promptId).textContent;
+            navigator.clipboard.writeText(promptText).then(() => {
+                button.textContent = '✓ Copied!';
+                button.classList.add('copied');
+
+                setTimeout(() => {
+                    button.textContent = 'Copy';
+                    button.classList.remove('copied');
+                }, 2000);
+            });
+        }
+
+        // Week navigation
+        function setWeek(weekNum, focusText) {
+            // Update current sprint text
+            const sprintText = weekNum === 1 ?
+                `Week 1-2: ${focusText} - Lead Magnets & First Products` :
+                weekNum === 3 ?
+                `Week 3-4: ${focusText} - Starter Tier Launch` :
+                weekNum === 5 ?
+                `Week 5-6: ${focusText} + FrankX Product #2` :
+                weekNum === 7 ?
+                `Week 7-8: ${focusText} + Music Academy Paid Launch` :
+                `Week 9-12: ${focusText} - All Products`;
+
+            document.getElementById('current-sprint').textContent = sprintText;
+
+            // Update active button
+            document.querySelectorAll('.week-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+
+        // Initialize with current date
+        window.onload = function() {
+            console.log('Daily Agent Tasks Generator loaded successfully!');
+            console.log('Ready to help you ship products 🚀');
+        };
+    </script>
+</body>
+</html>

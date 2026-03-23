@@ -1,0 +1,121 @@
+# AFFiNE Self-Hosted Docker Compose Configuration
+# Official deployment for local/private knowledge workspace
+# Documentation: https://docs.affine.pro/self-host-affine/install/docker-compose-recommend
+
+version: '3.8'
+
+services:
+  # PostgreSQL database for AFFiNE persistence
+  postgres:
+    image: postgres:16-alpine
+    container_name: affine_postgres
+    restart: unless-stopped
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: ${DB_USERNAME:-affine}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${DB_DATABASE:-affine}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USERNAME:-affine}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - affine_network
+
+  # Redis for caching and session management
+  redis:
+    image: redis:7-alpine
+    container_name: affine_redis
+    restart: unless-stopped
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - affine_network
+
+  # Database migration service (runs once before app starts)
+  migration:
+    image: ghcr.io/toeverything/affine:stable
+    container_name: affine_migration
+    command: ["node", "./scripts/self-host-predeploy.js"]
+    environment:
+      DATABASE_URL: postgres://${DB_USERNAME:-affine}:${DB_PASSWORD}@postgres:5432/${DB_DATABASE:-affine}
+      REDIS_SERVER_HOST: redis
+      REDIS_SERVER_PORT: 6379
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    networks:
+      - affine_network
+
+  # AFFiNE application server
+  affine:
+    image: ghcr.io/toeverything/affine:stable
+    container_name: affine_app
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      migration:
+        condition: service_completed_successfully
+    ports:
+      - "${AFFINE_PORT:-8787}:3010"
+    volumes:
+      # Persistent file uploads (AFFiNE uses /root/.affine/storage)
+      - affine_uploads:/root/.affine/storage
+      # Custom configuration
+      - ./config:/root/.affine/config
+      # Export location for backups
+      - ../affine-backups/exports:/root/.affine/exports
+    environment:
+      # Core configuration
+      NODE_ENV: production
+      AFFINE_SERVER_HOST: 0.0.0.0
+      AFFINE_SERVER_PORT: 3010
+
+      # Database connection
+      DATABASE_URL: postgres://${DB_USERNAME:-affine}:${DB_PASSWORD}@postgres:5432/${DB_DATABASE:-affine}
+
+      # Redis connection
+      REDIS_SERVER_HOST: redis
+      REDIS_SERVER_PORT: 6379
+
+      # Feature flags - enable AI and advanced features
+      AFFINE_FEATURE_FLAG_AI: ${ENABLE_AI:-true}
+      AFFINE_FEATURE_FLAG_COPILOT: ${ENABLE_COPILOT:-true}
+
+      # Security
+      AFFINE_SERVER_SECRET: ${SERVER_SECRET}
+
+      # Optional: External AI integration
+      # OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      # ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:3010/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    networks:
+      - affine_network
+
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
+  affine_uploads:
+    driver: local
+
+networks:
+  affine_network:
+    driver: bridge

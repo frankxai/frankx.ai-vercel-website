@@ -1,0 +1,31 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="signalGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8"/>
+      <stop offset="50%" stop-color="#6366F1"/>
+      <stop offset="100%" stop-color="#A855F7"/>
+    </linearGradient>
+    <radialGradient id="signalGlow" cx="30%" cy="25%" r="60%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#030712"/>
+  <rect width="1200" height="630" fill="url(#signalGradient)" opacity="0.22"/>
+  <rect width="1200" height="630" fill="url(#signalGlow)"/>
+  <g transform="translate(120 150)">
+    <text x="0" y="0" font-family="'Inter', 'Segoe UI', sans-serif" font-size="56" font-weight="700" fill="#F8FAFC">
+      Signal Constellations — Adoption Heat Map
+    </text>
+    <text x="0" y="68" font-family="'Inter', 'Segoe UI', sans-serif" font-size="28" font-weight="500" fill="#E0E7FF" opacity="0.9">
+      Fortune 500 · Creator Economies · Developer Velocity · Public Sector Momentum
+    </text>
+  </g>
+  <g transform="translate(120 330)" font-family="'Inter', 'Segoe UI', sans-serif">
+    <rect x="0" y="0" width="960" height="200" rx="28" fill="rgba(15,118,210,0.18)" stroke="rgba(148,163,184,0.35)"/>
+    <text x="40" y="70" font-size="24" fill="#BAE6FD">Enterprise</text>
+    <text x="40" y="110" font-size="18" fill="#E2E8F0">92% Fortune 500 on OpenAI · 65% generative AI deployment</text>
+    <text x="40" y="150" font-size="18" fill="#CBD5F5">Action: align roadmap, governance, ROI dashboards</text>
+    <text x="40" y="190" font-size="18" fill="#A5B4FC">Signal · System · Stewardship</text>
+  </g>
+</svg>

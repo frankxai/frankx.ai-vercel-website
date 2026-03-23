@@ -1,0 +1,153 @@
+{
+  "mcpServers": {
+    "financial-datasets": {
+      "command": "npx",
+      "args": ["-y", "@financial-datasets/mcp-server"],
+      "description": "Stock market data API - income statements, balance sheets, prices",
+      "capabilities": [
+        "get_income_statement",
+        "get_balance_sheet",
+        "get_cash_flow_statement",
+        "get_stock_prices",
+        "get_key_metrics",
+        "search_stocks"
+      ],
+      "enabled": true
+    },
+
+    "investmcp": {
+      "command": "npx",
+      "args": ["-y", "investmcp"],
+      "description": "Stock analysis suite - technical indicators and fundamental analysis",
+      "capabilities": [
+        "technical_analysis",
+        "fibonacci_retracement",
+        "rsi_indicator",
+        "macd_indicator",
+        "moving_averages",
+        "volume_analysis"
+      ],
+      "enabled": true
+    },
+
+    "polygon-io": {
+      "command": "npx",
+      "args": ["-y", "@polygon-io/mcp-server"],
+      "env": {
+        "POLYGON_API_KEY": "${POLYGON_API_KEY}"
+      },
+      "description": "Real-time market data (requires API key - premium)",
+      "capabilities": [
+        "realtime_quotes",
+        "aggregates_bars",
+        "trades",
+        "options_chain",
+        "market_status"
+      ],
+      "enabled": false,
+      "note": "Enable when you upgrade to paid tier"
+    },
+
+    "brave-search": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-brave-search"],
+      "env": {
+        "BRAVE_API_KEY": "${BRAVE_API_KEY}"
+      },
+      "description": "Web search for news and sentiment analysis",
+      "capabilities": [
+        "web_search",
+        "news_search"
+      ],
+      "enabled": false,
+      "note": "Optional - for enhanced news gathering"
+    }
+  },
+
+  "installation_instructions": {
+    "claude_desktop_macos": "~/.config/claude/claude_desktop_config.json",
+    "claude_desktop_windows": "%APPDATA%\\Claude\\claude_desktop_config.json",
+
+    "setup_steps": [
+      "1. Copy the mcpServers section above",
+      "2. Open Claude Desktop settings",
+      "3. Navigate to MCP Servers tab",
+      "4. Paste configuration OR manually add servers",
+      "5. Restart Claude Desktop",
+      "6. Verify servers are connected in status"
+    ]
+  },
+
+  "manual_mcp_server_additions": {
+    "financial_datasets": {
+      "name": "financial-datasets",
+      "command": "npx",
+      "arguments": "-y @financial-datasets/mcp-server"
+    },
+    "investmcp": {
+      "name": "investmcp",
+      "command": "npx",
+      "arguments": "-y investmcp"
+    }
+  },
+
+  "api_key_setup": {
+    "polygon_io": {
+      "signup_url": "https://polygon.io/dashboard/signup",
+      "free_tier": "5 API calls per minute",
+      "starter_tier": "$29/month - real-time data",
+      "note": "Only needed for real-time data, skip for free tier"
+    },
+    "brave_search": {
+      "signup_url": "https://brave.com/search/api/",
+      "free_tier": "2000 queries/month",
+      "note": "Optional - for web/news search capabilities"
+    }
+  },
+
+  "testing_mcp_servers": {
+    "test_financial_datasets": "Ask Claude: 'Use the financial-datasets MCP server to get Apple's latest income statement'",
+    "test_investmcp": "Ask Claude: 'Use investmcp to calculate RSI for NVDA'",
+    "verify_connection": "In Claude Desktop, check Settings → MCP Servers → should show green status indicators"
+  },
+
+  "troubleshooting": {
+    "server_not_starting": [
+      "Ensure Node.js is installed (node --version)",
+      "Try manual install: npm install -g @financial-datasets/mcp-server",
+      "Check Claude Desktop logs in settings",
+      "Restart Claude Desktop application"
+    ],
+    "permission_errors": [
+      "Run Claude Desktop as administrator (Windows)",
+      "Check file permissions on config directory",
+      "Verify npx is in system PATH"
+    ],
+    "connection_timeout": [
+      "Check internet connection",
+      "Verify API keys are correct",
+      "Try disabling firewall temporarily",
+      "Check MCP server status in Claude settings"
+    ]
+  },
+
+  "advanced_configuration": {
+    "custom_mcp_server_example": {
+      "description": "Example for building your own MCP server",
+      "command": "node",
+      "args": ["path/to/your/custom-server.js"],
+      "env": {
+        "CUSTOM_API_KEY": "${YOUR_CUSTOM_KEY}"
+      }
+    },
+
+    "python_mcp_server": {
+      "description": "For Python-based MCP servers",
+      "command": "python",
+      "args": ["-m", "your_mcp_module"],
+      "env": {
+        "PYTHONPATH": "${PYTHONPATH}"
+      }
+    }
+  }
+}

@@ -1,0 +1,31 @@
+{
+  "_description": "FrankX LinkedIn Posts Inventory",
+  "_instructions": "Track LinkedIn posts, articles, and engagement here. Copy-paste your best posts.",
+  "_profileUrl": "https://linkedin.com/in/YOUR_PROFILE",
+  "_lastUpdated": "2026-01-23",
+  "_count": 0,
+  "_template": {
+    "id": "li-2025-01-15-topic",
+    "type": "social",
+    "platform": "linkedin",
+    "title": "Brief title or hook",
+    "content": "Full post text here...",
+    "brand": "frankx",
+    "status": "published",
+    "tags": ["topic", "campaign"],
+    "createdAt": "2025-01-15",
+    "postType": "text",
+    "url": "https://linkedin.com/posts/...",
+    "mediaUrls": [],
+    "engagement": {
+      "likes": 150,
+      "comments": 25,
+      "shares": 10,
+      "impressions": 5000
+    },
+    "hashtags": ["#AI", "#CreatorEconomy"],
+    "linkedContent": ["blog-post-slug"],
+    "bestPerforming": true
+  },
+  "posts": []
+}

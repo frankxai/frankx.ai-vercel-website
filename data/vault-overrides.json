@@ -1,0 +1,213 @@
+{
+  "collections": {
+    "blog": {
+      "name": "Blog Heroes",
+      "description": "Editorial hero images and illustrations for blog articles — swarm intelligence, AI architecture, creator studios.",
+      "accent": "from-amber-500/20 to-orange-500/20",
+      "borderAccent": "border-amber-500/30",
+      "sortOrder": 1
+    },
+    "mascot": {
+      "name": "Mascot Concepts",
+      "description": "ACOS mascot design exploration — three-tailed beast guardians, holographic entities, chrome mech-spirits, data constellations.",
+      "accent": "from-purple-500/20 to-pink-500/20",
+      "borderAccent": "border-purple-500/30",
+      "sortOrder": 2
+    },
+    "ecosystem": {
+      "name": "Ecosystem Infographics",
+      "description": "Premium infographics visualizing the FrankX ecosystem — ACOS orchestration, Vibe OS, GenCreator OS, agent architectures.",
+      "accent": "from-cyan-500/20 to-blue-500/20",
+      "borderAccent": "border-cyan-500/30",
+      "sortOrder": 3
+    },
+    "ai-art": {
+      "name": "AI Art Collection",
+      "description": "Neural synthesis, cosmic blueprints, crystalline brains, data auroras — pure visual exploration at the edge of imagination.",
+      "accent": "from-indigo-500/20 to-violet-500/20",
+      "borderAccent": "border-indigo-500/30",
+      "sortOrder": 4
+    },
+    "acos": {
+      "name": "ACOS Visual Assets",
+      "description": "Architecture diagrams, workflow visualizations, and screenshots for the Agentic Creator OS documentation.",
+      "accent": "from-emerald-500/20 to-teal-500/20",
+      "borderAccent": "border-emerald-500/30",
+      "sortOrder": 5
+    },
+    "design-lab": {
+      "name": "Design Lab",
+      "description": "Nature-tech concept images, hub redesign variants, and experimental visual directions for frankx.ai.",
+      "accent": "from-emerald-500/20 to-cyan-500/20",
+      "borderAccent": "border-emerald-500/30",
+      "sortOrder": 6
+    },
+    "infographics": {
+      "name": "Educational Infographics",
+      "description": "ACOS, Arcanea, and Vibe OS educational series — system architecture breakdowns and learning visualizations.",
+      "accent": "from-blue-500/20 to-indigo-500/20",
+      "borderAccent": "border-blue-500/30",
+      "sortOrder": 7
+    },
+    "soulbook": {
+      "name": "Soulbook Pillars",
+      "description": "Visual identity for the seven pillars — Identity, Creation, Consciousness, Purpose, Vitality, Relationships, Emotional Mastery.",
+      "accent": "from-amber-500/20 to-yellow-500/20",
+      "borderAccent": "border-amber-500/30",
+      "sortOrder": 8
+    },
+    "valentines": {
+      "name": "Valentine's Collection",
+      "description": "Seasonal campaign images and promotional assets for Valentine's Day themed content.",
+      "accent": "from-rose-500/20 to-pink-500/20",
+      "borderAccent": "border-rose-500/30",
+      "sortOrder": 9
+    },
+    "arcanea": {
+      "name": "Arcanea Academy",
+      "description": "Grand academy, hall of luminor, campus map, cognitive bridge — visual world-building for the Arcanea learning universe.",
+      "accent": "from-violet-500/20 to-purple-500/20",
+      "borderAccent": "border-violet-500/30",
+      "sortOrder": 10
+    },
+    "books": {
+      "name": "Book Covers",
+      "description": "Cover designs and promotional assets for published and upcoming books.",
+      "accent": "from-amber-500/20 to-orange-500/20",
+      "borderAccent": "border-amber-500/30",
+      "sortOrder": 11
+    },
+    "brand": {
+      "name": "Brand Assets",
+      "description": "Brand guidelines images, color palettes, and identity system documentation.",
+      "accent": "from-slate-500/20 to-gray-500/20",
+      "borderAccent": "border-slate-500/30",
+      "sortOrder": 12
+    },
+    "brands": {
+      "name": "Partner Logos",
+      "description": "Third-party brand logos and partner visual assets.",
+      "accent": "from-gray-500/20 to-slate-500/20",
+      "borderAccent": "border-gray-500/30",
+      "sortOrder": 13
+    },
+    "logos": {
+      "name": "Logo Library",
+      "description": "FrankX brand logos in various formats and configurations.",
+      "accent": "from-white/10 to-gray-500/20",
+      "borderAccent": "border-white/20",
+      "sortOrder": 14
+    },
+    "team": {
+      "name": "AI Team",
+      "description": "Team portraits and character designs for the FrankX AI team members.",
+      "accent": "from-cyan-500/20 to-blue-500/20",
+      "borderAccent": "border-cyan-500/30",
+      "sortOrder": 15
+    },
+    "courses": {
+      "name": "Course Graphics",
+      "description": "Visual assets for courses and educational content — learning visualizations and course marketing.",
+      "accent": "from-green-500/20 to-emerald-500/20",
+      "borderAccent": "border-green-500/30",
+      "sortOrder": 16
+    },
+    "consciousness": {
+      "name": "Consciousness Art",
+      "description": "Quantum neuroplasticity, bridge frameworks, brainwave interfaces — the visual language of consciousness exploration.",
+      "accent": "from-purple-500/20 to-indigo-500/20",
+      "borderAccent": "border-purple-500/30",
+      "sortOrder": 17
+    },
+    "architectures": {
+      "name": "Architecture Diagrams",
+      "description": "AI CoE, gateway patterns, LLMOps, MCP hub, multi-agent, and RAG architecture visualizations.",
+      "accent": "from-teal-500/20 to-cyan-500/20",
+      "borderAccent": "border-teal-500/30",
+      "sortOrder": 18
+    },
+    "ai-world": {
+      "name": "Intelligence Atlas",
+      "description": "Gate architectures and intelligence atlas visualizations for the global AI landscape.",
+      "accent": "from-blue-500/20 to-cyan-500/20",
+      "borderAccent": "border-blue-500/30",
+      "sortOrder": 19
+    },
+    "golden-age": {
+      "name": "Golden Age",
+      "description": "Chapter illustrations and hero imagery for the Golden Age of Intelligence narrative.",
+      "accent": "from-yellow-500/20 to-amber-500/20",
+      "borderAccent": "border-yellow-500/30",
+      "sortOrder": 20
+    },
+    "vibe-os": {
+      "name": "Vibe OS",
+      "description": "Sonic intelligence, neural sync, and brainwave interface visuals for the Vibe OS product.",
+      "accent": "from-violet-500/20 to-fuchsia-500/20",
+      "borderAccent": "border-violet-500/30",
+      "sortOrder": 21
+    },
+    "See-through-the-noise": {
+      "name": "See Through the Noise",
+      "description": "Special collection for the See Through the Noise campaign — signal clarity in the age of AI.",
+      "accent": "from-sky-500/20 to-blue-500/20",
+      "borderAccent": "border-sky-500/30",
+      "sortOrder": 22
+    },
+    "agents": {
+      "name": "Agent Icons",
+      "description": "SVG icons representing different agent types — Creation Engine, Starlight, Oracle, specialist agents.",
+      "accent": "from-emerald-500/20 to-green-500/20",
+      "borderAccent": "border-emerald-500/30",
+      "sortOrder": 23
+    },
+    "gallery": {
+      "name": "Gallery Sub-Assets",
+      "description": "Bio-tech instrument concept images — grand pianos, violins, synthesis controllers.",
+      "accent": "from-cyan-500/20 to-teal-500/20",
+      "borderAccent": "border-cyan-500/30",
+      "sortOrder": 24
+    },
+    "games": {
+      "name": "Games",
+      "description": "Visual assets for browser-based game experiences.",
+      "accent": "from-orange-500/20 to-red-500/20",
+      "borderAccent": "border-orange-500/30",
+      "sortOrder": 25,
+      "hidden": true
+    },
+    "general": {
+      "name": "General",
+      "description": "Miscellaneous utility images.",
+      "accent": "from-gray-500/20 to-slate-500/20",
+      "borderAccent": "border-gray-500/30",
+      "sortOrder": 26,
+      "hidden": true
+    },
+    "models": {
+      "name": "AI Models",
+      "description": "3D model previews and visualizations.",
+      "accent": "from-indigo-500/20 to-blue-500/20",
+      "borderAccent": "border-indigo-500/30",
+      "sortOrder": 27,
+      "hidden": true
+    },
+    "portraits": {
+      "name": "Portraits",
+      "description": "Portrait assets.",
+      "accent": "from-rose-500/20 to-pink-500/20",
+      "borderAccent": "border-rose-500/30",
+      "sortOrder": 28,
+      "hidden": true
+    },
+    "diagrams": {
+      "name": "Technical Diagrams",
+      "description": "Blog-specific technical diagrams organized by article.",
+      "accent": "from-slate-500/20 to-gray-500/20",
+      "borderAccent": "border-slate-500/30",
+      "sortOrder": 29,
+      "hidden": true
+    }
+  },
+  "assets": {}
+}

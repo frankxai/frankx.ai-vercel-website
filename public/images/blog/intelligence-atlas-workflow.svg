@@ -1,0 +1,46 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="workflowGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#22D3EE"/>
+      <stop offset="50%" stop-color="#6366F1"/>
+      <stop offset="100%" stop-color="#F472B6"/>
+    </linearGradient>
+    <radialGradient id="workflowGlow" cx="70%" cy="35%" r="60%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.32"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#020617"/>
+  <rect width="1200" height="630" fill="url(#workflowGradient)" opacity="0.26"/>
+  <rect width="1200" height="630" fill="url(#workflowGlow)"/>
+  <g transform="translate(120 150)">
+    <text x="0" y="0" font-family="'Inter', 'Segoe UI', sans-serif" font-size="56" font-weight="700" fill="#F8FAFC">
+      Agentic Workflow Blueprint
+    </text>
+    <text x="0" y="68" font-family="'Inter', 'Segoe UI', sans-serif" font-size="28" font-weight="500" fill="#E0E7FF" opacity="0.9">
+      Perception · Reasoning · Action · Evaluation
+    </text>
+  </g>
+  <g transform="translate(120 320)" font-family="'Inter', 'Segoe UI', sans-serif" fill="#E2E8F0">
+    <circle cx="120" cy="100" r="70" fill="rgba(2,132,199,0.35)" stroke="rgba(191,219,254,0.6)" stroke-width="2"/>
+    <text x="80" y="105" font-size="20">Signals</text>
+    <circle cx="360" cy="100" r="70" fill="rgba(79,70,229,0.35)" stroke="rgba(196,181,253,0.6)" stroke-width="2"/>
+    <text x="320" y="105" font-size="20">Reason</text>
+    <circle cx="600" cy="100" r="70" fill="rgba(236,72,153,0.35)" stroke="rgba(248,180,217,0.6)" stroke-width="2"/>
+    <text x="560" y="105" font-size="20">Act</text>
+    <circle cx="840" cy="100" r="70" fill="rgba(34,197,94,0.35)" stroke="rgba(187,247,208,0.6)" stroke-width="2"/>
+    <text x="798" y="105" font-size="20">Evaluate</text>
+    <path d="M190 100 H290" stroke="rgba(241,245,249,0.6)" stroke-width="2" marker-end="url(#arrow)"/>
+    <path d="M430 100 H530" stroke="rgba(241,245,249,0.6)" stroke-width="2" marker-end="url(#arrow)"/>
+    <path d="M670 100 H770" stroke="rgba(241,245,249,0.6)" stroke-width="2" marker-end="url(#arrow)"/>
+    <text x="140" y="160" font-size="16">Data ingestion & research</text>
+    <text x="360" y="160" font-size="16">Multi-model orchestration</text>
+    <text x="604" y="160" font-size="16">Automation & co-creation</text>
+    <text x="836" y="160" font-size="16">Human + automated QA</text>
+  </g>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L6,3 z" fill="rgba(241,245,249,0.7)" />
+    </marker>
+  </defs>
+</svg>

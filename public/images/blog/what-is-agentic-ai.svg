@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-label="Agentic AI - autonomous agents collaborating">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f172a"/>
+      <stop offset="0.5" stop-color="#1e1b4b"/>
+      <stop offset="1" stop-color="#0f172a"/>
+    </linearGradient>
+    <radialGradient id="glow1" cx="30%" cy="40%" r="40%">
+      <stop offset="0" stop-color="#0ea5e9" stop-opacity="0.6"/>
+      <stop offset="1" stop-color="#0f172a" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glow2" cx="70%" cy="60%" r="35%">
+      <stop offset="0" stop-color="#8b5cf6" stop-opacity="0.5"/>
+      <stop offset="1" stop-color="#0f172a" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="connection" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#0ea5e9" stop-opacity="0"/>
+      <stop offset="0.5" stop-color="#38bdf8" stop-opacity="0.8"/>
+      <stop offset="1" stop-color="#8b5cf6" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="blur" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="30"/>
+    </filter>
+    <filter id="nodeGlow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur stdDeviation="8"/>
+    </filter>
+  </defs>
+  <!-- Background -->
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect width="1600" height="900" fill="url(#glow1)"/>
+  <rect width="1600" height="900" fill="url(#glow2)"/>
+
+  <!-- Neural network connections -->
+  <g opacity="0.6">
+    <path d="M400 450 Q600 350, 800 450 Q1000 550, 1200 450" fill="none" stroke="url(#connection)" stroke-width="3"/>
+    <path d="M300 350 Q500 450, 700 350 Q900 250, 1100 350" fill="none" stroke="url(#connection)" stroke-width="2"/>
+    <path d="M500 550 Q700 450, 900 550 Q1100 650, 1300 550" fill="none" stroke="url(#connection)" stroke-width="2"/>
+    <path d="M200 450 L500 300" fill="none" stroke="#38bdf8" stroke-width="1.5" stroke-opacity="0.4"/>
+    <path d="M500 300 L800 450" fill="none" stroke="#38bdf8" stroke-width="1.5" stroke-opacity="0.4"/>
+    <path d="M800 450 L1100 300" fill="none" stroke="#8b5cf6" stroke-width="1.5" stroke-opacity="0.4"/>
+    <path d="M1100 300 L1400 450" fill="none" stroke="#8b5cf6" stroke-width="1.5" stroke-opacity="0.4"/>
+    <path d="M400 600 L700 450" fill="none" stroke="#0ea5e9" stroke-width="1.5" stroke-opacity="0.4"/>
+    <path d="M700 450 L1000 600" fill="none" stroke="#0ea5e9" stroke-width="1.5" stroke-opacity="0.4"/>
+    <path d="M1000 600 L1300 450" fill="none" stroke="#a855f7" stroke-width="1.5" stroke-opacity="0.4"/>
+  </g>
+
+  <!-- Agent nodes -->
+  <g filter="url(#nodeGlow)">
+    <circle cx="500" cy="300" r="35" fill="#0ea5e9"/>
+    <circle cx="800" cy="450" r="45" fill="#38bdf8"/>
+    <circle cx="1100" cy="300" r="35" fill="#8b5cf6"/>
+    <circle cx="400" cy="600" r="28" fill="#06b6d4"/>
+    <circle cx="1000" cy="600" r="28" fill="#a855f7"/>
+    <circle cx="200" cy="450" r="20" fill="#0ea5e9" opacity="0.7"/>
+    <circle cx="1400" cy="450" r="20" fill="#8b5cf6" opacity="0.7"/>
+  </g>
+
+  <!-- Inner agent symbols -->
+  <g fill="#0f172a" font-family="system-ui" font-weight="bold" text-anchor="middle">
+    <text x="500" y="308" font-size="24">A</text>
+    <text x="800" y="460" font-size="32">AI</text>
+    <text x="1100" y="308" font-size="24">A</text>
+    <text x="400" y="607" font-size="18">A</text>
+    <text x="1000" y="607" font-size="18">A</text>
+  </g>
+
+  <!-- Floating particles -->
+  <g opacity="0.6">
+    <circle cx="350" cy="380" r="3" fill="#38bdf8"/>
+    <circle cx="650" cy="320" r="2" fill="#a855f7"/>
+    <circle cx="950" cy="380" r="3" fill="#0ea5e9"/>
+    <circle cx="1250" cy="380" r="2" fill="#8b5cf6"/>
+    <circle cx="600" cy="520" r="2" fill="#38bdf8"/>
+    <circle cx="900" cy="520" r="2" fill="#a855f7"/>
+    <circle cx="300" cy="500" r="2" fill="#0ea5e9"/>
+    <circle cx="1300" cy="500" r="2" fill="#8b5cf6"/>
+  </g>
+</svg>

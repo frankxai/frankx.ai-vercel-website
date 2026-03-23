@@ -1,0 +1,31 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="acosGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#38BDF8"/>
+      <stop offset="50%" stop-color="#818CF8"/>
+      <stop offset="100%" stop-color="#C084FC"/>
+    </linearGradient>
+    <radialGradient id="acosGlow" cx="65%" cy="30%" r="55%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.32"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#030712"/>
+  <rect width="1200" height="630" fill="url(#acosGradient)" opacity="0.24"/>
+  <rect width="1200" height="630" fill="url(#acosGlow)"/>
+  <g transform="translate(120 150)">
+    <text x="0" y="0" font-family="'Inter', 'Segoe UI', sans-serif" font-size="56" font-weight="700" fill="#F8FAFC">
+      Agentic Creator OS
+    </text>
+    <text x="0" y="68" font-family="'Inter', 'Segoe UI', sans-serif" font-size="28" font-weight="500" fill="#E0E7FF" opacity="0.9">
+      Launch frameworks · automation rituals · monetization ladders
+    </text>
+  </g>
+  <g transform="translate(120 330)" font-family="'Inter', 'Segoe UI', sans-serif">
+    <rect x="0" y="0" width="960" height="200" rx="28" fill="rgba(99,102,241,0.22)" stroke="rgba(191,219,254,0.45)"/>
+    <text x="40" y="70" font-size="24" fill="#C7D2FE">Creator Flywheel</text>
+    <text x="40" y="110" font-size="18" fill="#E2E8F0">Ideate → Co-produce with agents → Evaluate → Publish → Monetize</text>
+    <text x="40" y="150" font-size="18" fill="#CBD5F5">Templates: Launch arcs, prompt packs, revenue dashboards</text>
+    <text x="40" y="190" font-size="18" fill="#BAE6FD">Integrates with Vibe OS · Creation Chronicles · Roadmap hub</text>
+  </g>
+</svg>

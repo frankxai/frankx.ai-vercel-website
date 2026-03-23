@@ -1,0 +1,91 @@
+{
+  "bookSlug": "spartan-mindset",
+  "title": "Spartan Mindset Glossary",
+  "description": "Key terms and concepts from the Spartan philosophy of discipline, resilience, and mental toughness.",
+  "terms": [
+    {
+      "term": "Agoge",
+      "definition": "Ancient Spartan training program starting at age 7, focused on discipline and resilience.",
+      "extended": "The Agoge was the rigorous education and training program mandatory for all male Spartan citizens except the firstborn sons of ruling houses. Beginning at age 7, boys were removed from their families and placed in communal barracks where they underwent intense physical training, learned survival skills, and developed unwavering discipline. The program lasted until age 20 and aimed to produce elite warriors capable of enduring any hardship.",
+      "chapter": 1,
+      "category": "History",
+      "relatedTerms": ["Spartan Training", "Discipline"]
+    },
+    {
+      "term": "Stoicism",
+      "definition": "Philosophy emphasizing resilience, self-control, and acceptance of what we cannot change.",
+      "extended": "Stoicism is an ancient Greek philosophy that teaches the development of self-control and fortitude as a means of overcoming destructive emotions. The Stoics believed that becoming a clear and unbiased thinker allows one to understand the universal reason (logos). Key principles include focusing only on what you can control, accepting fate with equanimity, and living virtuously regardless of external circumstances.",
+      "chapter": 9,
+      "aliases": ["stoic", "stoics", "stoical"],
+      "category": "Philosophy",
+      "relatedTerms": ["Mental Toughness", "Resilience"]
+    },
+    {
+      "term": "Mental Toughness",
+      "definition": "Psychological resilience to persist through adversity and maintain focus under pressure.",
+      "extended": "Mental toughness is the ability to consistently perform toward the upper range of your talent and skill regardless of competitive circumstances. It encompasses four key components: confidence in your abilities, commitment to your goals, control over your emotions and responses, and challenge orientation—viewing pressure situations as opportunities rather than threats.",
+      "chapter": 5,
+      "category": "Mindset",
+      "relatedTerms": ["Resilience", "Discipline", "Stoicism"]
+    },
+    {
+      "term": "Progressive Overload",
+      "definition": "Training principle of gradually increasing stress to build strength and adaptation.",
+      "extended": "Progressive overload is the gradual increase of stress placed upon the body during exercise training. It's a fundamental principle for continuous improvement in strength, endurance, and overall fitness. This can be achieved by increasing weight, repetitions, sets, frequency, or decreasing rest time. The key is systematic, incremental progress that allows the body to adapt without risking injury.",
+      "chapter": 3,
+      "aliases": ["overload principle"],
+      "category": "Training",
+      "relatedTerms": ["Compound Movements", "Functional Fitness"]
+    },
+    {
+      "term": "Compound Movements",
+      "definition": "Multi-joint exercises engaging multiple muscle groups simultaneously.",
+      "extended": "Compound movements are exercises that work multiple joints and muscle groups at the same time. Examples include squats, deadlifts, bench press, rows, and pull-ups. These movements are superior for building functional strength, burning calories, and developing athletic performance because they mimic real-world movement patterns and allow you to lift heavier weights than isolation exercises.",
+      "chapter": 3,
+      "category": "Training",
+      "relatedTerms": ["Progressive Overload", "Functional Fitness"]
+    },
+    {
+      "term": "Resilience",
+      "definition": "Capacity to recover quickly from difficulties and adapt to challenges.",
+      "extended": "Resilience is the process of adapting well in the face of adversity, trauma, tragedy, threats, or significant sources of stress. It's not about avoiding difficulty but rather bouncing back stronger. Resilient individuals view challenges as opportunities for growth, maintain a positive outlook despite setbacks, and have strong support systems. It can be developed through deliberate practice, mindfulness, and progressive exposure to controlled stress.",
+      "chapter": 4,
+      "aliases": ["resiliency"],
+      "category": "Mindset",
+      "relatedTerms": ["Mental Toughness", "Stoicism", "Antifragility"]
+    },
+    {
+      "term": "Antifragility",
+      "definition": "Property of systems that gain from disorder, stress, and volatility.",
+      "extended": "Coined by Nassim Taleb, antifragility goes beyond resilience or robustness. While resilient things resist shocks and stay the same, antifragile things actually improve when exposed to stress, volatility, and chaos—within limits. Like muscles growing stronger through resistance training, antifragile systems use stressors as fuel for adaptation and growth. This principle applies to physical training, career development, and psychological growth.",
+      "chapter": 10,
+      "aliases": ["antifragile"],
+      "category": "Philosophy",
+      "relatedTerms": ["Resilience", "Hormesis"]
+    },
+    {
+      "term": "Discipline",
+      "definition": "Consistent adherence to chosen standards and training despite distractions or desires.",
+      "extended": "Discipline is the ability to do what needs to be done, when it needs to be done, whether you feel like it or not. It's the bridge between goals and accomplishment. Unlike motivation which fluctuates, discipline is a practiced skill—showing up consistently, following through on commitments, and maintaining standards even when no one is watching. True discipline comes from deeply understanding your 'why' and building systems that support your goals.",
+      "chapter": 2,
+      "category": "Mindset",
+      "relatedTerms": ["Mental Toughness", "Consistency", "Agoge"]
+    },
+    {
+      "term": "Functional Fitness",
+      "definition": "Training that prepares the body for real-world activities and movements.",
+      "extended": "Functional fitness exercises train your muscles to work together and prepare them for daily tasks by simulating common movements you might do at home, work, or in sports. Examples include squats (sitting/standing), lunges (walking/climbing stairs), pushing, pulling, and carrying. This approach emphasizes movement patterns over isolated muscle development, improving overall strength, balance, and coordination for everyday life.",
+      "chapter": 6,
+      "category": "Training",
+      "relatedTerms": ["Compound Movements", "Athletic Performance"]
+    },
+    {
+      "term": "Hormesis",
+      "definition": "Beneficial biological response to low doses of stressors (cold, heat, exercise).",
+      "extended": "Hormesis is a biological phenomenon where exposure to low doses of an agent that would be harmful at higher doses actually induces an adaptive beneficial effect on the organism. Examples include exercise (controlled muscle damage leading to growth), intermittent fasting (metabolic stress improving insulin sensitivity), cold exposure (activating brown fat and immune response), and sauna use (heat shock proteins). The key is controlled, intermittent exposure—not chronic stress.",
+      "chapter": 7,
+      "category": "Science",
+      "relatedTerms": ["Antifragility", "Recovery"]
+    }
+  ]
+}

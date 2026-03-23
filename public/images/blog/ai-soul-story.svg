@@ -1,0 +1,22 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#120C3B"/>
+      <stop offset="45%" stop-color="#4326A5"/>
+      <stop offset="100%" stop-color="#FF7CDA"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="30%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <g transform="translate(120 120)">
+    <text x="0" y="70" font-family="'Inter', 'Segoe UI', sans-serif" font-size="58" font-weight="700" fill="#F8F4FF">AI Doesn't Have To Be Soulless</text>
+    <text x="0" y="122" font-family="'Inter', 'Segoe UI', sans-serif" font-size="30" font-weight="500" fill="#E9E2FF">FrankX · Conscious AI Manifesto</text>
+  </g>
+  <g transform="translate(120 480)" fill="#F9EFFF" opacity="0.85">
+    <text x="0" y="0" font-family="'Inter', 'Segoe UI', sans-serif" font-size="24">15 Years of Enterprise AI · 500 Suno Collaborations · Human-First Systems</text>
+  </g>
+</svg>

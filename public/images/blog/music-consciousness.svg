@@ -1,0 +1,22 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="music" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#0B0B2E"/>
+      <stop offset="40%" stop-color="#3823A5"/>
+      <stop offset="100%" stop-color="#FF63D2"/>
+    </linearGradient>
+    <radialGradient id="wave" cx="50%" cy="50%" r="65%">
+      <stop offset="0%" stop-color="#FFFFFF" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#FFFFFF" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#music)"/>
+  <rect width="1200" height="630" fill="url(#wave)"/>
+  <g transform="translate(120 120)" fill="#FFEFFF">
+    <text x="0" y="60" font-family="'Inter', 'Segoe UI', sans-serif" font-size="54" font-weight="700">500 Songs of Conscious Co-Creation</text>
+    <text x="0" y="112" font-family="'Inter', 'Segoe UI', sans-serif" font-size="30" font-weight="500">What AI music revealed about transformation, healing, and business</text>
+  </g>
+  <g transform="translate(120 500)" fill="#FFDFF8" opacity="0.85">
+    <text x="0" y="0" font-family="'Inter', 'Segoe UI', sans-serif" font-size="24">Suno Labs · Frequency Mapping · Commercial Pathways</text>
+  </g>
+</svg>

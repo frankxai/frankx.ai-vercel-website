@@ -1,0 +1,53 @@
+================================================================================
+FRANKX WEEKLY BUILDER LETTER
+February 17, 2026 | Reading Time: ~4 min
+================================================================================
+
+SUBJECT:
+Props to the Builders: A Grounded Note for This Week
+
+OPENING:
+This week I kept hearing one sentence: “I’m glad you’re on this team.”
+I don’t take that lightly. This edition is a reset around a simple idea:
+the best work is never solo work. It’s built with ecosystems, standards,
+and people who care about quality.
+
+SECTION 1: Credibility Comes From Service
+------------------------------------------
+I used to think credibility came from always having the right answer.
+Now I think it comes from showing up prepared, staying calm under pressure,
+and helping other people win.
+
+Read: https://www.frankx.ai/blog/props-to-the-builders-of-this-era
+
+SECTION 2: Tooling Is an Amplifier, Not a Substitute
+-----------------------------------------------------
+AI can accelerate your workflow, but speed without standards creates
+polished confusion. Better pattern: choose tools that reduce friction,
+keep quality visible, and stay accountable for outcomes.
+
+Explore: https://www.frankx.ai/acos
+
+SECTION 3: A Smarter Ground-Up Operating Model
+-----------------------------------------------
+Start with service. Define constraints early. Name your sources.
+Document what works. Keep humans in the loop for high-stakes decisions.
+Not flashy, but it compounds.
+
+Explore: https://www.frankx.ai/agentic-ai-center
+
+BUILDER TIP OF THE WEEK
+-----------------------
+Before you prompt, define your constraint.
+Time limit, quality bar, and desired output format.
+Constraint-first prompts produce cleaner outcomes than inspiration-first prompting.
+
+CLOSING:
+Thank you for building with me. If you’re in a hard season, stay close to
+what is true, keep your scope concrete, and choose contribution over comparison.
+
+Reply with one thing you’re building this week.
+
+================================================================================
+frankx.ai | x.com/frankxeth | linkedin.com/in/frank-x-riemer
+================================================================================

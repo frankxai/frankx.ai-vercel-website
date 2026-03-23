@@ -1,0 +1,64 @@
+direction: right
+
+classes: {
+  hub: {
+    style: {
+      fill: "#0B3B2E"
+      stroke: "#34D399"
+      stroke-width: 3
+      font-color: "#ECFEFF"
+      font-size: 20
+      border-radius: 16
+      shadow: true
+    }
+  }
+  spoke: {
+    style: {
+      fill: "#0B1220"
+      stroke: "#22D3EE"
+      stroke-width: 2
+      font-color: "#E2E8F0"
+      font-size: 16
+      border-radius: 14
+      shadow: true
+    }
+  }
+}
+
+hub: "Complete Guide to ACOS\nHub Article" { class: hub }
+swarm: "Swarm Intelligence" { class: spoke }
+use_cases: "Use Cases by Creator Type" { class: spoke }
+mcp: "MCP Server Integration" { class: spoke }
+skills: "Building Custom Skills" { class: spoke }
+quick_start: "Quick Start Guide" { class: spoke }
+
+hub -> swarm: {
+  style: {
+    stroke: "#67E8F9"
+    stroke-width: 2
+  }
+}
+hub -> use_cases: {
+  style: {
+    stroke: "#67E8F9"
+    stroke-width: 2
+  }
+}
+hub -> mcp: {
+  style: {
+    stroke: "#67E8F9"
+    stroke-width: 2
+  }
+}
+hub -> skills: {
+  style: {
+    stroke: "#67E8F9"
+    stroke-width: 2
+  }
+}
+hub -> quick_start: {
+  style: {
+    stroke: "#67E8F9"
+    stroke-width: 2
+  }
+}

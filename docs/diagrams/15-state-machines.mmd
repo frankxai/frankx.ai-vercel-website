@@ -1,0 +1,255 @@
+stateDiagram-v2
+    %% Application State Machines
+    %% User journey, post lifecycle, subscription states
+
+    %% ========================================
+    %% USER JOURNEY STATES
+    %% ========================================
+
+    [*] --> Anonymous : Visit site
+
+    state "User Journey" as UserJourney {
+        Anonymous --> Interested : Read content
+        Interested --> Subscriber : Subscribe newsletter
+        Subscriber --> Trialing : Start free trial
+        Trialing --> Customer : Purchase product
+        Customer --> Member : Join The Realm
+        Member --> Advocate : Refer others
+
+        state Subscriber {
+            [*] --> EmailConfirmed
+            EmailConfirmed --> Engaged : Opens emails
+            Engaged --> Nurturing : Reads content
+            Nurturing --> Ready : Shows buying signals
+        }
+
+        state Customer {
+            [*] --> Active
+            Active --> Satisfied : Completes course
+            Satisfied --> Repeat : Buys again
+            Repeat --> Loyal : 3+ purchases
+        }
+
+        state Member {
+            [*] --> Onboarding
+            Onboarding --> Participating : Posts content
+            Participating --> CoreMember : Active 30+ days
+            CoreMember --> Leader : Helps others
+        }
+    }
+
+    Advocate --> [*] : Lifetime value achieved
+
+    note right of Anonymous
+        Entry point for all users
+        No account required
+    end note
+
+    note right of Subscriber
+        Email nurture sequence active
+        Track engagement metrics
+    end note
+
+    note right of Member
+        The Realm community access
+        Premium content unlocked
+    end note
+
+    %% ========================================
+    %% POST LIFECYCLE STATES
+    %% ========================================
+
+    [*] --> PostDraft : Create post
+
+    state "Post Lifecycle" as PostLifecycle {
+        PostDraft --> PostReview : Submit for review
+        PostReview --> PostDraft : Request changes
+        PostReview --> PostScheduled : Approve & schedule
+        PostScheduled --> PostPublished : Publish time reached
+        PostPublished --> PostFeatured : High engagement
+        PostPublished --> PostArchived : Archive after 1 year
+        PostFeatured --> PostArchived : Feature period ends
+
+        state PostPublished {
+            [*] --> Visible
+            Visible --> Trending : Viral growth
+            Trending --> Popular : Sustained engagement
+            Popular --> Evergreen : Long-term value
+        }
+    }
+
+    PostArchived --> [*]
+
+    note right of PostDraft
+        Auto-save every 30s
+        Guardian AI suggestions
+    end note
+
+    note right of PostPublished
+        Real-time analytics
+        Guardian interactions
+    end note
+
+    %% ========================================
+    %% SUBSCRIPTION STATES
+    %% ========================================
+
+    [*] --> SubTrialing : Start trial
+
+    state "Subscription Lifecycle" as SubLifecycle {
+        SubTrialing --> SubActive : Trial ends + payment success
+        SubTrialing --> SubExpired : Trial ends + no payment
+
+        SubActive --> SubPaused : User pauses
+        SubActive --> SubCanceled : User cancels
+        SubActive --> SubPastDue : Payment fails
+
+        SubPaused --> SubActive : Resume subscription
+        SubPaused --> SubCanceled : Cancel while paused
+
+        SubPastDue --> SubActive : Payment succeeds
+        SubPastDue --> SubCanceled : Payment fails 3x
+
+        SubCanceled --> SubReactivated : Subscribe again
+        SubExpired --> SubReactivated : Subscribe after trial
+
+        state SubActive {
+            [*] --> CurrentPeriod
+            CurrentPeriod --> Renewing : Period ends
+            Renewing --> CurrentPeriod : Payment success
+            Renewing --> SubPastDue : Payment fails
+        }
+    }
+
+    SubCanceled --> [*]
+    SubReactivated --> SubActive
+
+    note right of SubTrialing
+        7-day free trial
+        No credit card required
+    end note
+
+    note right of SubPastDue
+        Retry payment 3 times
+        Send dunning emails
+    end note
+
+    %% ========================================
+    %% GUARDIAN CONVERSATION STATES
+    %% ========================================
+
+    [*] --> GuardianIdle : Guardian initialized
+
+    state "Guardian Interaction" as GuardianStates {
+        GuardianIdle --> GuardianListening : User starts typing
+        GuardianListening --> GuardianThinking : User sends message
+        GuardianThinking --> GuardianResponding : AI generates response
+        GuardianResponding --> GuardianIdle : Response delivered
+
+        GuardianListening --> GuardianIdle : User stops typing
+
+        state GuardianThinking {
+            [*] --> ContextLoading
+            ContextLoading --> PromptBuilding
+            PromptBuilding --> AIProcessing
+            AIProcessing --> ResponseFormatting
+        }
+    }
+
+    GuardianIdle --> [*] : User logs out
+
+    note right of GuardianThinking
+        Uses Claude Sonnet 4.5
+        Personality: Lumina/Nova/Sage
+        Context window: last 10 messages
+    end note
+
+    %% ========================================
+    %% COURSE PROGRESS STATES
+    %% ========================================
+
+    [*] --> CourseNotStarted : Enrolled
+
+    state "Course Progress" as CourseStates {
+        CourseNotStarted --> CourseInProgress : Start first lesson
+
+        state CourseInProgress {
+            [*] --> ModuleActive
+            ModuleActive --> LessonWatching : Watch lesson
+            LessonWatching --> LessonCompleted : Mark complete
+            LessonCompleted --> ModuleActive : Next lesson
+            ModuleActive --> ModuleCompleted : All lessons done
+            ModuleCompleted --> ModuleActive : Next module
+        }
+
+        CourseInProgress --> CoursePaused : No activity 7 days
+        CoursePaused --> CourseInProgress : Resume
+        CourseInProgress --> CourseCompleted : All modules done
+        CourseCompleted --> CourseCertified : Pass final project
+    }
+
+    CourseCertified --> [*]
+
+    note right of CourseInProgress
+        Track: watch time, quiz scores
+        Unlock: next module at 80%
+    end note
+
+    note right of CourseCertified
+        Certificate issued
+        LinkedIn shareable
+        Portfolio showcase
+    end note
+
+    %% ========================================
+    %% VIBE OS SESSION CREATION STATES
+    %% ========================================
+
+    [*] --> SessionConcept : Ideation
+
+    state "Vibe OS Creation" as VibeStates {
+        SessionConcept --> SessionPrompting : Write prompts
+        SessionPrompting --> SessionGenerating : Generate with Suno
+
+        state SessionGenerating {
+            [*] --> GeneratingVariations
+            GeneratingVariations --> SelectingBest
+            SelectingBest --> RegeneratingIfNeeded
+        }
+
+        SessionGenerating --> SessionProduction : Best tracks selected
+        SessionProduction --> SessionPackaging : Mix & master
+        SessionPackaging --> SessionReview : Create narrative + visuals
+        SessionReview --> SessionProduction : Revisions needed
+        SessionReview --> SessionPublished : Approve & publish
+        SessionPublished --> SessionDistributed : Upload to platforms
+    }
+
+    SessionDistributed --> [*]
+
+    note right of SessionGenerating
+        Suno AI v4.5
+        Generate 3-5 variations
+        A/B test for quality
+    end note
+
+    note right of SessionPackaging
+        Cover art: Imagen 3
+        Metadata: AI-optimized
+        Narrative: Creation Engine
+    end note
+
+    %% Styling with colors
+    classDef userState fill:#4A90E2,stroke:#2E5C8A,stroke-width:2px,color:#fff
+    classDef contentState fill:#E24A90,stroke:#8A2E5C,stroke-width:2px,color:#fff
+    classDef subState fill:#90E24A,stroke:#5C8A2E,stroke-width:2px,color:#333
+    classDef aiState fill:#9B4AE2,stroke:#5C2E8A,stroke-width:2px,color:#fff
+    classDef courseState fill:#FFB84D,stroke:#CC8A3D,stroke-width:2px,color:#333
+    classDef vibeState fill:#4AE2E2,stroke:#2E8A8A,stroke-width:2px,color:#333
+
+    class UserJourney,Anonymous,Interested,Subscriber,Customer,Member,Advocate userState
+    class PostLifecycle,PostDraft,PostReview,PostScheduled,PostPublished,PostFeatured,PostArchived contentState
+    class SubLifecycle,SubTrialing,SubActive,SubPaused,SubPastDue,SubCanceled,SubExpired,SubReactivated subState
+    class GuardianStates,GuardianIdle,GuardianListening,GuardianThinking,GuardianResponding aiState
+    class CourseStates,CourseNotStarted,CourseInProgress,CoursePaused,CourseCompleted,CourseCertified courseState
+    class VibeStates,SessionConcept,SessionPrompting,SessionGenerating,SessionProduction,SessionPackaging,SessionReview,SessionPublished,SessionDistributed vibeState

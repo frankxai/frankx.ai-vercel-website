@@ -1,0 +1,98 @@
+{
+  "knowledgeGraph": {
+    "version": "1.0.0",
+    "description": "Content relationship tracking and cross-pollination intelligence",
+    "lastUpdated": "2025-10-31"
+  },
+  "nodes": {
+    "year-of-creator-book": {
+      "id": "book-001",
+      "type": "book",
+      "title": "The Year of the Creator",
+      "path": "books/year-of-creator/",
+      "status": "drafting",
+      "themes": ["creator-economy", "ai-music-production", "future-of-work"],
+      "chapters": [
+        {
+          "id": "intro",
+          "title": "Introduction: The Last Day of the Old World",
+          "sourceContent": [],
+          "repurposedTo": []
+        },
+        {
+          "id": "ch1",
+          "title": "The Death of the Resume",
+          "sourceContent": [],
+          "repurposedTo": []
+        },
+        {
+          "id": "ch2",
+          "title": "The $7 Trillion Creator Economy",
+          "sourceContent": [],
+          "repurposedTo": []
+        },
+        {
+          "id": "ch3",
+          "title": "The Great Unbundling",
+          "sourceContent": [],
+          "repurposedTo": []
+        },
+        {
+          "id": "ch4",
+          "title": "The AI Creative Suite Revolution",
+          "sourceContent": [],
+          "repurposedTo": []
+        },
+        {
+          "id": "ch5",
+          "title": "The Music Revolution Nobody Expected",
+          "sourceContent": [],
+          "repurposedTo": []
+        }
+      ],
+      "relatedContent": [],
+      "caseStudiesUsed": [],
+      "researchSources": []
+    }
+  },
+  "edges": {
+    "sourceOf": [],
+    "repurposedFrom": [],
+    "relatedTo": [],
+    "citesSameSource": [],
+    "sharesTheme": []
+  },
+  "caseStudies": {
+    "shared-library": []
+  },
+  "researchSources": {
+    "shared-library": []
+  },
+  "themes": {
+    "conscious-ai-integration": {
+      "content": [],
+      "relatedThemes": ["business-intelligence", "personal-transformation"]
+    },
+    "creator-economy": {
+      "content": ["book-001"],
+      "relatedThemes": ["ai-music-production", "entrepreneurship"]
+    },
+    "ai-music-production": {
+      "content": ["book-001"],
+      "relatedThemes": ["creator-economy", "creative-tools"]
+    },
+    "business-intelligence": {
+      "content": [],
+      "relatedThemes": ["oracle-cloud-ai", "conscious-ai-integration"]
+    },
+    "personal-transformation": {
+      "content": [],
+      "relatedThemes": ["conscious-ai-integration", "spiritual-technology"]
+    },
+    "oracle-cloud-ai": {
+      "content": [],
+      "relatedThemes": ["business-intelligence", "agent-orchestration"]
+    }
+  },
+  "crossPollinationSuggestions": []
+}

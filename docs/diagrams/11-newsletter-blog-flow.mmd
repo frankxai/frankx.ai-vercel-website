@@ -1,0 +1,145 @@
+graph LR
+    %% Newsletter & Blog Content Flow
+    %% From creation to engagement
+
+    subgraph IDEATION["💡 Ideation"]
+        direction TB
+        DAILY[Daily Intelligence<br/>Insights & Observations]:::idea
+        TRENDS[AI Trends<br/>Industry News]:::idea
+        COMMUNITY[Community Questions<br/>Member Needs]:::idea
+        PERSONAL[Personal Journey<br/>Studio Stories]:::idea
+
+        DAILY --> TRENDS
+        TRENDS --> COMMUNITY
+        COMMUNITY --> PERSONAL
+    end
+
+    subgraph CONTENT_TYPES["📝 Content Types"]
+        direction TB
+
+        subgraph BLOG["Blog Essays"]
+            B_GUIDE[How-To Guides<br/>Practical Tutorials]:::blog
+            B_THOUGHT[Thought Leadership<br/>AI Future Vision]:::blog
+            B_CASE[Case Studies<br/>Creator Transformations]:::blog
+            B_STORY[Personal Stories<br/>Studio Chronicles]:::blog
+        end
+
+        subgraph NEWSLETTER["Newsletter Issues"]
+            N_WEEKLY[Weekly Insights<br/>Curated Wisdom]:::newsletter
+            N_DEEP[Deep Dive<br/>Single Topic Exploration]:::newsletter
+            N_ROUNDUP[AI Roundup<br/>Tools & Trends]:::newsletter
+            N_ANNOUNCE[Announcements<br/>Product Launches]:::newsletter
+        end
+    end
+
+    subgraph CREATION["✍️ Creation Process"]
+        direction TB
+        OUTLINE[Outline<br/>Structure & Key Points]:::create
+        DRAFT[AI-Assisted Draft<br/>Creation Engine]:::create
+        EDIT[Human Edit<br/>FrankX Voice Polish]:::create
+        SEO[SEO Optimization<br/>Keywords & Meta]:::create
+        VISUAL_CREATE[Visual Assets<br/>Headers, Quote Cards]:::create
+
+        OUTLINE --> DRAFT
+        DRAFT --> EDIT
+        EDIT --> SEO
+        SEO --> VISUAL_CREATE
+    end
+
+    subgraph DISTRIBUTION["🌐 Distribution Channels"]
+        direction TB
+
+        subgraph EMAIL["Email Platform"]
+            EMAIL_SEND[Resend/ConvertKit<br/>Email Delivery]:::dist
+            SEGMENT[Segmentation<br/>Targeted Lists]:::dist
+            AUTOMATE[Automation<br/>Drip Sequences]:::dist
+        end
+
+        subgraph WEB["Web Platform"]
+            BLOG_SITE[frankxhq.com/blog<br/>SEO-Optimized]:::dist
+            RSS[RSS Feed<br/>Syndication]:::dist
+            SEARCH[Search Index<br/>Discoverability]:::dist
+        end
+
+        subgraph SOCIAL["Social Amplification"]
+            X_THREAD[X Thread<br/>Key Takeaways]:::dist
+            LI_POST[LinkedIn Post<br/>Professional Insights]:::dist
+            YT_CLIP[YouTube Short<br/>Video Snippet]:::dist
+        end
+
+        EMAIL --> SOCIAL
+        WEB --> SOCIAL
+    end
+
+    subgraph ENGAGEMENT["💬 Engagement"]
+        direction TB
+        OPEN_TRACK[Open Rates<br/>Email Analytics]:::engage
+        CLICK_TRACK[Click Tracking<br/>Link Performance]:::engage
+        COMMENTS[Comments<br/>Discussion Threads]:::engage
+        SHARES[Social Shares<br/>Viral Potential]:::engage
+        REPLIES[Email Replies<br/>Direct Connection]:::engage
+
+        OPEN_TRACK --> CLICK_TRACK
+        CLICK_TRACK --> COMMENTS
+        COMMENTS --> SHARES
+        SHARES --> REPLIES
+    end
+
+    subgraph CONVERSION["💰 Conversion Points"]
+        direction TB
+        CTA_DOWNLOAD[Free Toolkit<br/>Lead Magnet]:::convert
+        CTA_COURSE[Course Enrollment<br/>Paid Product]:::convert
+        CTA_REALM[Realm Membership<br/>Community Join]:::convert
+        CTA_SESSION[Vibe OS Session<br/>Low-Ticket Offer]:::convert
+
+        CTA_DOWNLOAD --> CTA_SESSION
+        CTA_SESSION --> CTA_COURSE
+        CTA_COURSE --> CTA_REALM
+    end
+
+    subgraph ANALYTICS["📊 Analytics & Optimization"]
+        direction TB
+        METRICS[Key Metrics<br/>Opens, Clicks, Conversions]:::analytics
+        AB_TEST[A/B Testing<br/>Subject Lines, CTAs]:::analytics
+        AUDIENCE[Audience Insights<br/>Segment Analysis]:::analytics
+        ITERATE[Content Iteration<br/>Continuous Improvement]:::analytics
+
+        METRICS --> AB_TEST
+        AB_TEST --> AUDIENCE
+        AUDIENCE --> ITERATE
+    end
+
+    subgraph REPURPOSE["♻️ Content Repurposing"]
+        direction TB
+        BLOG_TO_NL[Blog → Newsletter<br/>Adaptation]:::repurpose
+        NL_TO_SOCIAL[Newsletter → Social<br/>Snippets]:::repurpose
+        BLOG_TO_VIDEO[Blog → Video<br/>YouTube Content]:::repurpose
+        LONG_TO_BOOK[Essays → Book<br/>Compilation]:::repurpose
+
+        BLOG_TO_NL --> NL_TO_SOCIAL
+        NL_TO_SOCIAL --> BLOG_TO_VIDEO
+        BLOG_TO_VIDEO --> LONG_TO_BOOK
+    end
+
+    %% Main flow
+    IDEATION --> CONTENT_TYPES
+    CONTENT_TYPES --> CREATION
+    CREATION --> DISTRIBUTION
+    DISTRIBUTION --> ENGAGEMENT
+    ENGAGEMENT --> CONVERSION
+    ENGAGEMENT --> ANALYTICS
+    ANALYTICS -.->|informs| IDEATION
+
+    %% Repurposing integration
+    CREATION -.-> REPURPOSE
+    REPURPOSE -.->|feeds back to| DISTRIBUTION
+
+    classDef idea fill:#FFE066,stroke:#CCB34D,stroke-width:2px,color:#333
+    classDef blog fill:#4A90E2,stroke:#2E5C8A,stroke-width:2px,color:#fff
+    classDef newsletter fill:#E24A90,stroke:#8A2E5C,stroke-width:2px,color:#fff
+    classDef create fill:#90E24A,stroke:#5C8A2E,stroke-width:2px,color:#333
+    classDef dist fill:#9B4AE2,stroke:#5C2E8A,stroke-width:2px,color:#fff
+    classDef engage fill:#4AE2E2,stroke:#2E8A8A,stroke-width:2px,color:#333
+    classDef convert fill:#E2904A,stroke:#8A5C2E,stroke-width:2px,color:#fff
+    classDef analytics fill:#FFB84D,stroke:#CC8A3D,stroke-width:2px,color:#333
+    classDef repurpose fill:#B366FF,stroke:#8C4DCC,stroke-width:2px,color:#fff

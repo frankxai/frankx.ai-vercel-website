@@ -1,0 +1,11 @@
+{
+  "timestamp": "2026-02-09T22:08:06.214Z",
+  "projectRoot": "/mnt/c/Users/Frank/FrankX/.worktrees/vercel-ui-ux",
+  "structure": {
+    "hasPackageJson": true,
+    "hasTsConfig": true,
+    "hasClaudeConfig": true,
+    "hasClaudeFlow": true
+  },
+  "scannedAt": 1770674886215
+}

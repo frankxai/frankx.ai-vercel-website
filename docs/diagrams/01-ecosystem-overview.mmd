@@ -1,0 +1,73 @@
+graph TB
+    %% FrankX Ecosystem Overview
+    %% Color Legend:
+    %% #4A90E2 - Core Platform
+    %% #E24A90 - Content
+    %% #90E24A - Products
+    %% #E2904A - Infrastructure
+    %% #9B4AE2 - AI/Automation
+    %% #4AE2E2 - Community
+
+    FX[FrankX Ecosystem<br/>Creator Transformation Platform]:::core
+
+    %% Core Projects
+    FX --> ARC[Arcanea<br/>Social Creation Platform]:::platform
+    FX --> AIMA[AI Music Academy<br/>Production Education]:::platform
+    FX --> VO[Vibe OS<br/>Sonic Transformation]:::platform
+
+    %% Content Universe
+    FX --> CU[Content Universe]:::content
+    CU --> BLOG[frankxhq.com Blog<br/>Essays & Guides]:::content
+    CU --> NL[Newsletter<br/>Weekly Insights]:::content
+    CU --> BOOKS[Books Library]:::content
+
+    BOOKS --> BK1[Consciousness Fiction<br/>Awakening Narratives]:::content
+    BOOKS --> BK2[Golden Age Books<br/>AI-Human Future]:::content
+    BOOKS --> BK3[Creator Economy Books<br/>Empowerment Guides]:::content
+    BOOKS --> BK4[Fantasy & Sci-Fi<br/>Epic World-Building]:::content
+    BOOKS --> BK5[Business Parables<br/>Transformation Stories]:::content
+
+    %% Products & Offerings
+    FX --> PL[Product Ladder]:::product
+    PL --> FREE[Free Tier<br/>Toolkits & Downloads]:::product
+    PL --> PAID1[Vibe OS Sessions<br/>$27-47]:::product
+    PL --> PAID2[Courses & Workshops<br/>$97-297]:::product
+    PL --> PAID3[The Realm<br/>Monthly Membership]:::product
+    PL --> PAID4[Inner Circle<br/>High-Touch Coaching]:::product
+
+    %% Infrastructure
+    FX --> INFRA[Infrastructure]:::infra
+    INFRA --> NEXT[Next.js + Vercel<br/>Web Platform]:::infra
+    INFRA --> SB[Supabase<br/>Database & Auth]:::infra
+    INFRA --> OCI[Oracle Cloud<br/>Enterprise Services]:::infra
+    INFRA --> MCP[MCP Servers<br/>AI Integration]:::infra
+
+    %% AI Architecture
+    FX --> AI[Agentic AI System]:::ai
+    AI --> CLAUDE[Claude Code<br/>Development & Content]:::ai
+    AI --> AGENTS[Specialized Agents<br/>Council System]:::ai
+    AI --> SUNO[Suno AI<br/>Music Generation]:::ai
+    AI --> IMAGEN[Imagen 3<br/>Visual Creation]:::ai
+
+    %% Community & Distribution
+    FX --> DIST[Distribution]:::community
+    DIST --> X[X/Twitter<br/>Thought Leadership]:::community
+    DIST --> LI[LinkedIn<br/>AI & Enterprise]:::community
+    DIST --> YT[YouTube<br/>Tutorials & Sessions]:::community
+    DIST --> SPOT[Spotify<br/>Music Releases]:::community
+
+    %% Brand Domains
+    FX --> BRAND[Brand Pillars]:::brand
+    BRAND --> P1[AI & Tech Mastery]:::brand
+    BRAND --> P2[Conscious Creation]:::brand
+    BRAND --> P3[Music & Frequency]:::brand
+    BRAND --> P4[Creator Empowerment]:::brand
+
+    classDef core fill:#4A90E2,stroke:#2E5C8A,stroke-width:4px,color:#fff,font-weight:bold
+    classDef platform fill:#E24A90,stroke:#8A2E5C,stroke-width:3px,color:#fff
+    classDef content fill:#90E24A,stroke:#5C8A2E,stroke-width:2px,color:#333
+    classDef product fill:#FFB84D,stroke:#CC8A3D,stroke-width:2px,color:#333
+    classDef infra fill:#E2904A,stroke:#8A5C2E,stroke-width:2px,color:#fff
+    classDef ai fill:#9B4AE2,stroke:#5C2E8A,stroke-width:3px,color:#fff
+    classDef community fill:#4AE2E2,stroke:#2E8A8A,stroke-width:2px,color:#333
+    classDef brand fill:#E24AE2,stroke:#8A2E8A,stroke-width:2px,color:#fff

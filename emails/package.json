@@ -1,0 +1,25 @@
+{
+  "name": "frankx-email-templates",
+  "version": "1.0.0",
+  "description": "React Email templates for FrankX A/B testing",
+  "private": true,
+  "scripts": {
+    "dev": "email dev",
+    "export": "email export",
+    "test": "tsx test-send.ts --render-html --all",
+    "send:classic": "tsx test-send.ts --variant classic-white --to friemerx@gmail.com",
+    "send:modern": "tsx test-send.ts --variant modern-light --to friemerx@gmail.com",
+    "send:gradient": "tsx test-send.ts --variant minimal-gradient --to friemerx@gmail.com",
+    "send:dark": "tsx test-send.ts --variant dark-premium --to friemerx@gmail.com",
+    "send:card": "tsx test-send.ts --variant card-based --to friemerx@gmail.com",
+    "send:all": "tsx test-send.ts --all --to friemerx@gmail.com"
+  },
+  "keywords": [
+    "email",
+    "react-email",
+    "templates",
+    "ab-testing"
+  ],
+  "author": "Frank Riemer <frank@frankx.ai>",
+  "license": "MIT"
+}

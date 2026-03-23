@@ -1,0 +1,141 @@
+{
+  "vision": "Make FrankX.ai the intelligence operating system for creators, families, and executives by blending agentic AI adoption, music-led expression, and enterprise-grade governance.",
+  "pillars": [
+    {
+      "title": "Creative AI Tools",
+      "description": "Explore the latest and greatest AI tools for creators.",
+      "source": "docs/CONTENT_STRATEGY.md"
+    },
+    {
+      "title": "Latest AI Updates",
+      "description": "Stay up-to-date with the latest news and updates in the world of AI.",
+      "source": "docs/SEO_MARKETING_STRATEGY.md"
+    },
+    {
+      "title": "Agentic Management",
+      "description": "Learn how to manage and orchestrate agentic AI systems.",
+      "source": "vibe-os-implementation-roadmap.md"
+    },
+    {
+      "title": "Generative AI Approach",
+      "description": "Discover new and innovative ways to use generative AI.",
+      "source": "docs/PROMPT_PLAYBOOK.md"
+    }
+  ],
+  "milestones": [
+    {
+      "quarter": "Q1 2026",
+      "focus": "Build interconnected content infrastructure with Agent Feed, Insights, and curated intelligence system.",
+      "deliverables": [
+        "Agent Feed (/feed) - Real-time curated updates from AI agents",
+        "Agent Insights (/insights) - Deep analysis and pattern recognition",
+        "Privacy-first architecture - No session logging, curated content only",
+        "Interconnected navigation across feed, insights, roadmap, newsletter"
+      ]
+    },
+    {
+      "quarter": "Q2 2026",
+      "focus": "Scale content automation with /factory integration and multi-output publishing.",
+      "deliverables": [
+        "Factory automation triggers feed entries on publish",
+        "Agent commentary system with APEX, FORGE, CIPHER personalities",
+        "Newsletter archive with curated agent picks",
+        "SEO surge on agentic AI and creative OS keywords"
+      ]
+    },
+    {
+      "quarter": "Q3 2026",
+      "focus": "Enterprise-grade agent orchestration and governance tooling.",
+      "deliverables": [
+        "Multi-agent orchestration documentation",
+        "Governance maturity toolkit for enterprise clients",
+        "Community Resonance Loop automation",
+        "Partner spotlight integrations"
+      ]
+    }
+  ],
+  "rituals": [
+    {
+      "name": "Daily Feed Updates",
+      "cadence": "Daily",
+      "owner": "PULSE Agent",
+      "description": "Generate curated feed entries from shipped work and published content.",
+      "source": "/feed"
+    },
+    {
+      "name": "Weekly Insights",
+      "cadence": "Weekly",
+      "owner": "CORTEX Agent",
+      "description": "Deep analysis of patterns, learnings, and strategic observations.",
+      "source": "/insights"
+    },
+    {
+      "name": "Factory Runs",
+      "cadence": "On-demand",
+      "owner": "FORGE Agent",
+      "description": "Full publishing pipeline from research to multi-channel output.",
+      "source": "/factory command"
+    },
+    {
+      "name": "Launch Calibration",
+      "cadence": "Monthly",
+      "owner": "APEX Agent",
+      "description": "Align SEO, product funnels, and partner activations against quarterly milestones.",
+      "source": "docs/SEO_MARKETING_STRATEGY.md"
+    }
+  ],
+  "signals": [
+    {
+      "name": "Feed Engagement",
+      "metric": "Daily active feed entries with agent commentary",
+      "target": "5+ curated entries per week with >80% positive sentiment"
+    },
+    {
+      "name": "Insight Depth",
+      "metric": "Weekly deep-dive insights with actionable patterns",
+      "target": "2+ high-impact insights per week"
+    },
+    {
+      "name": "Creative OS Adoption",
+      "metric": "Conversion rate from feed/insights to newsletter signup",
+      "target": "Lift qualified leads by 35% via new content pathways"
+    },
+    {
+      "name": "Content Interconnection",
+      "metric": "Internal link density across feed/insights/roadmap/blog",
+      "target": "Every page links to 3+ related pages"
+    }
+  ],
+  "nextActions": [
+    {
+      "title": "Deploy Agent Feed & Insights",
+      "status": "shipping",
+      "note": "New /feed and /insights pages with APEX, FORGE, CIPHER, CORTEX agent personalities. Privacy-first, no session logging."
+    },
+    {
+      "title": "Integrate /factory with feed system",
+      "status": "in-progress",
+      "note": "When /factory runs, automatically generate feed entry and update roadmap status."
+    },
+    {
+      "title": "Newsletter archive expansion",
+      "status": "blocked",
+      "note": "Awaiting content curation system for agent-picked newsletter highlights."
+    },
+    {
+      "title": "Launch creative SEO surge",
+      "status": "shipping",
+      "note": "New article series targeting agentic AI and privacy-first agent architecture."
+    }
+  ],
+  "agents": {
+    "APEX": "Strategic intelligence and leadership decisions",
+    "FORGE": "Production, shipping, and building",
+    "CIPHER": "Technical deep dives and code analysis",
+    "CORTEX": "Pattern analysis and insights",
+    "VECTOR": "Planning and direction",
+    "PULSE": "Real-time status and monitoring",
+    "GRID": "Infrastructure and systems",
+    "SPARK": "Creative direction and ideas"
+  }
+}

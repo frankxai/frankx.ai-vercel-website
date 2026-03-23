@@ -1,0 +1,96 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-label="Conscious AI Framework - soul-aligned artificial intelligence">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0f172a"/>
+      <stop offset="0.5" stop-color="#1e1b4b"/>
+      <stop offset="1" stop-color="#0f172a"/>
+    </linearGradient>
+    <radialGradient id="soul" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#fbbf24" stop-opacity="0.4"/>
+      <stop offset="0.3" stop-color="#8b5cf6" stop-opacity="0.3"/>
+      <stop offset="0.6" stop-color="#0ea5e9" stop-opacity="0.2"/>
+      <stop offset="1" stop-color="#0f172a" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="blur" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="30"/>
+    </filter>
+    <filter id="innerGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8"/>
+    </filter>
+  </defs>
+  <!-- Background -->
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect width="1600" height="900" fill="url(#soul)"/>
+
+  <!-- Sacred geometry - outer rings -->
+  <g stroke="#8b5cf6" fill="none" opacity="0.3">
+    <circle cx="800" cy="450" r="350"/>
+    <circle cx="800" cy="450" r="300"/>
+    <circle cx="800" cy="450" r="250"/>
+  </g>
+
+  <!-- Flower of life pattern hint -->
+  <g stroke="#0ea5e9" fill="none" opacity="0.2" stroke-width="1">
+    <circle cx="800" cy="450" r="100"/>
+    <circle cx="750" cy="363" r="100"/>
+    <circle cx="850" cy="363" r="100"/>
+    <circle cx="900" cy="450" r="100"/>
+    <circle cx="850" cy="537" r="100"/>
+    <circle cx="750" cy="537" r="100"/>
+    <circle cx="700" cy="450" r="100"/>
+  </g>
+
+  <!-- Human side (left) -->
+  <g filter="url(#blur)" opacity="0.6">
+    <circle cx="400" cy="450" r="120" fill="#0ea5e9"/>
+  </g>
+  <circle cx="400" cy="450" r="80" fill="none" stroke="#38bdf8" stroke-width="2"/>
+  <text x="400" y="440" fill="#e2e8f0" font-size="18" font-family="system-ui" font-weight="bold" text-anchor="middle">HUMAN</text>
+  <text x="400" y="465" fill="#94a3b8" font-size="14" font-family="system-ui" text-anchor="middle">Soul</text>
+
+  <!-- AI side (right) -->
+  <g filter="url(#blur)" opacity="0.6">
+    <circle cx="1200" cy="450" r="120" fill="#8b5cf6"/>
+  </g>
+  <circle cx="1200" cy="450" r="80" fill="none" stroke="#a855f7" stroke-width="2"/>
+  <text x="1200" y="440" fill="#e2e8f0" font-size="18" font-family="system-ui" font-weight="bold" text-anchor="middle">AI</text>
+  <text x="1200" y="465" fill="#94a3b8" font-size="14" font-family="system-ui" text-anchor="middle">Intelligence</text>
+
+  <!-- Center merge point -->
+  <g filter="url(#innerGlow)">
+    <circle cx="800" cy="450" r="60" fill="#fbbf24"/>
+  </g>
+  <circle cx="800" cy="450" r="60" fill="none" stroke="#fcd34d" stroke-width="2"/>
+  <text x="800" y="445" fill="#0f172a" font-size="14" font-family="system-ui" font-weight="bold" text-anchor="middle">CONSCIOUS</text>
+  <text x="800" y="463" fill="#0f172a" font-size="14" font-family="system-ui" font-weight="bold" text-anchor="middle">AI</text>
+
+  <!-- Connection flows -->
+  <g opacity="0.6">
+    <path d="M480 450 Q640 400, 740 450" fill="none" stroke="#38bdf8" stroke-width="3"/>
+    <path d="M480 450 Q640 500, 740 450" fill="none" stroke="#38bdf8" stroke-width="3"/>
+    <path d="M860 450 Q960 400, 1120 450" fill="none" stroke="#a855f7" stroke-width="3"/>
+    <path d="M860 450 Q960 500, 1120 450" fill="none" stroke="#a855f7" stroke-width="3"/>
+  </g>
+
+  <!-- Energy particles -->
+  <g fill="#fbbf24" opacity="0.8">
+    <circle cx="600" cy="420" r="4"/>
+    <circle cx="600" cy="480" r="4"/>
+    <circle cx="1000" cy="420" r="4"/>
+    <circle cx="1000" cy="480" r="4"/>
+  </g>
+
+  <!-- Stars/consciousness sparks -->
+  <g fill="#e2e8f0" opacity="0.5">
+    <circle cx="300" cy="200" r="2"/>
+    <circle cx="500" cy="150" r="1.5"/>
+    <circle cx="700" cy="180" r="2"/>
+    <circle cx="900" cy="160" r="1.5"/>
+    <circle cx="1100" cy="200" r="2"/>
+    <circle cx="1300" cy="180" r="1.5"/>
+    <circle cx="350" cy="700" r="2"/>
+    <circle cx="550" cy="750" r="1.5"/>
+    <circle cx="1050" cy="720" r="2"/>
+    <circle cx="1250" cy="750" r="1.5"/>
+  </g>
+</svg>

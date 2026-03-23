@@ -1,0 +1,1301 @@
+[
+  {
+    "id": "creators-soulbook",
+    "slug": "soulbook",
+    "name": "The Creator's Soulbook",
+    "category": "Life Architecture",
+    "badge": "FREE DOWNLOAD",
+    "headline": "Write the Book Your Soul Came Here to Write",
+    "subheadline": "A complete life operating system with 7 pillars, 3 life book frameworks, and AI-powered coaching prompts. Free Obsidian vault included.",
+    "promise": "Design, track, and transform every dimension of your life with a framework built for creators, artists, and visionaries.",
+    "summary": "Your personal collection of Life Books offering different lenses for transformation. Includes complete Obsidian vault, AI prompt library, and reflection templates.",
+    "transformation": [
+      "Map all 7 life pillars (Energy, Mind, Soul, Craft, Capital, Circle, Legacy) with structured reflection exercises",
+      "Choose your transformation lens: Life Symphony (for artists), Golden Path (for seekers), or 7 Pillars (for builders)",
+      "Access 25+ AI coaching prompts designed for deep self-reflection and life architecture",
+      "Download ready-to-use Obsidian vault with templates, dashboards, and pre-configured themes"
+    ],
+    "socialProof": {
+      "stats": [
+        {
+          "number": "7",
+          "label": "Life Pillars"
+        },
+        {
+          "number": "3",
+          "label": "Life Book Frameworks"
+        },
+        {
+          "number": "25+",
+          "label": "AI Coaching Prompts"
+        }
+      ],
+      "quotes": []
+    },
+    "offer": {
+      "primaryPrice": 0,
+      "primaryPriceDisplay": "Free",
+      "currency": "USD",
+      "ctaPrimary": "Download Free Vault",
+      "ctaPrimaryHref": "/soulbook/vault",
+      "ctaPrimaryTracking": "soulbook-vault-download",
+      "ctaSecondary": "Explore the Framework",
+      "ctaSecondaryHref": "/soulbook",
+      "guarantee": {
+        "label": "Open Source Forever",
+        "description": "The Creator's Soulbook is and will always be free. Open source on GitHub for the creator community."
+      }
+    },
+    "modules": [
+      {
+        "title": "The 7 Pillars Framework",
+        "description": "Energy, Mind, Soul, Craft, Capital, Circle, and Legacy - the complete architecture for an extraordinary life."
+      },
+      {
+        "title": "Three Life Book Perspectives",
+        "description": "Life Symphony (for artists), Golden Path (for seekers), and The 7 Pillars (for builders) - same wisdom, different metaphors."
+      },
+      {
+        "title": "AI Coaching Prompt Library",
+        "description": "25+ Claude-powered prompts for deep reflection, goal-setting, and transformation tracking."
+      },
+      {
+        "title": "Obsidian Vault Templates",
+        "description": "Ready-to-use daily reflection templates, weekly reviews, and progress dashboards with Dataview integration."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Do I need Obsidian to use the Soulbook?",
+        "answer": "The vault works best with Obsidian (free app), but the frameworks and prompts work in any note-taking system or even pen and paper."
+      },
+      {
+        "question": "Which Life Book should I start with?",
+        "answer": "If you're a musician or artist, start with Life Symphony. If you're a seeker or visionary, try Golden Path. If you prefer structured systems, The 7 Pillars is for you."
+      },
+      {
+        "question": "Is there a premium version?",
+        "answer": "The complete framework is free forever. Premium options include guided programs, community support, and 1:1 coaching - coming soon."
+      }
+    ],
+    "analyticsId": "creators-soulbook",
+    "delivery": {
+      "methods": ["download", "gated"],
+      "requiresEmail": true,
+      "files": [
+        {
+          "name": "Soulbook Complete Guide",
+          "format": "pdf",
+          "blobKey": "soulbook-guide.pdf",
+          "description": "The complete Creator's Soulbook framework with all 7 pillars"
+        },
+        {
+          "name": "Obsidian Vault",
+          "format": "zip",
+          "blobKey": "soulbook-vault.zip",
+          "description": "Ready-to-use Obsidian vault with templates and dashboards"
+        }
+      ]
+    }
+  },
+  {
+    "id": "creative-ai-toolkit",
+    "slug": "creative-ai-toolkit",
+    "name": "The Creative AI Toolkit",
+    "category": "Creative Intelligence",
+    "badge": "CREATORS SHIPPING",
+    "headline": "Replace AI Panic with Proven Workflows",
+    "subheadline": "100+ battle-tested prompts + 12 ready-to-deploy automations that cut content creation time in half while keeping your voice intact.",
+    "promise": "Go from AI overwhelm to a trusted daily ritual. One week to measurable creative velocity.",
+    "summary": "Structured prompts, workflow templates, and daily rituals that turn AI into your creative co-pilot, not a distraction.",
+    "transformation": [
+      "Deploy 100+ validated prompts across storytelling, marketing, content, and operations within 48 hours",
+      "Cut content creation time by 40-50% while maintaining creative voice and quality",
+      "Run 12 plug-and-play automations (email, social, drafting) that handle the mechanical stuff",
+      "Build a repeatable daily ritual that ships consistently without burnout"
+    ],
+    "socialProof": {
+      "stats": [
+        {
+          "number": "100+",
+          "label": "Early Adopters"
+        },
+        {
+          "number": "500+",
+          "label": "Suno Sessions Created"
+        }
+      ],
+      "quotes": []
+    },
+    "offer": {
+      "primaryPrice": 47,
+      "originalPrice": 97,
+      "currency": "USD",
+      "ctaPrimary": "Get Instant Access",
+      "ctaPrimaryHref": "https://frankx.gumroad.com/l/creative-ai-toolkit",
+      "ctaPrimaryTracking": "creative-ai-toolkit-primary",
+      "ctaSecondary": "Bundle with Agentic Creator OS",
+      "ctaSecondaryHref": "/products/agentic-creator-os",
+      "guarantee": {
+        "label": "Agent Team Promise",
+        "description": "30-day complete satisfaction guarantee. If your workflow isn't transformed, we refund every penny."
+      }
+    },
+    "modules": [
+      {
+        "title": "Creative Intelligence Prompts",
+        "description": "100+ prompts validated by Strategist, Creator, Engineer, and Guardian agents to cover storytelling, marketing, operations, and delivery."
+      },
+      {
+        "title": "Workflow Automations",
+        "description": "12 ready-to-deploy pipelines spanning content production, client delivery, and executive decision loops."
+      },
+      {
+        "title": "Multi-Agent Playbooks",
+        "description": "Learn to orchestrate the FrankX agent collective so every brief, campaign, or product ships with confidence."
+      },
+      {
+        "title": "Implementation Roadmaps",
+        "description": "30/60/90 day milestones with telemetry, KPIs, and retros so momentum stays compounding."
+      }
+    ],
+    "bonuses": [
+      {
+        "title": "Quick Reference Cards",
+        "value": "$27",
+        "description": "Top 20 prompts and decision frameworks in printable format for instant access."
+      },
+      {
+        "title": "Email Mastery Sprint",
+        "value": "$47",
+        "description": "Seven-day guided campaign to rebuild your communication rhythm with AI assistance."
+      },
+      {
+        "title": "Agent Team Strategy Session",
+        "value": "$197",
+        "description": "45-minute collective intelligence consult to personalize your rollout."
+      }
+    ],
+    "faq": [
+      {
+        "question": "What makes the FrankX.ai system different?",
+        "answer": "Every asset is validated across six specialized agents, ensuring strategic, creative, and technical excellence rather than single-expert bias."
+      },
+      {
+        "question": "Who is the toolkit for?",
+        "answer": "Creators, consultants, and teams who want a governed, repeatable AI workflow that scales from solo practice to enterprise delivery."
+      },
+      {
+        "question": "How fast will I see results?",
+        "answer": "Most members report tangible improvements within one week using the quick-start rituals and daily momentum prompts."
+      }
+    ],
+    "analyticsId": "creative-ai-toolkit"
+  },
+  {
+    "id": "vibe-os",
+    "slug": "vibe-os",
+    "name": "Vibe OS: Creative State Management",
+    "category": "Creator Tools",
+    "badge": "FREE TOOL",
+    "headline": "Manage Your Creative Energy and Focus Like a Pro",
+    "subheadline": "Track your creative states, optimize your energy cycles, and build sustainable workflows. A practical system for creators who ship consistently.",
+    "promise": "Stop fighting your energy. Start working with your natural creative rhythms.",
+    "summary": "A builder-focused state management system with mood tracking, energy optimization, and workflow templates for consistent creative output.",
+    "transformation": [
+      "Identify your peak creative hours and schedule deep work during your natural energy peaks",
+      "Track creative state patterns to understand what conditions produce your best work",
+      "Build sustainable workflows that match your energy cycles instead of fighting them",
+      "Reduce burnout and increase output with data-driven creative state management"
+    ],
+    "socialProof": {
+      "stats": [
+        {
+          "number": "Free",
+          "label": "Always Free"
+        },
+        {
+          "number": "Beta",
+          "label": "Active Development"
+        }
+      ],
+      "quotes": []
+    },
+    "offer": {
+      "primaryPrice": 0,
+      "primaryPriceDisplay": "Free",
+      "currency": "USD",
+      "ctaPrimary": "Start Using Vibe OS",
+      "ctaPrimaryHref": "/products/vibe-os/app",
+      "ctaPrimaryTracking": "vibe-os-free-access",
+      "ctaSecondary": "View Documentation",
+      "ctaSecondaryHref": "/products/vibe-os/docs",
+      "ctaSecondaryTracking": "vibe-os-docs",
+      "guarantee": {
+        "label": "Open Source & Free Forever",
+        "description": "Vibe OS is free to use with no strings attached. Track your creative states and optimize your workflow without paying a penny."
+      }
+    },
+    "modules": [
+      {
+        "title": "Energy State Tracker",
+        "description": "Log your creative energy levels throughout the day to identify patterns and optimize your schedule."
+      },
+      {
+        "title": "Focus Mode Templates",
+        "description": "Pre-built workflows for deep work, brainstorming, editing, and admin tasks matched to different energy states."
+      },
+      {
+        "title": "Creative Cycle Dashboard",
+        "description": "Visualize your productivity patterns, peak hours, and energy cycles to make data-driven workflow decisions."
+      },
+      {
+        "title": "State Management Playbooks",
+        "description": "Practical guides for transitioning between creative states, managing context switching, and maintaining flow."
+      }
+    ],
+    "bonuses": [
+      {
+        "title": "Weekly Review Templates",
+        "value": "Free",
+        "description": "Structured reflection prompts to analyze your creative patterns and optimize future weeks."
+      },
+      {
+        "title": "Energy Optimization Guide",
+        "value": "Free",
+        "description": "Science-backed strategies for managing energy, focus, and creative momentum."
+      },
+      {
+        "title": "Notion Dashboard Template",
+        "value": "Free",
+        "description": "Ready-to-use Notion workspace for tracking states, projects, and productivity metrics."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Is Vibe OS really free?",
+        "answer": "Yes. Vibe OS is completely free with no hidden costs, trials, or premium tiers. It's built for creators who want practical tools without the paywall."
+      },
+      {
+        "question": "How is this different from other productivity tools?",
+        "answer": "Vibe OS focuses specifically on creative work patterns and energy management. It's designed for creators, not corporate knowledge workers."
+      },
+      {
+        "question": "Do I need technical skills to use it?",
+        "answer": "No. Vibe OS is built for creators, not engineers. If you can use Notion or a spreadsheet, you can use Vibe OS."
+      },
+      {
+        "question": "Will there be a paid version?",
+        "answer": "Maybe someday, but the core Vibe OS will always be free. Any future premium features would be add-ons, not requirements."
+      }
+    ],
+    "analyticsId": "vibe-os",
+    "delivery": {
+      "methods": ["download", "gated"],
+      "requiresEmail": false,
+      "files": [
+        {
+          "name": "Vibe OS Getting Started Guide",
+          "format": "pdf",
+          "blobKey": "vibe-os-getting-started.pdf",
+          "description": "Complete guide to creative state management and energy tracking"
+        },
+        {
+          "name": "Notion Dashboard Template",
+          "format": "notion",
+          "blobKey": "vibe-os-notion-template.zip",
+          "description": "Ready-to-use Notion workspace for state tracking"
+        },
+        {
+          "name": "Energy Optimization Playbook",
+          "format": "pdf",
+          "blobKey": "vibe-os-energy-playbook.pdf",
+          "description": "Science-backed strategies for sustainable creative work"
+        }
+      ]
+    }
+  },
+  {
+    "id": "creation-chronicles",
+    "slug": "creation-chronicles",
+    "name": "Creation Chronicles",
+    "category": "Story Systems",
+    "badge": "STORYTELLER-POETS",
+    "headline": "Build Authority Through Consistent, Compelling Stories",
+    "subheadline": "From fragmented content to a unified narrative system that grows your audience 3x and converts readers into paying customers every month.",
+    "promise": "A storytelling operating system that turns your voice into a revenue engine. Clear strategy. Repeatable production. Measurable growth.",
+    "summary": "Strategic frameworks, AI-assisted workflows, and distribution rituals that ship stories consistently and build real authority.",
+    "transformation": [
+      "Replace scattered messaging with a core narrative arc that runs through every piece you ship (essays, videos, social)",
+      "Publish 2-3x more content with the same effort using templated AI workflows (writers report 40-60% time savings)",
+      "Grow engaged community with distribution playbooks that send your best work to the right people every week",
+      "Track revenue impact: each piece connected to pipeline milestones so you see what storytelling actually returns"
+    ],
+    "socialProof": {
+      "stats": [
+        {
+          "number": "New",
+          "label": "Storytelling System"
+        },
+        {
+          "number": "Beta",
+          "label": "Join Early Creators"
+        }
+      ],
+      "quotes": []
+    },
+    "offer": {
+      "primaryPrice": 497,
+      "originalPrice": 997,
+      "currency": "USD",
+      "ctaPrimary": "Choose Your Package",
+      "ctaPrimaryHref": "#pricing",
+      "ctaPrimaryTracking": "creation-chronicles-primary",
+      "ctaSecondary": "Preview Free Resources",
+      "ctaSecondaryHref": "/resources",
+      "guarantee": {
+        "label": "Narrative Impact Guarantee",
+        "description": "Implement the core storytelling sprints for 45 days. If you don't see clearer messaging and measurable engagement lifts, we refund you in full."
+      }
+    },
+    "modules": [
+      {
+        "title": "Strategic Story Architecture",
+        "description": "Define your brand story spine, message hierarchy, and emotional hooks across audiences."
+      },
+      {
+        "title": "Content Creation Systems",
+        "description": "Editorial calendars, AI prompt packs, and multi-format adaptation workflows for consistent publishing."
+      },
+      {
+        "title": "Audience Development Engine",
+        "description": "Persona maps, community rituals, and feedback loops to nurture devoted readers and buyers."
+      },
+      {
+        "title": "Omnichannel Distribution",
+        "description": "SEO, social amplification, and partnership templates to scale reach without burnout."
+      }
+    ],
+    "bonuses": [
+      {
+        "title": "Launch Narrative Templates",
+        "value": "$197",
+        "description": "Swipe files for product launches, founder letters, and transformation case studies."
+      },
+      {
+        "title": "Editorial Operations Hub",
+        "value": "$97",
+        "description": "Notion + Airtable base that tracks ideas, drafts, approvals, and analytics."
+      },
+      {
+        "title": "Story Circle Live Lab",
+        "value": "$297",
+        "description": "Monthly critique sessions with the FrankX storytelling collective."
+      }
+    ],
+    "pricingTiers": [
+      {
+        "name": "Creator Package",
+        "price": "$497",
+        "description": "Solo creators and early-stage brands establishing their foundational story.",
+        "features": [
+          "Brand story framework intensive",
+          "Content pillar blueprint",
+          "Template starter library",
+          "4 weeks of async support"
+        ],
+        "ctaLabel": "Start Creating",
+        "ctaHref": "https://frankx.gumroad.com/l/creation-chronicles-creator"
+      },
+      {
+        "name": "Business Package",
+        "price": "$997",
+        "description": "Growing teams ready to scale narrative-led marketing with AI-assisted workflows.",
+        "features": [
+          "Everything in Creator",
+          "Advanced content systems",
+          "Social amplification playbooks",
+          "Monthly strategy calls"
+        ],
+        "ctaLabel": "Scale Your Story",
+        "ctaHref": "https://frankx.gumroad.com/l/creation-chronicles-business",
+        "featured": true
+      },
+      {
+        "name": "Enterprise Package",
+        "price": "$2,497",
+        "description": "Established organizations seeking custom storytelling operations and enablement.",
+        "features": [
+          "Everything in Business",
+          "Team training and onboarding",
+          "Custom workflow development",
+          "Quarterly narrative summits"
+        ],
+        "ctaLabel": "Transform Your Brand",
+        "ctaHref": "mailto:hello@frankx.ai?subject=Creation%20Chronicles%20Enterprise"
+      }
+    ],
+    "faq": [
+      {
+        "question": "Will this work if we already have a content team?",
+        "answer": "Yes. Creation Chronicles slots into existing teams with playbooks for producers, editors, and leadership so everyone operates from the same narrative source code."
+      },
+      {
+        "question": "Do we need AI tools in place to benefit?",
+        "answer": "We show you how to layer AI responsibly. Every workflow includes both manual and AI-assisted versions so you can adopt at your own pace."
+      },
+      {
+        "question": "How much time should we expect to invest?",
+        "answer": "Plan for a 90-day rollout with weekly story sprints. Teams typically spend 4\u20136 hours per week implementing and reviewing."
+      }
+    ],
+    "analyticsId": "creation-chronicles"
+  },
+  {
+    "id": "generative-creator-os",
+    "slug": "generative-creator-os",
+    "name": "Creator Studio OS",
+    "category": "Creator Systems",
+    "badge": "CREATOR ARCHITECTS",
+    "headline": "Multiply Your Output. Protect Your Voice. Keep Creative Control.",
+    "subheadline": "Custom-built multi-modal studio that automates versioning, distribution, and QA while you stay in the director's chair. 2-week sprint to full deployment.",
+    "promise": "Go from 1-2 pieces per month to 3-4 per week. All channels. Same voice. Your standards.",
+    "summary": "Hands-on buildout that creates a governed AI studio pipeline for video, audio, writing, and visuals calibrated to your brand.",
+    "transformation": [
+      "Map your complete creative pipeline and identify exactly where AI accelerates (without replacing craft)",
+      "Build templated workflows so every idea automatically versions for YouTube, TikTok, podcast, email (1 creation = 6 pieces)",
+      "Ship with QA rituals and brand guidelines baked in so AI stays on-brand and collaborative",
+      "Track output velocity, audience signals, and revenue per piece on a live dashboard that shows what's actually working"
+    ],
+    "socialProof": {
+      "stats": [
+        {
+          "number": "Custom",
+          "label": "Studio Diagnostic"
+        },
+        {
+          "number": "Beta",
+          "label": "Early Access Program"
+        }
+      ],
+      "quotes": []
+    },
+    "offer": {
+      "primaryPrice": 0,
+      "primaryPriceDisplay": "Creator Studio Diagnostic",
+      "currency": "USD",
+      "ctaPrimary": "Book Studio Diagnostic",
+      "ctaPrimaryHref": "mailto:hello@frankx.ai?subject=Creator%20Studio%20Diagnostic",
+      "ctaPrimaryTracking": "generative-creator-os-primary",
+      "ctaSecondary": "Explore Resources",
+      "ctaSecondaryHref": "/resources",
+      "guarantee": {
+        "label": "Creative Integrity Promise",
+        "description": "We co-design workflow changes with you. If the system does not boost output within 45 days, we iterate at no cost."
+      },
+      "note": "Diagnostics map your current process, gaps, and the automation plan before any build begins."
+    },
+    "modules": [
+      {
+        "title": "Creative Pipeline Blueprint",
+        "description": "Map every step from ideation to publish, highlighting where AI accelerates and where human craft stays in control."
+      },
+      {
+        "title": "Automation & Templates",
+        "description": "Build prompt stacks, editing templates, caption writers, and distribution macros tailored to your channels."
+      },
+      {
+        "title": "Brand Intelligence Kit",
+        "description": "Train models on your voice, visuals, and guidelines with safety checks baked in."
+      },
+      {
+        "title": "Performance Dashboard",
+        "description": "Run a Notion/Supabase dashboard that tracks output velocity, audience signals, and monetisation."
+      }
+    ],
+    "pricingTiers": [
+      {
+        "name": "Starter Studio",
+        "price": "Projects from $4,800",
+        "description": "Two-week sprint to audit your creative stack and ship a pilot workflow.",
+        "features": [
+          "Creative pipeline map",
+          "AI-assisted pilot workflow",
+          "Template + prompt starter kit",
+          "Retro + next-step plan"
+        ],
+        "ctaLabel": "Start Sprint",
+        "ctaHref": "mailto:hello@frankx.ai?subject=Starter%20Studio%20Sprint"
+      },
+      {
+        "name": "Creator Collective",
+        "price": "Programs from $12k",
+        "description": "Six-week engagement to roll out multi-channel automations and training.",
+        "features": [
+          "All Starter Studio deliverables",
+          "Weekly build + coaching sessions",
+          "Team enablement library",
+          "Analytics + experimentation kit"
+        ],
+        "ctaLabel": "Plan Your Build",
+        "ctaHref": "mailto:hello@frankx.ai?subject=Creator%20Collective%20Program",
+        "featured": true
+      },
+      {
+        "name": "Residency",
+        "price": "Quarterly partnerships",
+        "description": "Ongoing co-building with the FrankX agent collective for launches, tours, or season arcs.",
+        "features": [
+          "Dedicated systems architect",
+          "Monthly experimentation labs",
+          "Release-by-release playbooks",
+          "Priority agent desk access"
+        ],
+        "ctaLabel": "Request Residency",
+        "ctaHref": "mailto:hello@frankx.ai?subject=Creator%20Residency"
+      }
+    ],
+    "faq": [
+      {
+        "question": "Is this just for big teams?",
+        "answer": "No. We design for solo creators up to small crews. The system scales, but it starts creator-first."
+      },
+      {
+        "question": "How fast will we see impact?",
+        "answer": "Most sprints unlock a new publishing rhythm within 30 days. We track output velocity and sentiment so you can see progress."
+      },
+      {
+        "question": "Do you train us on the tools?",
+        "answer": "Yes. Every build includes recorded walkthroughs, prompt decks, and live handoffs so you stay in control."
+      }
+    ],
+    "analyticsId": "generative-creator-os"
+  },
+  {
+    "id": "agentic-creator-os",
+    "slug": "agentic-creator-os",
+    "name": "Creator Lab OS",
+    "category": "Creator Systems",
+    "badge": "GUIDED COHORT",
+    "headline": "30-Day Lab to Ship Your Repeatable Launch Machine",
+    "subheadline": "Co-designed coaching + build sessions that architect your complete creator operating system. Idea to monetized release every single week, guaranteed.",
+    "promise": "Build the system that turns creative chaos into predictable weekly shipping. Momentum, clarity, revenue—measured from day 1.",
+    "summary": "Live cohort lab where you co-architect rituals, automations, and accountability that keep your practice consistently shipping.",
+    "transformation": [
+      "Clarify exactly who you're creating for and what offer maps to your unique strengths (1-week sprint)",
+      "Design your complete idea-to-monetized-release pipeline with automations that handle the boring stuff",
+      "Establish weekly rituals and dashboard checkpoints so you know momentum is compounding (not just hoping)",
+      "Ship one live release during the cohort with peer feedback, analytics, and your first real revenue signal"
+    ],
+    "socialProof": {
+      "stats": [
+        {
+          "number": "New",
+          "label": "Lab Cohort Format"
+        },
+        {
+          "number": "Apply",
+          "label": "Limited Spots Available"
+        }
+      ],
+      "quotes": []
+    },
+    "offer": {
+      "primaryPrice": 0,
+      "primaryPriceDisplay": "Apply for the Lab",
+      "currency": "USD",
+      "ctaPrimary": "Apply for the Lab",
+      "ctaPrimaryHref": "/creator-lab",
+      "ctaPrimaryTracking": "creator-lab-apply",
+      "ctaSecondary": "Download Creator Lab Overview",
+      "ctaSecondaryHref": "/creation-chronicles",
+      "guarantee": {
+        "label": "Momentum Promise",
+        "description": "If you do the work and the system does not increase your publishing cadence within 30 days of graduation, we coach you until it does."
+      },
+      "note": "Applications reviewed weekly. Cohorts are capped to keep the studio intimate."
+    },
+    "modules": [
+      {
+        "title": "Creative Compass",
+        "description": "Codify your story, audience promise, and revenue focus so every ritual points to the same horizon."
+      },
+      {
+        "title": "Launch Lab",
+        "description": "Design the idea-to-publish pipeline with automations, templates, and handoff notes."
+      },
+      {
+        "title": "Systems Studio",
+        "description": "Wire dashboards, automation routers, and prompt libraries that keep the lab running."
+      },
+      {
+        "title": "Field Tests",
+        "description": "Ship a live release with accountability, analytics, and peer feedback."
+      }
+    ],
+    "pricingTiers": [
+      {
+        "name": "Self-Paced Starter",
+        "price": "$297",
+        "description": "Toolkit + recorded labs for creators who prefer to implement solo.",
+        "features": [
+          "Full Creator Lab OS curriculum",
+          "Automation + template library",
+          "Office hour invites",
+          "Community check-ins"
+        ],
+        "ctaLabel": "Get Starter Kit",
+        "ctaHref": "/creator-lab-starter"
+      },
+      {
+        "name": "Guided Cohort",
+        "price": "$997",
+        "description": "Four-week live lab with Frank + agents to build your system together.",
+        "features": [
+          "Weekly live build sessions",
+          "1:1 agent desk feedback",
+          "Implementation sprints",
+          "Launch + analytics review"
+        ],
+        "ctaLabel": "Apply for Cohort",
+        "ctaHref": "/creator-lab"
+      },
+      {
+        "name": "Creator Residency",
+        "price": "Custom",
+        "description": "Ongoing partnership for creators scaling products, shows, or studios.",
+        "features": [
+          "Dedicated systems architect",
+          "Monthly ritual labs",
+          "Automations + analytics upkeep",
+          "Priority agent desk support"
+        ],
+        "ctaLabel": "Request Residency",
+        "ctaHref": "mailto:hello@frankx.ai?subject=Creator%20Residency"
+      }
+    ],
+    "faq": [
+      {
+        "question": "Who is the Creator Lab for?",
+        "answer": "Creators with a body of work (songs, videos, essays, products) who want a reliable system to ship and monetise consistently."
+      },
+      {
+        "question": "How much time should I budget?",
+        "answer": "Plan on 4-6 focused hours per week during the cohort. The self-paced track can flex, but momentum matters."
+      },
+      {
+        "question": "Do I need a team?",
+        "answer": "No. We design the system for solo creators first. If you have collaborators, we fold them into the rituals."
+      }
+    ],
+    "analyticsId": "agentic-creator-os"
+  },
+  {
+    "id": "suno-prompt-library",
+    "slug": "suno-prompt-library",
+    "name": "Suno Prompt Library Pack",
+    "category": "Music Intelligence",
+    "badge": "INSTANT ACCESS",
+    "headline": "100+ Battle-Tested Suno Prompts for Every Genre",
+    "subheadline": "Skip the prompt guessing game. Get the exact prompts that powered 500+ tracks across electronic, hip-hop, cinematic, ambient, and world music.",
+    "promise": "Stop wasting generations on prompts that don't work. Get proven prompts organized by genre, mood, and energy level.",
+    "summary": "A comprehensive prompt library extracted from 500+ Suno sessions, organized for instant use in any creative project.",
+    "transformation": [
+      "Access 100+ prompts that actually work—tested across 500+ generations with detailed success notes",
+      "Find the perfect prompt in seconds with genre, mood, and energy filters (no more scrolling through chaos)",
+      "Learn prompt patterns that unlock specific sounds (the 'why' behind each prompt so you can create your own)",
+      "Get bonus prompt modifiers for tempo, instrumentation, and vocal styles that stack with any base prompt"
+    ],
+    "socialProof": {
+      "stats": [
+        {
+          "number": "100+",
+          "label": "Curated Prompts"
+        },
+        {
+          "number": "500+",
+          "label": "Sessions Tested"
+        },
+        {
+          "number": "12",
+          "label": "Genre Categories"
+        }
+      ],
+      "quotes": []
+    },
+    "offer": {
+      "primaryPrice": 27,
+      "originalPrice": 47,
+      "currency": "USD",
+      "ctaPrimary": "Get Instant Access",
+      "ctaPrimaryHref": "https://frankx.gumroad.com/l/suno-prompt-library",
+      "ctaPrimaryTracking": "suno-prompt-library-primary",
+      "ctaSecondary": "Bundle with Vibe OS",
+      "ctaSecondaryHref": "/products/vibe-os",
+      "guarantee": {
+        "label": "Prompt Success Guarantee",
+        "description": "If these prompts don't improve your Suno output within 7 days, get a full refund. No questions asked."
+      }
+    },
+    "modules": [
+      {
+        "title": "Electronic & EDM Pack",
+        "description": "25 prompts for house, techno, trance, dubstep, and synthwave with BPM and energy modifiers."
+      },
+      {
+        "title": "Hip-Hop & R&B Pack",
+        "description": "20 prompts spanning boom bap, trap, lo-fi, and modern R&B with flow and vibe variations."
+      },
+      {
+        "title": "Cinematic & Ambient Pack",
+        "description": "25 prompts for film scores, meditation, focus music, and atmospheric soundscapes."
+      },
+      {
+        "title": "World & Fusion Pack",
+        "description": "15 prompts for afrobeats, Latin, reggae, and cross-cultural fusion experiments."
+      },
+      {
+        "title": "Modifier Library",
+        "description": "50+ stackable modifiers for tempo, instrumentation, vocals, and production style."
+      }
+    ],
+    "bonuses": [
+      {
+        "title": "Prompt Formula Cheatsheet",
+        "value": "$17",
+        "description": "One-page reference showing the anatomy of a perfect Suno prompt with fill-in templates."
+      },
+      {
+        "title": "Genre Quick-Start Cards",
+        "value": "$12",
+        "description": "Printable cards for the top 5 prompts in each genre—perfect for studio sessions."
+      },
+      {
+        "title": "Monthly Prompt Updates",
+        "value": "$47/yr",
+        "description": "New prompts added monthly as Suno evolves and new techniques emerge."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Are these prompts compatible with Suno v4/v4.5?",
+        "answer": "Yes. All prompts are tested on the latest Suno versions and updated when new features launch."
+      },
+      {
+        "question": "Can I modify and customize these prompts?",
+        "answer": "Absolutely. Each prompt includes notes on what to change and how the modifiers work together."
+      },
+      {
+        "question": "What format are the prompts delivered in?",
+        "answer": "PDF guide with searchable text + Notion database for easy filtering and organization."
+      },
+      {
+        "question": "How is this different from Vibe OS?",
+        "answer": "The Prompt Library is just the prompts. Vibe OS includes the full production system—workflows, emotion mapping, and release playbooks. This is the quick-start option."
+      }
+    ],
+    "analyticsId": "suno-prompt-library",
+    "delivery": {
+      "methods": ["download"],
+      "requiresEmail": false,
+      "files": [
+        {
+          "name": "Suno Prompt Library Guide",
+          "format": "pdf",
+          "blobKey": "suno-prompt-library-guide.pdf",
+          "description": "Complete 100+ prompt library with annotations"
+        },
+        {
+          "name": "Notion Database Template",
+          "format": "notion",
+          "blobKey": "suno-prompt-library-notion.zip",
+          "description": "Filterable Notion database with all prompts"
+        },
+        {
+          "name": "Quick-Start Cheatsheet",
+          "format": "pdf",
+          "blobKey": "suno-prompt-cheatsheet.pdf",
+          "description": "One-page prompt formula reference"
+        }
+      ]
+    }
+  },
+  {
+    "id": "aurora-ui-kit",
+    "slug": "aurora-ui-kit",
+    "name": "Aurora UI Kit",
+    "category": "Design + AI",
+    "badge": "NEW",
+    "headline": "30 Premium Components with AI Generation Built In",
+    "subheadline": "Production-ready Next.js components with glassmorphism, animations, and a Claude Code skill that generates new components in the same design language on demand.",
+    "promise": "Stop building UI from scratch. Get 30 polished components plus an AI system that creates new ones matching your design system.",
+    "summary": "A premium component library combining hand-crafted Next.js + Tailwind components with an agentic AI layer that generates custom variants on demand.",
+    "transformation": [
+      "Drop 30 production-ready components into any Next.js project — PremiumCard, AuroraGradient, ShimmerButton, and more",
+      "Use the included Claude Code skill to generate new components that match the Aurora design language",
+      "Ship polished UIs in hours instead of weeks with pre-built dark/light mode, responsive layouts, and micro-interactions",
+      "Customize everything with documented design tokens — colors, spacing, animations, glass levels"
+    ],
+    "socialProof": {
+      "stats": [
+        {
+          "number": "30+",
+          "label": "Components"
+        },
+        {
+          "number": "6",
+          "label": "Animation Systems"
+        },
+        {
+          "number": "AI",
+          "label": "Generation Skill"
+        }
+      ],
+      "quotes": []
+    },
+    "offer": {
+      "primaryPrice": 19,
+      "originalPrice": 39,
+      "currency": "USD",
+      "ctaPrimary": "Get Aurora UI Kit",
+      "ctaPrimaryHref": "https://frankx.gumroad.com/l/aurora-ui-kit",
+      "ctaPrimaryTracking": "aurora-ui-kit-primary",
+      "ctaSecondary": "Preview Components",
+      "ctaSecondaryHref": "/design-lab",
+      "guarantee": {
+        "label": "Ship It Guarantee",
+        "description": "If you can't ship a polished UI within 48 hours of purchase, get a full refund."
+      }
+    },
+    "modules": [
+      {
+        "title": "Premium Component Library",
+        "description": "30+ components: PremiumCard (5 gradient presets, 4 glass levels, tilt, glow), AuroraGradient (6 variants), ShimmerButton, MagneticHover, FloatingElement, CursorSpotlight, and more."
+      },
+      {
+        "title": "Animation Systems",
+        "description": "MorphingBackground, SplitTextReveal, Marquee, ParallaxContainer, StaggerContainer — all with prefers-reduced-motion support."
+      },
+      {
+        "title": "AI Generation Skill",
+        "description": "Claude Code skill that understands the Aurora design language. Tell it 'create a pricing card with aurora style' and it generates matching code."
+      },
+      {
+        "title": "Design Token System",
+        "description": "Configurable color palettes, spacing scales, glass levels, and animation timings. Change one token, update the entire kit."
+      }
+    ],
+    "bonuses": [
+      {
+        "title": "6 Page Templates",
+        "value": "$29",
+        "description": "Landing page, dashboard, pricing, blog, portfolio, and 404 — all built with Aurora components."
+      },
+      {
+        "title": "Figma Design Tokens",
+        "value": "$15",
+        "description": "Matching Figma variables for designer-developer handoff."
+      }
+    ],
+    "faq": [
+      {
+        "question": "What tech stack does this require?",
+        "answer": "Next.js 14+, React 18+, Tailwind CSS 3+, and TypeScript. Components use zero external animation libraries — pure CSS + React."
+      },
+      {
+        "question": "What makes this different from shadcn/ui?",
+        "answer": "Aurora UI Kit is a design-forward layer that sits on top of shadcn. While shadcn gives you unstyled primitives, Aurora gives you the visual polish — glassmorphism, gradients, micro-interactions, and the AI skill to generate more."
+      },
+      {
+        "question": "How does the AI generation skill work?",
+        "answer": "It's a Claude Code skill file (.claude/skills/) that you drop into your project. When activated, you can describe components in natural language and it generates code matching Aurora's design patterns."
+      },
+      {
+        "question": "Can I use this in commercial projects?",
+        "answer": "Yes. MIT license. Use in unlimited personal and commercial projects."
+      }
+    ],
+    "analyticsId": "aurora-ui-kit",
+    "delivery": {
+      "methods": ["download"],
+      "requiresEmail": false,
+      "files": [
+        {
+          "name": "Aurora UI Kit",
+          "format": "zip",
+          "blobKey": "aurora-ui-kit.zip",
+          "description": "Complete component library with AI skill"
+        },
+        {
+          "name": "Documentation",
+          "format": "pdf",
+          "blobKey": "aurora-ui-kit-docs.pdf",
+          "description": "Component API reference and customization guide"
+        }
+      ]
+    }
+  },
+  {
+    "id": "agentic-content-engine",
+    "slug": "agentic-content-engine",
+    "name": "Agentic Content Engine",
+    "category": "Design + AI",
+    "badge": "AGENTIC",
+    "headline": "Your AI-Powered Content Production System",
+    "subheadline": "A complete Next.js content platform with built-in AI writing assistance, SEO optimization, social distribution automation, and analytics. Not a template — a system.",
+    "promise": "Go from idea to published, SEO-optimized, socially distributed content in under 30 minutes. Every single time.",
+    "summary": "Production-ready content management system combining a premium blog platform with agentic AI capabilities for writing, SEO, and distribution.",
+    "transformation": [
+      "Publish SEO-optimized articles with AI-assisted writing that maintains your voice and style",
+      "Auto-generate social media posts for every article across Twitter/X, LinkedIn, and newsletter formats",
+      "Track content performance with built-in analytics dashboard — pageviews, time on page, conversion events",
+      "Use Claude Code skills to run your entire content pipeline from the terminal: research, write, optimize, publish"
+    ],
+    "socialProof": {
+      "stats": [
+        {
+          "number": "AI",
+          "label": "Writing Assistant"
+        },
+        {
+          "number": "SEO",
+          "label": "Auto-Optimization"
+        },
+        {
+          "number": "5",
+          "label": "Distribution Channels"
+        }
+      ],
+      "quotes": []
+    },
+    "offer": {
+      "primaryPrice": 97,
+      "originalPrice": 197,
+      "currency": "USD",
+      "ctaPrimary": "Get Content Engine",
+      "ctaPrimaryHref": "https://frankx.gumroad.com/l/agentic-content-engine",
+      "ctaPrimaryTracking": "agentic-content-engine-primary",
+      "ctaSecondary": "See It In Action",
+      "ctaSecondaryHref": "/blog",
+      "guarantee": {
+        "label": "Content Velocity Guarantee",
+        "description": "Publish your first AI-assisted article within 24 hours of setup or get a full refund."
+      }
+    },
+    "modules": [
+      {
+        "title": "Premium Blog Platform",
+        "description": "MDX-powered blog with syntax highlighting, table of contents, reading time, related posts, and responsive images. Dark/light mode. Schema markup built in."
+      },
+      {
+        "title": "AI Writing Pipeline",
+        "description": "Claude Code skills for research, outlining, drafting, and editing. Prompt library with 20+ content templates. Voice calibration system to match your style."
+      },
+      {
+        "title": "SEO Engine",
+        "description": "Automatic meta tag generation, FAQ schema injection, internal linking suggestions, and keyword density analysis. Every article optimized before publish."
+      },
+      {
+        "title": "Social Distribution",
+        "description": "One-click generation of Twitter threads, LinkedIn posts, newsletter editions, and RSS feeds from any article. Scheduled publishing support."
+      },
+      {
+        "title": "Analytics Dashboard",
+        "description": "Built-in analytics with pageviews, popular posts, reading patterns, and conversion tracking. No third-party scripts required."
+      }
+    ],
+    "bonuses": [
+      {
+        "title": "Content Calendar Template",
+        "value": "$47",
+        "description": "Notion + Airtable template for planning, tracking, and managing your content pipeline."
+      },
+      {
+        "title": "SEO Keyword Research Kit",
+        "value": "$27",
+        "description": "Python scripts for keyword research, competitor analysis, and content gap identification."
+      },
+      {
+        "title": "Email Newsletter Integration",
+        "value": "$37",
+        "description": "Resend-powered newsletter system with subscriber management and automated sends."
+      }
+    ],
+    "faq": [
+      {
+        "question": "Is this a WordPress alternative?",
+        "answer": "Yes, but faster. Built on Next.js with static generation, so pages load instantly. No database required — content lives in MDX files in your repo."
+      },
+      {
+        "question": "Do I need Claude Code to use this?",
+        "answer": "The blog platform works standalone. The AI writing pipeline and automation features require Claude Code (free tier works). The skills activate automatically when Claude Code is installed."
+      },
+      {
+        "question": "How does the AI maintain my voice?",
+        "answer": "The system includes a voice calibration prompt that learns from your existing content. Feed it 3-5 of your best articles and it adapts to your style, tone, and vocabulary."
+      },
+      {
+        "question": "Can I deploy this on Vercel for free?",
+        "answer": "Yes. The hobby tier on Vercel handles most content sites. The system is optimized for static generation so hosting costs stay minimal."
+      }
+    ],
+    "analyticsId": "agentic-content-engine",
+    "delivery": {
+      "methods": ["download"],
+      "requiresEmail": false,
+      "files": [
+        {
+          "name": "Agentic Content Engine",
+          "format": "zip",
+          "blobKey": "agentic-content-engine.zip",
+          "description": "Complete Next.js content platform with AI skills"
+        },
+        {
+          "name": "Setup Guide",
+          "format": "pdf",
+          "blobKey": "content-engine-setup.pdf",
+          "description": "Step-by-step deployment and customization guide"
+        },
+        {
+          "name": "Python SEO Scripts",
+          "format": "zip",
+          "blobKey": "content-engine-seo-scripts.zip",
+          "description": "Keyword research and content analysis tools"
+        }
+      ]
+    }
+  },
+  {
+    "id": "5-suno-prompts",
+    "slug": "5-suno-prompts",
+    "name": "5 Prompts That Made My Best Suno Tracks",
+    "category": "Music Intelligence",
+    "badge": "FREE DOWNLOAD",
+    "headline": "The Exact Prompts Behind My Top Suno Tracks",
+    "subheadline": "Copy the 5 prompts that generated 500+ plays. Each with breakdowns of why it works and variations to try.",
+    "promise": "Skip the guessing. Get proven prompts that actually produce great Suno tracks.",
+    "summary": "Free guide with 5 battle-tested Suno prompts, a power words cheat sheet, and common mistakes to avoid.",
+    "transformation": [
+      "Copy 5 proven prompts directly into Suno for immediate results",
+      "Understand the specific keywords that control Suno output quality",
+      "Learn genre fusion techniques that create original sounds",
+      "Get a power words cheat sheet for any future prompt"
+    ],
+    "socialProof": {
+      "stats": [
+        { "number": "500+", "label": "Tracks Created" },
+        { "number": "142", "label": "Top Plays" },
+        { "number": "5", "label": "Proven Prompts" }
+      ],
+      "quotes": []
+    },
+    "offer": {
+      "primaryPrice": 0,
+      "primaryPriceDisplay": "Free",
+      "currency": "USD",
+      "ctaPrimary": "Get Free Prompts",
+      "ctaPrimaryHref": "/music-lab",
+      "ctaPrimaryTracking": "5-suno-prompts-download",
+      "ctaSecondary": "Full Prompt Library",
+      "ctaSecondaryHref": "/products/suno-prompt-library",
+      "guarantee": {
+        "label": "Instant Access",
+        "description": "Enter your email and get the PDF delivered immediately. No spam, unsubscribe anytime."
+      }
+    },
+    "modules": [],
+    "faq": [
+      {
+        "question": "Do these prompts work with Suno v4?",
+        "answer": "Yes. All prompts are tested on v4 and newer. They work with any recent Suno version."
+      },
+      {
+        "question": "Is this really free?",
+        "answer": "Yes. Enter your email and the PDF is delivered instantly. We also offer a full 100+ prompt library for $27."
+      }
+    ],
+    "analyticsId": "5-suno-prompts",
+    "delivery": {
+      "methods": ["download", "gated"],
+      "requiresEmail": true,
+      "files": [
+        {
+          "name": "5 Suno Prompts Guide",
+          "format": "pdf",
+          "blobKey": "5-suno-prompts.pdf",
+          "description": "5 battle-tested Suno prompts with breakdowns and cheat sheet"
+        }
+      ]
+    }
+  },
+  {
+    "id": "book-love-and-poetry",
+    "slug": "love-and-poetry",
+    "name": "Love & Poetry",
+    "category": "Books",
+    "badge": "FREE TO READ",
+    "headline": "Verses That Move the Soul",
+    "subheadline": "Rumi, Rilke, Goethe, Vietnamese love poetry, and original verse — spanning centuries, cultures, and languages.",
+    "promise": "A curated collection of the world's most beautiful love poetry, woven with original work.",
+    "summary": "Five chapters of poetry from Rumi to Rilke, from German Romanticism to Vietnamese lyricism, concluding with original poems written from lived experience.",
+    "transformation": [],
+    "socialProof": {
+      "stats": [
+        { "number": "5", "label": "Chapters" },
+        { "number": "42", "label": "Min Read" }
+      ],
+      "quotes": []
+    },
+    "offer": {
+      "primaryPrice": 0,
+      "primaryPriceDisplay": "Free",
+      "currency": "USD",
+      "ctaPrimary": "Read Online",
+      "ctaPrimaryHref": "/books/love-and-poetry",
+      "ctaPrimaryTracking": "book-love-poetry-read"
+    },
+    "modules": [],
+    "analyticsId": "book-love-and-poetry",
+    "delivery": {
+      "methods": ["download", "gated"],
+      "requiresEmail": true,
+      "files": []
+    }
+  },
+  {
+    "id": "book-spartan-mindset",
+    "slug": "spartan-mindset",
+    "name": "Spartan Mindset",
+    "category": "Books",
+    "badge": "FREE TO READ",
+    "headline": "The Discipline of One More",
+    "subheadline": "A manual for the relentless. Discipline, training, and the philosophy of pushing past limits.",
+    "promise": "Every chapter is a rep you didn't think you had. Gym discipline as life philosophy.",
+    "summary": "Five chapters on the Spartan code, iron discipline, the compound effect of one more rep, forging character through voluntary hardship, and mind over matter.",
+    "transformation": [],
+    "socialProof": {
+      "stats": [
+        { "number": "5", "label": "Chapters" },
+        { "number": "59", "label": "Min Read" }
+      ],
+      "quotes": []
+    },
+    "offer": {
+      "primaryPrice": 0,
+      "primaryPriceDisplay": "Free",
+      "currency": "USD",
+      "ctaPrimary": "Read Online",
+      "ctaPrimaryHref": "/books/spartan-mindset",
+      "ctaPrimaryTracking": "book-spartan-read"
+    },
+    "modules": [],
+    "analyticsId": "book-spartan-mindset",
+    "delivery": {
+      "methods": ["download", "gated"],
+      "requiresEmail": true,
+      "files": []
+    }
+  },
+  {
+    "id": "book-self-development",
+    "slug": "self-development",
+    "name": "The Art of Self-Development",
+    "category": "Books",
+    "badge": "FREE TO READ",
+    "headline": "Seven Pillars of a Complete Life",
+    "subheadline": "Energy, Mind, Soul, Craft, Capital, Circle, and Legacy — a systematic approach to building every dimension of your life.",
+    "promise": "Not theory. Routines that work. Seven pillars, each with actionable protocols.",
+    "summary": "Seven chapters mapping the complete self-development framework: from morning protocols and mental clarity to financial architecture and legacy thinking.",
+    "transformation": [],
+    "socialProof": {
+      "stats": [
+        { "number": "7", "label": "Chapters" },
+        { "number": "83", "label": "Min Read" }
+      ],
+      "quotes": []
+    },
+    "offer": {
+      "primaryPrice": 0,
+      "primaryPriceDisplay": "Free",
+      "currency": "USD",
+      "ctaPrimary": "Read Online",
+      "ctaPrimaryHref": "/books/self-development",
+      "ctaPrimaryTracking": "book-selfdev-read"
+    },
+    "modules": [],
+    "analyticsId": "book-self-development",
+    "delivery": {
+      "methods": ["download", "gated"],
+      "requiresEmail": true,
+      "files": []
+    }
+  },
+  {
+    "id": "book-imagination",
+    "slug": "imagination",
+    "name": "Imagination",
+    "category": "Books",
+    "badge": "FREE TO READ",
+    "headline": "Unlocking the Power of the Mind",
+    "subheadline": "Your imagination is the most powerful technology you possess. This book teaches you how to wield it.",
+    "promise": "Creative visualization, mental models, and the architecture of thought — applied neuroscience for builders.",
+    "summary": "Five chapters on the inner theater, creative visualization protocols, essential mental models, the architect's eye, and reaching beyond the visible.",
+    "transformation": [],
+    "socialProof": {
+      "stats": [
+        { "number": "5", "label": "Chapters" },
+        { "number": "63", "label": "Min Read" }
+      ],
+      "quotes": []
+    },
+    "offer": {
+      "primaryPrice": 0,
+      "primaryPriceDisplay": "Free",
+      "currency": "USD",
+      "ctaPrimary": "Read Online",
+      "ctaPrimaryHref": "/books/imagination",
+      "ctaPrimaryTracking": "book-imagination-read"
+    },
+    "modules": [],
+    "analyticsId": "book-imagination",
+    "delivery": {
+      "methods": ["download", "gated"],
+      "requiresEmail": true,
+      "files": []
+    }
+  },
+  {
+    "id": "book-manifestation",
+    "slug": "manifestation",
+    "name": "Manifestation",
+    "category": "Books",
+    "badge": "FREE TO READ",
+    "headline": "The Architecture of Reality",
+    "subheadline": "Not wishful thinking. The grounded, psychological approach to turning thought into reality.",
+    "promise": "Strip away the mysticism. What remains is a framework for building the reality you want.",
+    "summary": "Five chapters on the psychology of reality construction: RAS programming, thought blueprints, frequency management, aligned action, and the evidence journal.",
+    "transformation": [],
+    "socialProof": {
+      "stats": [
+        { "number": "5", "label": "Chapters" },
+        { "number": "60", "label": "Min Read" }
+      ],
+      "quotes": []
+    },
+    "offer": {
+      "primaryPrice": 0,
+      "primaryPriceDisplay": "Free",
+      "currency": "USD",
+      "ctaPrimary": "Read Online",
+      "ctaPrimaryHref": "/books/manifestation",
+      "ctaPrimaryTracking": "book-manifestation-read"
+    },
+    "modules": [],
+    "analyticsId": "book-manifestation",
+    "delivery": {
+      "methods": ["download", "gated"],
+      "requiresEmail": true,
+      "files": []
+    }
+  }
+]

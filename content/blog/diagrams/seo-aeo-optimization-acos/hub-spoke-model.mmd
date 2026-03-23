@@ -1,0 +1,18 @@
+flowchart LR
+    HUB["Complete Guide to ACOS<br/>(Hub Article)"]
+    SWARM["Swarm Intelligence"]
+    USE_CASES["Use Cases by Creator Type"]
+    MCP["MCP Server Integration"]
+    SKILLS["Building Custom Skills"]
+    QUICK["Quick Start Guide"]
+
+    HUB --> SWARM
+    HUB --> USE_CASES
+    HUB --> MCP
+    HUB --> SKILLS
+    HUB --> QUICK
+
+    classDef hub fill:#064e3b,stroke:#10b981,color:#ecfeff,stroke-width:2px
+    classDef spoke fill:#0f172a,stroke:#06b6d4,color:#e2e8f0,stroke-width:1.5px
+    class HUB hub
+    class SWARM,USE_CASES,MCP,SKILLS,QUICK spoke

@@ -1,0 +1,94 @@
+graph LR
+    %% Content Universe Flow
+    %% Shows how content moves from creation to distribution
+
+    subgraph CREATION["✍️ Content Creation"]
+        direction TB
+        IDEA[Inspiration<br/>Daily Intelligence]:::creation
+        DRAFT[AI-Assisted<br/>Drafting]:::creation
+        COLLAB[Council<br/>Collaboration]:::creation
+
+        IDEA --> DRAFT
+        DRAFT --> COLLAB
+    end
+
+    subgraph AGENTS["🤖 Specialized Agents"]
+        direction TB
+        TECH[Technical Translator<br/>AI Systems Guide]:::agent
+        FREQ[Frequency Alchemist<br/>Vibe OS Storyteller]:::agent
+        ENGINE[Creation Engine<br/>Content Architect]:::agent
+        SOUL[Soul Strategist<br/>Transformation Guide]:::agent
+
+        TECH -.->|supports| ENGINE
+        FREQ -.->|supports| ENGINE
+        SOUL -.->|supports| ENGINE
+    end
+
+    subgraph POLISH["✨ Polish & Optimize"]
+        direction TB
+        EDIT[Content Polishing<br/>FrankX Voice]:::polish
+        SEO[SEO Optimization<br/>Discoverability]:::polish
+        VISUAL[Visual Assets<br/>Imagen 3]:::polish
+
+        EDIT --> SEO
+        SEO --> VISUAL
+    end
+
+    subgraph FORMATS["📚 Content Formats"]
+        direction TB
+        BLOG[Blog Essays<br/>frankxhq.com]:::format
+        NL[Newsletter<br/>Email Series]:::format
+        SOCIAL[Social Media<br/>X, LinkedIn]:::format
+        BOOKS[Books<br/>Fiction & Non-Fiction]:::format
+        COURSES[Courses<br/>AI Music Academy]:::format
+        VIBE[Vibe OS Sessions<br/>Music + Narrative]:::format
+
+        BLOG --> SOCIAL
+        NL --> SOCIAL
+    end
+
+    subgraph DISTRIBUTION["🌐 Distribution Channels"]
+        direction TB
+        WEB[frankxhq.com<br/>Main Hub]:::dist
+        EMAIL[Email Lists<br/>Subscribers]:::dist
+        X_DIST[X/Twitter<br/>Threads]:::dist
+        LI_DIST[LinkedIn<br/>Professional]:::dist
+        YT[YouTube<br/>Video Content]:::dist
+        SPOTIFY[Spotify<br/>Music Releases]:::dist
+        GUMROAD[Gumroad<br/>Digital Products]:::dist
+    end
+
+    subgraph ANALYTICS["📊 Analytics & Learning"]
+        direction TB
+        METRICS[Engagement<br/>Metrics]:::analytics
+        FEEDBACK[Audience<br/>Feedback]:::analytics
+        ITERATE[Content<br/>Iteration]:::analytics
+
+        METRICS --> FEEDBACK
+        FEEDBACK --> ITERATE
+    end
+
+    %% Flow connections
+    CREATION --> AGENTS
+    AGENTS --> POLISH
+    POLISH --> FORMATS
+    FORMATS --> DISTRIBUTION
+    DISTRIBUTION --> ANALYTICS
+    ANALYTICS -.->|informs| CREATION
+
+    %% Content type specific flows
+    BLOG --> WEB
+    NL --> EMAIL
+    SOCIAL --> X_DIST
+    SOCIAL --> LI_DIST
+    BOOKS --> GUMROAD
+    COURSES --> WEB
+    VIBE --> SPOTIFY
+    VIBE --> GUMROAD
+
+    classDef creation fill:#4A90E2,stroke:#2E5C8A,stroke-width:2px,color:#fff
+    classDef agent fill:#E24A90,stroke:#8A2E5C,stroke-width:2px,color:#fff
+    classDef polish fill:#90E24A,stroke:#5C8A2E,stroke-width:2px,color:#333
+    classDef format fill:#E2904A,stroke:#8A5C2E,stroke-width:2px,color:#fff
+    classDef dist fill:#9B4AE2,stroke:#5C2E8A,stroke-width:2px,color:#fff
+    classDef analytics fill:#4AE2E2,stroke:#2E8A8A,stroke-width:2px,color:#333

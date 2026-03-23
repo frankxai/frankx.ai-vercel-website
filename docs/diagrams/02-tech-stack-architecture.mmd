@@ -1,0 +1,116 @@
+graph TB
+    %% Tech Stack Architecture
+    %% Color Legend:
+    %% #4A90E2 - Frontend
+    %% #E24A90 - Backend
+    %% #90E24A - Database
+    %% #E2904A - AI/ML
+    %% #9B4AE2 - Infrastructure
+    %% #4AE2E2 - External Services
+
+    subgraph FRONTEND["🎨 Frontend Layer"]
+        direction TB
+        NEXT[Next.js 16<br/>App Router]:::frontend
+        REACT[React 19<br/>Server Components]:::frontend
+        TW[Tailwind CSS<br/>Styling]:::frontend
+        FM[Framer Motion<br/>Animations]:::frontend
+        RADIX[Radix UI<br/>Components]:::frontend
+
+        NEXT --> REACT
+        NEXT --> TW
+        REACT --> FM
+        REACT --> RADIX
+    end
+
+    subgraph BACKEND["⚙️ Backend Layer"]
+        direction TB
+        API[Next.js API Routes<br/>RESTful Endpoints]:::backend
+        SVC[Service Layer<br/>Business Logic]:::backend
+        AUTH[Authentication<br/>Supabase Auth]:::backend
+        RLS[Row Level Security<br/>Policies]:::backend
+
+        API --> SVC
+        API --> AUTH
+        SVC --> RLS
+    end
+
+    subgraph DATABASE["🗄️ Data Layer"]
+        direction TB
+        PG[PostgreSQL<br/>Supabase]:::database
+        STOR[Object Storage<br/>Media Files]:::database
+        CACHE[Redis Cache<br/>Performance]:::database
+
+        PG --> STOR
+        PG --> CACHE
+    end
+
+    subgraph AI_ML["🤖 AI/ML Layer"]
+        direction TB
+        ANT[Anthropic<br/>Claude Sonnet 4.5]:::ai
+        SUNO_AI[Suno AI<br/>Music Generation]:::ai
+        IMAGEN_AI[Google Imagen 3<br/>Image Generation]:::ai
+        GEMINI[Gemini Flash<br/>Vision & Processing]:::ai
+        OCI_AI[Oracle AI<br/>Enterprise Models]:::ai
+
+        ANT --> MCP_SYS[MCP Protocol<br/>Tool Integration]:::ai
+        SUNO_AI --> MCP_SYS
+        IMAGEN_AI --> MCP_SYS
+        GEMINI --> MCP_SYS
+        OCI_AI --> MCP_SYS
+    end
+
+    subgraph INFRA["🏗️ Infrastructure"]
+        direction TB
+        VERCEL[Vercel<br/>Hosting & CDN]:::infra
+        OCI_CLOUD[Oracle Cloud<br/>Compute & Storage]:::infra
+        GH[GitHub<br/>Source Control]:::infra
+        CICD[CI/CD Pipeline<br/>Automated Deploy]:::infra
+
+        VERCEL --> CICD
+        OCI_CLOUD --> CICD
+        GH --> CICD
+    end
+
+    subgraph EXTERNAL["🌐 External Services"]
+        direction TB
+        STRIPE[Stripe<br/>Payments]:::external
+        RESEND[Resend<br/>Email]:::external
+        LINEAR[Linear<br/>Project Management]:::external
+        NOTION[Notion<br/>Documentation]:::external
+        FIGMA[Figma<br/>Design System]:::external
+
+        STRIPE --> WEBHOOKS[Webhook Handlers]:::external
+        RESEND --> WEBHOOKS
+    end
+
+    subgraph MCP["🔌 MCP Servers"]
+        direction TB
+        MCP_NB[Nano Banana<br/>Image Generation]:::mcp
+        MCP_LG[Lyric Genius<br/>Lyrics API]:::mcp
+        MCP_GH[GitHub MCP<br/>Repository Access]:::mcp
+        MCP_NEXT[Next.js DevTools<br/>Runtime Inspection]:::mcp
+        MCP_FRAME[Framer MCP<br/>Design Integration]:::mcp
+
+        MCP_NB --> MCP_CORE[MCP Core Protocol]:::mcp
+        MCP_LG --> MCP_CORE
+        MCP_GH --> MCP_CORE
+        MCP_NEXT --> MCP_CORE
+        MCP_FRAME --> MCP_CORE
+    end
+
+    %% Connections between layers
+    FRONTEND --> BACKEND
+    BACKEND --> DATABASE
+    BACKEND --> AI_ML
+    FRONTEND --> INFRA
+    BACKEND --> INFRA
+    AI_ML --> MCP
+    BACKEND --> EXTERNAL
+
+    classDef frontend fill:#4A90E2,stroke:#2E5C8A,stroke-width:2px,color:#fff
+    classDef backend fill:#E24A90,stroke:#8A2E5C,stroke-width:2px,color:#fff
+    classDef database fill:#90E24A,stroke:#5C8A2E,stroke-width:2px,color:#333
+    classDef ai fill:#E2904A,stroke:#8A5C2E,stroke-width:2px,color:#fff
+    classDef infra fill:#9B4AE2,stroke:#5C2E8A,stroke-width:2px,color:#fff
+    classDef external fill:#4AE2E2,stroke:#2E8A8A,stroke-width:2px,color:#333
+    classDef mcp fill:#FFB84D,stroke:#CC8A3D,stroke-width:2px,color:#333

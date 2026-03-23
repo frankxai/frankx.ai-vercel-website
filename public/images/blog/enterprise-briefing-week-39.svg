@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" role="img" aria-label="Enterprise Intelligence Briefing Week 39">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f172a"/>
+      <stop offset="1" stop-color="#1e293b"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#0ea5e9"/>
+      <stop offset="1" stop-color="#8b5cf6"/>
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#bg)"/>
+
+  <!-- Grid pattern -->
+  <g stroke="#1e3a5f" stroke-width="0.5" opacity="0.2">
+    <line x1="0" y1="150" x2="1600" y2="150"/>
+    <line x1="0" y1="300" x2="1600" y2="300"/>
+    <line x1="0" y1="450" x2="1600" y2="450"/>
+    <line x1="0" y1="600" x2="1600" y2="600"/>
+    <line x1="0" y1="750" x2="1600" y2="750"/>
+  </g>
+
+  <!-- Week indicator -->
+  <rect x="100" y="100" width="300" height="120" rx="15" fill="#1e293b" stroke="#0ea5e9" stroke-width="2"/>
+  <text x="250" y="155" fill="#0ea5e9" font-size="20" font-family="system-ui" font-weight="bold" text-anchor="middle">WEEK</text>
+  <text x="250" y="200" fill="#e2e8f0" font-size="48" font-family="system-ui" font-weight="bold" text-anchor="middle">39</text>
+
+  <!-- Data visualization bars -->
+  <g fill="#0ea5e9" opacity="0.7">
+    <rect x="500" y="300" width="60" height="400" rx="5"/>
+    <rect x="600" y="380" width="60" height="320" rx="5"/>
+    <rect x="700" y="250" width="60" height="450" rx="5"/>
+    <rect x="800" y="350" width="60" height="350" rx="5"/>
+    <rect x="900" y="200" width="60" height="500" rx="5"/>
+    <rect x="1000" y="320" width="60" height="380" rx="5"/>
+    <rect x="1100" y="280" width="60" height="420" rx="5"/>
+  </g>
+
+  <!-- Trend line -->
+  <path d="M530 300 L660 380 L760 250 L860 350 L960 200 L1060 320 L1160 280"
+        fill="none" stroke="#8b5cf6" stroke-width="4" stroke-linecap="round"/>
+
+  <!-- Label -->
+  <text x="800" y="820" fill="#94a3b8" font-size="18" font-family="system-ui" text-anchor="middle">ENTERPRISE INTELLIGENCE BRIEFING</text>
+</svg>

@@ -1,0 +1,5 @@
+# %Frank\.codex\config.toml
+approval_policy = "never"          # don't ask before applying patches
+sandbox_mode    = "workspace-write" # read/write inside the repo; safer than full access
+model = "gpt-5-codex"
+model_reasoning_effort = "high"

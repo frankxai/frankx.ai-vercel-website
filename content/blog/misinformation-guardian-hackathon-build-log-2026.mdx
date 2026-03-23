@@ -1,0 +1,149 @@
+---
+title: "Misinformation Guardian Hackathon Build Log (February 12, 2026)"
+description: "How we went from a Custom GPT experiment to a Gemini Gem live demo in 90 minutes, then translated it into a production blueprint for RealityDiffusion.ai."
+date: "2026-02-12"
+lastUpdated: "2026-02-12"
+author: "Frank"
+category: "AI Architecture"
+tags:
+  - misinformation-guardian
+  - hackathon
+  - realitydiffusion
+  - trust-and-safety
+  - multi-agent-systems
+keywords:
+  - misinformation guardian hackathon
+  - realitydiffusion ai
+  - custom gpt misinformation
+  - gemini gem misinformation
+  - live content analysis
+image: "/images/blog/misinformation-guardian-hackathon-hero.png"
+readingGoal: "See the exact rapid-build process, what worked, what failed, and how to turn a demo into a production trust-and-safety system."
+featured: true
+schema: ["Article", "FAQPage"]
+---
+
+# Misinformation Guardian Hackathon Build Log (February 12, 2026)
+
+**TL;DR:** On **Wednesday, February 12, 2026**, we rapidly prototyped misinformation-defense capabilities in a hackathon sprint: started with a Custom GPT, hit limits on video analysis, switched to a Gemini Gem, tuned prompts for ~90 minutes, and shipped a visual demo direction that now maps to a production blueprint.
+
+![RealityDiffusion hero concept](/images/blog/misinformation-guardian-hackathon-hero.png)
+
+---
+
+## Why We Built This
+
+Misinformation moves faster than manual fact-check workflows. We wanted a system that helps people:
+
+1. Detect manipulation patterns quickly.
+2. Understand *why* content is risky.
+3. Learn media literacy while deciding what to trust.
+
+This started as a hackathon sprint, but the architecture has clear production potential.
+
+---
+
+## The 90-Minute Sprint Timeline
+
+### 1) Starting Point: Custom GPT (Educational Win, Video Limit)
+
+We first tested a Custom GPT:
+
+- Link: https://chatgpt.com/g/g-698dca94190c819185e40361cfafaea5-misinformation-guardian
+- What worked: strong educational framing, structured prompts, user-friendly guidance.
+- What did not work well enough: **video-first analysis fidelity** for the demo goal.
+
+![Custom GPT starting point](/images/blog/misinformation-guardian-custom-gpt.png)
+
+### 2) Pivot: Gemini Gem for Live Demonstration
+
+Next we moved to the Gemini Gem:
+
+- Link: https://gemini.google.com/gem/16KpnhDSxs24YVTbOoauR9YehAvf3SPfo?usp=sharing
+- Focus: faster prompt iteration and better multimodal framing for demo flow.
+- Result: after roughly **90 minutes of testing and prompt tuning**, we had a stronger live showcase.
+
+### 3) Visual Layer: Nano Banana Mockups
+
+To communicate the capability, we used Nano Banana image generation to visualize outputs and analyst UI patterns.
+
+![Reality overlay feed concept](/images/blog/misinformation-guardian-reality-overlay-feed.png)
+
+![Synthetic media analysis concept](/images/blog/misinformation-guardian-synthetic-media-analysis.png)
+
+![Multimodal detection pipeline concept](/images/blog/misinformation-guardian-multimodal-pipeline.png)
+
+---
+
+## What We Learned Fast
+
+### What worked
+
+- Structured verdict format (claim, evidence, risk, recommendation).
+- Visual-first storytelling for trust and comprehension.
+- Prompt iteration loops with explicit rubric categories.
+
+### What broke
+
+- Single-agent prompting is not enough for high-confidence verification.
+- Video claims require deeper multimodal and forensic layers than a simple prompt can provide.
+- Without source/citation grounding, confidence can look higher than it should.
+
+---
+
+## From Demo to Product: The Architecture Shift
+
+The hackathon output is now translated into a production path inside FrankX:
+
+- Public hub: `/see-through-the-noise`
+- Live analysis API: `/api/misinformation/analyze`
+- Interactive blueprint: `/blueprint/misinformation-guardian-platform`
+- Production spec: `docs/specs/SEE_THROUGH_THE_NOISE_BLUEPRINT.md`
+
+Core production layers:
+
+1. Ingest + normalize (text/URL/video metadata inputs)
+2. Signal engine (manipulation markers + source checks + claim extraction)
+3. Risk fusion + explainability
+4. Policy routing + human escalation for high-impact domains
+5. Audit ledger + evaluation loops
+
+---
+
+## Naming Strategy: See Through The Noise vs RealityDiffusion.ai
+
+This is the recommendation after distilling the sprint:
+
+- **RealityDiffusion.ai** = platform brand (the long-term product company)
+- **See Through The Noise** = flagship experience/campaign (the user-facing trust product)
+
+That split gives you both:
+
+- a memorable mission phrase for audience adoption
+- a scalable platform identity for future modules beyond misinformation
+
+---
+
+## What Comes Next
+
+1. Add true multimodal video pipeline (frame/audio/metadata consistency checks).
+2. Add retrieval-backed citation verification from trusted sources.
+3. Add human review queue and appeal flow for high-stakes classifications.
+4. Calibrate risk scoring on real eval sets (false positive/false negative tracking).
+
+---
+
+## FAQ
+
+### Was this built in one day?
+The **hackathon prototype direction** was built and demonstrated on **February 12, 2026**, with about 90 minutes of focused prompt iteration for the core demo flow.
+
+### Why not stay only with the Custom GPT?
+It was useful for education and framing, but the demo needed stronger handling for multimodal/video-oriented scenarios.
+
+### Is this already production-ready?
+The production foundation is in progress: live API, architecture blueprint, and deployment spec are now in place. Full trust-and-safety operations still require multimodal expansion, eval calibration, and human-review workflows.
+
+---
+
+*Built during hackathon sprint energy. Now evolving into production architecture.*

@@ -1,0 +1,287 @@
+---
+title: "IACOS: How to Configure Claude Code as Your Investment Research OS"
+description: "Turn Claude Code into a dedicated investment research platform with custom skills, agent profiles, MCP servers, and visual intelligence. The complete IACOS setup guide."
+date: "2026-02-14"
+author: "Frank"
+category: "Creator Systems"
+tags: ["iacos", "claude-code", "investment-research", "acos", "mcp-servers"]
+image: "/images/blog/iacos-research-os.png"
+featured: true
+keywords:
+  [
+    "IACOS",
+    "Claude Code investment",
+    "investment research OS",
+    "AI research platform",
+    "Claude Code skills",
+  ]
+readingTime: "14 min"
+tldr: "IACOS (Investor Adaptive Creator OS) turns Claude Code into a multi-tool investment research platform with 10 specialized skills, 6 agent profiles, MCP server orchestration, and AI-generated visual intelligence. Here's how to set it up and use it."
+faq:
+  - question: "What is IACOS?"
+    answer: "IACOS (Investor Adaptive Creator OS) is a configuration system for Claude Code that transforms it into a dedicated investment research platform. It includes custom instructions (CLAUDE.md), 10 specialized skills, 6 agent profiles, MCP server configuration, and integration guides for Claude Desktop and Coworker."
+  - question: "How is IACOS different from a prompt library?"
+    answer: "Prompt libraries are stateless — each interaction starts from scratch. IACOS provides persistent memory across sessions, source validation that enforces data quality, agent profiles that scope tool access per role, visual intelligence via Nano Banana MCP, and skill chaining that orchestrates multi-step research workflows."
+  - question: "Do I need Claude Code to use IACOS?"
+    answer: "Claude Code gives the full experience (skills, agents, MCP servers, filesystem access). You can also use the CLAUDE.md instructions in Claude Desktop projects for a lighter setup, or configure Coworker for team collaboration. Each tool has different capabilities."
+  - question: "What MCP servers does IACOS use?"
+    answer: "Required: memory (persistent research context) and sequential-thinking (structured analysis). Recommended: playwright (web scraping for financial data) and nanobanana (AI-generated market maps and report visuals). Optional: Slack, Notion, Resend for workflow distribution."
+  - question: "Can I customize IACOS for my investment criteria?"
+    answer: "Yes. Edit the CLAUDE.md file to add your specific criteria: stage preferences, sector focus, geography, check size, must-haves, and red flags. You can also add custom skills and modify the scoring framework."
+---
+
+I built ACOS (Adaptive Creator OS) to configure Claude Code as an intelligent creative development environment. After shipping it across 500+ sessions, I realized the same architecture could transform investment research.
+
+IACOS is the result: a complete configuration system that turns Claude Code into a multi-tool investment research platform. Not a prompt pack. Not a chatbot wrapper. A full operating system for investment analysis with skills, agents, persistent memory, and visual intelligence.
+
+Here's how it works and how to set it up.
+
+## What IACOS Actually Is
+
+IACOS is a folder of configuration files that plug into Claude Code:
+
+```
+iacos/
+├── CLAUDE.md                    # The brain — instructions, methodology, quality gates
+├── skills/                      # 10 specialized research skills
+│   ├── due-diligence.md         # Full company analysis framework
+│   ├── market-research.md       # TAM/SAM/SOM and industry mapping
+│   ├── financial-analysis.md    # Revenue modeling, valuations, comps
+│   ├── competitive-landscape.md # Competitor mapping and moat analysis
+│   ├── earnings-analysis.md     # Earnings call extraction and comparison
+│   ├── thesis-builder.md        # Investment thesis structuring
+│   ├── memo-writer.md           # Investment memo generation
+│   ├── visual-intelligence.md   # AI image generation for reports
+│   ├── deal-flow-automation.md  # Deal sourcing and scoring
+│   └── source-validator.md      # Cross-reference and trust scoring
+├── agents/                      # 6 agent profiles with tool bindings
+│   ├── research-analyst.md
+│   ├── dd-lead.md
+│   ├── financial-modeler.md
+│   ├── visual-strategist.md
+│   ├── portfolio-analyst.md
+│   └── deal-flow-manager.md
+├── .coworker/
+│   └── config.json              # Team collaboration config
+└── SETUP.md                     # Step-by-step setup guide
+```
+
+When you open Claude Code in a workspace with these files, it becomes an investment research system that knows how to:
+
+- Run structured due diligence following a 10-section framework
+- Score deals quantitatively against your investment criteria
+- Generate AI-powered market maps and competitive visuals
+- Validate every claim against a 5-level source hierarchy
+- Persist research context across sessions via memory MCP
+- Chain skills together for complex multi-step workflows
+
+## The Multi-Tool Architecture
+
+IACOS works across four Claude interfaces, each serving a different research mode:
+
+| Interface          | Best For                                       | Setup                                   |
+| ------------------ | ---------------------------------------------- | --------------------------------------- |
+| **Claude Code**    | Deep research, batch analysis, file generation | Full IACOS directory                    |
+| **Claude Desktop** | Quick lookups, pitch deck analysis             | Paste CLAUDE.md as project instructions |
+| **Coworker**       | Team DD, collaborative reports                 | Import .coworker/config.json            |
+| **Claude Chat**    | Thesis brainstorming, ad-hoc questions         | Reference methodology manually          |
+
+The power is in orchestration. A typical workflow:
+
+1. **Claude Desktop**: Upload a pitch deck for 5-minute screening
+2. **Claude Code**: If promising, run full DD with all skills and MCP servers
+3. **Nano Banana**: Generate market map and competitive matrix visuals
+4. **Coworker**: Share DD report with team for collaborative review
+
+## Skills: The Core Research Capabilities
+
+Each skill is a markdown file that defines a specific research methodology. Skills are composable — they chain together for complex workflows.
+
+### Skill Composition Patterns
+
+**Full Due Diligence Pipeline:**
+
+```
+market-research → competitive-landscape → financial-analysis
+    → thesis-builder → memo-writer → visual-intelligence
+```
+
+**Earnings Season Workflow:**
+
+```
+earnings-analysis → financial-analysis → thesis-builder (update)
+```
+
+**Deal Screening:**
+
+```
+deal-flow-automation → source-validator → due-diligence (if scored ≥65)
+```
+
+### How Skills Trigger
+
+Natural language triggers activate the right skill:
+
+| You Say                         | Skill Activated        | What Happens                            |
+| ------------------------------- | ---------------------- | --------------------------------------- |
+| "run DD on Stripe"              | `due-diligence`        | 10-section DD report with scoring       |
+| "research the AI infra market"  | `market-research`      | TAM/SAM/SOM analysis with sources       |
+| "analyze NVDA earnings"         | `earnings-analysis`    | QoQ comparison, guidance tracking       |
+| "score deal Anthropic"          | `deal-flow-automation` | 7-dimension quantitative scoring        |
+| "create market map for fintech" | `visual-intelligence`  | Nano Banana generates dark-theme visual |
+| "validate that $50B TAM claim"  | `source-validator`     | Cross-reference against L1-L3 sources   |
+
+## Agent Profiles: Scoped Roles
+
+Each agent profile defines what tools, skills, and MCP servers an agent can access. This matters for two reasons:
+
+1. **Focus**: A Financial Modeler doesn't need web search — it works with validated data from the Research Analyst
+2. **Safety**: The Visual Strategist generates images but doesn't make investment recommendations
+
+The 6 agents:
+
+| Agent             | Core Skills                           | Key Tool Access                      |
+| ----------------- | ------------------------------------- | ------------------------------------ |
+| Research Analyst  | market-research, source-validator     | Web search, Playwright, memory       |
+| DD Lead           | due-diligence, memo-writer            | All tools, orchestrates other agents |
+| Financial Modeler | financial-analysis, earnings-analysis | Read/write, bash, memory             |
+| Visual Strategist | visual-intelligence                   | Nano Banana MCP, memory              |
+| Portfolio Analyst | portfolio-review, risk-assessment     | Read/write, memory                   |
+| Deal Flow Manager | deal-flow-automation, thesis-builder  | Web search, memory, Playwright       |
+
+## Visual Intelligence: AI-Generated Investment Visuals
+
+This is the feature that doesn't exist in any competing product. IACOS generates professional investment visuals using the Nano Banana MCP (Gemini image generation).
+
+Every visual follows brand standards: dark navy backgrounds, glowing neon accents, glass morphism aesthetics. Never clip art. Never white backgrounds. Institutional quality.
+
+**What you can generate:**
+
+- **Market maps**: Sector landscape with companies positioned by market share and growth
+- **Competitive matrices**: Side-by-side comparison grids
+- **Risk heat maps**: Severity grids with color-coded risk factors
+- **Deal flow funnels**: Pipeline stage visualization with deal counts
+- **Report covers**: Professional cover pages for DD reports and memos
+- **Portfolio dashboards**: Holdings overview with allocation visuals
+
+These get saved to `research/visuals/` with full metadata (prompt used, data source, generation date) for reproducibility.
+
+## Source Validation: The Quality Gate
+
+The most important feature in IACOS isn't the flashiest — it's the source validation system that runs passively during all research.
+
+Every claim gets tagged with a trust level:
+
+| Level  | Source Type             | Treatment                                 |
+| ------ | ----------------------- | ----------------------------------------- |
+| **L1** | SEC filings, 10-K, 10-Q | Highest trust, presented as fact          |
+| **L2** | Bloomberg, PitchBook    | High trust, presented as fact             |
+| **L3** | McKinsey, Gartner       | Medium-high, note methodology             |
+| **L4** | WSJ, TechCrunch         | Medium, qualify as "reported by"          |
+| **L5** | Twitter, Reddit         | Low, signal only, never presented as fact |
+
+When the source validator runs a deep check on a document, it produces a validation report:
+
+```
+Validation Score: 82% — Strong
+Claims Verified: 14 of 17
+Issues:
+- Revenue claim ($50M ARR): Single source (L4), needs L1-L2 verification
+- Market size ($15B): Sourced from 2024 Gartner report, check for update
+- Team claim (ex-Google): Verified via LinkedIn (L3)
+```
+
+This prevents the biggest risk in AI-assisted research: presenting AI-generated analysis as if it were verified fact.
+
+## MCP Server Stack
+
+IACOS recommends four MCP servers:
+
+### Memory (Required)
+
+```bash
+claude mcp add memory -- npx -y @anthropic/memory-mcp
+```
+
+Research context persists across sessions. Your findings compound over time. When you research a sector, all previous research on related companies is available as context.
+
+### Sequential Thinking (Required)
+
+```bash
+claude mcp add sequential-thinking -- npx -y @anthropic/sequential-thinking-mcp
+```
+
+Breaks complex analysis into structured steps. Essential for 10-section DD reports and multi-criteria scoring.
+
+### Playwright (Recommended)
+
+```bash
+claude mcp add playwright -- npx -y @anthropic/playwright-mcp
+```
+
+Direct web scraping for SEC EDGAR filings, earnings transcripts, company websites, and financial data platforms.
+
+### Nano Banana (Recommended)
+
+```bash
+claude mcp add nanobanana -- npx -y @anthropic/nanobanana-mcp
+```
+
+AI image generation for market maps, competitive visuals, and report covers.
+
+## Setup in 5 Minutes
+
+```bash
+# Clone the repo
+git clone https://github.com/frankxai/investor-intelligence.git
+cd investor-intelligence/iacos
+
+# Create your workspace
+mkdir -p ~/investor-research/.claude/{skills,agents}
+mkdir -p ~/investor-research/research/{dd-reports,market-analysis,earnings,memos,visuals}
+mkdir -p ~/investor-research/data
+
+# Copy IACOS
+cp CLAUDE.md ~/investor-research/CLAUDE.md
+cp skills/*.md ~/investor-research/.claude/skills/
+cp agents/*.md ~/investor-research/.claude/agents/
+
+# Install MCP servers
+claude mcp add memory -- npx -y @anthropic/memory-mcp
+claude mcp add sequential-thinking -- npx -y @anthropic/sequential-thinking-mcp
+claude mcp add playwright -- npx -y @anthropic/playwright-mcp
+claude mcp add nanobanana -- npx -y @anthropic/nanobanana-mcp
+
+# Launch
+cd ~/investor-research && claude
+```
+
+Then customize by editing `CLAUDE.md` to add your investment criteria, sector focus, and scoring preferences.
+
+## From ACOS to IACOS
+
+IACOS inherits three architectural principles from ACOS that make it more than a collection of prompts:
+
+**1. Pattern Routing**: Tasks are analyzed for intent and routed to the optimal skill + agent combination. "Analyze Stripe's competitive position" triggers the competitive-landscape skill via the Research Analyst agent, not a generic response.
+
+**2. Quality Gates**: Every output passes through validation. DD reports can't be "complete" with missing sections. Claims can't be presented without sources. Low-confidence outputs trigger additional research suggestions.
+
+**3. Learning Integration**: Research outcomes are tracked over time. Thesis accuracy can be validated against actual market performance. The system gets better as you use it.
+
+## Who This Is For
+
+IACOS is designed for three user types:
+
+**VC/PE Analysts**: Full DD pipeline, deal scoring, LP reporting automation. The complete stack replaces 2-3 point tools with a unified system.
+
+**Angel Investors**: Systematic research process without a team. Consistent deal evaluation against your thesis. Weekly deal digests from automated monitoring.
+
+**Research Analysts**: Institutional-quality output from a solo setup. Source validation prevents embarrassing errors. Visual intelligence makes reports presentation-ready.
+
+## Getting IACOS
+
+IACOS is available at [frankx.ai/investor](/investor) as part of the Investor Intelligence product suite. The full system includes all skills, agent profiles, MCP configuration, and setup guides for Claude Code, Claude Desktop, and Coworker.
+
+---
+
+_Explore the full [AI Investment Intelligence](/research/investment-intelligence) research domain, or browse the [Investor Hub](/investor) for all available tools and templates._

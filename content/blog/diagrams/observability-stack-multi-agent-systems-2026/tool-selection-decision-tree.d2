@@ -1,0 +1,65 @@
+direction: down
+
+classes: {
+  decision: {
+    style: {
+      fill: "#082E49"
+      stroke: "#38BDF8"
+      stroke-width: 3
+      font-color: "#E0F2FE"
+      font-size: 16
+      border-radius: 16
+      shadow: true
+    }
+  }
+  option: {
+    style: {
+      fill: "#0B1220"
+      stroke: "#22D3EE"
+      stroke-width: 2
+      font-color: "#E2E8F0"
+      font-size: 15
+      border-radius: 12
+      shadow: true
+    }
+  }
+  enterprise: {
+    style: {
+      fill: "#0B3B2E"
+      stroke: "#34D399"
+      stroke-width: 3
+      font-color: "#ECFEFF"
+      font-size: 16
+      border-radius: 14
+      shadow: true
+    }
+  }
+}
+
+start: "Primary constraint?" { class: decision }
+langfuse: "Budget-conscious + open-source\nLangfuse (self-hosted)" { class: option }
+langsmith: "Using LangGraph + seamless integration\nLangSmith" { class: option }
+weave: "Complex multi-agent + ML team\nW&B Weave" { class: option }
+otel: "Existing APM + integration first\nOpenTelemetry + existing stack" { class: option }
+enterprise: "Enterprise full stack\nLangSmith + DataDog/Grafana" { class: enterprise }
+
+start -> langfuse: { style: {
+    stroke: "#67E8F9"
+    stroke-width: 2
+  } }
+start -> langsmith: { style: {
+    stroke: "#67E8F9"
+    stroke-width: 2
+  } }
+start -> weave: { style: {
+    stroke: "#67E8F9"
+    stroke-width: 2
+  } }
+start -> otel: { style: {
+    stroke: "#67E8F9"
+    stroke-width: 2
+  } }
+start -> enterprise: { style: {
+    stroke: "#34D399"
+    stroke-width: 3
+  } }

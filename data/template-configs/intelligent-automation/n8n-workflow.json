@@ -1,0 +1,33 @@
+{
+  "name": "Intelligent Automation Hub - FrankX Template",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "automation-trigger"
+      },
+      "name": "Webhook Trigger",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [250, 300]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "rules": [
+            { "outputKey": "content", "conditions": { "conditions": [{ "leftValue": "={{ $json.type }}", "rightValue": "content", "operator": { "type": "string", "operation": "equals" } }] } },
+            { "outputKey": "support", "conditions": { "conditions": [{ "leftValue": "={{ $json.type }}", "rightValue": "support", "operator": { "type": "string", "operation": "equals" } }] } }
+          ]
+        }
+      },
+      "name": "Router",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [470, 300]
+    }
+  ],
+  "connections": {
+    "Webhook Trigger": { "main": [[{ "node": "Router", "type": "main", "index": 0 }]] }
+  },
+  "_comment": "FrankX Intelligent Automation template. Add your API keys in n8n credentials."
+}

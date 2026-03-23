@@ -1,0 +1,86 @@
+{
+  "version": "2026-02-19",
+  "description": "ACOS/Starlight multi-provider image routing policy",
+  "providers": {
+    "nano-banana": {
+      "mode": "mcp-manual",
+      "defaultModel": "gemini-2.5-flash-image-preview",
+      "requiredEnv": ["GEMINI_API_KEY"],
+      "strengths": [
+        "grounded educational visuals",
+        "Gemini-based prompt grounding",
+        "existing Claude MCP workflow"
+      ],
+      "notes": "Primary for Claude sessions. Use mcp__nanobanana__generate_image in-chat."
+    },
+    "openai": {
+      "mode": "api",
+      "defaultModel": "gpt-image-1",
+      "requiredEnv": ["OPENAI_API_KEY"],
+      "endpoint": "https://api.openai.com/v1/images/generations",
+      "strengths": [
+        "strong text rendering",
+        "high instruction following",
+        "production-safe edits/variants"
+      ]
+    },
+    "xai": {
+      "mode": "api",
+      "defaultModel": "grok-imagine-image",
+      "requiredEnv": ["XAI_API_KEY"],
+      "endpoint": "https://api.x.ai/v1/image/generations",
+      "strengths": [
+        "stylized creative outputs",
+        "fast idea exploration",
+        "Grok-native image endpoint"
+      ]
+    },
+    "replicate": {
+      "mode": "api",
+      "defaultModel": "black-forest-labs/flux-1.1-pro",
+      "requiredEnv": ["REPLICATE_API_TOKEN"],
+      "endpoint": "https://api.replicate.com/v1/predictions",
+      "strengths": [
+        "broad model marketplace",
+        "easy A/B across model families",
+        "good throughput for batch variants"
+      ]
+    }
+  },
+  "routes": {
+    "grounded-infographic": {
+      "primary": "nano-banana",
+      "fallback": ["openai", "replicate"],
+      "reason": "Grounded facts and educational diagrams first; fallback to text-strong renderers."
+    },
+    "text-heavy-diagram": {
+      "primary": "openai",
+      "fallback": ["nano-banana", "replicate"],
+      "reason": "OpenAI image stack tends to preserve text/layout better in one pass."
+    },
+    "creative-exploration": {
+      "primary": "xai",
+      "fallback": ["replicate", "openai"],
+      "reason": "Rapid style exploration with Grok, then test alternates."
+    },
+    "hero-brand": {
+      "primary": "nano-banana",
+      "fallback": ["openai", "xai"],
+      "reason": "Keep FrankX visual consistency via existing Nano Banana prompts first."
+    },
+    "high-volume-variants": {
+      "primary": "replicate",
+      "fallback": ["openai", "xai"],
+      "reason": "Best for model sweeps and volume generation."
+    }
+  },
+  "priorityRules": {
+    "quality": ["nano-banana", "openai", "xai", "replicate"],
+    "speed": ["xai", "openai", "replicate", "nano-banana"],
+    "cost": ["replicate", "xai", "openai", "nano-banana"]
+  },
+  "matrixDefaults": {
+    "providers": ["openai", "xai", "replicate"],
+    "manualProviders": ["nano-banana"]
+  }
+}

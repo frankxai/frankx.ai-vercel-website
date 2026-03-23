@@ -1,0 +1,29 @@
+flowchart TB
+    ACOS["Agentic Creator OS v6.0<br/>Operating System for Golden Age Creators"]
+
+    subgraph SNAPSHOT["System Snapshot"]
+        direction LR
+        CMD["Commands<br/><b>25</b>"]
+        SK["Skills<br/><b>80+</b>"]
+        AG["Agents<br/><b>40+</b>"]
+        WF["Workflows<br/><b>8</b>"]
+    end
+
+    subgraph EXAMPLES["Command Examples"]
+        direction LR
+        A1["/article-creator"]
+        A2["/create-music"]
+        A3["/spec"]
+        A4["/infogenius"]
+        A5["/starlight-architect"]
+    end
+
+    ACOS --> SNAPSHOT
+    SNAPSHOT --> EXAMPLES
+
+    classDef primary fill:#064e3b,stroke:#10b981,color:#ecfeff,stroke-width:2px
+    classDef stat fill:#0f172a,stroke:#22d3ee,color:#e2e8f0,stroke-width:1.5px
+    classDef cmd fill:#082f49,stroke:#06b6d4,color:#e0f2fe,stroke-width:1.5px
+    class ACOS primary
+    class CMD,SK,AG,WF stat
+    class A1,A2,A3,A4,A5 cmd

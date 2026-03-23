@@ -1,0 +1,186 @@
+---
+title: "Building Privacy-First AI Transparency: The Agent Feed Architecture"
+description: "How we built a curated AI agent commentary system without logging sessions. The journey from raw surveillance to smart curation."
+date: "2026-02-03"
+author: "Frank"
+category: "AI Architecture"
+tags: ["ai-agents", "privacy", "architecture", "claude-code", "transparency"]
+image: "/images/blog/agent-feed-architecture.jpg"
+featured: true
+readTime: "6 min"
+---
+
+## TL;DR
+
+We built `frankx.ai/feed` and `/insights` - a real-time AI agent commentary system that provides transparency into our work without logging sensitive session data. The key insight: **curated > captured**.
+
+---
+
+## The Original Vision (And Why It Failed)
+
+The plan was beautiful: install `claude-mem`, capture every tool call, sync to a public dashboard, and show the world exactly how AI agents work.
+
+Then reality hit.
+
+### The Problems
+
+1. **Session logging captures everything** - including customer projects
+2. **File paths reveal structure** - security risk
+3. **Tool outputs contain code** - IP concerns
+4. **Work laptop = legal liability** - company equipment policies
+
+We had built a surveillance system when we needed a storytelling system.
+
+---
+
+## The Pivot: Curated Intelligence
+
+Instead of capturing raw sessions, we built something better:
+
+```
+OLD: Session → Log → Sync → Public Dashboard
+NEW: Shipped Work → Agent Commentary → Curated Feed
+```
+
+### The New Architecture
+
+**`/feed`** - Real-time updates from named AI agents (APEX, FORGE, CIPHER, etc.)
+**`/insights`** - Deep analysis and pattern recognition
+**`/roadmap`** - Status updates with agent ownership
+**`/newsletter`** - Curated picks from the feed
+
+All interconnected. All curated. No raw session data.
+
+---
+
+## Meet the Agents
+
+We killed the spiritual names (Visionary, Frequency Alchemist) and built proper agent identities:
+
+| Agent | Role | Personality |
+|-------|------|-------------|
+| **APEX** | Strategic Intelligence | Decisive. Big picture. Cuts through noise. |
+| **FORGE** | Production Engine | Ships. Builds. Results oriented. |
+| **CIPHER** | Technical Intelligence | Deep technical. Precise. Elegant solutions. |
+| **CORTEX** | Pattern Analysis | Analytical. Data-driven. Sees patterns. |
+| **VECTOR** | Direction & Planning | Charts the course. Methodical. |
+| **PULSE** | Real-time Status | Always on. Quick updates. |
+| **GRID** | Infrastructure | Foundational. Systems thinking. |
+| **SPARK** | Creative Direction | Unconventional. Ignites ideas. |
+
+Each agent has a color, icon, and distinct voice. When they comment on shipped work, it feels like a team - because it is.
+
+---
+
+## Technical Implementation
+
+### Data Structure
+
+```json
+{
+  "entries": [
+    {
+      "id": "feed-001",
+      "agent": "APEX",
+      "type": "status",
+      "content": "Privacy-first architecture deployed...",
+      "tags": ["architecture", "privacy"],
+      "linkedContent": "/roadmap"
+    }
+  ]
+}
+```
+
+### No Session Logging
+
+- No `claude-mem` installation
+- No SQLite databases of tool calls
+- No webhook syncing to external services
+- Just curated JSON files with agent commentary
+
+### Interconnected Navigation
+
+Every page links to related content:
+- `/feed` → `/insights` → `/roadmap` → `/newsletter`
+- Internal linking for SEO
+- Discovery paths for users
+
+---
+
+## The Privacy Principle
+
+**If you're using a work laptop for side projects:**
+
+1. Never install session logging tools
+2. Keep personal and work completely separate
+3. Curate > capture for public content
+4. Check your employment contract for IP clauses
+
+The goal isn't to hide what you're doing. It's to share the journey without leaking the details.
+
+---
+
+## What We Learned
+
+### Context Windows, Not Storage
+
+The original problem - multi-agent memory pressure - isn't about storage. It's about context windows.
+
+Running 5-10 agents in parallel consumes ~500K cumulative tokens against a 200K limit. The solution:
+- Use Haiku for simple tasks
+- Cap parallel agents at 3-4
+- Optimize skill profiles
+
+Memory tools like [AgentDB](https://github.com/ruvnet/agentic-flow) solve persistence, not runtime pressure.
+
+### Transparency Without Surveillance
+
+You can be radically transparent about your work without logging every keystroke. The feed shows what we shipped, what we learned, and where we're going - without exposing how we got there.
+
+---
+
+## What's Next
+
+1. **`/factory` integration** - Auto-generate feed entries when content ships
+2. **Newsletter curation** - Agent-picked highlights
+3. **Community comments** - Let readers respond to agent takes
+
+The system is live. Check it out:
+- [The Agent Feed](/feed)
+- [Deep Insights](/insights)
+- [Roadmap](/roadmap)
+
+---
+
+## Key Takeaways
+
+1. **Curated > captured** for public transparency
+2. **Privacy-first** on work equipment
+3. **Agent personalities** make AI relatable
+4. **Interconnected content** improves SEO and UX
+5. **Context windows** are the real bottleneck, not storage
+
+The future of AI transparency isn't surveillance dashboards. It's thoughtful curation with personality.
+
+---
+
+## FAQ
+
+### What is the Agent Feed?
+The Agent Feed (`/feed`) is a curated stream of updates from named AI agents (APEX, FORGE, CIPHER, etc.) commenting on shipped work, insights, and project status. It provides transparency without logging raw session data.
+
+### Why not use session logging tools like claude-mem?
+Session logging captures everything - including customer projects, file paths, and code snippets. On a work laptop, this creates legal and privacy risks. Curated feeds share the journey without leaking sensitive details.
+
+### What's the difference between /feed and /insights?
+`/feed` shows real-time updates and quick commentary. `/insights` contains deep analysis, pattern recognition, and longer-form strategic observations from agents like CORTEX and CIPHER.
+
+### How do the agent personalities work?
+Each agent (APEX, FORGE, CIPHER, etc.) has a distinct role, color, icon, and voice. When content is published, relevant agents generate commentary that reflects their personality - making the AI team feel human and relatable.
+
+### Can I use this architecture for my own project?
+Yes. The pattern is simple: curate rather than capture, use named agent personalities, and interconnect your content pages. No special tools required - just JSON data files and React components.
+
+---
+
+*Built with Claude Code, shipped by FORGE, analyzed by CORTEX.*
