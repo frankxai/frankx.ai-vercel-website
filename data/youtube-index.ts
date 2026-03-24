@@ -8,6 +8,13 @@ export interface YoutubeIndexEntry {
   category: string
 }
 
+export const youtubeChannels: Record<string, { name: string; url: string }> = {
+  anthropic: { name: 'Anthropic', url: 'https://www.youtube.com/@anthropic-ai' },
+  netNinja: { name: 'The Net Ninja', url: 'https://www.youtube.com/@NetNinja' },
+  kevinStratvert: { name: 'Kevin Stratvert', url: 'https://www.youtube.com/@KevinStratvert' },
+  lexFridman: { name: 'Lex Fridman', url: 'https://www.youtube.com/@lexfridman' },
+}
+
 export const youtubeIndex: YoutubeIndexEntry[] = [
   {
     "slug": "ai-engineering-without-hype-willison",
