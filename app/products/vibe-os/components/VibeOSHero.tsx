@@ -132,15 +132,19 @@ export default function VibeOSHero({ productId, product }: VibeOSHeroProps) {
         >
           <div className="flex items-center gap-2">
             <div className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-            <span>50+ Genre Prompts</span>
+            <span>50+ Engineered Suno Prompts</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="h-1.5 w-1.5 rounded-full bg-cyan-400" />
-            <span>Emotion Mapping</span>
+            <span>Multi-LLM Intelligence (9 Models)</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="h-1.5 w-1.5 rounded-full bg-violet-400" />
-            <span>Release Playbooks</span>
+            <span>15-Point Quality Validation</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="h-1.5 w-1.5 rounded-full bg-amber-400" />
+            <span>4 Specialist AI Agents</span>
           </div>
         </motion.div>
 
@@ -190,19 +194,19 @@ export default function VibeOSHero({ productId, product }: VibeOSHeroProps) {
             <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
             </svg>
-            <span>500+ Sessions by Frank</span>
+            <span>12,000+ Suno Sessions</span>
           </div>
           <div className="flex items-center gap-2">
             <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
             </svg>
-            <span>30-Day Guarantee</span>
+            <span>500+ Songs Produced by Frank</span>
           </div>
           <div className="flex items-center gap-2">
             <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
               <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
             </svg>
-            <span>Lifetime Updates</span>
+            <span>Free Tier — No Credit Card</span>
           </div>
         </motion.div>
       </div>

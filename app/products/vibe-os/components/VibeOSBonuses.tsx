@@ -1,14 +1,14 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Gift, Palette, Headphones, TrendingUp } from 'lucide-react'
+import { Gift, Music2, CheckSquare, Palette, Share2 } from 'lucide-react'
 import type { ProductBonus } from '@/types/products'
 
 interface VibeOSBonusesProps {
   bonuses: ProductBonus[]
 }
 
-const bonusIcons = [Palette, Headphones, TrendingUp]
+const bonusIcons = [Music2, CheckSquare, Palette, Share2]
 
 export default function VibeOSBonuses({ bonuses }: VibeOSBonusesProps) {
   return (
@@ -41,7 +41,7 @@ export default function VibeOSBonuses({ bonuses }: VibeOSBonusesProps) {
         </motion.div>
 
         {/* Bonuses Grid */}
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {bonuses.map((bonus, index) => {
             const Icon = bonusIcons[index % bonusIcons.length]
 

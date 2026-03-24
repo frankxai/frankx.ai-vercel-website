@@ -35,6 +35,12 @@ const nextConfig = {
   },
   async redirects() {
     return [
+      // Vibe OS shortcut → product page
+      {
+        source: '/vibe-os',
+        destination: '/products/vibe-os',
+        permanent: true,
+      },
       // Realm → Inner Circle rename
       {
         source: '/realm',

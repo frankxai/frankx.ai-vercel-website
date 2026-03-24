@@ -195,122 +195,215 @@
   {
     "id": "vibe-os",
     "slug": "vibe-os",
-    "name": "Vibe OS: Creative State Management",
-    "category": "Creator Tools",
-    "badge": "FREE TOOL",
-    "headline": "Manage Your Creative Energy and Focus Like a Pro",
-    "subheadline": "Track your creative states, optimize your energy cycles, and build sustainable workflows. A practical system for creators who ship consistently.",
-    "promise": "Stop fighting your energy. Start working with your natural creative rhythms.",
-    "summary": "A builder-focused state management system with mood tracking, energy optimization, and workflow templates for consistent creative output.",
+    "name": "Vibe OS: AI Music Production System",
+    "category": "AI Music Production",
+    "badge": "FREE TIER AVAILABLE",
+    "headline": "Transform Ideas Into Music at the Speed of Thought",
+    "subheadline": "The complete operating system for AI music creation. Engineered Suno prompts, a 15-point quality rubric, album art workflows, and distribution strategy — powered by multi-LLM intelligence across 9 models.",
+    "promise": "Stop producing generic AI music. Start creating world-class tracks with engineered prompts, professional validation, and a complete creation-to-distribution pipeline.",
+    "summary": "A complete AI music production system with 50+ engineered Suno prompts, multi-LLM agent intelligence, quality validation rubrics, album art creation workflows, and distribution strategy. Free tier with 10 prompts/day, paid tiers for unlimited access.",
     "transformation": [
-      "Identify your peak creative hours and schedule deep work during your natural energy peaks",
-      "Track creative state patterns to understand what conditions produce your best work",
-      "Build sustainable workflows that match your energy cycles instead of fighting them",
-      "Reduce burnout and increase output with data-driven creative state management"
+      "From generic AI output to professional, emotion-targeted tracks that pass a 15-point quality rubric",
+      "From hours of trial and error to 60\u201390 minutes from idea to finished, validated track",
+      "From scattered tools and platforms to one unified creation-to-distribution pipeline",
+      "From amateur Suno results to commercially viable music with engineered prompt architecture"
     ],
     "socialProof": {
       "stats": [
         {
-          "number": "Free",
-          "label": "Always Free"
+          "number": "12K+",
+          "label": "Suno Sessions"
         },
         {
-          "number": "Beta",
-          "label": "Active Development"
+          "number": "500+",
+          "label": "Songs Produced"
+        },
+        {
+          "number": "9",
+          "label": "LLM Models"
+        },
+        {
+          "number": "4",
+          "label": "Specialist Agents"
         }
       ],
-      "quotes": []
+      "quotes": [
+        {
+          "quote": "The prompt library alone saved me weeks of experimentation. My tracks went from obviously-AI to genuinely impressive.",
+          "author": "Early Access Creator",
+          "role": "Music Producer"
+        }
+      ]
     },
     "offer": {
       "primaryPrice": 0,
       "primaryPriceDisplay": "Free",
       "currency": "USD",
-      "ctaPrimary": "Start Using Vibe OS",
+      "ctaPrimary": "Start Free — 10 Prompts/Day",
       "ctaPrimaryHref": "/products/vibe-os/app",
-      "ctaPrimaryTracking": "vibe-os-free-access",
-      "ctaSecondary": "View Documentation",
-      "ctaSecondaryHref": "/products/vibe-os/docs",
-      "ctaSecondaryTracking": "vibe-os-docs",
+      "ctaPrimaryTracking": "vibe-os-free-start",
+      "ctaSecondary": "See How It Works",
+      "ctaSecondaryHref": "#how-it-works",
+      "ctaSecondaryTracking": "vibe-os-how-it-works",
       "guarantee": {
-        "label": "Open Source & Free Forever",
-        "description": "Vibe OS is free to use with no strings attached. Track your creative states and optimize your workflow without paying a penny."
+        "label": "Free Tier Forever + 30-Day Guarantee on Paid Plans",
+        "description": "Start with 10 free prompts daily — no credit card needed. Paid plans include a 30-day money-back guarantee if the system doesn't transform your music production workflow."
       }
     },
+    "pricingTiers": [
+      {
+        "name": "Free",
+        "price": "$0",
+        "description": "Experience the Music Producer agent with daily limits",
+        "features": [
+          "10 Music Producer prompts/day",
+          "5 Creation Engine prompts/day",
+          "Gemini Flash LLM",
+          "7-day session history",
+          "Community access"
+        ],
+        "ctaLabel": "Start Free",
+        "ctaHref": "/products/vibe-os/app"
+      },
+      {
+        "name": "Vibe Club",
+        "price": "$19/mo",
+        "description": "Unlimited agents, all 9 LLMs, monthly Vibe Pack",
+        "features": [
+          "Unlimited Music Producer & Creation Engine",
+          "Frequency Alchemist agent access",
+          "All 9 LLM models across 5 providers",
+          "Monthly Vibe Pack (20 curated prompts)",
+          "30-day session history",
+          "Arcanea Cloud preview access"
+        ],
+        "ctaLabel": "Join Vibe Club",
+        "ctaHref": "/products/vibe-os/app#upgrade",
+        "highlighted": true
+      },
+      {
+        "name": "Pro",
+        "price": "$97/mo",
+        "description": "API access, custom agents, team seats",
+        "features": [
+          "Everything in Vibe Club",
+          "Starlight Architect agent",
+          "REST API access (10K requests/mo)",
+          "3 custom agents via Agent SDK",
+          "5 team seats with shared library",
+          "Monthly Pro Pack (50 prompts)",
+          "Priority support + Slack"
+        ],
+        "ctaLabel": "Go Pro",
+        "ctaHref": "/products/vibe-os/app#upgrade"
+      }
+    ],
     "modules": [
       {
-        "title": "Energy State Tracker",
-        "description": "Log your creative energy levels throughout the day to identify patterns and optimize your schedule."
+        "title": "Prompt Engineering Library",
+        "description": "50+ genre-specific, flow-state, and commercial-ready Suno prompts with layered instruction architecture. Includes BPM, key, mode, and instrumentation calibrated for cognitive states."
       },
       {
-        "title": "Focus Mode Templates",
-        "description": "Pre-built workflows for deep work, brainstorming, editing, and admin tasks matched to different energy states."
+        "title": "15-Point Quality Validation System",
+        "description": "Professional rubric covering melodic coherence, mix balance, dynamic range, flow state optimization, and commercial viability. Ensures every track meets release standards."
       },
       {
-        "title": "Creative Cycle Dashboard",
-        "description": "Visualize your productivity patterns, peak hours, and energy cycles to make data-driven workflow decisions."
+        "title": "Album Art & Visual Creation",
+        "description": "AI art generation workflows for Gemini, ChatGPT, and Midjourney. KlingAI animation templates for social media loops. Complete visual branding system."
       },
       {
-        "title": "State Management Playbooks",
-        "description": "Practical guides for transitioning between creative states, managing context switching, and maintaining flow."
+        "title": "Distribution & Monetization Strategy",
+        "description": "Platform-specific sharing strategy for Spotify, Apple Music, TikTok, and YouTube. DistroKid integration workflow, licensing pathways, and revenue optimization."
+      },
+      {
+        "title": "Music Producer Agent",
+        "description": "AI-powered Suno prompt engineering with neuro-state targeting. Transforms emotional intent into psychoacoustic precision — BPM, key, mode, instrumentation calibrated for specific brain states."
       }
     ],
     "bonuses": [
       {
-        "title": "Weekly Review Templates",
-        "value": "Free",
-        "description": "Structured reflection prompts to analyze your creative patterns and optimize future weeks."
+        "title": "Monthly Vibe Pack",
+        "value": "$47",
+        "description": "20 curated Suno prompts monthly: 5 Deep Work, 5 Creative Flow, 5 Recovery, 5 Performance — each with BPM, key, genre breakdown and production notes."
       },
       {
-        "title": "Energy Optimization Guide",
-        "value": "Free",
-        "description": "Science-backed strategies for managing energy, focus, and creative momentum."
+        "title": "15-Point Quality Rubric Template",
+        "value": "$27",
+        "description": "Printable PDF + Notion template. Score every track across composition, production quality, flow state optimization, and commercial viability."
       },
       {
-        "title": "Notion Dashboard Template",
-        "value": "Free",
-        "description": "Ready-to-use Notion workspace for tracking states, projects, and productivity metrics."
+        "title": "Album Art Prompt Library",
+        "value": "$37",
+        "description": "30+ visual creation prompts optimized for Gemini, ChatGPT, and Midjourney. Includes animated loop templates for KlingAI social content."
+      },
+      {
+        "title": "Distribution Launch Playbook",
+        "value": "$27",
+        "description": "Platform-by-platform launch checklist: Spotify playlist targeting, Apple Music editorial, TikTok sound strategy, and DistroKid optimization."
       }
     ],
     "faq": [
       {
-        "question": "Is Vibe OS really free?",
-        "answer": "Yes. Vibe OS is completely free with no hidden costs, trials, or premium tiers. It's built for creators who want practical tools without the paywall."
+        "question": "What exactly is Vibe OS?",
+        "answer": "Vibe OS is a complete AI music production system — not just a prompt collection. It includes 50+ engineered Suno prompts, a 15-point quality rubric, album art creation workflows, distribution strategy, and access to specialized AI agents powered by 9 LLM models across 5 providers."
       },
       {
-        "question": "How is this different from other productivity tools?",
-        "answer": "Vibe OS focuses specifically on creative work patterns and energy management. It's designed for creators, not corporate knowledge workers."
+        "question": "What do I get in the free tier?",
+        "answer": "10 Music Producer prompts per day and 5 Creation Engine prompts per day, powered by Gemini Flash. No credit card required. You get full access to the prompt engineering system with daily limits."
       },
       {
-        "question": "Do I need technical skills to use it?",
-        "answer": "No. Vibe OS is built for creators, not engineers. If you can use Notion or a spreadsheet, you can use Vibe OS."
+        "question": "How is this different from just using Suno AI directly?",
+        "answer": "Suno generates music from text. Vibe OS gives you the engineered prompts that produce professional results — with specific BPM, key, mode, and instrumentation calibrated for cognitive states. Plus quality validation, album art workflows, and a complete distribution pipeline. It's the difference between random generation and systematic production."
       },
       {
-        "question": "Will there be a paid version?",
-        "answer": "Maybe someday, but the core Vibe OS will always be free. Any future premium features would be add-ons, not requirements."
+        "question": "What LLM models are included?",
+        "answer": "Free tier uses Gemini Flash. Vibe Club ($19/mo) unlocks all 9 models: Claude Sonnet 4.5, GPT-4o, Gemini 2.0 Pro, Grok 2, and Llama 3.3 70B — with intelligent cost-aware routing that picks the best model for each task."
+      },
+      {
+        "question": "What is the Monthly Vibe Pack?",
+        "answer": "20 curated, production-tested Suno prompts delivered monthly: 5 Deep Work tracks (coding, writing), 5 Creative Flow tracks (brainstorming, design), 5 Recovery tracks (meditation, sleep), and 5 Performance tracks (workouts, focus sprints). Each includes BPM, key, genre, and production notes."
+      },
+      {
+        "question": "What is the Frequency Alchemist?",
+        "answer": "A specialized AI agent for neuro-acoustic engineering. It creates binaural beats, brainwave entrainment audio, and therapeutic soundscapes calibrated to specific brain states (Alpha, Beta, Theta, Delta). Available to Vibe Club members and above."
+      },
+      {
+        "question": "Do I need music production experience?",
+        "answer": "No. The system handles the technical details — BPM selection, key signatures, instrumentation choices, mixing considerations. You bring the creative intent (what mood, what purpose), and Vibe OS translates that into professional Suno prompts."
+      },
+      {
+        "question": "Can I use the music commercially?",
+        "answer": "Yes. All music created through Suno with Vibe OS prompts follows Suno's licensing terms. Paid Suno subscribers get full commercial rights. Our distribution strategy module covers Spotify, Apple Music, licensing, and monetization pathways."
       }
     ],
     "analyticsId": "vibe-os",
     "delivery": {
       "methods": ["download", "gated"],
-      "requiresEmail": false,
+      "requiresEmail": true,
       "files": [
         {
-          "name": "Vibe OS Getting Started Guide",
+          "name": "Vibe OS Prompt Engineering Library",
           "format": "pdf",
-          "blobKey": "vibe-os-getting-started.pdf",
-          "description": "Complete guide to creative state management and energy tracking"
+          "blobKey": "vibe-os-prompt-library.pdf",
+          "description": "50+ engineered Suno prompts with BPM, key, genre, and production notes"
         },
         {
-          "name": "Notion Dashboard Template",
-          "format": "notion",
-          "blobKey": "vibe-os-notion-template.zip",
-          "description": "Ready-to-use Notion workspace for state tracking"
+          "name": "15-Point Quality Validation Rubric",
+          "format": "pdf",
+          "blobKey": "vibe-os-quality-rubric.pdf",
+          "description": "Professional scoring template for composition, production, flow state, and commercial viability"
         },
         {
-          "name": "Energy Optimization Playbook",
+          "name": "Album Art Prompt Library",
           "format": "pdf",
-          "blobKey": "vibe-os-energy-playbook.pdf",
-          "description": "Science-backed strategies for sustainable creative work"
+          "blobKey": "vibe-os-album-art-prompts.pdf",
+          "description": "30+ visual creation prompts for Gemini, ChatGPT, Midjourney, and KlingAI"
+        },
+        {
+          "name": "Distribution Launch Playbook",
+          "format": "pdf",
+          "blobKey": "vibe-os-distribution-playbook.pdf",
+          "description": "Platform-by-platform launch checklist and monetization strategy"
         }
       ]
     }

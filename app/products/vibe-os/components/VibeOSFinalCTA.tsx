@@ -107,7 +107,7 @@ export default function VibeOSFinalCTA({ productId, offer }: VibeOSFinalCTAProps
         >
           {COMING_SOON_MODE
             ? 'Join the waitlist for early access, exclusive launch pricing, and behind-the-scenes updates as we build the ultimate Suno workflow system.'
-            : 'Join hundreds of creators who are shipping music consistently with Vibe OS. From emotional vision to finished track in one session.'
+            : 'Start with 10 free prompts daily. No credit card. Engineered Suno prompts, quality validation, album art workflows, and a full distribution pipeline — all powered by multi-LLM intelligence.'
           }
         </motion.p>
 

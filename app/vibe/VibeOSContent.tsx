@@ -644,15 +644,15 @@ export default function VibeOSContent() {
                 <ArrowRight className="h-4 w-4" />
               </Link>
               <Link
-                href="/blog/vibe-os-platform-introduction"
-                className="inline-flex items-center gap-2 rounded-full px-8 py-3.5 text-sm font-medium"
+                href="/products/vibe-os"
+                className="inline-flex items-center gap-2 rounded-full px-8 py-3.5 text-sm font-medium transition-all duration-300"
                 style={{
                   border: '1px solid rgba(255,255,255,0.1)',
                   color: 'rgba(255,255,255,0.55)',
                 }}
               >
-                Read full story
-                <ExternalLink className="h-3.5 w-3.5 opacity-60" />
+                See Full Product Details
+                <ArrowRight className="h-3.5 w-3.5 opacity-60" />
               </Link>
             </div>
           </div>
