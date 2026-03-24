@@ -1,12 +1,164 @@
 import type { BookConfig } from '../types';
 
+export type BookLocale = 'de' | 'en';
+
+const hopeChapters: BookConfig['chapters'] = [
+  {
+    slug: 'chapter-01-the-first-light',
+    title: 'The First Light',
+    number: 1,
+    readingTime: '12 min',
+    description: 'Permission to feel, breathe, and stay present in heavy moments.',
+    published: true,
+    type: 'prose',
+  },
+  {
+    slug: 'chapter-02-dichter-der-hoffnung',
+    title: 'Poets of Hope',
+    number: 2,
+    readingTime: '14 min',
+    description: 'Rilke, Goethe, and Hesse on grief, patience, and inner shelter.',
+    published: true,
+    type: 'poetry',
+  },
+  {
+    slug: 'chapter-03-sacred-texts',
+    title: 'Sacred Texts',
+    number: 3,
+    readingTime: '11 min',
+    description: 'Ancient voices that restore trust when life feels uncertain.',
+    published: true,
+    type: 'quotes',
+  },
+  {
+    slug: 'chapter-04-the-music-of-healing',
+    title: 'The Music of Healing',
+    number: 4,
+    readingTime: '10 min',
+    description: 'How sound, rhythm, and stillness can regulate the nervous system.',
+    published: true,
+    type: 'prose',
+  },
+  {
+    slug: 'chapter-05-letters-to-the-living',
+    title: 'Letters to the Living',
+    number: 5,
+    readingTime: '13 min',
+    description: 'Letters for those carrying love, memory, and unfinished goodbyes.',
+    published: true,
+    type: 'prose',
+  },
+  {
+    slug: 'chapter-06-for-the-one-who-is-leaving',
+    title: 'For the One Who Is Leaving',
+    number: 6,
+    readingTime: '9 min',
+    description: 'A gentle companion chapter for transitions, endings, and dignity.',
+    published: true,
+    type: 'poetry',
+  },
+  {
+    slug: 'chapter-07-kleine-lichter',
+    title: 'Little Lights',
+    number: 7,
+    readingTime: '8 min',
+    description: 'Small rituals and daily gestures that keep hope alive.',
+    published: true,
+    type: 'prose',
+  },
+  {
+    slug: 'chapter-08-dawn',
+    title: 'Dawn',
+    number: 8,
+    readingTime: '7 min',
+    description: 'Closing reflections on renewal, tenderness, and the return of light.',
+    published: true,
+    type: 'poetry',
+  },
+];
+
+const hoffnungChapters: BookConfig['chapters'] = [
+  {
+    slug: 'chapter-01-the-first-light',
+    title: 'Das erste Licht',
+    number: 1,
+    readingTime: '12 min',
+    description: 'Erlaubnis zu fühlen, zu atmen und in schweren Momenten präsent zu bleiben.',
+    published: true,
+    type: 'prose',
+  },
+  {
+    slug: 'chapter-02-dichter-der-hoffnung',
+    title: 'Dichter der Hoffnung',
+    number: 2,
+    readingTime: '14 min',
+    description: 'Rilke, Goethe und Hesse über Trauer, Geduld und Geborgenheit.',
+    published: true,
+    type: 'poetry',
+  },
+  {
+    slug: 'chapter-03-sacred-texts',
+    title: 'Heilige Texte',
+    number: 3,
+    readingTime: '11 min',
+    description: 'Alte Stimmen, die Vertrauen zurückbringen, wenn das Leben unsicher wird.',
+    published: true,
+    type: 'quotes',
+  },
+  {
+    slug: 'chapter-04-the-music-of-healing',
+    title: 'Die Musik der Heilung',
+    number: 4,
+    readingTime: '10 min',
+    description: 'Wie Klang, Rhythmus und Stille das Nervensystem beruhigen können.',
+    published: true,
+    type: 'prose',
+  },
+  {
+    slug: 'chapter-05-letters-to-the-living',
+    title: 'Briefe an die Lebenden',
+    number: 5,
+    readingTime: '13 min',
+    description: 'Briefe für Menschen, die Liebe, Erinnerung und Abschied tragen.',
+    published: true,
+    type: 'prose',
+  },
+  {
+    slug: 'chapter-06-for-the-one-who-is-leaving',
+    title: 'Für den, der geht',
+    number: 6,
+    readingTime: '9 min',
+    description: 'Ein sanfter Begleiter für Übergänge, Abschiede und Würde.',
+    published: true,
+    type: 'poetry',
+  },
+  {
+    slug: 'chapter-07-kleine-lichter',
+    title: 'Kleine Lichter',
+    number: 7,
+    readingTime: '8 min',
+    description: 'Kleine Rituale und tägliche Gesten, die Hoffnung tragen.',
+    published: true,
+    type: 'prose',
+  },
+  {
+    slug: 'chapter-08-dawn',
+    title: 'Morgenrot',
+    number: 8,
+    readingTime: '7 min',
+    description: 'Abschlussgedanken über Erneuerung, Zärtlichkeit und das Wiederkommen des Lichts.',
+    published: true,
+    type: 'poetry',
+  },
+];
+
 export const booksRegistry: BookConfig[] = [
   // ─── 1. Love & Poetry ───────────────────────────────────────────
   {
     slug: 'love-and-poetry',
     title: 'Love & Poetry',
     subtitle: 'Verses That Move the Soul',
-    author: 'Frank Riemer',
+    author: 'Frank',
     publishDate: '2026',
     description:
       'A curated collection of the world\'s most beautiful love poetry — Rumi, Rilke, Goethe, Gibran — woven with original verse. Spanning centuries, cultures, and languages.',
@@ -78,45 +230,6 @@ export const booksRegistry: BookConfig[] = [
         published: true,
         type: 'poetry',
       },
-      {
-        slug: 'chapter-06-nerudas-fire',
-        title: 'Neruda\'s Fire',
-        number: 6,
-        readingTime: '10 min',
-        description: 'Pablo Neruda — the poet of elemental passion and desire.',
-        published: true,
-        type: 'poetry',
-        epigraph: {
-          text: 'I want to do with you what spring does with the cherry trees.',
-          author: 'Pablo Neruda',
-        },
-      },
-      {
-        slug: 'chapter-07-mary-olivers-instructions',
-        title: 'Mary Oliver\'s Instructions',
-        number: 7,
-        readingTime: '10 min',
-        description: 'Mary Oliver — attention, astonishment, and the poetry of the natural world.',
-        published: true,
-        type: 'poetry',
-        epigraph: {
-          text: 'Instructions for living a life: Pay attention. Be astonished. Tell about it.',
-          author: 'Mary Oliver',
-        },
-      },
-      {
-        slug: 'chapter-08-hafiz-and-the-gift',
-        title: 'Hafiz and the Gift',
-        number: 8,
-        readingTime: '10 min',
-        description: 'Hafiz — the Persian poet of divine intoxication and radical joy.',
-        published: true,
-        type: 'poetry',
-        epigraph: {
-          text: 'I wish I could show you, when you are lonely or in darkness, the astonishing light of your own being.',
-          author: 'Hafiz',
-        },
-      },
     ],
   },
 
@@ -125,7 +238,7 @@ export const booksRegistry: BookConfig[] = [
     slug: 'spartan-mindset',
     title: 'Spartan Mindset',
     subtitle: 'The Discipline of One More',
-    author: 'Frank Riemer',
+    author: 'Frank',
     publishDate: '2026',
     description:
       'A manual for the relentless. Discipline, training, and the philosophy of pushing past limits. Every chapter is a rep you didn\'t think you had.',
@@ -140,7 +253,7 @@ export const booksRegistry: BookConfig[] = [
       headingFont: 'sans',
       bodyFont: 'sans',
     },
-    status: 'published',
+    status: 'in-progress',
     categories: ['Self-Development', 'Fitness', 'Mindset'],
     contentDir: 'content/books/spartan-mindset',
     chapters: [
@@ -197,51 +310,6 @@ export const booksRegistry: BookConfig[] = [
         published: true,
         type: 'prose',
       },
-      {
-        slug: 'chapter-06-the-arena',
-        title: 'The Arena',
-        number: 6,
-        readingTime: '10 min',
-        description: 'Where warriors are made. The crucible of competition and growth.',
-        published: true,
-        type: 'prose',
-      },
-      {
-        slug: 'chapter-07-fuel-and-recovery',
-        title: 'Fuel and Recovery',
-        number: 7,
-        readingTime: '10 min',
-        description: 'The weapons you build with. Nutrition, rest, and strategic recovery.',
-        published: true,
-        type: 'prose',
-      },
-      {
-        slug: 'chapter-08-the-brotherhood',
-        title: 'The Brotherhood',
-        number: 8,
-        readingTime: '10 min',
-        description: 'The phalanx. The power of training alongside those who share your standards.',
-        published: true,
-        type: 'prose',
-      },
-      {
-        slug: 'chapter-09-stoic-foundations',
-        title: 'Stoic Foundations',
-        number: 9,
-        readingTime: '10 min',
-        description: 'The philosophical bedrock. Stoic wisdom applied to modern discipline.',
-        published: true,
-        type: 'prose',
-      },
-      {
-        slug: 'chapter-10-the-long-game',
-        title: 'The Long Game',
-        number: 10,
-        readingTime: '10 min',
-        description: 'The discipline of decades. Playing for a lifetime, not a season.',
-        published: true,
-        type: 'prose',
-      },
     ],
   },
 
@@ -250,7 +318,7 @@ export const booksRegistry: BookConfig[] = [
     slug: 'golden-age',
     title: 'The Golden Age of Creators',
     subtitle: 'The Democratization of Creative Capability and Distribution',
-    author: 'Frank Riemer',
+    author: 'Frank',
     publishDate: '2026',
     description:
       'A transformative exploration of how the creator economy crossed $250 billion, how 45 million people now create professionally, and how the barriers to creative expression have evaporated.',
@@ -276,7 +344,6 @@ export const booksRegistry: BookConfig[] = [
         readingTime: '18 min',
         description: 'The question beneath all questions: What am I here to create?',
         published: true,
-        type: 'prose',
         image: '/images/golden-age/chapter-01-when-creation-calls.png',
       },
       {
@@ -286,7 +353,6 @@ export const booksRegistry: BookConfig[] = [
         readingTime: '14 min',
         description: 'From using AI to conducting AI agents like an orchestra.',
         published: true,
-        type: 'prose',
         image: '/images/golden-age/chapter-02-the-orchestration-age.png',
       },
       {
@@ -296,26 +362,7 @@ export const booksRegistry: BookConfig[] = [
         readingTime: '15 min',
         description: 'The genesis moment — when intent becomes creation and the first mark is made.',
         published: true,
-        type: 'prose',
         image: '/images/golden-age/chapter-03-the-first-gesture.png',
-      },
-      {
-        slug: 'chapter-04-the-tools-of-the-golden-age',
-        title: 'The Tools of the Golden Age',
-        number: 4,
-        readingTime: '15 min',
-        description: 'The tools that shape our thinking and unlock creative capability at scale.',
-        published: true,
-        type: 'prose',
-      },
-      {
-        slug: 'chapter-05-building-your-golden-age',
-        title: 'Building Your Golden Age',
-        number: 5,
-        readingTime: '15 min',
-        description: 'An investment in knowledge pays the best interest. Your personal golden age starts here.',
-        published: true,
-        type: 'prose',
       },
     ],
   },
@@ -325,7 +372,7 @@ export const booksRegistry: BookConfig[] = [
     slug: 'self-development',
     title: 'The Art of Self-Development',
     subtitle: 'Seven Pillars of a Complete Life',
-    author: 'Frank Riemer',
+    author: 'Frank',
     publishDate: '2026',
     description:
       'A systematic approach to building every dimension of your life — energy, mind, soul, craft, capital, circle, and legacy. Not theory. Routines that work.',
@@ -340,7 +387,7 @@ export const booksRegistry: BookConfig[] = [
       headingFont: 'sans',
       bodyFont: 'sans',
     },
-    status: 'published',
+    status: 'in-progress',
     categories: ['Self-Development', 'Habits', 'Lifestyle'],
     contentDir: 'content/books/self-development',
     chapters: [
@@ -351,9 +398,6 @@ export const booksRegistry: BookConfig[] = [
       { slug: 'chapter-05-capital', title: 'Capital', number: 5, readingTime: '12 min', description: 'Build financial intelligence and create multiple income streams.', published: true, type: 'prose' },
       { slug: 'chapter-06-circle', title: 'Circle', number: 6, readingTime: '10 min', description: 'Curate your relationships and build a network of excellence.', published: true, type: 'prose' },
       { slug: 'chapter-07-legacy', title: 'Legacy', number: 7, readingTime: '11 min', description: 'Design a life that outlasts you. Build something that endures.', published: true, type: 'prose' },
-      { slug: 'chapter-08-rituals', title: 'Rituals', number: 8, readingTime: '10 min', description: 'We are what we repeatedly do. The daily rituals that compound into excellence.', published: true, type: 'prose' },
-      { slug: 'chapter-09-environment', title: 'Environment', number: 9, readingTime: '10 min', description: 'We shape our buildings, and afterwards our buildings shape us. Design your surroundings.', published: true, type: 'prose' },
-      { slug: 'chapter-10-integration', title: 'Integration', number: 10, readingTime: '10 min', description: 'Build a new model that makes the existing model obsolete. Bringing all pillars together.', published: true, type: 'prose' },
     ],
   },
 
@@ -362,7 +406,7 @@ export const booksRegistry: BookConfig[] = [
     slug: 'imagination',
     title: 'Imagination',
     subtitle: 'Unlocking the Power of the Mind',
-    author: 'Frank Riemer',
+    author: 'Frank',
     publishDate: '2026',
     description:
       'Your imagination is the most powerful technology you possess. This book teaches you how to wield it — creative visualization, mental models, and the architecture of thought.',
@@ -377,7 +421,7 @@ export const booksRegistry: BookConfig[] = [
       headingFont: 'serif',
       bodyFont: 'sans',
     },
-    status: 'published',
+    status: 'in-progress',
     categories: ['Mind', 'Creativity', 'Psychology'],
     contentDir: 'content/books/imagination',
     chapters: [
@@ -386,9 +430,6 @@ export const booksRegistry: BookConfig[] = [
       { slug: 'chapter-03-mental-models', title: 'Mental Models', number: 3, readingTime: '15 min', description: 'The frameworks that shape how innovators think.', published: true, type: 'prose' },
       { slug: 'chapter-04-the-architects-eye', title: 'The Architect\'s Eye', number: 4, readingTime: '12 min', description: 'Training yourself to see structure in chaos and possibility in constraint.', published: true, type: 'prose' },
       { slug: 'chapter-05-beyond-the-visible', title: 'Beyond the Visible', number: 5, readingTime: '10 min', description: 'When imagination becomes your operating system.', published: true, type: 'prose' },
-      { slug: 'chapter-06-the-inventors-method', title: 'The Inventor\'s Method', number: 6, readingTime: '10 min', description: 'Finding 10,000 ways that work. The iterative power of imaginative experimentation.', published: true, type: 'prose' },
-      { slug: 'chapter-07-collective-imagination', title: 'Collective Imagination', number: 7, readingTime: '10 min', description: 'When a small group of committed minds imagines together, worlds change.', published: true, type: 'prose' },
-      { slug: 'chapter-08-the-imagination-economy', title: 'The Imagination Economy', number: 8, readingTime: '10 min', description: 'The best way to predict the future is to invent it. Imagination as economic force.', published: true, type: 'prose' },
     ],
   },
 
@@ -397,7 +438,7 @@ export const booksRegistry: BookConfig[] = [
     slug: 'manifestation',
     title: 'Manifestation',
     subtitle: 'The Architecture of Reality',
-    author: 'Frank Riemer',
+    author: 'Frank',
     publishDate: '2026',
     description:
       'Not wishful thinking. Not magic. The grounded, psychological, and strategic approach to turning thought into reality — updated for the AI age.',
@@ -412,7 +453,7 @@ export const booksRegistry: BookConfig[] = [
       headingFont: 'serif',
       bodyFont: 'sans',
     },
-    status: 'published',
+    status: 'in-progress',
     categories: ['Mindset', 'Psychology', 'Self-Development'],
     contentDir: 'content/books/manifestation',
     chapters: [
@@ -421,519 +462,295 @@ export const booksRegistry: BookConfig[] = [
       { slug: 'chapter-03-the-frequency-principle', title: 'The Frequency Principle', number: 3, readingTime: '13 min', description: 'Aligning your energy with what you want to attract.', published: true, type: 'prose' },
       { slug: 'chapter-04-aligned-action', title: 'Aligned Action', number: 4, readingTime: '11 min', description: 'Manifestation without action is daydreaming. Action without alignment is hustle.', published: true, type: 'prose' },
       { slug: 'chapter-05-the-evidence-journal', title: 'The Evidence Journal', number: 5, readingTime: '10 min', description: 'Tracking proof that the universe is responding.', published: true, type: 'exercises' },
-      { slug: 'chapter-06-the-science-of-belief', title: 'The Science of Belief', number: 6, readingTime: '10 min', description: 'Whether you think you can or you think you can\'t, you\'re right. The neuroscience of conviction.', published: true, type: 'prose' },
-      { slug: 'chapter-07-environmental-architecture', title: 'Environmental Architecture', number: 7, readingTime: '10 min', description: 'You fall to the level of your systems. Designing environments that manifest your goals.', published: true, type: 'prose' },
-      { slug: 'chapter-08-the-compound-life', title: 'The Compound Life', number: 8, readingTime: '10 min', description: 'The first rule of compounding: never interrupt it unnecessarily. Long-term manifestation.', published: true, type: 'prose' },
     ],
   },
-
-  // ─── 7. The Architect's Playbook ────────────────────────────────
   {
-    slug: 'architects-playbook',
-    title: 'The Architect\'s Playbook',
-    subtitle: 'Enterprise AI Systems Design',
-    author: 'Frank Riemer',
-    publishDate: '2026',
-    description:
-      'The definitive playbook for designing enterprise AI systems — from architecture patterns to production deployment. Built from real-world experience at Oracle EMEA AI Center of Excellence.',
-    keywords: ['AI architecture', 'enterprise AI', 'system design', 'AI playbook', 'Oracle AI'],
-    coverImage: '/images/books/architects-playbook-cover-v1.png',
-    theme: {
-      id: 'architects-playbook',
-      name: 'The Architect\'s Playbook',
-      primary: 'emerald',
-      accent: 'cyan',
-      bgDark: '#030f0a',
-      headingFont: 'sans',
-      bodyFont: 'sans',
-    },
-    status: 'published',
-    categories: ['AI', 'Architecture', 'Enterprise'],
-    contentDir: 'content/books/architects-playbook',
-    chapters: [],
-  },
-
-  // ─── 8. VIBE ────────────────────────────────────────────────────
-  {
-    slug: 'vibe',
-    title: 'VIBE',
-    subtitle: 'The Art of Vibe-Driven Creation',
-    author: 'Frank Riemer',
-    publishDate: '2026',
-    description:
-      'VIBE coding, VIBE creating, VIBE living. How to channel creative energy into shipped products using AI as your co-pilot.',
-    keywords: ['vibe coding', 'AI creation', 'creative flow', 'vibe-driven development'],
-    coverImage: '/images/books/vibe-cover.png',
-    theme: {
-      id: 'vibe',
-      name: 'VIBE',
-      primary: 'blue',
-      accent: 'violet',
-      bgDark: '#0a0a1a',
-      headingFont: 'sans',
-      bodyFont: 'sans',
-    },
-    status: 'published',
-    categories: ['AI', 'Creator Economy', 'Development'],
-    contentDir: 'content/books/vibe',
-    chapters: [],
-  },
-
-  // ─── 9. Agentic Builder ─────────────────────────────────────────
-  {
-    slug: 'agentic-builder',
-    title: 'Agentic Builder',
-    subtitle: 'Building with AI Agents',
-    author: 'Frank Riemer',
-    publishDate: '2026',
-    description:
-      'The practical guide to building with AI agents — from single-agent tools to multi-agent orchestration systems. Patterns, pitfalls, and production-ready architectures.',
-    keywords: ['AI agents', 'agentic AI', 'multi-agent systems', 'agent orchestration', 'AI builder'],
-    coverImage: '/images/books/agentic-builder-cover.png',
-    theme: {
-      id: 'agentic-builder',
-      name: 'Agentic Builder',
-      primary: 'emerald',
-      accent: 'cyan',
-      bgDark: '#030f0a',
-      headingFont: 'sans',
-      bodyFont: 'sans',
-    },
-    status: 'published',
-    categories: ['AI', 'Development', 'Architecture'],
-    contentDir: 'content/books/agentic-builder',
-    chapters: [],
-  },
-
-  // ─── 10. GenCreator ─────────────────────────────────────────────
-  {
-    slug: 'gencreator',
-    title: 'GenCreator',
-    subtitle: 'The AI-Native Creator Operating System',
-    author: 'Frank Riemer',
-    publishDate: '2026',
-    description:
-      'The creator-specific AI Center of Excellence. How to build your personal creative engine using AI tools, workflows, and frameworks that compound over time.',
-    keywords: ['GenCreator', 'AI creator', 'creator operating system', 'AI content creation'],
-    coverImage: '/images/books/gencreator-cover.png',
-    theme: {
-      id: 'gencreator',
-      name: 'GenCreator',
-      primary: 'amber',
-      accent: 'indigo',
-      bgDark: '#0F172A',
-      headingFont: 'sans',
-      bodyFont: 'sans',
-    },
-    status: 'published',
-    categories: ['Creator Economy', 'AI', 'Productivity'],
-    contentDir: 'content/books/gencreator',
-    chapters: [],
-  },
-
-  // ─── 11. Vibe OS ────────────────────────────────────────────────
-  {
-    slug: 'vibe-os',
-    title: 'Vibe OS',
-    subtitle: 'Your Personal Operating System for the AI Age',
-    author: 'Frank Riemer',
-    publishDate: '2026',
-    description:
-      'The operating system for living and creating in the AI age. Systems, routines, and frameworks for channeling creative energy into consistent output.',
-    keywords: ['Vibe OS', 'personal operating system', 'AI productivity', 'creative systems'],
-    coverImage: '/images/books/vibe-os-cover.png',
-    theme: {
-      id: 'vibe-os',
-      name: 'Vibe OS',
-      primary: 'green',
-      accent: 'cyan',
-      bgDark: '#030f0a',
-      headingFont: 'sans',
-      bodyFont: 'sans',
-    },
-    status: 'published',
-    categories: ['Productivity', 'AI', 'Systems'],
-    contentDir: 'content/books/vibe-os',
-    chapters: [],
-  },
-
-  // ─── 12. Decentralized Creator ──────────────────────────────────
-  {
-    slug: 'decentralized-creator',
-    title: 'Decentralized Creator',
-    subtitle: 'Own Your Creative Stack',
-    author: 'Frank Riemer',
-    publishDate: '2026',
-    description:
-      'How to build a creative empire you fully own — from self-hosted infrastructure to sovereign distribution channels. Independence through technology.',
-    keywords: ['decentralized creator', 'self-hosted', 'creator independence', 'Web3 creator'],
-    coverImage: '/images/books/decentralized-creator-cover.png',
-    theme: {
-      id: 'decentralized-creator',
-      name: 'Decentralized Creator',
-      primary: 'cyan',
-      accent: 'violet',
-      bgDark: '#0a0a1a',
-      headingFont: 'sans',
-      bodyFont: 'sans',
-    },
-    status: 'published',
-    categories: ['Creator Economy', 'Technology', 'Independence'],
-    contentDir: 'content/books/decentralized-creator',
-    chapters: [],
-  },
-
-  // ─── 13. MCP Builder's Guide ────────────────────────────────────
-  {
-    slug: 'mcp-builders-guide',
-    title: 'MCP Builder\'s Guide',
-    subtitle: 'Model Context Protocol from Zero to Production',
-    author: 'Frank Riemer',
-    publishDate: '2026',
-    description:
-      'The comprehensive guide to building with the Model Context Protocol — from understanding the spec to shipping production MCP servers and clients.',
-    keywords: ['MCP', 'Model Context Protocol', 'AI tools', 'MCP server', 'AI integration'],
-    coverImage: '/images/books/mcp-builders-guide-cover.png',
-    theme: {
-      id: 'mcp-builders-guide',
-      name: 'MCP Builder\'s Guide',
-      primary: 'emerald',
-      accent: 'cyan',
-      bgDark: '#030f0a',
-      headingFont: 'sans',
-      bodyFont: 'sans',
-    },
-    status: 'published',
-    categories: ['AI', 'Development', 'MCP'],
-    contentDir: 'content/books/mcp-builders-guide',
-    chapters: [],
-  },
-
-  // ─── 14. Personal AI CoE ───────────────────────────────────────
-  {
-    slug: 'personal-ai-coe',
-    title: 'Personal AI CoE',
-    subtitle: 'Enterprise AI Frameworks for Everyone',
-    author: 'Frank Riemer',
-    publishDate: '2026',
-    description:
-      'The same 6-pillar AI Center of Excellence architecture Frank builds for Fortune 500 companies at Oracle — translated for individuals, creators, and families at 1/5000th the cost.',
-    keywords: ['AI CoE', 'personal AI', 'AI center of excellence', 'AI strategy', 'enterprise AI for individuals'],
-    coverImage: '/images/books/personal-ai-coe-cover.png',
-    theme: {
-      id: 'personal-ai-coe',
-      name: 'Personal AI CoE',
-      primary: 'violet',
-      accent: 'amber',
-      bgDark: '#0a0a12',
-      headingFont: 'sans',
-      bodyFont: 'sans',
-    },
-    status: 'published',
-    categories: ['AI', 'Strategy', 'Self-Development'],
-    contentDir: 'content/books/personal-ai-coe',
-    chapters: [],
-  },
-
-  // ─── 15. The Great Transition ───────────────────────────────────
-  {
-    slug: 'great-transition',
-    title: 'The Great Transition',
-    subtitle: 'From Employee to Builder',
-    author: 'Frank Riemer',
-    publishDate: '2026',
-    description:
-      'Something is happening. The old deal is breaking. This book maps the transition from employment to ownership — and gives you the first 90 days of your builder journey.',
-    keywords: ['great transition', 'creator economy', 'entrepreneurship', 'career transition', 'building in public'],
-    coverImage: '/images/books/great-transition-cover.png',
-    theme: {
-      id: 'great-transition',
-      name: 'The Great Transition',
-      primary: 'amber',
-      accent: 'indigo',
-      bgDark: '#0F172A',
-      headingFont: 'serif',
-      bodyFont: 'sans',
-    },
-    status: 'published',
-    categories: ['Business', 'Creator Economy', 'Career'],
-    contentDir: 'content/books/great-transition',
-    chapters: [
-      { slug: 'chapter-01-something-is-happening', title: 'Something Is Happening', number: 1, readingTime: '10 min', description: 'The shift everyone feels but few can name. The world is changing beneath our feet.', published: true, type: 'prose' },
-      { slug: 'chapter-02-the-old-deal', title: 'The Old Deal', number: 2, readingTime: '10 min', description: 'The employment contract that no longer holds. Understanding what we are leaving behind.', published: true, type: 'prose' },
-      { slug: 'chapter-03-the-leverage-shift', title: 'The Leverage Shift', number: 3, readingTime: '10 min', description: 'How technology shifted leverage from institutions to individuals.', published: true, type: 'prose' },
-      { slug: 'chapter-04-the-builders-already-building', title: 'The Builders Already Building', number: 4, readingTime: '10 min', description: 'Profiles of those who made the transition. What they learned, what they built.', published: true, type: 'prose' },
-      { slug: 'chapter-05-what-you-own', title: 'What You Own', number: 5, readingTime: '10 min', description: 'Taking inventory of your assets, skills, and creative capital.', published: true, type: 'prose' },
-      { slug: 'chapter-06-the-niche-imperative', title: 'The Niche Imperative', number: 6, readingTime: '10 min', description: 'Why niching down is the most important strategic decision you will make.', published: true, type: 'prose' },
-      { slug: 'chapter-07-building-in-public', title: 'Building in Public', number: 7, readingTime: '10 min', description: 'The strategy of transparency. How sharing your journey accelerates your growth.', published: true, type: 'prose' },
-      { slug: 'chapter-08-the-first-90-days', title: 'The First 90 Days', number: 8, readingTime: '10 min', description: 'Your actionable roadmap for the first three months of building.', published: true, type: 'prose' },
-    ],
-  },
-
-  // ─── 16. Fire Horse Poems ──────────────────────────────────────
-  {
-    slug: 'fire-horse-poems',
-    title: 'Fire Horse Poems',
-    subtitle: 'Verses from the Year of the Fire Horse',
-    author: 'Frank Riemer',
-    publishDate: '2026',
-    description:
-      'Poetry born from fire — the energy of the Fire Horse year channeled into verse. For builders, dreamers, and those who run toward the flame.',
-    keywords: ['poetry', 'fire horse', 'Chinese zodiac', 'original poetry', 'creative writing'],
-    coverImage: '/images/books/fire-horse-poems-cover.png',
-    theme: {
-      id: 'fire-horse-poems',
-      name: 'Fire Horse Poems',
-      primary: 'red',
-      accent: 'amber',
-      bgDark: '#0f0505',
-      headingFont: 'serif',
-      bodyFont: 'serif',
-    },
-    status: 'published',
-    categories: ['Poetry', 'Creative Writing'],
-    contentDir: 'content/books/fire-horse-poems',
-    chapters: [
-      { slug: 'chapter-01-the-fire-horse', title: 'The Fire Horse', number: 1, readingTime: '10 min', description: 'The opening blaze. The spirit of the Fire Horse unleashed.', published: true, type: 'poetry' },
-      { slug: 'chapter-02-to-the-builders', title: 'To the Builders', number: 2, readingTime: '10 min', description: 'Verses for those who build with their hands and their minds.', published: true, type: 'poetry' },
-      { slug: 'chapter-03-sixty-year-flame', title: 'Sixty-Year Flame', number: 3, readingTime: '10 min', description: 'The sixty-year cycle of the Fire Horse — rare, fierce, untameable.', published: true, type: 'poetry' },
-      { slug: 'chapter-04-ring-of-fire', title: 'Ring of Fire', number: 4, readingTime: '10 min', description: 'Walking through fire and coming out forged. The ring that transforms.', published: true, type: 'poetry' },
-      { slug: 'chapter-05-the-table-the-horse-the-morning', title: 'The Table, the Horse, the Morning', number: 5, readingTime: '10 min', description: 'Still life in motion. The quiet power of morning ritual.', published: true, type: 'poetry' },
-    ],
-  },
-
-  // ─── 17. Hoffnung (German) ─────────────────────────────────────
-  {
-    slug: 'hoffnung-de',
+    slug: 'hoffnung',
+    language: 'de',
+    variantGroup: 'hope-book',
+    alternateSlug: 'hope',
     title: 'Hoffnung',
-    subtitle: 'Gedichte und Texte der Zuversicht',
-    author: 'Frank Riemer',
+    subtitle: 'Ein Licht in der Dunkelheit',
+    author: 'Frank',
     publishDate: '2026',
     description:
-      'Ein Buch der Hoffnung — Gedichte, heilige Texte und Briefe an die Lebenden. Für alle, die Licht suchen in dunklen Zeiten.',
-    keywords: ['Hoffnung', 'Gedichte', 'Zuversicht', 'deutsche Poesie', 'Trost'],
+      'Poesie, Meditation und heilsame Texte für Zeiten von Trauer, Übergang und Neubeginn. Für Familien, die Halt, Sprache und leise Stärke suchen.',
+    keywords: ['hoffnung buch', 'trauerbegleitung', 'poesie', 'heilung', 'meditation'],
     coverImage: '/images/books/hoffnung-cover.png',
     theme: {
-      id: 'hoffnung-de',
+      id: 'hoffnung',
       name: 'Hoffnung',
       primary: 'amber',
       accent: 'sky',
-      bgDark: '#0F172A',
+      bgDark: '#070B14',
       headingFont: 'serif',
       bodyFont: 'serif',
     },
     status: 'published',
-    categories: ['Poetry', 'German', 'Hope'],
+    categories: ['Poesie', 'Heilung', 'Meditation'],
     contentDir: 'content/books/hoffnung-de',
-    language: 'de',
-    variantGroup: 'hoffnung',
-    alternateSlug: 'hoffnung',
-    chapters: [
-      { slug: 'chapter-01-the-first-light', title: 'Das erste Licht', number: 1, readingTime: '10 min', description: 'Das erste Licht bricht durch. Der Beginn der Hoffnung.', published: true, type: 'poetry' },
-      { slug: 'chapter-02-dichter-der-hoffnung', title: 'Dichter der Hoffnung', number: 2, readingTime: '10 min', description: 'Die Dichter, die uns Hoffnung schenkten — von Rilke bis Hesse.', published: true, type: 'poetry' },
-      { slug: 'chapter-03-sacred-texts', title: 'Heilige Texte', number: 3, readingTime: '10 min', description: 'Heilige Worte aus allen Traditionen — Trost, der die Jahrhunderte überdauert.', published: true, type: 'quotes' },
-      { slug: 'chapter-04-the-music-of-healing', title: 'Die Musik der Heilung', number: 4, readingTime: '10 min', description: 'Wenn Worte nicht reichen, spricht die Musik.', published: true, type: 'prose' },
-      { slug: 'chapter-05-letters-to-the-living', title: 'Briefe an die Lebenden', number: 5, readingTime: '10 min', description: 'Briefe an alle, die noch da sind. Worte der Zuversicht.', published: true, type: 'prose' },
-      { slug: 'chapter-06-for-the-one-who-is-leaving', title: 'Für den, der geht', number: 6, readingTime: '10 min', description: 'Für alle, die Abschied nehmen müssen. Begleitung auf dem letzten Weg.', published: true, type: 'poetry' },
-      { slug: 'chapter-07-kleine-lichter', title: 'Kleine Lichter', number: 7, readingTime: '10 min', description: 'Die kleinen Lichter, die den Weg weisen, wenn alles dunkel ist.', published: true, type: 'poetry' },
-      { slug: 'chapter-08-dawn', title: 'Morgenrot', number: 8, readingTime: '10 min', description: 'Das Morgenrot. Ein neuer Tag beginnt. Hoffnung triumphiert.', published: true, type: 'poetry' },
-    ],
+    chapters: hoffnungChapters,
   },
-
-  // ─── 18. Hoffnung (English) ────────────────────────────────────
   {
-    slug: 'hoffnung',
+    slug: 'hope',
+    language: 'en',
+    variantGroup: 'hope-book',
+    alternateSlug: 'hoffnung',
     title: 'Hope',
-    subtitle: 'Poems and Texts of Courage',
-    author: 'Frank Riemer',
+    subtitle: 'A Light in the Dark',
+    author: 'Frank',
     publishDate: '2026',
     description:
-      'A book of hope — poems, sacred texts, and letters to the living. For all who seek light in dark times.',
-    keywords: ['hope', 'poetry', 'courage', 'healing poetry', 'comfort'],
+      'Poetry, meditations, and healing reflections for seasons of grief, transition, and renewal. A companion book for families who need language, calm, and strength.',
+    keywords: ['hope poetry book', 'grief support', 'healing writing', 'meditation', 'compassion'],
     coverImage: '/images/books/hoffnung-cover.png',
     theme: {
       id: 'hoffnung',
       name: 'Hope',
       primary: 'amber',
       accent: 'sky',
-      bgDark: '#0F172A',
+      bgDark: '#070B14',
       headingFont: 'serif',
       bodyFont: 'serif',
     },
     status: 'published',
-    categories: ['Poetry', 'Hope', 'Healing'],
+    categories: ['Poetry', 'Healing', 'Meditation'],
     contentDir: 'content/books/hoffnung',
-    language: 'en',
-    variantGroup: 'hoffnung',
-    alternateSlug: 'hoffnung-de',
-    chapters: [],
+    chapters: hopeChapters,
   },
 
-  // ─── 19. Arcanea Chronicles ─────────────────────────────────────
-  {
-    slug: 'arcanea-chronicles',
-    title: 'Arcanea Chronicles',
-    subtitle: 'Tales of the Ten Guardians',
-    author: 'Frank Riemer',
-    publishDate: '2026',
-    description:
-      'The personal chronicles of Arcanea\'s ten guardian archetypes — their trials, doubts, and transcendence. Each chapter follows a different guardian through their defining moment.',
-    keywords: ['Arcanea', 'fantasy', 'chronicles', 'guardians', 'worldbuilding'],
-    coverImage: '/images/books/arcanea-chronicles-cover.png',
-    theme: {
-      id: 'arcanea-chronicles',
-      name: 'Arcanea Chronicles',
-      primary: 'amber',
-      accent: 'gold',
-      bgDark: '#0f0a05',
-      headingFont: 'serif',
-      bodyFont: 'serif',
-    },
-    status: 'published',
-    categories: ['Fantasy', 'Worldbuilding', 'Arcanea'],
-    contentDir: 'content/books/arcanea-chronicles',
-    chapters: [
-      { slug: 'chapter-01-lyssandrias-trembling', title: 'Lyssandria\'s Trembling', number: 1, readingTime: '10 min', description: 'Chronicle I — The first guardian faces the trembling of creation.', published: true, type: 'prose' },
-      { slug: 'chapter-02-leylas-freezing', title: 'Leyla\'s Freezing', number: 2, readingTime: '10 min', description: 'Chronicle II — Leyla confronts the paralysis of indecision.', published: true, type: 'prose' },
-      { slug: 'chapter-03-draconias-doubt', title: 'Draconia\'s Doubt', number: 3, readingTime: '10 min', description: 'Chronicle III — The dragon guardian wrestles with doubt.', published: true, type: 'prose' },
-      { slug: 'chapter-04-maylinns-hardening', title: 'Maylinn\'s Hardening', number: 4, readingTime: '10 min', description: 'Chronicle IV — Maylinn\'s resolve hardens into purpose.', published: true, type: 'prose' },
-      { slug: 'chapter-05-aleras-silence', title: 'Alera\'s Silence', number: 5, readingTime: '10 min', description: 'Chronicle V — Alera discovers power in silence.', published: true, type: 'prose' },
-      { slug: 'chapter-06-lyrias-overwhelm', title: 'Lyria\'s Overwhelm', number: 6, readingTime: '10 min', description: 'Chronicle VI — Lyria navigates the overwhelm of infinite possibility.', published: true, type: 'prose' },
-      { slug: 'chapter-07-aiyamis-pride', title: 'Aiyami\'s Pride', number: 7, readingTime: '10 min', description: 'Chronicle VII — Aiyami confronts the cost of pride.', published: true, type: 'prose' },
-      { slug: 'chapter-08-elaras-instability', title: 'Elara\'s Instability', number: 8, readingTime: '10 min', description: 'Chronicle VIII — Elara balances on the edge of instability.', published: true, type: 'prose' },
-      { slug: 'chapter-09-ino-and-kyuros-division', title: 'Ino and Kyuro\'s Division', number: 9, readingTime: '10 min', description: 'Chronicle IX — Two guardians divided must find unity.', published: true, type: 'prose' },
-      { slug: 'chapter-10-shinkamis-waiting', title: 'Shinkami\'s Waiting', number: 10, readingTime: '10 min', description: 'Chronicle X — The final guardian learns the art of patient waiting.', published: true, type: 'prose' },
-    ],
-  },
-
-  // ─── 20. Arcanea Legends ────────────────────────────────────────
-  {
-    slug: 'arcanea-legends',
-    title: 'Arcanea Legends',
-    subtitle: 'Myths of the First Dawn',
-    author: 'Frank Riemer',
-    publishDate: '2026',
-    description:
-      'The founding myths of Arcanea — from the First Dawn to the Ultraworld. The legends that shaped a civilization and its ten guardians.',
-    keywords: ['Arcanea', 'legends', 'mythology', 'fantasy worldbuilding', 'guardians'],
-    coverImage: '/images/books/arcanea-legends-cover.png',
-    theme: {
-      id: 'arcanea-legends',
-      name: 'Arcanea Legends',
-      primary: 'amber',
-      accent: 'gold',
-      bgDark: '#0f0a05',
-      headingFont: 'serif',
-      bodyFont: 'serif',
-    },
-    status: 'published',
-    categories: ['Fantasy', 'Mythology', 'Arcanea'],
-    contentDir: 'content/books/arcanea-legends',
-    chapters: [
-      { slug: 'chapter-01-the-first-dawn', title: 'The First Dawn', number: 1, readingTime: '10 min', description: 'The beginning of all things. When light first touched Arcanea.', published: true, type: 'prose' },
-      { slug: 'chapter-02-the-ten-guardians', title: 'The Ten Guardians', number: 2, readingTime: '10 min', description: 'The ten archetypes who guard the fabric of creation.', published: true, type: 'prose' },
-      { slug: 'chapter-03-the-great-darkness', title: 'The Great Darkness', number: 3, readingTime: '10 min', description: 'When shadow consumed the world and the guardians were tested.', published: true, type: 'prose' },
-      { slug: 'chapter-04-the-lost-academy', title: 'The Lost Academy', number: 4, readingTime: '10 min', description: 'The forgotten school where creators once learned to shape reality.', published: true, type: 'prose' },
-      { slug: 'chapter-05-tales-of-the-guardians', title: 'Tales of the Ten Guardians', number: 5, readingTime: '10 min', description: 'Individual tales of each guardian — their gifts, their burdens, their legacy.', published: true, type: 'prose' },
-      { slug: 'chapter-06-the-weavers-knot', title: 'The Weaver\'s Knot', number: 6, readingTime: '10 min', description: 'The intricate pattern that binds all creation together.', published: true, type: 'prose' },
-      { slug: 'chapter-07-the-ultraworld', title: 'The Ultraworld', number: 7, readingTime: '10 min', description: 'Beyond the known — the realm where imagination becomes substance.', published: true, type: 'prose' },
-    ],
-  },
-
-  // ─── 21. Arcanea Bestiary ───────────────────────────────────────
+  // ─── 9. Arcanea Bestiary ────────────────────────────────────────
   {
     slug: 'arcanea-bestiary',
-    title: 'Arcanea Bestiary',
-    subtitle: 'Creatures of Creation',
-    author: 'Frank Riemer',
+    title: 'The Bestiary of Creation',
+    subtitle: 'Creatures of the Creative Mind',
+    author: 'Frank',
     publishDate: '2026',
     description:
-      'A field guide to the creatures of Arcanea — from the gentle beings of beginning to the terrible creatures of darkness and the luminous beings of light.',
-    keywords: ['Arcanea', 'bestiary', 'creatures', 'fantasy', 'field guide'],
+      'A field guide to the psychological creatures every creator encounters — the Blank Terror, the Perfect Phantom, and the beings of light and dark that inhabit the creative journey.',
+    keywords: ['creativity', 'psychology', 'bestiary', 'arcanea', 'creative process', 'inner critic'],
     coverImage: '/images/books/arcanea-bestiary-cover.png',
     theme: {
       id: 'arcanea-bestiary',
-      name: 'Arcanea Bestiary',
-      primary: 'amber',
-      accent: 'gold',
-      bgDark: '#0f0a05',
+      name: 'The Bestiary of Creation',
+      primary: 'purple',
+      accent: 'amber',
+      bgDark: '#0a0510',
       headingFont: 'serif',
       bodyFont: 'serif',
     },
     status: 'published',
-    categories: ['Fantasy', 'Worldbuilding', 'Arcanea'],
+    categories: ['Arcanea', 'Creativity', 'Psychology'],
     contentDir: 'content/books/arcanea-bestiary',
     chapters: [
-      { slug: 'chapter-01-creatures-of-beginning', title: 'Creatures of Beginning', number: 1, readingTime: '10 min', description: 'The first beings — gentle, curious, born from the raw energy of creation.', published: true, type: 'prose' },
-      { slug: 'chapter-02-creatures-of-the-middle', title: 'Creatures of the Middle', number: 2, readingTime: '10 min', description: 'The balanced beings who inhabit the space between light and dark.', published: true, type: 'prose' },
-      { slug: 'chapter-03-creatures-of-crisis', title: 'Creatures of Crisis', number: 3, readingTime: '10 min', description: 'Born from tension and transformation — the creatures that emerge in times of crisis.', published: true, type: 'prose' },
-      { slug: 'chapter-04-creatures-of-the-dark', title: 'Creatures of the Dark', number: 4, readingTime: '10 min', description: 'The shadow beings — terrible, necessary, guardians of the deep.', published: true, type: 'prose' },
-      { slug: 'chapter-05-creatures-of-light', title: 'Creatures of Light', number: 5, readingTime: '10 min', description: 'The luminous beings — radiant, transcendent, keepers of the dawn.', published: true, type: 'prose' },
+      { slug: 'chapter-01-creatures-of-beginning', title: 'Creatures of Beginning', number: 1, readingTime: '3 min', description: 'The Blank Terror, the Perfect Phantom, and the creatures that haunt every starting line.', published: true, type: 'prose' },
+      { slug: 'chapter-02-creatures-of-the-middle', title: 'Creatures of the Middle', number: 2, readingTime: '3 min', description: 'The beings that appear when the work is underway and momentum falters.', published: true, type: 'prose' },
+      { slug: 'chapter-03-creatures-of-crisis', title: 'Creatures of Crisis', number: 3, readingTime: '3 min', description: 'The creatures born of doubt, failure, and the dark night of creation.', published: true, type: 'prose' },
+      { slug: 'chapter-04-creatures-of-the-dark', title: 'Creatures of the Dark', number: 4, readingTime: '3 min', description: 'Shadow beings that test the creator\'s resolve and identity.', published: true, type: 'prose' },
+      { slug: 'chapter-05-creatures-of-light', title: 'Creatures of Light', number: 5, readingTime: '3 min', description: 'The radiant beings that appear when creation flows and mastery emerges.', published: true, type: 'prose' },
     ],
   },
 
-  // ─── 22. Arcanea Wisdom Scrolls ─────────────────────────────────
+  // ─── 10. Arcanea Chronicles ─────────────────────────────────────
   {
-    slug: 'arcanea-wisdom-scrolls',
-    title: 'Arcanea Wisdom Scrolls',
-    subtitle: 'Meditations and Teachings',
-    author: 'Frank Riemer',
+    slug: 'arcanea-chronicles',
+    title: 'The Chronicles of Arcanea',
+    subtitle: 'Stories of the Ten Guardians',
+    author: 'Frank',
     publishDate: '2026',
     description:
-      'Morning meditations, evening reflections, aphorisms of the masters, and letters to the seeker — the collected wisdom of Arcanea\'s sages.',
-    keywords: ['Arcanea', 'wisdom', 'meditations', 'aphorisms', 'philosophy'],
-    coverImage: '/images/books/arcanea-wisdom-scrolls-cover.png',
+      'Ten origin stories of the Guardians of Arcanea — Lyssandria, Leyla, Draconia, and more — each revealing how fear, doubt, and imperfection became the foundation of their power.',
+    keywords: ['arcanea', 'guardians', 'mythology', 'origin stories', 'fantasy', 'courage'],
+    coverImage: '/images/books/arcanea-chronicles-cover.png',
     theme: {
-      id: 'arcanea-wisdom-scrolls',
-      name: 'Arcanea Wisdom Scrolls',
-      primary: 'amber',
-      accent: 'gold',
-      bgDark: '#0f0a05',
+      id: 'arcanea-chronicles',
+      name: 'The Chronicles of Arcanea',
+      primary: 'violet',
+      accent: 'rose',
+      bgDark: '#080510',
       headingFont: 'serif',
       bodyFont: 'serif',
     },
     status: 'published',
-    categories: ['Philosophy', 'Wisdom', 'Arcanea'],
-    contentDir: 'content/books/arcanea-wisdom-scrolls',
+    categories: ['Arcanea', 'Fantasy', 'Mythology'],
+    contentDir: 'content/books/arcanea-chronicles',
     chapters: [
-      { slug: 'chapter-01-morning-meditations', title: 'Morning Meditations', number: 1, readingTime: '10 min', description: 'Begin each day with the wisdom of Arcanea\'s sages.', published: true, type: 'quotes' },
-      { slug: 'chapter-02-evening-reflections', title: 'Evening Reflections', number: 2, readingTime: '10 min', description: 'Close each day with reflection and gratitude.', published: true, type: 'quotes' },
-      { slug: 'chapter-03-aphorisms-of-the-masters', title: 'Aphorisms of the Masters', number: 3, readingTime: '10 min', description: 'Concentrated wisdom from the masters of Arcanea.', published: true, type: 'quotes' },
-      { slug: 'chapter-04-letters-to-the-seeker', title: 'Letters to the Seeker', number: 4, readingTime: '10 min', description: 'Personal letters of guidance for those on the path.', published: true, type: 'prose' },
+      { slug: 'chapter-01-lyssandrias-trembling', title: 'Lyssandria\'s Trembling', number: 1, readingTime: '2 min', description: 'The Guardian of Foundation learns that trembling while standing is the definition of courage.', published: true, type: 'prose' },
+      { slug: 'chapter-02-leylas-freezing', title: 'Leyla\'s Freezing', number: 2, readingTime: '2 min', description: 'The Guardian of Flow discovers that freezing is not failure but the pause before motion.', published: true, type: 'prose' },
+      { slug: 'chapter-03-draconias-doubt', title: 'Draconia\'s Doubt', number: 3, readingTime: '2 min', description: 'The Guardian of Power faces the doubt that lives inside every display of strength.', published: true, type: 'prose' },
+      { slug: 'chapter-04-maylinns-hardening', title: 'Maylinn\'s Hardening', number: 4, readingTime: '3 min', description: 'The Guardian of Heart must choose between protection and vulnerability.', published: true, type: 'prose' },
+      { slug: 'chapter-05-aleras-silence', title: 'Alera\'s Silence', number: 5, readingTime: '2 min', description: 'The Guardian of Voice discovers the power hidden in silence.', published: true, type: 'prose' },
+      { slug: 'chapter-06-lyrias-overwhelm', title: 'Lyria\'s Overwhelm', number: 6, readingTime: '2 min', description: 'The Guardian of Insight learns to see clearly without being consumed by vision.', published: true, type: 'prose' },
+      { slug: 'chapter-07-aiyamis-pride', title: 'Aiyami\'s Pride', number: 7, readingTime: '3 min', description: 'The Guardian of Connection confronts the pride that separates.', published: true, type: 'prose' },
+      { slug: 'chapter-08-elaras-instability', title: 'Elara\'s Instability', number: 8, readingTime: '2 min', description: 'The Guardian of Transformation embraces instability as the nature of change.', published: true, type: 'prose' },
+      { slug: 'chapter-09-ino-and-kyuros-division', title: 'Ino and Kyuro\'s Division', number: 9, readingTime: '2 min', description: 'The Twin Guardians of Unity must separate before they can truly join.', published: true, type: 'prose' },
+      { slug: 'chapter-10-shinkamis-waiting', title: 'Shinkami\'s Waiting', number: 10, readingTime: '3 min', description: 'The Guardian of Transcendence learns that the final gate requires infinite patience.', published: true, type: 'prose' },
     ],
   },
 
-  // ─── 23. Arcanea Creator Principles ─────────────────────────────
+  // ─── 11. Arcanea Creator Principles ─────────────────────────────
   {
     slug: 'arcanea-creator-principles',
-    title: 'Arcanea Creator Principles',
-    subtitle: 'The Partnership Between Human and AI',
-    author: 'Frank Riemer',
+    title: 'The Arcanean Creator Principles',
+    subtitle: 'Ancient Teachings on Creation and Partnership',
+    author: 'Frank',
     publishDate: '2026',
     description:
-      'The seven principles of human-AI creative partnership — drawn from the Arcanean tradition. Trust calibration, complementary strengths, and the generator-editor dance.',
-    keywords: ['Arcanea', 'creator principles', 'human-AI partnership', 'creative collaboration'],
+      'The seven foundational doctrines of creation from the world of Arcanea — partnership over solitude, complementary strengths, trust calibration, and the art of the generator-editor dance.',
+    keywords: ['arcanea', 'creation principles', 'partnership', 'AI collaboration', 'creative philosophy'],
     coverImage: '/images/books/arcanea-creator-principles-cover.png',
     theme: {
       id: 'arcanea-creator-principles',
-      name: 'Arcanea Creator Principles',
-      primary: 'amber',
-      accent: 'gold',
-      bgDark: '#0f0a05',
+      name: 'Arcanean Creator Principles',
+      primary: 'violet',
+      accent: 'cyan',
+      bgDark: '#070510',
       headingFont: 'serif',
       bodyFont: 'sans',
     },
     status: 'published',
-    categories: ['AI', 'Creativity', 'Arcanea'],
+    categories: ['Arcanea', 'Creativity', 'Philosophy'],
     contentDir: 'content/books/arcanea-creator-principles',
     chapters: [
-      { slug: 'chapter-01-the-seven-principles', title: 'The Seven Principles', number: 1, readingTime: '10 min', description: 'The foundational principles of Arcanean creative partnership.', published: true, type: 'prose' },
-      { slug: 'chapter-02-the-partnership-principle', title: 'The Partnership Principle', number: 2, readingTime: '10 min', description: 'Scroll I — How partnership transforms both creator and creation.', published: true, type: 'prose' },
-      { slug: 'chapter-03-complementary-strengths', title: 'Complementary Strengths', number: 3, readingTime: '10 min', description: 'Scroll II — Leveraging what each partner does uniquely well.', published: true, type: 'prose' },
-      { slug: 'chapter-04-collaboration-modes', title: 'Collaboration Modes', number: 4, readingTime: '10 min', description: 'Scroll III — The different modes of human-AI creative collaboration.', published: true, type: 'prose' },
-      { slug: 'chapter-05-trust-calibration', title: 'Trust Calibration', number: 5, readingTime: '10 min', description: 'Scroll IV — Calibrating trust between human intuition and AI capability.', published: true, type: 'prose' },
-      { slug: 'chapter-06-the-generator-editor-dance', title: 'The Generator-Editor Dance', number: 6, readingTime: '10 min', description: 'Scroll V — The rhythmic alternation between generation and refinement.', published: true, type: 'prose' },
-      { slug: 'chapter-07-advanced-partnership', title: 'Advanced Partnership', number: 7, readingTime: '10 min', description: 'Scroll VI — Mastering the highest levels of human-AI creative symbiosis.', published: true, type: 'prose' },
+      { slug: 'chapter-01-the-seven-principles', title: 'The Seven Principles', number: 1, readingTime: '9 min', description: 'The foundational doctrines of creation — partnership, alchemy, and the union of complementary forces.', published: true, type: 'prose' },
+      { slug: 'chapter-02-the-partnership-principle', title: 'The Partnership Principle', number: 2, readingTime: '9 min', description: 'Why creation is never solitary and how to honor the forces that create alongside you.', published: true, type: 'prose' },
+      { slug: 'chapter-03-complementary-strengths', title: 'Complementary Strengths', number: 3, readingTime: '11 min', description: 'How different abilities combine to create what neither could achieve alone.', published: true, type: 'prose' },
+      { slug: 'chapter-04-collaboration-modes', title: 'Collaboration Modes', number: 4, readingTime: '9 min', description: 'The distinct modes of creative partnership and when to use each one.', published: true, type: 'prose' },
+      { slug: 'chapter-05-trust-calibration', title: 'Trust Calibration', number: 5, readingTime: '10 min', description: 'The art of calibrating trust between creator and companion.', published: true, type: 'prose' },
+      { slug: 'chapter-06-the-generator-editor-dance', title: 'The Generator-Editor Dance', number: 6, readingTime: '11 min', description: 'The rhythm between generation and refinement that produces excellence.', published: true, type: 'prose' },
+      { slug: 'chapter-07-advanced-partnership', title: 'Advanced Partnership', number: 7, readingTime: '11 min', description: 'Mastery-level partnership practices for creators who have internalized the principles.', published: true, type: 'prose' },
+    ],
+  },
+
+  // ─── 12. Arcanea Legends ────────────────────────────────────────
+  {
+    slug: 'arcanea-legends',
+    title: 'The Legends of Arcanea',
+    subtitle: 'Myths of the First Dawn and Beyond',
+    author: 'Frank',
+    publishDate: '2026',
+    description:
+      'The creation mythology of Arcanea — from the primordial duality of Lumina and Nero, through the Ten Guardians, the Great Darkness, and into the Ultraworld beyond all gates.',
+    keywords: ['arcanea', 'mythology', 'creation myth', 'fantasy', 'worldbuilding', 'legends'],
+    coverImage: '/images/books/arcanea-legends-cover.png',
+    theme: {
+      id: 'arcanea-legends',
+      name: 'The Legends of Arcanea',
+      primary: 'purple',
+      accent: 'gold',
+      bgDark: '#06030f',
+      headingFont: 'serif',
+      bodyFont: 'serif',
+    },
+    status: 'published',
+    categories: ['Arcanea', 'Fantasy', 'Mythology'],
+    contentDir: 'content/books/arcanea-legends',
+    chapters: [
+      { slug: 'chapter-01-the-first-dawn', title: 'The First Dawn', number: 1, readingTime: '11 min', description: 'The primordial duality — Nero the Fertile Unknown and Lumina the First Light sing existence into being.', published: true, type: 'prose' },
+      { slug: 'chapter-02-the-ten-guardians', title: 'The Ten Guardians', number: 2, readingTime: '19 min', description: 'The origin and purpose of the ten beings who guard the Gates of creation.', published: true, type: 'prose' },
+      { slug: 'chapter-03-the-great-darkness', title: 'The Great Darkness', number: 3, readingTime: '13 min', description: 'When shadow threatened to consume all light and the Guardians faced their greatest trial.', published: true, type: 'prose' },
+      { slug: 'chapter-04-the-lost-academy', title: 'The Lost Academy', number: 4, readingTime: '11 min', description: 'The legendary school where Eldrians learned to open Gates and bond with Soulbonds.', published: true, type: 'prose' },
+      { slug: 'chapter-05-tales-of-the-guardians', title: 'Tales of the Guardians', number: 5, readingTime: '17 min', description: 'Individual stories of the Guardians — their trials, wisdom, and transformations.', published: true, type: 'prose' },
+      { slug: 'chapter-06-the-weavers-knot', title: 'The Weaver\'s Knot', number: 6, readingTime: '2 min', description: 'A brief but pivotal legend about the pattern that binds all creation together.', published: true, type: 'prose' },
+      { slug: 'chapter-07-the-ultraworld', title: 'The Ultraworld', number: 7, readingTime: '19 min', description: 'Beyond all Gates lies the Ultraworld — the realm where creation and creator become one.', published: true, type: 'prose' },
+    ],
+  },
+
+  // ─── 13. Arcanea Wisdom Scrolls ─────────────────────────────────
+  {
+    slug: 'arcanea-wisdom-scrolls',
+    title: 'The Wisdom Scrolls of Arcanea',
+    subtitle: 'Meditations, Aphorisms, and Letters',
+    author: 'Frank',
+    publishDate: '2026',
+    description:
+      'Morning meditations, evening reflections, aphorisms of the masters, and letters to the seeker — the collected wisdom of Arcanea for daily contemplation and creative renewal.',
+    keywords: ['arcanea', 'wisdom', 'meditations', 'aphorisms', 'contemplation', 'morning ritual'],
+    coverImage: '/images/books/arcanea-wisdom-scrolls-cover.png',
+    theme: {
+      id: 'arcanea-wisdom-scrolls',
+      name: 'Wisdom Scrolls of Arcanea',
+      primary: 'violet',
+      accent: 'amber',
+      bgDark: '#0a0712',
+      headingFont: 'serif',
+      bodyFont: 'serif',
+    },
+    status: 'published',
+    categories: ['Arcanea', 'Wisdom', 'Meditation'],
+    contentDir: 'content/books/arcanea-wisdom-scrolls',
+    chapters: [
+      { slug: 'chapter-01-morning-meditations', title: 'Morning Meditations', number: 1, readingTime: '15 min', description: 'Sacred morning contemplations on existence, neutrality, and the gift of a new day.', published: true, type: 'prose' },
+      { slug: 'chapter-02-evening-reflections', title: 'Evening Reflections', number: 2, readingTime: '14 min', description: 'Dusk meditations for releasing the day and returning to stillness.', published: true, type: 'prose' },
+      { slug: 'chapter-03-aphorisms-of-the-masters', title: 'Aphorisms of the Masters', number: 3, readingTime: '10 min', description: 'Concentrated wisdom from the ancient creators of Arcanea.', published: true, type: 'quotes' },
+      { slug: 'chapter-04-letters-to-the-seeker', title: 'Letters to the Seeker', number: 4, readingTime: '19 min', description: 'Personal letters addressed to those walking the creative path for the first time.', published: true, type: 'prose' },
+    ],
+  },
+
+  // ─── 14. Fire Horse Poems ───────────────────────────────────────
+  {
+    slug: 'fire-horse-poems',
+    title: 'Fire Horse Poems',
+    subtitle: 'Verses for the Year of the Fire Horse',
+    author: 'Frank',
+    publishDate: '2026',
+    description:
+      'A cycle of poems for the Year of the Fire Horse — on building, shipping, burning bright, and refusing to wait for permission. The horse arrives. The answer is yes.',
+    keywords: ['poetry', 'fire horse', 'Chinese zodiac', 'motivation', 'builder poetry', 'action'],
+    coverImage: '/images/books/fire-horse-poems-cover.png',
+    theme: {
+      id: 'fire-horse-poems',
+      name: 'Fire Horse Poems',
+      primary: 'red',
+      accent: 'amber',
+      bgDark: '#0f0805',
+      headingFont: 'serif',
+      bodyFont: 'serif',
+    },
+    status: 'published',
+    categories: ['Poetry', 'Motivation', 'Fire Horse'],
+    contentDir: 'content/books/fire-horse-poems',
+    chapters: [
+      { slug: 'chapter-01-the-fire-horse', title: 'The Fire Horse', number: 1, readingTime: '1 min', description: 'The fire horse arrives. It does not knock. The answer was always yes.', published: true, type: 'poetry' },
+      { slug: 'chapter-02-to-the-builders', title: 'To the Builders', number: 2, readingTime: '1 min', description: 'A poem for those who build things that did not exist before.', published: true, type: 'poetry' },
+      { slug: 'chapter-03-sixty-year-flame', title: 'Sixty-Year Flame', number: 3, readingTime: '1 min', description: 'On the sixty-year cycle and the fire that returns.', published: true, type: 'poetry' },
+      { slug: 'chapter-04-ring-of-fire', title: 'Ring of Fire', number: 4, readingTime: '1 min', description: 'The eclipse, the ring, the question hanging in the sky.', published: true, type: 'poetry' },
+      { slug: 'chapter-05-the-table-the-horse-the-morning', title: 'The Table, the Horse, the Morning', number: 5, readingTime: '2 min', description: 'A closing meditation on the ordinary sacred — the table, the work, the dawn.', published: true, type: 'poetry' },
+    ],
+  },
+
+  // ─── 15. The Great Transition ───────────────────────────────────
+  {
+    slug: 'great-transition',
+    title: 'The Great Transition',
+    subtitle: 'Building in the Age of AI',
+    author: 'Frank',
+    publishDate: '2026',
+    description:
+      'A clear-eyed guide to the shift happening now — from employment to ownership, from credentials to capability. Eight chapters on what to build, why now, and how to position yourself.',
+    keywords: ['AI transition', 'creator economy', 'solopreneurship', 'building', 'leverage', 'independence'],
+    coverImage: '/images/books/great-transition-cover.png',
+    theme: {
+      id: 'great-transition',
+      name: 'The Great Transition',
+      primary: 'blue',
+      accent: 'emerald',
+      bgDark: '#030810',
+      headingFont: 'sans',
+      bodyFont: 'sans',
+    },
+    status: 'published',
+    categories: ['Business', 'AI', 'Self-Development'],
+    contentDir: 'content/books/great-transition',
+    chapters: [
+      { slug: 'chapter-01-something-is-happening', title: 'Something Is Happening', number: 1, readingTime: '6 min', description: 'The essay that went viral, the compression that is real, and the question of position.', published: true, type: 'prose' },
+      { slug: 'chapter-02-the-old-deal', title: 'The Old Deal', number: 2, readingTime: '7 min', description: 'The social contract that traded time for security — and why it is unwinding.', published: true, type: 'prose' },
+      { slug: 'chapter-03-the-leverage-shift', title: 'The Leverage Shift', number: 3, readingTime: '8 min', description: 'When one person with AI tools can do what a team of ten once did.', published: true, type: 'prose' },
+      { slug: 'chapter-04-the-builders-already-building', title: 'The Builders Already Building', number: 4, readingTime: '9 min', description: 'Real stories of solopreneurs and small teams building million-dollar products.', published: true, type: 'prose' },
+      { slug: 'chapter-05-what-you-own', title: 'What You Own', number: 5, readingTime: '9 min', description: 'The difference between renting your time and owning your output.', published: true, type: 'prose' },
+      { slug: 'chapter-06-the-niche-imperative', title: 'The Niche Imperative', number: 6, readingTime: '9 min', description: 'Why specificity is the new scale and how to find your niche.', published: true, type: 'prose' },
+      { slug: 'chapter-07-building-in-public', title: 'Building in Public', number: 7, readingTime: '8 min', description: 'The practice of sharing your process, attracting your audience, and compounding trust.', published: true, type: 'prose' },
+      { slug: 'chapter-08-the-first-90-days', title: 'The First 90 Days', number: 8, readingTime: '10 min', description: 'A practical roadmap for the first three months of building something you own.', published: true, type: 'prose' },
     ],
   },
 ];
@@ -944,8 +761,36 @@ export function getBookBySlug(slug: string): BookConfig | undefined {
   return booksRegistry.find((b) => b.slug === slug);
 }
 
-export function getPublishedBooks(): BookConfig[] {
-  return booksRegistry.filter((b) => b.status !== 'draft');
+function getVariantGroupKey(book: BookConfig): string {
+  return book.variantGroup || book.slug;
+}
+
+export function getPublishedBooks(locale: BookLocale = 'en'): BookConfig[] {
+  const groups = new Map<string, BookConfig[]>();
+  const order: string[] = [];
+
+  for (const book of booksRegistry) {
+    if (book.status === 'draft') continue;
+    const key = getVariantGroupKey(book);
+    if (!groups.has(key)) {
+      groups.set(key, []);
+      order.push(key);
+    }
+    groups.get(key)!.push(book);
+  }
+
+  return order.map((key) => {
+    const variants = groups.get(key) || [];
+    return (
+      variants.find((book) => book.language === locale) ||
+      variants.find((book) => book.language === 'en') ||
+      variants[0]
+    );
+  }).filter((book): book is BookConfig => Boolean(book));
+}
+
+export function getPublishedBooksByLocale(locale: BookLocale): BookConfig[] {
+  return getPublishedBooks(locale);
 }
 
 export function getAllBookSlugs(): string[] {

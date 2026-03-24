@@ -1,0 +1,402 @@
+{
+  "version": "1.0",
+  "description": "Structured prompt templates for the Visual Creation skill. Every field is mandatory — empty fields block council review.",
+  "organic_first_reminder": "Every template MUST include an organic anchor. Before circuits: fur. Before chrome: wood grain. Before holographic: crystalline growth. Reference: mascot-v05-techno-beast-standing.png",
+
+  "templates": {
+    "blog-hero": {
+      "name": "Blog Hero Image",
+      "aspect_ratio": "16:9",
+      "typical_style": "dark-premium-glass",
+      "description": "Wide hero image for blog post headers. Must be visually dense, brand-aligned, and readable at 680px blog width.",
+      "fields": {
+        "subject": {
+          "type": "string",
+          "required": true,
+          "description": "What this image depicts — specific topic tied to the blog post",
+          "example": "The architecture of a multi-agent AI orchestration system with 6 specialized teams",
+          "anti_example": "AI agents working together"
+        },
+        "organizing_metaphor": {
+          "type": "string",
+          "required": true,
+          "description": "A physical object or scene that structures the entire composition. NOT 'a futuristic visualization'",
+          "example": "A Renaissance inventor's observatory with clockwork armillary sphere at center, surrounded by floating instrument stations",
+          "anti_example": "A futuristic AI dashboard"
+        },
+        "style": {
+          "type": "enum",
+          "required": true,
+          "options": [
+            "dark-premium-glass",
+            "dark-premium-glass:cyberpunk-neon",
+            "dark-premium-glass:davinci-dark",
+            "dark-premium-glass:cinematic-studio",
+            "dark-premium-glass:holographic-command",
+            "davinci-codex",
+            "light-workshop"
+          ],
+          "description": "Must be one of the 3 approved styles or sub-variants"
+        },
+        "viewpoint": {
+          "type": "string",
+          "required": true,
+          "description": "Camera angle and perspective",
+          "example": "Dramatic low angle looking up at the central sphere, 30-degree tilt",
+          "anti_example": "Front view"
+        },
+        "components": {
+          "type": "array",
+          "required": true,
+          "min_items": 4,
+          "item_fields": {
+            "name": {
+              "type": "string",
+              "required": true,
+              "description": "CAPS LABEL for the component",
+              "example": "THE ORCHESTRATION ENGINE",
+              "anti_example": "a gear"
+            },
+            "position": {
+              "type": "string",
+              "required": true,
+              "description": "Where in the frame this component sits",
+              "example": "Center-left, floating above the main platform"
+            },
+            "color": {
+              "type": "string",
+              "required": true,
+              "description": "Primary color with hex code",
+              "example": "Glowing cyan (#43BFE3)"
+            },
+            "material": {
+              "type": "string",
+              "required": true,
+              "description": "Tactile material description — what would it feel like?",
+              "example": "Frosted glass sphere with chrome armature bands, warm amber glow from within",
+              "anti_example": "blue circle"
+            }
+          }
+        },
+        "organic_anchor": {
+          "type": "string",
+          "required": true,
+          "description": "The living/organic element that grounds the image. This is the MOST CRITICAL field. Without it, the image will be sterile chrome.",
+          "example": "Bioluminescent root network spreading from the base of the central structure, with tiny crystal flowers blooming where roots meet platforms. Soft green (#10B981) glow pulses through root veins like a heartbeat.",
+          "anti_example": "Some plants in the corner"
+        },
+        "foreground": {
+          "type": "string",
+          "required": true,
+          "description": "Elements closest to the viewer — creates depth",
+          "example": "Scattered crystalline fragments and unfurled scrolls with visible text annotations, slightly out of focus"
+        },
+        "midground": {
+          "type": "string",
+          "required": true,
+          "description": "Central subject area — primary focus",
+          "example": "The armillary sphere mechanism with 6 orbiting agent stations, each with distinct glowing labels"
+        },
+        "background": {
+          "type": "string",
+          "required": true,
+          "description": "Atmospheric depth layer — creates scale",
+          "example": "Deep navy void (#0f172a) with constellation dot grid and faint nebula wisps in purple (#AB47C7)"
+        },
+        "atmosphere": {
+          "type": "string",
+          "required": true,
+          "description": "Lighting, mood, particles, environmental effects",
+          "example": "Warm directional light from upper-left casting long shadows. Floating dust motes caught in light beams. Subtle volumetric fog near the base."
+        },
+        "emotional_tone": {
+          "type": "string",
+          "required": true,
+          "description": "What the viewer should FEEL when they see this image",
+          "example": "Awe at the complexity, curiosity about how the pieces connect, warmth from the organic elements"
+        },
+        "negative": {
+          "type": "string",
+          "required": true,
+          "description": "What to explicitly exclude. Always include standard anti-patterns.",
+          "default": "clay, claymorphic, pastel colors, cartoon, cute, toy, Play-Doh, bright white background, childish, emoji, flat icons, clip art, generic brain illustration, oversaturated single color, stock photo, watermark, blurry text, chrome robot, sterile, cold metallic without organic warmth"
+        }
+      }
+    },
+
+    "thumbnail": {
+      "name": "Thumbnail / Card Image",
+      "aspect_ratio": "4:3",
+      "typical_style": "dark-premium-glass",
+      "description": "Smaller format for cards, thumbnails, social previews. Must read clearly at small sizes — bold shapes, high contrast, minimal text.",
+      "fields": {
+        "subject": {
+          "type": "string",
+          "required": true,
+          "description": "Core concept — must be graspable in 1 second at small size"
+        },
+        "organizing_metaphor": {
+          "type": "string",
+          "required": true,
+          "description": "Single bold object or scene — simpler than blog-hero"
+        },
+        "style": {
+          "type": "enum",
+          "required": true,
+          "options": [
+            "dark-premium-glass",
+            "dark-premium-glass:cyberpunk-neon",
+            "dark-premium-glass:davinci-dark",
+            "davinci-codex",
+            "light-workshop"
+          ]
+        },
+        "viewpoint": {
+          "type": "string",
+          "required": true,
+          "description": "Usually straight-on or slight angle for clarity at small size"
+        },
+        "components": {
+          "type": "array",
+          "required": true,
+          "min_items": 2,
+          "item_fields": {
+            "name": { "type": "string", "required": true },
+            "position": { "type": "string", "required": true },
+            "color": { "type": "string", "required": true },
+            "material": { "type": "string", "required": true }
+          }
+        },
+        "organic_anchor": {
+          "type": "string",
+          "required": true,
+          "description": "Even at small size, organic warmth matters — a texture, a glow pattern, a living detail"
+        },
+        "foreground": { "type": "string", "required": true },
+        "background": { "type": "string", "required": true },
+        "atmosphere": { "type": "string", "required": true },
+        "emotional_tone": { "type": "string", "required": true },
+        "negative": {
+          "type": "string",
+          "required": true,
+          "default": "clay, claymorphic, pastel, cartoon, cute, flat icons, clip art, generic brain, stock photo, blurry text, chrome robot, sterile"
+        }
+      }
+    },
+
+    "social-image": {
+      "name": "Social Media Image",
+      "aspect_ratio": "1:1",
+      "typical_style": "dark-premium-glass",
+      "description": "Square format for LinkedIn, Twitter, Instagram. Maximum scroll-stop potential. Bold, striking, immediately recognizable as FrankX.",
+      "fields": {
+        "subject": {
+          "type": "string",
+          "required": true,
+          "description": "The insight or statement this image supports — tied to social post content"
+        },
+        "organizing_metaphor": {
+          "type": "string",
+          "required": true,
+          "description": "Bold, iconic — works as a standalone visual statement"
+        },
+        "style": {
+          "type": "enum",
+          "required": true,
+          "options": [
+            "dark-premium-glass",
+            "dark-premium-glass:cyberpunk-neon",
+            "dark-premium-glass:holographic-command"
+          ]
+        },
+        "viewpoint": { "type": "string", "required": true },
+        "components": {
+          "type": "array",
+          "required": true,
+          "min_items": 3,
+          "item_fields": {
+            "name": { "type": "string", "required": true },
+            "position": { "type": "string", "required": true },
+            "color": { "type": "string", "required": true },
+            "material": { "type": "string", "required": true }
+          }
+        },
+        "organic_anchor": {
+          "type": "string",
+          "required": true,
+          "description": "Living element that creates emotional connection in the feed"
+        },
+        "foreground": { "type": "string", "required": true },
+        "background": { "type": "string", "required": true },
+        "atmosphere": { "type": "string", "required": true },
+        "emotional_tone": {
+          "type": "string",
+          "required": true,
+          "description": "Must create SCROLL-STOP — curiosity, awe, or 'I need to read this'"
+        },
+        "negative": {
+          "type": "string",
+          "required": true,
+          "default": "clay, claymorphic, pastel, cartoon, cute, flat icons, clip art, generic brain, stock photo, blurry text, chrome robot, sterile, corporate, boring"
+        }
+      }
+    },
+
+    "product-hero": {
+      "name": "Product Hero Image",
+      "aspect_ratio": "16:9",
+      "typical_style": "dark-premium-glass:davinci-dark",
+      "description": "Premium hero for product pages, course landing pages, system overviews. Must convey value and sophistication.",
+      "fields": {
+        "subject": {
+          "type": "string",
+          "required": true,
+          "description": "The product/system being showcased — what it does, who it's for"
+        },
+        "organizing_metaphor": {
+          "type": "string",
+          "required": true,
+          "description": "Must convey mastery and craftsmanship — workshop, laboratory, command center with organic elements"
+        },
+        "style": {
+          "type": "enum",
+          "required": true,
+          "options": [
+            "dark-premium-glass",
+            "dark-premium-glass:davinci-dark",
+            "dark-premium-glass:holographic-command",
+            "davinci-codex"
+          ]
+        },
+        "viewpoint": { "type": "string", "required": true },
+        "components": {
+          "type": "array",
+          "required": true,
+          "min_items": 4,
+          "item_fields": {
+            "name": { "type": "string", "required": true },
+            "position": { "type": "string", "required": true },
+            "color": { "type": "string", "required": true },
+            "material": { "type": "string", "required": true }
+          }
+        },
+        "organic_anchor": {
+          "type": "string",
+          "required": true,
+          "description": "Product images especially need warmth — they sell to humans, not machines"
+        },
+        "foreground": { "type": "string", "required": true },
+        "midground": { "type": "string", "required": true },
+        "background": { "type": "string", "required": true },
+        "atmosphere": { "type": "string", "required": true },
+        "emotional_tone": {
+          "type": "string",
+          "required": true,
+          "description": "Should convey: 'This is serious craft, built by someone who cares'"
+        },
+        "negative": {
+          "type": "string",
+          "required": true,
+          "default": "clay, claymorphic, pastel, cartoon, cute, flat icons, clip art, generic brain, stock photo, blurry text, chrome robot, sterile, cheap, template-looking"
+        }
+      }
+    },
+
+    "mascot-scene": {
+      "name": "Mascot / Character Scene",
+      "aspect_ratio": "1:1",
+      "typical_style": "dark-premium-glass",
+      "description": "Character-focused image featuring Axi or other FrankX characters. ORGANIC-FIRST IS PARAMOUNT here — fur before circuits, eyes with character, glow from within.",
+      "organic_first_critical": "This template exists because characters are where the organic-first principle matters MOST. A mascot that looks like a chrome robot has completely failed. Reference: mascot-v05-techno-beast-standing.png",
+      "fields": {
+        "subject": {
+          "type": "string",
+          "required": true,
+          "description": "The character, their pose, their emotional state"
+        },
+        "organizing_metaphor": {
+          "type": "string",
+          "required": true,
+          "description": "The scene/environment the character inhabits"
+        },
+        "style": {
+          "type": "enum",
+          "required": true,
+          "options": [
+            "dark-premium-glass",
+            "dark-premium-glass:cinematic-studio"
+          ]
+        },
+        "viewpoint": {
+          "type": "string",
+          "required": true,
+          "description": "Character perspective — eye level creates connection, low angle creates power"
+        },
+        "character_details": {
+          "type": "object",
+          "required": true,
+          "fields": {
+            "species_form": {
+              "type": "string",
+              "required": true,
+              "description": "Base organic form — bear/wolf/fox hybrid, kitsune, creature type"
+            },
+            "fur_texture": {
+              "type": "string",
+              "required": true,
+              "description": "Describe the fur/skin FIRST — color, length, sheen, warmth",
+              "example": "Dense midnight-blue fur with silver-tipped guard hairs catching the light, soft and warm-looking"
+            },
+            "eyes": {
+              "type": "string",
+              "required": true,
+              "description": "Eyes convey character — describe intelligence, warmth, emotion",
+              "example": "Large amber eyes with vertical pupils, warm intelligence, slight knowing squint"
+            },
+            "tech_integration": {
+              "type": "string",
+              "required": true,
+              "description": "How technology is EMBEDDED in the organic form — veins, not armor",
+              "example": "Faint circuit-trace patterns visible beneath fur on shoulders and spine, glowing soft cyan as if the technology is part of the creature's nervous system"
+            },
+            "tails": {
+              "type": "string",
+              "required": true,
+              "description": "3 tails in brand colors",
+              "example": "Three flowing tails — purple (#AB47C7), cyan (#43BFE3), gold (#F59E0B) — each with bioluminescent tip, moving independently"
+            }
+          }
+        },
+        "components": {
+          "type": "array",
+          "required": true,
+          "min_items": 2,
+          "item_fields": {
+            "name": { "type": "string", "required": true },
+            "position": { "type": "string", "required": true },
+            "color": { "type": "string", "required": true },
+            "material": { "type": "string", "required": true }
+          }
+        },
+        "organic_anchor": {
+          "type": "string",
+          "required": true,
+          "description": "The CHARACTER ITSELF is the organic anchor, but the environment should also have organic elements"
+        },
+        "foreground": { "type": "string", "required": true },
+        "background": { "type": "string", "required": true },
+        "atmosphere": { "type": "string", "required": true },
+        "emotional_tone": {
+          "type": "string",
+          "required": true,
+          "description": "What personality does this character project? Wisdom? Mischief? Calm power?"
+        },
+        "negative": {
+          "type": "string",
+          "required": true,
+          "default": "chrome robot, mechanical exoskeleton, armor plating, cute cartoon, chibi, pastel, toy, stuffed animal, plastic, clay, claymorphic, generic AI mascot, no personality in eyes, flat lifeless fur"
+        }
+      }
+    }
+  }
+}

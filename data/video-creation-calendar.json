@@ -1,0 +1,149 @@
+{
+  "version": "1.0",
+  "generatedAt": "2026-02-20T03:00:00Z",
+  "pillars": {
+    "ai-architecture": { "label": "AI Architecture", "color": "emerald", "cadence": "weekly" },
+    "music-production": { "label": "Music Production", "color": "violet", "cadence": "biweekly" },
+    "creator-tools": { "label": "Creator Tools", "color": "cyan", "cadence": "weekly" },
+    "opinion": { "label": "Opinion & Analysis", "color": "amber", "cadence": "biweekly" },
+    "shorts": { "label": "Shorts & Clips", "color": "pink", "cadence": "2x-weekly" }
+  },
+  "weeks": [
+    {
+      "weekOf": "2026-02-24",
+      "label": "Week 1 — Foundation",
+      "theme": "Channel Launch + Core Tutorials",
+      "slots": [
+        {
+          "date": "2026-02-24",
+          "title": "ACOS v11 Demo: Video Production Commands",
+          "pillar": "creator-tools",
+          "format": "tutorial",
+          "status": "idea",
+          "duration": "15min",
+          "notes": "Show /video-produce, /video-clip, /video-publish in action. Screen recording with voiceover."
+        },
+        {
+          "date": "2026-02-26",
+          "title": "Multi-Agent Orchestration: Build a 5-Agent Pipeline",
+          "pillar": "ai-architecture",
+          "format": "tutorial",
+          "status": "idea",
+          "duration": "18min",
+          "notes": "Deep dive into agent coordination patterns. Whiteboard + live code demo."
+        },
+        {
+          "date": "2026-02-28",
+          "title": "I Made 12,000 Songs With AI — Here's What I Learned",
+          "pillar": "music-production",
+          "format": "short",
+          "status": "idea",
+          "duration": "60sec",
+          "notes": "Rapid montage of top tracks, key production insights. Hook-heavy for algorithm."
+        }
+      ]
+    },
+    {
+      "weekOf": "2026-03-03",
+      "label": "Week 2 — Authority",
+      "theme": "Technical Depth + Industry Takes",
+      "slots": [
+        {
+          "date": "2026-03-03",
+          "title": "Claude Code Deep Dive: Advanced Workflows Nobody Talks About",
+          "pillar": "creator-tools",
+          "format": "tutorial",
+          "status": "idea",
+          "duration": "20min",
+          "notes": "Hooks, custom commands, multi-instance, memory systems. Terminal recording."
+        },
+        {
+          "date": "2026-03-05",
+          "title": "Why Enterprise AI Fails: 7 Production Patterns That Actually Work",
+          "pillar": "ai-architecture",
+          "format": "analysis",
+          "status": "idea",
+          "duration": "12min",
+          "notes": "Based on blog post. Slides + talking head. Focus on circuit breakers, retry patterns, observability."
+        },
+        {
+          "date": "2026-03-07",
+          "title": "The Solo Builder Thesis: AI Replaced My Team, Not My Job",
+          "pillar": "opinion",
+          "format": "short",
+          "status": "idea",
+          "duration": "60sec",
+          "notes": "Punchy opinion piece. Stats overlay. Designed for engagement/shares."
+        }
+      ]
+    },
+    {
+      "weekOf": "2026-03-10",
+      "label": "Week 3 — Growth",
+      "theme": "Music Production + Tool Showcase",
+      "slots": [
+        {
+          "date": "2026-03-10",
+          "title": "Suno Prompt Engineering: Genre-Specific Techniques for Pro Results",
+          "pillar": "music-production",
+          "format": "tutorial",
+          "status": "idea",
+          "duration": "15min",
+          "notes": "Live prompt crafting in Suno. Before/after comparisons. Genre-by-genre breakdown."
+        },
+        {
+          "date": "2026-03-12",
+          "title": "RAG Architecture in 2026: What Changed and Why It Matters",
+          "pillar": "ai-architecture",
+          "format": "tutorial",
+          "status": "idea",
+          "duration": "16min",
+          "notes": "Agentic RAG vs traditional. Diagram walkthrough. Code samples."
+        },
+        {
+          "date": "2026-03-13",
+          "title": "Build a Newsletter Empire with AI Agents in 30 Minutes",
+          "pillar": "creator-tools",
+          "format": "short",
+          "status": "idea",
+          "duration": "60sec",
+          "notes": "Speed demo of content intelligence network. Show 6 streams auto-generating."
+        }
+      ]
+    },
+    {
+      "weekOf": "2026-03-17",
+      "label": "Week 4 — Scale",
+      "theme": "Audience Building + Technical Authority",
+      "slots": [
+        {
+          "date": "2026-03-17",
+          "title": "MCP Servers Explained: Connect Claude to Everything",
+          "pillar": "ai-architecture",
+          "format": "tutorial",
+          "status": "idea",
+          "duration": "14min",
+          "notes": "Build a custom MCP server from scratch. Deploy to production. End-to-end walkthrough."
+        },
+        {
+          "date": "2026-03-19",
+          "title": "Why Most AI Content Creators Are Building on Quicksand",
+          "pillar": "opinion",
+          "format": "analysis",
+          "status": "idea",
+          "duration": "10min",
+          "notes": "Industry hot take on AI content commoditization. Data-driven argument. Talking head + B-roll."
+        },
+        {
+          "date": "2026-03-21",
+          "title": "AI Music Production: From Prompt to Master in One Session",
+          "pillar": "music-production",
+          "format": "short",
+          "status": "idea",
+          "duration": "60sec",
+          "notes": "Full production workflow compressed. Show prompt → generation → mastering pipeline."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,196 @@
+{
+  "meta": {
+    "createdAt": "2026-02-20T10:00:00Z",
+    "completedAt": "2026-02-20T16:43:00Z",
+    "styleDnaRef": "docs/strategy/IMAGE_STYLE_DNA.md",
+    "actualCost": "$0.66 (17 images × $0.039)",
+    "model": "gemini-2.5-flash-image",
+    "method": "Direct Gemini API (bypassed MCP due to stale key)"
+  },
+  "completed": [
+    {
+      "id": "building-custom-skills",
+      "oldPath": "public/images/blog/building-custom-skills-hero.png",
+      "newPath": "public/images/blog/building-custom-skills-hero-v2.png",
+      "oldScore": 5,
+      "newScore": 9,
+      "style": "davinci-codex",
+      "sizeKb": 2252,
+      "status": "deployed"
+    },
+    {
+      "id": "mcp-server-integration",
+      "oldPath": "public/images/blog/mcp-server-integration-hero.png",
+      "newPath": "public/images/blog/mcp-server-integration-hero-v2.png",
+      "oldScore": 5,
+      "newScore": 7,
+      "style": "light-workshop",
+      "sizeKb": 1075,
+      "status": "deployed"
+    },
+    {
+      "id": "golden-age-of-intelligence",
+      "oldPath": "public/images/blog/golden-age-of-intelligence-hero.png",
+      "newPath": "public/images/blog/golden-age-of-intelligence-hero-v2.png",
+      "oldScore": 5,
+      "newScore": 8,
+      "style": "davinci-dark",
+      "sizeKb": 1732,
+      "status": "deployed"
+    },
+    {
+      "id": "conscious-ai-integration-os",
+      "oldPath": "public/images/blog/conscious-ai-integration-os-hero.png",
+      "newPath": "public/images/blog/conscious-ai-integration-os-hero-v2.png",
+      "oldScore": 5,
+      "newScore": 7,
+      "style": "holographic-command",
+      "sizeKb": 1165,
+      "status": "deployed"
+    },
+    {
+      "id": "multi-agent-orchestration",
+      "oldPath": "public/images/blog/multi-agent-orchestration.png",
+      "newPath": "public/images/blog/multi-agent-orchestration-v2.png",
+      "oldScore": 6,
+      "newScore": 8,
+      "style": "cyberpunk-neon",
+      "sizeKb": 1284,
+      "status": "deployed"
+    },
+    {
+      "id": "acos-v10-social-infographic",
+      "oldPath": "public/images/blog/acos-v10-social-infographic.png",
+      "newPath": "public/images/blog/acos-v10-social-infographic-v2.png",
+      "oldScore": 5,
+      "newScore": 8,
+      "style": "cyberpunk-neon",
+      "sizeKb": 1440,
+      "status": "deployed"
+    },
+    {
+      "id": "ai-dd-agents",
+      "oldPath": "public/images/blog/ai-dd-agents.png",
+      "newPath": "public/images/blog/ai-dd-agents-v2.png",
+      "oldScore": 6,
+      "newScore": 7,
+      "style": "dark-premium-glass",
+      "sizeKb": 971,
+      "status": "deployed"
+    },
+    {
+      "id": "getting-started-agentic-creator-os",
+      "oldPath": "public/images/blog/getting-started-agentic-creator-os-hero.png",
+      "newPath": "public/images/blog/getting-started-agentic-creator-os-hero-v2.png",
+      "oldScore": 4,
+      "newScore": 7,
+      "style": "light-workshop",
+      "sizeKb": 1008,
+      "status": "deployed"
+    },
+    {
+      "id": "creators-life-architecture-guide",
+      "oldPath": "public/images/blog/creators-life-architecture-guide-hero.png",
+      "newPath": "public/images/blog/creators-life-architecture-guide-hero-v2.png",
+      "oldScore": 3,
+      "newScore": 8,
+      "style": "dark-premium-glass",
+      "sizeKb": 1338,
+      "status": "deployed"
+    },
+    {
+      "id": "conscious-ai-framework",
+      "oldPath": "public/images/blog/conscious-ai-framework-hero.png",
+      "newPath": "public/images/blog/conscious-ai-framework-hero-v2.png",
+      "oldScore": 3,
+      "newScore": 8,
+      "style": "holographic-command",
+      "sizeKb": 1387,
+      "status": "deployed"
+    },
+    {
+      "id": "agentic-ai-roadmap-2026",
+      "oldPath": "public/images/blog/agentic-ai-roadmap-2026-hero.png",
+      "newPath": "public/images/blog/agentic-ai-roadmap-2026-hero-v2.png",
+      "oldScore": 5,
+      "newScore": 8,
+      "style": "cyberpunk-neon",
+      "sizeKb": 1200,
+      "status": "deployed"
+    },
+    {
+      "id": "creators-ai-toolkit-workshop",
+      "oldPath": "public/images/blog/creators-ai-toolkit-workshop-hero.png",
+      "newPath": "public/images/blog/creators-ai-toolkit-workshop-hero-v2.png",
+      "oldScore": 2,
+      "newScore": 7,
+      "style": "light-workshop",
+      "sizeKb": 1086,
+      "status": "deployed"
+    },
+    {
+      "id": "music-as-consciousness-technology",
+      "oldPath": "public/images/blog/music-as-consciousness-technology-hero.png",
+      "newPath": "public/images/blog/music-as-consciousness-technology-hero-v2.png",
+      "oldScore": 5,
+      "newScore": 7,
+      "style": "cinematic-studio",
+      "sizeKb": 950,
+      "status": "deployed"
+    },
+    {
+      "id": "production-agentic-ai-systems",
+      "oldPath": "public/images/blog/production-agentic-ai-systems-hero.png",
+      "newPath": "public/images/blog/production-agentic-ai-systems-hero-v2.png",
+      "oldScore": 5,
+      "newScore": 7,
+      "style": "dark-premium-glass",
+      "sizeKb": 1244,
+      "status": "deployed"
+    },
+    {
+      "id": "prompt-engineering-mastery-workshop",
+      "oldPath": "public/images/blog/prompt-engineering-mastery-workshop-hero.png",
+      "newPath": "public/images/blog/prompt-engineering-mastery-workshop-hero-v2.png",
+      "oldScore": 4,
+      "newScore": 7,
+      "style": "light-workshop",
+      "sizeKb": 1116,
+      "status": "deployed"
+    },
+    {
+      "id": "agentic-workflows-save-hours",
+      "oldPath": "public/images/blog/agentic-workflows-save-hours-hero.png",
+      "newPath": "public/images/blog/agentic-workflows-save-hours-hero-v2.png",
+      "oldScore": 5,
+      "newScore": 7,
+      "style": "dark-premium-glass",
+      "sizeKb": 1144,
+      "status": "deployed"
+    },
+    {
+      "id": "conscious-ai-entrepreneurs",
+      "oldPath": "public/images/blog/conscious-ai-entrepreneurs-hero.png",
+      "newPath": "public/images/blog/conscious-ai-entrepreneurs-hero-v2.png",
+      "oldScore": 5,
+      "newScore": 7,
+      "style": "dark-premium-glass",
+      "sizeKb": 1076,
+      "status": "deployed"
+    }
+  ],
+  "summary": {
+    "totalRegenerated": 17,
+    "averageScoreBefore": 4.6,
+    "averageScoreAfter": 7.5,
+    "averageImprovement": "+2.9 points",
+    "biggestJumps": [
+      "creators-ai-toolkit-workshop: 2 -> 7 (+5)",
+      "creators-life-architecture-guide: 3 -> 8 (+5)",
+      "conscious-ai-framework: 3 -> 8 (+5)",
+      "building-custom-skills: 5 -> 9 (+4)"
+    ],
+    "totalSizeMb": 20.5,
+    "cost": "$0.66"
+  }
+}

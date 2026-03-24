@@ -16,9 +16,10 @@ import {
   Brain,
   Rocket,
   TrendingUp,
-  Palette,
   Music2,
   MessageSquare,
+  Presentation,
+  Users,
 } from 'lucide-react'
 import { AILabsMarquee } from '@/components/ui/AILabsMarquee'
 
@@ -29,7 +30,7 @@ import { AILabsMarquee } from '@/components/ui/AILabsMarquee'
 function AuroraBackground() {
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none">
-      <div className="absolute inset-0 bg-[#030712]" />
+      <div className="absolute inset-0 bg-[#0a0a0b]" />
 
       {/* Gradient orbs */}
       <motion.div
@@ -77,28 +78,64 @@ function AuroraBackground() {
 
 const learningPaths = [
   {
-    id: 'oracle-ai',
-    title: 'Oracle AI Foundations',
-    provider: 'Oracle',
-    duration: '8-12 hours',
+    id: 'anthropic-prompt',
+    title: 'Prompt Engineering Interactive Tutorial',
+    provider: 'Anthropic',
+    duration: '3-5 hours',
     level: 'Beginner',
-    description: 'Official Oracle certification path covering AI fundamentals, machine learning basics, and Oracle Cloud AI services.',
-    url: 'https://mylearn.oracle.com/ou/learning-path/oracle-ai-foundations/122395',
-    highlights: ['Free certification', 'Cloud AI services', 'Enterprise-ready skills'],
-    color: 'cyan',
-    badge: 'Certification',
+    description: 'Hands-on tutorial for writing effective prompts for Claude and other LLMs. The single most valuable AI skill you can learn today.',
+    url: 'https://github.com/anthropics/prompt-eng-interactive-tutorial',
+    highlights: ['Hands-on Jupyter notebooks', 'Best practices from Anthropic', 'Real-world examples'],
+    color: 'amber',
+    badge: 'Start Here',
   },
   {
     id: 'google-ai',
     title: 'Google AI Essentials',
     provider: 'Google',
-    duration: '10 hours',
+    duration: '5 hours',
     level: 'Beginner',
-    description: "Google's foundational AI course covering practical applications of AI, prompt engineering, and responsible AI use.",
-    url: 'https://grow.google/ai-essentials',
+    description: "Google's foundational AI course covering practical applications, prompt engineering, and responsible AI use.",
+    url: 'https://grow.google/ai-essentials/',
     highlights: ['Hands-on projects', 'Prompt engineering', 'Career-ready certificate'],
     color: 'emerald',
     badge: 'Certificate',
+  },
+  {
+    id: 'hf-mcp',
+    title: 'Model Context Protocol Course',
+    provider: 'Hugging Face',
+    duration: '4-6 hours',
+    level: 'Beginner',
+    description: 'Learn MCP — the open protocol that lets AI connect to any tool: databases, calendars, APIs. Built with Anthropic. The USB port for AI.',
+    url: 'https://huggingface.co/learn/mcp-course/en/unit0/introduction',
+    highlights: ['Free and open source', 'Built with Anthropic', 'Industry-standard protocol'],
+    color: 'cyan',
+    badge: '2026 Essential',
+  },
+  {
+    id: 'deeplearning-agents',
+    title: 'Agentic AI Fundamentals',
+    provider: 'DeepLearning.AI',
+    duration: '2-4 hours',
+    level: 'Beginner',
+    description: 'Understand AI agents that take action autonomously — research, code, deploy. The next wave after chatbots.',
+    url: 'https://learn.deeplearning.ai/courses/agentic-ai/information',
+    highlights: ['Free to audit', 'Covers agent architectures', 'Practical examples'],
+    color: 'violet',
+    badge: 'Hot in 2026',
+  },
+  {
+    id: 'oracle-ai',
+    title: 'OCI AI Foundations Associate',
+    provider: 'Oracle',
+    duration: '8-12 hours',
+    level: 'Beginner',
+    description: 'Official Oracle certification covering AI fundamentals, machine learning, generative AI, and LLMs on Oracle Cloud Infrastructure.',
+    url: 'https://mylearn.oracle.com/ou/learning-path/become-a-oci-ai-foundations-associate-2025/147781',
+    highlights: ['Free certification', 'Enterprise cloud AI', 'Career credential'],
+    color: 'rose',
+    badge: 'Certification',
   },
   {
     id: 'mit-intro',
@@ -106,23 +143,11 @@ const learningPaths = [
     provider: 'MIT',
     duration: '20+ hours',
     level: 'Intermediate',
-    description: "MIT's legendary deep learning course covering neural networks, computer vision, NLP, and generative AI.",
-    url: 'http://introtodeeplearning.com/',
-    highlights: ['World-class instruction', 'Deep technical foundations', 'Research-grade content'],
+    description: "MIT 6.S191 — the legendary deep learning course. Neural networks, computer vision, NLP, and generative AI with hands-on labs.",
+    url: 'https://introtodeeplearning.com/',
+    highlights: ['World-class instruction', 'Google Colab labs', 'Research-grade content'],
     color: 'violet',
     badge: 'Advanced',
-  },
-  {
-    id: 'anthropic-prompt',
-    title: 'Prompt Engineering Guide',
-    provider: 'Anthropic',
-    duration: '3-5 hours',
-    level: 'Beginner',
-    description: 'Learn to write effective prompts for Claude and other LLMs. Essential skills for working with AI.',
-    url: 'https://docs.anthropic.com/claude/docs/prompt-engineering',
-    highlights: ['Official Claude docs', 'Best practices', 'Real examples'],
-    color: 'amber',
-    badge: 'Essential',
   },
   {
     id: 'deeplearning-ai',
@@ -130,10 +155,10 @@ const learningPaths = [
     provider: 'DeepLearning.AI',
     duration: '6 hours',
     level: 'Beginner',
-    description: 'Andrew Ng\'s accessible introduction to AI for non-technical professionals. Understand the capabilities and limitations.',
+    description: 'Andrew Ng\'s accessible introduction to AI for non-technical professionals. Understand capabilities, limitations, and business applications.',
     url: 'https://www.deeplearning.ai/courses/ai-for-everyone/',
-    highlights: ['Non-technical friendly', 'Business applications', 'Industry insights'],
-    color: 'rose',
+    highlights: ['Accessible to all backgrounds', 'Business applications', 'Industry insights'],
+    color: 'emerald',
     badge: 'Popular',
   },
   {
@@ -148,57 +173,69 @@ const learningPaths = [
     color: 'cyan',
     badge: 'Comprehensive',
   },
+  {
+    id: 'ms-mcp-beginners',
+    title: 'MCP for Beginners',
+    provider: 'Microsoft',
+    duration: '4-8 hours',
+    level: 'Beginner',
+    description: 'Open-source curriculum teaching Model Context Protocol from scratch. Examples in Python, TypeScript, Java, and more.',
+    url: 'https://github.com/microsoft/mcp-for-beginners',
+    highlights: ['Open source curriculum', 'Multi-language examples', 'Hands-on projects'],
+    color: 'amber',
+    badge: 'Hands-on',
+  },
 ]
 
 const quickStartResources = [
   {
-    title: 'ChatGPT Basics',
-    description: 'Start using AI in 5 minutes',
-    icon: MessageSquare,
-    url: 'https://chat.openai.com',
-    color: 'emerald',
-  },
-  {
-    title: 'Claude by Anthropic',
-    description: 'Conversational AI assistant',
+    title: 'Claude',
+    description: 'Advanced reasoning AI',
     icon: Brain,
     url: 'https://claude.ai',
     color: 'violet',
   },
   {
-    title: 'Suno AI Music',
+    title: 'ChatGPT',
+    description: 'General-purpose AI assistant',
+    icon: MessageSquare,
+    url: 'https://chat.openai.com',
+    color: 'emerald',
+  },
+  {
+    title: 'Suno AI',
     description: 'Create music with AI',
     icon: Music2,
     url: 'https://suno.com',
     color: 'cyan',
   },
   {
-    title: 'Midjourney',
-    description: 'AI image generation',
-    icon: Palette,
-    url: 'https://midjourney.com',
+    title: 'Gemini',
+    description: 'Google AI with search',
+    icon: Sparkles,
+    url: 'https://gemini.google.com',
     color: 'amber',
   },
 ]
 
 const essentialReadings = [
   {
-    title: 'AI Doesn\'t Have to Be Soulless',
-    description: 'How to use AI as a creative partner without losing your authentic voice',
-    href: '/blog/ai-doesnt-have-to-be-soulless',
-    color: 'cyan',
+    title: 'Golden Age of Intelligence',
+    description: 'Why now is the best time in history to learn AI — and how to make the most of it',
+    href: '/blog/golden-age-of-intelligence',
+    color: 'emerald',
   },
   {
-    title: 'The Intelligence Revolution 2025',
-    description: 'What\'s changing in AI this year and how to stay ahead',
-    href: '/blog/intelligence-revolution-2025',
+    title: 'The Agentic AI Roadmap',
+    description: 'From chatbots to autonomous agents — the three waves of AI transforming every industry',
+    href: '/blog/agentic-ai-roadmap-2026',
     color: 'violet',
   },
   {
-    title: 'Golden Age of Intelligence',
-    description: 'Why now is the best time in history to learn AI',
-    href: '/blog/golden-age-of-intelligence',
-    color: 'emerald',
+    title: 'AI as a Creative Partner',
+    description: 'How to use AI without losing your authentic voice — a guide for creators and builders',
+    href: '/blog/ai-doesnt-have-to-be-soulless',
+    color: 'cyan',
   },
 ]
 
@@ -293,9 +330,9 @@ export default function StudentsPage() {
               {/* Stats row */}
               <div className="flex flex-wrap gap-8">
                 {[
-                  { value: '6+', label: 'Curated Courses' },
+                  { value: '9', label: 'Curated Courses' },
                   { value: '100%', label: 'Free Access' },
-                  { value: '50+', label: 'Hours of Content' },
+                  { value: '80+', label: 'Hours of Content' },
                 ].map((stat, i) => (
                   <motion.div
                     key={stat.label}
@@ -363,7 +400,7 @@ export default function StudentsPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
-                  className="p-6 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-white/10 transition-all"
+                  className="p-6 rounded-2xl border border-white/[0.08] bg-white/[0.03] hover:border-white/10 transition-all"
                 >
                   <div className={`p-3 rounded-xl ${colorMap[item.color].icon} w-fit mb-4`}>
                     <item.icon className="w-5 h-5" />
@@ -376,39 +413,38 @@ export default function StudentsPage() {
           </div>
         </section>
 
-        {/* Ikigai Workshop Feature */}
+        {/* AI Briefing 2026 — Featured */}
         <section className="py-12">
-          <div className="max-w-6xl mx-auto px-6">
+          <div className="max-w-6xl mx-auto px-6 space-y-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <Link href="/students/ikigai" className="group block">
-                <div className="relative overflow-hidden rounded-2xl border border-violet-500/20 bg-gradient-to-br from-violet-500/10 via-slate-900/50 to-cyan-500/10 p-8 md:p-10 transition-all duration-500 hover:border-violet-500/40">
-                  {/* Decorative gradient */}
-                  <div className="absolute -right-20 -top-20 h-40 w-40 rounded-full bg-gradient-to-br from-violet-500/20 to-cyan-500/20 blur-3xl" />
-                  <div className="absolute -left-10 -bottom-10 h-32 w-32 rounded-full bg-gradient-to-br from-emerald-500/10 to-cyan-500/10 blur-3xl" />
+              <Link href="/students/ai-briefing" className="group block">
+                <div className="relative overflow-hidden rounded-2xl border border-cyan-500/20 bg-gradient-to-br from-cyan-500/10 via-slate-900/50 to-violet-500/10 p-8 md:p-10 transition-all duration-500 hover:border-cyan-500/40">
+                  <div className="absolute -right-20 -top-20 h-40 w-40 rounded-full bg-gradient-to-br from-cyan-500/20 to-emerald-500/20 blur-3xl" />
+                  <div className="absolute -left-10 -bottom-10 h-32 w-32 rounded-full bg-gradient-to-br from-violet-500/10 to-cyan-500/10 blur-3xl" />
 
                   <div className="relative flex flex-col gap-6 md:flex-row md:items-center md:justify-between">
                     <div className="flex-1">
                       <div className="mb-4 flex items-center gap-3">
-                        <div className="p-3 rounded-xl bg-violet-500/20 text-violet-400">
-                          <Target className="w-6 h-6" />
+                        <div className="p-3 rounded-xl bg-cyan-500/20 text-cyan-400">
+                          <Presentation className="w-6 h-6" />
                         </div>
                         <div>
-                          <span className="text-xs font-medium uppercase tracking-[0.15em] text-violet-400">
-                            Featured Workshop
+                          <span className="text-xs font-medium uppercase tracking-[0.15em] text-cyan-400">
+                            The AI Briefing
                           </span>
-                          <h2 className="text-2xl font-bold text-white">Ikigai Workshop</h2>
+                          <h2 className="text-2xl font-bold text-white">AI in 2026: What You Need to Know</h2>
                         </div>
                       </div>
                       <p className="text-white/60 leading-relaxed mb-4">
-                        Find your purpose at the intersection of passion, skill, impact, and income.
-                        Build your 30/60/90 plan and portfolio strategy for the AI age.
+                        From GenAI to autonomous agents to MCP — the three waves reshaping every industry.
+                        Career paths, live demos, and the resources to get started today.
                       </p>
                       <div className="flex flex-wrap gap-2">
-                        {['Self-paced', '2-3 hours', 'Privacy-first', 'Free'].map((tag) => (
+                        {['Three Waves of AI', 'Career Paths', 'Live Demos', 'Free Resources'].map((tag) => (
                           <span key={tag} className="rounded-full bg-white/5 px-3 py-1 text-xs text-white/50">
                             {tag}
                           </span>
@@ -416,13 +452,64 @@ export default function StudentsPage() {
                       </div>
                     </div>
                     <div className="flex items-center gap-2 text-white/60 transition-colors group-hover:text-white">
-                      <span className="font-medium">Start workshop</span>
+                      <span className="font-medium">Explore the briefing</span>
                       <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
                     </div>
                   </div>
                 </div>
               </Link>
             </motion.div>
+
+            {/* Secondary: Ikigai Workshop + Prompt Library */}
+            <div className="grid md:grid-cols-2 gap-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+              >
+                <Link href="/students/ikigai" className="group block h-full">
+                  <div className="relative overflow-hidden rounded-2xl border border-violet-500/20 bg-white/[0.03] p-6 transition-all duration-500 hover:border-violet-500/40 h-full">
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="p-2.5 rounded-xl bg-violet-500/10 text-violet-400">
+                        <Target className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-bold text-white">Ikigai Workshop</h3>
+                        <span className="text-xs text-white/40">Self-paced, 2-3 hours</span>
+                      </div>
+                    </div>
+                    <p className="text-sm text-white/50 leading-relaxed">
+                      Find your purpose at the intersection of passion, skill, impact, and income.
+                    </p>
+                  </div>
+                </Link>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.15 }}
+              >
+                <Link href="/prompt-library" className="group block h-full">
+                  <div className="relative overflow-hidden rounded-2xl border border-emerald-500/20 bg-white/[0.03] p-6 transition-all duration-500 hover:border-emerald-500/40 h-full">
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="p-2.5 rounded-xl bg-emerald-500/10 text-emerald-400">
+                        <Sparkles className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <h3 className="text-lg font-bold text-white">Prompt Library</h3>
+                        <span className="text-xs text-white/40">Ready-to-use AI prompts</span>
+                      </div>
+                    </div>
+                    <p className="text-sm text-white/50 leading-relaxed">
+                      Copy-paste prompts for writing, research, coding, and creative work.
+                    </p>
+                  </div>
+                </Link>
+              </motion.div>
+            </div>
           </div>
         </section>
 
@@ -452,7 +539,7 @@ export default function StudentsPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.05 }}
-                  className="group p-5 rounded-xl border border-white/5 bg-white/[0.02] hover:border-white/15 hover:bg-white/[0.04] transition-all"
+                  className="group p-5 rounded-xl border border-white/[0.08] bg-white/[0.03] hover:border-white/15 hover:bg-white/[0.04] transition-all"
                 >
                   <div className={`p-2.5 rounded-lg ${colorMap[resource.color].icon} w-fit mb-3`}>
                     <resource.icon className="w-4 h-4" />
@@ -597,7 +684,7 @@ export default function StudentsPage() {
                     transition={{ delay: i * 0.1 }}
                     className="relative"
                   >
-                    <div className="p-5 rounded-xl border border-white/5 bg-white/[0.02] hover:border-white/10 transition-all">
+                    <div className="p-5 rounded-xl border border-white/[0.08] bg-white/[0.03] hover:border-white/10 transition-all">
                       <div className="text-xs font-medium text-cyan-400 mb-2">Week {milestone.week}</div>
                       <h3 className="text-base font-semibold text-white mb-1">{milestone.title}</h3>
                       <p className="text-xs text-white/50">{milestone.description}</p>
@@ -635,7 +722,7 @@ export default function StudentsPage() {
                 >
                   <Link
                     href={reading.href}
-                    className="group block p-6 rounded-2xl border border-white/5 bg-white/[0.02] hover:border-white/15 hover:bg-white/[0.04] transition-all h-full"
+                    className="group block p-6 rounded-2xl border border-white/[0.08] bg-white/[0.03] hover:border-white/15 hover:bg-white/[0.04] transition-all h-full"
                   >
                     <BookOpen className={`w-8 h-8 ${colorMap[reading.color].text} opacity-70 mb-4`} />
                     <h3 className="text-lg font-semibold text-white mb-2 group-hover:text-emerald-400 transition-colors">
@@ -672,47 +759,82 @@ export default function StudentsPage() {
           </div>
         </section>
 
-        {/* Bottom CTA */}
+        {/* Bottom CTA — Next Steps */}
         <section className="py-20 border-t border-white/5">
           <div className="max-w-6xl mx-auto px-6">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-slate-900/80 via-slate-900/60 to-slate-800/40 p-10 md:p-12"
+              className="mb-10 text-center"
             >
-              {/* Decorative gradients */}
-              <div className="absolute -right-20 -top-20 h-40 w-40 rounded-full bg-gradient-to-br from-cyan-500/20 to-emerald-500/20 blur-3xl" />
-              <div className="absolute -left-20 -bottom-20 h-40 w-40 rounded-full bg-gradient-to-br from-violet-500/20 to-cyan-500/20 blur-3xl" />
-
-              <div className="relative flex flex-col items-center text-center">
-                <div className="p-3 rounded-xl bg-amber-500/10 text-amber-400 mb-6">
-                  <Award className="w-6 h-6" />
-                </div>
-                <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
-                  Track your progress
-                </h2>
-                <p className="text-white/50 mb-8 max-w-md">
-                  See my certifications and the paths I've completed. Your journey starts with one course.
-                </p>
-                <div className="flex flex-wrap items-center justify-center gap-4">
-                  <Link
-                    href="/achievements"
-                    className="group inline-flex items-center gap-2 bg-white text-black px-6 py-3 rounded-full font-medium transition-all hover:bg-white/90 hover:shadow-lg"
-                  >
-                    View Achievements
-                    <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-                  </Link>
-                  <Link
-                    href="/prompt-library"
-                    className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium text-white/60 border border-white/10 hover:border-white/20 hover:text-white transition-all"
-                  >
-                    <Sparkles className="w-4 h-4" />
-                    Explore Prompts
-                  </Link>
-                </div>
-              </div>
+              <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
+                Your next steps
+              </h2>
+              <p className="text-white/50 max-w-xl mx-auto">
+                Learning is the beginning. Build something, connect with creators, and keep going.
+              </p>
             </motion.div>
+
+            <div className="grid gap-6 md:grid-cols-3 mb-8">
+              {[
+                {
+                  icon: Award,
+                  title: 'Track Progress',
+                  description: 'See certifications and completed paths.',
+                  href: '/achievements',
+                  color: 'amber',
+                },
+                {
+                  icon: Users,
+                  title: 'Join the Community',
+                  description: 'Connect with builders and creators.',
+                  href: '/community',
+                  color: 'cyan',
+                },
+                {
+                  icon: BookOpen,
+                  title: 'Explore Guides',
+                  description: 'Deep dives on AI tools and techniques.',
+                  href: '/guides',
+                  color: 'emerald',
+                },
+              ].map((item, i) => (
+                <motion.div
+                  key={item.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                >
+                  <Link href={item.href} className="group block h-full">
+                    <div className={`p-6 rounded-2xl border ${colorMap[item.color].border} ${colorMap[item.color].bg} transition-all h-full`}>
+                      <div className={`p-2.5 rounded-xl ${colorMap[item.color].icon} w-fit mb-3`}>
+                        <item.icon className="w-5 h-5" />
+                      </div>
+                      <h3 className="text-base font-semibold text-white mb-1">{item.title}</h3>
+                      <p className="text-sm text-white/50">{item.description}</p>
+                    </div>
+                  </Link>
+                </motion.div>
+              ))}
+            </div>
+
+            <div className="flex flex-wrap items-center justify-center gap-4">
+              <Link
+                href="/students/ai-briefing"
+                className="group inline-flex items-center gap-2 bg-white text-black px-6 py-3 rounded-full font-medium transition-all hover:bg-white/90 hover:shadow-lg"
+              >
+                AI Briefing 2026
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+              <Link
+                href="/watch"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full font-medium text-white/60 border border-white/10 hover:border-white/20 hover:text-white transition-all"
+              >
+                Video Vault
+              </Link>
+            </div>
           </div>
         </section>
       </div>
