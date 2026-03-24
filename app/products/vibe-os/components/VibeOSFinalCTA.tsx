@@ -180,7 +180,7 @@ export default function VibeOSFinalCTA({ productId, offer }: VibeOSFinalCTAProps
           <div className="h-10 w-10 rounded-full bg-gradient-to-br from-cyan-400 to-blue-500" />
           <div className="text-left">
             <div className="text-sm font-semibold text-white">Created by Frank</div>
-            <div className="text-xs text-white/50">500+ AI songs produced</div>
+            <div className="text-xs text-white/50">12,000+ AI songs produced</div>
           </div>
         </motion.div>
       </div>

@@ -138,7 +138,7 @@ const methodologyLd = JSON.stringify({
   description: `How we validate claims, cross-reference sources, and maintain research quality across ${researchDomains.length} domains and ${totalSources}+ sources.`,
   author: {
     '@type': 'Person',
-    name: 'Frank van den Bergh',
+    name: 'Frank Riemer',
     url: 'https://frankx.ai',
     jobTitle: 'AI Architect',
   },

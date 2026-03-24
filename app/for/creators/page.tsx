@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import {
@@ -50,7 +51,7 @@ const creatorTools = [
   {
     icon: Terminal,
     title: 'Agentic Creator OS',
-    description: 'Open-source operating system for Claude Code. 630+ skills, 40+ agents, one entry point.',
+    description: 'Open-source operating system for Claude Code. 75+ skills, 38 agents, one entry point.',
     href: '/acos',
     stat: 'Open source',
     color: 'purple',
@@ -137,7 +138,19 @@ export default function CreatorsLandingPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null)
 
   return (
-    <div className="min-h-screen bg-[#0F172A] text-white">
+    <div className="min-h-screen bg-[#0a0a0b] text-white">
+      {/* Hero Image */}
+      <div className="relative mb-8 overflow-hidden rounded-2xl mx-auto max-w-5xl mt-6 px-6">
+        <div className="relative aspect-[21/9] rounded-2xl overflow-hidden">
+          <Image src="/images/blog/acos-use-cases-creator-types-hero.png" alt="Creator tools and AI-powered creative workflows" fill className="object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/60 to-transparent" />
+        </div>
+        <div className="absolute bottom-0 left-0 p-6">
+          <p className="text-[11px] uppercase tracking-[0.2em] text-emerald-400/60 mb-2">For Creators</p>
+          <h1 className="text-2xl font-bold text-white">Build Your Creator Empire with AI</h1>
+        </div>
+      </div>
+
       {/* Background orbs */}
       <div className="fixed inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -left-40 top-20 h-[500px] w-[500px] rounded-full opacity-20" style={{ background: 'radial-gradient(circle, rgba(16,185,129,0.4) 0%, transparent 70%)' }} />
@@ -188,13 +201,13 @@ export default function CreatorsLandingPage() {
       </section>
 
       {/* Stats bar */}
-      <section className="relative border-y border-white/5 bg-white/[0.02] py-10">
+      <section className="relative border-y border-white/[0.08] bg-white/[0.03] py-10">
         <div className="mx-auto max-w-5xl px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {[
               { value: '12K+', label: 'Songs Created' },
               { value: '70+', label: 'Tutorials' },
-              { value: '630+', label: 'AI Skills' },
+              { value: '75+', label: 'AI Skills' },
               { value: 'Free', label: 'To Start' },
             ].map((stat, i) => (
               <motion.div
@@ -288,7 +301,7 @@ export default function CreatorsLandingPage() {
               >
                 <Link
                   href={post.href}
-                  className="group flex items-center justify-between rounded-xl border border-white/5 bg-white/[0.02] p-5 transition-all hover:border-white/10 hover:bg-white/[0.04]"
+                  className="group flex items-center justify-between rounded-xl border border-white/[0.08] bg-white/[0.03] p-5 transition-all hover:border-white/10 hover:bg-white/[0.04]"
                 >
                   <div className="flex items-center gap-4">
                     <span className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 uppercase tracking-wider">

@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Clinical Dashboard Prototype | Pediatric Leukemia AI Ecosystem</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --oracle-red: #C74634;
+            --bg-dark: #0A0A0F;
+            --bg-card: rgba(22, 27, 34, 0.95);
+            --bg-elevated: rgba(30, 35, 44, 0.98);
+            --text-primary: #E6EDF3;
+            --text-secondary: #8B949E;
+            --text-muted: #6E7681;
+            --border: rgba(255, 255, 255, 0.08);
+            --green: #10B981;
+            --green-dim: rgba(16, 185, 129, 0.15);
+            --blue: #3B82F6;
+            --blue-dim: rgba(59, 130, 246, 0.15);
+            --purple: #8B5CF6;
+            --purple-dim: rgba(139, 92, 246, 0.15);
+            --amber: #F59E0B;
+            --amber-dim: rgba(245, 158, 11, 0.15);
+            --red: #EF4444;
+            --red-dim: rgba(239, 68, 68, 0.15);
+            --font: 'Inter', -apple-system, sans-serif;
+            --mono: 'JetBrains Mono', monospace;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: var(--font);
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.5;
+            min-height: 100vh;
+        }
+
+        /* Dashboard Layout */
+        .dashboard {
+            display: grid;
+            grid-template-columns: 280px 1fr 340px;
+            grid-template-rows: 60px 1fr;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            grid-column: 1 / -1;
+            background: var(--bg-card);
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 700;
+            font-size: 15px;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--oracle-red);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 14px;
+        }
+
+        .header-search {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 8px 14px;
+            color: var(--text-primary);
+            font-size: 13px;
+            width: 300px;
+            outline: none;
+        }
+
+        .header-search:focus {
+            border-color: var(--blue);
+            background: rgba(59, 130, 246, 0.05);
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .header-badge {
+            background: var(--green-dim);
+            color: var(--green);
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .header-user {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--purple) 0%, var(--blue) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            background: var(--bg-card);
+            border-right: 1px solid var(--border);
+            padding: 20px 16px;
+            overflow-y: auto;
+        }
+
+        .sidebar-section {
+            margin-bottom: 28px;
+        }
+
+        .sidebar-label {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            padding: 0 8px;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            border-radius: 8px;
+            color: var(--text-secondary);
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.15s;
+            margin-bottom: 2px;
+        }
+
+        .nav-item:hover {
+            background: rgba(255,255,255,0.04);
+            color: var(--text-primary);
+        }
+
+        .nav-item.active {
+            background: var(--blue-dim);
+            color: var(--blue);
+        }
+
+        .nav-item .icon {
+            width: 18px;
+            height: 18px;
+            opacity: 0.7;
+        }
+
+        .nav-item .badge {
+            margin-left: auto;
+            background: var(--red);
+            color: white;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 10px;
+        }
+
+        /* Main Content */
+        .main {
+            background: var(--bg-dark);
+            padding: 24px;
+            overflow-y: auto;
+        }
+
+        .main-header {
+            margin-bottom: 24px;
+        }
+
+        .main-header h1 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .main-header p {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        /* Patient Card */
+        .patient-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .patient-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+
+        .patient-info h2 {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .patient-meta {
+            display: flex;
+            gap: 16px;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .patient-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--amber);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        .status-text {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--amber);
+        }
+
+        /* Vector Similarity Section */
+        .vectors-section {
+            background: var(--bg-elevated);
+            border-radius: 10px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .vectors-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .vectors-title {
+            font-size: 13px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .vectors-title .ai-badge {
+            background: linear-gradient(135deg, var(--purple) 0%, var(--blue) 100%);
+            color: white;
+            font-size: 9px;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        .vector-bars {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .vector-row {
+            display: grid;
+            grid-template-columns: 100px 1fr 50px;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .vector-label {
+            font-size: 11px;
+            color: var(--text-secondary);
+        }
+
+        .vector-bar-bg {
+            height: 6px;
+            background: rgba(255,255,255,0.08);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        .vector-bar {
+            height: 100%;
+            border-radius: 3px;
+            transition: width 1s ease-out;
+        }
+
+        .vector-value {
+            font-size: 11px;
+            font-weight: 600;
+            font-family: var(--mono);
+            text-align: right;
+        }
+
+        /* Similar Cases */
+        .similar-cases {
+            margin-top: 16px;
+        }
+
+        .similar-case {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px;
+            background: rgba(255,255,255,0.02);
+            border-radius: 8px;
+            margin-bottom: 8px;
+            border: 1px solid transparent;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .similar-case:hover {
+            background: rgba(59, 130, 246, 0.05);
+            border-color: var(--blue);
+        }
+
+        .similar-case-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .similarity-ring {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            font-weight: 700;
+            font-family: var(--mono);
+        }
+
+        .similar-case-details h4 {
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 2px;
+        }
+
+        .similar-case-details p {
+            font-size: 11px;
+            color: var(--text-secondary);
+        }
+
+        .similar-case-outcome {
+            text-align: right;
+        }
+
+        .outcome-label {
+            font-size: 10px;
+            color: var(--text-muted);
+            margin-bottom: 2px;
+        }
+
+        .outcome-value {
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .outcome-positive { color: var(--green); }
+        .outcome-warning { color: var(--amber); }
+
+        /* AI Analysis Panel */
+        .ai-panel {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .ai-panel-header {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.15) 0%, rgba(59, 130, 246, 0.15) 100%);
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .ai-panel-header h3 {
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .ai-panel-header .model-tag {
+            margin-left: auto;
+            font-size: 10px;
+            color: var(--text-secondary);
+            font-family: var(--mono);
+        }
+
+        .ai-panel-content {
+            padding: 20px;
+        }
+
+        /* Chat-like AI Output */
+        .ai-message {
+            margin-bottom: 16px;
+        }
+
+        .ai-message-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .ai-avatar {
+            width: 24px;
+            height: 24px;
+            background: linear-gradient(135deg, var(--purple) 0%, var(--blue) 100%);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+        }
+
+        .ai-name {
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .ai-timestamp {
+            font-size: 10px;
+            color: var(--text-muted);
+            margin-left: auto;
+        }
+
+        .ai-message-content {
+            background: rgba(255,255,255,0.03);
+            border-radius: 10px;
+            padding: 14px;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .ai-message-content p {
+            margin-bottom: 10px;
+        }
+
+        .ai-message-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        .ai-highlight {
+            background: var(--amber-dim);
+            color: var(--amber);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .ai-confidence {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: var(--green-dim);
+            color: var(--green);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        /* SQL Preview */
+        .sql-preview {
+            background: rgba(13, 17, 23, 0.95);
+            border-radius: 8px;
+            padding: 14px;
+            margin-top: 12px;
+            font-family: var(--mono);
+            font-size: 11px;
+            line-height: 1.6;
+            overflow-x: auto;
+        }
+
+        .sql-keyword { color: #FF7B72; }
+        .sql-function { color: #D2A8FF; }
+        .sql-string { color: #A5D6FF; }
+        .sql-number { color: #79C0FF; }
+        .sql-comment { color: var(--text-muted); }
+
+        /* Right Panel */
+        .right-panel {
+            background: var(--bg-card);
+            border-left: 1px solid var(--border);
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        .panel-section {
+            margin-bottom: 24px;
+        }
+
+        .panel-section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .panel-section-title {
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .panel-action {
+            font-size: 11px;
+            color: var(--blue);
+            cursor: pointer;
+        }
+
+        /* Risk Assessment */
+        .risk-meter {
+            background: var(--bg-elevated);
+            border-radius: 10px;
+            padding: 16px;
+        }
+
+        .risk-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .risk-score {
+            font-size: 32px;
+            font-weight: 800;
+            font-family: var(--mono);
+        }
+
+        .risk-label {
+            font-size: 11px;
+            color: var(--text-secondary);
+        }
+
+        .risk-high { color: var(--red); }
+        .risk-medium { color: var(--amber); }
+        .risk-low { color: var(--green); }
+
+        .risk-gauge {
+            height: 8px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 12px;
+        }
+
+        .risk-gauge-fill {
+            height: 100%;
+            border-radius: 4px;
+            background: linear-gradient(90deg, var(--green) 0%, var(--amber) 50%, var(--red) 100%);
+            transition: width 1s ease-out;
+        }
+
+        .risk-factors {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .risk-factor {
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+        }
+
+        .risk-factor-name { color: var(--text-secondary); }
+        .risk-factor-value { font-weight: 600; font-family: var(--mono); }
+
+        /* Treatment Recommendations */
+        .treatment-card {
+            background: var(--bg-elevated);
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 8px;
+            border-left: 3px solid transparent;
+        }
+
+        .treatment-card.recommended {
+            border-left-color: var(--green);
+            background: var(--green-dim);
+        }
+
+        .treatment-card.alternative {
+            border-left-color: var(--blue);
+        }
+
+        .treatment-name {
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .treatment-evidence {
+            font-size: 11px;
+            color: var(--text-secondary);
+        }
+
+        .treatment-confidence {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 8px;
+            font-size: 10px;
+        }
+
+        .confidence-bar {
+            flex: 1;
+            height: 4px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .confidence-fill {
+            height: 100%;
+            background: var(--green);
+            border-radius: 2px;
+        }
+
+        /* Literature References */
+        .literature-item {
+            padding: 10px 12px;
+            background: rgba(255,255,255,0.02);
+            border-radius: 8px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .literature-item:hover {
+            background: rgba(255,255,255,0.05);
+        }
+
+        .literature-title {
+            font-size: 12px;
+            font-weight: 500;
+            margin-bottom: 4px;
+            line-height: 1.4;
+        }
+
+        .literature-meta {
+            font-size: 10px;
+            color: var(--text-muted);
+            display: flex;
+            gap: 12px;
+        }
+
+        .literature-relevance {
+            color: var(--green);
+            font-weight: 600;
+        }
+
+        /* Prompt Templates */
+        .prompt-templates {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .prompt-template {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 12px;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .prompt-template:hover {
+            background: var(--purple-dim);
+            border-color: var(--purple);
+        }
+
+        .prompt-icon {
+            width: 28px;
+            height: 28px;
+            background: var(--purple-dim);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+        }
+
+        .prompt-text {
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        /* Footer */
+        .dashboard-footer {
+            grid-column: 1 / -1;
+            background: var(--bg-card);
+            border-top: 1px solid var(--border);
+            padding: 12px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .footer-status {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .status-indicator {
+            width: 6px;
+            height: 6px;
+            background: var(--green);
+            border-radius: 50%;
+        }
+
+        /* Typing Animation */
+        .typing-indicator {
+            display: inline-flex;
+            gap: 4px;
+            padding: 8px 12px;
+            background: rgba(255,255,255,0.03);
+            border-radius: 8px;
+        }
+
+        .typing-dot {
+            width: 6px;
+            height: 6px;
+            background: var(--text-muted);
+            border-radius: 50%;
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typing {
+            0%, 100% { opacity: 0.3; transform: translateY(0); }
+            50% { opacity: 1; transform: translateY(-3px); }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-in {
+            animation: fadeIn 0.4s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <div class="logo">
+                    <div class="logo-icon">P</div>
+                    <span>PAED AI Clinical Dashboard</span>
+                </div>
+                <input type="text" class="header-search" placeholder="Search patients, diagnoses, treatments...">
+            </div>
+            <div class="header-right">
+                <div class="header-badge">PROTOTYPE v0.1</div>
+                <div class="header-badge" style="background: var(--blue-dim); color: var(--blue);">EU-GDPR Compliant</div>
+                <div class="header-user">DS</div>
+            </div>
+        </header>
+
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="sidebar-section">
+                <div class="sidebar-label">Clinical Workflows</div>
+                <div class="nav-item active">
+                    <span class="icon">🧬</span>
+                    Patient Analysis
+                    <span class="badge">3</span>
+                </div>
+                <div class="nav-item">
+                    <span class="icon">🔬</span>
+                    Morphology AI
+                </div>
+                <div class="nav-item">
+                    <span class="icon">📊</span>
+                    Tumor Board Prep
+                </div>
+                <div class="nav-item">
+                    <span class="icon">📋</span>
+                    Report Generation
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-label">AI Tools</div>
+                <div class="nav-item">
+                    <span class="icon">🔍</span>
+                    Similar Case Search
+                </div>
+                <div class="nav-item">
+                    <span class="icon">📚</span>
+                    Literature RAG
+                </div>
+                <div class="nav-item">
+                    <span class="icon">💊</span>
+                    Drug Repurposing
+                </div>
+                <div class="nav-item">
+                    <span class="icon">🧪</span>
+                    Trial Matching
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-label">Select AI Agents</div>
+                <div class="nav-item">
+                    <span class="icon">🤖</span>
+                    Diagnostic Agent
+                </div>
+                <div class="nav-item">
+                    <span class="icon">📝</span>
+                    Report Agent
+                </div>
+                <div class="nav-item">
+                    <span class="icon">🎯</span>
+                    Risk Stratification
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <div class="sidebar-label">Administration</div>
+                <div class="nav-item">
+                    <span class="icon">⚙️</span>
+                    Model Settings
+                </div>
+                <div class="nav-item">
+                    <span class="icon">📈</span>
+                    Analytics
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main">
+            <div class="main-header">
+                <h1>Patient Analysis</h1>
+                <p>AI-assisted diagnostic workbench with multi-vector similarity search</p>
+            </div>
+
+            <!-- Patient Card -->
+            <div class="patient-card animate-in">
+                <div class="patient-header">
+                    <div class="patient-info">
+                        <h2>Patient AML-2024-0847</h2>
+                        <div class="patient-meta">
+                            <span>Age: 7 years</span>
+                            <span>Diagnosis: AML M2</span>
+                            <span>Enrolled: 2024-01-15</span>
+                        </div>
+                    </div>
+                    <div class="patient-status">
+                        <div class="status-dot"></div>
+                        <span class="status-text">AI Analysis in Progress</span>
+                    </div>
+                </div>
+
+                <!-- Vector Similarity -->
+                <div class="vectors-section">
+                    <div class="vectors-header">
+                        <div class="vectors-title">
+                            Multi-Vector Patient Representation
+                            <span class="ai-badge">Oracle AI Database 26ai</span>
+                        </div>
+                    </div>
+                    <div class="vector-bars">
+                        <div class="vector-row">
+                            <span class="vector-label">Diagnosis</span>
+                            <div class="vector-bar-bg">
+                                <div class="vector-bar" style="width: 100%; background: linear-gradient(90deg, var(--blue) 0%, var(--purple) 100%);"></div>
+                            </div>
+                            <span class="vector-value" style="color: var(--blue);">1536d</span>
+                        </div>
+                        <div class="vector-row">
+                            <span class="vector-label">Morphology</span>
+                            <div class="vector-bar-bg">
+                                <div class="vector-bar" style="width: 33%; background: var(--green);"></div>
+                            </div>
+                            <span class="vector-value" style="color: var(--green);">512d</span>
+                        </div>
+                        <div class="vector-row">
+                            <span class="vector-label">Immunophenotype</span>
+                            <div class="vector-bar-bg">
+                                <div class="vector-bar" style="width: 17%; background: var(--purple);"></div>
+                            </div>
+                            <span class="vector-value" style="color: var(--purple);">256d</span>
+                        </div>
+                        <div class="vector-row">
+                            <span class="vector-label">Molecular</span>
+                            <div class="vector-bar-bg">
+                                <div class="vector-bar" style="width: 17%; background: var(--amber);"></div>
+                            </div>
+                            <span class="vector-value" style="color: var(--amber);">256d</span>
+                        </div>
+                        <div class="vector-row">
+                            <span class="vector-label">Treatment</span>
+                            <div class="vector-bar-bg">
+                                <div class="vector-bar" style="width: 8%; background: var(--red);"></div>
+                            </div>
+                            <span class="vector-value" style="color: var(--red);">128d</span>
+                        </div>
+                    </div>
+
+                    <!-- Similar Cases -->
+                    <div class="similar-cases">
+                        <div class="vectors-title" style="margin-bottom: 12px; margin-top: 16px;">
+                            Top Similar Cases (HNSW Cosine)
+                        </div>
+                        <div class="similar-case">
+                            <div class="similar-case-info">
+                                <div class="similarity-ring" style="background: var(--green-dim); color: var(--green);">94%</div>
+                                <div class="similar-case-details">
+                                    <h4>AML-2019-0312</h4>
+                                    <p>AML M2, t(8;21), 6yo male</p>
+                                </div>
+                            </div>
+                            <div class="similar-case-outcome">
+                                <div class="outcome-label">5-yr Outcome</div>
+                                <div class="outcome-value outcome-positive">CR, EFS</div>
+                            </div>
+                        </div>
+                        <div class="similar-case">
+                            <div class="similar-case-info">
+                                <div class="similarity-ring" style="background: var(--green-dim); color: var(--green);">91%</div>
+                                <div class="similar-case-details">
+                                    <h4>AML-2020-0589</h4>
+                                    <p>AML M2, t(8;21), 8yo female</p>
+                                </div>
+                            </div>
+                            <div class="similar-case-outcome">
+                                <div class="outcome-label">3-yr Outcome</div>
+                                <div class="outcome-value outcome-positive">CR, EFS</div>
+                            </div>
+                        </div>
+                        <div class="similar-case">
+                            <div class="similar-case-info">
+                                <div class="similarity-ring" style="background: var(--amber-dim); color: var(--amber);">87%</div>
+                                <div class="similar-case-details">
+                                    <h4>AML-2018-0234</h4>
+                                    <p>AML M2, t(8;21), FLT3-ITD+, 7yo male</p>
+                                </div>
+                            </div>
+                            <div class="similar-case-outcome">
+                                <div class="outcome-label">5-yr Outcome</div>
+                                <div class="outcome-value outcome-warning">Relapse → SCT</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AI Analysis Panel -->
+            <div class="ai-panel animate-in" style="animation-delay: 0.1s;">
+                <div class="ai-panel-header">
+                    <span>🤖</span>
+                    <h3>Select AI Diagnostic Agent</h3>
+                    <span class="model-tag">Cohere Command A Reasoning • 256K context</span>
+                </div>
+                <div class="ai-panel-content">
+                    <div class="ai-message">
+                        <div class="ai-message-header">
+                            <div class="ai-avatar">AI</div>
+                            <span class="ai-name">Diagnostic Analysis Agent</span>
+                            <span class="ai-timestamp">Just now</span>
+                        </div>
+                        <div class="ai-message-content">
+                            <p><strong>Integrated Diagnostic Summary</strong></p>
+                            <p>Based on multi-modal analysis of Patient AML-2024-0847:</p>
+                            <p><span class="ai-highlight">Morphology</span>: Bone marrow shows 65% blasts with Auer rods, consistent with AML with maturation. BiomedCLIP confidence: <span class="ai-confidence">97.2%</span></p>
+                            <p><span class="ai-highlight">Immunophenotype</span>: CD34+, CD13+, CD33+, MPO+, aberrant CD19 expression (12%). Pattern matches AML-M2 with high probability.</p>
+                            <p><span class="ai-highlight">Molecular</span>: t(8;21)(q22;q22.1) RUNX1::RUNX1T1 detected. No FLT3-ITD. KIT D816V negative. <span class="ai-confidence">Favorable risk</span> per ELN 2022.</p>
+                            <p><strong>AI Recommendation</strong>: Standard International Oncology risk-stratified therapy. Similar historical cases (n=47) with this profile show 5-year EFS of 78% (95% CI: 72-84%).</p>
+                        </div>
+                    </div>
+
+                    <!-- SQL Preview -->
+                    <div class="sql-preview">
+                        <span class="sql-comment">-- Select AI Agent Query (executed in Oracle AI Database 26ai)</span><br>
+                        <span class="sql-keyword">SELECT</span> <span class="sql-function">AI</span> <span class="sql-string">'Analyze this patient and find similar cases with outcomes'</span><br>
+                        <span class="sql-keyword">USING</span> patient_id <span class="sql-keyword">=</span> <span class="sql-string">'AML-2024-0847'</span>,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;vectors <span class="sql-keyword">=</span> (morphology_vec, molecular_vec, immuno_vec),<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;similarity_threshold <span class="sql-keyword">=</span> <span class="sql-number">0.85</span>,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;include_outcomes <span class="sql-keyword">=</span> <span class="sql-keyword">TRUE</span><br>
+                        <span class="sql-keyword">PROFILE</span> diagnostic_agent;
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Right Panel -->
+        <aside class="right-panel">
+            <!-- Risk Assessment -->
+            <div class="panel-section">
+                <div class="panel-section-header">
+                    <span class="panel-section-title">Risk Stratification</span>
+                    <span class="panel-action">Details →</span>
+                </div>
+                <div class="risk-meter">
+                    <div class="risk-header">
+                        <div>
+                            <div class="risk-score risk-low">0.23</div>
+                            <div class="risk-label">5-Year Relapse Risk</div>
+                        </div>
+                        <div style="text-align: right;">
+                            <div style="font-size: 24px; font-weight: 700; color: var(--green);">FAVORABLE</div>
+                            <div class="risk-label">ELN 2022 Classification</div>
+                        </div>
+                    </div>
+                    <div class="risk-gauge">
+                        <div class="risk-gauge-fill" style="width: 23%;"></div>
+                    </div>
+                    <div class="risk-factors">
+                        <div class="risk-factor">
+                            <span class="risk-factor-name">t(8;21) present</span>
+                            <span class="risk-factor-value" style="color: var(--green);">-0.35</span>
+                        </div>
+                        <div class="risk-factor">
+                            <span class="risk-factor-name">FLT3-ITD absent</span>
+                            <span class="risk-factor-value" style="color: var(--green);">-0.15</span>
+                        </div>
+                        <div class="risk-factor">
+                            <span class="risk-factor-name">Age < 10</span>
+                            <span class="risk-factor-value" style="color: var(--green);">-0.08</span>
+                        </div>
+                        <div class="risk-factor">
+                            <span class="risk-factor-name">WBC > 50k</span>
+                            <span class="risk-factor-value" style="color: var(--amber);">+0.12</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Treatment Recommendations -->
+            <div class="panel-section">
+                <div class="panel-section-header">
+                    <span class="panel-section-title">AI Treatment Recommendations</span>
+                </div>
+                <div class="treatment-card recommended">
+                    <div class="treatment-name">International Oncology 2019 Standard Risk Arm</div>
+                    <div class="treatment-evidence">Based on 47 similar cases • 78% 5-yr EFS</div>
+                    <div class="treatment-confidence">
+                        <span style="color: var(--green);">92%</span>
+                        <div class="confidence-bar">
+                            <div class="confidence-fill" style="width: 92%;"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="treatment-card alternative">
+                    <div class="treatment-name">International Oncology 2019 + Gemtuzumab</div>
+                    <div class="treatment-evidence">COG AAML1831 data suggests benefit</div>
+                    <div class="treatment-confidence">
+                        <span style="color: var(--blue);">67%</span>
+                        <div class="confidence-bar">
+                            <div class="confidence-fill" style="width: 67%; background: var(--blue);"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Literature RAG -->
+            <div class="panel-section">
+                <div class="panel-section-header">
+                    <span class="panel-section-title">Literature (RAG)</span>
+                    <span class="panel-action">View all →</span>
+                </div>
+                <div class="literature-item">
+                    <div class="literature-title">RUNX1::RUNX1T1-positive AML in children: outcomes and prognostic factors</div>
+                    <div class="literature-meta">
+                        <span>Blood 2023</span>
+                        <span class="literature-relevance">98% relevant</span>
+                    </div>
+                </div>
+                <div class="literature-item">
+                    <div class="literature-title">Gemtuzumab ozogamicin in pediatric CD33+ AML: COG AAML1831</div>
+                    <div class="literature-meta">
+                        <span>JCO 2024</span>
+                        <span class="literature-relevance">94% relevant</span>
+                    </div>
+                </div>
+                <div class="literature-item">
+                    <div class="literature-title">MRD-guided therapy in favorable-risk AML: International Oncology experience</div>
+                    <div class="literature-meta">
+                        <span>Leukemia 2024</span>
+                        <span class="literature-relevance">91% relevant</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Prompts -->
+            <div class="panel-section">
+                <div class="panel-section-header">
+                    <span class="panel-section-title">Quick AI Prompts</span>
+                </div>
+                <div class="prompt-templates">
+                    <div class="prompt-template">
+                        <div class="prompt-icon">📊</div>
+                        <span class="prompt-text">Generate tumor board summary</span>
+                    </div>
+                    <div class="prompt-template">
+                        <div class="prompt-icon">🔬</div>
+                        <span class="prompt-text">Explain morphology findings</span>
+                    </div>
+                    <div class="prompt-template">
+                        <div class="prompt-icon">💊</div>
+                        <span class="prompt-text">Check drug interactions</span>
+                    </div>
+                    <div class="prompt-template">
+                        <div class="prompt-icon">📋</div>
+                        <span class="prompt-text">Draft diagnostic report</span>
+                    </div>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Footer Status Bar -->
+    <div class="dashboard-footer">
+        <div class="footer-status">
+            <div class="status-indicator"></div>
+            <span>Connected to Oracle AI Database 26ai (Frankfurt EU)</span>
+        </div>
+        <div>
+            <span style="margin-right: 24px;">Models: Cohere Command A Reasoning, Embed 4, Rerank 3.5</span>
+            <span>Last sync: 2 min ago</span>
+        </div>
+    </div>
+</body>
+</html>

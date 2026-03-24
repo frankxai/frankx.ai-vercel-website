@@ -125,7 +125,7 @@ function StatCard({ value, label, icon: Icon, color }: {
 }) {
   return (
     <motion.div
-      className="relative p-6 rounded-2xl border border-white/5 bg-white/[0.02] backdrop-blur-sm"
+      className="relative p-6 rounded-2xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-sm"
       whileHover={{ scale: 1.02, borderColor: 'rgba(255,255,255,0.1)' }}
       transition={{ duration: 0.2 }}
     >
@@ -166,7 +166,7 @@ function AcceleratorCard({
 }) {
   return (
     <motion.div
-      className="group relative p-6 rounded-2xl border border-white/5 bg-white/[0.02] backdrop-blur-sm overflow-hidden"
+      className="group relative p-6 rounded-2xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-sm overflow-hidden"
       whileHover={{ scale: 1.01, borderColor: 'rgba(255,255,255,0.15)' }}
       transition={{ duration: 0.2 }}
     >
@@ -229,7 +229,7 @@ function KnowledgeCard({
   return (
     <Link href={href}>
       <motion.div
-        className="group relative p-5 rounded-xl border border-white/5 bg-white/[0.02] backdrop-blur-sm hover:border-white/10 transition-all"
+        className="group relative p-5 rounded-xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-sm hover:border-white/10 transition-all"
         whileHover={{ x: 4 }}
         transition={{ duration: 0.2 }}
       >
@@ -446,7 +446,7 @@ export default function AIOpsPage() {
             </div>
 
             {/* Tech Stack */}
-            <div className="p-6 rounded-2xl border border-white/5 bg-white/[0.02]">
+            <div className="p-6 rounded-2xl border border-white/[0.08] bg-white/[0.03]">
               <div className="text-sm text-white/40 mb-4">Included in all packs:</div>
               <div className="flex flex-wrap gap-2">
                 <TechBadge name="Prometheus" category="observability" />
@@ -495,7 +495,7 @@ export default function AIOpsPage() {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: index * 0.1 }}
-                  className="p-4 rounded-xl border border-white/5 bg-white/[0.02] text-center"
+                  className="p-4 rounded-xl border border-white/[0.08] bg-white/[0.03] text-center"
                 >
                   <div
                     className="w-8 h-8 rounded-lg mx-auto mb-3 flex items-center justify-center"

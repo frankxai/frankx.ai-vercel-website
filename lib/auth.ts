@@ -15,12 +15,11 @@ import bcrypt from 'bcryptjs'
  * For production, consider adding OAuth providers (Google, GitHub).
  */
 
-// Admin credentials (in production, move to database)
+// Admin credentials — set ADMIN_EMAIL + ADMIN_PASSWORD_HASH in Vercel env vars
+// Generate hash: node -e "require('bcryptjs').hash('yourpassword',10).then(console.log)"
 const ADMIN_CREDENTIALS = {
   email: process.env.ADMIN_EMAIL || 'admin@frankx.ai',
-  // Hash generated from: await bcrypt.hash('your-password', 10)
-  // Default password: 'changeme123' (MUST change in production)
-  passwordHash: process.env.ADMIN_PASSWORD_HASH || '$2a$10$YourHashHere'
+  passwordHash: process.env.ADMIN_PASSWORD_HASH || ''
 }
 
 export const authOptions: NextAuthConfig = {
@@ -33,22 +32,24 @@ export const authOptions: NextAuthConfig = {
       },
       async authorize(credentials) {
         if (!credentials?.email || !credentials?.password) {
-          throw new Error('Missing credentials')
+          return null
         }
 
-        // Check email matches
         if (credentials.email !== ADMIN_CREDENTIALS.email) {
-          throw new Error('Invalid credentials')
+          return null
         }
 
-        // Verify password hash
+        if (!ADMIN_CREDENTIALS.passwordHash) {
+          return null
+        }
+
         const isValid = await bcrypt.compare(
           credentials.password as string,
           ADMIN_CREDENTIALS.passwordHash
         )
 
         if (!isValid) {
-          throw new Error('Invalid credentials')
+          return null
         }
 
         // Return user object on success

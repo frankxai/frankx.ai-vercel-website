@@ -67,7 +67,7 @@ export default async function Page({ params }: PageProps) {
     url: `https://frankx.ai/design-lab/${experiment.slug}`,
     author: {
       '@type': 'Person',
-      name: 'Frank van den Bergh',
+      name: 'Frank Riemer',
       url: 'https://frankx.ai',
       jobTitle: 'AI Architect',
     },

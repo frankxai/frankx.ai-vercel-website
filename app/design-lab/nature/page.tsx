@@ -189,13 +189,13 @@ export default function NatureDesignLabPage() {
   const [expandedFaq, setExpandedFaq] = useState<number | null>(null)
 
   return (
-    <div className="min-h-screen bg-[#0F172A]">
+    <div className="min-h-screen bg-[#0a0a0b]">
       {/* ── Hero ───────────────────────────────────────────────── */}
       <section className="relative overflow-hidden px-6 pb-20 pt-32 md:px-8">
         {/* Ambient background */}
         <div className="pointer-events-none absolute inset-0">
-          <div className="absolute left-1/4 top-1/3 h-96 w-96 rounded-full bg-emerald-500/8 blur-[120px]" />
-          <div className="absolute right-1/4 top-1/4 h-80 w-80 rounded-full bg-purple-500/6 blur-[100px]" />
+          <div className="absolute left-1/4 top-1/3 h-96 w-96 rounded-full bg-emerald-500/8 blur-[128px]" />
+          <div className="absolute right-1/4 top-1/4 h-80 w-80 rounded-full bg-purple-500/6 blur-[128px]" />
         </div>
 
         <motion.div
@@ -316,7 +316,7 @@ export default function NatureDesignLabPage() {
                       height={768}
                       className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A] via-transparent to-transparent opacity-60" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-transparent to-transparent opacity-60" />
                     <div className="absolute bottom-4 left-4 flex items-center gap-2">
                       <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-medium text-white/80 backdrop-blur-sm">
                         {img.category}

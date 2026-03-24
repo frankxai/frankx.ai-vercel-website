@@ -69,7 +69,7 @@ const featuredEssays = [
 function AuroraBackground() {
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none">
-      <div className="absolute inset-0 bg-[#030712]" />
+      <div className="absolute inset-0 bg-[#0a0a0b]" />
       <motion.div
         className="absolute -top-[40%] -left-[20%] w-[80%] h-[80%]"
         style={{
@@ -297,7 +297,7 @@ export default function CreationChroniclesPage() {
                   Use these tracks as ritual soundtracks for writing, strategy, or launching new offers.
                 </p>
 
-                <div className="p-6 rounded-2xl border border-white/5 bg-white/[0.02]">
+                <div className="p-6 rounded-2xl border border-white/[0.08] bg-white/[0.03]">
                   <SongGrid songs={songRecords} limit={3} />
                 </div>
 
@@ -335,7 +335,7 @@ export default function CreationChroniclesPage() {
                 and soundtrack I'm shipping.
               </p>
 
-              <div className="p-6 rounded-2xl border border-white/10 bg-white/[0.02]">
+              <div className="p-6 rounded-2xl border border-white/[0.08] bg-white/[0.03]">
                 <iframe
                   src="https://embeds.beehiiv.com/3dca3b4d-918d-48fe-8d02-838d92d93a08?slim=true"
                   title="Creation Chronicles Newsletter"

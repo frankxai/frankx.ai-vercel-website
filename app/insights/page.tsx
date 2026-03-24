@@ -66,12 +66,12 @@ export default function InsightsPage() {
   })
 
   return (
-    <div className="min-h-screen bg-[#030712]">
+    <div className="min-h-screen bg-[#0a0a0b]">
       {/* Hero */}
       <section className="relative pt-32 pb-16 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-pink-950/20 to-transparent" />
-        <div className="absolute top-20 left-0 w-[500px] h-[500px] bg-pink-500/10 rounded-full blur-[120px]" />
-        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-violet-500/10 rounded-full blur-[100px]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-pink-950/10 to-transparent" />
+        <div className="absolute top-20 left-0 w-[500px] h-[500px] bg-pink-500/[0.06] rounded-full blur-[128px]" />
+        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-violet-500/[0.04] rounded-full blur-[128px]" />
 
         <div className="relative max-w-6xl mx-auto px-6">
           <motion.div
@@ -148,7 +148,7 @@ export default function InsightsPage() {
                 transition={{ delay: index * 0.1 }}
                 className="group"
               >
-                <div className="rounded-2xl border border-white/5 bg-white/[0.02] overflow-hidden hover:border-white/10 transition-all">
+                <div className="rounded-2xl border border-white/[0.08] bg-white/[0.03] overflow-hidden hover:border-white/10 transition-all">
                   {/* Header */}
                   <div className="p-6 pb-0">
                     <div className="flex items-start justify-between mb-4">
@@ -264,7 +264,7 @@ export default function InsightsPage() {
         >
           <Link
             href="/feed"
-            className="group flex items-center justify-between p-4 rounded-xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] transition-all"
+            className="group flex items-center justify-between p-4 rounded-xl border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.04] transition-all"
           >
             <div className="flex items-center gap-3">
               <Activity className="w-5 h-5 text-violet-400" />
@@ -275,7 +275,7 @@ export default function InsightsPage() {
 
           <Link
             href="/roadmap"
-            className="group flex items-center justify-between p-4 rounded-xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] transition-all"
+            className="group flex items-center justify-between p-4 rounded-xl border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.04] transition-all"
           >
             <div className="flex items-center gap-3">
               <Target className="w-5 h-5 text-green-400" />
@@ -286,7 +286,7 @@ export default function InsightsPage() {
 
           <Link
             href="/blog"
-            className="group flex items-center justify-between p-4 rounded-xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] transition-all"
+            className="group flex items-center justify-between p-4 rounded-xl border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.04] transition-all"
           >
             <div className="flex items-center gap-3">
               <BookOpen className="w-5 h-5 text-amber-400" />

@@ -46,7 +46,7 @@ function ForestCanopy() {
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none">
       {/* Deep soil base */}
-      <div className="absolute inset-0 bg-[#0F172A]" />
+      <div className="absolute inset-0 bg-[#0a0a0b]" />
 
       {/* Canopy light filtering through — emerald dominant */}
       <motion.div
@@ -221,8 +221,8 @@ function RotatingNatureWord() {
 const seedStats = [
   { value: '12K+', label: 'AI Songs', icon: Music2, color: glow.creation },
   { value: '70+', label: 'Articles', icon: BookOpen, color: glow.data },
-  { value: '630+', label: 'Skills', icon: Terminal, color: glow.synapse },
-  { value: '40+', label: 'Agents', icon: Code2, color: glow.growth },
+  { value: '75+', label: 'Skills', icon: Terminal, color: glow.synapse },
+  { value: '38', label: 'Agents', icon: Code2, color: glow.growth },
 ]
 
 function SeedPodStats() {
@@ -380,7 +380,7 @@ const contentPillars = [
   {
     icon: Terminal,
     title: 'ACOS',
-    subtitle: '630+ skills, 40+ agents',
+    subtitle: '75+ skills, 38 agents',
     description: 'The Agentic Creator OS — orchestrate AI agents for content creation, code generation, and creative workflows.',
     href: '/acos',
     color: glow.synapse,
@@ -604,7 +604,7 @@ function DesignLabCTA() {
 
 export default function HomepageNatureVariant() {
   return (
-    <main className="relative min-h-screen bg-[#0F172A] text-white overflow-hidden">
+    <main className="relative min-h-screen bg-[#0a0a0b] text-white overflow-hidden">
       <ForestCanopy />
       <FireflyParticles />
       <VineProgress />

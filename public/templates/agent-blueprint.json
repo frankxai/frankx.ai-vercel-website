@@ -1,0 +1,23 @@
+{
+  "name": "Example Agent",
+  "goal": "Draft and QA product requirement documents",
+  "permissions": ["read:docs", "write:docs"],
+  "tools": ["search", "retrieval", "formatter"],
+  "workflow": [
+    "retrieve context",
+    "draft sections",
+    "evaluate against acceptance criteria",
+    "format and export"
+  ],
+  "evaluation": {
+    "rubric": ["correctness", "relevance", "clarity", "safety"],
+    "threshold": 4.0
+  },
+  "guardrails": {
+    "max_tokens": 2000,
+    "timeout_ms": 60000,
+    "budget_usd": 1.00
+  },
+  "logging": true
+}
+

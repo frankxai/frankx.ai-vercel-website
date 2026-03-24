@@ -3,13 +3,20 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import {
-  FileText,
+  Gift,
   ArrowRight,
-  Layers,
-  Shield,
+  Crown,
+  Rocket,
+  ExternalLink,
+  FileText,
   CheckSquare,
   AlertTriangle,
-  Settings,
+  Shield,
+  Music,
+  Workflow,
+  GraduationCap,
+  Sparkles,
+  Users,
   ChevronRight,
 } from 'lucide-react'
 
@@ -17,65 +24,136 @@ import {
 // TEMPLATE DATA
 // ============================================================================
 
-const templates = [
-  {
-    title: 'Master Template Library',
-    description: 'Browse the complete templates library with all available resources.',
-    href: '/reading/Templates/MASTER_TEMPLATE_INDEX.html',
-    icon: Layers,
-    color: 'text-emerald-400',
-    gradient: 'from-emerald-500/20 to-emerald-500/5',
-  },
-  {
-    title: 'RAG Pipeline Architecture',
-    description: 'Reference architecture and checklist for retrieval-augmented generation pipelines.',
-    href: '/reading/Templates/02-AI-Architecture/RAG-Pipeline-Architecture.html',
-    icon: Settings,
-    color: 'text-cyan-400',
-    gradient: 'from-cyan-500/20 to-cyan-500/5',
-  },
+const freeTemplates = [
   {
     title: 'COE Checklist',
-    description: 'Capture → Orchestrate → Evaluate. Step-by-step implementation checklist.',
+    description: 'Capture -> Orchestrate -> Evaluate implementation checklist.',
     href: '/templates/coe-checklist.html',
     icon: CheckSquare,
+    meta: 'Free HTML Template',
     color: 'text-violet-400',
     gradient: 'from-violet-500/20 to-violet-500/5',
   },
   {
     title: 'Evaluation Rubric',
-    description: 'Quality criteria, scoring rubric, and sampling plan for AI outputs.',
+    description: 'Quality criteria and scoring system for AI outputs.',
     href: '/templates/evaluation-rubric.html',
     icon: FileText,
+    meta: 'Free HTML Template',
     color: 'text-amber-400',
     gradient: 'from-amber-500/20 to-amber-500/5',
   },
   {
     title: 'Risk Register',
-    description: 'Track risks, mitigations, owners, and review cadence for AI projects.',
+    description: 'Track risks, owners, mitigations, and review cadence.',
     href: '/templates/risk-register.html',
     icon: AlertTriangle,
+    meta: 'Free HTML Template',
     color: 'text-red-400',
     gradient: 'from-red-500/20 to-red-500/5',
   },
   {
     title: 'Governance Overview',
-    description: 'One-page workflow governance summary for stakeholders.',
+    description: 'One-page governance summary for stakeholders.',
     href: '/templates/governance-overview.html',
     icon: Shield,
+    meta: 'Free HTML Template',
     color: 'text-blue-400',
     gradient: 'from-blue-500/20 to-blue-500/5',
   },
+  {
+    title: 'Vibe OS Guide',
+    description: 'Read-through guide for prompt systems and creator workflows.',
+    href: '/pdf-templates/vibe-os-guide.html',
+    icon: Sparkles,
+    meta: 'Free Guide',
+    color: 'text-emerald-400',
+    gradient: 'from-emerald-500/20 to-emerald-500/5',
+  },
+  {
+    title: '5 Suno Prompts',
+    description: 'Fast-start prompt pack for music creation sessions.',
+    href: '/pdf-templates/5-suno-prompts.html',
+    icon: Music,
+    meta: 'Free Prompt Pack',
+    color: 'text-cyan-400',
+    gradient: 'from-cyan-500/20 to-cyan-500/5',
+  },
 ]
 
-// ============================================================================
-// AURORA BACKGROUND
-// ============================================================================
+const premiumTemplates = [
+  {
+    title: 'Template Marketplace',
+    description: 'Paid template catalog with source code, deployment guides, and licenses.',
+    href: '/shop/templates',
+    icon: Crown,
+    meta: 'Premium from $27',
+    color: 'text-amber-300',
+    gradient: 'from-amber-500/20 to-amber-500/5',
+  },
+  {
+    title: 'AI Architecture Templates',
+    description: 'Production architecture kits for RAG, multi-agent, and LLMOps systems.',
+    href: '/ai-architecture/templates',
+    icon: Workflow,
+    meta: 'Premium from $29',
+    color: 'text-violet-300',
+    gradient: 'from-violet-500/20 to-violet-500/5',
+  },
+  {
+    title: 'Vibe OS',
+    description: 'Music creation system with proven prompt architecture and workflows.',
+    href: '/products/vibe-os',
+    icon: Music,
+    meta: 'Flagship product',
+    color: 'text-emerald-300',
+    gradient: 'from-emerald-500/20 to-emerald-500/5',
+  },
+  {
+    title: 'Suno Prompt Library',
+    description: 'Commercial-grade Suno prompts and session frameworks.',
+    href: '/products/suno-prompt-library',
+    icon: Sparkles,
+    meta: 'Premium product',
+    color: 'text-cyan-300',
+    gradient: 'from-cyan-500/20 to-cyan-500/5',
+  },
+]
+
+const upsellOffers = [
+  {
+    title: 'Coaching & Implementation',
+    description: 'Hands-on support to customize templates for your use case.',
+    href: '/coaching',
+    icon: GraduationCap,
+    meta: 'High-touch service',
+    color: 'text-rose-300',
+    gradient: 'from-rose-500/20 to-rose-500/5',
+  },
+  {
+    title: 'Team Workshop',
+    description: 'Run live sessions to operationalize AI templates with your team.',
+    href: '/workshops',
+    icon: Users,
+    meta: 'B2B upsell',
+    color: 'text-indigo-300',
+    gradient: 'from-indigo-500/20 to-indigo-500/5',
+  },
+  {
+    title: 'Custom Build Request',
+    description: 'Done-for-you template system for your business model.',
+    href: '/contact',
+    icon: Rocket,
+    meta: 'Custom engagement',
+    color: 'text-orange-300',
+    gradient: 'from-orange-500/20 to-orange-500/5',
+  },
+]
 
 function AuroraBackground() {
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none">
-      <div className="absolute inset-0 bg-[#030712]" />
+      <div className="absolute inset-0 bg-[#0a0a0b]" />
       <motion.div
         className="absolute -top-[40%] -left-[20%] w-[80%] h-[80%]"
         style={{
@@ -108,7 +186,15 @@ function AuroraBackground() {
 // TEMPLATE CARD
 // ============================================================================
 
-function TemplateCard({ template, index }: { template: typeof templates[0]; index: number }) {
+function TemplateCard({
+  template,
+  index,
+  external = false,
+}: {
+  template: typeof freeTemplates[0]
+  index: number
+  external?: boolean
+}) {
   const Icon = template.icon
 
   return (
@@ -120,6 +206,8 @@ function TemplateCard({ template, index }: { template: typeof templates[0]; inde
     >
       <Link
         href={template.href}
+        target={external ? '_blank' : undefined}
+        rel={external ? 'noopener noreferrer' : undefined}
         className="group block relative p-6 rounded-2xl border border-white/5 overflow-hidden hover:border-white/10 transition-all duration-300 hover:-translate-y-1"
       >
         <div className={`absolute inset-0 bg-gradient-to-br ${template.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
@@ -129,7 +217,11 @@ function TemplateCard({ template, index }: { template: typeof templates[0]; inde
             <div className="p-2.5 rounded-xl bg-white/5 group-hover:bg-white/10 transition-colors">
               <Icon className={`w-5 h-5 ${template.color}`} />
             </div>
-            <ChevronRight className="w-4 h-4 text-white/20 group-hover:text-white/60 group-hover:translate-x-0.5 transition-all" />
+            {external ? (
+              <ExternalLink className="w-4 h-4 text-white/20 group-hover:text-white/60 group-hover:translate-x-0.5 transition-all" />
+            ) : (
+              <ChevronRight className="w-4 h-4 text-white/20 group-hover:text-white/60 group-hover:translate-x-0.5 transition-all" />
+            )}
           </div>
 
           <h2 className="text-lg font-semibold text-white mb-2 group-hover:text-white transition-colors">
@@ -137,6 +229,9 @@ function TemplateCard({ template, index }: { template: typeof templates[0]; inde
           </h2>
           <p className="text-sm text-white/50 leading-relaxed group-hover:text-white/60 transition-colors">
             {template.description}
+          </p>
+          <p className="text-xs text-white/35 mt-3 uppercase tracking-[0.14em]">
+            {template.meta}
           </p>
         </div>
       </Link>
@@ -177,18 +272,52 @@ export default function TemplatesPage() {
 
               {/* Subtext */}
               <p className="text-lg text-white/50 max-w-2xl leading-relaxed">
-                Prompts, evaluation sheets, agent blueprints, and scorecards.
-                Everything you need to start building.
+                A clear monetization ladder: free templates to start, premium systems to ship,
+                and implementation offers when you want acceleration.
               </p>
             </motion.div>
           </div>
         </section>
 
-        {/* Templates Grid */}
+        {/* Free Templates */}
         <section className="py-12">
           <div className="max-w-5xl mx-auto px-6">
+            <div className="mb-8 flex items-center gap-3">
+              <Gift className="w-5 h-5 text-emerald-300" />
+              <h2 className="text-2xl font-semibold text-white">Free Templates</h2>
+            </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {templates.map((template, i) => (
+              {freeTemplates.map((template, i) => (
+                <TemplateCard key={template.title} template={template} index={i} />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Premium Templates */}
+        <section className="py-12 border-t border-white/5">
+          <div className="max-w-5xl mx-auto px-6">
+            <div className="mb-8 flex items-center gap-3">
+              <Crown className="w-5 h-5 text-amber-300" />
+              <h2 className="text-2xl font-semibold text-white">Premium Templates</h2>
+            </div>
+            <div className="grid md:grid-cols-2 gap-6">
+              {premiumTemplates.map((template, i) => (
+                <TemplateCard key={template.title} template={template} index={i} />
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Upsell Offers */}
+        <section className="py-12 border-t border-white/5">
+          <div className="max-w-5xl mx-auto px-6">
+            <div className="mb-8 flex items-center gap-3">
+              <Rocket className="w-5 h-5 text-cyan-300" />
+              <h2 className="text-2xl font-semibold text-white">Upsell: Done With You / For You</h2>
+            </div>
+            <div className="grid md:grid-cols-3 gap-6">
+              {upsellOffers.map((template, i) => (
                 <TemplateCard key={template.title} template={template} index={i} />
               ))}
             </div>
@@ -204,24 +333,24 @@ export default function TemplatesPage() {
               viewport={{ once: true }}
             >
               <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
-                Want implementation guides?
+                Need a full template roadmap?
               </h2>
               <p className="text-white/50 mb-8">
-                Check out the step-by-step guides for deeper walkthroughs on specific topics.
+                Start free, graduate to premium, then use coaching/workshops for implementation speed.
               </p>
               <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                 <Link
-                  href="/guides"
+                  href="/shop/templates"
                   className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white text-black font-medium hover:bg-white/90 transition-colors"
                 >
-                  View Guides
+                  Browse Premium Templates
                   <ArrowRight className="w-4 h-4" />
                 </Link>
                 <Link
-                  href="/prompt-library"
+                  href="/coaching"
                   className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white/10 text-white/70 hover:text-white hover:border-white/20 font-medium transition-colors"
                 >
-                  Prompt Library
+                  Book Coaching
                 </Link>
               </div>
             </motion.div>

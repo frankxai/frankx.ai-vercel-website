@@ -3,7 +3,7 @@
 import { useState, useCallback, useRef } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
 import Link from 'next/link'
-import SparkBorder from '@/components/ui/SparkBorder'
+import { GlowCard, type GlowColor } from '@/components/ui/glow-card'
 import { GlowButton } from '@/components/ui/GlowButton'
 import {
   ArrowLeft,
@@ -304,7 +304,7 @@ export default function ArcaneaComposePage() {
         {/* Blob 2: Gold (bottom-right, 25s) */}
         {!shouldReduceMotion && (
           <motion.div
-            className="absolute bottom-1/3 right-1/4 w-[500px] h-[500px] rounded-full blur-[120px]"
+            className="absolute bottom-1/3 right-1/4 w-[500px] h-[500px] rounded-full blur-[128px]"
             style={{ background: 'radial-gradient(circle, rgba(245,158,11,0.08) 0%, transparent 70%)' }}
             animate={{ x: [0, -80, 0], y: [0, 60, 0], scale: [1, 1.15, 1] }}
             transition={{ duration: 25, repeat: Infinity, ease: 'easeInOut', delay: 5 }}
@@ -314,7 +314,7 @@ export default function ArcaneaComposePage() {
         {/* Blob 3: Cyan (top-right, 30s) */}
         {!shouldReduceMotion && (
           <motion.div
-            className="absolute top-1/2 right-1/3 w-[400px] h-[400px] rounded-full blur-[100px]"
+            className="absolute top-1/2 right-1/3 w-[400px] h-[400px] rounded-full blur-[128px]"
             style={{ background: 'radial-gradient(circle, rgba(34,211,238,0.06) 0%, transparent 70%)' }}
             animate={{ x: [0, 120, 0], y: [0, -70, 0], scale: [1, 1.2, 1] }}
             transition={{ duration: 30, repeat: Infinity, ease: 'easeInOut', delay: 10 }}
@@ -376,12 +376,10 @@ export default function ArcaneaComposePage() {
               transition={{ duration: 0.7, delay: 0.4 }}
               className="flex flex-col sm:flex-row items-center justify-center gap-4"
             >
-              <SparkBorder color="violet" speed="normal" hoverOnly={true}>
-                <GlowButton variant="primary" size="lg" color="violet" href="#templates">
-                  <Mail className="w-5 h-5" />
-                  Explore Templates
-                </GlowButton>
-              </SparkBorder>
+              <GlowButton variant="primary" size="lg" color="violet" href="#templates">
+                <Mail className="w-5 h-5" />
+                Explore Templates
+              </GlowButton>
 
               <GlowButton variant="secondary" size="lg" href="/newsletter">
                 Subscribe to the Newsletter
@@ -429,12 +427,7 @@ export default function ArcaneaComposePage() {
                 const Icon = p.icon
                 return (
                   <motion.div key={p.title} variants={fadeIn}>
-                    <SparkBorder
-                      color={i % 2 === 0 ? 'purple' : 'emerald'}
-                      speed="slow"
-                      hoverOnly={true}
-                      bg="#0a0a0b"
-                    >
+                    <GlowCard color={i % 2 === 0 ? 'purple' as GlowColor : 'emerald' as GlowColor}>
                       <motion.div
                         whileHover={{ scale: 1.03, y: -4 }}
                         transition={{ duration: 0.3 }}
@@ -446,7 +439,7 @@ export default function ArcaneaComposePage() {
                         <h3 className="mb-2 text-lg font-semibold text-white">{p.title}</h3>
                         <p className="text-sm text-slate-400 leading-relaxed">{p.description}</p>
                       </motion.div>
-                    </SparkBorder>
+                    </GlowCard>
                   </motion.div>
                 )
               })}
@@ -734,18 +727,16 @@ export default function ArcaneaComposePage() {
             </div>
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <SparkBorder color="violet" speed="normal" hoverOnly={true}>
-                <GlowButton
-                  variant="primary"
-                  size="lg"
-                  color="violet"
-                  href="/newsletter"
-                  className="shadow-lg shadow-[#AB47C7]/30"
-                >
-                  <Mail className="w-5 h-5" />
-                  Subscribe to Newsletter
-                </GlowButton>
-              </SparkBorder>
+              <GlowButton
+                variant="primary"
+                size="lg"
+                color="violet"
+                href="/newsletter"
+                className="shadow-lg shadow-[#AB47C7]/30"
+              >
+                <Mail className="w-5 h-5" />
+                Subscribe to Newsletter
+              </GlowButton>
 
               <Link
                 href="/design-lab"

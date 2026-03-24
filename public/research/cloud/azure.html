@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Microsoft Azure Partner Program | FrankX Research</title>
+    <meta name="description" content="Microsoft Azure CSP partner program: high revenue thresholds, Solutions Partner designation, and margin-based model for enterprise partners.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --azure-blue: #0078D4;
+            --bg-dark: #0f172a;
+            --bg-darker: #020617;
+            --text-light: #e2e8f0;
+            --text-muted: #94a3b8;
+            --border-color: #1e293b;
+            --card-bg: #1e293b;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-darker);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        header {
+            background: var(--bg-dark);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--azure-blue), #005A9E);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .logo-text {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            margin-left: 2rem;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        nav a:hover { color: var(--azure-blue); }
+
+        .hero {
+            background: linear-gradient(135deg, #0078D4 0%, #005A9E 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+            border-bottom: 4px solid var(--azure-blue);
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .hero .subtitle {
+            font-size: 1.2rem;
+            color: #e2e8f0;
+            margin-bottom: 2rem;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: #e2e8f0;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section {
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+            color: var(--azure-blue);
+        }
+
+        .model-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .model-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 2rem;
+            border: 1px solid var(--border-color);
+            border-top: 4px solid var(--azure-blue);
+        }
+
+        .model-card h3 {
+            font-size: 1.3rem;
+            color: var(--azure-blue);
+            margin-bottom: 0.75rem;
+        }
+
+        .model-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .model-card ul {
+            list-style: none;
+        }
+
+        .model-card li {
+            padding: 0.5rem 0;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .model-card li:last-child {
+            border-bottom: none;
+        }
+
+        .model-card li::before {
+            content: "✓";
+            color: var(--azure-blue);
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .threshold-alert {
+            background: var(--card-bg);
+            border-left: 4px solid #EF4444;
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+        }
+
+        .threshold-alert h3 {
+            color: #EF4444;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .threshold-alert p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .solutions-partner {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 2rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .solutions-partner h3 {
+            color: var(--azure-blue);
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+        }
+
+        .competency-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .competency-item {
+            background: var(--bg-dark);
+            padding: 1rem;
+            border-radius: 8px;
+            border-top: 3px solid var(--azure-blue);
+        }
+
+        .competency-item h4 {
+            font-size: 1rem;
+            color: var(--azure-blue);
+            margin-bottom: 0.25rem;
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, var(--azure-blue), #005A9E);
+            padding: 3rem;
+            border-radius: 16px;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .cta-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: #e2e8f0;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: white;
+            color: var(--azure-blue);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+        }
+
+        .cta-button.secondary {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+
+        footer {
+            background: var(--bg-dark);
+            border-top: 1px solid var(--border-color);
+            padding: 2rem;
+            margin-top: 4rem;
+            text-align: center;
+        }
+
+        footer p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        footer a {
+            color: var(--azure-blue);
+            text-decoration: none;
+            margin: 0 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .model-grid, .competency-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon">F</div>
+                <div class="logo-text">FrankX Research</div>
+            </div>
+            <nav>
+                <a href="index.html">← Back to Hub</a>
+                <a href="comparison.html">Comparison</a>
+                <a href="https://frankx.ai/research/">All Research</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="hero">
+        <h1>Microsoft Azure Partner Program</h1>
+        <p class="subtitle">CSP model with high revenue thresholds consolidating to enterprise-scale partners</p>
+        <div class="hero-stats">
+            <div class="stat">
+                <div class="stat-value">$1M-$30M</div>
+                <div class="stat-label">Revenue Thresholds</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">2 Models</div>
+                <div class="stat-label">Direct / Indirect CSP</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">2026</div>
+                <div class="stat-label">Major Updates Live</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="threshold-alert">
+            <h3>⚠️ 2026 Program Consolidation</h3>
+            <p>Microsoft significantly raised revenue thresholds effective February 2026. Direct-Bill partners must reach $1M TTM (trailing twelve-month), distributors $30M per region. Smaller partners should transition to indirect reseller model.</p>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">CSP Program Models</h2>
+            <p style="color: var(--text-muted); margin-bottom: 2rem;">Microsoft Cloud Solution Provider program operates in two models: Direct-Bill for large partners with MSP/solutions capabilities, and 2-Tier Cloud Distribution for channel ecosystem builders.</p>
+            
+            <div class="model-grid">
+                <div class="model-card">
+                    <h3>1-Tier Direct-Bill</h3>
+                    <p>Partners with managed services or solutions business, able to bill and support at scale.</p>
+                    <ul>
+                        <li>$1M TTM minimum (2026)</li>
+                        <li>Bill customers directly</li>
+                        <li>Operational assessment required</li>
+                        <li>Advanced Support for Partners (ASfP) or Premier Support (PSfP) contract</li>
+                        <li>Solutions Partner designation OR 25 Partner Capability Score (PCS) points</li>
+                    </ul>
+                </div>
+
+                <div class="model-card">
+                    <h3>2-Tier Cloud Distribution</h3>
+                    <p>Distributors who recruit, enable, and grow reseller channels.</p>
+                    <ul>
+                        <li>$30M TTM per authorized region</li>
+                        <li>Intentionally high threshold (proven scale/stability)</li>
+                        <li>Recruit and enable resellers</li>
+                        <li>Channel management infrastructure</li>
+                        <li>Multi-region capability</li>
+                    </ul>
+                </div>
+
+                <div class="model-card">
+                    <h3>Indirect Resellers</h3>
+                    <p>Partners who sell through distributors (recommended for sub-$1M revenue partners).</p>
+                    <ul>
+                        <li>No minimum revenue threshold</li>
+                        <li>Sell through authorized distributor</li>
+                        <li>Must achieve Solutions Partner OR 25 PCS points to unlock incentives</li>
+                        <li>Distributor handles billing/support infrastructure</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Solutions Partner Designations</h2>
+            
+            <div class="solutions-partner">
+                <h3>Competency-Based Recognition</h3>
+                <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Microsoft Solutions Partner designation recognizes expertise across Data & AI, Infrastructure, and Digital & App Innovation. Requires 25 Partner Capability Score (PCS) points minimum.</p>
+                
+                <div class="competency-grid">
+                    <div class="competency-item">
+                        <h4>Data & AI</h4>
+                        <p style="color: var(--text-muted); font-size: 0.85rem;">AI, ML, analytics, databases</p>
+                    </div>
+
+                    <div class="competency-item">
+                        <h4>Infrastructure</h4>
+                        <p style="color: var(--text-muted); font-size: 0.85rem;">Hybrid cloud, migration, modernization</p>
+                    </div>
+
+                    <div class="competency-item">
+                        <h4>Digital & App Innovation</h4>
+                        <p style="color: var(--text-muted); font-size: 0.85rem;">App development, DevOps, cloud-native</p>
+                    </div>
+                </div>
+
+                <div style="margin-top: 1.5rem; padding: 1.5rem; background: var(--bg-dark); border-radius: 8px;">
+                    <h4 style="color: var(--azure-blue); margin-bottom: 0.75rem;">2026 Benefit Enhancements</h4>
+                    <ul style="list-style: none; color: var(--text-muted); font-size: 0.9rem;">
+                        <li style="padding: 0.25rem 0;">✓ Expanded Copilot resources</li>
+                        <li style="padding: 0.25rem 0;">✓ Enhanced security offerings</li>
+                        <li style="padding: 0.25rem 0;">✓ Increased Azure credits</li>
+                        <li style="padding: 0.25rem 0;">✓ GTM co-marketing resources</li>
+                        <li style="padding: 0.25rem 0;">✓ Azure Sponsorship for ISVs</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Revenue & Margin Model</h2>
+            
+            <div style="background: var(--card-bg); border-radius: 12px; padding: 2rem; border: 1px solid var(--border-color);">
+                <h3 style="color: var(--azure-blue); font-size: 1.4rem; margin-bottom: 1rem;">Segment-Based Margins</h3>
+                <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Partner margins vary by customer segment and service type. ISVs can create private offers to extend margins to specific CSP partners.</p>
+                
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.5rem;">
+                    <div style="background: var(--bg-dark); padding: 1.25rem; border-radius: 8px; border-left: 4px solid var(--azure-blue);">
+                        <h4 style="color: var(--azure-blue); font-size: 1.1rem; margin-bottom: 0.5rem;">Co-Sell Incentives</h4>
+                        <p style="color: var(--text-muted); font-size: 0.85rem;">Partners now include Estimated Azure Consumed Revenue in IP Co-Sell referrals. Helps Microsoft assign resources to high-potential cloud deals.</p>
+                    </div>
+                    
+                    <div style="background: var(--bg-dark); padding: 1.25rem; border-radius: 8px; border-left: 4px solid var(--azure-blue);">
+                        <h4 style="color: var(--azure-blue); font-size: 1.1rem; margin-bottom: 0.5rem;">Private Offers</h4>
+                        <p style="color: var(--text-muted); font-size: 0.85rem;">ISVs can create private offers to extend margins to specific CSP partners. Corrected margins and pricing effective February 7, 2026.</p>
+                    </div>
+                    
+                    <div style="background: var(--bg-dark); padding: 1.25rem; border-radius: 8px; border-left: 4px solid var(--azure-blue);">
+                        <h4 style="color: var(--azure-blue); font-size: 1.1rem; margin-bottom: 0.5rem;">Segment Variations</h4>
+                        <p style="color: var(--text-muted); font-size: 0.85rem;">Education and nonprofit typically offer lower or no margins. Commercial/enterprise segments offer standard partner margins.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Azure Architecture Framework</h2>
+            <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Hundreds of reference architectures, design principles, and GitHub-hosted code samples. Azure Well-Architected Review tool and Azure Advisor provide automated recommendations.</p>
+            
+            <div style="background: var(--card-bg); border-radius: 12px; padding: 1.5rem; border: 1px solid var(--border-color);">
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;">
+                    <div style="padding: 1rem; background: var(--bg-dark); border-radius: 6px;">
+                        <p style="color: var(--text-muted); font-size: 0.9rem;"><strong style="color: var(--azure-blue);">Architecture Center:</strong> Established patterns, partner scenarios, comprehensive documentation</p>
+                    </div>
+                    <div style="padding: 1rem; background: var(--bg-dark); border-radius: 6px;">
+                        <p style="color: var(--text-muted); font-size: 0.9rem;"><strong style="color: var(--azure-blue);">Azure Advisor:</strong> Automated recommendations for cost, security, reliability, performance</p>
+                    </div>
+                    <div style="padding: 1rem; background: var(--bg-dark); border-radius: 6px;">
+                        <p style="color: var(--text-muted); font-size: 0.9rem;"><strong style="color: var(--azure-blue);">Well-Architected Review:</strong> Free evaluation tool for workload assessment</p>
+                    </div>
+                    <div style="padding: 1rem; background: var(--bg-dark); border-radius: 6px;">
+                        <p style="color: var(--text-muted); font-size: 0.9rem;"><strong style="color: var(--azure-blue);">GitHub Samples:</strong> Production-ready code samples and deployment templates</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2>Compare Azure with Other Cloud Providers</h2>
+            <p>See how Microsoft's high-threshold CSP model compares with Oracle OPN, AWS APN, and Google Cloud programs.</p>
+            <div class="cta-buttons">
+                <a href="comparison.html" class="cta-button">View Full Comparison</a>
+                <a href="index.html" class="cta-button secondary">Back to Hub</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p><a href="index.html">Cloud Partner Hub</a> | <a href="oracle.html">Oracle OPN</a> | <a href="aws.html">AWS APN</a> | <a href="gcp.html">Google Cloud</a> | <a href="https://frankx.ai/research/">All Research</a></p>
+        <p style="margin-top: 1rem;">Microsoft Azure Partner Program Research | February 2026 | FrankX AI Architect</p>
+        <p>Microsoft and Azure are trademarks of Microsoft Corporation. This is independent research.</p>
+    </footer>
+</body>
+</html>

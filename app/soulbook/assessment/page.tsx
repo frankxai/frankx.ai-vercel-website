@@ -304,7 +304,7 @@ export default function AssessmentPage() {
     const Icon = result.icon;
 
     return (
-      <div className="min-h-screen bg-[#030712] py-20 px-4 relative overflow-hidden">
+      <div className="min-h-screen bg-[#0a0a0b] py-20 px-4 relative overflow-hidden">
         {/* Background */}
         <div className="absolute inset-0">
           <Image
@@ -314,7 +314,7 @@ export default function AssessmentPage() {
             className="object-cover opacity-20"
             quality={80}
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#030712]/50 via-[#030712]/80 to-[#030712]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0b]/50 via-[#0a0a0b]/80 to-[#0a0a0b]" />
         </div>
         <div className="relative z-10 max-w-4xl mx-auto">
           <motion.div
@@ -378,7 +378,7 @@ export default function AssessmentPage() {
   const progress = (currentQuestion / questions.length) * 100;
 
   return (
-    <div className="min-h-screen bg-[#030712] relative overflow-hidden">
+    <div className="min-h-screen bg-[#0a0a0b] relative overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0">
         <Image
@@ -388,7 +388,7 @@ export default function AssessmentPage() {
           className="object-cover opacity-15"
           quality={80}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#030712]/40 via-[#030712]/70 to-[#030712]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0b]/40 via-[#0a0a0b]/70 to-[#0a0a0b]" />
       </div>
 
       {/* Progress Bar */}

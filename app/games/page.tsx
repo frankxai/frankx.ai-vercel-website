@@ -38,7 +38,7 @@ import {
 function GamesBackground() {
   return (
     <div className="fixed inset-0 overflow-hidden pointer-events-none">
-      <div className="absolute inset-0 bg-[#030712]" />
+      <div className="absolute inset-0 bg-[#0a0a0b]" />
 
       <motion.div
         className="absolute top-0 -right-[20%] w-[60%] h-[60%]"
@@ -89,7 +89,7 @@ function HeroSection() {
           className="object-cover opacity-15"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#030712]/60 via-[#030712]/80 to-[#030712]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0b]/60 via-[#0a0a0b]/80 to-[#0a0a0b]" />
       </div>
 
       <div className="max-w-5xl mx-auto relative z-10">

@@ -194,7 +194,7 @@ function GrandparentPair({
 
 export default function FamilyTreePage() {
   return (
-    <main className="min-h-screen bg-[#030712]">
+    <main className="min-h-screen bg-[#0a0a0b]">
       {/* Header */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0">
@@ -297,7 +297,7 @@ export default function FamilyTreePage() {
         </div>
 
         {/* Legend */}
-        <div className="mx-auto mt-16 max-w-3xl rounded-xl border border-white/5 bg-white/[0.02] p-6">
+        <div className="mx-auto mt-16 max-w-3xl rounded-xl border border-white/[0.08] bg-white/[0.03] p-6">
           <h3 className="mb-4 text-sm font-medium text-white/60">
             Family Lines
           </h3>

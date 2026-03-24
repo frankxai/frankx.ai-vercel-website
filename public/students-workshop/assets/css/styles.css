@@ -1,0 +1,190 @@
+:root{
+  --bg: #0f1220;
+  --bg-2:#12162a;
+  --text:#e7ecff;
+  --muted:#aab3d8;
+  --brand:#6aa8ff;
+  --brand-2:#8fe3cf;
+  --accent:#ffd166;
+  --danger:#ff6b6b;
+  --ok:#00d27a;
+  --card:#181c34;
+  --border:#263055;
+  --link:#9cc4ff;
+  --shadow: 0 6px 30px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.03);
+  --focus: #91b4ff;
+}
+.light{
+  --bg:#f7f9ff;
+  --bg-2:#ffffff;
+  --text:#0c1533;
+  --muted:#445075;
+  --brand:#1e5eff;
+  --brand-2:#0abf9b;
+  --accent:#c77d00;
+  --danger:#c62828;
+  --ok:#0c875a;
+  --card:#ffffff;
+  --border:#e1e6ff;
+  --link:#1247cc;
+  --shadow: 0 8px 30px rgba(20,32,72,.08);
+  --focus:#0a58ff;
+}
+
+/* Base */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  background:
+    radial-gradient(1200px 800px at 75% -10%, rgba(106,168,255,.15), transparent 60%),
+    radial-gradient(900px 600px at -10% 10%, rgba(143,227,207,.12), transparent 60%),
+    var(--bg);
+  color:var(--text);
+  font: 16px/1.55 system-ui,-apple-system,Segoe UI,Roboto,Inter,"Helvetica Neue",Arial,"Noto Sans","Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+  -webkit-font-smoothing:antialiased; text-rendering: optimizeLegibility;
+}
+a{color:var(--link); text-decoration:none}
+a:hover{text-decoration:underline}
+img{max-width:100%; height:auto}
+.container{width:min(1100px, 92%); margin:0 auto;}
+
+/* Accessibility */
+.skip-link{
+  position:absolute; left:-999px; top:auto; width:1px; height:1px; overflow:hidden;
+}
+.skip-link:focus{
+  position:fixed; left:12px; top:12px; width:auto; height:auto; padding:.5rem .7rem;
+  background:var(--card); color:var(--text); border:2px solid var(--focus); border-radius:8px; z-index:1000;
+}
+
+/* Header/Nav */
+header.site{
+  position:sticky; top:0; z-index:999;
+  backdrop-filter: blur(8px);
+  background: color-mix(in oklab, var(--bg), transparent 30%);
+  border-bottom:1px solid var(--border);
+}
+.nav{
+  display:flex; align-items:center; gap:.75rem; padding:.65rem .75rem;
+  overflow:auto;
+}
+.brand{
+  display:flex; align-items:center; gap:.5rem; font-weight:700; letter-spacing:.2px;
+  padding:.35rem .6rem; border-radius:10px; box-shadow: var(--shadow);
+  background: linear-gradient(180deg, color-mix(in oklab, var(--card), transparent 30%), var(--card));
+  border:1px solid var(--border);
+  color:var(--text);
+  white-space:nowrap;
+}
+.brand .dot{width:10px;height:10px;border-radius:50%; background: radial-gradient(circle at 30% 30%, var(--brand), var(--brand-2)); display:inline-block}
+.nav .link{
+  color:var(--muted); white-space:nowrap; padding:.4rem .6rem; border-radius:8px;
+}
+.nav .link:hover{background:color-mix(in oklab, var(--card), transparent 50%); color:var(--text)}
+.nav .spacer{flex:1}
+.nav button{
+  background:linear-gradient(180deg, color-mix(in oklab, var(--brand) 35%, var(--brand-2)), var(--brand));
+  border:0; color:#fff; padding:.5rem .8rem; border-radius:10px; font-weight:700; cursor:pointer;
+  box-shadow: var(--shadow);
+}
+.nav button.secondary{
+  background: none; border:1px solid var(--border); color:var(--text);
+}
+
+/* Sections & layout */
+section{scroll-margin-top:80px; padding: 2.2rem 0;}
+.hero{padding: 2.4rem 0 1.2rem;}
+.hero .wrap{display:grid; grid-template-columns: 1.2fr .8fr; gap:1.5rem;}
+@media (max-width: 900px){ .hero .wrap{grid-template-columns: 1fr} }
+
+.grid{display:grid; gap:1rem}
+.grid.cols-2{grid-template-columns: 1fr 1fr}
+.grid.cols-3{grid-template-columns: repeat(3,1fr)}
+@media (max-width: 900px){ .grid.cols-2, .grid.cols-3{grid-template-columns: 1fr} }
+
+.card{
+  background: linear-gradient(180deg, color-mix(in oklab, var(--card), transparent 15%), var(--card));
+  border:1px solid var(--border);
+  border-radius:16px; padding:1rem; box-shadow: var(--shadow);
+}
+
+.headline{font-size: clamp(1.6rem, 2.8vw, 2.4rem); line-height:1.15; margin:.2rem 0 .6rem;}
+.subtitle{color:var(--muted); margin:.4rem 0 1rem}
+.pill{
+  display:inline-flex; gap:.5rem; align-items:center; padding:.35rem .6rem; border-radius:999px;
+  border:1px solid var(--border); background: color-mix(in oklab, var(--card), transparent 50%);
+  color:var(--muted); font-weight:600; letter-spacing:.2px;
+}
+
+.kpis{display:flex; gap:1rem; flex-wrap:wrap}
+.kpi{padding:.6rem .8rem; border-radius:12px; background: color-mix(in oklab, var(--card), transparent 25%); border:1px solid var(--border)}
+.kpi strong{display:block; font-size:1.1rem}
+
+h1,h2,h3{margin:.2rem 0 .8rem}
+h2{font-size: clamp(1.3rem, 2.2vw, 1.6rem)}
+h3{font-size: clamp(1.05rem, 1.8vw, 1.2rem)}
+.muted{color:var(--muted)}
+.small{font-size:.92rem}
+.inline-note{font-size:.9rem;color:var(--muted)}
+.badge{display:inline-block; padding:.15rem .5rem; border:1px dashed var(--border); border-radius:6px; color:var(--muted); font-size:.8rem}
+
+/* Forms */
+label{font-weight:600; display:block; margin:.6rem 0 .25rem}
+input[type=text], input[type=url], textarea, select{
+  width:100%; padding:.6rem .65rem; border-radius:10px; border:1px solid var(--border);
+  background: color-mix(in oklab, var(--bg-2), transparent 10%); color:var(--text);
+}
+textarea{min-height: 120px; resize: vertical}
+input:focus, textarea:focus, select:focus, button:focus, a:focus{
+  outline:2px solid var(--focus); outline-offset:2px;
+}
+
+/* Buttons */
+.actions{display:flex; flex-wrap:wrap; gap:.5rem; align-items:center}
+.btn{
+  display:inline-flex; align-items:center; gap:.4rem; padding:.5rem .7rem; border-radius:10px; border:1px solid var(--border);
+  background: color-mix(in oklab, var(--card), transparent 30%); color:var(--text); cursor:pointer; box-shadow: var(--shadow);
+}
+.btn.primary{
+  background: linear-gradient(180deg, color-mix(in oklab, var(--brand) 35%, var(--brand-2)), var(--brand));
+  border:0; color:#fff; font-weight:700;
+}
+.btn.warn{background: none; border-color: color-mix(in oklab, var(--danger), var(--border) 60%); color: var(--danger)}
+.btn.ghost{background: none}
+
+/* Lists */
+.list-tight{margin:.4rem 0 .6rem; padding-left: 1rem}
+.list-tight li{margin:.25rem 0}
+
+/* Prompt blocks */
+.prompt{ position:relative; margin:.6rem 0 .8rem; }
+.prompt textarea{
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  min-height: 110px
+}
+.copy-btn{
+  position:absolute; right:.4rem; top:.4rem; z-index:2; font-size:.9rem;
+}
+
+/* Notices */
+.notice{
+  padding:.8rem; border-left:3px solid var(--brand); background: color-mix(in oklab, var(--brand) 8%, var(--card));
+  border-radius:10px; border:1px solid var(--border); color:var(--text)
+}
+.notice.warn{border-left-color: var(--danger); background: color-mix(in oklab, var(--danger) 6%, var(--card))}
+
+/* Sticky tools */
+.sticky-tools{
+  position: fixed; bottom: 18px; right: 18px; z-index: 999;
+  display:flex; gap:.5rem; flex-direction: column;
+}
+.sticky-tools .btn{backdrop-filter: blur(8px)}
+
+/* Footer */
+footer{
+  padding:2rem 0; border-top:1px solid var(--border); color:var(--muted); text-align:center;
+}
+
+/* Save indicator */
+.save-indicator{font-size:.85rem; color:var(--muted)}

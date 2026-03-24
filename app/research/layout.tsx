@@ -61,7 +61,7 @@ const websiteLd = JSON.stringify({
   url: 'https://frankx.ai/research',
   author: {
     '@type': 'Person',
-    name: 'Frank van den Bergh',
+    name: 'Frank Riemer',
     url: 'https://frankx.ai',
     jobTitle: 'AI Architect',
   },

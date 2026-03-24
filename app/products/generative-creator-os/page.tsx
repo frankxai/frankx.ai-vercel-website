@@ -50,7 +50,7 @@ export default function GenerativeCreatorOSPage() {
   const productId = product.analyticsId ?? product.id
 
   return (
-    <div className="min-h-screen bg-[#02030b] text-slate-100">
+    <div className="min-h-screen bg-[#0a0a0b] text-slate-100">
       <ProductHero
         productId={productId}
         badge={product.badge}
@@ -71,7 +71,7 @@ export default function GenerativeCreatorOSPage() {
         pricingTiers={product.pricingTiers}
       />
 
-      <section className="bg-[#02030b] py-16">
+      <section className="bg-[#0a0a0b] py-16">
         <div className="mx-auto max-w-4xl px-6">
           <h2 className="text-center text-3xl font-semibold text-white">Frequently Asked by Creative Teams</h2>
           <div className="mt-10 space-y-6">

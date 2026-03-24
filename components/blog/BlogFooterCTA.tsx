@@ -1,6 +1,8 @@
+'use client'
+
 import Link from 'next/link'
 import { ArrowRight } from 'lucide-react'
-import SparkBorder from '@/components/ui/SparkBorder'
+import { GlowCard, type GlowColor } from '@/components/ui/glow-card'
 
 // Inline SVG icons (Heroicons outline style) to avoid extra deps
 function RocketIcon({ className }: { className?: string }) {
@@ -74,10 +76,17 @@ const ctaItems = [
 
 export default function BlogFooterCTA() {
   return (
-    <div className="grid gap-5 md:grid-cols-3">
+    <div className="relative">
+      {/* Aurora ambient layer */}
+      <div className="absolute -inset-8 pointer-events-none" aria-hidden>
+        <div className="absolute top-0 left-1/4 h-48 w-64 rounded-full bg-emerald-500/[0.08] blur-[100px]" />
+        <div className="absolute bottom-0 right-1/4 h-40 w-56 rounded-full bg-cyan-500/[0.06] blur-[100px]" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 h-36 w-48 rounded-full bg-purple-500/[0.05] blur-[80px]" />
+      </div>
+    <div className="relative grid gap-5 md:grid-cols-3">
       {ctaItems.map((item) => (
-        <SparkBorder key={item.href} color={item.color} bg="#0b1120">
-          <Link href={item.href} className="block p-6 group/card">
+        <GlowCard key={item.href} color={item.color as GlowColor} href={item.href}>
+          <div className="p-6">
             <div
               className={`flex h-10 w-10 items-center justify-center rounded-xl ${item.iconBg} ${item.iconBorder} border mb-4`}
             >
@@ -86,7 +95,7 @@ export default function BlogFooterCTA() {
             <span className="text-[11px] font-semibold uppercase tracking-wider text-white/40">
               {item.label}
             </span>
-            <h3 className="mt-1.5 text-lg font-semibold text-white group-hover/card:text-white/90 transition-colors">
+            <h3 className="mt-1.5 text-lg font-semibold text-white group-hover:text-white/90 transition-colors">
               {item.title}
             </h3>
             <p className="mt-2.5 text-sm text-white/50 leading-relaxed">
@@ -96,11 +105,12 @@ export default function BlogFooterCTA() {
               className={`mt-4 inline-flex items-center gap-2 text-sm font-semibold ${item.linkColor} transition-colors`}
             >
               {item.linkText}
-              <ArrowRight className="h-4 w-4 transition-transform group-hover/card:translate-x-0.5" />
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
             </span>
-          </Link>
-        </SparkBorder>
+          </div>
+        </GlowCard>
       ))}
+    </div>
     </div>
   )
 }

@@ -84,19 +84,19 @@ const templates = [
     title: 'Enterprise AI Strategy Canvas',
     description: 'Comprehensive framework for large organizations planning AI transformation',
     features: ['Multi-stakeholder analysis', 'Risk assessment matrix', 'Governance planning', 'Change management'],
-    downloadUrl: '/templates/enterprise-ai-strategy-canvas.pdf'
+    downloadUrl: '/templates/governance-overview.html'
   },
   {
     title: 'Startup AI Strategy Canvas',
     description: 'Lean framework for startups integrating AI into their product or operations',
     features: ['MVP AI features', 'Resource optimization', 'Growth strategies', 'Technical roadmap'],
-    downloadUrl: '/templates/startup-ai-strategy-canvas.pdf'
+    downloadUrl: '/templates/coe-checklist.html'
   },
   {
     title: 'Creator AI Strategy Canvas',
     description: 'Specialized framework for creators and content businesses using AI tools',
     features: ['Content automation', 'Brand consistency', 'Workflow optimization', 'Monetization strategies'],
-    downloadUrl: '/templates/creator-ai-strategy-canvas.pdf'
+    downloadUrl: '/templates/evaluation-rubric.html'
   }
 ]
 

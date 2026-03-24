@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Therapy Acceleration - Project Prometheus</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --oracle-red: #C74634;
+            --oracle-red-light: rgba(199, 70, 52, 0.1);
+            --bg-dark: #0A0A0F;
+            --bg-card: rgba(22, 27, 34, 0.8);
+            --text-primary: #E6EDF3;
+            --text-secondary: #8B949E;
+            --text-muted: #6E7681;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --pillar-therapy: #A855F7;
+            --pillar-therapy-bg: rgba(168, 85, 247, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 0 24px;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .nav-brand svg { width: 32px; height: 32px; fill: var(--oracle-red); }
+
+        .nav-menu { display: flex; gap: 8px; }
+
+        .nav-link {
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--text-primary);
+            background: var(--bg-card);
+        }
+
+        .nav-badge {
+            background: var(--oracle-red-light);
+            border: 1px solid rgba(199, 70, 52, 0.3);
+            color: var(--oracle-red);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .page-header {
+            padding: 120px 24px 60px;
+            background: linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(10, 10, 15, 1) 100%);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .page-header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+
+        .breadcrumb a { color: var(--text-secondary); text-decoration: none; }
+        .breadcrumb a:hover { color: var(--text-primary); }
+
+        .pillar-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: var(--pillar-therapy-bg);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--pillar-therapy);
+            margin-bottom: 16px;
+        }
+
+        .page-title {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 16px;
+        }
+
+        .page-subtitle {
+            font-size: 20px;
+            color: var(--text-secondary);
+            max-width: 700px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 32px;
+        }
+
+        /* Approach Cards */
+        .approach-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .approach-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 32px;
+            transition: all 0.3s ease;
+        }
+
+        .approach-card:hover {
+            border-color: var(--pillar-therapy);
+            transform: translateY(-4px);
+        }
+
+        .approach-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--pillar-therapy-bg);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .approach-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .approach-description {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .approach-tech {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tech-tag {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            color: var(--text-secondary);
+        }
+
+        /* Pipeline Visualization */
+        .pipeline {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 40px;
+            margin-top: 40px;
+        }
+
+        .pipeline-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 32px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .pipeline-title::before {
+            content: '';
+            width: 4px;
+            height: 24px;
+            background: var(--pillar-therapy);
+            border-radius: 2px;
+        }
+
+        .pipeline-flow {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            overflow-x: auto;
+            padding: 16px 0;
+        }
+
+        .pipeline-step {
+            flex: 1;
+            min-width: 180px;
+            background: rgba(168, 85, 247, 0.05);
+            border: 1px solid rgba(168, 85, 247, 0.2);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .pipeline-step:hover {
+            background: rgba(168, 85, 247, 0.1);
+            border-color: var(--pillar-therapy);
+        }
+
+        .step-icon {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .step-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .step-subtitle {
+            font-size: 11px;
+            color: var(--text-muted);
+        }
+
+        .pipeline-arrow {
+            color: var(--pillar-therapy);
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+
+        /* Outcomes */
+        .outcomes-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .outcome-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 28px;
+            text-align: center;
+        }
+
+        .outcome-value {
+            font-size: 40px;
+            font-weight: 700;
+            color: var(--pillar-therapy);
+            margin-bottom: 4px;
+        }
+
+        .outcome-label {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .outcome-description {
+            font-size: 12px;
+            color: var(--text-muted);
+        }
+
+        /* Footer */
+        .footer {
+            padding: 40px 24px;
+            text-align: center;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .footer-text { color: var(--text-muted); font-size: 13px; }
+        .footer-link { color: var(--oracle-red); text-decoration: none; }
+
+        @media (max-width: 1024px) {
+            .approach-grid { grid-template-columns: repeat(2, 1fr); }
+            .outcomes-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu { display: none; }
+            .approach-grid { grid-template-columns: 1fr; }
+            .pipeline-flow { flex-direction: column; }
+            .pipeline-arrow { transform: rotate(90deg); }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-brand">
+                <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+                Project Prometheus
+            </a>
+            <div class="nav-menu">
+                <a href="index.html" class="nav-link">Overview</a>
+                <a href="diagnostic-ai.html" class="nav-link">Diagnostic AI</a>
+                <a href="tumor-board.html" class="nav-link">Tumor Board</a>
+                <a href="therapy-acceleration.html" class="nav-link active">Therapy</a>
+                <a href="architecture.html" class="nav-link">Architecture</a>
+                <a href="user-flows.html" class="nav-link">User Flows</a>
+            </div>
+            <span class="nav-badge">Oracle Cloud</span>
+        </div>
+    </nav>
+
+    <header class="page-header">
+        <div class="page-header-content">
+            <div class="breadcrumb">
+                <a href="index.html">Project Prometheus</a>
+                <span>/</span>
+                <span>Therapy Acceleration</span>
+            </div>
+            <span class="pillar-badge">💊 Pillar 3</span>
+            <h1 class="page-title">Therapy Acceleration</h1>
+            <p class="page-subtitle">
+                AI-driven drug repurposing, virtual screening, and clinical
+                trial optimization to shorten discovery cycles from years to months.
+            </p>
+        </div>
+    </header>
+
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">AI-Powered Discovery</h2>
+            <div class="approach-grid">
+                <div class="approach-card">
+                    <div class="approach-icon">🔄</div>
+                    <h3 class="approach-title">Drug Repurposing</h3>
+                    <p class="approach-description">
+                        AI models analyze drug-target and drug-disease interactions
+                        to identify existing drugs with potential efficacy in
+                        pediatric leukemia.
+                    </p>
+                    <div class="approach-tech">
+                        <span class="tech-tag">DeepDRK</span>
+                        <span class="tech-tag">GDRnet</span>
+                        <span class="tech-tag">OCI Data Science</span>
+                    </div>
+                </div>
+
+                <div class="approach-card">
+                    <div class="approach-icon">🧬</div>
+                    <h3 class="approach-title">Virtual Screening</h3>
+                    <p class="approach-description">
+                        GPU-accelerated molecular docking simulates millions of
+                        drug-protein interactions to identify high-affinity
+                        therapeutic candidates.
+                    </p>
+                    <div class="approach-tech">
+                        <span class="tech-tag">SBVS/LBVS</span>
+                        <span class="tech-tag">OCI HPC</span>
+                        <span class="tech-tag">A100/H100 GPU</span>
+                    </div>
+                </div>
+
+                <div class="approach-card">
+                    <div class="approach-icon">🧪</div>
+                    <h3 class="approach-title">Generative Drug Design</h3>
+                    <p class="approach-description">
+                        AI generates novel molecular structures with desired
+                        therapeutic and pharmacokinetic properties optimized
+                        for pediatric patients.
+                    </p>
+                    <div class="approach-tech">
+                        <span class="tech-tag">Mol-CycleGAN</span>
+                        <span class="tech-tag">VAE</span>
+                        <span class="tech-tag">RNN Generators</span>
+                    </div>
+                </div>
+
+                <div class="approach-card">
+                    <div class="approach-icon">📊</div>
+                    <h3 class="approach-title">Real-World Evidence</h3>
+                    <p class="approach-description">
+                        Combine registry data with clinical trial outcomes for
+                        predictive modeling of relapse risk and therapy response.
+                    </p>
+                    <div class="approach-tech">
+                        <span class="tech-tag">Database 26ai</span>
+                        <span class="tech-tag">ML Platform</span>
+                        <span class="tech-tag">OMOP CDM</span>
+                    </div>
+                </div>
+
+                <div class="approach-card">
+                    <div class="approach-icon">👥</div>
+                    <h3 class="approach-title">Virtual Clinical Trials</h3>
+                    <p class="approach-description">
+                        AI-enabled simulations identify optimal patient subsets
+                        and trial designs, reducing time and cost of early-phase
+                        pediatric trials.
+                    </p>
+                    <div class="approach-tech">
+                        <span class="tech-tag">Digital Twins</span>
+                        <span class="tech-tag">Simulation</span>
+                        <span class="tech-tag">OCI Compute</span>
+                    </div>
+                </div>
+
+                <div class="approach-card">
+                    <div class="approach-icon">🔒</div>
+                    <h3 class="approach-title">Collaborative Sandbox</h3>
+                    <p class="approach-description">
+                        Secure environment where academic and industry partners
+                        can test and validate AI models on de-identified datasets.
+                    </p>
+                    <div class="approach-tech">
+                        <span class="tech-tag">OCI Secure Workloads</span>
+                        <span class="tech-tag">Data Safe</span>
+                        <span class="tech-tag">IAM</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pipeline -->
+            <div class="pipeline">
+                <h3 class="pipeline-title">Drug Discovery Pipeline</h3>
+                <div class="pipeline-flow">
+                    <div class="pipeline-step">
+                        <div class="step-icon">🎯</div>
+                        <div class="step-title">Target ID</div>
+                        <div class="step-subtitle">Genomic analysis</div>
+                    </div>
+                    <span class="pipeline-arrow">→</span>
+                    <div class="pipeline-step">
+                        <div class="step-icon">🔍</div>
+                        <div class="step-title">Virtual Screen</div>
+                        <div class="step-subtitle">10M+ compounds</div>
+                    </div>
+                    <span class="pipeline-arrow">→</span>
+                    <div class="pipeline-step">
+                        <div class="step-icon">⚗️</div>
+                        <div class="step-title">Lead Optimization</div>
+                        <div class="step-subtitle">AI refinement</div>
+                    </div>
+                    <span class="pipeline-arrow">→</span>
+                    <div class="pipeline-step">
+                        <div class="step-icon">🧫</div>
+                        <div class="step-title">In Silico Validation</div>
+                        <div class="step-subtitle">Toxicity prediction</div>
+                    </div>
+                    <span class="pipeline-arrow">→</span>
+                    <div class="pipeline-step">
+                        <div class="step-icon">📋</div>
+                        <div class="step-title">Trial Design</div>
+                        <div class="step-subtitle">Virtual simulation</div>
+                    </div>
+                    <span class="pipeline-arrow">→</span>
+                    <div class="pipeline-step">
+                        <div class="step-icon">✅</div>
+                        <div class="step-title">Clinical Candidate</div>
+                        <div class="step-subtitle">Ready for trials</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Outcomes -->
+            <div class="outcomes-grid">
+                <div class="outcome-card">
+                    <div class="outcome-value">&lt;18mo</div>
+                    <div class="outcome-label">Discovery Cycles</div>
+                    <div class="outcome-description">Down from 3-5 years traditional</div>
+                </div>
+                <div class="outcome-card">
+                    <div class="outcome-value">2-3</div>
+                    <div class="outcome-label">Repurposed Compounds</div>
+                    <div class="outcome-description">Identified within 3 years</div>
+                </div>
+                <div class="outcome-card">
+                    <div class="outcome-value">50%</div>
+                    <div class="outcome-label">Trial Cost Reduction</div>
+                    <div class="outcome-description">Through virtual trial design</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <p class="footer-text">
+            Project Prometheus | Oracle AI Center of Excellence |
+            <a href="architecture.html" class="footer-link">View Architecture</a>
+        </p>
+    </footer>
+</body>
+</html>

@@ -143,8 +143,8 @@ export default function ArcaneanDesignSystemPage() {
       {/* Header */}
       <section className="relative border-b border-white/5 overflow-hidden">
         {/* Background glow */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-gradient-to-b from-purple-500/[0.08] via-violet-500/[0.04] to-transparent blur-[120px] pointer-events-none" />
-        <div className="absolute top-20 right-1/4 w-[400px] h-[300px] bg-amber-500/[0.03] blur-[100px] pointer-events-none" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-gradient-to-b from-purple-500/[0.08] via-violet-500/[0.04] to-transparent blur-[128px] pointer-events-none" />
+        <div className="absolute top-20 right-1/4 w-[400px] h-[300px] bg-amber-500/[0.03] blur-[128px] pointer-events-none" />
 
         <div className="relative max-w-5xl mx-auto px-6 pt-24 pb-12">
           <div className="flex items-center gap-2 mb-6">
@@ -202,7 +202,7 @@ export default function ArcaneanDesignSystemPage() {
           </div>
 
           {/* Magic Ranks */}
-          <div className="mt-10 p-6 rounded-xl border border-white/5 bg-white/[0.02]">
+          <div className="mt-10 p-6 rounded-xl border border-white/[0.08] bg-white/[0.03]">
             <h3 className="text-sm font-semibold text-white mb-4">Magic Ranks</h3>
             <div className="grid grid-cols-2 sm:grid-cols-5 gap-3">
               {magicRanks.map((rank) => (
@@ -228,7 +228,7 @@ export default function ArcaneanDesignSystemPage() {
             {elements.map((el) => (
               <div
                 key={el.name}
-                className="group flex flex-col sm:flex-row sm:items-start gap-4 p-5 rounded-xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] transition-all"
+                className="group flex flex-col sm:flex-row sm:items-start gap-4 p-5 rounded-xl border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.04] transition-all"
               >
                 <div className="flex items-center gap-3 sm:min-w-[200px]">
                   <div className="w-10 h-10 rounded-lg border border-white/10 flex-shrink-0" style={{ backgroundColor: el.hex }} />
@@ -263,7 +263,7 @@ export default function ArcaneanDesignSystemPage() {
             {houses.map((house) => (
               <div
                 key={house.name}
-                className="p-5 rounded-xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] transition-all"
+                className="p-5 rounded-xl border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.04] transition-all"
               >
                 <div className="flex items-center gap-3 mb-3">
                   <div
@@ -293,7 +293,7 @@ export default function ArcaneanDesignSystemPage() {
           <div className="flex flex-col sm:flex-row gap-3">
             {arcPhases.map((phase, i) => (
               <div key={phase.name} className="flex-1 relative">
-                <div className="p-5 rounded-xl border border-white/5 bg-white/[0.02] h-full">
+                <div className="p-5 rounded-xl border border-white/[0.08] bg-white/[0.03] h-full">
                   <div className="flex items-center gap-2 mb-3">
                     <div className="w-6 h-6 rounded-full border border-white/10 flex items-center justify-center" style={{ backgroundColor: phase.hex }}>
                       <span className="text-[9px] font-bold text-white/80">{i + 1}</span>
@@ -368,7 +368,7 @@ export default function ArcaneanDesignSystemPage() {
 
           <div className="space-y-4">
             {arcaneanType.map((type) => (
-              <div key={type.name} className="flex flex-col sm:flex-row sm:items-center gap-4 p-5 rounded-xl border border-white/5 bg-white/[0.02]">
+              <div key={type.name} className="flex flex-col sm:flex-row sm:items-center gap-4 p-5 rounded-xl border border-white/[0.08] bg-white/[0.03]">
                 <div className="sm:min-w-[180px]">
                   <p className="text-sm font-semibold text-white">{type.name}</p>
                   <p className="text-[11px] text-white/30 font-mono">{type.font} {type.weight}</p>
@@ -552,7 +552,7 @@ function GateRow({ gate }: { gate: typeof gates[0] }) {
   }
 
   return (
-    <div className="group flex items-center gap-4 p-4 rounded-xl border border-white/5 bg-white/[0.02] hover:bg-white/[0.04] transition-all">
+    <div className="group flex items-center gap-4 p-4 rounded-xl border border-white/[0.08] bg-white/[0.03] hover:bg-white/[0.04] transition-all">
       {/* Gate Number + Color */}
       <div className="flex items-center gap-3 min-w-[120px]">
         <div

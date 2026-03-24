@@ -64,7 +64,7 @@ export default async function Page({ params }: PageProps) {
     url: `https://frankx.ai/plan/${initiative.slug}`,
     author: {
       '@type': 'Person',
-      name: 'Frank van den Bergh',
+      name: 'Frank Riemer',
       url: 'https://frankx.ai',
       jobTitle: 'AI Architect',
     },

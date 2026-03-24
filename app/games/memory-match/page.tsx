@@ -368,7 +368,7 @@ export default function MemoryMatchPage() {
   // Difficulty picker screen
   if (showDifficultyPicker) {
     return (
-      <div className="min-h-screen bg-[#030712] flex items-center justify-center px-4">
+      <div className="min-h-screen bg-[#0a0a0b] flex items-center justify-center px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -419,9 +419,9 @@ export default function MemoryMatchPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#030712]">
+    <div className="min-h-screen bg-[#0a0a0b]">
       {/* Header */}
-      <div className="sticky top-0 z-40 border-b border-white/[0.04] bg-[#030712]/90 backdrop-blur-xl">
+      <div className="sticky top-0 z-40 border-b border-white/[0.04] bg-[#0a0a0b]/90 backdrop-blur-xl">
         <div className="max-w-3xl mx-auto px-4 py-3 flex items-center justify-between">
           <div className="flex items-center gap-4">
             <Link

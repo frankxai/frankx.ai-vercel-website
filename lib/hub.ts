@@ -102,19 +102,19 @@ export type HomeSpotlight = {
 
 export const heroStats: HeroStat[] = [
   {
-    label: 'The Journey',
-    value: 'Daily',
-    detail: 'Creating music with AI as a practice of exploration and discovery'
+    label: 'AI Songs Created',
+    value: '12K+',
+    detail: 'Original tracks produced with Suno AI — ambient, electronic, cinematic'
   },
   {
-    label: 'Learning Paths',
-    value: 'Curated',
-    detail: 'Resources from Oracle, Google, MIT that actually changed how I think'
+    label: 'Articles & Guides',
+    value: '70+',
+    detail: 'Technical deep dives on AI architecture, Claude Code, and music production'
   },
   {
-    label: 'Built in Public',
-    value: 'Open',
-    detail: 'Every system documented so you can adapt it to your own life'
+    label: 'AI Agents & Skills',
+    value: '110+',
+    detail: '75+ skills and 38 agents in the open-source Agentic Creator OS'
   }
 ]
 
@@ -393,7 +393,7 @@ export const projectMilestones: ProjectMilestone[] = [
       'End-to-end framework for shipping products with AI-assisted planning and execution.',
     focus: 'From idea to launch with collaborative AI agents.',
     eta: 'Q2 2025',
-    cta: { label: 'Join Waitlist', href: '/waitlist' }
+    cta: { label: 'Learn More', href: '/products' }
   }
 ]
 
@@ -433,7 +433,7 @@ export const homeSpotlights: HomeSpotlight[] = [
     eyebrow: 'Music',
     title: 'How I Make Songs with AI',
     description:
-      'My complete Suno workflow. 500+ songs created, every step documented.',
+      'My complete Suno workflow. 12,000+ songs created, every step documented.',
     href: '/music-lab',
     cta: 'See the Process'
   },
@@ -514,26 +514,9 @@ export const agentProtocols: AgentProtocol[] = [
   }
 ]
 
-export const testimonials = [
-  {
-    quote:
-      'What I appreciate most is the transparency. Frank shares the entire process, not just the polished results. That\'s rare and valuable.',
-    name: 'From the Community',
-    role: 'Creator'
-  },
-  {
-    quote:
-      'The learning paths cut through the noise. Instead of endless scrolling through course catalogs, I found exactly what I needed.',
-    name: 'From the Community',
-    role: 'Learner'
-  },
-  {
-    quote:
-      'This is what documentation should look like. Real systems, real decisions, real learnings. I adapted his music workflow for my own projects.',
-    name: 'From the Community',
-    role: 'Builder'
-  }
-]
+// Testimonials removed — anonymous "From the Community" quotes feel fabricated.
+// Re-add when real, attributed testimonials are collected.
+export const testimonials: Array<{ quote: string; name: string; role: string }> = []
 
 export const testimonialIcon = CheckCircle2
 
@@ -543,7 +526,7 @@ export const heroSubtext = [
 ]
 
 export const heroCta = {
-  primary: { label: 'Explore the System', href: '/start' },
+  primary: { label: 'Start Here', href: '/start' },
   secondary: { label: 'Listen to My Music', href: '/music-lab' },
   tertiary: { label: 'See How I Build This', href: '/creation-chronicles' }
 }

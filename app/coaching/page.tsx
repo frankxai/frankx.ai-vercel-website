@@ -2,25 +2,26 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion } from 'framer-motion'
 import {
   ArrowRight,
   Brain,
   Check,
+  CheckCircle,
   ChevronDown,
-  Clock,
   Heart,
+  Loader2,
   Music,
   FileText,
   Rocket,
+  Send,
   Shield,
   Sparkles,
   Target,
-  Users,
   Zap,
   Network,
 } from 'lucide-react'
-import { EmailSignup } from '@/components/email-signup'
 
 // ── Data ──
 
@@ -148,7 +149,7 @@ const faqs = [
   {
     question: 'What makes this coaching different?',
     answer:
-      'I combine deep technical expertise in AI systems (40+ agents, 630+ skills in ACOS) with practical creator experience (500+ AI songs, 70+ articles). You get hands-on architecture guidance plus strategies that actually work in production.',
+      'I combine deep technical expertise in AI systems (38 agents, 75+ skills in ACOS) with practical creator experience (12,000+ AI songs, 70+ articles). You get hands-on architecture guidance plus strategies that actually work in production.',
   },
   {
     question: 'What tech stack do you work with?',
@@ -156,26 +157,16 @@ const faqs = [
       'I specialize in modern AI stacks: Claude Code, Next.js, TypeScript, Vercel, MCP servers, and agentic frameworks. I help you choose the right tools for your specific goals and constraints.',
   },
   {
-    question: 'When will coaching be available?',
+    question: 'How do I get started?',
     answer:
-      'Coaching launches soon. Join the waitlist to get priority access and be first to book when slots open. Newsletter subscribers get early access.',
+      'Submit an application using the form below. Frank reviews every application personally and responds within a few business days. If it looks like a good fit, you will receive a scheduling link to book your first session.',
   },
 ]
 
 // ── Components ──
 
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.1 },
-  },
-}
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-}
+import { containerVariants, itemVariants } from '@/lib/motion'
+import { GlowCard } from '@/components/ui/glow-card'
 
 function FAQItem({ question, answer }: { question: string; answer: string }) {
   const [isOpen, setIsOpen] = useState(false)
@@ -203,21 +194,189 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
   )
 }
 
+const FOCUS_AREAS = [
+  'AI Architecture',
+  'Creator Business',
+  'Music Production',
+  'Content Systems',
+] as const
+
+function ApplicationForm() {
+  const [formState, setFormState] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle')
+  const [errorMessage, setErrorMessage] = useState('')
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    company: '',
+    focus: '',
+    situation: '',
+  })
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault()
+    setFormState('submitting')
+    setErrorMessage('')
+
+    try {
+      const res = await fetch('/api/coaching-apply', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      })
+
+      const data = await res.json()
+
+      if (!res.ok) {
+        setErrorMessage(data.error || 'Something went wrong. Please try again.')
+        setFormState('error')
+        return
+      }
+
+      setFormState('success')
+    } catch {
+      setErrorMessage('Network error. Please check your connection and try again.')
+      setFormState('error')
+    }
+  }
+
+  if (formState === 'success') {
+    return (
+      <motion.div
+        initial={{ opacity: 0, scale: 0.95 }}
+        animate={{ opacity: 1, scale: 1 }}
+        className="py-12 text-center"
+      >
+        <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-emerald-500/20">
+          <CheckCircle className="h-8 w-8 text-emerald-400" />
+        </div>
+        <h3 className="mb-3 text-2xl font-bold">Application Received</h3>
+        <p className="mx-auto max-w-md text-slate-400">
+          Frank reviews every application personally. Expect a response within a few business days.
+        </p>
+      </motion.div>
+    )
+  }
+
+  return (
+    <form onSubmit={handleSubmit} className="mx-auto max-w-lg space-y-5 text-left">
+      <div className="grid gap-5 sm:grid-cols-2">
+        <div>
+          <label htmlFor="coaching-name" className="mb-1.5 block text-sm font-medium text-slate-300">
+            Name
+          </label>
+          <input
+            id="coaching-name"
+            type="text"
+            required
+            value={formData.name}
+            onChange={(e) => setFormData((prev) => ({ ...prev, name: e.target.value }))}
+            className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-slate-500 outline-none transition-colors focus:border-[#AB47C7]/50 focus:ring-1 focus:ring-[#AB47C7]/25"
+            placeholder="Your full name"
+          />
+        </div>
+        <div>
+          <label htmlFor="coaching-email" className="mb-1.5 block text-sm font-medium text-slate-300">
+            Email
+          </label>
+          <input
+            id="coaching-email"
+            type="email"
+            required
+            value={formData.email}
+            onChange={(e) => setFormData((prev) => ({ ...prev, email: e.target.value }))}
+            className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-slate-500 outline-none transition-colors focus:border-[#AB47C7]/50 focus:ring-1 focus:ring-[#AB47C7]/25"
+            placeholder="you@example.com"
+          />
+        </div>
+      </div>
+
+      <div>
+        <label htmlFor="coaching-company" className="mb-1.5 block text-sm font-medium text-slate-300">
+          Company / Role
+        </label>
+        <input
+          id="coaching-company"
+          type="text"
+          value={formData.company}
+          onChange={(e) => setFormData((prev) => ({ ...prev, company: e.target.value }))}
+          className="w-full rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-slate-500 outline-none transition-colors focus:border-[#AB47C7]/50 focus:ring-1 focus:ring-[#AB47C7]/25"
+          placeholder="e.g. CTO at Acme, Freelance Developer"
+        />
+      </div>
+
+      <div>
+        <label htmlFor="coaching-focus" className="mb-1.5 block text-sm font-medium text-slate-300">
+          What do you need help with?
+        </label>
+        <select
+          id="coaching-focus"
+          required
+          value={formData.focus}
+          onChange={(e) => setFormData((prev) => ({ ...prev, focus: e.target.value }))}
+          className="w-full appearance-none rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white outline-none transition-colors focus:border-[#AB47C7]/50 focus:ring-1 focus:ring-[#AB47C7]/25 [&>option]:bg-[#1a1a1b] [&>option]:text-white"
+        >
+          <option value="" disabled>Select a focus area</option>
+          {FOCUS_AREAS.map((area) => (
+            <option key={area} value={area}>{area}</option>
+          ))}
+        </select>
+      </div>
+
+      <div>
+        <label htmlFor="coaching-situation" className="mb-1.5 block text-sm font-medium text-slate-300">
+          Tell me about your current situation
+        </label>
+        <textarea
+          id="coaching-situation"
+          required
+          rows={4}
+          value={formData.situation}
+          onChange={(e) => setFormData((prev) => ({ ...prev, situation: e.target.value }))}
+          className="w-full resize-none rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-slate-500 outline-none transition-colors focus:border-[#AB47C7]/50 focus:ring-1 focus:ring-[#AB47C7]/25"
+          placeholder="What are you building? Where are you stuck? What does success look like for you?"
+        />
+      </div>
+
+      {formState === 'error' && (
+        <p className="text-sm text-red-400">{errorMessage}</p>
+      )}
+
+      <button
+        type="submit"
+        disabled={formState === 'submitting'}
+        className="flex w-full items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#AB47C7] to-[#43BFE3] py-3.5 text-sm font-semibold text-white transition-all hover:opacity-90 disabled:opacity-60"
+      >
+        {formState === 'submitting' ? (
+          <>
+            <Loader2 className="h-4 w-4 animate-spin" />
+            Submitting...
+          </>
+        ) : (
+          <>
+            <Send className="h-4 w-4" />
+            Submit Application
+          </>
+        )}
+      </button>
+    </form>
+  )
+}
+
 // ── Page ──
 
 export default function CoachingPage() {
   return (
-    <div className="min-h-screen overflow-hidden bg-[#0F172A] text-white">
+    <div className="min-h-screen overflow-hidden bg-[#0a0a0b] text-white">
       {/* Background Orbs */}
       <div className="pointer-events-none fixed inset-0">
         <motion.div
-          className="absolute -right-40 top-20 h-[600px] w-[600px] rounded-full bg-[#AB47C7]/15 blur-[120px]"
-          animate={{ scale: [1, 1.15, 1], opacity: [0.15, 0.3, 0.15] }}
+          className="absolute -right-40 top-20 h-[600px] w-[600px] rounded-full bg-[#AB47C7]/[0.06] blur-[128px]"
+          animate={{ scale: [1, 1.15, 1], opacity: [1, 0.7, 1] }}
           transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
         />
         <motion.div
-          className="absolute -left-40 bottom-40 h-[500px] w-[500px] rounded-full bg-[#43BFE3]/15 blur-[100px]"
-          animate={{ scale: [1.1, 1, 1.1], opacity: [0.1, 0.25, 0.1] }}
+          className="absolute -left-40 bottom-40 h-[500px] w-[500px] rounded-full bg-[#43BFE3]/[0.04] blur-[128px]"
+          animate={{ scale: [1.1, 1, 1.1], opacity: [1, 0.7, 1] }}
           transition={{ duration: 15, repeat: Infinity, ease: 'easeInOut' }}
         />
       </div>
@@ -231,9 +390,12 @@ export default function CoachingPage() {
           variants={containerVariants}
         >
           <motion.div className="mx-auto max-w-4xl" variants={itemVariants}>
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#AB47C7]/30 bg-[#AB47C7]/10 px-4 py-2 text-sm font-medium text-[#AB47C7]">
-              <Sparkles className="h-4 w-4" />
-              Premium AI Coaching
+            <div className="mb-6 flex items-center gap-4">
+              <Image src="/images/mascot/mascot-v17-negative-space-mark.png" alt="Axi" width={48} height={48} className="rounded-xl" sizes="48px" style={{ boxShadow: '0 0 20px -6px rgba(139,92,246,0.3)' }} />
+              <div className="inline-flex items-center gap-2 rounded-full border border-[#AB47C7]/30 bg-[#AB47C7]/10 px-4 py-2 text-sm font-medium text-[#AB47C7]">
+                <Sparkles className="h-4 w-4" />
+                Premium AI Coaching
+              </div>
             </div>
 
             <h1 className="mb-6 text-5xl font-bold leading-tight text-balance md:text-7xl">
@@ -245,15 +407,29 @@ export default function CoachingPage() {
 
             <p className="mb-8 max-w-2xl text-xl leading-relaxed text-slate-400 text-balance">
               Skip the generic AI advice. Work directly with someone who&apos;s built 40+ AI agents,
-              shipped production systems, and created 500+ AI songs.
+              shipped production systems, and created 12,000+ AI songs.
             </p>
 
             <motion.div
-              className="mb-4 inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/10 px-4 py-2 text-sm text-amber-400"
+              className="mb-4 inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-2 text-sm text-emerald-400"
               variants={itemVariants}
             >
-              <Clock className="h-4 w-4" />
-              Coming Soon — Join the Waitlist
+              <CheckCircle className="h-4 w-4" />
+              Now Accepting Applications
+            </motion.div>
+
+            {/* Social Proof Strip */}
+            <motion.div
+              className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-slate-500"
+              variants={itemVariants}
+            >
+              <span>Oracle AI Architect</span>
+              <span className="text-white/20">|</span>
+              <span>40+ AI Agents Built</span>
+              <span className="text-white/20">|</span>
+              <span>12,000+ AI Songs</span>
+              <span className="text-white/20">|</span>
+              <span>ACOS 1,000+ Builders</span>
             </motion.div>
           </motion.div>
         </motion.section>
@@ -278,7 +454,7 @@ export default function CoachingPage() {
               const Icon = area.icon
               return (
                 <motion.div key={area.title} variants={itemVariants}>
-                  <div className="group h-full rounded-2xl border border-white/10 bg-white/[0.03] p-8 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-[#AB47C7]/10">
+                  <GlowCard className="p-8 h-full">
                     <div
                       className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl"
                       style={{ backgroundColor: `${area.color}20` }}
@@ -287,7 +463,7 @@ export default function CoachingPage() {
                     </div>
                     <h3 className="mb-3 text-xl font-bold">{area.title}</h3>
                     <p className="leading-relaxed text-slate-400">{area.description}</p>
-                  </div>
+                  </GlowCard>
                 </motion.div>
               )
             })}
@@ -318,7 +494,7 @@ export default function CoachingPage() {
                 const Icon = step.icon
                 return (
                   <motion.div key={step.number} variants={itemVariants}>
-                    <div className="group h-full rounded-2xl border border-white/10 bg-white/[0.03] p-6 backdrop-blur-sm transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-[#AB47C7]/10">
+                    <GlowCard className="p-6 h-full">
                       <div className="mb-4 flex items-center justify-between">
                         <span className="text-5xl font-bold text-white/10">{step.number}</span>
                         <div
@@ -330,7 +506,7 @@ export default function CoachingPage() {
                       </div>
                       <h3 className="mb-2 text-xl font-bold">{step.title}</h3>
                       <p className="text-sm leading-relaxed text-slate-400">{step.description}</p>
-                    </div>
+                    </GlowCard>
                   </motion.div>
                 )
               })}
@@ -387,7 +563,7 @@ export default function CoachingPage() {
                       className="rounded-full border px-3 py-1 text-xs font-semibold uppercase tracking-wider"
                       style={{ borderColor: `${tier.color}40`, color: tier.color }}
                     >
-                      Coming Soon
+                      Apply Now
                     </span>
                   </div>
 
@@ -402,10 +578,10 @@ export default function CoachingPage() {
 
                   <div className="mt-auto">
                     <Link
-                      href="#waitlist"
-                      className="flex w-full items-center justify-center gap-2 rounded-xl border border-white/15 bg-white/5 py-3 text-sm font-semibold text-white/80 transition-all hover:bg-white/10"
+                      href="#apply"
+                      className="flex w-full items-center justify-center gap-2 rounded-full border border-white/15 bg-white/5 py-3 text-sm font-semibold text-white/80 transition-all hover:bg-white/10"
                     >
-                      Join Waitlist
+                      Apply for Coaching
                       <ArrowRight className="h-4 w-4" />
                     </Link>
                   </div>
@@ -484,9 +660,9 @@ export default function CoachingPage() {
           </motion.div>
         </motion.section>
 
-        {/* Waitlist CTA */}
+        {/* Apply for Coaching */}
         <motion.section
-          id="waitlist"
+          id="apply"
           className="mx-auto max-w-4xl px-6 py-20"
           initial="hidden"
           whileInView="visible"
@@ -494,7 +670,7 @@ export default function CoachingPage() {
           variants={containerVariants}
         >
           <motion.div variants={itemVariants}>
-            <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] p-12 text-center backdrop-blur-md">
+            <div className="relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] p-8 backdrop-blur-md sm:p-12">
               <motion.div
                 className="absolute inset-0 bg-gradient-to-r from-[#AB47C7]/10 via-[#43BFE3]/10 to-[#F59E0B]/10"
                 animate={{ opacity: [0.3, 0.6, 0.3] }}
@@ -502,39 +678,35 @@ export default function CoachingPage() {
               />
 
               <div className="relative z-10">
-                <motion.div
-                  className="mb-6 inline-flex items-center justify-center"
-                  animate={{ y: [0, -8, 0] }}
-                  transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-                >
-                  <div className="relative">
-                    <motion.div
-                      className="absolute inset-0 rounded-full bg-[#AB47C7]/30 blur-xl"
-                      animate={{ scale: [1, 1.3, 1], opacity: [0.5, 0.8, 0.5] }}
-                      transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
-                    />
-                    <Users className="relative z-10 h-16 w-16 text-[#AB47C7]" strokeWidth={1.5} />
-                  </div>
-                </motion.div>
+                <div className="mb-8 text-center">
+                  <motion.div
+                    className="mb-6 inline-flex items-center justify-center"
+                    animate={{ y: [0, -8, 0] }}
+                    transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+                  >
+                    <div className="relative">
+                      <motion.div
+                        className="absolute inset-0 rounded-full bg-[#14B8A6]/30 blur-xl"
+                        animate={{ scale: [1, 1.3, 1], opacity: [0.5, 0.8, 0.5] }}
+                        transition={{ duration: 2, repeat: Infinity, ease: 'easeInOut' }}
+                      />
+                      <Image src="/images/mascot/mascot-v25-crystal-familiar.png" alt="Axi" width={64} height={64} className="relative z-10 rounded-2xl" sizes="64px" />
+                    </div>
+                  </motion.div>
 
-                <h2 className="mb-4 text-3xl font-bold md:text-4xl">Get Priority Access</h2>
-                <p className="mb-8 text-lg leading-relaxed text-slate-400">
-                  Join the waitlist to be notified when coaching opens. Newsletter subscribers get
-                  early access and priority booking.
-                </p>
-
-                <div className="mx-auto max-w-md">
-                  <EmailSignup
-                    listType="inner-circle"
-                    placeholder="Enter your email"
-                    buttonText="Join the Waitlist"
-                    redirectTo="/thank-you"
-                    showName={false}
-                  />
+                  <h2 className="mb-4 text-3xl font-bold md:text-4xl">Apply for Coaching</h2>
+                  <p className="mb-2 text-lg leading-relaxed text-slate-400">
+                    Serious about building AI systems that compound? Submit your application and Frank reviews it personally.
+                  </p>
+                  <p className="text-sm text-slate-500">
+                    Limited slots — rolling intake for builders who are ready to ship.
+                  </p>
                 </div>
 
-                <p className="mt-6 text-xs text-slate-500">
-                  No spam. Unsubscribe anytime. Priority access for serious builders.
+                <ApplicationForm />
+
+                <p className="mt-6 text-center text-xs text-slate-500">
+                  Frank reviews every application personally. Expect a response within a few business days.
                 </p>
               </div>
             </div>

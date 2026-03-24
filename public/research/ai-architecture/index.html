@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise AI Architecture Patterns | FrankX Research</title>
+    <meta name="description" content="Production-grade enterprise RAG architecture patterns for 2026: 8-layer pipeline design, hybrid vector search, evaluation loops, guardrails, and cloud-native AI platform design.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://frankx.ai/research/ai-architecture/">
+    <meta property="og:title" content="Enterprise RAG Architecture Patterns | FrankX Research">
+    <meta property="og:description" content="Production-grade enterprise RAG architecture: 8-layer pipeline, hybrid vector search, evaluation loops, and cloud-native AI platform design.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://frankx.ai/research/ai-architecture/">
+    <meta property="og:site_name" content="FrankX AI Architecture Research">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Enterprise RAG Architecture Patterns | FrankX Research">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "Production Enterprise RAG Architecture Patterns",
+        "description": "Multi-layered RAG architecture patterns for enterprise AI: evaluation, observability, guardrails, and governance as first-class components.",
+        "url": "https://frankx.ai/research/ai-architecture/",
+        "datePublished": "2026-02-05",
+        "dateModified": "2026-02-06",
+        "author": {"@type": "Person", "name": "FrankX", "url": "https://frankx.ai"},
+        "publisher": {"@type": "Organization", "name": "FrankX AI Architecture Research"},
+        "isPartOf": {"@type": "ResearchProject", "name": "FrankX AI Architecture Research Center", "url": "https://frankx.ai/research/"},
+        "about": [
+            {"@type": "Thing", "name": "Retrieval-Augmented Generation"},
+            {"@type": "Thing", "name": "Vector Search"},
+            {"@type": "Thing", "name": "Enterprise AI Architecture"},
+            {"@type": "Thing", "name": "LLM Evaluation"}
+        ],
+        "keywords": "RAG architecture, retrieval augmented generation, vector search, enterprise AI, LLM evaluation, hybrid search, embeddings, reranking",
+        "inLanguage": "en"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "What is RAG (Retrieval-Augmented Generation) and why do enterprises need it?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "RAG is an architecture pattern that grounds LLM responses in verified data by retrieving relevant documents before generating answers. Enterprises need RAG because pure LLMs hallucinate 15-25% of the time on domain-specific questions. RAG reduces hallucination to under 5% by providing the model with actual source documents. A production RAG pipeline includes: data ingestion, chunking, embedding, vector storage, retrieval with reranking, and LLM generation with citation."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What is hybrid search and why is it better than pure vector search for RAG?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Hybrid search combines vector similarity search (semantic meaning) with keyword search (exact matches) in a single query. Pure vector search misses exact terms like product codes or error numbers. Pure keyword search misses semantic relationships. Oracle AI Database 26ai's Unified Hybrid Vector Search combines HNSW, IVF, and full-text search in one SQL query, followed by Cohere Rerank 3.5 for relevance scoring — this combination typically improves retrieval precision by 15-25% over either method alone."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How do you evaluate RAG system quality in production?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Production RAG evaluation uses three core metrics: Faithfulness (does the answer match the retrieved documents?), Relevance (are the retrieved documents actually relevant?), and Answer Completeness (does the response fully address the question?). Tools like RAGAS, DeepEval, and LangSmith automate these evaluations. Enterprise systems should also track retrieval latency (p95 under 200ms), citation accuracy, and user feedback loops."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What is the difference between naive RAG and advanced RAG architectures?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Naive RAG uses a simple retrieve-then-generate pattern with fixed chunk sizes and basic similarity search. Advanced RAG adds: intelligent chunking (semantic boundaries), query transformation (HyDE, multi-query decomposition), hybrid retrieval with reranking, guardrails for input/output validation, and observability for continuous monitoring. Production enterprise RAG also requires governance layers: access control on retrieved documents, audit logging, and PII detection."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What embedding models should enterprises use for RAG in 2026?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "For text-only: Cohere Embed Multilingual 3 (100+ languages, available on OCI GenAI). For multimodal: Cohere Embed 4 or OpenAI text-embedding-3-large. For cost-sensitive workloads: open-source models like BGE-M3 or E5-Mistral on dedicated infrastructure. Key factors: embedding dimension, multilingual support, and cross-modal retrieval needs. Always benchmark on your own data — generic leaderboard rankings often don't reflect domain-specific performance."
+                }
+            }
+        ]
+    }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #06060B;
+            --bg-card: rgba(16, 18, 27, 0.95);
+            --bg-elevated: rgba(24, 27, 38, 0.98);
+            --bg-glass: rgba(255, 255, 255, 0.03);
+            --text-primary: #E6EDF3;
+            --text-secondary: #8B949E;
+            --text-muted: #484F58;
+            --border: rgba(255, 255, 255, 0.06);
+            --border-hover: rgba(255, 255, 255, 0.12);
+            --accent-red: #C74634;
+            --accent-blue: #3B82F6;
+            --accent-purple: #8B5CF6;
+            --accent-green: #10B981;
+            --accent-amber: #F59E0B;
+            --accent-cyan: #06B6D4;
+            --font: 'Inter', -apple-system, sans-serif;
+            --mono: 'JetBrains Mono', monospace;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--font); background: var(--bg); color: var(--text-primary); line-height: 1.7; }
+        .bg-grid { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px); background-size: 64px 64px; pointer-events: none; z-index: 0; }
+
+        /* Nav */
+        .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(6,6,11,0.85); backdrop-filter: blur(24px); border-bottom: 1px solid var(--border); }
+        .nav-inner { max-width: 960px; margin: 0 auto; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; height: 56px; }
+        .nav-brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: var(--text-primary); font-weight: 700; font-size: 14px; }
+        .nav-brand-icon { width: 28px; height: 28px; background: linear-gradient(135deg, var(--accent-blue), var(--accent-purple)); border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 900; }
+        .nav-links { display: flex; gap: 4px; }
+        .nav-link { color: var(--text-secondary); text-decoration: none; font-size: 12px; font-weight: 500; padding: 5px 12px; border-radius: 5px; transition: all 0.2s; }
+        .nav-link:hover { color: var(--text-primary); background: var(--bg-glass); }
+        .nav-link.active { color: var(--accent-blue); }
+
+        /* Article */
+        .article { position: relative; z-index: 1; max-width: 960px; margin: 0 auto; padding: 100px 32px 80px; }
+        .article-header { margin-bottom: 64px; }
+        .article-badge { display: inline-flex; align-items: center; gap: 8px; padding: 5px 14px; background: var(--bg-card); border: 1px solid var(--border); border-radius: 100px; font-size: 11px; font-weight: 600; color: var(--accent-blue); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 24px; }
+        .article-badge::before { content: ''; width: 6px; height: 6px; background: var(--accent-green); border-radius: 50%; }
+        .article h1 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 900; letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 20px; }
+        .article-subtitle { font-size: 1.125rem; color: var(--text-secondary); max-width: 700px; line-height: 1.7; margin-bottom: 32px; }
+        .article-meta { display: flex; gap: 24px; font-size: 12px; color: var(--text-muted); }
+
+        /* Content */
+        h2 { font-size: 1.75rem; font-weight: 800; letter-spacing: -0.02em; margin: 64px 0 20px; padding-top: 32px; border-top: 1px solid var(--border); }
+        h2:first-of-type { border-top: none; margin-top: 0; }
+        h3 { font-size: 1.25rem; font-weight: 700; margin: 40px 0 16px; color: var(--text-primary); }
+        h4 { font-size: 1rem; font-weight: 600; margin: 24px 0 12px; color: var(--accent-blue); }
+        p { margin-bottom: 16px; color: var(--text-secondary); }
+        strong { color: var(--text-primary); }
+        a { color: var(--accent-blue); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+
+        /* Image */
+        .arch-image { width: 100%; border-radius: 12px; border: 1px solid var(--border); margin: 24px 0 32px; }
+
+        /* Insight box */
+        .insight { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--accent-purple); border-radius: 0 12px 12px 0; padding: 24px 28px; margin: 32px 0; }
+        .insight-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.12em; color: var(--accent-purple); margin-bottom: 12px; }
+        .insight p { margin-bottom: 8px; }
+        .insight p:last-child { margin-bottom: 0; }
+
+        /* Table */
+        table { width: 100%; border-collapse: collapse; margin: 24px 0; font-size: 14px; }
+        th { text-align: left; font-weight: 600; color: var(--text-primary); padding: 12px 16px; border-bottom: 2px solid var(--border); font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; }
+        td { padding: 12px 16px; border-bottom: 1px solid var(--border); color: var(--text-secondary); }
+        tr:hover td { background: var(--bg-glass); }
+
+        /* Code block */
+        .code-block { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin: 24px 0; font-family: var(--mono); font-size: 13px; line-height: 1.6; overflow-x: auto; color: var(--text-secondary); }
+        .code-block .comment { color: var(--text-muted); }
+        .code-block .keyword { color: var(--accent-purple); }
+        .code-block .string { color: var(--accent-green); }
+        .code-block .number { color: var(--accent-amber); }
+
+        /* Metric cards */
+        .metrics { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px; margin: 32px 0; }
+        .metric { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; text-align: center; }
+        .metric-value { font-family: var(--mono); font-size: 2rem; font-weight: 800; }
+        .metric-value.blue { color: var(--accent-blue); }
+        .metric-value.green { color: var(--accent-green); }
+        .metric-value.amber { color: var(--accent-amber); }
+        .metric-value.red { color: var(--accent-red); }
+        .metric-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 4px; }
+
+        /* Tag */
+        .tag { display: inline-block; font-size: 11px; font-family: var(--mono); padding: 3px 10px; border-radius: 4px; background: var(--bg-glass); border: 1px solid var(--border); color: var(--text-muted); margin: 2px; }
+
+        /* List */
+        ul, ol { margin: 16px 0; padding-left: 24px; }
+        li { margin-bottom: 8px; color: var(--text-secondary); }
+        li strong { color: var(--text-primary); }
+
+        /* Footer */
+        .footer { position: relative; z-index: 1; border-top: 1px solid var(--border); padding: 48px 32px; text-align: center; }
+        .footer-text { font-size: 12px; color: var(--text-muted); max-width: 640px; margin: 0 auto; line-height: 1.7; }
+        .footer-text a { color: var(--text-secondary); }
+
+        /* Sources */
+        .sources { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 24px 28px; margin: 48px 0 0; }
+        .sources h3 { margin-top: 0; font-size: 14px; }
+        .sources ol { font-size: 13px; }
+        .sources li { margin-bottom: 6px; }
+        .faq { margin: 48px 0; }
+        .faq h2 { font-size: 1.5rem; margin-bottom: 24px; padding-top: 32px; border-top: 1px solid var(--border); }
+        .faq-item { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; margin-bottom: 12px; overflow: hidden; }
+        .faq-q { font-weight: 600; font-size: 15px; padding: 18px 24px; cursor: default; display: flex; align-items: center; gap: 12px; }
+        .faq-q::before { content: "Q"; background: var(--accent-blue); color: white; font-size: 11px; font-weight: 800; width: 22px; height: 22px; border-radius: 6px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .faq-a { padding: 0 24px 18px 58px; color: var(--text-secondary); font-size: 14px; line-height: 1.7; }
+
+        @media (max-width: 768px) { .metrics { grid-template-columns: 1fr 1fr; } .nav-links { display: none; } }
+    </style>
+</head>
+<body>
+    <div class="bg-grid"></div>
+
+    <nav class="nav">
+        <div class="nav-inner">
+            <a href="/research/" class="nav-brand">
+                <div class="nav-brand-icon">FX</div>
+                AI Architecture Patterns
+            </a>
+            <div class="nav-links">
+                <a href="/research/" class="nav-link">Hub</a>
+                <a href="/research/healthcare/" class="nav-link">Healthcare</a>
+                <a href="/research/ai-architecture/" class="nav-link active">Architecture</a>
+                <a href="/research/agentic-ai/" class="nav-link">Agentic AI</a>
+                <a href="/research/oracle-ai-database/" class="nav-link">Database AI</a>
+                <a href="/research/sovereign-ai/" class="nav-link">Sovereign AI</a>
+                <a href="/research/cost-engineering/" class="nav-link">Cost Engineering</a>
+                <a href="/research/methodology/" class="nav-link">Method</a>
+            </div>
+        </div>
+    </nav>
+
+    <article class="article">
+        <header class="article-header">
+            <div class="article-badge">Research &mdash; February 2026</div>
+            <h1>Enterprise AI Architecture Patterns</h1>
+            <p class="article-subtitle">
+                Production-grade patterns for building enterprise AI systems. From RAG pipelines to LLM cost optimization,
+                vector search to federated learning&mdash;validated patterns from real enterprise engagements, enriched with
+                cross-vendor research from Google, Anthropic, Oracle, BCG, and Gartner.
+            </p>
+            <div class="article-meta">
+                <span>Last verified: Feb 6, 2026</span>
+                <span>18+ Sources</span>
+                <span>8 Architecture Diagrams</span>
+                <span>Maturity: Established</span>
+            </div>
+        </header>
+
+        <!-- Key Metrics -->
+        <div class="metrics">
+            <div class="metric">
+                <div class="metric-value green">40-70%</div>
+                <div class="metric-label">Cost Savings via LLM Routing</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value blue">8</div>
+                <div class="metric-label">RAG Architecture Layers</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value amber">3</div>
+                <div class="metric-label">Search Types Unified</div>
+            </div>
+            <div class="metric">
+                <div class="metric-value red">Zero</div>
+                <div class="metric-label">Data Movement (Federated)</div>
+            </div>
+        </div>
+
+        <!-- Section 1: Enterprise RAG -->
+        <h2 id="rag">1. Production Enterprise RAG Architecture</h2>
+
+        <p>
+            Production RAG in 2026 has evolved far beyond simple retriever-generator pipelines. Leading organizations
+            converge on a <strong>multi-layered architecture</strong> that treats evaluation, observability, guardrails,
+            and governance as first-class components&mdash;not afterthoughts.
+        </p>
+
+        <div class="insight">
+            <div class="insight-title">Key Research Finding</div>
+            <p><strong>70% of RAG systems lack systematic evaluation</strong>, and 40-60% fail to reach production due to
+            retrieval quality and governance gaps. The difference between a demo and production RAG is the layers you
+            don't see: caching, evaluation loops, metadata filtering, and continuous quality monitoring.</p>
+        </div>
+
+        <img src="images/enterprise-rag-architecture.png" alt="Enterprise RAG Architecture - 8 Layer Pipeline" class="arch-image" loading="lazy">
+
+        <h3>The 8-Layer Production RAG Stack</h3>
+
+        <table>
+            <thead>
+                <tr><th>Layer</th><th>Function</th><th>Key Components</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>1. Data Ingestion</strong></td>
+                    <td>Document intake and format normalization</td>
+                    <td>OCI Object Storage, Functions, connectors for PDF/DOCX/HTML/API</td>
+                </tr>
+                <tr>
+                    <td><strong>2. Chunking & Processing</strong></td>
+                    <td>Intelligent document splitting with metadata preservation</td>
+                    <td>Semantic chunking, sliding window, parent-child relationships</td>
+                </tr>
+                <tr>
+                    <td><strong>3. Embedding Generation</strong></td>
+                    <td>Convert chunks to vector representations</td>
+                    <td>Cohere Embed 4 (multimodal: text + image), batch processing</td>
+                </tr>
+                <tr>
+                    <td><strong>4. Vector Store</strong></td>
+                    <td>Indexed storage for fast similarity search</td>
+                    <td>Oracle AI Database 26ai: HNSW/IVF indexes, metadata filtering</td>
+                </tr>
+                <tr>
+                    <td><strong>5. Retrieval & Reranking</strong></td>
+                    <td>Find and rank relevant documents</td>
+                    <td>Hybrid search (vector + text + SQL), Cohere Rerank 3.5</td>
+                </tr>
+                <tr>
+                    <td><strong>6. Prompt Construction</strong></td>
+                    <td>Assemble context-rich prompts</td>
+                    <td>Dynamic template selection, context window management, guardrails</td>
+                </tr>
+                <tr>
+                    <td><strong>7. LLM Generation</strong></td>
+                    <td>Generate responses with retrieved context</td>
+                    <td>Cascade routing: Flash for simple, Pro for complex, with citations</td>
+                </tr>
+                <tr>
+                    <td><strong>8. Evaluation & Feedback</strong></td>
+                    <td>Continuous quality measurement and improvement</td>
+                    <td>Faithfulness, relevance, latency metrics; A/B testing; user feedback loops</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h4>Google Vertex AI RAG Reference Pattern</h4>
+        <p>
+            Google's architecture separates ingestion and serving into independent subsystems with a managed RAG Engine
+            providing mix-and-match components. Key insight: <strong>continuous index refresh cycles</strong>&mdash;daily
+            for dynamic content, hourly for real-time&mdash;are critical for production quality.
+        </p>
+
+        <h4>Anthropic Production RAG Pattern</h4>
+        <p>
+            Anthropic advocates <strong>microservices architecture</strong> where document ingestion, vector retrieval,
+            prompt construction, and response post-processing are independent services. This enables horizontal scaling
+            of bottlenecks&mdash;document processing scales independently from retrieval, which scales independently
+            from LLM interaction. Their multi-agent research system demonstrates retrieval across millions of documents
+            with sub-second latency.
+        </p>
+
+        <h4>Oracle AI Database 26ai RAG Pattern</h4>
+        <p>
+            Oracle's unique advantage: <strong>converged database architecture</strong> where vector search, full-text search,
+            property graph, JSON documents, and SQL all coexist in a single engine. This eliminates the data sprawl
+            that plagues multi-service RAG architectures. AI Vector Search with HNSW/IVF indexes, combined with
+            Select AI for natural language query, provides an integrated RAG foundation.
+        </p>
+
+        <!-- Section 2: LLM Cascade Routing -->
+        <h2 id="llm-routing">2. LLM Cascade Routing &amp; Cost Optimization</h2>
+
+        <p>
+            The single biggest waste in enterprise AI is routing every task to the most expensive model.
+            <strong>80% of "AI tasks" don't need LLMs at all</strong>&mdash;regular expressions, SQL queries,
+            and deterministic rules handle structured data better and cheaper.
+        </p>
+
+        <img src="images/llm-cascade-routing.png" alt="LLM Cascade Routing - 4 Tier Cost Optimization" class="arch-image" loading="lazy">
+
+        <h3>The Four-Tier Routing Framework</h3>
+
+        <table>
+            <thead>
+                <tr><th>Tier</th><th>Handler</th><th>Cost</th><th>Use When</th><th>Traffic %</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Tier 0: Skip LLM</strong></td>
+                    <td>Regex, SQL, JSON Schema, Python</td>
+                    <td>$0</td>
+                    <td>Structured data, format validation, calculations, file search</td>
+                    <td>~40%</td>
+                </tr>
+                <tr>
+                    <td><strong>Tier 1: Lightweight</strong></td>
+                    <td>Gemini 2.5 Flash-Lite, Grok 3 Mini</td>
+                    <td>~$0.25/1M tokens</td>
+                    <td>Summaries, formatting, translation, simple classification</td>
+                    <td>~35%</td>
+                </tr>
+                <tr>
+                    <td><strong>Tier 2: Balanced</strong></td>
+                    <td>Gemini 2.5 Pro, Cohere Command A</td>
+                    <td>~$1-3/1M tokens</td>
+                    <td>Code generation, analysis, complex extraction, customer-facing</td>
+                    <td>~20%</td>
+                </tr>
+                <tr>
+                    <td><strong>Tier 3: Premium</strong></td>
+                    <td>Cohere Command A Reasoning, Grok 4</td>
+                    <td>~$10-15/1M tokens</td>
+                    <td>Novel architecture, complex legal/medical reasoning, strategy</td>
+                    <td>~5%</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="insight">
+            <div class="insight-title">Cost Optimization Pattern</div>
+            <p><strong>Draft-Refine workflow:</strong> Use Flash for drafts 1-3 (cheap iterations),
+            Pro for drafts 4-5 (quality improvement), Premium only for final polish.
+            <strong>Savings: 60% vs. all-Premium workflow.</strong></p>
+            <p><strong>Never say "OCI is X times cheaper" as a blanket statement.</strong> Cost advantage depends on
+            which model you compare, input vs. output pricing, use case, and volume. Always cite specific model
+            comparisons with verified pricing from
+            <a href="https://www.oracle.com/cloud/price-list/">oracle.com/cloud/price-list</a>.</p>
+        </div>
+
+        <h3>Healthcare-Specific Routing Example</h3>
+
+        <table>
+            <thead>
+                <tr><th>Clinical Task</th><th>Recommended Model</th><th>Cost Tier</th><th>Rationale</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Document/invoice extraction</td>
+                    <td>OCI Document Understanding</td>
+                    <td>~$0.001/page</td>
+                    <td>Purpose-built, no LLM needed</td>
+                </tr>
+                <tr>
+                    <td>Patient report summarization</td>
+                    <td>Gemini 2.5 Flash</td>
+                    <td>~$0.075/1M</td>
+                    <td>Fast, sufficient quality for summaries</td>
+                </tr>
+                <tr>
+                    <td>Literature search &amp; retrieval</td>
+                    <td>Cohere Command R (08-2024)</td>
+                    <td>~$0.10/1M</td>
+                    <td>128K context, RAG-optimized</td>
+                </tr>
+                <tr>
+                    <td>Multi-document case analysis</td>
+                    <td>Gemini 2.5 Pro</td>
+                    <td>~$1.50/1M</td>
+                    <td>Complex multi-doc reasoning required</td>
+                </tr>
+                <tr>
+                    <td>Drug repurposing analysis</td>
+                    <td>Cohere Command A Reasoning</td>
+                    <td>~$3/1M</td>
+                    <td>256K context, multi-step logic</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Section 3: Vector Search -->
+        <h2 id="vector-search">3. Vector Search &amp; Hybrid Query Patterns</h2>
+
+        <p>
+            Modern enterprise search requires combining multiple retrieval strategies. Oracle AI Database 26ai
+            introduces <strong>Unified Hybrid Vector Search</strong>&mdash;the ability to combine vector similarity,
+            full-text keyword matching, and structured SQL queries in a single database operation.
+        </p>
+
+        <img src="images/hybrid-vector-search.png" alt="Unified Hybrid Vector Search Architecture" class="arch-image" loading="lazy">
+
+        <h3>Three Search Modes, One Query</h3>
+
+        <table>
+            <thead>
+                <tr><th>Search Type</th><th>Best For</th><th>Technology</th><th>Example</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Vector Search</strong></td>
+                    <td>Semantic similarity, concept matching</td>
+                    <td>HNSW/IVF indexes, Cohere Embed 4</td>
+                    <td>"Find cases similar to this patient profile"</td>
+                </tr>
+                <tr>
+                    <td><strong>Full-Text Search</strong></td>
+                    <td>Exact terms, keywords, identifiers</td>
+                    <td>Oracle Text, inverted indexes</td>
+                    <td>"Find all documents mentioning 'FLT3-ITD mutation'"</td>
+                </tr>
+                <tr>
+                    <td><strong>SQL Queries</strong></td>
+                    <td>Structured filtering, aggregation</td>
+                    <td>Standard SQL, JSON Duality Views</td>
+                    <td>"Patients diagnosed after 2020 with WBC > 100K"</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h4>Property Graph for Relationship Discovery</h4>
+        <p>
+            Beyond flat search, Oracle AI Database 26ai Property Graph enables relationship-aware retrieval.
+            In healthcare: patient-gene-drug-outcome relationships. In enterprise: document-author-department-topic
+            graphs. Combined with vector search, this enables <strong>Graph RAG</strong>&mdash;retrieval that follows
+            entity relationships to find contextually relevant information that pure vector similarity would miss.
+        </p>
+
+        <h4>Multimodal Embeddings</h4>
+        <p>
+            Cohere Embed 4 supports <strong>multimodal embeddings</strong>&mdash;unified vector representations for both
+            text and images. This enables cross-modal search: query with text, retrieve relevant images (and vice versa).
+            Critical for domains with visual data: medical imaging, engineering diagrams, architectural blueprints.
+        </p>
+
+        <!-- Section 4: Federated Learning -->
+        <h2 id="federated">4. Federated Learning for Regulated Industries</h2>
+
+        <p>
+            In regulated industries&mdash;healthcare, financial services, government&mdash;data cannot leave institutional
+            boundaries. Federated learning solves this by <strong>training AI models across distributed institutions
+            without centralizing sensitive data</strong>.
+        </p>
+
+        <img src="images/federated-learning.png" alt="Privacy-Preserving Federated Learning Architecture" class="arch-image" loading="lazy">
+
+        <h3>How It Works</h3>
+        <ol>
+            <li><strong>Central server distributes model parameters</strong> to participating institutions</li>
+            <li><strong>Each institution trains locally</strong> on their private data (data never leaves)</li>
+            <li><strong>Only gradient updates are sent back</strong> to the central server (not raw data)</li>
+            <li><strong>Server aggregates gradients</strong> and updates the global model</li>
+            <li><strong>Cycle repeats</strong> until convergence&mdash;resulting model benefits from all data without anyone sharing it</li>
+        </ol>
+
+        <h4>OCI Implementation: SymetryML</h4>
+        <p>
+            <a href="https://docs.oracle.com/en/solutions/symetryml-on-oci/index.html">SymetryML on OCI</a> provides
+            production federated learning with <strong>dynamic governance modeling</strong> that protects against data
+            leakage, eliminating the need for identical dataset distributions across federation peers. Supports NVIDIA
+            GPU instances with OCI Streaming for data ingestion.
+        </p>
+
+        <div class="insight">
+            <div class="insight-title">Why Federated Learning Matters</div>
+            <p>For rare disease research, data is scattered across dozens of institutions, each with small datasets.
+            No single institution has enough data for robust AI training. Federated learning enables
+            <strong>collective intelligence without collective data</strong>&mdash;each institution contributes
+            to model quality while maintaining full data sovereignty and GDPR/HIPAA compliance.</p>
+        </div>
+
+        <h4>Compliance Architecture</h4>
+        <table>
+            <thead>
+                <tr><th>Requirement</th><th>Federated Learning Solution</th><th>OCI Service</th></tr>
+            </thead>
+            <tbody>
+                <tr><td>GDPR Data Residency</td><td>Data never leaves institution</td><td>OCI Sovereign Cloud regions</td></tr>
+                <tr><td>HIPAA PHI Protection</td><td>No PHI in transit</td><td>OCI Data Safe + encryption</td></tr>
+                <tr><td>Audit Trail</td><td>Logged gradient updates</td><td>OCI Audit + Logging</td></tr>
+                <tr><td>Access Control</td><td>Institution-level RBAC</td><td>OCI IAM + compartments</td></tr>
+            </tbody>
+        </table>
+
+        <!-- Section 5: Complete AI Stack -->
+        <h2 id="platform">5. Enterprise AI Platform Stack</h2>
+
+        <p>
+            A production enterprise AI platform is not a single service&mdash;it's a <strong>coordinated stack</strong>
+            spanning infrastructure through applications, with security and observability as cross-cutting concerns.
+        </p>
+
+        <img src="images/enterprise-ai-stack.png" alt="Enterprise AI Platform - 5 Layer Architecture" class="arch-image" loading="lazy">
+
+        <h3>Five-Layer Reference Architecture</h3>
+
+        <table>
+            <thead>
+                <tr><th>Layer</th><th>Purpose</th><th>Key Services</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>5. Applications</strong></td>
+                    <td>User-facing AI experiences</td>
+                    <td>APEX portals, ODA chatbots, OAC dashboards, custom APIs</td>
+                </tr>
+                <tr>
+                    <td><strong>4. Agent Platform</strong></td>
+                    <td>Multi-agent orchestration and tooling</td>
+                    <td>Private Agent Factory, MCP, Select AI Agent, OCI GenAI Agents</td>
+                </tr>
+                <tr>
+                    <td><strong>3. AI Services</strong></td>
+                    <td>Model inference, training, embeddings</td>
+                    <td>OCI GenAI, OCI Vision, OCI Data Science, Cohere/Llama/Gemini</td>
+                </tr>
+                <tr>
+                    <td><strong>2. Data Foundation</strong></td>
+                    <td>Converged data management</td>
+                    <td>Oracle AI Database 26ai (Vector + Graph + JSON + SQL), ADW</td>
+                </tr>
+                <tr>
+                    <td><strong>1. Infrastructure</strong></td>
+                    <td>Compute, storage, networking</td>
+                    <td>OKE, A100/H100 GPU, Object Storage, FastConnect</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h4>Cross-Cutting Concerns</h4>
+        <ul>
+            <li><strong>Security & Governance</strong> (spanning all layers): OCI Data Safe, Vault, IAM/IDCS, RBAC, encryption at rest + transit</li>
+            <li><strong>Observability & Evaluation</strong> (spanning all layers): Prometheus, Grafana, OCI Monitoring, model quality metrics, A/B testing</li>
+            <li><strong>Compliance</strong>: HIPAA, GDPR, HITRUST (71 OCI services certified), SOC 2, ISO 27001</li>
+        </ul>
+
+        <h3>Decision Framework: Choosing the Right Pattern</h3>
+
+        <div class="code-block">
+<span class="comment"># Enterprise AI Architecture Decision Tree</span>
+
+<span class="keyword">Customer needs GenAI on cloud?</span>
+├── Standard inference (Llama, Gemini)?
+│   └── <span class="string">USE: OCI AI Blueprints - vLLM or Llama Stack</span>
+├── Fine-tuning required?
+│   └── <span class="string">USE: OCI AI Blueprints - LoRA Fine-Tuning (Dedicated AI Cluster)</span>
+├── RAG / knowledge retrieval?
+│   └── <span class="string">USE: Database 26ai Vector Search + OCI GenAI Agents</span>
+├── Multi-agent orchestration?
+│   └── <span class="string">USE: Private Agent Factory + MCP + Select AI Agent</span>
+├── Privacy-preserving training?
+│   └── <span class="string">USE: SymetryML Federated Learning on OCI</span>
+├── Multimodal (images + text)?
+│   └── <span class="string">USE: Cohere Command A Vision + OCI GenAI endpoints</span>
+└── Custom / unique requirements?
+    └── <span class="string">BUILD: oracle-devrel patterns + OKE + custom pipeline</span>
+        </div>
+
+        <!-- FAQ Section -->
+        <div class="faq">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-item">
+                <div class="faq-q">What is RAG (Retrieval-Augmented Generation) and why do enterprises need it?</div>
+                <div class="faq-a">RAG is an architecture pattern that grounds LLM responses in verified data by retrieving relevant documents before generating answers. Enterprises need RAG because pure LLMs hallucinate 15-25% of the time on domain-specific questions. RAG reduces hallucination to under 5% by providing the model with actual source documents. A production RAG pipeline includes: data ingestion, chunking, embedding, vector storage, retrieval with reranking, and LLM generation with citation.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">What is hybrid search and why is it better than pure vector search for RAG?</div>
+                <div class="faq-a">Hybrid search combines vector similarity search (semantic meaning) with keyword search (exact matches) in a single query. Pure vector search misses exact terms like product codes, error numbers, or legal citations. Pure keyword search misses semantic relationships. Oracle AI Database 26ai's Unified Hybrid Vector Search combines HNSW, IVF, and full-text search in one SQL query, followed by Cohere Rerank 3.5 for relevance scoring &mdash; this combination typically improves retrieval precision by 15-25% over either method alone.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">How do you evaluate RAG system quality in production?</div>
+                <div class="faq-a">Production RAG evaluation uses three core metrics: Faithfulness (does the answer match the retrieved documents?), Relevance (are the retrieved documents actually relevant?), and Answer Completeness (does the response fully address the question?). Tools like RAGAS, DeepEval, and LangSmith automate these evaluations. Enterprise systems should also track: retrieval latency (p95 under 200ms), citation accuracy, and user feedback loops. The key insight: evaluation is not a one-time check but a continuous monitoring system.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">What is the difference between naive RAG and advanced RAG architectures?</div>
+                <div class="faq-a">Naive RAG uses a simple retrieve-then-generate pattern with fixed chunk sizes and basic similarity search. Advanced RAG adds: intelligent chunking (semantic boundaries, not arbitrary token limits), query transformation (HyDE, multi-query decomposition), hybrid retrieval with reranking, guardrails for input/output validation, and observability for continuous monitoring. Production enterprise RAG also requires governance layers: access control on retrieved documents, audit logging, and PII detection before generation.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">What embedding models should enterprises use for RAG in 2026?</div>
+                <div class="faq-a">For text-only: Cohere Embed Multilingual 3 (100+ languages, available on OCI GenAI). For multimodal (text + images): Cohere Embed 4 or OpenAI text-embedding-3-large. For cost-sensitive workloads: open-source models like BGE-M3 or E5-Mistral on dedicated infrastructure. Key factors: embedding dimension (higher = more precise but more storage), multilingual support, and whether you need cross-modal retrieval. Always benchmark on your own data &mdash; generic leaderboard rankings often don't reflect domain-specific performance.</div>
+            </div>
+        </div>
+
+        <!-- Sources -->
+        <div class="sources">
+            <h3>Sources &amp; References</h3>
+            <ol>
+                <li><a href="https://docs.oracle.com/en-us/iaas/Content/generative-ai/pretrained-models.htm">OCI Pretrained Models Documentation</a> - Complete model catalog</li>
+                <li><a href="https://www.oracle.com/cloud/price-list/">Oracle Cloud Price List</a> - Current pricing</li>
+                <li><a href="https://docs.cloud.google.com/architecture/rag-genai-gemini-enterprise-vertexai">Google Vertex AI RAG Architecture</a> - RAG reference</li>
+                <li><a href="https://www.anthropic.com/engineering/multi-agent-research-system">Anthropic Multi-Agent Research System</a> - Production RAG patterns</li>
+                <li><a href="https://docs.oracle.com/en/solutions/symetryml-on-oci/index.html">SymetryML on OCI</a> - Federated learning</li>
+                <li><a href="https://github.com/oracle-quickstart/oci-ai-blueprints">OCI AI Blueprints</a> - Production GenAI deployment</li>
+                <li><a href="https://docs.oracle.com/en/database/oracle/oracle-database/26/nfcoa/">Oracle AI Database 26ai</a> - Database documentation</li>
+                <li><a href="https://blogs.oracle.com/cloud-infrastructure/oci-hitrust-shared-responsibility-matrix-inheritance-program">OCI HITRUST Certification</a> - Compliance</li>
+                <li><a href="https://github.com/oracle-devrel/technology-engineering">Oracle Technology Engineering</a> - Solution patterns</li>
+                <li><a href="https://www.bcg.com/publications/2025/agents-accelerate-next-wave-of-ai-value-creation">BCG: Agents Accelerate AI Value</a> - DRI Framework</li>
+            </ol>
+        </div>
+    </article>
+
+    <footer class="footer">
+        <div class="footer-text">
+            <strong>Enterprise AI Architecture Patterns</strong> - Part of the <a href="/research/">FrankX AI Architecture Research Center</a><br>
+            All pricing should be verified at <a href="https://www.oracle.com/cloud/price-list/">oracle.com/cloud/price-list</a> before use in customer engagements.<br><br>
+            <em>Disclaimer: Independent research project. Not affiliated with, endorsed by, or sponsored by Oracle Corporation.
+            Oracle, OCI, and related marks are trademarks of Oracle Corporation.</em>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oracle Partner Network (OPN) Deep Dive | FrankX Research</title>
+    <meta name="description" content="Comprehensive Oracle OPN analysis: tier structure, AI Accelerator Packs, revenue models, OCI AI Blueprints, and 2026 partner opportunities.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --oracle-red: #C74634;
+            --bg-dark: #0f172a;
+            --bg-darker: #020617;
+            --text-light: #e2e8f0;
+            --text-muted: #94a3b8;
+            --border-color: #1e293b;
+            --card-bg: #1e293b;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg-darker);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        header {
+            background: var(--bg-dark);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--oracle-red), #E85A4F);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .logo-text {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            margin-left: 2rem;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        nav a:hover { color: var(--oracle-red); }
+
+        .hero {
+            background: linear-gradient(135deg, #991b1b 0%, #7f1d1d 100%);
+            padding: 4rem 2rem;
+            text-align: center;
+            border-bottom: 4px solid var(--oracle-red);
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .hero .subtitle {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--oracle-red);
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section {
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+            color: var(--oracle-red);
+        }
+
+        .tier-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .tier-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            border-top: 4px solid var(--oracle-red);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .tier-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(199, 70, 52, 0.2);
+        }
+
+        .tier-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--oracle-red);
+            margin-bottom: 0.5rem;
+        }
+
+        .tier-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .tier-benefits {
+            list-style: none;
+        }
+
+        .tier-benefits li {
+            padding: 0.5rem 0;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .tier-benefits li:last-child {
+            border-bottom: none;
+        }
+
+        .tier-benefits li::before {
+            content: "✓";
+            color: var(--oracle-red);
+            font-weight: bold;
+            margin-right: 0.5rem;
+        }
+
+        .accelerator-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .accelerator-card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 2rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .accelerator-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--oracle-red);
+        }
+
+        .accelerator-card .industry {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .accelerator-card p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .spec-list {
+            background: var(--bg-dark);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 1rem;
+        }
+
+        .spec-list h4 {
+            font-size: 0.85rem;
+            color: var(--oracle-red);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .spec-list ul {
+            list-style: none;
+        }
+
+        .spec-list li {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            padding: 0.25rem 0;
+        }
+
+        .revenue-section {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 2rem;
+            border-left: 4px solid var(--oracle-red);
+        }
+
+        .revenue-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--oracle-red);
+        }
+
+        .revenue-section p {
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .revenue-highlights {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .revenue-item {
+            background: var(--bg-dark);
+            padding: 1.25rem;
+            border-radius: 8px;
+        }
+
+        .revenue-item h4 {
+            color: var(--oracle-red);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .revenue-item p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .cta-section {
+            background: linear-gradient(135deg, var(--oracle-red), #7f1d1d);
+            padding: 3rem;
+            border-radius: 16px;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .cta-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            color: var(--text-muted);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: white;
+            color: var(--oracle-red);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 700;
+            transition: all 0.3s;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+        }
+
+        .cta-button.secondary {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+        }
+
+        footer {
+            background: var(--bg-dark);
+            border-top: 1px solid var(--border-color);
+            padding: 2rem;
+            margin-top: 4rem;
+            text-align: center;
+        }
+
+        footer p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        footer a {
+            color: var(--oracle-red);
+            text-decoration: none;
+            margin: 0 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .tier-grid, .accelerator-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon">F</div>
+                <div class="logo-text">FrankX Research</div>
+            </div>
+            <nav>
+                <a href="index.html">← Back to Hub</a>
+                <a href="comparison.html">Comparison</a>
+                <a href="https://frankx.ai/research/">All Research</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="hero">
+        <h1>Oracle Partner Network (OPN)</h1>
+        <p class="subtitle">Consumption-based partnership model with AI Accelerator Packs and flexible tier structure</p>
+        <div class="hero-stats">
+            <div class="stat">
+                <div class="stat-value">Levels 0-3+</div>
+                <div class="stat-label">Partner Tiers</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">30-40%</div>
+                <div class="stat-label">AI Workload Margin</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">4</div>
+                <div class="stat-label">AI Accelerator Packs</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">10+</div>
+                <div class="stat-label">OCI AI Blueprints</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="section">
+            <h2 class="section-title">Partner Tier Structure</h2>
+            <p style="color: var(--text-muted); margin-bottom: 2rem;">Oracle modernized OPN with numerical levels and flexible track selection (Build, Sell, Service). Partners advance based on certifications, customer successes, and Oracle advocacy.</p>
+            
+            <div class="tier-grid">
+                <div class="tier-card">
+                    <div class="tier-name">Level 0</div>
+                    <p>Marketplace Publisher only (no membership benefits)</p>
+                    <ul class="tier-benefits">
+                        <li>Oracle Cloud Marketplace listings</li>
+                        <li>Lead generation (BYOL, free listings)</li>
+                        <li>No training seats or credits</li>
+                        <li>Cannot publish Expertise</li>
+                    </ul>
+                </div>
+
+                <div class="tier-card">
+                    <div class="tier-name">Level 1</div>
+                    <p>Entry-level OPN membership with core benefits</p>
+                    <ul class="tier-benefits">
+                        <li>5 training seats</li>
+                        <li>Dev/test/demo environments</li>
+                        <li>Private offers capability</li>
+                        <li>Application licenses</li>
+                        <li>Can publish Expertise</li>
+                    </ul>
+                </div>
+
+                <div class="tier-card">
+                    <div class="tier-name">Level 2</div>
+                    <p>Regional GTM support with partner credits</p>
+                    <ul class="tier-benefits">
+                        <li>100 training seats</li>
+                        <li>125K Oracle Partner Credits</li>
+                        <li>Regional GTM collaboration</li>
+                        <li>Managed GTM campaigns</li>
+                        <li>Live virtual classrooms</li>
+                        <li>Optional Partner Success Manager</li>
+                    </ul>
+                </div>
+
+                <div class="tier-card">
+                    <div class="tier-name">Level 3</div>
+                    <p>Global partner with maximum benefits</p>
+                    <ul class="tier-benefits">
+                        <li>500 training seats</li>
+                        <li>750K Oracle Partner Credits</li>
+                        <li>Global GTM collaboration</li>
+                        <li>Dedicated Partner Success Manager</li>
+                        <li>Priority co-selling</li>
+                        <li>Volume-based rebates</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">AI Accelerator Packs</h2>
+            <p style="color: var(--text-muted); margin-bottom: 2rem;">Full-stack Oracle Resource Manager (ORM) templates deploying complete GenAI applications with OCI services, NVIDIA GPUs, and open-source components in a single workflow.</p>
+
+            <div class="accelerator-grid">
+                <div class="accelerator-card">
+                    <h3>Route Optimizer (cuOPT)</h3>
+                    <div class="industry">Logistics & Transportation</div>
+                    <p>AI-driven route optimization to reduce fuel costs, improve on-time delivery, and analyze real-time traffic/weather data using NVIDIA cuOPT.</p>
+                    <div class="spec-list">
+                        <h4>Small Deployment</h4>
+                        <ul>
+                            <li>1x BM.GPU4.8 (8x A100 40GB)</li>
+                            <li>2x VM.Standard.E5.Flex (3 OCPUs, 64GB)</li>
+                            <li>NVIDIA cuOPT + AI Enterprise</li>
+                            <li>OKE cluster + OCI GenAI Services</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="accelerator-card">
+                    <h3>Video Search & Summarization</h3>
+                    <div class="industry">Media & Enterprise Content</div>
+                    <p>Multimodal video analysis with intelligent search, automated summarization, and explicit content flagging using NVIDIA Cosmos Reasoning.</p>
+                    <div class="spec-list">
+                        <h4>Small Deployment</h4>
+                        <ul>
+                            <li>1x BM.GPU4.8 (8x A100 40GB)</li>
+                            <li>1x VM.Standard.E5.Flex (32 OCPUs, 128GB)</li>
+                            <li>NVIDIA Cosmos + Parakeet NIMs</li>
+                            <li>Frame-level video understanding</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="accelerator-card">
+                    <h3>AI-Q Enterprise Reasoning</h3>
+                    <div class="industry">Finance, Healthcare, Legal</div>
+                    <p>On-premises reasoning chat agent with complete data sovereignty. Fully self-hosted LLM inference with NVIDIA NIMs—no external API calls.</p>
+                    <div class="spec-list">
+                        <h4>Self-Hosted IaaS</h4>
+                        <ul>
+                            <li>2x BM.GPU4.8 (16x A100 40GB total)</li>
+                            <li>NVIDIA NIMs (Neural Inference Microservices)</li>
+                            <li>Air-gapped deployment option</li>
+                            <li>Multi-model support (Llama, Mistral)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="accelerator-card">
+                    <h3>Oracle-Net Reasoning</h3>
+                    <div class="industry">Enterprise IT</div>
+                    <p>Cloud-native reasoning chat leveraging Oracle AI Database 26ai capabilities: Select AI Agent, Unified Hybrid Vector Search, RAFT replication.</p>
+                    <div class="spec-list">
+                        <h4>Shared Services</h4>
+                        <ul>
+                            <li>2x VM.Standard.E5.Flex (4 OCPUs, 32GB)</li>
+                            <li>Oracle AI Database 26ai (4-8 ECPUs)</li>
+                            <li>Meta Llama Stack (open source)</li>
+                            <li>In-database MCP agents</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">Revenue Models and Margins</h2>
+            
+            <div class="revenue-section">
+                <h3>Consumption-Based Partner Rewards</h3>
+                <p>Oracle's enhanced partner program rewards recurring customer engagement rather than one-time transactions. Partners earn ongoing revenue from customer OCI usage, with higher margins for fully managed solutions.</p>
+                
+                <div class="revenue-highlights">
+                    <div class="revenue-item">
+                        <h4>Universal Credits</h4>
+                        <p>55% discount off rate card for Level 2+ partners on cash purchases. Credits apply to any OCI service.</p>
+                    </div>
+                    
+                    <div class="revenue-item">
+                        <h4>AI Workload Margins</h4>
+                        <p>30-40% margin over the life of customer contract for OCI AI workloads. Higher margins for managed services.</p>
+                    </div>
+                    
+                    <div class="revenue-item">
+                        <h4>BYOL Advantage</h4>
+                        <p>30-60% cheaper vs. license-included pricing. Partners help customers migrate existing Oracle licenses to OCI.</p>
+                    </div>
+                    
+                    <div class="revenue-item">
+                        <h4>SaaS Discounts</h4>
+                        <p>75% discount on SaaS environments. Remains active through customer renewal cycles.</p>
+                    </div>
+
+                    <div class="revenue-item">
+                        <h4>Partner Credits</h4>
+                        <p>Level 2: 125K credits | Level 3: 750K credits. Convert to OCI consumption at discounted rates.</p>
+                    </div>
+                    
+                    <div class="revenue-item">
+                        <h4>Volume Rebates</h4>
+                        <p>Top-performing partners earn additional rebates based on OCI consumption growth. Priority co-selling access.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title">OCI AI Blueprints (10 Total)</h2>
+            <p style="color: var(--text-muted); margin-bottom: 1.5rem;">No-code GenAI deployment platform built on OKE. Compresses weeks of GPU onboarding into minutes with validated hardware configurations and pre-packaged software stacks.</p>
+            
+            <div style="background: var(--card-bg); border-radius: 12px; padding: 1.5rem; border: 1px solid var(--border-color);">
+                <ul style="list-style: none; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+                    <li style="color: var(--text-muted); padding: 0.5rem; background: var(--bg-dark); border-radius: 6px;">✓ LLM Inference (vLLM) - Llama 2/3/3.1</li>
+                    <li style="color: var(--text-muted); padding: 0.5rem; background: var(--bg-dark); border-radius: 6px;">✓ Llama Stack - vLLM + ChromaDB + Postgres</li>
+                    <li style="color: var(--text-muted); padding: 0.5rem; background: var(--bg-dark); border-radius: 6px;">✓ LoRA Fine-Tuning - Custom model training</li>
+                    <li style="color: var(--text-muted); padding: 0.5rem; background: var(--bg-dark); border-radius: 6px;">✓ Multi-node Inference - Llama-405B (RDMA)</li>
+                    <li style="color: var(--text-muted); padding: 0.5rem; background: var(--bg-dark); border-radius: 6px;">✓ Autoscaling Inference - KEDA + latency-based</li>
+                    <li style="color: var(--text-muted); padding: 0.5rem; background: var(--bg-dark); border-radius: 6px;">✓ MIG Inference - Multi-instance GPU optimization</li>
+                    <li style="color: var(--text-muted); padding: 0.5rem; background: var(--bg-dark); border-radius: 6px;">✓ CPU Inference - Ollama + Mistral/Gemma</li>
+                    <li style="color: var(--text-muted); padding: 0.5rem; background: var(--bg-dark); border-radius: 6px;">✓ Fine-Tuning Benchmarking - LoRA performance</li>
+                    <li style="color: var(--text-muted); padding: 0.5rem; background: var(--bg-dark); border-radius: 6px;">✓ GPU Performance Benchmarking - Hardware validation</li>
+                    <li style="color: var(--text-muted); padding: 0.5rem; background: var(--bg-dark); border-radius: 6px;">✓ Job Queuing - Multi-tenant resource management</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <h2>Explore More Cloud Partner Programs</h2>
+            <p>Compare Oracle OPN with AWS APN, Microsoft Azure, and Google Cloud partner ecosystems.</p>
+            <div class="cta-buttons">
+                <a href="comparison.html" class="cta-button">View Full Comparison</a>
+                <a href="index.html" class="cta-button secondary">Back to Hub</a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p><a href="index.html">Cloud Partner Hub</a> | <a href="aws.html">AWS APN</a> | <a href="azure.html">Azure Partners</a> | <a href="gcp.html">Google Cloud</a> | <a href="https://frankx.ai/research/">All Research</a></p>
+        <p style="margin-top: 1rem;">Oracle Partner Network Research | February 2026 | FrankX AI Architect</p>
+        <p>Oracle and OCI are trademarks of Oracle Corporation. This is independent research.</p>
+    </footer>
+</body>
+</html>

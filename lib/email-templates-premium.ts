@@ -361,7 +361,7 @@ export function premiumNewsletterEmail(data: NewsletterData): { subject: string;
                         </td>
                         <td style="vertical-align: middle;">
                           <p style="margin: 0 0 2px 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 15px; font-weight: 600; color: #E2E8F0;">
-                            Frank Guzman
+                            Frank Riemer
                           </p>
                           <p style="margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 13px; color: #64748b;">
                             Musician &rarr; AI Systems Architect
@@ -475,7 +475,7 @@ export function samplePremiumNewsletter(): { subject: string; html: string } {
     },
     featuredLink: {
       title: 'The Complete Guide to AI Music Production',
-      description: 'Everything I\'ve learned from creating 500+ AI songs, distilled into a comprehensive guide for creators ready to level up.',
+      description: 'Everything I\'ve learned from creating 12,000+ AI songs, distilled into a comprehensive guide for creators ready to level up.',
       url: 'https://frankx.ai/guides/ai-music'
     },
     closingNote: 'Hit reply anytime. I read every message and respond personally. No spam, no fluff — just real insights from someone building in public.',

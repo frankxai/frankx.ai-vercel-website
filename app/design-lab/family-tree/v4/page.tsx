@@ -144,10 +144,10 @@ export default function FamilyTreeV4() {
   ]
 
   return (
-    <main className="min-h-screen bg-[#030712]">
+    <main className="min-h-screen bg-[#0a0a0b]">
       <div className="fixed inset-0 -z-10">
-        <div className="absolute left-0 top-1/4 h-[600px] w-[600px] rounded-full bg-emerald-500/3 blur-[120px]" />
-        <div className="absolute bottom-1/4 right-0 h-[500px] w-[500px] rounded-full bg-amber-500/3 blur-[120px]" />
+        <div className="absolute left-0 top-1/4 h-[600px] w-[600px] rounded-full bg-emerald-500/3 blur-[128px]" />
+        <div className="absolute bottom-1/4 right-0 h-[500px] w-[500px] rounded-full bg-amber-500/3 blur-[128px]" />
       </div>
 
       {/* Header */}

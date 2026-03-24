@@ -5,9 +5,9 @@ import { FAQPageJsonLd } from '@/components/seo/JsonLd'
 import { getAllBlogPosts } from '@/lib/blog'
 
 export const metadata = createMetadata({
-  title: 'FrankX.AI | AI Architect & Music Creator — Build What Matters',
+  title: 'FrankX — AI Architect & Creator',
   description:
-    'AI Systems Architect. Creator of 12K+ songs with Suno. Building intelligent systems, music, and creator tools. Free tutorials, prompts, and tools.',
+    'AI Systems Architect at Oracle. Creator of 12,000+ songs with Suno. Open-source AI tools, technical tutorials, and music production workflows.',
   keywords: [
     'ai architect',
     'ai music creation',
@@ -89,7 +89,7 @@ const homepageFAQs = [
   {
     question: 'What is the Agentic Creator OS (ACOS)?',
     answer:
-      'ACOS is an open-source operating system for Claude Code with 630+ skills, 40+ specialized agents, and 130+ commands. It turns Claude Code into a full creative production environment. Free on GitHub, with premium Creator Kit ($47) and Pro System ($197) tiers.',
+      'ACOS is an open-source operating system for Claude Code with 75+ skills, 38 specialized agents, and 35+ commands. It turns Claude Code into a full creative production environment. Free on GitHub, with premium Creator Kit ($47) and Pro System ($197) tiers.',
   },
   {
     question: 'Does FrankX offer courses or coaching?',

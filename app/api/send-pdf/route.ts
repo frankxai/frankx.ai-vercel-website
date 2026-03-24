@@ -111,7 +111,7 @@ export async function POST(request: NextRequest) {
       </h1>
 
       <p style="font-size: 17px; color: #CBD5E1; line-height: 1.7; margin: 0 0 16px 0;">
-        Picture this: same frameworks I used to create 500+ AI songs and build enterprise AI systems - now in your hands.
+        Picture this: same frameworks I used to create 12,000+ AI songs and build enterprise AI systems - now in your hands.
       </p>
 
       <p style="font-size: 16px; color: #94a3b8; line-height: 1.7; margin: 0 0 28px 0;">
@@ -141,7 +141,7 @@ export async function POST(request: NextRequest) {
           Quick note: Hit reply with questions. I read every message. Really.
         </p>
         <p style="font-size: 14px; color: #64748b; margin: 0; line-height: 1.6;">
-          Want more? Check out our <a href="https://frankx.ai/blog" style="color: #22d3ee; text-decoration: none;">creator insights</a> or explore <a href="https://frankx.ai/music" style="color: #22d3ee; text-decoration: none;">500+ AI songs</a>.
+          Want more? Check out our <a href="https://frankx.ai/blog" style="color: #22d3ee; text-decoration: none;">creator insights</a> or explore <a href="https://frankx.ai/music" style="color: #22d3ee; text-decoration: none;">12,000+ AI songs</a>.
         </p>
       </div>
     </div>
@@ -150,7 +150,7 @@ export async function POST(request: NextRequest) {
     <div style="text-align: center; padding-top: 40px; border-top: 2px solid rgba(6, 182, 212, 0.15);">
       <div style="margin-bottom: 20px;">
         <p style="font-family: 'Poppins', sans-serif; font-size: 15px; color: #E2E8F0; margin: 0 0 6px 0; font-weight: 600;">
-          Frank Guzman
+          Frank Riemer
         </p>
         <p style="font-size: 13px; color: #94a3b8; margin: 0; line-height: 1.6;">
           Musician → AI Systems Architect<br>

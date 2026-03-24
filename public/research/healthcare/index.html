@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthcare AI Diagnostics Ecosystem | FrankX Research</title>
+    <meta name="description" content="AI-powered healthcare diagnostics reference architecture: four-pillar framework for diagnostic optimization, intelligent infrastructure, therapy acceleration, and global collaboration on Oracle Cloud.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://frankx.ai/research/healthcare/">
+    <meta property="og:title" content="Healthcare AI Diagnostics Ecosystem | FrankX Research">
+    <meta property="og:description" content="Four-pillar reference architecture for AI-powered healthcare diagnostics: OCI Vision, Database 26ai vector search, federated learning, and LLM cascade routing.">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://frankx.ai/research/healthcare/">
+    <meta property="og:site_name" content="FrankX AI Architecture Research">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Healthcare AI Diagnostics Ecosystem | FrankX Research">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "TechArticle",
+        "headline": "Healthcare AI Diagnostics Ecosystem",
+        "description": "Reference architecture for AI-powered healthcare diagnostics: four-pillar framework with OCI Vision, vector search, federated learning, and LLM cascade routing.",
+        "url": "https://frankx.ai/research/healthcare/",
+        "datePublished": "2026-02-03",
+        "dateModified": "2026-02-06",
+        "author": {"@type": "Person", "name": "FrankX", "url": "https://frankx.ai"},
+        "publisher": {"@type": "Organization", "name": "FrankX AI Architecture Research"},
+        "isPartOf": {"@type": "ResearchProject", "name": "FrankX AI Architecture Research Center", "url": "https://frankx.ai/research/"},
+        "about": [
+            {"@type": "Thing", "name": "Healthcare AI"},
+            {"@type": "Thing", "name": "Medical Diagnostics"},
+            {"@type": "Thing", "name": "Federated Learning"},
+            {"@type": "Thing", "name": "Clinical Decision Support"}
+        ],
+        "keywords": "healthcare AI, medical diagnostics, federated learning, clinical decision support, OCI Vision, vector search, therapy acceleration, tumor board AI",
+        "inLanguage": "en"
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "How is AI used in pediatric cancer diagnostics today?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "AI assists pediatric oncology through four pillars: diagnostic intelligence (computer vision for cell morphology analysis), data infrastructure (vector search across pathology images and genomic sequences), therapy acceleration (treatment protocol matching using RAG), and global collaboration (federated learning across hospitals without sharing patient data)."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What is federated learning and why is it critical for healthcare AI?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Federated learning trains AI models across multiple hospitals without moving patient data. Each hospital trains locally, then shares only model updates (gradients). This preserves patient privacy (HIPAA, GDPR) while enabling multi-institutional learning. For rare cancers, federated learning is transformative because no single hospital has enough cases for robust training."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How does vector search improve clinical decision support?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Vector search enables semantic retrieval across medical literature, pathology images, and genomic data. Clinicians can search for similar blast morphology patterns across millions of historical cases using vector embeddings, retrieving relevant precedents in seconds rather than hours. Oracle AI Database 26ai provides native vector search integrated with clinical data."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What OCI services are used in healthcare AI architectures?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "A production healthcare AI architecture on OCI includes: OCI Vision (medical image analysis), OCI GenAI Service (LLM inference with Cohere or Llama models), Oracle AI Database 26ai (vector search, relational data, graph queries), OCI Data Science (model training), OCI Streaming (real-time lab data ingestion), and OCI IAM (clinical data access controls)."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How do healthcare AI systems maintain regulatory compliance?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Healthcare AI compliance requires data residency controls, audit logging of all AI decisions, human-in-the-loop workflows, model explainability documentation, and bias testing. The EU AI Act classifies medical AI as high-risk. HIPAA requires encryption at rest and in transit, access controls, and breach notification procedures."
+                }
+            }
+        ]
+    }
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --oracle-red: #C74634;
+            --bg-primary: #FAFAFA;
+            --bg-card: #FFFFFF;
+            --text-primary: #1a1a2e;
+            --text-secondary: #4a5568;
+            --border-color: #e2e8f0;
+            --pillar-diagnostic: #22C55E;
+            --pillar-infrastructure: #0EA5E9;
+            --pillar-therapy: #A855F7;
+            --pillar-global: #F59E0B;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        header {
+            background: white;
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--oracle-red), #E85A4F);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .logo-text {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .logo-text span {
+            color: var(--text-secondary);
+            font-weight: 400;
+        }
+
+        nav a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            margin-left: 2rem;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: var(--oracle-red);
+        }
+
+        /* Hero */
+        .hero {
+            background: white;
+            padding: 4rem 2rem;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--text-primary);
+        }
+
+        .hero h1 span {
+            color: var(--oracle-red);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--oracle-red);
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        /* Four Pillars */
+        .pillars-section {
+            padding: 4rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 1.75rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title p {
+            color: var(--text-secondary);
+        }
+
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .pillar-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .pillar-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.08);
+        }
+
+        .pillar-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .pillar-diagnostic .pillar-icon { background: #DCFCE7; }
+        .pillar-infrastructure .pillar-icon { background: #DBEAFE; }
+        .pillar-therapy .pillar-icon { background: #F3E8FF; }
+        .pillar-global .pillar-icon { background: #FEF3C7; }
+
+        .pillar-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .pillar-card p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        .pillar-features {
+            list-style: none;
+        }
+
+        .pillar-features li {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            padding: 0.25rem 0;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .pillar-features li::before {
+            content: ">";
+            color: var(--oracle-red);
+            font-weight: bold;
+        }
+
+        /* Architecture Gallery */
+        .gallery-section {
+            padding: 4rem 2rem;
+            background: white;
+        }
+
+        .gallery-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .gallery-card {
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+            background: white;
+            cursor: pointer;
+        }
+
+        .gallery-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+        }
+
+        .gallery-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .gallery-content {
+            padding: 1.25rem;
+        }
+
+        .gallery-content h3 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .gallery-content p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .gallery-tag {
+            display: inline-block;
+            font-size: 0.7rem;
+            padding: 0.25rem 0.5rem;
+            background: var(--bg-primary);
+            border-radius: 4px;
+            color: var(--text-secondary);
+            margin-top: 0.75rem;
+        }
+
+        /* OCI Services */
+        .services-section {
+            padding: 4rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .service-chip {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            transition: border-color 0.2s;
+        }
+
+        .service-chip:hover {
+            border-color: var(--oracle-red);
+        }
+
+        .service-chip h4 {
+            font-size: 0.9rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .service-chip p {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+        }
+
+        /* Resources */
+        .resources-section {
+            padding: 4rem 2rem;
+            background: white;
+        }
+
+        .resources-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .resource-card {
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-decoration: none;
+            color: inherit;
+            transition: border-color 0.2s, transform 0.2s;
+            display: block;
+        }
+
+        .resource-card:hover {
+            border-color: var(--oracle-red);
+            transform: translateY(-2px);
+        }
+
+        .resource-card h4 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .resource-card p {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .resource-external {
+            font-size: 0.75rem;
+            color: var(--oracle-red);
+            margin-top: 0.75rem;
+            display: block;
+        }
+
+        /* Cost Optimization */
+        .cost-section {
+            padding: 4rem 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .cost-card {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+        }
+
+        .cost-comparison {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .cost-item h4 {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .cost-value {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        .cost-value.original {
+            color: var(--text-secondary);
+            text-decoration: line-through;
+        }
+
+        .cost-value.optimized {
+            color: var(--pillar-diagnostic);
+        }
+
+        .cost-savings {
+            text-align: center;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .cost-savings span {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--oracle-red);
+        }
+
+        /* Internal Pages */
+        .internal-links {
+            padding: 3rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .internal-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1rem;
+        }
+
+        .internal-card {
+            background: white;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.25rem;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.2s;
+        }
+
+        .internal-card:hover {
+            border-color: var(--oracle-red);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .internal-card h4 {
+            font-size: 0.95rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .internal-card p {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+        }
+
+        /* Footer */
+        .faq-section {
+            padding: 4rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .faq-section h2 {
+            font-size: 1.75rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        .faq-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            margin-bottom: 12px;
+            overflow: hidden;
+        }
+        .faq-q {
+            font-weight: 600;
+            font-size: 15px;
+            padding: 18px 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .faq-q::before {
+            content: "Q";
+            background: var(--pillar-diagnostic);
+            color: white;
+            font-size: 11px;
+            font-weight: 800;
+            width: 22px;
+            height: 22px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .faq-a {
+            padding: 0 24px 18px 58px;
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        footer {
+            background: var(--text-primary);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        footer p {
+            opacity: 0.7;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+        }
+
+        footer a {
+            color: var(--oracle-red);
+            text-decoration: none;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.85rem;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        /* Modal for full-size images */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            cursor: pointer;
+        }
+
+        .modal img {
+            max-width: 90%;
+            max-height: 90%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            border-radius: 8px;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 1.75rem; }
+            .header-content { flex-direction: column; gap: 1rem; }
+            nav a { margin: 0 0.75rem; }
+            .gallery-grid { grid-template-columns: 1fr; }
+            .cost-comparison { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon">P</div>
+                <div class="logo-text">Project Prometheus <span>| Healthcare AI</span></div>
+            </div>
+            <nav>
+                <a href="#pillars">Four Pillars</a>
+                <a href="#architectures">Architectures</a>
+                <a href="#services">OCI Services</a>
+                <a href="#resources">Resources</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Demo Banner -->
+    <div style="background: linear-gradient(90deg, #FEF3C7, #FDE68A); padding: 0.75rem 1rem; text-align: center; font-size: 0.85rem; color: #92400E; border-bottom: 1px solid #F59E0B;">
+        <strong>Reference Architecture Demo</strong> - Conceptual design showcasing OCI PaaS capabilities for healthcare AI. Not a production system.
+        <a href="../../docs/COMPLIANCE-AND-DEPLOYMENT.md" style="color: #B45309; margin-left: 0.5rem;">See compliance notes</a>
+    </div>
+
+    <section class="hero">
+        <h1>AI-Powered <span>Pediatric Leukemia</span> Ecosystem</h1>
+        <p>Transforming diagnostic accuracy and treatment outcomes for children with blood cancers through Oracle Cloud Infrastructure PaaS solutions.</p>
+        <div class="hero-stats">
+            <div class="stat">
+                <div class="stat-value">6,159+</div>
+                <div class="stat-label">Patient Records</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">>95%</div>
+                <div class="stat-label">Target Accuracy</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">&lt;24h</div>
+                <div class="stat-label">Diagnostic Turnaround</div>
+            </div>
+            <div class="stat">
+                <div class="stat-value">41%</div>
+                <div class="stat-label">Cost Reduction</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pillars-section" id="pillars">
+        <div class="section-title">
+            <h2>Four Pillars of Transformation</h2>
+            <p>Comprehensive AI capabilities across the diagnostic and treatment lifecycle</p>
+        </div>
+        <div class="pillars-grid">
+            <div class="pillar-card pillar-diagnostic">
+                <div class="pillar-icon">M</div>
+                <h3>Diagnostic Optimization</h3>
+                <p>AI-powered morphology, immunophenotyping, and molecular genetics analysis.</p>
+                <ul class="pillar-features">
+                    <li>OCI Vision for blast detection</li>
+                    <li>2,000+ labeled morphology samples</li>
+                    <li>116-gene NGS panel analysis</li>
+                </ul>
+            </div>
+            <div class="pillar-card pillar-infrastructure">
+                <div class="pillar-icon">I</div>
+                <h3>Intelligent Infrastructure</h3>
+                <p>Federated data sharing with OMOP/CDISC standardization.</p>
+                <ul class="pillar-features">
+                    <li>AI-powered tumor boards</li>
+                    <li>Multi-site data federation</li>
+                    <li>Oracle Database 26ai foundation</li>
+                </ul>
+            </div>
+            <div class="pillar-card pillar-therapy">
+                <div class="pillar-icon">T</div>
+                <h3>Therapy Acceleration</h3>
+                <p>Drug repurposing and virtual trial design for faster discovery.</p>
+                <ul class="pillar-features">
+                    <li>18-month discovery cycles</li>
+                    <li>AI molecular screening</li>
+                    <li>2-3 repurposed compounds target</li>
+                </ul>
+            </div>
+            <div class="pillar-card pillar-global">
+                <div class="pillar-icon">G</div>
+                <h3>Global Outreach</h3>
+                <p>Education and collaboration extending to Central Asia and beyond.</p>
+                <ul class="pillar-features">
+                    <li>Resource-Limited Regions partnership</li>
+                    <li>Multi-language support</li>
+                    <li>Federated learning network</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="gallery-section" id="architectures">
+        <div class="section-title">
+            <h2>Architecture Gallery</h2>
+            <p>OCI PaaS solutions designed for pediatric oncology research</p>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-card" onclick="openModal('images/oci-paas-complete-stack.png')">
+                <img src="images/oci-paas-complete-stack.png" alt="OCI PaaS Stack">
+                <div class="gallery-content">
+                    <h3>Complete OCI PaaS Healthcare Stack</h3>
+                    <p>Full ecosystem: GenAI, Vision, Functions, Data Science on Database 26ai.</p>
+                    <span class="gallery-tag">Platform Overview</span>
+                </div>
+            </div>
+            <div class="gallery-card" onclick="openModal('images/four-pillars-architecture.png')">
+                <img src="images/four-pillars-architecture.png" alt="Four Pillars Architecture">
+                <div class="gallery-content">
+                    <h3>Four Pillars Architecture</h3>
+                    <p>Complete ecosystem overview with Database 26ai foundation supporting all AI capabilities.</p>
+                    <span class="gallery-tag">Overview</span>
+                </div>
+            </div>
+            <div class="gallery-card" onclick="openModal('images/diagnostic-pipeline.png')">
+                <img src="images/diagnostic-pipeline.png" alt="Diagnostic Pipeline">
+                <div class="gallery-content">
+                    <h3>Diagnostic AI Pipeline</h3>
+                    <p>Morphology - Immunophenotyping - Molecular Genetics flow with OCI AI services.</p>
+                    <span class="gallery-tag">Pillar 1: Diagnostic</span>
+                </div>
+            </div>
+            <div class="gallery-card" onclick="openModal('images/oci-vision-morphology.png')">
+                <img src="images/oci-vision-morphology.png" alt="OCI Vision Morphology">
+                <div class="gallery-content">
+                    <h3>OCI Vision for Morphology AI</h3>
+                    <p>Custom model training on 2,000+ blood smear samples for >95% blast detection accuracy.</p>
+                    <span class="gallery-tag">Pillar 1: Diagnostic</span>
+                </div>
+            </div>
+            <div class="gallery-card" onclick="openModal('images/immunophenotyping-ai.png')">
+                <img src="images/immunophenotyping-ai.png" alt="Immunophenotyping AI">
+                <div class="gallery-content">
+                    <h3>Immunophenotyping AI Analysis</h3>
+                    <p>Flow cytometry evolution from 3-color to 10-color with dimensionality reduction.</p>
+                    <span class="gallery-tag">Pillar 1: Diagnostic</span>
+                </div>
+            </div>
+            <div class="gallery-card" onclick="openModal('images/ngs-molecular-genetics.png')">
+                <img src="images/ngs-molecular-genetics.png" alt="NGS Molecular Genetics">
+                <div class="gallery-content">
+                    <h3>NGS Molecular Genetics Pipeline</h3>
+                    <p>116-gene panel analysis with NVIDIA Parabricks acceleration (24h to 30min).</p>
+                    <span class="gallery-tag">Pillar 1: Diagnostic</span>
+                </div>
+            </div>
+            <div class="gallery-card" onclick="openModal('images/database-26ai-genomics.png')">
+                <img src="images/database-26ai-genomics.png" alt="Database 26ai Genomics">
+                <div class="gallery-content">
+                    <h3>Database 26ai Genomics Platform</h3>
+                    <p>Vector Search + Property Graph + JSON Duality for unified patient data.</p>
+                    <span class="gallery-tag">Pillar 2: Infrastructure</span>
+                </div>
+            </div>
+            <div class="gallery-card" onclick="openModal('images/ai-tumor-board-workflow.png')">
+                <img src="images/ai-tumor-board-workflow.png" alt="AI Tumor Board">
+                <div class="gallery-content">
+                    <h3>AI-Powered Tumor Board</h3>
+                    <p>OCI GenAI agents for case synthesis, literature RAG, and recommendation generation.</p>
+                    <span class="gallery-tag">Pillar 2: Infrastructure</span>
+                </div>
+            </div>
+            <div class="gallery-card" onclick="openModal('images/federated-learning-architecture.png')">
+                <img src="images/federated-learning-architecture.png" alt="Federated Learning">
+                <div class="gallery-content">
+                    <h3>Federated Learning Architecture</h3>
+                    <p>Privacy-preserving multi-institution training with SymetryML pattern on OCI.</p>
+                    <span class="gallery-tag">Pillar 2: Infrastructure</span>
+                </div>
+            </div>
+            <div class="gallery-card" onclick="openModal('images/drug-discovery-pipeline.png')">
+                <img src="images/drug-discovery-pipeline.png" alt="Drug Discovery Pipeline">
+                <div class="gallery-content">
+                    <h3>Drug Discovery Acceleration</h3>
+                    <p>AI-powered molecular screening for 18-month discovery cycles.</p>
+                    <span class="gallery-tag">Pillar 3: Therapy</span>
+                </div>
+            </div>
+            <div class="gallery-card" onclick="openModal('images/global-collaboration-network.png')">
+                <img src="images/global-collaboration-network.png" alt="Global Collaboration">
+                <div class="gallery-content">
+                    <h3>Global Collaboration Network</h3>
+                    <p>Frankfurt hub connecting Berlin, Vienna, Amsterdam, and Resource-Limited Regions partners.</p>
+                    <span class="gallery-tag">Pillar 4: Global</span>
+                </div>
+            </div>
+            <div class="gallery-card" onclick="openModal('images/patient-journey-e2e.png')">
+                <img src="images/patient-journey-e2e.png" alt="Patient Journey">
+                <div class="gallery-content">
+                    <h3>End-to-End Patient Journey</h3>
+                    <p>From sample collection to follow-up with &lt;24h turnaround and digital twin.</p>
+                    <span class="gallery-tag">Workflow</span>
+                </div>
+            </div>
+            <div class="gallery-card" onclick="openModal('images/llm-routing-cascade.png')">
+                <img src="images/llm-routing-cascade.png" alt="LLM Routing">
+                <div class="gallery-content">
+                    <h3>Intelligent LLM Routing Cascade</h3>
+                    <p>Cost-optimized AI with 40-70% savings through smart model selection.</p>
+                    <span class="gallery-tag">Cost Optimization</span>
+                </div>
+            </div>
+            <div class="gallery-card" onclick="openModal('images/opensource-oci-integration.png')">
+                <img src="images/opensource-oci-integration.png" alt="Open Source Integration">
+                <div class="gallery-content">
+                    <h3>Open Source + OCI Integration</h3>
+                    <p>Llama, pgvector, LangChain, and Parabricks on enterprise foundation.</p>
+                    <span class="gallery-tag">Hybrid Architecture</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services-section" id="services">
+        <div class="section-title">
+            <h2>OCI PaaS Services</h2>
+            <p>Enterprise-grade platform services powering the ecosystem</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-chip">
+                <h4>OCI GenAI</h4>
+                <p>Gemini 2.5 Flash/Pro</p>
+            </div>
+            <div class="service-chip">
+                <h4>Oracle Database 26ai</h4>
+                <p>Vector + Graph + JSON</p>
+            </div>
+            <div class="service-chip">
+                <h4>OCI Vision</h4>
+                <p>Custom Model Training</p>
+            </div>
+            <div class="service-chip">
+                <h4>OCI Data Science</h4>
+                <p>ML Pipelines + GPU</p>
+            </div>
+            <div class="service-chip">
+                <h4>OCI Functions</h4>
+                <p>Serverless Integration</p>
+            </div>
+            <div class="service-chip">
+                <h4>OCI Speech</h4>
+                <p>Translation Services</p>
+            </div>
+            <div class="service-chip">
+                <h4>Cohere Command A</h4>
+                <p>RAG-Optimized LLM</p>
+            </div>
+            <div class="service-chip">
+                <h4>NVIDIA Parabricks</h4>
+                <p>GPU Genomics</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cost-section">
+        <div class="section-title">
+            <h2>Cost Optimization Strategy</h2>
+            <p>Based on <a href="../../docs/COST-ANALYSIS-DETAILED.md" style="color: var(--oracle-red);">verified OCI pricing</a> (2026-02-04)</p>
+        </div>
+        <div class="cost-card">
+            <div class="cost-comparison">
+                <div class="cost-item">
+                    <h4>Baseline (No Optimization)</h4>
+                    <div class="cost-value original">~EUR 5,300/mo</div>
+                    <p style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.5rem;">All-premium models, always-on GPU</p>
+                </div>
+                <div class="cost-item">
+                    <h4>Optimized Architecture</h4>
+                    <div class="cost-value optimized">~EUR 1,500/mo</div>
+                    <p style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.5rem;">With buffers for dev/test environments</p>
+                </div>
+            </div>
+            <div class="cost-savings">
+                <span>~70% Reduction</span>
+                <p>Through LLM cascade routing, GPU bursting, serverless architecture</p>
+            </div>
+            <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color); font-size: 0.8rem; color: var(--text-secondary);">
+                <strong>Key Cost Drivers:</strong>
+                <ul style="margin-top: 0.5rem; padding-left: 1.5rem;">
+                    <li>GenAI (Gemini Flash): $0.0075/1M tokens vs Pro at $0.075/1M</li>
+                    <li>GPU Bursting: A10 at $0.10/hr primary, A100 at $4.95/hr burst only</li>
+                    <li>Autonomous DB Serverless: auto-scale from 2 OCPU (~EUR 250/mo)</li>
+                </ul>
+                <p style="margin-top: 0.75rem; font-style: italic;">Source: <a href="https://www.oracle.com/cloud/price-list/" target="_blank" style="color: var(--oracle-red);">oracle.com/cloud/price-list</a></p>
+            </div>
+        </div>
+    </section>
+
+    <section class="internal-links">
+        <div class="section-title">
+            <h2>Detailed Pages</h2>
+            <p>Deep dive into specific capabilities</p>
+        </div>
+        <div class="internal-grid">
+            <a href="architecture.html" class="internal-card">
+                <h4>Architecture Overview</h4>
+                <p>Complete technical architecture</p>
+            </a>
+            <a href="diagnostic-ai.html" class="internal-card">
+                <h4>Diagnostic AI</h4>
+                <p>Morphology and genetics AI</p>
+            </a>
+            <a href="tumor-board.html" class="internal-card">
+                <h4>AI Tumor Board</h4>
+                <p>Clinical decision support</p>
+            </a>
+            <a href="therapy-acceleration.html" class="internal-card">
+                <h4>Therapy Acceleration</h4>
+                <p>Drug discovery pipeline</p>
+            </a>
+            <a href="user-flows.html" class="internal-card">
+                <h4>User Workflows</h4>
+                <p>End-to-end journeys</p>
+            </a>
+        </div>
+    </section>
+
+    <section class="resources-section" id="resources">
+        <div class="section-title">
+            <h2>Resources & Documentation</h2>
+            <p>Official Oracle resources and related architectures</p>
+        </div>
+        <div class="resources-grid">
+            <a href="https://www.oracle.com/cloud/architecture-center/" target="_blank" class="resource-card">
+                <h4>Oracle Architecture Center</h4>
+                <p>Reference architectures and design patterns for enterprise cloud solutions.</p>
+                <span class="resource-external">oracle.com</span>
+            </a>
+            <a href="https://www.oracle.com/life-sciences/cloud/" target="_blank" class="resource-card">
+                <h4>Oracle Life Sciences Cloud</h4>
+                <p>Healthcare and genomics solutions including 129M+ de-identified patient records.</p>
+                <span class="resource-external">oracle.com</span>
+            </a>
+            <a href="https://www.oracle.com/cloud/compliance/hitrust/" target="_blank" class="resource-card">
+                <h4>HITRUST Compliance</h4>
+                <p>71 OCI services certified with inheritance program for healthcare compliance.</p>
+                <span class="resource-external">oracle.com</span>
+            </a>
+            <a href="https://github.com/oci-landing-zones" target="_blank" class="resource-card">
+                <h4>OCI Landing Zones</h4>
+                <p>Terraform modules for healthcare-compliant infrastructure deployment.</p>
+                <span class="resource-external">github.com</span>
+            </a>
+            <a href="https://docs.oracle.com/iaas/Content/generative-ai/" target="_blank" class="resource-card">
+                <h4>OCI GenAI Documentation</h4>
+                <p>Complete documentation for Gemini, Cohere, and Llama models on OCI.</p>
+                <span class="resource-external">docs.oracle.com</span>
+            </a>
+            <a href="https://www.oracle.com/database/ai-native-database-26ai/" target="_blank" class="resource-card">
+                <h4>Oracle Database 26ai</h4>
+                <p>AI-native database with Vector Search, Property Graph, and JSON Duality.</p>
+                <span class="resource-external">oracle.com</span>
+            </a>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-item">
+            <div class="faq-q">How is AI used in pediatric cancer diagnostics today?</div>
+            <div class="faq-a">AI assists pediatric oncology through four pillars: diagnostic intelligence (computer vision for cell morphology analysis, reducing classification time from hours to minutes), data infrastructure (vector search across millions of pathology images and genomic sequences), therapy acceleration (treatment protocol matching using RAG over clinical literature), and global collaboration (federated learning across hospitals without sharing patient data). Production systems combine OCI Vision for image analysis with LLM-powered clinical decision support for tumor board preparation.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">What is federated learning and why is it critical for healthcare AI?</div>
+            <div class="faq-a">Federated learning trains AI models across multiple hospitals without moving patient data between institutions. Each hospital trains a local model on its own data, then shares only the model updates (gradients) with a central coordinator. This preserves patient privacy (HIPAA, GDPR compliance) while enabling models to learn from diverse, multi-institutional datasets. For rare cancers like pediatric leukemia, federated learning is transformative because no single hospital has enough cases for robust model training.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">How does vector search improve clinical decision support?</div>
+            <div class="faq-a">Vector search enables semantic retrieval across medical literature, pathology images, and genomic data. Unlike keyword search, vector similarity finds conceptually related results even when terminology differs across institutions. For tumor board preparation, clinicians can search for "similar blast morphology patterns" across millions of historical cases using vector embeddings, retrieving relevant precedents in seconds rather than hours of manual review. Oracle AI Database 26ai provides native vector search integrated with existing clinical data.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">What OCI services are used in healthcare AI architectures?</div>
+            <div class="faq-a">A production healthcare AI architecture on OCI typically includes: OCI Vision (medical image analysis), OCI GenAI Service (LLM inference for clinical decision support with Cohere or Llama models), Oracle AI Database 26ai (vector search, relational data, graph queries), OCI Data Science (model training and evaluation), OCI Streaming (real-time data ingestion from lab systems), and OCI Identity and Access Management (RBAC for clinical data access). GPU shapes (A10, A100) handle model inference workloads.</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">How do healthcare AI systems maintain regulatory compliance?</div>
+            <div class="faq-a">Healthcare AI compliance requires: data residency controls (patient data stays within jurisdictional boundaries using OCI Dedicated Region), audit logging of all AI-assisted decisions, human-in-the-loop workflows for clinical recommendations (AI assists but clinicians decide), model explainability documentation for regulatory submission, and bias testing across demographic groups. The EU AI Act classifies medical AI as high-risk, requiring conformity assessments and ongoing monitoring. HIPAA requires encryption at rest and in transit, access controls, and breach notification procedures.</div>
+        </div>
+    </section>
+
+    <footer>
+        <p>Healthcare AI Diagnostics Ecosystem | FrankX Research</p>
+        <p>Powered by <a href="https://www.oracle.com/cloud/" target="_blank">Oracle Cloud Infrastructure</a></p>
+        <div class="footer-links">
+            <a href="../../docs/AGGREGATED-INSIGHTS.md">Aggregated Insights</a>
+            <a href="../../docs/COST-OPTIMIZATION-STRATEGY.md">Cost Strategy</a>
+            <a href="../../docs/ECOSYSTEM-STRATEGY.md">Ecosystem Strategy</a>
+        </div>
+        <p style="margin-top: 2rem; font-size: 0.75rem; opacity: 0.5;">
+            DISCLAIMER: Unofficial community project. Not affiliated with Oracle Corporation.
+        </p>
+        <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--border-color); font-size: 0.85rem;">
+            <strong>FrankX AI Architecture Research Center</strong><br>
+            <a href="/research/" style="color: var(--oracle-red); text-decoration: none;">Research Hub</a> &middot;
+            <a href="/research/ai-architecture/" style="color: var(--text-secondary); text-decoration: none;">AI Architecture</a> &middot;
+            <a href="/research/agentic-ai/" style="color: var(--text-secondary); text-decoration: none;">Agentic AI</a> &middot;
+            <a href="/research/oracle-ai-database/" style="color: var(--text-secondary); text-decoration: none;">Database AI</a> &middot;
+            <a href="/research/sovereign-ai/" style="color: var(--text-secondary); text-decoration: none;">Sovereign AI</a> &middot;
+            <a href="/research/cost-engineering/" style="color: var(--text-secondary); text-decoration: none;">Cost Engineering</a>
+        </div>
+    </footer>
+
+    <!-- Image Modal -->
+    <div class="modal" id="imageModal" onclick="closeModal()">
+        <span class="modal-close">x</span>
+        <img id="modalImage" src="" alt="Full size architecture">
+    </div>
+
+    <script>
+        function openModal(imageSrc) {
+            document.getElementById('modalImage').src = imageSrc;
+            document.getElementById('imageModal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('imageModal').style.display = 'none';
+        }
+
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeModal();
+        });
+    </script>
+</body>
+</html>

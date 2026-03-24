@@ -19,50 +19,29 @@ import {
 function StartBackground() {
   return (
     <div className="fixed inset-0 -z-10 overflow-hidden">
-      <div className="absolute inset-0 bg-[#030712]" />
+      <div className="absolute inset-0" style={{ backgroundColor: '#0a0a0b' }} />
 
-      {/* Gradient orbs */}
-      <motion.div
-        className="absolute -left-40 top-20 h-[500px] w-[500px] rounded-full opacity-30"
-        style={{
-          background: 'radial-gradient(circle, rgba(16,185,129,0.4) 0%, transparent 70%)',
-        }}
-        animate={{
-          scale: [1, 1.1, 1],
-          opacity: [0.3, 0.4, 0.3],
-        }}
-        transition={{ duration: 8, repeat: Infinity, ease: 'easeInOut' }}
+      {/* Static gradient orbs — ambient depth */}
+      <div
+        className="absolute -left-40 top-20 h-[600px] w-[600px] rounded-full"
+        style={{ background: 'radial-gradient(circle, rgba(16,185,129,0.06) 0%, transparent 70%)', filter: 'blur(128px)' }}
       />
-      <motion.div
-        className="absolute -right-40 top-1/2 h-[600px] w-[600px] rounded-full opacity-25"
-        style={{
-          background: 'radial-gradient(circle, rgba(6,182,212,0.35) 0%, transparent 70%)',
-        }}
-        animate={{
-          scale: [1.1, 1, 1.1],
-          opacity: [0.25, 0.35, 0.25],
-        }}
-        transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
+      <div
+        className="absolute -right-40 top-1/2 h-[700px] w-[700px] rounded-full"
+        style={{ background: 'radial-gradient(circle, rgba(6,182,212,0.04) 0%, transparent 70%)', filter: 'blur(128px)' }}
       />
-      <motion.div
-        className="absolute bottom-20 left-1/3 h-[400px] w-[400px] rounded-full opacity-20"
-        style={{
-          background: 'radial-gradient(circle, rgba(139,92,246,0.3) 0%, transparent 70%)',
-        }}
-        animate={{
-          scale: [1, 1.15, 1],
-          opacity: [0.2, 0.3, 0.2],
-        }}
-        transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
+      <div
+        className="absolute bottom-20 left-1/3 h-[500px] w-[500px] rounded-full"
+        style={{ background: 'radial-gradient(circle, rgba(139,92,246,0.03) 0%, transparent 70%)', filter: 'blur(128px)' }}
       />
 
       {/* Subtle grid */}
       <div
         className="absolute inset-0 opacity-[0.02]"
         style={{
-          backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
-                           linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
-          backgroundSize: '60px 60px',
+          backgroundImage: `linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                           linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)`,
+          backgroundSize: '80px 80px',
         }}
       />
     </div>
@@ -150,7 +129,7 @@ export default function StartPage() {
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-emerald-500/20 text-emerald-400">
                 <Compass className="h-5 w-5" />
               </div>
-              <span className="text-sm font-medium uppercase tracking-[0.2em] text-slate-400">
+              <span className="text-sm font-medium uppercase tracking-[0.2em] text-white/40">
                 Your Starting Point
               </span>
             </motion.div>
@@ -171,7 +150,7 @@ export default function StartPage() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="max-w-2xl text-lg leading-relaxed text-slate-400 sm:text-xl"
+              className="max-w-2xl text-lg leading-relaxed text-white/40 sm:text-xl"
             >
               AI architect by day. Music creator by night.
               Everything I learn and build—shared openly.
@@ -192,32 +171,32 @@ export default function StartPage() {
                 const Icon = path.icon
                 const colorMap = {
                   emerald: {
-                    bg: 'bg-emerald-500/10',
-                    border: 'border-emerald-500/20 hover:border-emerald-500/40',
-                    icon: 'bg-emerald-500/20 text-emerald-400',
+                    bg: 'bg-white/[0.03]',
+                    border: 'border-white/[0.08] hover:border-emerald-500/30',
+                    icon: 'bg-emerald-500/10 text-emerald-400',
                     text: 'text-emerald-400',
-                    glow: 'group-hover:shadow-emerald-500/20',
+                    glow: 'group-hover:shadow-lg group-hover:shadow-emerald-500/10',
                   },
                   cyan: {
-                    bg: 'bg-cyan-500/10',
-                    border: 'border-cyan-500/20 hover:border-cyan-500/40',
-                    icon: 'bg-cyan-500/20 text-cyan-400',
+                    bg: 'bg-white/[0.03]',
+                    border: 'border-white/[0.08] hover:border-cyan-500/30',
+                    icon: 'bg-cyan-500/10 text-cyan-400',
                     text: 'text-cyan-400',
-                    glow: 'group-hover:shadow-cyan-500/20',
+                    glow: 'group-hover:shadow-lg group-hover:shadow-cyan-500/10',
                   },
                   violet: {
-                    bg: 'bg-violet-500/10',
-                    border: 'border-violet-500/20 hover:border-violet-500/40',
-                    icon: 'bg-violet-500/20 text-violet-400',
+                    bg: 'bg-white/[0.03]',
+                    border: 'border-white/[0.08] hover:border-violet-500/30',
+                    icon: 'bg-violet-500/10 text-violet-400',
                     text: 'text-violet-400',
-                    glow: 'group-hover:shadow-violet-500/20',
+                    glow: 'group-hover:shadow-lg group-hover:shadow-violet-500/10',
                   },
                   amber: {
-                    bg: 'bg-amber-500/10',
-                    border: 'border-amber-500/20 hover:border-amber-500/40',
-                    icon: 'bg-amber-500/20 text-amber-400',
+                    bg: 'bg-white/[0.03]',
+                    border: 'border-white/[0.08] hover:border-amber-500/30',
+                    icon: 'bg-amber-500/10 text-amber-400',
                     text: 'text-amber-400',
-                    glow: 'group-hover:shadow-amber-500/20',
+                    glow: 'group-hover:shadow-lg group-hover:shadow-amber-500/10',
                   },
                 }
                 const colors = colorMap[path.color as keyof typeof colorMap]
@@ -231,7 +210,7 @@ export default function StartPage() {
                   >
                     <Link href={path.href} className="group block h-full">
                       <div
-                        className={`relative h-full overflow-hidden rounded-2xl border ${colors.border} ${colors.bg} p-8 backdrop-blur-sm transition-all duration-500 group-hover:-translate-y-1 group-hover:shadow-xl ${colors.glow}`}
+                        className={`relative h-full overflow-hidden rounded-3xl border ${colors.border} ${colors.bg} p-8 backdrop-blur-sm transition-all duration-300 group-hover:-translate-y-1 ${colors.glow}`}
                       >
                         {/* Icon and Stats Row */}
                         <div className="mb-6 flex items-start justify-between">
@@ -245,19 +224,19 @@ export default function StartPage() {
 
                         {/* Content */}
                         <div className="space-y-2">
-                          <p className="text-xs font-medium uppercase tracking-[0.15em] text-slate-500">
+                          <p className="text-xs font-medium uppercase tracking-[0.15em] text-white/40">
                             {path.subtitle}
                           </p>
                           <h3 className="text-2xl font-bold text-white group-hover:text-white/90">
                             {path.title}
                           </h3>
-                          <p className="leading-relaxed text-slate-400">
+                          <p className="leading-relaxed text-white/40">
                             {path.description}
                           </p>
                         </div>
 
                         {/* Arrow */}
-                        <div className="mt-6 flex items-center gap-2 text-slate-500 transition-colors group-hover:text-white">
+                        <div className="mt-6 flex items-center gap-2 text-white/40 transition-colors group-hover:text-white">
                           <span className="text-sm font-medium">Explore</span>
                           <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                         </div>
@@ -281,7 +260,7 @@ export default function StartPage() {
               className="mb-8"
             >
               <h2 className="text-2xl font-bold text-white">Quick links</h2>
-              <p className="mt-2 text-slate-400">More ways to explore</p>
+              <p className="mt-2 text-white/40">More ways to explore</p>
             </motion.div>
 
             <motion.div
@@ -303,18 +282,18 @@ export default function StartPage() {
                   >
                     <Link
                       href={item.href}
-                      className="group flex items-center justify-between rounded-xl border border-white/5 bg-white/[0.02] p-5 transition-all duration-300 hover:border-white/10 hover:bg-white/[0.04]"
+                      className="group flex items-center justify-between rounded-2xl border border-white/[0.08] bg-white/[0.03] p-5 backdrop-blur-sm transition-all duration-300 hover:border-white/15 hover:bg-white/[0.05]"
                     >
                       <div className="flex items-center gap-4">
-                        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/5 text-slate-400 transition-colors group-hover:text-white">
+                        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-white/5 text-white/40 transition-colors group-hover:text-white">
                           <Icon className="h-5 w-5" />
                         </div>
                         <div>
                           <h3 className="font-medium text-white">{item.title}</h3>
-                          <p className="text-sm text-slate-500">{item.description}</p>
+                          <p className="text-sm text-white/40">{item.description}</p>
                         </div>
                       </div>
-                      <ChevronRight className="h-5 w-5 text-slate-600 transition-all group-hover:translate-x-1 group-hover:text-slate-400" />
+                      <ChevronRight className="h-5 w-5 text-white/30 transition-all group-hover:translate-x-1 group-hover:text-white/40" />
                     </Link>
                   </motion.div>
                 )
@@ -331,7 +310,7 @@ export default function StartPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="relative overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br from-slate-900/80 via-slate-900/60 to-slate-800/40 p-10 backdrop-blur-xl"
+              className="relative overflow-hidden rounded-3xl border border-white/[0.08] bg-white/[0.03] p-10 backdrop-blur-xl"
             >
               {/* Decorative gradient */}
               <div className="absolute -right-20 -top-20 h-40 w-40 rounded-full bg-gradient-to-br from-emerald-500/20 to-cyan-500/20 blur-3xl" />
@@ -341,14 +320,14 @@ export default function StartPage() {
                   <h2 className="text-2xl font-bold text-white sm:text-3xl">
                     Want the full story?
                   </h2>
-                  <p className="mt-3 text-slate-400">
+                  <p className="mt-3 text-white/40">
                     Learn about my journey from enterprise architecture to AI music creation,
                     and why I built this hub to share everything openly.
                   </p>
                 </div>
                 <Link
                   href="/about"
-                  className="group flex items-center gap-2 rounded-xl bg-white px-6 py-3 font-medium text-slate-900 transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-white/10"
+                  className="group inline-flex items-center gap-2 rounded-2xl bg-emerald-500 hover:bg-emerald-600 px-6 py-3 font-semibold text-white transition-all hover:-translate-y-0.5 shadow-lg shadow-emerald-500/20 hover:shadow-xl hover:shadow-emerald-500/30"
                 >
                   About me
                   <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />

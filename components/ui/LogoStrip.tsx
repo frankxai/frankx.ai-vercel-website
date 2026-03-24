@@ -35,7 +35,7 @@ export function LogoStrip({
   const duplicatedLogos = variant === 'marquee' ? [...logos, ...logos] : logos
 
   const itemClassName =
-    'group flex items-center justify-center gap-3 rounded-full border border-white/10 bg-white/[0.02] px-5 py-3 text-white/70 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#030712]'
+    'group flex items-center justify-center gap-3 rounded-full border border-white/[0.08] bg-white/[0.03] px-5 py-3 text-white/70 transition-colors hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#030712]'
 
   const getHref = (logo: BrandLogo) => {
     if (linkMode === 'case-study') {

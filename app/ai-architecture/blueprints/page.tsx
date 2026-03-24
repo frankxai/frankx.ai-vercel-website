@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import {
@@ -139,9 +140,21 @@ export default function BlueprintsPage() {
   const publishedBlueprints = blueprints.filter((b) => b.status === 'published')
 
   return (
-    <main className="min-h-screen bg-[#030712]">
+    <main className="min-h-screen bg-[#0a0a0b]">
+      {/* Hero */}
+      <div className="relative mb-8 overflow-hidden rounded-2xl mx-auto max-w-6xl mt-24 px-6">
+        <div className="relative aspect-[21/9]">
+          <Image src="/images/architectures/ai-coe.png" alt="AI Center of Excellence architecture diagram" fill className="object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/60 to-transparent" />
+        </div>
+        <div className="absolute bottom-0 left-0 p-6">
+          <p className="text-[11px] uppercase tracking-[0.2em] text-cyan-400/60 mb-2">AI Architecture</p>
+          <h1 className="text-2xl font-bold text-white">Architecture Blueprints</h1>
+        </div>
+      </div>
+
       {/* Header */}
-      <section className="pt-32 pb-12">
+      <section className="pt-8 pb-12">
         <div className="mx-auto max-w-6xl px-6">
           <Link
             href="/ai-architecture"

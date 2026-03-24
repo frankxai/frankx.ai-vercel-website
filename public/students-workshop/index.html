@@ -1,0 +1,592 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Students in the Age of Intelligence — Workshop</title>
+  <meta name="description" content="A self-guided workshop to help students find ikigai, map role tracks, build a 30/60/90 plan, create a portfolio, and craft social signal — accelerated by AI and grounded in the 3Cs: Collaboration, Communication, Creation." />
+  <meta property="og:title" content="Students in the Age of Intelligence — Workshop" />
+  <meta property="og:description" content="Find purpose, pick roles, build a plan and portfolio, and ship signal in the Age of Intelligence." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/img/og-cover.svg" />
+  <meta name="theme-color" content="#0f1220" />
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+  <style>
+    /* Base accessibility */
+    :focus-visible { outline: 2px solid #6aa8ff; outline-offset: 2px; }
+    .print-header { display: none; }
+
+    /* Print styles */
+    @media print {
+      nav, header.site, .sticky-tools, .btn, .copy-btn { display: none !important; }
+      body { color: #000; background: #fff; }
+      a { color: #000; text-decoration: underline; }
+      .print-header { display: block; margin: 0 0 12px; font-size: 12pt; }
+      section { break-inside: avoid; page-break-inside: avoid; }
+      section + section { break-before: page; page-break-before: always; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site" role="banner" aria-label="Site header">
+    <div class="container nav" role="navigation" aria-label="Main navigation">
+      <a class="brand" href="#top" aria-label="Home">
+        <span class="dot" aria-hidden="true"></span>
+        Students in the Age of Intelligence
+      </a>
+      <a class="link" href="#welcome">Welcome</a>
+      <a class="link" href="#3cs">3Cs</a>
+      <a class="link" href="#ikigai">Ikigai</a>
+      <a class="link" href="#analysis">Personality</a>
+      <a class="link" href="#roles">Roles</a>
+      <a class="link" href="#plan">30/60/90</a>
+      <a class="link" href="#portfolio">Portfolio</a>
+      <a class="link" href="#social">Social</a>
+      <a class="link" href="#agent">Custom GPT</a>
+      <a class="link" href="#resources">Resources</a>
+      <a class="link" href="#export">Export</a>
+      <div class="spacer" aria-hidden="true"></div>
+      <button class="secondary" id="themeToggle" title="Toggle light/dark" aria-pressed="false">Theme</button>
+      <button id="saveBtn" title="Save">Save</button>
+    </div>
+  </header>
+
+  <main id="main" class="container" role="main">
+    <div class="print-header" aria-hidden="true" style="display:none">
+      <strong>Student:</strong> <span id="phName"></span> · <strong>Program:</strong> <span id="phProg"></span> · <strong>Date:</strong> <span id="phDate"></span>
+    </div>
+    <!-- Welcome -->
+    <section id="welcome" class="hero" aria-labelledby="welcome-title">
+      <div class="wrap">
+        <div class="card">
+          <span class="pill">Age of Intelligence · Human Skills + AI Leverage</span>
+          <h1 class="headline" id="welcome-title">Find Your Edge in the Age of Intelligence</h1>
+          <p class="subtitle">Discover your ikigai, map role/track options and target companies, build a 30/60/90 plan, then ship portfolio signal—accelerated by AI and grounded in the 3Cs: Collaboration, Communication, Creation.</p>
+          <div class="kpis" role="list">
+            <div class="kpi" role="listitem"><strong>Outcome</strong> Ikigai snapshot, target roles, target companies</div>
+            <div class="kpi" role="listitem"><strong>Plan</strong> Concrete 30/60/90 ramp</div>
+            <div class="kpi" role="listitem"><strong>Portfolio</strong> 2–3 high-signal projects</div>
+            <div class="kpi" role="listitem"><strong>Signal</strong> Headline, bio, content calendar</div>
+          </div>
+          <div class="actions" style="margin-top:.8rem">
+            <a class="btn primary" href="#3cs">Start with the 3Cs</a>
+            <a class="btn" href="#ikigai">Go to Ikigai</a>
+            <span class="save-indicator" id="saveStatus">Local autosave enabled.</span>
+          </div>
+        </div>
+        <div class="grid">
+          <div class="card small notice" aria-live="polite">
+            <strong>Privacy-first</strong>
+            <p>Your entries stay in your browser (localStorage). Export/Import your plan as JSON or Markdown. Redact sensitive info before using AI tools.</p>
+            <div class="prompt">
+<textarea readonly class="prompt-text small" aria-label="Sanitize text prompt">
+Identify and redact any sensitive information (names, emails, locations, employers, private project details) in the following text. Return the redacted version and note what was removed and why.
+</textarea>
+              <button class="btn copy-btn" data-copy>Copy</button>
+            </div>
+          </div>
+          <div class="card small">
+            <h3>How to use this workshop</h3>
+            <ol class="list-tight">
+              <li>Skim the 3Cs guidance (human skills) below.</li>
+              <li>Fill Ikigai and analyze your interests/personality (redacted).</li>
+              <li>Pick role tracks and target companies.</li>
+              <li>Generate a 30/60/90 plan.</li>
+              <li>Choose 2–3 portfolio projects and ship a first demo.</li>
+              <li>Craft your headline, bio, and content plan.</li>
+              <li>Optional: design a custom GPT/agent.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3Cs -->
+    <section id="3cs" aria-labelledby="3cs-title">
+      <div class="grid cols-3">
+        <div class="card">
+          <h2 id="3cs-title">The 3Cs: Human Skills That Compound with AI</h2>
+          <p class="muted">Why it matters, how to practice, and what good looks like.</p>
+        </div>
+        <div class="card small">
+          <h3>Collaboration</h3>
+          <ul class="list-tight">
+            <li><strong>PACE</strong>: Plan → Act → Check → Evolve</li>
+            <li><strong>PAIR with AI</strong>: Plan, Ask, Iterate, Review</li>
+            <li>Rituals: async updates (BLUF), peer review, decision records, retros</li>
+            <li>Signals: iteration speed, quality of review, decision clarity</li>
+          </ul>
+          <details class="small"><summary>What good looks like</summary>
+            <p>Evidence of iteration (before/after), decisions logged, feedback addressed, risks mitigated.</p>
+          </details>
+        </div>
+        <div class="card small">
+          <h3>Communication</h3>
+          <ul class="list-tight">
+            <li>BLUF, SCQA; design docs/PRDs; demo scripts; prompt scaffolds</li>
+            <li>Write outputs that travel without you; audience-fit</li>
+            <li>Evaluate: clarity, structure, reproducibility, actionability</li>
+          </ul>
+          <details class="small"><summary>What good looks like</summary>
+            <p>One-pagers with BLUF, structured prompts with examples, demos with measures and guardrails.</p>
+          </details>
+        </div>
+        <div class="card small">
+          <h3>Creation</h3>
+          <ul class="list-tight">
+            <li>Goldilocks scope; eval-first; guardrails</li>
+            <li>Build → measure → learn; ship small, often</li>
+            <li>Show don’t tell: live demo beats slides</li>
+          </ul>
+          <details class="small"><summary>What good looks like</summary>
+            <p>Working demo with metrics (quality/speed/cost), documented risks & guardrails, next iteration plan.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ikigai -->
+    <section id="ikigai" aria-labelledby="ikigai-title">
+      <div class="grid cols-2">
+        <div class="card">
+          <h2 id="ikigai-title">Ikigai Finder</h2>
+          <p class="muted">Fill these four circles. Specific, concrete evidence beats opinions.</p>
+          <label for="love">What I love</label>
+          <textarea id="love" data-store="ikigai.love" placeholder="What activities energize you? Problems you enjoy?"></textarea>
+
+          <label for="good">What I'm good at</label>
+          <textarea id="good" data-store="ikigai.good" placeholder="Skills/habits others recognize in you"></textarea>
+
+          <label for="pays">What pays</label>
+          <textarea id="pays" data-store="ikigai.pays" placeholder="Markets, roles, and problems businesses pay to solve"></textarea>
+
+          <label for="needs">What the world needs</label>
+          <textarea id="needs" data-store="ikigai.needs" placeholder="Who benefits? What positive impact?"></textarea>
+
+          <label for="ikigaiStatement">Ikigai statement (2–3 lines)</label>
+          <textarea id="ikigaiStatement" data-store="ikigai.statement" placeholder="I help [who] achieve [outcome] by [how], using [skills] in [domain]."></textarea>
+
+          <div class="actions">
+            <button class="btn" id="prefillIkigai">Example</button>
+            <button class="btn" id="saveBtn2">Save</button>
+          </div>
+        </div>
+        <div class="card">
+          <h3>AI Prompts for Ikigai</h3>
+          <div class="prompt">
+<textarea readonly class="prompt-text">
+Act as a career coach. Ask me questions to map my ikigai (what I love, what I'm good at, what pays, what the world needs). Then summarize my top 3 intersections and suggest 5 role directions tailored to my profile.
+</textarea>
+            <button class="btn copy-btn" data-copy>Copy</button>
+          </div>
+          <div class="prompt">
+<textarea readonly class="prompt-text">
+I will provide answers to:
+1) What I love, 2) What I'm good at, 3) What pays, 4) What the world needs.
+Output:
+a) A 2–3 line ikigai statement.
+b) 3 role options with skill stacks.
+c) 10 skills to build, priority ordered.
+d) 5 starter projects with scope and evaluation ideas.
+</textarea>
+            <button class="btn copy-btn" data-copy>Copy</button>
+          </div>
+          <button class="btn ghost" id="copyAllPromptsIkigai">Copy all prompts in this section</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Personality -->
+    <section id="analysis" aria-labelledby="analysis-title">
+      <div class="grid cols-2">
+        <div class="card">
+          <h2 id="analysis-title">Personality & Interest Analysis</h2>
+          <p class="muted">Paste non-sensitive text (redacted). Prefer summaries and anonymized notes.</p>
+          <label for="analysisSource">Source text (redacted)</label>
+          <textarea id="analysisSource" data-store="analysis.source" placeholder="Paste cleaned text here..."></textarea>
+          <div class="notice warn small" style="margin-top:.6rem">
+            Do not paste confidential materials. Use the sanitize prompt first.
+          </div>
+        </div>
+        <div class="card">
+          <h3>AI Prompts</h3>
+          <div class="prompt">
+<textarea readonly class="prompt-text">
+You are an industrial-organizational psychologist. Analyze the following text for values, motivators, personality traits (Big Five-style), preferred work modes, and recurring interests. Return:
+1) Top 5 strengths with evidence quotes
+2) 3 watchouts (risks or blind spots)
+3) 5 recurring themes mapped to skill areas
+</textarea>
+            <button class="btn copy-btn" data-copy>Copy</button>
+          </div>
+          <div class="prompt">
+<textarea readonly class="prompt-text">
+I will send multiple chunks. Wait until I say "SYNTHESIZE" before producing the final summary. Acknowledge each chunk and ask clarifying questions. On SYNTHESIZE, output a one-page brief with: (a) strengths with quotes, (b) watchouts, (c) themes, (d) recommended role directions and skills.
+</textarea>
+            <button class="btn copy-btn" data-copy>Copy</button>
+          </div>
+          <button class="btn ghost" id="copyAllPromptsAnalysis">Copy all prompts in this section</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Roles -->
+    <section id="roles" aria-labelledby="roles-title">
+      <div class="grid cols-2">
+        <div class="card">
+          <h2 id="roles-title">Role & Company Navigator</h2>
+          <p class="muted">Mix AI-centric and non-AI roles that leverage AI heavily. Use industry presets where useful.</p>
+
+          <label for="rolePreset">Industry preset (optional)</label>
+          <select id="rolePreset" aria-label="Industry preset">
+            <option value="">Choose industry…</option>
+            <option value="health">Health</option>
+            <option value="fintech">FinTech</option>
+            <option value="media">Media</option>
+            <option value="education">Education</option>
+            <option value="automotive">Automotive</option>
+          </select>
+
+          <label for="targetTracks">Target role tracks</label>
+          <textarea id="targetTracks" data-store="roles.tracks" placeholder="e.g., AI Architect, AI Product, AI/LLM Engineer, Data/ML Engineer, Marketing Ops with AI, UX with AI"></textarea>
+
+          <label for="targetCompanies">Target companies (15 ideas)</label>
+          <textarea id="targetCompanies" data-store="roles.companies" placeholder="Group across: hyperscalers, model labs, tooling, startups, domain leaders..."></textarea>
+
+          <div class="notice small">
+            Examples:
+            - Hyperscalers/Cloud: Microsoft (Azure AI), Google (Vertex/GenAI), AWS (Bedrock)
+            - Model/AI labs: OpenAI, Anthropic, Cohere
+            - Platforms/Tooling: Hugging Face, LangChain, LlamaIndex, W&B, Databricks, Snowflake, NVIDIA
+            - Startups: Perplexity, Replit, ElevenLabs, Synthesia, Runway
+            - Domain leaders: Stripe, Tempus, Canva, Tesla, McKinsey QB, BCG X
+          </div>
+          <div class="actions">
+            <button class="btn" id="prefillRoles">Example</button>
+          </div>
+        </div>
+        <div class="card">
+          <h3>AI Prompt</h3>
+          <div class="prompt">
+<textarea readonly class="prompt-text">
+Given my ikigai and themes, propose 3 role tracks with:
+- skill stacks,
+- day-in-the-life,
+- ramp plan.
+Include both AI roles (AI Architect, AI Product, AI/LLM Engineer, Data/ML Engineer) and non-AI roles using AI (Marketing Ops, RevOps, UX, Finance). Then list 15 target companies across hyperscalers, model labs, tooling, startups, and domain leaders (with why they fit me).
+</textarea>
+            <button class="btn copy-btn" data-copy>Copy</button>
+          </div>
+          <button class="btn ghost" id="copyAllPromptsRoles">Copy all prompts in this section</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 30/60/90 -->
+    <section id="plan" aria-labelledby="plan-title">
+      <div class="card">
+        <h2 id="plan-title">30/60/90-Day Plan Builder</h2>
+        <p class="muted">Each phase: learning, building, publishing, networking. Keep it concrete and measurable.</p>
+
+        <div class="grid cols-3">
+          <div class="card">
+            <h3>30 Days</h3>
+            <label>Learn (3 resources)</label>
+            <textarea data-store="plan.30.learn"></textarea>
+            <label>Build (1 mini project)</label>
+            <textarea data-store="plan.30.build"></textarea>
+            <label>Publish (1 post)</label>
+            <textarea data-store="plan.30.publish"></textarea>
+            <label>Network (3 messages)</label>
+            <textarea data-store="plan.30.network"></textarea>
+          </div>
+          <div class="card">
+            <h3>60 Days</h3>
+            <label>Learn (3)</label>
+            <textarea data-store="plan.60.learn"></textarea>
+            <label>Build (1 core project)</label>
+            <textarea data-store="plan.60.build"></textarea>
+            <label>Publish (case study)</label>
+            <textarea data-store="plan.60.publish"></textarea>
+            <label>Network (1 coffee chat/week)</label>
+            <textarea data-store="plan.60.network"></textarea>
+          </div>
+          <div class="card">
+            <h3>90 Days</h3>
+            <label>Learn (2)</label>
+            <textarea data-store="plan.90.learn"></textarea>
+            <label>Build (advanced feature/evals)</label>
+            <textarea data-store="plan.90.build"></textarea>
+            <label>Publish (talk/demo)</label>
+            <textarea data-store="plan.90.publish"></textarea>
+            <label>Network (targeted applications)</label>
+            <textarea data-store="plan.90.network"></textarea>
+          </div>
+        </div>
+
+        <div class="card small">
+          <h3>AI Prompt</h3>
+          <div class="prompt">
+<textarea readonly class="prompt-text">
+Create a 30/60/90 plan aligned to my role track. For each phase include:
+- Learning (specific courses/resources)
+- Building (2 concrete build tasks)
+- Publishing (public deliverables)
+- Networking (specific outreach)
+Constrain for realistic weekly time and add checkpoints with success criteria.
+</textarea>
+            <button class="btn copy-btn" data-copy>Copy</button>
+          </div>
+          <div class="actions">
+            <button class="btn" id="prefillPlan">Example</button>
+            <button class="btn ghost" id="copyAllPromptsPlan">Copy prompts</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Portfolio -->
+    <section id="portfolio" aria-labelledby="portfolio-title">
+      <div class="grid cols-2">
+        <div class="card">
+          <h2 id="portfolio-title">Portfolio Generator</h2>
+          <p class="muted">Pick 2–3 projects that demonstrate your stack and thinking. Use the rubric below.</p>
+
+          <div class="notice small">
+            Rubric: impact, clarity, novelty, evaluation quality, demo quality.
+          </div>
+
+          <label for="portfolioIdeas">Selected project ideas</label>
+          <textarea id="portfolioIdeas" data-store="portfolio.ideas" placeholder="List your chosen projects"></textarea>
+
+          <label for="projectSpec">Project spec (template)</label>
+          <textarea id="projectSpec" data-store="portfolio.spec" placeholder="[Project Name]
+One-liner:
+User story:
+Core features:
+Dataset/API:
+Evaluation approach:
+Extensibility idea:"></textarea>
+
+          <div class="actions">
+            <a class="btn" href="https://replit.com/" target="_blank" rel="noopener">Open Replit</a>
+            <a class="btn" href="https://github.com/new" target="_blank" rel="noopener">Create GitHub Repo</a>
+            <button class="btn" id="prefillPortfolio">Example</button>
+          </div>
+        </div>
+        <div class="card">
+          <h3>AI Prompt</h3>
+          <div class="prompt">
+<textarea readonly class="prompt-text">
+Propose 5 portfolio project ideas at beginner/intermediate/advanced levels relevant to my target track. For each include:
+- one-liner
+- user story
+- core features
+- dataset/API
+- evaluation approach
+- extensibility idea
+End with a 5-sentence case study template I can fill.
+</textarea>
+            <button class="btn copy-btn" data-copy>Copy</button>
+          </div>
+          <button class="btn ghost" id="copyAllPromptsPortfolio">Copy prompts</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Social -->
+    <section id="social" aria-labelledby="social-title">
+      <div class="grid cols-2">
+        <div class="card">
+          <h2 id="social-title">Social Positioning</h2>
+          <p class="muted">Craft a headline, a short bio, topic pillars, and a content plan.</p>
+          <label>LinkedIn headline <span class="badge" id="headlineCount">0/220</span></label>
+          <input type="text" maxlength="220" data-store="social.headline" placeholder="[Role/Goal] | [Domain/Tech] | [Outcome]" />
+          <label>Short bio (2–3 sentences)</label>
+          <textarea data-store="social.bio"></textarea>
+          <label>Topic pillars (5)</label>
+          <textarea data-store="social.pillars"></textarea>
+          <label>4-week content calendar (2 posts/week)</label>
+          <textarea data-store="social.calendar" placeholder="Week 1: ...&#10;Week 2: ...&#10;Week 3: ...&#10;Week 4: ..."></textarea>
+          <label>Elevator pitch (30 sec)</label>
+          <textarea data-store="social.pitch"></textarea>
+          <label>Cold outreach message</label>
+          <textarea data-store="social.outreach"></textarea>
+          <div class="actions">
+            <label for="tone" class="inline-note">Tone preset</label>
+            <select id="tone" aria-label="Tone preset">
+              <option value="">Neutral</option>
+              <option value="analytical">Analytical</option>
+              <option value="builder">Builder</option>
+              <option value="friendly">Friendly</option>
+              <option value="confident">Confident</option>
+            </select>
+          </div>
+        </div>
+        <div class="card">
+          <h3>AI Prompts</h3>
+          <div class="prompt">
+<textarea readonly class="prompt-text">
+Write a LinkedIn headline (max 220 chars), a 2–3 sentence bio, 5 topic pillars, and a 4-week content calendar (2 posts/week) tailored to my target role and companies. Keep tone credible and beginner-friendly.
+</textarea>
+            <button class="btn copy-btn" data-copy>Copy</button>
+          </div>
+          <div class="prompt">
+<textarea readonly class="prompt-text">
+Draft a 30-second elevator pitch and one cold outreach message to a hiring manager/founder. Make it specific to my projects and the company’s current priorities. Include a compelling ask.
+</textarea>
+            <button class="btn copy-btn" data-copy>Copy</button>
+          </div>
+          <button class="btn ghost" id="copyAllPromptsSocial">Copy prompts</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Agent -->
+    <section id="agent" aria-labelledby="agent-title">
+      <div class="grid cols-2">
+        <div class="card">
+          <h2 id="agent-title">Custom GPT / Agent (optional)</h2>
+          <p class="muted">Design an agent you can demo in interviews or on your portfolio.</p>
+
+          <label>Agent spec</label>
+          <textarea data-store="agent.spec" placeholder="[Problem]&#10;[User persona]&#10;[Capabilities]&#10;[System prompt]&#10;[Tools/APIs]&#10;[Docs/Retrieval]&#10;[Guardrails]&#10;[Test cases]&#10;[Demo script]&#10;[Metrics]"></textarea>
+
+          <div class="actions">
+            <a class="btn" href="https://chat.openai.com/gpts" target="_blank" rel="noopener">Create Custom GPT</a>
+            <a class="btn" href="https://replit.com/@replit/agents" target="_blank" rel="noopener">Replit Agents</a>
+            <a class="btn" href="https://platform.openai.com/docs" target="_blank" rel="noopener">OpenAI Docs</a>
+          </div>
+        </div>
+        <div class="card">
+          <h3>AI Prompt</h3>
+          <div class="prompt">
+<textarea readonly class="prompt-text">
+Design a Custom GPT/Agent: define problem, user persona, capabilities, system prompt, tools/APIs, guardrails, test cases, and a demo script. Suggest how to publish/demo it and what metrics to track (quality, speed, cost, adoption).
+</textarea>
+            <button class="btn copy-btn" data-copy>Copy</button>
+          </div>
+          <button class="btn ghost" id="copyAllPromptsAgent">Copy prompts</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Resources -->
+    <section id="resources" aria-labelledby="resources-title">
+      <div class="card">
+        <h2 id="resources-title">Resource Library</h2>
+        <p class="muted">Curated, practical links to ramp quickly.</p>
+        <div class="grid cols-3">
+          <div class="card small">
+            <h3>Foundations</h3>
+            <ul class="list-tight">
+              <li><a href="https://www.deeplearning.ai/short-courses/" target="_blank" rel="noopener">DeepLearning.AI short courses</a></li>
+              <li><a href="https://course.fast.ai/" target="_blank" rel="noopener">fast.ai Practical Deep Learning</a></li>
+              <li><a href="https://web.stanford.edu/class/cs224n/" target="_blank" rel="noopener">Stanford CS224N</a>, <a href="https://introtodeeplearning.com/" target="_blank" rel="noopener">MIT 6.S191</a></li>
+              <li><a href="https://fullstackdeeplearning.com/" target="_blank" rel="noopener">Full Stack Deep Learning</a></li>
+            </ul>
+          </div>
+          <div class="card small">
+            <h3>LLM Engineering</h3>
+            <ul class="list-tight">
+              <li>Docs: <a href="https://platform.openai.com/docs" target="_blank" rel="noopener">OpenAI</a>, <a href="https://docs.anthropic.com/" target="_blank" rel="noopener">Anthropic</a>, <a href="https://ai.google.dev/" target="_blank" rel="noopener">Google AI</a></li>
+              <li><a href="https://python.langchain.com/" target="_blank" rel="noopener">LangChain</a>, <a href="https://docs.llamaindex.ai/" target="_blank" rel="noopener">LlamaIndex</a></li>
+              <li><a href="https://huggingface.co/learn" target="_blank" rel="noopener">Hugging Face Course</a></li>
+              <li>Evals: <a href="https://www.deeplearning.ai/short-courses/generative-ai-evaluation/" target="_blank" rel="noopener">DL.ai Evals</a></li>
+            </ul>
+          </div>
+          <div class="card small">
+            <h3>MLOps / Systems</h3>
+            <ul class="list-tight">
+              <li><a href="https://docs.databricks.com/en/index.html" target="_blank" rel="noopener">Databricks</a>, <a href="https://docs.snowflake.com/en/user-guide/snowflake-ml/overview" target="_blank" rel="noopener">Snowflake ML</a></li>
+              <li><a href="https://docs.wandb.ai/" target="_blank" rel="noopener">Weights & Biases</a></li>
+              <li><a href="https://dataintensive.net/" target="_blank" rel="noopener">Designing Data-Intensive Applications</a></li>
+              <li><a href="https://github.com/donnemartin/system-design-primer" target="_blank" rel="noopener">System Design Primer</a></li>
+            </ul>
+          </div>
+          <div class="card small">
+            <h3>Security & Ethics</h3>
+            <ul class="list-tight">
+              <li><a href="https://owasp.org/www-project-top-10-for-large-language-model-applications/" target="_blank" rel="noopener">OWASP Top 10 for LLM Apps</a></li>
+              <li>Responsible AI: <a href="https://ai.google/responsibility/" target="_blank" rel="noopener">Google</a>, <a href="https://www.microsoft.com/en-us/ai/responsible-ai" target="_blank" rel="noopener">Microsoft</a></li>
+            </ul>
+          </div>
+          <div class="card small">
+            <h3>Career & Communication</h3>
+            <ul class="list-tight">
+              <li><a href="https://developers.google.com/tech-writing" target="_blank" rel="noopener">Google technical writing</a></li>
+              <li>Storytelling / case study templates</li>
+              <li>Networking & outreach templates</li>
+            </ul>
+          </div>
+          <div class="card small">
+            <h3>AI Architect Path (deep track)</h3>
+            <ul class="list-tight">
+              <li>Systems design for AI: model/tool selection, retrieval/agents</li>
+              <li>Evals/guardrails, observability, cost/perf tradeoffs</li>
+              <li>MLOps, security/compliance, privacy-by-design</li>
+              <li>Starter: Domain RAG + evals + guardrails; Multitool agent + monitoring</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Export -->
+    <section id="export" aria-labelledby="export-title">
+      <div class="grid cols-2">
+        <div class="card">
+          <h2 id="export-title">Export, Import & Next Steps</h2>
+          <p class="muted">Export your plan as Markdown or JSON; restore anytime with Import. Print produces a clean PDF.</p>
+          <div class="grid cols-2 small" style="margin:.5rem 0 1rem">
+            <div>
+              <label for="profileName">Your name</label>
+              <input type="text" id="profileName" data-store="profile.name" placeholder="Full name" />
+            </div>
+            <div>
+              <label for="profileProgram">Program / Course</label>
+              <input type="text" id="profileProgram" data-store="profile.program" placeholder="e.g., BSc Computer Science" />
+            </div>
+          </div>
+          <div class="actions">
+            <button class="btn primary" id="exportMdBtn">Export Markdown</button>
+            <button class="btn" id="exportJsonBtn">Export JSON</button>
+            <label class="btn ghost" for="importJsonInput" role="button">Import JSON</label>
+            <input type="file" id="importJsonInput" accept="application/json" style="display:none" />
+            <button class="btn" id="printBtn">Print / Save PDF</button>
+            <button class="btn warn" id="clearBtn">Clear Local Data</button>
+          </div>
+          <p class="inline-note" style="margin-top:.6rem">Local-only by default. To submit to an instructor, upload your exported .md and .json files.</p>
+        </div>
+        <div class="card">
+          <h3>Company Targeting Prompt</h3>
+          <div class="prompt">
+<textarea readonly class="prompt-text">
+Based on my profile, list 10 companies with specific role titles to target, why they fit me, and one unique "wedge" idea for each to stand out.
+</textarea>
+            <button class="btn copy-btn" data-copy>Copy</button>
+          </div>
+          <button class="btn ghost" id="copyAllPromptsExport">Copy prompts</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="sticky-tools" role="region" aria-label="Quick actions">
+    <button class="btn" id="quickSave">Quick Save</button>
+    <button class="btn" id="prefillAll">Load Example</button>
+    <button class="btn ghost" onclick="window.scrollTo({top:0, behavior:'smooth'})" aria-label="Back to top">↑ Top</button>
+  </div>
+
+  <footer role="contentinfo">
+    <div class="container">
+      <p>Built for students to become high-signal collaborators, communicators, and creators in the Age of Intelligence.</p>
+      <p class="small">Your data stays in your browser (localStorage). Version 2.0.</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

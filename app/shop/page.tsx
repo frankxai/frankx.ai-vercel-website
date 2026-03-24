@@ -66,7 +66,7 @@ export default function ShopPage() {
       <section className="relative overflow-hidden pt-24 pb-16">
         <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-transparent to-amber-500/5" />
         <div className="absolute top-1/3 left-1/4 w-[500px] h-[500px] bg-cyan-500/8 rounded-full blur-[150px]" />
-        <div className="absolute bottom-1/4 right-1/3 w-[400px] h-[400px] bg-amber-500/8 rounded-full blur-[120px]" />
+        <div className="absolute bottom-1/4 right-1/3 w-[400px] h-[400px] bg-amber-500/8 rounded-full blur-[128px]" />
 
         <div className="relative max-w-7xl mx-auto px-6">
           <Link
@@ -83,9 +83,19 @@ export default function ShopPage() {
             transition={{ duration: 0.6 }}
             className="text-center"
           >
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-sm font-medium mb-8">
-              <ShoppingBag className="w-4 h-4" />
-              FrankX Shop
+            <div className="flex flex-col items-center gap-4 mb-8">
+              <Image
+                src="/images/team/draconia-tiger.png"
+                alt="Draconia — Product Forge"
+                width={72}
+                height={72}
+                className="rounded-2xl"
+                style={{ boxShadow: '0 0 30px -6px rgba(239,68,68,0.4)' }}
+              />
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-sm font-medium">
+                <ShoppingBag className="w-4 h-4" />
+                FrankX Shop
+              </div>
             </div>
 
             <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 tracking-tight">

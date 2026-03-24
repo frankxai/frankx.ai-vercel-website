@@ -58,7 +58,7 @@ const agents = [
     tagline: 'AI worldbuilding platform',
     description:
       'Deploy mythology-infused creative universes. 10 Gates progression. AI-assisted lore, characters, and locations.',
-    href: '/magic',
+    href: 'https://arcanea.ai',
     color: '#F59E0B',
     colorName: 'amber',
     glowVar: 'rgba(245,158,11,0.20)',
@@ -98,7 +98,7 @@ const stack = [
     icon: Layers,
     title: 'Arcanea Framework',
     desc: '10 Gates progression · Gate 1 = Awakening = Vibe OS foundation',
-    href: '/magic',
+    href: 'https://arcanea.ai',
     color: '#F59E0B',
   },
 ]

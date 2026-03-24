@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import anime from 'animejs'
+import * as anime from 'animejs'
 import { familyNodes, familyEdges, sideColors } from '@/lib/family-tree-data'
 
 type LayoutMode = 'tree' | 'radial' | 'grid'

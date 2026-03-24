@@ -1,9 +1,11 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { motion, useInView } from 'framer-motion'
 import { useState, useRef } from 'react'
 import { EmailSignup } from '@/components/email-signup'
+import { GlowCard } from '@/components/ui/glow-card'
 import {
   Shield,
   Zap,
@@ -235,8 +237,9 @@ function PricingCard({ tier, index }: { tier: (typeof MEMBERSHIP_TIERS)[0]; inde
         </div>
       )}
 
-      <div
-        className={`relative h-full rounded-2xl border border-white/10 bg-white/[0.03] p-8 backdrop-blur-xl ${
+      <GlowCard
+        color={tier.popular ? 'violet' : tier.gradient.includes('F59E0B') ? 'amber' : 'cyan'}
+        className={`relative h-full p-8 ${
           tier.popular ? 'border-[#AB47C7]/50 shadow-2xl shadow-[#AB47C7]/20 lg:scale-105' : ''
         }`}
       >
@@ -300,7 +303,7 @@ function PricingCard({ tier, index }: { tier: (typeof MEMBERSHIP_TIERS)[0]; inde
             ))}
           </div>
         </div>
-      </div>
+      </GlowCard>
     </motion.div>
   )
 }
@@ -309,17 +312,26 @@ function BenefitCard({ benefit, index }: { benefit: (typeof BENEFITS)[0]; index:
   const cardRef = useRef(null)
   const isInView = useInView(cardRef, { once: true, margin: '-50px' })
 
+  // Map benefit colors to GlowCard colors
+  const colorMap: Record<string, 'violet' | 'cyan' | 'amber' | 'emerald'> = {
+    'text-[#AB47C7]': 'violet',
+    'text-[#43BFE3]': 'cyan',
+    'text-[#F59E0B]': 'amber',
+    'text-[#10B981]': 'emerald',
+  }
+
   return (
     <motion.div
       ref={cardRef}
       initial={{ opacity: 0, y: 30 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="group rounded-2xl border border-white/10 bg-white/[0.03] p-6 backdrop-blur-xl transition-all hover:border-white/20"
     >
-      <benefit.icon className={`mb-4 h-10 w-10 ${benefit.color} transition-transform group-hover:scale-110`} />
-      <h3 className="mb-2 text-xl font-bold text-white">{benefit.title}</h3>
-      <p className="leading-relaxed text-slate-400">{benefit.description}</p>
+      <GlowCard color={colorMap[benefit.color] || 'violet'} className="p-6 h-full">
+        <benefit.icon className={`mb-4 h-10 w-10 ${benefit.color} transition-transform group-hover:scale-110`} />
+        <h3 className="mb-2 text-xl font-bold text-white">{benefit.title}</h3>
+        <p className="leading-relaxed text-slate-400">{benefit.description}</p>
+      </GlowCard>
     </motion.div>
   )
 }
@@ -360,23 +372,35 @@ function FAQItem({ faq, index }: { faq: (typeof FAQS)[0]; index: number }) {
 
 export default function InnerCirclePage() {
   return (
-    <div className="min-h-screen bg-[#0F172A] text-white">
+    <div className="min-h-screen bg-[#0a0a0b] text-white">
       {/* Hero Section */}
       <section className="relative flex min-h-[80vh] items-center justify-center overflow-hidden">
+        {/* Axi constellation — premium/mystery */}
+        <div className="pointer-events-none absolute right-6 top-24 z-0 hidden w-52 opacity-12 lg:block xl:w-64">
+          <Image src="/images/mascot/mascot-v10-data-constellation.png" alt="" width={256} height={256} className="object-contain" sizes="256px" aria-hidden="true" />
+        </div>
         <div className="absolute inset-0 overflow-hidden">
           <motion.div
-            className="absolute -left-1/4 top-1/4 h-1/2 w-1/2 rounded-full bg-[#AB47C7]/20 blur-[120px]"
+            className="absolute -left-1/4 top-1/4 h-1/2 w-1/2 rounded-full bg-[#AB47C7]/[0.06] blur-[128px]"
             animate={{ x: [0, 100, 0], y: [0, 50, 0] }}
             transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
           />
           <motion.div
-            className="absolute -right-1/4 top-1/3 h-1/2 w-1/2 rounded-full bg-[#43BFE3]/20 blur-[120px]"
+            className="absolute -right-1/4 top-1/3 h-1/2 w-1/2 rounded-full bg-[#43BFE3]/[0.04] blur-[128px]"
             animate={{ x: [0, -100, 0], y: [0, -50, 0] }}
             transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
           />
         </div>
 
         <div className="relative z-10 mx-auto max-w-6xl px-6 text-center">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5 }}
+            className="mb-4 flex justify-center"
+          >
+            <Image src="/images/mascot/mascot-v16-organic-digital-split.png" alt="Axi" width={72} height={72} className="rounded-2xl" sizes="72px" style={{ boxShadow: '0 0 30px -6px rgba(139,92,246,0.4)' }} />
+          </motion.div>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -445,9 +469,9 @@ export default function InnerCirclePage() {
         <div className="mx-auto max-w-7xl px-6">
           <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
             {[
-              { number: '40+', label: 'AI Agents', icon: Cpu, color: 'text-[#AB47C7]' },
-              { number: '630+', label: 'Skills', icon: Zap, color: 'text-[#43BFE3]' },
-              { number: '500+', label: 'AI Songs', icon: Music, color: 'text-[#F59E0B]' },
+              { number: '38', label: 'AI Agents', icon: Cpu, color: 'text-[#AB47C7]' },
+              { number: '75+', label: 'Skills', icon: Zap, color: 'text-[#43BFE3]' },
+              { number: '12K+', label: 'AI Songs', icon: Music, color: 'text-[#F59E0B]' },
               { number: '70+', label: 'Articles', icon: FileText, color: 'text-[#10B981]' },
             ].map((stat, index) => (
               <motion.div
@@ -513,13 +537,14 @@ export default function InnerCirclePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.15 }}
-                className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 backdrop-blur-xl"
               >
-                <div className="mb-3 text-xs font-semibold uppercase tracking-[0.35em] text-[#43BFE3]/70">
-                  {item.label}
-                </div>
-                <h3 className="mb-2 text-lg font-semibold text-white">{item.title}</h3>
-                <p className="text-sm leading-relaxed text-slate-400">{item.description}</p>
+                <GlowCard color="cyan" className="p-6 h-full">
+                  <div className="mb-3 text-xs font-semibold uppercase tracking-[0.35em] text-[#43BFE3]/70">
+                    {item.label}
+                  </div>
+                  <h3 className="mb-2 text-lg font-semibold text-white">{item.title}</h3>
+                  <p className="text-sm leading-relaxed text-slate-400">{item.description}</p>
+                </GlowCard>
               </motion.div>
             ))}
           </div>
@@ -563,11 +588,11 @@ export default function InnerCirclePage() {
             <p className="text-xl text-slate-400">Everything you need to know about the Inner Circle.</p>
           </motion.div>
 
-          <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-8 backdrop-blur-xl">
+          <GlowCard color="violet" className="p-8">
             {FAQS.map((faq, index) => (
               <FAQItem key={faq.question} faq={faq} index={index} />
             ))}
-          </div>
+          </GlowCard>
         </div>
       </section>
 
@@ -579,8 +604,8 @@ export default function InnerCirclePage() {
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="rounded-3xl border border-white/10 bg-white/[0.03] p-12 backdrop-blur-xl"
           >
+            <GlowCard color="amber" className="p-12">
             <Award className="mx-auto mb-6 h-16 w-16 text-[#F59E0B]" />
             <h2 className="mb-6 text-4xl font-bold text-white text-balance md:text-5xl">Reserve Your Spot</h2>
             <p className="mx-auto mb-8 max-w-2xl text-xl text-slate-400 text-balance">
@@ -608,6 +633,7 @@ export default function InnerCirclePage() {
                 <Check className="h-4 w-4 text-[#10B981]" /> Early access pricing
               </span>
             </div>
+            </GlowCard>
           </motion.div>
         </div>
       </section>

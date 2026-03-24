@@ -28,7 +28,7 @@ import {
 // ── Design Challenge Context ──
 
 const CHALLENGE = {
-  title: '630+ skills. 40+ agents. 130+ commands.',
+  title: '75+ skills. 38 agents. 35+ commands.',
   question: 'How do you make that feel simple?',
   description:
     'The ACOS page must communicate massive capability without overwhelming new visitors. Three design concepts explore different information architecture approaches.',
@@ -171,8 +171,8 @@ function CommandCenterConcept() {
         {/* Quick Stats */}
         <div className="mt-4 flex gap-3">
           {[
-            { label: 'Skills Loaded', value: '630+', color: 'text-cyan-400' },
-            { label: 'Agents Ready', value: '40+', color: 'text-purple-400' },
+            { label: 'Skills Loaded', value: '75+', color: 'text-cyan-400' },
+            { label: 'Agents Ready', value: '38', color: 'text-purple-400' },
             { label: 'Avg Response', value: '< 2s', color: 'text-emerald-400' },
           ].map(s => (
             <div key={s.label} className="flex-1 p-2.5 rounded-lg bg-white/[0.02] border border-white/[0.04] text-center">
@@ -643,7 +643,7 @@ export default function ACOSDesignLabPage() {
             subtitle="Visual constellation mapping the ACOS ecosystem"
             approach="Represents the skill library as an interactive constellation. Each node is a category, sized by skill count, connected by relationship lines. Hovering reveals individual skills. Makes the scale tangible and explorable."
             strengths={[
-              'Visceral sense of scale — you can see 630+ skills',
+              'Visceral sense of scale — you can see 75+ skills',
               'Exploration-driven: rewards curiosity',
               'Unique visual identity that stands out',
               'Natural grouping communicates organization',

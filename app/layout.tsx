@@ -12,6 +12,8 @@ import NavigationMega from '@/components/NavigationMega'
 import Footer from '@/components/Footer'
 import OrganizationJsonLd from '@/components/seo/OrganizationJsonLd'
 import SessionProvider from '@/components/providers/SessionProvider'
+import { ScrollProgress } from '@/components/ui/ScrollProgress'
+import { CursorSpotlight } from '@/components/ui/CursorSpotlight'
 
 // Inter as primary sans-serif (geometric, variable weight, screen-optimized)
 const inter = Inter({
@@ -54,9 +56,13 @@ export const metadata: Metadata = {
   keywords: siteConfig.keywords,
   authors: [{ name: 'Frank' }],
   icons: {
-    icon: '/favicon.svg',
-    shortcut: '/favicon.svg',
-    apple: '/favicon.svg',
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon-32.png', sizes: '32x32', type: 'image/png' },
+      { url: '/icon-192.png', sizes: '192x192', type: 'image/png' },
+    ],
+    shortcut: '/favicon-32.png',
+    apple: '/apple-touch-icon.png',
   },
   alternates: {
     canonical: siteConfig.url,
@@ -128,7 +134,7 @@ export default function RootLayout({
           poppins.variable,
           playfair.variable,
           jetbrains.variable,
-          'font-sans dark bg-[#030712] text-white antialiased min-h-screen overflow-x-hidden'
+          'font-sans dark bg-[#0a0a0b] text-white antialiased min-h-screen overflow-x-hidden'
         )}
         suppressHydrationWarning
       >
@@ -147,8 +153,16 @@ export default function RootLayout({
           >
             Skip to content
           </a>
+          <ScrollProgress />
+          <CursorSpotlight />
+          {/* Global aurora ambient — brand signature glow across all pages */}
+          <div className="fixed inset-0 pointer-events-none z-0" aria-hidden>
+            <div className="absolute -top-1/4 left-1/4 h-[600px] w-[600px] rounded-full bg-cyan-500/[0.03] blur-[160px]" />
+            <div className="absolute top-1/3 -right-1/4 h-[500px] w-[500px] rounded-full bg-violet-500/[0.025] blur-[140px]" />
+            <div className="absolute -bottom-1/4 left-1/2 h-[400px] w-[400px] rounded-full bg-emerald-500/[0.02] blur-[120px]" />
+          </div>
           <NavigationMega />
-          <div id="main" className="min-h-screen overflow-x-hidden">
+          <div id="main" className="relative z-10 min-h-screen overflow-x-hidden">
             {children}
           </div>
           <Footer />

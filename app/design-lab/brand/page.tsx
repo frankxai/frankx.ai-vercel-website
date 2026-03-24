@@ -143,7 +143,7 @@ function GlassCard({ name, bg, blur, border, usage }: { name: string; bg: string
 
 export default function BrandGuidelinesPage() {
   return (
-    <div className="min-h-screen bg-[#030712]">
+    <div className="min-h-screen bg-[#0a0a0b]">
       {/* Header */}
       <section className="border-b border-white/5">
         <div className="max-w-5xl mx-auto px-6 pt-24 pb-12">
@@ -176,7 +176,7 @@ export default function BrandGuidelinesPage() {
           <p className="text-white/40 text-sm mb-8">Five qualities present in every interaction</p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
             {attributes.map((attr) => (
-              <div key={attr.name} className="rounded-xl border border-white/5 bg-white/[0.02] p-5">
+              <div key={attr.name} className="rounded-xl border border-white/[0.08] bg-white/[0.03] p-5">
                 <h3 className={`text-lg font-bold mb-2 ${attr.accent}`}>{attr.name}</h3>
                 <p className="text-white/40 text-xs leading-relaxed">{attr.description}</p>
               </div>
@@ -188,7 +188,7 @@ export default function BrandGuidelinesPage() {
         <section>
           <h2 className="text-2xl font-bold mb-2">Tagline</h2>
           <p className="text-white/40 text-sm mb-8">Four words. The entire brand.</p>
-          <div className="rounded-2xl border border-white/10 bg-white/[0.02] p-12 text-center">
+          <div className="rounded-2xl border border-white/[0.08] bg-white/[0.03] p-12 text-center">
             <p className="text-4xl md:text-6xl font-bold tracking-tight">
               Build what matters.
             </p>
@@ -225,7 +225,7 @@ export default function BrandGuidelinesPage() {
           <p className="text-white/40 text-sm mb-8">Three fonts. Clear hierarchy. Readable at every size.</p>
           <div className="space-y-3">
             {typeScale.map((type) => (
-              <div key={type.name} className="flex items-center gap-6 rounded-lg border border-white/5 bg-white/[0.02] px-5 py-4">
+              <div key={type.name} className="flex items-center gap-6 rounded-lg border border-white/[0.08] bg-white/[0.03] px-5 py-4">
                 <span className="text-white/70 font-semibold w-20 shrink-0 text-sm">{type.name}</span>
                 <span className="text-white/30 font-mono text-xs w-24 shrink-0">{type.size}</span>
                 <span className="text-white/30 text-xs w-20 shrink-0">{type.font}</span>
@@ -233,7 +233,7 @@ export default function BrandGuidelinesPage() {
               </div>
             ))}
           </div>
-          <div className="mt-8 rounded-xl border border-white/5 bg-white/[0.02] p-8">
+          <div className="mt-8 rounded-xl border border-white/[0.08] bg-white/[0.03] p-8">
             <p className="text-[17px] leading-[1.8] text-white/85 max-w-[680px]">
               Body text renders at 17px with 1.8 line-height on a 680px prose column.
               This produces 65-75 characters per line — the optimal range for sustained
@@ -315,7 +315,7 @@ export default function BrandGuidelinesPage() {
                 ))}
               </div>
             </div>
-            <div className="rounded-xl border border-white/10 bg-white/[0.02] p-6">
+            <div className="rounded-xl border border-white/[0.08] bg-white/[0.03] p-6">
               <div className="flex items-baseline gap-3 mb-3">
                 <span className="text-xs font-mono text-white/40 bg-white/5 px-2 py-0.5 rounded">Tier 3</span>
                 <span className="text-sm text-white/50">Features & Content</span>

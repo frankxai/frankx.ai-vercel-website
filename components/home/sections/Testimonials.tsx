@@ -1,14 +1,9 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { fadeUp } from '@/lib/motion'
 
 import { testimonials, testimonialIcon } from '@/lib/hub'
-
-const fadeUp = {
-  initial: { opacity: 0, y: 24 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, amount: 0.3 }
-}
 
 const TestimonialIcon = testimonialIcon
 

@@ -98,7 +98,7 @@ export default function CategoryDropdown({
             transition={{ duration: 0.2, ease: 'easeOut' }}
             className={cn(
               'absolute top-full left-0 right-0 mt-2 z-50',
-              'bg-[#0F172A]/95 backdrop-blur-xl border border-white/20 rounded-xl',
+              'bg-[#0a0a0b]/95 backdrop-blur-xl border border-white/20 rounded-xl',
               'shadow-2xl shadow-black/50 overflow-hidden'
             )}
             role="listbox"

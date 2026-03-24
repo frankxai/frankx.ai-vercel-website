@@ -163,7 +163,7 @@ const aiArtworks: AIArtwork[] = [
     id: 'sys-01',
     src: '/images/ecosystem/01-frankx-ecosystem-overview.png',
     title: 'Creator Ecosystem Overview',
-    prompt: 'Three-pillar architecture: Vibe OS, ACOS (630+ skills, 40+ agents), GenCreator OS with Starlight meta-intelligence layer, isometric 3D infographic',
+    prompt: 'Three-pillar architecture: Vibe OS, ACOS (75+ skills, 38 agents), GenCreator OS with Starlight meta-intelligence layer, isometric 3D infographic',
     model: 'nano-banana',
     category: 'System Design',
     tags: ['ecosystem', 'architecture', 'acos', 'infographic'],

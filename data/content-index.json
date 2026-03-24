@@ -1,6 +1,6 @@
 {
   "version": "1.0",
-  "generatedAt": "2026-02-20T02:20:48.581Z",
+  "generatedAt": "2026-02-20T17:38:09.521Z",
   "stats": {
     "total": 88,
     "blog": 59,
@@ -22,18 +22,11 @@
       "href": "/blog/ai-engineering-without-hype-willison",
       "publishedAt": "2026-02-19",
       "category": "AI Architecture",
-      "tags": [
-        "AI Engineering",
-        "LLMs",
-        "Simon Willison",
-        "Pragmatism"
-      ],
+      "tags": ["AI Engineering", "LLMs", "Simon Willison", "Pragmatism"],
       "featured": false,
       "image": "https://img.youtube.com/vi/uRuLgar5XZw/maxresdefault.jpg",
       "description": "A deep dive into Simon Willison's pragmatic approach to building with LLMs, focusing on truth, transparency, and architectural rigor.",
-      "streams": [
-        "creation-chronicles"
-      ],
+      "streams": ["creation-chronicles"],
       "metrics": {
         "wordCount": 539,
         "readTime": 3
@@ -55,11 +48,9 @@
         "Top List"
       ],
       "featured": true,
-      "image": "https://img.youtube.com/vi/pOLR5jE5Vjw/maxresdefault.jpg",
+      "image": "https://img.youtube.com/vi/eTTMUWP5B0s/maxresdefault.jpg",
       "description": "A curated list of the best YouTubers, guides, and courses for mastering Anthropic's Claude Code ecosystem.",
-      "streams": [
-        "creation-chronicles"
-      ],
+      "streams": ["creation-chronicles"],
       "metrics": {
         "wordCount": 602,
         "readTime": 3
@@ -84,9 +75,7 @@
       "featured": true,
       "image": "https://img.youtube.com/vi/VMj-3S1tku0/maxresdefault.jpg",
       "description": "Key takeaways from Karpathy's latest AI insights",
-      "streams": [
-        "creation-chronicles"
-      ],
+      "streams": ["creation-chronicles"],
       "metrics": {
         "wordCount": 887,
         "readTime": 4
@@ -112,9 +101,7 @@
       "featured": true,
       "image": "/images/blog/great-transition-hero.svg",
       "description": "AI is making white-collar jobs vulnerable at the exact moment it's handing individuals the tools to build real businesses. Here's why the window is open — and what to do about it.",
-      "streams": [
-        "creation-chronicles"
-      ],
+      "streams": ["creation-chronicles"],
       "metrics": {
         "wordCount": 2913,
         "readTime": 12
@@ -133,9 +120,7 @@
       "featured": false,
       "image": "/images/blog/blog-hero-aurora.svg",
       "description": "A grounded thank-you to the ecosystems, teams, tools, and creators helping us build a more human AI future.",
-      "streams": [
-        "creation-chronicles"
-      ],
+      "streams": ["creation-chronicles"],
       "metrics": {
         "wordCount": 828,
         "readTime": 4
@@ -154,9 +139,7 @@
       "featured": false,
       "image": "/images/vibe-os/vibe-os-ecosystem-overview.png",
       "description": "An integrated platform combining AI music production, multi-LLM orchestration, and intelligent agent coordination. Built on Claude, GPT, Gemini, Grok, and Llama.",
-      "streams": [
-        "creation-chronicles"
-      ],
+      "streams": ["creation-chronicles"],
       "metrics": {
         "wordCount": 1826,
         "readTime": 8
@@ -181,17 +164,12 @@
       "featured": true,
       "image": "/images/acos/acos-v10-architecture.png",
       "description": "ACOS v10 ships 5 new safety and intelligence systems. Intelligence score jumps from 72 to 93. Here's what changed and why it matters for AI-native creators.",
-      "streams": [
-        "ai-architect",
-        "creation-chronicles"
-      ],
+      "streams": ["ai-architect", "creation-chronicles"],
       "metrics": {
         "wordCount": 1360,
         "readTime": 6
       },
-      "crossLinks": [
-        "blog-frankx-intelligence-ecosystem-complete-guide"
-      ]
+      "crossLinks": ["blog-frankx-intelligence-ecosystem-complete-guide"]
     },
     {
       "id": "blog-ai-agents-transform-due-diligence",
@@ -203,11 +181,9 @@
       "category": "Intelligence Dispatches",
       "tags": [],
       "featured": false,
-      "image": "/images/blog/ai-dd-agents.png",
+      "image": "/images/blog/ai-dd-agents-v2.png",
       "description": "AI reduces DD review time by 70%. Here's exactly how multi-agent systems handle document analysis, risk scoring, and competitive mapping for institutional investors.",
-      "streams": [
-        "creation-chronicles"
-      ],
+      "streams": ["creation-chronicles"],
       "metrics": {
         "wordCount": 1385,
         "readTime": 6
@@ -232,9 +208,7 @@
       "featured": false,
       "image": "/images/blog/deal-flow-pipeline.png",
       "description": "How to build an automated deal sourcing, screening, and scoring pipeline using n8n workflows, Claude agents, and persistent memory. From RSS feeds to scored deal cards.",
-      "streams": [
-        "creation-chronicles"
-      ],
+      "streams": ["creation-chronicles"],
       "metrics": {
         "wordCount": 1631,
         "readTime": 7
@@ -263,18 +237,12 @@
       "featured": true,
       "image": "/images/blog/ecosystem-architecture-davinci.png",
       "description": "A complete technical guide to the FrankX creator intelligence stack — Vibe OS, GenCreator OS, ACOS v10, Starlight Intelligence System v4, and Arcanea. How they interconnect, what each does, and why the whole is greater than the sum of its parts.",
-      "streams": [
-        "ai-architect",
-        "arcanea",
-        "creation-chronicles"
-      ],
+      "streams": ["ai-architect", "arcanea", "creation-chronicles"],
       "metrics": {
         "wordCount": 3665,
         "readTime": 15
       },
-      "crossLinks": [
-        "blog-acos-v10-autonomous-intelligence"
-      ]
+      "crossLinks": ["blog-acos-v10-autonomous-intelligence"]
     },
     {
       "id": "blog-iacos-investment-research-os",
@@ -294,10 +262,7 @@
       "featured": true,
       "image": "/images/blog/iacos-research-os.png",
       "description": "Turn Claude Code into a dedicated investment research platform with custom skills, agent profiles, MCP servers, and visual intelligence. The complete IACOS setup guide.",
-      "streams": [
-        "ai-architect",
-        "creation-chronicles"
-      ],
+      "streams": ["ai-architect", "creation-chronicles"],
       "metrics": {
         "wordCount": 1909,
         "readTime": 8
@@ -322,9 +287,7 @@
       "featured": true,
       "image": "/images/blog/misinformation-guardian-hackathon-hero.png",
       "description": "How we went from a Custom GPT experiment to a Gemini Gem live demo in 90 minutes, then translated it into a production blueprint for RealityDiffusion.ai.",
-      "streams": [
-        "creation-chronicles"
-      ],
+      "streams": ["creation-chronicles"],
       "metrics": {
         "wordCount": 717,
         "readTime": 3
@@ -339,27 +302,16 @@
       "href": "/blog/acos-enterprise-deployment-guide",
       "publishedAt": "2026-01-27",
       "category": "AI Architecture",
-      "tags": [
-        "enterprise",
-        "deployment",
-        "governance",
-        "teams",
-        "acos"
-      ],
+      "tags": ["enterprise", "deployment", "governance", "teams", "acos"],
       "featured": false,
       "image": "/images/blog/acos-enterprise-hero.png",
       "description": "Scale Agentic Creator OS to teams with department structures, governance models, access control, and enterprise integration patterns.",
-      "streams": [
-        "ai-architect",
-        "creation-chronicles"
-      ],
+      "streams": ["ai-architect", "creation-chronicles"],
       "metrics": {
         "wordCount": 1531,
         "readTime": 7
       },
-      "crossLinks": [
-        "product-multi-agent-blueprint"
-      ]
+      "crossLinks": ["product-multi-agent-blueprint"]
     },
     {
       "id": "blog-acos-hooks-system-quality-gates",
@@ -369,20 +321,11 @@
       "href": "/blog/acos-hooks-system-quality-gates",
       "publishedAt": "2026-01-27",
       "category": "AI Architecture",
-      "tags": [
-        "hooks",
-        "quality",
-        "automation",
-        "claude code",
-        "acos"
-      ],
+      "tags": ["hooks", "quality", "automation", "claude code", "acos"],
       "featured": false,
       "image": "/images/blog/acos-hooks-hero.png",
       "description": "Master ACOS hooks for automated quality enforcement. SessionStart, PreToolUse, PostToolUse, and Notification hooks that catch issues before they ship.",
-      "streams": [
-        "ai-architect",
-        "creation-chronicles"
-      ],
+      "streams": ["ai-architect", "creation-chronicles"],
       "metrics": {
         "wordCount": 1635,
         "readTime": 7
@@ -410,10 +353,7 @@
       "featured": false,
       "image": "/images/blog/acos-philosophy-hero.png",
       "description": "Why Agentic Creator OS is built on configuration over code, progressive disclosure, and human-AI collaboration. The principles that guide the system.",
-      "streams": [
-        "ai-architect",
-        "creation-chronicles"
-      ],
+      "streams": ["ai-architect", "creation-chronicles"],
       "metrics": {
         "wordCount": 1481,
         "readTime": 6
@@ -432,9 +372,7 @@
       "featured": false,
       "image": "/images/blog/acos-use-cases-creator-types-hero.png",
       "description": "Discover which Agentic Creator OS workflows match your creator archetype. Writers, developers, musicians, entrepreneurs, course creators, and agencies—find your path.",
-      "streams": [
-        "creation-chronicles"
-      ],
+      "streams": ["creation-chronicles"],
       "metrics": {
         "wordCount": 2126,
         "readTime": 9
@@ -459,9 +397,7 @@
       "featured": true,
       "image": "/images/blog/acos-quick-start-hero.png",
       "description": "Get Agentic Creator OS running in 10 minutes. Clone, install, configure, and run your first workflow. The fastest path from zero to AI-powered productivity.",
-      "streams": [
-        "creation-chronicles"
-      ],
+      "streams": ["creation-chronicles"],
       "metrics": {
         "wordCount": 1222,
         "readTime": 5
@@ -491,9 +427,7 @@
       "featured": true,
       "image": "/images/blog/agentic-creator-os-complete-guide-hero.png",
       "description": "Master the AI operating system that transforms Claude Code into a full creative studio. 25 commands, 80+ skills, swarm intelligence, and auto-activation. The definitive guide.",
-      "streams": [
-        "creation-chronicles"
-      ],
+      "streams": ["creation-chronicles"],
       "metrics": {
         "wordCount": 2370,
         "readTime": 10
@@ -514,20 +448,11 @@
       "href": "/blog/building-custom-skills-acos",
       "publishedAt": "2026-01-27",
       "category": "Tutorials",
-      "tags": [
-        "tutorial",
-        "claude code",
-        "skills",
-        "development",
-        "acos"
-      ],
+      "tags": ["tutorial", "claude code", "skills", "development", "acos"],
       "featured": false,
-      "image": "/images/blog/building-custom-skills-hero.png",
+      "image": "/images/blog/building-custom-skills-hero-v2.png",
       "description": "Create your own ACOS skills with auto-activation, progressive disclosure, and real examples. From skill anatomy to publishing—the full tutorial.",
-      "streams": [
-        "ai-architect",
-        "creation-chronicles"
-      ],
+      "streams": ["ai-architect", "creation-chronicles"],
       "metrics": {
         "wordCount": 1947,
         "readTime": 8
@@ -548,19 +473,11 @@
       "href": "/blog/mcp-server-integration-guide",
       "publishedAt": "2026-01-27",
       "category": "AI Architecture",
-      "tags": [
-        "mcp",
-        "claude code",
-        "integration",
-        "api",
-        "tutorial"
-      ],
+      "tags": ["mcp", "claude code", "integration", "api", "tutorial"],
       "featured": true,
-      "image": "/images/blog/mcp-server-integration-hero.png",
+      "image": "/images/blog/mcp-server-integration-hero-v2.png",
       "description": "Master the Model Context Protocol. Learn how ACOS connects to browsers, databases, APIs, and external tools through 7 MCP servers. Build your own integrations.",
-      "streams": [
-        "creation-chronicles"
-      ],
+      "streams": ["creation-chronicles"],
       "metrics": {
         "wordCount": 1986,
         "readTime": 8
@@ -589,11 +506,9 @@
         "monitoring"
       ],
       "featured": false,
-      "image": "/images/blog/production-agentic-ai-systems-hero.png",
+      "image": "/images/blog/production-agentic-ai-systems-hero-v2.png",
       "description": "Gartner predicts 60% of AI deployments will fail without proper observability by 2027. Learn the tools and patterns that separate production systems from POCs.",
-      "streams": [
-        "creation-chronicles"
-      ],
+      "streams": ["creation-chronicles"],
       "metrics": {
         "wordCount": 1202,
         "readTime": 5
@@ -618,9 +533,7 @@
       "featured": false,
       "image": "/images/blog/seo-aeo-optimization-hero.png",
       "description": "Master search and AI engine optimization with ACOS. Question-based structure, FAQ schemas, AI citation optimization, and the /factory pipeline for publish-ready content.",
-      "streams": [
-        "creation-chronicles"
-      ],
+      "streams": ["creation-chronicles"],
       "metrics": {
         "wordCount": 1821,
         "readTime": 8
@@ -645,9 +558,7 @@
       "featured": true,
       "image": "/images/blog/swarm-intelligence-orchestration-hero.png",
       "description": "Learn the 4 orchestration patterns that make AI agents work together: Pipeline, Parallel, Weighted Synthesis, and Iterative. Real examples from ACOS production use.",
-      "streams": [
-        "creation-chronicles"
-      ],
+      "streams": ["creation-chronicles"],
       "metrics": {
         "wordCount": 1904,
         "readTime": 8
@@ -670,11 +581,9 @@
         "Enterprise Governance"
       ],
       "featured": true,
-      "image": "/images/blog/agentic-ai-roadmap-2026-hero.png",
+      "image": "/images/blog/agentic-ai-roadmap-2026-hero-v2.png",
       "description": "A strategic blueprint for creators, founders, and executives to deploy agentic AI systems in 2026. Updated with LangGraph, CrewAI, MCP protocol, and OCI GenAI patterns.",
-      "streams": [
-        "creation-chronicles"
-      ],
+      "streams": ["creation-chronicles"],
       "metrics": {
         "wordCount": 1678,
         "readTime": 7
@@ -696,9 +605,7 @@
       "featured": false,
       "image": "/images/blog/brand-evolution-consciousness-to-systems-hero.png",
       "description": "How FrankX shifted from 'soul-aligned AI' language to a systems architect identity. A transparent look at brand iteration for creators.",
-      "streams": [
-        "creation-chronicles"
-      ],
+      "streams": ["creation-chronicles"],
       "metrics": {
         "wordCount": 1378,
         "readTime": 6
@@ -723,16 +630,12 @@
       "featured": false,
       "image": "/images/blog/claude-code-mcp.png",
       "description": "Claude Code 2.1 introduces MCP Tool Search, cutting token usage by 85% and boosting accuracy from 79.5% to 88.1%. A deep dive into the biggest productivity upgrade since launch.",
-      "streams": [
-        "creation-chronicles"
-      ],
+      "streams": ["creation-chronicles"],
       "metrics": {
         "wordCount": 1424,
         "readTime": 6
       },
-      "crossLinks": [
-        "blog-ultimate-guide-ai-coding-agents-2026"
-      ]
+      "crossLinks": ["blog-ultimate-guide-ai-coding-agents-2026"]
     },
     {
       "id": "blog-multi-agent-orchestration-patterns-2026",
@@ -750,11 +653,9 @@
         "Production AI"
       ],
       "featured": true,
-      "image": "/images/blog/multi-agent-orchestration.png",
+      "image": "/images/blog/multi-agent-orchestration-v2.png",
       "description": "Beyond simple agent comparisons. Deep dive into orchestration patterns, handoff strategies, state management, and observability for production multi-agent systems.",
-      "streams": [
-        "creation-chronicles"
-      ],
+      "streams": ["creation-chronicles"],
       "metrics": {
         "wordCount": 1547,
         "readTime": 7
@@ -783,10 +684,7 @@
       "featured": false,
       "image": "/images/blog/oracle-genai-comparison.png",
       "description": "A practical comparison of OCI GenAI Agents, LangGraph, and CrewAI for enterprise deployments. Features, pricing, and decision framework from an AI architect's perspective.",
-      "streams": [
-        "ai-architect",
-        "creation-chronicles"
-      ],
+      "streams": ["ai-architect", "creation-chronicles"],
       "metrics": {
         "wordCount": 1727,
         "readTime": 7
@@ -817,10 +715,7 @@
       "featured": true,
       "image": "/images/blog/suno-prompt-engineering-complete-guide-hero.png",
       "description": "Master Suno AI music creation with proven prompt formulas from 500+ sessions. Learn genre-specific techniques, advanced modifiers, and the anatomy of prompts that generate professional tracks.",
-      "streams": [
-        "music-lab",
-        "creation-chronicles"
-      ],
+      "streams": ["music-lab", "creation-chronicles"],
       "metrics": {
         "wordCount": 3083,
         "readTime": 13
@@ -835,18 +730,11 @@
       "href": "/blog/agentic-workflows-save-hours",
       "publishedAt": "2026-01-22",
       "category": "Creator Systems",
-      "tags": [
-        "workflows",
-        "automation",
-        "productivity",
-        "agentic ai"
-      ],
+      "tags": ["workflows", "automation", "productivity", "agentic ai"],
       "featured": false,
-      "image": "/images/blog/agentic-workflows-save-hours-hero.png",
+      "image": "/images/blog/agentic-workflows-save-hours-hero-v2.png",
       "description": "Production workflows I use daily: blog publishing, ops reports, client onboarding, content repurposing, code review. Copy these patterns and automate the grind.",
-      "streams": [
-        "creation-chronicles"
-      ],
+      "streams": ["creation-chronicles"],
       "metrics": {
         "wordCount": 1954,
         "readTime": 8
@@ -876,9 +764,7 @@
       "featured": true,
       "image": "/images/blog/agi-2026-opportunities-students-creators-hero.png",
       "description": "Expert predictions range from 'AGI by 2026' to 'decades away.' Here's what the actual progress means for students, personal growth, and economic opportunities right now.",
-      "streams": [
-        "creation-chronicles"
-      ],
+      "streams": ["creation-chronicles"],
       "metrics": {
         "wordCount": 1605,
         "readTime": 7
@@ -904,9 +790,7 @@
       "featured": true,
       "image": "/images/blog/building-research-intelligence-system-hero.png",
       "description": "A deep dive into the multi-agent research system powering FrankX.AI - five specialized agents, three workflow modes, and a publication pipeline optimized for the AI age.",
-      "streams": [
-        "creation-chronicles"
-      ],
+      "streams": ["creation-chronicles"],
       "metrics": {
         "wordCount": 1569,
         "readTime": 7
@@ -936,9 +820,7 @@
       "featured": false,
       "image": "/images/blog/eu-inc-28th-regime-european-startups-hero.png",
       "description": "The European Commission just announced EU Inc - a pan-European company structure promising 48-hour incorporation across all member states. Here's what it means for founders, investors, and the European startup ecosystem.",
-      "streams": [
-        "creation-chronicles"
-      ],
+      "streams": ["creation-chronicles"],
       "metrics": {
         "wordCount": 1322,
         "readTime": 6
@@ -953,18 +835,11 @@
       "href": "/blog/getting-started-agentic-creator-os",
       "publishedAt": "2026-01-21",
       "category": "Tutorials",
-      "tags": [
-        "tutorial",
-        "claude code",
-        "agentic ai",
-        "getting started"
-      ],
+      "tags": ["tutorial", "claude code", "agentic ai", "getting started"],
       "featured": true,
-      "image": "/images/blog/getting-started-agentic-creator-os-hero.png",
+      "image": "/images/blog/getting-started-agentic-creator-os-hero-v2.png",
       "description": "Set up your own AI operating system in 30 minutes. Step-by-step guide to installing departments, MCP servers, and running your first automated workflow.",
-      "streams": [
-        "creation-chronicles"
-      ],
+      "streams": ["creation-chronicles"],
       "metrics": {
         "wordCount": 1470,
         "readTime": 6
@@ -997,10 +872,7 @@
       "featured": false,
       "image": "/images/blog/oci-genai-architecture-hero.jpg",
       "description": "The complete enterprise architecture blueprint for deploying production-grade LLM and agentic AI systems on Oracle Cloud Infrastructure. Six architectural planes, OCI service mapping, and the decision framework that gets you from demo to deployment.",
-      "streams": [
-        "ai-architect",
-        "creation-chronicles"
-      ],
+      "streams": ["ai-architect", "creation-chronicles"],
       "metrics": {
         "wordCount": 1667,
         "readTime": 7
@@ -1033,10 +905,7 @@
       "featured": false,
       "image": "/images/blog/oci-agent-patterns-hero.jpg",
       "description": "The complete pattern library for agent orchestration on OCI: Sequential, Concurrent, Group Chat, Handoff, Orchestrator-Worker, and Human-in-the-Loop. Decision criteria, OCI service mapping, and when to use each pattern.",
-      "streams": [
-        "ai-architect",
-        "creation-chronicles"
-      ],
+      "streams": ["ai-architect", "creation-chronicles"],
       "metrics": {
         "wordCount": 1599,
         "readTime": 7
@@ -1069,10 +938,7 @@
       "featured": false,
       "image": "/images/blog/production-llm-agents-oci-part-3-hero.png",
       "description": "The definitive guide to operating production AI systems. 5-stage maturity model, evaluation pipelines, MLOps for GenAI, incident response runbooks, cost optimization, and team operating models.",
-      "streams": [
-        "ai-architect",
-        "creation-chronicles"
-      ],
+      "streams": ["ai-architect", "creation-chronicles"],
       "metrics": {
         "wordCount": 2478,
         "readTime": 10
@@ -1101,9 +967,7 @@
       "featured": true,
       "image": "/images/blog/build-your-own-jarvis-hero.png",
       "description": "Stop using AI tools like everyone else. Build a personal AI system that knows your work, executes your workflows, and gets smarter every day. Here's exactly how.",
-      "streams": [
-        "creation-chronicles"
-      ],
+      "streams": ["creation-chronicles"],
       "metrics": {
         "wordCount": 1929,
         "readTime": 8
@@ -1133,9 +997,7 @@
       "featured": true,
       "image": "/images/blog/creator-intelligence-systems-2026-hero.png",
       "description": "The creators who thrive in 2026 won't be those with the best tools—they'll be those with the best systems. Here's why personal AI intelligence systems are the new competitive advantage.",
-      "streams": [
-        "creation-chronicles"
-      ],
+      "streams": ["creation-chronicles"],
       "metrics": {
         "wordCount": 1842,
         "readTime": 8
@@ -1162,9 +1024,7 @@
       "featured": true,
       "image": "/images/blog/nvidia-physical-ai-hero.png",
       "description": "Everything announced at Nvidia's CES 2026 keynote - Rubin platform, Cosmos models, autonomous vehicles, and why physical AI is the next frontier for creators and enterprises.",
-      "streams": [
-        "creation-chronicles"
-      ],
+      "streams": ["creation-chronicles"],
       "metrics": {
         "wordCount": 1364,
         "readTime": 6
@@ -1189,16 +1049,12 @@
       "featured": false,
       "image": "/images/blog/30-minute-creator-os-quick-start-hero.png",
       "description": "Skip the theory. In 30 minutes, you'll have a working creative system with capture, create, and ship workflows. Everything else can wait.",
-      "streams": [
-        "creation-chronicles"
-      ],
+      "streams": ["creation-chronicles"],
       "metrics": {
         "wordCount": 1144,
         "readTime": 5
       },
-      "crossLinks": [
-        "blog-the-creative-os"
-      ]
+      "crossLinks": ["blog-the-creative-os"]
     },
     {
       "id": "blog-the-creative-os",
@@ -1218,9 +1074,7 @@
       "featured": true,
       "image": "/images/blog/the-creative-os-hero.png",
       "description": "Learn how to design and build your own Creative Operating System (Creative OS) to enhance your creativity, productivity, and impact.",
-      "streams": [
-        "creation-chronicles"
-      ],
+      "streams": ["creation-chronicles"],
       "metrics": {
         "wordCount": 2000,
         "readTime": 8
@@ -1242,9 +1096,7 @@
       "featured": false,
       "image": "/images/blog/agentic-creator-os-hero.png",
       "description": "Stop juggling AI tools. Build a system where agents coordinate like a production team—content, dev, design, marketing working together on your projects.",
-      "streams": [
-        "creation-chronicles"
-      ],
+      "streams": ["creation-chronicles"],
       "metrics": {
         "wordCount": 1334,
         "readTime": 6
@@ -1270,9 +1122,7 @@
       "featured": true,
       "image": "/images/blog/intelligence-revolution-hero.png",
       "description": "A practical blueprint for enterprise technologists, founders, and creators to capture value as intelligence, automation, and intentional design converge.",
-      "streams": [
-        "creation-chronicles"
-      ],
+      "streams": ["creation-chronicles"],
       "metrics": {
         "wordCount": 3437,
         "readTime": 14
@@ -1287,25 +1137,16 @@
       "href": "/blog/what-is-agentic-ai",
       "publishedAt": "2025-02-15",
       "category": "AI Architecture",
-      "tags": [
-        "Agentic AI",
-        "AI Architecture",
-        "Claude Code",
-        "Production AI"
-      ],
+      "tags": ["Agentic AI", "AI Architecture", "Claude Code", "Production AI"],
       "featured": false,
       "image": "/images/blog/what-is-agentic-ai-hero.png",
       "description": "Agentic AI doesn't wait for prompts—it acts. After building production agent systems in enterprise environments, here's what actually matters about autonomous AI.",
-      "streams": [
-        "creation-chronicles"
-      ],
+      "streams": ["creation-chronicles"],
       "metrics": {
         "wordCount": 1081,
         "readTime": 5
       },
-      "crossLinks": [
-        "blog-ultimate-guide-ai-coding-agents-2026"
-      ]
+      "crossLinks": ["blog-ultimate-guide-ai-coding-agents-2026"]
     },
     {
       "id": "blog-conscious-ai-integration-operating-system",
@@ -1323,11 +1164,9 @@
         "Roadmap"
       ],
       "featured": false,
-      "image": "/images/blog/conscious-ai-integration-os-hero.png",
+      "image": "/images/blog/conscious-ai-integration-os-hero-v2.png",
       "description": "A practical operating system for leaders who want intelligent AI integration—grounded in governance, creativity, and measurable value—across 2025 initiatives.",
-      "streams": [
-        "creation-chronicles"
-      ],
+      "streams": ["creation-chronicles"],
       "metrics": {
         "wordCount": 1246,
         "readTime": 5
@@ -1355,9 +1194,7 @@
       "featured": true,
       "image": "/images/blog/agentic-ai-roadmap.svg",
       "description": "A strategic blueprint for creators, founders, and executives to deploy agentic AI systems in 2025, aligned with the FrankX Intelligence Atlas roadmap.",
-      "streams": [
-        "creation-chronicles"
-      ],
+      "streams": ["creation-chronicles"],
       "metrics": {
         "wordCount": 1621,
         "readTime": 7
@@ -1386,9 +1223,7 @@
       "featured": true,
       "image": "/images/blog/frankx-intelligence-atlas-hero.png",
       "description": "A 10,000-word flagship report on the 2025 intelligence landscape, from frontier labs to open-source ecosystems, adoption metrics, and builder-ready frameworks.",
-      "streams": [
-        "creation-chronicles"
-      ],
+      "streams": ["creation-chronicles"],
       "metrics": {
         "wordCount": 10503,
         "readTime": 43
@@ -1417,10 +1252,7 @@
       "featured": false,
       "image": "/images/blog/vibe-os-creative-soul-hero.png",
       "description": "Stop treating AI audio like a slot machine. Use the RPM Model to engineer the biological state of your users. Here is specific code for your prompt strategy.",
-      "streams": [
-        "music-lab",
-        "creation-chronicles"
-      ],
+      "streams": ["music-lab", "creation-chronicles"],
       "metrics": {
         "wordCount": 630,
         "readTime": 3
@@ -1435,27 +1267,16 @@
       "href": "/blog/science-of-state-change-music",
       "publishedAt": "2025-01-05",
       "category": "Vibe Sessions",
-      "tags": [
-        "music",
-        "psychology",
-        "productivity",
-        "creativity",
-        "vibe-os"
-      ],
+      "tags": ["music", "psychology", "productivity", "creativity", "vibe-os"],
       "featured": true,
       "image": "/images/blog/science-of-state-change-music-hero.png",
       "description": "How tempo, mode, and lyrics create predictable emotional outcomes—backed by peer-reviewed research",
-      "streams": [
-        "music-lab",
-        "creation-chronicles"
-      ],
+      "streams": ["music-lab", "creation-chronicles"],
       "metrics": {
         "wordCount": 874,
         "readTime": 4
       },
-      "crossLinks": [
-        "blog-the-creative-os"
-      ]
+      "crossLinks": ["blog-the-creative-os"]
     },
     {
       "id": "blog-creators-life-architecture-guide",
@@ -1473,11 +1294,9 @@
         "AI coaching"
       ],
       "featured": true,
-      "image": "/images/blog/creators-life-architecture-guide-hero.png",
+      "image": "/images/blog/creators-life-architecture-guide-hero-v2.png",
       "description": "Most creators optimize one dimension of life while the others crumble. The 7-Pillar system changes that. Here's your complete guide to building an extraordinary life as a creator.",
-      "streams": [
-        "creation-chronicles"
-      ],
+      "streams": ["creation-chronicles"],
       "metrics": {
         "wordCount": 1388,
         "readTime": 6
@@ -1492,25 +1311,16 @@
       "href": "/blog/01-ai-doesnt-have-to-be-soulless",
       "publishedAt": "2024-08-22",
       "category": "AI & Creativity",
-      "tags": [
-        "AI",
-        "Creativity",
-        "Technology",
-        "Personal Story"
-      ],
+      "tags": ["AI", "Creativity", "Technology", "Personal Story"],
       "featured": true,
       "image": "/images/blog/ai-soul-story-hero.svg",
       "description": "A 15-year architect's turning point: how collaborative creation with AI revealed a path where technology amplifies human creativity, not replaces it.",
-      "streams": [
-        "creation-chronicles"
-      ],
+      "streams": ["creation-chronicles"],
       "metrics": {
         "wordCount": 1210,
         "readTime": 5
       },
-      "crossLinks": [
-        "blog-ai-doesnt-have-to-be-soulless"
-      ]
+      "crossLinks": ["blog-ai-doesnt-have-to-be-soulless"]
     },
     {
       "id": "blog-ai-doesnt-have-to-be-soulless",
@@ -1520,25 +1330,16 @@
       "href": "/blog/ai-doesnt-have-to-be-soulless",
       "publishedAt": "2024-08-22",
       "category": "AI & Creativity",
-      "tags": [
-        "AI",
-        "Creativity",
-        "Technology",
-        "Personal Story"
-      ],
+      "tags": ["AI", "Creativity", "Technology", "Personal Story"],
       "featured": true,
       "image": "/images/blog/ai-soul-story-hero.svg",
       "description": "A 15-year architect's turning point: how collaborative creation with AI revealed a path where technology amplifies human creativity, not replaces it.",
-      "streams": [
-        "creation-chronicles"
-      ],
+      "streams": ["creation-chronicles"],
       "metrics": {
         "wordCount": 1407,
         "readTime": 6
       },
-      "crossLinks": [
-        "blog-01-ai-doesnt-have-to-be-soulless"
-      ]
+      "crossLinks": ["blog-01-ai-doesnt-have-to-be-soulless"]
     },
     {
       "id": "blog-conscious-ai-for-entrepreneurs",
@@ -1555,11 +1356,9 @@
         "Startup Strategy"
       ],
       "featured": false,
-      "image": "/images/blog/conscious-ai-entrepreneurs-hero.png",
+      "image": "/images/blog/conscious-ai-entrepreneurs-hero-v2.png",
       "description": "How to build AI-powered businesses that create genuine value, foster human connection, and generate sustainable profits — without losing quality or ethics.",
-      "streams": [
-        "creation-chronicles"
-      ],
+      "streams": ["creation-chronicles"],
       "metrics": {
         "wordCount": 838,
         "readTime": 4
@@ -1574,18 +1373,11 @@
       "href": "/blog/soul-frequency-framework",
       "publishedAt": "2024-08-20",
       "category": "Creativity & Framework",
-      "tags": [
-        "Creativity",
-        "Personal Development",
-        "AI Tools",
-        "Framework"
-      ],
+      "tags": ["Creativity", "Personal Development", "AI Tools", "Framework"],
       "featured": true,
       "image": "/images/blog/soul-frequency-framework.svg",
       "description": "Everyone has a unique creative frequency — a way of expressing that's authentically yours. Here's how to discover yours and use AI to amplify it, not mask it.",
-      "streams": [
-        "creation-chronicles"
-      ],
+      "streams": ["creation-chronicles"],
       "metrics": {
         "wordCount": 1415,
         "readTime": 6
@@ -1609,11 +1401,9 @@
         "Creator Economy"
       ],
       "featured": true,
-      "image": "/blog/creators-toolkit/og.png",
+      "image": "/images/blog/creators-ai-toolkit-workshop-hero-v2.png",
       "description": "Transform from overwhelmed creator to AI-empowered content machine. Build ideation engines, research pipelines, writing assistants, and distribution automation.",
-      "streams": [
-        "creation-chronicles"
-      ],
+      "streams": ["creation-chronicles"],
       "metrics": {
         "wordCount": 533,
         "readTime": 3
@@ -1638,10 +1428,7 @@
       "featured": true,
       "image": "/images/blog/production-agent-patterns-7-pillars-hero.png",
       "description": "2026 marks the shift from AI demos to production deployments. Here's the architectural framework that emerged from analyzing AWS, Azure, Google Cloud, OpenAI, Anthropic, and Oracle's approaches to production-ready AI agents.",
-      "streams": [
-        "ai-architect",
-        "creation-chronicles"
-      ],
+      "streams": ["ai-architect", "creation-chronicles"],
       "metrics": {
         "wordCount": 1770,
         "readTime": 8
@@ -1663,9 +1450,7 @@
       "featured": false,
       "image": "/images/blog/aws-bedrock-agents.png",
       "description": "A comprehensive guide to building production-ready AI agents on AWS using Bedrock, AgentCore, and the Strands framework. Learn the architectural patterns, security controls, and operational best practices that power enterprise agent deployments.",
-      "streams": [
-        "creation-chronicles"
-      ],
+      "streams": ["creation-chronicles"],
       "metrics": {
         "wordCount": 1799,
         "readTime": 8
@@ -1692,9 +1477,7 @@
       "featured": true,
       "image": "/blog/ai-coding-agents-guide/og.png",
       "description": "Master AI-powered development with the complete guide to coding agents. Learn to set up Claude Code, OpenCode, Cline, Roo Code, and build your evolution from basic prompts to multi-agent orchestration.",
-      "streams": [
-        "creation-chronicles"
-      ],
+      "streams": ["creation-chronicles"],
       "metrics": {
         "wordCount": 1807,
         "readTime": 8
@@ -1712,15 +1495,8 @@
       "href": "/shop/templates/claude-code-suno-mastery",
       "publishedAt": null,
       "category": "templates",
-      "tags": [
-        "music",
-        "suno",
-        "claude-code",
-        "skill"
-      ],
-      "streams": [
-        "creation-chronicles"
-      ],
+      "tags": ["music", "suno", "claude-code", "skill"],
+      "streams": ["creation-chronicles"],
       "metrics": {},
       "crossLinks": [
         "product-claude-code-content-engine",
@@ -1737,16 +1513,8 @@
       "href": "/shop/templates/claude-code-content-engine",
       "publishedAt": null,
       "category": "templates",
-      "tags": [
-        "content",
-        "seo",
-        "blog",
-        "claude-code",
-        "skill"
-      ],
-      "streams": [
-        "creation-chronicles"
-      ],
+      "tags": ["content", "seo", "blog", "claude-code", "skill"],
+      "streams": ["creation-chronicles"],
       "metrics": {},
       "crossLinks": [
         "product-claude-code-suno-mastery",
@@ -1764,16 +1532,8 @@
       "href": "/shop/templates/claude-code-dev-tools",
       "publishedAt": null,
       "category": "templates",
-      "tags": [
-        "react",
-        "nextjs",
-        "typescript",
-        "claude-code",
-        "skill"
-      ],
-      "streams": [
-        "creation-chronicles"
-      ],
+      "tags": ["react", "nextjs", "typescript", "claude-code", "skill"],
+      "streams": ["creation-chronicles"],
       "metrics": {},
       "crossLinks": [
         "product-claude-code-suno-mastery",
@@ -1790,16 +1550,8 @@
       "href": "/shop/templates/claude-code-seo-intelligence",
       "publishedAt": null,
       "category": "templates",
-      "tags": [
-        "seo",
-        "schema",
-        "keywords",
-        "claude-code",
-        "skill"
-      ],
-      "streams": [
-        "creation-chronicles"
-      ],
+      "tags": ["seo", "schema", "keywords", "claude-code", "skill"],
+      "streams": ["creation-chronicles"],
       "metrics": {},
       "crossLinks": [
         "product-claude-code-suno-mastery",
@@ -1816,16 +1568,8 @@
       "href": "/shop/templates/claude-code-agent-orchestration",
       "publishedAt": null,
       "category": "templates",
-      "tags": [
-        "agents",
-        "mcp",
-        "orchestration",
-        "claude-code",
-        "skill"
-      ],
-      "streams": [
-        "creation-chronicles"
-      ],
+      "tags": ["agents", "mcp", "orchestration", "claude-code", "skill"],
+      "streams": ["creation-chronicles"],
       "metrics": {},
       "crossLinks": [
         "product-claude-code-suno-mastery",
@@ -1843,15 +1587,8 @@
       "href": "/shop/templates/n8n-content-pipeline",
       "publishedAt": null,
       "category": "templates",
-      "tags": [
-        "n8n",
-        "workflow",
-        "content",
-        "automation"
-      ],
-      "streams": [
-        "creation-chronicles"
-      ],
+      "tags": ["n8n", "workflow", "content", "automation"],
+      "streams": ["creation-chronicles"],
       "metrics": {},
       "crossLinks": [
         "product-n8n-lead-enrichment",
@@ -1866,16 +1603,8 @@
       "href": "/shop/templates/n8n-lead-enrichment",
       "publishedAt": null,
       "category": "templates",
-      "tags": [
-        "n8n",
-        "workflow",
-        "leads",
-        "crm",
-        "automation"
-      ],
-      "streams": [
-        "creation-chronicles"
-      ],
+      "tags": ["n8n", "workflow", "leads", "crm", "automation"],
+      "streams": ["creation-chronicles"],
       "metrics": {},
       "crossLinks": [
         "product-n8n-content-pipeline",
@@ -1890,15 +1619,8 @@
       "href": "/shop/templates/n8n-customer-support",
       "publishedAt": null,
       "category": "templates",
-      "tags": [
-        "n8n",
-        "workflow",
-        "support",
-        "automation"
-      ],
-      "streams": [
-        "creation-chronicles"
-      ],
+      "tags": ["n8n", "workflow", "support", "automation"],
+      "streams": ["creation-chronicles"],
       "metrics": {},
       "crossLinks": [
         "product-n8n-content-pipeline",
@@ -1913,15 +1635,8 @@
       "href": "/shop/templates/nextjs-saas-boilerplate",
       "publishedAt": null,
       "category": "templates",
-      "tags": [
-        "nextjs",
-        "saas",
-        "boilerplate",
-        "fullstack"
-      ],
-      "streams": [
-        "creation-chronicles"
-      ],
+      "tags": ["nextjs", "saas", "boilerplate", "fullstack"],
+      "streams": ["creation-chronicles"],
       "metrics": {},
       "crossLinks": []
     },
@@ -1933,19 +1648,10 @@
       "href": "/shop/templates/nextjs-ai-chat",
       "publishedAt": null,
       "category": "templates",
-      "tags": [
-        "nextjs",
-        "ai",
-        "chat",
-        "starter-kit"
-      ],
-      "streams": [
-        "creation-chronicles"
-      ],
+      "tags": ["nextjs", "ai", "chat", "starter-kit"],
+      "streams": ["creation-chronicles"],
       "metrics": {},
-      "crossLinks": [
-        "product-nextjs-blog-cms"
-      ]
+      "crossLinks": ["product-nextjs-blog-cms"]
     },
     {
       "id": "product-nextjs-blog-cms",
@@ -1955,16 +1661,8 @@
       "href": "/shop/templates/nextjs-blog-cms",
       "publishedAt": null,
       "category": "templates",
-      "tags": [
-        "nextjs",
-        "blog",
-        "mdx",
-        "seo",
-        "starter-kit"
-      ],
-      "streams": [
-        "creation-chronicles"
-      ],
+      "tags": ["nextjs", "blog", "mdx", "seo", "starter-kit"],
+      "streams": ["creation-chronicles"],
       "metrics": {},
       "crossLinks": [
         "product-claude-code-content-engine",
@@ -1979,19 +1677,10 @@
       "href": "/shop/templates/mcp-custom-tools",
       "publishedAt": null,
       "category": "templates",
-      "tags": [
-        "mcp",
-        "tools",
-        "typescript",
-        "config"
-      ],
-      "streams": [
-        "creation-chronicles"
-      ],
+      "tags": ["mcp", "tools", "typescript", "config"],
+      "streams": ["creation-chronicles"],
       "metrics": {},
-      "crossLinks": [
-        "product-mcp-multi-server"
-      ]
+      "crossLinks": ["product-mcp-multi-server"]
     },
     {
       "id": "product-mcp-multi-server",
@@ -2001,19 +1690,10 @@
       "href": "/shop/templates/mcp-multi-server",
       "publishedAt": null,
       "category": "templates",
-      "tags": [
-        "mcp",
-        "config",
-        "multi-server",
-        "production"
-      ],
-      "streams": [
-        "creation-chronicles"
-      ],
+      "tags": ["mcp", "config", "multi-server", "production"],
+      "streams": ["creation-chronicles"],
       "metrics": {},
-      "crossLinks": [
-        "product-mcp-custom-tools"
-      ]
+      "crossLinks": ["product-mcp-custom-tools"]
     },
     {
       "id": "product-rag-system-blueprint",
@@ -2023,19 +1703,10 @@
       "href": "/shop/templates/rag-system-blueprint",
       "publishedAt": null,
       "category": "templates",
-      "tags": [
-        "rag",
-        "blueprint",
-        "architecture",
-        "enterprise"
-      ],
-      "streams": [
-        "creation-chronicles"
-      ],
+      "tags": ["rag", "blueprint", "architecture", "enterprise"],
+      "streams": ["creation-chronicles"],
       "metrics": {},
-      "crossLinks": [
-        "product-multi-agent-blueprint"
-      ]
+      "crossLinks": ["product-multi-agent-blueprint"]
     },
     {
       "id": "product-multi-agent-blueprint",
@@ -2045,16 +1716,8 @@
       "href": "/shop/templates/multi-agent-blueprint",
       "publishedAt": null,
       "category": "templates",
-      "tags": [
-        "agents",
-        "blueprint",
-        "orchestration",
-        "enterprise",
-        "acos"
-      ],
-      "streams": [
-        "creation-chronicles"
-      ],
+      "tags": ["agents", "blueprint", "orchestration", "enterprise", "acos"],
+      "streams": ["creation-chronicles"],
       "metrics": {},
       "crossLinks": [
         "blog-acos-enterprise-deployment-guide",
@@ -2070,13 +1733,8 @@
       "href": "/investor/tools",
       "publishedAt": null,
       "category": "investor",
-      "tags": [
-        "investing"
-      ],
-      "streams": [
-        "investor",
-        "creation-chronicles"
-      ],
+      "tags": ["investing"],
+      "streams": ["investor", "creation-chronicles"],
       "metrics": {},
       "crossLinks": []
     },
@@ -2088,13 +1746,8 @@
       "href": "/investor/tools",
       "publishedAt": null,
       "category": "investor",
-      "tags": [
-        "investing"
-      ],
-      "streams": [
-        "investor",
-        "creation-chronicles"
-      ],
+      "tags": ["investing"],
+      "streams": ["investor", "creation-chronicles"],
       "metrics": {},
       "crossLinks": []
     },
@@ -2106,13 +1759,8 @@
       "href": "/investor/workflows",
       "publishedAt": null,
       "category": "investor",
-      "tags": [
-        "investing"
-      ],
-      "streams": [
-        "investor",
-        "creation-chronicles"
-      ],
+      "tags": ["investing"],
+      "streams": ["investor", "creation-chronicles"],
       "metrics": {},
       "crossLinks": []
     },
@@ -2124,13 +1772,8 @@
       "href": "/investor/agents",
       "publishedAt": null,
       "category": "investor",
-      "tags": [
-        "investing"
-      ],
-      "streams": [
-        "investor",
-        "creation-chronicles"
-      ],
+      "tags": ["investing"],
+      "streams": ["investor", "creation-chronicles"],
       "metrics": {},
       "crossLinks": []
     },
@@ -2142,13 +1785,8 @@
       "href": "/investor/agents",
       "publishedAt": null,
       "category": "investor",
-      "tags": [
-        "investing"
-      ],
-      "streams": [
-        "investor",
-        "creation-chronicles"
-      ],
+      "tags": ["investing"],
+      "streams": ["investor", "creation-chronicles"],
       "metrics": {},
       "crossLinks": []
     },
@@ -2160,13 +1798,8 @@
       "href": "/investor/workflows",
       "publishedAt": null,
       "category": "investor",
-      "tags": [
-        "investing"
-      ],
-      "streams": [
-        "investor",
-        "creation-chronicles"
-      ],
+      "tags": ["investing"],
+      "streams": ["investor", "creation-chronicles"],
       "metrics": {},
       "crossLinks": []
     },
@@ -2178,13 +1811,8 @@
       "href": "/investor/architectures",
       "publishedAt": null,
       "category": "investor",
-      "tags": [
-        "investing"
-      ],
-      "streams": [
-        "investor",
-        "creation-chronicles"
-      ],
+      "tags": ["investing"],
+      "streams": ["investor", "creation-chronicles"],
       "metrics": {},
       "crossLinks": []
     },
@@ -2196,13 +1824,8 @@
       "href": "/investor/workflows",
       "publishedAt": null,
       "category": "investor",
-      "tags": [
-        "investing"
-      ],
-      "streams": [
-        "investor",
-        "creation-chronicles"
-      ],
+      "tags": ["investing"],
+      "streams": ["investor", "creation-chronicles"],
       "metrics": {},
       "crossLinks": []
     },
@@ -2214,13 +1837,8 @@
       "href": "/investor/tools",
       "publishedAt": null,
       "category": "investor",
-      "tags": [
-        "investing"
-      ],
-      "streams": [
-        "investor",
-        "creation-chronicles"
-      ],
+      "tags": ["investing"],
+      "streams": ["investor", "creation-chronicles"],
       "metrics": {},
       "crossLinks": []
     },
@@ -2232,13 +1850,8 @@
       "href": "/investor/agents",
       "publishedAt": null,
       "category": "investor",
-      "tags": [
-        "investing"
-      ],
-      "streams": [
-        "investor",
-        "creation-chronicles"
-      ],
+      "tags": ["investing"],
+      "streams": ["investor", "creation-chronicles"],
       "metrics": {},
       "crossLinks": []
     },
@@ -2250,13 +1863,8 @@
       "href": "/investor/agents",
       "publishedAt": null,
       "category": "investor",
-      "tags": [
-        "investing"
-      ],
-      "streams": [
-        "investor",
-        "creation-chronicles"
-      ],
+      "tags": ["investing"],
+      "streams": ["investor", "creation-chronicles"],
       "metrics": {},
       "crossLinks": []
     },
@@ -2268,13 +1876,8 @@
       "href": "/investor/workflows",
       "publishedAt": null,
       "category": "investor",
-      "tags": [
-        "investing"
-      ],
-      "streams": [
-        "investor",
-        "creation-chronicles"
-      ],
+      "tags": ["investing"],
+      "streams": ["investor", "creation-chronicles"],
       "metrics": {},
       "crossLinks": []
     },
@@ -2286,13 +1889,8 @@
       "href": "/investor/tools",
       "publishedAt": null,
       "category": "investor",
-      "tags": [
-        "investing"
-      ],
-      "streams": [
-        "investor",
-        "creation-chronicles"
-      ],
+      "tags": ["investing"],
+      "streams": ["investor", "creation-chronicles"],
       "metrics": {},
       "crossLinks": []
     },
@@ -2304,13 +1902,8 @@
       "href": "/investor/architectures",
       "publishedAt": null,
       "category": "investor",
-      "tags": [
-        "investing"
-      ],
-      "streams": [
-        "investor",
-        "creation-chronicles"
-      ],
+      "tags": ["investing"],
+      "streams": ["investor", "creation-chronicles"],
       "metrics": {},
       "crossLinks": []
     }

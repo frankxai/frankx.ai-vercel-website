@@ -4,7 +4,7 @@ import { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import ChapterFeedback from './ChapterFeedback';
 import ChapterShareButtons from './ChapterShareButtons';
-import { EmailSignup } from '@/components/email-signup';
+import BookDownloadGate from './BookDownloadGate';
 import { GlassCard } from '@/components/liquid-glass';
 import { markChapterRead } from '@/lib/reading-progress';
 import { getBookGlossary } from '@/lib/glossary';
@@ -106,25 +106,13 @@ export default function ChapterEndZone({
         chapterSlug={chapterSlug}
       />
 
-      {/* Email capture */}
-      <GlassCard material="crystal" elevation="medium" className="p-8 max-w-md mx-auto">
-        <div className="text-center space-y-4">
-          <div>
-            <h3 className="text-lg font-semibold text-white mb-2">
-              Stay Updated
-            </h3>
-            <p className="text-white/60 text-sm">
-              Get new chapters and the full PDF when it&apos;s ready
-            </p>
-          </div>
-          <EmailSignup
-            listType="newsletter"
-            placeholder="Your email"
-            buttonText="Subscribe"
-            compact
-          />
-        </div>
-      </GlassCard>
+      {/* PDF Download Gate */}
+      <BookDownloadGate
+        bookSlug={bookSlug}
+        bookTitle={bookTitle}
+        themeColor={themeId}
+        className="max-w-md mx-auto"
+      />
     </div>
   );
 }

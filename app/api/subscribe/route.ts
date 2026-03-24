@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { musicPromptsEmail, newsletterWelcomeEmail } from '@/lib/email-templates'
+import { musicPromptsEmail } from '@/lib/email-templates'
+import { welcomeEmail1 } from '@/lib/email-templates-welcome'
 
 const RESEND_API_KEY = process.env.RESEND_API_KEY
 const AUDIENCE_ID = '4d2e913e-6903-4dd4-8749-c02cdb844331'
@@ -52,7 +53,7 @@ async function sendWelcomeEmail(email: string, name: string, listType: string) {
       downloadUrl: 'https://frankx.ai/api/download?product=5-suno-prompts',
     })
   } else {
-    template = newsletterWelcomeEmail({
+    template = welcomeEmail1({
       recipientName: name || 'Creator',
     })
   }

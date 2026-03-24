@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowLeft, Monitor, GitBranch, Database, Eye, Shield } from 'lucide-react'
 
@@ -55,11 +56,20 @@ export default function ArchitecturePage() {
           </Link>
         </nav>
 
-        <section className="pt-8 pb-16 px-6">
+        <div className="relative mb-8 overflow-hidden rounded-2xl">
+          <div className="relative aspect-[21/9]">
+            <Image src="/images/architectures/mcp-hub.png" alt="The 5-Layer AI Ops Stack" fill className="object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b] via-[#0a0a0b]/60 to-transparent" />
+          </div>
+          <div className="absolute bottom-0 left-0 p-6">
+            <p className="text-[11px] uppercase tracking-[0.2em] text-emerald-400/60 mb-2">AI Ops</p>
+            <h1 className="text-2xl font-bold text-white">The 5-Layer AI Ops Stack</h1>
+          </div>
+        </div>
+
+        <section className="pb-16 px-6">
           <div className="max-w-6xl mx-auto">
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-              <p className="text-[#3b82f6] font-mono text-sm mb-4 tracking-wider uppercase">Master Architecture</p>
-              <h1 className="text-4xl md:text-5xl font-bold mb-6">The 5-Layer AI Ops Stack</h1>
               <p className="text-white/50 text-lg max-w-2xl">
                 A complete reference architecture for building production AI operations,
                 from gateway routing to user interfaces.
