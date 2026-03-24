@@ -22,7 +22,7 @@ export interface ResearchFAQ {
   answer: string
 }
 
-export type DomainCategory = 'ai-systems' | 'models-tools' | 'creative-productivity' | 'health-science'
+export type DomainCategory = 'ai-systems' | 'models-tools' | 'creative-productivity' | 'health-science' | 'policy-systems'
 
 export interface ResearchDomain {
   slug: string
@@ -49,6 +49,7 @@ export const domainCategories: Record<DomainCategory, { label: string; descripti
   'models-tools': { label: 'Models & Developer Tools', description: 'Frontier models, coding assistants, benchmarks, and configuration' },
   'creative-productivity': { label: 'Creative & Productivity', description: 'Creative tools, creator economy, education, and personal productivity' },
   'health-science': { label: 'Health & Science', description: 'Neuroscience, mental health, healthcare, and clinical AI' },
+  'policy-systems': { label: 'Policy & Systems Thinking', description: 'Infrastructure, housing, governance, and systemic decision frameworks' },
 }
 
 export const researchDomains: ResearchDomain[] = [
@@ -1631,6 +1632,103 @@ export const researchDomains: ResearchDomain[] = [
     relatedBlogPosts: [],
     lastUpdated: '2026-02-14',
     sourceCount: 28,
+    status: 'active',
+  },
+  {
+    slug: 'housing-crisis-decisions',
+    title: 'Solving the Housing Crisis: Managerial Decisions That Work',
+    subtitle: 'Evidence-based policy frameworks for housing affordability',
+    description: 'A data-driven analysis of how decision-makers are solving the global housing crisis. Covers supply-side vs demand-side interventions, zoning reform, construction technology, public-private partnerships, and the five-lever framework for housing delivery — drawn from McKinsey, OECD, Harvard JCHS, and Brookings research.',
+    tldr: 'The housing crisis is fundamentally a supply problem: the US is short 3.8–6.5 million units, the EU faces a 4–5 million unit gap. Zoning reform is the single highest-leverage intervention — Tokyo builds 120,000–180,000 units annually with permissive national zoning, keeping real rents flat despite population growth. Construction productivity has grown only ~1% per year for 20 years. The five-lever framework (Land, Permitting, Construction Tech, Financing, Governance) provides a structured decision model for leaders at every level.',
+    icon: 'Building2',
+    color: 'amber',
+    category: 'policy-systems',
+    highlights: [
+      { stat: '3.8–6.5M', label: 'US housing unit shortage', source: 'Freddie Mac / NAR' },
+      { stat: '22.4M', label: 'US cost-burdened renters', source: 'Harvard JCHS 2024' },
+      { stat: '~1%/yr', label: 'Construction productivity growth', source: 'McKinsey Global Institute' },
+      { stat: '60%', label: 'Vienna residents in social housing', source: 'City of Vienna' },
+    ],
+    sections: [
+      {
+        title: 'The Scale of the Crisis',
+        content: 'The global housing crisis is driven by decades of underbuilding relative to population growth. In the US, housing starts averaged 1.0–1.4 million units per year through the 2010s against demand of 1.5–1.7 million annually. The cumulative deficit has grown every year since the 2008 financial crisis. In the EU, residential building permits declined 25–30% between 2022 and 2024. McKinsey estimates 440 million households worldwide will live in substandard or unaffordable housing by 2025.',
+        items: [
+          { title: 'United States', description: '3.8–6.5 million unit shortage. 50% of renters cost-burdened. Median home price-to-income ratio exceeds 5:1, far above the affordable benchmark of 3:1.', badge: 'Critical' },
+          { title: 'European Union', description: '4–5 million unit combined deficit. Germany alone short 700,000–800,000 units. 8.5% of EU population exceeds the 40% housing cost overburden threshold.', badge: 'Severe' },
+          { title: 'Global', description: 'UN-Habitat estimates 96,000 new affordable units needed per day. 1 billion people live in slums or informal settlements worldwide.', badge: 'Systemic' },
+        ],
+      },
+      {
+        title: 'The Five-Lever Framework for Housing Decision-Makers',
+        content: 'Drawing from McKinsey Global Institute, OECD, and Brookings research, managerial decisions can be organized around five high-impact levers. The dominant expert consensus is that the crisis is fundamentally a supply problem — demand-side interventions alone redistribute scarcity rather than resolving it.',
+        items: [
+          { title: 'Lever 1: Land & Zoning', description: 'Reform exclusionary zoning, release public land, implement land value capture. Up-zoning near transit reduces rents 10–20% (UC Berkeley Terner Center).', badge: 'Highest Impact' },
+          { title: 'Lever 2: Permitting & Regulation', description: 'Streamline to weeks instead of years. Reduce parking minimums ($30K–$75K per unit saved). California SB 35 achieved 50–70% faster approvals.', badge: 'Quick Win' },
+          { title: 'Lever 3: Construction Technology', description: 'Modular/prefab reduces time 30–50%, costs 10–25%. 3D printing enables homes in 24–48 hours. AI scheduling cuts project costs 10–20%.', badge: 'Innovation' },
+          { title: 'Lever 4: Financing & Incentives', description: 'LIHTC produces ~110,000 affordable units/year. Community land trusts maintain affordability for 40+ years. Social impact bonds fund construction.', badge: 'Capital' },
+          { title: 'Lever 5: Governance & Institutions', description: 'Dedicated housing delivery agencies outperform fragmented local governance. Federal/state intervention overcomes local NIMBYism.', badge: 'Structural' },
+        ],
+      },
+      {
+        title: 'What Works: Proven Models from Around the World',
+        content: 'Several cities and countries have demonstrated that the housing crisis is solvable with sustained political commitment and the right institutional design. Each model offers transferable principles, though direct replication requires local adaptation.',
+        items: [
+          { title: 'Vienna, Austria', description: '60% of residents in subsidized housing. EUR 600M annual investment. Land banking prevents speculation. Rents 25–40% below market. Quality equals or exceeds market-rate.', badge: 'Social Housing' },
+          { title: 'Singapore (HDB)', description: '80% of residents in public-built flats. 87–89% homeownership rate. Demand-linked construction with integrated CPF financing. Government owns 90% of land.', badge: 'Public Build' },
+          { title: 'Tokyo, Japan', description: 'National zoning code preempts local restrictions. Builds 120K–180K units/year (more than California). Real rents flat for 20+ years despite population growth.', badge: 'Zoning Reform' },
+          { title: 'Houston, Texas', description: 'Largest US city without traditional zoning. Median home prices 30–50% below comparable Sun Belt metros. 25% lower housing costs relative to income (Mercatus Center).', badge: 'Deregulation' },
+          { title: 'Minneapolis 2040', description: 'Eliminated single-family zoning citywide in 2018. Rents growing slower than comparable Midwestern metros. Triplex permits increased.', badge: 'Missing Middle' },
+        ],
+      },
+      {
+        title: 'Supply-Side vs. Demand-Side: The Decision Matrix',
+        content: 'The dominant expert consensus from McKinsey, OECD, Harvard JCHS, and Brookings is that the housing crisis is fundamentally a supply problem. Demand-side interventions (vouchers, tax credits, down payment assistance) provide immediate relief but cannot solve the crisis alone — they redistribute scarcity and can inflate prices when supply is constrained. Effective policy requires supply-side primacy with demand-side support for the most vulnerable.',
+        items: [
+          { title: 'Supply-Side Primacy', description: 'Zoning reform, public construction, modular building, permitting acceleration. Medium-long timeframe (2–10 years). High scalability with compound effects.', badge: 'Root Cause' },
+          { title: 'Demand-Side Complement', description: 'Vouchers (US Section 8 serves 2.3M households, 2+ year waitlists), tax credits, rent subsidies. Immediate relief but limited by funding and inflationary if supply-constrained.', badge: 'Support' },
+          { title: 'Rent Control', description: 'Research leans negative on supply effects. Stanford study found San Francisco rent control reduced rental supply by 15%. Berlin Mietendeckel struck down. OECD recommends tenancy protections over hard caps.', badge: 'Contested' },
+        ],
+      },
+      {
+        title: 'Technology and AI in Housing Delivery',
+        content: 'The construction industry is one of the least digitized sectors globally, with productivity growth of only ~1% per year for two decades versus 3.6% in manufacturing. This represents both the problem and the opportunity. AI, modular construction, and digital twins are beginning to transform housing delivery.',
+        items: [
+          { title: 'Modular/Prefab', description: 'Factory-built modules reduce build time 30–50% and costs 10–25%. Adoption remains below 5% of US construction despite proven economics (McKinsey 2019).', badge: 'Proven' },
+          { title: '3D-Printed Housing', description: 'ICON (Austin, TX) prints homes in 24–48 hours at $10K–$200K. Scalable for disaster recovery and affordable communities.', badge: 'Emerging' },
+          { title: 'AI Construction Management', description: 'Predictive scheduling, drone monitoring, generative floor plan design. Autodesk/Procore report 10–20% cost reductions.', badge: 'Growing' },
+          { title: 'Digital Twins', description: 'Singapore\'s "Virtual Singapore" simulates housing development impacts before construction. Enables data-driven urban planning.', badge: 'Advanced' },
+        ],
+      },
+      {
+        title: 'The Cost to Close the Gap',
+        content: 'At average US construction costs of $250,000–$350,000 per unit, closing a 4-million-unit gap requires approximately $1.0–$1.4 trillion in total investment. The US residential construction industry produces $600–$800 billion annually, meaning the gap requires sustained above-trend production for 7–10 years. Globally, McKinsey estimates $9–$11 trillion in annual investment needed. This scale of investment requires treating housing as infrastructure — with the same public capital commitment as transportation or energy.',
+      },
+    ],
+    faq: [
+      { question: 'What is the main cause of the housing crisis?', answer: 'The dominant expert consensus is that the housing crisis is primarily caused by insufficient construction relative to population growth. Restrictive zoning, slow permitting, rising construction costs, and NIMBY opposition are the key barriers. The US has a cumulative deficit of 3.8–6.5 million units built up since 2008.' },
+      { question: 'Does building more housing actually reduce prices?', answer: 'Yes. Tokyo, Houston, and Minneapolis demonstrate that increased supply constrains price growth. A 2023 Journal of Urban Economics meta-analysis found new market-rate construction reduces nearby rents 5–7% within 3–5 years through filtering effects.' },
+      { question: 'Does rent control work?', answer: 'Research leans negative on supply effects. A Stanford study on San Francisco found rent control reduced rental housing supply by 15% as landlords converted units. The OECD recommends tenancy protections (security of tenure, limits on arbitrary evictions) over hard rent caps.' },
+      { question: 'What is the "missing middle" in housing?', answer: 'Housing types between single-family homes and large apartment buildings — duplexes, triplexes, fourplexes, townhomes, courtyard apartments. Common before mid-20th century zoning banned them in most US residential zones. Naturally affordable density without high-rise costs.' },
+      { question: 'How much would it cost to close the US housing gap?', answer: 'At $250K–$350K per unit, closing a 4-million-unit gap requires $1.0–$1.4 trillion. This means sustained above-trend construction for 7–10 years. McKinsey estimates $9–$11 trillion annually to address the global gap.' },
+      { question: 'Which countries handle housing best?', answer: 'Top performers: Vienna (60% social housing, rents 25–40% below market), Singapore (87–89% homeownership via HDB), Japan (permissive zoning keeps rents flat), Finland (Housing First nearly eliminated chronic homelessness), Netherlands (30% social housing stock).' },
+      { question: 'What role can AI play in solving the housing crisis?', answer: 'AI reduces construction costs 10–20% via predictive scheduling, automated monitoring, and generative design. Modular/prefab construction cuts time 30–50%. But technology alone cannot overcome regulatory barriers — permitting automation and zoning reform must come first.' },
+      { question: 'What is the Five-Lever Framework for housing?', answer: 'A decision model from McKinsey, OECD, and Brookings research: (1) Land & Zoning reform, (2) Permitting acceleration, (3) Construction technology, (4) Financing & incentives, (5) Governance & institutional design. Supply-side levers address root causes; demand-side supports the most vulnerable.' },
+    ],
+    keyFindings: [
+      'The US is short 3.8–6.5 million housing units; the EU faces a 4–5 million unit gap — the crisis is fundamentally a supply problem (Freddie Mac, Harvard JCHS, OECD)',
+      'Zoning reform is the highest-leverage intervention: Tokyo builds 120K–180K units/year with permissive national zoning, keeping real rents flat for 20+ years',
+      'Construction productivity has grown only ~1%/year for 20 years vs 3.6% in manufacturing — modular/prefab can cut time 30–50% and costs 10–25% (McKinsey)',
+      'Vienna houses 60% of residents in social housing at rents 25–40% below market through EUR 600M annual investment and limited-profit developers',
+      'Parking minimums add $30K–$75K per unit — eliminating them is among the lowest-cost, highest-impact reforms available (Victoria Transport Policy Institute)',
+      '22.4 million US renter households are cost-burdened (>30% of income on housing), the highest level ever recorded (Harvard JCHS 2024)',
+      'Community land trusts maintain affordability for 40+ years — solving the subsidy expiration problem that plagues time-limited programs like LIHTC',
+      'Federal/state intervention is necessary to overcome local NIMBYism — successful reforms (CA SB 35, Oregon HB 2001, Japan national zoning) all involve higher-level preemption',
+    ],
+    relatedDomains: ['enterprise-ai', 'ai-adoption'],
+    relatedBlogPosts: [],
+    lastUpdated: '2026-03-24',
+    sourceCount: 18,
     status: 'active',
   },
 ]
